@@ -21,7 +21,9 @@
     {
       "step": 2,
       "name": "subject-routes",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-10-26T13:04:22+0900",
+      "summary": "새 파일 src/hooks/useSubject.ts(SubjectContext, useSubject(): Subject — Provider 밖이면 throw, useOptionalSubject(): Subject | null), src/components/SubjectScope.tsx(SubjectScope({subjects?}) — :subjectId로 과목을 찾고 없으면 /로 replace, Provider에 key={subject.id}를 걸어 과목이 바뀌면 하위 트리 재마운트), src/pages/SubjectListPage.tsx(SubjectListPage({subjects?}) — h1 「과목」, 과목마다 /<id>로 가는 카드에 이름과 「주제 N개 · 문항 M개」). src/App.tsx의 AppRoutes({subjects?}): 과목 밖 Layout(index=과목 목록, topic/*·review/*·search·random/*·keywords는 LegacyRedirect가 '/aws'+pathname+search+hash로 replace, *=/)과 형제 라우트 :subjectId → SubjectScope → Layout(index=주제 목록, 기존 화면 경로 그대로, keywords는 hasKeywordQuiz면 KeywordQuizPage 아니면 과목 홈, *=과목 홈). 예전 주소의 과목은 LEGACY_SUBJECT_ID 상수. App.test는 /·/aws로 나누고 /aws/… 경로로 옮김, 예전 주소 9개·?q=·#앵커 유지, 없는 과목·과목 안 없는 경로, 키워드 없는 과목 테스트 추가(scrollTo는 mock). key를 빼면 재마운트 테스트가 실패함을 확인. 화면·Layout은 고치지 않음. 테스트 파일 107개·테스트 2732개 통과(+26), build·lint 통과"
     },
     {
       "step": 3,
