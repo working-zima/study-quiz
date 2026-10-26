@@ -29,7 +29,9 @@
     {
       "step": 3,
       "name": "progress-per-subject",
-      "status": "pending"
+      "status": "completed",
+      "summary": "src/lib/storage.ts의 loadProgress(key: string): Progress·saveProgress(key: string, progress: Progress): void — PROGRESS_KEY 상수 삭제, v1→v3·v2→v3 마이그레이션 그대로. src/hooks/useProgress.ts는 useSubject().progressKey로 읽고 씀(useState(() => loadProgress(progressKey)), 반환 모양 그대로, 키 변화를 따라가는 effect 없음 — SubjectScope 재마운트에 맡김). 테스트 도우미 src/test/subject.tsx의 renderWithSubject(ui) — render의 wrapper로 awsSubject Provider를 걸어 rerender도 과목 안. 감싼 테스트: ConceptReadPage·QuizPage·RandomQuizPage·ReviewPage·ReviewQuizPage·TopicListPage(render 호출만 바꿈, it 개수 그대로). storage.test에 키 간 격리 2개(메모리 저장소), useProgress.test는 Provider wrapper·키 인자 단언·두 과목 저장 비섞임·과목 밖 throw. 키 문자열은 src/data/aws/index.ts와 그 단언에만 남음, 화면 코드 변경 없음. 테스트 파일 107개·테스트 2736개 통과(+4), build·lint 통과",
+      "started_at": "2026-10-26T13:09:50+0900"
     },
     {
       "step": 4,

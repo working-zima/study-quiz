@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question } from '../types/content'
 import type { Progress } from '../types/progress'
 import { ReviewQuizPage } from './ReviewQuizPage'
@@ -23,7 +24,7 @@ const twoInReview: Progress = {
 
 function renderPage(path: string, progress: Progress = twoInReview) {
   const setInReview = vi.fn()
-  const view = render(
+  const view = renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route

@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question } from '../types/content'
 import type { Progress } from '../types/progress'
 import { RandomQuizPage } from './RandomQuizPage'
@@ -27,7 +28,7 @@ function CurrentPath() {
 }
 
 function renderPage(path: string, questions = makeQuestions(25), progress = noReview) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route path="/random/:count" element={<RandomQuizPage answer={vi.fn()} progress={progress} questions={questions} setInReview={vi.fn()} shuffle={noShuffle} />} />

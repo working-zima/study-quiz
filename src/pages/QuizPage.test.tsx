@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
 import { QuizPage } from './QuizPage'
@@ -57,7 +58,7 @@ function renderPage(
   progress = noReview,
 ) {
   const setInReview = vi.fn()
-  const result = render(
+  const result = renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route path="/topic/:topicId/quiz" element={<QuizPage answer={answer} progress={progress} questions={questions} setInReview={setInReview} shuffle={shuffle} topics={topics} />} />

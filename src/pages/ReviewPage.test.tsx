@@ -1,7 +1,8 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
 import { ReviewPage } from './ReviewPage'
@@ -35,7 +36,7 @@ const testQuestions: Question[] = [
 ]
 
 function renderPage(progress: Progress, setInReview = vi.fn()) {
-  const view = render(
+  const view = renderWithSubject(
     <MemoryRouter>
       <ReviewPage
         progress={progress}
@@ -50,7 +51,7 @@ function renderPage(progress: Progress, setInReview = vi.fn()) {
 
 // 돌아가기가 실제로 어느 화면에 닿는지 보려면 복습 화면 밖의 라우트가 있어야 한다.
 function renderWithHistory(entries: string[]) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter initialEntries={entries} initialIndex={entries.length - 1}>
       <Routes>
         <Route element={<p>개념 읽기 화면</p>} path="/topic/storage" />

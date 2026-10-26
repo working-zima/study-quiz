@@ -1,6 +1,7 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
 import { TopicListPage } from './TopicListPage'
@@ -50,7 +51,7 @@ function renderPage(
   pageTopics: Topic[] = testTopics,
   pageQuestions: Question[] = [],
 ) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter>
       <TopicListPage
         progress={progress}

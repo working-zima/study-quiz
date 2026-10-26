@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import { ConceptReadPage } from './ConceptReadPage'
 
@@ -96,7 +97,7 @@ function renderPage(
   topics = testTopics,
   questions = testQuestions,
 ) {
-  const result = render(
+  const result = renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route
@@ -375,7 +376,7 @@ describe('ConceptReadPage', () => {
   })
 
   it('실제 데이터의 VPC 주제에는 약어 버튼이 있고 다른 주제에는 없다', () => {
-    const vpc = render(
+    const vpc = renderWithSubject(
       <MemoryRouter initialEntries={['/topic/vpc-networking']}>
         <Routes>
           <Route element={<ConceptReadPage markRead={vi.fn()} />} path="/topic/:topicId" />
@@ -385,7 +386,7 @@ describe('ConceptReadPage', () => {
     expect(screen.getAllByRole('button', { name: 'IAM' })).toHaveLength(1)
     vpc.unmount()
 
-    const { container } = render(
+    const { container } = renderWithSubject(
       <MemoryRouter initialEntries={['/topic/lambda']}>
         <Routes>
           <Route element={<ConceptReadPage markRead={vi.fn()} />} path="/topic/:topicId" />
