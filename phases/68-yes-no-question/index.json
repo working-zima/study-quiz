@@ -7,7 +7,8 @@
       "name": "question-types",
       "status": "completed",
       "started_at": "2026-10-27T08:30:57+0900",
-      "summary": "src/types/content.ts에 Question = ChoiceQuestion(format?: 'choice', choices 네 칸, answerIndex) | YesNoQuestion(format: 'yes-no', answer: boolean)을 두고 공통 필드는 QuestionBase로 묶음. grading.ts에 isCorrect(question: Question, choiceIndex: number): boolean(예/아니요는 0 = 예, 1 = 아니요)과 choiceLabels(question: Question): string[](예/아니요는 ['예', '아니요'])를 둠. shuffle.ts의 shuffleChoices는 오버로드(ChoiceQuestion → ChoiceQuestion, Question → Question)이고 예/아니요 문항은 그대로 돌려주며 rng를 부르지 않음. shuffleQuestions도 같은 모양의 오버로드를 더함(기존 테스트가 결과의 choices를 캐스트 없이 읽기 때문). src/data/aws/index.ts의 questions는 ChoiceQuestion[], QuizRunner는 choiceLabels(question).map 한 곳만 바꿈. 타입 주석만 고친 테스트: src/pages/QuizPage.test.tsx(testQuestions → ChoiceQuestion[]), shuffle.test.ts 픽스처 셋. 테스트 2749 → 2754(grading 1 → 4, shuffle 10 → 12), build·lint 통과, AWS questions.json·topics.json 그대로."
+      "summary": "src/types/content.ts에 Question = ChoiceQuestion(format?: 'choice', choices 네 칸, answerIndex) | YesNoQuestion(format: 'yes-no', answer: boolean)을 두고 공통 필드는 QuestionBase로 묶음. grading.ts에 isCorrect(question: Question, choiceIndex: number): boolean(예/아니요는 0 = 예, 1 = 아니요)과 choiceLabels(question: Question): string[](예/아니요는 ['예', '아니요'])를 둠. shuffle.ts의 shuffleChoices는 오버로드(ChoiceQuestion → ChoiceQuestion, Question → Question)이고 예/아니요 문항은 그대로 돌려주며 rng를 부르지 않음. shuffleQuestions도 같은 모양의 오버로드를 더함(기존 테스트가 결과의 choices를 캐스트 없이 읽기 때문). src/data/aws/index.ts의 questions는 ChoiceQuestion[], QuizRunner는 choiceLabels(question).map 한 곳만 바꿈. 타입 주석만 고친 테스트: src/pages/QuizPage.test.tsx(testQuestions → ChoiceQuestion[]), shuffle.test.ts 픽스처 셋. 테스트 2749 → 2754(grading 1 → 4, shuffle 10 → 12), build·lint 통과, AWS questions.json·topics.json 그대로.",
+      "completed_at": "2026-10-27T08:35:56+0900"
     },
     {
       "step": 1,
