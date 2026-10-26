@@ -7,7 +7,8 @@
       "name": "data-move",
       "status": "completed",
       "started_at": "2026-10-26T11:45:17+0900",
-      "summary": "AWS 데이터(topics·questions·keywords.enc JSON, visuals/ 11개, index.ts, 데이터 테스트 4개)를 git mv로 src/data/aws/로 옮김(JSON 전부 R100). import 113곳 수정(도식 101·화면 9·QuizRunner 1·테스트 2), 데이터 경로를 든 스크립트 11개와 .gitignore 주석 수정. 테스트 파일 103개·테스트 2701개 통과, check-structure·sync-baseline·coverage(640/640, 746문항) 통과"
+      "summary": "AWS 데이터(topics·questions·keywords.enc JSON, visuals/ 11개, index.ts, 데이터 테스트 4개)를 git mv로 src/data/aws/로 옮김(JSON 전부 R100). import 113곳 수정(도식 101·화면 9·QuizRunner 1·테스트 2), 데이터 경로를 든 스크립트 11개와 .gitignore 주석 수정. 테스트 파일 103개·테스트 2701개 통과, check-structure·sync-baseline·coverage(640/640, 746문항) 통과",
+      "completed_at": "2026-10-26T11:49:11+0900"
     },
     {
       "step": 1,
