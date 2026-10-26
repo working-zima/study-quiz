@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { QuizRunner } from '../components/QuizRunner'
-import { questions as defaultQuestions } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
+import { useSubject } from '../hooks/useSubject'
 import { shuffleQuestions } from '../lib/shuffle'
 import { reviewQuestions } from '../lib/stats'
 import type { Question } from '../types/content'
@@ -22,12 +22,14 @@ const primaryButtonClass = 'inline-flex min-h-[44px] items-center rounded-md bg-
 const ghostLinkClass = 'inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100'
 
 export function ReviewQuizPage({
-  questions = defaultQuestions,
+  questions: providedQuestions,
   progress: providedProgress,
   answer: providedAnswer,
   setInReview: providedSetInReview,
   shuffle = defaultShuffle,
 }: ReviewQuizPageProps) {
+  const subject = useSubject()
+  const questions = providedQuestions ?? subject.questions
   const { topicId } = useParams()
   const { progress: storedProgress, answer: storedAnswer, setInReview: storedSetInReview } = useProgress()
   const progress = providedProgress ?? storedProgress
@@ -46,7 +48,7 @@ export function ReviewQuizPage({
           <h1 className="text-2xl font-semibold text-title">복습 문제 풀기</h1>
           <p className="text-[15px] leading-7 text-neutral-300">다시 풀 문항이 없습니다.</p>
         </div>
-        <Link className={primaryButtonClass} to="/review">복습으로 돌아가기</Link>
+        <Link className={primaryButtonClass} to={`/${subject.id}/review`}>복습으로 돌아가기</Link>
       </section>
     )
   }
@@ -62,8 +64,8 @@ export function ReviewQuizPage({
             <p className="text-[15px] leading-7 text-neutral-300">맞힌 개수 {correctCount} / {total}</p>
           </div>
           <nav aria-label="복습 문제 풀기 완료 후 이동" className="flex flex-wrap gap-3">
-            <Link className={primaryButtonClass} to="/review">복습으로 돌아가기</Link>
-            <Link className={ghostLinkClass} to="/">주제 목록으로 돌아가기</Link>
+            <Link className={primaryButtonClass} to={`/${subject.id}/review`}>복습으로 돌아가기</Link>
+            <Link className={ghostLinkClass} to={`/${subject.id}`}>주제 목록으로 돌아가기</Link>
           </nav>
         </section>
       )}

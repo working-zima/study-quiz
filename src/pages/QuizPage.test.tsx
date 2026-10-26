@@ -313,9 +313,9 @@ describe('QuizPage', () => {
     await user.click(screen.getByRole('button', { name: '두 번째 정답' }))
     await user.click(screen.getByRole('button', { name: '두 번째 정답' }))
 
-    expect(screen.getByRole('link', { name: '복습하기' })).toHaveAttribute('href', '/review')
-    expect(screen.getByRole('link', { name: '다음 주제 이어가기' })).toHaveAttribute('href', '/topic/next-topic')
-    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/topic/test-topic')
+    expect(screen.getByRole('link', { name: '복습하기' })).toHaveAttribute('href', '/aws/review')
+    expect(screen.getByRole('link', { name: '다음 주제 이어가기' })).toHaveAttribute('href', '/aws/topic/next-topic')
+    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/aws/topic/test-topic')
   })
 
   it('틀린 문항이 있어도 복습 목록에 넣지 않았으면 다음 주제 링크를 주요 출구로 렌더한다', async () => {
@@ -329,7 +329,7 @@ describe('QuizPage', () => {
 
     expect(screen.queryByRole('link', { name: '복습하기' })).toBeNull()
     expect(screen.getByRole('link', { name: '다음 주제 이어가기' })).toHaveClass('bg-neutral-100')
-    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/topic/test-topic')
+    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/aws/topic/test-topic')
   })
 
   it('마지막 주제에서는 다음 주제 링크 없이 개념 링크를 렌더한다', async () => {
@@ -342,7 +342,7 @@ describe('QuizPage', () => {
     await user.click(screen.getByRole('button', { name: '두 번째 정답' }))
 
     expect(screen.queryByRole('link', { name: '다음 주제 이어가기' })).toBeNull()
-    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/topic/test-topic')
+    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/aws/topic/test-topic')
   })
 
   it('정답을 맞힌 뒤 정답 보기를 한 번 더 눌러도 진행 상태를 한 번만 기록한다', async () => {
@@ -392,6 +392,6 @@ describe('QuizPage', () => {
     renderPage('/topic/empty-topic/quiz', vi.fn(), [])
 
     expect(screen.getByText('아직 확인 문제가 없습니다.')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/topic/empty-topic')
+    expect(screen.getByRole('link', { name: '개념으로 돌아가기' })).toHaveAttribute('href', '/aws/topic/empty-topic')
   })
 })

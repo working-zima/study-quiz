@@ -145,7 +145,7 @@ describe('ConceptReadPage', () => {
 
     expect(screen.getByText('주제를 찾을 수 없습니다.')).toBeInTheDocument()
     const topicListLink = screen.getByRole('link', { name: '주제 목록으로 돌아가기' })
-    expect(topicListLink).toHaveAttribute('href', '/')
+    expect(topicListLink).toHaveAttribute('href', '/aws')
     expect(topicListLink).toHaveClass('min-h-[44px]')
   })
 
@@ -154,7 +154,7 @@ describe('ConceptReadPage', () => {
 
     const quizLink = screen.getByRole('link', { name: '확인 문제 풀기' })
     const actionBar = quizLink.parentElement?.parentElement
-    expect(quizLink).toHaveAttribute('href', '/topic/storage-topic/quiz')
+    expect(quizLink).toHaveAttribute('href', '/aws/topic/storage-topic/quiz')
     expect(quizLink).toHaveClass('min-h-[44px]')
     expect(actionBar).toHaveClass('sticky', 'bottom-0', 'bg-page', 'border-t')
     expect(actionBar).toHaveClass('-mx-5', 'px-5', 'sm:mx-0', 'sm:px-0')
@@ -197,11 +197,11 @@ describe('ConceptReadPage', () => {
   it('가운데 주제에서 이전·다음 주제 링크와 확인 문제 링크를 렌더한다', () => {
     renderPage('/topic/middle-topic', vi.fn(), navigationTestTopics)
 
-    expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/topic/first-topic')
-    expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/topic/last-topic')
+    expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/aws/topic/first-topic')
+    expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/aws/topic/last-topic')
     expect(screen.getByRole('link', { name: '확인 문제 풀기' })).toHaveAttribute(
       'href',
-      '/topic/middle-topic/quiz',
+      '/aws/topic/middle-topic/quiz',
     )
   })
 
@@ -209,21 +209,21 @@ describe('ConceptReadPage', () => {
     renderPage('/topic/first-topic', vi.fn(), navigationTestTopics)
 
     expect(screen.queryByLabelText('이전 주제')).toBeNull()
-    expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/topic/middle-topic')
+    expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/aws/topic/middle-topic')
     expect(screen.getByRole('link', { name: '확인 문제 풀기' })).toHaveAttribute(
       'href',
-      '/topic/first-topic/quiz',
+      '/aws/topic/first-topic/quiz',
     )
   })
 
   it('마지막 주제에서 다음 주제 링크 없이 이전 주제 링크와 확인 문제 링크를 렌더한다', () => {
     renderPage('/topic/last-topic', vi.fn(), navigationTestTopics)
 
-    expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/topic/middle-topic')
+    expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/aws/topic/middle-topic')
     expect(screen.queryByLabelText('다음 주제')).toBeNull()
     expect(screen.getByRole('link', { name: '확인 문제 풀기' })).toHaveAttribute(
       'href',
-      '/topic/last-topic/quiz',
+      '/aws/topic/last-topic/quiz',
     )
   })
 
@@ -267,7 +267,7 @@ describe('ConceptReadPage', () => {
       renderPage('/topic/middle-topic', vi.fn(), navigationTestTopics, [])
 
       const primaryAction = screen.getByRole('link', { name: '다음 주제 이어가기' })
-      expect(primaryAction).toHaveAttribute('href', '/topic/last-topic')
+      expect(primaryAction).toHaveAttribute('href', '/aws/topic/last-topic')
       expect(primaryAction).toHaveClass('min-h-[44px]', 'bg-neutral-100')
     })
 
@@ -275,7 +275,7 @@ describe('ConceptReadPage', () => {
       renderPage('/topic/last-topic', vi.fn(), navigationTestTopics, [])
 
       const primaryAction = screen.getByRole('link', { name: '주제 목록으로 돌아가기' })
-      expect(primaryAction).toHaveAttribute('href', '/')
+      expect(primaryAction).toHaveAttribute('href', '/aws')
       expect(primaryAction).toHaveClass('min-h-[44px]', 'bg-neutral-100')
     })
 
@@ -302,8 +302,8 @@ describe('ConceptReadPage', () => {
     it('이전·다음 주제 화살표는 그대로 렌더한다', () => {
       renderPage('/topic/middle-topic', vi.fn(), navigationTestTopics, [])
 
-      expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/topic/first-topic')
-      expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/topic/last-topic')
+      expect(screen.getByLabelText('이전 주제')).toHaveAttribute('href', '/aws/topic/first-topic')
+      expect(screen.getByLabelText('다음 주제')).toHaveAttribute('href', '/aws/topic/last-topic')
     })
   })
 

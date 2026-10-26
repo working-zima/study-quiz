@@ -95,7 +95,7 @@ describe('ReviewPage', () => {
   it('문항마다 근거 개념으로 가는 링크를 붙인다', () => {
     renderPage({ version: 3, read: {}, answers: { q001: false }, review: { q001: true } })
 
-    expect(screen.getByRole('link', { name: /Amazon S3/ })).toHaveAttribute('href', '/topic/storage')
+    expect(screen.getByRole('link', { name: /Amazon S3/ })).toHaveAttribute('href', '/aws/topic/storage')
   })
 
   // 다시 풀어 맞혔다고 저절로 빠지지 않는다. 빼는 것은 사용자다 (ADR-017).
@@ -134,10 +134,10 @@ describe('ReviewPage', () => {
       review: { q001: true, q003: true },
     })
 
-    expect(screen.getByRole('link', { name: '전체 다시 풀기' })).toHaveAttribute('href', '/review/quiz')
+    expect(screen.getByRole('link', { name: '전체 다시 풀기' })).toHaveAttribute('href', '/aws/review/quiz')
     const storageGroup = screen.getByRole('region', { name: '스토리지' })
     const topicLink = within(storageGroup).getByRole('link', { name: '다시 풀기' })
-    expect(topicLink).toHaveAttribute('href', '/review/quiz/storage')
+    expect(topicLink).toHaveAttribute('href', '/aws/review/quiz/storage')
     expect(topicLink).toHaveClass('min-h-[44px]')
   })
 
@@ -147,7 +147,7 @@ describe('ReviewPage', () => {
 
     expect(screen.getByText('문제를 푼 뒤 복습에 넣은 문항이 여기에 모입니다.')).toBeInTheDocument()
     const topicListLink = screen.getByRole('link', { name: '주제 목록으로 가기' })
-    expect(topicListLink).toHaveAttribute('href', '/')
+    expect(topicListLink).toHaveAttribute('href', '/aws')
     expect(topicListLink).toHaveClass('min-h-[44px]')
   })
 

@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { QuizRunner } from '../components/QuizRunner'
-import { questions as defaultQuestions } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
+import { useSubject } from '../hooks/useSubject'
 import { parseQuizCount } from '../lib/random-quiz'
 import { shuffleQuestions } from '../lib/shuffle'
 import type { Question } from '../types/content'
@@ -22,12 +22,14 @@ const primaryButtonClass = 'inline-flex min-h-[44px] items-center rounded-md bg-
 const ghostLinkClass = 'inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100'
 
 export function RandomQuizPage({
-  questions = defaultQuestions,
+  questions: providedQuestions,
   progress: providedProgress,
   answer: providedAnswer,
   setInReview: providedSetInReview,
   shuffle = defaultShuffle,
 }: RandomQuizPageProps) {
+  const subject = useSubject()
+  const questions = providedQuestions ?? subject.questions
   const { count: countSegment } = useParams()
   const count = parseQuizCount(countSegment, questions.length)
   const { progress: storedProgress, answer: storedAnswer, setInReview: storedSetInReview } = useProgress()
@@ -40,7 +42,7 @@ export function RandomQuizPage({
   )
 
   if (count === null) {
-    return <Navigate replace to="/random" />
+    return <Navigate replace to={`/${subject.id}/random`} />
   }
 
   return (
@@ -58,9 +60,9 @@ export function RandomQuizPage({
               <p className="text-[15px] leading-7 text-neutral-300">맞힌 개수 {correctCount} / {total}</p>
             </div>
             <nav aria-label="랜덤 문제 완료 후 이동" className="flex flex-wrap gap-3">
-              {hasReviewQuestion && <Link className={primaryButtonClass} to="/review">복습하기</Link>}
-              <Link className={hasReviewQuestion ? ghostLinkClass : primaryButtonClass} to="/random">다시 뽑기</Link>
-              <Link className={ghostLinkClass} to="/">주제 목록으로 돌아가기</Link>
+              {hasReviewQuestion && <Link className={primaryButtonClass} to={`/${subject.id}/review`}>복습하기</Link>}
+              <Link className={hasReviewQuestion ? ghostLinkClass : primaryButtonClass} to={`/${subject.id}/random`}>다시 뽑기</Link>
+              <Link className={ghostLinkClass} to={`/${subject.id}`}>주제 목록으로 돌아가기</Link>
             </nav>
           </section>
         )

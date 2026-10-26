@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Topic } from '../types/content'
 import { SearchPage } from './SearchPage'
 
@@ -70,7 +71,7 @@ const foldTestTopics: Topic[] = [
 ]
 
 function renderPage(path = '/search', pageTopics = testTopics) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <SearchPage topics={pageTopics} />
     </MemoryRouter>,
@@ -79,7 +80,7 @@ function renderPage(path = '/search', pageTopics = testTopics) {
 
 // 돌아가기가 실제로 어느 화면에 닿는지 보려면 검색 화면 밖의 라우트가 있어야 한다.
 function renderWithHistory(entries: string[]) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter initialEntries={entries} initialIndex={entries.length - 1}>
       <Routes>
         <Route element={<p>주제 목록 화면</p>} path="/" />
@@ -122,7 +123,7 @@ describe('SearchPage', () => {
 
     expect(screen.getByRole('link', AURORA_CONCEPT_LINK)).toHaveAttribute(
       'href',
-      '/topic/database#database.aurora',
+      '/aws/topic/database#database.aurora',
     )
   })
 
@@ -132,7 +133,7 @@ describe('SearchPage', () => {
 
     expect(screen.getByRole('link', { name: /S3 스토리지 클래스 유형/ })).toHaveAttribute(
       'href',
-      '/topic/storage',
+      '/aws/topic/storage',
     )
   })
 

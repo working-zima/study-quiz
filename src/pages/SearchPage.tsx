@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { ChangeEvent } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { BackButton } from '../components/BackButton'
-import { topics as defaultTopics } from '../data/aws'
+import { useSubject } from '../hooks/useSubject'
 import { searchContent, splitBodyOnly, stripEmphasis } from '../lib/search'
 import type { SearchHit } from '../lib/search'
 import type { Topic } from '../types/content'
@@ -27,7 +27,9 @@ const chevronUpIcon = (
   </svg>
 )
 
-export function SearchPage({ topics = defaultTopics }: SearchPageProps) {
+export function SearchPage({ topics: providedTopics }: SearchPageProps) {
+  const subject = useSubject()
+  const topics = providedTopics ?? subject.topics
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('q') ?? ''
   const hasQuery = query.trim().length > 0
@@ -47,7 +49,7 @@ export function SearchPage({ topics = defaultTopics }: SearchPageProps) {
       <Link
         className={cardClass}
         key={hit.concept.id}
-        to={`/topic/${hit.topic.id}#${hit.concept.id}`}
+        to={`/${subject.id}/topic/${hit.topic.id}#${hit.concept.id}`}
       >
         <span className="block text-base font-medium text-neutral-100">
           {hit.concept.name}
@@ -58,7 +60,7 @@ export function SearchPage({ topics = defaultTopics }: SearchPageProps) {
         </span>
       </Link>
     ) : (
-      <Link className={cardClass} key={hit.topic.id} to={`/topic/${hit.topic.id}`}>
+      <Link className={cardClass} key={hit.topic.id} to={`/${subject.id}/topic/${hit.topic.id}`}>
         <span className="block text-lg font-medium text-neutral-100">{hit.topic.title}</span>
         <span className="mt-1 block text-xs text-neutral-500">주제</span>
       </Link>

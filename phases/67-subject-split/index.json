@@ -37,7 +37,9 @@
     {
       "step": 4,
       "name": "pages-subject",
-      "status": "pending"
+      "status": "completed",
+      "summary": "화면 8개(ConceptReadPage·QuizPage·RandomQuizPage·RandomStartPage·ReviewPage·ReviewQuizPage·SearchPage·TopicListPage)가 '../data/aws' import를 버리고 useSubject()에서 데이터를 읽음 — props는 topics: providedTopics처럼 받고 함수 본문에서 providedX ?? subject.X로 고름(테스트용 override 유지), ConceptReadPage의 도식 약어는 subject.visualsByTopicId. 링크는 도우미 함수 없이 템플릿 문자열로 `/${subject.id}/topic/…`·`/${subject.id}/review…`·`/${subject.id}/random…`, 주제 목록으로 가던 '/'는 `/${subject.id}`(Link to·Navigate·ConceptReadPage의 primaryAction/onward 객체 포함). KeywordQuizPage는 링크가 없어 코드 변경 없음(keywords.enc.json import만 남음). 화면 테스트의 href 단언을 /aws/…로 바꾸고 RandomQuizPage의 리다이렉트 착지 라우트를 /aws/random으로, RandomStartPage·SearchPage·KeywordQuizPage 테스트를 renderWithSubject로 감쌈(src/test/subject.tsx 주석 한 줄: 과목에서 쓰이는 것에 링크 접두사 추가). App.test에 가짜 과목 a·b로 과목 경계 테스트 4개 — 검색(/a/search?q=공통낱말 → a 주제 하나, href /a/topic/a-topic), 랜덤(/b/random/all → 1 / 2), 복습(a 키에 저장한 복습 문항이 /b/review에 없고 /a/review에 있음), 주제 목록(/a에 a 주제만, 카드·랜덤 링크 /a/…). 작업 2 grep 출력 없음, data/aws grep은 keywords.enc.json 한 줄. 테스트 파일 107개·테스트 2740개 통과(+4), build·lint 통과",
+      "started_at": "2026-10-26T13:14:21+0900"
     },
     {
       "step": 5,

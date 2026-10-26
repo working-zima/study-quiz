@@ -3,6 +3,7 @@ import { MemoryRouter, useLocation } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { AppRoutes } from './App'
 import { awsSubject, questions } from './data/aws'
+import { saveProgress } from './lib/storage'
 import type { Subject } from './types/subject'
 
 function CurrentPath() {
@@ -166,5 +167,82 @@ describe('App routes', () => {
     expect(screen.queryByRole('heading', { name: '키워드 퀴즈' })).not.toBeInTheDocument()
     expect(screen.getByRole('heading', { name: '주제 목록' })).toBeInTheDocument()
     expect(currentPath()).toBe('/plain')
+  })
+
+  // 과목이 섞이지 않는 것이 과목을 나눈 이유다. 두 과목의 주제 제목에 같은 낱말을 넣어 검색이 경계를 넘는지 본다.
+  describe('과목 경계', () => {
+    function makeSubject(id: string, questionCount: number): Subject {
+      const topicId = `${id}-topic`
+      const conceptId = `${topicId}.concept`
+      return {
+        id,
+        title: `과목 ${id}`,
+        progressKey: `${id}.progress`,
+        topics: [{
+          id: topicId,
+          title: `${id} 공통낱말 주제`,
+          importance: 2,
+          sourcePages: [1, 1],
+          concepts: [{ id: conceptId, name: `${id} 개념`, summary: `${id} 요약`, paragraphs: [`${id} 본문`] }],
+        }],
+        questions: Array.from({ length: questionCount }, (_, index) => ({
+          id: `${id}-q${index + 1}`,
+          topicId,
+          conceptId,
+          prompt: `${id} 질문 ${index + 1}`,
+          choices: ['정답', '오답 1', '오답 2', '오답 3'],
+          answerIndex: 0,
+          explanation: '해설',
+        })),
+        visualsByTopicId: {},
+        hasKeywordQuiz: false,
+      }
+    }
+
+    const subjectA = makeSubject('a', 3)
+    const subjectB = makeSubject('b', 2)
+    const bothSubjects = [subjectA, subjectB]
+
+    afterEach(() => {
+      localStorage.clear()
+    })
+
+    it('검색은 그 과목의 주제만 찾고 과목 안의 주소로 링크한다', () => {
+      renderAt('/a/search?q=공통낱말', bothSubjects)
+
+      const results = within(screen.getByRole('main')).getAllByRole('link')
+      expect(results).toHaveLength(1)
+      expect(results[0]).toHaveTextContent('a 공통낱말 주제')
+      expect(results[0]).toHaveAttribute('href', '/a/topic/a-topic')
+    })
+
+    it('랜덤 전체 세트는 그 과목의 문항만 낸다', () => {
+      renderAt('/b/random/all', bothSubjects)
+
+      expect(screen.getByText('1 / 2')).toBeInTheDocument()
+      // 세트는 섞이므로 첫 문항이 어느 것인지는 정하지 않는다.
+      expect(screen.getByText(/^b 질문 [12]$/)).toBeInTheDocument()
+    })
+
+    it('복습 목록은 그 과목의 진행률 키에서만 읽는다', () => {
+      saveProgress(subjectA.progressKey, { version: 3, read: {}, answers: {}, review: { 'a-q1': true } })
+
+      const { unmount } = renderAt('/b/review', bothSubjects)
+      expect(screen.getByText('문제를 푼 뒤 복습에 넣은 문항이 여기에 모입니다.')).toBeInTheDocument()
+      expect(screen.queryByText('a 질문 1')).not.toBeInTheDocument()
+      unmount()
+
+      renderAt('/a/review', bothSubjects)
+      expect(screen.getByText('a 질문 1')).toBeInTheDocument()
+    })
+
+    it('주제 목록은 그 과목의 주제만 보이고 과목 안의 주소로 링크한다', () => {
+      renderAt('/a', bothSubjects)
+
+      const main = within(screen.getByRole('main'))
+      expect(main.getByRole('link', { name: /a 공통낱말 주제/ })).toHaveAttribute('href', '/a/topic/a-topic')
+      expect(main.queryByText('b 공통낱말 주제')).not.toBeInTheDocument()
+      expect(main.getByRole('link', { name: /랜덤 문제/ })).toHaveAttribute('href', '/a/random')
+    })
   })
 })

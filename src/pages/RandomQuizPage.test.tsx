@@ -32,7 +32,7 @@ function renderPage(path: string, questions = makeQuestions(25), progress = noRe
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route path="/random/:count" element={<RandomQuizPage answer={vi.fn()} progress={progress} questions={questions} setInReview={vi.fn()} shuffle={noShuffle} />} />
-        <Route path="/random" element={<><h1>랜덤 시작</h1><CurrentPath /></>} />
+        <Route path="/aws/random" element={<><h1>랜덤 시작</h1><CurrentPath /></>} />
       </Routes>
     </MemoryRouter>,
   )
@@ -71,10 +71,10 @@ describe('RandomQuizPage', () => {
     expect(screen.getByText('1 / 100')).toBeInTheDocument()
   })
 
-  it('허용하지 않는 문항 수는 /random으로 replace 이동한다', () => {
+  it('허용하지 않는 문항 수는 그 과목의 /random으로 replace 이동한다', () => {
     renderPage('/random/15')
     expect(screen.getByRole('heading', { name: '랜덤 시작' })).toBeInTheDocument()
-    expect(screen.getByLabelText('현재 경로')).toHaveTextContent('/random')
+    expect(screen.getByLabelText('현재 경로').textContent).toBe('/aws/random')
   })
 
   it('세트를 끝까지 풀면 완료 제목과 맞힌 개수를 표시한다', async () => {
@@ -87,8 +87,8 @@ describe('RandomQuizPage', () => {
   it('세트에 복습 목록의 문항이 있으면 복습과 다시 뽑기 링크를 제공한다', async () => {
     renderPage('/random/10', makeQuestions(25), { ...noReview, review: { q0: true } })
     await finishSet(10)
-    expect(screen.getByRole('link', { name: '복습하기' })).toHaveAttribute('href', '/review')
-    expect(screen.getByRole('link', { name: '다시 뽑기' })).toHaveAttribute('href', '/random')
+    expect(screen.getByRole('link', { name: '복습하기' })).toHaveAttribute('href', '/aws/review')
+    expect(screen.getByRole('link', { name: '다시 뽑기' })).toHaveAttribute('href', '/aws/random')
   })
 
   // 복습 목록에 문항이 있어도 이 세트 밖이면 이번 풀이와 무관하다. 틀린 문항도 저절로 들어가지 않는다 (ADR-032).

@@ -132,7 +132,7 @@ describe('TopicListPage', () => {
   it('카드 링크가 MemoryRouter의 주제 경로를 가리킨다', () => {
     renderPage()
 
-    expect(screen.getByRole('link', { name: /중요 주제/ })).toHaveAttribute('href', '/topic/high-topic')
+    expect(screen.getByRole('link', { name: /중요 주제/ })).toHaveAttribute('href', '/aws/topic/high-topic')
   })
 
   it('주제 카드보다 앞에 전체 문항 수를 표시하는 랜덤 문제 링크를 렌더한다', () => {
@@ -140,7 +140,7 @@ describe('TopicListPage', () => {
     const randomLink = screen.getByRole('link', { name: /랜덤 문제.*2문항/ })
     const topicLink = screen.getByRole('link', { name: /중요 주제/ })
 
-    expect(randomLink).toHaveAttribute('href', '/random')
+    expect(randomLink).toHaveAttribute('href', '/aws/random')
     expect(randomLink.compareDocumentPosition(topicLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
 
     rerender(
