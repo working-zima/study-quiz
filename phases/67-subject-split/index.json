@@ -61,7 +61,10 @@
     {
       "step": 7,
       "name": "docs",
-      "status": "pending"
+      "status": "completed",
+      "summary": "ADR-053 「앱 하나에 과목을 나눠 담는다 — 과목별 URL·데이터·진행률 (ARCHITECTURE 「헤더는 모든 화면에서 같다」·UI_GUIDE 「헤더 안의 링크」 개정 / ADR-040 확장)」 추가(갈라지는 넷 표, 사용자 결정, 헤더 규칙 개정, 불변식과 이유, 예전 주소, AWS 키 유지, key 재마운트, 키워드 퀴즈, 원본 위치, 대안, 트레이드오프). ARCHITECTURE: 디렉토리 구조(data/index.ts·data/aws/·useSubject·subject.ts), 라우트를 과목 밖·과목 안 두 표로(예전 주소 리다이렉트·없는 과목/경로·라우트 순위, 접두사 없이 적은 화면 경로는 과목 안 경로라고 밝힘), 「헤더는 모든 화면에서 같다」→「헤더는 과목 안에서 같다」(useOptionalSubject 분기만, 로고 연속 탭 hasKeywordQuiz 조건, useMatch 패턴에 :subjectId), 데이터 흐름(src/data/aws 경로·subjects·SubjectScope, localStorage 접근을 lib/progress.ts가 아닌 lib/storage.ts로 바로잡음), 상태 관리(useSubject·과목 progressKey), 테스트 경계(src/data/aws/data.test.ts·640개, src/data/index.test.ts 과목 불변식 행 추가), QuizRunner는 useSubject에서 topics·약어, BackButton 대체 목적지 과목 홈, visuals 경로(src/data/aws/visuals, 11개 주제), 732→746. PRD: 제목 Study Quiz, 목표에 과목 구조와 '나머지는 AWS 과목의 것', 핵심 기능 8 과목 추가(기존 번호 유지 — 다른 문서가 번호로 가리킴), 618→640·732→746·540→561·40→41문항. UI_GUIDE: 과목 카드, 돌아가기에 「모든 과목」 절과 대체 목적지 과목 홈, 상단 고정 헤더·헤더 안의 링크를 과목 안/밖으로 개정, 랜덤 완료 표의 / → 과목 홈, 검색 화면 618→640. 날짜가 붙은 실측 기록(스크롤 표)과 지난 ADR 본문은 그대로. build 통과, 테스트 파일 107개·테스트 2749개 통과, AC grep 출력 없음",
+      "started_at": "2026-10-26T13:48:19+0900",
+      "completed_at": "2026-10-26T13:57:47+0900"
     },
     {
       "step": 8,
