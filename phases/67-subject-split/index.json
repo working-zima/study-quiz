@@ -55,7 +55,8 @@
       "name": "app-identity",
       "status": "completed",
       "summary": "앱 이름을 「Study Quiz」로 — index.html의 <title>·og:title, public/favicon.svg의 aria-label, package.json name과 package-lock.json의 맨 위 name·packages[\"\"].name 두 자리(손으로, npm install 없이) → study-quiz. 서브경로 예시 /aws-saa-c03-quiz/ → /study-quiz/(index.html CRITICAL 주석, deploy-metadata.test.ts 주석). description: 「과목별로 개념을 읽고 바로 확인 문제로 점검하는 학습 앱. 지금 담긴 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03)다.」(주제·개념·문항 수 뺌), og:description: 「과목별로 개념을 읽고 바로 확인 문제로 점검한다. 다시 볼 문항은 복습에 넣어 반복해서 풀 수 있다.」(오답노트 → 복습, ADR-032). README.md는 하네스 프레임워크 설명서라 앱 이름·배포 주소가 없어(grep aws 0건) 고치지 않음. vite.config.ts base './'·헤더의 과목 이름 그대로. 새 테스트 1개(제목·og:title이 Study Quiz — 먼저 실패 확인), dist/index.html <title>Study Quiz</title>·아이콘 ./favicon.svg, AC grep 출력 없음. 테스트 파일 107개·테스트 2749개 통과(+1), build·lint 통과",
-      "started_at": "2026-10-26T13:45:45+0900"
+      "started_at": "2026-10-26T13:45:45+0900",
+      "completed_at": "2026-10-26T13:48:19+0900"
     },
     {
       "step": 7,
