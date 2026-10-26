@@ -57,7 +57,7 @@ for (let i = 0; i + MIN_RUN <= source.length; i += 1) {
   windows.add(source.slice(i, i + MIN_RUN))
 }
 
-const topics = JSON.parse(readFileSync(join(ROOT, 'src/data/topics.json'), 'utf8'))
+const topics = JSON.parse(readFileSync(join(ROOT, 'src/data/aws/topics.json'), 'utf8'))
 const hits = []
 const skipped = []
 

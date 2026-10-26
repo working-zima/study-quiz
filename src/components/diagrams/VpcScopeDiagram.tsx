@@ -1,4 +1,4 @@
-import { visualsByTopicId } from '../../data'
+import { visualsByTopicId } from '../../data/aws'
 import { useWideDiagram } from '../../hooks/useWideDiagram'
 import { DiagramFrame } from './DiagramFrame'
 

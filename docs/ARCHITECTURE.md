@@ -5,14 +5,16 @@
 ```
 src/
 ├── main.tsx           # 진입점
-├── App.tsx            # 라우터 정의
+├── App.tsx            # 라우터 정의. 과목 밖·과목 안 두 가지 (ADR-053)
 ├── pages/             # 화면 단위 (라우트 하나 = 파일 하나)
-├── components/        # 재사용 UI 컴포넌트
+├── components/        # 재사용 UI 컴포넌트. SubjectScope가 URL의 과목을 찾아 넘긴다
 │   └── diagrams/      # 개념 본문 안에 들어가는 SVG 도식. 레이아웃이 서로 달라 도식마다 컴포넌트 하나.
-├── hooks/             # React 훅. 진행 상태(useProgress), 도식 배치 선택(useWideDiagram, ADR-047·ADR-048)
-├── data/              # 빌드 타임 정적 학습 데이터 (JSON)
-│   └── visuals/       # 주제별 시각 요소의 문구(도식 캡션·표·약어). 좌표는 컴포넌트에 둔다(ADR-037).
-├── types/             # TypeScript 타입 정의 (단일 출처)
+├── hooks/             # React 훅. 지금 과목(useSubject), 진행 상태(useProgress), 도식 배치 선택(useWideDiagram, ADR-047·ADR-048)
+├── data/              # 빌드 타임 정적 학습 데이터 (JSON). 과목마다 폴더 하나 (ADR-053)
+│   ├── index.ts       # 과목 목록 subjects. 과목 불변식은 index.test.ts
+│   └── aws/           # AWS 과목. topics.json·questions.json·keywords.enc.json과 과목 객체를 export하는 index.ts
+│       └── visuals/   # 주제별 시각 요소의 문구(도식 캡션·표·약어). 좌표는 컴포넌트에 둔다(ADR-037).
+├── types/             # TypeScript 타입 정의 (단일 출처). 과목은 subject.ts
 └── lib/               # 순수 로직. React 의존 없음.
 ```
 
@@ -54,8 +56,8 @@ interface Question {
 }
 ```
 
-**시각 요소의 문구는 `src/types/visuals.ts`가 정의한다**(ADR-037). 지금은 `vpc-networking` 주제만
-`src/data/visuals/vpc-networking.json`을 가진다. 도식 캡션·비교표 행·약어 뜻풀이가 여기 있고,
+**시각 요소의 문구는 `src/types/visuals.ts`가 정의한다**(ADR-037). `vpc-networking`을 시작으로 지금은
+AWS 주제 11개가 `src/data/aws/visuals/<주제 id>.json`을 가진다. 도식 캡션·비교표 행·약어 뜻풀이가 여기 있고,
 각 항목의 `sources`(또는 `sourceConceptId`)가 근거 개념 id를 가리킨다. 좌표와 경로는 도식
 컴포넌트에 남는다. phase 38·39의 다른 도식 여덟 장은 문구를 컴포넌트 안에 둔 채다.
 
@@ -76,7 +78,7 @@ interface Question {
 
 서비스가 하나뿐인 주제는 하위 기능을 블록으로 삼는다. 주요 기능에 세부가 딸려 있으면 그 기능을
 가운데 층의 끝, 자기 세부 바로 앞에 둔다 — 층 순서(규칙 2)와 연속성(규칙 3)이 함께 지켜진다.
-주제마다 어떤 블록을 어떤 순서로 두었는지는 `src/data/data.test.ts`의 주제별 순서 단언이 개념 id
+주제마다 어떤 블록을 어떤 순서로 두었는지는 `src/data/aws/data.test.ts`의 주제별 순서 단언이 개념 id
 전부로 못박고, 그 주석이 블록과 예외를 적는다.
 
 **`Concept`에 층·블록 필드를 두지 마라.** 순서 자체가 블록과 층이고, 필드를 더하면 배열 순서와
@@ -123,27 +125,69 @@ interface Progress {
 
 ## 라우트
 
-`HashRouter`를 쓴다. 실제 URL은 `.../#/topic/s3-storage-classes` 형태다 (ADR-007).
-아래 표의 경로는 해시 뒤의 경로를 뜻한다.
+`HashRouter`를 쓴다. 실제 URL은 `.../#/aws/topic/s3-storage-classes` 형태다 (ADR-007).
+아래 표의 경로는 해시 뒤의 경로를 뜻한다. 라우트 정의는 `src/App.tsx`의 `AppRoutes` 한 곳이다.
+
+라우트는 **과목 밖**과 **과목 안** 두 가지로 갈린다(ADR-053). 두 가지는 형제이고, 각자 자기 `Layout`을 갖는다.
+과목 가지를 과목 밖 `Layout` 라우트의 자식으로 넣으면 헤더가 두 번 그려진다.
+과목 가지의 맨 위는 `SubjectScope`다. `:subjectId`로 과목을 찾아 `SubjectContext`로 넘기고, 과목이 바뀌면
+`key`로 하위 트리를 다시 마운트한다(ADR-053 「과목이 바뀌면 다시 마운트하는 이유」).
+
+**과목 밖**
 
 | 경로 | 화면 |
 |---|---|
-| `/` | 주제 목록 (39개, 중요도·진행 상태 표시) |
-| `/topic/:topicId` | 개념 읽기 |
-| `/topic/:topicId/quiz` | 확인 문제 |
-| `/review` | 복습 — 사용자가 넣은 문항을 주제별로 모아보고 개별 삭제 |
-| `/review/quiz` | 복습 문제 풀기 — 복습 목록 전체 |
-| `/review/quiz/:topicId` | 복습 문제 풀기 — 그 주제의 복습 문항만 |
-| `/random` | 랜덤 문제 시작 — 문항 수(10·20·30·50·100·전체) 선택 |
-| `/random/:count` | 랜덤 문제 — 전체 문항에서 뽑은 `count`개. `count`가 `all`이면 문제 은행 전부 |
-| `/search` | 개념·주제 검색. 질의는 `?q=`에 담긴다 |
-| `/keywords` | 키워드 퀴즈(숨은 화면). 암호 입력 → 모드·단원 선택 → 고른 범위의 키워드 전부를 풀기. 문항 이동은 확인 문제와 같다(정답 재탭·읽기 전용 이전 문제). 링크 없이 로고 연속 탭으로만 들어온다(ADR-040) |
+| `/` | 과목 목록 — 과목마다 카드 하나(이름, 주제·문항 수) |
+| `/topic/*` · `/review/*` · `/search` · `/random/*` · `/keywords` | 예전 주소. `/aws` + 경로 + `?검색어` + `#앵커`로 replace한다 |
+| 그 밖 | `/`로 replace |
 
-### 헤더는 모든 화면에서 같다
+예전 주소는 과목이 AWS 하나였을 때 만들어진 북마크·공유 링크다. `search`와 `hash`를 그대로 붙여야
+검색어와 개념 앵커(ADR-020)가 살아남는다. 예전 주소의 과목은 `App.tsx`의 `LEGACY_SUBJECT_ID` 하나다.
 
-`Layout`의 헤더는 로고 + "검색" + "복습" 고정이다. **어느 화면인지 판별하는 분기를
-두지 마라.** `Layout`이 지금 쓰는 라우터 훅은 스크롤 복원용 `useLocation()`과 `useNavigationType()`뿐이고,
-`useLocation()`에서 읽는 것은 `key`와 앵커 예외용 `hash` 둘이다(아래 "화면 전환 시 스크롤").
+**과목 안** — 모든 경로 앞에 `/:subjectId`가 붙는다. 이 문서의 다른 절에서 `/topic/:topicId`·`/review`·`/random`처럼
+접두사 없이 적은 화면 경로는 이 표의 과목 안 경로를 뜻한다. `/` 하나만은 과목 목록이다.
+
+| 경로 | 화면 |
+|---|---|
+| `/:subjectId` | 주제 목록 (중요도·진행 상태 표시. AWS 과목은 39개) |
+| `/:subjectId/topic/:topicId` | 개념 읽기 |
+| `/:subjectId/topic/:topicId/quiz` | 확인 문제 |
+| `/:subjectId/review` | 복습 — 사용자가 넣은 문항을 주제별로 모아보고 개별 삭제 |
+| `/:subjectId/review/quiz` | 복습 문제 풀기 — 복습 목록 전체 |
+| `/:subjectId/review/quiz/:topicId` | 복습 문제 풀기 — 그 주제의 복습 문항만 |
+| `/:subjectId/random` | 랜덤 문제 시작 — 문항 수(10·20·30·50·100·전체) 선택 |
+| `/:subjectId/random/:count` | 랜덤 문제 — 그 과목의 전체 문항에서 뽑은 `count`개. `count`가 `all`이면 그 과목의 문제 은행 전부 |
+| `/:subjectId/search` | 개념·주제 검색. 질의는 `?q=`에 담긴다 |
+| `/:subjectId/keywords` | 키워드 퀴즈(숨은 화면). 과목의 `hasKeywordQuiz`가 참일 때만 열리고, 아니면 과목 홈(`/:subjectId`)으로 replace한다. 암호 입력 → 모드·단원 선택 → 고른 범위의 키워드 전부를 풀기. 문항 이동은 확인 문제와 같다(정답 재탭·읽기 전용 이전 문제). 링크 없이 로고 연속 탭으로만 들어온다(ADR-040) |
+| 그 밖 | 과목 홈(`/:subjectId`)으로 replace |
+
+없는 과목(`/nope`, `/nope/topic/x`)은 `SubjectScope`가 `/`로 replace한다.
+
+**라우트 순위**: `/search` 같은 예전 주소는 정적 경로라 동적 `:subjectId`보다 앞서고, `/aws`는 `:subjectId`가
+`*`보다 앞선다. 그래서 과목 id가 예전 주소의 첫 세그먼트와 같으면 그 과목에 들어갈 수 없다 —
+`src/data/index.test.ts`가 그 겹침을 막는다.
+
+**검색·랜덤·복습은 과목 안에서만 돈다.** 검색은 그 과목의 주제·개념만, 랜덤은 그 과목의 문항만,
+복습은 그 과목의 진행률 키에 저장된 복습 목록만 본다(ADR-053).
+
+### 헤더는 과목 안에서 같다
+
+`Layout`의 헤더는 두 모양뿐이다(ADR-053).
+
+| 어디 | 헤더 |
+|---|---|
+| 과목 안 | 로고 자리에 과목 이름(→ 과목 홈) + "검색" + "복습" |
+| 과목 밖 | 로고 "Study Quiz"(→ `/`)뿐 |
+
+**두 모양을 가르는 근거는 과목 컨텍스트가 있는가 하나다** — `useOptionalSubject()`가 과목을 돌려주는가.
+**과목 안에서 어느 화면인지 판별하는 분기를 두지 마라.** `Layout`이 지금 쓰는 라우터 훅은 스크롤 복원용
+`useLocation()`·`useNavigationType()`과 로고 연속 탭용 `useNavigate()`뿐이고, `useLocation()`에서 읽는 것은
+`key`와 앵커 예외용 `hash` 둘이다(아래 "화면 전환 시 스크롤").
+
+과목 밖 헤더에 "검색"·"복습"이 없는 것은 둘 다 과목 안의 기능이라 과목 목록에서는 갈 곳이 없기 때문이다.
+링크 둘 상한(UI_GUIDE "헤더 안의 링크")은 그대로다. 과목 이름은 로고 자리에 들어가고, 과목 안 헤더에
+"모든 과목"이나 과목 전환을 더하지 않는다. 첫 화면으로 가는 길은 주제 목록 맨 위의 "모든 과목"이다
+(UI_GUIDE "돌아가기").
 
 전에는 확인 문제 화면에서만 "근거 개념" 링크(→ `/topic/:topicId`)를 띄우고 "검색"을
 빼는 분기가 있었다. 그 링크가 **문항 화면을 언마운트시켜 진행 위치와 고른 보기를
@@ -155,13 +199,15 @@ interface Progress {
 아래 "확인 문제 안의 문항 이동"이 금지한다)와, 320px에서 링크 세 개가 로고를 눌러
 두 줄로 접는 파손(UI_GUIDE "헤더 안의 링크"의 실측 표)이다.
 
-**로고 연속 탭은 화면 분기가 아니다.** 로고를 1.5초 안에 다섯 번 누르면 `/keywords`로 간다(ADR-040). 로고의 `onClick`이
-탭 시각만 세고, 판정은 `lib/keyword-quiz.ts`의 순수 함수가 한다. 헤더의 모양과 링크는 어느 화면에서나 그대로다.
+**로고 연속 탭은 화면 분기가 아니다.** 과목에 키워드 퀴즈가 있으면(`hasKeywordQuiz`) 로고를 1.5초 안에 다섯 번
+누를 때 그 과목의 `/keywords`로 간다(ADR-040·ADR-053). 키워드 퀴즈가 없는 과목과 과목 밖에서는 탭을 세지 않고
+평소처럼 로고 링크로 간다. 로고의 `onClick`이 탭 시각만 세고, 판정은 `lib/keyword-quiz.ts`의 순수 함수가 한다.
+헤더의 모양과 링크는 과목 안 어느 화면에서나 그대로다.
 
 **`useParams()`로 화면을 판별하지 마라.** `Layout`이 path 없는 레이아웃 라우트인데도
 `useParams()`는 자식 라우트의 `topicId`를 그대로 돌려준다 — 실제로 확인한 동작이다.
 문제는 그 값만으로는 `/topic/:topicId`와 `/topic/:topicId/quiz`를 구분할 수 없다는 것이다.
-경로 모양을 알아야 하면 `useMatch('/topic/:topicId/quiz')`를 쓰고,
+경로 모양을 알아야 하면 `useMatch('/:subjectId/topic/:topicId/quiz')`를 쓰고,
 `useLocation().pathname`을 `endsWith('/quiz')`·`split('/')`로 쪼개지 마라 — 경로 모양이
 바뀌면 조용히 어긋난다. 라우트 패턴을 아는 것은 라우터다.
 
@@ -268,7 +314,7 @@ interface Progress {
 ### 주제 간 이동
 
 **주제 목록을 거치지 않고 앞뒤 주제로 넘어갈 수 있어야 한다.** 한 주제를 다 읽었을 때
-`/` 로 돌아갔다가 다음 카드를 누르는 것이 유일한 경로여서는 안 된다.
+주제 목록(`/:subjectId`)으로 돌아갔다가 다음 카드를 누르는 것이 유일한 경로여서는 안 된다.
 
 순서는 `topics.json` 배열 순서다. 그 순서가 학습 순서이고, 별도의 `order` 필드를 두지 않는다.
 `Topic`에 `prevId`·`nextId` 같은 필드를 추가하지 마라 — 배열에서 유도되는 값을
@@ -346,7 +392,7 @@ const [selections, setSelections] = useState<(number | null)[]>(...)   // 길이
 전체는 **숫자가 아니라 `all` 세그먼트다** (ADR-018). `parseQuizCount`가 `all`을 받으면 넘겨받은
 문제 은행 크기를 그대로 돌려준다. 숫자 허용값에 그때의 은행 크기를 넣지 마라 — 문항이 늘어나는
 순간 그 숫자가 "전체"를 뜻하지 않게 된다. **실제로 그렇게 됐다**: ADR-018을 쓸 때 246문항이던
-은행이 지금 732문항이므로(ADR-026), 그때 `246`을 허용값에 넣었다면 `/random/246` 북마크는
+AWS 은행이 지금 746문항이므로(ADR-026), 그때 `246`을 허용값에 넣었다면 `/random/246` 북마크는
 지금 조용히 3분의 1만 내고 있었을 것이다.
 
 ### 확인 문제 화면의 공유 구조
@@ -376,7 +422,8 @@ const [selections, setSelections] = useState<(number | null)[]>(...)   // 길이
 - **개념 읽기 화면으로 내보내는 링크를 다시 만들지 마라.** 라우트를 옮기면 `QuizRunner`가
   언마운트되어 `questionIndex`·`selections`가 사라지고, 돌아와도 페이지가 세트를 다시 섞는다.
   나가지 않는 것이 위치를 지키는 유일한 방법이다.
-- 개념 조회에 필요한 `topics`는 `QuizRunner`가 `src/data`에서 직접 받는다(테스트용 prop override).
+- 개념 조회에 필요한 `topics`와 약어 툴팁의 뜻풀이(`visualsByTopicId`)는 `QuizRunner`가 `useSubject()`에서
+  직접 받는다(`topics`는 테스트용 prop override가 있다).
   **두 페이지에 `topics` 배선을 새로 깔지 마라** — 세트 선택과 무관한 값이고 두 화면이 같다.
 - **펼친 상태는 문항 인덱스 하나로 들고 있는다**(`openConceptIndex`). boolean을 따로 두면
   문항을 옮기는 두 경로에서 각각 닫아 줘야 하고, 한 곳만 빠뜨리면 다음 문항에 앞 문항의
@@ -386,8 +433,9 @@ const [selections, setSelections] = useState<(number | null)[]>(...)   // 길이
 
 ### 개념·주제 검색
 
-**개념 618개는 주제 제목만으로는 찾을 수 없다.** 39개 주제의 제목이 대표 서비스만
+**개념 640개는 주제 제목만으로는 찾을 수 없다.** AWS 과목의 39개 주제 제목이 대표 서비스만
 이어 붙인 형태라서다. 검색 화면(`/search`)이 그 경로를 맡는다. 근거는 ADR-013.
+검색 대상은 지금 과목의 `topics`뿐이다 — 다른 과목의 개념은 결과에 나오지 않는다(ADR-053).
 
 매칭 규칙은 `src/lib/search.ts` **한 곳에 모으고 React에 의존하지 않게 짠다.** 화면은
 질의 문자열을 넘기고 결과 배열을 받는 것 외에 아무 판단도 하지 않는다.
@@ -427,7 +475,7 @@ const [selections, setSelections] = useState<(number | null)[]>(...)   // 길이
 
 **검색 화면에서 나가는 길은 `navigate(-1)`이다.** 헤더가 아니라 화면 안에 둔다 — 자리는
 UI_GUIDE "돌아가기"에 있다. 새 탭이나 공유 링크로 이 화면을 직접 열었으면 돌아갈 앱 화면이
-없으므로 주제 목록(`/`)으로 보낸다. 판별은 `useLocation().key === 'default'`이고,
+없으므로 그 과목의 주제 목록(과목 홈 `/:subjectId`)으로 보낸다. 판별은 `useLocation().key === 'default'`이고,
 **그 값을 `useState` 초기화로 진입 시점에 한 번만 붙잡는다.** 렌더마다 다시 읽으면 안 된다 —
 위의 `replace`가 글자를 칠 때마다 새 키를 만들어, 직접 연 화면도 "돌아갈 곳이 있다"로
 뒤집힌다. 그 상태의 `navigate(-1)`은 앱 밖으로 나간다.
@@ -443,26 +491,38 @@ UI_GUIDE "돌아가기"에 있다. 새 탭이나 공유 링크로 이 화면을 
 ## 데이터 흐름
 
 ```
-docs/source/concepts-raw.md          (원본 PDF 추출본, gitignore — 로컬에만 둔다. ADR-009)
+docs/source/concepts-raw.md          (AWS 과목 원본 PDF 추출본, gitignore — 로컬에만 둔다. ADR-009)
         │
         │  빌드 전 1회. harness step에서 사람이 검수하며 생성한다.
         │  앱 런타임이나 npm 스크립트에서 자동 생성하지 않는다.
         ▼
-src/data/topics.json, src/data/questions.json   (커밋됨)
+src/data/aws/topics.json, src/data/aws/questions.json   (커밋됨)
         │
         │  import — 번들에 정적 포함. fetch 없음.
         ▼
-pages/*  ──읽기──▶  lib/progress.ts  ──▶  localStorage
+src/data/aws/index.ts (awsSubject)  ──▶  src/data/index.ts (subjects)
+        │
+        │  SubjectScope가 URL의 :subjectId로 과목을 골라 SubjectContext로 넘긴다
+        ▼
+pages/*  ──읽기──▶  lib/storage.ts  ──▶  localStorage (키 = 과목의 progressKey)
         ◀──상태──
 ```
+
+과목의 원본은 과목마다 따로 둔다. AWS 원본은 `docs/source/`에 있고, 다음 과목의 원본은
+`docs/source/<과목>/`에 둔다(ADR-053).
 
 핵심: **런타임에 네트워크를 타는 경로가 하나도 없다.** 새 코드가 `fetch`를
 쓰고 있다면 설계에서 벗어난 것이다.
 
 ## 상태 관리
 
-- 학습 데이터: import한 상수. 불변. 전역 상태 라이브러리를 쓰지 않는다.
-- 진행 상태: `lib/progress.ts`가 localStorage를 읽고 쓴다. 화면에서는 `useProgress` 훅으로 접근한다.
+- 학습 데이터: import한 상수. 불변. 전역 상태 라이브러리를 쓰지 않는다. 화면과 공용 컴포넌트는
+  지금 과목의 데이터를 `useSubject()`에서 읽는다(테스트에서는 props로 덮어쓸 수 있다). `useSubject()`는
+  `SubjectScope` 밖에서 부르면 예외를 던진다 — 과목 없이 렌더된 화면은 라우트 배선 실수다.
+- 진행 상태: `lib/storage.ts`의 `loadProgress(key)`·`saveProgress(key, progress)`가 localStorage를 읽고 쓴다.
+  키는 과목의 `progressKey`다. 화면에서는 `useProgress` 훅으로 접근하고, 훅이 `useSubject()`에서 키를 읽는다.
+  과목마다 키가 달라 진행률과 복습 목록이 서로 닿지 않는다. AWS의 키는 과목을 나누기 전과 같은
+  `'aws-quiz.progress'`다(ADR-053).
 - 화면 내 일시 상태(선택한 보기, 정답 공개 여부 등): `useState`. 그 이상 필요 없다.
 - 키워드 퀴즈: 복호화한 키워드와 결과는 `KeywordQuizPage`의 `useState`에만 둔다. **어떤 저장소에도 쓰지 않는다**(ADR-040).
   화면을 벗어나면 사라지므로 다시 들어오면 암호를 또 입력한다.
@@ -475,7 +535,8 @@ pages/*  ──읽기──▶  lib/progress.ts  ──▶  localStorage
 | 대상 | 방식 |
 |---|---|
 | `lib/*` (채점·진행률·저장소) | Vitest 단위 테스트. DOM 불필요. |
-| `src/data/*.json` | 스키마 검증 테스트 — 타입 일치, id 유일성, `conceptId` 참조 무결성, `answerIndex` 범위, **개념 커버리지 100%**(개념 618개가 모두 문항 하나 이상을 갖는가), 문항 id의 연속성 |
+| `src/data/aws/*.json` | `src/data/aws/data.test.ts`의 스키마 검증 테스트 — 타입 일치, id 유일성, `conceptId` 참조 무결성, `answerIndex` 범위, **개념 커버리지 100%**(개념 640개가 모두 문항 하나 이상을 갖는가), 문항 id의 연속성 |
+| `src/data/index.ts` (과목 목록) | `src/data/index.test.ts` — 과목 id 유일, 과목 id가 예전 주소의 첫 세그먼트와 겹치지 않음, 주제·개념 id가 과목을 넘어 유일, `progressKey` 유일 (ADR-053) |
 | `pages/`, `components/` | @testing-library/react. 사용자 관점 동작만. |
 | `lib/keyword-crypto.ts` | `@vitest-environment node`. jsdom에는 `crypto.subtle`이 없다. 화면 테스트에서는 이 모듈을 mock한다. |
 | `components/diagrams/*` | @testing-library/react + 좌표 단언. 시나리오 동작에 더해 **viewBox 넘침과 라벨 넘침을 `src/lib/svg-bounds.ts`로 기계 검사**한다. 브라우저가 없는 환경에서 레이아웃 회귀를 잡는 유일한 장치다. 도식마다 `matchMedia`를 모의해 가로형에도 같은 관문을 건다(ADR-047·ADR-048). |

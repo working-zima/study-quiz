@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { describe, expect, it } from 'vitest'
-import { topics as realTopics } from '../data'
+import { topics as realTopics } from '../data/aws'
 import type { Topic } from '../types/content'
 import { searchContent, splitBodyOnly, stripEmphasis } from './search'
 

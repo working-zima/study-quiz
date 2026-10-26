@@ -2,7 +2,11 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { awsSubject } from '../data/aws'
+import { SubjectContext } from '../hooks/useSubject'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
+import type { Subject } from '../types/subject'
 import { QuizRunner } from './QuizRunner'
 
 const testQuestions: Question[] = [
@@ -69,7 +73,7 @@ function renderRunner(
   review: Record<string, true> = {},
 ) {
   const setInReview = vi.fn()
-  const result = render(
+  const result = renderWithSubject(
     <MemoryRouter>
       <QuizRunner
         answer={vi.fn()}
@@ -208,6 +212,31 @@ describe('QuizRunner', () => {
 
     expect(screen.queryByRole('link', { name: '근거 개념으로 돌아가기' })).toBeNull()
     expect(screen.queryByRole('link')).toBeNull()
+  })
+
+  // 랜덤 세트는 문항마다 주제가 다르다. 펼칠 주제는 지금 과목의 주제에서 찾는다.
+  it('topics를 넘기지 않으면 과목의 주제를 펼친다', async () => {
+    const user = userEvent.setup()
+    const subject: Subject = { ...awsSubject, id: 'test', topics: testTopics, visualsByTopicId: {} }
+    render(
+      <SubjectContext.Provider value={subject}>
+        <MemoryRouter>
+          <QuizRunner
+            answer={vi.fn()}
+            questions={testQuestions}
+            renderComplete={() => <section>완료</section>}
+            review={{}}
+            setInReview={vi.fn()}
+            title="사용자 지정 제목"
+          />
+        </MemoryRouter>
+      </SubjectContext.Provider>,
+    )
+
+    await user.click(screen.getByRole('button', { name: '개념 보기' }))
+
+    expect(screen.getByRole('heading', { level: 3, name: '첫 번째 주제' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 4, name: '이웃 개념' })).toBeInTheDocument()
   })
 
   it('주제를 찾을 수 없는 문항에는 토글을 렌더하지 않는다', () => {

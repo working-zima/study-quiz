@@ -1,0 +1,80 @@
+{
+  "project": "AWS SAA-C03 개념 학습 앱",
+  "phase": "67-subject-split",
+  "steps": [
+    {
+      "step": 0,
+      "name": "data-move",
+      "status": "completed",
+      "started_at": "2026-10-26T11:45:17+0900",
+      "summary": "AWS 데이터(topics·questions·keywords.enc JSON, visuals/ 11개, index.ts, 데이터 테스트 4개)를 git mv로 src/data/aws/로 옮김(JSON 전부 R100). import 113곳 수정(도식 101·화면 9·QuizRunner 1·테스트 2), 데이터 경로를 든 스크립트 11개와 .gitignore 주석 수정. 테스트 파일 103개·테스트 2701개 통과, check-structure·sync-baseline·coverage(640/640, 746문항) 통과",
+      "completed_at": "2026-10-26T11:49:11+0900"
+    },
+    {
+      "step": 1,
+      "name": "subject-registry",
+      "status": "completed",
+      "started_at": "2026-10-26T11:49:11+0900",
+      "summary": "src/types/subject.ts에 Subject(id·title·progressKey·topics·questions·visualsByTopicId·hasKeywordQuiz) 정의, src/data/aws/index.ts에 awsSubject(id 'aws', title 'AWS SAA-C03', progressKey 'aws-quiz.progress' 유지, hasKeywordQuiz true, 기존 export 그대로 담음), src/data/index.ts에 subjects=[awsSubject]. src/data/index.test.ts 불변식 5가지(과목 id 유일, 예전 경로 세그먼트 topic·review·search·random·keywords와 불충돌, 주제·개념 id 과목 간 유일, progressKey 유일, AWS 과목 값·데이터 동일 객체). 테스트 파일 104개·테스트 2706개 통과(+5)",
+      "completed_at": "2026-10-26T11:56:34+0900"
+    },
+    {
+      "step": 2,
+      "name": "subject-routes",
+      "status": "completed",
+      "started_at": "2026-10-26T13:04:22+0900",
+      "summary": "새 파일 src/hooks/useSubject.ts(SubjectContext, useSubject(): Subject — Provider 밖이면 throw, useOptionalSubject(): Subject | null), src/components/SubjectScope.tsx(SubjectScope({subjects?}) — :subjectId로 과목을 찾고 없으면 /로 replace, Provider에 key={subject.id}를 걸어 과목이 바뀌면 하위 트리 재마운트), src/pages/SubjectListPage.tsx(SubjectListPage({subjects?}) — h1 「과목」, 과목마다 /<id>로 가는 카드에 이름과 「주제 N개 · 문항 M개」). src/App.tsx의 AppRoutes({subjects?}): 과목 밖 Layout(index=과목 목록, topic/*·review/*·search·random/*·keywords는 LegacyRedirect가 '/aws'+pathname+search+hash로 replace, *=/)과 형제 라우트 :subjectId → SubjectScope → Layout(index=주제 목록, 기존 화면 경로 그대로, keywords는 hasKeywordQuiz면 KeywordQuizPage 아니면 과목 홈, *=과목 홈). 예전 주소의 과목은 LEGACY_SUBJECT_ID 상수. App.test는 /·/aws로 나누고 /aws/… 경로로 옮김, 예전 주소 9개·?q=·#앵커 유지, 없는 과목·과목 안 없는 경로, 키워드 없는 과목 테스트 추가(scrollTo는 mock). key를 빼면 재마운트 테스트가 실패함을 확인. 화면·Layout은 고치지 않음. 테스트 파일 107개·테스트 2732개 통과(+26), build·lint 통과",
+      "completed_at": "2026-10-26T13:09:50+0900"
+    },
+    {
+      "step": 3,
+      "name": "progress-per-subject",
+      "status": "completed",
+      "summary": "src/lib/storage.ts의 loadProgress(key: string): Progress·saveProgress(key: string, progress: Progress): void — PROGRESS_KEY 상수 삭제, v1→v3·v2→v3 마이그레이션 그대로. src/hooks/useProgress.ts는 useSubject().progressKey로 읽고 씀(useState(() => loadProgress(progressKey)), 반환 모양 그대로, 키 변화를 따라가는 effect 없음 — SubjectScope 재마운트에 맡김). 테스트 도우미 src/test/subject.tsx의 renderWithSubject(ui) — render의 wrapper로 awsSubject Provider를 걸어 rerender도 과목 안. 감싼 테스트: ConceptReadPage·QuizPage·RandomQuizPage·ReviewPage·ReviewQuizPage·TopicListPage(render 호출만 바꿈, it 개수 그대로). storage.test에 키 간 격리 2개(메모리 저장소), useProgress.test는 Provider wrapper·키 인자 단언·두 과목 저장 비섞임·과목 밖 throw. 키 문자열은 src/data/aws/index.ts와 그 단언에만 남음, 화면 코드 변경 없음. 테스트 파일 107개·테스트 2736개 통과(+4), build·lint 통과",
+      "started_at": "2026-10-26T13:09:50+0900",
+      "completed_at": "2026-10-26T13:14:21+0900"
+    },
+    {
+      "step": 4,
+      "name": "pages-subject",
+      "status": "completed",
+      "summary": "화면 8개(ConceptReadPage·QuizPage·RandomQuizPage·RandomStartPage·ReviewPage·ReviewQuizPage·SearchPage·TopicListPage)가 '../data/aws' import를 버리고 useSubject()에서 데이터를 읽음 — props는 topics: providedTopics처럼 받고 함수 본문에서 providedX ?? subject.X로 고름(테스트용 override 유지), ConceptReadPage의 도식 약어는 subject.visualsByTopicId. 링크는 도우미 함수 없이 템플릿 문자열로 `/${subject.id}/topic/…`·`/${subject.id}/review…`·`/${subject.id}/random…`, 주제 목록으로 가던 '/'는 `/${subject.id}`(Link to·Navigate·ConceptReadPage의 primaryAction/onward 객체 포함). KeywordQuizPage는 링크가 없어 코드 변경 없음(keywords.enc.json import만 남음). 화면 테스트의 href 단언을 /aws/…로 바꾸고 RandomQuizPage의 리다이렉트 착지 라우트를 /aws/random으로, RandomStartPage·SearchPage·KeywordQuizPage 테스트를 renderWithSubject로 감쌈(src/test/subject.tsx 주석 한 줄: 과목에서 쓰이는 것에 링크 접두사 추가). App.test에 가짜 과목 a·b로 과목 경계 테스트 4개 — 검색(/a/search?q=공통낱말 → a 주제 하나, href /a/topic/a-topic), 랜덤(/b/random/all → 1 / 2), 복습(a 키에 저장한 복습 문항이 /b/review에 없고 /a/review에 있음), 주제 목록(/a에 a 주제만, 카드·랜덤 링크 /a/…). 작업 2 grep 출력 없음, data/aws grep은 keywords.enc.json 한 줄. 테스트 파일 107개·테스트 2740개 통과(+4), build·lint 통과",
+      "started_at": "2026-10-26T13:14:21+0900",
+      "completed_at": "2026-10-26T13:20:36+0900"
+    },
+    {
+      "step": 5,
+      "name": "components-subject",
+      "status": "completed",
+      "summary": "헤더 두 모양 — 과목 안: 로고 subject.title → /${id}, 검색 /${id}/search·복습 /${id}/review / 과목 밖: 로고 「Study Quiz」 → /, nav 없음. 분기 근거는 useOptionalSubject() 하나(경로 판별 없음). 로고 연속 탭(ADR-040)은 subject.hasKeywordQuiz일 때만 세어 /${id}/keywords로 가고, 키워드 없는 과목·과목 밖에서는 세지 않고 로고 링크로 감. BackButton 대체 목적지 / → useSubject()의 과목 홈 /${id}, backIcon·backButtonClass를 export. QuizRunner는 '../data/aws' import를 버리고 topics: providedTopics ?? subject.topics, 도식 약어는 subject.visualsByTopicId. TopicListPage 제목 「주제 목록」 위 줄(같은 space-y-3 묶음의 첫 요소)에 「모든 과목」 Link(to=\"/\", BackButton과 같은 클래스·왼쪽 화살표 SVG 20px). 테스트: Layout +5(과목 안 AWS·가짜 과목 net 로고/검색/복습 href, 과목 밖 Study Quiz·nav 없음, 연속 탭 /aws/keywords·키워드 없는 과목 /net 유지·과목 밖 / 유지, 연속 탭 setup에서 scrollTo 모의), BackButton +1(net 과목에서 직접 연 경우 /net), QuizRunner +1(topics 미전달 시 과목 주제 펼침), TopicListPage +1(모든 과목 href / · 제목보다 앞). 기존 테스트는 과목으로 감쌈. 목록 밖 파일 둘을 이 변경 때문에 고침: App.test 헤더 복습 href /review → /aws/review(1줄), SearchPage.test 돌아가기 라우트를 /aws·/aws/topic/database·/aws/search로. 작업 5 grep 둘 출력 없음, to=\"/\"는 로고·모든 과목 두 곳. 테스트 파일 107개·테스트 2748개 통과(+8), build·lint 통과",
+      "started_at": "2026-10-26T13:20:36+0900",
+      "completed_at": "2026-10-26T13:29:59+0900"
+    },
+    {
+      "step": 6,
+      "name": "app-identity",
+      "status": "completed",
+      "summary": "앱 이름을 「Study Quiz」로 — index.html의 <title>·og:title, public/favicon.svg의 aria-label, package.json name과 package-lock.json의 맨 위 name·packages[\"\"].name 두 자리(손으로, npm install 없이) → study-quiz. 서브경로 예시 /aws-saa-c03-quiz/ → /study-quiz/(index.html CRITICAL 주석, deploy-metadata.test.ts 주석). description: 「과목별로 개념을 읽고 바로 확인 문제로 점검하는 학습 앱. 지금 담긴 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03)다.」(주제·개념·문항 수 뺌), og:description: 「과목별로 개념을 읽고 바로 확인 문제로 점검한다. 다시 볼 문항은 복습에 넣어 반복해서 풀 수 있다.」(오답노트 → 복습, ADR-032). README.md는 하네스 프레임워크 설명서라 앱 이름·배포 주소가 없어(grep aws 0건) 고치지 않음. vite.config.ts base './'·헤더의 과목 이름 그대로. 새 테스트 1개(제목·og:title이 Study Quiz — 먼저 실패 확인), dist/index.html <title>Study Quiz</title>·아이콘 ./favicon.svg, AC grep 출력 없음. 테스트 파일 107개·테스트 2749개 통과(+1), build·lint 통과",
+      "started_at": "2026-10-26T13:45:45+0900",
+      "completed_at": "2026-10-26T13:48:19+0900"
+    },
+    {
+      "step": 7,
+      "name": "docs",
+      "status": "completed",
+      "summary": "ADR-053 「앱 하나에 과목을 나눠 담는다 — 과목별 URL·데이터·진행률 (ARCHITECTURE 「헤더는 모든 화면에서 같다」·UI_GUIDE 「헤더 안의 링크」 개정 / ADR-040 확장)」 추가(갈라지는 넷 표, 사용자 결정, 헤더 규칙 개정, 불변식과 이유, 예전 주소, AWS 키 유지, key 재마운트, 키워드 퀴즈, 원본 위치, 대안, 트레이드오프). ARCHITECTURE: 디렉토리 구조(data/index.ts·data/aws/·useSubject·subject.ts), 라우트를 과목 밖·과목 안 두 표로(예전 주소 리다이렉트·없는 과목/경로·라우트 순위, 접두사 없이 적은 화면 경로는 과목 안 경로라고 밝힘), 「헤더는 모든 화면에서 같다」→「헤더는 과목 안에서 같다」(useOptionalSubject 분기만, 로고 연속 탭 hasKeywordQuiz 조건, useMatch 패턴에 :subjectId), 데이터 흐름(src/data/aws 경로·subjects·SubjectScope, localStorage 접근을 lib/progress.ts가 아닌 lib/storage.ts로 바로잡음), 상태 관리(useSubject·과목 progressKey), 테스트 경계(src/data/aws/data.test.ts·640개, src/data/index.test.ts 과목 불변식 행 추가), QuizRunner는 useSubject에서 topics·약어, BackButton 대체 목적지 과목 홈, visuals 경로(src/data/aws/visuals, 11개 주제), 732→746. PRD: 제목 Study Quiz, 목표에 과목 구조와 '나머지는 AWS 과목의 것', 핵심 기능 8 과목 추가(기존 번호 유지 — 다른 문서가 번호로 가리킴), 618→640·732→746·540→561·40→41문항. UI_GUIDE: 과목 카드, 돌아가기에 「모든 과목」 절과 대체 목적지 과목 홈, 상단 고정 헤더·헤더 안의 링크를 과목 안/밖으로 개정, 랜덤 완료 표의 / → 과목 홈, 검색 화면 618→640. 날짜가 붙은 실측 기록(스크롤 표)과 지난 ADR 본문은 그대로. build 통과, 테스트 파일 107개·테스트 2749개 통과, AC grep 출력 없음",
+      "started_at": "2026-10-26T13:48:19+0900",
+      "completed_at": "2026-10-26T13:58:46+0900"
+    },
+    {
+      "step": 8,
+      "name": "claude-md",
+      "status": "completed",
+      "started_at": "2026-10-26T13:58:46+0900",
+      "summary": "루트 CLAUDE.md를 앱 전체 규칙만 남기게 고침(114줄 → 113줄): 제목 「Study Quiz」와 과목 구조 한 단락(URL 접두사·데이터 폴더·progressKey, 검색·랜덤·복습은 과목 안, ADR-053), 기술 스택·배포·Git 전략·개발 프로세스·명령어 그대로, 아키텍처 규칙은 CRITICAL 둘과 src/types/만 남기고 src/lib·components·pages 규칙은 하위 파일로, 원본 데이터는 CRITICAL 「사실만 가져오고 문장은 직접 쓴다」와 docs/source/CLAUDE.md 가리키는 줄만, 끝에 하위 CLAUDE.md 지도 8개와 「execute.py는 루트 CLAUDE.md와 docs/*.md만 주입 — step 문서의 읽어야 할 파일에 그 디렉토리 CLAUDE.md를 적는다」. 새 파일 8개: docs/CLAUDE.md(문서 지도·주입 사실, 12줄), docs/source/CLAUDE.md(예전 「원본 데이터」 절 전부 + AWS 과목 원본·다음 과목은 docs/source/<과목>/ 머리말, service-categories.md·keywords-raw.json 안내), src/data/CLAUDE.md(과목 폴더 구조·과목 불변식·AWS progressKey·data.test·baseline·visuals·암호문), src/lib/CLAUDE.md(React 비의존·localStorage 유일 계층·키는 호출 쪽·모듈별 근거 표), src/pages/CLAUDE.md(useSubject·props override·/${subject.id} 접두사·QuizRunner 분담·스크롤), src/components/CLAUDE.md(컴포넌트별 읽을 문서 절·헤더 규칙 요약), src/components/diagrams/CLAUDE.md(AWS 개념 전용 registry·도식은 콘텐츠·UI_GUIDE 절 표·svg-bounds와 교차 검사기), scripts/CLAUDE.md(execute.py 브랜치·주입·커밋·재시도·--max-steps, 훅 4개 표, 가드레일·감사 스크립트 표, phases/<phase>/tools는 기록). 대조표 phases/67-subject-split/claude-md-map.md: 예전 절·글머리표 33행, 「뺐다」 0건, CRITICAL 7개 모두 루트에 남음(사실만 가져오기는 docs/source에도). docs/*.md·코드 변경 없음. build 통과, 테스트 파일 107개·테스트 2749개 통과, AC 통과(git check-ignore → 추적 대상)",
+      "completed_at": "2026-10-26T14:08:20+0900"
+    }
+  ],
+  "created_at": "2026-10-26T11:45:17+0900",
+  "completed_at": "2026-10-26T14:08:20+0900"
+}

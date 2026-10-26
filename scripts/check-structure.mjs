@@ -4,7 +4,7 @@
  *
  * 본문 손질은 summary·paragraphs만 바꾼다. 개념 id·name·parentId, 주제 메타데이터, 개념 개수와
  * 순서, 문항 파일은 그대로여야 한다. 이유: 문항이 conceptId로 개념을 참조하고
- * src/data/data.test.ts가 개념 개수·주제 메타데이터를 하드코딩으로 검증한다.
+ * src/data/aws/data.test.ts가 개념 개수·주제 메타데이터를 하드코딩으로 검증한다.
  *
  * 기준은 scripts/topics-baseline.json (현재 구조 스냅샷)이다.
  * 구조를 의도적으로 바꿨다면 이 스냅샷도 같은 커밋에서 갱신한다.
@@ -21,7 +21,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const problems = []
 
 const baseline = JSON.parse(readFileSync(join(ROOT, 'scripts/topics-baseline.json'), 'utf8'))
-const raw = readFileSync(join(ROOT, 'src/data/topics.json'), 'utf8')
+const raw = readFileSync(join(ROOT, 'src/data/aws/topics.json'), 'utf8')
 const topics = JSON.parse(raw)
 
 // 1. 개념 한 줄 포맷 — 개념 하나가 한 줄이어야 diff를 사람이 읽을 수 있다.
@@ -72,10 +72,10 @@ baseline.topics.forEach((want, i) => {
 })
 
 // 4. 문항 파일 불변
-const sha = createHash('sha256').update(readFileSync(join(ROOT, 'src/data/questions.json'))).digest('hex')
+const sha = createHash('sha256').update(readFileSync(join(ROOT, 'src/data/aws/questions.json'))).digest('hex')
 if (sha !== baseline.questionsSha256) {
   problems.push(
-    'src/data/questions.json이 바뀌었다.\n' +
+    'src/data/aws/questions.json이 바뀌었다.\n' +
     '    문항의 정답 근거가 사라졌다면 문항이 아니라 개념 본문을 보강해서 해결하라.\n' +
     '    문항을 의도적으로 고쳤다면 scripts/topics-baseline.json의 questionsSha256을 갱신하라.',
   )

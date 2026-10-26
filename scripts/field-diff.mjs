@@ -31,8 +31,8 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const TOPICS = 'src/data/topics.json'
-const QUESTIONS = 'src/data/questions.json'
+const TOPICS = 'src/data/aws/topics.json'
+const QUESTIONS = 'src/data/aws/questions.json'
 
 const [ref, ...flags] = process.argv.slice(2)
 const showList = flags.includes('--list')

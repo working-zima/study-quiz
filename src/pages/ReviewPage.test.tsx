@@ -1,7 +1,8 @@
-import { render, screen, within } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
 import { ReviewPage } from './ReviewPage'
@@ -35,7 +36,7 @@ const testQuestions: Question[] = [
 ]
 
 function renderPage(progress: Progress, setInReview = vi.fn()) {
-  const view = render(
+  const view = renderWithSubject(
     <MemoryRouter>
       <ReviewPage
         progress={progress}
@@ -50,7 +51,7 @@ function renderPage(progress: Progress, setInReview = vi.fn()) {
 
 // 돌아가기가 실제로 어느 화면에 닿는지 보려면 복습 화면 밖의 라우트가 있어야 한다.
 function renderWithHistory(entries: string[]) {
-  return render(
+  return renderWithSubject(
     <MemoryRouter initialEntries={entries} initialIndex={entries.length - 1}>
       <Routes>
         <Route element={<p>개념 읽기 화면</p>} path="/topic/storage" />
@@ -94,7 +95,7 @@ describe('ReviewPage', () => {
   it('문항마다 근거 개념으로 가는 링크를 붙인다', () => {
     renderPage({ version: 3, read: {}, answers: { q001: false }, review: { q001: true } })
 
-    expect(screen.getByRole('link', { name: /Amazon S3/ })).toHaveAttribute('href', '/topic/storage')
+    expect(screen.getByRole('link', { name: /Amazon S3/ })).toHaveAttribute('href', '/aws/topic/storage')
   })
 
   // 다시 풀어 맞혔다고 저절로 빠지지 않는다. 빼는 것은 사용자다 (ADR-017).
@@ -133,10 +134,10 @@ describe('ReviewPage', () => {
       review: { q001: true, q003: true },
     })
 
-    expect(screen.getByRole('link', { name: '전체 다시 풀기' })).toHaveAttribute('href', '/review/quiz')
+    expect(screen.getByRole('link', { name: '전체 다시 풀기' })).toHaveAttribute('href', '/aws/review/quiz')
     const storageGroup = screen.getByRole('region', { name: '스토리지' })
     const topicLink = within(storageGroup).getByRole('link', { name: '다시 풀기' })
-    expect(topicLink).toHaveAttribute('href', '/review/quiz/storage')
+    expect(topicLink).toHaveAttribute('href', '/aws/review/quiz/storage')
     expect(topicLink).toHaveClass('min-h-[44px]')
   })
 
@@ -146,7 +147,7 @@ describe('ReviewPage', () => {
 
     expect(screen.getByText('문제를 푼 뒤 복습에 넣은 문항이 여기에 모입니다.')).toBeInTheDocument()
     const topicListLink = screen.getByRole('link', { name: '주제 목록으로 가기' })
-    expect(topicListLink).toHaveAttribute('href', '/')
+    expect(topicListLink).toHaveAttribute('href', '/aws')
     expect(topicListLink).toHaveClass('min-h-[44px]')
   })
 

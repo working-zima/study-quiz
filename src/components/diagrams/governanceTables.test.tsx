@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import { topics, visualsByTopicId } from '../../data'
+import { topics, visualsByTopicId } from '../../data/aws'
 import { ConceptList } from '../ConceptList'
 import { ComparisonTableFigure } from './ComparisonTableFigure'
 

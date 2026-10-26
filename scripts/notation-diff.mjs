@@ -45,8 +45,8 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const TOPICS = 'src/data/topics.json'
-const QUESTIONS = 'src/data/questions.json'
+const TOPICS = 'src/data/aws/topics.json'
+const QUESTIONS = 'src/data/aws/questions.json'
 
 /**
  * 이번 phase가 통일하기로 한 표기. `variants`는 같은 대상의 다른 이름이고,

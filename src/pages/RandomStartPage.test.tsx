@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question } from '../types/content'
 import { RandomStartPage } from './RandomStartPage'
 
@@ -17,7 +18,7 @@ function questions(count: number): Question[] {
 }
 
 function renderPage(count: number) {
-  return render(<MemoryRouter><RandomStartPage questions={questions(count)} /></MemoryRouter>)
+  return renderWithSubject(<MemoryRouter><RandomStartPage questions={questions(count)} /></MemoryRouter>)
 }
 
 describe('RandomStartPage', () => {
@@ -25,7 +26,7 @@ describe('RandomStartPage', () => {
     renderPage(246)
 
     for (const count of [10, 20, 30, 50, 100]) {
-      expect(screen.getByRole('link', { name: `${count}문항` })).toHaveAttribute('href', `/random/${count}`)
+      expect(screen.getByRole('link', { name: `${count}문항` })).toHaveAttribute('href', `/aws/random/${count}`)
     }
   })
 
@@ -34,7 +35,7 @@ describe('RandomStartPage', () => {
     renderPage(246)
 
     const allLink = screen.getByRole('link', { name: '전체' })
-    expect(allLink).toHaveAttribute('href', '/random/all')
+    expect(allLink).toHaveAttribute('href', '/aws/random/all')
     expect(allLink).toHaveClass('min-h-[44px]')
   })
 

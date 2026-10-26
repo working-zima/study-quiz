@@ -38,7 +38,7 @@ const BASELINE = 'scripts/topics-baseline.json'
 const dryRun = process.argv.includes('--dry-run')
 
 const baseline = JSON.parse(readFileSync(join(ROOT, BASELINE), 'utf8'))
-const raw = readFileSync(join(ROOT, 'src/data/topics.json'), 'utf8')
+const raw = readFileSync(join(ROOT, 'src/data/aws/topics.json'), 'utf8')
 const topics = JSON.parse(raw)
 
 const refusals = []
@@ -97,7 +97,7 @@ if (refusals.length) {
   process.exit(1)
 }
 
-const sha = createHash('sha256').update(readFileSync(join(ROOT, 'src/data/questions.json'))).digest('hex')
+const sha = createHash('sha256').update(readFileSync(join(ROOT, 'src/data/aws/questions.json'))).digest('hex')
 const shaChanged = sha !== baseline.questionsSha256
 
 if (!renames.length && !shaChanged) {

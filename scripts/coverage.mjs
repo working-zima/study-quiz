@@ -23,8 +23,8 @@ import { dirname, join } from 'node:path'
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'))
 
-const topics = read('src/data/topics.json')
-const questions = read('src/data/questions.json')
+const topics = read('src/data/aws/topics.json')
+const questions = read('src/data/aws/questions.json')
 
 const coveredConcepts = new Set(questions.map((q) => q.conceptId))
 const questionCount = new Map()

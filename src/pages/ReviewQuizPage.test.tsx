@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { Question } from '../types/content'
 import type { Progress } from '../types/progress'
 import { ReviewQuizPage } from './ReviewQuizPage'
@@ -23,7 +24,7 @@ const twoInReview: Progress = {
 
 function renderPage(path: string, progress: Progress = twoInReview) {
   const setInReview = vi.fn()
-  const view = render(
+  const view = renderWithSubject(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route
@@ -111,7 +112,7 @@ describe('ReviewQuizPage', () => {
 
     expect(screen.getByRole('heading', { name: '복습 문제 풀기 완료' })).toBeInTheDocument()
     expect(screen.getByText('맞힌 개수 2 / 2')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '복습으로 돌아가기' })).toHaveAttribute('href', '/review')
+    expect(screen.getByRole('link', { name: '복습으로 돌아가기' })).toHaveAttribute('href', '/aws/review')
   })
 
   it('다시 풀 문항이 없으면 안내와 복습 링크를 보여준다', () => {
@@ -119,6 +120,6 @@ describe('ReviewQuizPage', () => {
 
     expect(screen.getByRole('heading', { name: '복습 문제 풀기' })).toBeInTheDocument()
     expect(screen.getByText('다시 풀 문항이 없습니다.')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '복습으로 돌아가기' })).toHaveAttribute('href', '/review')
+    expect(screen.getByRole('link', { name: '복습으로 돌아가기' })).toHaveAttribute('href', '/aws/review')
   })
 })

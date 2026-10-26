@@ -1,4 +1,4 @@
-import { visualsByTopicId } from '../../data'
+import { visualsByTopicId } from '../../data/aws'
 import { ComparisonTableFigure } from './ComparisonTableFigure'
 
 const tables = visualsByTopicId['vpc-networking'].tables
