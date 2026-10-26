@@ -337,7 +337,8 @@
     },
     {
       "dir": "67-subject-split",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-26T14:08:20+0900"
     }
   ]
 }
