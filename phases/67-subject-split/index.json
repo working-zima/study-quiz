@@ -1,0 +1,15 @@
+{
+  "project": "AWS SAA-C03 개념 학습 앱",
+  "phase": "67-subject-split",
+  "steps": [
+    { "step": 0, "name": "data-move", "status": "pending" },
+    { "step": 1, "name": "subject-registry", "status": "pending" },
+    { "step": 2, "name": "subject-routes", "status": "pending" },
+    { "step": 3, "name": "progress-per-subject", "status": "pending" },
+    { "step": 4, "name": "pages-subject", "status": "pending" },
+    { "step": 5, "name": "components-subject", "status": "pending" },
+    { "step": 6, "name": "app-identity", "status": "pending" },
+    { "step": 7, "name": "docs", "status": "pending" },
+    { "step": 8, "name": "claude-md", "status": "pending" }
+  ]
+}
