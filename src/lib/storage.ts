@@ -1,8 +1,6 @@
 import type { Progress } from '../types/progress'
 import { emptyProgress } from './progress'
 
-const PROGRESS_KEY = 'aws-quiz.progress'
-
 interface ProgressV1 {
   version: 1
   read: Record<string, boolean>
@@ -41,9 +39,10 @@ function migrateFromV2(stored: ProgressV2): Progress {
   }
 }
 
-export function loadProgress(): Progress {
+// 키는 과목이 정한다(Subject.progressKey). 과목마다 키가 달라 기록이 서로 닿지 않는다.
+export function loadProgress(key: string): Progress {
   try {
-    const stored = localStorage.getItem(PROGRESS_KEY)
+    const stored = localStorage.getItem(key)
     if (stored === null) {
       return emptyProgress()
     }
@@ -75,9 +74,9 @@ export function loadProgress(): Progress {
   }
 }
 
-export function saveProgress(progress: Progress): void {
+export function saveProgress(key: string, progress: Progress): void {
   try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress))
+    localStorage.setItem(key, JSON.stringify(progress))
   } catch {
     // 저장소가 차단되어도 메모리의 앱 상태는 계속 사용할 수 있다.
   }

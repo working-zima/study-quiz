@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-`src/data/topics.json`에서 개념의 id·이름·한 줄 요약만 뽑아 `docs/source/concept-index.md`로 쓴다.
+`src/data/aws/topics.json`에서 개념의 id·이름·한 줄 요약만 뽑아 `docs/source/concept-index.md`로 쓴다.
 
 `dump-gaps` step들은 "앱에 이미 있는 개념"과 중복을 걸러야 하는데, `topics.json` 전체는 110KB라
 매 세션 읽으면 덤프 슬라이스를 읽을 컨텍스트가 남지 않는다. 이름과 한 줄 요약만 있으면 판단에 충분하다.
@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "src" / "data" / "topics.json"
+SRC = ROOT / "src" / "data" / "aws" / "topics.json"
 OUT = ROOT / "docs" / "source" / "concept-index.md"
 
 
@@ -27,7 +27,7 @@ def main() -> None:
     lines = [
         "# 앱에 이미 있는 개념 목록",
         "",
-        "> `scripts/concept-index.py`가 `src/data/topics.json`에서 뽑는다. 재생성되는 파생물이라 커밋하지 않는다.",
+        "> `scripts/concept-index.py`가 `src/data/aws/topics.json`에서 뽑는다. 재생성되는 파생물이라 커밋하지 않는다.",
         "> 덤프에서 개념을 새로 만들기 전에 여기 이미 있는지 확인하는 용도다. 본문은 담지 않는다.",
         "",
     ]

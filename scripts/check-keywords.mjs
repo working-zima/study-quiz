@@ -3,7 +3,7 @@
  * 키워드 퀴즈의 평문 원본(docs/source/keywords-raw.json)을 검사한다.
  *
  * 이 파일은 원본 PDF의 키워드 정의를 원문 그대로 담는다. 그래서 gitignore로 로컬에만 두고,
- * 저장소와 배포본에는 암호문(src/data/keywords.enc.json)만 들어간다. 근거는 ADR-040.
+ * 저장소와 배포본에는 암호문(src/data/aws/keywords.enc.json)만 들어간다. 근거는 ADR-040.
  * clone한 환경에는 평문이 없는 것이 정상이라, 없으면 실패가 아니라 건너뜀(exit 0)으로 끝난다.
  * 그래서 이 검사는 npm test·npm run build에 엮지 않고 평문을 가진 사람이 손으로 돌린다.
  *

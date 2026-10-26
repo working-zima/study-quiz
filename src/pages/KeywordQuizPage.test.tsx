@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderWithSubject } from '../test/subject'
 import type { EncryptedKeywords, Keyword } from '../types/keywords'
 import { KeywordQuizPage } from './KeywordQuizPage'
 
@@ -43,7 +44,7 @@ const encrypted: EncryptedKeywords = {
 }
 
 function renderPage() {
-  return render(<KeywordQuizPage encrypted={encrypted} rng={() => 0.5} />)
+  return renderWithSubject(<KeywordQuizPage encrypted={encrypted} rng={() => 0.5} />)
 }
 
 async function unlock(user: ReturnType<typeof userEvent.setup>) {

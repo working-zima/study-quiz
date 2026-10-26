@@ -39,8 +39,8 @@ const MIN_LENGTH = 187
 /** 대상 구간의 마지막 문항. 근거는 위 헤더 주석과 ADR-027. */
 const LAST_TARGET = 246
 
-const topics = read('src/data/topics.json')
-const questions = read('src/data/questions.json')
+const topics = read('src/data/aws/topics.json')
+const questions = read('src/data/aws/questions.json')
 
 const target = questions.filter((q) => Number(q.id.slice(1)) <= LAST_TARGET)
 

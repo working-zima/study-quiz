@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { questions as defaultQuestions, topics as defaultTopics } from '../data'
+import { backButtonClass, backIcon } from '../components/BackButton'
 import { useProgress } from '../hooks/useProgress'
+import { useSubject } from '../hooks/useSubject'
 import { overallPercent, topicStats } from '../lib/stats'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
@@ -17,10 +18,13 @@ const importanceLabel = {
 } as const
 
 export function TopicListPage({
-  topics = defaultTopics,
-  questions = defaultQuestions,
+  topics: providedTopics,
+  questions: providedQuestions,
   progress: providedProgress,
 }: TopicListPageProps) {
+  const subject = useSubject()
+  const topics = providedTopics ?? subject.topics
+  const questions = providedQuestions ?? subject.questions
   const { progress: storedProgress } = useProgress()
   const progress = providedProgress ?? storedProgress
   const stats = topicStats(topics, questions, progress)
@@ -29,6 +33,11 @@ export function TopicListPage({
   return (
     <section className="max-w-3xl space-y-8 break-keep break-anywhere">
       <div className="space-y-3">
+        {/* 모양은 BackButton과 같지만 직전 화면이 아니라 늘 첫 화면으로 간다. */}
+        <Link className={backButtonClass} to="/">
+          {backIcon}
+          모든 과목
+        </Link>
         <div className="flex items-end justify-between gap-3">
           <h1 className="text-2xl font-semibold text-title">주제 목록</h1>
           <span className="text-sm text-muted">{percent}%</span>
@@ -47,7 +56,7 @@ export function TopicListPage({
 
       <Link
         className="block rounded-lg border border-neutral-800 px-5 py-4 transition-colors hover:border-neutral-700"
-        to="/random"
+        to={`/${subject.id}/random`}
       >
         <div className="flex items-center justify-between gap-3">
           <span className="text-neutral-100">랜덤 문제</span>
@@ -75,7 +84,7 @@ export function TopicListPage({
               <Link
                 className="rounded-lg border border-neutral-800 bg-panel p-5 transition-colors hover:border-neutral-700"
                 key={topic.id}
-                to={`/topic/${topic.id}`}
+                to={`/${subject.id}/topic/${topic.id}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="text-lg font-medium text-neutral-100">{topic.title}</h2>

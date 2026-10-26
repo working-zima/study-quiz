@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { visualsByTopicId } from '../../data'
+import { visualsByTopicId } from '../../data/aws'
 
 const texts = visualsByTopicId['identity-federation'].stepFigures!['identity-federation.iam-roles-anywhere']
 

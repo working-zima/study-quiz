@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { ConceptList } from '../components/ConceptList'
-import { questions as defaultQuestions, topics as defaultTopics, visualsByTopicId } from '../data'
 import { useProgress } from '../hooks/useProgress'
+import { useSubject } from '../hooks/useSubject'
 import { adjacentTopics } from '../lib/navigation'
 import type { Question, Topic } from '../types/content'
 
@@ -33,7 +33,10 @@ const importanceLabel = {
   2: { label: '★★☆', className: 'text-importance-medium' },
 } as const
 
-export function ConceptReadPage({ topics = defaultTopics, questions = defaultQuestions, markRead: providedMarkRead }: ConceptReadPageProps) {
+export function ConceptReadPage({ topics: providedTopics, questions: providedQuestions, markRead: providedMarkRead }: ConceptReadPageProps) {
+  const subject = useSubject()
+  const topics = providedTopics ?? subject.topics
+  const questions = providedQuestions ?? subject.questions
   const { topicId } = useParams()
   const { hash } = useLocation()
   const { markRead: storedMarkRead } = useProgress()
@@ -77,7 +80,7 @@ export function ConceptReadPage({ topics = defaultTopics, questions = defaultQue
           <h1 className="text-2xl font-semibold text-title">주제를 찾을 수 없습니다.</h1>
           <p className="text-[15px] leading-7 text-neutral-300">요청한 학습 주제가 존재하지 않습니다.</p>
         </div>
-        <Link className={primaryButtonClass} to="/">
+        <Link className={primaryButtonClass} to={`/${subject.id}`}>
           주제 목록으로 돌아가기
         </Link>
       </section>
@@ -89,10 +92,10 @@ export function ConceptReadPage({ topics = defaultTopics, questions = defaultQue
   // 개념을 다 읽은 학습자가 "아직 확인 문제가 없습니다" 안내 화면에 갇힌다. 갈 곳을 주 액션으로 둔다.
   const hasQuestions = questions.some((question) => question.topicId === topic.id)
   const onward = next
-    ? { to: `/topic/${next.id}`, label: '다음 주제 이어가기' }
-    : { to: '/', label: '주제 목록으로 돌아가기' }
+    ? { to: `/${subject.id}/topic/${next.id}`, label: '다음 주제 이어가기' }
+    : { to: `/${subject.id}`, label: '주제 목록으로 돌아가기' }
   const primaryAction = hasQuestions
-    ? { to: `/topic/${topic.id}/quiz`, label: '확인 문제 풀기' }
+    ? { to: `/${subject.id}/topic/${topic.id}/quiz`, label: '확인 문제 풀기' }
     : onward
 
   return (
@@ -104,7 +107,7 @@ export function ConceptReadPage({ topics = defaultTopics, questions = defaultQue
         </div>
       </header>
 
-      <ConceptList concepts={topic.concepts} glossary={visualsByTopicId[topic.id]?.glossary} headingLevel={2} />
+      <ConceptList concepts={topic.concepts} glossary={subject.visualsByTopicId[topic.id]?.glossary} headingLevel={2} />
 
       {!hasQuestions && (
         <p className="text-[15px] leading-7 text-muted">이 주제의 확인 문제는 준비 중입니다.</p>
@@ -113,7 +116,7 @@ export function ConceptReadPage({ topics = defaultTopics, questions = defaultQue
       <div className={`sticky bottom-0 -mx-5 border-t border-border bg-page px-5 py-3 sm:mx-0 sm:px-0 ${scrollingDown ? 'max-sm:static' : ''}`}>
         <div className="flex items-center justify-between gap-3">
           {prev ? (
-            <Link aria-label="이전 주제" className={ghostLinkClass} to={`/topic/${prev.id}`}>
+            <Link aria-label="이전 주제" className={ghostLinkClass} to={`/${subject.id}/topic/${prev.id}`}>
               {previousIcon}
             </Link>
           ) : (
@@ -125,7 +128,7 @@ export function ConceptReadPage({ topics = defaultTopics, questions = defaultQue
             {primaryAction.label}
           </Link>
           {next ? (
-            <Link aria-label="다음 주제" className={ghostLinkClass} to={`/topic/${next.id}`}>
+            <Link aria-label="다음 주제" className={ghostLinkClass} to={`/${subject.id}/topic/${next.id}`}>
               {nextIcon}
             </Link>
           ) : (

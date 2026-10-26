@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { BackButton } from '../components/BackButton'
-import { questions as defaultQuestions, topics as defaultTopics } from '../data'
 import { useProgress } from '../hooks/useProgress'
+import { useSubject } from '../hooks/useSubject'
 import { reviewQuestions } from '../lib/stats'
 import type { Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
@@ -16,11 +16,14 @@ interface ReviewPageProps {
 const ghostLinkClass = 'inline-flex min-h-[44px] shrink-0 items-center rounded-md px-4 py-2 text-sm text-neutral-400 transition-colors hover:text-neutral-100'
 
 export function ReviewPage({
-  topics = defaultTopics,
-  questions = defaultQuestions,
+  topics: providedTopics,
+  questions: providedQuestions,
   progress: providedProgress,
   setInReview: providedSetInReview,
 }: ReviewPageProps) {
+  const subject = useSubject()
+  const topics = providedTopics ?? subject.topics
+  const questions = providedQuestions ?? subject.questions
   const { progress: storedProgress, setInReview: storedSetInReview } = useProgress()
   const progress = providedProgress ?? storedProgress
   const setInReview = providedSetInReview ?? storedSetInReview
@@ -48,7 +51,7 @@ export function ReviewPage({
           <p className="text-[15px] leading-7 text-body">
             문제를 푼 뒤 복습에 넣은 문항이 여기에 모입니다.
           </p>
-          <Link className="inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100" to="/">
+          <Link className="inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100" to={`/${subject.id}`}>
             주제 목록으로 가기
           </Link>
         </div>
@@ -56,7 +59,7 @@ export function ReviewPage({
         <div className="space-y-8">
           <div className="flex items-start justify-between gap-3">
             <p className="text-[15px] leading-7 text-body">복습할 문항 {reviewList.length}개</p>
-            <Link className={ghostLinkClass} to="/review/quiz">전체 다시 풀기</Link>
+            <Link className={ghostLinkClass} to={`/${subject.id}/review/quiz`}>전체 다시 풀기</Link>
           </div>
 
           {reviewGroups.map(({ topic, groupQuestions }) => {
@@ -72,7 +75,7 @@ export function ReviewPage({
                   <h2 className="text-lg font-medium text-neutral-100" id={headingId}>
                     {topic.title}
                   </h2>
-                  <Link className={ghostLinkClass} to={`/review/quiz/${topic.id}`}>
+                  <Link className={ghostLinkClass} to={`/${subject.id}/review/quiz/${topic.id}`}>
                     다시 풀기
                   </Link>
                 </div>
@@ -84,7 +87,7 @@ export function ReviewPage({
                       <div className="flex items-center justify-between gap-3">
                         <Link
                           className="text-sm text-neutral-400 transition-colors hover:text-neutral-100"
-                          to={`/topic/${question.topicId}`}
+                          to={`/${subject.id}/topic/${question.topicId}`}
                         >
                           근거 개념: {conceptNames.get(question.conceptId)}
                         </Link>
