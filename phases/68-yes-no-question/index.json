@@ -16,7 +16,7 @@
       "status": "completed",
       "started_at": "2026-10-27T08:35:57+0900",
       "summary": "QuizRunner.tsx: 버튼 묶음 클래스가 예/아니요는 'grid grid-cols-2 gap-3', 4지선다는 'space-y-3'(그대로). 버튼 글자 정렬은 예/아니요 'text-center', 4지선다 'text-left'(choiceBaseClass에서 text-left를 떼어 choiceAlignClass로 옮김). 형식 분기는 렌더 앞의 yesNo = question.format === 'yes-no' 한 곳에서 choiceGroupClass·choiceAlignClass 두 값만 정하고, 채점·문구는 그대로 isCorrect·choiceLabels. 새 테스트 — QuizRunner.test.tsx describe('예/아니요 문항') 8개: 버튼이 예·아니요 둘뿐이고 묶음이 grid-cols-2, 글자 가운데 정렬, answer:true에서 예 → (id, true)+해설, 아니요 → (id, false)+아니요 빨강·예 초록, answer:false에서 아니요가 정답, 정답 재탭은 채점 없이 다음 문항, 4지선다와 섞인 세트(문항마다 배치가 바뀌고 renderComplete(2, 3)), 이전 문제로 돌아가도 고른 상태·해설 유지. App.test.tsx 과목 경계 1개: 예/아니요만 있는 가짜 과목 yn의 /yn/topic/yn-topic/quiz가 실제 섞기를 거쳐 예·아니요 둘만 내고 누르면 해설을 보임. 형식 분기를 빼면 배치·정렬·섞인 세트 3개가 실패하고, 나머지 6개는 step 0의 lib가 맡은 채점·진행을 지키는 회귀 테스트라 통과함. 기존 QuizRunner 테스트 18개 그대로. 테스트 2754 → 2763, build·lint 통과.",
-      "completed_at": "2026-10-27T08:52:00+0900"
+      "completed_at": "2026-10-27T08:39:40+0900"
     },
     {
       "step": 2,
