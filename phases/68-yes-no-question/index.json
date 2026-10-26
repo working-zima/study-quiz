@@ -1,0 +1,10 @@
+{
+  "project": "Study Quiz",
+  "phase": "68-yes-no-question",
+  "steps": [
+    { "step": 0, "name": "question-types", "status": "pending" },
+    { "step": 1, "name": "quiz-runner", "status": "pending" },
+    { "step": 2, "name": "yes-no-invariants", "status": "pending" },
+    { "step": 3, "name": "docs", "status": "pending" }
+  ]
+}

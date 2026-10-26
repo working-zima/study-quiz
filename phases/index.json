@@ -339,6 +339,10 @@
       "dir": "67-subject-split",
       "status": "completed",
       "completed_at": "2026-10-26T14:08:20+0900"
+    },
+    {
+      "dir": "68-yes-no-question",
+      "status": "pending"
     }
   ]
 }
