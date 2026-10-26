@@ -83,9 +83,9 @@ function renderWithHistory(entries: string[]) {
   return renderWithSubject(
     <MemoryRouter initialEntries={entries} initialIndex={entries.length - 1}>
       <Routes>
-        <Route element={<p>주제 목록 화면</p>} path="/" />
-        <Route element={<p>개념 읽기 화면</p>} path="/topic/database" />
-        <Route element={<SearchPage topics={testTopics} />} path="/search" />
+        <Route element={<p>주제 목록 화면</p>} path="/aws" />
+        <Route element={<p>개념 읽기 화면</p>} path="/aws/topic/database" />
+        <Route element={<SearchPage topics={testTopics} />} path="/aws/search" />
       </Routes>
     </MemoryRouter>,
   )
@@ -226,7 +226,7 @@ describe('SearchPage', () => {
   })
 
   it('돌아가기를 누르면 검색 화면에 들어오기 전 화면으로 간다', async () => {
-    renderWithHistory(['/topic/database', '/search'])
+    renderWithHistory(['/aws/topic/database', '/aws/search'])
 
     await userEvent.click(screen.getByRole('button', { name: '돌아가기' }))
 
@@ -234,7 +234,7 @@ describe('SearchPage', () => {
   })
 
   it('글자를 친 뒤에 눌러도 한 글자씩 되감기지 않고 직전 화면으로 간다', async () => {
-    renderWithHistory(['/topic/database', '/search'])
+    renderWithHistory(['/aws/topic/database', '/aws/search'])
 
     await userEvent.type(screen.getByLabelText('개념·주제 검색'), 'aurora')
     await userEvent.click(screen.getByRole('button', { name: '돌아가기' }))
@@ -243,7 +243,7 @@ describe('SearchPage', () => {
   })
 
   it('검색 화면을 직접 열었으면 주제 목록으로 보낸다', async () => {
-    renderWithHistory(['/search'])
+    renderWithHistory(['/aws/search'])
 
     await userEvent.click(screen.getByRole('button', { name: '돌아가기' }))
 
@@ -251,7 +251,7 @@ describe('SearchPage', () => {
   })
 
   it('직접 연 검색 화면에서 글자를 친 뒤에도 주제 목록으로 보낸다', async () => {
-    renderWithHistory(['/search'])
+    renderWithHistory(['/aws/search'])
 
     await userEvent.type(screen.getByLabelText('개념·주제 검색'), 'aurora')
     await userEvent.click(screen.getByRole('button', { name: '돌아가기' }))

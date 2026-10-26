@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { backButtonClass, backIcon } from '../components/BackButton'
 import { useProgress } from '../hooks/useProgress'
 import { useSubject } from '../hooks/useSubject'
 import { overallPercent, topicStats } from '../lib/stats'
@@ -32,6 +33,11 @@ export function TopicListPage({
   return (
     <section className="max-w-3xl space-y-8 break-keep break-anywhere">
       <div className="space-y-3">
+        {/* 모양은 BackButton과 같지만 직전 화면이 아니라 늘 첫 화면으로 간다. */}
+        <Link className={backButtonClass} to="/">
+          {backIcon}
+          모든 과목
+        </Link>
         <div className="flex items-end justify-between gap-3">
           <h1 className="text-2xl font-semibold text-title">주제 목록</h1>
           <span className="text-sm text-muted">{percent}%</span>

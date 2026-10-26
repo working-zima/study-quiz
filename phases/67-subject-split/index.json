@@ -45,7 +45,9 @@
     {
       "step": 5,
       "name": "components-subject",
-      "status": "pending"
+      "status": "completed",
+      "summary": "헤더 두 모양 — 과목 안: 로고 subject.title → /${id}, 검색 /${id}/search·복습 /${id}/review / 과목 밖: 로고 「Study Quiz」 → /, nav 없음. 분기 근거는 useOptionalSubject() 하나(경로 판별 없음). 로고 연속 탭(ADR-040)은 subject.hasKeywordQuiz일 때만 세어 /${id}/keywords로 가고, 키워드 없는 과목·과목 밖에서는 세지 않고 로고 링크로 감. BackButton 대체 목적지 / → useSubject()의 과목 홈 /${id}, backIcon·backButtonClass를 export. QuizRunner는 '../data/aws' import를 버리고 topics: providedTopics ?? subject.topics, 도식 약어는 subject.visualsByTopicId. TopicListPage 제목 「주제 목록」 위 줄(같은 space-y-3 묶음의 첫 요소)에 「모든 과목」 Link(to=\"/\", BackButton과 같은 클래스·왼쪽 화살표 SVG 20px). 테스트: Layout +5(과목 안 AWS·가짜 과목 net 로고/검색/복습 href, 과목 밖 Study Quiz·nav 없음, 연속 탭 /aws/keywords·키워드 없는 과목 /net 유지·과목 밖 / 유지, 연속 탭 setup에서 scrollTo 모의), BackButton +1(net 과목에서 직접 연 경우 /net), QuizRunner +1(topics 미전달 시 과목 주제 펼침), TopicListPage +1(모든 과목 href / · 제목보다 앞). 기존 테스트는 과목으로 감쌈. 목록 밖 파일 둘을 이 변경 때문에 고침: App.test 헤더 복습 href /review → /aws/review(1줄), SearchPage.test 돌아가기 라우트를 /aws·/aws/topic/database·/aws/search로. 작업 5 grep 둘 출력 없음, to=\"/\"는 로고·모든 과목 두 곳. 테스트 파일 107개·테스트 2748개 통과(+8), build·lint 통과",
+      "started_at": "2026-10-26T13:20:36+0900"
     },
     {
       "step": 6,

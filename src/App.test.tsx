@@ -45,7 +45,7 @@ describe('App routes', () => {
     renderAt('/aws')
 
     expect(screen.getByRole('heading', { name: '주제 목록' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: '복습' })).toHaveAttribute('href', '/review')
+    expect(screen.getByRole('link', { name: '복습' })).toHaveAttribute('href', '/aws/review')
   })
 
   it('/aws/review에서 복습 화면을 렌더링한다', () => {

@@ -69,6 +69,17 @@ describe('TopicListPage', () => {
     expect(container.querySelector('section')).toHaveClass('break-keep', 'break-anywhere')
   })
 
+  // 헤더는 과목 안에서 검색·복습 둘로 차 있다(UI_GUIDE 「헤더 안의 링크」). 첫 화면으로 돌아가는 길은 여기 둔다.
+  it('제목보다 앞에 과목 목록(/)으로 가는 「모든 과목」 링크를 렌더한다', () => {
+    renderPage()
+    const allSubjectsLink = screen.getByRole('link', { name: '모든 과목' })
+    const heading = screen.getByRole('heading', { level: 1, name: '주제 목록' })
+
+    expect(allSubjectsLink).toHaveAttribute('href', '/')
+    expect(allSubjectsLink).toHaveClass('-ml-4', 'min-h-[44px]')
+    expect(allSubjectsLink.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
   it('주제 제목들을 렌더한다', () => {
     renderPage()
 
