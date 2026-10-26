@@ -13,7 +13,10 @@
     {
       "step": 1,
       "name": "subject-registry",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-10-26T11:49:11+0900",
+      "summary": "src/types/subject.ts에 Subject(id·title·progressKey·topics·questions·visualsByTopicId·hasKeywordQuiz) 정의, src/data/aws/index.ts에 awsSubject(id 'aws', title 'AWS SAA-C03', progressKey 'aws-quiz.progress' 유지, hasKeywordQuiz true, 기존 export 그대로 담음), src/data/index.ts에 subjects=[awsSubject]. src/data/index.test.ts 불변식 5가지(과목 id 유일, 예전 경로 세그먼트 topic·review·search·random·keywords와 불충돌, 주제·개념 id 과목 간 유일, progressKey 유일, AWS 과목 값·데이터 동일 객체). 테스트 파일 104개·테스트 2706개 통과(+5)",
+      "completed_at": "2026-10-26T11:58:00+0900"
     },
     {
       "step": 2,
