@@ -1,7 +1,10 @@
-# 프로젝트: AWS SAA-C03 개념 학습 앱
+# 프로젝트: Study Quiz
 
-AWS 솔루션스 아키텍트 어소시에이트(SAA-C03) 범위의 서비스 개념을 읽고,
-바로 확인 문제로 점검하는 학습용 SPA. 시험 시뮬레이터가 아니라 학습 도구다.
+과목별로 개념을 읽고, 바로 확인 문제로 점검하는 학습용 SPA. 시험 시뮬레이터가 아니라 학습 도구다.
+
+과목마다 URL 접두사(`#/:subjectId/…`)·데이터 폴더(`src/data/<과목 id>/`)·진행률 키(과목의 `progressKey`)가 따로 있고,
+검색·랜덤·복습은 그 과목 안에서만 돈다. 앱에 어떤 과목이 있는지는 `src/data/index.ts`의 `subjects`가 정한다(ADR-053).
+지금 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03) 하나다.
 
 ## 기술 스택
 
@@ -68,9 +71,8 @@ worktree마다 `npm install`이 한 번 필요하다.
 - CRITICAL: 사용자 상태(진행률·오답)는 **localStorage에만** 저장한다.
   서버·계정·DB를 만들지 마라. 이유: 서버가 없는 게 이 앱의 배포 전략이다.
 - 데이터 타입은 `src/types/`에 단 한 곳에서 정의한다. 컴포넌트마다 인라인 타입을 다시 만들지 마라.
-- 순수 로직(채점·진행률 계산·저장소 접근)은 `src/lib/`에 두고, React에 의존하지 않게 짠다.
-  이유: 이 계층은 DOM 없이 테스트한다.
-- 컴포넌트는 `src/components/`, 화면 단위는 `src/pages/`.
+- 디렉토리마다의 규칙(`src/lib/`의 순수 로직, `src/components/`·`src/pages/`의 자리 등)은
+  그 디렉토리의 `CLAUDE.md`에 있다 — 아래 「하위 CLAUDE.md」.
 
 ## 개발 프로세스
 
@@ -87,28 +89,25 @@ npm run test     # Vitest (CI 모드, watch 금지)
 
 ## 원본 데이터
 
-개념 데이터와 문제 은행의 근거는 아래 **세 곳**이고, ADR-039가 목록으로 허용한 것(주로 기초 용어의 정의)에 한해 네 번째 파일을 쓴다. 여기 없는 내용을 지어내지 마라.
-
-- `docs/source/concepts-raw.md` — 원본 PDF(50p)에서 추출한 개념 텍스트.
-  추출 아티팩트(여는 괄호 유실, 쪽번호/머리말 잔존)는 파일 헤더에 명시돼 있다.
-  **저장소에 없다.** 외부 참고 자료 추출본이라 gitignore로 로컬에만 둔다(ADR-009).
-  clone한 환경에는 이 파일이 없으므로, 개념 데이터의 근거를 다시 확인하려면 직접 준비해야 한다.
-- `docs/source/exam-gaps.md` — 문제 덤프 PDF(163문항) 해설에서, 위 개념 텍스트에는 없는데
-  정답 근거로 쓰인 것만 추린 보충 개념. 항목마다 덤프 원문 인용이 붙어 있다.
-  덤프 해설이 실제 AWS 동작과 어긋나 고치거나 뺀 항목은 이 파일의 "원본 수정 이력"에 있다.
-  근거는 ADR-008.
-- `docs/source/dump-gaps/` — 880문항 덤프 해설집(덤프 V29.35)에서, 위 두 파일에는 없는데 정답 근거로 쓰인 것만 추린 보충 개념.
-  50문항 단위 파일(`Q001-Q050.md` … `Q851-Q880.md`)로 나뉘고, 항목마다 `[Q번호 p쪽]` 덤프 원문 인용이 붙어 있다.
-  **문항은 가져오지 않고 개념만 가져온다.** 덤프 전문을 자른 `docs/source/dump-slices/`는 `concepts-raw.md`처럼 gitignore로 로컬에만 둔다.
-  명백한 사실 오류를 고치거나 뺀 항목은 각 파일의 "원본 수정 이력"에 있다. 근거는 ADR-021.
-- `docs/source/aws-docs.md` — 위 세 곳이 쓰기만 하고 정의하지 않는 기초 용어(레코드·호스팅 영역·대상 그룹, Lambda의 동시 실행 수·예약된 동시성, Identity Center 권한 세트가 만드는 IAM 역할, SCP의 관리 계정 예외, CloudFormation의 템플릿·스택·드리프트, WAF의 Web ACL(규칙·평가 순서·기본 동작), ECS의 태스크 정의·태스크·서비스와 EKS의 파드·노드, 컨테이너·컨테이너 이미지·레지스트리·컨테이너 오케스트레이션·쿠버네티스, ECR의 레지스트리·리포지토리, Glue(서버리스 데이터 통합 서비스), 그리고 블록의 기본 개념인 IAM 정책·루트 사용자(멤버 계정의 루트 자격 증명 중앙 삭제 포함)·Systems Manager 관리형 노드·EC2 인스턴스 유형과 제품군·RDS 자동 백업과 DB 스냅샷·재해 복구 전략·EC2 배치 그룹, 절약 플랜의 두 유형)의 정의만
-  AWS 공식 문서에서 가져와 URL과 함께 남긴 것. 컨테이너의 「무엇을 묶는가」와 「가상 머신과의 차이」만은 공식 문서에 없어 AWS 소개 페이지(`aws.amazon.com/what-is/containerization`, `aws.amazon.com/docker`)를 근거로 했다.
-  정의를 넘어 여기서 가져온 것은 셋이다. IAM 액세스 키를 비활성화하거나 삭제할 수 있다는 사실(원본의 「회수할 방법이 없다」를 정정), IAM Roles Anywhere로 온프레미스 서버가 역할을 맡는 19단계 절차(ADR-050), Glue가 S3의 CSV·JSON에서 열을 지우고 형식을 맞추는 변환 예시다.
-  개념 본문 목록 항목에 붙인 영문 이름(이름 표기만, ADR-046)의 근거도 여기 있다.
-  이 목록 밖의 사실은 여전히 위 세 곳에서만 가져온다. 근거는 ADR-039.
-- `docs/source/exam-types.md` — **사실의 출처가 아니다.** JSCODE 노션 「시험 문제 출제 유형」을 직접 쓴 말로 정리한 것이고,
-  무엇을 강조할지(주제 별점, 개념 본문의 굵은 글씨, 「A vs B」 제목)를 고르는 기준으로만 쓴다. 근거는 ADR-051.
-
 - CRITICAL: **사실만 가져오고 문장은 직접 쓴다.** 원본 문장을 그대로 옮기지 마라.
   이유: `concepts-raw.md`는 외부 참고 자료의 추출 전문이다. 전사하면 저장소를 공개할 때
   원문이 그대로 공개된다. 근거는 ADR-009.
+
+원본 목록과 각 원본에서 무엇을 가져올 수 있는지(ADR-039의 허용 목록 포함)는 `docs/source/CLAUDE.md`에 있다.
+원본에 없는 내용을 지어내지 마라.
+
+## 하위 CLAUDE.md
+
+| 파일 | 담은 것 |
+|---|---|
+| `docs/CLAUDE.md` | `docs/` 문서 지도 — PRD·ARCHITECTURE·ADR·UI_GUIDE가 각각 무엇을 정하는가 |
+| `docs/source/CLAUDE.md` | AWS 과목 원본 목록, ADR-039 허용 목록, `exam-types.md`의 쓰임, 전사 금지 |
+| `src/data/CLAUDE.md` | 과목 폴더 구조, 과목 불변식, 데이터 가드레일 스크립트, 도식 문구의 자리 |
+| `src/lib/CLAUDE.md` | 순수 로직, localStorage에 접근하는 유일한 계층, 진행률 키를 넘기는 쪽 |
+| `src/pages/CLAUDE.md` | 화면 단위, `useSubject()`와 테스트용 props override, 링크의 과목 접두사 |
+| `src/components/CLAUDE.md` | 공용 컴포넌트, 헤더 규칙, 컴포넌트별로 먼저 읽을 문서 절 |
+| `src/components/diagrams/CLAUDE.md` | 도식 규칙이 있는 문서 절, 넘침 검사, 도식은 AWS 개념 전용 |
+| `scripts/CLAUDE.md` | harness 실행기 `execute.py`, 에이전트 훅, 데이터 가드레일·감사 스크립트 |
+
+`scripts/execute.py`는 루트 `CLAUDE.md`와 `docs/*.md`만 주입한다.
+harness step 문서를 쓸 때는 그 step이 일하는 디렉토리의 `CLAUDE.md`를 「읽어야 할 파일」에 적는다.
