@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { QuizRunner } from '../components/QuizRunner'
-import { questions as defaultQuestions } from '../data'
+import { questions as defaultQuestions } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
 import { shuffleQuestions } from '../lib/shuffle'
 import { reviewQuestions } from '../lib/stats'

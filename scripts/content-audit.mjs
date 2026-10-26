@@ -74,7 +74,7 @@
  * npm test·npm run build에 엮지 마라 — ADR-026이 `coverage.mjs`를, ADR-027이
  * `explanation-audit.mjs`를 엮지 않은 것과 같은 이유다. 고치는 도중에는 미달이 정상이고,
  * 빌드를 막으면 고치는 작업 자체가 진행되지 않는다. 고친 주제를 고정하는 것은
- * `src/data/data.test.ts`의 몫이고, 지금은 시범 주제 하나에만 걸려 있다.
+ * `src/data/aws/data.test.ts`의 몫이고, 지금은 시범 주제 하나에만 걸려 있다.
  */
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -85,7 +85,7 @@ const read = (p) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'))
 
 /**
  * ① 문장형 제목. 한국어 평서형 종결어미는 모두 `-다`로 끝나므로 그것으로 잰다.
- * `src/data/data.test.ts`의 「S3 암호화 주제의 개념 제목이 모두 문장이 아니라 명사구다」와
+ * `src/data/aws/data.test.ts`의 「S3 암호화 주제의 개념 제목이 모두 문장이 아니라 명사구다」와
  * 같은 규칙이다 — 두 곳이 갈리면 테스트를 통과한 주제가 여기서 걸린다.
  *
  * `-자`·`-라`로 끝나는 이름은 대상이 아니다. `HTTP API의 JWT 권한 부여자`,
@@ -138,8 +138,8 @@ const SENTENCE_END = /[.?!]/
 /** ⑤ 검사해 볼 신호가 되는 길이. 위반선이 아니다 — 머리주석을 봐라. */
 const LONG_SENTENCE = 60
 
-const topics = read('src/data/topics.json')
-const questions = read('src/data/questions.json')
+const topics = read('src/data/aws/topics.json')
+const questions = read('src/data/aws/questions.json')
 
 /** 관용 표현이 남아 있는 자리. 제외할 뜻을 먼저 지운 뒤 센다. */
 const idiomsIn = (text) => [...text.replace(OTHER_SENSE, '').matchAll(IDIOM)].map((m) => m[0])

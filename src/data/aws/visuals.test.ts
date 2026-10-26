@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { markFirstOccurrences } from '../lib/glossary'
-import { groupParagraphs } from '../lib/paragraph-blocks'
+import { markFirstOccurrences } from '../../lib/glossary'
+import { groupParagraphs } from '../../lib/paragraph-blocks'
 import { topics, visualsByTopicId } from './index'
 
 describe('시각 요소 데이터 무결성', () => {

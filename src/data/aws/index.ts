@@ -11,8 +11,8 @@ import organizationsCloudtrailConfigVisuals from './visuals/organizations-cloudt
 import route53Visuals from './visuals/route53.json'
 import securityGroupsNaclVisuals from './visuals/security-groups-nacl.json'
 import vpcNetworkingVisuals from './visuals/vpc-networking.json'
-import type { Question, Topic } from '../types/content'
-import type { TopicVisuals } from '../types/visuals'
+import type { Question, Topic } from '../../types/content'
+import type { TopicVisuals } from '../../types/visuals'
 
 export const topics: Topic[] = topicsData as Topic[]
 export const questions: Question[] = questionsData as Question[]

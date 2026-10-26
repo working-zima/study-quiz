@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { visualsByTopicId } from '../../data'
+import { visualsByTopicId } from '../../data/aws'
 import { useWideDiagram } from '../../hooks/useWideDiagram'
 import { hubAttachmentCount, meshConnectionCount, ringPoints } from '../../lib/peering'
 import { DiagramFrame, type DiagramScenario } from './DiagramFrame'

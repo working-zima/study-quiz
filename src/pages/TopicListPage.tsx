@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { questions as defaultQuestions, topics as defaultTopics } from '../data'
+import { questions as defaultQuestions, topics as defaultTopics } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
 import { overallPercent, topicStats } from '../lib/stats'
 import type { Question, Topic } from '../types/content'

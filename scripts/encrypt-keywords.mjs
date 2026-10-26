@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 키워드 퀴즈의 평문(docs/source/keywords-raw.json)을 암호화해 src/data/keywords.enc.json에 쓴다.
+ * 키워드 퀴즈의 평문(docs/source/keywords-raw.json)을 암호화해 src/data/aws/keywords.enc.json에 쓴다.
  *
  * 평문은 원본 PDF의 원문 그대로라 로컬에만 두고, 저장소와 배포본에는 이 암호문만 들어간다(ADR-040).
  * 암호는 EGG_PASSPHRASE 환경 변수 또는 저장소 루트의 .env에서 읽는다. VITE_ 접두사를 붙이지 마라 —
@@ -102,7 +102,7 @@ async function main() {
   }
 
   const source = 'docs/source/keywords-raw.json'
-  const target = 'src/data/keywords.enc.json'
+  const target = 'src/data/aws/keywords.enc.json'
   let keywords
   try {
     keywords = JSON.parse(readFileSync(join(root, source), 'utf8'))

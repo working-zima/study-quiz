@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { ConceptList } from '../components/ConceptList'
-import { questions as defaultQuestions, topics as defaultTopics, visualsByTopicId } from '../data'
+import { questions as defaultQuestions, topics as defaultTopics, visualsByTopicId } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
 import { adjacentTopics } from '../lib/navigation'
 import type { Question, Topic } from '../types/content'

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { questions as defaultQuestions } from '../data'
+import { questions as defaultQuestions } from '../data/aws'
 import { RANDOM_QUIZ_ALL, RANDOM_QUIZ_COUNTS } from '../lib/random-quiz'
 import type { Question } from '../types/content'
 

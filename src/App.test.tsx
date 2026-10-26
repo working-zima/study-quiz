@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import { AppRoutes } from './App'
-import { questions } from './data'
+import { questions } from './data/aws'
 
 function CurrentPath() {
   return <output aria-label="현재 경로">{useLocation().pathname}</output>

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
 import { questions, topics } from './index'
-import { hierarchyProblems } from '../lib/concept-groups'
-import { isListItem } from '../lib/paragraph-blocks'
+import { hierarchyProblems } from '../../lib/concept-groups'
+import { isListItem } from '../../lib/paragraph-blocks'
 
 describe('학습 데이터 무결성', () => {
   it('보안·비용 보충 개념 23개가 지정된 주제의 개념 배열 끝에 추가된다', () => {

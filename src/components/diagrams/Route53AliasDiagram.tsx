@@ -1,5 +1,5 @@
 import { Fragment, useId, useState } from 'react'
-import { visualsByTopicId } from '../../data'
+import { visualsByTopicId } from '../../data/aws'
 import { useWideDiagram } from '../../hooks/useWideDiagram'
 import { DiagramFrame, type DiagramScenario } from './DiagramFrame'
 

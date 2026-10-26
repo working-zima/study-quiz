@@ -1,7 +1,7 @@
 import { useRef, useState, type FormEvent } from 'react'
 import { KeywordFlashcards } from '../components/KeywordFlashcards'
 import { KeywordQuizRunner } from '../components/KeywordQuizRunner'
-import defaultEncrypted from '../data/keywords.enc.json'
+import defaultEncrypted from '../data/aws/keywords.enc.json'
 import { decryptKeywords, WrongPassphraseError } from '../lib/keyword-crypto'
 import {
   buildFlashcards,

@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { topics as defaultTopics, visualsByTopicId } from '../data'
+import { topics as defaultTopics, visualsByTopicId } from '../data/aws'
 import { isCorrect } from '../lib/grading'
 import type { Question, Topic } from '../types/content'
 import { ConceptList } from './ConceptList'

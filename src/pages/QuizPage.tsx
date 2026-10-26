@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { QuizRunner } from '../components/QuizRunner'
-import { questions as defaultQuestions, topics as defaultTopics } from '../data'
+import { questions as defaultQuestions, topics as defaultTopics } from '../data/aws'
 import { useProgress } from '../hooks/useProgress'
 import { adjacentTopics } from '../lib/navigation'
 import { shuffleQuestions } from '../lib/shuffle'
