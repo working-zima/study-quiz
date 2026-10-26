@@ -22,12 +22,23 @@ export interface ConceptGroup {
   children: Concept[]
 }
 
-export interface Question {
+interface QuestionBase {
   id: string
   topicId: string
   conceptId: string
   prompt: string
-  choices: [string, string, string, string]
-  answerIndex: 0 | 1 | 2 | 3
   explanation: string
 }
+
+export interface ChoiceQuestion extends QuestionBase {
+  format?: 'choice' // 없으면 4지선다다. AWS 문항 JSON에는 이 필드가 없다
+  choices: [string, string, string, string]
+  answerIndex: 0 | 1 | 2 | 3
+}
+
+export interface YesNoQuestion extends QuestionBase {
+  format: 'yes-no'
+  answer: boolean // 예가 정답이면 true
+}
+
+export type Question = ChoiceQuestion | YesNoQuestion

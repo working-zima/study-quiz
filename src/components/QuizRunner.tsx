@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { useSubject } from '../hooks/useSubject'
-import { isCorrect } from '../lib/grading'
+import { choiceLabels, isCorrect } from '../lib/grading'
 import type { Question, Topic } from '../types/content'
 import { ConceptList } from './ConceptList'
 
@@ -114,7 +114,7 @@ export function QuizRunner({ title, questions, answer, review, setInReview, rend
       </header>
 
       <div className="space-y-3">
-        {question.choices.map((choice, choiceIndex) => {
+        {choiceLabels(question).map((choice, choiceIndex) => {
           const correctChoice = revealed && isCorrect(question, choiceIndex)
           const selectedIncorrectChoice = revealed && selectedChoice === choiceIndex && !correctChoice
           const resultClass = correctChoice ? choiceCorrectClass : selectedIncorrectChoice ? choiceIncorrectClass : ''

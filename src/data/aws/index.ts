@@ -11,12 +11,13 @@ import organizationsCloudtrailConfigVisuals from './visuals/organizations-cloudt
 import route53Visuals from './visuals/route53.json'
 import securityGroupsNaclVisuals from './visuals/security-groups-nacl.json'
 import vpcNetworkingVisuals from './visuals/vpc-networking.json'
-import type { Question, Topic } from '../../types/content'
+import type { ChoiceQuestion, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
 
 export const topics: Topic[] = topicsData as Topic[]
-export const questions: Question[] = questionsData as Question[]
+// AWS 문항은 모두 4지선다다. data.test.ts가 choices·answerIndex를 그대로 읽는다.
+export const questions: ChoiceQuestion[] = questionsData as ChoiceQuestion[]
 export const visualsByTopicId: Record<string, TopicVisuals> = {
   'api-gateway-step-functions': apiGatewayStepFunctionsVisuals,
   'backup-disaster-recovery': backupDisasterRecoveryVisuals,

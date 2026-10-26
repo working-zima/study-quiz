@@ -1,4 +1,4 @@
-import type { Question } from '../types/content'
+import type { ChoiceQuestion, Question } from '../types/content'
 
 export function shuffle<T>(items: T[], rng: () => number): T[] {
   const result = [...items]
@@ -11,7 +11,14 @@ export function shuffle<T>(items: T[], rng: () => number): T[] {
   return result
 }
 
+// 예/아니요 문항은 그대로 돌려준다. 버튼 순서는 늘 예 다음 아니요다.
+export function shuffleChoices(question: ChoiceQuestion, rng: () => number): ChoiceQuestion
+export function shuffleChoices(question: Question, rng: () => number): Question
 export function shuffleChoices(question: Question, rng: () => number): Question {
+  if (question.format === 'yes-no') {
+    return question
+  }
+
   const order = shuffle([0, 1, 2, 3], rng)
   const choices = [
     question.choices[order[0]],
@@ -24,6 +31,11 @@ export function shuffleChoices(question: Question, rng: () => number): Question 
   return { ...question, choices, answerIndex }
 }
 
+export function shuffleQuestions(
+  questions: ChoiceQuestion[],
+  rng: () => number,
+): ChoiceQuestion[]
+export function shuffleQuestions(questions: Question[], rng: () => number): Question[]
 export function shuffleQuestions(
   questions: Question[],
   rng: () => number,
