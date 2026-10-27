@@ -215,6 +215,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 - 링크 계층: 호스트가 자기가 직접 이어진 네트워크에서 통신하려면 그 네트워크에 닿는 데 쓰는 통신 프로토콜을 구현해야 하고, 그것을 링크 계층(또는 매체 접근 계층) 프로토콜이라 부른다.
   강의는 이 계층을 「네트워크 액세스 계층」이라 부른다 — §1.1.3
 - 응용 계층의 사용자 프로토콜로 Telnet(원격 로그인), FTP(파일 전송), SMTP(전자 우편 전달)를 든다 — §1.1.3
+- 세션 계층은 따로 없다. 네 계층 가운데 세션에 해당하는 것이 없고, OSI와 견주는 말은 응용 계층이 표현·응용을 합쳤다는 위 한 곳뿐이다. 전문에 「session」이라는 말이 나오지 않는다 — §1.1.3, 전문 검색(2026-10-27)
 - 이 문서의 용어(§1.3.3):
   - 세그먼트는 TCP의 종단 간 전송 단위로, TCP 헤더 뒤에 응용 데이터가 붙은 것이다. IP 데이터그램에 담겨 전송된다.
   - IP 데이터그램은 IP의 종단 간 전송 단위로, IP 헤더 뒤에 전송 계층의 메시지가 붙은 것이다. 인터넷 계층을 설명하는 3장에서는 「데이터그램」만 써도 IP 데이터그램을 뜻한다.
@@ -223,8 +224,18 @@ https://www.rfc-editor.org/rfc/rfc1122
   - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 메시지를 응용 계층의 단위(HTTP 메시지)로 쓰므로
     이 정의는 개념 본문에 옮기지 않는다 — 응용 계층 쪽 근거는 아래 RFC 9110 §1.3이다.
 
-쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
+쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
+
+## RFC 871 — A Perspective on the ARPANET Reference Model
+https://www.rfc-editor.org/rfc/rfc871
+
+1982년 9월, 설계에 참여한 사람이 쓴 글이다(표준이 아니라 설명 문서). 역사적 사실을 확인하는 데만 쓴다.
+
+- TCP와 IP를 포함한 ARPANET 프로토콜 묶음은 ARPANET 참조 모델(ARM)이라는 틀 안에서 설계되었고, 이 글은 그것을 ISO의 OSI 참조 모델과 견준다 — Abstract
+- ARM은 계층을 셋(프로세스·응용 수준, 호스트 간 수준, 네트워크 수준)으로 보고, OSI는 적어도 일곱으로 본다 — 「Layering」, 각주가 딸린 계층 수 논의
+
+쓰인 곳: 강의 수정 이력 L25, `protocols-encapsulation.tcp-ip-model`
 
 ## RFC 8085 — UDP Usage Guidelines
 https://www.rfc-editor.org/rfc/rfc8085
