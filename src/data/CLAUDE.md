@@ -21,10 +21,14 @@ src/data/
 - `index.test.ts`가 지키는 불변식: 과목 id가 서로 겹치지 않고 예전 주소의 첫 세그먼트(`topic`·`review`·`search`·`random`·`keywords`)와도
   겹치지 않는다, 주제·개념 id가 과목을 넘어 유일하다, `progressKey`가 서로 겹치지 않는다. 이유는 ADR-053 「불변식」에 있다.
   주제·개념 id는 AWS가 쓴 것을 피해야 한다(ADR-053 「트레이드오프」).
+- 예/아니요 문항도 `index.test.ts`가 모든 과목에 대해 검사한다: 문제문이 물음표로 끝난다, 「항상」「절대」가 없다, 예·아니요가
+  그 과목 안에서 대략 반반이다. 4지선다에는 걸지 않는다(ADR-054).
 - AWS의 `progressKey`(`'aws-quiz.progress'`)는 과목을 나누기 전과 같은 키다. 지금 사용자의 학습 기록이 여기 있다(ADR-053).
 
 ## AWS 과목 데이터
 
+- AWS 문항은 모두 4지선다다(`questions.json`에 `format` 필드가 없다). 그래서 `aws/index.ts`의 `questions`는 `ChoiceQuestion[]`이고,
+  AWS에 예/아니요를 넣는 phase는 이 타입부터 `Question[]`로 바꾼다(ADR-054).
 - `aws/data.test.ts`가 스키마·id 유일성·`conceptId` 참조·개념 커버리지 100%·문항 id 연속성을 단언한다(ARCHITECTURE 「테스트 경계」).
   커버리지에 예외 목록을 만들어 통과시키지 마라(ADR-026).
 - 주제 안 개념 배열의 순서가 학습 순서이고, `parentId`가 머리와 딸린 개념을 잇는다(ARCHITECTURE 「데이터 모델」, ADR-033·ADR-041).

@@ -1,4 +1,5 @@
 import { render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { AppRoutes } from './App'
@@ -243,6 +244,33 @@ describe('App routes', () => {
       expect(main.getByRole('link', { name: /a 공통낱말 주제/ })).toHaveAttribute('href', '/a/topic/a-topic')
       expect(main.queryByText('b 공통낱말 주제')).not.toBeInTheDocument()
       expect(main.getByRole('link', { name: /랜덤 문제/ })).toHaveAttribute('href', '/a/random')
+    })
+
+    // 과목의 문항(Question[])이 실제 섞기를 거쳐 문항 화면까지 끊기지 않고 이어지는지 본다.
+    it('예/아니요 문항만 있는 과목의 확인 문제는 예·아니요 버튼으로 푼다', async () => {
+      const user = userEvent.setup()
+      const yesNoSubject: Subject = {
+        ...makeSubject('yn', 0),
+        questions: [true, false, true].map((answer, index) => ({
+          id: `yn-q${index + 1}`,
+          format: 'yes-no' as const,
+          topicId: 'yn-topic',
+          conceptId: 'yn-topic.concept',
+          prompt: `yn 질문 ${index + 1}`,
+          answer,
+          explanation: `yn 해설 ${index + 1}`,
+        })),
+      }
+      renderAt('/yn/topic/yn-topic/quiz', [yesNoSubject])
+
+      const main = within(screen.getByRole('main'))
+      expect(main.getByText('1 / 3')).toBeInTheDocument()
+      const choices = main.getAllByRole('button').filter((button) => button.textContent !== '개념 보기')
+      expect(choices.map((button) => button.textContent)).toEqual(['예', '아니요'])
+
+      await user.click(main.getByRole('button', { name: '예' }))
+
+      expect(main.getByText(/^yn 해설 [123]$/)).toBeInTheDocument()
     })
   })
 })

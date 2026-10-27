@@ -1,0 +1,40 @@
+{
+  "project": "Study Quiz",
+  "phase": "68-yes-no-question",
+  "steps": [
+    {
+      "step": 0,
+      "name": "question-types",
+      "status": "completed",
+      "started_at": "2026-10-27T08:30:57+0900",
+      "summary": "src/types/content.ts에 Question = ChoiceQuestion(format?: 'choice', choices 네 칸, answerIndex) | YesNoQuestion(format: 'yes-no', answer: boolean)을 두고 공통 필드는 QuestionBase로 묶음. grading.ts에 isCorrect(question: Question, choiceIndex: number): boolean(예/아니요는 0 = 예, 1 = 아니요)과 choiceLabels(question: Question): string[](예/아니요는 ['예', '아니요'])를 둠. shuffle.ts의 shuffleChoices는 오버로드(ChoiceQuestion → ChoiceQuestion, Question → Question)이고 예/아니요 문항은 그대로 돌려주며 rng를 부르지 않음. shuffleQuestions도 같은 모양의 오버로드를 더함(기존 테스트가 결과의 choices를 캐스트 없이 읽기 때문). src/data/aws/index.ts의 questions는 ChoiceQuestion[], QuizRunner는 choiceLabels(question).map 한 곳만 바꿈. 타입 주석만 고친 테스트: src/pages/QuizPage.test.tsx(testQuestions → ChoiceQuestion[]), shuffle.test.ts 픽스처 셋. 테스트 2749 → 2754(grading 1 → 4, shuffle 10 → 12), build·lint 통과, AWS questions.json·topics.json 그대로.",
+      "completed_at": "2026-10-27T08:35:56+0900"
+    },
+    {
+      "step": 1,
+      "name": "quiz-runner",
+      "status": "completed",
+      "started_at": "2026-10-27T08:35:57+0900",
+      "summary": "QuizRunner.tsx: 버튼 묶음 클래스가 예/아니요는 'grid grid-cols-2 gap-3', 4지선다는 'space-y-3'(그대로). 버튼 글자 정렬은 예/아니요 'text-center', 4지선다 'text-left'(choiceBaseClass에서 text-left를 떼어 choiceAlignClass로 옮김). 형식 분기는 렌더 앞의 yesNo = question.format === 'yes-no' 한 곳에서 choiceGroupClass·choiceAlignClass 두 값만 정하고, 채점·문구는 그대로 isCorrect·choiceLabels. 새 테스트 — QuizRunner.test.tsx describe('예/아니요 문항') 8개: 버튼이 예·아니요 둘뿐이고 묶음이 grid-cols-2, 글자 가운데 정렬, answer:true에서 예 → (id, true)+해설, 아니요 → (id, false)+아니요 빨강·예 초록, answer:false에서 아니요가 정답, 정답 재탭은 채점 없이 다음 문항, 4지선다와 섞인 세트(문항마다 배치가 바뀌고 renderComplete(2, 3)), 이전 문제로 돌아가도 고른 상태·해설 유지. App.test.tsx 과목 경계 1개: 예/아니요만 있는 가짜 과목 yn의 /yn/topic/yn-topic/quiz가 실제 섞기를 거쳐 예·아니요 둘만 내고 누르면 해설을 보임. 형식 분기를 빼면 배치·정렬·섞인 세트 3개가 실패하고, 나머지 6개는 step 0의 lib가 맡은 채점·진행을 지키는 회귀 테스트라 통과함. 기존 QuizRunner 테스트 18개 그대로. 테스트 2754 → 2763, build·lint 통과.",
+      "completed_at": "2026-10-27T08:39:40+0900"
+    },
+    {
+      "step": 2,
+      "name": "yes-no-invariants",
+      "status": "completed",
+      "started_at": "2026-10-27T08:59:18+0900",
+      "summary": "src/data/index.test.ts 안(duplicates 옆)에 yesNoProblems(questions: Question[]): string[]를 둠. format === 'yes-no' 문항만 보고 4지선다는 어떤 규칙도 걸지 않음. 규칙 셋 — (1) prompt.trimEnd()가 ?로 끝남, (2) prompt에 「항상」「절대」가 없음(answerLeakingWords, 부분 문자열), (3) 넘긴 문항 중 예/아니요만 세어 Math.abs(yes - no) <= Math.max(2, Math.ceil(total * 0.2)), 어기면 메시지에 예·아니요 수. 앞 두 규칙의 메시지는 문항 id를 담음. 새 테스트 — describe('예/아니요 문항') > '검사가 위반을 잡는다' 8개: 물음표 없음, 「항상」, 「절대」, 예 5 : 아니요 1, 예 3 : 아니요 2는 빈 배열, 4지선다는 물음표 없고 「항상」이 있어도 빈 배열, 20문항이면 12 : 8 통과·13 : 7 보고(비례 허용 오차), 4지선다는 비율의 문항 수에 세지 않음(예 4 : 0 + 4지선다 20 → 보고). 과목마다 it.each(subjects) '$id 과목의 예/아니요 문항이 규칙을 지킨다' 1개(비율은 과목 단위). 규칙을 하나씩 지우면(물음표·항상·절대·비율·비례 오차·total 계산·형식 필터) 각각 해당 테스트가 실패함을 확인. 기존 과목 불변식 5개 그대로. 테스트 2763 → 2772, build·lint 통과. 바뀐 파일은 src/data/index.test.ts뿐.",
+      "completed_at": "2026-10-27T09:03:02+0900"
+    },
+    {
+      "step": 3,
+      "name": "docs",
+      "status": "completed",
+      "started_at": "2026-10-27T09:03:02+0900",
+      "summary": "문서만 고침(코드·데이터·테스트 그대로). docs/ADR.md 맨 끝에 ADR-054(ADR-005 개정) — 결정(타입·채점·섞기·화면, ADR-005의 「단순함」 이유와 부딪치지 않는 이유), 형식을 고르는 기준(개념 특성 5행 표 + 애매할 때), 예/아니요를 쓰는 규칙, 기계로 재는 것(yesNoProblems 세 규칙, 4지선다 제외 이유 q242), 사용자 결정(2026-10-26), 바뀌지 않는 것, 아직 하지 않은 것(q043·q488·q455, q443은 4지선다 / ChoiceQuestion[] 넓히기·data.test.ts·감사 스크립트 넷), 검토한 대안 셋, 트레이드오프. PRD: 「원본」 dump-gaps 근거(ADR-005·ADR-054), 「핵심 기능」 3, 「MVP 제외 사항」 복수정답 이유 고침 + 주관식 항목 추가. ARCHITECTURE: 「데이터 모델」 Question 블록을 QuestionBase·ChoiceQuestion·YesNoQuestion·type Question으로 바꾸고 format 없음 = 4지선다·AWS ChoiceQuestion[] 이유 두 줄, 「문항과 보기의 순서」 보기 섞기는 4지선다에만(예/아니요는 그대로·난수 없음), 「확인 문제 화면의 공유 구조」 보기 수와 예/아니요도 같은 QuizRunner 항목, 「테스트 경계」 index.ts 행에 예/아니요 불변식. UI_GUIDE 「보기 버튼 (확인 문제)」 아래 「예/아니요 버튼」 소절(절 이름 그대로). src/lib/CLAUDE.md shuffle.ts 행 보강 + grading.ts 행, src/data/CLAUDE.md 불변식 항목과 AWS 4지선다·ChoiceQuestion[] 항목, src/components/CLAUDE.md QuizRunner 행에 ADR-054. AC grep 셋 통과, build 통과, 테스트 2772 그대로.",
+      "completed_at": "2026-10-27T09:08:57+0900"
+    }
+  ],
+  "created_at": "2026-10-27T08:30:57+0900",
+  "completed_at": "2026-10-27T09:08:57+0900"
+}

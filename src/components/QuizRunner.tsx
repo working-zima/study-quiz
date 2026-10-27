@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { useSubject } from '../hooks/useSubject'
-import { isCorrect } from '../lib/grading'
+import { choiceLabels, isCorrect } from '../lib/grading'
 import type { Question, Topic } from '../types/content'
 import { ConceptList } from './ConceptList'
 
@@ -14,7 +14,7 @@ interface QuizRunnerProps {
   topics?: Topic[]
 }
 
-const choiceBaseClass = 'w-full rounded-md border border-neutral-800 bg-[#141414] px-4 py-3 text-left text-neutral-300'
+const choiceBaseClass = 'w-full rounded-md border border-neutral-800 bg-[#141414] px-4 py-3 text-neutral-300'
 const choiceCorrectClass = 'border-green-500/60 bg-green-500/5'
 const choiceIncorrectClass = 'border-red-500/60 bg-red-500/5'
 const ghostLinkClass = 'inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100'
@@ -71,6 +71,11 @@ export function QuizRunner({ title, questions, answer, review, setInReview, rend
   const topic = topics.find((candidate) => candidate.id === question.topicId)
   const conceptOpen = openConceptIndex === questionIndex
   const inReview = question.id in review
+  // 형식은 문항이 정한다. 갈리는 것은 버튼 묶음의 배치와 글자 정렬뿐이고, 채점과 문구는 grading.ts에서 온다.
+  // 예/아니요는 둘을 가로로 나란히 두고, 짧은 낱말이라 가운데 정렬한다.
+  const yesNo = question.format === 'yes-no'
+  const choiceGroupClass = yesNo ? 'grid grid-cols-2 gap-3' : 'space-y-3'
+  const choiceAlignClass = yesNo ? 'text-center' : 'text-left'
 
   function selectChoice(choiceIndex: number) {
     if (revealed) return
@@ -113,8 +118,8 @@ export function QuizRunner({ title, questions, answer, review, setInReview, rend
         <h2 className="text-lg font-medium text-neutral-100">{question.prompt}</h2>
       </header>
 
-      <div className="space-y-3">
-        {question.choices.map((choice, choiceIndex) => {
+      <div className={choiceGroupClass}>
+        {choiceLabels(question).map((choice, choiceIndex) => {
           const correctChoice = revealed && isCorrect(question, choiceIndex)
           const selectedIncorrectChoice = revealed && selectedChoice === choiceIndex && !correctChoice
           const resultClass = correctChoice ? choiceCorrectClass : selectedIncorrectChoice ? choiceIncorrectClass : ''
@@ -122,7 +127,7 @@ export function QuizRunner({ title, questions, answer, review, setInReview, rend
           return (
             <button
               aria-describedby={correctChoice ? advanceInstructionId : undefined}
-              className={`${choiceBaseClass} ${resultClass} ${advanceClass}`}
+              className={`${choiceBaseClass} ${choiceAlignClass} ${resultClass} ${advanceClass}`}
               disabled={revealed && !correctChoice}
               key={`${question.id}-${choiceIndex}`}
               onClick={() => revealed ? advance() : selectChoice(choiceIndex)}
