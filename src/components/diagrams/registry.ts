@@ -7,6 +7,7 @@ import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
+import { CastTypesDiagram } from './CastTypesDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
@@ -32,6 +33,7 @@ import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
+import { PerformanceMetricsTable } from './networkBasicsTables'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
@@ -136,6 +138,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ecs-eks-fargate.eks-anywhere': EksHybridTable,
   'ecs-eks-fargate.eks-irsa': PodPermissionsDiagram,
   'ecs-eks-fargate.app2container': ComputeChoiceTable,
+  'network-basics.cast-types': CastTypesDiagram,
+  'network-basics.packet-loss': PerformanceMetricsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
