@@ -22,41 +22,46 @@
     },
     {
       "step": 3,
-      "name": "basics-structure-visuals",
+      "name": "rewrite-questions",
       "status": "pending"
     },
     {
       "step": 4,
-      "name": "basics-links-roles-visuals",
+      "name": "basics-structure-visuals",
       "status": "pending"
     },
     {
       "step": 5,
-      "name": "basics-scope-load-visuals",
+      "name": "basics-links-roles-visuals",
       "status": "pending"
     },
     {
       "step": 6,
-      "name": "metrics-visuals",
+      "name": "basics-scope-load-visuals",
       "status": "pending"
     },
     {
       "step": 7,
-      "name": "switching-visuals",
+      "name": "metrics-visuals",
       "status": "pending"
     },
     {
       "step": 8,
-      "name": "model-visuals",
+      "name": "switching-visuals",
       "status": "pending"
     },
     {
       "step": 9,
-      "name": "layer-visuals",
+      "name": "model-visuals",
       "status": "pending"
     },
     {
       "step": 10,
+      "name": "layer-visuals",
+      "status": "pending"
+    },
+    {
+      "step": 11,
       "name": "diagram-coverage",
       "status": "pending"
     }

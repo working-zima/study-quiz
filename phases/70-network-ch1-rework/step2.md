@@ -5,8 +5,9 @@
 phase 69가 네트워크 과목 1장의 둘째 주제 `protocols-encapsulation`(패킷 교환·프로토콜·계층 모델, 개념 10개, 문항 n015~n025)을 썼다. 사용자는 배포된 글을 보고 작성 기준을 새로 정했고,
 그 전문이 `docs/WRITING_GUIDE.md`, 결정이 ADR-056(step 0)이다. step 1이 첫 주제 `network-basics`를 이 기준으로 다시 썼다 — **step 1의 결과가 본보기다.**
 
-**이 step은 `protocols-encapsulation`의 개념 10개(요약·본문)와 문항 11개(문제문·해설)를 WRITING_GUIDE에 맞게 다시 쓴다.** 사실·개념 구성·문항의 정답은 그대로다.
-step 7~9가 이 본문을 근거로 개념마다 도식을 그리고, 사용자가 이 step 뒤에 1장 글 전체를 직접 읽고 판단한다.
+**이 step은 `protocols-encapsulation`의 개념 10개(요약·본문)를 WRITING_GUIDE에 맞게 다시 쓴다.** 사실과 개념 구성은 그대로다.
+**문항은 고치지 않는다** — step 3이 1장 문항 25개를 객관식 기준으로 다시 낸다. step 8~10이 이 본문을 근거로 개념마다 도식을 그리고,
+사용자가 step 3 뒤에 1장 글과 문항 전체를 직접 읽고 판단한다.
 
 이 주제는 계층·헤더·캡슐화처럼 처음 배우는 사람에게 추상적인 개념이 많다. 「누가(어느 계층·어느 호스트가) 무엇을(어떤 데이터에) 어떻게 하는지」를 특히 빠뜨리지 않는다.
 
@@ -38,7 +39,7 @@ step 7~9가 이 본문을 근거로 개념마다 도식을 그리고, 사용자�
 - 비유는 이해를 돕는 데만, 실제 동작과 다르면 그 차이를 밝힌다(ADR-056).
 - OSI·TCP/IP 계층 항목의 「하는 일」은 뒤 장이 다룰 것(이더넷·IP·TCP·HTTP)을 이름으로만 가리키고 자세한 동작은 쓰지 않는다 — 뒤 주제의 범위다.
 
-**본문에서 빼면 안 되는 사실 — step 7~9의 도식이 이 사실을 그린다.** 지금 본문에 있는 사실이다. 문장은 바꾸되 사실은 남긴다.
+**본문에서 빼면 안 되는 사실 — step 8~10의 도식이 이 사실을 그린다.** 지금 본문에 있는 사실이다. 문장은 바꾸되 사실은 남긴다.
 
 | 개념 | 도식이 그릴 사실 |
 |---|---|
@@ -58,20 +59,14 @@ step 7~9가 이 본문을 근거로 개념마다 도식을 그리고, 사용자�
 
 사실을 새로 더하려면 출처 문서에 있는 것이어야 한다. 없으면 허용한 표준 문서를 열어 확인하고 `standards.md`에 적은 뒤 쓴다.
 
-### 2. 문항 11개를 다시 본다 — `src/data/network/questions.json`의 n015~n025
-
-step 1과 같다. **그대로**: `id`·`topicId`·`conceptId`·`format`, 예/아니요의 `answer`, 4지선다의 정답 보기와 `answerIndex`, 문항 수.
-**다시 쓰는 것**: `prompt`·`explanation`(오답 보기는 문구만, 같은 범주 안). 문제문은 상황(어느 호스트가, 보내는 쪽인지 받는 쪽인지, 어느 계층인지)을 준다.
-해설은 187자 이상, 개념을 가르치는 글, 다시 쓴 본문과 같은 말. 아니요 문항은 맞는 사실을 가르친다. 약어는 해설마다 처음 쓸 때 풀어 쓴다.
-
-### 3. 이미 있는 도식·표의 문구를 본문에 맞춘다 — `src/data/network/visuals/protocols-encapsulation.json`
+### 2. 이미 있는 도식·표의 문구를 본문에 맞춘다 — `src/data/network/visuals/protocols-encapsulation.json`
 
 캡슐화 도식(`diagrams["encapsulation"]`)의 캡션·곁말·idleCaption과 계층 대응표(`tables["reference-models"]`)의 칸이 다시 쓴 본문의 말이어야 한다.
 표현이 바뀐 곳만 맞춘다. **좌표·노드·라벨·시나리오 구성·열 수·열 폭은 바꾸지 않는다.** 컴포넌트와 테스트 파일은 고치지 않는다.
 
-### 4. 파일 형식
+### 3. 파일 형식
 
-step 1과 같다. **`network-basics`의 줄과 n001~n014 줄은 글자 하나도 바꾸지 않는다.** CRLF로 바꾸지 않는다.
+step 1과 같다. **`network-basics`의 줄은 글자 하나도 바꾸지 않는다. `questions.json`은 건드리지 않는다.** CRLF로 바꾸지 않는다.
 
 ## Acceptance Criteria
 
@@ -89,23 +84,24 @@ git status --porcelain
 
 1. AC를 실행한다. 문항 25개, 예 6·아니요 6이 그대로, `check-verbatim` 「전사 이상 없음」.
 2. **바뀌지 않아야 하는 것을 기계로 확인한다.** `git show HEAD:…`과 지금 파일을 node로 비교한다 — 개념의 `id`·`parentId`·`name`·순서, `network-basics` 주제 객체 통째로,
-   n015~n025의 `id`·`conceptId`·`format`·`answer`·`answerIndex`·정답 보기 문자열, n001~n014 통째로가 같아야 한다.
+   `questions.json` 통째로가 같아야 한다.
 3. **자기 검수** — 개념마다 WRITING_GUIDE 「6. 최종 검토」와 「맥락」 절의 질문으로 다시 읽고, 걸리면 고친다. 특히:
    - 요약만 읽고 무엇인지 알 수 있는가. 「계층」「헤더」「페이로드」「프로토콜」을 모르는 사람이 막히지 않는가.
    - 위 표의 「도식이 그릴 사실」과 캡슐화 도식의 헤더·단위 이름이 본문에 모두 남아 있는가. L25 문단의 사실이 남아 있는가.
    - 수정 이력 I1·I9·I10·L25를 반영한 사실이 쉬운 말로 풀다가 바뀌지 않았는가. 문장마다 근거를 출처 문서에 댈 수 있는가.
-4. 바뀐 파일이 `src/data/network/topics.json`·`questions.json`·`visuals/protocols-encapsulation.json`, (더했다면) `docs/source/network/standards.md`, phase 메타데이터뿐인지 본다.
+4. 바뀐 파일이 `src/data/network/topics.json`·`visuals/protocols-encapsulation.json`, (더했다면) `docs/source/network/standards.md`, phase 메타데이터뿐인지 본다.
 5. `phases/70-network-ch1-rework/index.json`의 step 2를 갱신한다.
-   - 성공 → `"summary"`에 **개념 10개의 새 요약문을 그대로**(개념 id와 함께) 적는다. 더해 문항에서 바꾼 것, 도식·표 JSON에서 맞춘 문구, standards.md에 더한 사실,
+   - 성공 → `"summary"`에 **개념 10개의 새 요약문을 그대로**(개념 id와 함께) 적는다. 더해 도식·표 JSON에서 맞춘 문구, standards.md에 더한 사실,
      자기 검수에서 고친 것, 테스트 수를 적는다.
    - 3회 실패 → `"status": "error"`, `"error_message"`에 구체적 내용.
 
 ## 금지사항
 
-- **개념의 `id`·`name`·`parentId`·순서와 문항의 정답·형식·수를 바꾸지 마라.** 이유: 진행률이 문항 id로 답을 기억하고, step 7~9의 도식이 개념 id를 앵커로 쓴다.
+- **개념의 `id`·`name`·`parentId`·순서를 바꾸지 마라.** 이유: 문항과 step 8~10의 도식이 개념 id를 가리킨다.
+- **문항(`questions.json`)을 고치지 마라.** 이유: step 3의 범위다.
 - **위 표의 「도식이 그릴 사실」과 캡슐화 도식이 쓰는 이름을 본문에서 빼거나 다른 말로 바꾸지 마라.** 이유: 도식은 본문의 사실과 말만 쓴다(ADR-036, UI_GUIDE 「도식」).
 - **출처 문서에 없는 사실을 쓰지 마라. 수정 이력에 걸린 강의·면접의 주장을 그대로 가르치지 마라.** 이유: ADR-055·ADR-056.
 - **강의·면접 문장을 옮기지 마라.** 이유: ADR-009.
-- **`network-basics`와 n001~n014를 고치지 마라.** 이유: step 1의 산출물이다.
-- **도식 좌표·컴포넌트·테스트, 불변식 테스트를 고치지 마라.** 이유: 도식은 step 3~9, 테스트가 실패하면 데이터를 고친다.
+- **`network-basics`를 고치지 마라.** 이유: step 1의 산출물이다.
+- **도식 좌표·컴포넌트·테스트, 불변식 테스트를 고치지 마라.** 이유: 도식은 step 4~10, 테스트가 실패하면 데이터를 고친다.
 - AWS 데이터를 고치지 마라. 기존 테스트를 깨뜨리지 마라.

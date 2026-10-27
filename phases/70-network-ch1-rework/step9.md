@@ -1,20 +1,20 @@
-# Step 9: layer-visuals
+# Step 9: model-visuals
 
 ## 배경
 
 phase 69가 네트워크 과목 1장 두 주제(`network-basics` 개념 13개, `protocols-encapsulation` 개념 10개)를 배포했다. 사용자는 화면을 보고 2026-10-27
 「그림이 더 많으면 좋을 거 같아. 예를 들어 컴퓨터 네트워크에서는 호스트, 노드, 중간 링크를 잇는 그림」, 「그림은 거의 한 주제에 하나씩은 있어야 된다고 봐」, 「최소 하나씩」이라고 했다.
 여기서 「주제」는 화면의 개념 제목이다. 그래서 ADR-056(step 0)이 **네트워크 과목은 개념마다 도식이 하나 이상**이라고 정했다. 비교표는 도식을 대신하지 않는다.
-step 1·2가 1장 글을 `docs/WRITING_GUIDE.md` 기준으로 다시 썼고, step 3~9가 도식이 없는 개념 21개에 도식을 하나씩 그린다. step 10이 그것을 테스트로 고정한다.
+step 1·2가 1장 글을 `docs/WRITING_GUIDE.md` 기준으로 다시 썼고 step 3이 문항을 다시 냈다. step 4~10이 도식이 없는 개념 21개에 도식을 하나씩 그린다. step 11이 그것을 테스트로 고정한다.
 
 phase 69가 그린 네트워크 도식 둘이 선례다 — `CastTypesDiagram`(받는 대상, 시나리오 셋, 그룹 박스와 곁말)과 `EncapsulationDiagram`(캡슐화, 두 배치가 크게 다름, 칸을 이어 붙인 데이터 단위).
 이전 phase들처럼 사용자 미리보기 승인을 받지 않고 **이 step이 좌표를 설계한다.** 그래서 기계 검사(넘침·라벨 폭 테스트, 경로 교차 검사기)를 모두 통과시키고 설계를 summary에 남긴다.
 
-**이 step은 `protocols-encapsulation`의 TCP/IP 모델·역캡슐화·계층별 데이터 단위에 도식을 하나씩 그리고, phase 69의 캡슐화 도식을 「캡슐화」 개념 뒤로 옮긴다.** 그러면 이 주제의 개념 열 개가 모두 도식을 갖는다. TCP/IP 모델에는 phase 69의 계층 대응표가 이미 붙어 있다 — 도식을 앞에, 표를 뒤에 둔다.
+**이 step은 `protocols-encapsulation`의 프로토콜·네트워크 참조 모델·OSI 모델에 도식을 하나씩 그린다.**
 
 ## 읽어야 할 파일
 
-- `src/data/network/topics.json`의 이 step 개념(`tcp-ip-model`, `encapsulation`, `decapsulation`, `pdu-names`) — **step 1·2가 다시 쓴 본문**이 도식의 유일한 근거다
+- `src/data/network/topics.json`의 이 step 개념(`protocol`, `reference-model`, `osi-model`) — **step 1·2가 다시 쓴 본문**이 도식의 유일한 근거다
 - `docs/ADR.md`의 **ADR-056**, **ADR-055**(「결정 — 도식」), **ADR-036**(도식도 콘텐츠다), **ADR-037**(「한 개념 뒤의 여러 도식」·「수량과 상태를 바꾸는 도식」), **ADR-038**(물음형 제목·예시 값),
   **ADR-047**·**ADR-048**(가로형), **ADR-009**
 - `docs/UI_GUIDE.md`의 **「도식 전용 색상」, 「도식」 절 전체**(「넓은 화면의 가로형」, 「한 개념 뒤의 여러 도식」, 「수량과 상태를 바꾸는 도식」, 「물음형 제목과 예시」)
@@ -72,60 +72,43 @@ phase 69가 그린 네트워크 도식 둘이 선례다 — `CastTypesDiagram`(�
 
 ### 이 step의 도식
 
-#### 0. 캡슐화 도식을 옮긴다
+#### 1. `protocols-encapsulation.protocol` — `ProtocolMatchDiagram`, JSON 키 `protocol-match`
 
-- `registry.ts`의 `'protocols-encapsulation.decapsulation': EncapsulationDiagram`을 `'protocols-encapsulation.encapsulation': EncapsulationDiagram`으로 바꾼다.
-  도식 자체(`EncapsulationDiagram.tsx`의 좌표·노드·시나리오)와 JSON 문구는 바꾸지 않는다. 그 도식은 보낼 때·받을 때를 모두 보여 주므로 「캡슐화」 뒤에서 그대로 읽힌다.
-- `EncapsulationDiagram.test.tsx`의 ConceptList 테스트(앵커가 `decapsulation`이라고 단언하는 곳)만 `encapsulation`으로 고친다.
+- 물음형 제목 예: `웹 페이지를 주고받는 두 쪽은 어떤 규칙을 쓸까?`
+- 그릴 것: 요청하는 쪽과 응답하는 쪽 두 호스트, 둘 사이를 오가는 메시지와 그 앞의 헤더 칸. 양쪽에 쓰는 프로토콜 이름.
+- 시나리오(본문에 있는 것으로):
 
-#### 1. `protocols-encapsulation.tcp-ip-model` — `LayerMappingDiagram`, JSON 키 `layer-mapping`
-
-- 물음형 제목 예: `OSI의 일곱 계층은 TCP/IP의 네 계층과 어떻게 짝지어질까?`
-- 그릴 것: 왼쪽에 OSI 일곱 계층, 오른쪽에 TCP/IP 네 계층(본문의 이름 — `네트워크 액세스 계층` 등). 대응은 노드 높이를 늘려서가 아니라(노드 높이는 32) 그룹 박스나 짧은 경로로 보인다.
-- 시나리오(TCP/IP 계층마다):
-
-  | id | label | 선명한 것 | 캡션이 말할 것 |
+  | id | label | 보이는 것 | 캡션이 말할 것 |
   |---|---|---|---|
-  | `application` | 응용 계층 | TCP/IP 응용 ↔ OSI 응용·표현·세션 | 응용 계층 자리에 OSI의 응용·표현·세션을 놓는다. **표준은 표현·응용만 말하고 세션 계층은 TCP/IP에 처음부터 없다 — 세션까지 묶은 것은 강의의 정리다**(본문 L25 문단) |
-  | `transport` | 전송 계층 | 전송 ↔ 전송 | 전송 계층은 전송 계층에 해당한다(본문이 말하는 차이 — OSI는 신뢰성을 정의하지만 TCP/IP에는 UDP도 있다 — 를 넣을 수 있다) |
-  | `internet` | 인터넷 계층 | 인터넷 ↔ 네트워크 | 인터넷 계층은 OSI의 네트워크 계층에 해당한다 |
-  | `network-access` | 네트워크 액세스 계층 | 네트워크 액세스 ↔ 데이터 링크·물리 | 네트워크 액세스 계층이 OSI의 물리·데이터 링크 계층의 일을 함께 맡는다 |
+  | `web` | 웹 페이지 | 양쪽 `HTTP`, 요청·응답 경로 | 웹 페이지를 주고받을 때는 양쪽이 HTTP를 쓴다 — 같은 규칙을 따라야 서로 알아본다 |
+  | `file` | 파일 | 양쪽 `FTP` | 파일을 주고받을 때는 FTP를 쓴다. 하려는 일에 따라 쓰는 프로토콜이 다르다 |
+  | `header` | 헤더 비교 | `UDP 헤더`와 `TCP 헤더` 칸, 항목 수 곁말(본문의 넷·열 개 넘음) | 헤더에 무엇을 담을지는 프로토콜이 정하므로 프로토콜이 다르면 헤더도 다르다 |
 
-  `application` 시나리오의 세션 계층 노드 곁에 L25 내용을 짧은 곁말로 둘 수 있다(본문의 말로). 세션을 응용에 묶는 것을 표준의 대응처럼 그리지 마라.
-- 요점 테스트: 시나리오마다 선명한 OSI 계층 집합이 위 표와 같고, 네 시나리오의 OSI 집합을 합치면 일곱 계층이 빠짐없이 한 번씩 나온다.
-- registry: `'protocols-encapsulation.tcp-ip-model': [LayerMappingDiagram, ReferenceModelTable]`. `protocolsTables.test.tsx`의 ConceptList 테스트가 표 하나를 기대해 깨지면 표가 도식 뒤에 온다는 단언으로 고친다(그 한 곳만).
+  `header`의 항목을 칸 하나하나로 그리지 마라(TCP 항목 수를 지어내게 된다) — 칸 폭 차이와 곁말로 보인다. 프로토콜마다의 헤더 내용(필드 이름)은 본문에 없으면 쓰지 않는다.
+- 요점 테스트: `web`·`file`에서 양쪽 노드의 프로토콜 곁말이 같다. `header`에서 TCP 헤더 칸이 UDP 헤더 칸보다 넓다.
 
-#### 2. `protocols-encapsulation.decapsulation` — `DecapsulationDiagram`, JSON 키 `decapsulation-peel`
+#### 2. `protocols-encapsulation.reference-model` — `LayerJourneyDiagram`, JSON 키 `layer-journey`
 
-- 물음형 제목 예: `받은 데이터에서 헤더는 어떤 순서로 떨어질까?`
-- 그릴 것: 받은 단위 하나가 바깥부터 한 겹씩 벗겨지는 모습. 이름은 **캡슐화 도식과 같은 말**(`이더넷 헤더`·`IP 헤더`·`TCP 헤더`·`HTTP 헤더`·`데이터`·`트레일러`, 본문의 예).
-  캡슐화 도식의 「받을 때」(계층마다 줄을 다시 그림)와 달리, 이 도식은 **한 덩어리에서 떼어 내는 순서**를 보인다 — 예: 한 줄로 이어 붙인 칸에서 단계마다 바깥쪽 칸이 떨어져 나가는 꼴.
-  겹친 상자로 그린다면 겹침은 노드가 아니라 그룹 박스로 그린다(교차 검사기는 노드 상자를 지나는 선을 잡는다).
-- 시나리오(아래 계층부터 차례로):
-
-  | id | label | 떼어 내는 것 | 캡션이 말할 것 |
-  |---|---|---|---|
-  | `network-access` | 네트워크 액세스 계층 | 이더넷 헤더·트레일러 | 맨 아래 계층이 가장 바깥의 헤더와 트레일러를 떼고 나머지를 위로 넘긴다 |
-  | `internet` | 인터넷 계층 | IP 헤더 | 인터넷 계층은 자기 헤더(IP 헤더)만 뗀다 |
-  | `transport` | 전송 계층 | TCP 헤더 | 전송 계층은 TCP 헤더를 떼어 응용 계층으로 넘긴다 |
-  | `application` | 응용 계층 | HTTP 헤더 | 응용 계층까지 떼면 원래의 데이터가 응용 프로그램에 닿는다 |
-
-  단계마다 「이미 떼어 낸 칸」과 「지금 떼는 칸」과 「남은 칸」이 구별되어야 한다(흐림·곁말 `떼어 냄`).
-- 요점 테스트: 시나리오를 차례로 볼 때 남은 칸 수가 줄어든다. 각 시나리오에서 지금 떼는 칸이 남은 칸들 가운데 가장 바깥(왼쪽 끝, 트레일러는 오른쪽 끝)이다. `application` 뒤에는 `데이터`만 남는다.
-
-#### 3. `protocols-encapsulation.pdu-names` — `PduNamesDiagram`, JSON 키 `pdu-names`
-
-- 물음형 제목 예: `계층마다 데이터 단위를 무엇이라 부를까?`
-- 그릴 것: TCP/IP 네 계층(본문의 이름)과 계층마다 단위 이름 노드(`메시지`·`세그먼트`/`데이터그램`·`패킷`·`프레임`). 본문이 말하는 다른 이름(표준의 `IP 데이터그램`, `사용자 데이터그램`)은 곁말로 둘 수 있다.
+- 물음형 제목 예: `보낸 정보는 계층을 어떤 순서로 지날까?`
+- 그릴 것: 그룹 박스로 그린 보내는 호스트와 받는 호스트, 각각 네 계층 스택, 두 스택의 맨 아래를 잇는 매체(통신 링크). 계층 노드 라벨은 **이 개념 본문이 그 계층을 부르는 말**로 —
+  본문이 이름 없이 역할로만 말하면 `4계층`~`1계층`처럼 번호로 쓰고 역할은 곁말로(번호가 본문에 있을 때). 어느 쪽인지 summary에 적는다.
 - 시나리오:
 
-  | id | label | 전송 계층 단위 | 캡션이 말할 것 |
+  | id | label | 경로 | 캡션이 말할 것 |
   |---|---|---|---|
-  | `tcp` | TCP를 쓸 때 | `세그먼트` | 전송 계층에서 TCP가 만든 단위가 세그먼트다 |
-  | `udp` | UDP를 쓸 때 | `데이터그램` | 같은 전송 계층이라도 UDP가 만든 단위는 데이터그램이라 부른다 |
+  | `send` | 보낼 때 | 보내는 쪽 맨 위 → 맨 아래 → 매체 | 보내는 쪽은 맨 위 계층에서 출발해 아래 계층으로 내려가며 처리한다 |
+  | `receive` | 받을 때 | 매체 → 받는 쪽 맨 아래 → 맨 위 | 받는 쪽은 맨 아래 계층에서 출발해 위로 올라가며 처리한다 |
 
-  나머지 계층의 단위 이름은 두 시나리오에서 같다.
-- 요점 테스트: 계층 노드와 단위 노드가 같은 높이에 짝을 이룬다. 두 시나리오에서 전송 계층의 단위만 다르고 나머지 단위 노드는 같다.
+- 요점 테스트: `send`의 경로는 보내는 쪽 그룹 안에서 y가 커지는 방향이고, `receive`의 경로는 받는 쪽 그룹 안에서 y가 작아지는 방향이다. 두 스택의 계층 노드가 같은 높이에 짝을 이룬다.
+
+#### 3. `protocols-encapsulation.osi-model` — `OsiStackDiagram`, JSON 키 `osi-stack`
+
+- 물음형 제목 예: `OSI 모델의 일곱 계층은 어떤 순서로 쌓여 있을까?`
+- 그릴 것: 일곱 계층 스택(아래 물리 → 위 응용), 본문의 계층 이름(`물리 계층` 등). 하는 일은 곁말 또는 시나리오로.
+- 시나리오는 본문의 목록 항목이 말하는 「하는 일」에서 넷 이하를 골라 그 일을 맡는 계층을 선명하게 하는 꼴(예: `bits` 비트를 신호로 → 물리, `frames` 프레임과 오류 검출 → 데이터 링크,
+  `route` 경로 정하기 → 네트워크, `session` 대화 관리 → 세션)로 둘 수 있다. 가를 것이 마땅치 않으면 **정지 그림**으로 두고 계층 옆에 하는 일 곁말을 둔다. 고른 쪽과 이유를 summary에 적는다.
+- 데이터 링크 계층의 오류 처리(I1 — 검출하고, 고칠지는 프로토콜마다 다르다)를 그린다면 본문의 말 그대로 한정한다. 「고친다」고 그리지 마라.
+- 요점 테스트: 계층 노드 일곱이 본문 목록 순서대로 아래에서 위로 쌓여 있다(물리 계층의 y가 가장 크다). 시나리오를 두었다면 시나리오마다 선명한 계층이 본문이 그 일을 맡긴 계층이다.
 
 ## Acceptance Criteria
 
@@ -147,8 +130,8 @@ git status --porcelain
 2. 다음을 확인한다.
    - 캡션·곁말·라벨의 사실마다 근거 문단을 댈 수 있는가. 예시 값이 본문에 있는가. 라벨이 본문의 말과 같은가.
    - 이모지·O/X·빨강·초록·주황·도식 전용 두 색·16진 색·애니메이션·기준 폭 문자열이 새 파일에 없는가(`grep`).
-   - 바뀐 파일이 `src/data/network/visuals/protocols-encapsulation.json`, 새 도식 컴포넌트·테스트, `src/components/diagrams/EncapsulationDiagram.test.tsx`(앵커 한 곳), `src/components/diagrams/protocolsTables.test.tsx`(배열이 되어 깨지면 한 곳), `src/components/diagrams/registry.ts`, phase 메타데이터뿐인가.
-     `DiagramFrame.tsx`·`ComparisonTableFigure.tsx`·`ConceptList.tsx`·`useWideDiagram.ts`·`topics.json`·`questions.json`·AWS 도식·다른 네트워크 도식(`EncapsulationDiagram.tsx`의 좌표 포함)은 그대로인가.
+   - 바뀐 파일이 `src/data/network/visuals/protocols-encapsulation.json`, 새 도식 컴포넌트·테스트, `src/components/diagrams/registry.ts`, phase 메타데이터뿐인가.
+     `DiagramFrame.tsx`·`ComparisonTableFigure.tsx`·`ConceptList.tsx`·`useWideDiagram.ts`·`topics.json`·`questions.json`·AWS 도식·다른 네트워크 도식은 그대로인가.
 3. `phases/70-network-ch1-rework/index.json`의 step 9을 갱신한다.
    - 성공 → `"summary"`에 도식마다 두 배치의 `viewBox`와 노드·그룹·경로 좌표(한 줄로 압축), 시나리오별 선명한 노드·경로·곁말과 캡션(정지 그림이면 idleCaption),
      물음형 제목, 라벨과 사실의 근거 문단, 설계 의도와 달라진 점, 교차 검사 결과 줄, 새 테스트 수와 전체 테스트 수를 적는다.
@@ -157,7 +140,7 @@ git status --porcelain
 ## 금지사항
 
 - **본문에 없는 사실을 도식에 그리지 마라.** 이유: 도식은 콘텐츠다(ADR-036). 그림으로 그럴듯해 보이는 인과(「트래픽이 늘면 처리율이 는다」 같은)도 본문에 없으면 사실을 더하는 것이다.
-- **`topics.json`·`questions.json`을 고치지 마라.** 이유: 글은 step 1·2의 산출물이고 사용자가 읽고 승인했다. 도식에 필요한 사실이 본문에 없으면 빼고 그린다.
+- **`topics.json`·`questions.json`을 고치지 마라.** 이유: 글과 문항은 step 1~3의 산출물이고 사용자가 읽고 승인했다. 도식에 필요한 사실이 본문에 없으면 빼고 그린다.
 - **`glossary`를 채우지 마라.** 이유: 약어 툴팁은 VPC 주제에만 둔다(ADR-037·ADR-055).
 - **도식 전용 두 색과 초록·빨강·주황, 이모지, O/X, 애니메이션을 쓰지 마라.** 이유: 두 색은 AWS 계층의 뜻, 나머지는 정답/오답/중요도가 점유했다(ADR-036).
 - **SVG 두 개를 CSS로 골라 보이지 마라. 기준 폭 문자열을 도식 파일에 쓰지 마라.** 이유: ADR-047.
