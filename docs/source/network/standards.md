@@ -31,8 +31,14 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 - 네트워크 계층은 전송 개체들이 경로 선택과 중계를 신경 쓰지 않게 한다 — §7.5.2.1. 제공하는 기능의 첫째가 네트워크 주소다 — §7.5.3.1.6
 - 데이터 링크 계층은 물리 계층에서 생길 수 있는 오류를 검출하고, **경우에 따라** 고친다 — §7.6.2.2
 - 물리 계층은 데이터 링크 개체 사이의 비트 전송을 위해 물리 연결을 활성화·유지·해제하는 기계적·전기적·기능적·절차적 수단을 제공한다 — §7.7.2
+- 제목의 OSI는 Open Systems Interconnection이다(「Information technology – Open Systems Interconnection – Basic Reference Model」). 일곱 계층의 영문 이름은
+  Application Layer, Presentation Layer, Session Layer, Transport Layer, Network Layer, Data Link Layer, Physical Layer다 — 제목, §7.1~§7.7 제목
+- (N)-프로토콜 데이터 단위(PDU, protocol-data-unit)는 (N)-프로토콜이 정하는 데이터 단위로, (N)-프로토콜 제어 정보에 (N)-사용자 데이터가 더해질 수 있다 — §5.6.1.3
+- (N)-프로토콜 제어 정보는 같은 계층의 개체들이 함께 일하도록 서로 주고받는 정보이고, (N)-사용자 데이터는 그 계층이 위 계층을 대신해 나르는 데이터다 — §5.6.1.1, §5.6.1.2
+- 위 계층의 (N)-PDU는 아래 계층으로 넘어가 (N–1)-서비스 데이터 단위가 되고, 그것이 (N–1)-PDU의 사용자 데이터 자리에 (N–1)-프로토콜 제어 정보와 함께 담긴다.
+  제어 정보와 사용자 데이터의 위치 관계(앞·뒤)는 이 그림이 정하지 않는다 — §5.6.2.1, Figure 8, Figure 9 및 NOTE 2·3
 
-쓰인 곳: 면접 수정 이력 I1, I9, I10
+쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -58,7 +64,7 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - 잘못된 MAC 프레임의 내용은 LLC나 MAC Control 부계층으로 넘기지 않는다. 다른 MAC 클라이언트는 무시하거나 버리거나 따로 쓸 수 있다(각주) — §3.4
 - 오류를 고치는 절차는 3.2.9·3.4 어디에도 없다 — 검출하고 넘기지 않을 뿐이다 — §3.2.9, §3.4
 
-쓰인 곳: 면접 수정 이력 I1
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -106,8 +112,10 @@ https://www.rfc-editor.org/rfc/rfc791
   C는 맨 앞 3비트가 110, 다음 21비트가 네트워크, 나머지 8비트가 호스트 쪽이다 — §2.3 「Addressing」
 - 단편화 오프셋 필드는 8옥텟(64비트) 단위로 센다. 첫 조각의 오프셋은 0이다 — §3.1 「Fragment Offset」
 - TTL은 데이터그램을 처리하는 모든 모듈이 최소 1씩 줄인다 — §3.1 「Time to Live」
+- IP는 데이터그램이라 부르는 데이터 덩어리를 출발지에서 목적지로 나른다. 쓰이는 환경은 패킷 교환 방식의 컴퓨터 통신 네트워크들을 서로 이은 시스템이다 — §1.1 「Motivation」, §1.2 「Scope」(인터넷 데이터그램)
+- IP는 인터넷 데이터그램 하나하나를 다른 데이터그램과 관계없는 독립된 것으로 다룬다. 데이터그램 사이에 연결이나 논리적 회선이 없다 — §1.4 「Operation」
 
-쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8
+쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.pdu-names`
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -176,8 +184,9 @@ https://www.rfc-editor.org/rfc/rfc9293
 - 능동적으로 닫은 쪽은 TIME-WAIT 상태에서 2×MSL 동안 머문다 — §3.6.1
 - MSS 옵션으로 알릴 값은 실효 MTU에서 고정된 IP 헤더와 TCP 헤더를 뺀 값이다 — §3.7.1
 - 기대하는 순서 번호보다 뒤의 세그먼트(순서가 어긋나 먼저 온 세그먼트)는 버리지 말고 나중에 처리하도록 가지고 있어야 한다(SHOULD) — §3.10.7.4
+- TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
 
-쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2
+쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -186,8 +195,9 @@ https://www.rfc-editor.org/rfc/rfc768
 - 순서 있고 신뢰할 수 있는 데이터 스트림 전달이 필요한 응용은 TCP를 써야 한다 — Introduction
 - 길이 필드는 헤더와 데이터를 합친 UDP 데이터그램의 옥텟 수다 — Fields
 - 체크섬은 의사 헤더·UDP 헤더·데이터에 대한 16비트 1의 보수 합이다. 0으로 보내면 보낸 쪽이 체크섬을 만들지 않았다는 뜻이다 — Fields
+- UDP가 주고받는 단위를 사용자 데이터그램(user datagram)이라 부르고, 그냥 데이터그램이라고도 쓴다. 헤더 그림의 제목은 「User Datagram Header Format」이다 — Format, Fields, User Interface
 
-쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10
+쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -201,8 +211,20 @@ https://www.rfc-editor.org/rfc/rfc1122
 - 네트워크들은 「게이트웨이」 또는 「IP 라우터」라 부르는 패킷 교환 장비로 서로 이어진다 — §1.1.1
 - 다른 호스트가 만든 데이터그램을 넘겨주는 호스트는 그때 게이트웨이(라우터) 노릇을 하는 것이다 — §3.1
 - 제한 브로드캐스트 주소로 보낸 데이터그램은 이어진 그 물리 네트워크의 모든 호스트가 받는다. 멀티캐스트(D 클래스) 주소는 호스트 그룹 하나를 가리킨다 — §3.2.1.3
+- 네 계층의 영문 이름은 Application Layer, Transport Layer, Internet Layer, Link Layer다. 호스트는 대개 계층마다 프로토콜을 적어도 하나 구현해야 한다 — §1.1.3
+- 링크 계층: 호스트가 자기가 직접 이어진 네트워크에서 통신하려면 그 네트워크에 닿는 데 쓰는 통신 프로토콜을 구현해야 하고, 그것을 링크 계층(또는 매체 접근 계층) 프로토콜이라 부른다.
+  강의는 이 계층을 「네트워크 액세스 계층」이라 부른다 — §1.1.3
+- 응용 계층의 사용자 프로토콜로 Telnet(원격 로그인), FTP(파일 전송), SMTP(전자 우편 전달)를 든다 — §1.1.3
+- 이 문서의 용어(§1.3.3):
+  - 세그먼트는 TCP의 종단 간 전송 단위로, TCP 헤더 뒤에 응용 데이터가 붙은 것이다. IP 데이터그램에 담겨 전송된다.
+  - IP 데이터그램은 IP의 종단 간 전송 단위로, IP 헤더 뒤에 전송 계층의 메시지가 붙은 것이다. 인터넷 계층을 설명하는 3장에서는 「데이터그램」만 써도 IP 데이터그램을 뜻한다.
+  - 패킷은 인터넷 계층과 링크 계층 사이에서 넘겨지는 데이터 단위로, IP 헤더와 데이터를 담는다. IP 데이터그램 전체일 수도, 그 조각일 수도 있다.
+  - 프레임은 링크 계층 프로토콜의 전송 단위로, 링크 계층 헤더 뒤에 패킷이 붙은 것이다.
+  - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 메시지를 응용 계층의 단위(HTTP 메시지)로 쓰므로
+    이 정의는 개념 본문에 옮기지 않는다 — 응용 계층 쪽 근거는 아래 RFC 9110 §1.3이다.
 
-쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`
+쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
+`protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
 
 ## RFC 8085 — UDP Usage Guidelines
 https://www.rfc-editor.org/rfc/rfc8085
@@ -345,6 +367,8 @@ https://www.rfc-editor.org/rfc/rfc9114
 ## RFC 9110 — HTTP Semantics
 https://www.rfc-editor.org/rfc/rfc9110
 
+- HTTP는 Hypertext Transfer Protocol이다 — Abstract
+- HTTP에서 주고받는 단위는 메시지이고, 메시지는 요청이거나 응답이다. 클라이언트가 요청 메시지를 만들어 보내고, 서버는 하나 이상의 응답 메시지로 답한다 — §1.3, §3.4
 - 1xx, 204, 304 응답은 본문(content)을 담지 않는다 — §6.4.1
 - Connection 필드는 지금 연결에만 쓸 제어 옵션을 나열한다. 바로 다음 수신자에게만 뜻이 있는(hop-by-hop) 필드를 끝에서 끝까지 가는 필드와 가르는 데 쓴다 — §7.6.1
 - 콘텐츠 코딩은 주로 표현을 압축하려고 쓴다. 이 문서가 정의하는 것은 compress, deflate, gzip이다 — §8.4.1(§8.4.1.1~§8.4.1.3)
@@ -368,7 +392,7 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
 
-쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15
+쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.pdu-names`
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -461,7 +485,8 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
 - 노드는 컴퓨터 네트워크에 붙어 있는, 주소로 가리킬 수 있는 장치다 — 「node」
 - 라우터는 네트워크와 네트워크 사이에서 트래픽을 넘겨주는 장치다 — 「router」
 
-쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`
+쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
+`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷)
 
 ## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
 https://www.rfc-editor.org/rfc/rfc3013
