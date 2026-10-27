@@ -2,15 +2,58 @@
   "project": "Study Quiz",
   "phase": "69-network-basics",
   "steps": [
-    { "step": 0, "name": "source-extract", "status": "pending" },
-    { "step": 1, "name": "lecture-outline", "status": "pending" },
-    { "step": 2, "name": "interview-facts", "status": "pending" },
-    { "step": 3, "name": "subject-skeleton", "status": "pending" },
-    { "step": 4, "name": "verbatim-guard", "status": "pending" },
-    { "step": 5, "name": "subject-docs", "status": "pending" },
-    { "step": 6, "name": "basics-topic", "status": "pending" },
-    { "step": 7, "name": "protocols-topic", "status": "pending" },
-    { "step": 8, "name": "basics-visuals", "status": "pending" },
-    { "step": 9, "name": "protocols-visuals", "status": "pending" }
-  ]
+    {
+      "step": 0,
+      "name": "source-extract",
+      "status": "completed",
+      "started_at": "2026-10-27T10:23:00+0900",
+      "summary": "python scripts/extract-network-source.py <강의자료 zip 경로>(PyMuPDF, Python 3.11+, zip은 cp949로 열고 풀지 않는다)가 docs/source/network/raw/에 lecture.md·interview.md·pdf/(lecture-merged.pdf·interview-21-30.pdf·interview-31-40.pdf)를 덮어쓴다(두 번 돌려도 같은 해시, raw/는 gitignore). 강의 32개, 통합본 502쪽(강의 PDF를 숫자 순으로 이은 쪽 글자가 통합본과 502쪽 모두 같음을 확인), 그림 슬라이드 174쪽(머리글·쪽 번호+단원 이름·본문 첫 줄·•를 빼고 15자 미만, 장·강 표지 포함), 면접 45쪽(21~30 23쪽, 31~40 22쪽). 표 칸의 `$`는 공백으로 바꾸고 `$ nmtui`·`$ curl`은 남긴다(p206·p208의 `목적지 주소`). 강의별 통합본 쪽: Ch1-1 네트워크 거시적으로 보기 p1–18, Ch1-2 프로토콜과 캡슐화 p19–37, Ch1-3 와이어샤크 p38–39, Ch1-4 네트워크의 성능 p40–47, Ch2-1 이더넷 p48–70, Ch2-2 허브와 CSMACD p71–85, Ch2-3 스위치와 VLAN p86–105, Ch3-1 IP(IPv4, IPv6) p106–129, Ch3-2 ARP p130–143, Ch3-3 ICMP p144–158, Ch3-4 IP·ARP·ICMP 패킷 분석 p159–160, Ch3-5 IP 주소 p161–179, Ch3-6 IP 주소의 분류 p180–198, Ch3-7 라우팅 p199–216, Ch4-1 포트 p217–233, Ch4-2 포트 확인하기 p234–235, Ch4-3 TCP와 UDP p236–253, Ch4-4 TCP와 UDP 패킷 분석 p254–255, Ch4-5 TCP 연결 p256–266, Ch4-6 TCP 상태 p267–280, Ch4-7 TCP 재전송 기능 p281–300, Ch4-8 TCP 흐름제어와 혼잡제어 p301–327, Ch5-1 DNS p328–351, Ch5-2 자원과 자원의 식별 p352–372, Ch5-3 웹 서버와 웹 어플리케이션 서버 p373–392, Ch5-4 HTTP의 특성 p393–412, Ch5-5 HTTP 메세지 개관 p413–439, Ch5-6 HTTP 헤더 p440–453, Ch5-7 HTTP 요청-응답 직접 확인하기 p454–464, Ch5-8 캐시 p465–477, Ch5-9 쿠키 p478–492, Ch5-10 컨텐츠 협상 p493–502. 규칙 문서 docs/source/network/CLAUDE.md(원본 셋·허용 표준 도메인·[강의 p]·[면접 Q] 표기·표준 우선·범위·렌더 방법). scripts/CLAUDE.md 표에 새 스크립트를 더하는 일은 step 5 몫으로 남김."
+    },
+    {
+      "step": 1,
+      "name": "lecture-outline",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "interview-facts",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "subject-skeleton",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "verbatim-guard",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "subject-docs",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "basics-topic",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "protocols-topic",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "basics-visuals",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "protocols-visuals",
+      "status": "pending"
+    }
+  ],
+  "created_at": "2026-10-27T10:23:00+0900"
 }
