@@ -5,7 +5,9 @@
     {
       "step": 0,
       "name": "guide-docs",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-10-27T16:25:51+0900",
+      "summary": "ADR-056 「개념 글을 처음 배우는 사람의 기준으로 쓰고, 네트워크 개념마다 도식을 하나 이상 둔다 (ADR-055 확장 / ADR-030 보완)」를 docs/ADR.md 끝에 덧붙였다(61줄, 지운 줄 없음) — 작성 기준(요약은 일상 말로 무엇·역할, 순환 정의·전문용어 의존 금지, 부가 정보는 본문으로, 누가·무엇을·어디서 어디로, 개념→원리→예시→특징, 헷갈리는 짝은 왜 나눠 부르는지; 네트워크 전부·AWS는 새로 쓰거나 고치는 글만; 사실은 출처 규칙(ADR-009·055), 비유는 이해 보조만이고 L2 주민등록번호 비유는 되살리지 않음; ADR-030 다섯 기준은 그대로), 도식의 양(개념=화면의 개념 제목마다 도식 하나 이상, 비교표는 대신하지 못하고 registry에 도식 먼저·표 나중, 본문에 있는 사실만(ADR-036), step 10 불변식 테스트가 예외 목록 없이 고정, 출발점은 1장 23개 중 도식 2·표만 2·step 3~9가 21개를 그림, 네트워크에만 적용), 사용자 결정(2026-10-27 기준 전문, 「최소 하나씩」 등 인용), 검토한 대안 셋, 트레이드오프 셋. 가리키는 줄: docs/CLAUDE.md 표에 WRITING_GUIDE.md 행, 루트 CLAUDE.md 개발 프로세스에 글은 WRITING_GUIDE를 따른다는 한 줄, PRD 네트워크 과목에 「글」·「도식」 두 항목, UI_GUIDE 「도식」 머리에 개념마다 도식·표는 대신 못함 문단, docs/source/network/CLAUDE.md에 사실은 이 문서·문장은 WRITING_GUIDE, src/data/CLAUDE.md와 src/components/diagrams/CLAUDE.md에 개념마다 도식 한 줄씩. WRITING_GUIDE.md·코드·데이터·테스트는 그대로, build·lint·test(115 파일 2890개) 통과."
     },
     {
       "step": 1,
@@ -57,5 +59,6 @@
       "name": "diagram-coverage",
       "status": "pending"
     }
-  ]
+  ],
+  "created_at": "2026-10-27T16:25:51+0900"
 }

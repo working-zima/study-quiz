@@ -79,6 +79,7 @@ worktree마다 `npm install`이 한 번 필요하다.
 - CRITICAL: 새 기능 구현 시 반드시 테스트를 먼저 작성하고, 테스트가 통과하는 구현을 작성할 것 (TDD)
 - 커밋 메시지는 conventional commits 형식을 따를 것 (feat:, fix:, docs:, refactor:)
 - 요청받지 않은 기능을 만들지 마라. step 문서에 적힌 범위만 구현한다.
+- 개념·문항 글(요약·본문, 문제문·해설)은 `docs/WRITING_GUIDE.md`를 따른다(ADR-056). 네트워크 과목은 전부, AWS 과목은 새로 쓰거나 고치는 글만이다.
 
 ## 명령어
 
