@@ -1,5 +1,120 @@
 {
   "diagrams": {
+    "network-structure": {
+      "label": "컴퓨터 네트워크를 이루는 노드·통신 링크·메시지 도식",
+      "svgLabel": "노트북·공유기·라우터·서버를 통신 링크로 이은 네트워크",
+      "question": "컴퓨터 네트워크는 무엇으로 이루어져 있을까?",
+      "idleCaption": "버튼을 하나 고르면, 컴퓨터 네트워크를 이루는 노드·통신 링크·메시지가 이 그림의 어디에 있는지 볼 수 있다.",
+      "legend": "상자는 노드, 상자를 잇는 선은 통신 링크, 화살표는 메시지가 건너가는 방향이다.",
+      "nodes": {
+        "laptop": "노트북",
+        "home-router": "공유기",
+        "router": "라우터",
+        "server": "서버"
+      },
+      "notes": {
+        "host-laptop": "호스트",
+        "host-server": "호스트",
+        "equipment-home-router": "네트워크 장비",
+        "equipment-router": "네트워크 장비",
+        "link-1": "통신 링크",
+        "link-2": "통신 링크",
+        "link-3": "통신 링크",
+        "message": "메시지"
+      },
+      "scenarios": [
+        {
+          "id": "nodes",
+          "label": "노드",
+          "caption": "노트북·공유기·라우터·서버처럼 네트워크에 이어진 장치 하나하나가 노드다. 양 끝에서 메시지를 처음 보내거나 마지막에 받아 쓰는 노트북과 서버는 호스트이고, 가운데에서 메시지를 넘겨주는 공유기와 라우터는 네트워크 장비다.",
+          "sources": ["network-basics.computer-network"]
+        },
+        {
+          "id": "links",
+          "label": "통신 링크",
+          "caption": "노드와 노드를 잇는 연결이 통신 링크이고, 간선이라고도 부른다. 이 그림에서는 노트북과 공유기, 공유기와 라우터, 라우터와 서버 사이의 선 셋이 통신 링크다.",
+          "sources": ["network-basics.computer-network"]
+        },
+        {
+          "id": "message",
+          "label": "메시지가 가는 길",
+          "caption": "노트북과 서버는 통신 링크 하나로 곧바로 이어져 있지 않다. 그래서 노트북이 보낸 메시지는 공유기와 라우터를 차례로 거치며, 한 노드에서 통신 링크를 지나 다음 노드로 건너가 서버에 닿는다.",
+          "sources": ["network-basics.computer-network"]
+        }
+      ],
+      "sources": ["network-basics.computer-network"]
+    },
+    "host-endpoints": {
+      "label": "메시지가 시작하고 끝나는 호스트 도식",
+      "svgLabel": "노트북에서 공유기와 라우터를 거쳐 서버까지 이어진 네트워크",
+      "question": "메시지는 어디서 시작해 어디서 끝날까?",
+      "idleCaption": "메시지를 처음 보내는 쪽과 마지막에 받는 쪽을 골라 보면, 통신의 양 끝에 있는 노드가 호스트라는 것을 볼 수 있다.",
+      "legend": "상자는 노드, 상자를 잇는 선은 통신 링크, 화살표는 메시지가 건너가는 방향이다.",
+      "nodes": {
+        "laptop": "노트북",
+        "home-router": "공유기",
+        "router": "라우터",
+        "server": "서버"
+      },
+      "notes": {
+        "start": "처음 만들어 보냄",
+        "end": "마지막에 받아 씀",
+        "address": "받는 곳: 서버의 주소"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "처음 보내는 쪽",
+          "caption": "노트북이 웹 페이지를 보내 달라는 메시지를 처음 만들어 보낸다. 이렇게 통신이 출발하는 끝자리의 노드가 호스트다.",
+          "sources": ["network-basics.host"]
+        },
+        {
+          "id": "end",
+          "label": "마지막에 받는 쪽",
+          "caption": "서버는 그 메시지를 마지막에 받아 쓰는 끝자리의 노드라 역시 호스트다. 가운데의 공유기와 라우터는 메시지를 넘겨주기만 하는 중간 노드라 호스트가 아니다.",
+          "sources": ["network-basics.host"]
+        },
+        {
+          "id": "address",
+          "label": "주소로 가리키기",
+          "caption": "네트워크에는 호스트가 아주 많아서, 노트북은 받을 호스트인 서버의 주소로 메시지가 갈 위치를 가리킨다. 메시지는 공유기와 라우터를 차례로 거쳐 그 주소의 서버에 닿는다.",
+          "sources": ["network-basics.host"]
+        }
+      ],
+      "sources": ["network-basics.host", "network-basics.computer-network"]
+    },
+    "node-role": {
+      "label": "통신에 따라 중간 노드와 호스트를 오가는 공유기 도식",
+      "svgLabel": "노트북과 서버 사이에 공유기와 라우터가 있는 네트워크",
+      "question": "공유기는 언제 호스트가 될까?",
+      "idleCaption": "한 노드가 호스트인지 중간 노드인지는 장치의 종류가 아니라 그 통신에서 맡은 자리로 정해진다. 통신을 고르면 같은 공유기의 자리가 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "상자는 노드, 상자를 잇는 선은 통신 링크, 화살표는 메시지가 건너가는 방향이다.",
+      "nodes": {
+        "laptop": "노트북",
+        "home-router": "공유기",
+        "router": "라우터",
+        "server": "서버"
+      },
+      "notes": {
+        "relay-role": "중간 노드",
+        "own-role": "호스트"
+      },
+      "scenarios": [
+        {
+          "id": "relay",
+          "label": "남의 메시지를 넘겨줄 때",
+          "caption": "노트북이 서버로 보낸 메시지를 공유기가 받아 다음 노드로 넘겨준다. 메시지를 만들지도 받아 쓰지도 않고 넘겨주기만 하므로, 이 통신에서 공유기는 중간 노드다.",
+          "sources": ["network-basics.network-equipment"]
+        },
+        {
+          "id": "own",
+          "label": "자기 메시지를 보낼 때",
+          "caption": "노트북이 공유기에게 응답을 요청하면, 공유기는 그 메시지를 넘겨주지 않고 직접 받아 응답을 만들어 돌려보낸다. 자기가 만든 메시지를 보내는 이 통신에서 공유기는 호스트다.",
+          "sources": ["network-basics.network-equipment"]
+        }
+      ],
+      "sources": ["network-basics.network-equipment", "network-basics.computer-network"]
+    },
     "cast-types": {
       "label": "전송 방식에 따라 메시지를 받는 대상 도식",
       "svgLabel": "보내는 호스트와 같은 네트워크의 호스트 넷",

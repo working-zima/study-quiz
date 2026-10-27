@@ -27,6 +27,7 @@ import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
@@ -35,6 +36,8 @@ import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
+import { NetworkStructureDiagram } from './NetworkStructureDiagram'
+import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
@@ -140,6 +143,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ecs-eks-fargate.eks-anywhere': EksHybridTable,
   'ecs-eks-fargate.eks-irsa': PodPermissionsDiagram,
   'ecs-eks-fargate.app2container': ComputeChoiceTable,
+  'network-basics.computer-network': NetworkStructureDiagram,
+  'network-basics.host': HostEndpointsDiagram,
+  'network-basics.network-equipment': NodeRoleDiagram,
   'network-basics.cast-types': CastTypesDiagram,
   'network-basics.packet-loss': PerformanceMetricsTable,
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
