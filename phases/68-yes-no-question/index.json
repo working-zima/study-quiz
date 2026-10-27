@@ -23,7 +23,8 @@
       "name": "yes-no-invariants",
       "status": "completed",
       "started_at": "2026-10-27T08:59:18+0900",
-      "summary": "src/data/index.test.ts 안(duplicates 옆)에 yesNoProblems(questions: Question[]): string[]를 둠. format === 'yes-no' 문항만 보고 4지선다는 어떤 규칙도 걸지 않음. 규칙 셋 — (1) prompt.trimEnd()가 ?로 끝남, (2) prompt에 「항상」「절대」가 없음(answerLeakingWords, 부분 문자열), (3) 넘긴 문항 중 예/아니요만 세어 Math.abs(yes - no) <= Math.max(2, Math.ceil(total * 0.2)), 어기면 메시지에 예·아니요 수. 앞 두 규칙의 메시지는 문항 id를 담음. 새 테스트 — describe('예/아니요 문항') > '검사가 위반을 잡는다' 8개: 물음표 없음, 「항상」, 「절대」, 예 5 : 아니요 1, 예 3 : 아니요 2는 빈 배열, 4지선다는 물음표 없고 「항상」이 있어도 빈 배열, 20문항이면 12 : 8 통과·13 : 7 보고(비례 허용 오차), 4지선다는 비율의 문항 수에 세지 않음(예 4 : 0 + 4지선다 20 → 보고). 과목마다 it.each(subjects) '$id 과목의 예/아니요 문항이 규칙을 지킨다' 1개(비율은 과목 단위). 규칙을 하나씩 지우면(물음표·항상·절대·비율·비례 오차·total 계산·형식 필터) 각각 해당 테스트가 실패함을 확인. 기존 과목 불변식 5개 그대로. 테스트 2763 → 2772, build·lint 통과. 바뀐 파일은 src/data/index.test.ts뿐."
+      "summary": "src/data/index.test.ts 안(duplicates 옆)에 yesNoProblems(questions: Question[]): string[]를 둠. format === 'yes-no' 문항만 보고 4지선다는 어떤 규칙도 걸지 않음. 규칙 셋 — (1) prompt.trimEnd()가 ?로 끝남, (2) prompt에 「항상」「절대」가 없음(answerLeakingWords, 부분 문자열), (3) 넘긴 문항 중 예/아니요만 세어 Math.abs(yes - no) <= Math.max(2, Math.ceil(total * 0.2)), 어기면 메시지에 예·아니요 수. 앞 두 규칙의 메시지는 문항 id를 담음. 새 테스트 — describe('예/아니요 문항') > '검사가 위반을 잡는다' 8개: 물음표 없음, 「항상」, 「절대」, 예 5 : 아니요 1, 예 3 : 아니요 2는 빈 배열, 4지선다는 물음표 없고 「항상」이 있어도 빈 배열, 20문항이면 12 : 8 통과·13 : 7 보고(비례 허용 오차), 4지선다는 비율의 문항 수에 세지 않음(예 4 : 0 + 4지선다 20 → 보고). 과목마다 it.each(subjects) '$id 과목의 예/아니요 문항이 규칙을 지킨다' 1개(비율은 과목 단위). 규칙을 하나씩 지우면(물음표·항상·절대·비율·비례 오차·total 계산·형식 필터) 각각 해당 테스트가 실패함을 확인. 기존 과목 불변식 5개 그대로. 테스트 2763 → 2772, build·lint 통과. 바뀐 파일은 src/data/index.test.ts뿐.",
+      "completed_at": "2026-10-27T09:03:02+0900"
     },
     {
       "step": 3,
