@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import { renderWithSubject } from '../test/subject'
-import type { Question, Topic } from '../types/content'
+import type { ChoiceQuestion, Question, Topic } from '../types/content'
 import type { Progress } from '../types/progress'
 import { QuizPage } from './QuizPage'
 
-const testQuestions: Question[] = [
+const testQuestions: ChoiceQuestion[] = [
   {
     id: 'q001',
     topicId: 'test-topic',

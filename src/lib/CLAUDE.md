@@ -14,7 +14,8 @@
 
 | 모듈 | 무엇 | 근거 |
 |---|---|---|
-| `shuffle.ts` | 문항·보기 섞기. 보기를 섞으면 `answerIndex`를 옮긴 새 `Question`을 돌려준다 | ARCHITECTURE 「문항과 보기의 순서」, ADR-011 |
+| `shuffle.ts` | 문항·보기 섞기. 보기를 섞으면 `answerIndex`를 옮긴 새 `Question`을 돌려준다. 예/아니요 문항은 그대로 돌려준다 | ARCHITECTURE 「문항과 보기의 순서」, ADR-011·ADR-054 |
+| `grading.ts` | 두 형식의 채점 `isCorrect`와 버튼 문구 `choiceLabels`. 예/아니요는 0 = 예, 1 = 아니요이고, 이 대응을 아는 곳은 이 파일 하나다 | ADR-054 |
 | `navigation.ts` | 앞뒤 주제 `adjacentTopics` | ARCHITECTURE 「주제 간 이동」 |
 | `random-quiz.ts` | 랜덤 세트의 문항 수 허용값과 파서 | ARCHITECTURE 「전체 범위 랜덤 세트」, ADR-018 |
 | `search.ts` | 검색 매칭·순위·본문 히트 가르기 | ARCHITECTURE 「개념·주제 검색」, ADR-013·ADR-024 |

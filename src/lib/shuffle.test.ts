@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { describe, expect, it, vi } from 'vitest'
-import type { Question } from '../types/content'
+import type { ChoiceQuestion, Question, YesNoQuestion } from '../types/content'
 import { shuffle, shuffleChoices, shuffleQuestions } from './shuffle'
 
 function seq(...values: number[]) {
@@ -9,7 +9,7 @@ function seq(...values: number[]) {
   return () => values[index++]
 }
 
-const firstQuestion: Question = {
+const firstQuestion: ChoiceQuestion = {
   id: 'q001',
   topicId: 'topic-a',
   conceptId: 'topic-a.concept-a',
@@ -19,7 +19,7 @@ const firstQuestion: Question = {
   explanation: '첫 번째 해설',
 }
 
-const lastQuestion: Question = {
+const lastQuestion: ChoiceQuestion = {
   id: 'q002',
   topicId: 'topic-a',
   conceptId: 'topic-a.concept-b',
@@ -27,6 +27,24 @@ const lastQuestion: Question = {
   choices: ['E', 'F', 'G', 'H'],
   answerIndex: 3,
   explanation: '두 번째 해설',
+}
+
+const yesNoQuestion: YesNoQuestion = {
+  id: 'q004',
+  topicId: 'topic-a',
+  conceptId: 'topic-a.concept-c',
+  prompt: '네 번째 주장',
+  format: 'yes-no',
+  answer: false,
+  explanation: '네 번째 해설',
+}
+
+function findChoiceQuestion(questions: Question[], id: string): ChoiceQuestion {
+  const question = questions.find((item) => item.id === id)
+  if (!question || question.format === 'yes-no') {
+    throw new Error(`${id}는 4지선다 문항이어야 한다`)
+  }
+  return question
 }
 
 describe('shuffle', () => {
@@ -89,11 +107,19 @@ describe('shuffleChoices', () => {
     expect(firstQuestion.choices).toEqual(originalChoices)
     expect(firstQuestion.answerIndex).toBe(originalAnswerIndex)
   })
+
+  it('예/아니요 문항은 섞지 않고 난수도 쓰지 않는다', () => {
+    const original = structuredClone(yesNoQuestion)
+    const rng = vi.fn(() => 0)
+
+    expect(shuffleChoices(yesNoQuestion, rng)).toEqual(original)
+    expect(rng).not.toHaveBeenCalled()
+  })
 })
 
 describe('shuffleQuestions', () => {
   it('문항을 먼저 섞고 이어서 각 문항의 보기를 섞는다', () => {
-    const thirdQuestion: Question = {
+    const thirdQuestion: ChoiceQuestion = {
       ...firstQuestion,
       id: 'q003',
       choices: ['I', 'J', 'K', 'L'],
@@ -123,5 +149,23 @@ describe('shuffleQuestions', () => {
     result.forEach((question) => {
       expect(originalReferences).not.toContain(question)
     })
+  })
+
+  it('예/아니요 문항이 섞여 있어도 문항 순서만 섞고 4지선다의 보기만 섞는다', () => {
+    const questions: Question[] = [firstQuestion, yesNoQuestion, lastQuestion]
+    const originals = structuredClone(questions)
+
+    const result = shuffleQuestions(questions, () => 0)
+
+    expect(result.map((question) => question.id).sort()).toEqual(['q001', 'q002', 'q004'])
+    expect(result.find((question) => question.id === 'q004')).toEqual(yesNoQuestion)
+    ;[firstQuestion, lastQuestion].forEach((original) => {
+      const shuffled = findChoiceQuestion(result, original.id)
+      expect(shuffled.answerIndex).not.toBe(original.answerIndex)
+      expect(shuffled.choices[shuffled.answerIndex]).toBe(
+        original.choices[original.answerIndex],
+      )
+    })
+    expect(questions).toEqual(originals)
   })
 })

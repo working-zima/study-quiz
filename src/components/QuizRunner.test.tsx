@@ -311,4 +311,161 @@ describe('QuizRunner', () => {
       expect(setInReview).toHaveBeenCalledWith('q001', true)
     })
   })
+
+  // AWS 데이터에는 예/아니요 문항이 없으므로 픽스처로 본다.
+  describe('예/아니요 문항', () => {
+    const yesQuestion: Question = {
+      id: 'yn-yes',
+      format: 'yes-no',
+      topicId: 'first-topic',
+      conceptId: 'first-topic.first',
+      prompt: '예가 정답인 질문',
+      answer: true,
+      explanation: '예 해설',
+    }
+
+    const noQuestion: Question = {
+      id: 'yn-no',
+      format: 'yes-no',
+      topicId: 'second-topic',
+      conceptId: 'second-topic.second',
+      prompt: '아니요가 정답인 질문',
+      answer: false,
+      explanation: '아니요 해설',
+    }
+
+    function renderYesNo(questions: Question[]) {
+      const answer = vi.fn()
+      const renderComplete = vi.fn(() => <section>완료</section>)
+      renderWithSubject(
+        <MemoryRouter>
+          <QuizRunner
+            answer={answer}
+            questions={questions}
+            renderComplete={renderComplete}
+            review={{}}
+            setInReview={vi.fn()}
+            title="확인 문제"
+            topics={testTopics}
+          />
+        </MemoryRouter>,
+      )
+      return { answer, renderComplete }
+    }
+
+    function choiceButtons() {
+      return screen.getAllByRole('button').filter((button) => !['개념 보기', '복습에 넣기', '이전 문제'].includes(
+        button.getAttribute('aria-label') ?? button.textContent ?? '',
+      ))
+    }
+
+    it('보기 버튼은 예·아니요 둘뿐이고 가로로 나란히 놓인다', () => {
+      renderYesNo([yesQuestion])
+
+      expect(choiceButtons().map((button) => button.textContent)).toEqual(['예', '아니요'])
+      const group = screen.getByRole('button', { name: '예' }).parentElement
+      expect(group).toBe(screen.getByRole('button', { name: '아니요' }).parentElement)
+      expect(group).toHaveClass('grid', 'grid-cols-2', 'gap-3')
+      expect(group).not.toHaveClass('space-y-3')
+    })
+
+    it('짧은 낱말이라 버튼 글자를 가운데 정렬한다', () => {
+      renderYesNo([yesQuestion])
+
+      for (const name of ['예', '아니요']) {
+        const button = screen.getByRole('button', { name })
+        expect(button).toHaveClass('text-center')
+        expect(button).not.toHaveClass('text-left')
+      }
+    })
+
+    it('예가 정답인 문항에서 예를 고르면 맞힌 것으로 채점하고 해설을 보인다', async () => {
+      const user = userEvent.setup()
+      const { answer } = renderYesNo([yesQuestion])
+
+      await user.click(screen.getByRole('button', { name: '예' }))
+
+      expect(answer).toHaveBeenCalledWith('yn-yes', true)
+      expect(screen.getByText('예 해설')).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: '예' })).toHaveClass('border-green-500/60')
+    })
+
+    it('예가 정답인 문항에서 아니요를 고르면 아니요가 오답, 예가 정답으로 표시된다', async () => {
+      const user = userEvent.setup()
+      const { answer } = renderYesNo([yesQuestion])
+
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+
+      expect(answer).toHaveBeenCalledWith('yn-yes', false)
+      expect(screen.getByRole('button', { name: '아니요' })).toHaveClass('border-red-500/60')
+      expect(screen.getByRole('button', { name: '아니요' })).toBeDisabled()
+      expect(screen.getByRole('button', { name: '예' })).toHaveClass('border-green-500/60')
+      expect(screen.getByRole('button', { name: '예' })).toBeEnabled()
+    })
+
+    it('아니요가 정답인 문항에서는 아니요가 정답이다', async () => {
+      const user = userEvent.setup()
+      const { answer } = renderYesNo([noQuestion])
+
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+
+      expect(answer).toHaveBeenCalledWith('yn-no', true)
+      expect(screen.getByRole('button', { name: '아니요' })).toHaveClass('border-green-500/60')
+      expect(screen.getByRole('button', { name: '예' })).toBeDisabled()
+    })
+
+    it('정답 버튼을 다시 누르면 채점 없이 다음 문항으로 넘어간다', async () => {
+      const user = userEvent.setup()
+      const { answer } = renderYesNo([yesQuestion, noQuestion])
+
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+      expect(screen.getByRole('button', { name: '아니요' })).toBeDisabled()
+      await user.click(screen.getByRole('button', { name: '예' }))
+
+      expect(answer).toHaveBeenCalledTimes(1)
+      expect(screen.getByText('2 / 2')).toBeInTheDocument()
+      expect(screen.getByRole('heading', { level: 2, name: '아니요가 정답인 질문' })).toBeInTheDocument()
+      expect(screen.queryByText('예 해설')).toBeNull()
+    })
+
+    it('4지선다와 섞인 세트도 문항마다 자기 형식으로 그리고 끝까지 푼다', async () => {
+      const user = userEvent.setup()
+      const { renderComplete } = renderYesNo([testQuestions[0], yesQuestion, noQuestion])
+
+      const choiceGroup = screen.getByRole('button', { name: '첫 번째 정답' }).parentElement
+      expect(choiceButtons()).toHaveLength(4)
+      expect(choiceGroup).toHaveClass('space-y-3')
+      expect(choiceGroup).not.toHaveClass('grid-cols-2')
+      expect(screen.getByRole('button', { name: '첫 번째 정답' })).toHaveClass('text-left')
+
+      await user.click(screen.getByRole('button', { name: '첫 번째 정답' }))
+      await user.click(screen.getByRole('button', { name: '첫 번째 정답' }))
+      expect(choiceButtons().map((button) => button.textContent)).toEqual(['예', '아니요'])
+      expect(screen.getByRole('button', { name: '예' }).parentElement).toHaveClass('grid-cols-2')
+
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+      await user.click(screen.getByRole('button', { name: '예' }))
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+
+      expect(renderComplete).toHaveBeenLastCalledWith(2, 3)
+      expect(screen.getByText('완료')).toBeInTheDocument()
+    })
+
+    it('이전 문제로 돌아가면 예/아니요 문항의 고른 상태와 해설이 남아 있다', async () => {
+      const user = userEvent.setup()
+      const { answer } = renderYesNo([yesQuestion, noQuestion])
+
+      await user.click(screen.getByRole('button', { name: '아니요' }))
+      await user.click(screen.getByRole('button', { name: '예' }))
+      await user.click(screen.getByRole('button', { name: '이전 문제' }))
+
+      expect(screen.getByText('1 / 2')).toBeInTheDocument()
+      expect(screen.getByText('예 해설')).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: '아니요' })).toHaveClass('border-red-500/60')
+      expect(screen.getByRole('button', { name: '아니요' })).toBeDisabled()
+      expect(screen.getByRole('button', { name: '예' })).toHaveClass('border-green-500/60')
+      expect(answer).toHaveBeenCalledTimes(1)
+    })
+  })
 })

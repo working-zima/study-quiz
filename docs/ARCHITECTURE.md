@@ -45,16 +45,30 @@ interface Concept {
 }
 // concepts 배열의 순서가 학습 순서다: 서비스 블록마다 기본 → 갈림길 → 한계. 아래 절을 봐라.
 
-interface Question {
+interface QuestionBase {               // 두 형식이 함께 쓰는 필드
   id: string;                          // "q001"
   topicId: string;
   conceptId: string;                   // 근거 개념. 문항 화면의 개념 펼치기와 복습 집계에 쓴다.
   prompt: string;
-  choices: [string, string, string, string];
-  answerIndex: 0 | 1 | 2 | 3;
   explanation: string;
 }
+
+interface ChoiceQuestion extends QuestionBase {
+  format?: 'choice';                   // 없으면 4지선다다
+  choices: [string, string, string, string];
+  answerIndex: 0 | 1 | 2 | 3;
+}
+
+interface YesNoQuestion extends QuestionBase {
+  format: 'yes-no';
+  answer: boolean;                     // 예가 정답이면 true
+}
+
+type Question = ChoiceQuestion | YesNoQuestion;   // 형식은 format으로 가른다 (ADR-054)
 ```
+
+**`format`이 없으면 4지선다다.** 그래서 AWS `questions.json`은 형식이 둘이 된 뒤에도 한 글자도 바뀌지 않았다.
+AWS의 `questions`(`src/data/aws/index.ts`)는 `ChoiceQuestion[]`이다 — AWS 문항이 모두 4지선다이고 `data.test.ts`가 `choices`·`answerIndex`를 그대로 읽는다.
 
 **시각 요소의 문구는 `src/types/visuals.ts`가 정의한다**(ADR-037). `vpc-networking`을 시작으로 지금은
 AWS 주제 11개가 `src/data/aws/visuals/<주제 id>.json`을 가진다. 도식 캡션·비교표 행·약어 뜻풀이가 여기 있고,
@@ -333,17 +347,20 @@ interface Progress {
 
 ### 문항과 보기의 순서
 
-**확인 문제를 열 때마다 문항 순서와 각 문항의 보기 순서를 섞는다.** `questions.json`의
+**확인 문제를 열 때마다 문항 순서와 각 4지선다 문항의 보기 순서를 섞는다.** `questions.json`의
 배열 순서는 저장 순서일 뿐 출제 순서가 아니다. 근거는 ADR-011.
 
 섞기는 `src/lib/shuffle.ts` 한 곳에 모은다. React에 의존하지 않고, **난수는 인자로 받는다** —
 화면이나 라이브러리 안쪽에서 `Math.random`을 직접 부르는 지점이 흩어지면 안 된다.
 이유: 이 계층은 DOM 없이 테스트하고, 난수를 주입해야 섞인 결과를 단언할 수 있다.
 
-보기를 섞는 함수는 **`choices`를 재배열하고 `answerIndex`를 그 보기가 옮겨 간 위치로 갱신한
-새 `Question`을 돌려준다.** 원본 인덱스 매핑을 따로 들고 다니지 마라 —
+보기를 섞는 함수(`shuffleChoices`)는 **`choices`를 재배열하고 `answerIndex`를 그 보기가 옮겨 간 위치로 갱신한
+새 `ChoiceQuestion`을 돌려준다.** 원본 인덱스 매핑을 따로 들고 다니지 마라 —
 `isCorrect(question, choiceIndex)`가 그대로 맞고, 화면은 자기가 받은 문항만 보면 된다.
-`Question` 타입도 `grading.ts`도 바뀌지 않는다.
+섞는다고 문항의 타입이 달라지거나 채점이 섞기를 알아야 하는 일은 없다.
+
+**보기 섞기는 4지선다에만 걸린다.** 예/아니요 문항은 그대로 돌려주고 난수도 쓰지 않는다 —
+버튼은 늘 「예」 다음 「아니요」다(ADR-054). 문항 순서는 두 형식이 함께 섞인다.
 
 **섞은 결과는 화면에 머무는 동안 고정이다.** 렌더할 때마다 다시 섞으면 보기를 누르는 순간
 자리가 바뀐다. `QuizPage`는 주제가 바뀔 때만 다시 섞고 그 사이에는 같은 배열을 쓴다.
@@ -397,8 +414,8 @@ AWS 은행이 지금 746문항이므로(ADR-026), 그때 `246`을 허용값에 �
 
 ### 확인 문제 화면의 공유 구조
 
-주제별 확인 문제와 랜덤 문제는 **문항을 푸는 부분이 완전히 같다.** 진행 표시, 보기 4개,
-정오 표시, 해설, 이전 문항 이동, 정답 재탭으로 넘어가기까지 전부 같다.
+주제별 확인 문제와 랜덤 문제는 **문항을 푸는 부분이 완전히 같다.** 진행 표시, 보기(4지선다 넷,
+예/아니요 둘), 정오 표시, 해설, 이전 문항 이동, 정답 재탭으로 넘어가기까지 전부 같다.
 그 부분을 `src/components/QuizRunner.tsx` 하나에 두고 두 페이지가 함께 쓴다.
 
 | 담당 | 무엇 |
@@ -411,6 +428,10 @@ AWS 은행이 지금 746문항이므로(ADR-026), 그때 `246`을 허용값에 �
 - **완료 화면은 페이지가 준다.** 주제 퀴즈는 "다음 주제 이어가기"가 있고 랜덤은 없다.
   `QuizRunner`에 `mode`나 `isRandom` 같은 플래그를 넣지 마라 — 분기가 늘어나는 만큼
   두 화면이 서로의 회귀를 만든다.
+- **예/아니요도 같은 `QuizRunner`가 그린다.** 형식은 페이지가 아니라 문항(`question.format`)이 정하고,
+  갈리는 것은 버튼 묶음의 배치(예/아니요는 가로 두 칸)와 글자 정렬뿐이다. 채점과 버튼 문구는
+  `grading.ts`에서 온다. 예/아니요 전용 화면을 만들지 마라 — 정답 재탭·복습에 넣기·개념 펼치기·
+  이전 문항이 두 벌로 갈라진다(ADR-054).
 - **개념은 화면 안에서 펼친다.** 보기 아래의 토글이 `question.topicId`가 가리키는
   **주제 전체**를 그 자리에 편다. 라우트의 `topicId`를 보지 않으므로 랜덤 세트에서 문항마다
   주제가 달라도 같은 규칙이 그대로 맞는다. 화면 구성과 조작 규칙은
@@ -536,7 +557,7 @@ pages/*  ──읽기──▶  lib/storage.ts  ──▶  localStorage (키 = �
 |---|---|
 | `lib/*` (채점·진행률·저장소) | Vitest 단위 테스트. DOM 불필요. |
 | `src/data/aws/*.json` | `src/data/aws/data.test.ts`의 스키마 검증 테스트 — 타입 일치, id 유일성, `conceptId` 참조 무결성, `answerIndex` 범위, **개념 커버리지 100%**(개념 640개가 모두 문항 하나 이상을 갖는가), 문항 id의 연속성 |
-| `src/data/index.ts` (과목 목록) | `src/data/index.test.ts` — 과목 id 유일, 과목 id가 예전 주소의 첫 세그먼트와 겹치지 않음, 주제·개념 id가 과목을 넘어 유일, `progressKey` 유일 (ADR-053) |
+| `src/data/index.ts` (과목 목록) | `src/data/index.test.ts` — 과목 id 유일, 과목 id가 예전 주소의 첫 세그먼트와 겹치지 않음, 주제·개념 id가 과목을 넘어 유일, `progressKey` 유일 (ADR-053), 모든 과목의 예/아니요 문항 — 물음표로 끝남, 「항상」「절대」 없음, 예·아니요 대략 반반 (ADR-054) |
 | `pages/`, `components/` | @testing-library/react. 사용자 관점 동작만. |
 | `lib/keyword-crypto.ts` | `@vitest-environment node`. jsdom에는 `crypto.subtle`이 없다. 화면 테스트에서는 이 모듈을 mock한다. |
 | `components/diagrams/*` | @testing-library/react + 좌표 단언. 시나리오 동작에 더해 **viewBox 넘침과 라벨 넘침을 `src/lib/svg-bounds.ts`로 기계 검사**한다. 브라우저가 없는 환경에서 레이아웃 회귀를 잡는 유일한 장치다. 도식마다 `matchMedia`를 모의해 가로형에도 같은 관문을 건다(ADR-047·ADR-048). |

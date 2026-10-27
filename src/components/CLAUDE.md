@@ -7,7 +7,7 @@
 |---|---|
 | `Layout` — 헤더, 화면 전환 시 스크롤 | ARCHITECTURE 「헤더는 과목 안에서 같다」·「화면 전환 시 스크롤」, UI_GUIDE 「상단 고정 헤더」·「헤더 안의 링크」, ADR-053 |
 | `SubjectScope` — URL의 과목을 찾아 넘긴다 | ARCHITECTURE 「라우트」, ADR-053 「과목이 바뀌면 다시 마운트하는 이유」 |
-| `QuizRunner` — 문항 화면 전체 | ARCHITECTURE 「확인 문제 화면의 공유 구조」·「확인 문제 안의 문항 이동」, UI_GUIDE 「보기 버튼 (확인 문제)」 이하 |
+| `QuizRunner` — 문항 화면 전체 | ARCHITECTURE 「확인 문제 화면의 공유 구조」·「확인 문제 안의 문항 이동」, UI_GUIDE 「보기 버튼 (확인 문제)」 이하, ADR-054 |
 | `ConceptList` — 개념 본문(개념 읽기와 개념 펼치기가 함께 쓴다) | ARCHITECTURE 「확인 문제 화면의 공유 구조」, UI_GUIDE 「딸린 개념」·「타이포그래피」 |
 | `BackButton` — 돌아가기 | UI_GUIDE 「돌아가기」, ARCHITECTURE 「개념·주제 검색」 |
 | `EmphasizedText` — `**강조**`·백틱 코드 표기 | UI_GUIDE 「타이포그래피」, ADR-044·ADR-051 |
