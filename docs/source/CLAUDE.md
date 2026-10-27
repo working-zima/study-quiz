@@ -1,6 +1,7 @@
 # docs/source/
 
 이 디렉토리는 **AWS 과목**의 원본이다. 다음 과목의 원본은 `docs/source/<과목>/`에 둔다(ADR-053).
+네트워크 과목의 원본은 `docs/source/network/`에 있고, 규칙은 `docs/source/network/CLAUDE.md`에 있다(ADR-055).
 AWS 원본을 제자리에 둔 이유(gitignore된 로컬 파일이 다른 worktree에만 있다)는 ADR-053 「원본 위치」에 있다.
 
 ## 원본 데이터
