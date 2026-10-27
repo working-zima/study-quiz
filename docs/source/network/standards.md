@@ -38,7 +38,7 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 - 위 계층의 (N)-PDU는 아래 계층으로 넘어가 (N–1)-서비스 데이터 단위가 되고, 그것이 (N–1)-PDU의 사용자 데이터 자리에 (N–1)-프로토콜 제어 정보와 함께 담긴다.
   제어 정보와 사용자 데이터의 위치 관계(앞·뒤)는 이 그림이 정하지 않는다 — §5.6.2.1, Figure 8, Figure 9 및 NOTE 2·3
 
-쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -115,7 +115,7 @@ https://www.rfc-editor.org/rfc/rfc791
 - IP는 데이터그램이라 부르는 데이터 덩어리를 출발지에서 목적지로 나른다. 쓰이는 환경은 패킷 교환 방식의 컴퓨터 통신 네트워크들을 서로 이은 시스템이다 — §1.1 「Motivation」, §1.2 「Scope」(인터넷 데이터그램)
 - IP는 인터넷 데이터그램 하나하나를 다른 데이터그램과 관계없는 독립된 것으로 다룬다. 데이터그램 사이에 연결이나 논리적 회선이 없다 — §1.4 「Operation」
 
-쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -186,7 +186,7 @@ https://www.rfc-editor.org/rfc/rfc9293
 - 기대하는 순서 번호보다 뒤의 세그먼트(순서가 어긋나 먼저 온 세그먼트)는 버리지 말고 나중에 처리하도록 가지고 있어야 한다(SHOULD) — §3.10.7.4
 - TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
 
-쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -403,7 +403,7 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
 
-쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
