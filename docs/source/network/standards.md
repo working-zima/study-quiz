@@ -6,7 +6,7 @@
 규칙:
 
 - **허용하는 곳만 쓴다** — `rfc-editor.org`·`datatracker.ietf.org`(RFC), `iana.org`(레지스트리), `ieee802.org`·`standards.ieee.org`(IEEE 802),
-  `itu.int`(ITU-T X.200), `developer.mozilla.org`(MDN). 위키백과·블로그·업체 학습 페이지는 강의가 링크했어도 쓰지 않는다.
+  `itu.int`(ITU-T X.200·X.800·Q.9·X.25, 뒤의 셋은 ADR-057), `developer.mozilla.org`(MDN). 위키백과·블로그·업체 학습 페이지는 강의가 링크했어도 쓰지 않는다.
 - **사실은 직접 쓴 말로 적는다**(ADR-009). 원문 문장을 옮기지 않는다.
 - 항목마다 **절 번호**를 붙인다. MDN처럼 절 번호가 없는 문서는 절 제목을 적는다.
 - RFC는 `https://www.rfc-editor.org/rfc/rfcNNNN` 꼴로 적고, 폐기된 RFC가 아니라 지금 유효한 것을 쓴다(예: HTTP는 RFC 2616·7230~7235가 아니라 RFC 9110·9111·9112).
@@ -14,8 +14,9 @@
 - 「쓰인 곳」에 강의 수정 이력 번호(`L1`…)나 면접 수정 이력 번호, 개념 id를 적는다. 뒤 step이 개념을 만들면 개념 id를 더한다.
 - 이 파일은 step 1(phase 69)에서 **강의 수정 이력이 쓰는 사실만** 담아 시작했고, step 2가 **면접 수정 이력(`I1`…)이 쓰는 사실**을 더했다.
   개념 본문용 사실은 각 주제 step이 필요할 때 더한다.
+- 자격시험의 답이 표준과 다르거나 표준에 없는 곳은 여기가 아니라 `exam-notes.md`에 둔다(ADR-057).
 
-확인한 날: 2026-10-27.
+확인한 날: 2026-10-27. 「(2026-10-28)」이 붙은 줄과 항목은 phase 70에서 1장의 빠진 사실 넷(ADR-057)을 넣으며 더했다.
 
 ---
 
@@ -37,8 +38,18 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 - (N)-프로토콜 제어 정보는 같은 계층의 개체들이 함께 일하도록 서로 주고받는 정보이고, (N)-사용자 데이터는 그 계층이 위 계층을 대신해 나르는 데이터다 — §5.6.1.1, §5.6.1.2
 - 위 계층의 (N)-PDU는 아래 계층으로 넘어가 (N–1)-서비스 데이터 단위가 되고, 그것이 (N–1)-PDU의 사용자 데이터 자리에 (N–1)-프로토콜 제어 정보와 함께 담긴다.
   제어 정보와 사용자 데이터의 위치 관계(앞·뒤)는 이 그림이 정하지 않는다 — §5.6.2.1, Figure 8, Figure 9 및 NOTE 2·3
+- (2026-10-28) (N)-프로토콜은 (N)-개체들이 (N)-기능을 할 때 어떻게 통신할지를 정하는 규칙과 형식의 묶음이고, 그 규칙과 형식은 의미적(semantic)·구문적(syntactic)이다.
+  시간·타이밍은 이 정의에 없고, 「세 요소」로 묶는 말도 없다 — §5.2.1.9
+- (2026-10-28) 연결형(connection-mode)은 연결 설정 → 데이터 전달 → 연결 해제의 세 단계를 거친다 — §5.3.3.2.1.
+  연결은 이어 보내는 단위들을 논리적으로 묶으므로 순서를 지키는 일과 흐름 제어를 할 수 있게 한다 — §5.3.3.2.2 d)
+- (2026-10-28) 비연결형(connectionless-mode)은 연결 없이 데이터 단위 하나를 보내고, 목적지 주소처럼 보내는 데 필요한 정보를 그 단위와 함께 한 번에 넘긴다 — §5.3.3.3.1, §5.3.3.3.2 b).
+  단위마다 경로가 따로 정해질 수 있고(may) — §5.3.3.3.3 a), 기본 비연결형 서비스는 순서를 지키지 않아도 된다 — §5.3.3.3.6 a)
+- (2026-10-28) 「virtual circuit」「datagram」「message switching」이라는 말은 이 권고에 없다 — 전문 검색
+- (2026-10-28) 표현 계층의 기능 하나는 추상 구문을 전송 구문으로 나타내는 것이고, 형식 변환과 특수 목적 변환을 포함한다. 그 예로 데이터 압축을 든다 — §7.2.4 b)
+- (2026-10-28) 암호화(encryption·encipherment)라는 말은 이 권고에 없다. 보안 구조는 X.800(ISO 7498-2)에 맡긴다 — §5.1.3 NOTE, 전문 검색
 
-쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`,
+`protocols-encapsulation.protocol`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E1·E3
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -215,6 +226,12 @@ https://www.rfc-editor.org/rfc/rfc1122
 - 링크 계층: 호스트가 자기가 직접 이어진 네트워크에서 통신하려면 그 네트워크에 닿는 데 쓰는 통신 프로토콜을 구현해야 하고, 그것을 링크 계층(또는 매체 접근 계층) 프로토콜이라 부른다.
   강의는 이 계층을 「네트워크 액세스 계층」이라 부른다 — §1.1.3
 - 응용 계층의 사용자 프로토콜로 Telnet(원격 로그인), FTP(파일 전송), SMTP(전자 우편 전달)를 든다 — §1.1.3
+- (2026-10-28) 응용 계층 프로토콜은 사용자에게 직접 서비스를 주는 사용자 프로토콜과, 여러 시스템 기능을 받쳐 주는 지원(support) 프로토콜로 나뉜다.
+  지원 프로토콜은 호스트 이름 대응·부팅·관리에 쓰이고, 그 예로 SNMP, BOOTP, RARP, DNS를 든다 — §1.1.3
+- (2026-10-28) IP는 비연결형(데이터그램) 서비스라 종단 간 전달을 보장하지 않는다. 데이터그램은 손상되거나, 중복되거나, 순서가 바뀌거나, 아예 닿지 않을 수 있다.
+  인터넷의 IP는 OSI 비연결형 네트워크 프로토콜의 본보기였다 — §1.1.3
+- (2026-10-28) 인터넷 계층 프로토콜은 IP·ICMP·IGMP다. ICMP는 IP의 일부로 여기는 제어 프로토콜로, 오류 보고·혼잡 보고·첫 홉 게이트웨이의 경로 바꿈(redirect)을 맡는다.
+  구조로는 IP 위에 얹혀 TCP·UDP처럼 IP로 자기 데이터를 나른다. IGMP는 IP 멀티캐스트에 쓰는 호스트 그룹을 동적으로 꾸리는 인터넷 계층 프로토콜이다 — §1.1.3
 - 세션 계층은 따로 없다. 네 계층 가운데 세션에 해당하는 것이 없고, OSI와 견주는 말은 응용 계층이 표현·응용을 합쳤다는 위 한 곳뿐이다. 전문에 「session」이라는 말이 나오지 않는다 — §1.1.3, 전문 검색(2026-10-27)
 - 이 문서의 용어(§1.3.3):
   - 세그먼트는 TCP의 종단 간 전송 단위로, TCP 헤더 뒤에 응용 데이터가 붙은 것이다. IP 데이터그램에 담겨 전송된다.
@@ -225,7 +242,7 @@ https://www.rfc-editor.org/rfc/rfc1122
     이 정의는 개념 본문에 옮기지 않는다 — 응용 계층 쪽 근거는 아래 RFC 9110 §1.3이다.
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
-`protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
+`protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -495,9 +512,12 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
 - 패킷은 네트워크로 보내는 데이터의 단위다 — 「packet」
 - 노드는 컴퓨터 네트워크에 붙어 있는, 주소로 가리킬 수 있는 장치다 — 「node」
 - 라우터는 네트워크와 네트워크 사이에서 트래픽을 넘겨주는 장치다 — 「router」
+- (2026-10-28) 가상 회선은 꼭 회선 교환을 하지 않고도 연결형 서비스를 주는 네트워크 서비스다 — 「virtual circuit」
+- (2026-10-28) 데이터그램은 앞서 주고받은 것에 기대지 않고, 목적지까지 가는 데 필요한 정보를 스스로 담은 독립된 데이터 단위다 — 「datagram」
+- (2026-10-28) 메시지 교환은 따로 풀이하지 않고 패킷 교환 항목으로 넘긴다 — 「message switching」
 
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
-`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷)
+`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환)
 
 ## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
 https://www.rfc-editor.org/rfc/rfc3013
@@ -507,3 +527,80 @@ BCP 46이다. **이름 표기만** 가져온다.
 - ISP는 Internet Service Provider의 줄임말이다 — 제목, Abstract
 
 쓰인 곳: `network-basics.lan-wan`
+
+## (2026-10-28) RFC 903 — A Reverse Address Resolution Protocol
+https://www.rfc-editor.org/rfc/rfc903
+
+인터넷 표준이고 폐기되지 않았다(rfc-editor 상태).
+
+- 디스크가 없는 워크스테이션 같은 호스트는 켜질 때 자기 프로토콜 주소(IP 주소)를 모르고 하드웨어 주소만 아는 일이 많다. RARP는 그런 호스트가 자기 IP 주소를
+  바깥에서 알아내는 방법이다. 하드웨어 주소를 알아내는 ARP와 반대 방향의 문제를 푼다 — §I
+- 하드웨어 주소와 IP 주소의 대응표를 가진 서버가 있어야 한다 — §II
+- RARP를 데이터 링크 수준(data-link level)의 별도 프로토콜로 두고, 이더넷에서는 ARP와 다른 이더타입을 쓴다 — §III
+- 이 RFC에는 RARP가 인터넷(네트워크) 계층이라는 말이 없다. RFC 1122 §1.1.3은 RARP를 응용 계층의 지원 프로토콜로 든다(위 RFC 1122 항목).
+  자격시험이 RARP를 인터넷 계층으로 보는 것은 `exam-notes.md`의 E2다
+
+쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+
+## (2026-10-28) RFC 1123 — Requirements for Internet Hosts -- Application and Support
+https://www.rfc-editor.org/rfc/rfc1123
+
+인터넷 표준이고 폐기되지 않았다(rfc-editor 상태). RFC 1122와 짝으로, 응용 계층과 지원 프로토콜을 다룬다.
+
+- 원격 관리 절에서 네트워크 관리 프로토콜로 SNMP를 들고, 인터넷 호스트는 SNMP(또는 CMOT) 에이전트를 갖추는 것이 좋다(SHOULD)고 한다 — §6.3.1
+
+쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+
+## (2026-10-28) RFC 1350 — The TFTP Protocol (Revision 2)
+https://www.rfc-editor.org/rfc/rfc1350
+
+인터넷 표준(STD 33)이다.
+
+- TFTP(Trivial File Transfer Protocol)는 파일을 주고받는 아주 단순한 프로토콜이고, UDP 위에 구현되어 있다 — Summary, §1
+
+쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+
+## (2026-10-28) RFC 4949 — Internet Security Glossary, Version 2
+https://www.rfc-editor.org/rfc/rfc4949
+
+정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만 쓴다.
+
+- 프로토콜은 시스템 사이의 연관(예: 통신)을 구현·제어하는 규칙(형식과 절차)의 묶음이다. 또는 둘 이상의 개체가 함께 목표를 이루려고 밟는 순서 있는 단계들이다 — §4 「protocol」
+- 암호화는 데이터(평문)를 원래 뜻을 감춘 다른 형태(암호문)로 바꿔, 원래 형태로 쓰이지 못하게 하는 변환이다. 되돌리는 변환이 복호화다 — §4 「encryption」
+
+쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
+
+## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
+https://www.itu.int/rec/T-REC-X.800-199103-I/en
+
+1991-03 승인, 현행 권고다. ISO 7498-2와 짝이고, X.200 §5.1.3 NOTE가 보안을 이 권고에 넘긴다. ADR-057이 허용 목록에 더했다.
+
+- 표현 계층은 응용 계층이 주는 기밀성 서비스 등을 받쳐 주는 기능을 줄 수 있다. 그 기능은 전송 구문으로 인코딩된 데이터에서만 돌아가는 것, 예컨대 암호 기법에 기댄 것이다 — §7.6.1, Note
+- 데이터 전달에 쓰는 암호화 메커니즘을 위쪽 계층에 둘 때는 표현 계층에 둔다. 보낼 때는 전송 구문으로 바꾸는 과정의 마지막 단계, 받을 때는 첫 단계에서 동작한다 — §7.6.2
+- 암호화는 표현 계층만의 일이 아니다. 데이터 링크 계층이 주는 보안 서비스는 기밀성 둘(연결·비연결)뿐이고, 그것을 암호화 메커니즘으로 준다 — §7.2.1, §7.2.2.
+  물리(§7.1)·네트워크(§7.3)·전송(§7.4) 계층에도 기밀성 서비스가 있고, 세션 계층에는 보안 서비스가 없다 — §7.5.1
+
+쓰인 곳: `protocols-encapsulation.osi-model`, `exam-notes.md` E3
+
+## (2026-10-28) ITU-T Q.9 (11/88) — Vocabulary of switching and signalling terms
+https://www.itu.int/rec/T-REC-Q.9-198811-I/en
+
+1988-11 승인, 현행 권고다. ADR-057이 허용 목록에 더했다.
+
+- 메시지 교환(message switching)은 축적 전달 교환(store-and-forward switching)이라고도 한다. 망의 몇몇 노드가 메시지를 받아 필요한 만큼 저장했다가 넘겨,
+  메시지가 갈 길을 이어 가는 과정이다 — 용어 1130
+- 「datagram」은 이 용어집에 없다
+
+쓰인 곳: `protocols-encapsulation.packet-switching`
+
+## (2026-10-28) ITU-T X.25 (10/96) — Interface between DTE and DCE for terminals operating in the packet mode
+https://www.itu.int/rec/T-REC-X.25-199610-I/en
+
+1996-10 승인, 현행 권고다. 패킷 교환 공중 데이터망에 단말을 잇는 규격이다. ADR-057이 허용 목록에 더했다.
+
+- 가상 회선 서비스는 가상 호(virtual call)와 영구 가상 회선(permanent virtual circuit) 둘이다. 가상 호는 호를 맺고 푸는 절차가 있다 — §3, §4.1
+- 가상 호와 영구 가상 회선에서 오가는 데이터 패킷에는 방향마다 차례로 순서 번호를 매긴다 — §4.4.1.1
+- 망은 가상 호마다(호 단위로) 자원을 배정하고 그 호가 지날 경로를 정한다 — §6.27
+- 이 판에는 데이터그램 서비스가 없다 — 전문 검색
+
+쓰인 곳: `protocols-encapsulation.packet-switching`
