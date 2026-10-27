@@ -342,7 +342,8 @@
     },
     {
       "dir": "68-yes-no-question",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-27T09:08:57+0900"
     }
   ]
 }
