@@ -1,0 +1,16 @@
+{
+  "project": "Study Quiz",
+  "phase": "69-network-basics",
+  "steps": [
+    { "step": 0, "name": "source-extract", "status": "pending" },
+    { "step": 1, "name": "lecture-outline", "status": "pending" },
+    { "step": 2, "name": "interview-facts", "status": "pending" },
+    { "step": 3, "name": "subject-skeleton", "status": "pending" },
+    { "step": 4, "name": "verbatim-guard", "status": "pending" },
+    { "step": 5, "name": "subject-docs", "status": "pending" },
+    { "step": 6, "name": "basics-topic", "status": "pending" },
+    { "step": 7, "name": "protocols-topic", "status": "pending" },
+    { "step": 8, "name": "basics-visuals", "status": "pending" },
+    { "step": 9, "name": "protocols-visuals", "status": "pending" }
+  ]
+}
