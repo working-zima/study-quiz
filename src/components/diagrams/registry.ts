@@ -23,6 +23,7 @@ import { EksScalingDiagram } from './EksScalingDiagram'
 import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
+import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
@@ -40,6 +41,7 @@ import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { ReferenceModelTable } from './protocolsTables'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
@@ -140,6 +142,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ecs-eks-fargate.app2container': ComputeChoiceTable,
   'network-basics.cast-types': CastTypesDiagram,
   'network-basics.packet-loss': PerformanceMetricsTable,
+  'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
+  'protocols-encapsulation.decapsulation': EncapsulationDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
