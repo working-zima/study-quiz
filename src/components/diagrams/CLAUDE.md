@@ -2,10 +2,12 @@
 
 개념 본문 바로 뒤에 붙는 SVG 도식·비교표·단계 그림이다. 레이아웃이 서로 달라 도식마다 컴포넌트 하나를 둔다(ARCHITECTURE 「디렉토리 구조」).
 
-- **도식은 AWS 개념 전용이다.** `registry.ts`의 `diagramsByConceptId`는 개념 id 하나로 도식을 찾고 과목을 모른다. 그래서 도식은
-  `src/data/aws`를 직접 읽고, 개념 id는 과목을 넘어 유일해야 한다(ADR-053 「불변식」). 단계 그림은 `stepFiguresByConceptId`다(ADR-050).
+- **registry는 과목을 모른다.** `registry.ts`의 `diagramsByConceptId`는 개념 id 하나로 도식을 찾는다. 개념 id가 과목을 넘어 유일하므로
+  (ADR-053 「불변식」) 그것으로 충분하고, 도식은 **자기 과목 폴더**를 직접 읽는다 — AWS 도식은 `src/data/aws`, 네트워크 도식은
+  `src/data/network`(ADR-055). 단계 그림은 `stepFiguresByConceptId`다(ADR-050).
 - **도식은 콘텐츠다.** 본문에 없는 사실·대소 관계를 그리지 않는다. 예시 값도 본문에 나오는 것만 쓴다(ADR-036, ADR-038 「예시의 경계」).
-- 문구(캡션·표·약어)는 `src/data/aws/visuals/<주제 id>.json`에, 좌표와 경로는 컴포넌트에 둔다(ADR-037).
+- 문구(캡션·표·약어)는 과목 폴더의 `visuals/<주제 id>.json`(`src/data/aws/visuals/`·`src/data/network/visuals/`)에, 좌표와 경로는
+  컴포넌트에 둔다(ADR-037). 약어(`glossary`)는 AWS VPC 주제에만 있고 네트워크는 비운다(ADR-055).
 
 규칙은 UI_GUIDE 「도식」 이하에 있다. 먼저 볼 곳:
 

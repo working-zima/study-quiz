@@ -6,8 +6,9 @@
 src/data/
 ├── index.ts        # 과목 목록 subjects — 앱에 어떤 과목이 있는지 여기서 정한다
 ├── index.test.ts   # 과목 불변식
-└── aws/            # AWS 과목. topics.json·questions.json·visuals/·keywords.enc.json과
-                    # 과목 객체 awsSubject를 export하는 index.ts
+├── aws/            # AWS 과목. topics.json·questions.json·visuals/·keywords.enc.json과
+│                   # 과목 객체 awsSubject를 export하는 index.ts
+└── network/        # 네트워크 과목. topics.json·questions.json·visuals/와 과목 객체 networkSubject를 export하는 index.ts
 ```
 
 - 루트 CRITICAL 그대로다 — 데이터는 import로 번들에 들어가고 `fetch`로 읽지 않는다. 데이터는 빌드 전에 harness step에서
@@ -36,3 +37,15 @@ src/data/
   커버리지는 `scripts/coverage.mjs`, 전사 검사는 `scripts/check-verbatim.mjs`다. 쓰임은 `scripts/CLAUDE.md`와 각 스크립트 머리 주석.
 - 도식·비교표·약어의 문구는 `aws/visuals/<주제 id>.json`에, 좌표는 도식 컴포넌트에 둔다(ADR-037).
 - `aws/keywords.enc.json`은 키워드 퀴즈의 암호문이다. `scripts/encrypt-keywords.mjs`가 로컬에서 만들어 커밋한다(ADR-040).
+
+## 네트워크 과목 데이터
+
+근거는 ADR-055다. 사실의 근거와 쓰는 법은 `docs/source/network/CLAUDE.md`에 있다.
+
+- `network/data.test.ts`가 지키는 것: 주제·개념 id 유일과 개념 id 꼴(`<주제 id>.<슬러그>`), 문항 id는 `n001`부터 빈 번호 없이,
+  모든 문항이 `format`(`choice`·`yes-no`)을 적고 형식에 맞는 필드만 가진다, 4지선다도 문제문이 물음표로 끝난다,
+  커버리지 100%(ADR-026), 해설 187자 이상(ADR-027), `importance`는 모두 0(별점 없음), `sourcePages`는 강의 통합본 쪽 1~502 안,
+  `parentId`(ADR-041)·목록 항목(ADR-046) 규칙, 굵은 글씨 `**`는 목록 항목 안에만. 커버리지에 예외 목록을 만들지 말고 해설 하한을 낮추지 마라.
+- `network/visuals.test.ts`가 지키는 것: 주제 키와 `sources`가 실제 네트워크 주제·개념 id, 표의 열 셋 이하와 `columnWidths`,
+  시나리오 id 유일, `glossary`는 비운다(약어 툴팁은 AWS VPC 주제에만, ADR-037).
+- 전사 검사는 `node scripts/check-verbatim.mjs --subject network`다. 개념 요약·문단에 더해 문항의 문제문·해설도 본다.

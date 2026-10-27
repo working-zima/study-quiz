@@ -1,0 +1,95 @@
+{
+  "diagrams": {
+    "encapsulation": {
+      "label": "계층을 지날 때 헤더가 붙고 떨어지는 과정 도식",
+      "svgLabel": "웹 페이지를 TCP로 보낼 때 TCP/IP 모델의 네 계층과 계층마다의 데이터 단위",
+      "question": "계층을 지날 때마다 데이터에는 무엇이 붙고 떨어질까?",
+      "idleCaption": "웹 페이지를 TCP로 보내는 경우를 예로 들었고, 네트워크 액세스 계층은 이더넷을 쓴다. 보낼 때와 받을 때를 고르면 계층마다 어느 헤더가 붙고 떨어지는지 볼 수 있다.",
+      "legend": "계층 이름 아래에 이어 붙은 상자들이 그 계층의 데이터 단위 하나이고, 왼쪽이 앞이다.",
+      "nodes": {
+        "app": "응용 계층",
+        "transport": "전송 계층",
+        "internet": "인터넷 계층",
+        "link": "네트워크 액세스 계층",
+        "app-http": "HTTP 헤더",
+        "app-data": "데이터",
+        "transport-tcp": "TCP 헤더",
+        "transport-http": "HTTP 헤더",
+        "transport-data": "데이터",
+        "internet-ip": "IP 헤더",
+        "internet-tcp": "TCP 헤더",
+        "internet-http": "HTTP 헤더",
+        "internet-data": "데이터",
+        "link-ethernet": "이더넷 헤더",
+        "link-ip": "IP 헤더",
+        "link-tcp": "TCP 헤더",
+        "link-http": "HTTP 헤더",
+        "link-data": "데이터",
+        "link-trailer": "트레일러"
+      },
+      "notes": {
+        "unit-app": "메시지",
+        "unit-transport": "세그먼트",
+        "unit-internet": "패킷",
+        "unit-link": "프레임",
+        "attach-app": "새로 붙음",
+        "attach-transport": "새로 붙음",
+        "attach-internet": "새로 붙음",
+        "attach-link": "새로 붙음",
+        "attach-trailer": "새로 붙음",
+        "detach-app": "떼어 냄",
+        "detach-transport": "떼어 냄",
+        "detach-internet": "떼어 냄",
+        "detach-link": "떼어 냄",
+        "detach-trailer": "떼어 냄"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "보낼 때",
+          "caption": "보낼 때는 위에서 아래로 내려간다. 각 계층은 위 계층이 넘긴 것을 통째로 페이로드로 삼아 그 앞에 자기 헤더를 붙이고, 네트워크 액세스 계층은 뒤에 트레일러도 붙인다. 그래서 아래로 갈수록 헤더가 겹겹이 쌓인다.",
+          "sources": ["protocols-encapsulation.reference-model", "protocols-encapsulation.encapsulation"]
+        },
+        {
+          "id": "receive",
+          "label": "받을 때",
+          "caption": "받을 때는 아래에서 위로 올라간다. 각 계층은 보내는 쪽의 같은 계층이 붙였던 헤더를 떼어 내고 나머지를 위 계층으로 넘기며, 네트워크 액세스 계층은 트레일러도 뗀다. 그래서 가장 나중에 붙은 바깥쪽 헤더부터 떨어져 나가고, 응용 계층까지 떼고 나면 응용 프로그램에 원래의 데이터가 닿는다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        }
+      ],
+      "sources": [
+        "protocols-encapsulation.encapsulation",
+        "protocols-encapsulation.decapsulation",
+        "protocols-encapsulation.tcp-ip-model",
+        "protocols-encapsulation.pdu-names"
+      ]
+    }
+  },
+  "tables": {
+    "reference-models": {
+      "label": "TCP/IP 모델과 OSI 모델의 계층 대응",
+      "columns": ["TCP/IP 모델", "OSI 모델", "하는 일"],
+      "rows": [
+        {
+          "header": "응용 계층",
+          "cells": ["응용, 표현, 세션 계층", "웹 페이지를 주고받는 HTTP처럼 응용 프로그램이 직접 쓰는 프로토콜이 속한다"]
+        },
+        {
+          "header": "전송 계층",
+          "cells": ["전송 계층", "통신의 양 끝에 있는 응용 프로그램에 데이터를 전달한다. TCP는 신뢰성을 더하고 UDP는 더하지 않는다"]
+        },
+        {
+          "header": "인터넷 계층",
+          "cells": ["네트워크 계층", "IP가 IP 주소로 목적지를 가리고, 출발지 호스트에서 목적지 호스트까지 데이터를 나른다"]
+        },
+        {
+          "header": "네트워크 액세스 계층",
+          "cells": ["데이터 링크, 물리 계층", "직접 이어진 네트워크 안에서 통신할 때 쓰는 프로토콜이 속한다. 이더넷이 그 예다"]
+        }
+      ],
+      "columnWidths": ["26%", "28%", "46%"],
+      "sources": ["protocols-encapsulation.osi-model", "protocols-encapsulation.tcp-ip-model"]
+    }
+  },
+  "glossary": []
+}

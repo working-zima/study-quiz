@@ -4,7 +4,7 @@
 
 과목마다 URL 접두사(`#/:subjectId/…`)·데이터 폴더(`src/data/<과목 id>/`)·진행률 키(과목의 `progressKey`)가 따로 있고,
 검색·랜덤·복습은 그 과목 안에서만 돈다. 앱에 어떤 과목이 있는지는 `src/data/index.ts`의 `subjects`가 정한다(ADR-053).
-지금 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03) 하나다.
+지금 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03)와 네트워크(ADR-055) 둘이다.
 
 ## 기술 스택
 
@@ -93,7 +93,8 @@ npm run test     # Vitest (CI 모드, watch 금지)
   이유: `concepts-raw.md`는 외부 참고 자료의 추출 전문이다. 전사하면 저장소를 공개할 때
   원문이 그대로 공개된다. 근거는 ADR-009.
 
-원본 목록과 각 원본에서 무엇을 가져올 수 있는지(ADR-039의 허용 목록 포함)는 `docs/source/CLAUDE.md`에 있다.
+원본 목록과 각 원본에서 무엇을 가져올 수 있는지는 과목마다 따로 있다 — AWS는 `docs/source/CLAUDE.md`(ADR-039의 허용 목록 포함),
+네트워크는 `docs/source/network/CLAUDE.md`.
 원본에 없는 내용을 지어내지 마라.
 
 ## 하위 CLAUDE.md
@@ -102,11 +103,12 @@ npm run test     # Vitest (CI 모드, watch 금지)
 |---|---|
 | `docs/CLAUDE.md` | `docs/` 문서 지도 — PRD·ARCHITECTURE·ADR·UI_GUIDE가 각각 무엇을 정하는가 |
 | `docs/source/CLAUDE.md` | AWS 과목 원본 목록, ADR-039 허용 목록, `exam-types.md`의 쓰임, 전사 금지 |
+| `docs/source/network/CLAUDE.md` | 네트워크 원본 셋(강의·표준·면접), 허용 표준 문서, 충돌하면 표준, 수정 이력, 추출본 다시 만들기 |
 | `src/data/CLAUDE.md` | 과목 폴더 구조, 과목 불변식, 데이터 가드레일 스크립트, 도식 문구의 자리 |
 | `src/lib/CLAUDE.md` | 순수 로직, localStorage에 접근하는 유일한 계층, 진행률 키를 넘기는 쪽 |
 | `src/pages/CLAUDE.md` | 화면 단위, `useSubject()`와 테스트용 props override, 링크의 과목 접두사 |
 | `src/components/CLAUDE.md` | 공용 컴포넌트, 헤더 규칙, 컴포넌트별로 먼저 읽을 문서 절 |
-| `src/components/diagrams/CLAUDE.md` | 도식 규칙이 있는 문서 절, 넘침 검사, 도식은 AWS 개념 전용 |
+| `src/components/diagrams/CLAUDE.md` | 도식 규칙이 있는 문서 절, 넘침 검사, 도식은 자기 과목 폴더의 문구를 읽는다 |
 | `scripts/CLAUDE.md` | harness 실행기 `execute.py`, 에이전트 훅, 데이터 가드레일·감사 스크립트 |
 
 `scripts/execute.py`는 루트 `CLAUDE.md`와 `docs/*.md`만 주입한다.

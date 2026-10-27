@@ -88,6 +88,17 @@ describe('App routes', () => {
     expect(screen.getByText(`1 / ${questions.length}`)).toBeInTheDocument()
   })
 
+  // 네트워크 과목은 주제를 채우기 전에 먼저 등록된다(phase 69). 빈 과목에서도 과목 안 화면이 죽지 않아야 한다.
+  it('주제가 없는 과목의 화면이 열린다', () => {
+    for (const path of ['/network', '/network/random', '/network/review', '/network/search']) {
+      const { unmount } = renderAt(path)
+
+      expect(within(screen.getByRole('banner')).getByRole('link', { name: '네트워크' }), path).toHaveAttribute('href', '/network')
+      expect(currentPath(), path).toBe(path)
+      unmount()
+    }
+  })
+
   it('과목 밖의 알 수 없는 경로를 /로 리다이렉트한다', () => {
     renderAt('/unknown/a/b')
 

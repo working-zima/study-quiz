@@ -1,0 +1,79 @@
+{
+  "diagrams": {
+    "cast-types": {
+      "label": "전송 방식에 따라 메시지를 받는 대상 도식",
+      "svgLabel": "보내는 호스트와 같은 네트워크의 호스트 넷",
+      "question": "보낸 메시지는 누구에게 닿을까?",
+      "idleCaption": "전송 방식을 고르면 보내는 호스트의 메시지가 같은 네트워크의 어느 호스트에게 가는지 볼 수 있다.",
+      "legend": "큰 박스가 네트워크 하나이고, 보내는 호스트와 호스트 넷이 모두 그 안에 있다.",
+      "nodes": {
+        "sender": "보내는 호스트",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "groups": {
+        "network": "같은 네트워크"
+      },
+      "notes": {
+        "destination": "목적지",
+        "group-b": "그룹",
+        "group-c": "그룹"
+      },
+      "scenarios": [
+        {
+          "id": "unicast",
+          "label": "유니캐스트",
+          "caption": "유니캐스트는 받는 대상이 하나다. 목적지 주소가 가리키는 호스트 A만 이 메시지를 자기 것으로 받는다.",
+          "sources": ["network-basics.cast-types"]
+        },
+        {
+          "id": "broadcast",
+          "label": "브로드캐스트",
+          "caption": "브로드캐스트는 받을 호스트를 하나하나 고르지 않고, 같은 네트워크에 있는 모든 호스트에게 보낸다.",
+          "sources": ["network-basics.cast-types"]
+        },
+        {
+          "id": "multicast",
+          "label": "멀티캐스트",
+          "caption": "멀티캐스트는 주소 하나로 가리키는 그룹에게 보낸다. 같은 네트워크에 있어도 그룹에 들지 않은 호스트 A와 D는 받는 대상이 아니다.",
+          "sources": ["network-basics.cast-types"]
+        }
+      ],
+      "sources": ["network-basics.cast-types"]
+    }
+  },
+  "tables": {
+    "performance-metrics": {
+      "label": "네트워크 성능을 나타내는 지표",
+      "columns": ["지표", "무엇을 나타내는가", "어떤 값인가"],
+      "rows": [
+        {
+          "header": "전송 속도",
+          "cells": ["데이터를 얼마나 빠르게 보낼 수 있는지", "기대치. 실제로 잰 처리율과 다르게 나올 수 있다"]
+        },
+        {
+          "header": "처리율",
+          "cells": ["정해 둔 시간 동안 실제로 전송된 데이터 양", "실제로 잰 값. 대역폭을 넘지 못한다"]
+        },
+        {
+          "header": "대역폭",
+          "cells": ["보내고 받을 수 있는 데이터 양의 최대치", "넘을 수 없는 상한. 지금 실제로 오가는 양과 상관없다"]
+        },
+        {
+          "header": "패킷 손실",
+          "cells": ["보낸 패킷 가운데 목적지에 닿지 못하고 도중에 사라진 정도", "잃은 수를 보낸 수에 견준 백분율. ping 결과에 나온다"]
+        }
+      ],
+      "columnWidths": ["22%", "39%", "39%"],
+      "sources": [
+        "network-basics.transmission-speed",
+        "network-basics.throughput",
+        "network-basics.bandwidth",
+        "network-basics.packet-loss"
+      ]
+    }
+  },
+  "glossary": []
+}
