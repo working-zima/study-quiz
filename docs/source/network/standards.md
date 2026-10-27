@@ -197,8 +197,12 @@ https://www.rfc-editor.org/rfc/rfc1122
 - 전송 계층은 응용에 종단 간 통신 서비스를 준다. TCP는 신뢰성 있는 연결형 서비스, UDP는 비연결형 데이터그램 서비스다 — §1.1.3
 - 호스트는 UDP 체크섬을 만들고 검사할 수 있어야 하고, 기본값은 체크섬을 켜는 것이다 — §4.1.3.4
 - 0이 아닌 체크섬이 맞지 않는 UDP 데이터그램을 받으면 알리지 않고 버린다 — §4.1.3.4
+- 호스트는 통신 서비스를 마지막에 받아 쓰는 쪽이고, OSI의 종단 시스템(End-System)에 해당한다 — §1.1.1
+- 네트워크들은 「게이트웨이」 또는 「IP 라우터」라 부르는 패킷 교환 장비로 서로 이어진다 — §1.1.1
+- 다른 호스트가 만든 데이터그램을 넘겨주는 호스트는 그때 게이트웨이(라우터) 노릇을 하는 것이다 — §3.1
+- 제한 브로드캐스트 주소로 보낸 데이터그램은 이어진 그 물리 네트워크의 모든 호스트가 받는다. 멀티캐스트(D 클래스) 주소는 호스트 그룹 하나를 가리킨다 — §3.2.1.3
 
-쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I9, I10
+쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`
 
 ## RFC 8085 — UDP Usage Guidelines
 https://www.rfc-editor.org/rfc/rfc8085
@@ -422,3 +426,48 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
 - `Secure`는 `https:` 요청일 때만(localhost 제외) 쿠키를 보내게 한다 — 「Secure」
 
 쓰인 곳: 강의 수정 이력 L23, L24
+
+## RFC 919 — Broadcasting Internet Datagrams
+https://www.rfc-editor.org/rfc/rfc919
+
+인터넷 표준(STD 5)이다.
+
+- IP 주소의 호스트 번호 자리에 정해 둔 값을 넣으면 특정 호스트가 아니라 브로드캐스트를 뜻한다 — §4
+- 예를 들어 36.255.255.255는 「36번 네트워크의 모든 호스트」를 뜻한다 — §7
+
+쓰인 곳: `network-basics.cast-types`
+
+## RFC 1112 — Host Extensions for IP Multicasting
+https://www.rfc-editor.org/rfc/rfc1112
+
+인터넷 표준(STD 5)이다.
+
+- IP 멀티캐스트는 IP 데이터그램을 「호스트 그룹」에 보내는 것이다. 호스트 그룹은 목적지 IP 주소 하나로 가리키는, 0개 이상의 호스트 묶음이다 — §2
+- 그룹 구성원은 고정되지 않는다 — 호스트는 언제든 그룹에 들어가거나 나올 수 있다 — §2
+- 멀티캐스트 데이터그램도 보통의 유니캐스트 데이터그램과 같은 최선형(best-effort) 신뢰성으로 전달된다 — §2
+
+쓰인 곳: `network-basics.cast-types`
+
+## RFC 1983 — Internet Users' Glossary
+https://www.rfc-editor.org/rfc/rfc1983
+
+FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만 쓴다.
+
+- LAN(Local Area Network)은 몇 제곱킬로미터 이하의 좁은 지역을 맡도록 만든 데이터 네트워크다 — 「Local Area Network (LAN)」
+- WAN(Wide Area Network)은 넓은 지리적 지역을 덮는 네트워크다 — 「Wide Area Network (WAN)」
+- 유니캐스트는 호스트 하나만 자기 것으로 알아보는 주소다 — 「unicast」
+- 브로드캐스트는 네트워크의 모든 노드가 받는 특별한 멀티캐스트이고, 멀티캐스트는 네트워크의 노드 여럿이 받을 수 있는 특별한 목적지 주소를 단 패킷이다 — 「broadcast」, 「multicast」
+- 패킷은 네트워크로 보내는 데이터의 단위다 — 「packet」
+- 노드는 컴퓨터 네트워크에 붙어 있는, 주소로 가리킬 수 있는 장치다 — 「node」
+- 라우터는 네트워크와 네트워크 사이에서 트래픽을 넘겨주는 장치다 — 「router」
+
+쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`
+
+## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
+https://www.rfc-editor.org/rfc/rfc3013
+
+BCP 46이다. **이름 표기만** 가져온다.
+
+- ISP는 Internet Service Provider의 줄임말이다 — 제목, Abstract
+
+쓰인 곳: `network-basics.lan-wan`
