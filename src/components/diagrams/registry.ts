@@ -53,6 +53,7 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
+import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
@@ -115,6 +116,7 @@ import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { UnreachableDiagram } from './UnreachableDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -264,6 +266,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'arp.neighbor-discovery': NeighborDiscoveryDiagram,
   'icmp.ip-limits': IpLimitsDiagram,
   'icmp.icmp': IcmpFeedbackDiagram,
+  'icmp.icmp-message': IcmpMessageDiagram,
+  'icmp.destination-unreachable': UnreachableDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -249,6 +249,7 @@ https://www.rfc-editor.org/rfc/rfc950
 - 2진수는 주소의 비트 배치를 설명하는 그림(§2.1)과 예시의 서브넷 필드 값을 풀어 보일 때(Appendix II) 쓴다 — 마스크를 적는 형식으로 쓰지 않는다 — §2.1, Appendix II
 
 쓰인 곳: 면접 수정 이력 I5
+(phase 73 step 12) `icmp.icmp-message`(§2.2 — 서브넷 마스크는 IP 주소에서 네트워크 번호와 서브넷 번호에 해당하는 자리를 가리키는 마스크 — 한 줄 풀이만)
 
 ## RFC 4632 — Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
 https://www.rfc-editor.org/rfc/rfc4632
@@ -347,9 +348,11 @@ https://www.rfc-editor.org/rfc/rfc9293
 - MSS 옵션으로 알릴 값은 실효 MTU에서 고정된 IP 헤더와 TCP 헤더를 뺀 값이다 — §3.7.1
 - 기대하는 순서 번호보다 뒤의 세그먼트(순서가 어긋나 먼저 온 세그먼트)는 버리지 말고 나중에 처리하도록 가지고 있어야 한다(SHOULD) — §3.10.7.4
 - TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
+- (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) TCP는 포트 번호로 응용 서비스를 가리키고, 호스트 사이의 서로 다른 흐름을 가른다 — §2.2
 
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
+(phase 73 step 12) `icmp.destination-unreachable`(§2.2 — 포트 번호는 한 호스트 안에서 데이터를 받을 응용 프로그램을 가리킨다)
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -359,9 +362,11 @@ https://www.rfc-editor.org/rfc/rfc768
 - 길이 필드는 헤더와 데이터를 합친 UDP 데이터그램의 옥텟 수다 — Fields
 - 체크섬은 의사 헤더·UDP 헤더·데이터에 대한 16비트 1의 보수 합이다. 0으로 보내면 보낸 쪽이 체크섬을 만들지 않았다는 뜻이다 — Fields
 - UDP가 주고받는 단위를 사용자 데이터그램(user datagram)이라 부르고, 그냥 데이터그램이라고도 쓴다. 헤더 그림의 제목은 「User Datagram Header Format」이다 — Format, Fields, User Interface
+- (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) 출발지 포트는 보내는 프로세스(실행 중인 프로그램)의 포트를 가리키고, 목적지 포트는 특정 목적지 IP 주소 안에서 뜻을 갖는다 — Fields
 
 쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(Introduction — 순서 있고 신뢰할 수 있는 전달이 필요한 응용은 TCP를 쓴다)
+(phase 73 step 12) `icmp.destination-unreachable`(Fields — 포트는 호스트 안의 프로그램을 가리킨다, UDP는 TCP와 같은 전송 계층 프로토콜)
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -441,6 +446,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 4) `ip-protocol.fragment-fields`(위 2026-10-28 줄 — 데이터그램은 순서가 바뀌어 닿을 수 있어 조각이 보낸 차례대로 닿는다는 보장이 없다), `ip-protocol.ttl`(§3.2.1.7 — 고리를 끝내는 쓰임과 홉 수의 성질), 문항 n055 해설
 (phase 73 step 5) `ip-protocol.ipv6`(§3.2.1.3 — IPv4에는 그 물리 네트워크의 모든 호스트가 받는 브로드캐스트 주소가 있다), 도식 `ipv6-changes`의 「브로드캐스트 있음」, 문항 n057 해설
 (phase 73 step 11) `icmp.ip-limits`(§1.1.3 — 비연결형, 손상·중복·순서 바뀜·닿지 않음, 위 계층이 신뢰성을 맡는다, 전송 계층은 끝과 끝 사이의 통신, TCP는 연결형), `icmp.icmp`(§1.1.3 — ICMP는 IP의 일부이고 인터넷 계층 프로토콜, §3.2.2 — 오류 메시지와 질의 메시지의 두 갈래, 에코는 질의 메시지), 문항 n070·n071 해설, 도식 `ip-limits`·`icmp-feedback`
+(phase 73 step 12) `icmp.icmp-message`(§3.2.2 — 리다이렉트·시간 초과는 오류 메시지, 에코는 질의 메시지), `icmp.destination-unreachable`(§3.2.2 — 오류 메시지에는 원래 IP 헤더와 데이터 앞 8옥텟 이상을 담는다, §3.2.2.1 — 호스트가 코드 2·3을 보내고, 코드 0·1은 경로가 잠깐 흔들려 생길 수 있어 받은 쪽이 단서로 다룬다), 문항 n073 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -1283,6 +1289,7 @@ Proposed Standard(Standards Track)이다.
 `icmp.destination-unreachable`(§5.2.7.1 — 코드와 보내는 쪽), `icmp.time-exceeded`(§5.3.1 — TTL 0이면 코드 0)
 (phase 73 step 8) `arp.arp`(§5.3.4 — 라우터는 링크 계층 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로 ARP는 같은 LAN 안에서만 쓴다)
 (phase 73 step 9) `arp.arp-across-routers`(§2.2.3 — 표준 문서는 라우터를 게이트웨이라고도 부른다; §2.2.7 — 라우터의 인터페이스는 저마다 IP 주소를 갖는다; §5.2.1.2·§5.3.4 — 구간마다 다음 장치의 MAC 주소를 알아내 새 프레임에 담고 IP 주소는 바꾸지 않는다), 도식 `arp-hops`, 문항 n067 해설
+(phase 73 step 12) `icmp.destination-unreachable`(§5.2.7.1 — 코드 0은 목적지 네트워크로 가는 경로가 없을 때, 1은 직접 이어진 네트워크의 목적지 호스트에 넘길 수 없을 때, 4는 나눠야 하는데 DF가 켜져 있을 때 라우터가 보낸다), 문항 n074 해설, 도식 `destination-unreachable`
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1672,10 +1679,12 @@ https://www.rfc-editor.org/rfc/rfc792
 - 에코(타입 8)·에코 응답(타입 0): 코드 0이다. 에코 응답은 요청의 출발지·목적지 주소를 맞바꾸고 타입을 0으로 바꾸고 체크섬을 다시 계산한 것이다. 에코로 받은 데이터는 에코 응답에 그대로 돌려보낸다.
   식별자와 순서 번호는 보낸 쪽이 응답을 요청과 짝짓는 데 쓴다 — 예를 들어 식별자는 TCP·UDP의 포트처럼 한 세션을 가리키고, 순서 번호는 요청마다 하나씩 늘린다. 응답하는 쪽은 같은 값을 돌려준다 — 「Echo or Echo Reply Message」
 - 메시지 타입 요약: 0 에코 응답, 3 목적지 도달 불가, 4 발신지 억제, 5 리다이렉트, 8 에코, 11 시간 초과, 12 매개변수 문제, 13 타임스탬프, 14 타임스탬프 응답, 15 정보 요청, 16 정보 응답 — 「Summary of Message Types」. 지금의 상태(폐기 여부)는 아래 IANA 항목
+- (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) 발신지 억제(타입 4)는 데이터그램을 처리할 버퍼가 모자란 게이트웨이(라우터)나 목적지 호스트가, 출발지 호스트에게 인터넷으로 보내는 속도를 줄여 달라고 요청하는 메시지였다(지금은 폐기 — 아래 RFC 6633 항목) — 「Source Quench Message」
 
 쓰인 곳: 강의 수정 이력 L34, (phase 73 step 1에서 쓰일 곳) `icmp.icmp`(IP의 일부·프로토콜 1·신뢰성을 만들지 않는다·TTL 칸 없음), `icmp.icmp-message`(타입·코드·체크섬, 타입 번호), `icmp.destination-unreachable`(코드 0~5와 보내는 쪽, 원래 헤더 + 64비트),
 `icmp.time-exceeded`(코드 0·1과 보내는 쪽), `icmp.echo`(그대로 돌려보낸다, 식별자·순서 번호), `exam-notes.md` E11·E12·E13
 (phase 73 step 11) `icmp.icmp`(Introduction — 라우터나 목적지 호스트가 출발지에 알린다, IP의 일부이고 모든 IP 모듈이 구현한다, IP를 믿을 수 있게 만들지 않고 알림이 꼭 돌아온다는 보장도 없다, 신뢰성은 상위 프로토콜이 갖춘다; 「Message Formats」 — 프로토콜 값 1, ICMP 메시지에는 TTL 칸이 없다; 「Destination Unreachable Message」 — 라우터가 목적지 네트워크로 갈 수 없을 때; 「Echo or Echo Reply Message」 — 받은 쪽이 응답을 돌려보낸다), 문항 n070·n071 해설, 도식 `icmp-feedback`
+(phase 73 step 12) `icmp.icmp-message`(「Message Formats」 — 타입·코드·체크섬 뒤는 타입마다 다르고 받은 쪽은 타입부터 읽는다; 각 메시지 — 에코·에코 응답 코드 0, 리다이렉트는 원래 데이터그램을 그대로 넘긴다, 시간 초과 코드 0; 「Source Quench Message」 — 보내는 속도를 줄여 달라는 요청), `icmp.destination-unreachable`(코드 0~4, 0·1·4는 게이트웨이가·2·3은 호스트가 보낸다, 원래 IP 헤더와 데이터 앞 64비트를 담고 포트 번호가 그 안에 있다고 본다, DF가 켜져 나눌 수 없는 데이터그램은 게이트웨이가 버린다), 문항 n072·n073·n074 해설, 도식 `icmp-message`·`destination-unreachable`
 
 ## (phase 73 step 1) IANA — Internet Control Message Protocol (ICMP) Parameters
 https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
@@ -1689,6 +1698,7 @@ https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
   타입 11 — 0 Time to Live exceeded in Transit, 1 Fragment Reassembly Time Exceeded. 타입 5 — 0~3(네트워크·호스트, 서비스 유형별). 타입 9 — 0 보통의 라우터 광고, 16 일반 트래픽을 넘기지 않는 라우터 — 「Codes」 하위 레지스트리
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(지금 쓰는 타입과 폐기된 타입, 「IP 주소 중복」은 ICMP 메시지가 아니다 — [기출 2024-11-03 #6]), `icmp.destination-unreachable`(코드 0~4), `icmp.time-exceeded`(코드 0·1), `exam-notes.md` E13
+(phase 73 step 12) `icmp.icmp-message`(타입 0·3·5·8·9·11, 4·17은 폐기, IP 주소 중복을 알리는 타입은 없다), `icmp.destination-unreachable`(코드 0~4와 그 뒤에 더한 코드), 문항 n072·n073·n074 해설, 도식 `icmp-message`·`destination-unreachable`
 
 ## (phase 73 step 1) RFC 6633 — Deprecation of ICMP Source Quench Messages, RFC 6918 — Formally Deprecating Some ICMPv4 Message Types
 https://www.rfc-editor.org/rfc/rfc6633
@@ -1703,6 +1713,7 @@ https://www.rfc-editor.org/rfc/rfc6918
   명령의 근거는 위 「Linux man-pages」·「Microsoft Learn」 항목
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(4·15~18은 폐기), `exam-notes.md` E13
+(phase 73 step 12) `icmp.icmp-message`(발신지 억제는 혼잡 제어의 수단이었고 효과가 없고 공격에 쓰일 수 있어 폐기 — RFC 6633, 주소 마스크 요청은 서브넷 마스크를 얻으려던 것이고 DHCP 같은 방법이 대신해 폐기 — RFC 6918)
 
 ## (phase 73 step 1) RFC 1256 — ICMP Router Discovery Messages
 https://www.rfc-editor.org/rfc/rfc1256
@@ -1714,6 +1725,7 @@ Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
 - 이 메시지들은 라우팅 프로토콜이 아니다 — 라우터가 있다는 것만 알리고, 어떤 목적지에 어느 라우터가 가장 좋은지는 알리지 않는다(그것은 ICMP 리다이렉트가 알린다) — §2
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(타입 9 — 강의 p154 「라우터가 호스트에게 자신을 알림」은 맞다)
+(phase 73 step 12) `icmp.icmp-message`(§2·§3 — 라우터가 자기 IP 주소를 주기적으로 알리고 호스트가 그것으로 이웃 라우터를 안다), 문항 n072 해설
 
 ## (phase 73 step 1) RFC 4861 — Neighbor Discovery for IP version 6 (IPv6)
 https://www.rfc-editor.org/rfc/rfc4861
