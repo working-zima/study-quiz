@@ -20,12 +20,12 @@ const layerLabels: Record<LayerId, string> = {
 }
 // 계층마다 그 계층을 지난 데이터 단위의 칸. 왼쪽(앞)부터 적는다.
 const rowCells: Record<LayerId, [string, string][]> = {
-  app: [['app-http', 'HTTP 헤더'], ['app-data', '데이터']],
-  transport: [['transport-tcp', 'TCP 헤더'], ['transport-http', 'HTTP 헤더'], ['transport-data', '데이터']],
-  internet: [['internet-ip', 'IP 헤더'], ['internet-tcp', 'TCP 헤더'], ['internet-http', 'HTTP 헤더'], ['internet-data', '데이터']],
+  app: [['app-http', 'HTTP 헤더'], ['app-data', '본문']],
+  transport: [['transport-tcp', 'TCP 헤더'], ['transport-http', 'HTTP 헤더'], ['transport-data', '본문']],
+  internet: [['internet-ip', 'IP 헤더'], ['internet-tcp', 'TCP 헤더'], ['internet-http', 'HTTP 헤더'], ['internet-data', '본문']],
   link: [
     ['link-ethernet', '이더넷 헤더'], ['link-ip', 'IP 헤더'], ['link-tcp', 'TCP 헤더'],
-    ['link-http', 'HTTP 헤더'], ['link-data', '데이터'], ['link-trailer', '트레일러'],
+    ['link-http', 'HTTP 헤더'], ['link-data', '본문'], ['link-trailer', '트레일러'],
   ],
 }
 const labels: Record<string, string> = {
@@ -38,7 +38,7 @@ const cellIds = Object.values(rowCells).flat().map(([id]) => id)
 const changedCells = ['app-http', 'transport-tcp', 'internet-ip', 'link-ethernet', 'link-trailer']
 
 const unitNoteLabels = {
-  'unit-app': '메시지',
+  'unit-app': '데이터',
   'unit-transport': '세그먼트',
   'unit-internet': '패킷',
   'unit-link': '프레임',
@@ -147,7 +147,7 @@ const expectedScenarios = [
     paths: ['link-to-internet', 'internet-to-transport', 'transport-to-app'],
     notes: detachIds,
     tag: '떼어 냄',
-    caption: '받을 때는 아래에서 위로 올라간다. 각 계층은 보내는 쪽의 같은 계층이 붙였던 헤더를 떼어 내고 나머지를 위 계층으로 넘기며, 네트워크 액세스 계층은 트레일러도 뗀다. 그래서 가장 나중에 붙은 바깥쪽 헤더부터 떨어져 나가고, 응용 계층까지 떼고 나면 응용 프로그램에 원래의 데이터가 닿는다.',
+    caption: '받을 때는 아래에서 위로 올라간다. 각 계층은 보내는 쪽의 같은 계층이 붙였던 헤더를 떼어 내고 나머지를 위 계층으로 넘기며, 네트워크 액세스 계층은 트레일러도 뗀다. 그래서 가장 나중에 붙은 바깥쪽 헤더부터 떨어져 나가고, 응용 계층까지 떼고 나면 본문만 남아 응용 프로그램에 닿는다.',
     sources: [`${topicId}.decapsulation`],
   },
 ]

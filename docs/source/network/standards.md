@@ -238,8 +238,8 @@ https://www.rfc-editor.org/rfc/rfc1122
   - IP 데이터그램은 IP의 종단 간 전송 단위로, IP 헤더 뒤에 전송 계층의 메시지가 붙은 것이다. 인터넷 계층을 설명하는 3장에서는 「데이터그램」만 써도 IP 데이터그램을 뜻한다.
   - 패킷은 인터넷 계층과 링크 계층 사이에서 넘겨지는 데이터 단위로, IP 헤더와 데이터를 담는다. IP 데이터그램 전체일 수도, 그 조각일 수도 있다.
   - 프레임은 링크 계층 프로토콜의 전송 단위로, 링크 계층 헤더 뒤에 패킷이 붙은 것이다.
-  - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 메시지를 응용 계층의 단위(HTTP 메시지)로 쓰므로
-    이 정의는 개념 본문에 옮기지 않는다 — 응용 계층 쪽 근거는 아래 RFC 9110 §1.3이다.
+  - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 응용 계층의 단위를 강의(p37)대로 데이터라 부르고
+    메시지는 HTTP 표준의 이름(HTTP 메시지)으로만 덧붙이므로(ADR-058) 이 정의는 개념 본문에 옮기지 않는다 — HTTP 메시지의 근거는 아래 RFC 9110 §1.3이다.
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2
@@ -397,6 +397,10 @@ https://www.rfc-editor.org/rfc/rfc9110
 
 - HTTP는 Hypertext Transfer Protocol이다 — Abstract
 - HTTP에서 주고받는 단위는 메시지이고, 메시지는 요청이거나 응답이다. 클라이언트가 요청 메시지를 만들어 보내고, 서버는 하나 이상의 응답 메시지로 답한다 — §1.3, §3.4
+- (2026-10-28) HTTP 메시지는 넷으로 이루어진다. 메시지를 설명하고 보낼 곳을 정하는 제어 데이터, 그 제어 데이터를 넓히는 이름·값 짝의 헤더, 본문(content),
+  본문을 보내는 동안 얻은 정보를 싣는 트레일러다 — §6
+- (2026-10-28) 본문은 헤더 뒤에 보내는 바이트의 흐름이다. HTTP 메시지는 흔히 자원의 표현, 곧 자원의 상태를 나타내는 정보의 전체나 일부를 본문에 싣는다.
+  GET 요청에 대한 200 응답이면 본문은 요청한 자원의 지금 상태를 나타낸다 — §6.4, §6.4.1, §3.2
 - 1xx, 204, 304 응답은 본문(content)을 담지 않는다 — §6.4.1
 - Connection 필드는 지금 연결에만 쓸 제어 옵션을 나열한다. 바로 다음 수신자에게만 뜻이 있는(hop-by-hop) 필드를 끝에서 끝까지 가는 필드와 가르는 데 쓴다 — §7.6.1
 - 콘텐츠 코딩은 주로 표현을 압축하려고 쓴다. 이 문서가 정의하는 것은 compress, deflate, gzip이다 — §8.4.1(§8.4.1.1~§8.4.1.3)
@@ -420,7 +424,8 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
 
-쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
+`protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
