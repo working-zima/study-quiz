@@ -93,16 +93,18 @@ describe('참조 모델 대응표', () => {
     expect(widths).toEqual(referenceModels.columnWidths)
   })
 
-  it.each([2, 4] as const)('공유 본문 h%i에서 TCP/IP 모델 개념의 본문 바로 뒤에 비교표 figure 하나가 나온다', (headingLevel) => {
+  it.each([2, 4] as const)('공유 본문 h%i에서 TCP/IP 모델 개념의 본문 뒤에 도식이, 그 뒤에 비교표 figure가 나온다', (headingLevel) => {
     const concept = concepts.find(({ id }) => id === referenceModels.conceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
 
     const table = screen.getByRole('figure', { name: referenceModels.label })
+    const diagram = screen.getByRole('figure', { name: 'OSI 모델의 일곱 계층과 TCP/IP 모델의 네 계층을 짝지은 도식' })
     const article = table.closest('article')!
     expect(article).toHaveAttribute('id', concept.id)
     expect(within(article).getByRole('heading', { level: headingLevel, name: concept.name })).toBeInTheDocument()
-    expect(screen.getAllByRole('figure')).toEqual([table])
-    expect(table.previousElementSibling?.textContent).toBe(concept.paragraphs.map(stripListMarker).join('').replace(/\*\*/gu, ''))
+    expect(screen.getAllByRole('figure')).toEqual([diagram, table])
+    expect(diagram.previousElementSibling?.textContent).toBe(concept.paragraphs.map(stripListMarker).join('').replace(/\*\*/gu, ''))
+    expect(table.previousElementSibling).toBe(diagram)
     expect(article.lastElementChild).toBe(table)
     expect(within(table).getAllByRole('columnheader')).toHaveLength(referenceModels.columns.length)
     expect(within(table).getAllByRole('rowheader')).toHaveLength(referenceModels.rows.length)

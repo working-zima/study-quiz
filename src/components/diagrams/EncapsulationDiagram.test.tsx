@@ -9,7 +9,7 @@ import { ConceptList } from '../ConceptList'
 import { EncapsulationDiagram, encapsulationScenarios } from './EncapsulationDiagram'
 
 const topicId = 'protocols-encapsulation'
-const anchorConceptId = `${topicId}.decapsulation`
+const anchorConceptId = `${topicId}.encapsulation`
 const layerIds = ['app', 'transport', 'internet', 'link'] as const
 type LayerId = typeof layerIds[number]
 const layerLabels: Record<LayerId, string> = {
@@ -593,7 +593,7 @@ describe('EncapsulationDiagram', () => {
     }
   })
 
-  it.each([2, 4] as const)('공유 본문 h%i에서 역캡슐화 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
+  it.each([2, 4] as const)('공유 본문 h%i에서 캡슐화 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
     const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
     const figure = screen.getByRole('figure', { name: figureLabel })

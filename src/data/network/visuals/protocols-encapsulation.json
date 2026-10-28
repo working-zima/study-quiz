@@ -1,5 +1,278 @@
 {
   "diagrams": {
+    "packet-switching": {
+      "label": "패킷 교환 네트워크에서 패킷이 건너가는 길 도식",
+      "svgLabel": "호스트 A와 호스트 C가 패킷 스위치 셋을 거쳐 호스트 B와 이어진 패킷 교환 네트워크",
+      "question": "큰 파일은 네트워크를 어떻게 건너갈까?",
+      "idleCaption": "패킷 교환 네트워크에서는 보낼 정보를 한 덩어리째 보내지 않고, 패킷이라는 작은 데이터 묶음 여러 개로 나눠 보낸다. 가운데의 패킷 스위치는 들어온 패킷을 받아 다음 장치로 넘겨준다. 버튼을 고르면 패킷이 어떤 길로 가는지 볼 수 있다.",
+      "legend": "상자는 호스트와 패킷 스위치, 가는 선은 장치와 장치를 잇는 통신 링크, 화살표는 패킷이 가는 방향이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "switch-1": "패킷 스위치",
+        "host-c": "호스트 C",
+        "switch-3": "패킷 스위치",
+        "switch-2": "패킷 스위치",
+        "host-b": "호스트 B"
+      },
+      "notes": {
+        "split-out": "나눠 보냄",
+        "split-in": "다시 합침",
+        "via-2": "패킷 1·3",
+        "via-3": "패킷 2",
+        "shared": "함께 지나감"
+      },
+      "scenarios": [
+        {
+          "id": "split",
+          "label": "나눠 보내기",
+          "caption": "호스트 A가 큰 파일을 패킷 여러 개로 나눠 내보낸다. 데이터그램 방식에서는 패킷 스위치가 패킷을 하나하나 따로 보고 넘겨줄 길을 정하므로, 같은 파일을 나눈 패킷이라도 패킷 1·3과 패킷 2처럼 서로 다른 길로 갈 수 있고 보낸 순서와 다른 순서로 도착하기도 한다. 호스트 B는 따로 도착한 패킷들을 모아 원래 파일로 합친다. 가상 회선 방식이라면 패킷들은 연결을 세울 때 정한 경로 하나를 따라간다.",
+          "sources": ["protocols-encapsulation.packet-switching"]
+        },
+        {
+          "id": "share",
+          "label": "링크 나눠 쓰기",
+          "caption": "호스트 A가 보낸 패킷과 호스트 C가 보낸 패킷이 섞여 같은 통신 링크를 함께 지나간다. 패킷 교환 네트워크는 두 호스트만 쓰는 회선을 잡아 두지 않으므로, 한 호스트가 링크를 혼자 차지하지 않고 여러 호스트의 패킷이 링크를 나눠 쓴다.",
+          "sources": ["protocols-encapsulation.packet-switching"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.packet-switching"]
+    },
+    "packet-parts": {
+      "label": "패킷을 이루는 헤더·페이로드·트레일러 도식",
+      "svgLabel": "왼쪽부터 헤더, 페이로드, 트레일러를 이어 붙인 패킷 하나",
+      "question": "패킷 하나는 어떤 부분으로 이루어질까?",
+      "idleCaption": "패킷 하나에는 실어 보낼 내용인 페이로드만 들어 있지 않다. 그 내용을 목적지까지 전달하고 받는 쪽이 처리하는 데 필요한 부가 정보가 앞이나 뒤에 함께 붙는다. 앞에 붙는 것이 헤더, 뒤에 붙는 것이 트레일러다. 버튼을 고르면 트레일러가 언제 붙는지 볼 수 있다.",
+      "legend": "이어 붙은 상자들이 패킷 하나이고, 왼쪽이 앞이다. 상자의 길이는 실제 크기와 상관없다.",
+      "nodes": {
+        "header": "헤더",
+        "payload": "페이로드",
+        "trailer": "트레일러"
+      },
+      "notes": {
+        "role-header": "앞에 붙는 부가 정보",
+        "role-payload": "실어 보낼 내용",
+        "role-trailer": "뒤에 붙는 부가 정보",
+        "trailer-used": "쓰는 프로토콜이면 붙음",
+        "trailer-absent": "붙지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "with-trailer",
+          "label": "트레일러를 쓰는 프로토콜",
+          "caption": "트레일러를 쓰는 프로토콜을 따르는 패킷에는 페이로드 앞의 헤더에 더해, 페이로드 뒤에도 부가 정보인 트레일러가 붙는다. 받는 쪽이 끝내 쓰려는 것은 가운데의 페이로드이고, 헤더와 트레일러는 주고받는 양쪽이 그 패킷을 어떻게 다룰지 맞추는 데 쓰인다.",
+          "sources": ["protocols-encapsulation.packet"]
+        },
+        {
+          "id": "without-trailer",
+          "label": "트레일러가 없는 패킷",
+          "caption": "트레일러는 모든 패킷에 붙지 않고, 트레일러를 쓰는 프로토콜을 따를 때만 붙는다. 그래서 헤더와 페이로드만으로 이루어진 패킷도 있다.",
+          "sources": ["protocols-encapsulation.packet"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.packet"]
+    },
+    "circuit-switching": {
+      "label": "회선 교환 네트워크에서 잡아 둔 회선 도식",
+      "svgLabel": "호스트 A와 호스트 B가 네트워크 장비를 거쳐 회선을 잡아 둔 회선 교환 네트워크와, 그 회선에 이어진 호스트 C",
+      "question": "잡아 둔 회선에 다른 호스트가 끼어들 수 있을까?",
+      "idleCaption": "회선 교환 네트워크에서는 호스트 A와 B가 데이터를 주고받기 전에 먼저 연결을 세워, 가운데의 네트워크 장비들을 거쳐 이어지는 회선을 정해 둔다. 장치의 자리는 패킷 교환 네트워크 도식과 같다. 버튼을 고르면 잡아 둔 회선을 호스트 C가 쓸 수 있는지 볼 수 있다.",
+      "legend": "상자는 호스트와 네트워크 장비, 가는 선은 장치와 장치를 잇는 연결, 화살표는 데이터가 가는 방향이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "equipment-1": "네트워크 장비",
+        "host-c": "호스트 C",
+        "equipment-3": "네트워크 장비",
+        "equipment-2": "네트워크 장비",
+        "host-b": "호스트 B"
+      },
+      "notes": {
+        "circuit-only": "두 호스트만 씀",
+        "circuit-unused": "쓰이지 않고 남음",
+        "c-blocked": "끼어들 수 없음"
+      },
+      "scenarios": [
+        {
+          "id": "in-use",
+          "label": "보내는 중",
+          "caption": "호스트 A가 잡아 둔 회선으로 호스트 B에 데이터를 보낸다. 이 회선은 통신하는 동안 두 호스트만 쓰므로, 호스트 C는 보낼 데이터가 있어도 도중에 끼어들어 함께 쓸 수 없다. 대신 회선을 다른 호스트와 나눠 쓰지 않으니 전송률, 곧 1초에 보낼 수 있는 데이터 양을 보장받을 수 있다.",
+          "sources": ["protocols-encapsulation.circuit-switching"]
+        },
+        {
+          "id": "idle",
+          "label": "잠시 쉬는 중",
+          "caption": "호스트 A와 B가 잠시 아무것도 주고받지 않는 동안에도, 잡아 둔 회선은 여전히 두 호스트만 쓸 수 있어 호스트 C가 쓰지 못한다. 그래서 회선이 쓰이지 않고 남는 시간이 생기고, 회선 이용률이 떨어진다.",
+          "sources": ["protocols-encapsulation.circuit-switching"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.circuit-switching"]
+    },
+    "protocol-match": {
+      "label": "통신하는 양쪽이 따르는 프로토콜과 프로토콜마다 다른 헤더 도식",
+      "svgLabel": "정보를 주고받는 호스트 A와 호스트 B, 그리고 UDP 헤더와 TCP 헤더를 각각 데이터 앞에 붙인 칸 둘",
+      "question": "주고받는 두 호스트는 어떤 규칙을 따를까?",
+      "idleCaption": "프로토콜은 통신하는 양쪽이 정보를 어떻게 주고받을지 미리 합의해 둔 규칙이다. 위는 정보를 주고받는 두 호스트이고, 아래는 두 프로토콜이 데이터 앞에 붙이는 헤더다. 버튼을 고르면 양쪽이 어떤 프로토콜을 쓰는지, 프로토콜이 다르면 헤더가 어떻게 달라지는지 볼 수 있다.",
+      "legend": "상자는 호스트, 화살표는 정보가 오가는 방향, 호스트 아래 글자는 그 호스트가 따르는 프로토콜이다. 아래 이어 붙은 칸은 헤더와 데이터이고, 헤더 칸의 길이는 항목이 많고 적음만 견준 것이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "udp-header": "UDP 헤더",
+        "udp-data": "데이터",
+        "tcp-header": "TCP 헤더",
+        "tcp-data": "데이터"
+      },
+      "notes": {
+        "request": "요청",
+        "response": "응답",
+        "a-http": "HTTP",
+        "b-http": "HTTP",
+        "a-ftp": "FTP",
+        "b-ftp": "FTP",
+        "udp-items": "항목 넷뿐",
+        "tcp-items": "항목 열 개 넘음"
+      },
+      "scenarios": [
+        {
+          "id": "web",
+          "label": "웹 페이지",
+          "caption": "호스트 A의 웹 브라우저가 HTTP로 웹 페이지를 요청하면, 호스트 B의 웹 서버도 HTTP로 응답한다. 받는 쪽은 보내는 쪽이 어떤 규칙으로 데이터를 만들었는지 알아야 그 데이터를 제대로 읽을 수 있으므로, 통신은 같은 프로토콜을 쓰는 쪽끼리 이루어진다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        },
+        {
+          "id": "file",
+          "label": "파일",
+          "caption": "파일을 주고받을 때는 HTTP 대신 FTP를 쓰고, 이때도 양쪽이 같은 FTP를 따른다. 웹 페이지에는 HTTP, 파일에는 FTP처럼 하려는 일마다 쓰는 프로토콜이 따로 있다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        },
+        {
+          "id": "header",
+          "label": "헤더 비교",
+          "caption": "TCP와 UDP는 둘 다 호스트 사이에서 데이터를 나르는 프로토콜이지만, UDP 헤더에는 항목이 넷뿐이고 TCP 헤더에는 열 개가 넘는 항목이 들어간다. 헤더에 어떤 항목을 담을지는 프로토콜이 정하기 때문이다. 보내는 쪽은 그 규칙대로 헤더를 채우고 받는 쪽은 같은 규칙대로 읽으므로, 프로토콜이 다르면 헤더에 담기는 내용도 달라진다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.protocol"]
+    },
+    "layer-journey": {
+      "label": "보낼 때와 받을 때 계층을 지나는 방향 도식",
+      "svgLabel": "네 계층으로 나뉜 보내는 호스트와 받는 호스트가 맨 아래 계층에서 매체로 이어진 모습",
+      "question": "보낸 정보는 계층을 어떤 순서로 지날까?",
+      "idleCaption": "네트워크 참조 모델은 정보를 보내고 받는 과정을 몇 개의 계층으로 나누고, 계층마다 맡을 일을 정해 둔다. 이 그림은 계층을 넷으로 나눈 경우다. 맨 위 계층은 웹 브라우저 같은 응용 프로그램과 정보를 주고받고, 맨 아래 계층은 유선이나 무선 매체로 정보를 실어 나른다. 버튼을 고르면 보낼 때와 받을 때 계층을 어느 방향으로 지나는지 볼 수 있다.",
+      "legend": "큰 박스는 호스트 하나이고, 그 안의 상자가 아래에서 위로 쌓인 계층이다. 가운데 매체 상자로 이어진 가는 선은 두 호스트를 잇는 통로, 화살표는 정보가 지나는 방향이다.",
+      "nodes": {
+        "sender-1": "맨 위 계층",
+        "sender-2": "위에서 둘째 계층",
+        "sender-3": "위에서 셋째 계층",
+        "sender-4": "맨 아래 계층",
+        "medium": "매체",
+        "receiver-1": "맨 위 계층",
+        "receiver-2": "위에서 둘째 계층",
+        "receiver-3": "위에서 셋째 계층",
+        "receiver-4": "맨 아래 계층"
+      },
+      "groups": {
+        "sender": "보내는 호스트",
+        "receiver": "받는 호스트"
+      },
+      "notes": {
+        "medium-kind": "케이블이나 무선"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "보낼 때",
+          "caption": "보내는 호스트에서는 정보가 맨 위 계층에서 출발해 한 계층씩 아래로 내려가며 처리된다. 각 계층은 정해진 자기 일만 하고 나머지는 다른 계층에 맡긴다. 맨 아래 계층에 이르면 정보는 신호가 되어 케이블이나 무선 같은 매체로 나간다.",
+          "sources": ["protocols-encapsulation.reference-model"]
+        },
+        {
+          "id": "receive",
+          "label": "받을 때",
+          "caption": "받는 호스트에서는 방향이 반대다. 매체로 들어온 신호가 맨 아래 계층에서 출발해 한 계층씩 위로 올라가며 처리되고, 맨 위 계층에 이르면 웹 브라우저 같은 응용 프로그램에 닿는다.",
+          "sources": ["protocols-encapsulation.reference-model"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.reference-model"]
+    },
+    "osi-stack": {
+      "label": "OSI 모델의 일곱 계층과 계층마다 맡는 일 도식",
+      "svgLabel": "물리 계층부터 응용 계층까지 아래에서 위로 쌓인 OSI 모델의 일곱 계층",
+      "question": "OSI 모델의 일곱 계층은 어떤 순서로 쌓여 있을까?",
+      "idleCaption": "OSI 모델은 통신 과정을 일곱 계층으로 나눈 국제 표준 참조 모델이다. 맨 아래 물리 계층부터 데이터 링크·네트워크·전송·세션·표현 계층을 거쳐 맨 위 응용 계층까지 차례로 쌓여 있고, 계층마다 맡는 일이 따로 있다. 데이터 링크 계층은 오류를 검출하지만, 검출한 오류를 고칠지는 그 계층의 프로토콜마다 다르다.",
+      "legend": "상자 하나가 계층 하나이고, 아래에서 위로 쌓여 있다. 상자 옆 글은 그 계층이 맡는 일이다.",
+      "nodes": {
+        "physical": "물리 계층",
+        "data-link": "데이터 링크 계층",
+        "network": "네트워크 계층",
+        "transport": "전송 계층",
+        "session": "세션 계층",
+        "presentation": "표현 계층",
+        "application": "응용 계층"
+      },
+      "notes": {
+        "role-physical": "비트를 신호로 바꿔 실어 나르기",
+        "role-data-link": "프레임으로 묶기·오류 검출하기",
+        "role-network": "주소로 목적지까지 경로 정하기",
+        "role-transport": "양 끝 호스트 사이에 전달하기",
+        "role-session": "대화 열기·차례 맞추기·닫기",
+        "role-presentation": "표현 형식을 공통으로 맞추기",
+        "role-application": "응용 프로그램이 쓰는 창구"
+      },
+      "scenarios": [],
+      "sources": ["protocols-encapsulation.osi-model"]
+    },
+    "layer-mapping": {
+      "label": "OSI 모델의 일곱 계층과 TCP/IP 모델의 네 계층을 짝지은 도식",
+      "svgLabel": "왼쪽에 OSI 모델의 일곱 계층, 오른쪽에 TCP/IP 모델의 네 계층을 위에서부터 쌓고 하는 일이 비슷한 계층끼리 선으로 이은 모습",
+      "question": "OSI의 일곱 계층은 TCP/IP의 네 계층과 어떻게 짝지어질까?",
+      "idleCaption": "인터넷에서 쓰는 TCP/IP 모델은 계층이 넷이고 OSI 모델은 일곱이라, 두 모델의 계층은 일대일로 꼭 맞아떨어지지는 않는다. 선은 두 모델에서 하는 일이 비슷한 자리끼리 짝지은 것이다. TCP/IP 모델의 계층을 고르면 OSI 모델의 어느 계층과 짝지어지는지 볼 수 있다.",
+      "legend": "왼쪽 박스는 OSI 모델, 오른쪽 박스는 TCP/IP 모델이고, 두 박스 모두 맨 위가 응용 계층이다. 선은 하는 일이 비슷한 계층끼리 이은 것이고, 점선은 강의가 정리한 짝이라 표준 문서가 정한 대응이 아니다.",
+      "nodes": {
+        "osi-application": "응용 계층",
+        "osi-presentation": "표현 계층",
+        "osi-session": "세션 계층",
+        "osi-transport": "전송 계층",
+        "osi-network": "네트워크 계층",
+        "osi-data-link": "데이터 링크 계층",
+        "osi-physical": "물리 계층",
+        "tcpip-application": "응용 계층",
+        "tcpip-transport": "전송 계층",
+        "tcpip-internet": "인터넷 계층",
+        "tcpip-network-access": "네트워크 액세스 계층"
+      },
+      "groups": {
+        "osi": "OSI 모델",
+        "tcpip": "TCP/IP 모델"
+      },
+      "notes": {
+        "session-note": "세션 계층은 강의의 정리"
+      },
+      "scenarios": [
+        {
+          "id": "application",
+          "label": "응용 계층",
+          "caption": "TCP/IP 모델의 응용 계층 자리에는 OSI 모델의 응용·표현·세션 계층을 놓는다. 다만 표준 문서는 TCP/IP의 응용 계층이 OSI 모델의 표현 계층과 응용 계층이 하던 일을 합친 것이라고만 할 뿐, 세션 계층은 말하지 않는다. TCP/IP 모델에는 처음부터 세션 계층에 해당하는 계층이 없었고, 세션 계층까지 이 자리에 둔 것은 강의의 정리다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        },
+        {
+          "id": "transport",
+          "label": "전송 계층",
+          "caption": "TCP/IP 모델의 전송 계층은 OSI 모델의 전송 계층에 해당한다. 다만 OSI 모델은 신뢰성 있는 전달을 이 계층의 몫으로 정의하지만, TCP/IP 모델의 전송 계층에는 신뢰성을 더하는 TCP와 함께 신뢰성을 더하지 않는 UDP도 있다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model", "protocols-encapsulation.osi-model"]
+        },
+        {
+          "id": "internet",
+          "label": "인터넷 계층",
+          "caption": "TCP/IP 모델의 인터넷 계층은 OSI 모델의 네트워크 계층에 해당한다. 이 계층에서 IP는 IP 주소로 목적지를 가리고, 두 호스트가 서로 다른 네트워크에 있어도 그 사이의 네트워크들을 거쳐 출발지 호스트에서 목적지 호스트까지 데이터를 나른다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        },
+        {
+          "id": "network-access",
+          "label": "네트워크 액세스 계층",
+          "caption": "TCP/IP 모델의 네트워크 액세스 계층은 OSI 모델의 물리 계층과 데이터 링크 계층이 나눠 맡던 일을 함께 맡는다. 호스트가 자기가 직접 이어진 네트워크 안에서 통신할 때 쓰는 이더넷 같은 프로토콜이 이 계층에 속한다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.tcp-ip-model", "protocols-encapsulation.osi-model"]
+    },
     "encapsulation": {
       "label": "계층을 지날 때 헤더가 붙고 떨어지는 과정 도식",
       "svgLabel": "웹 페이지를 TCP로 보낼 때 TCP/IP 모델의 네 계층과 계층마다의 데이터 단위",
@@ -63,6 +336,98 @@
         "protocols-encapsulation.tcp-ip-model",
         "protocols-encapsulation.pdu-names"
       ]
+    },
+    "decapsulation-peel": {
+      "label": "받은 데이터에서 헤더를 바깥쪽부터 떼어 내는 순서 도식",
+      "svgLabel": "웹 페이지를 TCP로 받을 때 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·데이터·트레일러가 차례로 이어 붙은 데이터 한 덩어리",
+      "question": "받은 데이터에서 헤더는 어떤 순서로 떨어질까?",
+      "idleCaption": "웹 페이지를 TCP로 받고, 네트워크 액세스 계층에서 이더넷을 쓰는 경우다. 받은 데이터는 아래 계층에서 위 계층으로 한 계층씩 올라가고, 각 계층은 보내는 쪽의 같은 계층이 붙였던 헤더를 떼어 낸다. 계층을 아래부터 차례로 고르면 어느 칸이 어떤 순서로 떨어지는지 볼 수 있다.",
+      "legend": "이어 붙은 상자들이 받은 데이터 한 덩어리이고, 왼쪽이 앞이다. 흐린 칸은 아래 계층이 이미 떼어 낸 것이다.",
+      "nodes": {
+        "ethernet": "이더넷 헤더",
+        "ip": "IP 헤더",
+        "tcp": "TCP 헤더",
+        "http": "HTTP 헤더",
+        "data": "데이터",
+        "trailer": "트레일러"
+      },
+      "notes": {
+        "detach-ethernet": "떼어 냄",
+        "detach-ip": "떼어 냄",
+        "detach-tcp": "떼어 냄",
+        "detach-http": "떼어 냄",
+        "detach-trailer": "떼어 냄",
+        "arrive-data": "응용 프로그램에 닿음"
+      },
+      "scenarios": [
+        {
+          "id": "network-access",
+          "label": "네트워크 액세스 계층",
+          "caption": "맨 아래 네트워크 액세스 계층이 맨 먼저 이더넷 헤더와 트레일러를 떼어 내고, 나머지를 위의 인터넷 계층으로 넘긴다. 이더넷 헤더는 보낼 때 맨 마지막에 붙은 가장 바깥쪽 헤더라, 받을 때는 맨 먼저 떨어진다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "internet",
+          "label": "인터넷 계층",
+          "caption": "인터넷 계층은 자기 계층의 헤더인 IP 헤더만 떼어 내고 나머지를 전송 계층으로 넘긴다. 그 안의 TCP 헤더와 HTTP 헤더는 각자의 계층에 닿을 때까지 페이로드 안에 그대로 들어 있다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "transport",
+          "label": "전송 계층",
+          "caption": "전송 계층은 TCP 헤더를 떼어 내고 나머지를 응용 계층으로 넘긴다. 보내는 쪽의 전송 계층이 TCP 헤더에 적어 둔 내용은 받는 쪽의 전송 계층이 같은 TCP의 규칙대로 읽어 처리하므로, 이 헤더를 떼는 것도 같은 전송 계층이다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "application",
+          "label": "응용 계층",
+          "caption": "응용 계층까지 HTTP 헤더를 떼어 내면 데이터만 남아, 웹 브라우저 같은 응용 프로그램에 원래의 데이터가 닿는다. 보낼 때 맨 처음 붙은 HTTP 헤더가 맨 나중에 떨어졌으니, 헤더는 붙은 순서의 반대로 떨어진 셈이다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.decapsulation"]
+    },
+    "pdu-names": {
+      "label": "TCP/IP 모델의 계층마다 데이터 단위를 부르는 이름 도식",
+      "svgLabel": "TCP/IP 모델의 네 계층과, 같은 줄에 놓인 계층마다의 데이터 단위 이름",
+      "question": "계층마다 데이터 단위를 무엇이라 부를까?",
+      "idleCaption": "데이터가 계층을 지나며 헤더가 하나씩 붙으므로, 각 계층에서 만들어진 덩어리는 담고 있는 헤더가 서로 다르다. 그래서 TCP/IP 모델의 계층마다 데이터 단위를 다른 이름으로 부르고, 이름만 들어도 어느 헤더까지 붙어 있는지 알 수 있다. 전송 계층에서 쓰는 프로토콜을 고르면 그 계층의 이름이 어떻게 갈리는지 볼 수 있다.",
+      "legend": "왼쪽 박스는 TCP/IP 모델의 네 계층이고 맨 위가 응용 계층이다. 오른쪽 박스에서 같은 줄에 놓인 이름이 그 계층의 데이터 단위다.",
+      "nodes": {
+        "app": "응용 계층",
+        "transport": "전송 계층",
+        "internet": "인터넷 계층",
+        "network-access": "네트워크 액세스 계층",
+        "message": "메시지",
+        "segment": "세그먼트",
+        "datagram": "데이터그램",
+        "packet": "패킷",
+        "frame": "프레임"
+      },
+      "groups": {
+        "layers": "TCP/IP 모델의 계층",
+        "units": "데이터 단위"
+      },
+      "notes": {
+        "by-tcp": "TCP가 만듦",
+        "by-udp": "UDP가 만듦",
+        "packet-standard": "표준 이름: IP 데이터그램"
+      },
+      "scenarios": [
+        {
+          "id": "tcp",
+          "label": "TCP를 쓸 때",
+          "caption": "전송 계층에서 TCP를 쓰면, 응용 계층이 넘긴 데이터 앞에 TCP 헤더가 붙은 단위를 세그먼트라 부른다. 인터넷 계층은 세그먼트 앞에 IP 헤더를 붙여 패킷을 만들고, 네트워크 액세스 계층은 패킷 앞에 헤더를, 뒤에 트레일러를 붙여 프레임을 만든다.",
+          "sources": ["protocols-encapsulation.pdu-names"]
+        },
+        {
+          "id": "udp",
+          "label": "UDP를 쓸 때",
+          "caption": "같은 전송 계층이라도 UDP를 쓰면, 응용 계층이 넘긴 데이터 앞에 UDP 헤더가 붙은 단위를 데이터그램이라 부른다. 어느 프로토콜을 썼는지에 따라 붙은 헤더가 다르기 때문이다. 메시지·패킷·프레임은 TCP를 쓸 때와 같은 이름이다.",
+          "sources": ["protocols-encapsulation.pdu-names"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.pdu-names"]
     }
   },
   "tables": {

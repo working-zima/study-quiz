@@ -7,11 +7,15 @@ import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
+import { BandwidthDiagram } from './BandwidthDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
+import { ClientServerDiagram } from './ClientServerDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
@@ -25,22 +29,37 @@ import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
+import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { InternetworkDiagram } from './InternetworkDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
+import { LanWanDiagram } from './LanWanDiagram'
+import { LayerJourneyDiagram } from './LayerJourneyDiagram'
+import { LayerMappingDiagram } from './LayerMappingDiagram'
+import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
+import { NetworkStructureDiagram } from './NetworkStructureDiagram'
+import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
+import { OsiStackDiagram } from './OsiStackDiagram'
+import { PacketLossDiagram } from './PacketLossDiagram'
+import { PacketPartsDiagram } from './PacketPartsDiagram'
+import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
+import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { ReferenceModelTable } from './protocolsTables'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
@@ -57,6 +76,8 @@ import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { ThroughputDiagram } from './ThroughputDiagram'
+import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -140,10 +161,29 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ecs-eks-fargate.eks-anywhere': EksHybridTable,
   'ecs-eks-fargate.eks-irsa': PodPermissionsDiagram,
   'ecs-eks-fargate.app2container': ComputeChoiceTable,
+  'network-basics.computer-network': NetworkStructureDiagram,
+  'network-basics.host': HostEndpointsDiagram,
+  'network-basics.network-equipment': NodeRoleDiagram,
+  'network-basics.communication-link': LinkTypesDiagram,
+  'network-basics.client-server': ClientServerDiagram,
+  'network-basics.internet': InternetworkDiagram,
   'network-basics.cast-types': CastTypesDiagram,
-  'network-basics.packet-loss': PerformanceMetricsTable,
-  'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
-  'protocols-encapsulation.decapsulation': EncapsulationDiagram,
+  'network-basics.lan-wan': LanWanDiagram,
+  'network-basics.traffic': TrafficLoadDiagram,
+  'network-basics.transmission-speed': ExpectedSpeedDiagram,
+  'network-basics.throughput': ThroughputDiagram,
+  'network-basics.bandwidth': BandwidthDiagram,
+  'network-basics.packet-loss': [PacketLossDiagram, PerformanceMetricsTable],
+  'protocols-encapsulation.packet-switching': PacketSwitchingDiagram,
+  'protocols-encapsulation.packet': PacketPartsDiagram,
+  'protocols-encapsulation.circuit-switching': CircuitSwitchingDiagram,
+  'protocols-encapsulation.protocol': ProtocolMatchDiagram,
+  'protocols-encapsulation.reference-model': LayerJourneyDiagram,
+  'protocols-encapsulation.osi-model': OsiStackDiagram,
+  'protocols-encapsulation.tcp-ip-model': [LayerMappingDiagram, ReferenceModelTable],
+  'protocols-encapsulation.encapsulation': EncapsulationDiagram,
+  'protocols-encapsulation.decapsulation': DecapsulationDiagram,
+  'protocols-encapsulation.pdu-names': PduNamesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

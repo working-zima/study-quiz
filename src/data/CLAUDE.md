@@ -49,3 +49,5 @@ src/data/
 - `network/visuals.test.ts`가 지키는 것: 주제 키와 `sources`가 실제 네트워크 주제·개념 id, 표의 열 셋 이하와 `columnWidths`,
   시나리오 id 유일, `glossary`는 비운다(약어 툴팁은 AWS VPC 주제에만, ADR-037).
 - 전사 검사는 `node scripts/check-verbatim.mjs --subject network`다. 개념 요약·문단에 더해 문항의 문제문·해설도 본다.
+- 개념마다 도식이 하나 이상이다. 비교표는 도식을 대신하지 않는다. 글은 `docs/WRITING_GUIDE.md`를 따른다(ADR-056).
+- 개념을 더하면 `src/components/diagrams/networkDiagramCoverage.test.ts`가 그 개념의 도식을 요구한다(ADR-056). 예외를 더하지 말고 도식을 그린다.
