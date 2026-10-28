@@ -1,0 +1,11 @@
+{
+  "project": "Study Quiz",
+  "phase": "71-network-baseline",
+  "steps": [
+    { "step": 0, "name": "equipment-terms", "status": "pending" },
+    { "step": 1, "name": "pdu-data-name", "status": "pending" },
+    { "step": 2, "name": "topic-map", "status": "pending" },
+    { "step": 3, "name": "exam-scope-adr", "status": "pending" },
+    { "step": 4, "name": "importance-invariant", "status": "pending" }
+  ]
+}
