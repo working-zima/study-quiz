@@ -425,6 +425,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(§2.3.2.1·§2.3.2.2), `arp.arp-across-routers`(§3.3.1·§3.3.1.2 — 다음 홉, 기본 게이트웨이), `arp.rarp`(§3.2.2.7 — RARP와 BOOTP), `icmp.ip-limits`(§1.1.3 — 비연결형, 전달 보장 없음),
 `icmp.icmp`(§1.1.3·§3.2.2 — IP의 일부, 두 갈래, 오류의 오류 금지), `icmp.icmp-message`(§3.2.2), `icmp.destination-unreachable`(§3.2.2.1), `icmp.time-exceeded`(§3.2.2.4), `icmp.echo`(§3.2.2.6), `icmp.igmp`(§1.1.3·§3.2.3)
 (phase 73 step 3) `ip-protocol.ipv4-header`(§3.2.1.2 — 체크섬이 맞지 않는 패킷은 버린다, §3.2.2·§3.2.2.1 — 프로토콜 번호로 넘길 전송 프로토콜을 고른다), 문항 n052 해설
+(phase 73 step 4) `ip-protocol.fragment-fields`(위 2026-10-28 줄 — 데이터그램은 순서가 바뀌어 닿을 수 있어 조각이 보낸 차례대로 닿는다는 보장이 없다), `ip-protocol.ttl`(§3.2.1.7 — 고리를 끝내는 쓰임과 홉 수의 성질), 문항 n055 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871

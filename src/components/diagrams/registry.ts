@@ -40,6 +40,7 @@ import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
+import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -99,6 +100,7 @@ import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -232,6 +234,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,
   'ip-protocol.ipv4-header': Ipv4HeaderDiagram,
+  'ip-protocol.fragment-fields': FragmentFieldsDiagram,
+  'ip-protocol.ttl': TtlCountdownDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
