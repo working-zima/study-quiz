@@ -195,6 +195,18 @@ describe('네트워크 학습 데이터 무결성', () => {
     expect(misplaced).toEqual([])
   })
 
+  // 「바로 다음 개념에서 다룬다」처럼 글의 진행만 알리는 말은 쓰지 않는다(WRITING_GUIDE 「본문 작성 원칙」).
+  // 「앞 개념에서 본 것처럼」 같은 되짚기와 「이 주제에서 다루지 않는다」는 걸리지 않는다.
+  it('요약과 문단에 「다음 개념에서 다룬다」 같은 진행 안내가 없다', () => {
+    const progressNote = /에서 (자세히 |함께 )?(다룬다|살펴본다)|다음 개념(의|\))/
+    const found = concepts.flatMap(({ id, summary, paragraphs }) => [
+      ...(progressNote.test(summary) ? [`${id}: 요약`] : []),
+      ...paragraphs.flatMap((paragraph, index) => (progressNote.test(paragraph) ? [`${id} 문단 ${index}`] : [])),
+    ])
+
+    expect(found).toEqual([])
+  })
+
   // AWS의 q001…과 섞여 보이지 않게 접두사를 n으로 둔다. 문항 id는 과목 안에서만 유일하면 된다(ADR-053).
   it('문항 id가 n001부터 빈 번호 없이 이어진다', () => {
     expect(questions.map(({ id }) => id)).toEqual(

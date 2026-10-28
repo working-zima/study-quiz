@@ -1,12 +1,12 @@
-import type { ComponentType } from 'react'
 import { AbacTagDiagram } from './AbacTagDiagram'
-import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
-import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
+import { ArpCacheDiagram } from './ArpCacheDiagram'
+import { ArpExchangeDiagram } from './ArpExchangeDiagram'
+import { ArpHopsDiagram } from './ArpHopsDiagram'
+import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
-import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
@@ -15,7 +15,6 @@ import { ClientServerDiagram } from './ClientServerDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
-import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
@@ -23,6 +22,7 @@ import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
+import { EchoDiagram } from './EchoDiagram'
 import { EcsRolesDiagram } from './EcsRolesDiagram'
 import { EcsStructureDiagram } from './EcsStructureDiagram'
 import { EdgeToOriginDiagram } from './EdgeToOriginDiagram'
@@ -32,21 +32,32 @@ import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
+import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EthernetFrameDiagram } from './EthernetFrameDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
-import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
-import { GovernanceToolTable } from './governanceTables'
+import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
+import { FragmentationDiagram } from './FragmentationDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
-import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
+import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
+import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
+import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
+import { IpLimitsDiagram } from './IpLimitsDiagram'
+import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
+import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
+import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
+import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
+import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -56,8 +67,9 @@ import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
+import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
-import { PerformanceMetricsTable } from './networkBasicsTables'
+import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
@@ -70,21 +82,21 @@ import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
+import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
-import { ReferenceModelTable } from './protocolsTables'
+import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
 import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
-import { Route53PolicyTable } from './route53Tables'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
-import { SgNaclCompareTable } from './sgNaclTables'
+import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
@@ -94,13 +106,27 @@ import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { UnreachableDiagram } from './UnreachableDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
+import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
+import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
+import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
+import { GovernanceToolTable } from './governanceTables'
+import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
+import { PerformanceMetricsTable } from './networkBasicsTables'
+import { ReferenceModelTable } from './protocolsTables'
+import { Route53PolicyTable } from './route53Tables'
+import { SgNaclCompareTable } from './sgNaclTables'
+import type { ComponentType } from 'react'
 import {
   AttachTargetsTable,
   ConnectionTargetsTable,
@@ -224,6 +250,32 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.vlan': VlanSplitDiagram,
   'hub-switch-vlan.vlan-membership': VlanMembershipDiagram,
   'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
+  'ip-protocol.ip': IpAcrossNetworksDiagram,
+  'ip-protocol.fragmentation': FragmentationDiagram,
+  'ip-protocol.mtu': MtuLimitDiagram,
+  'ip-protocol.ipv4-header': Ipv4HeaderDiagram,
+  'ip-protocol.fragment-fields': FragmentFieldsDiagram,
+  'ip-protocol.ttl': TtlCountdownDiagram,
+  'ip-protocol.ipv4-address': Ipv4AddressDiagram,
+  'ip-protocol.ipv6': Ipv6ChangesDiagram,
+  'ip-protocol.ipv6-address-notation': Ipv6NotationDiagram,
+  'ip-protocol.ipv6-header': Ipv6HeaderDiagram,
+  'ip-protocol.extension-headers': ExtensionChainDiagram,
+  'ip-protocol.slaac': SlaacDiagram,
+  'arp.arp': ArpPurposeDiagram,
+  'arp.arp-request-reply': ArpExchangeDiagram,
+  'arp.arp-cache': ArpCacheDiagram,
+  'arp.arp-across-routers': ArpHopsDiagram,
+  'arp.rarp': RarpDirectionDiagram,
+  'arp.neighbor-discovery': NeighborDiscoveryDiagram,
+  'icmp.ip-limits': IpLimitsDiagram,
+  'icmp.icmp': IcmpFeedbackDiagram,
+  'icmp.icmp-message': IcmpMessageDiagram,
+  'icmp.destination-unreachable': UnreachableDiagram,
+  'icmp.time-exceeded': TracerouteDiagram,
+  'icmp.echo': EchoDiagram,
+  'icmp.ping': PingResultDiagram,
+  'icmp.igmp': IgmpGroupDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -1,0 +1,596 @@
+{
+  "diagrams": {
+    "ip-across-networks": {
+      "label": "IP 패킷이 여러 네트워크를 거쳐 가는 길을 보이는 도식",
+      "svgLabel": "호스트 A와 라우터 1이 있는 LAN 1, 라우터 2와 호스트 B가 있는 LAN 2를 두 라우터가 잇고, 호스트 A가 호스트 B에게 보낸 IP 패킷이 가는 길을 보이는 모습",
+      "question": "패킷은 다른 네트워크까지 어떻게 갈까?",
+      "idleCaption": "호스트 A가 있는 LAN 1과 호스트 B가 있는 LAN 2를 라우터 1과 라우터 2가 잇는다. 버튼을 고르면 호스트 A가 호스트 B에게 보낸 IP 패킷이 MAC 주소로는 어디까지 가는지, 목적지까지는 무엇을 보고 가는지 볼 수 있다.",
+      "legend": "가는 선은 장치 사이의 연결, 화살표는 IP 패킷이 가는 길이다. 얇은 선 박스 하나가 LAN 하나다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "router-1": "라우터 1",
+        "router-2": "라우터 2",
+        "host-b": "호스트 B"
+      },
+      "groups": {
+        "lan-1": "LAN 1",
+        "lan-2": "LAN 2"
+      },
+      "notes": {
+        "lan-note": "MAC 주소로 라우터 1까지",
+        "e2e-note": "IP 주소로 호스트 B까지"
+      },
+      "scenarios": [
+        {
+          "id": "lan",
+          "label": "LAN 안 전달",
+          "caption": "호스트 B는 다른 네트워크에 있으므로, 호스트 A는 같은 LAN에 있는 라우터 1의 MAC 주소를 프레임에 적어 패킷을 라우터 1에게 넘긴다. MAC 주소로 가는 것은 같은 LAN 안의 다음 장치까지다.",
+          "sources": [
+            "ip-protocol.ip"
+          ]
+        },
+        {
+          "id": "end-to-end",
+          "label": "목적지까지",
+          "caption": "패킷에는 호스트 B의 IP 주소가 적혀 있다. 라우터 1과 라우터 2가 그 주소를 보고 패킷을 차례로 다음 네트워크로 넘겨, 패킷은 여러 네트워크를 거쳐 호스트 B에 닿는다. 구간마다 프레임은 새로 만들어지지만 목적지 IP 주소는 그대로다.",
+          "sources": [
+            "ip-protocol.ip"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ip"
+      ]
+    },
+    "fragmentation": {
+      "label": "큰 IP 패킷이 나뉘고 다시 합쳐지는 곳을 보이는 도식",
+      "svgLabel": "출발지 호스트가 보낸 4020바이트 IP 패킷이 라우터를 지나 MTU가 1500바이트인 링크로 목적지 호스트까지 가며, 조각 셋으로 나뉘고 다시 합쳐지는 모습",
+      "question": "큰 패킷은 어디서 나뉘고 어디서 합쳐질까?",
+      "idleCaption": "출발지 호스트가 헤더 20바이트와 데이터 4000바이트로 된 4020바이트짜리 IP 패킷을 보낸다. 출발지에서 라우터까지는 패킷을 통째로 실을 수 있지만, 라우터 다음 링크는 MTU가 1500바이트다. 버튼을 고르면 이 IPv4 패킷이 어디서 나뉘고 어디서 다시 합쳐지는지 볼 수 있다.",
+      "legend": "가는 선은 링크, 화살표는 패킷과 조각이 가는 길이다. 호스트·라우터 곁의 상자는 그곳에 있는 패킷과 조각이다.",
+      "nodes": {
+        "source-host": "출발지 호스트",
+        "packet": "IP 패킷 4020바이트",
+        "router": "라우터",
+        "frag-1": "조각 1 · 1500바이트",
+        "frag-2": "조각 2 · 1500바이트",
+        "frag-3": "조각 3 · 1060바이트",
+        "dest-host": "목적지 호스트",
+        "merged": "IP 패킷 4020바이트"
+      },
+      "notes": {
+        "mtu": "MTU 1500바이트",
+        "split-note": "라우터가 조각 셋으로 나눔",
+        "pass-note": "라우터는 합치지 않음",
+        "merge-note": "목적지 호스트에서 합침"
+      },
+      "scenarios": [
+        {
+          "id": "split",
+          "label": "나누기",
+          "caption": "IPv4에서는 라우터가 다음 링크의 MTU 1500바이트에 맞춰 패킷을 조각 셋으로 나눈다. 조각마다 헤더 20바이트가 붙어, 데이터 1480바이트·1480바이트·1040바이트를 담은 1500바이트·1500바이트·1060바이트 조각이 된다.",
+          "sources": [
+            "ip-protocol.fragmentation"
+          ]
+        },
+        {
+          "id": "reassemble",
+          "label": "합치기",
+          "caption": "라우터는 조각을 합치지 않고 하나하나 그대로 넘긴다. 조각들이 목적지 호스트에 모두 닿으면, 목적지 호스트가 조각들을 합쳐 원래의 4020바이트 패킷으로 되돌린다.",
+          "sources": [
+            "ip-protocol.fragmentation"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.fragmentation"
+      ]
+    },
+    "mtu-limit": {
+      "label": "IP 패킷의 크기를 링크의 MTU와 견주는 도식",
+      "svgLabel": "출발지 호스트가 1500바이트와 4020바이트인 IP 패킷을 MTU가 1500바이트인 링크로 라우터에게 보내려는 모습",
+      "question": "이 패킷은 그대로 지나갈 수 있을까?",
+      "idleCaption": "출발지 호스트와 라우터 사이의 링크는 MTU가 1500바이트다. 출발지 호스트가 보내려는 IP 패킷은 헤더까지 쳐서 1500바이트짜리와 4020바이트짜리 둘이다. 버튼을 고르면 각 패킷이 이 링크를 그대로 지나갈 수 있는지 볼 수 있다.",
+      "legend": "가는 선은 링크, 화살표는 패킷이 가는 길이다. 출발지 호스트 곁의 상자는 출발지 호스트가 보내려는 패킷이다.",
+      "nodes": {
+        "packet-ok": "IP 패킷 1500바이트",
+        "packet-big": "IP 패킷 4020바이트",
+        "host": "출발지 호스트",
+        "router": "라우터"
+      },
+      "notes": {
+        "mtu": "MTU 1500바이트",
+        "pass-note": "그대로 지나감",
+        "split-note": "나누어야 지나갈 수 있음"
+      },
+      "scenarios": [
+        {
+          "id": "fits",
+          "label": "MTU 이하",
+          "caption": "1500바이트 패킷은 링크의 MTU 1500바이트를 넘지 않는다. MTU 이하인 패킷은 나누지 않고 그대로 프레임에 담겨 이 링크를 지나 라우터에 닿는다.",
+          "sources": [
+            "ip-protocol.mtu"
+          ]
+        },
+        {
+          "id": "too-big",
+          "label": "MTU 초과",
+          "caption": "4020바이트 패킷은 MTU 1500바이트보다 커서 그대로는 이 링크를 지나갈 수 없다. 출발지 호스트가 MTU에 맞는 조각으로 나누어야 보낼 수 있고, IPv4에서 DF가 달려 나눌 수 없는 패킷은 버려진다.",
+          "sources": [
+            "ip-protocol.mtu"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.mtu"
+      ]
+    },
+    "ipv4-header": {
+      "label": "IPv4 헤더의 칸을 순서대로 보이는 도식",
+      "svgLabel": "IPv4 헤더의 칸 열세 개를 버전부터 옵션까지 순서대로 이어 붙이고, 그 뒤에 데이터가 오는 IPv4 패킷의 모습",
+      "question": "IPv4 헤더에는 어떤 칸이 있을까?",
+      "idleCaption": "IPv4 패킷은 칸 여럿을 이어 붙인 헤더 뒤에 데이터가 오는 모양이다. 옵션이 없으면 헤더는 20바이트다. 버튼을 고르면 하는 일이 비슷한 칸끼리 묶어 볼 수 있다.",
+      "legend": "칸은 헤더 안의 순서대로 왼쪽에서 오른쪽, 위에서 아래로 이어진다. 칸의 너비는 실제 비트 수에 비례하지 않는다.",
+      "nodes": {
+        "version": "버전",
+        "ihl": "헤더 길이",
+        "tos": "서비스 유형",
+        "total-length": "전체 길이",
+        "identification": "식별자",
+        "flags": "플래그",
+        "fragment-offset": "단편화 오프셋",
+        "ttl": "TTL",
+        "protocol": "프로토콜",
+        "checksum": "헤더 체크섬",
+        "source": "출발지 IP 주소",
+        "destination": "목적지 IP 주소",
+        "options": "옵션",
+        "data": "데이터"
+      },
+      "groups": {
+        "header": "IPv4 헤더"
+      },
+      "notes": {
+        "size": "옵션이 없으면 20바이트"
+      },
+      "scenarios": [
+        {
+          "id": "basic",
+          "label": "기본 정보",
+          "caption": "버전은 IP의 어느 판인지(IPv4면 4)를, 헤더 길이는 헤더가 얼마나 긴지를, 서비스 유형은 패킷을 어떻게 다뤄 주기를 바라는지를, 전체 길이는 헤더와 데이터를 합친 패킷의 크기를 적는다.",
+          "sources": [
+            "ip-protocol.ipv4-header"
+          ]
+        },
+        {
+          "id": "fragment",
+          "label": "단편화",
+          "caption": "패킷이 조각으로 나뉠 때 쓰는 칸 셋이다. 목적지 호스트는 식별자·플래그·단편화 오프셋을 보고 어느 조각끼리 어떤 차례로 합칠지 안다.",
+          "sources": [
+            "ip-protocol.ipv4-header",
+            "ip-protocol.fragmentation"
+          ]
+        },
+        {
+          "id": "delivery",
+          "label": "전달",
+          "caption": "TTL은 라우터를 지날 때마다 줄어 0이 되면 패킷이 버려지고, 프로토콜은 데이터를 넘길 프로토콜의 번호(TCP 6, UDP 17, ICMP 1)다. 헤더 체크섬은 헤더만 검사하고, 헤더를 처리하는 곳마다 다시 계산한다.",
+          "sources": [
+            "ip-protocol.ipv4-header"
+          ]
+        },
+        {
+          "id": "address",
+          "label": "주소",
+          "caption": "출발지 IP 주소는 패킷을 처음 보낸 호스트를, 목적지 IP 주소는 패킷이 닿아야 할 호스트를 가리킨다. 라우터는 목적지 IP 주소를 보고 패킷을 넘길 쪽을 정한다.",
+          "sources": [
+            "ip-protocol.ipv4-header"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv4-header"
+      ]
+    },
+    "fragment-fields": {
+      "label": "한 패킷에서 나온 조각 셋의 식별자·MF·단편화 오프셋을 보이는 도식",
+      "svgLabel": "4020바이트 IPv4 패킷에서 나온 조각 셋이 저마다 식별자·MF·단편화 오프셋 칸을 갖고, 원래 데이터 4000바이트의 앞에서부터 차례로 1480바이트·1480바이트·1040바이트를 담는 모습",
+      "question": "조각들은 서로 어떻게 알아볼까?",
+      "idleCaption": "4020바이트짜리 IPv4 패킷이 라우터에서 조각 셋으로 나뉘었다. 세 조각의 헤더에는 같은 식별자가 들어 있고, MF와 단편화 오프셋은 조각마다 다르다. 버튼을 고르면 조각마다 세 칸이 무엇을 알려 주는지 볼 수 있다.",
+      "legend": "위쪽 상자는 조각마다 헤더에 적힌 세 칸이고, 아래 띠는 원래 데이터에서 각 조각이 담은 부분이다. 상자의 크기는 칸의 비트 수와 비례하지 않는다.",
+      "nodes": {
+        "frag-1": "조각 1",
+        "id-1": "식별자 1234",
+        "mf-1": "MF 1",
+        "offset-1": "오프셋 0",
+        "frag-2": "조각 2",
+        "id-2": "식별자 1234",
+        "mf-2": "MF 1",
+        "offset-2": "오프셋 185",
+        "frag-3": "조각 3",
+        "id-3": "식별자 1234",
+        "mf-3": "MF 0",
+        "offset-3": "오프셋 370",
+        "data-1": "1480바이트",
+        "data-2": "1480바이트",
+        "data-3": "1040바이트"
+      },
+      "groups": {
+        "data": "원래 데이터 4000바이트"
+      },
+      "notes": {
+        "start-1": "0바이트부터",
+        "start-2": "1480바이트부터",
+        "start-3": "2960바이트부터"
+      },
+      "scenarios": [
+        {
+          "id": "first",
+          "label": "첫 조각",
+          "caption": "첫 조각은 원래 데이터의 처음부터 1480바이트를 담아 단편화 오프셋이 0이다. 뒤에 조각이 더 있으므로 MF는 1이고, 식별자는 원래 패킷과 같은 1234다.",
+          "sources": [
+            "ip-protocol.fragment-fields"
+          ]
+        },
+        {
+          "id": "middle",
+          "label": "가운데 조각",
+          "caption": "둘째 조각은 원래 데이터의 1480바이트 지점부터 담는다. 오프셋 칸에는 이 거리를 8바이트 단위로 센 185(1480 ÷ 8)가 들어가고, 뒤에 조각이 더 있어 MF는 1이다.",
+          "sources": [
+            "ip-protocol.fragment-fields"
+          ]
+        },
+        {
+          "id": "last",
+          "label": "마지막 조각",
+          "caption": "마지막 조각은 2960바이트 지점부터 남은 1040바이트를 담아 오프셋이 370(2960 ÷ 8)이다. 뒤에 조각이 없으므로 MF가 0이고, 목적지 호스트는 이것으로 데이터가 어디서 끝나는지 안다.",
+          "sources": [
+            "ip-protocol.fragment-fields"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.fragment-fields"
+      ]
+    },
+    "ttl-countdown": {
+      "label": "라우터를 지날 때마다 TTL이 줄고 0이 되면 패킷이 버려지는 것을 보이는 도식",
+      "svgLabel": "출발지 호스트가 보낸 IPv4 패킷이 라우터 1·라우터 2·라우터 3을 지나 목적지 호스트로 가는 동안 구간마다 TTL이 1씩 줄고, TTL이 0이 된 라우터에서 패킷이 버려지는 모습",
+      "question": "TTL이 다 떨어진 패킷은 어떻게 될까?",
+      "idleCaption": "출발지 호스트와 목적지 호스트 사이에 라우터 셋이 차례로 놓여 있다. 버튼을 고르면 출발지가 넣은 TTL 값에 따라 패킷이 목적지에 닿는지, 도중에 버려지는지 볼 수 있다.",
+      "legend": "가는 선은 장치 사이의 링크, 화살표는 패킷이 가는 길이다. 화살표 곁의 값은 그 구간을 지나는 패킷의 TTL이다.",
+      "nodes": {
+        "source-host": "출발지 호스트",
+        "router-1": "라우터 1",
+        "router-2": "라우터 2",
+        "router-3": "라우터 3",
+        "dest-host": "목적지 호스트"
+      },
+      "notes": {
+        "arrive-1": "TTL 4",
+        "arrive-2": "TTL 3",
+        "arrive-3": "TTL 2",
+        "arrive-4": "TTL 1",
+        "expire-1": "TTL 2",
+        "expire-2": "TTL 1",
+        "drop-note": "TTL이 0이 되어 버림",
+        "miss-note": "목적지에 닿지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "arrive",
+          "label": "도착",
+          "caption": "출발지가 TTL을 4로 넣어 보내면 라우터를 지날 때마다 1씩 줄어 3, 2, 1이 된다. TTL이 0이 되기 전에 목적지 호스트에 닿는다.",
+          "sources": [
+            "ip-protocol.ttl"
+          ]
+        },
+        {
+          "id": "expire",
+          "label": "버려짐",
+          "caption": "출발지가 TTL을 2로 넣으면 라우터 1이 1로 줄여 넘기고, 라우터 2가 0으로 줄인 뒤 패킷을 버린다. 패킷은 라우터 3에도 목적지 호스트에도 닿지 않는다.",
+          "sources": [
+            "ip-protocol.ttl"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ttl"
+      ]
+    },
+    "ipv4-address": {
+      "label": "IPv4 주소 32비트를 8비트씩 네 칸으로 끊어 십진수 넷으로 적는 과정을 보이는 도식",
+      "svgLabel": "IPv4 주소 192.0.2.1의 32비트를 8비트씩 끊은 네 칸 11000000·00000000·00000010·00000001이 차례로 십진수 192·0·2·1이 되고, 네 수를 점으로 이어 192.0.2.1로 적는 모습",
+      "question": "32비트 주소는 어떻게 네 수가 될까?",
+      "idleCaption": "IPv4 주소 192.0.2.1의 32비트를 8비트씩 끊어 놓은 모습이다. 버튼을 고르면 32비트를 네 칸으로 끊는 단계와, 칸마다 십진수로 바꿔 점으로 잇는 단계를 따로 볼 수 있다.",
+      "legend": "위쪽 띠의 네 칸은 주소의 32비트를 8비트씩 끊은 것이고, 아래 수는 각 칸의 값을 십진수로 바꾼 것이다.",
+      "nodes": {
+        "bits-1": "11000000",
+        "bits-2": "00000000",
+        "bits-3": "00000010",
+        "bits-4": "00000001",
+        "dec-1": "192",
+        "dec-2": "0",
+        "dec-3": "2",
+        "dec-4": "1",
+        "address": "192.0.2.1"
+      },
+      "groups": {
+        "bits": "IPv4 주소 32비트"
+      },
+      "notes": {
+        "octet-1": "8비트",
+        "octet-2": "8비트",
+        "octet-3": "8비트",
+        "octet-4": "8비트",
+        "dot-1": ".",
+        "dot-2": ".",
+        "dot-3": "."
+      },
+      "scenarios": [
+        {
+          "id": "bits",
+          "label": "8비트씩",
+          "caption": "IPv4 주소는 32비트를 앞에서부터 8비트씩 네 칸으로 끊어 적는다. 8비트 한 칸은 1바이트이고, 표준 문서에서는 옥텟이라고도 부른다.",
+          "sources": [
+            "ip-protocol.ipv4-address"
+          ]
+        },
+        {
+          "id": "decimal",
+          "label": "십진수",
+          "caption": "칸마다 8비트의 값을 0부터 255 사이의 십진수로 바꾸면 192, 0, 2, 1이 된다. 네 수를 점으로 이어 이 주소를 192.0.2.1로 적는다.",
+          "sources": [
+            "ip-protocol.ipv4-address"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv4-address"
+      ]
+    },
+    "ipv6-changes": {
+      "label": "IPv4에서 IPv6로 달라진 점 넷을 같은 줄에 나란히 견주는 도식",
+      "svgLabel": "IPv4와 IPv6를 두 열로 놓고, 주소 32비트와 128비트, 브로드캐스트 있음과 없음(멀티캐스트가 맡음), 헤더 20~60바이트와 기본 헤더 40바이트, 출발지·라우터가 나눔과 출발지만 나눔을 같은 줄에 짝지은 모습",
+      "question": "IPv6는 IPv4에서 무엇이 달라졌을까?",
+      "idleCaption": "왼쪽에 IPv4, 오른쪽에 IPv6를 놓고 같은 점을 같은 줄에 짝지었다. 버튼을 고르면 주소 크기, 브로드캐스트, 헤더, 단편화하는 곳 가운데 하나가 IPv4에서 IPv6로 어떻게 바뀌었는지 볼 수 있다.",
+      "legend": "왼쪽 상자는 IPv4, 오른쪽 상자는 IPv6이고, 같은 줄의 두 상자가 같은 점을 견준다. 화살표는 IPv4에서 IPv6로 바뀐 쪽을 가리킨다.",
+      "nodes": {
+        "v4-address": "주소 32비트",
+        "v6-address": "주소 128비트",
+        "v4-broadcast": "브로드캐스트 있음",
+        "v6-broadcast": "브로드캐스트 없음",
+        "v4-header": "헤더 20~60바이트",
+        "v6-header": "기본 헤더 40바이트",
+        "v4-fragment": "출발지·라우터가 나눔",
+        "v6-fragment": "출발지만 나눔"
+      },
+      "groups": {
+        "v4": "IPv4",
+        "v6": "IPv6"
+      },
+      "notes": {
+        "multicast": "멀티캐스트가 맡음"
+      },
+      "scenarios": [
+        {
+          "id": "address",
+          "label": "주소 크기",
+          "caption": "IPv4 주소는 32비트지만 IPv6 주소는 128비트로 네 배 길다. 그래서 이론상 있을 수 있는 주소의 개수가 2³²개에서 2¹²⁸개로 늘었다.",
+          "sources": [
+            "ip-protocol.ipv6"
+          ]
+        },
+        {
+          "id": "broadcast",
+          "label": "브로드캐스트",
+          "caption": "IPv4에는 같은 네트워크의 모든 장치에게 한꺼번에 보내는 브로드캐스트 주소가 있지만 IPv6에는 없다. IPv6에서는 정해 둔 무리의 장치들에게 보내는 멀티캐스트 주소가 그 일을 맡는다.",
+          "sources": [
+            "ip-protocol.ipv6"
+          ]
+        },
+        {
+          "id": "header",
+          "label": "헤더",
+          "caption": "IPv4 헤더는 옵션에 따라 20바이트에서 60바이트까지 길이가 바뀌지만, IPv6의 기본 헤더는 늘 40바이트다. 칸 몇 개를 없애거나 필요할 때만 덧붙이는 별도의 헤더로 옮겨 단순해졌다.",
+          "sources": [
+            "ip-protocol.ipv6"
+          ]
+        },
+        {
+          "id": "fragment",
+          "label": "단편화",
+          "caption": "IPv4에서는 출발지 호스트도 경로 중간의 라우터도 패킷을 조각으로 나눌 수 있다. IPv6에서는 라우터가 나누지 않고 출발지만 나눈다.",
+          "sources": [
+            "ip-protocol.ipv6"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv6"
+      ]
+    },
+    "ipv6-notation": {
+      "label": "IPv6 주소 하나를 기본 꼴에서 앞쪽 0을 빼고 ::로 줄여 가는 세 단계를 보이는 도식",
+      "svgLabel": "IPv6 주소 2001:0db8:0000:0000:0000:0000:0000:0001이 앞쪽 0을 빼면 2001:db8:0:0:0:0:0:1이 되고, 0 묶음 다섯을 ::로 바꾸면 2001:db8::1이 되는 모습",
+      "question": "IPv6 주소는 어떻게 줄여 쓸까?",
+      "idleCaption": "IPv6 주소 2001:0db8:0000:0000:0000:0000:0000:0001을 줄여 가는 세 단계다. 버튼을 고르면 단계마다 무엇이 바뀌는지 따로 볼 수 있다.",
+      "legend": "화살표를 따라갈수록 같은 주소를 더 짧게 적은 것이다. 세 꼴은 모두 같은 128비트 주소를 가리킨다.",
+      "nodes": {
+        "full": "2001:0db8:0000:0000:0000:0000:0000:0001",
+        "leading": "2001:db8:0:0:0:0:0:1",
+        "compressed": "2001:db8::1"
+      },
+      "notes": {
+        "title-full": "전체 표기",
+        "title-leading": "앞쪽 0 생략",
+        "title-compressed": ":: 줄임",
+        "gap": "적힌 묶음 셋, :: 자리에 0 묶음 다섯"
+      },
+      "scenarios": [
+        {
+          "id": "full",
+          "label": "전체 표기",
+          "caption": "128비트를 16비트씩 여덟 묶음으로 끊고, 묶음마다 16진수 네 자리로 적어 콜론(:)으로 잇는다. 이 주소는 네 자리 묶음 여덟을 콜론 일곱 개로 이은 기본 꼴이다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        },
+        {
+          "id": "leading-zeros",
+          "label": "앞쪽 0 생략",
+          "caption": "묶음마다 앞쪽의 0을 뺀다. 0db8은 db8, 0001은 1이 되고, 0000은 0 하나로 적는다. 뺄 수 있는 것은 앞쪽의 0뿐이다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        },
+        {
+          "id": "double-colon",
+          "label": ":: 줄임",
+          "caption": "0만 있는 묶음 다섯이 이어진 곳을 콜론 두 개(::)로 바꿔 2001:db8::1로 적는다. ::는 한 주소에 한 번만 쓸 수 있고, 적힌 묶음이 셋이니 :: 자리에는 0 묶음 다섯이 들어 있다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv6-address-notation"
+      ]
+    },
+    "ipv6-header": {
+      "label": "IPv6 기본 헤더의 칸을 순서대로 보이는 도식",
+      "svgLabel": "IPv6 기본 헤더의 칸 여덟을 버전부터 목적지 주소까지 순서대로 이어 붙이고, 그 뒤에 페이로드가 오는 IPv6 패킷의 모습",
+      "question": "IPv6 기본 헤더에는 어떤 칸이 있을까?",
+      "idleCaption": "IPv6 패킷은 칸 여덟을 이어 붙인 40바이트 기본 헤더 뒤에 페이로드가 오는 모양이다. 헤더 체크섬 칸과 단편화 칸은 없다. 버튼을 고르면 칸이 하는 일을 따로 볼 수 있다.",
+      "legend": "칸은 헤더 안의 순서대로 왼쪽에서 오른쪽, 위에서 아래로 이어진다. 칸의 너비는 실제 비트 수에 비례하지 않는다.",
+      "nodes": {
+        "version": "버전",
+        "traffic-class": "트래픽 클래스",
+        "flow-label": "흐름 레이블",
+        "payload-length": "페이로드 길이",
+        "next-header": "다음 헤더",
+        "hop-limit": "홉 제한",
+        "source": "출발지 주소",
+        "destination": "목적지 주소",
+        "payload": "페이로드"
+      },
+      "groups": {
+        "header": "IPv6 기본 헤더"
+      },
+      "notes": {
+        "size": "늘 40바이트"
+      },
+      "scenarios": [
+        {
+          "id": "hop-limit",
+          "label": "홉 제한",
+          "caption": "홉 제한은 패킷을 다음으로 넘겨주는 라우터마다 1씩 줄고, 0이 되면 그 패킷이 버려진다. IPv4 헤더의 TTL 칸과 같은 일을 하는 칸이다.",
+          "sources": [
+            "ip-protocol.ipv6-header",
+            "ip-protocol.ttl"
+          ]
+        },
+        {
+          "id": "next-header",
+          "label": "다음 헤더",
+          "caption": "다음 헤더는 기본 헤더 바로 뒤에 오는 헤더가 무엇인지 번호로 적는다. IPv4 헤더의 프로토콜 칸과 같은 번호를 써서, 바로 뒤에 TCP 헤더가 오면 6이 들어간다.",
+          "sources": [
+            "ip-protocol.ipv6-header"
+          ]
+        },
+        {
+          "id": "addresses",
+          "label": "주소",
+          "caption": "출발지 주소와 목적지 주소는 각각 128비트라, 둘을 합치면 32바이트로 40바이트 기본 헤더의 대부분을 차지한다.",
+          "sources": [
+            "ip-protocol.ipv6-header"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv6-header"
+      ]
+    },
+    "extension-chain": {
+      "label": "IPv6 패킷의 헤더가 다음 헤더 칸으로 이어지는 모습을 보이는 도식",
+      "svgLabel": "IPv6 패킷에 담긴 기본 헤더, 단편화 확장 헤더, TCP 헤더, 데이터를 담긴 차례대로 놓은 모습",
+      "question": "확장 헤더는 어떻게 이어질까?",
+      "idleCaption": "IPv6 패킷에 담긴 헤더와 데이터를 담긴 차례대로 놓았다. 버튼을 고르면 확장 헤더가 없을 때와 단편화 확장 헤더가 붙을 때, 각 헤더의 다음 헤더 칸이 바로 뒤의 무엇을 가리키는지 볼 수 있다.",
+      "legend": "화살표는 다음 헤더 칸이 가리키는 바로 뒤의 헤더이고, 곁의 숫자는 그 칸에 든 번호다. 상자는 패킷에 담긴 차례대로 위에서 아래로, 넓은 화면에서는 왼쪽에서 오른쪽으로 놓았다.",
+      "nodes": {
+        "base": "기본 헤더",
+        "fragment": "단편화 확장 헤더",
+        "tcp": "TCP 헤더",
+        "data": "데이터"
+      },
+      "notes": {
+        "base-tcp-note": "다음 헤더 6",
+        "base-fragment-note": "다음 헤더 44",
+        "fragment-tcp-note": "다음 헤더 6"
+      },
+      "scenarios": [
+        {
+          "id": "none",
+          "label": "확장 헤더 없음",
+          "caption": "확장 헤더가 없는 패킷이다. 기본 헤더의 다음 헤더 칸이 곧바로 상위 계층을 가리켜, 바로 뒤에 TCP 헤더가 오므로 6이 들어간다.",
+          "sources": [
+            "ip-protocol.extension-headers"
+          ]
+        },
+        {
+          "id": "fragment",
+          "label": "단편화 확장 헤더",
+          "caption": "출발지가 패킷을 나누면 조각마다 기본 헤더 뒤에 단편화 확장 헤더를 끼운다. 그림은 TCP 헤더가 들어가는 첫 조각이다. 기본 헤더의 다음 헤더 칸은 44로 단편화 확장 헤더를, 단편화 확장 헤더의 다음 헤더 칸은 6으로 TCP 헤더를 가리킨다.",
+          "sources": [
+            "ip-protocol.extension-headers"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.extension-headers"
+      ]
+    },
+    "slaac": {
+      "label": "IPv6 호스트가 라우터가 알린 접두사로 자기 주소를 만드는 도식",
+      "svgLabel": "라우터와 호스트 A, 그리고 호스트 A의 IPv6 주소를 이루는 접두사 2001:db8:0:1과 인터페이스 식별자 1234:5678:9abc:def0",
+      "question": "서버 없이 IPv6 주소를 어떻게 만들까?",
+      "idleCaption": "라우터와 호스트 A가 같은 네트워크에 있다. 아래 두 칸은 호스트 A가 쓸 IPv6 주소의 앞부분인 접두사와 뒷부분인 인터페이스 식별자다. 버튼을 고르면 각 부분을 누가 정하는지 볼 수 있다.",
+      "legend": "화살표는 라우터 알림이 가는 길과 호스트 A가 스스로 만드는 부분이다. 아래 띠는 호스트 A의 IPv6 주소를 앞부분과 뒷부분으로 나눈 것이다.",
+      "nodes": {
+        "router": "라우터",
+        "host": "호스트 A",
+        "prefix": "2001:db8:0:1",
+        "iid": "1234:5678:9abc:def0"
+      },
+      "notes": {
+        "prefix-name": "접두사",
+        "iid-name": "인터페이스 식별자",
+        "advert": "라우터 알림 · 접두사 2001:db8:0:1",
+        "address": "주소 2001:db8:0:1:1234:5678:9abc:def0"
+      },
+      "scenarios": [
+        {
+          "id": "advertise",
+          "label": "접두사 알림",
+          "caption": "라우터가 라우터 알림으로 이 네트워크의 접두사 2001:db8:0:1을 알린다. 호스트 A는 이 접두사를 그대로 자기 주소의 앞부분으로 쓴다.",
+          "sources": [
+            "ip-protocol.slaac"
+          ]
+        },
+        {
+          "id": "combine",
+          "label": "주소 만들기",
+          "caption": "호스트 A가 뒷부분인 인터페이스 식별자 1234:5678:9abc:def0을 스스로 만들어 접두사 뒤에 붙인다. 이렇게 만든 주소는 쓰기 전에 겹치지 않는지 확인하고, 주소를 나눠 주는 서버는 어디에도 없다.",
+          "sources": [
+            "ip-protocol.slaac"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.slaac"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

@@ -1,0 +1,404 @@
+{
+  "diagrams": {
+    "ip-limits": {
+      "label": "IP의 비신뢰성과 비연결형을 보이는 도식",
+      "svgLabel": "호스트 A가 패킷 1, 패킷 2, 패킷 3을 저마다 따로 호스트 B 쪽으로 보내는 모습",
+      "question": "IP는 무엇을 보장하지 않을까?",
+      "idleCaption": "호스트 A가 다른 네트워크에 있는 호스트 B에게 패킷 1, 패킷 2, 패킷 3을 차례로 보낸다. 버튼을 고르면 패킷이 어떻게 닿을 수 있는지, IP가 보내기 전에 무엇을 하지 않는지 볼 수 있다.",
+      "legend": "상자 하나가 패킷 하나이고, 화살표는 패킷이 가는 길이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "packet-1": "패킷 1",
+        "packet-2": "패킷 2",
+        "packet-3": "패킷 3",
+        "host-b": "호스트 B"
+      },
+      "notes": {
+        "lost-note": "가는 길에 사라짐",
+        "order-note": "닿은 차례 패킷 3, 패킷 1",
+        "connect-note": "연결을 맺지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "unreliable",
+          "label": "비신뢰성",
+          "caption": "패킷 2는 가는 길에 사라지고, 패킷 3이 패킷 1보다 먼저 닿았다. IP는 패킷을 받았는지 확인하지 않으므로 패킷 2를 다시 보내지 않고, 닿은 차례를 바로잡지도 않는다.",
+          "sources": [
+            "icmp.ip-limits"
+          ]
+        },
+        {
+          "id": "connectionless",
+          "label": "비연결형",
+          "caption": "호스트 A는 보내기 전에 호스트 B와 연결을 맺지 않는다. IP는 패킷 하나하나를 다른 패킷과 관계없는 덩어리로 다루어, 세 패킷을 저마다 따로 보낸다.",
+          "sources": [
+            "icmp.ip-limits"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.ip-limits"
+      ]
+    },
+    "icmp-feedback": {
+      "label": "ICMP 메시지의 두 갈래를 보이는 도식",
+      "svgLabel": "출발지 호스트와 목적지 호스트 사이에 라우터가 있고, 패킷과 ICMP 메시지가 오가는 길을 보이는 모습",
+      "question": "ICMP는 문제가 생기면 누구에게 알릴까?",
+      "idleCaption": "출발지 호스트가 보낸 패킷은 라우터를 거쳐 목적지 호스트로 간다. 버튼을 고르면 오류 보고 메시지가 누구에게 가는지, 질의 메시지가 어떻게 오가는지 볼 수 있다.",
+      "legend": "화살표는 패킷이나 ICMP 메시지가 가는 길이다. 목적지 쪽으로 가는 길과 출발지 쪽으로 돌아오는 길을 나란히 그렸다.",
+      "nodes": {
+        "source": "출발지 호스트",
+        "router": "라우터",
+        "dest": "목적지 호스트"
+      },
+      "notes": {
+        "drop-note": "패킷을 버림",
+        "error-note": "ICMP 오류 메시지",
+        "unreachable-note": "목적지에 닿지 못함",
+        "request-note": "요청",
+        "reply-note": "응답"
+      },
+      "scenarios": [
+        {
+          "id": "error",
+          "label": "오류 보고",
+          "caption": "라우터가 패킷을 목적지 쪽으로 넘길 길을 찾지 못해 그 패킷을 버리고, 출발지 호스트에 ICMP 오류 메시지를 보낸다. 라우터는 버린 패킷을 다시 보내지 않는다.",
+          "sources": [
+            "icmp.icmp"
+          ]
+        },
+        {
+          "id": "query",
+          "label": "질의",
+          "caption": "출발지 호스트가 보낸 요청이 라우터를 거쳐 목적지 호스트에 닿고, 목적지 호스트가 응답을 돌려보낸다. 에코 요청과 에코 응답처럼, 질의 메시지는 네트워크의 상태를 알아보는 데 쓴다.",
+          "sources": [
+            "icmp.icmp"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.icmp"
+      ]
+    },
+    "icmp-message": {
+      "label": "ICMP 메시지의 타입과 코드를 보이는 도식",
+      "svgLabel": "IP 헤더 뒤에 ICMP 메시지의 타입·코드·체크섬·나머지 칸이 차례로 이어진 IP 패킷",
+      "question": "ICMP 메시지는 무엇으로 종류를 가를까?",
+      "idleCaption": "ICMP 메시지는 IP 헤더 바로 뒤에 담기고, 맨 앞에 타입·코드·체크섬 칸이 차례로 붙는다. 버튼을 고르면 메시지마다 타입 칸과 코드 칸에 어떤 번호가 들어가는지 볼 수 있다.",
+      "legend": "상자 하나가 칸 하나다. 칸의 너비는 비트 수에 맞춘 것이 아니고, 칸의 크기는 칸 아래의 글로 적었다.",
+      "groups": {
+        "packet": "IP 패킷 · IP 헤더 뒤가 ICMP 메시지"
+      },
+      "nodes": {
+        "ip-header": "IP 헤더",
+        "type": "타입",
+        "code": "코드",
+        "checksum": "체크섬",
+        "rest": "나머지"
+      },
+      "notes": {
+        "type-size": "8비트",
+        "code-size": "8비트",
+        "checksum-size": "16비트",
+        "rest-size": "타입마다 다름",
+        "echo-type": "타입 8",
+        "echo-code": "코드 0",
+        "unreachable-type": "타입 3",
+        "unreachable-code": "코드로 까닭을 가름",
+        "time-type": "타입 11",
+        "time-code": "코드 0"
+      },
+      "scenarios": [
+        {
+          "id": "echo-request",
+          "label": "에코 요청",
+          "caption": "에코 요청은 타입 칸에 8, 코드 칸에 0을 적는다. 받은 호스트에게 같은 데이터를 담아 돌려 달라고 보내는 질의 메시지라, 까닭을 더 가를 필요가 없어 코드는 0이다.",
+          "sources": [
+            "icmp.icmp-message"
+          ]
+        },
+        {
+          "id": "unreachable",
+          "label": "목적지 도달 불가",
+          "caption": "목적지 도달 불가는 타입 칸에 3을 적는다. 패킷을 목적지까지 넘기지 못한 까닭은 코드 칸의 번호로 가른다. 코드 0은 목적지 네트워크로 가는 경로를 모른다는 뜻이고, 코드 3은 데이터를 받을 프로그램이 없다는 뜻이다.",
+          "sources": [
+            "icmp.icmp-message"
+          ]
+        },
+        {
+          "id": "time-exceeded",
+          "label": "시간 초과",
+          "caption": "시간 초과는 타입 칸에 11, 코드 칸에 0을 적는다. 패킷의 TTL 값이 0이 되어 그 패킷을 버린 라우터가 출발지 호스트에 보내는 오류 메시지다.",
+          "sources": [
+            "icmp.icmp-message"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.icmp-message"
+      ]
+    },
+    "destination-unreachable": {
+      "label": "목적지 도달 불가 메시지를 누가 보내는지 보이는 도식",
+      "svgLabel": "출발지 호스트와 목적지 호스트 사이에 라우터가 있고, 패킷이 막힌 곳에서 목적지 도달 불가 메시지가 출발지 호스트로 돌아오는 모습",
+      "question": "목적지에 닿지 못하면 누가 무엇을 알릴까?",
+      "idleCaption": "출발지 호스트가 보낸 패킷은 라우터를 거쳐 목적지 호스트로 간다. 버튼을 고르면 패킷이 어디서 막히는지와, 누가 어떤 코드의 목적지 도달 불가 메시지를 보내는지 볼 수 있다.",
+      "legend": "화살표는 패킷이나 목적지 도달 불가 메시지가 가는 길이다. 목적지 쪽으로 가는 길과 출발지 쪽으로 돌아오는 길을 나란히 그렸다.",
+      "nodes": {
+        "source": "출발지 호스트",
+        "router": "라우터",
+        "dest": "목적지 호스트"
+      },
+      "notes": {
+        "no-route-note": "경로를 몰라 패킷을 버림",
+        "code-0-note": "타입 3 · 코드 0",
+        "no-program-note": "포트를 쓰는 프로그램 없음",
+        "code-3-note": "타입 3 · 코드 3",
+        "df-drop-note": "DF가 1이라 패킷을 버림",
+        "mtu-note": "다음 구간의 MTU보다 큼",
+        "code-4-note": "타입 3 · 코드 4"
+      },
+      "scenarios": [
+        {
+          "id": "network",
+          "label": "네트워크 도달 불가",
+          "caption": "라우터가 목적지 호스트가 있는 네트워크로 가는 경로를 몰라 패킷을 버리고, 출발지 호스트에 타입 3·코드 0인 네트워크 도달 불가 메시지를 보낸다. 패킷은 목적지 호스트에 닿지 않는다.",
+          "sources": [
+            "icmp.destination-unreachable"
+          ]
+        },
+        {
+          "id": "port",
+          "label": "포트 도달 불가",
+          "caption": "패킷은 라우터를 거쳐 목적지 호스트에 닿았지만, 패킷이 가리킨 포트 번호를 쓰는 프로그램이 없다. 이번에는 목적지 호스트가 출발지 호스트에 타입 3·코드 3인 포트 도달 불가 메시지를 보낸다.",
+          "sources": [
+            "icmp.destination-unreachable"
+          ]
+        },
+        {
+          "id": "fragment",
+          "label": "단편화 필요",
+          "caption": "패킷이 다음 구간의 MTU보다 커서 나눠야 하는데 헤더의 DF가 1이라 나눌 수 없다. 라우터가 패킷을 버리고 출발지 호스트에 타입 3·코드 4인 단편화 필요 메시지를 보낸다.",
+          "sources": [
+            "icmp.destination-unreachable"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.destination-unreachable"
+      ]
+    },
+    "traceroute": {
+      "label": "TTL을 늘려 경로를 찾는 과정",
+      "svgLabel": "TTL을 늘려 경로를 찾는 과정 그림",
+      "question": "TTL을 바꾸면 경로의 어느 장치가 답할까?",
+      "idleCaption": "버튼을 눌러 TTL에 따라 어디서 답하는지 살펴보세요.",
+      "legend": "Windows tracert의 에코 요청 방식이다. 세로형은 왼쪽 선이 요청, 오른쪽 선이 답이고 가로형은 위쪽 선이 요청, 아래쪽 선이 답이다.",
+      "nodes": {
+        "source": "출발지 호스트",
+        "router-1": "라우터 1",
+        "router-2": "라우터 2",
+        "dest": "목적지 호스트"
+      },
+      "notes": {
+        "ttl-1-1": "TTL 1",
+        "drop-1": "TTL 0 · 패킷을 버림",
+        "time-1": "시간 초과 · 코드 0",
+        "ttl-2-1": "TTL 2",
+        "ttl-2-2": "TTL 1",
+        "drop-2": "TTL 0 · 패킷을 버림",
+        "time-2": "시간 초과 · 코드 0",
+        "ttl-3-1": "TTL 3",
+        "ttl-3-2": "TTL 2",
+        "ttl-3-3": "TTL 1",
+        "echo-reply": "에코 응답"
+      },
+      "sources": [
+        "icmp.time-exceeded"
+      ],
+      "scenarios": [
+        {
+          "id": "ttl-1",
+          "label": "TTL 1",
+          "caption": "TTL 1인 에코 요청은 라우터 1에서 0이 되어 버려진다. 라우터 1이 출발지 호스트에 코드 0인 시간 초과 메시지를 보낸다. 패킷은 라우터 2에 닿지 않는다.",
+          "sources": [
+            "icmp.time-exceeded"
+          ]
+        },
+        {
+          "id": "ttl-2",
+          "label": "TTL 2",
+          "caption": "TTL 2인 에코 요청은 라우터 1을 지나면 1이 되고 라우터 2에서 0이 되어 버려진다. 이번에는 라우터 2가 시간 초과로 답하므로 두 번째 라우터의 주소를 알 수 있다.",
+          "sources": [
+            "icmp.time-exceeded"
+          ]
+        },
+        {
+          "id": "ttl-3",
+          "label": "TTL 3",
+          "caption": "TTL 3인 에코 요청은 두 라우터를 지나도 1이 남아 목적지 호스트에 닿는다. 목적지가 에코 응답을 돌려준다. Linux traceroute의 기본 UDP 방식에서는 끝에서 보통 포트 도달 불가로 답한다.",
+          "sources": [
+            "icmp.time-exceeded"
+          ]
+        }
+      ]
+    },
+    "echo": {
+      "label": "에코 요청과 응답의 짝",
+      "svgLabel": "에코 요청과 응답의 짝 그림",
+      "question": "에코 요청과 에코 응답은 어떻게 짝지어질까?",
+      "idleCaption": "버튼을 눌러 요청과 응답에 적힌 번호와 데이터를 견주어 보세요.",
+      "legend": "위는 첫 번째 왕복, 아래는 두 번째 왕복이다. 같은 두 호스트를 두 번 그렸다. 각 줄의 위쪽 화살표는 요청, 아래쪽 화살표는 응답이다.",
+      "nodes": {
+        "host-a-1": "호스트 A",
+        "host-b-1": "호스트 B",
+        "host-a-2": "호스트 A",
+        "host-b-2": "호스트 B"
+      },
+      "notes": {
+        "request-1-note": "식별자 7 · 순서 번호 1 · 데이터 abc",
+        "request-2-note": "식별자 7 · 순서 번호 2 · 데이터 def",
+        "reply-1-note": "식별자 7 · 순서 번호 1 · 데이터 abc",
+        "reply-2-note": "식별자 7 · 순서 번호 2 · 데이터 def"
+      },
+      "sources": [
+        "icmp.echo"
+      ],
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "에코 요청",
+          "caption": "호스트 A가 식별자 7에 순서 번호 1과 데이터 abc를 담아 B에게 요청한다. 다음 요청은 순서 번호 2와 데이터 def다. 번호로 요청을 구별한다.",
+          "sources": [
+            "icmp.echo"
+          ]
+        },
+        {
+          "id": "reply",
+          "label": "에코 응답",
+          "caption": "호스트 B는 첫 요청에 식별자 7·순서 번호 1·데이터 abc로, 다음 요청에는 식별자 7·순서 번호 2·데이터 def로 답한다. 요청의 번호와 데이터를 그대로 돌려줘 A가 짝을 맞춘다.",
+          "sources": [
+            "icmp.echo"
+          ]
+        }
+      ]
+    },
+    "ping-result": {
+      "label": "호스트 A가 호스트 B에게 ping으로 에코 요청 4개를 보내 응답 3개를 받았을 때, 결과의 응답 줄과 요약을 읽는 도식",
+      "svgLabel": "위에서부터 요청 1~4의 왕복을 호스트 A와 호스트 B 사이에 한 줄씩 그렸고, 아래 결과 요약 상자에 보낸 요청 4개·받은 응답 3개·손실률 25%·최소 10ms·평균 12ms·최대 14ms가 적혀 있다",
+      "question": "ping 결과에서 무엇을 읽을까?",
+      "idleCaption": "호스트 A가 다른 네트워크에 있는 호스트 B에게 ping으로 에코 요청 4개를 보냈다. 버튼을 고르면 응답 줄, 손실, 왕복 시간을 차례로 읽을 수 있다.",
+      "legend": "줄마다 같은 두 호스트를 다시 그렸고, 위에서부터 요청 1~4의 왕복이다. 줄의 위쪽 화살표는 에코 요청, 아래쪽 화살표는 에코 응답이다. 요청 3에는 돌아온 응답이 없다.",
+      "groups": {
+        "summary": "결과 요약"
+      },
+      "nodes": {
+        "host-a-1": "호스트 A",
+        "host-b-1": "호스트 B",
+        "host-a-2": "호스트 A",
+        "host-b-2": "호스트 B",
+        "host-a-3": "호스트 A",
+        "host-b-3": "호스트 B",
+        "host-a-4": "호스트 A",
+        "host-b-4": "호스트 B",
+        "sent": "보낸 요청 4개",
+        "received": "받은 응답 3개",
+        "loss": "손실률 25%",
+        "min": "최소 10ms",
+        "avg": "평균 12ms",
+        "max": "최대 14ms"
+      },
+      "notes": {
+        "rtt-1": "10ms · TTL 62",
+        "rtt-2": "14ms · TTL 62",
+        "lost-3": "응답 없음",
+        "rtt-4": "12ms · TTL 62"
+      },
+      "sources": [
+        "icmp.ping"
+      ],
+      "scenarios": [
+        {
+          "id": "replies",
+          "label": "응답 줄",
+          "caption": "돌아온 응답마다 한 줄이 적힌다. 요청 1·2·4의 응답 줄에는 왕복 시간 10ms·14ms·12ms와 TTL 62가 있다. TTL 62는 시간이 아니라 응답 패킷의 TTL 칸에 남아 있던 값이다.",
+          "sources": [
+            "icmp.ping"
+          ]
+        },
+        {
+          "id": "loss",
+          "label": "손실",
+          "caption": "요청 4개를 보냈는데 요청 3의 응답은 돌아오지 않아, 받은 응답은 3개다. 손실률은 (4 − 3) ÷ 4 = 25%다.",
+          "sources": [
+            "icmp.ping"
+          ]
+        },
+        {
+          "id": "rtt",
+          "label": "왕복 시간",
+          "caption": "돌아온 응답 셋의 왕복 시간 10ms·14ms·12ms로 최소 10ms, 평균 12ms, 최대 14ms를 낸다. 응답이 없는 요청 3은 이 계산에 들지 않는다.",
+          "sources": [
+            "icmp.ping"
+          ]
+        }
+      ]
+    },
+    "igmp-group": {
+      "label": "같은 네트워크의 멀티캐스트 라우터와 호스트 A·B·C가 IGMP의 멤버십 질의·멤버십 보고·그룹 탈퇴를 주고받는 길을 보이는 도식",
+      "svgLabel": "같은 네트워크 상자 안에 멀티캐스트 라우터와 호스트 A·B·C가 있고, 라우터는 상자 밖의 다른 네트워크와 이어져 있다",
+      "question": "멀티캐스트 라우터는 그룹 구성원을 어떻게 알까?",
+      "idleCaption": "같은 네트워크에 멀티캐스트 라우터와 호스트 A·B·C가 있고, 라우터는 다른 네트워크와도 이어져 있다. 버튼을 고르면 IGMP 메시지가 누구에게서 누구에게 가는지 볼 수 있다.",
+      "legend": "상자는 같은 네트워크다. 라우터와 다른 네트워크 사이의 선은 두 네트워크를 잇는 연결이고, 화살표는 IGMP 메시지가 가는 길이다.",
+      "groups": {
+        "lan": "같은 네트워크"
+      },
+      "nodes": {
+        "other": "다른 네트워크",
+        "router": "멀티캐스트 라우터",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C"
+      },
+      "notes": {
+        "query-name": "멤버십 질의 · IP TTL 1",
+        "query-what": "구성원이 있는 그룹을 물음",
+        "report-name": "멤버십 보고 · IP TTL 1",
+        "report-what": "그룹에 들었다고 알림",
+        "leave-name": "그룹 탈퇴 · IP TTL 1",
+        "leave-what": "그룹을 떠난다고 알림"
+      },
+      "sources": [
+        "icmp.igmp"
+      ],
+      "scenarios": [
+        {
+          "id": "query",
+          "label": "질의",
+          "caption": "라우터가 같은 네트워크의 모든 호스트에게 멤버십 질의를 보내, 구성원이 있는 그룹이 무엇인지 묻는다. IP 헤더의 TTL을 1로 보내므로 이 질의는 다른 네트워크로 넘어가지 않는다.",
+          "sources": [
+            "icmp.igmp"
+          ]
+        },
+        {
+          "id": "report",
+          "label": "보고",
+          "caption": "그룹에 든 호스트 B가 그 그룹의 주소로 멤버십 보고를 보내고 라우터가 이를 받는다. 라우터는 이 네트워크에 그 그룹의 구성원이 있다는 것만 알아 둔다.",
+          "sources": [
+            "icmp.igmp"
+          ]
+        },
+        {
+          "id": "leave",
+          "label": "탈퇴",
+          "caption": "그 그룹에 마지막으로 보고한 호스트 B가 그룹을 떠나며 그룹 탈퇴를 보낸다. IGMPv2부터 있는 메시지로, 그룹에 구성원이 남지 않았다는 것을 라우터가 빨리 알게 한다.",
+          "sources": [
+            "icmp.igmp"
+          ]
+        }
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

@@ -364,6 +364,11 @@
       "dir": "72-network-ethernet-switch",
       "status": "completed",
       "completed_at": "2026-10-28T23:47:52+0900"
+    },
+    {
+      "dir": "73-network-ip-arp-icmp",
+      "status": "completed",
+      "completed_at": "2026-10-29T06:17:20+0900"
     }
   ]
 }
