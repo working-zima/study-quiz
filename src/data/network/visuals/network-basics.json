@@ -345,6 +345,106 @@
       ],
       "sources": ["network-basics.traffic"]
     },
+    "expected-speed": {
+      "label": "기대한 전송 속도와 실제로 잰 처리율을 견주는 도식",
+      "svgLabel": "대역폭 박스 안을 처리율 막대가 왼쪽부터 채우고, 전송 속도를 세로 점선으로 표시한 네트워크 연결",
+      "question": "기대한 속도만큼 실제로 전송될까?",
+      "idleCaption": "전송 속도는 네트워크로 데이터를 얼마나 빠르게 보낼 수 있는지를 기대치로 나타낸 값이다. 버튼을 고르면 기대한 전송 속도와 실제로 잰 처리율이 그림의 어디에 있는지 견줄 수 있다.",
+      "legend": "가로 박스 하나가 네트워크 연결 하나의 대역폭이고, 그 안을 왼쪽부터 채운 막대가 처리율, 세로 점선이 전송 속도다. 눈금이 없어 길이로 값을 읽지는 않는다.",
+      "nodes": {
+        "speed": "전송 속도",
+        "throughput": "처리율"
+      },
+      "groups": {
+        "bandwidth": "대역폭"
+      },
+      "notes": {
+        "expected": "기대치",
+        "unit": "단위 bps",
+        "measured": "실제로 잰 값"
+      },
+      "scenarios": [
+        {
+          "id": "expected",
+          "label": "기대한 속도",
+          "caption": "전송 속도는 그 네트워크에서 기대할 수 있는 빠르기다. 1초에 비트(0이나 1 하나)를 몇 개 보내는지로 적고, 단위는 bps(bits per second)다. 실제로 잰 값도, 넘을 수 없는 상한도 아니다.",
+          "sources": ["network-basics.transmission-speed"]
+        },
+        {
+          "id": "measured",
+          "label": "실제로 잰 값",
+          "caption": "처리율은 정해 둔 시간 동안 실제로 전송된 데이터 양을 잰 값이라, 기대한 전송 속도와 다르게 나올 수 있다. 예를 들어 네트워크에 트래픽이 몰려 처리가 늦어지면, 실제로 전송되는 양이 기대에 못 미칠 수 있다.",
+          "sources": ["network-basics.transmission-speed"]
+        }
+      ],
+      "sources": ["network-basics.transmission-speed", "network-basics.throughput", "network-basics.bandwidth"]
+    },
+    "throughput": {
+      "label": "처리율을 실제로 전송된 양으로 읽는 도식",
+      "svgLabel": "대역폭 박스 안을 처리율 막대가 왼쪽부터 채우고, 전송 속도를 세로 점선으로 표시한 네트워크 연결",
+      "question": "1초 동안 실제로 얼마나 들어왔을까?",
+      "idleCaption": "처리율은 정해 둔 시간 동안 네트워크로 데이터가 실제로 얼마나 전송됐는지를 잰 값으로, 1초에 실제로 전송된 비트 수로 적는다. 버튼을 고르면 그 값을 읽는 법과 처리율이 넘을 수 없는 선을 볼 수 있다.",
+      "legend": "가로 박스 하나가 네트워크 연결 하나의 대역폭이고, 그 안을 왼쪽부터 채운 막대가 처리율, 세로 점선이 전송 속도다. 눈금이 없어 길이로 값을 읽지는 않는다.",
+      "nodes": {
+        "speed": "전송 속도",
+        "throughput": "처리율"
+      },
+      "groups": {
+        "bandwidth": "대역폭"
+      },
+      "notes": {
+        "example": "4.0 Mbps",
+        "maximum": "최대치"
+      },
+      "scenarios": [
+        {
+          "id": "actual",
+          "label": "실제로 전송된 양",
+          "caption": "작업 관리자 같은 도구에서 와이파이 연결이 그 순간 받은 양이 4.0 Mbps로 나오면, 그 순간 1초에 4메가비트가 실제로 들어왔다는 뜻이다. 처리율은 이렇게 실제로 잰 값이다.",
+          "sources": ["network-basics.throughput"]
+        },
+        {
+          "id": "limit",
+          "label": "넘을 수 없는 선",
+          "caption": "대역폭은 네트워크가 받아 낼 수 있는 최대치라, 실제로 잰 처리율은 대역폭을 넘을 수 없다. 그래서 처리율 막대는 언제나 대역폭 박스 안에 있다.",
+          "sources": ["network-basics.throughput"]
+        }
+      ],
+      "sources": ["network-basics.throughput", "network-basics.transmission-speed", "network-basics.bandwidth"]
+    },
+    "bandwidth-cap": {
+      "label": "대역폭을 받아 낼 수 있는 최대치로 읽는 도식",
+      "svgLabel": "대역폭 박스 안을 처리율 막대가 왼쪽부터 채우고, 전송 속도를 세로 점선으로 표시한 네트워크 연결",
+      "question": "네트워크는 데이터를 최대 얼마까지 보내고 받을 수 있을까?",
+      "idleCaption": "대역폭은 네트워크가 받아 낼 수 있는 트래픽의 용량, 곧 보내고 받을 수 있는 데이터 양의 최대치다. 버튼을 고르면 그 최대치와 실제로 전송된 양을 나눠 볼 수 있다.",
+      "legend": "가로 박스 하나가 네트워크 연결 하나의 대역폭이고, 그 안을 왼쪽부터 채운 막대가 처리율, 세로 점선이 전송 속도다. 눈금이 없어 길이로 값을 읽지는 않는다.",
+      "nodes": {
+        "speed": "전송 속도",
+        "throughput": "처리율"
+      },
+      "groups": {
+        "bandwidth": "대역폭"
+      },
+      "notes": {
+        "maximum": "최대치",
+        "actual": "실제로 전송된 양"
+      },
+      "scenarios": [
+        {
+          "id": "capacity",
+          "label": "대역폭",
+          "caption": "대역폭은 그 네트워크가 받아 낼 수 있는 최대치다. 지금 실제로 얼마가 오가는지와 상관없이, 그 네트워크가 갖춘 능력을 말한다.",
+          "sources": ["network-basics.bandwidth"]
+        },
+        {
+          "id": "actual",
+          "label": "실제로 전송된 양",
+          "caption": "대역폭이 크면 같은 시간에 더 많은 데이터를 보내고 받을 수 있지만, 늘 그만큼 전송되는 것은 아니다. 실제로 전송된 양은 처리율로 따로 재고, 처리율은 대역폭이라는 상한 안에서만 나온다.",
+          "sources": ["network-basics.bandwidth"]
+        }
+      ],
+      "sources": ["network-basics.bandwidth", "network-basics.transmission-speed", "network-basics.throughput"]
+    },
     "ping-loss": {
       "label": "ping 결과로 패킷 손실을 읽는 도식",
       "svgLabel": "보내는 호스트가 상대 호스트에게 메시지를 보내고, 보낸 메시지와 돌아온 응답을 칸으로 센 ping 결과",
