@@ -510,6 +510,85 @@
       "sources": [
         "ip-protocol.ipv6-header"
       ]
+    },
+    "extension-chain": {
+      "label": "IPv6 패킷의 헤더가 다음 헤더 칸으로 이어지는 모습을 보이는 도식",
+      "svgLabel": "IPv6 패킷에 담긴 기본 헤더, 단편화 확장 헤더, TCP 헤더, 데이터를 담긴 차례대로 놓은 모습",
+      "question": "확장 헤더는 어떻게 이어질까?",
+      "idleCaption": "IPv6 패킷에 담긴 헤더와 데이터를 담긴 차례대로 놓았다. 버튼을 고르면 확장 헤더가 없을 때와 단편화 확장 헤더가 붙을 때, 각 헤더의 다음 헤더 칸이 바로 뒤의 무엇을 가리키는지 볼 수 있다.",
+      "legend": "화살표는 다음 헤더 칸이 가리키는 바로 뒤의 헤더이고, 곁의 숫자는 그 칸에 든 번호다. 상자는 패킷에 담긴 차례대로 위에서 아래로, 넓은 화면에서는 왼쪽에서 오른쪽으로 놓았다.",
+      "nodes": {
+        "base": "기본 헤더",
+        "fragment": "단편화 확장 헤더",
+        "tcp": "TCP 헤더",
+        "data": "데이터"
+      },
+      "notes": {
+        "base-tcp-note": "다음 헤더 6",
+        "base-fragment-note": "다음 헤더 44",
+        "fragment-tcp-note": "다음 헤더 6"
+      },
+      "scenarios": [
+        {
+          "id": "none",
+          "label": "확장 헤더 없음",
+          "caption": "확장 헤더가 없는 패킷이다. 기본 헤더의 다음 헤더 칸이 곧바로 상위 계층을 가리켜, 바로 뒤에 TCP 헤더가 오므로 6이 들어간다.",
+          "sources": [
+            "ip-protocol.extension-headers"
+          ]
+        },
+        {
+          "id": "fragment",
+          "label": "단편화 확장 헤더",
+          "caption": "출발지가 패킷을 나누면 조각마다 기본 헤더 뒤에 단편화 확장 헤더를 끼운다. 그림은 TCP 헤더가 들어가는 첫 조각이다. 기본 헤더의 다음 헤더 칸은 44로 단편화 확장 헤더를, 단편화 확장 헤더의 다음 헤더 칸은 6으로 TCP 헤더를 가리킨다.",
+          "sources": [
+            "ip-protocol.extension-headers"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.extension-headers"
+      ]
+    },
+    "slaac": {
+      "label": "IPv6 호스트가 라우터가 알린 접두사로 자기 주소를 만드는 도식",
+      "svgLabel": "라우터와 호스트 A, 그리고 호스트 A의 IPv6 주소를 이루는 접두사 2001:db8:0:1과 인터페이스 식별자 1234:5678:9abc:def0",
+      "question": "서버 없이 IPv6 주소를 어떻게 만들까?",
+      "idleCaption": "라우터와 호스트 A가 같은 네트워크에 있다. 아래 두 칸은 호스트 A가 쓸 IPv6 주소의 앞부분인 접두사와 뒷부분인 인터페이스 식별자다. 버튼을 고르면 각 부분을 누가 정하는지 볼 수 있다.",
+      "legend": "화살표는 라우터 알림이 가는 길과 호스트 A가 스스로 만드는 부분이다. 아래 띠는 호스트 A의 IPv6 주소를 앞부분과 뒷부분으로 나눈 것이다.",
+      "nodes": {
+        "router": "라우터",
+        "host": "호스트 A",
+        "prefix": "2001:db8:0:1",
+        "iid": "1234:5678:9abc:def0"
+      },
+      "notes": {
+        "prefix-name": "접두사",
+        "iid-name": "인터페이스 식별자",
+        "advert": "라우터 알림 · 접두사 2001:db8:0:1",
+        "address": "주소 2001:db8:0:1:1234:5678:9abc:def0"
+      },
+      "scenarios": [
+        {
+          "id": "advertise",
+          "label": "접두사 알림",
+          "caption": "라우터가 라우터 알림으로 이 네트워크의 접두사 2001:db8:0:1을 알린다. 호스트 A는 이 접두사를 그대로 자기 주소의 앞부분으로 쓴다.",
+          "sources": [
+            "ip-protocol.slaac"
+          ]
+        },
+        {
+          "id": "combine",
+          "label": "주소 만들기",
+          "caption": "호스트 A가 뒷부분인 인터페이스 식별자 1234:5678:9abc:def0을 스스로 만들어 접두사 뒤에 붙인다. 이렇게 만든 주소는 쓰기 전에 겹치지 않는지 확인하고, 주소를 나눠 주는 서버는 어디에도 없다.",
+          "sources": [
+            "ip-protocol.slaac"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.slaac"
+      ]
     }
   },
   "tables": {},

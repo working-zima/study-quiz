@@ -295,12 +295,17 @@ https://www.rfc-editor.org/rfc/rfc8200
 - (phase 73) 모든 링크는 MTU가 1280옥텟 이상이어야 한다(IPv6 최소 링크 MTU). 1280옥텟 패킷을 통째로 나르지 못하는 링크는 IPv6 아래 계층에서 나누고 합쳐야 한다.
   MTU를 설정할 수 있는 링크는 1500옥텟 이상을 권한다 — §5
 - (phase 73) 경로 MTU보다 큰 패킷은 출발지에서 단편화 헤더로 나누고 목적지에서 합칠 수 있지만, 패킷 크기를 경로 MTU에 맞출 수 있는 응용은 이 방법을 쓰지 않는 편이 좋다 — §5
+- (phase 73 step 7) 인터페이스(interface)는 노드가 링크에 붙은 지점이다 — §2
+- (phase 73 step 7) 단편화 헤더의 다음 헤더 칸은 원래 패킷에서 나눌 부분의 첫 헤더 종류를 가리키고, IPv4 프로토콜 칸과 같은 번호를 쓴다. 예약 칸은 보낼 때 0으로 채우고 받을 때 무시한다 — §4.5.
+  원래 패킷의 상위 계층 헤더(TCP 등)는 **첫 조각에만** 단편화 헤더 뒤에 실리고, 둘째 조각부터는 기본 헤더(경로에서 처리해야 할 확장 헤더가 있으면 그것까지) 뒤에 단편화 헤더와 나머지 데이터 조각만 온다 — §4.5 「fragment packets」 그림.
+  첫 조각에서는 기본 헤더의 다음 헤더 칸을 44로 바꾼다 — §4.5. 원래 패킷은 출발지 주소·목적지 주소·식별자가 같은 조각끼리만 합친다 — §4.5 재조합 규칙
 
 쓰인 곳: 강의 수정 이력 L4, L5, L10, L33, 면접 수정 이력 I3, I8, (phase 72 step 5) `ethernet.ethertype-length`(IPv6는 주소를 32비트에서 128비트로 늘렸다, §1),
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.5 — 출발지만 나눈다), `ip-protocol.mtu`(§2 링크 MTU·경로 MTU, §5 — 1280), `ip-protocol.ipv6`(§1 — 뒤를 잇는 판·달라진 점), `ip-protocol.ipv6-header`(§3·§7·§8.1·§8.3 — 칸 여덟, 40옥텟, 체크섬·단편화 칸 없음),
 `ip-protocol.ttl`(§3 — 홉 제한), `ip-protocol.extension-headers`(§4·§4.5), `exam-notes.md` E9,
 (phase 73 step 2) `ip-protocol.fragmentation`(§2 — 링크의 뜻과 링크 MTU, §4.5 — IPv6는 출발지만 나눈다), 문항 n050 해설
 (phase 73 step 6) `ip-protocol.ipv6-header`(§3 — 칸 여덟과 크기, 버전 값 6, 페이로드 길이에 확장 헤더가 든다, 다음 헤더는 IPv4 프로토콜 칸과 같은 번호, 홉 제한; §6 — 흐름 레이블; §7 — 트래픽 클래스; §8.1 — 헤더 체크섬 없음; §4.5 — 단편화 칸 없음, 출발지가 단편화 헤더를 붙인다; 40옥텟), 도식 `ipv6-header`, 문항 n060 해설
+(phase 73 step 7) `ip-protocol.extension-headers`(§4 — 기본 헤더와 상위 계층 헤더 사이의 별도 헤더, 없거나 하나거나 여럿, 앞 헤더의 다음 헤더 칸이 가리키는 사슬, 번호는 IPv4 프로토콜 칸과 같은 목록, 홉별 옵션을 빼면 경로가 처리하지 않음, 목적지가 차례대로 처리, 8옥텟 배수; §4.5 — 출발지가 경로 MTU보다 큰 패킷을 나눠 조각마다 붙인다, 앞 헤더의 값 44, 칸 여섯과 크기, 예약 칸은 0, M 플래그, 식별자 32비트와 겹치지 않게 정하기, 출발지·목적지·식별자가 같은 조각끼리 합침, 상위 계층 헤더는 첫 조각에만), 도식 `extension-chain`, 문항 n061 해설; `ip-protocol.slaac`(§2 — 인터페이스는 노드가 링크에 붙은 지점)
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -1495,8 +1500,12 @@ Draft Standard(Standards Track)이고 RFC 2462를 폐기·대체한다. RFC 7527
 - 이 자동 설정 절차는 호스트에만 적용한다. 라우터는 다른 방법으로 설정한다(링크 로컬 주소는 라우터도 이 방법으로 만든다) — §1, §4
 - 라우터 알림·라우터 요청의 형식은 RFC 4861이 정한다 — 라우터 요청 §4.1(ICMPv6 타입 133), 라우터 알림 §4.2(ICMPv6 타입 134). 이웃 탐색과 ICMPv6는 step 1에서 정리한다
 - 「상태 비저장(stateless)」이라는 이름의 뜻은 이 판이 풀이하지 않는다. 옛 판(RFC 2462)의 「stateful 설정」이라는 말이 헷갈린다며 이 판은 그 자리에 DHCPv6라고만 쓴다 — Appendix C. 뜻은 아래 RFC 9915·RFC 2462 항목
+- (phase 73 step 7) 용어: 링크 로컬 주소는 같은 링크에 붙은 이웃 노드에게 닿는 데 쓰는, 범위가 그 링크뿐인 주소이고 모든 인터페이스가 하나씩 갖는다. 전역 주소(global address)는 범위에 제한이 없는 주소다.
+  인터페이스 식별자는 (적어도) 그 링크 안에서 겹치지 않는 인터페이스의 식별자이고, 상태 비저장 자동 설정은 이것을 접두사와 합쳐 주소를 만든다 — §2.
+  라우터는 라우터 알림을 주기적으로 보내고, 호스트는 라우터 요청으로 알림을 빨리 받을 수 있다 — §4, §5.5.1
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(§1·§4·§5 — 서버 없이 접두사 + 인터페이스 식별자, DAD, 링크 로컬 주소 먼저), `ip-protocol.ipv6`(주소 자동 설정 — RFC 8200 §1과 함께)
+(phase 73 step 7) `ip-protocol.slaac`(§1 — 사람의 설정도 서버도 없이, 라우터가 알린 접두사 + 호스트가 만든 인터페이스 식별자, 라우터가 없으면 링크 로컬 주소만, DHCPv6와 함께 쓸 수 있음; §2 — 링크 로컬 주소·전역 주소(범위 제한 없음)·인터페이스 식별자; §4·§5.3~§5.5 — 링크 로컬 주소 먼저, 라우터 알림·라우터 요청, 이웃 요청·이웃 광고로 중복 주소 검출, 겹치면 자동 설정을 멈춤, 둘을 이어 128비트, 호스트에만 적용(라우터도 링크 로컬 주소는 같은 방법)), 도식 `slaac`, 문항 n062 해설
 
 ## (phase 73) RFC 9915 — Dynamic Host Configuration Protocol for IPv6 (DHCPv6)
 https://www.rfc-editor.org/rfc/rfc9915
@@ -1507,6 +1516,7 @@ https://www.rfc-editor.org/rfc/rfc9915
 - 주소나 접두사 없이 다른 설정값만 주면 서버가 어떤 상태도 기록해 둘 필요가 없어서, 그 방식을 「stateless DHCPv6」라 부른다 — §1
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(「상태 비저장」의 뜻 — 주소를 누구에게 주었는지 기록하는 서버가 없다. 아래 RFC 2462와 함께)
+(phase 73 step 7) `ip-protocol.slaac`(DHCPv6는 IPv6용 주소 서버, 「상태 비저장」의 뜻 — §1·Abstract)
 
 ## (phase 73) RFC 2462 — IPv6 Stateless Address Autoconfiguration [폐기, RFC 4862로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc2462
@@ -1515,6 +1525,7 @@ https://www.rfc-editor.org/rfc/rfc2462
   상태 비저장 방식은 서버 없이 호스트가 라우터가 알린 정보와 자기 정보로 스스로 주소를 만든다 — §1
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(「상태 비저장」의 뜻 — 지금 판 RFC 4862는 이 대목을 뺐다)
+(phase 73 step 7) `ip-protocol.slaac`(주소를 나눠 주는 서버는 어느 주소를 어느 호스트에 주었는지 기록한다 — §1)
 
 ## (phase 73) RFC 4213 — Basic Transition Mechanisms for IPv6 Hosts and Routers
 https://www.rfc-editor.org/rfc/rfc4213
@@ -1580,6 +1591,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 쓰인 곳: (phase 73에서 쓰일 곳) `phases/73-network-ip-arp-icmp/guide.md` 「예시 값」 — `ip-protocol`·`arp`·`icmp`의 본문·문항·도식에 쓰는 IPv4·IPv6 주소와 도메인 이름. MAC 주소는 위 RFC 9542 항목(§2.1.4)
 (phase 73 step 5) `ip-protocol.ipv4-address`(RFC 5737 §3 — `192.0.2.0`~`192.0.2.255`는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예 `192.0.2.1`과 도식 `ipv4-address`), 문항 n056의 보기 주소
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(RFC 3849 — 첫 두 묶음이 `2001:0db8`인 주소는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예와 도식 `ipv6-notation`), 문항 n058·n059의 주소
+(phase 73 step 7) `ip-protocol.slaac`(RFC 3849 — 예시 접두사 `2001:db8:0:1`과 주소 `2001:db8:0:1:1234:5678:9abc:def0`, 본문 예와 도식 `slaac`)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
@@ -1697,6 +1709,7 @@ Draft Standard이고 RFC 2461을 폐기·대체한다. 폐기되지 않았고 RF
 - ND는 IPv4의 ARP, ICMP 라우터 찾기(RFC 1256), ICMP 리다이렉트를 합친 것에 해당한다. 주소 결정 요청은 2^24개의 멀티캐스트 주소로 흩어져, 대상이 아닌 노드가 덜 방해받는다 — §3.1
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ARP 대신 이웃 요청·광고, ICMPv6 메시지, 멀티캐스트로 묻고 유니캐스트로 답한다 — [기출 2025-08-24 #3]), `ip-protocol.slaac`(라우터 요청 133·라우터 광고 134 — 위 RFC 4862 항목이 가리킨 곳), `icmp.icmp`(ICMPv6가 이웃 탐색도 맡는다)
+(phase 73 step 7) `ip-protocol.slaac`(라우터 알림·라우터 요청·이웃 요청·이웃 광고가 ICMPv6 메시지라는 것 — §3, 타입 번호는 쓰지 않았다)
 
 ## (phase 73 step 1) RFC 4443 — Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification, IANA — ICMPv6 Parameters
 https://www.rfc-editor.org/rfc/rfc4443

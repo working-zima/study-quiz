@@ -38,6 +38,7 @@ import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
 import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
@@ -94,6 +95,7 @@ import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SgNaclCompareTable } from './sgNaclTables'
+import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
@@ -244,6 +246,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-protocol.ipv6': Ipv6ChangesDiagram,
   'ip-protocol.ipv6-address-notation': Ipv6NotationDiagram,
   'ip-protocol.ipv6-header': Ipv6HeaderDiagram,
+  'ip-protocol.extension-headers': ExtensionChainDiagram,
+  'ip-protocol.slaac': SlaacDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
