@@ -28,6 +28,7 @@ import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
+import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { GovernanceToolTable } from './governanceTables'
@@ -74,6 +75,7 @@ import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SgNaclCompareTable } from './sgNaclTables'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
+import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
@@ -184,6 +186,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.encapsulation': EncapsulationDiagram,
   'protocols-encapsulation.decapsulation': DecapsulationDiagram,
   'protocols-encapsulation.pdu-names': PduNamesDiagram,
+  'ethernet.ethernet': EthernetLayersDiagram,
+  'ethernet.standard-names': StandardNameDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

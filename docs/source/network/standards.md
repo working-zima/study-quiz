@@ -26,6 +26,7 @@ IEEE 802.3 본문은 무료로 열리지 않으므로, 802.3 작업 그룹이 `i
 「(phase 72 step 1)」이 붙은 줄과 항목은 phase 72 step 1에서 `hub-switch-vlan` 주제(허브·반이중과 전이중·충돌 도메인·CSMA/CD·스위치·MAC 주소 테이블·플러딩·STP·브로드캐스트 도메인·VLAN·VLAN 태그·트렁크·VTP)가
 쓸 사실을 확인하며 더했다(확인한 날 2026-10-28). IEEE 802.1(브리지·VLAN) 본문도 무료로 열리지 않아, 802.1 작업 그룹 자료와 802.1을 풀이한 RFC·NIST 문서를 근거로 썼다.
 Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허용하는 출처」).
+「(phase 72 step 2)」가 붙은 항목은 phase 72 step 2에서 `ethernet.ethernet`이 이더넷 표준을 누가 만드는지 쓰려고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -665,7 +666,7 @@ G 시리즈 권고의 보충 문서(Supplement)다. 권고가 아니라 광섬�
 - 광섬유는 구리선이 전자를 이끌듯 빛을 이끌 수 있어, 레이저 빛으로 통신하는 데 알맞다고 제안되었다 — §5
 - 광 송신기 안에서 전기 신호인 비트 흐름이 빛(광 반송파)의 세기를 바꾸고, 광섬유를 지난 광 신호는 광 수신기가 다시 전기 신호로 바꾼다 — §5.6
 
-쓰인 곳: `network-basics.communication-link`
+쓰인 곳: `network-basics.communication-link`, `ethernet.standard-names`(광케이블은 빛을 이끄는 광섬유로 빛 신호를 실어 나른다)
 
 ## (phase 71) Microsoft Learn — Windows commands, ping, Task Manager
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
@@ -765,7 +766,7 @@ https://www.ieee802.org/misc-docs/GlobeCom2009/IEEE_802d3_Law.pdf
 - 802.3ae-2002(10 Gb/s 동작): 10GBASE-SR/SW(멀티 모드), 10GBASE-LX4(싱글 모드나 멀티 모드), 10GBASE-LR/LW(싱글 모드 10 km), 10GBASE-ER/EW(싱글 모드 40 km) — 10쪽
 - 802.3an-2006: 10GBASE-T(트위스티드 페어, 100 m) — 12쪽
 
-쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.standard-names`(1000BASE-LX가 싱글 모드·멀티 모드 광섬유를 모두 쓴다, 10GBASE-SR은 멀티 모드), (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
 
 ## (phase 72) IEEE SA — 802.3u-1995, 802.3z-1998, 802.3ab-1999, 802.3ae-2002, 802.3an-2006, 802.3cc-2017 표준 소개 페이지
 https://standards.ieee.org/ieee/802.3u/1079/
@@ -832,6 +833,16 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 - arp 명령에 이더넷 주소를 줄 때는 6바이트를 16진수로 적고 콜론으로 가른다 — arp(8) 「arp -s」
 
 쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(콜론 꼴 표기)
+
+## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
+https://www.ieee802.org/
+
+IEEE 802 위원회의 홈페이지다. 작업 그룹 목록이 이 페이지에 있다. IEEE라는 약어의 풀네임은 이 페이지와 standards.ieee.org 「About」 페이지(https://standards.ieee.org/about/) 어디에도 적혀 있지 않아 쓰지 않는다(2026-10-28 확인).
+
+- IEEE 802는 LAN/MAN Standards Committee(LMSC), 곧 LAN·MAN 표준을 만드는 위원회다 — 홈페이지 첫머리
+- 802.3은 그 위원회의 Ethernet Working Group(이더넷 작업 그룹)이다 — 홈페이지의 작업 그룹 목록
+
+쓰인 곳: `ethernet.ethernet`(IEEE 802 표준 위원회 안의 이더넷 작업 그룹이 IEEE 802.3을 만든다)
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 4.1.1 Overview, 4.1.2.2 Access interference and recovery, 4.2.3.2 Transmit media access management, 4.4 Specific implementations
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf

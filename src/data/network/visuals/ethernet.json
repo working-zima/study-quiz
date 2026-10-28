@@ -1,0 +1,92 @@
+{
+  "diagrams": {
+    "ethernet-layers": {
+      "label": "이더넷이 정하는 두 계층 도식",
+      "svgLabel": "케이블로 이은 두 컴퓨터의 데이터 링크 계층과 물리 계층, 그리고 IEEE 802.3이 정하는 프레임과 케이블",
+      "question": "이더넷은 무엇을 정해 둘까?",
+      "idleCaption": "이더넷은 두 계층의 규칙을 함께 정한다. 물리 계층에서는 어떤 케이블로 어떤 신호를 보낼지를, 데이터 링크 계층에서는 주고받는 데이터를 담을 형식인 프레임을 정한다. 가운데 박스의 두 가지를 모두 IEEE 802.3이라는 표준 하나가 정한다. 버튼을 고르면 계층마다 데이터가 어떻게 오가는지 볼 수 있다.",
+      "legend": "컴퓨터 A·B 박스는 케이블로 이은 두 컴퓨터이고, 가운데 박스는 IEEE 802.3이 정하는 것이다. 가는 선은 연결, 화살표는 데이터가 가는 방향이다.",
+      "nodes": {
+        "a-data-link": "데이터 링크 계층",
+        "a-physical": "물리 계층",
+        "frame": "프레임",
+        "cable": "케이블",
+        "b-data-link": "데이터 링크 계층",
+        "b-physical": "물리 계층"
+      },
+      "groups": {
+        "computer-a": "컴퓨터 A",
+        "ethernet": "IEEE 802.3",
+        "computer-b": "컴퓨터 B"
+      },
+      "scenarios": [
+        {
+          "id": "physical",
+          "label": "물리 계층",
+          "caption": "물리 계층에서 이더넷은 어떤 케이블을 쓰고, 그 케이블로 비트를 어떤 신호로 보낼지를 정한다. 컴퓨터 A의 물리 계층이 비트를 전기 신호나 빛으로 바꿔 케이블로 내보내면, 컴퓨터 B의 물리 계층이 그 신호를 받아 다시 비트로 되돌린다.",
+          "sources": ["ethernet.ethernet"]
+        },
+        {
+          "id": "data-link",
+          "label": "데이터 링크 계층",
+          "caption": "데이터 링크 계층에서 이더넷은 주고받는 데이터를 프레임이라는 정해진 형식에 담게 한다. 컴퓨터 A가 이 형식대로 만든 프레임을 컴퓨터 B가 같은 형식대로 읽으므로, 두 컴퓨터는 서로 보낸 것을 알아볼 수 있다. 프레임은 실제로는 물리 계층에서 신호로 바뀌어 케이블을 지나간다.",
+          "sources": ["ethernet.ethernet"]
+        }
+      ],
+      "sources": ["ethernet.ethernet"]
+    },
+    "standard-name": {
+      "label": "이더넷 규격 이름을 읽는 법 도식",
+      "svgLabel": "이더넷 규격 이름 하나를 속도, BASE, 하이픈 뒤 글자의 세 칸으로 나눈 띠",
+      "question": "이더넷 규격 이름은 무엇을 알려 줄까?",
+      "idleCaption": "이더넷 규격 이름은 세 부분으로 나눠 읽는다. 맨 앞은 1초에 보내는 비트 수인 속도이고, 가운데 BASE는 신호를 싣는 방식이 베이스밴드라는 표시이며, 하이픈 뒤 글자는 어떤 케이블로 신호를 보내는지를 알려 준다. 버튼을 고르면 실제 규격 이름을 나눠 읽어 볼 수 있다.",
+      "legend": "이어 붙은 세 칸이 규격 이름 하나이고, 왼쪽부터 읽는다. 칸 아래 글은 그 칸이 말하는 것이다.",
+      "nodes": {
+        "speed": "속도",
+        "base": "BASE",
+        "letters": "하이픈 뒤 글자",
+        "10base-t.speed": "10",
+        "10base-t.letters": "-T",
+        "1000base-sx.speed": "1000",
+        "1000base-sx.letters": "-SX",
+        "10gbase-t.speed": "10G",
+        "10gbase-t.letters": "-T"
+      },
+      "notes": {
+        "speed": "1초에 보내는 비트 수",
+        "base": "베이스밴드",
+        "letters": "신호를 보내는 케이블",
+        "10base-t.speed": "10 Mb/s",
+        "10base-t.letters": "트위스티드 페어",
+        "1000base-sx.speed": "1 Gb/s",
+        "1000base-sx.letters": "짧은 파장의 빛",
+        "1000base-sx.encoding": "X는 부호화 방식",
+        "10gbase-t.speed": "10 Gb/s",
+        "10gbase-t.letters": "트위스티드 페어"
+      },
+      "scenarios": [
+        {
+          "id": "10base-t",
+          "label": "10BASE-T",
+          "caption": "10BASE-T는 앞의 수 10에 G가 없으므로 메가비트 단위, 곧 1초에 10메가비트(10 Mb/s)를 보내는 규격이다. 하이픈 뒤 T는 트위스티드 페어 케이블로 전기 신호를 보낸다는 뜻이다.",
+          "sources": ["ethernet.standard-names"]
+        },
+        {
+          "id": "1000base-sx",
+          "label": "1000BASE-SX",
+          "caption": "1000BASE-SX의 1000은 1000 Mb/s, 곧 1 Gb/s다. 하이픈 뒤 첫 글자 S는 광섬유로 짧은 파장의 빛을 보낸다는 뜻이고, 이 규격은 멀티 모드 광섬유를 쓴다. 둘째 글자 X는 케이블이 아니라 데이터를 신호로 바꾸는 규칙(부호화 방식)을 가리킨다.",
+          "sources": ["ethernet.standard-names"]
+        },
+        {
+          "id": "10gbase-t",
+          "label": "10GBASE-T",
+          "caption": "10GBASE-T는 10 뒤에 G가 붙었으므로 기가비트 단위, 곧 1초에 10기가비트(10 Gb/s)를 보낸다. 하이픈 뒤 글자는 10BASE-T와 같은 T라, 둘 다 트위스티드 페어 케이블로 전기 신호를 보내지만 속도는 1000배 다르다.",
+          "sources": ["ethernet.standard-names"]
+        }
+      ],
+      "sources": ["ethernet.standard-names"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
