@@ -426,6 +426,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 `icmp.icmp`(§1.1.3·§3.2.2 — IP의 일부, 두 갈래, 오류의 오류 금지), `icmp.icmp-message`(§3.2.2), `icmp.destination-unreachable`(§3.2.2.1), `icmp.time-exceeded`(§3.2.2.4), `icmp.echo`(§3.2.2.6), `icmp.igmp`(§1.1.3·§3.2.3)
 (phase 73 step 3) `ip-protocol.ipv4-header`(§3.2.1.2 — 체크섬이 맞지 않는 패킷은 버린다, §3.2.2·§3.2.2.1 — 프로토콜 번호로 넘길 전송 프로토콜을 고른다), 문항 n052 해설
 (phase 73 step 4) `ip-protocol.fragment-fields`(위 2026-10-28 줄 — 데이터그램은 순서가 바뀌어 닿을 수 있어 조각이 보낸 차례대로 닿는다는 보장이 없다), `ip-protocol.ttl`(§3.2.1.7 — 고리를 끝내는 쓰임과 홉 수의 성질), 문항 n055 해설
+(phase 73 step 5) `ip-protocol.ipv6`(§3.2.1.3 — IPv4에는 그 물리 네트워크의 모든 호스트가 받는 브로드캐스트 주소가 있다), 도식 `ipv6-changes`의 「브로드캐스트 있음」, 문항 n057 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -1427,6 +1428,7 @@ Draft Standard(Standards Track)이고 폐기되지 않았다. RFC 5952 등이 �
   (예: `2001:db8::1::2`는 빠진 0 묶음 넷을 1+3, 2+2, 3+1 가운데 어느 것으로도 읽을 수 있다) — §2.2의 두 규칙에서 셈으로 나오는 것이다
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(주소 종류 셋, 브로드캐스트 없음 — §2), `ip-protocol.ipv6-address-notation`(§2.2 — 묶음 여덟, 앞쪽 0 생략, `::`는 한 번), `ip-protocol.slaac`(링크 로컬 주소 — §2.1)
+(phase 73 step 5) `ip-protocol.ipv6`(§2 — 브로드캐스트 주소가 없고 멀티캐스트 주소가 그 일을 맡는다, 멀티캐스트는 묶음의 모든 인터페이스에 간다), 도식 `ipv6-changes`, 문항 n057 해설, 문항 n056 해설(§2.2 — 콜론으로 묶음을 잇는 꼴은 IPv6 주소의 꼴)
 
 ## (phase 73) RFC 5952 — A Recommendation for IPv6 Address Text Representation
 https://www.rfc-editor.org/rfc/rfc5952
@@ -1560,6 +1562,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 - 도메인: `example.com`·`example.net`·`example.org`는 IANA가 예시로 쓰라고 남겨 둔 2단계 도메인 이름이다 — RFC 2606 §3
 
 쓰인 곳: (phase 73에서 쓰일 곳) `phases/73-network-ip-arp-icmp/guide.md` 「예시 값」 — `ip-protocol`·`arp`·`icmp`의 본문·문항·도식에 쓰는 IPv4·IPv6 주소와 도메인 이름. MAC 주소는 위 RFC 9542 항목(§2.1.4)
+(phase 73 step 5) `ip-protocol.ipv4-address`(RFC 5737 §3 — `192.0.2.0`~`192.0.2.255`는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예 `192.0.2.1`과 도식 `ipv4-address`), 문항 n056의 보기 주소
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
