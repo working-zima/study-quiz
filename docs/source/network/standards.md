@@ -35,6 +35,8 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 11)」이 붙은 줄과 항목은 phase 72 step 11에서 `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 73)」이 붙은 줄과 항목은 phase 73에서 `ip-protocol`(IP·단편화·MTU·IPv4 헤더·TTL·IPv4 주소·IPv6·주소 표기·IPv6 헤더·확장 헤더·SLAAC)·`arp`·`icmp`(IGMP 포함) 주제가 쓸 사실을 확인하며 더했다.
 step 0(IP와 단편화)의 확인한 날은 2026-10-29다. RFC는 rfc-editor.org의 텍스트판(`https://www.rfc-editor.org/rfc/rfcNNNN.txt`)을 내려받아 절을 직접 읽었고, 지금 유효한지(폐기·개정 관계)는 rfc-editor의 문서 정보(`…/rfcNNNN.json`)로 확인했다.
+「(phase 73 step 1)」이 붙은 줄과 항목은 phase 73 step 1에서 `arp`(ARP·ARP 캐시·다른 네트워크로 보낼 때·RARP·이웃 탐색)·`icmp`(IP의 한계·ICMP·타입과 코드·목적지 도달 불가·시간 초과·에코·ping·IGMP) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
+RFC는 step 0과 같은 방법으로 읽었고, IANA 레지스트리는 XML판(`…/<레지스트리>.xml`)을, man7.org·learn.microsoft.com은 그 페이지를 내려받아 읽었다. 명령 문서는 운영체제·패키지마다 다르므로 어느 판인지 항목에 적는다.
 
 ---
 
@@ -141,7 +143,8 @@ https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
   예전에 쓰다 무효가 된 값(0101-01FF·0200·0201·0400)이고, 그다음이 0600(10진 1536)이다. 05DD~05FF(10진 1501~1535)에 대한 기록은 없다.
   0800은 「Internet Protocol version 4 (IPv4)」, 0806은 「Address Resolution Protocol (ARP)」, 86DD는 「Internet Protocol version 6 (IPv6)」으로 적혀 있다 — EtherType 표
 
-쓰인 곳: 강의 수정 이력 L1, `ethernet.ethertype-length`(0000~05DC는 길이, 0800·86DD·0806, ARP의 풀네임, 05DD~05FF에 정해진 것이 없음), (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100 — (phase 72 step 11) 본문은 값을 적지 않고 「이 자리에 VLAN 태그가 있다는 것을 알리는 정해진 값」으로만 쓴다)
+쓰인 곳: 강의 수정 이력 L1, `ethernet.ethertype-length`(0000~05DC는 길이, 0800·86DD·0806, ARP의 풀네임, 05DD~05FF에 정해진 것이 없음), (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100 — (phase 72 step 11) 본문은 값을 적지 않고 「이 자리에 VLAN 태그가 있다는 것을 알리는 정해진 값」으로만 쓴다),
+(phase 73 step 1) `arp.arp`(ARP 메시지를 실은 프레임의 이더타입 0806 — 바로 실린다는 것은 아래 「(phase 73 step 1) RFC 826」 항목)
 
 ## RFC 9542 — IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters
 https://www.rfc-editor.org/rfc/rfc9542
@@ -217,10 +220,18 @@ https://www.rfc-editor.org/rfc/rfc791
 - (phase 73) 옵션은 데이터그램마다 있을 수도 없을 수도 있고(모든 IP 모듈이 구현은 해야 한다), 패딩은 헤더가 32비트 경계에서 끝나게 채우는 0이다 — §3.1 「Options」, 「Padding」
 - (phase 73) 모든 IP 모듈은 68옥텟짜리 데이터그램을 더 나누지 않고 넘길 수 있어야 한다 — 헤더가 60옥텟까지 길어질 수 있고 가장 작은 조각이 8옥텟이기 때문이다.
   모든 목적지는 576옥텟짜리 데이터그램을 통째로든 조각으로든 받을 수 있어야 한다 — §3.2 「Fragmentation and Reassembly」, §3.1 「Total Length」
+- (phase 73 step 1) IP는 끝과 끝 사이의 신뢰성, 흐름 제어, 순서 맞추기 같은 장치를 두지 않는다 — §1.2 「Scope」
+- (phase 73 step 1) IP는 신뢰성 있는 통신을 주지 않는다. 끝과 끝 사이에도 홉과 홉 사이에도 확인 응답이 없고, 데이터에는 오류 제어가 없이 헤더 체크섬만 있으며, 다시 보내지도 흐름을 제어하지도 않는다.
+  찾아낸 오류는 IP 모듈 안에 구현된 ICMP로 알릴 수 있다 — §1.4 「Operation」
+- (phase 73 step 1) 동작 모델(게이트웨이 하나를 지나는 경우): 출발지의 IP 모듈은 데이터그램 헤더를 만들고, 목적지 인터넷 주소로 보낼 지역 네트워크 주소 — 이 예에서는 게이트웨이의 주소 — 를 정해 지역 네트워크 인터페이스에 넘긴다.
+  인터페이스는 지역 네트워크 헤더를 붙여 보낸다. 게이트웨이의 인터페이스는 그 지역 헤더를 떼고 데이터그램을 IP 모듈에 넘기고, IP 모듈은 인터넷 주소를 보고 다른 네트워크로 넘길 데이터그램임을 안 뒤 목적지 호스트의 지역 네트워크 주소를 정해
+  그 네트워크의 인터페이스에 넘기며, 그 인터페이스가 새 지역 헤더를 붙여 보낸다. 목적지 호스트의 인터페이스가 지역 헤더를 떼고 IP 모듈에 넘긴다 — §2.2 「Model of Operation」.
+  이 모델에서 구간마다 떼고 새로 붙는 것은 지역 네트워크 헤더이고, 목적지를 가리키는 인터넷 주소는 그대로 다음 구간으로 간다(라우터가 넘기는 순서는 아래 RFC 1812 §5.2.1.2 줄)
 
 쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3),
 (phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.4 두 기능·IP 모듈의 자리), `ip-protocol.fragmentation`(§2.3·§3.2 — 게이트웨이도 나누고 목적지가 합친다, DF), `ip-protocol.mtu`(§3.2 — 68옥텟), `ip-protocol.ipv4-header`(§3.1 칸·IHL·전체 길이·헤더 체크섬·프로토콜·서비스 유형·옵션),
-`ip-protocol.fragment-fields`(§2.3·§3.1·§3.2 — 식별자·플래그·오프셋, 합치는 기준 넷), `ip-protocol.ttl`(§3.1 — 초 단위 정의와 상한), `exam-notes.md` E10
+`ip-protocol.fragment-fields`(§2.3·§3.1·§3.2 — 식별자·플래그·오프셋, 합치는 기준 넷), `ip-protocol.ttl`(§3.1 — 초 단위 정의와 상한), `exam-notes.md` E10,
+(phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§1.2·§1.4 — 신뢰성 장치가 없다), `icmp.icmp`(§1.4 — 오류는 ICMP로 알린다), `arp.arp-across-routers`(§2.2 — 구간마다 지역 헤더만 바뀐다), 강의 수정 이력 L34·L35(§2.3 — 32비트 주소는 8비트씩 넷)
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -373,12 +384,39 @@ https://www.rfc-editor.org/rfc/rfc1122
   RFC 791은 이 시간을 남은 TTL로 정하라고 했지만, 게이트웨이들이 TTL을 지난 시간이 아니라 **단순한 홉 수로 다루기 때문에** 잘 맞지 않는다고 쓴다 — §3.3.2 DISCUSSION
 - (phase 73) 호스트가 보낼 수 있는 가장 큰 데이터그램 크기(EMTU_S)는 출발지 주소의 네트워크 인터페이스 MTU 이하다. 호스트 쪽 단편화는 하지 않는 편이 바람직하고,
   경로의 어느 게이트웨이에서도 나뉘지 않을 만큼 작게 고르는 것이 좋다 — §3.3.3
+- (phase 73 step 1) ARP 구현은 낡은 캐시 항목을 지우는 방법을 반드시 갖춰야 하고(MUST), 시간 제한으로 지운다면 그 시간을 설정할 수 있어야 한다(SHOULD). 같은 IP 주소로 ARP 요청을 빠르게 되풀이해 보내는 것을 막는 장치도 반드시 갖춘다
+  (목적지마다 초당 1번을 권한다) — §2.3.2.1
+- (phase 73 step 1) 캐시 항목을 지우는 까닭: 상대 호스트의 이더넷 주소가 바뀌거나 대리 ARP 때문에 캐시의 짝이 틀려질 수 있고, 잘못 들어간 정보를 저절로 바로잡을 수 있다 — §2.3.2.1 DISCUSSION.
+  쓰여 온 방법은 넷이다 — 쓰고 있어도 주기적으로 지우는 시간 제한(그 시스템이 보낸 ARP 브로드캐스트를 보면 시간을 다시 센다), 유니캐스트 ARP 요청으로 주기적으로 묻고 답이 없으면 지우기,
+  링크 계층이 전달 문제를 알려 오면 지우기, 인터넷 계층이 알려 오면 지우기. 앞의 둘은 대략 1분 안팎의 시간을 예로 들고, 아주 큰 이더넷에서는 더 늘려야 할 수도 있다고 쓴다 — §2.3.2.1 IMPLEMENTATION.
+  표준이 시간 값을 하나로 정하지 않으므로 본문은 「운영체제가 정한 시간」으로 쓴다(Linux의 기본값은 아래 man-pages 항목의 arp(7))
+- (phase 73 step 1) 아직 링크 계층 주소를 모르는 IP 주소로 갈 패킷은 적어도 마지막 하나를 버리지 않고 두었다가 주소가 정해지면 보내는 것이 좋다(SHOULD) — 그러지 않으면 주고받기의 첫 패킷이 늘 사라진다 — §2.3.2.2
+- (phase 73 step 1) ICMP 메시지는 두 갈래다 — 오류 메시지(목적지 도달 불가, 리다이렉트, 발신지 억제, 시간 초과, 매개변수 문제)와 질의 메시지(에코, 정보, 타임스탬프, 주소 마스크).
+  모르는 타입의 ICMP 메시지는 알리지 않고 버린다 — §3.2.2
+- (phase 73 step 1) 모든 ICMP 오류 메시지는 오류를 부른 데이터그램의 IP 헤더와 데이터 앞 8옥텟 이상을 바꾸지 않고 담는다 — §3.2.2
+- (phase 73 step 1) ICMP 오류 메시지를 보내지 않는 때(MUST NOT): ICMP 오류 메시지를 받았을 때, IP 브로드캐스트·멀티캐스트 주소로 온 데이터그램, 링크 계층 브로드캐스트로 온 데이터그램, 첫 조각이 아닌 조각,
+  출발지 주소가 호스트 하나를 가리키지 않는 데이터그램. 브로드캐스트에 모든 호스트가 오류로 답해 네트워크가 잠시 쓸 수 없게 되는 일을 막으려는 규칙이다 — §3.2.2와 DISCUSSION
+- (phase 73 step 1) 목적지 도달 불가: 호스트는 지정된 전송 프로토콜을 지원하지 않으면 코드 2(프로토콜 도달 불가)를, 전송 프로토콜(예: UDP)이 데이터그램을 받을 곳을 찾지 못하고 출발지에 알릴 방법도 없으면 코드 3(포트 도달 불가)을 보내는 것이 좋다(SHOULD).
+  코드 0(네트워크)·1(호스트)·5(소스 라우트 실패)는 경로가 잠깐 흔들려서 생길 수도 있어, 받은 쪽은 도달할 수 없다는 증거가 아니라 단서로만 받는다 — §3.2.2.1
+- (phase 73 step 1) 리다이렉트는 게이트웨이만 보내고 호스트는 보내지 않는 것이 좋다(SHOULD NOT). 받은 호스트는 경로 정보를 고친다 — §3.2.2.2
+- (phase 73 step 1) 시간 초과: 게이트웨이는 TTL이 다 돼 데이터그램을 버리면 코드 0(전송 중)을 보낸다 — 경로가 고리를 이루거나 처음 TTL이 너무 작다는 뜻이다. 조각을 다 모으지 못하고 기다리는 시간이 지나 합치다 만 데이터그램을 버린 목적지 호스트는 코드 1(재조합 시간 초과)을 보낸다 — §3.2.2.4 DISCUSSION
+- (phase 73 step 1) 모든 호스트는 에코 요청을 받아 에코 응답을 보내는 기능을 반드시 갖춘다(MUST). 진단용으로 에코 요청을 보내고 응답을 받는 응용 계층 기능도 갖추는 것이 좋다(SHOULD).
+  에코 응답의 출발지 주소는 요청이 가리킨 목적지 주소이고, 요청으로 받은 데이터는 응답에 모두 담는다. IP 브로드캐스트·멀티캐스트로 온 에코 요청은 버려도 된다(MAY) — §3.2.2.6
+- (phase 73 step 1) 정보 요청·응답은 구현하지 않는 것이 좋다(SHOULD NOT) — 디스크 없는 워크스테이션이 부팅 때 자기 네트워크 번호를 알아내려던 것인데, 호스트가 자기 IP 주소를 알아내는 데는 RARP와 BOOTP가 더 나은 방법이다 — §3.2.2.7.
+  타임스탬프·타임스탬프 응답은 구현해도 된다(MAY) — §3.2.2.8
+- (phase 73 step 1) IGMP는 한 네트워크 안에서 호스트와 게이트웨이(라우터) 사이에 쓰여, 호스트가 어느 멀티캐스트 그룹에 드는지를 정한다. 게이트웨이는 이 정보와 멀티캐스트 라우팅 프로토콜로 인터넷 전체의 IP 멀티캐스트를 받친다 — §3.2.3
+- (phase 73 step 1) IP 계층은 보내는 데이터그램마다 다음 홉을 고른다. 목적지가 이어진 네트워크에 있으면 그 호스트로 바로 보내고, 아니면 이어진 네트워크의 게이트웨이로 보낸다 — §3.3.1.
+  같은 네트워크인지는 주소 마스크로 가린다(§3.3.1.1 — 서브넷 마스크는 `ip-addressing` 주제라 여기서는 이름만)
+- (phase 73 step 1) 경로 정보가 없는 목적지로 보낼 때 호스트는 **기본(default) 게이트웨이** 가운데 하나를 골라 보낸다. 호스트는 기본 게이트웨이를 여럿 둘 수 있어야 하고, 시작하려면 대개 적어도 하나를 알아야 한다
+  (설정 파일이나 BOOTP 같은 시작 절차로 얻는다). 고른 게이트웨이가 가장 좋은 다음 홉이 아니면 그 게이트웨이가 데이터그램을 넘겨주면서 ICMP 리다이렉트를 돌려보낸다 — §3.3.1.2와 DISCUSSION
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
 (phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3),
 (phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.1.3 — 인터넷 계층, 최선형), `ip-protocol.fragmentation`(§3.3.2 — 목적지가 합친다, 합치는 시간 한도), `ip-protocol.mtu`(§3.3.2·§3.3.3 — 576, EMTU_S ≤ 인터페이스 MTU),
-`ip-protocol.ttl`(§3.2.1.7 — 초 단위지만 홉 수의 성질, 고리를 끝낸다)
+`ip-protocol.ttl`(§3.2.1.7 — 초 단위지만 홉 수의 성질, 고리를 끝낸다),
+(phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(§2.3.2.1·§2.3.2.2), `arp.arp-across-routers`(§3.3.1·§3.3.1.2 — 다음 홉, 기본 게이트웨이), `arp.rarp`(§3.2.2.7 — RARP와 BOOTP), `icmp.ip-limits`(§1.1.3 — 비연결형, 전달 보장 없음),
+`icmp.icmp`(§1.1.3·§3.2.2 — IP의 일부, 두 갈래, 오류의 오류 금지), `icmp.icmp-message`(§3.2.2), `icmp.destination-unreachable`(§3.2.2.1), `icmp.time-exceeded`(§3.2.2.4), `icmp.echo`(§3.2.2.6), `icmp.igmp`(§1.1.3·§3.2.3)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -639,8 +677,18 @@ https://www.rfc-editor.org/rfc/rfc1112
 - IP 멀티캐스트는 IP 데이터그램을 「호스트 그룹」에 보내는 것이다. 호스트 그룹은 목적지 IP 주소 하나로 가리키는, 0개 이상의 호스트 묶음이다 — §2
 - 그룹 구성원은 고정되지 않는다 — 호스트는 언제든 그룹에 들어가거나 나올 수 있다 — §2
 - 멀티캐스트 데이터그램도 보통의 유니캐스트 데이터그램과 같은 최선형(best-effort) 신뢰성으로 전달된다 — §2
+- (phase 73 step 1) 위 줄의 최선형은 데이터그램이 받는 쪽 모두에 온전히 닿는다는 보장도, 다른 데이터그램과 순서가 지켜진다는 보장도 없다는 뜻이다 — §2.
+  RFC 1112는 Internet Standard이고 폐기되지 않았다. RFC 2236이 고쳤다(rfc-editor 상태, 2026-10-29)
+- (phase 73 step 1) 부록 I은 IGMP 첫 판(IGMPv1)이다. IGMP는 IP 호스트가 자기 호스트 그룹 가입을 바로 이웃한 멀티캐스트 라우터에 알리는 데 쓰는 **비대칭(asymmetric) 프로토콜**이고, 이 부록은 호스트 쪽에서 본 동작만 정한다 — 부록 I 첫 문단
+- (phase 73 step 1) ICMP처럼 IGMP도 IP의 일부다. IGMP 메시지는 IP 데이터그램에 담겨 가고 IP 프로토콜 번호는 2다 — 부록 I
+- (phase 73 step 1) v1 메시지의 칸: 버전 4비트, 타입 4비트, 쓰지 않는 칸 8비트, 체크섬 16비트, 그룹 주소 32비트. 호스트가 다루는 타입은 둘뿐이다 — 1 호스트 멤버십 질의, 2 호스트 멤버십 보고. TTL 칸은 없다 — 부록 I
+- (phase 73 step 1) 멀티캐스트 라우터는 자기가 이어진 네트워크에 어느 그룹의 구성원이 있는지 알려고 질의를 모든 호스트 그룹(224.0.0.1)으로 보낸다. 호스트는 자기가 든 그룹마다 무작위 시간을 기다렸다 보고를 보내되, 보고의 목적지는 그 그룹 주소다.
+  질의와 보고 모두 **IP TTL 1**로 보낸다. 같은 그룹의 다른 호스트 보고를 먼저 들으면 자기 보고를 보내지 않는다. 라우터가 알아야 하는 것은 그 네트워크에 그 그룹의 구성원이 하나라도 있는지이지 누가 구성원인지가 아니다 — 부록 I 「Informal Protocol Description」
+- (phase 73 step 1) 라우터는 질의를 몇 번 보내도 어느 그룹의 보고가 없으면 그 네트워크에 구성원이 없다고 보고, 다른 곳에서 온 그 그룹의 멀티캐스트를 그 네트워크로 넘기지 않는다 — 부록 I
+- (phase 73 step 1) 그룹에 새로 든 호스트는 자기가 그 네트워크의 첫 구성원일 수 있으므로 질의를 기다리지 않고 곧바로 보고를 보낸다. **첫 보고가 사라지거나 망가질 때에 대비해 짧은 간격을 두고 한두 번 되풀이할 것을 권한다** — 부록 I(`exam-notes.md` E14)
 
-쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이)
+쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이),
+(phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§2 — 최선형이라는 이름), `icmp.igmp`(부록 I — 비대칭, IP의 일부, 프로토콜 번호 2, 질의·보고, TTL 1), `exam-notes.md` E12·E14
 
 ## RFC 1983 — Internet Users' Glossary
 https://www.rfc-editor.org/rfc/rfc1983
@@ -687,8 +735,12 @@ https://www.rfc-editor.org/rfc/rfc903
 - RARP를 데이터 링크 수준(data-link level)의 별도 프로토콜로 두고, 이더넷에서는 ARP와 다른 이더타입을 쓴다 — §III
 - 이 RFC에는 RARP가 인터넷(네트워크) 계층이라는 말이 없다. RFC 1122 §1.1.3은 RARP를 응용 계층의 지원 프로토콜로 든다(위 RFC 1122 항목).
   자격시험이 RARP를 인터넷 계층으로 보는 것은 `exam-notes.md`의 E2다
+- (phase 73 step 1) ARP처럼 브로드캐스트 매체(이더넷 등)를 전제한다 — §I. RARP는 ARP와 같은 메시지 형식을 쓰고, 오퍼레이션 코드 3(역방향 요청)·4(역방향 응답)를 더한다.
+  ARP처럼 「찾지 못함」을 알리는 메시지는 없고, 요청한 쪽은 정한 시간 안에 답이 없으면 그만둔다 — §III(IANA ARP 오퍼레이션 코드 레지스트리도 3·4를 RFC 903으로 적는다 — 아래 「(phase 73 step 1) IANA — ARP Parameters」 항목)
+- (phase 73 step 1) RARP를 지금 무엇이 대신하는지: 이 RFC에는 없다. 아래 「(phase 73 step 1) RFC 951·RFC 2131」 항목이 BOOTP·DHCP와의 관계를 적는다
 
-쓰인 곳: `protocols-encapsulation.tcp-ip-model`, (phase 72 step 5) `ethernet.ethertype-length`(ARP는 하드웨어 주소를 알아내는 프로토콜이다, §I — 「IP 주소로 같은 네트워크 안 장치의 MAC 주소」는 강의 p133)
+쓰인 곳: `protocols-encapsulation.tcp-ip-model`, (phase 72 step 5) `ethernet.ethertype-length`(ARP는 하드웨어 주소를 알아내는 프로토콜이다, §I — 「IP 주소로 같은 네트워크 안 장치의 MAC 주소」는 강의 p133),
+(phase 73 step 1에서 쓰일 곳) `arp.rarp`(§I·§II·§III — 방향, 서버, 같은 형식, 링크 수준), `exam-notes.md` E2
 
 ## (2026-10-28) RFC 1123 — Requirements for Internet Hosts -- Application and Support
 https://www.rfc-editor.org/rfc/rfc1123
@@ -776,8 +828,20 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - ping의 문법은 옵션 뒤에 목적지(`<targetname>`)를 적는 꼴이고, 목적지는 호스트 이름이나 IP 주소다. 예를 들어 `ping /a 10.0.99.221`처럼 입력한다 — ping 「Syntax」, 「Parameters」, 「Examples」
 - 작업 관리자는 Windows에 기본으로 들어 있는(in-box) 도구로, 응용 프로그램과 프로세스의 성능과 자원 사용을 살핀다 — Task Manager 「Summary」
 - 작업 관리자의 프로세스 탭은 실행 중인 앱과 백그라운드 프로세스의 목록을, 성능 탭은 성능 데이터의 목록과 그래프를 보여 준다 — Task Manager 「More information」 표
+- (phase 73 step 1) 2026-10-29에 다시 읽은 판(페이지의 「Last updated on」): arp 2025-08-15, ping 2024-11-01, tracert 2024-11-01. 세 페이지 모두 Windows Server 2016~2025, Windows 10·11을 대상으로 적는다.
+  arp — https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/arp ,
+  tracert — https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tracert
+- (phase 73 step 1) arp 명령은 ARP 캐시의 항목을 보여 주고 고친다. ARP 캐시는 IP 주소와 그 주소로 알아낸 물리 주소(이더넷 등)를 담은 표이고, 네트워크 어댑터마다 따로 있다 — arp 첫 문단
+- (phase 73 step 1) arp의 옵션: `-a`는 지금 ARP 항목을 보여 준다(`-g`도 같다). `-d`는 지정한 IP 주소의 항목을 지운다(`*`이면 모두). `-s`는 IP 주소와 물리 주소의 짝을 **고정(static) 항목**으로 더하고, 그 항목은 TCP/IP를 다시 시작할 때까지 남는다.
+  동적 항목을 고정 항목으로 바꾸는 옵션은 따로 없다 — 고정 항목은 `-s`로 더한다 — arp 「Parameters」, 「Remarks」. 물리 주소는 16진수 여섯 바이트를 하이픈으로 이어 적는다(예: `00-AA-00-4F-2A-9C`) — arp 「Remarks」
+- (phase 73 step 1) ping: 에코 요청을 보낸 횟수는 `/n <count>`로 정하고 기본값은 4다. `/i <TTL>`은 **보내는 에코 요청**의 IP 헤더 TTL 칸 값을 정한다(기본값은 그 호스트의 기본 TTL). 받은 에코 응답을 왕복 시간과 함께 보여 준다 — ping 첫 문단, 「Parameters」.
+  출력 예는 응답마다 `bytes=`, `time=`, `TTL=`를 적는다 — 「Example of the ping command output」(그 TTL이 무엇인지는 이 페이지에 적혀 있지 않다 — 아래 Linux ping(8) 줄)
+- (phase 73 step 1) tracert: 목적지로 가는 경로를 알아내려고 TTL을 1부터 하나씩 늘린 **ICMP 에코 요청**(IPv6는 ICMPv6 메시지)을 보낸다. 경로의 라우터는 넘기기 전에 TTL을 최소 1 줄여야 하므로 TTL은 사실상 지날 수 있는 링크 수의 상한이고,
+  TTL이 0이 되면 라우터가 출발지에 ICMP 시간 초과를 돌려보내기로 되어 있다. 중간 라우터의 시간 초과와 목적지의 에코 응답으로 경로를 알아낸다. 최대 홉 수는 기본 30(`/h`)이다.
+  시간 초과를 보내지 않는 라우터는 보이지 않고 그 홉에는 `*`가 찍힌다 — tracert 첫 세 문단, 「Parameters」
 
-쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령)
+쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
+(phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -928,8 +992,25 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 
 - 48비트 이더넷 주소를 글자로 적는 표준 꼴은 16진수를 콜론으로 이은 꼴이다. ether_aton()은 그 꼴의 글자를 이진값으로 바꾸고, ether_ntoa()는 거꾸로 바꾸면서 앞자리 0을 뺀다 — ether_aton(3) DESCRIPTION
 - arp 명령에 이더넷 주소를 줄 때는 6바이트를 16진수로 적고 콜론으로 가른다 — arp(8) 「arp -s」
+- (phase 73 step 1) 2026-10-29에 읽은 판: arp(7)은 Linux man-pages 6.19(2026-02-08), arp(8)은 net-tools(2025-09-10), ping(8)은 iputils 20250605(저장소 최신 커밋 2026-07-16), traceroute(8)은 traceroute 2.1.6(sourceforge 타르볼).
+  arp(7) — https://man7.org/linux/man-pages/man7/arp.7.html , ping(8) — https://man7.org/linux/man-pages/man8/ping.8.html , traceroute(8) — https://man7.org/linux/man-pages/man8/traceroute.8.html
+- (phase 73 step 1) arp(7): Linux 커널의 ARP 모듈은 RFC 826을 구현하고, 직접 이어진 네트워크에서 IPv4 주소와 2계층 하드웨어 주소를 서로 바꾼다. 하드웨어 주소와 프로토콜 주소의 짝을 캐시로 두되 크기에 한도가 있어 오래되고 덜 쓰인 항목부터 정리하고,
+  영구(permanent) 항목은 지우지 않는다 — DESCRIPTION
+- (phase 73 step 1) arp(7)의 시간 값(기본값, Linux만의 것): 짝을 찾은 항목은 `base_reachable_time`(기본 30초)의 1/2~3/2 사이 무작위 시간 동안 유효하고, 위 계층에서 잘 통한다는 확인이 오면 늘어난다. 확인이 없어 낡았다고 본 항목은 데이터를 보내기 전에 다시 확인한다
+  (먼저 유니캐스트로, 안 되면 브로드캐스트로 ARP 요청). `gc_stale_time`(기본 60초)은 낡은 항목을 얼마나 자주 살필지 정한다 — DESCRIPTION, 「/proc interfaces」
+- (phase 73 step 1) arp(8): 커널의 IPv4 이웃 캐시를 보여 주고, 항목을 더하거나 지운다. 모드 없이 `arp`만 치면 표를 보여 준다. `-a`는 표를 BSD 꼴로 보여 주는 옵션이다(Windows의 `-a`와 쓰임이 조금 다르다 — 둘 다 표를 보여 준다).
+  `arp -d 주소`는 그 항목을 지운다. `arp -s 주소 하드웨어주소`는 새 항목을 더하고, `temp`를 붙이지 않으면 영구 항목으로 둔다 — DESCRIPTION 「MODES」, OPTIONS
+- (phase 73 step 1) ping(8): ICMP의 필수 메시지인 ECHO_REQUEST를 보내 호스트나 게이트웨이에서 ECHO_RESPONSE를 받아 낸다. `-c count`는 에코 요청을 그 수만큼 보낸 뒤 멈춘다 — DESCRIPTION, OPTIONS.
+  다 보내거나 멈추게 하면 요약을 보여 준다 — 왕복 시간과 패킷 손실 통계(왕복 시간의 최소·평균·최대·mdev). 중복해 받은 패킷은 손실 계산에 넣지 않는다 — DESCRIPTION 뒤 설명
+- (phase 73 step 1) ping(8)의 TTL: IP 패킷의 TTL 값은 그 패킷이 버려지기 전에 지날 수 있는 라우터 수의 최대치를 나타내고, 지금 인터넷의 라우터는 TTL을 정확히 1씩 줄인다고 봐도 된다.
+  ping은 보통 **자기가 받은 패킷(응답)의 TTL 값**을 출력한다. 응답을 보내는 쪽이 응답의 TTL을 처음에 얼마로 정하는지는 시스템마다 다르다(예: 255, 그 밖의 값) — 「TTL DETAILS」
+- (phase 73 step 1) traceroute(8): IP의 TTL 칸을 이용해 경로의 게이트웨이마다 ICMP 시간 초과(TIME_EXCEEDED) 응답을 받아 낸다. TTL 1부터 하나씩 늘려 탐사 패킷을 보내고, ICMP 포트 도달 불가(또는 TCP 리셋)를 받으면 목적지에 닿았다고 본다. 최대 홉 수는 기본 30이고,
+  TTL마다 기본 세 번 보내 게이트웨이 주소와 왕복 시간을 한 줄에 적는다. 시간 안에 답이 없으면 `*`를 찍는다 — DESCRIPTION
+- (phase 73 step 1) traceroute(8)의 기본 방법은 UDP 탐사 패킷이다 — 목적지가 쓰지 않을 법한 포트(첫 탐사는 33434, 탐사마다 1씩 늘림)로 보내므로 목적지는 보통 ICMP 포트 도달 불가로 답한다. `-I`는 ICMP 에코를 탐사 패킷으로 쓴다(지금 가장 흔하다고 쓴다) — 「LIST OF AVAILABLE METHODS」, OPTIONS.
+  Windows tracert는 ICMP 에코 요청을 쓴다(위 「(phase 71) Microsoft Learn」 항목) — 명령마다 보내는 패킷이 다르다
 
-쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기)
+쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기),
+(phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp(7) 캐시와 시간, arp(8) `-s`·`-d`), `icmp.time-exceeded`(traceroute — UDP 기본·`-I`), `icmp.ping`(ping `-c`, 요약, 응답의 TTL), `exam-notes.md` 앞 문단([기출 2025-05-25 #10]의 캐시 시간, [기출 2025-08-24 #8]의 `-d`)
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -1156,9 +1237,21 @@ Proposed Standard(Standards Track)이다.
   이 문서도 시간 한도 쪽 기능은 라우터가 꼭 구현하지 않아도 되는 것으로 정했다. traceroute는 TTL을 홉 수로 다룰 때 제대로 동작한다 — §5.3.1 DISCUSSION
 - (phase 73) 라우터는 IP 단편화를 반드시 지원한다. 단편화할 때는 조각 수를 줄이고 조각을 차례대로 보내는 것이 좋다 — §4.2.2.7
 - (phase 73) 라우터는 데이터그램을 넘기기 전에 다시 합치지 않는다. 조각들이 목적지까지 서로 다른 경로로 갈 수 있기 때문이다 — §5.2.6과 DISCUSSION
+- (phase 73 step 1) 라우터가 유니캐스트 데이터그램을 넘기는 순서: 라우팅 표에서 목적지에 맞는 **다음 홉의 IP 주소**와 내보낼 인터페이스를 정한다 → 넘겨도 되는지 확인한다 → TTL을 최소 1 줄이고 확인한다 → 남은 옵션을 처리한다 → 필요하면 나눈다 →
+  **다음 홉의 링크 계층 주소**를 알아낸다(방법은 링크 계층마다 다르다) → 데이터그램을 새 링크 계층 프레임에 담아 그 인터페이스로 내보낸다 — §5.2.1.2.
+  이 순서에 출발지·목적지 IP 주소를 바꾸는 단계는 없다(TTL이 바뀌므로 헤더 체크섬은 다시 맞춘다 — §4.2.2.5, 위 RFC 791 §3.1 줄). IP 주소를 바꾸는 NAT는 RFC 3022(위 항목)이고 `ip-address-types` 주제의 일이다
+- (phase 73 step 1) ARP를 쓰는 라우터는 RFC 1122의 ARP 요구를 따른다. 목적지의 ARP 캐시 항목이 없다는 것만으로 도달 불가를 알리지 않고, ARP 요청·응답을 하는 동안 데이터그램 몇 개를 잠깐 쥐고 있다가 끝내 답이 없을 때만 알린다.
+  다른 장치의 링크 계층 주소를 브로드캐스트·멀티캐스트 주소라고 하는 ARP 응답은 믿지 않는다 — §3.3.2
+- (phase 73 step 1) 목적지 도달 불가는 라우터가 목적지(또는 다음 홉)에 갈 수 없거나 서비스를 쓸 수 없어 넘기지 못한 패킷에 대해 보낸다. 예로 ARP 요청에 답하지 않는 없는 호스트로 가는 메시지, 유효한 경로가 없는 네트워크 접두사로 가는 메시지를 든다.
+  라우터는 이 메시지를 만들 수 있어야 하고 까닭에 가장 맞는 코드를 고른다 — §5.2.7.1
+- (phase 73 step 1) 코드와 보내는 쪽: 0 네트워크 도달 불가 — 목적지 네트워크로 가는 경로가 없을 때 라우터가, 1 호스트 도달 불가 — 직접 이어진 네트워크의 목적지 호스트로 갈 길이 없을 때(ARP에 답하지 않을 때) 라우터가,
+  2 프로토콜 도달 불가 — 최종 목적지의 전송 계층이 그 프로토콜을 지원하지 않을 때, 3 포트 도달 불가 — 최종 목적지의 전송 프로토콜(예: UDP)이 받을 곳을 찾지 못하고 출발지에 알릴 방법도 없을 때,
+  4 단편화 필요·DF 설정 — 라우터가 나눠야 하는데 DF가 켜져 있을 때, 5 소스 라우트 실패. 6~15는 그 뒤에 더한 코드다 — §5.2.7.1
 
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
-(phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위)
+(phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
+(phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
+`icmp.destination-unreachable`(§5.2.7.1 — 코드와 보내는 쪽), `icmp.time-exceeded`(§5.3.1 — TTL 0이면 코드 0)
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1292,7 +1385,8 @@ https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 - IPv6 확장 헤더로 표시된 번호: 홉별 옵션 0, 라우팅 43, 단편화 44, ESP 50, 인증(AH) 51, 목적지 옵션 60. 59는 「다음 헤더 없음」이다 — 레지스트리의 「IPv6 Extension Header」 열
 - 41은 IPv6 캡슐화다. IPv6 패킷을 IPv4 패킷에 담아 나르는 터널은 IPv4 헤더의 프로토콜 칸에 41을 넣는다 — 레지스트리, RFC 4213 §3.5
 
-쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(프로토콜 번호 TCP 6·UDP 17·ICMP 1), `ip-protocol.ipv6-header`(다음 헤더 칸은 같은 번호를 쓴다), `ip-protocol.extension-headers`(확장 헤더 번호 — 단편화 44), `ip-protocol.ipv6`(터널링 — 41은 이름만)
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(프로토콜 번호 TCP 6·UDP 17·ICMP 1), `ip-protocol.ipv6-header`(다음 헤더 칸은 같은 번호를 쓴다), `ip-protocol.extension-headers`(확장 헤더 번호 — 단편화 44), `ip-protocol.ipv6`(터널링 — 41은 이름만),
+(phase 73 step 1에서 쓰일 곳) `icmp.icmp`(ICMP 1), `icmp.igmp`(IGMP 2), `arp.neighbor-discovery`(ICMPv6 58)
 
 ## (phase 73) RFC 1752 — The Recommendation for the IP Next Generation Protocol
 https://www.rfc-editor.org/rfc/rfc1752
@@ -1457,3 +1551,175 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 - 도메인: `example.com`·`example.net`·`example.org`는 IANA가 예시로 쓰라고 남겨 둔 2단계 도메인 이름이다 — RFC 2606 §3
 
 쓰인 곳: (phase 73에서 쓰일 곳) `phases/73-network-ip-arp-icmp/guide.md` 「예시 값」 — `ip-protocol`·`arp`·`icmp`의 본문·문항·도식에 쓰는 IPv4·IPv6 주소와 도메인 이름. MAC 주소는 위 RFC 9542 항목(§2.1.4)
+
+## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
+https://www.rfc-editor.org/rfc/rfc826
+
+1982년 문서이고 지금은 Internet Standard다. 폐기되지 않았고 RFC 5227·RFC 5494가 고쳤다(rfc-editor 상태, 2026-10-29). 절 번호가 없어 절 제목을 적는다.
+
+- 보내는 쪽은 라우팅으로 다음 홉의 프로토콜 주소(IP 주소)를 정하지만, 이더넷 프레임을 실제로 보내려면 받을 쪽의 48비트 이더넷 주소가 있어야 한다. 두 주소는 길이도 값도 서로 관계가 없다.
+  ARP는 프로토콜 주소를 이더넷 주소로 바꾸는 데 필요한 짝을 그때그때 주고받게 하는 프로토콜이다 — Abstract, 「The Problem」
+- ARP 메시지는 이더넷 프레임의 데이터 자리에 바로 실리고, 프레임의 타입 칸이 그 데이터가 ARP라고 알린다(값 0806은 위 「IANA — IEEE 802 Numbers」 항목) — 「Packet format」
+- 메시지의 칸 아홉: 하드웨어 종류(16비트, 이더넷은 1), 프로토콜 종류(16비트, 이더넷에서는 이더타입 값), 하드웨어 주소 길이(8비트, 이더넷은 6), 프로토콜 주소 길이(8비트), 오퍼레이션(16비트, 요청 1·응답 2),
+  보낸 쪽 하드웨어 주소, 보낸 쪽 프로토콜 주소, 대상(target) 하드웨어 주소, 대상 프로토콜 주소 — 「Definitions」, 「Packet format」.
+  강의 p137의 칸 아홉과 같고, 강의가 「목적지 하드웨어·프로토콜 주소」라 부르는 것이 이 대상 칸이다. 프레임 헤더의 목적지 MAC 주소와는 다른 칸이다
+- 보낼 때: ARP 모듈은 먼저 자기 표에서 그 짝을 찾고, 있으면 그 이더넷 주소를 돌려줘 바로 보내게 한다. 없으면 요청을 만든다 — 보낸 쪽 칸 둘에 자기 주소를, 대상 프로토콜 주소에 찾는 IP 주소를 넣는다.
+  대상 하드웨어 주소는 알아내려는 값이므로 정해진 값을 넣지 않는다. 이 요청을 그 이더넷의 모든 스테이션에 **브로드캐스트**한다 — 「Packet Generation」
+  (주소를 모르는 동안 보낼 패킷을 버리는 대목은 RFC 1122 §2.3.2.2가 「적어도 하나는 두었다가 보내라」로 바꿨다 — 위 RFC 1122 항목)
+- 받을 때: 하드웨어·프로토콜 종류를 확인한 뒤, 보낸 쪽 프로토콜 주소의 짝이 이미 표에 있으면 그 하드웨어 주소를 메시지의 것으로 고친다(자기가 대상이 아니어도 고친다).
+  그다음 **대상 프로토콜 주소가 자기 것인지** 본다 — 아니면 거기서 끝이다. 자기 것이면, 짝이 표에 없었을 때 보낸 쪽의 짝을 더한다. 그리고 오퍼레이션이 요청이면 보낸 쪽·대상 칸을 맞바꿔 보낸 쪽 칸에 자기 주소를 넣고,
+  오퍼레이션을 응답으로 바꿔 **요청한 쪽의 하드웨어 주소로** 보낸다 — 「Packet Reception」
+- 보낸 쪽의 짝을 오퍼레이션을 보기 전에 표에 넣는 것은, A가 B와 통신할 일이 있으면 B도 A와 통신할 일이 있으리라고 보기 때문이다 — 「Packet Reception」 뒤 설명
+- 표의 항목에 시간 제한을 두는 문제: 이 RFC는 표 항목의 노화·시간 제한을 프로토콜 범위 밖이라 하면서, IP 주소가 다른 장치로 옮겨 가거나 잘못된 정보가 들어갈 수 있으니 영원히 남기면 안 된다고 쓰고
+  시간 제한, 받은 패킷으로 시간을 다시 세기, 직접 요청을 보내 확인하기 같은 방법을 든다 — 「Related issue」. 지금 요구는 위 RFC 1122 §2.3.2.1 줄
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.arp`(프로토콜 주소 → 하드웨어 주소, 프레임에 바로 실린다), `arp.arp-request-reply`(요청 브로드캐스트·대상만 응답·칸 아홉·받은 쪽도 짝을 적는다·처리 순서 — [기출 2024-08-25 #17]),
+`arp.arp-cache`(표를 먼저 본다, 시간 제한), `arp.arp-across-routers`(다음 홉의 주소를 바꾼다)
+
+## (phase 73 step 1) IANA — Address Resolution Protocol (ARP) Parameters
+https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml
+
+2026-10-29에 읽은 판: 레지스트리 마지막 갱신 2023-05-19.
+
+- 오퍼레이션 코드: 1 REQUEST, 2 REPLY(RFC 826·RFC 5227), 3 request Reverse, 4 reply Reverse(RFC 903 — RARP) — 「Operation Codes」
+- 하드웨어 종류 1은 Ethernet (10Mb)이다 — 「Hardware Types」
+- 프로토콜 종류 칸은 이더타입 번호를 함께 쓴다(IPv4는 0800) — 「Protocol Type」 머리 설명
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.arp-request-reply`(오퍼레이션 — 요청 1·응답 2), `arp.rarp`(3·4)
+
+## (phase 73 step 1) RFC 792 — Internet Control Message Protocol
+https://www.rfc-editor.org/rfc/rfc792
+
+1981년 문서이고 Internet Standard다. 폐기되지 않았고 RFC 950·RFC 4884·RFC 6633·RFC 6918이 고쳤다(rfc-editor 상태, 2026-10-29). 절 번호가 없어 절 제목을 적는다.
+
+- 게이트웨이(라우터)나 목적지 호스트가 출발지 호스트에 데이터그램을 처리하다 생긴 오류 같은 것을 알릴 때 쓰는 프로토콜이 ICMP다. ICMP는 IP를 상위 프로토콜처럼 이용하지만 실제로는 **IP의 일부**이고, 모든 IP 모듈이 구현해야 한다 — Introduction
+- ICMP를 보내는 때의 예: 데이터그램이 목적지에 닿을 수 없을 때, 게이트웨이에 넘길 버퍼가 모자랄 때, 게이트웨이가 호스트에게 더 짧은 경로로 보내라고 알릴 때 — Introduction
+- 제어 메시지의 목적은 통신 환경의 문제를 알리는 것이지 **IP를 신뢰성 있게 만드는 것이 아니다**. ICMP가 있어도 데이터그램이 전달되거나 제어 메시지가 돌아온다는 보장은 없고, 잃은 데이터그램이 아무 알림 없이 사라질 수도 있다.
+  신뢰성 있는 통신이 필요하면 IP를 쓰는 상위 프로토콜이 스스로 갖춘다 — Introduction(강의 p158이 가리키는 대목)
+- 메시지에 대한 메시지가 끝없이 이어지지 않도록 ICMP 메시지에 대해서는 ICMP 메시지를 보내지 않고, 조각난 데이터그램은 첫 조각(오프셋 0)의 오류만 알린다 — Introduction.
+  지금 규칙은 RFC 1122 §3.2.2가 「ICMP **오류** 메시지에 대해서는 오류 메시지를 보내지 않는다」로 정리했다(위 RFC 1122 항목)
+- ICMP 메시지는 기본 IP 헤더에 담겨 가고 IP 헤더의 프로토콜 값은 1이다. 데이터 부분의 첫 옥텟이 타입 칸이고, 그 값이 나머지 형식을 정한다 — 「Message Formats」
+- ICMP 메시지를 싣는 IP 헤더의 TTL 칸은 평소대로 쓴다(처리하는 곳마다 줄어든다). ICMP 메시지 자신에는 TTL 칸이 없다 — 앞머리는 타입(8비트)·코드(8비트)·체크섬(16비트)이고 그 뒤는 타입마다 다르다 —
+  「Message Formats」과 각 메시지 형식 그림. 체크섬은 타입 칸부터 ICMP 메시지 전체를 덮는다 — 각 메시지의 「Checksum」
+- 목적지 도달 불가(타입 3): 코드 0 네트워크 도달 불가, 1 호스트 도달 불가, 2 프로토콜 도달 불가, 3 포트 도달 불가, 4 단편화가 필요한데 DF가 켜짐, 5 소스 라우트 실패.
+  게이트웨이는 라우팅 표로 보아 목적지 네트워크에 갈 수 없을 때, 목적지 호스트는 지정된 프로토콜 모듈이나 포트가 동작하지 않아 넘겨줄 수 없을 때 보낸다. DF가 켜져 있어 나눌 수 없는 데이터그램은 게이트웨이가 버리고 이 메시지를 보낼 수 있다.
+  **0·1·4·5는 게이트웨이가, 2·3은 호스트가 보낸다.** 메시지에는 원래 데이터그램의 IP 헤더와 데이터 앞 64비트를 담아, 출발지가 어느 통신의 일인지 맞춰 보게 한다(상위 프로토콜의 포트 번호가 그 64비트 안에 있다고 본다) — 「Destination Unreachable Message」
+- 시간 초과(타입 11): 코드 0 전송 중 TTL 초과 — 데이터그램을 처리하던 게이트웨이가 TTL이 0이면 그 데이터그램을 버리고 출발지에 알릴 수 있다. 코드 1 조각 재조합 시간 초과 — 조각을 다 모으지 못한 채 기다리는 시간이 지난 호스트가 그 데이터그램을 버리고 알릴 수 있다
+  (첫 조각을 받지 못했으면 보내지 않아도 된다). **0은 게이트웨이가, 1은 호스트가 보낸다** — 「Time Exceeded Message」
+- 매개변수 문제(타입 12): 헤더 매개변수에 문제가 있어 처리를 마칠 수 없는 데이터그램을 버린 게이트웨이나 호스트가 출발지에 알린다 — 「Parameter Problem Message」
+- 리다이렉트(타입 5): 데이터그램을 받은 게이트웨이가 다음 게이트웨이를 찾아보니 그 게이트웨이가 출발지 호스트와 같은 네트워크에 있으면, 그 목적지로 가는 데이터그램은 그 게이트웨이로 바로 보내라고 호스트에 알린다. 원래 데이터그램은 그대로 목적지로 넘긴다 — 「Redirect Message」
+- 에코(타입 8)·에코 응답(타입 0): 코드 0이다. 에코 응답은 요청의 출발지·목적지 주소를 맞바꾸고 타입을 0으로 바꾸고 체크섬을 다시 계산한 것이다. 에코로 받은 데이터는 에코 응답에 그대로 돌려보낸다.
+  식별자와 순서 번호는 보낸 쪽이 응답을 요청과 짝짓는 데 쓴다 — 예를 들어 식별자는 TCP·UDP의 포트처럼 한 세션을 가리키고, 순서 번호는 요청마다 하나씩 늘린다. 응답하는 쪽은 같은 값을 돌려준다 — 「Echo or Echo Reply Message」
+- 메시지 타입 요약: 0 에코 응답, 3 목적지 도달 불가, 4 발신지 억제, 5 리다이렉트, 8 에코, 11 시간 초과, 12 매개변수 문제, 13 타임스탬프, 14 타임스탬프 응답, 15 정보 요청, 16 정보 응답 — 「Summary of Message Types」. 지금의 상태(폐기 여부)는 아래 IANA 항목
+
+쓰인 곳: 강의 수정 이력 L34, (phase 73 step 1에서 쓰일 곳) `icmp.icmp`(IP의 일부·프로토콜 1·신뢰성을 만들지 않는다·TTL 칸 없음), `icmp.icmp-message`(타입·코드·체크섬, 타입 번호), `icmp.destination-unreachable`(코드 0~5와 보내는 쪽, 원래 헤더 + 64비트),
+`icmp.time-exceeded`(코드 0·1과 보내는 쪽), `icmp.echo`(그대로 돌려보낸다, 식별자·순서 번호), `exam-notes.md` E11·E12·E13
+
+## (phase 73 step 1) IANA — Internet Control Message Protocol (ICMP) Parameters
+https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
+
+2026-10-29에 읽은 판: 레지스트리 마지막 갱신 2026-01-05.
+
+- 타입: 0 Echo Reply, 3 Destination Unreachable, 4 Source Quench(**Deprecated** — RFC 6633), 5 Redirect, 8 Echo, 9 Router Advertisement·10 Router Solicitation(RFC 1256), 11 Time Exceeded, 12 Parameter Problem,
+  13 Timestamp·14 Timestamp Reply(폐기 표시 없음), 15·16 Information Request/Reply와 17·18 Address Mask Request/Reply(**Deprecated** — RFC 6918). 6과 30~39도 Deprecated다 — 「ICMP Type Numbers」
+- IP 주소가 겹쳤다(중복됐다)는 것을 알리는 ICMP 타입은 이 레지스트리에 없다. IPv4 주소가 겹치는지는 ARP로 확인한다(아래 RFC 5227 항목) — 「ICMP Type Numbers」
+- 코드: 타입 3 — 0 Net Unreachable, 1 Host Unreachable, 2 Protocol Unreachable, 3 Port Unreachable, 4 Fragmentation Needed and Don't Fragment was Set, 5 Source Route Failed(6~15는 뒤에 더한 코드).
+  타입 11 — 0 Time to Live exceeded in Transit, 1 Fragment Reassembly Time Exceeded. 타입 5 — 0~3(네트워크·호스트, 서비스 유형별). 타입 9 — 0 보통의 라우터 광고, 16 일반 트래픽을 넘기지 않는 라우터 — 「Codes」 하위 레지스트리
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(지금 쓰는 타입과 폐기된 타입, 「IP 주소 중복」은 ICMP 메시지가 아니다 — [기출 2024-11-03 #6]), `icmp.destination-unreachable`(코드 0~4), `icmp.time-exceeded`(코드 0·1), `exam-notes.md` E13
+
+## (phase 73 step 1) RFC 6633 — Deprecation of ICMP Source Quench Messages, RFC 6918 — Formally Deprecating Some ICMPv4 Message Types
+https://www.rfc-editor.org/rfc/rfc6633
+https://www.rfc-editor.org/rfc/rfc6918
+
+둘 다 Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
+
+- 발신지 억제(타입 4, 코드 0)는 혼잡 제어의 수단으로 정한 메시지였다. RFC 1812가 이미 라우터에게 혼잡 때문에 보내지 말라고 했고, 효과가 없고 공격에 쓰일 수 있어 RFC 6633이 정식으로 폐기했다.
+  호스트는 보내지 않고(MUST NOT) 받으면 버려도 되며, TCP는 받으면 버리고, 라우터는 무시한다. TCP는 이 메시지에 기대지 않는 자기 혼잡 제어가 있다. ICMPv6에는 발신지 억제가 없다 — RFC 6633 Abstract, §2, §3, §4
+- 실제로 더는 쓰이지 않는 ICMPv4 타입을 RFC 6918이 정식으로 폐기했다. 정보 요청·응답(15·16)과 주소 마스크 요청·응답(17·18 — 서브넷 마스크를 얻으려던 것)은 호스트 설정용이었는데 DHCP 같은 다른 방법이 대신했다 — RFC 6918 §2.2~§2.5
+- 타입 30(Traceroute, RFC 1393)도 널리 쓰이지 않아 폐기됐고, RFC 1393 자체도 Historic이 됐다(RFC 6814) — RFC 6918 §2.6. 이것은 IP 옵션을 쓰려던 다른 방법이고, 지금의 traceroute·tracert 명령(TTL을 늘려 시간 초과를 받는 방법)과 다르다 —
+  명령의 근거는 위 「Linux man-pages」·「Microsoft Learn」 항목
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(4·15~18은 폐기), `exam-notes.md` E13
+
+## (phase 73 step 1) RFC 1256 — ICMP Router Discovery Messages
+https://www.rfc-editor.org/rfc/rfc1256
+
+Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
+
+- ICMP를 넓혀, 멀티캐스트·브로드캐스트 네트워크에 붙은 호스트가 이웃 라우터의 IP 주소를 알아내게 한다 — Abstract
+- 라우터는 자기 인터페이스의 IP 주소를 알리는 **라우터 광고(타입 9, 코드 0)**를 주기적으로 멀티캐스트하고, 호스트는 그것을 들어 이웃 라우터를 안다. 켜질 때 다음 광고를 기다리지 않으려고 호스트가 **라우터 요청(타입 10)**을 보낼 수 있다 — §2, §3
+- 이 메시지들은 라우팅 프로토콜이 아니다 — 라우터가 있다는 것만 알리고, 어떤 목적지에 어느 라우터가 가장 좋은지는 알리지 않는다(그것은 ICMP 리다이렉트가 알린다) — §2
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(타입 9 — 강의 p154 「라우터가 호스트에게 자신을 알림」은 맞다)
+
+## (phase 73 step 1) RFC 4861 — Neighbor Discovery for IP version 6 (IPv6)
+https://www.rfc-editor.org/rfc/rfc4861
+
+Draft Standard이고 RFC 2461을 폐기·대체한다. 폐기되지 않았고 RFC 9762 등 여러 RFC가 고쳤다(rfc-editor 상태, 2026-10-29). 고친 RFC들의 내용은 읽지 않았다 — 아래 줄은 RFC 4861 본문이 말하는 것이다.
+
+- IPv6 노드(호스트와 라우터)는 **이웃 탐색(Neighbor Discovery, ND)**으로 같은 링크에 있는 이웃의 링크 계층 주소를 알아내고, 값이 틀려진 캐시를 빨리 지운다. 호스트는 이것으로 이웃 라우터도 찾고, 노드들은 이웃에 아직 닿는지 살핀다 — §1
+- ND가 푸는 문제: 라우터 찾기, 접두사 찾기, 매개변수 찾기, 주소 자동 설정, 주소 결정(IP 주소만 아는 같은 링크 목적지의 링크 계층 주소 알아내기), 다음 홉 정하기, 이웃 도달 불가 감지, 중복 주소 검출, 리다이렉트 — §3
+- ND의 ICMP 메시지는 다섯이다 — 라우터 요청(133)·라우터 광고(134), 이웃 요청(Neighbor Solicitation, 135)·이웃 광고(Neighbor Advertisement, 136), 리다이렉트(137). 번호는 ICMPv6 타입이다 — §3, §4.1~§4.5, 아래 IANA ICMPv6 레지스트리
+- 주소 결정: 노드는 찾는 주소(대상 주소)에 대응하는 **요청 노드 멀티캐스트 주소(solicited-node multicast address)**로 이웃 요청을 보내 대상에게 링크 계층 주소를 묻고, 대상은 **유니캐스트 이웃 광고**로 자기 링크 계층 주소를 답한다.
+  요청에 자기 링크 계층 주소를 담으므로 한 번 주고받으면 양쪽이 서로의 주소를 안다 — §3, §4.3, §4.4
+- 이웃 요청은 주소를 결정할 때는 멀티캐스트로, 캐시에 있는 이웃에 아직 닿는지 확인할 때는 유니캐스트로 보낸다. 중복 주소 검출에도 쓴다(RFC 4862) — §3, §4.3
+- 주소 결정은 같은 링크에 있다고 판단한 주소에, 그 링크 계층 주소를 모를 때만 하고, 멀티캐스트 주소에는 하지 않는다 — §7.2
+- ND는 IPv4의 ARP, ICMP 라우터 찾기(RFC 1256), ICMP 리다이렉트를 합친 것에 해당한다. 주소 결정 요청은 2^24개의 멀티캐스트 주소로 흩어져, 대상이 아닌 노드가 덜 방해받는다 — §3.1
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ARP 대신 이웃 요청·광고, ICMPv6 메시지, 멀티캐스트로 묻고 유니캐스트로 답한다 — [기출 2025-08-24 #3]), `ip-protocol.slaac`(라우터 요청 133·라우터 광고 134 — 위 RFC 4862 항목이 가리킨 곳), `icmp.icmp`(ICMPv6가 이웃 탐색도 맡는다)
+
+## (phase 73 step 1) RFC 4443 — Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification, IANA — ICMPv6 Parameters
+https://www.rfc-editor.org/rfc/rfc4443
+https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml
+
+RFC 4443은 Internet Standard이고 RFC 2463을 폐기·대체한다. RFC 4884가 고쳤다(rfc-editor 상태, 2026-10-29). IANA 레지스트리는 2026-06-09판을 읽었다.
+
+- IPv6는 IPv4용 ICMP(RFC 792)를 몇 가지 고쳐 쓰고, 그것을 **ICMPv6**라 부른다. 바로 앞 헤더의 다음 헤더 값 58로 가리킨다(IPv4 ICMP를 가리키는 값과 다르다) — §1, §2.1
+- 앞머리는 타입 8비트·코드 8비트·체크섬 16비트로, IPv4 ICMP와 같은 꼴이다 — §2.1
+- 메시지는 오류 메시지(타입 0~127)와 정보 메시지(128~255) 두 갈래다. 오류: 1 목적지 도달 불가, 2 패킷이 너무 큼, 3 시간 초과, 4 매개변수 문제. 정보: 128 에코 요청, 129 에코 응답 — §2.1
+- 이웃 탐색 메시지 같은 다른 ICMPv6 메시지는 다른 문서가 더한다 — §1. 레지스트리에서 133~137이 RFC 4861의 ND 메시지다 — IANA 「ICMPv6 "type" Numbers」
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ICMPv6의 한 줄 풀이), `icmp.icmp`(IPv6용은 ICMPv6)
+
+## (phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 — Dynamic Host Configuration Protocol
+https://www.rfc-editor.org/rfc/rfc951
+https://www.rfc-editor.org/rfc/rfc2131
+
+둘 다 Draft Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). **RARP와의 관계만** 가져온다. BOOTP·DHCP의 동작은 가져오지 않는다.
+
+- BOOTP는 디스크 없는 클라이언트가 IP/UDP 위에서 자기 IP 주소 등을 알아내게 하는 부트스트랩 프로토콜이다 — RFC 951 §2
+- RARP는 하드웨어 주소를 아는 클라이언트가 자기 IP 주소를 알아내게 하려고 먼저 나온 프로토콜이지만, IP/UDP가 아니라 하드웨어 링크 수준의 프로토콜이라 커널이나 드라이버를 고쳐야 쓸 수 있었다. BOOTP는 그 「하드웨어 주소로 IP 주소 찾기」를 하면서 다른 기능도 준다 — RFC 951 §6
+- DHCP는 BOOTP를 바탕으로 만들었고, 다시 쓸 수 있는 주소를 자동으로 나눠 주는 기능과 설정 선택지를 더했다 — RFC 2131 Abstract
+- 「RARP는 지금 쓰이지 않는다」 또는 「DHCP가 RARP를 대체했다」를 그대로 말하는 문장은 허용한 출처에서 찾지 못했다(RFC 903·951·2131·1122 전문 검색). 본문은 위 세 사실과 RFC 1122 §3.2.2.7(RARP와 BOOTP가 호스트가 자기 IP 주소를 알아내는 더 나은 방법)까지만 쓴다
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.rarp`(BOOTP가 같은 일을 IP 위에서 하려고 나왔고, DHCP는 BOOTP를 바탕으로 한다 — [기출 2024-02-25 #13]의 맞는 보기와 어긋나지 않는다)
+
+## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
+https://www.rfc-editor.org/rfc/rfc5227
+
+Proposed Standard이고 RFC 826을 고쳤다(rfc-editor 상태, 2026-10-29). **이름과 한 문장만** 가져온다.
+
+- 같은 링크의 두 호스트가 같은 IPv4 주소를 쓰면 문제가 생긴다. 호스트는 IPv4 주소를 쓰기 시작하기 전에(손으로 정했든 DHCP로 받았든) 그 주소를 이미 누가 쓰는지 **ARP 프로브(ARP 요청)를 브로드캐스트해** 확인한다 — Abstract, §2.1
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(「IP 주소 중복」은 ICMP 메시지가 아니다 — IPv4에서 그것을 알아보는 것은 ARP다. 문항·해설에서 쓸 때)
+
+## (phase 73 step 1) RFC 2236 — Internet Group Management Protocol, Version 2, RFC 9776 — Internet Group Management Protocol, Version 3
+https://www.rfc-editor.org/rfc/rfc2236
+https://www.rfc-editor.org/rfc/rfc9776
+
+RFC 2236(1997)은 Proposed Standard이고 RFC 3376·RFC 9776이 고쳤다. IGMPv3를 정한 RFC 3376(2002)은 **RFC 9776(Internet Standard, STD 100, 2025-03)이 폐기·대체**했다(rfc-editor 상태, 2026-10-29). 그래서 v3는 RFC 9776을 근거로 쓴다. IGMPv1은 위 RFC 1112 부록 I이다.
+
+- IGMP는 IP 호스트가 자기 멀티캐스트 그룹 가입을 바로 이웃한 멀티캐스트 라우터에 알리는 데 쓴다. ICMP처럼 IP의 일부이고, IP 데이터그램에 담겨 가며 IP 프로토콜 번호는 2다 — RFC 2236 §2, RFC 9776 §1·§4
+- 모든 IGMP 메시지는 **IP TTL 1**로 보내고 IP 헤더에 Router Alert 옵션을 담는다 — RFC 2236 §2, RFC 9776 §4. TTL은 IP 헤더의 칸이고 IGMP 메시지에는 TTL 칸이 없다 — v2 메시지의 칸은 타입 8비트, 최대 응답 시간 8비트, 체크섬 16비트, 그룹 주소 32비트다 — RFC 2236 §2
+- v2의 메시지: 멤버십 질의(0x11 — 일반 질의는 그 네트워크에 구성원이 있는 그룹을, 그룹별 질의는 한 그룹에 구성원이 있는지를 묻는다), v2 멤버십 보고(0x16), **그룹 탈퇴(0x17)**, 그리고 v1과 맞추기 위한 v1 멤버십 보고(0x12) — RFC 2236 §2.1
+- v2의 동작: 질의자 라우터는 주기적으로 일반 질의를 모든 시스템 그룹(224.0.0.1)으로 보낸다. 질의를 받은 호스트는 자기가 든 그룹마다 무작위 시간을 기다렸다 그 그룹으로 보고를 TTL 1로 멀티캐스트하고, 같은 그룹의 다른 호스트 보고를 먼저 들으면 자기 보고를 보내지 않는다.
+  라우터는 보고를 받은 그룹을 그 네트워크의 구성원 목록에 두고, 정한 시간 안에 보고가 없으면 구성원이 없다고 보아 그 그룹의 멀티캐스트를 그 네트워크로 넘기지 않는다. 라우터가 아는 것은 그 네트워크에 구성원이 하나라도 있는지이지 구성원 전부가 아니다 — RFC 2236 §3
+- 그룹에 새로 든 호스트는 곧바로 보고를 보내고, 첫 보고가 사라지거나 망가질 때에 대비해 짧은 간격을 두고 한두 번 되풀이할 것을 권한다(v1과 같다) — RFC 2236 §3(`exam-notes.md` E14)
+- 그룹을 떠나는 호스트는 마지막으로 보고한 호스트였다면 그룹 탈퇴를 모든 라우터 그룹(224.0.0.2)으로 보낸다 — RFC 2236 §3
+- 판의 차이: v1(RFC 1112)은 처음 널리 쓰이고 처음 인터넷 표준이 된 판이다. v2(RFC 2236)는 그룹에 구성원이 더는 없다는 것을 라우터가 빨리 알게 하는 기능(낮은 탈퇴 지연)을 더했다. v3는 **출발지 거르기** — 특정 출발지에서 오는 것만, 또는 특정 출발지를 빼고 받겠다고 알리기 — 를 더했다.
+  v3는 v1·v2와 함께 쓸 수 있게 만들었다 — RFC 9776 §1
+- IGMP는 그룹 구성원(멀티캐스트를 받으려는 호스트나 라우터)의 동작과 멀티캐스트 라우터의 동작을 따로 정하는 **비대칭(asymmetric) 프로토콜**이다 — RFC 9776 §5(RFC 1112 부록 I도 같은 말을 쓴다)
+- v3의 메시지: 멤버십 질의(0x11), v3 멤버십 보고(0x22). 이전 판과 함께 쓰려고 v1 보고·v2 보고·v2 탈퇴(0x12·0x16·0x17)도 지원해야 한다 — RFC 9776 §4
+
+쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.igmp`(IP의 일부·프로토콜 2·TTL 1·질의·보고·탈퇴·판의 차이·비대칭 — [기출 2024-05-19 #3], [기출 2024-11-03 #7], [기출 2025-05-25 #3], [기출 2025-11-02 #16]), `exam-notes.md` E12·E14
