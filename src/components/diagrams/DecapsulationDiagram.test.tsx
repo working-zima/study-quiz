@@ -17,7 +17,7 @@ const labels = {
   ip: 'IP 헤더',
   tcp: 'TCP 헤더',
   http: 'HTTP 헤더',
-  data: '데이터',
+  data: '본문',
   trailer: '트레일러',
 }
 const noteLabels = {
@@ -80,12 +80,12 @@ const expectedScenarios = [
     nodes: ['http', 'data'],
     detach: ['http'],
     notes: ['detach-http', 'arrive-data'],
-    caption: '응용 계층까지 HTTP 헤더를 떼어 내면 데이터만 남아, 웹 브라우저 같은 응용 프로그램에 원래의 데이터가 닿는다. 보낼 때 맨 처음 붙은 HTTP 헤더가 맨 나중에 떨어졌으니, 헤더는 붙은 순서의 반대로 떨어진 셈이다.',
+    caption: '응용 계층까지 HTTP 헤더를 떼어 내면 본문만 남아, 웹 브라우저 같은 응용 프로그램에 원래의 웹 페이지가 닿는다. 보낼 때 맨 처음 붙은 HTTP 헤더가 맨 나중에 떨어졌으니, 헤더는 붙은 순서의 반대로 떨어진 셈이다.',
   },
 ]
 
 function diagram() {
-  return screen.getByRole('img', { name: '웹 페이지를 TCP로 받을 때 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·데이터·트레일러가 차례로 이어 붙은 데이터 한 덩어리' })
+  return screen.getByRole('img', { name: '웹 페이지를 TCP로 받을 때 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·본문·트레일러가 차례로 이어 붙은 데이터 한 덩어리' })
 }
 
 async function selectScenario(label: string) {
@@ -175,7 +175,7 @@ async function expectFits(viewBox: [number, number, number, number], places: Rec
       expect(boxesOutsideViewBox([box], viewBox), id).toEqual([])
       for (const cell of cellIds) expect(overlaps(box, nodeBox(cell)), `${id} ↔ ${cell}`).toBe(false)
 
-      // 곁말이 가리키는 칸: 떼어 냄은 그 칸, 닿음은 데이터 칸이다. 곁말은 칸 바로 위·아래 가운데나 바로 오른쪽에 붙는다.
+      // 곁말이 가리키는 칸: 떼어 냄은 그 칸, 닿음은 본문 칸이다. 곁말은 칸 바로 위·아래 가운데나 바로 오른쪽에 붙는다.
       const cell = nodeBox(id === 'arrive-data' ? 'data' : id.replace('detach-', ''))
       const x = Number(note.getAttribute('x'))
       const y = Number(note.getAttribute('y'))
@@ -190,7 +190,7 @@ async function expectFits(viewBox: [number, number, number, number], places: Rec
   }
 }
 
-// 칸은 앞에서부터 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·데이터·트레일러 순서로 이어 붙는다.
+// 칸은 앞에서부터 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·본문·트레일러 순서로 이어 붙는다.
 // 같은 줄의 다음 칸은 앞 칸의 오른쪽 변에 바로 붙고, 줄이 바뀌면 다음 줄 맨 앞에서 다시 시작한다.
 function expectChunk() {
   expect(readingOrder(cellIds)).toEqual(cellIds)
@@ -209,7 +209,7 @@ function expectChunk() {
 }
 
 // 시나리오를 아래 계층부터 차례로 보면 남는 칸이 줄어든다. 지금 떼는 칸은 남은 칸 가운데 가장 바깥이다 —
-// 헤더는 맨 앞, 트레일러는 맨 뒤. 한 계층이 떼고 남은 칸이 다음 계층에 닿는 칸이고, 응용 계층이 떼면 데이터만 남는다.
+// 헤더는 맨 앞, 트레일러는 맨 뒤. 한 계층이 떼고 남은 칸이 다음 계층에 닿는 칸이고, 응용 계층이 떼면 본문만 남는다.
 async function expectPeelOrder() {
   let previousRemaining: string[] = [...cellIds]
   for (const scenario of expectedScenarios) {
@@ -293,7 +293,7 @@ describe('DecapsulationDiagram', () => {
     expectChunk()
   })
 
-  it('아래 계층부터 남은 칸 가운데 가장 바깥 칸이 떨어지고, 응용 계층까지 떼면 데이터만 남는다', async () => {
+  it('아래 계층부터 남은 칸 가운데 가장 바깥 칸이 떨어지고, 응용 계층까지 떼면 본문만 남는다', async () => {
     render(<DecapsulationDiagram />)
     await expectPeelOrder()
   })
@@ -420,7 +420,7 @@ describe('DecapsulationDiagram', () => {
       expectChunk()
     })
 
-    it('아래 계층부터 남은 칸 가운데 가장 바깥 칸이 떨어지고, 응용 계층까지 떼면 데이터만 남는다', async () => {
+    it('아래 계층부터 남은 칸 가운데 가장 바깥 칸이 떨어지고, 응용 계층까지 떼면 본문만 남는다', async () => {
       render(<DecapsulationDiagram />)
       await expectPeelOrder()
     })

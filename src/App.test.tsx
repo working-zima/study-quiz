@@ -99,6 +99,23 @@ describe('App routes', () => {
     }
   })
 
+  // 네트워크 별점은 목표 자격증의 출제 회차에서 계산한다(ADR-059). 실제 과목 데이터로 화면에 그려지는지 본다.
+  it('네트워크 주제 목록과 개념 읽기 머리에 별점이 보인다', () => {
+    const { unmount } = renderAt('/network')
+
+    const list = within(screen.getByRole('main'))
+    expect(within(list.getByRole('link', { name: /패킷 교환·프로토콜·계층 모델/ })).getByText('★★★')).toBeInTheDocument()
+    expect(within(list.getByRole('link', { name: /네트워크의 구성과 성능/ })).getByText('★★☆')).toBeInTheDocument()
+    unmount()
+
+    for (const [topicId, stars] of [['protocols-encapsulation', '★★★'], ['network-basics', '★★☆']]) {
+      const { unmount: unmountTopic } = renderAt(`/network/topic/${topicId}`)
+
+      expect(within(screen.getByRole('main')).getByText(stars), topicId).toBeInTheDocument()
+      unmountTopic()
+    }
+  })
+
   it('과목 밖의 알 수 없는 경로를 /로 리다이렉트한다', () => {
     renderAt('/unknown/a/b')
 

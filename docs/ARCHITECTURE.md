@@ -560,7 +560,7 @@ pages/*  ──읽기──▶  lib/storage.ts  ──▶  localStorage (키 = �
 |---|---|
 | `lib/*` (채점·진행률·저장소) | Vitest 단위 테스트. DOM 불필요. |
 | `src/data/aws/*.json` | `src/data/aws/data.test.ts`의 스키마 검증 테스트 — 타입 일치, id 유일성, `conceptId` 참조 무결성, `answerIndex` 범위, **개념 커버리지 100%**(개념 640개가 모두 문항 하나 이상을 갖는가), 문항 id의 연속성 |
-| `src/data/network/*.json`·`visuals/` | `src/data/network/data.test.ts` — 주제·개념 id 유일, 개념 id는 `<주제 id>.<슬러그>`, 문항 id `n001`부터 연속, 모든 문항의 `format`과 형식별 필드, 4지선다도 문제문이 물음표로 끝남, **개념 커버리지 100%**, 해설 187자 이상, `importance` 0, `sourcePages`는 강의 통합본 1~502, `parentId`·목록 항목 규칙, 굵은 글씨는 목록 항목 안에만. `visuals.test.ts` — `sources`가 실제 네트워크 개념 id, 표 열 셋 이하, 시나리오 id 유일, `glossary`는 비움 (ADR-055) |
+| `src/data/network/*.json`·`visuals/` | `src/data/network/data.test.ts` — 주제·개념 id 유일, 개념 id는 `<주제 id>.<슬러그>`, 문항 id `n001`부터 연속, 모든 문항의 `format`과 형식별 필드, 4지선다도 문제문이 물음표로 끝남, **개념 커버리지 100%**, 해설 187자 이상, 모든 주제가 주제 지도 표(`topic-map.md`)에 있음, `importance`는 출제 회차에서 계산(9 이상 3, 6~8은 2, 5 이하 0), `sourcePages`는 강의 주제면 강의 통합본 1~502·강의 밖 주제면 `[0, 0]` (ADR-059), `parentId`·목록 항목 규칙, 굵은 글씨는 목록 항목 안에만. `visuals.test.ts` — `sources`가 실제 네트워크 개념 id, 표 열 셋 이하, 시나리오 id 유일, `glossary`는 비움 (ADR-055) |
 | `src/data/index.ts` (과목 목록) | `src/data/index.test.ts` — 과목 id 유일, 과목 id가 예전 주소의 첫 세그먼트와 겹치지 않음, 주제·개념 id가 과목을 넘어 유일, `progressKey` 유일 (ADR-053), 모든 과목의 예/아니요 문항 — 물음표로 끝남, 「항상」「절대」 없음, 예·아니요 대략 반반 (ADR-054) |
 | `pages/`, `components/` | @testing-library/react. 사용자 관점 동작만. |
 | `lib/keyword-crypto.ts` | `@vitest-environment node`. jsdom에는 `crypto.subtle`이 없다. 화면 테스트에서는 이 모듈을 mock한다. |

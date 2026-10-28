@@ -5,12 +5,12 @@ import { DiagramFrame, type DiagramScenario } from './DiagramFrame'
 
 const text = visualsByTopicId['protocols-encapsulation'].diagrams.encapsulation
 
-// 계층 이름 노드는 둥근 상자, 그 아래 데이터 칸은 모서리 없이 이어 붙인 상자다.
+// 계층 이름 노드는 둥근 상자, 그 아래 데이터 단위의 칸은 모서리 없이 이어 붙인 상자다.
 // 칸 id 앞부분이 그 칸이 속한 계층이다. 노드는 모두 회색이다.
 const layerIds = new Set(['app', 'transport', 'internet', 'link'])
 
 // 세로형은 계층마다 이름 노드를 두고, 18 아래에 그 계층을 지난 칸 줄을 왼쪽 끝부터 둔다.
-// 네트워크 액세스 계층의 칸 여섯은 280 안에 들어가지 않아 헤더 넷과 데이터·트레일러 두 줄로 나눈다.
+// 네트워크 액세스 계층의 칸 여섯은 280 안에 들어가지 않아 헤더 넷과 본문·트레일러 두 줄로 나눈다.
 const nodes = [
   { id: 'app', x: 12, y: 8, width: 116 },
   { id: 'app-http', x: 12, y: 58, width: 62 },
