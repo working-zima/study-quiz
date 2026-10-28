@@ -409,6 +409,107 @@
       "sources": [
         "ip-protocol.ipv6"
       ]
+    },
+    "ipv6-notation": {
+      "label": "IPv6 주소 하나를 기본 꼴에서 앞쪽 0을 빼고 ::로 줄여 가는 세 단계를 보이는 도식",
+      "svgLabel": "IPv6 주소 2001:0db8:0000:0000:0000:0000:0000:0001이 앞쪽 0을 빼면 2001:db8:0:0:0:0:0:1이 되고, 0 묶음 다섯을 ::로 바꾸면 2001:db8::1이 되는 모습",
+      "question": "IPv6 주소는 어떻게 줄여 쓸까?",
+      "idleCaption": "IPv6 주소 2001:0db8:0000:0000:0000:0000:0000:0001을 줄여 가는 세 단계다. 버튼을 고르면 단계마다 무엇이 바뀌는지 따로 볼 수 있다.",
+      "legend": "화살표를 따라갈수록 같은 주소를 더 짧게 적은 것이다. 세 꼴은 모두 같은 128비트 주소를 가리킨다.",
+      "nodes": {
+        "full": "2001:0db8:0000:0000:0000:0000:0000:0001",
+        "leading": "2001:db8:0:0:0:0:0:1",
+        "compressed": "2001:db8::1"
+      },
+      "notes": {
+        "title-full": "전체 표기",
+        "title-leading": "앞쪽 0 생략",
+        "title-compressed": ":: 줄임",
+        "gap": "적힌 묶음 셋, :: 자리에 0 묶음 다섯"
+      },
+      "scenarios": [
+        {
+          "id": "full",
+          "label": "전체 표기",
+          "caption": "128비트를 16비트씩 여덟 묶음으로 끊고, 묶음마다 16진수 네 자리로 적어 콜론(:)으로 잇는다. 이 주소는 네 자리 묶음 여덟을 콜론 일곱 개로 이은 기본 꼴이다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        },
+        {
+          "id": "leading-zeros",
+          "label": "앞쪽 0 생략",
+          "caption": "묶음마다 앞쪽의 0을 뺀다. 0db8은 db8, 0001은 1이 되고, 0000은 0 하나로 적는다. 뺄 수 있는 것은 앞쪽의 0뿐이다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        },
+        {
+          "id": "double-colon",
+          "label": ":: 줄임",
+          "caption": "0만 있는 묶음 다섯이 이어진 곳을 콜론 두 개(::)로 바꿔 2001:db8::1로 적는다. ::는 한 주소에 한 번만 쓸 수 있고, 적힌 묶음이 셋이니 :: 자리에는 0 묶음 다섯이 들어 있다.",
+          "sources": [
+            "ip-protocol.ipv6-address-notation"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv6-address-notation"
+      ]
+    },
+    "ipv6-header": {
+      "label": "IPv6 기본 헤더의 칸을 순서대로 보이는 도식",
+      "svgLabel": "IPv6 기본 헤더의 칸 여덟을 버전부터 목적지 주소까지 순서대로 이어 붙이고, 그 뒤에 페이로드가 오는 IPv6 패킷의 모습",
+      "question": "IPv6 기본 헤더에는 어떤 칸이 있을까?",
+      "idleCaption": "IPv6 패킷은 칸 여덟을 이어 붙인 40바이트 기본 헤더 뒤에 페이로드가 오는 모양이다. 헤더 체크섬 칸과 단편화 칸은 없다. 버튼을 고르면 칸이 하는 일을 따로 볼 수 있다.",
+      "legend": "칸은 헤더 안의 순서대로 왼쪽에서 오른쪽, 위에서 아래로 이어진다. 칸의 너비는 실제 비트 수에 비례하지 않는다.",
+      "nodes": {
+        "version": "버전",
+        "traffic-class": "트래픽 클래스",
+        "flow-label": "흐름 레이블",
+        "payload-length": "페이로드 길이",
+        "next-header": "다음 헤더",
+        "hop-limit": "홉 제한",
+        "source": "출발지 주소",
+        "destination": "목적지 주소",
+        "payload": "페이로드"
+      },
+      "groups": {
+        "header": "IPv6 기본 헤더"
+      },
+      "notes": {
+        "size": "늘 40바이트"
+      },
+      "scenarios": [
+        {
+          "id": "hop-limit",
+          "label": "홉 제한",
+          "caption": "홉 제한은 패킷을 다음으로 넘겨주는 라우터마다 1씩 줄고, 0이 되면 그 패킷이 버려진다. IPv4 헤더의 TTL 칸과 같은 일을 하는 칸이다.",
+          "sources": [
+            "ip-protocol.ipv6-header",
+            "ip-protocol.ttl"
+          ]
+        },
+        {
+          "id": "next-header",
+          "label": "다음 헤더",
+          "caption": "다음 헤더는 기본 헤더 바로 뒤에 오는 헤더가 무엇인지 번호로 적는다. IPv4 헤더의 프로토콜 칸과 같은 번호를 써서, 바로 뒤에 TCP 헤더가 오면 6이 들어간다.",
+          "sources": [
+            "ip-protocol.ipv6-header"
+          ]
+        },
+        {
+          "id": "addresses",
+          "label": "주소",
+          "caption": "출발지 주소와 목적지 주소는 각각 128비트라, 둘을 합치면 32바이트로 40바이트 기본 헤더의 대부분을 차지한다.",
+          "sources": [
+            "ip-protocol.ipv6-header"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-protocol.ipv6-header"
+      ]
     }
   },
   "tables": {},

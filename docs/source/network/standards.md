@@ -282,6 +282,7 @@ https://www.rfc-editor.org/rfc/rfc8200
   기본 헤더에는 단편화 칸(식별자·플래그·오프셋)도 없다 — 단편화 정보는 단편화 확장 헤더에 담는다 — §3, §4.5
 - (phase 73) 트래픽 클래스 칸(8비트)은 네트워크가 트래픽을 관리하는 데 쓰고, 받은 값이 보낸 값과 다를 수 있다. 지금 쓰임(DS 필드·ECN)은 RFC 2474·RFC 3168이 정한다 — §7.
   옛 이름 Priority(4비트)는 아래 RFC 1883 항목
+- (phase 73 step 6) 흐름 레이블 칸(20비트)은 출발지가 네트워크에서 한 흐름으로 다뤄지기를 바라는 패킷들에 붙이는 표시다. 지금 정의는 RFC 6437(아래 항목)이 정한다 — §6
 - (phase 73) 확장 헤더: 선택 정보는 기본 헤더와 상위 계층 헤더(TCP 등) 사이에 넣는 **별도의 헤더**에 담는다. 패킷에는 확장 헤더가 없을 수도, 하나일 수도, 여럿일 수도 있고,
   각 헤더는 **앞 헤더의 다음 헤더 칸**이 가리킨다(사슬). 확장 헤더 번호는 IPv4·IPv6가 함께 쓰는 IANA 프로토콜 번호에서 가져온다 — §4
 - (phase 73) 홉별 옵션 헤더를 빼면, 경로의 노드는 패킷이 목적지에 닿을 때까지 확장 헤더를 처리하지도 넣거나 빼지도 않는다. 목적지는 확장 헤더를 나온 차례대로 처리한다 — §4
@@ -299,6 +300,7 @@ https://www.rfc-editor.org/rfc/rfc8200
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.5 — 출발지만 나눈다), `ip-protocol.mtu`(§2 링크 MTU·경로 MTU, §5 — 1280), `ip-protocol.ipv6`(§1 — 뒤를 잇는 판·달라진 점), `ip-protocol.ipv6-header`(§3·§7·§8.1·§8.3 — 칸 여덟, 40옥텟, 체크섬·단편화 칸 없음),
 `ip-protocol.ttl`(§3 — 홉 제한), `ip-protocol.extension-headers`(§4·§4.5), `exam-notes.md` E9,
 (phase 73 step 2) `ip-protocol.fragmentation`(§2 — 링크의 뜻과 링크 MTU, §4.5 — IPv6는 출발지만 나눈다), 문항 n050 해설
+(phase 73 step 6) `ip-protocol.ipv6-header`(§3 — 칸 여덟과 크기, 버전 값 6, 페이로드 길이에 확장 헤더가 든다, 다음 헤더는 IPv4 프로토콜 칸과 같은 번호, 홉 제한; §6 — 흐름 레이블; §7 — 트래픽 클래스; §8.1 — 헤더 체크섬 없음; §4.5 — 단편화 칸 없음, 출발지가 단편화 헤더를 붙인다; 40옥텟), 도식 `ipv6-header`, 문항 n060 해설
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -1384,6 +1386,7 @@ https://www.rfc-editor.org/rfc/rfc3168
 - 그 8비트 칸의 끝 두 비트(비트 6·7)는 ECN 필드다. 혼잡이 막 시작될 때 패킷을 버리는 대신 표시해 알리는 데 쓴다. IPv4 서비스 유형 칸과 IPv6 트래픽 클래스 칸은 서로 대응하고, ECN 필드는 두 칸에서 똑같이 정의된다 — RFC 3168 §5
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(서비스 유형 칸의 지금 이름 — DS 필드와 ECN), `ip-protocol.ipv6-header`(트래픽 클래스의 지금 쓰임), `exam-notes.md` E9
+(phase 73 step 6) `ip-protocol.ipv6-header`(트래픽 클래스 — DS 필드로 다시 정의, 앞 6비트는 처리를 고르는 값·끝 2비트는 ECN), 문항 n060 해설(트래픽 클래스는 서비스 유형 칸에 해당)
 
 ## (phase 73) IANA — Assigned Internet Protocol Numbers
 https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
@@ -1429,6 +1432,7 @@ Draft Standard(Standards Track)이고 폐기되지 않았다. RFC 5952 등이 �
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(주소 종류 셋, 브로드캐스트 없음 — §2), `ip-protocol.ipv6-address-notation`(§2.2 — 묶음 여덟, 앞쪽 0 생략, `::`는 한 번), `ip-protocol.slaac`(링크 로컬 주소 — §2.1)
 (phase 73 step 5) `ip-protocol.ipv6`(§2 — 브로드캐스트 주소가 없고 멀티캐스트 주소가 그 일을 맡는다, 멀티캐스트는 묶음의 모든 인터페이스에 간다), 도식 `ipv6-changes`, 문항 n057 해설, 문항 n056 해설(§2.2 — 콜론으로 묶음을 잇는 꼴은 IPv6 주소의 꼴)
+(phase 73 step 6) `ip-protocol.ipv6-address-notation`(§2.2 — 16비트 묶음 여덟·16진수·콜론, 앞쪽 0 생략과 묶음마다 숫자 하나는 남김, `::`는 0 묶음 하나 이상을 한 주소에 한 번만; 두 번 쓴 예 `2001:db8::1::2`는 위 셈), 도식 `ipv6-notation`, 문항 n058·n059 해설
 
 ## (phase 73) RFC 5952 — A Recommendation for IPv6 Address Text Representation
 https://www.rfc-editor.org/rfc/rfc5952
@@ -1445,6 +1449,7 @@ Proposed Standard(Standards Track)이고 RFC 4291을 고친다.
 - 끝 32비트에 IPv4 주소를 품은 특별한 주소는 십진수를 섞은 꼴로 적기를 권한다(예: `::ffff:192.0.2.1`) — §5. 이름만 쓴다
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-address-notation`(권고 표기 — §4)
+(phase 73 step 6) `ip-protocol.ipv6-address-notation`(§2 — 같은 주소가 여러 꼴로 적힌다; §4 — 앞쪽 0은 뺀다·`::`는 최대로·가장 긴 곳·같으면 앞쪽·0 묶음 하나는 줄이지 않는다·소문자, 받는 쪽은 RFC 4291이 허락하는 꼴을 모두 받는다), 문항 n058 해설(가장 긴 0 묶음을 줄이고 0 묶음 하나는 줄이지 않기를 권한다)
 
 ## (phase 73) RFC 1883 — Internet Protocol, Version 6 (IPv6) Specification [폐기, RFC 2460으로 대체(RFC 2460은 다시 RFC 8200으로 대체) — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1883
@@ -1457,6 +1462,17 @@ https://www.rfc-editor.org/rfc/rfc1883
 - 지금 규격(RFC 8200)은 이 자리를 8비트 트래픽 클래스로, 흐름 레이블을 20비트로 정한다 — RFC 8200 §3·§7
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-header`(트래픽 클래스의 옛 이름), `exam-notes.md` E9
+(phase 73 step 6) `ip-protocol.ipv6-header`(트래픽 클래스 항목의 「자격시험은 … Priority로 묻기도 한다」 줄 — E9의 처리대로, 옛 판의 값 범위는 옮기지 않았다)
+
+## (phase 73 step 6) RFC 6437 — IPv6 Flow Label Specification
+https://www.rfc-editor.org/rfc/rfc6437
+
+Proposed Standard(Standards Track)이고 폐기되지 않았다. RFC 3697을 폐기하고 RFC 2460(지금은 RFC 8200)의 흐름 레이블 정의를 대신한다(rfc-editor 상태, 2026-10-29). **흐름 레이블이 무엇을 표시하는지만** 가져온다. 값을 고르는 방법, 부하 분산·상태 유지 방식은 가져오지 않는다.
+
+- 네트워크 계층에서 흐름은 한 출발지에서 한 목적지(유니캐스트·애니캐스트·멀티캐스트)로 가는 패킷들 가운데, 노드가 한 흐름으로 표시하려는 패킷의 줄이다 — §1
+- 흐름 레이블 칸(20비트)은 노드가 한 흐름의 패킷들에 표시를 붙이는 데 쓴다. 값 0은 표시를 붙이지 않은 패킷이다. 패킷을 가르는 장치는 흐름 레이블·출발지 주소·목적지 주소 셋으로 패킷이 어느 흐름에 드는지 가릴 수 있다 — §2
+
+쓰인 곳: (phase 73 step 6) `ip-protocol.ipv6-header`(흐름 레이블 항목 — 흐름의 뜻, 0은 표시하지 않은 패킷, 세 칸으로 흐름을 가린다), 문항 n060 해설
 
 ## (phase 73) RFC 4862 — IPv6 Stateless Address Autoconfiguration
 https://www.rfc-editor.org/rfc/rfc4862
@@ -1563,6 +1579,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 
 쓰인 곳: (phase 73에서 쓰일 곳) `phases/73-network-ip-arp-icmp/guide.md` 「예시 값」 — `ip-protocol`·`arp`·`icmp`의 본문·문항·도식에 쓰는 IPv4·IPv6 주소와 도메인 이름. MAC 주소는 위 RFC 9542 항목(§2.1.4)
 (phase 73 step 5) `ip-protocol.ipv4-address`(RFC 5737 §3 — `192.0.2.0`~`192.0.2.255`는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예 `192.0.2.1`과 도식 `ipv4-address`), 문항 n056의 보기 주소
+(phase 73 step 6) `ip-protocol.ipv6-address-notation`(RFC 3849 — 첫 두 묶음이 `2001:0db8`인 주소는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예와 도식 `ipv6-notation`), 문항 n058·n059의 주소
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826

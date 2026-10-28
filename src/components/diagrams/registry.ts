@@ -53,6 +53,8 @@ import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
+import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
+import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -240,6 +242,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-protocol.ttl': TtlCountdownDiagram,
   'ip-protocol.ipv4-address': Ipv4AddressDiagram,
   'ip-protocol.ipv6': Ipv6ChangesDiagram,
+  'ip-protocol.ipv6-address-notation': Ipv6NotationDiagram,
+  'ip-protocol.ipv6-header': Ipv6HeaderDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
