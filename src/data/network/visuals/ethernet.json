@@ -1,0 +1,380 @@
+{
+  "diagrams": {
+    "ethernet-layers": {
+      "label": "이더넷이 정하는 두 계층 도식",
+      "svgLabel": "케이블로 이은 두 컴퓨터의 데이터 링크 계층과 물리 계층, 그리고 IEEE 802.3이 정하는 프레임과 케이블",
+      "question": "이더넷은 무엇을 정해 둘까?",
+      "idleCaption": "이더넷은 두 계층의 규칙을 함께 정한다. 물리 계층에서는 어떤 케이블로 어떤 신호를 보낼지를, 데이터 링크 계층에서는 주고받는 데이터를 담을 형식인 프레임을 정한다. 가운데 박스의 두 가지를 모두 IEEE 802.3이라는 표준 하나가 정한다. 버튼을 고르면 계층마다 데이터가 어떻게 오가는지 볼 수 있다.",
+      "legend": "컴퓨터 A·B 박스는 케이블로 이은 두 컴퓨터이고, 가운데 박스는 IEEE 802.3이 정하는 것이다. 가는 선은 연결, 화살표는 데이터가 가는 방향이다.",
+      "nodes": {
+        "a-data-link": "데이터 링크 계층",
+        "a-physical": "물리 계층",
+        "frame": "프레임",
+        "cable": "케이블",
+        "b-data-link": "데이터 링크 계층",
+        "b-physical": "물리 계층"
+      },
+      "groups": {
+        "computer-a": "컴퓨터 A",
+        "ethernet": "IEEE 802.3",
+        "computer-b": "컴퓨터 B"
+      },
+      "scenarios": [
+        {
+          "id": "physical",
+          "label": "물리 계층",
+          "caption": "물리 계층에서 이더넷은 어떤 케이블을 쓰고, 그 케이블로 비트를 어떤 신호로 보낼지를 정한다. 컴퓨터 A의 물리 계층이 비트를 전기 신호나 빛으로 바꿔 케이블로 내보내면, 컴퓨터 B의 물리 계층이 그 신호를 받아 다시 비트로 되돌린다.",
+          "sources": ["ethernet.ethernet"]
+        },
+        {
+          "id": "data-link",
+          "label": "데이터 링크 계층",
+          "caption": "데이터 링크 계층에서 이더넷은 주고받는 데이터를 프레임이라는 정해진 형식에 담게 한다. 컴퓨터 A가 이 형식대로 만든 프레임을 컴퓨터 B가 같은 형식대로 읽으므로, 두 컴퓨터는 서로 보낸 것을 알아볼 수 있다. 프레임은 실제로는 물리 계층에서 신호로 바뀌어 케이블을 지나간다.",
+          "sources": ["ethernet.ethernet"]
+        }
+      ],
+      "sources": ["ethernet.ethernet"]
+    },
+    "standard-name": {
+      "label": "이더넷 규격 이름을 읽는 법 도식",
+      "svgLabel": "이더넷 규격 이름 하나를 속도, BASE, 하이픈 뒤 글자의 세 칸으로 나눈 띠",
+      "question": "이더넷 규격 이름은 무엇을 알려 줄까?",
+      "idleCaption": "이더넷 규격 이름은 세 부분으로 나눠 읽는다. 맨 앞은 1초에 보내는 비트 수인 속도이고, 가운데 BASE는 신호를 싣는 방식이 베이스밴드라는 표시이며, 하이픈 뒤 글자는 어떤 케이블로 신호를 보내는지를 알려 준다. 버튼을 고르면 실제 규격 이름을 나눠 읽어 볼 수 있다.",
+      "legend": "이어 붙은 세 칸이 규격 이름 하나이고, 왼쪽부터 읽는다. 칸 아래 글은 그 칸이 말하는 것이다.",
+      "nodes": {
+        "speed": "속도",
+        "base": "BASE",
+        "letters": "하이픈 뒤 글자",
+        "10base-t.speed": "10",
+        "10base-t.letters": "-T",
+        "1000base-sx.speed": "1000",
+        "1000base-sx.letters": "-SX",
+        "10gbase-t.speed": "10G",
+        "10gbase-t.letters": "-T"
+      },
+      "notes": {
+        "speed": "1초에 보내는 비트 수",
+        "base": "베이스밴드",
+        "letters": "신호를 보내는 케이블",
+        "10base-t.speed": "10 Mb/s",
+        "10base-t.letters": "트위스티드 페어",
+        "1000base-sx.speed": "1 Gb/s",
+        "1000base-sx.letters": "짧은 파장의 빛",
+        "1000base-sx.encoding": "X는 부호화 방식",
+        "10gbase-t.speed": "10 Gb/s",
+        "10gbase-t.letters": "트위스티드 페어"
+      },
+      "scenarios": [
+        {
+          "id": "10base-t",
+          "label": "10BASE-T",
+          "caption": "10BASE-T는 앞의 수 10에 G가 없으므로 메가비트 단위, 곧 1초에 10메가비트(10 Mb/s)를 보내는 규격이다. 하이픈 뒤 T는 트위스티드 페어 케이블로 전기 신호를 보낸다는 뜻이다.",
+          "sources": ["ethernet.standard-names"]
+        },
+        {
+          "id": "1000base-sx",
+          "label": "1000BASE-SX",
+          "caption": "1000BASE-SX의 1000은 1000 Mb/s, 곧 1 Gb/s다. 하이픈 뒤 첫 글자 S는 광섬유로 짧은 파장의 빛을 보낸다는 뜻이고, 이 규격은 멀티 모드 광섬유를 쓴다. 둘째 글자 X는 케이블이 아니라 데이터를 신호로 바꾸는 규칙(부호화 방식)을 가리킨다.",
+          "sources": ["ethernet.standard-names"]
+        },
+        {
+          "id": "10gbase-t",
+          "label": "10GBASE-T",
+          "caption": "10GBASE-T는 10 뒤에 G가 붙었으므로 기가비트 단위, 곧 1초에 10기가비트(10 Gb/s)를 보낸다. 하이픈 뒤 글자는 10BASE-T와 같은 T라, 둘 다 트위스티드 페어 케이블로 전기 신호를 보내지만 속도는 1000배 다르다.",
+          "sources": ["ethernet.standard-names"]
+        }
+      ],
+      "sources": ["ethernet.standard-names"]
+    },
+    "ethernet-speeds": {
+      "label": "이더넷 속도별 이름 도식",
+      "svgLabel": "패스트 이더넷, 기가비트 이더넷, 10기가비트 이더넷의 속도와 케이블별 규격 이름",
+      "question": "패스트 이더넷과 기가비트 이더넷은 얼마나 빠를까?",
+      "idleCaption": "패스트 이더넷, 기가비트 이더넷, 10기가비트 이더넷은 이더넷을 속도에 따라 부르는 이름이다. 박스마다 그 속도와, 그 속도로 보내는 규격 가운데 트위스티드 페어 케이블을 쓰는 것 하나와 멀티 모드 광섬유를 쓰는 것 하나를 담았다. 버튼을 고르면 이름마다 어떤 규격이 드는지 볼 수 있다.",
+      "legend": "박스 하나가 이더넷 이름 하나이고, 속도가 느린 것부터 차례로 놓았다. 같은 케이블을 쓰는 규격 칸끼리 한 줄로 놓고, 그 케이블을 줄 머리에 적었다.",
+      "nodes": {
+        "fast-speed": "100 Mb/s",
+        "fast-twisted": "100BASE-TX",
+        "fast-fiber": "100BASE-FX",
+        "gigabit-speed": "1 Gb/s",
+        "gigabit-twisted": "1000BASE-T",
+        "gigabit-fiber": "1000BASE-SX",
+        "ten-gigabit-speed": "10 Gb/s",
+        "ten-gigabit-twisted": "10GBASE-T",
+        "ten-gigabit-fiber": "10GBASE-SR"
+      },
+      "groups": {
+        "fast": "패스트 이더넷",
+        "gigabit": "기가비트 이더넷",
+        "ten-gigabit": "10기가비트 이더넷"
+      },
+      "notes": {
+        "speed": "속도",
+        "twisted": "트위스티드 페어",
+        "fiber": "멀티 모드 광섬유"
+      },
+      "scenarios": [
+        {
+          "id": "fast",
+          "label": "패스트 이더넷",
+          "caption": "패스트 이더넷은 1초에 100메가비트(100 Mb/s)를 보내는 이더넷으로, 1995년의 개정판 802.3u가 정했다. 802.3u는 이 이더넷을 공식 이름으로 100BASE-T라 부르고, 트위스티드 페어 케이블을 쓰는 100BASE-TX와 멀티 모드 광섬유를 쓰는 100BASE-FX가 모두 이 묶음에 든다.",
+          "sources": ["ethernet.fast-gigabit"]
+        },
+        {
+          "id": "gigabit",
+          "label": "기가비트 이더넷",
+          "caption": "기가비트 이더넷은 1초에 1기가비트(1 Gb/s)를 보낸다. 같은 1 Gb/s라도 케이블에 따라 규격이 따로 있어, 802.3ab의 1000BASE-T는 트위스티드 페어 케이블로, 802.3z의 1000BASE-SX는 멀티 모드 광섬유로 보낸다. 그래서 기가비트 이더넷이라는 이름만으로는 어떤 케이블을 쓰는지 알 수 없다.",
+          "sources": ["ethernet.fast-gigabit"]
+        }
+      ],
+      "sources": ["ethernet.fast-gigabit"]
+    },
+    "nic-filter": {
+      "label": "NIC가 프레임을 고르는 도식",
+      "svgLabel": "케이블로 들어온 프레임을 내 컴퓨터의 NIC가 받아 위 계층으로 넘기거나 버리는 모습",
+      "question": "NIC는 들어온 프레임을 모두 컴퓨터에 넘길까?",
+      "idleCaption": "NIC는 케이블로 들어온 프레임을 모두 컴퓨터에 넘기지 않는다. 프레임에 적힌 목적지 주소를 보고, 이 컴퓨터가 받을 프레임이면 컴퓨터의 위 계층으로 넘기고 아니면 버린다. 버튼을 고르면 목적지 주소에 따라 NIC가 프레임을 어떻게 다루는지 볼 수 있다.",
+      "legend": "내 컴퓨터 박스 안의 NIC가 케이블로 들어온 프레임을 먼저 받는다. 가는 선은 연결, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "upper": "위 계층",
+        "nic": "NIC",
+        "cable": "케이블"
+      },
+      "groups": {
+        "computer": "내 컴퓨터"
+      },
+      "notes": {
+        "dest-mine": "목적지: 이 NIC의 MAC 주소",
+        "dest-other": "목적지: 다른 장치의 MAC 주소",
+        "dest-broadcast": "목적지: 브로드캐스트 주소",
+        "discard": "버림"
+      },
+      "scenarios": [
+        {
+          "id": "mine",
+          "label": "내 주소로 온 프레임",
+          "caption": "케이블로 들어온 프레임의 목적지 주소가 이 NIC의 MAC 주소다. 이 컴퓨터가 받을 프레임이므로 NIC는 프레임을 받아들여, 그 안의 데이터를 컴퓨터의 위 계층으로 넘긴다.",
+          "sources": ["ethernet.nic"]
+        },
+        {
+          "id": "other",
+          "label": "다른 장치 앞으로 온 프레임",
+          "caption": "목적지 주소가 같은 LAN에 있는 다른 장치의 MAC 주소다. 이 컴퓨터가 받을 프레임이 아니므로 NIC는 프레임을 위 계층으로 넘기지 않고 버린다. 따로 설정을 바꿔 모든 프레임을 받아들이게 하지 않은 NIC는 이렇게 고른다.",
+          "sources": ["ethernet.nic"]
+        },
+        {
+          "id": "broadcast",
+          "label": "브로드캐스트 프레임",
+          "caption": "목적지 주소가 브로드캐스트 주소, 곧 그 LAN에 이어진 장치 모두를 한꺼번에 가리키는 주소다. 모든 장치가 받을 프레임이므로 이 NIC도 프레임을 받아들여, 그 안의 데이터를 컴퓨터의 위 계층으로 넘긴다.",
+          "sources": ["ethernet.nic"]
+        }
+      ],
+      "sources": ["ethernet.nic"]
+    },
+    "mac-address": {
+      "label": "MAC 주소의 구성 도식",
+      "svgLabel": "문서용 MAC 주소 00-00-5E-00-53-01의 여섯 묶음과 접두사, 나머지 부분",
+      "question": "MAC 주소 여섯 묶음은 각각 무엇을 말할까?",
+      "idleCaption": "MAC 주소는 16진수 두 자리씩 여섯 묶음으로 적는다. 이 문서용 예시 주소는 앞 세 묶음이 24비트 접두사이고, 뒤 세 묶음이 나머지 부분이다. 버튼을 고르면 주소를 나눠 만드는 방식과 첫 묶음에 담긴 주소 종류를 볼 수 있다.",
+      "legend": "한 칸이 8비트인 한 묶음이고, 왼쪽부터 이어 읽으면 예시 주소가 된다. 두 박스는 24비트 접두사를 쓰는 경우의 앞부분과 뒷부분을 구분한다.",
+      "nodes": {
+        "octet-1": "00",
+        "octet-2": "00",
+        "octet-3": "5E",
+        "octet-4": "00",
+        "octet-5": "53",
+        "octet-6": "01"
+      },
+      "groups": {
+        "prefix": "접두사",
+        "remainder": "나머지"
+      },
+      "notes": {
+        "bits": "00000000",
+        "individual": "오른쪽 끝 0: 개별 주소",
+        "universal": "그 왼쪽 0: 전역 관리"
+      },
+      "scenarios": [
+        {
+          "id": "prefix",
+          "label": "앞부분과 뒷부분",
+          "caption": "전역 관리 주소는 IEEE가 앞부분인 접두사를 조직에 할당하고, 그 조직이 나머지를 정해 만든다. 대표적인 24비트 접두사 OUI를 쓰면 앞 세 묶음과 뒤 세 묶음으로 나뉜다. 접두사 길이가 다른 방식도 있으므로 모든 MAC 주소가 이 경계로 나뉘지는 않는다.",
+          "sources": [
+            "ethernet.mac-address"
+          ]
+        },
+        {
+          "id": "first-octet",
+          "label": "첫 묶음의 두 비트",
+          "caption": "예시 주소의 첫 묶음 00을 비트로 적으면 00000000이다. 오른쪽 끝의 가장 낮은 비트가 0이므로 장치 하나를 가리키는 개별 주소다. 그 바로 왼쪽 비트도 0이므로 전역 관리 주소다. 두 비트는 각각 개별·그룹과 전역·지역 관리를 구분한다.",
+          "sources": [
+            "ethernet.mac-address"
+          ]
+        }
+      ],
+      "sources": [
+        "ethernet.mac-address"
+      ]
+    },
+    "ethernet-frame": {
+      "label": "이더넷 프레임의 구성 도식",
+      "svgLabel": "프레임 앞의 프리앰블과 SFD, 프레임 안의 목적지 주소부터 FCS까지를 전송 순서대로 이은 칸",
+      "question": "이더넷 프레임은 어떤 순서로 무엇을 담을까?",
+      "idleCaption": "프레임은 목적지 MAC 주소부터 FCS까지다. 그 앞에는 받는 쪽이 신호의 박자를 맞추고 프레임의 시작을 알 수 있도록 프리앰블과 SFD를 붙인다. 버튼을 고르면 헤더·데이터·트레일러가 각각 어느 부분인지 볼 수 있다.",
+      "legend": "칸은 좁은 화면에서는 위에서 아래로, 넓은 화면에서는 왼쪽에서 오른쪽으로 보낸다. 칸 크기는 바이트 수에 비례하지 않는다. 프레임 박스 밖의 첫 칸은 프리앰블 7바이트와 SFD 1바이트다.",
+      "nodes": {
+        "preamble": "프리앰블·SFD",
+        "destination": "목적지 MAC 주소",
+        "source": "출발지 MAC 주소",
+        "type-length": "이더타입/길이",
+        "data": "데이터",
+        "fcs": "FCS"
+      },
+      "groups": {
+        "frame": "프레임"
+      },
+      "notes": {
+        "preamble": "7+1바이트",
+        "destination": "6바이트",
+        "source": "6바이트",
+        "type-length": "2바이트",
+        "data": "46~1500바이트",
+        "fcs": "4바이트"
+      },
+      "scenarios": [
+        {
+          "id": "header",
+          "label": "헤더",
+          "caption": "헤더는 실어 나르는 내용 앞에 붙는다. 목적지·출발지 MAC 주소가 누가 누구에게 보내는지 알리고, 이더타입/길이는 뒤에 담긴 데이터가 어떤 프로토콜의 것인지 또는 그 데이터의 길이를 알린다.",
+          "sources": [
+            "ethernet.frame"
+          ]
+        },
+        {
+          "id": "payload",
+          "label": "데이터",
+          "caption": "이 칸에는 위 계층에서 받은 내용인 페이로드와, 필요하면 패드가 든다. 데이터가 46바이트보다 짧으면 뒤에 패드를 붙여 46바이트를 채운다. 데이터와 패드를 합친 부분의 크기가 46~1500바이트이고, 패드는 원래 내용에 포함되지 않는다.",
+          "sources": [
+            "ethernet.frame"
+          ]
+        },
+        {
+          "id": "trailer",
+          "label": "트레일러",
+          "caption": "FCS는 데이터와 패드 뒤에 붙는 4바이트의 오류 검출 값이다. 내용 뒤에 붙는 정보라 트레일러라 부르며, 받는 쪽은 이 값을 이용해 프레임의 전송 오류를 확인한다.",
+          "sources": [
+            "ethernet.frame"
+          ]
+        },
+        {
+          "id": "preamble",
+          "label": "프리앰블·SFD",
+          "caption": "프레임 앞의 프리앰블 7바이트는 10101010을 일곱 번 반복해 받는 쪽이 신호의 박자를 맞추게 한다. 뒤의 SFD 1바이트는 10101011로, 그 다음부터 프레임이 시작된다는 표시다. 이 둘은 프레임의 헤더에 포함하지 않는다.",
+          "sources": [
+            "ethernet.frame"
+          ]
+        }
+      ],
+      "sources": [
+        "ethernet.frame"
+      ]
+    },
+    "ethertype-length": {
+      "label": "이더타입/길이 필드를 읽는 법 도식",
+      "svgLabel": "이더타입/길이 필드의 수를 작은 값부터 셋으로 나눈 칸과, 예시 값 0064·0800·0806이 드는 칸",
+      "question": "같은 두 바이트를 왜 다르게 읽을까?",
+      "idleCaption": "이더타입/길이 필드에 담기는 수는 크기에 따라 셋으로 나뉜다. 1500 이하는 길이로, 1536 이상은 이더타입으로 읽고, 그 사이의 수는 어느 쪽으로도 정해져 있지 않다. 버튼을 고르면 예시 값이 어느 칸에 들고 받는 쪽이 그 값을 어떻게 읽는지 볼 수 있다.",
+      "legend": "이어 붙은 세 칸은 이 필드가 가질 수 있는 수를 작은 값부터 나눈 것이고, 칸 크기는 수의 범위에 비례하지 않는다. 칸과 예시 값은 16진수로, 곁말의 수는 10진수로 적었다. 화살표는 예시 값이 드는 칸을 가리킨다.",
+      "nodes": {
+        "length-range": "0000~05DC",
+        "gap": "05DD~05FF",
+        "type-range": "0600~FFFF",
+        "value-0064": "0064",
+        "value-0800": "0800",
+        "value-0806": "0806"
+      },
+      "notes": {
+        "length-range": "1500 이하 · 길이로 읽음",
+        "gap": "1501~1535 · 정해지지 않음",
+        "type-range": "1536 이상 · 이더타입으로 읽음",
+        "value-0064": "데이터의 길이 100바이트",
+        "value-0800": "IPv4",
+        "value-0806": "ARP"
+      },
+      "scenarios": [
+        {
+          "id": "ipv4",
+          "label": "값 0800",
+          "caption": "16진수 0800은 0600보다 크므로 1536 이상인 칸에 든다. 받는 쪽은 이 값을 이더타입으로 읽고, 실려 온 데이터가 IPv4 데이터라는 것을 알아 IPv4를 처리하는 위 계층으로 넘긴다.",
+          "sources": [
+            "ethernet.ethertype-length"
+          ]
+        },
+        {
+          "id": "arp",
+          "label": "값 0806",
+          "caption": "0806도 1536 이상인 칸에 들어 이더타입으로 읽는다. 같은 칸의 값이라도 번호가 다르면 가리키는 프로토콜이 달라서, 0806이 적힌 프레임에 실려 온 것은 ARP 데이터다.",
+          "sources": [
+            "ethernet.ethertype-length"
+          ]
+        },
+        {
+          "id": "length",
+          "label": "값 0064",
+          "caption": "16진수 0064는 10진수로 100이라 1500 이하인 칸에 든다. 받는 쪽은 이 값을 길이로 읽어, 프레임에 실린 데이터가 100바이트라는 것을 안다. 주소와 FCS까지 더한 프레임 전체의 크기가 아니다.",
+          "sources": [
+            "ethernet.ethertype-length"
+          ]
+        }
+      ],
+      "sources": [
+        "ethernet.ethertype-length"
+      ]
+    },
+    "fcs-check": {
+      "label": "FCS로 손상을 알아내는 도식",
+      "svgLabel": "보내는 컴퓨터가 FCS를 계산해 붙인 프레임이 케이블을 지나, 받는 컴퓨터에서 다시 계산되어 비교되는 모습",
+      "question": "받은 프레임이 망가졌는지 어떻게 알까?",
+      "idleCaption": "보내는 쪽은 프레임의 내용으로 값을 계산해 FCS로 프레임 맨 끝에 붙인다. 받는 쪽은 받은 내용으로 같은 계산을 다시 해서 FCS와 견주고, 결과에 따라 프레임 안의 데이터를 위 계층으로 넘기거나 프레임을 버린다. 버튼을 고르면 두 값이 같을 때와 다를 때를 볼 수 있다.",
+      "legend": "두 박스는 프레임을 보내는 컴퓨터와 받는 컴퓨터이고, 계산과 비교는 각 컴퓨터의 NIC가 한다. 가는 선은 연결, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "attach": "FCS를 계산해 붙임",
+        "cable": "케이블",
+        "check": "다시 계산해 비교",
+        "upper": "위 계층"
+      },
+      "groups": {
+        "sender": "보내는 컴퓨터",
+        "receiver": "받는 컴퓨터"
+      },
+      "notes": {
+        "damage": "오는 길에 손상",
+        "same": "두 값이 같음",
+        "discard": "두 값이 다름: 버림"
+      },
+      "scenarios": [
+        {
+          "id": "match",
+          "label": "값이 같을 때",
+          "caption": "오는 길에 비트가 하나도 바뀌지 않았으므로, 받는 쪽 NIC가 다시 계산한 값이 프레임에 실려 온 FCS와 같다. NIC는 프레임 안의 데이터를 위 계층으로 넘긴다.",
+          "sources": [
+            "ethernet.fcs"
+          ]
+        },
+        {
+          "id": "mismatch",
+          "label": "값이 다를 때",
+          "caption": "케이블을 지나는 동안 프레임이 손상되어 비트 일부가 바뀌었으므로, 다시 계산한 값이 FCS와 다르다. NIC는 이 프레임을 오류가 있는 프레임으로 보고 위 계층으로 넘기지 않고 버린다. 바뀐 비트를 되돌려 고치지는 않는다.",
+          "sources": [
+            "ethernet.fcs"
+          ]
+        }
+      ],
+      "sources": [
+        "ethernet.fcs"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
