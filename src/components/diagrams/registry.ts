@@ -38,6 +38,7 @@ import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
+import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
@@ -47,6 +48,7 @@ import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
+import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
@@ -54,6 +56,7 @@ import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { ReferenceModelTable } from './protocolsTables'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
@@ -171,6 +174,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.packet-switching': PacketSwitchingDiagram,
   'protocols-encapsulation.packet': PacketPartsDiagram,
   'protocols-encapsulation.circuit-switching': CircuitSwitchingDiagram,
+  'protocols-encapsulation.protocol': ProtocolMatchDiagram,
+  'protocols-encapsulation.reference-model': LayerJourneyDiagram,
+  'protocols-encapsulation.osi-model': OsiStackDiagram,
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
   'protocols-encapsulation.decapsulation': EncapsulationDiagram,
 }

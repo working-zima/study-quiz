@@ -106,6 +106,119 @@
       ],
       "sources": ["protocols-encapsulation.circuit-switching"]
     },
+    "protocol-match": {
+      "label": "통신하는 양쪽이 따르는 프로토콜과 프로토콜마다 다른 헤더 도식",
+      "svgLabel": "정보를 주고받는 호스트 A와 호스트 B, 그리고 UDP 헤더와 TCP 헤더를 각각 데이터 앞에 붙인 칸 둘",
+      "question": "주고받는 두 호스트는 어떤 규칙을 따를까?",
+      "idleCaption": "프로토콜은 통신하는 양쪽이 정보를 어떻게 주고받을지 미리 합의해 둔 규칙이다. 위는 정보를 주고받는 두 호스트이고, 아래는 두 프로토콜이 데이터 앞에 붙이는 헤더다. 버튼을 고르면 양쪽이 어떤 프로토콜을 쓰는지, 프로토콜이 다르면 헤더가 어떻게 달라지는지 볼 수 있다.",
+      "legend": "상자는 호스트, 화살표는 정보가 오가는 방향, 호스트 아래 글자는 그 호스트가 따르는 프로토콜이다. 아래 이어 붙은 칸은 헤더와 데이터이고, 헤더 칸의 길이는 항목이 많고 적음만 견준 것이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "udp-header": "UDP 헤더",
+        "udp-data": "데이터",
+        "tcp-header": "TCP 헤더",
+        "tcp-data": "데이터"
+      },
+      "notes": {
+        "request": "요청",
+        "response": "응답",
+        "a-http": "HTTP",
+        "b-http": "HTTP",
+        "a-ftp": "FTP",
+        "b-ftp": "FTP",
+        "udp-items": "항목 넷뿐",
+        "tcp-items": "항목 열 개 넘음"
+      },
+      "scenarios": [
+        {
+          "id": "web",
+          "label": "웹 페이지",
+          "caption": "호스트 A의 웹 브라우저가 HTTP로 웹 페이지를 요청하면, 호스트 B의 웹 서버도 HTTP로 응답한다. 받는 쪽은 보내는 쪽이 어떤 규칙으로 데이터를 만들었는지 알아야 그 데이터를 제대로 읽을 수 있으므로, 통신은 같은 프로토콜을 쓰는 쪽끼리 이루어진다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        },
+        {
+          "id": "file",
+          "label": "파일",
+          "caption": "파일을 주고받을 때는 HTTP 대신 FTP를 쓰고, 이때도 양쪽이 같은 FTP를 따른다. 웹 페이지에는 HTTP, 파일에는 FTP처럼 하려는 일마다 쓰는 프로토콜이 따로 있다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        },
+        {
+          "id": "header",
+          "label": "헤더 비교",
+          "caption": "TCP와 UDP는 둘 다 호스트 사이에서 데이터를 나르는 프로토콜이지만, UDP 헤더에는 항목이 넷뿐이고 TCP 헤더에는 열 개가 넘는 항목이 들어간다. 헤더에 어떤 항목을 담을지는 프로토콜이 정하기 때문이다. 보내는 쪽은 그 규칙대로 헤더를 채우고 받는 쪽은 같은 규칙대로 읽으므로, 프로토콜이 다르면 헤더에 담기는 내용도 달라진다.",
+          "sources": ["protocols-encapsulation.protocol"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.protocol"]
+    },
+    "layer-journey": {
+      "label": "보낼 때와 받을 때 계층을 지나는 방향 도식",
+      "svgLabel": "네 계층으로 나뉜 보내는 호스트와 받는 호스트가 맨 아래 계층에서 매체로 이어진 모습",
+      "question": "보낸 정보는 계층을 어떤 순서로 지날까?",
+      "idleCaption": "네트워크 참조 모델은 정보를 보내고 받는 과정을 몇 개의 계층으로 나누고, 계층마다 맡을 일을 정해 둔다. 이 그림은 계층을 넷으로 나눈 경우다. 맨 위 계층은 웹 브라우저 같은 응용 프로그램과 정보를 주고받고, 맨 아래 계층은 유선이나 무선 매체로 정보를 실어 나른다. 버튼을 고르면 보낼 때와 받을 때 계층을 어느 방향으로 지나는지 볼 수 있다.",
+      "legend": "큰 박스는 호스트 하나이고, 그 안의 상자가 아래에서 위로 쌓인 계층이다. 가운데 매체 상자로 이어진 가는 선은 두 호스트를 잇는 통로, 화살표는 정보가 지나는 방향이다.",
+      "nodes": {
+        "sender-1": "맨 위 계층",
+        "sender-2": "위에서 둘째 계층",
+        "sender-3": "위에서 셋째 계층",
+        "sender-4": "맨 아래 계층",
+        "medium": "매체",
+        "receiver-1": "맨 위 계층",
+        "receiver-2": "위에서 둘째 계층",
+        "receiver-3": "위에서 셋째 계층",
+        "receiver-4": "맨 아래 계층"
+      },
+      "groups": {
+        "sender": "보내는 호스트",
+        "receiver": "받는 호스트"
+      },
+      "notes": {
+        "medium-kind": "케이블이나 무선"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "보낼 때",
+          "caption": "보내는 호스트에서는 정보가 맨 위 계층에서 출발해 한 계층씩 아래로 내려가며 처리된다. 각 계층은 정해진 자기 일만 하고 나머지는 다른 계층에 맡긴다. 맨 아래 계층에 이르면 정보는 신호가 되어 케이블이나 무선 같은 매체로 나간다.",
+          "sources": ["protocols-encapsulation.reference-model"]
+        },
+        {
+          "id": "receive",
+          "label": "받을 때",
+          "caption": "받는 호스트에서는 방향이 반대다. 매체로 들어온 신호가 맨 아래 계층에서 출발해 한 계층씩 위로 올라가며 처리되고, 맨 위 계층에 이르면 웹 브라우저 같은 응용 프로그램에 닿는다.",
+          "sources": ["protocols-encapsulation.reference-model"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.reference-model"]
+    },
+    "osi-stack": {
+      "label": "OSI 모델의 일곱 계층과 계층마다 맡는 일 도식",
+      "svgLabel": "물리 계층부터 응용 계층까지 아래에서 위로 쌓인 OSI 모델의 일곱 계층",
+      "question": "OSI 모델의 일곱 계층은 어떤 순서로 쌓여 있을까?",
+      "idleCaption": "OSI 모델은 통신 과정을 일곱 계층으로 나눈 국제 표준 참조 모델이다. 맨 아래 물리 계층부터 데이터 링크·네트워크·전송·세션·표현 계층을 거쳐 맨 위 응용 계층까지 차례로 쌓여 있고, 계층마다 맡는 일이 따로 있다. 데이터 링크 계층은 오류를 검출하지만, 검출한 오류를 고칠지는 그 계층의 프로토콜마다 다르다.",
+      "legend": "상자 하나가 계층 하나이고, 아래에서 위로 쌓여 있다. 상자 옆 글은 그 계층이 맡는 일이다.",
+      "nodes": {
+        "physical": "물리 계층",
+        "data-link": "데이터 링크 계층",
+        "network": "네트워크 계층",
+        "transport": "전송 계층",
+        "session": "세션 계층",
+        "presentation": "표현 계층",
+        "application": "응용 계층"
+      },
+      "notes": {
+        "role-physical": "비트를 신호로 바꿔 실어 나르기",
+        "role-data-link": "프레임으로 묶기·오류 검출하기",
+        "role-network": "주소로 목적지까지 경로 정하기",
+        "role-transport": "양 끝 호스트 사이에 전달하기",
+        "role-session": "대화 열기·차례 맞추기·닫기",
+        "role-presentation": "표현 형식을 공통으로 맞추기",
+        "role-application": "응용 프로그램이 쓰는 창구"
+      },
+      "scenarios": [],
+      "sources": ["protocols-encapsulation.osi-model"]
+    },
     "encapsulation": {
       "label": "계층을 지날 때 헤더가 붙고 떨어지는 과정 도식",
       "svgLabel": "웹 페이지를 TCP로 보낼 때 TCP/IP 모델의 네 계층과 계층마다의 데이터 단위",
