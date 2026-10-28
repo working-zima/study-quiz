@@ -759,6 +759,8 @@ https://www.rfc-editor.org/rfc/rfc903
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`, (phase 72 step 5) `ethernet.ethertype-length`(ARP는 하드웨어 주소를 알아내는 프로토콜이다, §I — 「IP 주소로 같은 네트워크 안 장치의 MAC 주소」는 강의 p133),
 (phase 73 step 1에서 쓰일 곳) `arp.rarp`(§I·§II·§III — 방향, 서버, 같은 형식, 링크 수준), `exam-notes.md` E2
+(phase 73 step 10) `arp.rarp`(§I — 디스크 없는 워크스테이션은 켜질 때 자기 IP 주소를 모르고 하드웨어 주소만 안다, ARP와 반대 방향; §II A — RARP 서버가 하나 이상 있어야 하고 하드웨어 주소→프로토콜 주소 대응표를 갖고 답한다; §III — 오퍼레이션 3·4, 「찾지 못함」 메시지 없음·답이 없으면 그만둠, 역방향 요청의 보낸 쪽 하드웨어 주소 칸(과 자기 주소를 찾을 때의 대상 하드웨어 주소 칸)에 자기 하드웨어 주소를 넣는다, 이더넷에서 ARP와 다른 이더타입),
+  도식 `rarp-direction`, 문항 n068 해설. 이 RFC는 요청을 브로드캐스트한다고 문장으로 적지 않고 「ARP처럼 브로드캐스트 매체를 전제한다」(§I)고만 하므로, 본문은 RARP 요청을 「보낸다」로 썼다
 
 ## (2026-10-28) RFC 1123 — Requirements for Internet Hosts -- Application and Support
 https://www.rfc-editor.org/rfc/rfc1123
@@ -1444,6 +1446,10 @@ Draft Standard(Standards Track)이고 폐기되지 않았다. RFC 5952 등이 �
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(주소 종류 셋, 브로드캐스트 없음 — §2), `ip-protocol.ipv6-address-notation`(§2.2 — 묶음 여덟, 앞쪽 0 생략, `::`는 한 번), `ip-protocol.slaac`(링크 로컬 주소 — §2.1)
 (phase 73 step 5) `ip-protocol.ipv6`(§2 — 브로드캐스트 주소가 없고 멀티캐스트 주소가 그 일을 맡는다, 멀티캐스트는 묶음의 모든 인터페이스에 간다), 도식 `ipv6-changes`, 문항 n057 해설, 문항 n056 해설(§2.2 — 콜론으로 묶음을 잇는 꼴은 IPv6 주소의 꼴)
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(§2.2 — 16비트 묶음 여덟·16진수·콜론, 앞쪽 0 생략과 묶음마다 숫자 하나는 남김, `::`는 0 묶음 하나 이상을 한 주소에 한 번만; 두 번 쓴 예 `2001:db8::1::2`는 위 셈), 도식 `ipv6-notation`, 문항 n058·n059 해설
+- (phase 73 step 10) 요청 노드 멀티캐스트 주소(Solicited-Node multicast address)는 노드의 유니캐스트·애니캐스트 주소에서 계산한다 — 그 주소의 끝(하위) 24비트를 접두사 `FF02:0:0:0:0:1:FF00::/104` 뒤에 붙인 것이다. 노드는 자기 인터페이스에 정한 유니캐스트·애니캐스트 주소마다 그 요청 노드 멀티캐스트 주소를 계산해 가입해야 한다(MUST) — §2.7.1
+  (rfc-editor.org 원문, 2026-10-29)
+
+(phase 73 step 10) `arp.neighbor-discovery`(§2 — 브로드캐스트 주소가 없고 멀티캐스트가 맡는다, 멀티캐스트는 그룹의 모든 인터페이스에 간다; §2.7.1 — 요청 노드 멀티캐스트 주소는 끝 24비트로 정해지고 주소마다 그 그룹에 들어간다), 도식 `neighbor-discovery`, 문항 n069 해설
 
 ## (phase 73) RFC 5952 — A Recommendation for IPv6 Address Text Representation
 https://www.rfc-editor.org/rfc/rfc5952
@@ -1717,6 +1723,11 @@ Draft Standard이고 RFC 2461을 폐기·대체한다. 폐기되지 않았고 RF
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ARP 대신 이웃 요청·광고, ICMPv6 메시지, 멀티캐스트로 묻고 유니캐스트로 답한다 — [기출 2025-08-24 #3]), `ip-protocol.slaac`(라우터 요청 133·라우터 광고 134 — 위 RFC 4862 항목이 가리킨 곳), `icmp.icmp`(ICMPv6가 이웃 탐색도 맡는다)
 (phase 73 step 7) `ip-protocol.slaac`(라우터 알림·라우터 요청·이웃 요청·이웃 광고가 ICMPv6 메시지라는 것 — §3, 타입 번호는 쓰지 않았다)
+- (phase 73 step 10) 링크(link)는 노드들이 링크 계층, 곧 IP 바로 아래 계층에서 통신할 수 있는 수단이나 매체다(예: 이더넷). 이웃(neighbors)은 같은 링크에 이어진 노드들이다 — §2.1
+- (phase 73 step 10) 요청 노드 멀티캐스트 주소는 요청 대상 주소에서 계산하는 링크 로컬 범위의 멀티캐스트 주소다 — §2.3(계산법은 RFC 4291). 멀티캐스트를 쓰는 인터페이스가 켜지면 노드는 그 인터페이스에 정한 IP 주소마다 요청 노드 멀티캐스트 주소에 가입해야 한다(MUST) — §7.2.1
+- (phase 73 step 10) 주소 결정용 멀티캐스트는 약 1,600만(2^24) 개의 멀티캐스트 주소로 흩어지므로 대상이 아닌 노드가 이 일로 방해받는 일이 크게 준다 — §3.1(위 줄과 같은 절, 원문 다시 확인)
+  (rfc-editor.org 원문, 2026-10-29)
+(phase 73 step 10) `arp.neighbor-discovery`(§1 — 이웃의 링크 계층 주소를 알아낸다, 라우터 찾기·이웃에 닿는지 살피기; §2.1 — 링크·이웃; §3 — 이웃 요청은 대상의 요청 노드 멀티캐스트 주소로, 이웃 광고는 유니캐스트로, 요청에 보낸 쪽 링크 계층 주소를 담아 양쪽이 서로의 주소를 안다, 확인할 때는 유니캐스트, 중복 주소 검출, 라우터 알림도 ND 메시지; §3.1 — ARP 등을 합친 것, 2^24로 흩어짐; §7.2.1 — 주소마다 가입), 도식 `neighbor-discovery`, 문항 n069 해설
 
 ## (phase 73 step 1) RFC 4443 — Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification, IANA — ICMPv6 Parameters
 https://www.rfc-editor.org/rfc/rfc4443
@@ -1730,6 +1741,8 @@ RFC 4443은 Internet Standard이고 RFC 2463을 폐기·대체한다. RFC 4884�
 - 이웃 탐색 메시지 같은 다른 ICMPv6 메시지는 다른 문서가 더한다 — §1. 레지스트리에서 133~137이 RFC 4861의 ND 메시지다 — IANA 「ICMPv6 "type" Numbers」
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ICMPv6의 한 줄 풀이), `icmp.icmp`(IPv6용은 ICMPv6)
+- (phase 73 step 10) ICMPv6는 IPv6 노드가 패킷을 처리하다 생긴 오류를 알리고, 진단(ICMPv6 「ping」) 같은 다른 인터넷 계층 기능을 하는 데 쓴다. IPv6의 한 부분이라 모든 IPv6 노드가 구현해야 한다 — §1 (rfc-editor.org 원문, 2026-10-29)
+(phase 73 step 10) `arp.neighbor-discovery`(§1 — 오류를 알리거나 네트워크 상태를 알아보는 메시지, 이웃 탐색 메시지는 다른 문서가 더한 ICMPv6 메시지; §2.1 — 다음 헤더 58로 가리키므로 IPv6 패킷에 담겨 간다), 문항 n069 해설
 
 ## (phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 — Dynamic Host Configuration Protocol
 https://www.rfc-editor.org/rfc/rfc951
@@ -1743,6 +1756,7 @@ https://www.rfc-editor.org/rfc/rfc2131
 - 「RARP는 지금 쓰이지 않는다」 또는 「DHCP가 RARP를 대체했다」를 그대로 말하는 문장은 허용한 출처에서 찾지 못했다(RFC 903·951·2131·1122 전문 검색). 본문은 위 세 사실과 RFC 1122 §3.2.2.7(RARP와 BOOTP가 호스트가 자기 IP 주소를 알아내는 더 나은 방법)까지만 쓴다
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.rarp`(BOOTP가 같은 일을 IP 위에서 하려고 나왔고, DHCP는 BOOTP를 바탕으로 한다 — [기출 2024-02-25 #13]의 맞는 보기와 어긋나지 않는다)
+(phase 73 step 10) `arp.rarp`(RFC 951 §6 — RARP가 먼저 나왔고 링크 수준이라 커널·드라이버를 고쳐야 했으며, BOOTP가 같은 일을 IP·UDP 위에서 다른 기능과 함께 한다; RFC 2131 Abstract — DHCP는 BOOTP를 바탕으로 다시 쓸 수 있는 주소를 자동으로 나눠 준다; RFC 1122 §3.2.2.7 — RARP와 BOOTP). 「RARP는 지금 쓰이지 않는다」는 쓰지 않았다
 
 ## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
 https://www.rfc-editor.org/rfc/rfc5227

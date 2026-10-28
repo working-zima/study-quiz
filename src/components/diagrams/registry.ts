@@ -71,6 +71,7 @@ import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
+import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
@@ -88,6 +89,7 @@ import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { ReferenceModelTable } from './protocolsTables'
+import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
@@ -256,6 +258,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'arp.arp-request-reply': ArpExchangeDiagram,
   'arp.arp-cache': ArpCacheDiagram,
   'arp.arp-across-routers': ArpHopsDiagram,
+  'arp.rarp': RarpDirectionDiagram,
+  'arp.neighbor-discovery': NeighborDiscoveryDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

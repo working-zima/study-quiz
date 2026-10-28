@@ -209,6 +209,101 @@
       "sources": [
         "arp.arp-across-routers"
       ]
+    },
+    "rarp-direction": {
+      "label": "ARP와 RARP가 각각 무엇을 알고 무엇을 알아내는지 견주어 보이는 도식",
+      "svgLabel": "위 묶음 ARP에는 상대의 IP 주소와 상대의 MAC 주소가 있고, 아래 묶음 RARP에는 자기 IP 주소·자기 MAC 주소와 RARP 서버가 있다. 두 묶음 모두 IP 주소가 왼쪽, MAC 주소가 오른쪽이다",
+      "question": "ARP와 RARP는 무엇을 알아낼까?",
+      "idleCaption": "ARP와 RARP는 둘 다 IP 주소와 MAC 주소의 짝을 알아내지만, 무엇을 알고 무엇을 알아내는지가 서로 반대다. 버튼을 고르면 각각의 방향을 볼 수 있다.",
+      "legend": "위 묶음은 ARP, 아래 묶음은 RARP다. 두 묶음 모두 IP 주소를 왼쪽, MAC 주소를 오른쪽에 두었고, 화살표는 아는 것에서 알아내는 것으로 가는 방향이다.",
+      "groups": {
+        "arp": "ARP",
+        "rarp": "RARP"
+      },
+      "nodes": {
+        "arp-ip": "상대의 IP 주소",
+        "arp-mac": "상대의 MAC 주소",
+        "rarp-ip": "자기 IP 주소",
+        "rarp-mac": "자기 MAC 주소",
+        "rarp-server": "RARP 서버"
+      },
+      "notes": {
+        "arp-known": "아는 것",
+        "arp-found": "알아내는 것",
+        "rarp-found": "알아내는 것",
+        "rarp-known": "아는 것"
+      },
+      "scenarios": [
+        {
+          "id": "arp",
+          "label": "ARP",
+          "caption": "ARP는 상대의 IP 주소를 알고, 그 상대의 MAC 주소를 알아낸다. 화살표가 IP 주소에서 MAC 주소 쪽으로 가고, 찾는 IP 주소를 쓰는 장치가 직접 답한다.",
+          "sources": [
+            "arp.rarp"
+          ]
+        },
+        {
+          "id": "rarp",
+          "label": "RARP",
+          "caption": "RARP는 자기 MAC 주소를 알고, 자기 IP 주소를 알아낸다. 화살표가 ARP와 반대로 MAC 주소에서 IP 주소 쪽으로 간다. 자기 MAC 주소를 담아 요청을 보내면, MAC 주소와 IP 주소의 짝을 적은 표를 가진 RARP 서버가 IP 주소를 알려 준다.",
+          "sources": [
+            "arp.rarp"
+          ]
+        }
+      ],
+      "sources": [
+        "arp.rarp"
+      ]
+    },
+    "neighbor-discovery": {
+      "label": "같은 링크의 호스트 A~D 가운데 호스트 A가 IPv6 주소 2001:db8::2를 쓰는 호스트 B의 MAC 주소를 찾을 때, 이웃 요청과 이웃 광고가 누구에게 가는지 보이는 도식",
+      "svgLabel": "같은 링크에 호스트 A·B·C·D가 있고, 호스트 B만 요청 노드 멀티캐스트 그룹 안에 있다. 호스트마다 IPv6 주소 2001:db8::1·2001:db8::2·2001:db8::3·2001:db8::4가 적혀 있다",
+      "question": "IPv6는 ARP 대신 무엇으로 이웃을 찾을까?",
+      "idleCaption": "IPv6를 쓰는 호스트 A~D가 같은 링크에 있다. 호스트 A가 IPv6 주소 2001:db8::2를 쓰는 이웃의 MAC 주소를 알아내려 한다. 버튼을 고르면 이웃 요청과 이웃 광고가 누구에게 가는지 볼 수 있다.",
+      "legend": "바깥 상자는 같은 링크이고, 안쪽 상자는 2001:db8::2에 맞춘 요청 노드 멀티캐스트 주소의 그룹이다. 호스트 아래 글은 그 호스트의 IPv6 주소이고, 화살표는 메시지가 가는 길이다.",
+      "groups": {
+        "link": "같은 링크",
+        "multicast": "요청 노드 멀티캐스트 그룹"
+      },
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "notes": {
+        "ipv6-a": "2001:db8::1",
+        "ipv6-b": "2001:db8::2",
+        "ipv6-c": "2001:db8::3",
+        "ipv6-d": "2001:db8::4",
+        "solicit-name": "이웃 요청",
+        "solicit-target": "찾는 주소 2001:db8::2",
+        "solicit-cast": "멀티캐스트로 보냄",
+        "advertise-name": "이웃 광고",
+        "advertise-mac": "MAC 주소 00-00-5E-00-53-02",
+        "advertise-cast": "유니캐스트로 보냄"
+      },
+      "scenarios": [
+        {
+          "id": "solicit",
+          "label": "이웃 요청",
+          "caption": "호스트 A가 찾는 주소 2001:db8::2와 자기 MAC 주소를 담은 이웃 요청을 그 주소의 요청 노드 멀티캐스트 주소로 보낸다. 브로드캐스트가 아니어서 이 그룹에 든 B에게만 가고, 그룹에 들지 않은 C와 D는 이 요청을 받아 처리하지 않는다.",
+          "sources": [
+            "arp.neighbor-discovery"
+          ]
+        },
+        {
+          "id": "advertise",
+          "label": "이웃 광고",
+          "caption": "B가 자기 MAC 주소 00-00-5E-00-53-02를 담은 이웃 광고를 A에게만 유니캐스트로 보낸다. 요청에 A의 MAC 주소가 들어 있었으므로 B는 따로 묻지 않고 A에게 답할 수 있다.",
+          "sources": [
+            "arp.neighbor-discovery"
+          ]
+        }
+      ],
+      "sources": [
+        "arp.neighbor-discovery"
+      ]
     }
   },
   "tables": {},
