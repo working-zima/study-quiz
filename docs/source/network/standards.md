@@ -716,7 +716,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - FCS 검사: 받은 비트(FCS 필드는 빼고)로 만든 CRC가 받은 값과 다르면 오류로 보고 그 프레임을 잘못된 것으로 판정한다 — §4.2.4.1.2
 - 프리앰블은 물리 계층 회로가 안정되도록 데이터보다 먼저 보내는 비트열이고, 10101010을 일곱 번 보낸다. 왼쪽 비트부터 보내며 0으로 끝나고, 바로 뒤에 SFD가 온다 — §4.2.5
 
-쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`(받는 쪽이 FCS를 뺀 비트로 다시 계산해 받은 값과 견주고, 다르면 잘못된 프레임으로 판정, §4.2.4.1.2)
+쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`(받는 쪽이 FCS를 뺀 비트로 다시 계산해 받은 값과 견주고, 다르면 잘못된 프레임으로 판정, §4.2.4.1.2), (phase 72 step 6) `hub-switch-vlan.hub`·문항 n035 해설(허브가 내보낸 신호를 받은 호스트의 NIC가 목적지 주소를 보고 자기 프레임만 받아들이고 나머지는 버린다)
 
 ## (phase 72) IEEE 802.3 Working Group — Editorial guidelines (Frames and packets; Mb/s, Gb/s)
 https://www.ieee802.org/3/WG_tools/editorial/requirements/words.html
@@ -818,7 +818,7 @@ https://www.ieee802.org/3/cc/P802_3cc_Objectives.pdf
 - 802.3an(10GBASE-T, 2003-09): 전이중 동작만 지원하고, 4쌍 트위스티드 페어 구리 배선으로 최대 100 m를 목표로 한다 — 2~3쪽
 - 802.3cc(25 Gb/s 싱글 모드 광, 2016-01 승인): 전이중 동작만 지원하고, 싱글 모드 광섬유로 적어도 10 km와 40 km를 목표로 한다 — 2쪽
 
-쓰인 곳: (phase 72) 강의 수정 이력 L27, (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L27, (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`, (phase 72 step 6) `hub-switch-vlan.duplex`(1초에 10기가비트 이상은 전이중만)
 
 ## (phase 72) IEEE 802.3 Working Group — 1997-07 플레너리 회의록
 https://www.ieee802.org/3/minutes/july97/minutes.html
@@ -890,7 +890,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - 한 네트워크의 스테이션은 모두 같은 방식(반이중이나 전이중)으로 설정해야 한다. **리피터나 공유 구간(mixing segment)에 이은 DTE는 모두 반이중으로 설정해야 한다.**
   두 DTE를 링크 구간으로 바로 이으면 두 장치가 같은 방식을 써야 한다 — §4.4.1
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`, `hub-switch-vlan.duplex`, `hub-switch-vlan.collision-domain`, `hub-switch-vlan.csma-cd`, `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72 step 6) `hub-switch-vlan.hub`(허브에 이은 장치는 반이중, 같은 때 보내면 충돌 — 한 줄), `hub-switch-vlan.duplex`(반이중·전이중의 뜻과 전이중의 세 조건, 전이중에서는 충돌이 없음, 반이중에서 차례를 정하는 절차 없이 매체를 듣고 미룸, 스위치 포트마다 장치 하나를 잇는 흔한 전이중 구성, 10 Gb/s에는 반이중이 없음), 문항 n035·n036 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.collision-domain`, `hub-switch-vlan.csma-cd`, `hub-switch-vlan.switch`
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 3.5 Elements of the Tagged MAC Frame
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
@@ -927,7 +927,7 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   https://www.ieee802.org/3/da/public/040622/zimmerman_3da_01_03312022.pdf 22쪽(802.3cg-2019가 9장 리피터를 10BASE-T1L·10BASE-T1S에 적용하지 않기로 했다는 것)
 - (참고) 같은 P802.3bh D3.0 기록 #i-89(ACCEPT): IEEE Std 802.5는 토큰 링 표준이고 철회됐다. 마지막 개정은 802.5v-2001 「Gigabit Token Ring Operation」이다 — 의견 #i-89
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`(「요즘 안 쓴다」를 쓸 수 있는 범위 — `phases/72-network-ethernet-switch/index.json` step 1 summary), `hub-switch-vlan.csma-cd`(토큰 방식의 이름)
+쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72에서 쓰일 곳) `hub-switch-vlan.csma-cd`(토큰 방식의 이름)
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
 https://www.ieee802.org/1/files/public/docs2003/ITU%20Q12%20liaison%20from%20dot3.pdf
@@ -938,7 +938,7 @@ IEEE 802.3 작업 그룹이 2003년 7월 회의에서 승인해 ITU-T 15연구�
 - **리피터는 802.3이 정한 장치로, 반이중으로만 동작하고 CSMA/CD 장치 여럿이 한 매체에 접근하게(다중 포트 접근) 한다** — 「Response」 둘째 문단
 - 2계층 네트워크 장치는 IEEE 802.1D 브리지로 모델링하라고 권한다 — 「Response」 권고 2)
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`, `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72 step 6) `hub-switch-vlan.hub`(리피터는 반이중으로만 동작하고 여러 장치가 한 매체를 함께 쓰게 한다), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
 
 ## (phase 72 step 1) RFC 2108 — Definitions of Managed Objects for IEEE 802.3 Repeater Devices using SMIv2
 https://www.rfc-editor.org/rfc/rfc2108
@@ -949,7 +949,7 @@ Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 �
 - 리피터는 비트 단위로 받아 다시 내보내는 장치이고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다 — §2.4.1.2
 - 받은 신호를 다른 모든 포트로 내보낸다는 문장과 「충돌 도메인」의 정의는 이 RFC에 없다(전문 검색)
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`(주소를 보지 않는 물리 계층 장비)
+쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(표준의 이름은 리피터, 비트 단위로 받아 다시 내보내고 담긴 내용을 읽지 않는 물리 계층 장비), 문항 n035 해설
 
 ## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
 https://standards.ieee.org/ieee/802.1D/3387/

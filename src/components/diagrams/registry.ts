@@ -19,6 +19,7 @@ import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
+import { DuplexDiagram } from './DuplexDiagram'
 import { EcsRolesDiagram } from './EcsRolesDiagram'
 import { EcsStructureDiagram } from './EcsStructureDiagram'
 import { EdgeToOriginDiagram } from './EdgeToOriginDiagram'
@@ -38,6 +39,7 @@ import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
@@ -200,6 +202,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ethernet.frame': EthernetFrameDiagram,
   'ethernet.ethertype-length': EtherTypeLengthDiagram,
   'ethernet.fcs': FcsCheckDiagram,
+  'hub-switch-vlan.hub': HubRepeatDiagram,
+  'hub-switch-vlan.duplex': DuplexDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
