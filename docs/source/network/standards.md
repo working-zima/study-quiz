@@ -21,6 +21,8 @@
 
 확인한 날: 2026-10-27. 「(2026-10-28)」이 붙은 줄과 항목은 phase 70에서 1장의 빠진 사실 넷(ADR-057)을 넣으며 더했다.
 「(phase 71)」이 붙은 줄과 항목은 phase 71 step 5에서 1장이 풀이 없이 쓰던 낱말(광케이블·작업 관리자·ping 명령·IP 주소 등)을 풀며 더했다(확인한 날 2026-10-28).
+「(phase 72)」가 붙은 줄과 항목은 phase 72 step 0에서 `ethernet` 주제(이더넷 규격 이름·속도별 이더넷·NIC·MAC 주소·프레임·FCS)가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-28).
+IEEE 802.3 본문은 무료로 열리지 않으므로, 802.3 작업 그룹이 `ieee802.org`에 올린 개정 초안·발표 자료·지침과 `standards.ieee.org`의 표준 소개 페이지를 근거로 썼다. 항목마다 어떤 문서인지 적는다.
 
 ---
 
@@ -66,20 +68,34 @@ IEEE 802.3 표준 본문은 허용한 곳에서 무료로 열리지 않는다. �
 - 값이 1536(0x0600) 이상이면 MAC 클라이언트 프로토콜이 무엇인지 나타낸다(타입으로 읽기). 두 읽기는 서로 배타적이다 — §3.2.6 b)
 - 데이터가 최소 길이보다 짧으면 데이터 필드 끝과 FCS 사이에 패드를 붙인다 — §3.2.6
 
-쓰인 곳: 강의 수정 이력 L1
+쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
 
-## IEEE 802.3 — Ethernet, 3.2.9 Frame Check Sequence (FCS) field, 3.4 Invalid MAC frame
+## IEEE 802.3 — Ethernet, 3.2.9 Frame Check Sequence (FCS) field, 3.4 Invalid MAC frame (phase 72: 3.1.1, 3.2.1~3.2.8, 3.3)
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 
 위 3.2.6 항목과 같은 사정이다. 이 문서는 IEEE 802.3 작업 그룹이 올린 IEEE Std 802.3-2005 개정 초안(IEEE P802.3as Draft 0.1, 2005-03)이고,
-3장의 3.2.9와 3.4 본문을 싣고 있어 그 본문을 근거로 쓴다.
+3장의 3.2.9와 3.4 본문을 싣고 있어 그 본문을 근거로 쓴다. (phase 72) 같은 문서가 3장의 나머지(3.1~3.3) 본문도 싣고 있어 함께 근거로 쓴다.
 
 - FCS 필드는 4옥텟(32비트) CRC 값을 담는다. 프리앰블·SFD·FCS·확장 필드를 뺀 나머지(주소, 길이/타입, 데이터, 패드)로 계산한다 — §3.2.9
 - 받은 프레임에서 FCS를 뺀 비트로 다시 계산한 CRC가 받은 FCS와 다르면 그 프레임은 잘못된 MAC 프레임이다(길이 불일치, 옥텟 단위가 아닌 길이도 잘못된 프레임의 조건이다) — §3.4
 - 잘못된 MAC 프레임의 내용은 LLC나 MAC Control 부계층으로 넘기지 않는다. 다른 MAC 클라이언트는 무시하거나 버리거나 따로 쓸 수 있다(각주) — §3.4
 - 오류를 고치는 절차는 3.2.9·3.4 어디에도 없다 — 검출하고 넘기지 않을 뿐이다 — §3.2.9, §3.4
+- (phase 72) 이 판(802.3-2005)의 3.1.1은 프리앰블과 SFD까지 넣어 프레임의 필드를 아홉으로 센다. 그러나 같은 절이 최소·최대 프레임 크기는 **목적지 주소부터 FCS까지**만 센다고 하고,
+  4.1.2.1.1은 프리앰블과 SFD를 프레임 **앞에 붙인다**고 쓴다(아래 4장 항목). 지금의 802.3 작업 그룹 용어는 아래 「editorial guidelines」 항목이다 — §3.1.1
+- (phase 72) 그림 3–1의 필드와 크기: 프리앰블 7옥텟, SFD 1옥텟, 목적지 주소 6옥텟, 출발지 주소 6옥텟, 길이/타입 2옥텟, MAC 클라이언트 데이터와 패드를 합쳐 46~1500옥텟, FCS 4옥텟.
+  프레임의 옥텟은 그림의 위에서 아래 순서로 보낸다 — §3.1.1, Figure 3–1
+- (phase 72) 프리앰블 필드는 7옥텟이고, 받는 쪽 물리 계층 회로가 들어오는 프레임의 박자에 맞춰 안정된 동기 상태에 이르게 하는 데 쓴다 — §3.2.1
+- (phase 72) SFD는 비트열 10101011이고, 프리앰블 바로 뒤에 와서 프레임이 시작됨을 알린다 — §3.2.2
+- (phase 72) 주소 필드는 목적지 주소, 출발지 주소 순서로 둘이고 각각 48비트다. 목적지 주소의 첫 비트(가장 낮은 비트, I/G)가 0이면 개별 주소, 1이면 그룹 주소다.
+  출발지 주소에서는 이 비트를 0으로 둔다. 둘째 비트(U/L)는 0이면 전역 관리 주소, 1이면 지역 관리 주소다. 주소의 각 옥텟은 가장 낮은 비트부터 보낸다 — §3.2.3 a)~d)
+- (phase 72) MAC 주소는 개별 주소(스테이션 하나)와 그룹 주소(여럿)로 나뉘고, 그룹 주소는 다시 멀티캐스트 그룹 주소와 브로드캐스트 주소로 나뉜다.
+  목적지 주소 필드의 비트가 모두 1이면 브로드캐스트 주소이고, 그 매체에 연결된 모든 스테이션을 가리킨다. 모든 스테이션은 브로드캐스트 주소를 알아봐야 한다.
+  브로드캐스트 주소는 U/L 비트도 1이다 — §3.2.3 c), §3.2.3.1
+- (phase 72) 목적지 주소는 개별 주소나 멀티캐스트(브로드캐스트 포함) 주소일 수 있고, 출발지 주소는 프레임을 보낸 스테이션을 가리킨다 — §3.2.4, §3.2.5
+- (phase 72) 데이터 필드가 정해진 최소 길이보다 짧으면 옥텟 단위의 패드를 데이터 뒤에 붙여 늘린 다음 FCS를 계산해 붙인다 — §3.2.7, §3.2.8
+- (phase 72) FCS를 뺀 프레임의 각 옥텟은 낮은 비트부터 보낸다 — §3.3
 
-쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.mac-address`, `ethernet.fcs`
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -96,7 +112,7 @@ https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
 - 0000~05DC(10진 0~1500) 구간은 IEEE 802.3 길이 필드로 표시돼 있다 — EtherType 표
 - IPv4는 0800, ARP는 0806, IPv6는 86DD다 — EtherType 표
 
-쓰인 곳: 강의 수정 이력 L1
+쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
 
 ## RFC 9542 — IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters
 https://www.rfc-editor.org/rfc/rfc9542
@@ -105,8 +121,15 @@ https://www.rfc-editor.org/rfc/rfc9542
 - 첫 옥텟의 X 비트(Local 비트)가 0이면 IEEE가 할당한 접두사를 가진 쪽이 관리하는 전역 주소이고, 1이면 그 네트워크의 관리자가 정해 쓸 수 있는 주소다 — §2.1.1
 - 이더타입은 부호 없는 정수로 0x0600 이상인 16비트 식별자다. 길이로 쓰는 값은 이더타입과 헷갈리지 않도록 0x5DD 미만이어야 한다 — §3
 - 이 RFC는 그 필드를 짧게 「프레임 길이를 주는 필드」라고 부른다. 무엇의 길이인지는 IEEE 802.3 3.2.6이 정한다(위 항목) — §3
+- (phase 72) 이 RFC는 옥텟 하나를 16진수 두 자리로 적고, 옥텟 사이를 하이픈으로 가른다. IEEE 802.3 링크에서는 옥텟 안의 비트를 가장 낮은 비트부터 보낸다 — §1.1
+- (phase 72) 48비트 MAC 주소는 이더넷 인터페이스를 가리키는 식별자로 가장 흔히 쓰인다. 전역에서 하나뿐인 것을 EUI-48이라고도 부른다 — §2.1
+- (phase 72) 첫 옥텟의 가장 낮은 비트(M 비트, 흔히 그룹·멀티캐스트 비트)가 0이면 유니캐스트 주소, 1이면 그룹 주소(멀티캐스트나 브로드캐스트)다 — §2.1.1
+- (phase 72) IEEE가 할당하는 MA-L·MA-M·MA-S 접두사는 Local 비트가 0이다. 접두사를 받은 쪽은 그 접두사의 M 비트를 1로 바꾼 꼴로 그룹 주소를 만들 수 있다 — §2.1.2
+- (phase 72) IANA가 가진 OUI는 00-00-5E이고, 그 아래 유니캐스트 주소는 00-00-5E-00-00-00~00-00-5E-FF-FF-FF다 — §2.1.3
+- (phase 72) **문서에 쓰라고 정해 둔 48비트 MAC 주소**: 유니캐스트 00-00-5E-00-53-00~00-00-5E-00-53-FF, 멀티캐스트 01-00-5E-90-10-00~01-00-5E-90-10-FF — §2.1.4
+- (phase 72) 이 RFC에는 모든 비트가 1인 브로드캐스트 주소를 적은 문장이 없다 — 전문 검색. 근거는 IEEE 802.3 §3.2.3.1(위 항목)과 RFC 894(아래 항목)다
 
-쓰인 곳: 강의 수정 이력 L1, L2
+쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, (phase 72에서 쓰일 곳) `ethernet.mac-address`와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」)
 
 ## IEEE RA — Guidelines for Use of EUI, OUI, and CID
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
@@ -115,8 +138,13 @@ https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
 - EUI를 MAC 주소로 쓸 때 첫 옥텟의 가장 낮은 비트(I/G)는 개별/그룹을, 그다음 비트(U/L)는 전역 관리(0)/지역 관리(1)를 나타낸다.
   전역 관리 주소는 전 세계에서 하나뿐이도록 만든 주소다 — PDF 6쪽
 - IEEE RA가 할당한 OUI·OUI-36으로 만든 주소는 U/L이 0이라 전역 관리 주소다 — PDF 6쪽
+- (phase 72) 문서 날짜는 2017-08-03이다. OUI는 3옥텟이고, 첫 옥텟의 가장 낮은 두 비트(M·X)가 **둘 다 0**이다. 그러니 첫 옥텟이 홀수이거나 둘째 비트가 1인 값은 IEEE RA가 준 OUI가 아니다 — PDF 2쪽 「OUI」
+  (예외로 802.3-1985 승인 전 초기 이더넷 업체에 준 블록 ID 약 18개는 X 비트가 1이다 — 같은 쪽 NOTE)
+- (phase 72) IEEE RA는 OUI를 하이픈으로 옥텟을 가른 16진 꼴로 적는다(예: AC-DE-48). EUI-48도 같은 꼴로 적는다(예: AC-DE-48-23-45-67) — PDF 3쪽, PDF 9쪽 「EUI Structure and Representation」
+- (phase 72) EUI-48은 흔히 하드웨어 인터페이스의 주소로 쓰이고, 예전에는 「MAC-48」이라고도 불렀다 — PDF 6쪽
+- (phase 72) IEEE RA가 준 OUI·OUI-36은 M 비트가 0이라, 그것으로 만든 주소는 I/G가 0인 개별 주소다. OUI를 받은 쪽은 M 비트를 1로 바꾼 꼴로 그룹 주소(I/G=1)를 만들 수 있고, 그 주소는 장치 하나를 가리키지 않는다 — PDF 6쪽
 
-쓰인 곳: 강의 수정 이력 L2
+쓰인 곳: 강의 수정 이력 L2, (phase 72) L29, (phase 72에서 쓰일 곳) `ethernet.mac-address`
 
 ## RFC 791 — Internet Protocol
 https://www.rfc-editor.org/rfc/rfc791
@@ -250,7 +278,8 @@ https://www.rfc-editor.org/rfc/rfc1122
     메시지는 HTTP 표준의 이름(HTTP 메시지)으로만 덧붙이므로(ADR-058) 이 정의는 개념 본문에 옮기지 않는다 — HTTP 메시지의 근거는 아래 RFC 9110 §1.3이다.
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
-`protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2
+`protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
+(phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -535,7 +564,8 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
 
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
 `network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
-`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이)
+`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이),
+(phase 72에서 쓰일 곳) `ethernet.ethernet`(LAN), `ethernet.standard-names`(10BaseT — 꼬아 만든 구리선 쌍), `ethernet.mac-address`(브로드캐스트·멀티캐스트·유니캐스트)
 
 ## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
 https://www.rfc-editor.org/rfc/rfc3013
@@ -648,3 +678,153 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - 작업 관리자의 프로세스 탭은 실행 중인 앱과 백그라운드 프로세스의 목록을, 성능 탭은 성능 데이터의 목록과 그래프를 보여 준다 — Task Manager 「More information」 표
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령)
+
+## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
+https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
+
+위 3장 항목과 같은 IEEE P802.3as Draft 0.1(2005-03)의 4장이다. IEEE Std 802.3-2005 4장 본문을 싣고 있어 그 본문을 근거로 쓴다.
+
+- 보낼 때 MAC 부계층은 위에서 받은 데이터로 프레임을 만들면서, 프레임 **앞에** 프리앰블과 SFD를 붙인다. 목적지·출발지 주소, 길이/타입 필드, (필요하면) 패드, FCS도 이때 붙인다 — §4.1.2.1.1
+- 받을 때는 물리 계층이 들어오는 프리앰블에 맞춰 동기를 잡는다. MAC 부계층은 프리앰블과 SFD까지의 앞 비트를 버리고 그 뒤를 모은다 — §4.1.2.1.2
+- 모은 프레임의 목적지 주소 필드를 보고 이 스테이션이 받을 프레임인지 정한다. 받을 프레임이면 주소·길이/타입·데이터를 MAC 클라이언트(위 계층)로 넘기고,
+  FCS로 프레임이 오는 길에 손상됐는지도 검사한다 — §4.1.2.1.2
+- 주소 인식: MAC 부계층은 목적지 주소가 ① 자기 개별 주소인 프레임, ② 브로드캐스트 주소인 프레임, ③ 위 계층이 켜 둔 그룹 주소인 프레임을 알아보고 받아들인다.
+  켜 둔 그룹 주소는 다시 끌 수 있다. 목적지 주소와 상관없이 오류 없는 프레임을 모두 받아들이는 무차별(promiscuous) 수신 모드를 둘 수도 있다(선택) — §4.2.4.1.1
+- FCS 검사: 받은 비트(FCS 필드는 빼고)로 만든 CRC가 받은 값과 다르면 오류로 보고 그 프레임을 잘못된 것으로 판정한다 — §4.2.4.1.2
+- 프리앰블은 물리 계층 회로가 안정되도록 데이터보다 먼저 보내는 비트열이고, 10101010을 일곱 번 보낸다. 왼쪽 비트부터 보내며 0으로 끝나고, 바로 뒤에 SFD가 온다 — §4.2.5
+
+쓰인 곳: (phase 72) 강의 수정 이력 L28, (phase 72에서 쓰일 곳) `ethernet.nic`(받을 프레임을 고르는 일), `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`
+
+## (phase 72) IEEE 802.3 Working Group — Editorial guidelines (Frames and packets; Mb/s, Gb/s)
+https://www.ieee802.org/3/WG_tools/editorial/requirements/words.html
+
+IEEE 802.3 작업 그룹이 표준 본문을 쓸 때 따르는 낱말 지침이다. 2026-10-28에 읽은 판은 2024-05-15에 마지막으로 고쳤다.
+
+- 프레임(MAC 프레임)은 **목적지 주소부터 FCS까지**다. MAC 프레임에 프리앰블·SFD·(필요하면) 확장 필드를 더한 것은 패킷(MAC 패킷)이라 부른다 — 「Frames and packets」
+- 비트 전송 속도의 단위는 b/s이고 Mb/s·Gb/s·Tb/s로 적는다. bps·Mbps 꼴은 쓰지 않는다 — 「MBd, GBd, Mb/s, Gb/s」
+- (같은 쓰임) 2026년에 진행 중인 P802.3dt 프로젝트의 범위 문안도 메타데이터를 「패킷의 프리앰블 필드」에 싣는다고 쓴다 —
+  https://www.ieee802.org/3/dt/public/26_03/law_3dt_01a_2603.pdf PDF 5쪽 「IEEE P802.3dt draft PAR Scope」(802.3dt 태스크 포스 발표 자료, 2026-03-10)
+
+쓰인 곳: (phase 72) 강의 수정 이력 L28, (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.standard-names`(속도 단위 표기)
+
+## (phase 72) IEEE Std 802.3ah-2004 — Introduction, 1.4 Definitions
+https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3ah-2004.pdf
+
+발행된 IEEE 표준(IEEE Std 802.3ah-2004, 2004-09-07, IEEE Std 802.3-2002의 개정판)의 전문 PDF다. IEEE 802.21 작업 그룹이 회의 자료로 `ieee802.org`에 올려 둔 사본을 읽었다.
+
+- IEEE 802.3의 프로젝트(개정)는 802.3 뒤에 붙인 꼬리 글자로 부른다(예: 802.3ae) — Introduction(PDF 5쪽)
+- 802.3이 정하는 MAC 프로토콜은 CSMA/CD이고, 802.3-1985는 10 Mb/s로 동작했다. 그 뒤로 새 매체·새 속도·새 기능이 개정으로 더해졌다 — Introduction(PDF 5쪽)
+- 802.3u는 100 Mb/s 동작을 더했고 **Fast Ethernet**이라고도 부른다. 802.3z는 1000 Mb/s 동작을 더했고 **Gigabit Ethernet**이라고도 부른다. 802.3ae는 **10 Gigabit Ethernet**이라고도 부른다.
+  이런 큰 개정은 시장에서 프로젝트 번호로도 가리킨다. 802.3x는 전이중 동작과 흐름 제어 프로토콜을 정했다 — Introduction(PDF 5쪽)
+- 규격 이름 하나는 「IEEE 802.3의 물리 계층 규격(Physical Layer specification)」 하나로 정의된다. 예: 1000BASE-BX10은 싱글 모드 광섬유 **한 가닥**으로, 1000BASE-LX10은 싱글 모드나 멀티 모드 광섬유 두 가닥으로
+  1000 Mb/s 점대점 링크를 만드는 물리 계층 규격이다. 100BASE-FX는 멀티 모드 광섬유 두 가닥을 쓰는 100 Mb/s 규격이다 — §1.4(PDF 20쪽)
+
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, `ethernet.fast-gigabit`
+
+## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
+https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
+
+당시 IEEE 802.3 작업 그룹 의장이 P802.3cb 태스크 포스 자료로 올린 정리다. 802.3의 PHY(물리 계층 규격) 이름 목록과 이름 읽는 법을 담았다.
+
+- 이름 꼴: 「데이터 속도 + 변조 방식 + 하이픈 뒤 글자」. 속도는 수만 있으면 Mb/s(10, 100, 1000), G가 붙으면 Gb/s(2.5G, 5G, 10G, 25G, 40G, 100G, 400G)다.
+  변조 방식 BASE는 베이스밴드(Baseband), BROAD는 브로드밴드(Broadband)다 — PDF 10쪽
+- 하이픈 뒤 첫 글자는 매체·파장·거리를 가리킨다: T 트위스티드 페어, C 트윈 액시얼(twin axial) 구리, S 짧은 파장(850 nm)이나 짧은 거리(100 m), L 긴 파장(1310 nm)이나 10 km,
+  E 아주 긴 파장(1510 nm)이나 40 km, F 광섬유(2 km), K 백플레인, B 양방향 광, P 수동 광 — PDF 10쪽 「First letter (Media/Wavelength/Reach)」
+- 하이픈 뒤 둘째 글자는 부호화 방식이다: X 외부에서 정한 부호(4B5B·8B10B), R 스크램블 부호(64B66B), W WAN 부호(SONET/SDH) — PDF 10쪽
+- 처음 규격(10BASE5·10BASE2)은 BASE 뒤의 수가 최대 구간 길이를 100 m 단위로 나타냈다(10BASE5는 동축 500 m) — PDF 10쪽 「nTYPEm」, PDF 2쪽 표
+- 규격별 매체(표): 100BASE-TX 평형 트위스티드 페어 2쌍 100 m, 1000BASE-T 평형 트위스티드 페어 4쌍 100 m, 1000BASE-SX 멀티 모드 광섬유 두 가닥(850 nm) 550 m,
+  1000BASE-LX 싱글 모드 광섬유 두 가닥(1310 nm) 5 km, 1000BASE-CX 트윈 액시얼 구리 25 m, 1000BASE-BX10 싱글 모드 광섬유 한 가닥 10 km, 10GBASE-T 평형 트위스티드 페어 4쌍 100 m — PDF 3~5쪽 표
+
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.standard-names`, `ethernet.fast-gigabit`
+
+## (phase 72) Pete Anslow, 「PMD naming」 (IEEE P802.3bs Task Force, 2015-07)
+https://www.ieee802.org/3/bs/public/15_07/anslow_3bs_03_0715.pdf
+
+IEEE P802.3bs 태스크 포스 회의 발표 자료다.
+
+- PMD 이름의 글자 하나하나에는 예전에 정해진 뜻이 있었다(IEEE Std 802.3 1.2.3). 예를 들어 10GBASE-LR의 L은 원래 「긴 파장」인데, 업계는 흔히 「긴 거리」로 읽었다 — 2쪽
+- 그래서 40 Gb/s·100 Gb/s PMD 이름부터는 글자에 엄밀한 뜻을 두지 않는다 — 2쪽
+- 이름 해독표: 속도(10 = 10 Mb/s, 100 = 100 Mb/s, 1000 = 1000 Mb/s, 2.5G = 2.5 Gb/s …), 변조 BASE = 베이스밴드, 첫 글자 C 트윈액스 구리·L 긴 파장 또는 10 km·S 짧은 파장 또는 100 m·
+  T 트위스티드 페어, 둘째 글자 R 스크램블 부호·X 외부 부호, 끝의 수는 쌍이나 레인의 수 — 3쪽
+
+쓰인 곳: (phase 72) 강의 수정 이력 L26, (phase 72에서 쓰일 곳) `ethernet.standard-names`
+
+## (phase 72) David Law, 「IEEE 802.3 Ethernet」 (IEEE 802.3 Working Group Chair, Version 1.0, 2010-01)
+https://www.ieee802.org/misc-docs/GlobeCom2009/IEEE_802d3_Law.pdf
+
+당시 IEEE 802.3 작업 그룹 의장의 개요 발표 자료다.
+
+- 802.3u-1995(100BASE-T): 100BASE-TX(Cat 5 2쌍, 100 m), 100BASE-T4(Cat 3 4쌍, 100 m), 100BASE-FX(멀티 모드 광섬유 두 가닥, 2 km) — 8쪽
+- 802.3z-1998(1 Gb/s 동작): 1000BASE-SX(멀티 모드 광섬유 두 가닥, 220~550 m), 1000BASE-LX(싱글 모드 광섬유 두 가닥 5 km, **또는 멀티 모드 광섬유 두 가닥 550 m**),
+  1000BASE-CX(구리 케이블 어셈블리, 25 m) — 10쪽
+- 802.3ab-1999: 1000BASE-T(트위스티드 페어, 100 m) — 10쪽
+- 802.3ae-2002(10 Gb/s 동작): 10GBASE-SR/SW(멀티 모드), 10GBASE-LX4(싱글 모드나 멀티 모드), 10GBASE-LR/LW(싱글 모드 10 km), 10GBASE-ER/EW(싱글 모드 40 km) — 10쪽
+- 802.3an-2006: 10GBASE-T(트위스티드 페어, 100 m) — 12쪽
+
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+
+## (phase 72) IEEE SA — 802.3u-1995, 802.3z-1998, 802.3ab-1999, 802.3ae-2002, 802.3an-2006, 802.3cc-2017 표준 소개 페이지
+https://standards.ieee.org/ieee/802.3u/1079/
+https://standards.ieee.org/ieee/802.3z/1084/
+https://standards.ieee.org/ieee/802.3ab/1086/
+https://standards.ieee.org/ieee/802.3ae/1089/
+https://standards.ieee.org/ieee/802.3an/3560/
+https://standards.ieee.org/ieee/802.3cc/6753/
+
+표준마다 제목·초록·발행일을 싣는 IEEE SA 페이지다. 여섯 모두 지금은 「Superseded」(뒤 판의 IEEE Std 802.3에 합쳐짐)로 표시돼 있다.
+
+- 802.3u-1995(1995-10-26 발행): 제목은 「100 Mb/s 동작, 유형 100BASE-T」다. 100 Mb/s 물리 계층 규격 묶음을 통틀어 100BASE-T라 부르고, 100BASE-T4(Category 3·4·5 평형 케이블 4쌍),
+  100BASE-TX(Category 5 평형 케이블 2쌍이나 150옴 차폐 평형 케이블), 100BASE-FX(멀티 모드 광섬유 두 가닥)를 담는다 — 제목, 초록
+- 802.3z-1998(1998-10-01 발행): 802.3·이더넷 형식 프레임을 1,000 Mb/s로 보내기 위한 MAC 매개변수·물리 계층·리피터·관리 매개변수 — 제목, 초록
+- 802.3ab-1999(1999-07-26 발행): Category 5 평형 구리 케이블 4쌍 위의 1000 Mb/s 동작, 유형 1000BASE-T — 제목, 초록
+- 802.3ae-2002(2002-08-26 발행): 10 Gb/s 동작을 위한 MAC 매개변수·물리 계층·관리 매개변수 — 제목, 초록
+- 802.3an-2006(2006-09-01 발행): 10 Gb/s 동작, 유형 10GBASE-T. 평형 트위스티드 페어 구조화 배선으로 최대 100 m를 잇는다 — 제목, 초록
+- 802.3cc-2017(2018-01-15 발행): 싱글 모드 광섬유 위의 25 Gb/s 동작 — 적어도 10 km(25GBASE-LR)와 40 km(25GBASE-ER) — 제목, 초록
+
+쓰인 곳: (phase 72) 강의 수정 이력 L27, (phase 72에서 쓰일 곳) `ethernet.ethernet`, `ethernet.standard-names`, `ethernet.fast-gigabit`
+
+## (phase 72) IEEE 802.3 태스크 포스 목표 — 802.3ae, 802.3an, 802.3cc
+https://www.ieee802.org/3/ae/objectives.pdf
+https://www.ieee802.org/3/an/objectives.pdf
+https://www.ieee802.org/3/cc/P802_3cc_Objectives.pdf
+
+태스크 포스가 표준을 만들 때 정한 목표 목록이다(표준 본문이 아니다).
+
+- 802.3ae(10 Gigabit Ethernet, 2001-07 정리판): 802.3/이더넷 프레임 형식과 최소·최대 프레임 크기를 유지하고, **전이중 동작만** 지원한다. 멀티 모드 광섬유(65 m·300 m)와
+  싱글 모드 광섬유(2 km·10 km·40 km) 거리를 목표로 한다 — 1~2쪽
+- 802.3an(10GBASE-T, 2003-09): 전이중 동작만 지원하고, 4쌍 트위스티드 페어 구리 배선으로 최대 100 m를 목표로 한다 — 2~3쪽
+- 802.3cc(25 Gb/s 싱글 모드 광, 2016-01 승인): 전이중 동작만 지원하고, 싱글 모드 광섬유로 적어도 10 km와 40 km를 목표로 한다 — 2쪽
+
+쓰인 곳: (phase 72) 강의 수정 이력 L27, (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+
+## (phase 72) IEEE 802.3 Working Group — 1997-07 플레너리 회의록
+https://www.ieee802.org/3/minutes/july97/minutes.html
+
+- 새 프로젝트의 「5 Criteria」 문안이 처음에는 진행 중인 프로젝트를 「802.3u Fast Ethernet」, 「802.3z Gigabit Ethernet」으로 적었다. 작업 그룹은 수정안으로
+  「Fast Ethernet」을 「100BASE-T」로 바꿔 승인했고, 「Gigabit Ethernet」은 그대로 두었다 — 「Criteria #1」 동의안
+- 그러니 「Fast Ethernet」은 작업 그룹 안에서도 쓰던 이름이지만, 802.3u의 공식 이름은 표준 제목의 「100BASE-T」다(위 IEEE SA 항목). 802.3ah-2004 머리말도 「Fast Ethernet이라고도 부른다」로 쓴다(위 항목)
+
+쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+
+## (phase 72) RFC 894 — A Standard for the Transmission of IP Datagrams over Ethernet Networks
+https://www.rfc-editor.org/rfc/rfc894
+
+인터넷 표준(STD 41)이다(rfc-editor 상태).
+
+- IP 데이터그램은 표준 이더넷 프레임에 담아 보내고, 그 프레임의 타입 필드는 16진 0800이다 — 「Frame Format」
+- 이더넷으로 보내는 데이터 필드의 최소 길이는 46옥텟이고, 모자라면 0인 옥텟으로 채운다. 채운 옥텟은 IP 패킷의 일부가 아니다 — 「Frame Format」
+- IP 브로드캐스트 주소는 모든 비트가 1인 이더넷 브로드캐스트 주소 FF-FF-FF-FF-FF-FF(16진)에 대응한다 — 「Broadcast Address」
+- 주의: 같은 절의 1500옥텟 문장은 「minimum」이라고 적혀 있어 바로 뒤의 「최대 IP 데이터그램 1500옥텟」과 어긋난다. 최대 크기의 근거로는 이 문장이 아니라 IEEE 802.3 그림 3–1(위 항목)을 쓴다 — 「Frame Format」
+
+쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(0800)
+
+## (phase 72) Linux man-pages — ether_aton(3), arp(8)
+https://man7.org/linux/man-pages/man3/ether_aton.3.html
+https://man7.org/linux/man-pages/man8/arp.8.html
+
+2026-10-28에 읽은 판: ether_aton(3)은 Linux man-pages 6.19(2026-02-08), arp(8)은 net-tools(2025-09-10).
+
+- 48비트 이더넷 주소를 글자로 적는 표준 꼴은 16진수를 콜론으로 이은 꼴이다. ether_aton()은 그 꼴의 글자를 이진값으로 바꾸고, ether_ntoa()는 거꾸로 바꾸면서 앞자리 0을 뺀다 — ether_aton(3) DESCRIPTION
+- arp 명령에 이더넷 주소를 줄 때는 6바이트를 16진수로 적고 콜론으로 가른다 — arp(8) 「arp -s」
+
+쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(콜론 꼴 표기)
