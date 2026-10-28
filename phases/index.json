@@ -357,7 +357,8 @@
     },
     {
       "dir": "71-network-baseline",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-28T14:11:29+0900"
     }
   ]
 }
