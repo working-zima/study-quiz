@@ -87,16 +87,19 @@ describe('네트워크 성능 지표 비교표', () => {
     expect(widths).toEqual(performanceMetrics.columnWidths)
   })
 
-  it.each([2, 4] as const)('공유 본문 h%i에서 패킷 손실 개념의 본문 바로 뒤에 비교표 figure 하나가 나온다', (headingLevel) => {
+  // 네트워크 과목은 개념마다 도식이 있고, 표는 도식을 대신하지 않아 도식 뒤에 온다(ADR-056).
+  it.each([2, 4] as const)('공유 본문 h%i에서 패킷 손실 개념의 본문 뒤 도식 다음에 비교표 figure가 나온다', (headingLevel) => {
     const concept = concepts.find(({ id }) => id === performanceMetrics.conceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
 
     const table = screen.getByRole('figure', { name: performanceMetrics.label })
+    const diagram = screen.getByRole('figure', { name: 'ping 결과로 패킷 손실을 읽는 도식' })
     const article = table.closest('article')!
     expect(article).toHaveAttribute('id', concept.id)
     expect(within(article).getByRole('heading', { level: headingLevel, name: concept.name })).toBeInTheDocument()
-    expect(screen.getAllByRole('figure')).toEqual([table])
-    expect(table.previousElementSibling?.textContent).toBe(concept.paragraphs.map(stripListMarker).join('').replace(/\*\*/gu, ''))
+    expect(screen.getAllByRole('figure')).toEqual([diagram, table])
+    expect(diagram.previousElementSibling?.textContent).toBe(concept.paragraphs.map(stripListMarker).join('').replace(/\*\*/gu, ''))
+    expect(table.previousElementSibling).toBe(diagram)
     expect(article.lastElementChild).toBe(table)
     expect(within(table).getAllByRole('columnheader')).toHaveLength(performanceMetrics.columns.length)
     expect(within(table).getAllByRole('rowheader')).toHaveLength(performanceMetrics.rows.length)
