@@ -875,6 +875,7 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
+(phase 73 step 13) `icmp.time-exceeded`와 `traceroute` 도식: Windows tracert의 TTL 1부터 증가, 중간 시간 초과·끝 에코 응답, 기본 최대 30홉·답이 없으면 *. 2026-10-29 tracert 문서를 다시 확인했다.
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -1044,6 +1045,7 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 
 쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp(7) 캐시와 시간, arp(8) `-s`·`-d`), `icmp.time-exceeded`(traceroute — UDP 기본·`-I`), `icmp.ping`(ping `-c`, 요약, 응답의 TTL), `exam-notes.md` 앞 문단([기출 2025-05-25 #10]의 캐시 시간, [기출 2025-08-24 #8]의 `-d`)
+(phase 73 step 13) `icmp.time-exceeded`: traceroute의 기본 UDP·끝 포트 도달 불가, -I 에코, 최대 30홉·TTL마다 세 번·응답이 없으면 *. `icmp.echo`의 ping은 에코를 이용하는 명령이라는 한 줄에만 쓴다.
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -1685,6 +1687,7 @@ https://www.rfc-editor.org/rfc/rfc792
 `icmp.time-exceeded`(코드 0·1과 보내는 쪽), `icmp.echo`(그대로 돌려보낸다, 식별자·순서 번호), `exam-notes.md` E11·E12·E13
 (phase 73 step 11) `icmp.icmp`(Introduction — 라우터나 목적지 호스트가 출발지에 알린다, IP의 일부이고 모든 IP 모듈이 구현한다, IP를 믿을 수 있게 만들지 않고 알림이 꼭 돌아온다는 보장도 없다, 신뢰성은 상위 프로토콜이 갖춘다; 「Message Formats」 — 프로토콜 값 1, ICMP 메시지에는 TTL 칸이 없다; 「Destination Unreachable Message」 — 라우터가 목적지 네트워크로 갈 수 없을 때; 「Echo or Echo Reply Message」 — 받은 쪽이 응답을 돌려보낸다), 문항 n070·n071 해설, 도식 `icmp-feedback`
 (phase 73 step 12) `icmp.icmp-message`(「Message Formats」 — 타입·코드·체크섬 뒤는 타입마다 다르고 받은 쪽은 타입부터 읽는다; 각 메시지 — 에코·에코 응답 코드 0, 리다이렉트는 원래 데이터그램을 그대로 넘긴다, 시간 초과 코드 0; 「Source Quench Message」 — 보내는 속도를 줄여 달라는 요청), `icmp.destination-unreachable`(코드 0~4, 0·1·4는 게이트웨이가·2·3은 호스트가 보낸다, 원래 IP 헤더와 데이터 앞 64비트를 담고 포트 번호가 그 안에 있다고 본다, DF가 켜져 나눌 수 없는 데이터그램은 게이트웨이가 버린다), 문항 n072·n073·n074 해설, 도식 `icmp-message`·`destination-unreachable`
+(phase 73 step 13) `icmp.time-exceeded`(타입 11·코드 0/1, 보내는 쪽, 첫 조각이 없으면 알리지 않아도 됨), `icmp.echo`(타입 8/0·코드 0, 데이터·식별자·순서 번호 유지, 주소 교환·체크섬 재계산), n075·n076 해설, `traceroute`·`echo` 도식. 2026-10-29 원문의 「Time Exceeded Message」·「Echo or Echo Reply Message」를 다시 확인했다.
 
 ## (phase 73 step 1) IANA — Internet Control Message Protocol (ICMP) Parameters
 https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
