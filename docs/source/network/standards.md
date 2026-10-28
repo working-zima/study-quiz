@@ -30,6 +30,7 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 3)」이 붙은 줄은 phase 72 step 3에서 문항 n030의 해설이 MAC의 풀네임을 쓰려고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 5)」가 붙은 줄은 phase 72 step 5에서 `ethernet.ethertype-length`·`ethernet.fcs`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 7)」이 붙은 줄과 항목은 phase 72 step 7에서 `hub-switch-vlan.collision-domain`·`hub-switch-vlan.csma-cd`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 8)」이 붙은 줄과 항목은 phase 72 step 8에서 `hub-switch-vlan.switch`·`hub-switch-vlan.mac-address-table`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -894,7 +895,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - 한 네트워크의 스테이션은 모두 같은 방식(반이중이나 전이중)으로 설정해야 한다. **리피터나 공유 구간(mixing segment)에 이은 DTE는 모두 반이중으로 설정해야 한다.**
   두 DTE를 링크 구간으로 바로 이으면 두 장치가 같은 방식을 써야 한다 — §4.4.1
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72 step 6) `hub-switch-vlan.hub`(허브에 이은 장치는 반이중, 같은 때 보내면 충돌 — 한 줄), `hub-switch-vlan.duplex`(반이중·전이중의 뜻과 전이중의 세 조건, 전이중에서는 충돌이 없음, 반이중에서 차례를 정하는 절차 없이 매체를 듣고 미룸, 스위치 포트마다 장치 하나를 잇는 흔한 전이중 구성, 10 Gb/s에는 반이중이 없음), 문항 n035·n036 해설, (phase 72 step 7) `hub-switch-vlan.collision-domain`(충돌은 반이중으로 공유 매체를 둘 이상이 쓸 때 전송이 겹치는 것, 받는 쪽은 조각을 가려내고 보낸 쪽이 다시 보냄, 한 충돌 도메인 안에서는 매체가 쓰이면 미룸, 포트에 장치 하나를 잇고 전이중이면 충돌 없음, 허브에 이은 스위치 포트는 반이중), `hub-switch-vlan.csma-cd`(캐리어 감지와 프레임 사이 간격, 다중 접근 — 한 장치의 신호가 매체의 모두에게 닿음, 충돌 감지와 잼·무작위 기다림, 거듭되는 충돌과 범위 넓히기, 16번 시도 뒤 포기, 전이중에서는 쓰지 않음), 문항 n037·n038·n039 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72 step 6) `hub-switch-vlan.hub`(허브에 이은 장치는 반이중, 같은 때 보내면 충돌 — 한 줄), `hub-switch-vlan.duplex`(반이중·전이중의 뜻과 전이중의 세 조건, 전이중에서는 충돌이 없음, 반이중에서 차례를 정하는 절차 없이 매체를 듣고 미룸, 스위치 포트마다 장치 하나를 잇는 흔한 전이중 구성, 10 Gb/s에는 반이중이 없음), 문항 n035·n036 해설, (phase 72 step 7) `hub-switch-vlan.collision-domain`(충돌은 반이중으로 공유 매체를 둘 이상이 쓸 때 전송이 겹치는 것, 받는 쪽은 조각을 가려내고 보낸 쪽이 다시 보냄, 한 충돌 도메인 안에서는 매체가 쓰이면 미룸, 포트에 장치 하나를 잇고 전이중이면 충돌 없음, 허브에 이은 스위치 포트는 반이중), `hub-switch-vlan.csma-cd`(캐리어 감지와 프레임 사이 간격, 다중 접근 — 한 장치의 신호가 매체의 모두에게 닿음, 충돌 감지와 잼·무작위 기다림, 거듭되는 충돌과 범위 넓히기, 16번 시도 뒤 포기, 전이중에서는 쓰지 않음), 문항 n037·n038·n039 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준은 이 장비를 브리지라 부르고 스위치라고도 부른다 — §4.1.1, 포트마다 장치 하나를 잇는 전이중 구성)
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 3.5 Elements of the Tagged MAC Frame
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
@@ -942,7 +943,7 @@ IEEE 802.3 작업 그룹이 2003년 7월 회의에서 승인해 ITU-T 15연구�
 - **리피터는 802.3이 정한 장치로, 반이중으로만 동작하고 CSMA/CD 장치 여럿이 한 매체에 접근하게(다중 포트 접근) 한다** — 「Response」 둘째 문단
 - 2계층 네트워크 장치는 IEEE 802.1D 브리지로 모델링하라고 권한다 — 「Response」 권고 2)
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72 step 6) `hub-switch-vlan.hub`(리피터는 반이중으로만 동작하고 여러 장치가 한 매체를 함께 쓰게 한다), (phase 72 step 7) `hub-switch-vlan.collision-domain`(허브에 이은 장치 전체가 한 매체를 함께 쓴다, 브리지도 DTE라 허브에 이은 스위치 포트는 반이중), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72 step 6) `hub-switch-vlan.hub`(리피터는 반이중으로만 동작하고 여러 장치가 한 매체를 함께 쓰게 한다), (phase 72 step 7) `hub-switch-vlan.collision-domain`(허브에 이은 장치 전체가 한 매체를 함께 쓴다, 브리지도 DTE라 허브에 이은 스위치 포트는 반이중), (phase 72 step 8) `hub-switch-vlan.switch`(2계층 네트워크 장치는 802.1D 브리지 — 데이터 링크 계층 장비)
 
 ## (phase 72 step 1) RFC 2108 — Definitions of Managed Objects for IEEE 802.3 Repeater Devices using SMIv2
 https://www.rfc-editor.org/rfc/rfc2108
@@ -963,7 +964,7 @@ https://standards.ieee.org/ieee/802.1Q/10323/
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(표준의 이름은 브리지), `hub-switch-vlan.vlan`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan`
 
 ## (phase 72 step 1) IEEE 802.1 — IETF 86 Tutorial 「IEEE 802.1Q Media Access Control Bridges and Virtual Bridged Local Area Networks」(2013-03-10)
 https://www.ieee802.org/802_tutorials/2013-03/8021-IETF-tutorial-final.pdf
@@ -976,8 +977,9 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
 - 활성 토폴로지(실제로 프레임이 다니는 경로)를 정하는 프로토콜로 RSTP·MSTP·SPB가 있다. **처음의 스패닝 트리 프로토콜(STP)은 이제 역사 속 이름이고 RSTP가 그 자리를 이었다** — 26쪽
 - 802.1Q는 12비트 VLAN만 다루는 표준이 아니다(서비스·백본 태그 등도 있다) — 16쪽
 - (phase 72 step 3) MAC은 Media Access Control의 약어다 — 문서 제목(「IEEE 802.1Q Media Access Control Bridges …」)
+- (phase 72 step 8) MAC 주소는 「위치」 주소가 아니라 「식별자」 주소다 — 장치가 누구인지 가리킬 뿐 어디에 있는지 가리키지 않는다 — 12쪽 「Basic Principles」 첫 항목
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
 
 ## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
 https://www.ieee802.org/1/pages/802.1w.html
@@ -1001,8 +1003,11 @@ Proposed Standard(Standards Track)이다. IEEE 802.1D-1998의 투명 브리지�
 - 스패닝 트리 프로토콜이 정하는 포트 상태는 disabled·blocking(차단)·listening·learning(학습)·forwarding(전달)·broken이고, 그 상태가 포트가 받은 프레임을 어떻게 다룰지 정한다 — §4 dot1dStpPortState(REFERENCE 802.1D-1998 8.5.5.2)
 - 스패닝 트리에는 뿌리(루트)가 있고 스패닝 트리 프로토콜이 그것을 정한다 — §4 dot1dStpDesignatedRoot
 - 이 RFC는 학습·플러딩의 절차와 고리를 설명하지 않는다(전문 검색) — 그 근거는 위 802.1 튜토리얼과 아래 RFC 7348이다
+- (phase 72 step 8) 투명 브리지의 이 표를 「전달 데이터베이스(Forwarding Database)」라 부른다 — §4 「The Forwarding Database for Transparent Bridges」 머리 주석, dot1dTpLearnedEntryDiscards
+- (phase 72 step 8) dot1dTpAgingTime은 MAX-ACCESS가 read-write이고 값의 범위가 10~1000000초다 — 관리자가 바꿀 수 있는 값이다 — §4 dot1dTpAgingTime
+- (phase 72 step 8) 배웠다가 에이징으로 지워진 항목은 더는 유효하지 않은 항목(invalid)으로 표시될 수 있다 — §4 dot1dTpFdbStatus
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.mac-address-table`, `hub-switch-vlan.flooding-forwarding-filtering`(필터링), `hub-switch-vlan.stp`
+쓰인 곳: (phase 72 step 8) `hub-switch-vlan.mac-address-table`(표의 항목은 출발지 MAC 주소와 그 프레임이 들어온 포트의 짝, 표준 문서의 이름 전달 데이터베이스, 에이징 기본값 300초를 802.1D가 권하고 관리자가 바꿀 수 있음), 문항 n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`(필터링), `hub-switch-vlan.stp`
 
 ## (phase 72 step 1) RFC 4363 — Definitions of Managed Objects for Bridges with Traffic Classes, Multicast Filtering, and Virtual LAN Extensions
 https://www.rfc-editor.org/rfc/rfc4363
@@ -1050,7 +1055,7 @@ Proposed Standard(Standards Track)이다.
 - 라우터는 **링크 계층 브로드캐스트로 받은 패킷을 다른 네트워크로 넘기지 않는다**(목적지가 IP 멀티캐스트 주소인 경우만 예외다). 링크 계층 멀티캐스트로 받은 패킷도 목적지가 IP 멀티캐스트가 아니면 넘기지 않는다 — §5.3.4
 - 링크 계층은 받은 패킷의 목적지 물리 주소가 유니캐스트·브로드캐스트·멀티캐스트 가운데 무엇인지 IP 계층에 알려야 한다 — §3.2
 
-쓰인 곳: `exam-notes.md` E4·E7, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(브리지는 링크 계층 장치), `hub-switch-vlan.broadcast-domain`(라우터가 경계가 된다)
+쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`(라우터가 경계가 된다)
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1106,3 +1111,20 @@ https://www.rfc-editor.org/rfc/rfc1042
 - IEEE 802.5 망의 패킷 최대 크기는 한 노드가 토큰을 쥐고 있을 수 있는 최대 시간에 따라 정해진다 — RFC 1042 「For IEEE 802.5」(MTU를 다룬 대목)
 
 쓰인 곳: `hub-switch-vlan.csma-cd`(토큰을 잡은 장치가 정해 둔 시간 동안 보내도록 허락받는 방식은 CSMA/CD와 다른 매체 접근 방식), 문항 n038 해설
+
+## (phase 72 step 8) RFC 4761 — Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling, 4.2.1 MAC Address Learning, 4.2.2 Aging
+https://www.rfc-editor.org/rfc/rfc4761
+
+Standards Track(Proposed Standard)이다. 통신사 망 전체를 한 대의 학습 브리지처럼 보이게 하는 서비스(VPLS)를 정한 문서인데, 4.2절이 **학습 브리지가 하는 일**을 기준으로 들고
+VPLS 장비도 「학습 브리지와 거의 같게」 하라고 쓴다. 여기서는 그 기준으로 든 학습 브리지의 동작만 가져온다(VPLS·BGP의 사실은 가져오지 않는다).
+
+- 학습 브리지는 포트로 들어온 패킷의 **출발지 MAC 주소를 그 패킷이 들어온 포트와 짝지어** 배운다. 출발지 주소가 S인 패킷을 포트 P로 받은 뒤, 목적지 주소가 S인 패킷을 받으면
+  포트 P로 내보내면 된다는 것을 안다 — §4.2.1
+- 에이징: 학습 브리지처럼, 포트에 짝지어 둔 MAC 주소를 지우는 장치를 둔다. 그래야 그 주소의 장치가 **실제로 다른 포트 쪽으로 옮겨 가거나** 망의 구성이 바뀌어 그 주소가 새 포트로
+  들어올 때 **다시 배울 수 있다**. 또 에이징은 표를 **지금 쓰이는 주소만으로 줄인다** — §4.2.2 첫 문단
+- 포트 P에 짝지은 출발지 주소 S의 「나이」는 S가 P에서 **출발지로 마지막으로 보인 뒤 지난 시간**이다. 나이가 에이징 시간을 넘으면 S를 지운다. 그러니 S가 P에서 출발지로 다시 보일 때마다
+  나이는 처음부터 다시 센다 — §4.2.2 둘째 문단
+- 에이징 시간은 설정할 수 있게 해야 한다 — §4.2.2 셋째 문단(VPLS 장비에 대한 권고)
+- 브리지는 목적지가 표에 없는 패킷을 받으면 다른 모든 포트로 내보낸다(플러딩) — §4.2.3 첫 문장
+
+쓰인 곳: `hub-switch-vlan.mac-address-table`(학습 — 출발지 주소와 들어온 포트, 에이징 — 마지막으로 보인 뒤의 시간, 다시 보이면 처음부터 다시 셈, 지우는 까닭은 장치가 옮겨 가면 다시 배우게 하고 표를 지금 쓰이는 주소로 줄이는 것), 문항 n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`(§4.2.3)
