@@ -9,6 +9,7 @@ import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
@@ -47,6 +48,8 @@ import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
+import { PacketPartsDiagram } from './PacketPartsDiagram'
+import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -165,6 +168,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-basics.throughput': ThroughputDiagram,
   'network-basics.bandwidth': BandwidthDiagram,
   'network-basics.packet-loss': [PacketLossDiagram, PerformanceMetricsTable],
+  'protocols-encapsulation.packet-switching': PacketSwitchingDiagram,
+  'protocols-encapsulation.packet': PacketPartsDiagram,
+  'protocols-encapsulation.circuit-switching': CircuitSwitchingDiagram,
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
   'protocols-encapsulation.decapsulation': EncapsulationDiagram,
 }
