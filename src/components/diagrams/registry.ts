@@ -31,8 +31,10 @@ import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EthernetFrameDiagram } from './EthernetFrameDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
+import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -196,6 +198,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ethernet.nic': NicFilterDiagram,
   'ethernet.mac-address': MacAddressDiagram,
   'ethernet.frame': EthernetFrameDiagram,
+  'ethernet.ethertype-length': EtherTypeLengthDiagram,
+  'ethernet.fcs': FcsCheckDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

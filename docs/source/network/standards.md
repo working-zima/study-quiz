@@ -28,6 +28,7 @@ IEEE 802.3 본문은 무료로 열리지 않으므로, 802.3 작업 그룹이 `i
 Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허용하는 출처」).
 「(phase 72 step 2)」가 붙은 항목은 phase 72 step 2에서 `ethernet.ethernet`이 이더넷 표준을 누가 만드는지 쓰려고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 3)」이 붙은 줄은 phase 72 step 3에서 문항 n030의 해설이 MAC의 풀네임을 쓰려고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 5)」가 붙은 줄은 phase 72 step 5에서 `ethernet.ethertype-length`·`ethernet.fcs`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -60,7 +61,7 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 - (2026-10-28) 암호화(encryption·encipherment)라는 말은 이 권고에 없다. 보안 구조는 X.800(ISO 7498-2)에 맡긴다 — §5.1.3 NOTE, 전문 검색
 
 쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`,
-`protocols-encapsulation.protocol`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E1·E3
+`protocols-encapsulation.protocol`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E1·E3, (phase 72 step 5) `ethernet.fcs`(데이터 링크 계층의 프로토콜 가운데 오류를 고치는 것도 있다, §7.6.2.2)
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -73,7 +74,11 @@ IEEE 802.3 표준 본문은 허용한 곳에서 무료로 열리지 않는다. �
 - 값이 1536(0x0600) 이상이면 MAC 클라이언트 프로토콜이 무엇인지 나타낸다(타입으로 읽기). 두 읽기는 서로 배타적이다 — §3.2.6 b)
 - 데이터가 최소 길이보다 짧으면 데이터 필드 끝과 FCS 사이에 패드를 붙인다 — §3.2.6
 
-쓰인 곳: 강의 수정 이력 L1, `ethernet.frame`(길이/타입의 역할·패드 위치), (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
+- (phase 72 step 5) 3.2.6 본문을 P802.3as D0.1(아래 항목의 문서)에서 다시 읽었다. 길이로 읽을 때 세는 것은 데이터 필드에 든 **MAC 클라이언트 데이터**의 옥텟이고, 패드는 해석과 상관없이 데이터 필드 끝과 FCS 사이에
+  따로 덧붙는 옥텟이다. 그러니 패드는 이 길이에 들지 않는다(RFC 894도 채운 옥텟은 IP 패킷의 일부가 아니라고 쓴다) — §3.2.6 a), §3.2.6 둘째 문단
+- (phase 72 step 5) 필드 값을 수로 따질 때 첫 옥텟이 높은 자리다. 1500과 1536 사이의 값(1501~1535)에 대한 읽기는 이 절에 없다 — §3.2.6
+
+쓰인 곳: 강의 수정 이력 L1, `ethernet.frame`(길이/타입의 역할·패드 위치), `ethernet.ethertype-length`(두 읽기, 1500 이하는 데이터의 옥텟 수이고 프레임 전체 크기가 아니다, 1536 이상은 이더타입, 두 읽기가 겹치지 않는다, 패드는 길이에 넣지 않는다)
 
 ## IEEE 802.3 — Ethernet, 3.2.9 Frame Check Sequence (FCS) field, 3.4 Invalid MAC frame (phase 72: 3.1.1, 3.2.1~3.2.8, 3.3)
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
@@ -100,7 +105,12 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - (phase 72) 데이터 필드가 정해진 최소 길이보다 짧으면 옥텟 단위의 패드를 데이터 뒤에 붙여 늘린 다음 FCS를 계산해 붙인다 — §3.2.7, §3.2.8
 - (phase 72) FCS를 뺀 프레임의 각 옥텟은 낮은 비트부터 보낸다 — §3.3
 
-쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), `ethernet.frame`(필드 순서·크기·프리앰블·SFD·패드·FCS의 역할), `ethernet.mac-address`(48비트·두 구분 비트·브로드캐스트), (phase 72에서 쓰일 곳) `ethernet.fcs`
+- (phase 72 step 5) 3.2.9와 3.4의 전문을 다시 읽었다(2026-10-28, 위 PDF). CRC는 cyclic redundancy check의 약어이고, 보내는 쪽과 받는 쪽의 알고리즘이 같은 CRC로 FCS 값을 만든다.
+  CRC 값은 정해진 생성 다항식으로 프레임 비트에서 계산하는 수학적 절차로 정의된다(이 과목은 계산법을 가르치지 않는다) — §3.2.9
+- (phase 72 step 5) 3.4가 잘못된 MAC 프레임에 대해 정하는 것은 둘뿐이다 — 그 내용을 LLC·MAC Control 부계층으로 넘기지 않는다는 것과, 잘못된 프레임이 생긴 사실을 네트워크 관리 쪽에 알릴 수 있다는 것.
+  손상된 비트를 고치는 절차도, 보낸 쪽에 알리거나 다시 보내 달라고 요청하는 절차도 없다 — §3.4
+
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), `ethernet.frame`(필드 순서·크기·프리앰블·SFD·패드·FCS의 역할), `ethernet.mac-address`(48비트·두 구분 비트·브로드캐스트), `ethernet.fcs`(4옥텟 CRC 값, 프리앰블·SFD·FCS를 뺀 나머지로 계산, 다르면 잘못된 프레임으로 위로 넘기지 않음, 고치거나 다시 보내 달라고 하는 절차가 없음)
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -108,8 +118,9 @@ https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/etherty
 - 이더타입은 뒤따르는 데이터를 어떻게 해석할지 알려 준다(대개 프로토콜 식별). 길이/타입 필드는 IEEE Std 802.3 3.2.6에 정의돼 있다 — 「Tutorial」 첫 문단
 - 필드 값이 1536(0x0600) 이상이면 타입으로 읽으므로 이더타입은 모두 0x0600~0xFFFF에 든다. 길이 읽기와 타입 읽기는 서로 배타적이다 — 「Tutorial」 둘째 문단
 - 같은 자리의 필드를 표준 이전 이더넷은 타입 필드로, 초기 IEEE 802.3은 길이 필드로 불렀다 — 각주 1
+- (phase 72 step 5) 타입으로 읽으면 이 필드의 이더타입이 MAC 클라이언트의 프로토콜을 가리킨다. 여러 표준이 이더타입을 16진수 네 자리(WX-YZ 꼴)로 적는다 — 「Tutorial」 둘째·셋째 문단
 
-쓰인 곳: 강의 수정 이력 L1
+쓰인 곳: 강의 수정 이력 L1, (phase 72 step 5) `ethernet.ethertype-length`(이더타입은 실린 데이터의 프로토콜을 가리키고 16진수로 적는다, 0600~FFFF, 두 읽기는 겹치지 않는다, 예전 이름 타입 필드·길이 필드)
 
 ## IANA — IEEE 802 Numbers (EtherType 레지스트리)
 https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
@@ -118,7 +129,11 @@ https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
 - IPv4는 0800, ARP는 0806, IPv6는 86DD다 — EtherType 표
 - (phase 72 step 1) 8100은 「고객 VLAN 태그(C-Tag) 타입」이고 예전 이름은 Q-Tag다(근거 RFC 9542). 88A8은 IEEE 802.1Q의 서비스 VLAN 태그(S-Tag)다 — EtherType 표
 
-쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`, (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100)
+- (phase 72 step 5) 레지스트리 XML(https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xml)을 다시 열어 확인했다. 0000-05DC(10진 0-1500) 「IEEE802.3 Length Field」 다음 기록은
+  예전에 쓰다 무효가 된 값(0101-01FF·0200·0201·0400)이고, 그다음이 0600(10진 1536)이다. 05DD~05FF(10진 1501~1535)에 대한 기록은 없다.
+  0800은 「Internet Protocol version 4 (IPv4)」, 0806은 「Address Resolution Protocol (ARP)」, 86DD는 「Internet Protocol version 6 (IPv6)」으로 적혀 있다 — EtherType 표
+
+쓰인 곳: 강의 수정 이력 L1, `ethernet.ethertype-length`(0000~05DC는 길이, 0800·86DD·0806, ARP의 풀네임, 05DD~05FF에 정해진 것이 없음), (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100)
 
 ## RFC 9542 — IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters
 https://www.rfc-editor.org/rfc/rfc9542
@@ -135,7 +150,7 @@ https://www.rfc-editor.org/rfc/rfc9542
 - (phase 72) **문서에 쓰라고 정해 둔 48비트 MAC 주소**: 유니캐스트 00-00-5E-00-53-00~00-00-5E-00-53-FF, 멀티캐스트 01-00-5E-90-10-00~01-00-5E-90-10-FF — §2.1.4
 - (phase 72) 이 RFC에는 모든 비트가 1인 브로드캐스트 주소를 적은 문장이 없다 — 전문 검색. 근거는 IEEE 802.3 §3.2.3.1(위 항목)과 RFC 894(아래 항목)다
 
-쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, `ethernet.mac-address`(전역·지역 관리·16진 표기·문서용 주소)와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」)
+쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, `ethernet.mac-address`(전역·지역 관리·16진 표기·문서용 주소)와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」), (phase 72 step 5) `ethernet.ethertype-length`(이더타입은 0x0600 이상, 길이는 0x5DD 미만, §3)
 
 ## IEEE RA — Guidelines for Use of EUI, OUI, and CID
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
@@ -170,7 +185,7 @@ https://www.rfc-editor.org/rfc/rfc791
 - (phase 71) 데이터그램을 나눠야 하는 것은, 큰 패킷을 실을 수 있는 네트워크에서 출발한 데이터그램이 목적지로 가는 길에 더 작은 패킷만 실을 수 있는 네트워크를 지나야 할 때다 — §2.3 「Fragmentation」.
   IP 모듈은 「작은 패킷」 네트워크를 지나야 할 때 데이터그램을 나누고 다시 합친다 — §1.4 「Operation」
 
-쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위)
+쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3)
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -201,7 +216,7 @@ https://www.rfc-editor.org/rfc/rfc8200
 - IPv6에서 단편화는 출발지 노드만 하고, 전달 경로의 라우터는 하지 않는다 — §4.5
 - IPv4와 달리 IPv6 노드가 보내는 UDP 패킷은 기본적으로 체크섬을 생략할 수 없다. UDP를 터널 캡슐화에 쓰는 프로토콜만 특정 포트에서 0 체크섬을 쓸 수 있다 — §8.1
 
-쓰인 곳: 강의 수정 이력 L4, L5, L10, 면접 수정 이력 I3, I8
+쓰인 곳: 강의 수정 이력 L4, L5, L10, 면접 수정 이력 I3, I8, (phase 72 step 5) `ethernet.ethertype-length`(IPv6는 주소를 32비트에서 128비트로 늘렸다, §1)
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -596,7 +611,7 @@ https://www.rfc-editor.org/rfc/rfc903
 - 이 RFC에는 RARP가 인터넷(네트워크) 계층이라는 말이 없다. RFC 1122 §1.1.3은 RARP를 응용 계층의 지원 프로토콜로 든다(위 RFC 1122 항목).
   자격시험이 RARP를 인터넷 계층으로 보는 것은 `exam-notes.md`의 E2다
 
-쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+쓰인 곳: `protocols-encapsulation.tcp-ip-model`, (phase 72 step 5) `ethernet.ethertype-length`(ARP는 하드웨어 주소를 알아내는 프로토콜이다, §I — 「IP 주소로 같은 네트워크 안 장치의 MAC 주소」는 강의 p133)
 
 ## (2026-10-28) RFC 1123 — Requirements for Internet Hosts -- Application and Support
 https://www.rfc-editor.org/rfc/rfc1123
@@ -701,7 +716,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - FCS 검사: 받은 비트(FCS 필드는 빼고)로 만든 CRC가 받은 값과 다르면 오류로 보고 그 프레임을 잘못된 것으로 판정한다 — §4.2.4.1.2
 - 프리앰블은 물리 계층 회로가 안정되도록 데이터보다 먼저 보내는 비트열이고, 10101010을 일곱 번 보낸다. 왼쪽 비트부터 보내며 0으로 끝나고, 바로 뒤에 SFD가 온다 — §4.2.5
 
-쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), `ethernet.frame`(프리앰블·SFD), (phase 72에서 쓰일 곳) `ethernet.fcs`
+쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`(받는 쪽이 FCS를 뺀 비트로 다시 계산해 받은 값과 견주고, 다르면 잘못된 프레임으로 판정, §4.2.4.1.2)
 
 ## (phase 72) IEEE 802.3 Working Group — Editorial guidelines (Frames and packets; Mb/s, Gb/s)
 https://www.ieee802.org/3/WG_tools/editorial/requirements/words.html
@@ -824,7 +839,7 @@ https://www.rfc-editor.org/rfc/rfc894
 - IP 브로드캐스트 주소는 모든 비트가 1인 이더넷 브로드캐스트 주소 FF-FF-FF-FF-FF-FF(16진)에 대응한다 — 「Broadcast Address」
 - 주의: 같은 절의 1500옥텟 문장은 「minimum」이라고 적혀 있어 바로 뒤의 「최대 IP 데이터그램 1500옥텟」과 어긋난다. 최대 크기의 근거로는 이 문장이 아니라 IEEE 802.3 그림 3–1(위 항목)을 쓴다 — 「Frame Format」
 
-쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(0800)
+쓰인 곳: `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(IPv4 데이터를 실은 프레임의 타입 0800, 채운 옥텟은 IP 패킷이 아니다)
 
 ## (phase 72) Linux man-pages — ether_aton(3), arp(8)
 https://man7.org/linux/man-pages/man3/ether_aton.3.html
