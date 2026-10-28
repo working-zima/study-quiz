@@ -284,6 +284,112 @@
       "sources": [
         "hub-switch-vlan.mac-address-table"
       ]
+    },
+    "switch-decision": {
+      "label": "플러딩·포워딩·필터링을 보이는 도식",
+      "svgLabel": "스위치의 포트 1~4에 호스트 A~D가 하나씩 이어져 있고, 스위치 위에 MAC 주소 테이블이 있으며, 스위치가 받은 프레임을 어느 포트로 내보내는지 보이는 모습",
+      "question": "스위치는 표를 보고 프레임을 어느 포트로 내보낼까?",
+      "idleCaption": "호스트 A~D가 스위치의 포트 1~4에 하나씩 이어져 있고, 위 박스는 스위치의 MAC 주소 테이블이다. 버튼을 차례로 고르면 A가 C에게 처음 프레임을 보낼 때와 C가 A에게 답할 때, 스위치가 그 프레임을 어느 포트로 내보내는지 볼 수 있다.",
+      "legend": "위 박스는 스위치의 MAC 주소 테이블이고, 한 줄이 항목 하나다. 가는 선은 케이블, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "row-a": "포트 1 · 00-00-5E-00-53-01",
+        "row-c": "포트 3 · 00-00-5E-00-53-03"
+      },
+      "groups": {
+        "table": "MAC 주소 테이블"
+      },
+      "notes": {
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "c-missing": "C의 MAC 주소는 아직 없음",
+        "found-a": "목적지 A를 찾음",
+        "skip-b": "보내지 않음",
+        "skip-d": "보내지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "flooding",
+          "label": "표에 없을 때",
+          "caption": "표가 비어 있을 때 호스트 A가 C에게 처음 프레임을 보냈다. 스위치는 A의 MAC 주소를 포트 1과 짝지어 적지만, 목적지인 C의 MAC 주소는 아직 표에 없다. 그래서 프레임이 들어온 포트 1을 뺀 포트 2·3·4로 모두 내보낸다. 이것이 플러딩이다. B와 D의 NIC는 자기 앞으로 온 프레임이 아니므로 버린다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        },
+        {
+          "id": "forwarding",
+          "label": "표에 있을 때",
+          "caption": "호스트 C가 A에게 답한 프레임이 포트 3으로 들어온다. 스위치는 C의 MAC 주소를 포트 3과 짝지어 적고, 목적지인 A의 MAC 주소를 표에서 찾는다. A는 포트 1에 있다고 적혀 있으므로 스위치는 그 프레임을 포트 1로만 내보낸다. 이것이 포워딩이다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        },
+        {
+          "id": "filtering",
+          "label": "다른 포트는",
+          "caption": "같은 프레임을 나머지 포트 쪽에서 본 모습이다. 스위치는 A가 있는 포트 1로만 내보내고, 포트 2와 포트 4로는 내보내지 않는다. 이것이 필터링이다. 그래서 A와 C가 주고받는 프레임은 B와 D의 케이블로 지나가지 않는다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.flooding-forwarding-filtering"
+      ]
+    },
+    "spanning-tree": {
+      "label": "스패닝 트리 프로토콜이 고리를 막는 도식",
+      "svgLabel": "호스트 A가 이어진 스위치 1과 스위치 2·3이 링크 셋으로 서로 이어져 고리를 이룬 모습",
+      "question": "스위치를 고리로 이으면 무슨 일이 생길까?",
+      "idleCaption": "호스트 A가 이어진 스위치 1과 스위치 2·3을, 링크 하나가 끊겨도 통신이 이어지도록 서로 이어 고리를 만들었다. 버튼을 고르면 STP가 없을 때와 STP를 쓸 때, 그리고 쓰던 링크가 끊겼을 때 브로드캐스트 프레임이 가는 길을 볼 수 있다.",
+      "legend": "가는 선은 케이블과 스위치 사이의 링크이고, 화살표는 브로드캐스트 프레임이 가는 길이다. 흐린 선은 막히거나 끊겨 프레임이 지나가지 않는 링크다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "switch-1": "스위치 1",
+        "switch-2": "스위치 2",
+        "switch-3": "스위치 3"
+      },
+      "notes": {
+        "loop-note": "끝없이 돎",
+        "blocked": "막음",
+        "broken": "끊김",
+        "reopened": "전달 상태로 바꿈"
+      },
+      "scenarios": [
+        {
+          "id": "loop",
+          "label": "STP가 없으면",
+          "caption": "호스트 A가 보낸 브로드캐스트 프레임을 스위치 1이 스위치 2와 3으로 플러딩하고, 받은 스위치도 저마다 다시 플러딩해 프레임이 스위치 1로 돌아온다. 돌아온 프레임도 또 플러딩되어 고리를 끝없이 돈다. 화살표는 한 방향만 그렸지만 반대 방향으로 간 프레임도 같다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        },
+        {
+          "id": "stp",
+          "label": "STP를 쓰면",
+          "caption": "STP를 쓰는 스위치들은 서로 정보를 주고받아 막을 링크를 정한다. 이 그림은 스위치 2와 3 사이의 링크를 막은 경우다. 이제 스위치 1이 플러딩한 프레임은 스위치 2와 3에 한 번씩 닿고, 남은 두 링크에는 한 바퀴 도는 길이 없어 더는 돌지 않는다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        },
+        {
+          "id": "failover",
+          "label": "링크가 끊기면",
+          "caption": "쓰던 스위치 1과 2 사이의 링크가 끊기면, 스위치들은 다시 정보를 주고받아 막아 두었던 포트를 전달 상태로 바꾼다. 이제 프레임은 스위치 1에서 3을 거쳐 2로 가고, 세 스위치는 고리 없는 길로 다시 이어진다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.stp"
+      ]
     }
   },
   "tables": {},

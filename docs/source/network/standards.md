@@ -31,6 +31,7 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 5)」가 붙은 줄은 phase 72 step 5에서 `ethernet.ethertype-length`·`ethernet.fcs`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 7)」이 붙은 줄과 항목은 phase 72 step 7에서 `hub-switch-vlan.collision-domain`·`hub-switch-vlan.csma-cd`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 8)」이 붙은 줄과 항목은 phase 72 step 8에서 `hub-switch-vlan.switch`·`hub-switch-vlan.mac-address-table`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 9)」가 붙은 줄은 phase 72 step 9에서 `hub-switch-vlan.flooding-forwarding-filtering`·`hub-switch-vlan.stp`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -106,13 +107,15 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - (phase 72) 목적지 주소는 개별 주소나 멀티캐스트(브로드캐스트 포함) 주소일 수 있고, 출발지 주소는 프레임을 보낸 스테이션을 가리킨다 — §3.2.4, §3.2.5
 - (phase 72) 데이터 필드가 정해진 최소 길이보다 짧으면 옥텟 단위의 패드를 데이터 뒤에 붙여 늘린 다음 FCS를 계산해 붙인다 — §3.2.7, §3.2.8
 - (phase 72) FCS를 뺀 프레임의 각 옥텟은 낮은 비트부터 보낸다 — §3.3
+- (phase 72 step 9) 그림 3–1의 필드(프리앰블·SFD·두 주소·길이/타입·데이터와 패드·FCS) 가운데 프레임이 장치를 몇 번 지났는지 세거나 적는 필드는 없다.
+  아래 IEEE 802.1 튜토리얼 35쪽이 경로마다 나눠 보내는 기능(ECMP)을 위해 「TTL을 담을 새 태그」를 따로 만든다고 적는 것도 같은 사정이다 — §3.1.1, Figure 3–1
 
 - (phase 72 step 5) 3.2.9와 3.4의 전문을 다시 읽었다(2026-10-28, 위 PDF). CRC는 cyclic redundancy check의 약어이고, 보내는 쪽과 받는 쪽의 알고리즘이 같은 CRC로 FCS 값을 만든다.
   CRC 값은 정해진 생성 다항식으로 프레임 비트에서 계산하는 수학적 절차로 정의된다(이 과목은 계산법을 가르치지 않는다) — §3.2.9
 - (phase 72 step 5) 3.4가 잘못된 MAC 프레임에 대해 정하는 것은 둘뿐이다 — 그 내용을 LLC·MAC Control 부계층으로 넘기지 않는다는 것과, 잘못된 프레임이 생긴 사실을 네트워크 관리 쪽에 알릴 수 있다는 것.
   손상된 비트를 고치는 절차도, 보낸 쪽에 알리거나 다시 보내 달라고 요청하는 절차도 없다 — §3.4
 
-쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), `ethernet.frame`(필드 순서·크기·프리앰블·SFD·패드·FCS의 역할), `ethernet.mac-address`(48비트·두 구분 비트·브로드캐스트), `ethernet.fcs`(4옥텟 CRC 값, 프리앰블·SFD·FCS를 뺀 나머지로 계산, 다르면 잘못된 프레임으로 위로 넘기지 않음, 고치거나 다시 보내 달라고 하는 절차가 없음)
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), `ethernet.frame`(필드 순서·크기·프리앰블·SFD·패드·FCS의 역할), `ethernet.mac-address`(48비트·두 구분 비트·브로드캐스트), `ethernet.fcs`(4옥텟 CRC 값, 프리앰블·SFD·FCS를 뺀 나머지로 계산, 다르면 잘못된 프레임으로 위로 넘기지 않음, 고치거나 다시 보내 달라고 하는 절차가 없음), (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다, §3.2.3.1), `hub-switch-vlan.stp`·문항 n043 해설(이더넷 프레임에는 장치를 몇 번 지났는지 적는 필드가 없다 — 그래서 고리에 들어간 프레임이 사라지지 않는다)
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -842,7 +845,7 @@ https://www.rfc-editor.org/rfc/rfc894
 - IP 브로드캐스트 주소는 모든 비트가 1인 이더넷 브로드캐스트 주소 FF-FF-FF-FF-FF-FF(16진)에 대응한다 — 「Broadcast Address」
 - 주의: 같은 절의 1500옥텟 문장은 「minimum」이라고 적혀 있어 바로 뒤의 「최대 IP 데이터그램 1500옥텟」과 어긋난다. 최대 크기의 근거로는 이 문장이 아니라 IEEE 802.3 그림 3–1(위 항목)을 쓴다 — 「Frame Format」
 
-쓰인 곳: `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(IPv4 데이터를 실은 프레임의 타입 0800, 채운 옥텟은 IP 패킷이 아니다)
+쓰인 곳: `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(IPv4 데이터를 실은 프레임의 타입 0800, 채운 옥텟은 IP 패킷이 아니다), (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(브로드캐스트 주소 FF-FF-FF-FF-FF-FF)
 
 ## (phase 72) Linux man-pages — ether_aton(3), arp(8)
 https://man7.org/linux/man-pages/man3/ether_aton.3.html
@@ -978,8 +981,11 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
 - 802.1Q는 12비트 VLAN만 다루는 표준이 아니다(서비스·백본 태그 등도 있다) — 16쪽
 - (phase 72 step 3) MAC은 Media Access Control의 약어다 — 문서 제목(「IEEE 802.1Q Media Access Control Bridges …」)
 - (phase 72 step 8) MAC 주소는 「위치」 주소가 아니라 「식별자」 주소다 — 장치가 누구인지 가리킬 뿐 어디에 있는지 가리키지 않는다 — 12쪽 「Basic Principles」 첫 항목
+- (phase 72 step 9) 12쪽을 다시 읽었다(2026-10-28, 위 PDF). 이 쪽이 「필터링」이라는 말을 직접 쓴다 — 프레임을 알맞은 내보낼 포트로만 전달하려고 거르고(frame filtering),
+  어디로 보낼지 알면 필요 없는 포트를 걸러 낸다(filter unnecessary ports, 예: 목적지 쪽으로만 전달). 어디로 보낼지 모르면 받은 포트를 뺀 모든 포트로 전달한다 — 12쪽 「Basic Principles」
+- (phase 72 step 9) 스패닝 트리는 실제로 프레임이 다니는 활성 토폴로지(Active Topology)의 한 형태다(같은 자리에 최단 경로·TE 경로가 나란히 적혀 있다). RSTP는 모든 트래픽이 스패닝 트리 하나를 함께 쓴다 — 26쪽, 28쪽
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`
 
 ## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
 https://www.ieee802.org/1/pages/802.1w.html
@@ -989,7 +995,10 @@ IEEE 802.1 작업 그룹의 프로젝트 페이지다. 프로젝트는 끝났고
 - 802.1w는 802.1D-1998을 보완해 MAC 브리지가 빠르게 다시 구성되게 하는 변경을 정했다 — 프로젝트 설명 첫 문단
 - 동기: 그때의 스패닝 트리 프로토콜은 **링크가 끊기거나 되살아날 때 다시 구성해 서비스를 되살리는 데** 시간이 오래 걸렸다 — 프로젝트 설명의 첫 항목
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.stp`(쓰던 길이 끊기면 다시 구성한다)
+- (phase 72 step 9) 페이지를 다시 열어 확인했다(2026-10-28). 동기의 첫 항목이 「링크가 끊기거나 되살아날 때 다시 구성하고 서비스를 되살리는 데 드는 긴 시간」이다 — 그러니 STP는 링크가 끊기면 다시 구성해 통신을 되살린다.
+  고리를 이룬 스위치 셋에서 쓰던 링크 하나가 끊기면 남은 길은 막아 둔 링크를 지나는 길뿐이므로, 되살린다는 것은 막아 둔 포트를 다시 전달 상태로 쓴다는 뜻이다. 다시 구성하는 시간과 RSTP의 방식은 가져오지 않는다
+
+쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(쓰던 링크가 끊기면 다시 정보를 주고받아 길을 새로 정하고, 막아 두었던 포트를 전달 상태로 바꿔 쓴다)
 
 ## (phase 72 step 1) RFC 4188 — Definitions of Managed Objects for Bridges
 https://www.rfc-editor.org/rfc/rfc4188
@@ -1006,8 +1015,12 @@ Proposed Standard(Standards Track)이다. IEEE 802.1D-1998의 투명 브리지�
 - (phase 72 step 8) 투명 브리지의 이 표를 「전달 데이터베이스(Forwarding Database)」라 부른다 — §4 「The Forwarding Database for Transparent Bridges」 머리 주석, dot1dTpLearnedEntryDiscards
 - (phase 72 step 8) dot1dTpAgingTime은 MAX-ACCESS가 read-write이고 값의 범위가 10~1000000초다 — 관리자가 바꿀 수 있는 값이다 — §4 dot1dTpAgingTime
 - (phase 72 step 8) 배웠다가 에이징으로 지워진 항목은 더는 유효하지 않은 항목(invalid)으로 표시될 수 있다 — §4 dot1dTpFdbStatus
+- (phase 72 step 9) 원문을 다시 열어 확인했다(2026-10-28). 걸러 버린 프레임 수의 DESCRIPTION은 「전달 과정이 버린(곧 걸러 낸, filtered) 유효한 프레임 수」다 — §4 dot1dTpPortInDiscards
+- (phase 72 step 9) 스패닝 트리의 루트이거나 루트가 되려는 브리지는 모든 포트로 설정 BPDU(Configuration bridge PDU)를 일정한 간격으로 보낸다 — STP를 쓰는 브리지끼리 정보를 주고받는다 — §4 dot1dStpHelloTime.
+  BPDU의 형식과 간격 값은 가져오지 않는다
+- (phase 72 step 9) 포트 상태는 STP를 적용해 정해지고, 그 상태가 포트로 받은 프레임을 어떻게 다룰지 정한다 — §4 dot1dStpPortState. 포트는 학습 상태에서 전달 상태로, 전달 상태에서 차단 상태로 바뀔 수 있다 — §4 topologyChange
 
-쓰인 곳: (phase 72 step 8) `hub-switch-vlan.mac-address-table`(표의 항목은 출발지 MAC 주소와 그 프레임이 들어온 포트의 짝, 표준 문서의 이름 전달 데이터베이스, 에이징 기본값 300초를 802.1D가 권하고 관리자가 바꿀 수 있음), 문항 n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`(필터링), `hub-switch-vlan.stp`
+쓰인 곳: (phase 72 step 8) `hub-switch-vlan.mac-address-table`(표의 항목은 출발지 MAC 주소와 그 프레임이 들어온 포트의 짝, 표준 문서의 이름 전달 데이터베이스, 에이징 기본값 300초를 802.1D가 권하고 관리자가 바꿀 수 있음), 문항 n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(필터링 — 걸러 낸 프레임), `hub-switch-vlan.stp`(스위치들이 서로 정보를 주고받는다, 포트마다 상태가 있고 차단(blocking)·전달(forwarding) 상태가 그 가운데 둘이다, 막아 둔 포트가 전달 상태로 바뀔 수 있다)
 
 ## (phase 72 step 1) RFC 4363 — Definitions of Managed Objects for Bridges with Traffic Classes, Multicast Filtering, and Virtual LAN Extensions
 https://www.rfc-editor.org/rfc/rfc4363
@@ -1033,8 +1046,10 @@ Informational(Independent Submission)이다. VXLAN을 만든 까닭을 설명하
 - 그래서 STP를 쓰면 사 둔 포트·링크 가운데 일부를 쓰지 못하고, 여러 경로로 나눠 보내는 데서 오는 회복력도 얻지 못한다 — §3.1
 - VLAN은 브로드캐스트를 격리하는 데 쓴다. **이더넷 프레임에 담는 12비트 VLAN ID로 큰 2계층 네트워크를 여러 브로드캐스트 도메인으로 나눈다.** VLAN은 4094개까지다 — §3.1
 - STP로 고리 없는 토폴로지를 만들면 쓰지 못하는 링크가 많이 생길 수 있다 — §1
+- (phase 72 step 9) §3.1을 다시 열어 확인했다(2026-10-28). STP는 「IEEE 802.1D 스패닝 트리 프로토콜」이고, 고리는 **중복 경로**(duplicate paths) 때문에 생긴다.
+  여러 경로를 두는 데서 오는 회복력(resiliency)은 STP 방식에서 얻지 못한다 — 막아 둔 링크는 평소에 쓰이지 않는다 — §3.1
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`, `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
+쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(끊길 때를 대비한 다른 길이 고리를 만든다, STP는 IEEE 802.1D가 정했다, 일부 링크를 막아 프레임이 복제되고 고리를 도는 것을 막는다, 막아 둔 링크는 평소에 쓰지 못한다), 문항 n043 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`, `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
 
 ## (phase 72 step 1) RFC 5517 — Cisco Systems' Private VLANs: Scalable Security in a Multi-Client Environment
 https://www.rfc-editor.org/rfc/rfc5517
@@ -1127,4 +1142,4 @@ VPLS 장비도 「학습 브리지와 거의 같게」 하라고 쓴다. 여기�
 - 에이징 시간은 설정할 수 있게 해야 한다 — §4.2.2 셋째 문단(VPLS 장비에 대한 권고)
 - 브리지는 목적지가 표에 없는 패킷을 받으면 다른 모든 포트로 내보낸다(플러딩) — §4.2.3 첫 문장
 
-쓰인 곳: `hub-switch-vlan.mac-address-table`(학습 — 출발지 주소와 들어온 포트, 에이징 — 마지막으로 보인 뒤의 시간, 다시 보이면 처음부터 다시 셈, 지우는 까닭은 장치가 옮겨 가면 다시 배우게 하고 표를 지금 쓰이는 주소로 줄이는 것), 문항 n041 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.flooding-forwarding-filtering`(§4.2.3)
+쓰인 곳: `hub-switch-vlan.mac-address-table`(학습 — 출발지 주소와 들어온 포트, 에이징 — 마지막으로 보인 뒤의 시간, 다시 보이면 처음부터 다시 셈, 지우는 까닭은 장치가 옮겨 가면 다시 배우게 하고 표를 지금 쓰이는 주소로 줄이는 것), 문항 n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지가 표에 없으면 다른 모든 포트로 내보낸다 — §4.2.3. 에이징으로 지운 항목의 장치에게 가는 프레임도 다시 표에 없는 목적지라 그 장치를 다시 배울 때까지 플러딩된다 — §4.2.2와 §4.2.3을 함께 읽은 것), 문항 n042 해설
