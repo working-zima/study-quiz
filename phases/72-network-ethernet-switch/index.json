@@ -1,0 +1,18 @@
+{
+  "project": "Study Quiz",
+  "phase": "72-network-ethernet-switch",
+  "steps": [
+    { "step": 0, "name": "ethernet-sources", "status": "pending" },
+    { "step": 1, "name": "switch-sources", "status": "pending" },
+    { "step": 2, "name": "ethernet-names", "status": "pending" },
+    { "step": 3, "name": "speeds-nic", "status": "pending" },
+    { "step": 4, "name": "mac-frame", "status": "pending" },
+    { "step": 5, "name": "frame-fields", "status": "pending" },
+    { "step": 6, "name": "hub-duplex", "status": "pending" },
+    { "step": 7, "name": "collision-csma", "status": "pending" },
+    { "step": 8, "name": "switch-table", "status": "pending" },
+    { "step": 9, "name": "forwarding-stp", "status": "pending" },
+    { "step": 10, "name": "broadcast-vlan", "status": "pending" },
+    { "step": 11, "name": "vlan-details", "status": "pending" }
+  ]
+}

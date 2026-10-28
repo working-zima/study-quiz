@@ -359,6 +359,10 @@
       "dir": "71-network-baseline",
       "status": "completed",
       "completed_at": "2026-10-28T14:11:29+0900"
+    },
+    {
+      "dir": "72-network-ethernet-switch",
+      "status": "pending"
     }
   ]
 }
