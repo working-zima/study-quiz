@@ -8,6 +8,7 @@ import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { ClientServerDiagram } from './ClientServerDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
@@ -31,7 +32,9 @@ import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { InternetworkDiagram } from './InternetworkDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
+import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -146,6 +149,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-basics.computer-network': NetworkStructureDiagram,
   'network-basics.host': HostEndpointsDiagram,
   'network-basics.network-equipment': NodeRoleDiagram,
+  'network-basics.communication-link': LinkTypesDiagram,
+  'network-basics.client-server': ClientServerDiagram,
+  'network-basics.internet': InternetworkDiagram,
   'network-basics.cast-types': CastTypesDiagram,
   'network-basics.packet-loss': PerformanceMetricsTable,
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
