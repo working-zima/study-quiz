@@ -95,7 +95,9 @@ import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
+import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -220,6 +222,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.stp': SpanningTreeDiagram,
   'hub-switch-vlan.broadcast-domain': BroadcastDomainDiagram,
   'hub-switch-vlan.vlan': VlanSplitDiagram,
+  'hub-switch-vlan.vlan-membership': VlanMembershipDiagram,
+  'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

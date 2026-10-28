@@ -32,6 +32,7 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 7)」이 붙은 줄과 항목은 phase 72 step 7에서 `hub-switch-vlan.collision-domain`·`hub-switch-vlan.csma-cd`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 8)」이 붙은 줄과 항목은 phase 72 step 8에서 `hub-switch-vlan.switch`·`hub-switch-vlan.mac-address-table`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 9)」가 붙은 줄은 phase 72 step 9에서 `hub-switch-vlan.flooding-forwarding-filtering`·`hub-switch-vlan.stp`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 11)」이 붙은 줄과 항목은 phase 72 step 11에서 `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -138,7 +139,7 @@ https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
   예전에 쓰다 무효가 된 값(0101-01FF·0200·0201·0400)이고, 그다음이 0600(10진 1536)이다. 05DD~05FF(10진 1501~1535)에 대한 기록은 없다.
   0800은 「Internet Protocol version 4 (IPv4)」, 0806은 「Address Resolution Protocol (ARP)」, 86DD는 「Internet Protocol version 6 (IPv6)」으로 적혀 있다 — EtherType 표
 
-쓰인 곳: 강의 수정 이력 L1, `ethernet.ethertype-length`(0000~05DC는 길이, 0800·86DD·0806, ARP의 풀네임, 05DD~05FF에 정해진 것이 없음), (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100)
+쓰인 곳: 강의 수정 이력 L1, `ethernet.ethertype-length`(0000~05DC는 길이, 0800·86DD·0806, ARP의 풀네임, 05DD~05FF에 정해진 것이 없음), (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100 — (phase 72 step 11) 본문은 값을 적지 않고 「이 자리에 VLAN 태그가 있다는 것을 알리는 정해진 값」으로만 쓴다)
 
 ## RFC 9542 — IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters
 https://www.rfc-editor.org/rfc/rfc9542
@@ -911,7 +912,7 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - 태그 제어 정보는 3비트 사용자 우선순위, CFI 1비트, **12비트 VLAN 식별자(VID)**로 나뉜다. 그 뜻은 IEEE 802.1Q가 정한다(이 절은 참고용이다) — §3.5.5, 그림 3–5
 - 원래의 길이/타입 필드는 QTag 앞붙이 뒤로 정확히 4옥텟 밀려난다. 프리앰블·SFD·주소·FCS는 보통 프레임과 같다 — §3.5.1~§3.5.3, §3.5.6, §3.5.8
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`
+쓰인 곳: (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(태그는 4바이트이고 출발지 MAC 주소 바로 뒤·이더타입/길이 바로 앞에 끼며 프레임이 4바이트 길어진다, 앞 2바이트는 태그가 있음을 알리는 정해진 값, 뒤 2바이트 가운데 12비트가 VLAN ID이고 남은 비트에 우선순위 같은 정보가 든다, 끼우는 방식은 IEEE 802.1Q가 정한다), 문항 n048 해설
 
 ## (phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록 — 리피터 조항을 「새 설치에 권하지 않음」으로 정한 결정 (P802.3ay D1.0, P802.3bh D2.0·D3.0)
 https://ieee802.org/3/axay/comments/D1.0/802.3ay_D1p0.pdf
@@ -967,7 +968,7 @@ https://standards.ieee.org/ieee/802.1Q/10323/
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 포트마다 따로따로의 LAN을 잇는다 — 충돌 도메인과의 차이)
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 포트마다 따로따로의 LAN을 잇는다 — 충돌 도메인과의 차이), (phase 72 step 11) `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`(IEEE 802.1Q를 「브리지 표준」으로 부른다)
 
 ## (phase 72 step 1) IEEE 802.1 — IETF 86 Tutorial 「IEEE 802.1Q Media Access Control Bridges and Virtual Bridged Local Area Networks」(2013-03-10)
 https://www.ieee802.org/802_tutorials/2013-03/8021-IETF-tutorial-final.pdf
@@ -984,8 +985,9 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
 - (phase 72 step 9) 12쪽을 다시 읽었다(2026-10-28, 위 PDF). 이 쪽이 「필터링」이라는 말을 직접 쓴다 — 프레임을 알맞은 내보낼 포트로만 전달하려고 거르고(frame filtering),
   어디로 보낼지 알면 필요 없는 포트를 걸러 낸다(filter unnecessary ports, 예: 목적지 쪽으로만 전달). 어디로 보낼지 모르면 받은 포트를 뺀 모든 포트로 전달한다 — 12쪽 「Basic Principles」
 - (phase 72 step 9) 스패닝 트리는 실제로 프레임이 다니는 활성 토폴로지(Active Topology)의 한 형태다(같은 자리에 최단 경로·TE 경로가 나란히 적혀 있다). RSTP는 모든 트래픽이 스패닝 트리 하나를 함께 쓴다 — 26쪽, 28쪽
+- (phase 72 step 11) 브리지가 프레임을 다루는 동작(Data Plane Actions)에는 들어오는 포트와 나가는 포트에서 태그를 붙이거나 떼는 일((un)tagging)이 있다 — 17쪽. 위 PDF를 2026-10-28에 다시 받아 읽었다
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(태그로 VLAN을 안 스위치가 그 VLAN에 든 포트로만 내보낸다 — 12쪽, 스위치가 포트에서 태그를 붙이고 뗀다 — 17쪽), 문항 n048 해설
 
 ## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
 https://www.ieee802.org/1/pages/802.1w.html
@@ -1034,8 +1036,13 @@ Proposed Standard(Standards Track)이다. IEEE 802.1Q-2003의 VLAN을 관리하�
 - VLAN마다 그 VLAN의 프레임을 내보내는 포트 묶음(egress ports)이 있고, 그 가운데 **태그를 떼고 내보내는 포트 묶음(untagged ports)**을 따로 둔다. 나머지 포트는 태그를 붙인 채 내보낸다 — §5 dot1qVlanStaticEgressPorts·dot1qVlanStaticUntaggedPorts·dot1qVlanCurrentEgressPorts·dot1qVlanCurrentUntaggedPorts
 - 802.1Q VLAN ID로 쓰는 값은 1~4094다. 0과 4095는 쓰지 않는다 — §5 VlanId·VlanIndex
 - MAC 주소로 VLAN을 정하는 방식은 이 RFC에 없다 — 강의 p105의 MAC 주소 기반 VLAN은 강의 사실로만 쓴다
+- (phase 72 step 11) §2를 다시 열어 확인했다(2026-10-28, 위 URL의 .txt). IEEE 802.1Q는 **데이터 프레임이 들어온 브리지 포트로 소속이 정해지는 포트 기반 VLAN**(port-based Virtual LANs)과,
+  들어온 포트와 프레임의 프로토콜 식별자로 정해지는 포트·프로토콜 기반 VLAN을 정한다. VLAN은 여러 LAN 구간에 흩어진 종단 장치들의 무리이고 한 LAN에 있는 것처럼 통신한다 — §2
+- (phase 72 step 11) VLAN마다 그 VLAN의 트래픽을 태그 붙은 프레임이나 태그 없는 프레임으로 내보내는 포트 묶음이 있고(dot1qVlanCurrentEgressPorts),
+  그 가운데 **태그 없이 내보내는 포트 묶음을 「untagged ports」라는 이름의 객체로 따로 둔다**(dot1qVlanStaticUntaggedPorts·dot1qVlanCurrentUntaggedPorts). 본문의 태그 포트(tagged port)는 그 나머지, 곧 태그를 붙인 채 내보내는 포트를 이 이름에 맞춰 부른 것이다 — §5
+- (phase 72 step 11) §2는 브리지를 흔히 「layer 2 switches」라 부른다고 적는다 — §2 첫 문단. `exam-notes.md` E7(「L2 스위치」라는 이름)의 근거가 될 수 있는 문장이지만, 이 step은 `hub-switch-vlan.switch`를 고치지 않으므로 쓰지 않았다
 
-쓰인 곳: `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-membership`(포트 기반 VLAN), `hub-switch-vlan.vlan-tagging`(태그 붙은 포트·안 붙은 포트, VLAN ID 범위)
+쓰인 곳: `exam-notes.md` E4, (phase 72 step 11) `hub-switch-vlan.vlan-membership`(IEEE 802.1Q가 정한 포트 기반 VLAN — 들어온 포트에 정해 둔 VLAN으로 프레임을 다룬다), `hub-switch-vlan.vlan-tagging`(VLAN이 여러 스위치에 걸친다, 태그를 떼고 내보내는 포트와 태그를 붙인 채 내보내는 포트, 태그 없이 들어온 프레임은 그 포트에 정해 둔 VLAN으로 다룬다, VLAN ID는 1~4094이고 0·4095는 쓰지 않는다), 문항 n047·n048 해설
 
 ## (phase 72 step 1) RFC 7348 — Virtual eXtensible Local Area Network (VXLAN)
 https://www.rfc-editor.org/rfc/rfc7348
@@ -1049,7 +1056,7 @@ Informational(Independent Submission)이다. VXLAN을 만든 까닭을 설명하
 - (phase 72 step 9) §3.1을 다시 열어 확인했다(2026-10-28). STP는 「IEEE 802.1D 스패닝 트리 프로토콜」이고, 고리는 **중복 경로**(duplicate paths) 때문에 생긴다.
   여러 경로를 두는 데서 오는 회복력(resiliency)은 STP 방식에서 얻지 못한다 — 막아 둔 링크는 평소에 쓰이지 않는다 — §3.1
 
-쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(끊길 때를 대비한 다른 길이 고리를 만든다, STP는 IEEE 802.1D가 정했다, 일부 링크를 막아 프레임이 복제되고 고리를 도는 것을 막는다, 막아 둔 링크는 평소에 쓰지 못한다), 문항 n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(VLAN이 브로드캐스트 도메인을 나눈다 — 다음 개념으로 넘기는 한 줄), `hub-switch-vlan.vlan`(VLAN은 브로드캐스트를 가두고 2계층 네트워크를 여러 브로드캐스트 도메인으로 나눈다), 문항 n045 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
+쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(끊길 때를 대비한 다른 길이 고리를 만든다, STP는 IEEE 802.1D가 정했다, 일부 링크를 막아 프레임이 복제되고 고리를 도는 것을 막는다, 막아 둔 링크는 평소에 쓰지 못한다), 문항 n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(VLAN이 브로드캐스트 도메인을 나눈다 — 다음 개념으로 넘기는 한 줄), `hub-switch-vlan.vlan`(VLAN은 브로드캐스트를 가두고 2계층 네트워크를 여러 브로드캐스트 도메인으로 나눈다), 문항 n045 해설, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(VLAN ID는 12비트이고 VLAN은 4094개까지다), 문항 n048 해설
 
 ## (phase 72 step 1) RFC 5517 — Cisco Systems' Private VLANs: Scalable Security in a Multi-Client Environment
 https://www.rfc-editor.org/rfc/rfc5517
@@ -1084,7 +1091,7 @@ NIST 특별 간행물이다. 위 csrc.nist.gov 페이지가 링크한 본문 PDF
   VLAN마다 다른 QoS 규칙도 줄 수 있다 — §2.4
 - VLAN ID가 12비트라 VLAN은 4000개 남짓까지만 정할 수 있다 — §2.4.1·§2.4.2
 
-쓰인 곳: (phase 72 step 10) `hub-switch-vlan.vlan`(물리적 위치와 상관없이 설정으로 묶는다, 브로드캐스트를 가둔다, VLAN끼리 데이터가 격리되어 VLAN마다 다른 보안 정책을 줄 수 있고 하는 일이 다른 서버들을 VLAN으로 나눠 그 사이를 규칙으로 통제한다 — §2.4), (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(트렁크라는 낱말)
+쓰인 곳: (phase 72 step 10) `hub-switch-vlan.vlan`(물리적 위치와 상관없이 설정으로 묶는다, 브로드캐스트를 가둔다, VLAN끼리 데이터가 격리되어 VLAN마다 다른 보안 정책을 줄 수 있고 하는 일이 다른 서버들을 VLAN으로 나눠 그 사이를 규칙으로 통제한다 — §2.4), (phase 72 step 11) `hub-switch-vlan.vlan-membership`(포트에 VLAN을 정해 두면 그 포트에 이은 장치가 그 VLAN에 든다 — §2.4), `hub-switch-vlan.vlan-tagging`(여러 VLAN의 프레임을 받고 보내도록 설정한 포트가 트렁크 포트, 그런 링크가 트렁크 링크 — §2.4·§3), 문항 n048 해설
 
 ## (phase 72 step 1) Cisco — Catalyst 9200 「VLAN Configuration Guide, Cisco IOS XE 17.14.x」와 Catalyst 2960-L 「VLAN Configuration Guide, Cisco IOS Release 15.2(7)E」의 Configuring VTP
 https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/17-14/configuration_guide/vlan/b_1714_vlan_9200_cg/configuring_vtp.html
@@ -1101,8 +1108,22 @@ Catalyst 2960-L IOS 15.2(7)E(2020-09-17 고침). **제품과 판마다 달라질
   **off**(트랜스페어런트와 같되 받은 알림을 트렁크로 넘기지도 않는다) — 9200·2960-L 「VTP Modes」 표
 - 두 문서 모두 off 모드를 특정 VTP 버전에 묶어 적지 않는다(명령 문법 `vtp mode {client | server | transparent | off}`). 「off는 버전 3에만 있다」는 이 두 문서로 확인하지 못했다 — 9200·2960-L 「VTP Modes」
 - 버전은 1·2·3이 있고 기본은 버전 1이다 — 9200 「VTP Version 2」·「VTP Version 3」
+- (phase 72 step 11) 9200 판을 다시 열어 확인했다(2026-10-28). 서버는 VTP 도메인 전체의 VLAN을 만들고 고치고 지울 수 있고 기본 모드다. 클라이언트는 서버처럼 트렁크로 VTP 갱신을 주고받지만
+  그 장치에서 VLAN을 만들거나 고치거나 지울 수 없다. 트랜스페어런트는 VTP에 참여하지 않지만, 받은 알림을 트렁크로 넘겨준다 — 버전 1에서는 도메인 이름과 버전이 맞을 때만, 버전 2·3에서는 그대로 넘긴다.
+  트랜스페어런트 모드의 장치에서는 VLAN을 만들고 고치고 지울 수 있다. off는 트랜스페어런트와 같되 알림을 트렁크로 넘기지 않는다 — 9200 「VTP Modes」·「VTP Version 2」
+- (phase 72 step 11) 9200·2960-L 판 어디에도 VTP가 시스코 고유의 프로토콜이라는 문장은 없다. 그 사실은 아래 「Configure VTP on Catalyst Switches」 항목에서 가져온다
 
-쓰인 곳: `exam-notes.md` E8, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(끝 문단 VTP)
+쓰인 곳: `exam-notes.md` E8, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(VTP는 VLAN 설정이 어긋나지 않게 맞추는 프로토콜이다, 같은 VTP 도메인의 스위치는 같은 도메인 이름을 쓰고 트렁크 포트로 설정을 주기적으로 알려 맞춘다, 모드 넷 — 서버(기본)·클라이언트·트랜스페어런트·off. 버전별 차이는 쓰지 않았다)
+
+## (phase 72 step 11) Cisco — 「Configure VTP on Catalyst Switches」 (Configuration Example / Tech Note, 2026-08-18 고침)
+https://www.cisco.com/c/en/us/support/docs/lan-switching/vtp/98154-conf-vlan.html
+
+시스코 TAC가 쓴 제품 설정 예제(기술 지원 문서)다. 학습·마케팅·블로그·커뮤니티 페이지가 아니라 제품을 설정하는 법을 적은 시스코의 제품 지원 문서라서 「허용하는 출처」의 시스코 제품 문서로 본다.
+위 설정 가이드 두 편에 없는 한 문장만 여기서 가져온다. VTP의 동작과 모드는 위 설정 가이드에서 가져온다.
+
+- **VTP는 시스코 고유의 프로토콜(Cisco-proprietary protocol)이고, 시스코 Catalyst 제품군 대부분에 있다** — 「Background Information」
+
+쓰인 곳: (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(VTP는 IEEE 같은 표준 기구가 정한 표준이 아니라 시스코의 Catalyst 스위치 제품 대부분에 있는 시스코 고유의 프로토콜이다)
 
 ## (phase 72 step 4) MDN — Grammar and types, Integer literals
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#integer_literals

@@ -492,6 +492,111 @@
       "sources": [
         "hub-switch-vlan.vlan"
       ]
+    },
+    "vlan-membership": {
+      "label": "포트 기반 VLAN과 MAC 주소 기반 VLAN을 견주는 도식",
+      "svgLabel": "MAC 주소가 00-00-5E-00-53-01인 호스트 A를 스위치의 포트 1에서 포트 3으로 옮겨 꽂았을 때, 스위치가 VLAN을 정하는 방식에 따라 A가 어느 VLAN에 드는지 보이는 모습",
+      "question": "장치를 다른 포트에 꽂으면 VLAN이 바뀔까?",
+      "idleCaption": "MAC 주소가 00-00-5E-00-53-01인 호스트 A가 포트 1에 꽂혀 VLAN 1에 들어 있다가, 비어 있던 포트 3으로 옮겨 꽂혔다. 아래의 두 표는 두 방식이 VLAN을 정할 때 보는 표다. 버튼을 고르면 스위치가 포트로 VLAN을 정할 때와 MAC 주소로 정할 때 A가 어느 VLAN에 드는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 A가 보낸 프레임이 들어오는 길이다. 두 표 박스는 두 방식의 표이고 한 칸이 항목 하나다. 스위치는 둘 가운데 한 방식을 쓰고, 흐린 칸은 그 방식에서 보지 않는 항목이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "row-port-1": "포트 1 · VLAN 1",
+        "row-port-2": "포트 2 · VLAN 1",
+        "row-port-3": "포트 3 · VLAN 2",
+        "row-port-4": "포트 4 · VLAN 2",
+        "row-mac-a": "00-00-5E-00-53-01 · VLAN 1"
+      },
+      "groups": {
+        "switch": "스위치",
+        "port-table": "포트 기반 VLAN의 표",
+        "mac-table": "MAC 주소 기반 VLAN의 표"
+      },
+      "notes": {
+        "mac-a": "00-00-5E-00-53-01",
+        "moved": "포트 1에서 옮겨 꽂음",
+        "in-vlan-2": "VLAN 2가 됨",
+        "in-vlan-1": "VLAN 1 그대로"
+      },
+      "scenarios": [
+        {
+          "id": "port-based",
+          "label": "포트 기반",
+          "caption": "스위치가 포트마다 VLAN을 정해 두었다. 포트 3은 VLAN 2이므로 옮겨 꽂은 A가 보낸 프레임은 VLAN 2의 프레임으로 다뤄지고, A는 VLAN 2가 된다. 어떤 장치든 그 포트에 꽂으면 그 포트의 VLAN에 든다.",
+          "sources": [
+            "hub-switch-vlan.vlan-membership"
+          ]
+        },
+        {
+          "id": "mac-based",
+          "label": "MAC 주소 기반",
+          "caption": "스위치가 MAC 주소마다 VLAN을 정해 두었다. 표에서 00-00-5E-00-53-01은 VLAN 1이므로, A는 포트 3에 꽂아도 VLAN 1 그대로다. 장치가 어느 포트에 꽂혔는지는 따지지 않는다.",
+          "sources": [
+            "hub-switch-vlan.vlan-membership"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan-membership"
+      ]
+    },
+    "vlan-trunk": {
+      "label": "VLAN 태그를 끼워 트렁크로 프레임을 나르는 도식",
+      "svgLabel": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 두 스위치에 나뉘어 있고, 두 스위치를 잇는 트렁크 링크로 VLAN 태그를 끼운 프레임이 오가는 모습",
+      "question": "스위치 사이 링크 하나로 VLAN 여럿을 어떻게 나를까?",
+      "idleCaption": "스위치 1에는 개발부의 호스트 A(VLAN 1)와 총무부의 호스트 C(VLAN 2)가, 스위치 2에는 개발부의 호스트 B(VLAN 1)와 총무부의 호스트 D(VLAN 2)가 이어져 있고, 두 스위치는 트렁크 링크 하나로 이어져 있다. 버튼을 고르면 VLAN마다 프레임이 어디로 가는지와, 트렁크를 지나는 프레임의 태그에 무엇이 적히는지 볼 수 있다.",
+      "legend": "가는 선은 케이블과 링크, 화살표는 프레임이 가는 길이다. 「VLAN 1」·「VLAN 2」 박스는 그 안의 호스트가 든 VLAN이다. 「트렁크로 오가는 프레임」 박스는 태그를 끼운 프레임에 든 것을 앞에서부터 차례로 보이고, 칸 크기는 바이트 수와 상관없다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-c": "호스트 C",
+        "switch-1": "스위치 1",
+        "switch-2": "스위치 2",
+        "host-b": "호스트 B",
+        "host-d": "호스트 D",
+        "destination": "목적지 MAC 주소",
+        "source": "출발지 MAC 주소",
+        "tag": "VLAN 태그",
+        "type-length": "이더타입/길이",
+        "data": "데이터",
+        "fcs": "FCS"
+      },
+      "groups": {
+        "vlan-1-sw1": "VLAN 1",
+        "vlan-2-sw1": "VLAN 2",
+        "vlan-1-sw2": "VLAN 1",
+        "vlan-2-sw2": "VLAN 2",
+        "frame": "트렁크로 오가는 프레임"
+      },
+      "notes": {
+        "trunk-name": "트렁크 링크",
+        "tag-vlan-1": "VLAN 1",
+        "tag-vlan-2": "VLAN 2"
+      },
+      "scenarios": [
+        {
+          "id": "vlan-1",
+          "label": "VLAN 1 프레임",
+          "caption": "개발부의 A가 보낸 프레임은 스위치 1에서 VLAN 1의 프레임으로 다뤄진다. 스위치 1은 트렁크로 내보낼 때 VLAN 1을 적은 태그를 끼우고, 스위치 2는 그 태그를 읽어 VLAN 1에 든 포트로만 내보내 층이 다른 B에게 닿게 한다.",
+          "sources": [
+            "hub-switch-vlan.vlan-tagging"
+          ]
+        },
+        {
+          "id": "vlan-2",
+          "label": "VLAN 2 프레임",
+          "caption": "총무부의 C가 보낸 프레임도 같은 트렁크 링크를 지나지만, 태그에는 VLAN 2가 적힌다. 스위치 2는 이 태그를 보고 VLAN 2에 든 포트로만 내보내므로, 프레임은 D에게 닿고 B에게는 가지 않는다.",
+          "sources": [
+            "hub-switch-vlan.vlan-tagging"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan-tagging"
+      ]
     }
   },
   "tables": {},
