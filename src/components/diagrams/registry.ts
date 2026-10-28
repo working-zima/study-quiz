@@ -34,6 +34,7 @@ import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTabl
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
+import { LanWanDiagram } from './LanWanDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
@@ -43,6 +44,7 @@ import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
+import { PacketLossDiagram } from './PacketLossDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -63,6 +65,7 @@ import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -153,7 +156,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-basics.client-server': ClientServerDiagram,
   'network-basics.internet': InternetworkDiagram,
   'network-basics.cast-types': CastTypesDiagram,
-  'network-basics.packet-loss': PerformanceMetricsTable,
+  'network-basics.lan-wan': LanWanDiagram,
+  'network-basics.traffic': TrafficLoadDiagram,
+  'network-basics.packet-loss': [PacketLossDiagram, PerformanceMetricsTable],
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
   'protocols-encapsulation.decapsulation': EncapsulationDiagram,
 }

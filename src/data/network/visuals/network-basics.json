@@ -267,6 +267,131 @@
         }
       ],
       "sources": ["network-basics.cast-types"]
+    },
+    "lan-wan": {
+      "label": "LAN과 WAN이 잇는 범위 도식",
+      "svgLabel": "집의 LAN과 멀리 있는 다른 LAN을 WAN이 이은 네트워크",
+      "question": "멀리 떨어진 두 LAN은 어떻게 이어질까?",
+      "idleCaption": "LAN과 WAN은 이어진 장치의 수가 아니라 거리로 나눠 부른다. 큰 박스 하나하나가 가까운 곳의 장치를 이은 LAN이고, 멀리 떨어진 두 LAN은 그 사이의 WAN을 거쳐 이어진다. 버튼을 고르면 메시지가 어디까지 가는지 볼 수 있다.",
+      "legend": "큰 박스는 LAN 하나이고, WAN 상자는 두 LAN을 잇는 넓은 네트워크다. 가는 선은 연결, 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "laptop": "노트북",
+        "phone": "휴대폰",
+        "home-router": "공유기",
+        "wan": "WAN",
+        "far-router": "공유기",
+        "desktop": "데스크톱",
+        "server": "서버"
+      },
+      "groups": {
+        "lan-1": "집의 LAN",
+        "lan-2": "다른 LAN"
+      },
+      "notes": {
+        "near": "가까운 거리",
+        "far": "먼 거리",
+        "isp": "ISP가 구축"
+      },
+      "scenarios": [
+        {
+          "id": "lan",
+          "label": "LAN",
+          "caption": "LAN은 가까운 거리에 있는 장치들을 이은 네트워크다. 집에서 공유기 하나에 노트북과 휴대폰이 이어진 것이 그 예이고, 노트북이 휴대폰으로 보낸 메시지는 공유기를 거쳐 이 LAN 안에서 오간다.",
+          "sources": ["network-basics.lan-wan", "network-basics.computer-network"]
+        },
+        {
+          "id": "wan",
+          "label": "WAN",
+          "caption": "집의 노트북이 멀리 있는 다른 LAN의 데스크톱으로 보낸 메시지는 공유기를 거쳐 나가, ISP와 맺은 연결로 WAN에 닿고 WAN을 지나 그 LAN에 들어간다. 이렇게 멀리 떨어진 곳까지 잇는 WAN은 KT·LG U+·SK 브로드밴드 같은 ISP가 구축한다.",
+          "sources": ["network-basics.lan-wan", "network-basics.network-equipment"]
+        }
+      ],
+      "sources": ["network-basics.lan-wan"]
+    },
+    "traffic-load": {
+      "label": "트래픽이 한 서버에 몰릴 때와 나뉠 때 도식",
+      "svgLabel": "사용자 넷이 서버 셋을 둔 웹 사이트로 요청을 보내는 네트워크",
+      "question": "요청이 한꺼번에 몰리면 어떻게 될까?",
+      "idleCaption": "트래픽은 네트워크 안을 오가는 정보의 양이다. 많은 사람이 같은 웹 사이트에 한꺼번에 접속하면 그 사이트로 트래픽이 몰린다. 버튼을 고르면 그 요청을 서버 한 대가 모두 받을 때와 여러 대가 나눠 받을 때를 견줄 수 있다.",
+      "legend": "큰 박스는 서버 셋을 둔 웹 사이트이고, 화살표는 사용자가 보낸 요청이 가는 방향이다.",
+      "nodes": {
+        "user-1": "사용자 1",
+        "user-2": "사용자 2",
+        "user-3": "사용자 3",
+        "user-4": "사용자 4",
+        "server-1": "서버 1",
+        "server-2": "서버 2",
+        "server-3": "서버 3"
+      },
+      "groups": {
+        "site": "웹 사이트"
+      },
+      "notes": {
+        "overload": "과부하"
+      },
+      "scenarios": [
+        {
+          "id": "concentrated",
+          "label": "한 서버에 몰릴 때",
+          "caption": "사용자 넷의 요청을 서버 한 대가 모두 받으면, 그 서버로 트래픽이 지나치게 몰린다. 서버가 들어오는 패킷을 감당하지 못해 과부하가 걸리고, 처리가 늦어지며, 심하면 패킷을 잃기도 한다.",
+          "sources": ["network-basics.traffic"]
+        },
+        {
+          "id": "distributed",
+          "label": "나눠 받을 때",
+          "caption": "같은 요청을 서버 여러 대가 나눠 받게 하면, 몰린 트래픽이 여러 곳으로 나뉘어 한 서버가 다 떠맡지 않는다. 이렇게 하는 것을 「트래픽을 분산한다」고 말한다.",
+          "sources": ["network-basics.traffic"]
+        }
+      ],
+      "sources": ["network-basics.traffic"]
+    },
+    "ping-loss": {
+      "label": "ping 결과로 패킷 손실을 읽는 도식",
+      "svgLabel": "보내는 호스트가 상대 호스트에게 메시지를 보내고, 보낸 메시지와 돌아온 응답을 칸으로 센 ping 결과",
+      "question": "보낸 메시지 가운데 몇 개에 응답이 돌아왔을까?",
+      "idleCaption": "ping은 상대 호스트에게 응답을 요청하는 메시지를 보내고, 응답이 돌아오는지 보는 명령이다. 결과를 고르면 보낸 메시지와 돌아온 응답의 수를 견줘, 잃은 수를 보낸 수에 견준 백분율인 패킷 손실을 볼 수 있다.",
+      "legend": "칸 하나가 메시지나 응답 하나다. 「보낸 메시지」 박스와 「돌아온 응답」 박스의 칸 수를 견주고, 화살표는 메시지와 응답이 가는 방향이다.",
+      "nodes": {
+        "sender": "보내는 호스트",
+        "receiver": "상대 호스트",
+        "sent-1": "1",
+        "sent-2": "2",
+        "sent-3": "3",
+        "sent-4": "4",
+        "sent-5": "5",
+        "sent-6": "6",
+        "sent-7": "7",
+        "back-1": "1",
+        "back-2": "2",
+        "back-3": "3",
+        "back-4": "4",
+        "back-5": "5",
+        "back-6": "6",
+        "back-7": "7"
+      },
+      "groups": {
+        "sent": "보낸 메시지",
+        "back": "돌아온 응답"
+      },
+      "notes": {
+        "loss-zero": "손실 0%",
+        "loss-full": "손실 100%"
+      },
+      "scenarios": [
+        {
+          "id": "all-back",
+          "label": "7개 보내 7개 돌아옴",
+          "caption": "보내는 호스트가 메시지 7개를 보냈고, 응답 7개가 모두 돌아왔다. 잃은 것이 하나도 없으므로 패킷 손실은 0%다.",
+          "sources": ["network-basics.packet-loss"]
+        },
+        {
+          "id": "none-back",
+          "label": "3개 보내 0개 돌아옴",
+          "caption": "메시지 3개를 보냈는데 응답이 하나도 돌아오지 않았다. 보낸 3개를 모두 잃은 셈이라 패킷 손실은 100%다.",
+          "sources": ["network-basics.packet-loss"]
+        }
+      ],
+      "sources": ["network-basics.packet-loss"]
     }
   },
   "tables": {
