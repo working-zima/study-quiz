@@ -8,17 +8,21 @@ import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
+import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
+import { DuplexDiagram } from './DuplexDiagram'
 import { EcsRolesDiagram } from './EcsRolesDiagram'
 import { EcsStructureDiagram } from './EcsStructureDiagram'
 import { EdgeToOriginDiagram } from './EdgeToOriginDiagram'
@@ -28,11 +32,17 @@ import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
+import { EthernetFrameDiagram } from './EthernetFrameDiagram'
+import { EthernetLayersDiagram } from './EthernetLayersDiagram'
+import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
+import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
@@ -42,11 +52,14 @@ import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { MacAddressDiagram } from './MacAddressDiagram'
+import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
+import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
@@ -73,11 +86,18 @@ import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SgNaclCompareTable } from './sgNaclTables'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
+import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
+import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
+import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
+import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { VlanMembershipDiagram } from './VlanMembershipDiagram'
+import { VlanSplitDiagram } from './VlanSplitDiagram'
+import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -184,6 +204,26 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.encapsulation': EncapsulationDiagram,
   'protocols-encapsulation.decapsulation': DecapsulationDiagram,
   'protocols-encapsulation.pdu-names': PduNamesDiagram,
+  'ethernet.ethernet': EthernetLayersDiagram,
+  'ethernet.standard-names': StandardNameDiagram,
+  'ethernet.fast-gigabit': EthernetSpeedsDiagram,
+  'ethernet.nic': NicFilterDiagram,
+  'ethernet.mac-address': MacAddressDiagram,
+  'ethernet.frame': EthernetFrameDiagram,
+  'ethernet.ethertype-length': EtherTypeLengthDiagram,
+  'ethernet.fcs': FcsCheckDiagram,
+  'hub-switch-vlan.hub': HubRepeatDiagram,
+  'hub-switch-vlan.duplex': DuplexDiagram,
+  'hub-switch-vlan.collision-domain': CollisionDomainDiagram,
+  'hub-switch-vlan.csma-cd': CsmaCdDiagram,
+  'hub-switch-vlan.switch': SwitchForwardDiagram,
+  'hub-switch-vlan.mac-address-table': MacTableDiagram,
+  'hub-switch-vlan.flooding-forwarding-filtering': SwitchDecisionDiagram,
+  'hub-switch-vlan.stp': SpanningTreeDiagram,
+  'hub-switch-vlan.broadcast-domain': BroadcastDomainDiagram,
+  'hub-switch-vlan.vlan': VlanSplitDiagram,
+  'hub-switch-vlan.vlan-membership': VlanMembershipDiagram,
+  'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

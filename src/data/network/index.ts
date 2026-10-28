@@ -1,5 +1,7 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
+import ethernetVisuals from './visuals/ethernet.json'
+import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import type { Question, Topic } from '../../types/content'
@@ -13,6 +15,8 @@ export const questions: Question[] = questionsData as Question[]
 export const visualsByTopicId: Record<string, TopicVisuals> = {
   'network-basics': networkBasicsVisuals,
   'protocols-encapsulation': protocolsEncapsulationVisuals,
+  'ethernet': ethernetVisuals,
+  'hub-switch-vlan': hubSwitchVlanVisuals,
 }
 
 export const networkSubject: Subject = {

@@ -1,0 +1,604 @@
+{
+  "diagrams": {
+    "hub-repeat": {
+      "label": "허브가 신호를 내보내는 도식",
+      "svgLabel": "허브의 포트 1~4에 호스트 A~D가 하나씩 이어져 있고, 한 호스트가 보낸 신호를 허브가 다른 모든 호스트에게 내보내는 모습",
+      "question": "허브는 받은 신호를 어디로 내보낼까?",
+      "idleCaption": "호스트 A~D가 허브의 포트 1~4에 하나씩 케이블로 이어져 있다. 허브는 목적지 MAC 주소를 보지 않으므로, 한 포트로 들어온 신호를 그 포트를 뺀 다른 모든 포트로 내보낸다. 버튼을 고르면 누가 보낼 때 신호가 어디로 가는지 볼 수 있다.",
+      "legend": "포트 1~4는 허브에서 케이블을 꽂는 자리다. 가는 선은 케이블, 화살표는 신호가 가는 길이다.",
+      "nodes": {
+        "hub": "허브",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "notes": {
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "receiver": "받을 장치",
+        "discard-b": "버림",
+        "discard-d": "버림"
+      },
+      "scenarios": [
+        {
+          "id": "a-sends",
+          "label": "A가 C에게 보낼 때",
+          "caption": "호스트 A가 호스트 C에게 프레임을 보낸다. 허브는 목적지 MAC 주소를 보지 않으므로 포트 1로 들어온 신호를 포트 2·3·4로 모두 내보낸다. C의 NIC는 자기 앞으로 온 프레임이라 받아들이고, B와 D의 NIC는 자기 앞으로 온 프레임이 아니라 버린다.",
+          "sources": [
+            "hub-switch-vlan.hub"
+          ]
+        },
+        {
+          "id": "d-sends",
+          "label": "D가 보낼 때",
+          "caption": "이번에는 포트 4의 호스트 D가 보낸다. 신호가 어느 포트로 들어와도 허브가 하는 일은 같다. 들어온 포트 4를 뺀 포트 1·2·3으로 신호를 내보내 A·B·C 모두에게 보내고, 신호가 들어온 D 쪽으로는 되돌려 보내지 않는다.",
+          "sources": [
+            "hub-switch-vlan.hub"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.hub"
+      ]
+    },
+    "duplex": {
+      "label": "반이중과 전이중을 견주는 도식",
+      "svgLabel": "케이블로 이은 장치 A와 장치 B가 한쪽씩 번갈아 보내거나 서로에게 동시에 보내는 모습",
+      "question": "보내기와 받기를 동시에 할 수 있을까?",
+      "idleCaption": "장치 A와 장치 B가 케이블로 이어져 있다. 두 장치가 데이터를 주고받는 방식은 한 번에 한쪽만 보내는 반이중과, 양쪽이 동시에 보내고 받는 전이중으로 나뉜다. 버튼을 고르면 두 방식에서 데이터가 어떻게 오가는지 볼 수 있다.",
+      "legend": "가는 선은 두 장치를 잇는 케이블, 화살표는 데이터가 가는 방향이다.",
+      "nodes": {
+        "device-a": "장치 A",
+        "device-b": "장치 B"
+      },
+      "notes": {
+        "wait-b": "기다림",
+        "both-a": "보내면서 받음",
+        "both-b": "보내면서 받음"
+      },
+      "scenarios": [
+        {
+          "id": "half",
+          "label": "반이중",
+          "caption": "반이중에서는 한 번에 한쪽만 보낸다. A가 B에게 보내는 동안 B는 보낼 데이터가 있어도 기다렸다가, A가 다 보낸 뒤에 보낸다. 허브에 이은 장치들이 이렇게 통신한다.",
+          "sources": [
+            "hub-switch-vlan.duplex"
+          ]
+        },
+        {
+          "id": "full",
+          "label": "전이중",
+          "caption": "전이중에서는 A와 B가 서로에게 동시에 보낸다. 두 장치 모두 보내면서 받으므로 차례를 기다리지 않는다. 스위치의 포트 하나에 장치 하나를 바로 이은 연결이 흔히 이렇게 통신한다.",
+          "sources": [
+            "hub-switch-vlan.duplex"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.duplex"
+      ]
+    },
+    "collision-domain": {
+      "label": "충돌 도메인을 견주는 도식",
+      "svgLabel": "같은 호스트 A~D를 위에서는 허브에, 아래에서는 스위치에 하나씩 이었을 때 충돌 도메인이 어떻게 나뉘는지 보이는 모습",
+      "question": "충돌은 어디까지 번질까?",
+      "idleCaption": "위에는 호스트 A~D를 허브에, 아래에는 같은 호스트 A~D를 스위치에 하나씩 이었다. 두 그림은 케이블로 이은 모양이 같다. 버튼을 고르면 두 장비에서 서로 충돌할 수 있는 범위, 곧 충돌 도메인이 어떻게 나뉘는지 볼 수 있다.",
+      "legend": "얇은 선 박스는 충돌 도메인, 가는 선은 케이블이다. 스위치 아래의 케이블 넷은 저마다 스위치의 포트 하나에 꽂혀 있다.",
+      "nodes": {
+        "hub": "허브",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "switch": "스위치",
+        "sw-host-a": "호스트 A",
+        "sw-host-b": "호스트 B",
+        "sw-host-c": "호스트 C",
+        "sw-host-d": "호스트 D"
+      },
+      "notes": {
+        "hub-count": "충돌 도메인 1개",
+        "switch-count": "충돌 도메인 4개"
+      },
+      "scenarios": [
+        {
+          "id": "hub",
+          "label": "허브에 이었을 때",
+          "caption": "허브는 한 포트로 들어온 신호를 다른 모든 포트로 내보내므로, 어느 두 호스트가 거의 같은 때 보내도 두 신호가 허브를 거쳐 만나 충돌한다. 그래서 허브에 이은 호스트 넷 전체가 충돌 도메인 하나다.",
+          "sources": [
+            "hub-switch-vlan.collision-domain"
+          ]
+        },
+        {
+          "id": "switch",
+          "label": "스위치에 이었을 때",
+          "caption": "스위치는 포트마다 이은 케이블을 따로따로의 LAN으로 두므로, 한 포트의 신호가 다른 포트의 케이블로 그대로 흘러가지 않는다. 그래서 충돌 도메인이 포트마다 하나씩, 모두 넷으로 나뉜다. 포트에 호스트 하나를 바로 이어 전이중으로 통신하면 그 안에서도 충돌이 생기지 않는다.",
+          "sources": [
+            "hub-switch-vlan.collision-domain"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.collision-domain"
+      ]
+    },
+    "csma-cd": {
+      "label": "CSMA/CD가 충돌에 대처하는 도식",
+      "svgLabel": "허브에 이은 호스트 A~D 가운데 A와 B가 매체를 들어 보고, 거의 같은 때 보내 충돌한 뒤, 저마다 기다렸다가 다시 보내는 모습",
+      "question": "둘이 같은 때 보내면 어떻게 될까?",
+      "idleCaption": "호스트 A~D가 허브에 이어져 반이중으로 매체 하나를 함께 쓴다. CSMA/CD는 보내기 전에 매체를 들어 보고, 충돌하면 잼 신호를 보낸 뒤 무작위로 기다렸다가 다시 보내는 규칙이다. 버튼을 차례로 고르면 A와 B가 보낼 때 무슨 일이 일어나는지 단계별로 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 신호가 가는 길이다.",
+      "nodes": {
+        "hub": "허브",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "notes": {
+        "listen-a": "매체를 들어 봄",
+        "collision": "충돌",
+        "jam-a": "잼 신호 보냄",
+        "jam-b": "잼 신호 보냄",
+        "wait-a": "짧게 기다림",
+        "wait-b": "길게 기다림"
+      },
+      "scenarios": [
+        {
+          "id": "sense",
+          "label": "1. 듣기",
+          "caption": "보낼 프레임이 생긴 호스트 A는 먼저 매체를 들어 보고 다른 장치의 신호가 지나가는지 살핀다. 신호가 지나가고 있으면 그 신호가 끝나고 프레임 사이 간격만큼 더 기다렸다가 보내고, 신호가 없으면 보내기 시작한다.",
+          "sources": [
+            "hub-switch-vlan.csma-cd"
+          ]
+        },
+        {
+          "id": "collide",
+          "label": "2. 충돌",
+          "caption": "A와 B가 둘 다 매체가 비었다고 보고 거의 같은 때 보내기 시작하면, 두 신호가 허브를 거친 매체 위에서 겹쳐 충돌이 난다. 충돌을 알아챈 A와 B는 곧바로 멈추지 않고 잼 신호를 조금 더 보내 상대도 충돌을 알아채게 한 뒤 전송을 멈춘다.",
+          "sources": [
+            "hub-switch-vlan.csma-cd"
+          ]
+        },
+        {
+          "id": "backoff",
+          "label": "3. 기다렸다 다시",
+          "caption": "A와 B는 저마다 무작위로 고른 시간만큼 기다렸다가 다시 보낸다. 이 그림에서는 A가 고른 시간이 짧아 A가 먼저 다시 보내고, 기다림을 마친 B는 A의 신호를 듣고 미룬다. 기다릴 시간이 그때그때 무작위라 프레임이 언제 보내질지 미리 알 수 없다.",
+          "sources": [
+            "hub-switch-vlan.csma-cd"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.csma-cd"
+      ]
+    },
+    "switch-forward": {
+      "label": "허브와 스위치가 프레임을 내보내는 곳을 견주는 도식",
+      "svgLabel": "같은 호스트 A~D를 위에서는 허브에, 아래에서는 스위치에 포트 1~4로 하나씩 이었을 때, 호스트 A가 호스트 C에게 보낸 프레임이 어느 포트로 나가는지 보이는 모습",
+      "question": "스위치는 허브와 무엇이 다를까?",
+      "idleCaption": "위에는 호스트 A~D를 허브의 포트 1~4에, 아래에는 같은 호스트 A~D를 스위치의 포트 1~4에 하나씩 이었다. 두 장비 모두 여러 장치를 케이블로 한데 잇는다. 버튼을 고르면 호스트 A가 호스트 C에게 보낸 프레임을 두 장비가 각각 어느 포트로 내보내는지 볼 수 있다.",
+      "legend": "포트 1~4는 장비에서 케이블을 꽂는 자리다. 가는 선은 케이블, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "hub": "허브",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "switch": "스위치",
+        "sw-host-a": "호스트 A",
+        "sw-host-b": "호스트 B",
+        "sw-host-c": "호스트 C",
+        "sw-host-d": "호스트 D"
+      },
+      "notes": {
+        "hub-port-1": "포트 1",
+        "hub-port-2": "포트 2",
+        "hub-port-3": "포트 3",
+        "hub-port-4": "포트 4",
+        "sw-port-1": "포트 1",
+        "sw-port-2": "포트 2",
+        "sw-port-3": "포트 3",
+        "sw-port-4": "포트 4",
+        "hub-note": "목적지 MAC 주소를 보지 않고 다른 모든 포트로",
+        "switch-note": "목적지 MAC 주소를 보고 포트 3으로만"
+      },
+      "scenarios": [
+        {
+          "id": "hub",
+          "label": "허브라면",
+          "caption": "허브는 목적지 MAC 주소를 보지 않으므로, 포트 1로 들어온 호스트 A의 프레임을 포트 2·3·4로 모두 내보낸다. 받을 장치가 아닌 B와 D의 케이블에도 같은 프레임이 실리고, B와 D의 NIC가 그 프레임을 버려야 한다.",
+          "sources": [
+            "hub-switch-vlan.switch"
+          ]
+        },
+        {
+          "id": "switch",
+          "label": "스위치라면",
+          "caption": "스위치는 목적지 MAC 주소를 보고, C가 이어진 포트 3으로만 프레임을 내보낸다. B와 D의 케이블로는 그 프레임이 지나가지 않는다. 이 그림은 C가 포트 3에 이어져 있다는 것을 스위치가 이미 알고 있을 때다.",
+          "sources": [
+            "hub-switch-vlan.switch"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.switch"
+      ]
+    },
+    "mac-table": {
+      "label": "MAC 주소 테이블을 채우고 지우는 도식",
+      "svgLabel": "스위치의 포트 1~4에 호스트 A~D가 하나씩 이어져 있고, 스위치 위에 포트와 MAC 주소를 짝지어 적는 MAC 주소 테이블이 있는 모습",
+      "question": "스위치는 누가 어느 포트에 있는지 어떻게 알까?",
+      "idleCaption": "호스트 A~D가 스위치의 포트 1~4에 하나씩 이어져 있고, 위의 MAC 주소 테이블은 아직 비어 있다. A의 MAC 주소는 00-00-5E-00-53-01, C의 MAC 주소는 00-00-5E-00-53-03이다. 버튼을 차례로 고르면 표에 항목이 적히고 지워지는 과정을 볼 수 있다.",
+      "legend": "위 박스는 스위치가 적어 두는 MAC 주소 테이블이고, 한 줄이 항목 하나다. 흐리게 남은 줄은 지운 항목이다. 가는 선은 케이블, 화살표는 프레임이 들어오는 길이다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "row-a": "포트 1 · 00-00-5E-00-53-01",
+        "row-c": "포트 3 · 00-00-5E-00-53-03"
+      },
+      "groups": {
+        "table": "MAC 주소 테이블"
+      },
+      "notes": {
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "new-a": "새로 적음",
+        "new-c": "새로 적음",
+        "aged-a": "300초가 지나 지움"
+      },
+      "scenarios": [
+        {
+          "id": "learn-a",
+          "label": "A가 보낼 때",
+          "caption": "호스트 A가 C에게 보낸 프레임이 포트 1로 들어온다. 스위치는 이 프레임의 출발지 MAC 주소 00-00-5E-00-53-01과 프레임이 들어온 포트 1을 짝지어 표에 새로 적는다. 보낸 장치가 포트 1 쪽에 있다는 것을 프레임이 알려 주기 때문이다.",
+          "sources": [
+            "hub-switch-vlan.mac-address-table"
+          ]
+        },
+        {
+          "id": "learn-c",
+          "label": "C가 답할 때",
+          "caption": "호스트 C가 A에게 답한 프레임이 포트 3으로 들어온다. 스위치는 출발지 MAC 주소 00-00-5E-00-53-03과 포트 3을 새로 적는다. 이제 표에는 항목이 둘이고, 스위치는 A와 C가 각각 어느 포트에 이어져 있는지 안다.",
+          "sources": [
+            "hub-switch-vlan.mac-address-table"
+          ]
+        },
+        {
+          "id": "aging",
+          "label": "시간이 지나면",
+          "caption": "A가 그 뒤로 프레임을 한 번도 보내지 않은 채 300초가 지나면 스위치는 A의 항목을 지운다. 이를 에이징이라 한다. A보다 나중에 프레임을 보낸 C의 항목은 아직 남아 있다. 300초는 IEEE 802.1D가 권하는 기본값이고 관리자가 바꿀 수 있다.",
+          "sources": [
+            "hub-switch-vlan.mac-address-table"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.mac-address-table"
+      ]
+    },
+    "switch-decision": {
+      "label": "플러딩·포워딩·필터링을 보이는 도식",
+      "svgLabel": "스위치의 포트 1~4에 호스트 A~D가 하나씩 이어져 있고, 스위치 위에 MAC 주소 테이블이 있으며, 스위치가 받은 프레임을 어느 포트로 내보내는지 보이는 모습",
+      "question": "스위치는 표를 보고 프레임을 어느 포트로 내보낼까?",
+      "idleCaption": "호스트 A~D가 스위치의 포트 1~4에 하나씩 이어져 있고, 위 박스는 스위치의 MAC 주소 테이블이다. 버튼을 차례로 고르면 A가 C에게 처음 프레임을 보낼 때와 C가 A에게 답할 때, 스위치가 그 프레임을 어느 포트로 내보내는지 볼 수 있다.",
+      "legend": "위 박스는 스위치의 MAC 주소 테이블이고, 한 줄이 항목 하나다. 가는 선은 케이블, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "row-a": "포트 1 · 00-00-5E-00-53-01",
+        "row-c": "포트 3 · 00-00-5E-00-53-03"
+      },
+      "groups": {
+        "table": "MAC 주소 테이블"
+      },
+      "notes": {
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "c-missing": "C의 MAC 주소는 아직 없음",
+        "found-a": "목적지 A를 찾음",
+        "skip-b": "보내지 않음",
+        "skip-d": "보내지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "flooding",
+          "label": "표에 없을 때",
+          "caption": "표가 비어 있을 때 호스트 A가 C에게 처음 프레임을 보냈다. 스위치는 A의 MAC 주소를 포트 1과 짝지어 적지만, 목적지인 C의 MAC 주소는 아직 표에 없다. 그래서 프레임이 들어온 포트 1을 뺀 포트 2·3·4로 모두 내보낸다. 이것이 플러딩이다. B와 D의 NIC는 자기 앞으로 온 프레임이 아니므로 버린다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        },
+        {
+          "id": "forwarding",
+          "label": "표에 있을 때",
+          "caption": "호스트 C가 A에게 답한 프레임이 포트 3으로 들어온다. 스위치는 C의 MAC 주소를 포트 3과 짝지어 적고, 목적지인 A의 MAC 주소를 표에서 찾는다. A는 포트 1에 있다고 적혀 있으므로 스위치는 그 프레임을 포트 1로만 내보낸다. 이것이 포워딩이다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        },
+        {
+          "id": "filtering",
+          "label": "다른 포트는",
+          "caption": "같은 프레임을 나머지 포트 쪽에서 본 모습이다. 스위치는 A가 있는 포트 1로만 내보내고, 포트 2와 포트 4로는 내보내지 않는다. 이것이 필터링이다. 그래서 A와 C가 주고받는 프레임은 B와 D의 케이블로 지나가지 않는다.",
+          "sources": [
+            "hub-switch-vlan.flooding-forwarding-filtering"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.flooding-forwarding-filtering"
+      ]
+    },
+    "spanning-tree": {
+      "label": "스패닝 트리 프로토콜이 고리를 막는 도식",
+      "svgLabel": "호스트 A가 이어진 스위치 1과 스위치 2·3이 링크 셋으로 서로 이어져 고리를 이룬 모습",
+      "question": "스위치를 고리로 이으면 무슨 일이 생길까?",
+      "idleCaption": "호스트 A가 이어진 스위치 1과 스위치 2·3을, 링크 하나가 끊겨도 통신이 이어지도록 서로 이어 고리를 만들었다. 버튼을 고르면 STP가 없을 때와 STP를 쓸 때, 그리고 쓰던 링크가 끊겼을 때 브로드캐스트 프레임이 가는 길을 볼 수 있다.",
+      "legend": "가는 선은 케이블과 스위치 사이의 링크이고, 화살표는 브로드캐스트 프레임이 가는 길이다. 흐린 선은 막히거나 끊겨 프레임이 지나가지 않는 링크다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "switch-1": "스위치 1",
+        "switch-2": "스위치 2",
+        "switch-3": "스위치 3"
+      },
+      "notes": {
+        "loop-note": "끝없이 돎",
+        "blocked": "막음",
+        "broken": "끊김",
+        "reopened": "전달 상태로 바꿈"
+      },
+      "scenarios": [
+        {
+          "id": "loop",
+          "label": "STP가 없으면",
+          "caption": "호스트 A가 보낸 브로드캐스트 프레임을 스위치 1이 스위치 2와 3으로 플러딩하고, 받은 스위치도 저마다 다시 플러딩해 프레임이 스위치 1로 돌아온다. 돌아온 프레임도 또 플러딩되어 고리를 끝없이 돈다. 화살표는 한 방향만 그렸지만 반대 방향으로 간 프레임도 같다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        },
+        {
+          "id": "stp",
+          "label": "STP를 쓰면",
+          "caption": "STP를 쓰는 스위치들은 서로 정보를 주고받아 막을 링크를 정한다. 이 그림은 스위치 2와 3 사이의 링크를 막은 경우다. 이제 스위치 1이 플러딩한 프레임은 스위치 2와 3에 한 번씩 닿고, 남은 두 링크에는 한 바퀴 도는 길이 없어 더는 돌지 않는다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        },
+        {
+          "id": "failover",
+          "label": "링크가 끊기면",
+          "caption": "쓰던 스위치 1과 2 사이의 링크가 끊기면, 스위치들은 다시 정보를 주고받아 막아 두었던 포트를 전달 상태로 바꾼다. 이제 프레임은 스위치 1에서 3을 거쳐 2로 가고, 세 스위치는 고리 없는 길로 다시 이어진다.",
+          "sources": [
+            "hub-switch-vlan.stp"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.stp"
+      ]
+    },
+    "broadcast-domain": {
+      "label": "브로드캐스트 프레임이 닿는 범위를 보이는 도식",
+      "svgLabel": "위에는 호스트 A~D를 스위치 한 대에 하나씩 이은 모습, 아래에는 호스트 A·B를 이은 스위치 1과 호스트 C·D를 이은 스위치 2를 라우터로 이은 모습이 있고, 호스트 A가 보낸 브로드캐스트 프레임이 어디까지 닿는지 보이는 모습",
+      "question": "브로드캐스트는 어디까지 퍼질까?",
+      "idleCaption": "위에는 호스트 A~D를 스위치 한 대의 포트에 하나씩 이었고, 아래에는 호스트 A·B를 이은 스위치 1과 호스트 C·D를 이은 스위치 2를 라우터로 이었다. 버튼을 고르면 호스트 A가 보낸 브로드캐스트 프레임이 어디까지 닿는지, 그리고 같은 스위치에서 충돌 도메인은 어떻게 나뉘는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 브로드캐스트 프레임이 가는 길이다. 얇은 선 박스 하나가 도메인 하나다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "switch-1": "스위치 1",
+        "router": "라우터",
+        "switch-2": "스위치 2",
+        "r-host-a": "호스트 A",
+        "r-host-b": "호스트 B",
+        "r-host-c": "호스트 C",
+        "r-host-d": "호스트 D"
+      },
+      "notes": {
+        "one-domain": "브로드캐스트 도메인 1개",
+        "four-collision": "충돌 도메인 4개",
+        "stop": "넘기지 않음",
+        "two-domains": "브로드캐스트 도메인 2개"
+      },
+      "scenarios": [
+        {
+          "id": "switch",
+          "label": "스위치 안에서",
+          "caption": "스위치는 호스트 A가 보낸 브로드캐스트 프레임을 들어온 포트를 뺀 모든 포트로 플러딩한다. 그래서 B·C·D가 모두 그 프레임을 받고, 한 스위치에 이은 호스트 전체가 브로드캐스트 도메인 하나를 이룬다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain"
+          ]
+        },
+        {
+          "id": "collision",
+          "label": "충돌 도메인과 견주면",
+          "caption": "같은 스위치에서 충돌 도메인은 포트마다 하나씩 넷으로 나뉜다. 한 포트의 신호가 다른 포트로 그대로 흘러가지 않기 때문이다. 하지만 브로드캐스트 프레임은 스위치가 모든 포트로 내보내므로, 브로드캐스트 도메인은 여전히 하나다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain",
+            "hub-switch-vlan.collision-domain"
+          ]
+        },
+        {
+          "id": "router",
+          "label": "라우터에서",
+          "caption": "스위치 1은 A의 브로드캐스트 프레임을 B와 라우터 쪽으로 플러딩한다. 라우터는 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로, 그 프레임은 스위치 2 쪽의 C와 D에게 가지 않는다. 라우터 양쪽으로 브로드캐스트 도메인이 둘 생긴다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.broadcast-domain"
+      ]
+    },
+    "vlan-split": {
+      "label": "VLAN으로 브로드캐스트 도메인을 나누는 도식",
+      "svgLabel": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 스위치 한 대에 이어져 있고, 호스트 A가 보낸 브로드캐스트 프레임이 VLAN으로 나누기 전과 뒤에 어디까지 가는지 보이는 모습",
+      "question": "스위치 하나를 부서별 LAN 둘로 나눌 수 있을까?",
+      "idleCaption": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 스위치 한 대의 포트 1~4에 이어져 있다. 버튼을 고르면 개발부의 A가 보낸 브로드캐스트 프레임이 VLAN으로 나누기 전과 나눈 뒤에 어디까지 가는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 브로드캐스트 프레임이 가는 길이다. 얇은 선 박스 하나가 VLAN 하나다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "groups": {
+        "vlan-1": "VLAN 1",
+        "vlan-2": "VLAN 2"
+      },
+      "notes": {
+        "dev": "개발부",
+        "admin": "총무부",
+        "one-domain": "브로드캐스트 도메인 1개",
+        "two-domains": "브로드캐스트 도메인 2개"
+      },
+      "scenarios": [
+        {
+          "id": "no-vlan",
+          "label": "나누기 전",
+          "caption": "VLAN으로 나누지 않으면 네 호스트가 브로드캐스트 도메인 하나에 있다. 스위치가 A의 브로드캐스트 프레임을 포트 2·3·4로 플러딩하므로, 개발부의 공지가 총무부의 C와 D에게까지 간다.",
+          "sources": [
+            "hub-switch-vlan.vlan"
+          ]
+        },
+        {
+          "id": "vlan",
+          "label": "VLAN으로 나누면",
+          "caption": "A·B를 VLAN 1에, C·D를 VLAN 2에 넣으면 스위치는 A의 브로드캐스트 프레임을 VLAN 1에 든 포트 2로만 내보낸다. 공지는 B만 받고, 브로드캐스트 도메인이 VLAN마다 하나씩 둘로 나뉜다.",
+          "sources": [
+            "hub-switch-vlan.vlan"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan"
+      ]
+    },
+    "vlan-membership": {
+      "label": "포트 기반 VLAN과 MAC 주소 기반 VLAN을 견주는 도식",
+      "svgLabel": "MAC 주소가 00-00-5E-00-53-01인 호스트 A를 스위치의 포트 1에서 포트 3으로 옮겨 꽂았을 때, 스위치가 VLAN을 정하는 방식에 따라 A가 어느 VLAN에 드는지 보이는 모습",
+      "question": "장치를 다른 포트에 꽂으면 VLAN이 바뀔까?",
+      "idleCaption": "MAC 주소가 00-00-5E-00-53-01인 호스트 A가 포트 1에 꽂혀 VLAN 1에 들어 있다가, 비어 있던 포트 3으로 옮겨 꽂혔다. 아래의 두 표는 두 방식이 VLAN을 정할 때 보는 표다. 버튼을 고르면 스위치가 포트로 VLAN을 정할 때와 MAC 주소로 정할 때 A가 어느 VLAN에 드는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 A가 보낸 프레임이 들어오는 길이다. 두 표 박스는 두 방식의 표이고 한 칸이 항목 하나다. 스위치는 둘 가운데 한 방식을 쓰고, 흐린 칸은 그 방식에서 보지 않는 항목이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "port-1": "포트 1",
+        "port-2": "포트 2",
+        "port-3": "포트 3",
+        "port-4": "포트 4",
+        "row-port-1": "포트 1 · VLAN 1",
+        "row-port-2": "포트 2 · VLAN 1",
+        "row-port-3": "포트 3 · VLAN 2",
+        "row-port-4": "포트 4 · VLAN 2",
+        "row-mac-a": "00-00-5E-00-53-01 · VLAN 1"
+      },
+      "groups": {
+        "switch": "스위치",
+        "port-table": "포트 기반 VLAN의 표",
+        "mac-table": "MAC 주소 기반 VLAN의 표"
+      },
+      "notes": {
+        "mac-a": "00-00-5E-00-53-01",
+        "moved": "포트 1에서 옮겨 꽂음",
+        "in-vlan-2": "VLAN 2가 됨",
+        "in-vlan-1": "VLAN 1 그대로"
+      },
+      "scenarios": [
+        {
+          "id": "port-based",
+          "label": "포트 기반",
+          "caption": "스위치가 포트마다 VLAN을 정해 두었다. 포트 3은 VLAN 2이므로 옮겨 꽂은 A가 보낸 프레임은 VLAN 2의 프레임으로 다뤄지고, A는 VLAN 2가 된다. 어떤 장치든 그 포트에 꽂으면 그 포트의 VLAN에 든다.",
+          "sources": [
+            "hub-switch-vlan.vlan-membership"
+          ]
+        },
+        {
+          "id": "mac-based",
+          "label": "MAC 주소 기반",
+          "caption": "스위치가 MAC 주소마다 VLAN을 정해 두었다. 표에서 00-00-5E-00-53-01은 VLAN 1이므로, A는 포트 3에 꽂아도 VLAN 1 그대로다. 장치가 어느 포트에 꽂혔는지는 따지지 않는다.",
+          "sources": [
+            "hub-switch-vlan.vlan-membership"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan-membership"
+      ]
+    },
+    "vlan-trunk": {
+      "label": "VLAN 태그를 끼워 트렁크로 프레임을 나르는 도식",
+      "svgLabel": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 두 스위치에 나뉘어 있고, 두 스위치를 잇는 트렁크 링크로 VLAN 태그를 끼운 프레임이 오가는 모습",
+      "question": "스위치 사이 링크 하나로 VLAN 여럿을 어떻게 나를까?",
+      "idleCaption": "스위치 1에는 개발부의 호스트 A(VLAN 1)와 총무부의 호스트 C(VLAN 2)가, 스위치 2에는 개발부의 호스트 B(VLAN 1)와 총무부의 호스트 D(VLAN 2)가 이어져 있고, 두 스위치는 트렁크 링크 하나로 이어져 있다. 버튼을 고르면 VLAN마다 프레임이 어디로 가는지와, 트렁크를 지나는 프레임의 태그에 무엇이 적히는지 볼 수 있다.",
+      "legend": "가는 선은 케이블과 링크, 화살표는 프레임이 가는 길이다. 「VLAN 1」·「VLAN 2」 박스는 그 안의 호스트가 든 VLAN이다. 「트렁크로 오가는 프레임」 박스는 태그를 끼운 프레임에 든 것을 앞에서부터 차례로 보이고, 칸 크기는 바이트 수와 상관없다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-c": "호스트 C",
+        "switch-1": "스위치 1",
+        "switch-2": "스위치 2",
+        "host-b": "호스트 B",
+        "host-d": "호스트 D",
+        "destination": "목적지 MAC 주소",
+        "source": "출발지 MAC 주소",
+        "tag": "VLAN 태그",
+        "type-length": "이더타입/길이",
+        "data": "데이터",
+        "fcs": "FCS"
+      },
+      "groups": {
+        "vlan-1-sw1": "VLAN 1",
+        "vlan-2-sw1": "VLAN 2",
+        "vlan-1-sw2": "VLAN 1",
+        "vlan-2-sw2": "VLAN 2",
+        "frame": "트렁크로 오가는 프레임"
+      },
+      "notes": {
+        "trunk-name": "트렁크 링크",
+        "tag-vlan-1": "VLAN 1",
+        "tag-vlan-2": "VLAN 2"
+      },
+      "scenarios": [
+        {
+          "id": "vlan-1",
+          "label": "VLAN 1 프레임",
+          "caption": "개발부의 A가 보낸 프레임은 스위치 1에서 VLAN 1의 프레임으로 다뤄진다. 스위치 1은 트렁크로 내보낼 때 VLAN 1을 적은 태그를 끼우고, 스위치 2는 그 태그를 읽어 VLAN 1에 든 포트로만 내보내 층이 다른 B에게 닿게 한다.",
+          "sources": [
+            "hub-switch-vlan.vlan-tagging"
+          ]
+        },
+        {
+          "id": "vlan-2",
+          "label": "VLAN 2 프레임",
+          "caption": "총무부의 C가 보낸 프레임도 같은 트렁크 링크를 지나지만, 태그에는 VLAN 2가 적힌다. 스위치 2는 이 태그를 보고 VLAN 2에 든 포트로만 내보내므로, 프레임은 D에게 닿고 B에게는 가지 않는다.",
+          "sources": [
+            "hub-switch-vlan.vlan-tagging"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan-tagging"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
