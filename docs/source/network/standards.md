@@ -1265,12 +1265,15 @@ Proposed Standard(Standards Track)이다.
 - (phase 73 step 1) 코드와 보내는 쪽: 0 네트워크 도달 불가 — 목적지 네트워크로 가는 경로가 없을 때 라우터가, 1 호스트 도달 불가 — 직접 이어진 네트워크의 목적지 호스트로 갈 길이 없을 때(ARP에 답하지 않을 때) 라우터가,
   2 프로토콜 도달 불가 — 최종 목적지의 전송 계층이 그 프로토콜을 지원하지 않을 때, 3 포트 도달 불가 — 최종 목적지의 전송 프로토콜(예: UDP)이 받을 곳을 찾지 못하고 출발지에 알릴 방법도 없을 때,
   4 단편화 필요·DF 설정 — 라우터가 나눠야 하는데 DF가 켜져 있을 때, 5 소스 라우트 실패. 6~15는 그 뒤에 더한 코드다 — §5.2.7.1
+- (phase 73 step 9) 인터넷은 여러 네트워크를 IP 데이터그램을 넘겨주는 장치로 이어 만든 것이고, 그 장치를 라우터(IP 라우터)라 부른다. 예전의 인터넷 문서는 라우터를 **게이트웨이**라고 부른 것이 많다 — §2.2.3
+- (phase 73 step 9) IP 호스트나 라우터의 네트워크 인터페이스는 전통적으로 저마다 자기 IP 주소를 갖는다. 주소를 아끼려고 점대점 회선의 인터페이스에 IP 주소를 주지 않는 구성(unnumbered line)도 있지만, 그것은 예외로 다룬다 — §2.2.7
 
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
 `icmp.destination-unreachable`(§5.2.7.1 — 코드와 보내는 쪽), `icmp.time-exceeded`(§5.3.1 — TTL 0이면 코드 0)
 (phase 73 step 8) `arp.arp`(§5.3.4 — 라우터는 링크 계층 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로 ARP는 같은 LAN 안에서만 쓴다)
+(phase 73 step 9) `arp.arp-across-routers`(§2.2.3 — 표준 문서는 라우터를 게이트웨이라고도 부른다; §2.2.7 — 라우터의 인터페이스는 저마다 IP 주소를 갖는다; §5.2.1.2·§5.3.4 — 구간마다 다음 장치의 MAC 주소를 알아내 새 프레임에 담고 IP 주소는 바꾸지 않는다), 도식 `arp-hops`, 문항 n067 해설
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
