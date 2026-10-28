@@ -7,6 +7,7 @@ import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
+import { BandwidthDiagram } from './BandwidthDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
@@ -26,6 +27,7 @@ import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
+import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -65,6 +67,7 @@ import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
@@ -158,6 +161,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-basics.cast-types': CastTypesDiagram,
   'network-basics.lan-wan': LanWanDiagram,
   'network-basics.traffic': TrafficLoadDiagram,
+  'network-basics.transmission-speed': ExpectedSpeedDiagram,
+  'network-basics.throughput': ThroughputDiagram,
+  'network-basics.bandwidth': BandwidthDiagram,
   'network-basics.packet-loss': [PacketLossDiagram, PerformanceMetricsTable],
   'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
   'protocols-encapsulation.decapsulation': EncapsulationDiagram,
