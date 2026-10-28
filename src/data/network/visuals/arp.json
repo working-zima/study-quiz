@@ -1,0 +1,107 @@
+{
+  "diagrams": {
+    "arp-purpose": {
+      "label": "호스트 A가 호스트 B의 IP 주소만 알 때와 ARP로 MAC 주소를 알아낸 뒤, 보낼 프레임의 목적지 MAC 주소 칸을 견주는 도식",
+      "svgLabel": "호스트 A와 호스트 B, 그리고 호스트 A가 보낼 프레임의 목적지 MAC 주소·출발지 MAC 주소·IP 패킷 칸",
+      "question": "IP 주소만 알 때 무엇이 더 필요할까?",
+      "idleCaption": "호스트 A가 같은 LAN의 호스트 B에게 보낼 프레임이다. A는 B의 IP 주소 192.0.2.2를 알고 있다. 버튼을 고르면 ARP 전과 뒤에 목적지 MAC 주소 칸이 어떻게 다른지 볼 수 있다.",
+      "legend": "아래 상자는 프레임의 칸 가운데 이 그림에 필요한 셋만 앞쪽부터 차례로 그린 것이고, 칸 곁의 글은 그 칸에 적히는 값이다. 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "dst-mac": "목적지 MAC 주소",
+        "src-mac": "출발지 MAC 주소",
+        "packet": "IP 패킷"
+      },
+      "groups": {
+        "frame": "호스트 A가 보낼 프레임"
+      },
+      "notes": {
+        "src-value": "00-00-5E-00-53-01",
+        "packet-value": "목적지 IP 주소 192.0.2.2",
+        "dst-unknown": "모름",
+        "dst-known": "00-00-5E-00-53-02",
+        "blocked": "프레임을 보낼 수 없음"
+      },
+      "scenarios": [
+        {
+          "id": "unknown",
+          "label": "ARP 전",
+          "caption": "호스트 A는 B의 IP 주소만 알고 MAC 주소는 모른다. 목적지 MAC 주소 칸을 채울 수 없어 프레임을 보낼 수 없고, IP 주소와 MAC 주소는 서로 관계가 없어 IP 주소에서 계산해 낼 수도 없다.",
+          "sources": [
+            "arp.arp"
+          ]
+        },
+        {
+          "id": "resolved",
+          "label": "ARP 뒤",
+          "caption": "A가 ARP로 B의 MAC 주소 00-00-5E-00-53-02를 알아내 목적지 MAC 주소 칸에 넣고 프레임을 보낸다. IP 패킷에 적힌 목적지 IP 주소 192.0.2.2는 바뀌지 않는다.",
+          "sources": [
+            "arp.arp"
+          ]
+        }
+      ],
+      "sources": [
+        "arp.arp"
+      ]
+    },
+    "arp-exchange": {
+      "label": "스위치 하나에 이은 호스트 A~D 가운데 호스트 A가 호스트 B의 MAC 주소를 찾을 때, ARP 요청과 ARP 응답이 누구에게 가는지 보이는 도식",
+      "svgLabel": "스위치 하나에 호스트 A·B·C·D가 이어져 있고, 호스트마다 IP 주소 192.0.2.1·192.0.2.2·192.0.2.3·192.0.2.4가 적혀 있다",
+      "question": "ARP 요청과 응답은 누구에게 갈까?",
+      "idleCaption": "호스트 A~D가 스위치 하나에 이어진 같은 LAN이다. 호스트 A가 IP 주소 192.0.2.2를 쓰는 장치의 MAC 주소를 알아내려 한다. 버튼을 고르면 요청과 응답이 어디로 가는지 차례로 볼 수 있다.",
+      "legend": "가는 선은 케이블이고, 화살표는 ARP 메시지를 실은 프레임이 가는 길이다. 호스트 아래 숫자는 그 호스트의 IP 주소다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "notes": {
+        "ip-a": "192.0.2.1",
+        "ip-b": "192.0.2.2",
+        "ip-c": "192.0.2.3",
+        "ip-d": "192.0.2.4",
+        "request-ip": "ARP 요청 · 찾는 IP 주소 192.0.2.2",
+        "request-mac": "목적지 MAC 주소 FF-FF-FF-FF-FF-FF",
+        "check-b": "자기 IP 주소",
+        "check-c": "답하지 않음",
+        "check-d": "답하지 않음",
+        "reply-mac": "ARP 응답 · MAC 주소 00-00-5E-00-53-02",
+        "reply-dst": "목적지 MAC 주소 00-00-5E-00-53-01"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "ARP 요청",
+          "caption": "호스트 A가 찾는 IP 주소 192.0.2.2를 담은 ARP 요청을 브로드캐스트한다. 목적지 MAC 주소가 FF-FF-FF-FF-FF-FF라 스위치는 이 요청을 B·C·D 모두에게 넘긴다.",
+          "sources": [
+            "arp.arp-request-reply"
+          ]
+        },
+        {
+          "id": "check",
+          "label": "자기 것인지 확인",
+          "caption": "요청을 받은 B·C·D는 저마다 찾는 IP 주소가 자기 IP 주소인지 본다. C와 D는 자기 주소가 아니라 답하지 않고, 자기 주소인 B는 답하기 전에 A의 IP 주소와 MAC 주소의 짝을 자기 ARP 캐시에 적어 둔다.",
+          "sources": [
+            "arp.arp-request-reply"
+          ]
+        },
+        {
+          "id": "reply",
+          "label": "ARP 응답",
+          "caption": "B만 자기 MAC 주소 00-00-5E-00-53-02를 담은 ARP 응답을 A의 MAC 주소 00-00-5E-00-53-01로 보낸다. 받을 장치를 A 하나로 정한 유니캐스트이고, 스위치는 이 응답을 A에게만 넘긴다.",
+          "sources": [
+            "arp.arp-request-reply"
+          ]
+        }
+      ],
+      "sources": [
+        "arp.arp-request-reply"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

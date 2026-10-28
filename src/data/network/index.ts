@@ -1,5 +1,6 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
+import arpVisuals from './visuals/arp.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
 import ipProtocolVisuals from './visuals/ip-protocol.json'
@@ -19,6 +20,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
   'ip-protocol': ipProtocolVisuals,
+  'arp': arpVisuals,
 }
 
 export const networkSubject: Subject = {

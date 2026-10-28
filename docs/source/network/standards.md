@@ -163,6 +163,7 @@ https://www.rfc-editor.org/rfc/rfc9542
 - (phase 72) 이 RFC에는 모든 비트가 1인 브로드캐스트 주소를 적은 문장이 없다 — 전문 검색. 근거는 IEEE 802.3 §3.2.3.1(위 항목)과 RFC 894(아래 항목)다
 
 쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, `ethernet.mac-address`(전역·지역 관리·16진 표기·문서용 주소)와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」), (phase 72 step 5) `ethernet.ethertype-length`(이더타입은 0x0600 이상, 길이는 0x5DD 미만, §3)
+(phase 73 step 8) `arp.arp`·`arp.arp-request-reply`의 예시 MAC 주소 `00-00-5E-00-53-01`·`00-00-5E-00-53-02`(§2.1.4)와 브로드캐스트 주소 `FF-FF-FF-FF-FF-FF`, 도식 `arp-purpose`·`arp-exchange`, 문항 n064
 
 ## IEEE RA — Guidelines for Use of EUI, OUI, and CID
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
@@ -1269,6 +1270,7 @@ Proposed Standard(Standards Track)이다.
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
 `icmp.destination-unreachable`(§5.2.7.1 — 코드와 보내는 쪽), `icmp.time-exceeded`(§5.3.1 — TTL 0이면 코드 0)
+(phase 73 step 8) `arp.arp`(§5.3.4 — 라우터는 링크 계층 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로 ARP는 같은 LAN 안에서만 쓴다)
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1355,6 +1357,7 @@ VPLS 장비도 「학습 브리지와 거의 같게」 하라고 쓴다. 여기�
 - 브리지는 목적지가 표에 없는 패킷을 받으면 다른 모든 포트로 내보낸다(플러딩) — §4.2.3 첫 문장
 
 쓰인 곳: `hub-switch-vlan.mac-address-table`(학습 — 출발지 주소와 들어온 포트, 에이징 — 마지막으로 보인 뒤의 시간, 다시 보이면 처음부터 다시 셈, 지우는 까닭은 장치가 옮겨 가면 다시 배우게 하고 표를 지금 쓰이는 주소로 줄이는 것), 문항 n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지가 표에 없으면 다른 모든 포트로 내보낸다 — §4.2.3. 에이징으로 지운 항목의 장치에게 가는 프레임도 다시 표에 없는 목적지라 그 장치를 다시 배울 때까지 플러딩된다 — §4.2.2와 §4.2.3을 함께 읽은 것), 문항 n042 해설
+(phase 73 step 8) `arp.arp-request-reply`(§4.2.1 — 스위치는 들어온 프레임의 출발지 주소로 그 장치의 자리를 배워 두므로, A가 보낸 요청을 넘긴 뒤 A에게 가는 응답은 A 쪽으로만 넘긴다. §4.2.3 — 목적지가 표에 없는 프레임은 다른 모든 포트로 내보낸다)
 
 ## (phase 73) RFC 1191 — Path MTU Discovery
 https://www.rfc-editor.org/rfc/rfc1191
@@ -1592,6 +1595,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 (phase 73 step 5) `ip-protocol.ipv4-address`(RFC 5737 §3 — `192.0.2.0`~`192.0.2.255`는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예 `192.0.2.1`과 도식 `ipv4-address`), 문항 n056의 보기 주소
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(RFC 3849 — 첫 두 묶음이 `2001:0db8`인 주소는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예와 도식 `ipv6-notation`), 문항 n058·n059의 주소
 (phase 73 step 7) `ip-protocol.slaac`(RFC 3849 — 예시 접두사 `2001:db8:0:1`과 주소 `2001:db8:0:1:1234:5678:9abc:def0`, 본문 예와 도식 `slaac`)
+(phase 73 step 8) `arp.arp`·`arp.arp-request-reply`(RFC 5737 §3 — 호스트 A~D의 `192.0.2.1`~`192.0.2.4`, 본문 예와 도식 `arp-purpose`·`arp-exchange`)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826

@@ -4,6 +4,8 @@ import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
+import { ArpExchangeDiagram } from './ArpExchangeDiagram'
+import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
@@ -248,6 +250,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-protocol.ipv6-header': Ipv6HeaderDiagram,
   'ip-protocol.extension-headers': ExtensionChainDiagram,
   'ip-protocol.slaac': SlaacDiagram,
+  'arp.arp': ArpPurposeDiagram,
+  'arp.arp-request-reply': ArpExchangeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
