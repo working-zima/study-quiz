@@ -1,22 +1,26 @@
-# 네트워크 과목 — 표준 문서에서 가져온 사실
+# 네트워크 과목 — 표준 문서와 공식 문서에서 가져온 사실
 
-네트워크 과목의 세 원본 가운데 **표준 문서**에서 가져온 사실을 문서마다 모은다(`docs/source/network/CLAUDE.md` 「원본 셋」).
+네트워크 과목의 세 원본 가운데 **표준·공식 문서**에서 가져온 사실과 URL을 문서마다 모은다(`docs/source/network/CLAUDE.md` 「원본 셋」).
+공식 문서는 그 기술을 정한 표준 기구나 만든 곳의 문서이고, 강의 밖 주제의 사실은 여기에만 근거한다(ADR-059).
 강의·면접이 표준과 다르면 표준을 따르고, 그 기록은 `lecture-outline.md`·`interview-facts.md`의 「수정 이력」에 둔다.
 
 규칙:
 
-- **허용하는 곳만 쓴다** — `rfc-editor.org`·`datatracker.ietf.org`(RFC), `iana.org`(레지스트리), `ieee802.org`·`standards.ieee.org`(IEEE 802),
-  `itu.int`(ITU-T X.200·X.800·Q.9·X.25, 뒤의 셋은 ADR-057), `developer.mozilla.org`(MDN). 위키백과·블로그·업체 학습 페이지는 강의가 링크했어도 쓰지 않는다.
+- **허용하는 곳만 쓴다** — 목록은 `docs/source/network/CLAUDE.md` 「허용하는 출처」에 있다(ADR-059). 표준(RFC·IANA·IEEE 802·ITU-T 권고 전체·MDN)과,
+  man7.org·learn.microsoft.com처럼 그 기술을 만든 곳의 공식 문서다. 목록에 없는 곳은 그 목록에 먼저 더하고 쓴다.
+  위키백과·블로그·자격증 교재·업체 학습 페이지는 강의가 링크했어도 쓰지 않는다.
 - **사실은 직접 쓴 말로 적는다**(ADR-009). 원문 문장을 옮기지 않는다.
 - 항목마다 **절 번호**를 붙인다. MDN처럼 절 번호가 없는 문서는 절 제목을 적는다.
+- 제품 버전마다 달라지는 공식 문서(Windows Server의 판, Linux의 배포판·init 체계)는 어느 판을 기준으로 읽었는지 항목에 적는다(ADR-059 「트레이드오프」).
 - RFC는 `https://www.rfc-editor.org/rfc/rfcNNNN` 꼴로 적고, 폐기된 RFC가 아니라 지금 유효한 것을 쓴다(예: HTTP는 RFC 2616·7230~7235가 아니라 RFC 9110·9111·9112).
   폐기된 RFC를 쓸 때는 역사 기록으로만 쓰고 그렇다고 밝힌다.
 - 「쓰인 곳」에 강의 수정 이력 번호(`L1`…)나 면접 수정 이력 번호, 개념 id를 적는다. 뒤 step이 개념을 만들면 개념 id를 더한다.
 - 이 파일은 step 1(phase 69)에서 **강의 수정 이력이 쓰는 사실만** 담아 시작했고, step 2가 **면접 수정 이력(`I1`…)이 쓰는 사실**을 더했다.
   개념 본문용 사실은 각 주제 step이 필요할 때 더한다.
-- 자격시험의 답이 표준과 다르거나 표준에 없는 곳은 여기가 아니라 `exam-notes.md`에 둔다(ADR-057).
+- 자격시험의 답이 표준·공식 문서와 다르거나 거기 없는 곳(시험이 옛 방식을 묻는 곳 포함)은 여기가 아니라 `exam-notes.md`에 둔다(ADR-057·ADR-059).
 
 확인한 날: 2026-10-27. 「(2026-10-28)」이 붙은 줄과 항목은 phase 70에서 1장의 빠진 사실 넷(ADR-057)을 넣으며 더했다.
+「(phase 71)」이 붙은 줄과 항목은 phase 71 step 5에서 1장이 풀이 없이 쓰던 낱말(광케이블·작업 관리자·ping 명령·IP 주소 등)을 풀며 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -125,6 +129,10 @@ https://www.rfc-editor.org/rfc/rfc791
 - TTL은 데이터그램을 처리하는 모든 모듈이 최소 1씩 줄인다 — §3.1 「Time to Live」
 - IP는 데이터그램이라 부르는 데이터 덩어리를 출발지에서 목적지로 나른다. 쓰이는 환경은 패킷 교환 방식의 컴퓨터 통신 네트워크들을 서로 이은 시스템이다 — §1.1 「Motivation」, §1.2 「Scope」(인터넷 데이터그램)
 - IP는 인터넷 데이터그램 하나하나를 다른 데이터그램과 관계없는 독립된 것으로 다룬다. 데이터그램 사이에 연결이나 논리적 회선이 없다 — §1.4 「Operation」
+- (phase 71) 이름은 찾는 것이 무엇인지, 주소는 그것이 어디 있는지, 경로는 거기 어떻게 가는지를 가리키고, IP는 주로 주소를 다룬다 — §2.3 「Addressing」.
+  IP 모듈은 인터넷 헤더에 실린 주소를 써서 데이터그램을 목적지 쪽으로 보낸다 — §1.4 「Operation」
+- (phase 71) 데이터그램을 나눠야 하는 것은, 큰 패킷을 실을 수 있는 네트워크에서 출발한 데이터그램이 목적지로 가는 길에 더 작은 패킷만 실을 수 있는 네트워크를 지나야 할 때다 — §2.3 「Fragmentation」.
+  IP 모듈은 「작은 패킷」 네트워크를 지나야 할 때 데이터그램을 나누고 다시 합친다 — §1.4 「Operation」
 
 쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
 
@@ -238,8 +246,8 @@ https://www.rfc-editor.org/rfc/rfc1122
   - IP 데이터그램은 IP의 종단 간 전송 단위로, IP 헤더 뒤에 전송 계층의 메시지가 붙은 것이다. 인터넷 계층을 설명하는 3장에서는 「데이터그램」만 써도 IP 데이터그램을 뜻한다.
   - 패킷은 인터넷 계층과 링크 계층 사이에서 넘겨지는 데이터 단위로, IP 헤더와 데이터를 담는다. IP 데이터그램 전체일 수도, 그 조각일 수도 있다.
   - 프레임은 링크 계층 프로토콜의 전송 단위로, 링크 계층 헤더 뒤에 패킷이 붙은 것이다.
-  - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 메시지를 응용 계층의 단위(HTTP 메시지)로 쓰므로
-    이 정의는 개념 본문에 옮기지 않는다 — 응용 계층 쪽 근거는 아래 RFC 9110 §1.3이다.
+  - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 응용 계층의 단위를 강의(p37)대로 데이터라 부르고
+    메시지는 HTTP 표준의 이름(HTTP 메시지)으로만 덧붙이므로(ADR-058) 이 정의는 개념 본문에 옮기지 않는다 — HTTP 메시지의 근거는 아래 RFC 9110 §1.3이다.
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2
@@ -397,6 +405,10 @@ https://www.rfc-editor.org/rfc/rfc9110
 
 - HTTP는 Hypertext Transfer Protocol이다 — Abstract
 - HTTP에서 주고받는 단위는 메시지이고, 메시지는 요청이거나 응답이다. 클라이언트가 요청 메시지를 만들어 보내고, 서버는 하나 이상의 응답 메시지로 답한다 — §1.3, §3.4
+- (2026-10-28) HTTP 메시지는 넷으로 이루어진다. 메시지를 설명하고 보낼 곳을 정하는 제어 데이터, 그 제어 데이터를 넓히는 이름·값 짝의 헤더, 본문(content),
+  본문을 보내는 동안 얻은 정보를 싣는 트레일러다 — §6
+- (2026-10-28) 본문은 헤더 뒤에 보내는 바이트의 흐름이다. HTTP 메시지는 흔히 자원의 표현, 곧 자원의 상태를 나타내는 정보의 전체나 일부를 본문에 싣는다.
+  GET 요청에 대한 200 응답이면 본문은 요청한 자원의 지금 상태를 나타낸다 — §6.4, §6.4.1, §3.2
 - 1xx, 204, 304 응답은 본문(content)을 담지 않는다 — §6.4.1
 - Connection 필드는 지금 연결에만 쓸 제어 옵션을 나열한다. 바로 다음 수신자에게만 뜻이 있는(hop-by-hop) 필드를 끝에서 끝까지 가는 필드와 가르는 데 쓴다 — §7.6.1
 - 콘텐츠 코딩은 주로 표현을 압축하려고 쓴다. 이 문서가 정의하는 것은 compress, deflate, gzip이다 — §8.4.1(§8.4.1.1~§8.4.1.3)
@@ -420,7 +432,8 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
 
-쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
+`protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -498,7 +511,7 @@ https://www.rfc-editor.org/rfc/rfc1112
 - 그룹 구성원은 고정되지 않는다 — 호스트는 언제든 그룹에 들어가거나 나올 수 있다 — §2
 - 멀티캐스트 데이터그램도 보통의 유니캐스트 데이터그램과 같은 최선형(best-effort) 신뢰성으로 전달된다 — §2
 
-쓰인 곳: `network-basics.cast-types`
+쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이)
 
 ## RFC 1983 — Internet Users' Glossary
 https://www.rfc-editor.org/rfc/rfc1983
@@ -515,9 +528,14 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
 - (2026-10-28) 가상 회선은 꼭 회선 교환을 하지 않고도 연결형 서비스를 주는 네트워크 서비스다 — 「virtual circuit」
 - (2026-10-28) 데이터그램은 앞서 주고받은 것에 기대지 않고, 목적지까지 가는 데 필요한 정보를 스스로 담은 독립된 데이터 단위다 — 「datagram」
 - (2026-10-28) 메시지 교환은 따로 풀이하지 않고 패킷 교환 항목으로 넘긴다 — 「message switching」
+- (phase 71) 10BaseT는 꼬아 만든 구리선 쌍(twisted-pair copper wire)으로, 10BaseF는 광섬유 케이블(fiber-optic cable)로 데이터를 보내는 물리 계층 규격이다 — 「10BaseT」, 「10BaseF」
+- (phase 71) 서버는 자원을 내주는 쪽이고, 클라이언트는 다른 컴퓨터 시스템이나 프로세스에 서비스를 요청하는 쪽이다 — 「server」, 「client」
+- (phase 71) PING은 목적지에 ICMP echo 요청을 보내고 응답을 기다려, 그 목적지에 닿을 수 있는지 시험하는 프로그램이다 — 「Packet InterNet Groper (PING)」
+- (phase 71) 인터넷 주소는 인터넷에서 노드 하나를 유일하게 가리키는 IP 주소다. IP 주소는 RFC 791이 정한 32비트 주소다 — 「internet address」, 「IP address」
 
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
-`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환)
+`network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
+`protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이)
 
 ## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
 https://www.rfc-editor.org/rfc/rfc3013
@@ -604,3 +622,29 @@ https://www.itu.int/rec/T-REC-X.25-199610-I/en
 - 이 판에는 데이터그램 서비스가 없다 — 전문 검색
 
 쓰인 곳: `protocols-encapsulation.packet-switching`
+
+## (phase 71) ITU-T G Suppl. 42 (10/2018) — Guide on the use of the ITU-T Recommendations related to optical fibres and systems technology
+https://www.itu.int/rec/T-REC-G.Sup42-201810-I/en
+
+G 시리즈 권고의 보충 문서(Supplement)다. 권고가 아니라 광섬유·광 전송 권고들의 쓰임을 안내하는 정보성 문서라, 용어의 뜻을 확인하는 데만 쓴다. 위 페이지에서 무료 PDF를 받아 읽었다.
+
+- 광섬유는 구리선이 전자를 이끌듯 빛을 이끌 수 있어, 레이저 빛으로 통신하는 데 알맞다고 제안되었다 — §5
+- 광 송신기 안에서 전기 신호인 비트 흐름이 빛(광 반송파)의 세기를 바꾸고, 광섬유를 지난 광 신호는 광 수신기가 다시 전기 신호로 바꾼다 — §5.6
+
+쓰인 곳: `network-basics.communication-link`
+
+## (phase 71) Microsoft Learn — Windows commands, ping, Task Manager
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ping
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/support-tools-task-manager
+
+지원되는 모든 Windows와 Windows Server를 대상으로 쓴 문서다(Windows commands 첫 문단, Task Manager 「Applies to」). 2026-10-28에 읽은 판: Windows commands 2025-07-29, ping 2023-09-15, Task Manager 2026-02-12.
+
+- 지원되는 모든 Windows에는 콘솔 명령이 들어 있다. Windows의 명령줄 셸은 명령 셸과 PowerShell 둘이고, 셸은 사용자와 운영 체제·응용 프로그램 사이를 바로 잇는 프로그램이다.
+  ping은 이 명령 목록에 있다 — Windows commands 첫 문단, 「Command-line shells」, 「Command-line reference A-Z」
+- ping은 ICMP echo 요청 메시지를 보내 다른 TCP/IP 컴퓨터와 IP 수준에서 이어지는지 확인하고, 돌아온 echo 응답을 표시한다 — ping 첫 문단
+- ping의 문법은 옵션 뒤에 목적지(`<targetname>`)를 적는 꼴이고, 목적지는 호스트 이름이나 IP 주소다. 예를 들어 `ping /a 10.0.99.221`처럼 입력한다 — ping 「Syntax」, 「Parameters」, 「Examples」
+- 작업 관리자는 Windows에 기본으로 들어 있는(in-box) 도구로, 응용 프로그램과 프로세스의 성능과 자원 사용을 살핀다 — Task Manager 「Summary」
+- 작업 관리자의 프로세스 탭은 실행 중인 앱과 백그라운드 프로세스의 목록을, 성능 탭은 성능 데이터의 목록과 그래프를 보여 준다 — Task Manager 「More information」 표
+
+쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령)

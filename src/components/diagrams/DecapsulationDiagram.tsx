@@ -6,7 +6,7 @@ import { DiagramFrame, type DiagramScenario } from './DiagramFrame'
 const text = visualsByTopicId['protocols-encapsulation'].diagrams['decapsulation-peel']
 
 // 받은 데이터 한 덩어리를 모서리 없는 칸으로 앞에서부터 빈틈없이 이어 붙인다. 칸 이름과 폭은 캡슐화 도식의 프레임 줄과 같다.
-// 세로형은 280 안에 여섯 칸이 들어가지 않아 헤더 넷과 데이터·트레일러 두 줄로 나눈다. 노드는 모두 회색이다.
+// 세로형은 280 안에 여섯 칸이 들어가지 않아 헤더 넷과 본문·트레일러 두 줄로 나눈다. 노드는 모두 회색이다.
 const nodes = [
   { id: 'ethernet', x: 12, y: 32, width: 70 },
   { id: 'ip', x: 82, y: 32, width: 50 },
@@ -17,7 +17,7 @@ const nodes = [
 ]
 
 // 지금 떼는 칸을 가리키는 곁말은 칸 바로 위 가운데에 둔다. 트레일러만 두 번째 줄 오른쪽에 둔다.
-// 응용 프로그램에 닿는다는 곁말은 데이터 칸 바로 아래에 둔다.
+// 응용 프로그램에 닿는다는 곁말은 본문 칸 바로 아래에 둔다.
 const notes = [
   { id: 'detach-ethernet', x: 47, y: 27, textAnchor: 'middle' as const },
   { id: 'detach-ip', x: 107, y: 27, textAnchor: 'middle' as const },

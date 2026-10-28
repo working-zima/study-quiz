@@ -16,7 +16,7 @@ const labels = {
   transport: '전송 계층',
   internet: '인터넷 계층',
   'network-access': '네트워크 액세스 계층',
-  message: '메시지',
+  message: '데이터',
   segment: '세그먼트',
   datagram: '데이터그램',
   packet: '패킷',
@@ -65,7 +65,7 @@ const wideNotes: Record<string, NotePlace> = {
 }
 
 const question = '계층마다 데이터 단위를 무엇이라 부를까?'
-const idleCaption = '데이터가 계층을 지나며 헤더가 하나씩 붙으므로, 각 계층에서 만들어진 덩어리는 담고 있는 헤더가 서로 다르다. 그래서 TCP/IP 모델의 계층마다 데이터 단위를 다른 이름으로 부르고, 이름만 들어도 어느 헤더까지 붙어 있는지 알 수 있다. 전송 계층에서 쓰는 프로토콜을 고르면 그 계층의 이름이 어떻게 갈리는지 볼 수 있다.'
+const idleCaption = '보낼 내용이 계층을 지나며 헤더가 하나씩 붙으므로, 각 계층에서 만들어진 덩어리는 담고 있는 헤더가 서로 다르다. 그래서 TCP/IP 모델의 계층마다 데이터 단위를 다른 이름으로 부르고, 이름만 들어도 어느 헤더까지 붙어 있는지 알 수 있다. 전송 계층에서 쓰는 프로토콜을 고르면 그 계층의 이름이 어떻게 갈리는지 볼 수 있다.'
 const legend = '왼쪽 박스는 TCP/IP 모델의 네 계층이고 맨 위가 응용 계층이다. 오른쪽 박스에서 같은 줄에 놓인 이름이 그 계층의 데이터 단위다.'
 const expectedScenarios = [
   {
@@ -76,7 +76,7 @@ const expectedScenarios = [
   {
     id: 'udp', label: 'UDP를 쓸 때',
     nodes: [...layers, 'message', 'datagram', 'packet', 'frame'],
-    caption: '같은 전송 계층이라도 UDP를 쓰면, 응용 계층이 넘긴 데이터 앞에 UDP 헤더가 붙은 단위를 데이터그램이라 부른다. 어느 프로토콜을 썼는지에 따라 붙은 헤더가 다르기 때문이다. 메시지·패킷·프레임은 TCP를 쓸 때와 같은 이름이다.',
+    caption: '같은 전송 계층이라도 UDP를 쓰면, 응용 계층이 넘긴 데이터 앞에 UDP 헤더가 붙은 단위를 데이터그램이라 부른다. 어느 프로토콜을 썼는지에 따라 붙은 헤더가 다르기 때문이다. 데이터·패킷·프레임은 TCP를 쓸 때와 같은 이름이다.',
   },
 ]
 

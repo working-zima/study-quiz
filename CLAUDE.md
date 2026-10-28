@@ -104,7 +104,7 @@ npm run test     # Vitest (CI 모드, watch 금지)
 |---|---|
 | `docs/CLAUDE.md` | `docs/` 문서 지도 — PRD·ARCHITECTURE·ADR·UI_GUIDE가 각각 무엇을 정하는가 |
 | `docs/source/CLAUDE.md` | AWS 과목 원본 목록, ADR-039 허용 목록, `exam-types.md`의 쓰임, 전사 금지 |
-| `docs/source/network/CLAUDE.md` | 네트워크 원본 셋(강의·표준·면접), 허용 표준 문서, 충돌하면 표준, 수정 이력, 추출본 다시 만들기 |
+| `docs/source/network/CLAUDE.md` | 네트워크 원본 셋(강의·표준·공식 문서·면접), 범위(강의와 네트워크관리사 2급 출제 범위, ADR-059), 허용하는 출처, 충돌하면 표준, 기출의 자리, 수정 이력, 추출본 다시 만들기 |
 | `src/data/CLAUDE.md` | 과목 폴더 구조, 과목 불변식, 데이터 가드레일 스크립트, 도식 문구의 자리 |
 | `src/lib/CLAUDE.md` | 순수 로직, localStorage에 접근하는 유일한 계층, 진행률 키를 넘기는 쪽 |
 | `src/pages/CLAUDE.md` | 화면 단위, `useSubject()`와 테스트용 props override, 링크의 과목 접두사 |

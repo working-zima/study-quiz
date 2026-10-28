@@ -55,7 +55,7 @@ const wideNotes = [
   { id: 'packet-standard', x: 300, y: 155 },
 ]
 
-// 계층 넷과 메시지·패킷·프레임은 두 시나리오에서 같고, 전송 계층의 단위만 갈린다. 이 도식에는 화살표가 없다.
+// 계층 넷과 데이터·패킷·프레임은 두 시나리오에서 같고, 전송 계층의 단위만 갈린다. 이 도식에는 화살표가 없다.
 const shared = ['app', 'transport', 'internet', 'network-access', 'message']
 
 export const pduNamesScenarios: DiagramScenario[] = [

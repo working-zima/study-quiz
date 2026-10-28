@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { questions, topics } from './index'
 import { hierarchyProblems } from '../../lib/concept-groups'
 import { isListItem } from '../../lib/paragraph-blocks'
+import type { Importance } from '../../types/content'
 
 // 네트워크 과목이 앞으로 지켜야 할 불변식이다. 데이터가 비어 있는 동안은 빈 집합으로 통과하고,
 // 주제가 들어오는 순간부터 걸린다. 단언마다 위반 id를 모아 [] 와 비교하므로 실패 메시지가 위반 자리를 보여 준다.
@@ -12,6 +13,64 @@ const concepts = topics.flatMap((topic) => topic.concepts)
 
 // 강의 통합본의 마지막 쪽이다(docs/source/network/lecture-outline.md 「주제 지도」).
 const lastLecturePage = 502
+
+// 과목의 주제 42개마다 네트워크관리사 2급 필기 기출 11회 가운데 그 주제의 문항이 나온 회의 수(출제 회차)와,
+// 강의 주제인지(lecture)를 적는다. docs/source/network/topic-map.md 「주제 지도」 표와 같은 값이고 순서도 그 표와 같다(ADR-059).
+// 지도를 바꾸면 이 표도 함께 바꾼다. 아직 앱에 없는 주제도 여기 있다 — 주제를 만드는 phase가 이 표를 보고 별점을 매긴다.
+const topicMap: Record<string, { examSessions: number; lecture: boolean }> = {
+  'network-basics':              { examSessions:  6, lecture: true  },
+  'protocols-encapsulation':     { examSessions: 11, lecture: true  },
+  'transmission-media':          { examSessions: 10, lecture: false },
+  'network-topology':            { examSessions: 10, lecture: false },
+  'ethernet':                    { examSessions:  6, lecture: true  },
+  'hub-switch-vlan':             { examSessions: 10, lecture: true  },
+  'wireless-lan':                { examSessions: 10, lecture: false },
+  'ip-protocol':                 { examSessions: 11, lecture: true  },
+  'arp':                         { examSessions:  7, lecture: true  },
+  'icmp':                        { examSessions: 11, lecture: true  },
+  'ip-addressing':               { examSessions: 11, lecture: true  },
+  'ip-address-types':            { examSessions: 11, lecture: true  },
+  'routing':                     { examSessions: 10, lecture: true  },
+  'ports':                       { examSessions:  6, lecture: true  },
+  'tcp-udp':                     { examSessions: 10, lecture: true  },
+  'tcp-connection':              { examSessions:  6, lecture: true  },
+  'tcp-retransmission':          { examSessions:  8, lecture: true  },
+  'tcp-flow-congestion':         { examSessions:  6, lecture: true  },
+  'dns':                         { examSessions: 10, lecture: true  },
+  'app-protocols-mail-file':     { examSessions:  9, lecture: false },
+  'app-protocols-mgmt-security': { examSessions:  9, lecture: false },
+  'uri-web-server':              { examSessions:  0, lecture: true  },
+  'http-basics':                 { examSessions:  1, lecture: true  },
+  'http-messages':               { examSessions:  1, lecture: true  },
+  'http-headers':                { examSessions:  0, lecture: true  },
+  'http-cache':                  { examSessions:  0, lecture: true  },
+  'http-cookie':                 { examSessions:  0, lecture: true  },
+  'network-devices':             { examSessions: 11, lecture: false },
+  'network-security':            { examSessions:  9, lecture: false },
+  'cloud-sdn':                   { examSessions:  9, lecture: false },
+  'diagnostic-commands':         { examSessions: 10, lecture: false },
+  'linux-filesystem':            { examSessions: 10, lecture: false },
+  'linux-permissions':           { examSessions: 11, lecture: false },
+  'linux-shell':                 { examSessions:  9, lecture: false },
+  'linux-process-boot':          { examSessions: 11, lecture: false },
+  'linux-accounts':              { examSessions:  6, lecture: false },
+  'linux-servers':               { examSessions:  8, lecture: false },
+  'windows-ad':                  { examSessions: 10, lecture: false },
+  'windows-server-roles':        { examSessions:  8, lecture: false },
+  'windows-hyperv':              { examSessions:  8, lecture: false },
+  'windows-admin-tools':         { examSessions:  8, lecture: false },
+  'raid-storage':                { examSessions:  8, lecture: false },
+}
+
+// 기출 회차의 수다. 별점 경계(9·6)는 이 수를 기준으로 정했다 — 회차가 늘면 topic-map.md 「이 지도를 바꾸는 법」대로 경계도 함께 본다.
+const examSessionCount = 11
+
+// 출제 회차 9 이상 ★★★, 6~8 ★★☆, 5 이하 별점 없음(ADR-059).
+function importanceFromSessions(sessions: number): Importance {
+  if (sessions >= 9) return 3
+  if (sessions >= 6) return 2
+  return 0
+}
 
 function duplicates(values: string[]): string[] {
   const seen = new Set<string>()
@@ -57,19 +116,52 @@ describe('네트워크 학습 데이터 무결성', () => {
     expect(problems).toEqual([])
   })
 
-  // 자격증 목표가 정해지지 않아 별점을 매길 기준이 없다. 별점은 무엇을 먼저 읽을지를 정하는 값이라(ADR-026)
-  // 기준 없이 매기면 근거 없는 순위가 된다.
-  it('모든 주제의 importance가 0이다(별점 없음)', () => {
-    expect(topics.filter(({ importance }) => importance !== 0).map(({ id, importance }) => `${id}: ${importance}`)).toEqual([])
+  it(`주제 지도 표는 주제 42개(강의 주제 22개)이고 출제 회차가 0~${examSessionCount}의 정수다`, () => {
+    const entries = Object.entries(topicMap)
+
+    expect(entries).toHaveLength(42)
+    expect(entries.filter(([, { lecture }]) => lecture)).toHaveLength(22)
+    expect(
+      entries
+        .filter(([, { examSessions }]) => !Number.isInteger(examSessions) || examSessions < 0 || examSessions > examSessionCount)
+        .map(([id, { examSessions }]) => `${id}: ${examSessions}`),
+    ).toEqual([])
   })
 
-  it(`모든 주제의 sourcePages가 강의 통합본 쪽(1~${lastLecturePage}) 안의 [시작, 끝]이다`, () => {
+  // 과목의 범위는 ADR-059가 정한 주제 42개다. 지도에 없는 주제를 더하려면 ADR과 지도를 먼저 고친다.
+  it('앱의 모든 네트워크 주제가 주제 지도에 있다', () => {
+    expect(topics.filter(({ id }) => !(id in topicMap)).map(({ id }) => id)).toEqual([])
+  })
+
+  // 별점은 무엇을 먼저 읽을지를 정하는 값이다(ADR-026). 네트워크는 목표 자격증의 출제 회차에서 계산한다(ADR-059).
+  // 주제마다 손으로 덮어쓰지 마라 — 별점이 회차에서 계산되는 값이 아니라 목록이 된다.
+  it('모든 주제의 별점이 출제 회차에서 계산한 값과 같다', () => {
+    const mismatched = topics
+      .filter(({ id }) => id in topicMap)
+      .filter(({ id, importance }) => importance !== importanceFromSessions(topicMap[id].examSessions))
+      .map(({ id, importance }) => `${id}: ${importance} → ${importanceFromSessions(topicMap[id].examSessions)}`)
+
+    expect(mismatched).toEqual([])
+  })
+
+  it(`강의 주제의 sourcePages가 강의 통합본 쪽(1~${lastLecturePage}) 안의 [시작, 끝]이다`, () => {
     const invalid = topics
+      .filter(({ id }) => topicMap[id]?.lecture === true)
       .filter(({ sourcePages }) => {
         if (sourcePages.length !== 2) return true
         const [start, end] = sourcePages
         return !Number.isInteger(start) || !Number.isInteger(end) || start < 1 || start > end || end > lastLecturePage
       })
+      .map(({ id, sourcePages }) => `${id}: ${JSON.stringify(sourcePages)}`)
+
+    expect(invalid).toEqual([])
+  })
+
+  // 강의 밖 주제에는 가리킬 강의 쪽이 없다. 타입은 AWS와 같이 쓰므로 필드를 비우지 않고 [0, 0]으로 적는다(ADR-059).
+  it('강의 밖 주제의 sourcePages가 [0, 0]이다', () => {
+    const invalid = topics
+      .filter(({ id }) => topicMap[id]?.lecture === false)
+      .filter(({ sourcePages }) => sourcePages.length !== 2 || sourcePages[0] !== 0 || sourcePages[1] !== 0)
       .map(({ id, sourcePages }) => `${id}: ${JSON.stringify(sourcePages)}`)
 
     expect(invalid).toEqual([])
