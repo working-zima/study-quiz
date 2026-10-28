@@ -221,6 +221,7 @@ https://www.rfc-editor.org/rfc/rfc791
 - (phase 73) 옵션은 데이터그램마다 있을 수도 없을 수도 있고(모든 IP 모듈이 구현은 해야 한다), 패딩은 헤더가 32비트 경계에서 끝나게 채우는 0이다 — §3.1 「Options」, 「Padding」
 - (phase 73) 모든 IP 모듈은 68옥텟짜리 데이터그램을 더 나누지 않고 넘길 수 있어야 한다 — 헤더가 60옥텟까지 길어질 수 있고 가장 작은 조각이 8옥텟이기 때문이다.
   모든 목적지는 576옥텟짜리 데이터그램을 통째로든 조각으로든 받을 수 있어야 한다 — §3.2 「Fragmentation and Reassembly」, §3.1 「Total Length」
+- (phase 73 step 3) 버전 칸은 인터넷 헤더의 형식을 가리키고, 이 문서(RFC 791)가 정하는 것은 버전 4다 — §3.1 「Version」. 헤더 길이 칸은 32비트 워드 수로 적어 데이터가 어디서 시작하는지 가리킨다 — §3.1 「IHL」
 - (phase 73 step 1) IP는 끝과 끝 사이의 신뢰성, 흐름 제어, 순서 맞추기 같은 장치를 두지 않는다 — §1.2 「Scope」
 - (phase 73 step 1) IP는 신뢰성 있는 통신을 주지 않는다. 끝과 끝 사이에도 홉과 홉 사이에도 확인 응답이 없고, 데이터에는 오류 제어가 없이 헤더 체크섬만 있으며, 다시 보내지도 흐름을 제어하지도 않는다.
   찾아낸 오류는 IP 모듈 안에 구현된 ICMP로 알릴 수 있다 — §1.4 「Operation」
@@ -233,6 +234,7 @@ https://www.rfc-editor.org/rfc/rfc791
 (phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.4 두 기능·IP 모듈의 자리), `ip-protocol.fragmentation`(§2.3·§3.2 — 게이트웨이도 나누고 목적지가 합친다, DF), `ip-protocol.mtu`(§3.2 — 68옥텟), `ip-protocol.ipv4-header`(§3.1 칸·IHL·전체 길이·헤더 체크섬·프로토콜·서비스 유형·옵션),
 `ip-protocol.fragment-fields`(§2.3·§3.1·§3.2 — 식별자·플래그·오프셋, 합치는 기준 넷), `ip-protocol.ttl`(§3.1 — 초 단위 정의와 상한), `exam-notes.md` E10,
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§1.2·§1.4 — 신뢰성 장치가 없다), `icmp.icmp`(§1.4 — 오류는 ICMP로 알린다), `arp.arp-across-routers`(§2.2 — 구간마다 지역 헤더만 바뀐다), 강의 수정 이력 L34·L35(§2.3 — 32비트 주소는 8비트씩 넷)
+(phase 73 step 3) `ip-protocol.ipv4-header`(§3.1 — 버전 칸의 값 4, 헤더 길이 칸이 데이터의 시작을 가리킨다), 문항 n052 해설
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -358,6 +360,8 @@ https://www.rfc-editor.org/rfc/rfc1122
 - 호스트는 UDP 체크섬을 만들고 검사할 수 있어야 하고, 기본값은 체크섬을 켜는 것이다 — §4.1.3.4
 - 0이 아닌 체크섬이 맞지 않는 UDP 데이터그램을 받으면 알리지 않고 버린다 — §4.1.3.4
 - 호스트는 통신 서비스를 마지막에 받아 쓰는 쪽이고, OSI의 종단 시스템(End-System)에 해당한다 — §1.1.1
+- (phase 73 step 3) 호스트는 받은 모든 데이터그램의 IP 헤더 체크섬을 반드시 검사하고(MUST), 체크섬이 맞지 않는 데이터그램은 알리지 않고 버린다 — §3.2.1.2
+- (phase 73 step 3) 프로토콜 번호는 데이터를 넘길 전송 프로토콜을 고르는 데 쓴다: 호스트는 지정된(designated) 전송 프로토콜을 지원하지 않으면 프로토콜 도달 불가(코드 2)를 보내고 — §3.2.2.1, 인터넷 계층이 ICMP 오류 메시지를 전송 계층에 넘길 때는 원래 헤더의 IP 프로토콜 번호로 알맞은 전송 프로토콜을 고른다(MUST) — §3.2.2
 - 네트워크들은 「게이트웨이」 또는 「IP 라우터」라 부르는 패킷 교환 장비로 서로 이어진다 — §1.1.1
 - 다른 호스트가 만든 데이터그램을 넘겨주는 호스트는 그때 게이트웨이(라우터) 노릇을 하는 것이다 — §3.1
 - 제한 브로드캐스트 주소로 보낸 데이터그램은 이어진 그 물리 네트워크의 모든 호스트가 받는다. 멀티캐스트(D 클래스) 주소는 호스트 그룹 하나를 가리킨다 — §3.2.1.3
@@ -420,6 +424,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 `ip-protocol.ttl`(§3.2.1.7 — 초 단위지만 홉 수의 성질, 고리를 끝낸다),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(§2.3.2.1·§2.3.2.2), `arp.arp-across-routers`(§3.3.1·§3.3.1.2 — 다음 홉, 기본 게이트웨이), `arp.rarp`(§3.2.2.7 — RARP와 BOOTP), `icmp.ip-limits`(§1.1.3 — 비연결형, 전달 보장 없음),
 `icmp.icmp`(§1.1.3·§3.2.2 — IP의 일부, 두 갈래, 오류의 오류 금지), `icmp.icmp-message`(§3.2.2), `icmp.destination-unreachable`(§3.2.2.1), `icmp.time-exceeded`(§3.2.2.4), `icmp.echo`(§3.2.2.6), `icmp.igmp`(§1.1.3·§3.2.3)
+(phase 73 step 3) `ip-protocol.ipv4-header`(§3.2.1.2 — 체크섬이 맞지 않는 패킷은 버린다, §3.2.2·§3.2.2.1 — 프로토콜 번호로 넘길 전송 프로토콜을 고른다), 문항 n052 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871

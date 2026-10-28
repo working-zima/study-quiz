@@ -49,6 +49,7 @@ import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTabl
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
+import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -58,6 +59,7 @@ import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
+import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
@@ -228,6 +230,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
+  'ip-protocol.mtu': MtuLimitDiagram,
+  'ip-protocol.ipv4-header': Ipv4HeaderDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
