@@ -352,7 +352,8 @@
     },
     {
       "dir": "70-network-ch1-rework",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-28T11:17:18+0900"
     }
   ]
 }
