@@ -90,8 +90,9 @@ const tall: Layout = {
   },
   notes: {
     'trunk-name': { x: 76, y: 144, anchor: 'start' },
-    'tag-vlan-1': { x: 244, y: 160, anchor: 'start' },
-    'tag-vlan-2': { x: 244, y: 160, anchor: 'start' },
+    // 태그 칸 오른쪽(238)과 프레임 박스 오른쪽(276) 사이 가운데. 320px Chrome 실측 폭(약 33)으로도 양쪽에 틈이 남는다.
+    'tag-vlan-1': { x: 257, y: 160, anchor: 'middle' },
+    'tag-vlan-2': { x: 257, y: 160, anchor: 'middle' },
   },
   axis: 'y',
 }

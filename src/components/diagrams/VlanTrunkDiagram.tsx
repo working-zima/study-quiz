@@ -51,8 +51,8 @@ const groups = [
 // 트렁크 링크 곁말은 늘 보이고, 태그 곁말은 시나리오마다 태그 칸 바로 곁에 붙는다.
 const notes: { id: string, x: number, y: number, anchor: 'start' | 'middle' | 'end', scenarios: string[] | null }[] = [
   { id: 'trunk-name', x: 76, y: 144, anchor: 'start', scenarios: null },
-  { id: 'tag-vlan-1', x: 244, y: 160, anchor: 'start', scenarios: ['vlan-1'] },
-  { id: 'tag-vlan-2', x: 244, y: 160, anchor: 'start', scenarios: ['vlan-2'] },
+  { id: 'tag-vlan-1', x: 257, y: 160, anchor: 'middle', scenarios: ['vlan-1'] },
+  { id: 'tag-vlan-2', x: 257, y: 160, anchor: 'middle', scenarios: ['vlan-2'] },
 ]
 
 // 가로형은 왼쪽부터 스위치 1의 호스트, 스위치 1, 트렁크 링크, 스위치 2, 스위치 2의 호스트를 한 줄로 두고,
