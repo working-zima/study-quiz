@@ -1,0 +1,86 @@
+{
+  "diagrams": {
+    "ip-limits": {
+      "label": "IP의 비신뢰성과 비연결형을 보이는 도식",
+      "svgLabel": "호스트 A가 패킷 1, 패킷 2, 패킷 3을 저마다 따로 호스트 B 쪽으로 보내는 모습",
+      "question": "IP는 무엇을 보장하지 않을까?",
+      "idleCaption": "호스트 A가 다른 네트워크에 있는 호스트 B에게 패킷 1, 패킷 2, 패킷 3을 차례로 보낸다. 버튼을 고르면 패킷이 어떻게 닿을 수 있는지, IP가 보내기 전에 무엇을 하지 않는지 볼 수 있다.",
+      "legend": "상자 하나가 패킷 하나이고, 화살표는 패킷이 가는 길이다.",
+      "nodes": {
+        "host-a": "호스트 A",
+        "packet-1": "패킷 1",
+        "packet-2": "패킷 2",
+        "packet-3": "패킷 3",
+        "host-b": "호스트 B"
+      },
+      "notes": {
+        "lost-note": "가는 길에 사라짐",
+        "order-note": "닿은 차례 패킷 3, 패킷 1",
+        "connect-note": "연결을 맺지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "unreliable",
+          "label": "비신뢰성",
+          "caption": "패킷 2는 가는 길에 사라지고, 패킷 3이 패킷 1보다 먼저 닿았다. IP는 패킷을 받았는지 확인하지 않으므로 패킷 2를 다시 보내지 않고, 닿은 차례를 바로잡지도 않는다.",
+          "sources": [
+            "icmp.ip-limits"
+          ]
+        },
+        {
+          "id": "connectionless",
+          "label": "비연결형",
+          "caption": "호스트 A는 보내기 전에 호스트 B와 연결을 맺지 않는다. IP는 패킷 하나하나를 다른 패킷과 관계없는 덩어리로 다루어, 세 패킷을 저마다 따로 보낸다.",
+          "sources": [
+            "icmp.ip-limits"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.ip-limits"
+      ]
+    },
+    "icmp-feedback": {
+      "label": "ICMP 메시지의 두 갈래를 보이는 도식",
+      "svgLabel": "출발지 호스트와 목적지 호스트 사이에 라우터가 있고, 패킷과 ICMP 메시지가 오가는 길을 보이는 모습",
+      "question": "ICMP는 문제가 생기면 누구에게 알릴까?",
+      "idleCaption": "출발지 호스트가 보낸 패킷은 라우터를 거쳐 목적지 호스트로 간다. 버튼을 고르면 오류 보고 메시지가 누구에게 가는지, 질의 메시지가 어떻게 오가는지 볼 수 있다.",
+      "legend": "화살표는 패킷이나 ICMP 메시지가 가는 길이다. 목적지 쪽으로 가는 길과 출발지 쪽으로 돌아오는 길을 나란히 그렸다.",
+      "nodes": {
+        "source": "출발지 호스트",
+        "router": "라우터",
+        "dest": "목적지 호스트"
+      },
+      "notes": {
+        "drop-note": "패킷을 버림",
+        "error-note": "ICMP 오류 메시지",
+        "unreachable-note": "목적지에 닿지 못함",
+        "request-note": "요청",
+        "reply-note": "응답"
+      },
+      "scenarios": [
+        {
+          "id": "error",
+          "label": "오류 보고",
+          "caption": "라우터가 패킷을 목적지 쪽으로 넘길 길을 찾지 못해 그 패킷을 버리고, 출발지 호스트에 ICMP 오류 메시지를 보낸다. 라우터는 버린 패킷을 다시 보내지 않는다.",
+          "sources": [
+            "icmp.icmp"
+          ]
+        },
+        {
+          "id": "query",
+          "label": "질의",
+          "caption": "출발지 호스트가 보낸 요청이 라우터를 거쳐 목적지 호스트에 닿고, 목적지 호스트가 응답을 돌려보낸다. 에코 요청과 에코 응답처럼, 질의 메시지는 네트워크의 상태를 알아보는 데 쓴다.",
+          "sources": [
+            "icmp.icmp"
+          ]
+        }
+      ],
+      "sources": [
+        "icmp.icmp"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

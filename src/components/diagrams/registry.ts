@@ -52,9 +52,11 @@ import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
+import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
+import { IpLimitsDiagram } from './IpLimitsDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
@@ -260,6 +262,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'arp.arp-across-routers': ArpHopsDiagram,
   'arp.rarp': RarpDirectionDiagram,
   'arp.neighbor-discovery': NeighborDiscoveryDiagram,
+  'icmp.ip-limits': IpLimitsDiagram,
+  'icmp.icmp': IcmpFeedbackDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

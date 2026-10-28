@@ -230,12 +230,14 @@ https://www.rfc-editor.org/rfc/rfc791
   인터페이스는 지역 네트워크 헤더를 붙여 보낸다. 게이트웨이의 인터페이스는 그 지역 헤더를 떼고 데이터그램을 IP 모듈에 넘기고, IP 모듈은 인터넷 주소를 보고 다른 네트워크로 넘길 데이터그램임을 안 뒤 목적지 호스트의 지역 네트워크 주소를 정해
   그 네트워크의 인터페이스에 넘기며, 그 인터페이스가 새 지역 헤더를 붙여 보낸다. 목적지 호스트의 인터페이스가 지역 헤더를 떼고 IP 모듈에 넘긴다 — §2.2 「Model of Operation」.
   이 모델에서 구간마다 떼고 새로 붙는 것은 지역 네트워크 헤더이고, 목적지를 가리키는 인터넷 주소는 그대로 다음 구간으로 간다(라우터가 넘기는 순서는 아래 RFC 1812 §5.2.1.2 줄)
+- (phase 73 step 11, 2026-10-29 rfc-editor.org 원문) 목록 항목 `icmp.ip-limits`의 영문 이름 가운데 **unreliable은 표준이 붙인 용어가 아니다** — 원문은 IP가 「신뢰성 있는 통신 수단을 주지 않는다(does not provide a reliable communication facility)」고 쓰고(§1.4), RFC 792 Introduction은 「절대적으로 믿을 수 있게 설계되지 않았다」고 쓴다. 그 성질을 형용사 하나로 적은 것이다. connectionless는 RFC 1122 §1.1.3의 말이다(아래 RFC 1122 항목)
 
 쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3),
 (phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.4 두 기능·IP 모듈의 자리), `ip-protocol.fragmentation`(§2.3·§3.2 — 게이트웨이도 나누고 목적지가 합친다, DF), `ip-protocol.mtu`(§3.2 — 68옥텟), `ip-protocol.ipv4-header`(§3.1 칸·IHL·전체 길이·헤더 체크섬·프로토콜·서비스 유형·옵션),
 `ip-protocol.fragment-fields`(§2.3·§3.1·§3.2 — 식별자·플래그·오프셋, 합치는 기준 넷), `ip-protocol.ttl`(§3.1 — 초 단위 정의와 상한), `exam-notes.md` E10,
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§1.2·§1.4 — 신뢰성 장치가 없다), `icmp.icmp`(§1.4 — 오류는 ICMP로 알린다), `arp.arp-across-routers`(§2.2 — 구간마다 지역 헤더만 바뀐다), 강의 수정 이력 L34·L35(§2.3 — 32비트 주소는 8비트씩 넷)
 (phase 73 step 3) `ip-protocol.ipv4-header`(§3.1 — 버전 칸의 값 4, 헤더 길이 칸이 데이터의 시작을 가리킨다), 문항 n052 해설
+(phase 73 step 11) `icmp.ip-limits`(§1.4 — 확인 응답·재전송이 없다, 데이터그램 하나하나를 서로 관계없는 독립된 것으로 다루고 그 사이에 연결이 없다, 찾아낸 오류는 ICMP로 알린다), `icmp.icmp`(§1.4 — 앞 개념에서 본 대로 IP는 받았는지 확인하지 않는다), 문항 n070·n071 해설, 도식 `ip-limits`
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -347,6 +349,7 @@ https://www.rfc-editor.org/rfc/rfc9293
 - TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
 
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
+(phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -358,6 +361,7 @@ https://www.rfc-editor.org/rfc/rfc768
 - UDP가 주고받는 단위를 사용자 데이터그램(user datagram)이라 부르고, 그냥 데이터그램이라고도 쓴다. 헤더 그림의 제목은 「User Datagram Header Format」이다 — Format, Fields, User Interface
 
 쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
+(phase 73 step 11) `icmp.ip-limits`(Introduction — 순서 있고 신뢰할 수 있는 전달이 필요한 응용은 TCP를 쓴다)
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -424,6 +428,7 @@ https://www.rfc-editor.org/rfc/rfc1122
   같은 네트워크인지는 주소 마스크로 가린다(§3.3.1.1 — 서브넷 마스크는 `ip-addressing` 주제라 여기서는 이름만)
 - (phase 73 step 1) 경로 정보가 없는 목적지로 보낼 때 호스트는 **기본(default) 게이트웨이** 가운데 하나를 골라 보낸다. 호스트는 기본 게이트웨이를 여럿 둘 수 있어야 하고, 시작하려면 대개 적어도 하나를 알아야 한다
   (설정 파일이나 BOOTP 같은 시작 절차로 얻는다). 고른 게이트웨이가 가장 좋은 다음 홉이 아니면 그 게이트웨이가 데이터그램을 넘겨주면서 ICMP 리다이렉트를 돌려보낸다 — §3.3.1.2와 DISCUSSION
+- (phase 73 step 11, 2026-10-29 rfc-editor.org 원문) 신뢰성 있는 전달이 필요하면 IP 위의 계층이 그 일을 맡는다. 지금 전송 계층의 주된 프로토콜은 TCP와 UDP 둘이다 — §1.1.3
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
@@ -435,6 +440,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 3) `ip-protocol.ipv4-header`(§3.2.1.2 — 체크섬이 맞지 않는 패킷은 버린다, §3.2.2·§3.2.2.1 — 프로토콜 번호로 넘길 전송 프로토콜을 고른다), 문항 n052 해설
 (phase 73 step 4) `ip-protocol.fragment-fields`(위 2026-10-28 줄 — 데이터그램은 순서가 바뀌어 닿을 수 있어 조각이 보낸 차례대로 닿는다는 보장이 없다), `ip-protocol.ttl`(§3.2.1.7 — 고리를 끝내는 쓰임과 홉 수의 성질), 문항 n055 해설
 (phase 73 step 5) `ip-protocol.ipv6`(§3.2.1.3 — IPv4에는 그 물리 네트워크의 모든 호스트가 받는 브로드캐스트 주소가 있다), 도식 `ipv6-changes`의 「브로드캐스트 있음」, 문항 n057 해설
+(phase 73 step 11) `icmp.ip-limits`(§1.1.3 — 비연결형, 손상·중복·순서 바뀜·닿지 않음, 위 계층이 신뢰성을 맡는다, 전송 계층은 끝과 끝 사이의 통신, TCP는 연결형), `icmp.icmp`(§1.1.3 — ICMP는 IP의 일부이고 인터넷 계층 프로토콜, §3.2.2 — 오류 메시지와 질의 메시지의 두 갈래, 에코는 질의 메시지), 문항 n070·n071 해설, 도식 `ip-limits`·`icmp-feedback`
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -707,6 +713,7 @@ https://www.rfc-editor.org/rfc/rfc1112
 
 쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이),
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§2 — 최선형이라는 이름), `icmp.igmp`(부록 I — 비대칭, IP의 일부, 프로토콜 번호 2, 질의·보고, TTL 1), `exam-notes.md` E12·E14
+(phase 73 step 11) `icmp.ip-limits`(§2 — 최선형 전달: 온전히 닿는다는 보장도, 순서가 지켜진다는 보장도 없다), 문항 n070 해설
 
 ## RFC 1983 — Internet Users' Glossary
 https://www.rfc-editor.org/rfc/rfc1983
@@ -1668,6 +1675,7 @@ https://www.rfc-editor.org/rfc/rfc792
 
 쓰인 곳: 강의 수정 이력 L34, (phase 73 step 1에서 쓰일 곳) `icmp.icmp`(IP의 일부·프로토콜 1·신뢰성을 만들지 않는다·TTL 칸 없음), `icmp.icmp-message`(타입·코드·체크섬, 타입 번호), `icmp.destination-unreachable`(코드 0~5와 보내는 쪽, 원래 헤더 + 64비트),
 `icmp.time-exceeded`(코드 0·1과 보내는 쪽), `icmp.echo`(그대로 돌려보낸다, 식별자·순서 번호), `exam-notes.md` E11·E12·E13
+(phase 73 step 11) `icmp.icmp`(Introduction — 라우터나 목적지 호스트가 출발지에 알린다, IP의 일부이고 모든 IP 모듈이 구현한다, IP를 믿을 수 있게 만들지 않고 알림이 꼭 돌아온다는 보장도 없다, 신뢰성은 상위 프로토콜이 갖춘다; 「Message Formats」 — 프로토콜 값 1, ICMP 메시지에는 TTL 칸이 없다; 「Destination Unreachable Message」 — 라우터가 목적지 네트워크로 갈 수 없을 때; 「Echo or Echo Reply Message」 — 받은 쪽이 응답을 돌려보낸다), 문항 n070·n071 해설, 도식 `icmp-feedback`
 
 ## (phase 73 step 1) IANA — Internet Control Message Protocol (ICMP) Parameters
 https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
@@ -1743,6 +1751,7 @@ RFC 4443은 Internet Standard이고 RFC 2463을 폐기·대체한다. RFC 4884�
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.neighbor-discovery`(ICMPv6의 한 줄 풀이), `icmp.icmp`(IPv6용은 ICMPv6)
 - (phase 73 step 10) ICMPv6는 IPv6 노드가 패킷을 처리하다 생긴 오류를 알리고, 진단(ICMPv6 「ping」) 같은 다른 인터넷 계층 기능을 하는 데 쓴다. IPv6의 한 부분이라 모든 IPv6 노드가 구현해야 한다 — §1 (rfc-editor.org 원문, 2026-10-29)
 (phase 73 step 10) `arp.neighbor-discovery`(§1 — 오류를 알리거나 네트워크 상태를 알아보는 메시지, 이웃 탐색 메시지는 다른 문서가 더한 ICMPv6 메시지; §2.1 — 다음 헤더 58로 가리키므로 IPv6 패킷에 담겨 간다), 문항 n069 해설
+(phase 73 step 11) `icmp.icmp`(§1 — IPv6에 맞게 고친 ICMPv6, 오류를 알리고 진단하는 데 쓴다; 이웃 탐색 메시지도 ICMPv6 메시지다 — RFC 4861 항목)
 
 ## (phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 — Dynamic Host Configuration Protocol
 https://www.rfc-editor.org/rfc/rfc951
