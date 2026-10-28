@@ -33,6 +33,8 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 8)」이 붙은 줄과 항목은 phase 72 step 8에서 `hub-switch-vlan.switch`·`hub-switch-vlan.mac-address-table`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 9)」가 붙은 줄은 phase 72 step 9에서 `hub-switch-vlan.flooding-forwarding-filtering`·`hub-switch-vlan.stp`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 11)」이 붙은 줄과 항목은 phase 72 step 11에서 `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`을 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
+「(phase 73)」이 붙은 줄과 항목은 phase 73에서 `ip-protocol`(IP·단편화·MTU·IPv4 헤더·TTL·IPv4 주소·IPv6·주소 표기·IPv6 헤더·확장 헤더·SLAAC)·`arp`·`icmp`(IGMP 포함) 주제가 쓸 사실을 확인하며 더했다.
+step 0(IP와 단편화)의 확인한 날은 2026-10-29다. RFC는 rfc-editor.org의 텍스트판(`https://www.rfc-editor.org/rfc/rfcNNNN.txt`)을 내려받아 절을 직접 읽었고, 지금 유효한지(폐기·개정 관계)는 rfc-editor의 문서 정보(`…/rfcNNNN.json`)로 확인했다.
 
 ---
 
@@ -190,8 +192,35 @@ https://www.rfc-editor.org/rfc/rfc791
   IP 모듈은 인터넷 헤더에 실린 주소를 써서 데이터그램을 목적지 쪽으로 보낸다 — §1.4 「Operation」
 - (phase 71) 데이터그램을 나눠야 하는 것은, 큰 패킷을 실을 수 있는 네트워크에서 출발한 데이터그램이 목적지로 가는 길에 더 작은 패킷만 실을 수 있는 네트워크를 지나야 할 때다 — §2.3 「Fragmentation」.
   IP 모듈은 「작은 패킷」 네트워크를 지나야 할 때 데이터그램을 나누고 다시 합친다 — §1.4 「Operation」
+- (phase 73) IP 모듈은 인터넷으로 통신하는 호스트마다, 네트워크를 잇는 게이트웨이(라우터)마다 하나씩 있고, 주소 칸을 읽는 규칙과 데이터그램을 나누고 합치는 규칙을 함께 쓴다 — §1.4 「Operation」
+- (phase 73) 단편화하는 곳과 합치는 곳: 긴 데이터그램을 나누는 IP 모듈의 예로 게이트웨이를 들고, 조각을 합치는 IP 모듈의 예로 목적지 호스트를 든다.
+  인터넷의 기본 서비스는 데이터그램을 게이트웨이에서 나눌 수 있게 하고, 다시 합치는 일은 목적지 호스트의 IP 모듈이 한다 — §2.3 「Fragmentation」, §3.2 「Discussion」 첫머리
+- (phase 73) 나누는 IP 모듈은 원래 헤더의 칸들을 조각마다 복사하고, 데이터를 8옥텟 경계에서 자른다(마지막 조각만 8의 배수가 아니어도 된다). 조각마다 전체 길이 칸을 그 조각의 길이로 고친다.
+  나뉘지 않은 데이터그램은 MF가 0이고 오프셋이 0이다 — §2.3 「Fragmentation」, §3.2 「Fragmentation and Reassembly」
+- (phase 73) 「나누지 마라(don't fragment)」 표시가 있는 데이터그램은 어떤 경우에도 나누지 않는다. 나누지 않고는 목적지에 보낼 수 없으면 버린다 — §2.3 「Fragmentation」, §3.2 「Fragmentation and Reassembly」
+- (phase 73) 조각을 받는 쪽은 식별자 칸으로 서로 다른 데이터그램의 조각이 섞이지 않게 하고, 오프셋으로 조각이 원래 데이터그램의 어디에 들어가는지, MF가 0인 것으로 마지막 조각을 안다.
+  합칠 때는 **식별자·출발지 주소·목적지 주소·프로토콜** 넷이 모두 같은 조각끼리 묶는다 — §2.3 「Fragmentation」, §3.2 「Fragmentation and Reassembly」
+- (phase 73) 식별자는 보내는 쪽이 정해 붙이는 값이고, 그 데이터그램이 인터넷에 머무는 동안 같은 출발지·목적지·프로토콜 짝 안에서 겹치지 않아야 한다 — §2.3 「Fragmentation」, §3.1 「Identification」.
+  RFC 6864가 이 요구를 고쳤다 — 아래 RFC 6864 항목
+- (phase 73) 헤더 형식(§3.1 그림 4)의 칸과 크기: 버전(Version) 4비트, 헤더 길이(IHL) 4비트, 서비스 유형(Type of Service) 8비트, 전체 길이(Total Length) 16비트,
+  식별자(Identification) 16비트, 플래그(Flags) 3비트, 단편화 오프셋(Fragment Offset) 13비트, TTL(Time to Live) 8비트, 프로토콜(Protocol) 8비트, 헤더 체크섬(Header Checksum) 16비트,
+  출발지 주소(Source Address) 32비트, 목적지 주소(Destination Address) 32비트, 옵션(Options, 길이가 바뀐다)과 패딩(Padding) — §3.1
+- (phase 73) 헤더 길이 칸은 헤더 길이를 **32비트 워드 수**로 적고, 바른 헤더의 최솟값은 5(곧 20옥텟)다. 흔한 헤더는 20옥텟이고 가장 긴 헤더는 60옥텟이다 — §3.1 「IHL」, 「Total Length」
+- (phase 73) 전체 길이 칸은 헤더와 데이터를 합친 데이터그램의 길이를 옥텟으로 센 값이고, 65,535옥텟까지 적을 수 있다 — §3.1 「Total Length」
+- (phase 73) 플래그 세 비트: 비트 0은 예약(반드시 0), 비트 1은 DF(0이면 나눠도 된다, 1이면 나누지 마라), 비트 2는 MF(0이면 마지막 조각, 1이면 뒤에 조각이 더 있다) — §3.1 「Flags」
+- (phase 73) TTL 칸은 데이터그램이 인터넷에 머물 수 있는 **최대 시간**을 가리키고, 값이 0이면 그 데이터그램을 없애야 한다. 단위는 **초**로 정했지만, 1초 안에 처리해도 처리한 모듈마다 최소 1씩 줄이므로
+  머무는 시간의 상한으로만 볼 수 있다. 이 칸을 두는 목적은 전달할 수 없는 데이터그램을 버리고 데이터그램의 수명에 상한을 두는 것이다 — §3.1 「Time to Live」.
+  실제로 홉 수처럼 쓰인다는 것은 RFC 1122 §3.2.1.7·RFC 1812 §5.3.1(아래 두 항목)
+- (phase 73) 프로토콜 칸은 데이터 부분에 담긴 **다음 계층 프로토콜**을 가리키는 번호이고, 값은 「Assigned Numbers」에 정한다(지금은 IANA 레지스트리 — 아래 IANA 항목) — §3.1 「Protocol」
+- (phase 73) 헤더 체크섬은 **헤더만** 검사한다. TTL처럼 지나는 곳마다 바뀌는 칸이 있어서, 헤더를 처리하는 곳마다 다시 계산하고 검사한다 — §3.1 「Header Checksum」
+- (phase 73) 서비스 유형 칸은 원하는 서비스 품질(우선순위, 지연·처리량·신뢰성)을 가리킨다 — §3.1 「Type of Service」. 이 칸의 지금 쓰임은 아래 RFC 2474·RFC 3168 항목
+- (phase 73) 옵션은 데이터그램마다 있을 수도 없을 수도 있고(모든 IP 모듈이 구현은 해야 한다), 패딩은 헤더가 32비트 경계에서 끝나게 채우는 0이다 — §3.1 「Options」, 「Padding」
+- (phase 73) 모든 IP 모듈은 68옥텟짜리 데이터그램을 더 나누지 않고 넘길 수 있어야 한다 — 헤더가 60옥텟까지 길어질 수 있고 가장 작은 조각이 8옥텟이기 때문이다.
+  모든 목적지는 576옥텟짜리 데이터그램을 통째로든 조각으로든 받을 수 있어야 한다 — §3.2 「Fragmentation and Reassembly」, §3.1 「Total Length」
 
-쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3)
+쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3),
+(phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.4 두 기능·IP 모듈의 자리), `ip-protocol.fragmentation`(§2.3·§3.2 — 게이트웨이도 나누고 목적지가 합친다, DF), `ip-protocol.mtu`(§3.2 — 68옥텟), `ip-protocol.ipv4-header`(§3.1 칸·IHL·전체 길이·헤더 체크섬·프로토콜·서비스 유형·옵션),
+`ip-protocol.fragment-fields`(§2.3·§3.1·§3.2 — 식별자·플래그·오프셋, 합치는 기준 넷), `ip-protocol.ttl`(§3.1 — 초 단위 정의와 상한), `exam-notes.md` E10
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -221,8 +250,39 @@ https://www.rfc-editor.org/rfc/rfc8200
 - IPv6는 주소 크기를 32비트에서 128비트로 늘렸다 — §1
 - IPv6에서 단편화는 출발지 노드만 하고, 전달 경로의 라우터는 하지 않는다 — §4.5
 - IPv4와 달리 IPv6 노드가 보내는 UDP 패킷은 기본적으로 체크섬을 생략할 수 없다. UDP를 터널 캡슐화에 쓰는 프로토콜만 특정 포트에서 0 체크섬을 쓸 수 있다 — §8.1
+- (phase 73) 인터넷 표준(STD 86)이고, IETF의 문서다. RFC 2460을 폐기하고 대신한다. RFC 9673이 홉별 옵션 헤더의 처리 절차를 고쳤다(rfc-editor 상태, 2026-10-29)
+- (phase 73) IPv6는 IPv4의 **뒤를 잇도록** 만든 새 판 IP다 — §1.
+  IPv4에서 달라진 점의 갈래: 주소를 128비트로 늘림(주소 체계의 단계를 늘리고, 훨씬 많은 노드에 주소를 주고, 주소 자동 설정을 쉽게 한다. 애니캐스트라는 새 주소 종류도 정한다), 헤더 형식을 단순하게 함
+  (IPv4 헤더의 칸 몇을 없애거나 선택으로 돌려 처리 비용을 줄인다), 확장과 옵션을 담는 방식을 바꿈, 흐름 레이블, 인증·무결성·(선택) 기밀성 확장 — §1
+- (phase 73) 용어: 링크 MTU는 링크 하나가 실어 나를 수 있는 패킷의 최대 크기(옥텟)다. 경로 MTU는 출발지와 목적지 사이 경로의 모든 링크 MTU 가운데 가장 작은 값이다. 패킷은 IPv6 헤더에 페이로드를 더한 것이다.
+  이웃은 같은 링크에 붙은 노드들이다 — §2
+- (phase 73) 기본 헤더의 칸 여덟과 크기: 버전(Version) 4비트(값 6), 트래픽 클래스(Traffic Class) 8비트, 흐름 레이블(Flow Label) 20비트, 페이로드 길이(Payload Length) 16비트,
+  다음 헤더(Next Header) 8비트, 홉 제한(Hop Limit) 8비트, 출발지 주소(Source Address) 128비트, 목적지 주소(Destination Address) 128비트 — §3
+- (phase 73) 기본 헤더는 40옥텟이다 — §3 그림의 칸을 더한 값(4+4+16+16)이고, §8.3은 확장 헤더가 없는 IPv6 헤더가 최소 길이 IPv4 헤더(20옥텟)보다 20옥텟 길다고 쓴다.
+  기본 헤더에는 헤더 길이 칸이 없고, 옵션은 기본 헤더가 아니라 확장 헤더에 담는다 — §3, §4
+- (phase 73) 페이로드 길이는 기본 헤더 **뒤의 나머지 전부**를 옥텟으로 센 값이고, **확장 헤더도 페이로드에 든다** — §3 「Payload Length」
+- (phase 73) 다음 헤더 칸은 기본 헤더 바로 뒤에 오는 헤더의 종류를 가리키고, IPv4 프로토콜 칸과 같은 번호를 쓴다 — §3 「Next Header」
+- (phase 73) 홉 제한은 패킷을 넘겨주는 노드마다 1씩 줄이고, 넘겨줄 때 받은 값이 0이었거나 줄여서 0이 되면 버린다. 목적지 노드는 홉 제한이 0인 패킷도 버리지 않고 처리한다 — §3 「Hop Limit」
+- (phase 73) 기본 헤더에는 **헤더 체크섬이 없다** — §3의 칸 목록에 없고, §8.1은 ICMPv6가 의사 헤더를 체크섬에 넣는 까닭을 「IPv4와 달리 IPv6 헤더의 칸을 덮는 인터넷 계층 체크섬이 없기 때문」이라고 쓴다.
+  기본 헤더에는 단편화 칸(식별자·플래그·오프셋)도 없다 — 단편화 정보는 단편화 확장 헤더에 담는다 — §3, §4.5
+- (phase 73) 트래픽 클래스 칸(8비트)은 네트워크가 트래픽을 관리하는 데 쓰고, 받은 값이 보낸 값과 다를 수 있다. 지금 쓰임(DS 필드·ECN)은 RFC 2474·RFC 3168이 정한다 — §7.
+  옛 이름 Priority(4비트)는 아래 RFC 1883 항목
+- (phase 73) 확장 헤더: 선택 정보는 기본 헤더와 상위 계층 헤더(TCP 등) 사이에 넣는 **별도의 헤더**에 담는다. 패킷에는 확장 헤더가 없을 수도, 하나일 수도, 여럿일 수도 있고,
+  각 헤더는 **앞 헤더의 다음 헤더 칸**이 가리킨다(사슬). 확장 헤더 번호는 IPv4·IPv6가 함께 쓰는 IANA 프로토콜 번호에서 가져온다 — §4
+- (phase 73) 홉별 옵션 헤더를 빼면, 경로의 노드는 패킷이 목적지에 닿을 때까지 확장 헤더를 처리하지도 넣거나 빼지도 않는다. 목적지는 확장 헤더를 나온 차례대로 처리한다 — §4
+- (phase 73) 확장 헤더는 8옥텟의 정수배 길이다 — §4
+- (phase 73) 완전한 IPv6 구현이 갖추는 확장 헤더: 홉별 옵션(Hop-by-Hop Options), 단편화(Fragment), 목적지 옵션(Destination Options), 라우팅(Routing), 인증(Authentication),
+  ESP(Encapsulating Security Payload). 뒤의 둘은 RFC 4302·RFC 4303이 정한다 — §4
+- (phase 73) 단편화 헤더는 경로 MTU보다 큰 패킷을 보내려고 **출발지가** 쓴다(앞 헤더의 다음 헤더 값 44로 가리킨다). 칸: 다음 헤더 8비트, 예약 8비트, 단편화 오프셋 13비트(8옥텟 단위),
+  예약 2비트(Res), M 플래그 1비트(1이면 조각이 더 있다, 0이면 마지막 조각), 식별자 32비트 — §4.5.
+  출발지는 나눌 패킷마다 식별자를 정하고, 같은 출발지·목적지 주소로 최근에 보낸 다른 조각난 패킷과 겹치지 않게 한다. 조각은 저마다 따로 보낸 패킷이고 받는 쪽에서 다시 합친다 — §4.5
+- (phase 73) 모든 링크는 MTU가 1280옥텟 이상이어야 한다(IPv6 최소 링크 MTU). 1280옥텟 패킷을 통째로 나르지 못하는 링크는 IPv6 아래 계층에서 나누고 합쳐야 한다.
+  MTU를 설정할 수 있는 링크는 1500옥텟 이상을 권한다 — §5
+- (phase 73) 경로 MTU보다 큰 패킷은 출발지에서 단편화 헤더로 나누고 목적지에서 합칠 수 있지만, 패킷 크기를 경로 MTU에 맞출 수 있는 응용은 이 방법을 쓰지 않는 편이 좋다 — §5
 
-쓰인 곳: 강의 수정 이력 L4, L5, L10, 면접 수정 이력 I3, I8, (phase 72 step 5) `ethernet.ethertype-length`(IPv6는 주소를 32비트에서 128비트로 늘렸다, §1)
+쓰인 곳: 강의 수정 이력 L4, L5, L10, L33, 면접 수정 이력 I3, I8, (phase 72 step 5) `ethernet.ethertype-length`(IPv6는 주소를 32비트에서 128비트로 늘렸다, §1),
+(phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.5 — 출발지만 나눈다), `ip-protocol.mtu`(§2 링크 MTU·경로 MTU, §5 — 1280), `ip-protocol.ipv6`(§1 — 뒤를 잇는 판·달라진 점), `ip-protocol.ipv6-header`(§3·§7·§8.1·§8.3 — 칸 여덟, 40옥텟, 체크섬·단편화 칸 없음),
+`ip-protocol.ttl`(§3 — 홉 제한), `ip-protocol.extension-headers`(§4·§4.5), `exam-notes.md` E9
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -231,7 +291,7 @@ https://www.rfc-editor.org/rfc/rfc3022
 - NAPT는 (사설 주소, 사설 포트) 짝을 (등록된 주소, 할당한 포트) 짝에 대응시켜, 사설망의 여러 노드가 등록된 주소 **하나**로 바깥과 통신하게 한다 — §2.2, §3.1
 - NAT는 IP 주소가 끝에서 끝까지 갖던 의미를 없앤다 — §1
 
-쓰인 곳: 강의 수정 이력 L7
+쓰인 곳: 강의 수정 이력 L7, (phase 73) 아래 「RFC 7857·RFC 8512」 항목이 NAT44를 이 문서 §2.1의 기본 NAT로 가리킨다
 
 ## RFC 1631 — The IP Network Address Translator (NAT) [폐기, RFC 3022로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1631
@@ -305,10 +365,20 @@ https://www.rfc-editor.org/rfc/rfc1122
   - 프레임은 링크 계층 프로토콜의 전송 단위로, 링크 계층 헤더 뒤에 패킷이 붙은 것이다.
   - 메시지는 이 문서가 아래 계층을 설명할 때 **전송 계층 프로토콜의 전송 단위**를 가리키는 말이다(TCP 세그먼트도 메시지다). 이 과목은 응용 계층의 단위를 강의(p37)대로 데이터라 부르고
     메시지는 HTTP 표준의 이름(HTTP 메시지)으로만 덧붙이므로(ADR-058) 이 정의는 개념 본문에 옮기지 않는다 — HTTP 메시지의 근거는 아래 RFC 9110 §1.3이다.
+- (phase 73) TTL 칸의 쓰임은 둘이다 — TCP 세그먼트의 수명에 상한을 두는 것과, 경로가 고리를 이룰 때 패킷이 끝없이 도는 것을 끝내는 것이다. TTL은 초 단위의 시간이지만,
+  게이트웨이(라우터)마다 최소 1씩 줄여야 하므로 홉 수의 성질도 갖는다. TTL이 다 되면 그 데이터그램은 목적지 호스트가 아니라 게이트웨이에서 버려지는 것이 본뜻이다 — §3.2.1.7 DISCUSSION
+- (phase 73) 호스트는 TTL이 0인 데이터그램을 보내지 않는다 — §3.2.1.7
+- (phase 73) IP 계층은 재조합을 반드시 구현한다. 합칠 수 있는 가장 큰 데이터그램 크기(EMTU_R)는 576옥텟 이상이어야 한다 — §3.3.2
+- (phase 73) 재조합에는 기다리는 시간 한도가 있어야 하고 60~120초를 권한다. 그 시간이 지나면 합치다 만 데이터그램을 버리고, 첫 조각(오프셋 0)을 받았으면 출발지에 ICMP 시간 초과를 보낸다(자세히는 step 1) — §3.3.2.
+  RFC 791은 이 시간을 남은 TTL로 정하라고 했지만, 게이트웨이들이 TTL을 지난 시간이 아니라 **단순한 홉 수로 다루기 때문에** 잘 맞지 않는다고 쓴다 — §3.3.2 DISCUSSION
+- (phase 73) 호스트가 보낼 수 있는 가장 큰 데이터그램 크기(EMTU_S)는 출발지 주소의 네트워크 인터페이스 MTU 이하다. 호스트 쪽 단편화는 하지 않는 편이 바람직하고,
+  경로의 어느 게이트웨이에서도 나뉘지 않을 만큼 작게 고르는 것이 좋다 — §3.3.3
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
-(phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3)
+(phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3),
+(phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.1.3 — 인터넷 계층, 최선형), `ip-protocol.fragmentation`(§3.3.2 — 목적지가 합친다, 합치는 시간 한도), `ip-protocol.mtu`(§3.3.2·§3.3.3 — 576, EMTU_S ≤ 인터페이스 MTU),
+`ip-protocol.ttl`(§3.2.1.7 — 초 단위지만 홉 수의 성질, 고리를 끝낸다)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -403,8 +473,9 @@ https://www.rfc-editor.org/rfc/rfc3986
 - userinfo에 `사용자:비밀번호`를 넣는 형식은 쓰지 않도록 했다(deprecated) — §3.2.1
 - 쿼리는 흔히 `key=value` 짝으로 식별 정보를 나르는 데 쓰인다 — 표준이 그 꼴을 강제하지는 않는다 — §3.4
 - 프래그먼트는 `#`로 시작해 URI 끝까지다 — §3.5
+- (phase 73) IPv4 주소를 글자로 적을 때는 점으로 구분한 십진 표기(dotted-decimal)를 쓴다 — 0~255 범위의 십진수 넷을 `.`으로 이은 꼴이다. 이 문서는 그 넷이 4옥텟이라고 밝힌다 — §3.2.2 「Host」
 
-쓰인 곳: 강의 수정 이력 L16
+쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
 
 ## MDN — What is a URL?
 https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL
@@ -846,7 +917,8 @@ https://www.rfc-editor.org/rfc/rfc894
 - IP 브로드캐스트 주소는 모든 비트가 1인 이더넷 브로드캐스트 주소 FF-FF-FF-FF-FF-FF(16진)에 대응한다 — 「Broadcast Address」
 - 주의: 같은 절의 1500옥텟 문장은 「minimum」이라고 적혀 있어 바로 뒤의 「최대 IP 데이터그램 1500옥텟」과 어긋난다. 최대 크기의 근거로는 이 문장이 아니라 IEEE 802.3 그림 3–1(위 항목)을 쓴다 — 「Frame Format」
 
-쓰인 곳: `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(IPv4 데이터를 실은 프레임의 타입 0800, 채운 옥텟은 IP 패킷이 아니다), (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(브로드캐스트 주소 FF-FF-FF-FF-FF-FF)
+쓰인 곳: `ethernet.mac-address`(브로드캐스트 주소), `ethernet.ethertype-length`(IPv4 데이터를 실은 프레임의 타입 0800, 채운 옥텟은 IP 패킷이 아니다), (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(브로드캐스트 주소 FF-FF-FF-FF-FF-FF),
+(phase 73에서 쓰일 곳) `ip-protocol.mtu`(이더넷이 나르는 IP 데이터그램의 최대 크기 1500옥텟 — 이 문서의 1500 문장은 위 「주의」대로 오기가 있어, 1500은 IEEE 802.3 그림 3–1과 아래 RFC 1191 표 7-1로 댄다), `ip-protocol.ipv4-header`(IP 패킷 전체가 이더넷 프레임의 데이터 칸에 담긴다, 「Frame Format」)
 
 ## (phase 72) Linux man-pages — ether_aton(3), arp(8)
 https://man7.org/linux/man-pages/man3/ether_aton.3.html
@@ -1076,8 +1148,17 @@ Proposed Standard(Standards Track)이다.
 - 링크 계층에서 동작하는 패킷 교환 장치는 보통 브리지라고 부른다. 네트워크들을 잇는 IP 데이터그램 전달 장치는 라우터라고 부른다 — §2.2.3
 - 라우터는 **링크 계층 브로드캐스트로 받은 패킷을 다른 네트워크로 넘기지 않는다**(목적지가 IP 멀티캐스트 주소인 경우만 예외다). 링크 계층 멀티캐스트로 받은 패킷도 목적지가 IP 멀티캐스트가 아니면 넘기지 않는다 — §5.3.4
 - 링크 계층은 받은 패킷의 목적지 물리 주소가 유니캐스트·브로드캐스트·멀티캐스트 가운데 무엇인지 IP 계층에 알려야 한다 — §3.2
+- (phase 73) TTL은 데이터그램의 수명을 재는 타이머로 정의했고 단위는 초다. 그러나 패킷을 다루는 라우터(와 다른 모듈)는 1초보다 훨씬 짧게 걸려도 TTL을 최소 1씩 줄여야 하고, 대개 그렇게 짧게 걸리므로
+  TTL은 **사실상 데이터그램이 몇 홉까지 갈 수 있는지의 상한**이다 — §5.3.1
+- (phase 73) 라우터는 패킷을 넘길 때 TTL을 최소 1 줄인다. 패킷을 1초 넘게 붙잡고 있었으면 1초마다 1씩 더 줄여도 된다 — §5.3.1
+- (phase 73) TTL이 0(이하)이 되면 라우터는 그 패킷을 버리고, 목적지가 멀티캐스트 주소가 아니면 출발지에 ICMP 시간 초과(코드 0, 전송 중 TTL 초과)를 보낸다(ICMP는 step 1) — §5.3.1
+- (phase 73) TTL은 홉 수의 상한이자 시간의 상한으로 함께 쓰인다. 홉 수 쪽 쓰임 덕에 경로 문제로 패킷이 끝없이 돌며 네트워크를 무너뜨리지 않는다. 지금 많은 구현이 TTL을 **순수한 홉 수로만** 다루고,
+  이 문서도 시간 한도 쪽 기능은 라우터가 꼭 구현하지 않아도 되는 것으로 정했다. traceroute는 TTL을 홉 수로 다룰 때 제대로 동작한다 — §5.3.1 DISCUSSION
+- (phase 73) 라우터는 IP 단편화를 반드시 지원한다. 단편화할 때는 조각 수를 줄이고 조각을 차례대로 보내는 것이 좋다 — §4.2.2.7
+- (phase 73) 라우터는 데이터그램을 넘기기 전에 다시 합치지 않는다. 조각들이 목적지까지 서로 다른 경로로 갈 수 있기 때문이다 — §5.2.6과 DISCUSSION
 
-쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설
+쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
+(phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위)
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1164,3 +1245,215 @@ VPLS 장비도 「학습 브리지와 거의 같게」 하라고 쓴다. 여기�
 - 브리지는 목적지가 표에 없는 패킷을 받으면 다른 모든 포트로 내보낸다(플러딩) — §4.2.3 첫 문장
 
 쓰인 곳: `hub-switch-vlan.mac-address-table`(학습 — 출발지 주소와 들어온 포트, 에이징 — 마지막으로 보인 뒤의 시간, 다시 보이면 처음부터 다시 셈, 지우는 까닭은 장치가 옮겨 가면 다시 배우게 하고 표를 지금 쓰이는 주소로 줄이는 것), 문항 n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지가 표에 없으면 다른 모든 포트로 내보낸다 — §4.2.3. 에이징으로 지운 항목의 장치에게 가는 프레임도 다시 표에 없는 목적지라 그 장치를 다시 배울 때까지 플러딩된다 — §4.2.2와 §4.2.3을 함께 읽은 것), 문항 n042 해설
+
+## (phase 73) RFC 1191 — Path MTU Discovery
+https://www.rfc-editor.org/rfc/rfc1191
+
+Draft Standard(Standards Track)이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
+
+- 데이터그램은 출발지에서 목적지까지 경로 어디서도 나뉘지 않는 가장 큰 크기로 보내는 편이 좋고, 그 크기를 경로 MTU(PMTU)라 부른다. 경로 MTU는 경로의 각 홉 MTU 가운데 가장 작은 값이다 — §1
+- 경로 MTU를 알아내는 기본 생각: 출발지는 첫 홉의 MTU를 경로 MTU로 보고 DF 비트를 켜서 보낸다. 나누지 않고는 넘길 수 없을 만큼 큰 데이터그램을 받은 라우터는 그것을 버리고,
+  「단편화가 필요하다」는 코드의 ICMP 목적지 도달 불가를 돌려보낸다(ICMP는 step 1) — §2
+- 호스트는 경로 MTU 추정값을 68옥텟보다 작게 줄이지 않는다 — §3
+- 인터넷에서 흔한 MTU 표(표 7-1): 링크 종류마다 MTU가 다르다. 이더넷 네트워크는 1500(RFC 894), X.25 네트워크는 576이고, RFC 791이 정한 공식 최소 MTU는 68이다 — §7
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.mtu`(경로 MTU는 경로의 가장 작은 MTU, 링크마다 MTU가 다르다, 이더넷 1500·공식 최소 68 — §1·§7), `ip-protocol.fragment-fields`(DF를 켜고 보내다 너무 크면 라우터가 버리고 알린다 — 이름만, §2)
+
+## (phase 73) RFC 6864 — Updated Specification of the IPv4 ID Field
+https://www.rfc-editor.org/rfc/rfc6864
+
+Proposed Standard(Standards Track)이고 RFC 791·RFC 1122의 식별자 칸 규정을 고쳤다.
+
+- 식별자 칸은 단편화와 재조합 말고 다른 데 쓰지 않는다 — §4.1
+- 원자 데이터그램(atomic datagram) — DF가 1이고 MF가 0이고 오프셋이 0이라 나뉘지도 않았고 나뉠 수도 없는 데이터그램 — 에서는 식별자에 뜻이 없다. 보내는 쪽은 아무 값이나 넣어도 되고,
+  헤더를 보는 장치는 그 값에 기대지 않는다 — §4(정의), §4.1
+- 그러니 「모든 IP 패킷에 겹치지 않는 번호를 붙인다」는 지금 규정과 맞지 않는다. 식별자는 「나뉘었거나 나뉠 수 있는 데이터그램의 조각들이 함께 갖는 값」으로 쓴다
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.fragment-fields`(식별자의 지금 뜻)
+
+## (phase 73) RFC 2474 — Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers, RFC 3168 — The Addition of Explicit Congestion Notification (ECN) to IP
+https://www.rfc-editor.org/rfc/rfc2474
+https://www.rfc-editor.org/rfc/rfc3168
+
+둘 다 Proposed Standard(Standards Track)다. **칸의 이름과 자리만** 가져온다. DSCP 값과 ECN의 동작은 가져오지 않는다.
+
+- DS 필드는 IPv4의 서비스 유형 칸(RFC 791)과 IPv6의 트래픽 클래스 칸의 옛 정의를 대신하는 칸이다. 앞 6비트(DSCP)로 패킷이 지나는 노드마다 받을 처리를 고른다 — RFC 2474 §3
+- 그 8비트 칸의 끝 두 비트(비트 6·7)는 ECN 필드다. 혼잡이 막 시작될 때 패킷을 버리는 대신 표시해 알리는 데 쓴다. IPv4 서비스 유형 칸과 IPv6 트래픽 클래스 칸은 서로 대응하고, ECN 필드는 두 칸에서 똑같이 정의된다 — RFC 3168 §5
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(서비스 유형 칸의 지금 이름 — DS 필드와 ECN), `ip-protocol.ipv6-header`(트래픽 클래스의 지금 쓰임), `exam-notes.md` E9
+
+## (phase 73) IANA — Assigned Internet Protocol Numbers
+https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
+
+2026-10-29에 읽은 판: 레지스트리 마지막 갱신 2026-03-09.
+
+- 이 번호는 IPv4 헤더의 프로토콜 칸(8비트)에 넣어 다음 계층 프로토콜을 가리킨다. IPv6에서는 같은 칸을 다음 헤더 칸이라 부른다 — 레지스트리 머리글
+- ICMP 1, IGMP 2, TCP 6, UDP 17, ICMPv6(IPv6-ICMP) 58 — 레지스트리
+- IPv6 확장 헤더로 표시된 번호: 홉별 옵션 0, 라우팅 43, 단편화 44, ESP 50, 인증(AH) 51, 목적지 옵션 60. 59는 「다음 헤더 없음」이다 — 레지스트리의 「IPv6 Extension Header」 열
+- 41은 IPv6 캡슐화다. IPv6 패킷을 IPv4 패킷에 담아 나르는 터널은 IPv4 헤더의 프로토콜 칸에 41을 넣는다 — 레지스트리, RFC 4213 §3.5
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(프로토콜 번호 TCP 6·UDP 17·ICMP 1), `ip-protocol.ipv6-header`(다음 헤더 칸은 같은 번호를 쓴다), `ip-protocol.extension-headers`(확장 헤더 번호 — 단편화 44), `ip-protocol.ipv6`(터널링 — 41은 이름만)
+
+## (phase 73) RFC 1752 — The Recommendation for the IP Next Generation Protocol
+https://www.rfc-editor.org/rfc/rfc1752
+
+1995년의 Proposed Standard이고 폐기되지 않았다(rfc-editor 상태). IPv6를 정한 규격(RFC 8200)이 아니라 그 전의 권고라 **역사 기록으로만** 쓴다.
+
+- IETF는 인터넷 주소 공간이 점점 모자라게 될 것이라는 예측이 나온 1990년 말에 IPv4의 뒤를 이을 프로토콜을 고르는 일을 시작했다 — §1
+- 고른 다음 세대 IP(IPng)에 IANA가 버전 번호 6을 주었고, 그 프로토콜을 IPv6라 부른다 — §11.2
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(IETF가 주소 부족 때문에 IPv4의 다음 판을 만들었다 — RFC 8200 §1과 함께)
+
+## (phase 73) RFC 4291 — IP Version 6 Addressing Architecture
+https://www.rfc-editor.org/rfc/rfc4291
+
+Draft Standard(Standards Track)이고 폐기되지 않았다. RFC 5952 등이 고쳤다(rfc-editor 상태, 2026-10-29).
+
+- IPv6 주소는 인터페이스 하나나 인터페이스 묶음을 가리키는 128비트 식별자다 — §2
+- 주소 종류는 셋이다 — §2
+  - 유니캐스트(Unicast): 인터페이스 하나를 가리키고, 그 주소로 보낸 패킷은 그 인터페이스에 간다.
+  - 애니캐스트(Anycast): 인터페이스 묶음을 가리키고, 그 주소로 보낸 패킷은 그 가운데 (라우팅으로 따져) 가장 가까운 하나에 간다.
+  - 멀티캐스트(Multicast): 인터페이스 묶음을 가리키고, 그 주소로 보낸 패킷은 묶음의 모든 인터페이스에 간다.
+- IPv6에는 **브로드캐스트 주소가 없다.** 그 일은 멀티캐스트 주소가 맡는다 — §2
+- 모든 인터페이스는 링크 로컬 유니캐스트 주소를 적어도 하나 가져야 한다 — §2.1
+- 글자로 적는 꼴 셋 — §2.2
+  - 기본 꼴은 `x:x:x:x:x:x:x:x`다. 128비트를 16비트 묶음 여덟으로 나눠 묶음마다 16진수 한~네 자리로 적고 콜론으로 잇는다. 묶음 안의 앞쪽 0은 적지 않아도 되지만, 묶음마다 숫자가 적어도 하나는 있어야 한다(아래 `::` 경우는 빼고).
+  - `::`는 0인 16비트 묶음 **하나 이상**을 줄인 것이고, **한 주소에 한 번만** 쓸 수 있다. 주소 앞이나 끝의 0도 줄일 수 있다(예: `::1`, `::`).
+  - IPv4와 섞인 환경에서는 앞 여섯 묶음을 16진수로, 끝 32비트를 IPv4처럼 십진수 넷으로 적는 꼴(`x:x:x:x:x:x:d.d.d.d`)도 쓴다.
+- `::`를 한 번만 쓰는 까닭은 이 문서에 적혀 있지 않다. 주소가 늘 묶음 여덟이고 `::`가 0 묶음 「하나 이상」을 뜻하므로, 두 번 쓰면 두 자리에 0 묶음이 몇 개씩 들었는지가 하나로 정해지지 않는다
+  (예: `2001:db8::1::2`는 빠진 0 묶음 넷을 1+3, 2+2, 3+1 가운데 어느 것으로도 읽을 수 있다) — §2.2의 두 규칙에서 셈으로 나오는 것이다
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(주소 종류 셋, 브로드캐스트 없음 — §2), `ip-protocol.ipv6-address-notation`(§2.2 — 묶음 여덟, 앞쪽 0 생략, `::`는 한 번), `ip-protocol.slaac`(링크 로컬 주소 — §2.1)
+
+## (phase 73) RFC 5952 — A Recommendation for IPv6 Address Text Representation
+https://www.rfc-editor.org/rfc/rfc5952
+
+Proposed Standard(Standards Track)이고 RFC 4291을 고친다.
+
+- RFC 4291은 같은 주소를 여러 꼴로 적게 허락한다 — 앞쪽 0을 남길지 뺄지, `::`로 줄일지와 어디를 줄일지, 대문자와 소문자. 그래서 같은 주소가 여러 글자로 적힌다 — §2
+- 아래 권고는 시스템이 주소를 글자로 만들 때 따르고 사람도 따르기를 권한다. 받는 쪽은 RFC 4291이 허락하는 어느 꼴이든 받아들여야 한다 — §4
+  - 묶음 앞쪽의 0은 **반드시 뺀다.** 0000인 묶음은 `0`으로 적는다(예: `2001:0db8::0001`이 아니라 `2001:db8::1`) — §4.1
+  - `::`는 줄일 수 있는 만큼 **최대로** 쓴다 — §4.2.1
+  - 0인 묶음 **하나만** 있는 곳은 `::`로 줄이지 않는다 — §4.2.2
+  - 0 묶음이 이어진 곳이 여럿이면 **가장 긴 곳**을 줄이고, 길이가 같으면 **앞쪽**을 줄인다 — §4.2.3
+  - 16진수 글자 a~f는 **소문자**로 적는다 — §4.3
+- 끝 32비트에 IPv4 주소를 품은 특별한 주소는 십진수를 섞은 꼴로 적기를 권한다(예: `::ffff:192.0.2.1`) — §5. 이름만 쓴다
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-address-notation`(권고 표기 — §4)
+
+## (phase 73) RFC 1883 — Internet Protocol, Version 6 (IPv6) Specification [폐기, RFC 2460으로 대체(RFC 2460은 다시 RFC 8200으로 대체) — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1883
+
+1995년의 첫 IPv6 규격이다.
+
+- 기본 헤더의 두 번째 칸은 4비트 Priority였고, 흐름 레이블은 24비트였다. 기본 헤더는 40옥텟이다 — §3, §4.3(점보 페이로드 옵션 설명의 「IPv6 헤더 40옥텟」)
+- Priority는 출발지가 자기 패킷끼리의 전달 우선순위를 정하는 값이었다. 0~7은 혼잡하면 보내는 양을 줄이는(혼잡 제어를 하는) 트래픽, 8~15는 혼잡해도 줄이지 않는 트래픽에 썼고,
+  뒤쪽 범위에서는 가장 낮은 값(8)을 혼잡할 때 가장 먼저 버려져도 되는 패킷에 쓰라고 했다 — §7
+- 지금 규격(RFC 8200)은 이 자리를 8비트 트래픽 클래스로, 흐름 레이블을 20비트로 정한다 — RFC 8200 §3·§7
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-header`(트래픽 클래스의 옛 이름), `exam-notes.md` E9
+
+## (phase 73) RFC 4862 — IPv6 Stateless Address Autoconfiguration
+https://www.rfc-editor.org/rfc/rfc4862
+
+Draft Standard(Standards Track)이고 RFC 2462를 폐기·대체한다. RFC 7527·RFC 9762가 고쳤다(rfc-editor 상태, 2026-10-29 — RFC 9762는 라우터 알림의 접두사 정보에 P 플래그를 더한 것이라 아래 사실은 바뀌지 않는다).
+
+- 호스트가 인터페이스를 스스로 설정하는 과정은 셋이다 — 링크 로컬 주소 만들기, 상태 비저장 주소 자동 설정으로 전역 주소 만들기, 중복 주소 검출(DAD)로 그 주소가 링크에서 겹치지 않는지 확인하기 — §1
+- 상태 비저장 방식은 호스트를 손으로 설정하지 않아도 되고, 라우터 설정도 거의 필요 없고, **서버가 따로 필요 없다.** 호스트는 자기가 가진 정보와 라우터가 알리는 정보를 합쳐 주소를 만든다 —
+  라우터는 링크의 서브넷을 가리키는 **접두사**를 알리고, 호스트는 서브넷 안에서 자기 인터페이스를 가리키는 **인터페이스 식별자**를 만들어, 둘을 이어 붙인다 — §1
+- 라우터가 없으면 링크 로컬 주소만 만들 수 있고, 같은 링크의 노드끼리는 그것으로 통신할 수 있다 — §1
+- 어느 호스트가 어떤 주소를 쓰는지 정확히 관리해야 하는 곳은 DHCPv6를 쓰고, 두 방법을 함께 쓸 수도 있다 — §1
+- 순서 — §4, §5.3, §5.4, §5.5
+  - 인터페이스가 켜지면 잘 알려진 링크 로컬 접두사 뒤에 인터페이스 식별자를 붙여 링크 로컬 주소를 만든다(호스트와 라우터 모두).
+  - 그 주소를 쓰기 전에, 그 주소를 목표로 담은 이웃 요청(Neighbor Solicitation)을 보내 다른 노드가 이미 쓰는지 확인한다. 이미 쓰는 노드가 있으면 이웃 광고(Neighbor Advertisement)로 알려 온다.
+    겹치면 자동 설정을 멈추고 손으로 설정해야 한다.
+  - 그다음 호스트는 라우터 알림(Router Advertisement)을 받는다. 라우터는 알림을 주기적으로 보내고, 기다리지 않으려면 호스트가 모든 라우터 멀티캐스트 그룹으로 라우터 요청(Router Solicitation)을 보낸다.
+    알림에 든 접두사 정보로 전역 주소를 만든다.
+- 전역 주소는 알린 접두사(128−N비트) 뒤에 인터페이스 식별자(N비트)를 붙인 것이고, 둘의 길이를 더해 128비트가 아니면 그 접두사 정보는 쓰지 않는다 — §5.5.3 d)
+- 중복 주소 검출은 상태 비저장 자동 설정·DHCPv6·손 설정 어느 쪽으로 얻었든 모든 유니캐스트 주소에 대해, 인터페이스에 붙이기 전에 한다 — §5.4
+- 이 자동 설정 절차는 호스트에만 적용한다. 라우터는 다른 방법으로 설정한다(링크 로컬 주소는 라우터도 이 방법으로 만든다) — §1, §4
+- 라우터 알림·라우터 요청의 형식은 RFC 4861이 정한다 — 라우터 요청 §4.1(ICMPv6 타입 133), 라우터 알림 §4.2(ICMPv6 타입 134). 이웃 탐색과 ICMPv6는 step 1에서 정리한다
+- 「상태 비저장(stateless)」이라는 이름의 뜻은 이 판이 풀이하지 않는다. 옛 판(RFC 2462)의 「stateful 설정」이라는 말이 헷갈린다며 이 판은 그 자리에 DHCPv6라고만 쓴다 — Appendix C. 뜻은 아래 RFC 9915·RFC 2462 항목
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(§1·§4·§5 — 서버 없이 접두사 + 인터페이스 식별자, DAD, 링크 로컬 주소 먼저), `ip-protocol.ipv6`(주소 자동 설정 — RFC 8200 §1과 함께)
+
+## (phase 73) RFC 9915 — Dynamic Host Configuration Protocol for IPv6 (DHCPv6)
+https://www.rfc-editor.org/rfc/rfc9915
+
+인터넷 표준(STD 102, 2026-01)이고 RFC 8415를 폐기·대체한다(rfc-editor 상태). **SLAAC와 견주는 데 필요한 것만** 가져온다. DHCPv6의 동작은 가져오지 않는다.
+
+- DHCPv6는 노드에 네트워크 설정값·IP 주소·접두사를 나눠 주는 방법이다. 설정값만 주는 방식(stateless)도, 주소를 맡겨 주는 방식(stateful)도 있고, SLAAC를 대신하거나 함께 쓸 수 있다 — Abstract
+- 주소나 접두사 없이 다른 설정값만 주면 서버가 어떤 상태도 기록해 둘 필요가 없어서, 그 방식을 「stateless DHCPv6」라 부른다 — §1
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(「상태 비저장」의 뜻 — 주소를 누구에게 주었는지 기록하는 서버가 없다. 아래 RFC 2462와 함께)
+
+## (phase 73) RFC 2462 — IPv6 Stateless Address Autoconfiguration [폐기, RFC 4862로 대체 — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc2462
+
+- 옛 판은 IPv6의 주소 자동 설정을 상태 저장(stateful)과 상태 비저장(stateless) 두 방식으로 나눴다. 상태 저장 방식에서는 호스트가 **서버에서** 주소나 설정값을 받고, 서버는 **어느 주소를 어느 호스트에 주었는지 적은 데이터베이스**를 유지한다.
+  상태 비저장 방식은 서버 없이 호스트가 라우터가 알린 정보와 자기 정보로 스스로 주소를 만든다 — §1
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.slaac`(「상태 비저장」의 뜻 — 지금 판 RFC 4862는 이 대목을 뺐다)
+
+## (phase 73) RFC 4213 — Basic Transition Mechanisms for IPv6 Hosts and Routers
+https://www.rfc-editor.org/rfc/rfc4213
+
+Proposed Standard(Standards Track)이고 폐기되지 않았다.
+
+- IPv6로 옮겨 가는 동안 IPv6 호스트·라우터가 IPv4 호스트·라우터와 함께 쓰려고 갖추는 기본 방법 둘 — §1
+  - 듀얼 스택(Dual Stack, 이중 IP 계층): 호스트와 라우터가 IPv4와 IPv6를 둘 다 완전히 구현한다. 그런 노드는 IPv4 노드와는 IPv4 패킷으로, IPv6 노드와는 IPv6 패킷으로 바로 통신한다 — §1, §2
+  - 설정한 터널링(Configured Tunneling): IPv6 패킷을 IPv4 헤더로 감싸 IPv4 패킷 안에 담아, 이미 있는 IPv4 라우팅 기반을 지나 나른다. 라우터와 라우터 사이, 호스트와 라우터 사이 등에 쓴다 — §1, §3
+- 이 둘이 전환 방법의 전부는 아니고, 다른 방법은 다른 문서가 정한다 — §1
+- 터널의 IPv4 헤더는 프로토콜 칸에 41(IPv6)을 넣는다 — §3.5
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(IPv4와 IPv6를 함께 쓰는 방법 — 듀얼 스택·터널링)
+
+## (phase 73) RFC 6144 — Framework for IPv4/IPv6 Translation
+https://www.rfc-editor.org/rfc/rfc6144
+
+Informational이다.
+
+- 듀얼 스택 말고 IPv4와 IPv6를 서로 잇는 근본적인 방법은 **터널링**과 **변환(translation)** 둘이다 — §1.1
+- 터널링은 한 프로토콜을 다른 프로토콜 위로 나르는 것이라 새 프로토콜 사용자끼리는 잇지만, 듀얼 스택 호스트 없이는 새 프로토콜 사용자가 옛 프로토콜 사용자와 통신하게 하지 못한다 — §1.1
+- 변환은 IPv4와 IPv6가 함께 쓰이는 동안 쓰는 중기 방법이고, 오래 쓸 방법은 아니다 — §1.1
+- IETF가 가장 합리적이라고 보는 전환 모델은 RFC 4213의 것이다 — IPv6를 켜고 IPv4를 그대로 안정되게 둔 채 함께 쓰다가, 어느 쪽으로도 똑같이 통신할 수 있게 되면 IPv4를 끈다 — §1
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(방법 셋 — 듀얼 스택·터널링·변환, §1.1)
+
+## (phase 73) RFC 6146 — Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers
+https://www.rfc-editor.org/rfc/rfc6146
+
+Proposed Standard(Standards Track)다. **변환의 예로 이름만** 쓴다.
+
+- NAT64는 IPv6만 쓰는 클라이언트가 IPv4 서버에 UDP·TCP·ICMP로 접속하게 하는 변환이다. 변환기에 준 공인 IPv4 주소를 여러 IPv6 클라이언트가 함께 쓰고, DNS64와 함께 쓰면 대개 클라이언트도 서버도 고치지 않아도 된다 — Abstract
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(변환의 예 NAT64 — 이름만)
+
+## (phase 73) RFC 7857 — Updates to Network Address Translation (NAT) Behavioral Requirements, RFC 8512 — A YANG Module for Network Address Translation (NAT) and Network Prefix Translation (NPT), RFC 7021 — Assessing the Impact of Carrier-Grade NAT on Network Applications
+https://www.rfc-editor.org/rfc/rfc7857
+https://www.rfc-editor.org/rfc/rfc8512
+https://www.rfc-editor.org/rfc/rfc7021
+
+RFC 7857은 BCP, RFC 8512는 Proposed Standard, RFC 7021은 Informational이다. **NAT44라는 이름이 무엇을 가리키는지**만 가져온다.
+
+- NAT44는 IPv4 주소를 IPv4 주소로 바꾸는 주소 변환(Network Address Translation from IPv4 to IPv4)이다 — RFC 7857 Abstract.
+  기본 NAT44는 IP 주소만 바꾸고(RFC 3022 §2.1의 기본 NAT), 포트까지 바꾸는 것은 NAPT다 — RFC 8512 §1.1
+- 통신사 망에 NAT를 하나 더 두어 NAT를 두 번 거치게 하는 NAT444는 IPv6로 옮겨 가는 동안 IPv4 서비스를 이어 주는 **IPv4 확장 기술**로 소개된다 — RFC 7021 Abstract
+- 허용한 출처에서 「NAT44는 IPv4–IPv6 전환 기술이 아니다」를 그대로 말하는 문장은 찾지 못했다. RFC 6144 §1.1이 IPv4와 IPv6를 잇는 방법으로 듀얼 스택·터널링·변환을 들고, NAT44는 IPv4끼리 바꾸므로 IPv6와 잇지 않는다 — 두 문서를 함께 읽은 것이다
+
+쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6`(NAT44는 IPv4 주소끼리 바꾸는 것이라 방법 셋에 들지 않는다 — 문항·해설에서 쓸 때)
+
+## (phase 73) 문서용 주소와 이름 — RFC 5737, RFC 3849(RFC 9637이 고침), RFC 2606
+https://www.rfc-editor.org/rfc/rfc5737
+https://www.rfc-editor.org/rfc/rfc3849
+https://www.rfc-editor.org/rfc/rfc9637
+https://www.rfc-editor.org/rfc/rfc2606
+
+RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
+
+- IPv4: `192.0.2.0/24`(TEST-NET-1), `198.51.100.0/24`(TEST-NET-2), `203.0.113.0/24`(TEST-NET-3)는 문서에 쓰라고 정해 둔 주소 블록이다 — RFC 5737 §3
+- IPv6: `2001:db8::/32`는 문서의 예시에 쓰라고 정해 둔 유니캐스트 접두사이고, 실제로 누구에게도 할당하지 않는다. 문서 예시를 실제 망에 그대로 쓰면 주소와 라우팅이 부딪치는 문제를 막으려는 것이다 — RFC 3849 §1, §2, §4.
+  RFC 9637(2024)이 문서용으로 `3fff::/20`을 더 정했다 — RFC 9637 Abstract. 이 phase는 `2001:db8::/32`만 쓴다
+- 도메인: `example.com`·`example.net`·`example.org`는 IANA가 예시로 쓰라고 남겨 둔 2단계 도메인 이름이다 — RFC 2606 §3
+
+쓰인 곳: (phase 73에서 쓰일 곳) `phases/73-network-ip-arp-icmp/guide.md` 「예시 값」 — `ip-protocol`·`arp`·`icmp`의 본문·문항·도식에 쓰는 IPv4·IPv6 주소와 도메인 이름. MAC 주소는 위 RFC 9542 항목(§2.1.4)
