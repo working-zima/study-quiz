@@ -29,6 +29,7 @@ import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
+import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { GovernanceToolTable } from './governanceTables'
@@ -48,6 +49,7 @@ import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { PerformanceMetricsTable } from './networkBasicsTables'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
+import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
@@ -188,6 +190,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.pdu-names': PduNamesDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
+  'ethernet.fast-gigabit': EthernetSpeedsDiagram,
+  'ethernet.nic': NicFilterDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

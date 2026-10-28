@@ -27,6 +27,7 @@ IEEE 802.3 본문은 무료로 열리지 않으므로, 802.3 작업 그룹이 `i
 쓸 사실을 확인하며 더했다(확인한 날 2026-10-28). IEEE 802.1(브리지·VLAN) 본문도 무료로 열리지 않아, 802.1 작업 그룹 자료와 802.1을 풀이한 RFC·NIST 문서를 근거로 썼다.
 Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허용하는 출처」).
 「(phase 72 step 2)」가 붙은 항목은 phase 72 step 2에서 `ethernet.ethernet`이 이더넷 표준을 누가 만드는지 쓰려고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 3)」이 붙은 줄은 phase 72 step 3에서 문항 n030의 해설이 MAC의 풀네임을 쓰려고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -99,7 +100,7 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - (phase 72) 데이터 필드가 정해진 최소 길이보다 짧으면 옥텟 단위의 패드를 데이터 뒤에 붙여 늘린 다음 FCS를 계산해 붙인다 — §3.2.7, §3.2.8
 - (phase 72) FCS를 뺀 프레임의 각 옥텟은 낮은 비트부터 보낸다 — §3.3
 
-쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.mac-address`, `ethernet.fcs`
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.mac-address`, `ethernet.fcs`
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -698,7 +699,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - FCS 검사: 받은 비트(FCS 필드는 빼고)로 만든 CRC가 받은 값과 다르면 오류로 보고 그 프레임을 잘못된 것으로 판정한다 — §4.2.4.1.2
 - 프리앰블은 물리 계층 회로가 안정되도록 데이터보다 먼저 보내는 비트열이고, 10101010을 일곱 번 보낸다. 왼쪽 비트부터 보내며 0으로 끝나고, 바로 뒤에 SFD가 온다 — §4.2.5
 
-쓰인 곳: (phase 72) 강의 수정 이력 L28, (phase 72에서 쓰일 곳) `ethernet.nic`(받을 프레임을 고르는 일), `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`
+쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), (phase 72에서 쓰일 곳) `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`
 
 ## (phase 72) IEEE 802.3 Working Group — Editorial guidelines (Frames and packets; Mb/s, Gb/s)
 https://www.ieee802.org/3/WG_tools/editorial/requirements/words.html
@@ -724,7 +725,7 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
 - 규격 이름 하나는 「IEEE 802.3의 물리 계층 규격(Physical Layer specification)」 하나로 정의된다. 예: 1000BASE-BX10은 싱글 모드 광섬유 **한 가닥**으로, 1000BASE-LX10은 싱글 모드나 멀티 모드 광섬유 두 가닥으로
   1000 Mb/s 점대점 링크를 만드는 물리 계층 규격이다. 100BASE-FX는 멀티 모드 광섬유 두 가닥을 쓰는 100 Mb/s 규격이다 — §1.4(PDF 20쪽)
 
-쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
 https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
@@ -740,7 +741,7 @@ https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
 - 규격별 매체(표): 100BASE-TX 평형 트위스티드 페어 2쌍 100 m, 1000BASE-T 평형 트위스티드 페어 4쌍 100 m, 1000BASE-SX 멀티 모드 광섬유 두 가닥(850 nm) 550 m,
   1000BASE-LX 싱글 모드 광섬유 두 가닥(1310 nm) 5 km, 1000BASE-CX 트윈 액시얼 구리 25 m, 1000BASE-BX10 싱글 모드 광섬유 한 가닥 10 km, 10GBASE-T 평형 트위스티드 페어 4쌍 100 m — PDF 3~5쪽 표
 
-쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, (phase 72에서 쓰일 곳) `ethernet.standard-names`, `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(100BASE-TX는 트위스티드 페어, 1000BASE-SX는 멀티 모드 광섬유), (phase 72에서 쓰일 곳) `ethernet.standard-names`
 
 ## (phase 72) Pete Anslow, 「PMD naming」 (IEEE P802.3bs Task Force, 2015-07)
 https://www.ieee802.org/3/bs/public/15_07/anslow_3bs_03_0715.pdf
@@ -766,7 +767,7 @@ https://www.ieee802.org/misc-docs/GlobeCom2009/IEEE_802d3_Law.pdf
 - 802.3ae-2002(10 Gb/s 동작): 10GBASE-SR/SW(멀티 모드), 10GBASE-LX4(싱글 모드나 멀티 모드), 10GBASE-LR/LW(싱글 모드 10 km), 10GBASE-ER/EW(싱글 모드 40 km) — 10쪽
 - 802.3an-2006: 10GBASE-T(트위스티드 페어, 100 m) — 12쪽
 
-쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.standard-names`(1000BASE-LX가 싱글 모드·멀티 모드 광섬유를 모두 쓴다, 10GBASE-SR은 멀티 모드), (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.standard-names`(1000BASE-LX가 싱글 모드·멀티 모드 광섬유를 모두 쓴다, 10GBASE-SR은 멀티 모드), `ethernet.fast-gigabit`(100BASE-FX는 멀티 모드 광섬유, 802.3ae의 10GBASE-SR은 멀티 모드·10GBASE-LR은 싱글 모드, 802.3an의 10GBASE-T)
 
 ## (phase 72) IEEE SA — 802.3u-1995, 802.3z-1998, 802.3ab-1999, 802.3ae-2002, 802.3an-2006, 802.3cc-2017 표준 소개 페이지
 https://standards.ieee.org/ieee/802.3u/1079/
@@ -786,7 +787,7 @@ https://standards.ieee.org/ieee/802.3cc/6753/
 - 802.3an-2006(2006-09-01 발행): 10 Gb/s 동작, 유형 10GBASE-T. 평형 트위스티드 페어 구조화 배선으로 최대 100 m를 잇는다 — 제목, 초록
 - 802.3cc-2017(2018-01-15 발행): 싱글 모드 광섬유 위의 25 Gb/s 동작 — 적어도 10 km(25GBASE-LR)와 40 km(25GBASE-ER) — 제목, 초록
 
-쓰인 곳: (phase 72) 강의 수정 이력 L27, (phase 72에서 쓰일 곳) `ethernet.ethernet`, `ethernet.standard-names`, `ethernet.fast-gigabit`
+쓰인 곳: (phase 72) 강의 수정 이력 L27, `ethernet.fast-gigabit`(802.3u의 발행 연도·공식 이름 100BASE-T와 그 묶음에 든 100BASE-TX·100BASE-FX, 802.3z·802.3ab·802.3ae·802.3an의 발행 연도), (phase 72에서 쓰일 곳) `ethernet.ethernet`, `ethernet.standard-names`
 
 ## (phase 72) IEEE 802.3 태스크 포스 목표 — 802.3ae, 802.3an, 802.3cc
 https://www.ieee802.org/3/ae/objectives.pdf
@@ -809,7 +810,7 @@ https://www.ieee802.org/3/minutes/july97/minutes.html
   「Fast Ethernet」을 「100BASE-T」로 바꿔 승인했고, 「Gigabit Ethernet」은 그대로 두었다 — 「Criteria #1」 동의안
 - 그러니 「Fast Ethernet」은 작업 그룹 안에서도 쓰던 이름이지만, 802.3u의 공식 이름은 표준 제목의 「100BASE-T」다(위 IEEE SA 항목). 802.3ah-2004 머리말도 「Fast Ethernet이라고도 부른다」로 쓴다(위 항목)
 
-쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.fast-gigabit`
+쓰인 곳: `ethernet.fast-gigabit`(802.3u의 공식 이름은 100BASE-T이고 Fast Ethernet은 함께 쓰는 이름)
 
 ## (phase 72) RFC 894 — A Standard for the Transmission of IP Datagrams over Ethernet Networks
 https://www.rfc-editor.org/rfc/rfc894
@@ -953,8 +954,9 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
 - 브로드캐스트와 목적지를 모르는 유니캐스트는 그 VLAN에 플러딩되는 프레임의 예다 — 27쪽(MVRP 설명)
 - 활성 토폴로지(실제로 프레임이 다니는 경로)를 정하는 프로토콜로 RSTP·MSTP·SPB가 있다. **처음의 스패닝 트리 프로토콜(STP)은 이제 역사 속 이름이고 RSTP가 그 자리를 이었다** — 26쪽
 - 802.1Q는 12비트 VLAN만 다루는 표준이 아니다(서비스·백본 태그 등도 있다) — 16쪽
+- (phase 72 step 3) MAC은 Media Access Control의 약어다 — 문서 제목(「IEEE 802.1Q Media Access Control Bridges …」)
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
 
 ## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
 https://www.ieee802.org/1/pages/802.1w.html

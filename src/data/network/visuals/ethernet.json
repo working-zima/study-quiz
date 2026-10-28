@@ -85,6 +85,91 @@
         }
       ],
       "sources": ["ethernet.standard-names"]
+    },
+    "ethernet-speeds": {
+      "label": "이더넷 속도별 이름 도식",
+      "svgLabel": "패스트 이더넷, 기가비트 이더넷, 10기가비트 이더넷의 속도와 케이블별 규격 이름",
+      "question": "패스트 이더넷과 기가비트 이더넷은 얼마나 빠를까?",
+      "idleCaption": "패스트 이더넷, 기가비트 이더넷, 10기가비트 이더넷은 이더넷을 속도에 따라 부르는 이름이다. 박스마다 그 속도와, 그 속도로 보내는 규격 가운데 트위스티드 페어 케이블을 쓰는 것 하나와 멀티 모드 광섬유를 쓰는 것 하나를 담았다. 버튼을 고르면 이름마다 어떤 규격이 드는지 볼 수 있다.",
+      "legend": "박스 하나가 이더넷 이름 하나이고, 속도가 느린 것부터 차례로 놓았다. 같은 케이블을 쓰는 규격 칸끼리 한 줄로 놓고, 그 케이블을 줄 머리에 적었다.",
+      "nodes": {
+        "fast-speed": "100 Mb/s",
+        "fast-twisted": "100BASE-TX",
+        "fast-fiber": "100BASE-FX",
+        "gigabit-speed": "1 Gb/s",
+        "gigabit-twisted": "1000BASE-T",
+        "gigabit-fiber": "1000BASE-SX",
+        "ten-gigabit-speed": "10 Gb/s",
+        "ten-gigabit-twisted": "10GBASE-T",
+        "ten-gigabit-fiber": "10GBASE-SR"
+      },
+      "groups": {
+        "fast": "패스트 이더넷",
+        "gigabit": "기가비트 이더넷",
+        "ten-gigabit": "10기가비트 이더넷"
+      },
+      "notes": {
+        "speed": "속도",
+        "twisted": "트위스티드 페어",
+        "fiber": "멀티 모드 광섬유"
+      },
+      "scenarios": [
+        {
+          "id": "fast",
+          "label": "패스트 이더넷",
+          "caption": "패스트 이더넷은 1초에 100메가비트(100 Mb/s)를 보내는 이더넷으로, 1995년의 개정판 802.3u가 정했다. 802.3u는 이 이더넷을 공식 이름으로 100BASE-T라 부르고, 트위스티드 페어 케이블을 쓰는 100BASE-TX와 멀티 모드 광섬유를 쓰는 100BASE-FX가 모두 이 묶음에 든다.",
+          "sources": ["ethernet.fast-gigabit"]
+        },
+        {
+          "id": "gigabit",
+          "label": "기가비트 이더넷",
+          "caption": "기가비트 이더넷은 1초에 1기가비트(1 Gb/s)를 보낸다. 같은 1 Gb/s라도 케이블에 따라 규격이 따로 있어, 802.3ab의 1000BASE-T는 트위스티드 페어 케이블로, 802.3z의 1000BASE-SX는 멀티 모드 광섬유로 보낸다. 그래서 기가비트 이더넷이라는 이름만으로는 어떤 케이블을 쓰는지 알 수 없다.",
+          "sources": ["ethernet.fast-gigabit"]
+        }
+      ],
+      "sources": ["ethernet.fast-gigabit"]
+    },
+    "nic-filter": {
+      "label": "NIC가 프레임을 고르는 도식",
+      "svgLabel": "케이블로 들어온 프레임을 내 컴퓨터의 NIC가 받아 위 계층으로 넘기거나 버리는 모습",
+      "question": "NIC는 들어온 프레임을 모두 컴퓨터에 넘길까?",
+      "idleCaption": "NIC는 케이블로 들어온 프레임을 모두 컴퓨터에 넘기지 않는다. 프레임에 적힌 목적지 주소를 보고, 이 컴퓨터가 받을 프레임이면 컴퓨터의 위 계층으로 넘기고 아니면 버린다. 버튼을 고르면 목적지 주소에 따라 NIC가 프레임을 어떻게 다루는지 볼 수 있다.",
+      "legend": "내 컴퓨터 박스 안의 NIC가 케이블로 들어온 프레임을 먼저 받는다. 가는 선은 연결, 화살표는 프레임이 가는 길이다.",
+      "nodes": {
+        "upper": "위 계층",
+        "nic": "NIC",
+        "cable": "케이블"
+      },
+      "groups": {
+        "computer": "내 컴퓨터"
+      },
+      "notes": {
+        "dest-mine": "목적지: 이 NIC의 MAC 주소",
+        "dest-other": "목적지: 다른 장치의 MAC 주소",
+        "dest-broadcast": "목적지: 브로드캐스트 주소",
+        "discard": "버림"
+      },
+      "scenarios": [
+        {
+          "id": "mine",
+          "label": "내 주소로 온 프레임",
+          "caption": "케이블로 들어온 프레임의 목적지 주소가 이 NIC의 MAC 주소다. 이 컴퓨터가 받을 프레임이므로 NIC는 프레임을 받아들여, 그 안의 데이터를 컴퓨터의 위 계층으로 넘긴다.",
+          "sources": ["ethernet.nic"]
+        },
+        {
+          "id": "other",
+          "label": "다른 장치 앞으로 온 프레임",
+          "caption": "목적지 주소가 같은 LAN에 있는 다른 장치의 MAC 주소다. 이 컴퓨터가 받을 프레임이 아니므로 NIC는 프레임을 위 계층으로 넘기지 않고 버린다. 따로 설정을 바꿔 모든 프레임을 받아들이게 하지 않은 NIC는 이렇게 고른다.",
+          "sources": ["ethernet.nic"]
+        },
+        {
+          "id": "broadcast",
+          "label": "브로드캐스트 프레임",
+          "caption": "목적지 주소가 브로드캐스트 주소, 곧 그 LAN에 이어진 장치 모두를 한꺼번에 가리키는 주소다. 모든 장치가 받을 프레임이므로 이 NIC도 프레임을 받아들여, 그 안의 데이터를 컴퓨터의 위 계층으로 넘긴다.",
+          "sources": ["ethernet.nic"]
+        }
+      ],
+      "sources": ["ethernet.nic"]
     }
   },
   "tables": {},
