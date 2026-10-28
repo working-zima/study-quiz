@@ -23,6 +23,9 @@
 「(phase 71)」이 붙은 줄과 항목은 phase 71 step 5에서 1장이 풀이 없이 쓰던 낱말(광케이블·작업 관리자·ping 명령·IP 주소 등)을 풀며 더했다(확인한 날 2026-10-28).
 「(phase 72)」가 붙은 줄과 항목은 phase 72 step 0에서 `ethernet` 주제(이더넷 규격 이름·속도별 이더넷·NIC·MAC 주소·프레임·FCS)가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-28).
 IEEE 802.3 본문은 무료로 열리지 않으므로, 802.3 작업 그룹이 `ieee802.org`에 올린 개정 초안·발표 자료·지침과 `standards.ieee.org`의 표준 소개 페이지를 근거로 썼다. 항목마다 어떤 문서인지 적는다.
+「(phase 72 step 1)」이 붙은 줄과 항목은 phase 72 step 1에서 `hub-switch-vlan` 주제(허브·반이중과 전이중·충돌 도메인·CSMA/CD·스위치·MAC 주소 테이블·플러딩·STP·브로드캐스트 도메인·VLAN·VLAN 태그·트렁크·VTP)가
+쓸 사실을 확인하며 더했다(확인한 날 2026-10-28). IEEE 802.1(브리지·VLAN) 본문도 무료로 열리지 않아, 802.1 작업 그룹 자료와 802.1을 풀이한 RFC·NIST 문서를 근거로 썼다.
+Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허용하는 출처」).
 
 ---
 
@@ -111,8 +114,9 @@ https://www.iana.org/assignments/ieee-802-numbers/ieee-802-numbers.xhtml
 
 - 0000~05DC(10진 0~1500) 구간은 IEEE 802.3 길이 필드로 표시돼 있다 — EtherType 표
 - IPv4는 0800, ARP는 0806, IPv6는 86DD다 — EtherType 표
+- (phase 72 step 1) 8100은 「고객 VLAN 태그(C-Tag) 타입」이고 예전 이름은 Q-Tag다(근거 RFC 9542). 88A8은 IEEE 802.1Q의 서비스 VLAN 태그(S-Tag)다 — EtherType 표
 
-쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
+쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`, (phase 72 step 1) `hub-switch-vlan.vlan-tagging`(TPID 0x8100)
 
 ## RFC 9542 — IANA Considerations and IETF Protocol and Documentation Usage for IEEE 802 Parameters
 https://www.rfc-editor.org/rfc/rfc9542
@@ -828,3 +832,220 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 - arp 명령에 이더넷 주소를 줄 때는 6바이트를 16진수로 적고 콜론으로 가른다 — arp(8) 「arp -s」
 
 쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(콜론 꼴 표기)
+
+## (phase 72 step 1) IEEE 802.3 — Ethernet, 4.1.1 Overview, 4.1.2.2 Access interference and recovery, 4.2.3.2 Transmit media access management, 4.4 Specific implementations
+https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
+
+위 「4.1.2 Normal operation …」 항목과 같은 IEEE P802.3as Draft 0.1(2005-03)의 4장이다. IEEE Std 802.3-2005 4장 본문을 싣고 있어 그 본문을 근거로 쓴다.
+
+- MAC 부계층은 두 방식 가운데 하나로 동작한다. **반이중**에서는 여러 스테이션이 물리 매체 하나를 두고 다투며 CSMA/CD 절차를 따르고, 양쪽 통신은 프레임을 번갈아 빠르게 주고받아 이룬다.
+  보내기와 받기를 동시에 하면 서로 방해되는 매체(예: 10BASE2, 100BASE-T4)에서는 반이중만 쓸 수 있다 — §4.1.1 a)
+- **전이중**은 세 조건이 모두 맞을 때 쓴다 — 매체가 보내기와 받기를 동시에 해도 방해가 없고(예: 10BASE-T, 100BASE-TX), 그 LAN에 스테이션이 꼭 둘이며, 둘 다 전이중으로 설정돼 있다.
+  둘뿐이라 매체를 두고 다툴 일이 없으므로 CSMA/CD 절차가 필요 없다 — §4.1.1 b)
+- 전이중으로 가장 흔히 쓰는 구성은 가운데에 **브리지(스위치라고도 부른다)** 하나를 두고, 브리지 포트마다 장치 하나를 저만의 LAN으로 잇는 것이다 — §4.1.1
+- CSMA/CD는 한 스테이션이 보낸 신호를 매체의 모두가 받는 LAN(로컬 영역 브로드캐스트 매체)을 위한 매체 접근 방식이다 — §4.1.1
+- 충돌: 반이중에서 둘 이상의 스테이션이 같은 때 보내면, 미루기 규칙을 지켜도 서로의 전송을 방해할 수 있다. 전송이 겹친 이 다툼을 충돌이라 부른다.
+  충돌은 반이중에서만, 공유 매체를 둘 이상이 쓰려 할 때 생긴다. 전이중에서는 두 스테이션이 서로에게 동시에 보내도 방해가 없고, 물리 계층이 충돌을 알려도 전이중 MAC은 무시한다 — §4.1.2.2
+- 충돌이 나면 보내던 스테이션은 잼(jam)이라는 비트열을 보내 충돌이 다른 송신 스테이션에도 알려질 만큼 이어지게 한 뒤 전송을 멈추고, 무작위로 고른 시간 뒤 다시 보낸다.
+  충돌이 거듭되면 그 무작위 시간을 고르는 범위를 시도마다 넓혀(백오프) 붐비는 매체에 맞춘다. 끝내 성공하거나, 매체가 고장 났거나 너무 붐빈다고 보고 포기한다 — §4.1.2.2
+- 받는 쪽은 충돌로 생긴 조각 프레임을 올바른 프레임과 가려낸다 — §4.1.2.2
+- 반이중의 미루기 규칙: 보낼 것이 없을 때도 MAC은 물리 계층이 주는 carrierSense 신호로 매체에 다른 전송이 있는지 **지켜본다**. 매체가 쓰이고 있으면 자기 전송을 미루고,
+  지나가는 프레임이 끝난 뒤에도 프레임 사이 간격(interFrameSpacing)만큼 더 기다렸다가 보낸다. 전이중에서는 carrierSense를 보고 미루지 않는다.
+  매체를 살피려고 스테이션이 따로 신호를 보내는 절차는 이 규칙에 없다 — §4.2.3.2.1 a)·b)
+- 충돌 감지와 잼: collisionDetect 신호로 충돌을 알아채면 전송을 곧바로 끊지 않고 jamSize만큼 더 보낸다. 잼의 내용은 정해져 있지 않다(다만 그때까지 보낸 조각의 CRC 값이 되도록 일부러 만들지는 않는다) — §4.2.3.2.4
+- 재전송: 충돌로 끝난 전송은 성공하거나 attemptLimit번을 모두 충돌로 마칠 때까지 다시 한다. 다시 보내기 전 기다리는 시간은 slotTime의 정수배이고,
+  n번째 재전송 전에는 0 ≤ r < 2^k(k = min(n, 10)) 범위에서 고르게 뽑은 무작위 정수 r만큼 기다린다. 이 방법의 이름이 절단 이진 지수 백오프(truncated binary exponential backoff)다.
+  attemptLimit번 모두 실패하면 오류로 알린다 — §4.2.3.2.5
+- 전이중 스테이션은 받는 트래픽 때문에 미루지도, 전송을 끊거나 잼을 보내거나 백오프하지도 않는다. 프레임이 있으면 프레임 사이 간격만 지키고 보낸다 — §4.2.3.2.6
+- 값(표 4–2): 10 Mb/s·100 Mb/s와 1 Gb/s에서 attemptLimit 16, backoffLimit 10, jamSize 32비트다. 10 Gb/s에는 slotTime·attemptLimit·backoffLimit·jamSize가 해당하지 않는다(반이중이 없다) — §4.4.2
+- 한 네트워크의 스테이션은 모두 같은 방식(반이중이나 전이중)으로 설정해야 한다. **리피터나 공유 구간(mixing segment)에 이은 DTE는 모두 반이중으로 설정해야 한다.**
+  두 DTE를 링크 구간으로 바로 이으면 두 장치가 같은 방식을 써야 한다 — §4.4.1
+
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`, `hub-switch-vlan.duplex`, `hub-switch-vlan.collision-domain`, `hub-switch-vlan.csma-cd`, `hub-switch-vlan.switch`
+
+## (phase 72 step 1) IEEE 802.3 — Ethernet, 3.5 Elements of the Tagged MAC Frame
+https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
+
+위 「3.2.9 … 3.4」 항목과 같은 IEEE P802.3as Draft 0.1(2005-03)의 3장이다. 이 초안이 싣고 있는 802.3-2005의 3.5 본문을 근거로 쓴다.
+
+- 태그 붙은 MAC 프레임은 보통 프레임에 **4옥텟짜리 QTag 앞붙이**를 **출발지 주소 바로 뒤**, 원래의 길이/타입 필드 앞에 끼운 것이다. 그래서 프레임이 4옥텟 길어진다 — §3.5 a)·c), 그림 3–5
+- QTag 앞붙이는 두 필드다 — 타입으로 읽히는 2옥텟 상수(802.1Q 태그 프로토콜 타입)와, 2옥텟짜리 태그 제어 정보(TCI) — §3.5 a)
+- 태그 붙은 프레임의 그 자리 길이/타입 필드는 언제나 타입으로 읽고, 값은 **0x8100**(0x81-00)이다 — §3.5.4
+- 태그 제어 정보는 3비트 사용자 우선순위, CFI 1비트, **12비트 VLAN 식별자(VID)**로 나뉜다. 그 뜻은 IEEE 802.1Q가 정한다(이 절은 참고용이다) — §3.5.5, 그림 3–5
+- 원래의 길이/타입 필드는 QTag 앞붙이 뒤로 정확히 4옥텟 밀려난다. 프리앰블·SFD·주소·FCS는 보통 프레임과 같다 — §3.5.1~§3.5.3, §3.5.6, §3.5.8
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`
+
+## (phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록 — 리피터 조항을 「새 설치에 권하지 않음」으로 정한 결정 (P802.3ay D1.0, P802.3bh D2.0·D3.0)
+https://ieee802.org/3/axay/comments/D1.0/802.3ay_D1p0.pdf
+https://ieee802.org/3/bh/comments/P802d3_802d3_bh_D2p0_All_Comment.pdf
+https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
+
+세 문서 모두 IEEE 802.3 **개정 프로젝트의 투표 의견과 그 처리(응답) 기록**이다. 표준 본문이 아니다. P802.3ay는 IEEE Std 802.3-2008을, P802.3bh는 IEEE Std 802.3-2012를 만든 개정 프로젝트다
+(다음 개정인 802.3bx의 의견 기록 제목이 「Revision to IEEE Std 802.3-2012」다 — https://www.ieee802.org/3/bx/comments/P8023-D2p0-Comments_Final_byCls.pdf).
+의견 하나는 제안일 뿐이므로, 여기에는 **응답이 받아들임(ACCEPT, ACCEPT IN PRINCIPLE)으로 끝난 것**과 그 응답이 정한 문구만 적는다. 발행된 802.3 본문의 문구는 무료로 열리지 않아 직접 보지 못했다.
+
+- P802.3ay D1.0(Maintenance #9 Revision, 의견 기록 2007-06-30) #104(41장, 1000 Mb/s 리피터): 의견은 1000 Mb/s 리피터가 상업적으로 거의 만들어지지 않았고 오래전부터 구할 수 없다며 이 조항에
+  「새 설치에 권하지 않음」 주석을 달자고 했다. 응답은 ACCEPT IN PRINCIPLE이고, 정한 주석은 「이 리피터는 새 설치에 권하지 않는다. 2007년 5월부터 이 조항의 유지 보수 변경은 더 검토하지 않는다」라는 뜻이다.
+  같은 기록 #121(41장의 표기 고치기)은 「이 조항은 폐기(deprecate)되는 중」이라는 이유로 거절됐다 — 의견 #104, #121(PDF 22쪽)
+- P802.3bh D2.0(첫 작업 그룹 투표, 의견 기록 2011-09-22) #168: 의견은 쓰이지 않게 된 PHY에 「새 설치에 권하지 않음」 주석을 달자고 했다. 응답은 ACCEPT IN PRINCIPLE이고,
+  대상으로 **10장(10BASE2), 17장, 9장(10 Mb/s 리피터), 27장(100 Mb/s 리피터), 41장(1000 Mb/s 리피터)**을 적었다 — 의견 #168(PDF 35쪽)
+- P802.3bh D3.0(첫 스폰서 투표, 의견 기록 2012-04-16) #i-49: 13장(리피터를 쓸 때의 망 구성)은 이제 리피터를 쓸 때만 해당하는데 9장을 폐기했으니 13장도 같은 주석을 달자는 의견이다.
+  응답은 ACCEPT IN PRINCIPLE이고, 정한 주석은 「이 조항은 새 설치에 권하지 않는 조항들과 관련되며, 이 조항도 새 설치에 권하지 않는다. 2012년 3월부터 유지 보수 변경은 더 검토하지 않는다」라는 뜻이다 — 의견 #i-49(PDF 12쪽)
+- 같은 기록 #i-50: 의견은 「이제 공유 매체와 리피터가 모두 폐기됐다(새 설치에 권하지 않음). 남은 것은 전이중을 쓸 수 있는 점대점·점대다점 PHY뿐」이라 쓰고, 4장(반이중을 담은 CSMA/CD MAC)에도
+  새 설치에 권하지 않는다는 주석을 달자고 했다. 응답은 **REJECT**다 — 영향이 넓어 다음 개정에서 따로 다루겠다고 했다. 그러니 **반이중·CSMA/CD 자체를 표준이 새 설치에 권하지 않는다고 정한 것은 아니다** — 의견 #i-50(PDF 12쪽)
+- 주의: 리피터가 표준에서 사라진 것은 아니다. 2022년 P802.3da 태스크 포스는 10BASE-T1S 같은 새 PHY의 공유 구간에 쓸 리피터를 따로 정할지 논의했다 —
+  https://www.ieee802.org/3/da/public/040622/zimmerman_3da_01_03312022.pdf 22쪽(802.3cg-2019가 9장 리피터를 10BASE-T1L·10BASE-T1S에 적용하지 않기로 했다는 것)
+- (참고) 같은 P802.3bh D3.0 기록 #i-89(ACCEPT): IEEE Std 802.5는 토큰 링 표준이고 철회됐다. 마지막 개정은 802.5v-2001 「Gigabit Token Ring Operation」이다 — 의견 #i-89
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`(「요즘 안 쓴다」를 쓸 수 있는 범위 — `phases/72-network-ethernet-switch/index.json` step 1 summary), `hub-switch-vlan.csma-cd`(토큰 방식의 이름)
+
+## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
+https://www.ieee802.org/1/files/public/docs2003/ITU%20Q12%20liaison%20from%20dot3.pdf
+
+IEEE 802.3 작업 그룹이 2003년 7월 회의에서 승인해 ITU-T 15연구반 Q12에 보낸 공식 회신(communication statement)이다.
+
+- IEEE 802 구조에서 이더넷 링크로 잇는 장치는 두 가지다 — DTE와 리피터. DTE는 호스트, 802.1D 브리지, 라우터 같은 장치다 — 「Response」 둘째 문단
+- **리피터는 802.3이 정한 장치로, 반이중으로만 동작하고 CSMA/CD 장치 여럿이 한 매체에 접근하게(다중 포트 접근) 한다** — 「Response」 둘째 문단
+- 2계층 네트워크 장치는 IEEE 802.1D 브리지로 모델링하라고 권한다 — 「Response」 권고 2)
+
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`, `hub-switch-vlan.switch`
+
+## (phase 72 step 1) RFC 2108 — Definitions of Managed Objects for IEEE 802.3 Repeater Devices using SMIv2
+https://www.rfc-editor.org/rfc/rfc2108
+
+Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 리피터 관리 MIB다.
+
+- 이 MIB가 다루는 리피터는 IEEE 802.3의 9장(10 Mb/s 베이스밴드 리피터)과 27장(100 Mb/s 베이스밴드 리피터)이 정한 장치다 — §2.2
+- 리피터는 비트 단위로 받아 다시 내보내는 장치이고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다 — §2.4.1.2
+- 받은 신호를 다른 모든 포트로 내보낸다는 문장과 「충돌 도메인」의 정의는 이 RFC에 없다(전문 검색)
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.hub`(주소를 보지 않는 물리 계층 장비)
+
+## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
+https://standards.ieee.org/ieee/802.1D/3387/
+https://standards.ieee.org/ieee/802.1Q/10323/
+
+- 802.1D-2004 「MAC Bridges」(2004-06-09 발행, 지금은 802.1Q-2014에 합쳐져 Superseded): IEEE 802 LAN을 MAC 서비스 경계 아래에서 잇는 구조를 정한다. 이 표준의 MAC 브리지는 **저마다 MAC을 가진 서로 다른 LAN**에 붙은
+  스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
+- 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
+
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(표준의 이름은 브리지), `hub-switch-vlan.collision-domain`(브리지는 포트마다 다른 LAN을 잇는다), `hub-switch-vlan.vlan`
+
+## (phase 72 step 1) IEEE 802.1 — IETF 86 Tutorial 「IEEE 802.1Q Media Access Control Bridges and Virtual Bridged Local Area Networks」(2013-03-10)
+https://www.ieee802.org/802_tutorials/2013-03/8021-IETF-tutorial-final.pdf
+
+IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.1Q를 소개한 튜토리얼 자료다(표준 본문이 아니다).
+
+- 브리지는 **목적지 MAC 주소**와 VLAN ID(VID)를 보고 프레임을 전달한다 — 12쪽
+- 프레임을 어디로 보낼지 모르면 그 프레임의 VLAN 안에서 **받은 포트를 뺀 모든 포트**로 내보낸다. 어디로 보낼지 알면 필요 없는 포트로는 내보내지 않는다(목적지 쪽으로만 내보낸다) — 12쪽
+- 브로드캐스트와 목적지를 모르는 유니캐스트는 그 VLAN에 플러딩되는 프레임의 예다 — 27쪽(MVRP 설명)
+- 활성 토폴로지(실제로 프레임이 다니는 경로)를 정하는 프로토콜로 RSTP·MSTP·SPB가 있다. **처음의 스패닝 트리 프로토콜(STP)은 이제 역사 속 이름이고 RSTP가 그 자리를 이었다** — 26쪽
+- 802.1Q는 12비트 VLAN만 다루는 표준이 아니다(서비스·백본 태그 등도 있다) — 16쪽
+
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.flooding-forwarding-filtering`, `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`
+
+## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
+https://www.ieee802.org/1/pages/802.1w.html
+
+IEEE 802.1 작업 그룹의 프로젝트 페이지다. 프로젝트는 끝났고 802.1D-2004에 합쳐졌다.
+
+- 802.1w는 802.1D-1998을 보완해 MAC 브리지가 빠르게 다시 구성되게 하는 변경을 정했다 — 프로젝트 설명 첫 문단
+- 동기: 그때의 스패닝 트리 프로토콜은 **링크가 끊기거나 되살아날 때 다시 구성해 서비스를 되살리는 데** 시간이 오래 걸렸다 — 프로젝트 설명의 첫 항목
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.stp`(쓰던 길이 끊기면 다시 구성한다)
+
+## (phase 72 step 1) RFC 4188 — Definitions of Managed Objects for Bridges
+https://www.rfc-editor.org/rfc/rfc4188
+
+Proposed Standard(Standards Track)이다. IEEE 802.1D-1998의 투명 브리지를 관리하는 MIB다.
+
+- 브리지는 네트워크 계층 아래에서 LAN 구간들을 잇는 장치다. 투명 브리징은 IEEE 802.1D가 정한다 — §3
+- 전달 데이터베이스(dot1dTpFdbTable)의 항목은 유니캐스트 MAC 주소와, **출발지 주소가 그 주소인 프레임이 들어온 포트의 번호**를 짝짓는다. 항목 상태에는 배운 것(learned)·관리자가 넣은 것(mgmt) 등이 있다 — §4 dot1dTpFdbAddress·dot1dTpFdbPort·dot1dTpFdbStatus
+- 동적으로 배운 전달 정보를 지우기까지의 시간이 dot1dTpAgingTime(초)이고, **802.1D-1998은 기본값 300초를 권한다** — §4 dot1dTpAgingTime(REFERENCE 802.1D-1998 14.7.1.1.3)
+- 전달 과정이 걸러 버린(filtered) 프레임의 수를 센다 — §4 dot1dTpPortInDiscards
+- 스패닝 트리 프로토콜이 정하는 포트 상태는 disabled·blocking(차단)·listening·learning(학습)·forwarding(전달)·broken이고, 그 상태가 포트가 받은 프레임을 어떻게 다룰지 정한다 — §4 dot1dStpPortState(REFERENCE 802.1D-1998 8.5.5.2)
+- 스패닝 트리에는 뿌리(루트)가 있고 스패닝 트리 프로토콜이 그것을 정한다 — §4 dot1dStpDesignatedRoot
+- 이 RFC는 학습·플러딩의 절차와 고리를 설명하지 않는다(전문 검색) — 그 근거는 위 802.1 튜토리얼과 아래 RFC 7348이다
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`, `hub-switch-vlan.mac-address-table`, `hub-switch-vlan.flooding-forwarding-filtering`(필터링), `hub-switch-vlan.stp`
+
+## (phase 72 step 1) RFC 4363 — Definitions of Managed Objects for Bridges with Traffic Classes, Multicast Filtering, and Virtual LAN Extensions
+https://www.rfc-editor.org/rfc/rfc4363
+
+Proposed Standard(Standards Track)이다. IEEE 802.1Q-2003의 VLAN을 관리하는 Q-BRIDGE MIB다.
+
+- 이 MIB는 **포트 기반 VLAN**을 다룬다 — 프레임이 들어온 브리지 포트로 VLAN 소속이 정해지는 VLAN이다. 802.1Q에는 포트와 프로토콜로 정하는 VLAN도 있지만 이 MIB 밖이다 — §2
+- PVID는 포트로 들어온 **태그 없는 프레임**(과 우선순위 태그만 붙은 프레임)에 매기는 VLAN ID다 — §5 dot1qPvid(REFERENCE 802.1Q 12.10.1.1)
+- 포트가 태그 없는 프레임을 받을지는 설정으로 정한다 — 모두 받거나(admitAll, 받으면 PVID로 VLAN을 매긴다), 태그 붙은 프레임만 받는다(admitOnlyVlanTagged) — §5 dot1qPortAcceptableFrameTypes
+- 입력 필터링을 켜면 그 포트가 들어 있지 않은 VLAN의 프레임은 버린다 — §5 dot1qPortIngressFiltering
+- VLAN마다 그 VLAN의 프레임을 내보내는 포트 묶음(egress ports)이 있고, 그 가운데 **태그를 떼고 내보내는 포트 묶음(untagged ports)**을 따로 둔다. 나머지 포트는 태그를 붙인 채 내보낸다 — §5 dot1qVlanStaticEgressPorts·dot1qVlanStaticUntaggedPorts·dot1qVlanCurrentEgressPorts·dot1qVlanCurrentUntaggedPorts
+- 802.1Q VLAN ID로 쓰는 값은 1~4094다. 0과 4095는 쓰지 않는다 — §5 VlanId·VlanIndex
+- MAC 주소로 VLAN을 정하는 방식은 이 RFC에 없다 — 강의 p105의 MAC 주소 기반 VLAN은 강의 사실로만 쓴다
+
+쓰인 곳: `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-membership`(포트 기반 VLAN), `hub-switch-vlan.vlan-tagging`(태그 붙은 포트·안 붙은 포트, VLAN ID 범위)
+
+## (phase 72 step 1) RFC 7348 — Virtual eXtensible Local Area Network (VXLAN)
+https://www.rfc-editor.org/rfc/rfc7348
+
+Informational(Independent Submission)이다. VXLAN을 만든 까닭을 설명하면서 2계층 네트워크의 STP와 VLAN을 정리한 부분만 쓴다.
+
+- 2계층 네트워크는 중복 경로 때문에 생기는 고리를 피하려고 IEEE 802.1D의 스패닝 트리 프로토콜(STP)을 쓴다. **STP는 일부 링크를 쓰지 못하게 막아 프레임이 복제되고 고리를 도는 것을 막는다** — §3.1
+- 그래서 STP를 쓰면 사 둔 포트·링크 가운데 일부를 쓰지 못하고, 여러 경로로 나눠 보내는 데서 오는 회복력도 얻지 못한다 — §3.1
+- VLAN은 브로드캐스트를 격리하는 데 쓴다. **이더넷 프레임에 담는 12비트 VLAN ID로 큰 2계층 네트워크를 여러 브로드캐스트 도메인으로 나눈다.** VLAN은 4094개까지다 — §3.1
+- STP로 고리 없는 토폴로지를 만들면 쓰지 못하는 링크가 많이 생길 수 있다 — §1
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.stp`, `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`, `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
+
+## (phase 72 step 1) RFC 5517 — Cisco Systems' Private VLANs: Scalable Security in a Multi-Client Environment
+https://www.rfc-editor.org/rfc/rfc5517
+
+Informational(Independent Submission)이다. 시스코 사설 VLAN을 설명하는 문서인데, VLAN 일반을 말한 두 문장만 쓴다. 사설 VLAN 자체는 쓰지 않는다.
+
+- **VLAN 하나는 그 안의 호스트들이 2계층에서 서로 바로 통신할 수 있는 브로드캐스트 도메인이다** — §1
+- (보통의 구성에서) VLAN마다 서브넷을 따로 둔다 — §1.2
+
+쓰인 곳: `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`
+
+## (phase 72 step 1) RFC 1812 — Requirements for IP Version 4 Routers
+https://www.rfc-editor.org/rfc/rfc1812
+
+Proposed Standard(Standards Track)이다.
+
+- 링크 계층에서 동작하는 패킷 교환 장치는 보통 브리지라고 부른다. 네트워크들을 잇는 IP 데이터그램 전달 장치는 라우터라고 부른다 — §2.2.3
+- 라우터는 **링크 계층 브로드캐스트로 받은 패킷을 다른 네트워크로 넘기지 않는다**(목적지가 IP 멀티캐스트 주소인 경우만 예외다). 링크 계층 멀티캐스트로 받은 패킷도 목적지가 IP 멀티캐스트가 아니면 넘기지 않는다 — §5.3.4
+- 링크 계층은 받은 패킷의 목적지 물리 주소가 유니캐스트·브로드캐스트·멀티캐스트 가운데 무엇인지 IP 계층에 알려야 한다 — §3.2
+
+쓰인 곳: `exam-notes.md` E4·E7, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(브리지는 링크 계층 장치), `hub-switch-vlan.broadcast-domain`(라우터가 경계가 된다)
+
+## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
+https://csrc.nist.gov/pubs/sp/800/125/b/final
+
+NIST 특별 간행물이다. 위 csrc.nist.gov 페이지가 링크한 본문 PDF(https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-125B.pdf)의 2.4절만 쓴다.
+
+- VLAN은 처음에 데이터 센터에서 관리를 쉽게 하려고(예: 브로드캐스트를 가두려고) 썼고, 트래픽을 격리하므로 네트워크를 나누는 보안 수단으로도 가치가 있었다 — §2.4
+- 물리 스위치에서는 포트 하나 이상에 VLAN ID를 매겨 VLAN을 정하고, 그 포트에 이은 호스트가 그 VLAN의 구성원이 된다. 그렇게 **물리적 위치와 상관없이** 서버를 논리적으로 묶는다 — §2.4
+- 여러 VLAN의 트래픽을 받고 보낼 수 있게 설정한 물리 스위치 포트를 **트렁크 포트**(trunking ports)라 부르고, 그런 링크를 트렁크 링크라 부른다 — §2.4, §3
+- VLAN으로 나눈 무리의 트래픽은 다른 무리의 트래픽과 격리된다. 예를 들어 웹 서버·응용·데이터베이스 층마다 VLAN을 따로 두고 **층 사이의 트래픽은 방화벽 규칙으로 통제**할 수 있다.
+  VLAN마다 다른 QoS 규칙도 줄 수 있다 — §2.4
+- VLAN ID가 12비트라 VLAN은 4000개 남짓까지만 정할 수 있다 — §2.4.1·§2.4.2
+
+쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan`(VLAN마다 다른 보안 정책), `hub-switch-vlan.vlan-tagging`(트렁크라는 낱말)
+
+## (phase 72 step 1) Cisco — Catalyst 9200 「VLAN Configuration Guide, Cisco IOS XE 17.14.x」와 Catalyst 2960-L 「VLAN Configuration Guide, Cisco IOS Release 15.2(7)E」의 Configuring VTP
+https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/17-14/configuration_guide/vlan/b_1714_vlan_9200_cg/configuring_vtp.html
+https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960l/software/15-2_7_e/configuration_guide/vlan/b_1527e_vlan_2960l_cg/m_vlan_vtp_cg.html
+
+시스코 스위치의 설정 가이드(제품 문서)다. VTP(VLAN Trunking Protocol)는 시스코가 만든 프로토콜이라 이 문서를 출처로 쓴다. 2026-10-28에 읽은 판: Catalyst 9200 IOS XE 17.14.x(2024-04-05 고침),
+Catalyst 2960-L IOS 15.2(7)E(2020-09-17 고침). **제품과 판마다 달라질 수 있다.** VLAN·태그·트렁크의 일반 사실은 여기서 가져오지 않는다.
+
+- VTP는 VLAN 설정이 어긋나지 않게 맞추는 2계층 메시지 프로토콜이다. VTP 도메인(VLAN 관리 도메인)은 서로 이은 장치 하나 이상으로 이루어지고, 같은 도메인의 장치는 모두 같은 도메인 이름을 써야 한다 — 9200 「Information About VTP」의 「VTP」·「VTP Domain」
+- VTP 도메인의 장치는 **트렁크 포트마다** 설정 정보를 주기적으로 알린다(advertisement). 그래서 트렁크 포트가 적어도 하나 있어야 하고, VTP는 트렁크 모드 포트에서만 켤 수 있다 —
+  9200 「VTP Advertisements」·「Prerequisites for VTP」·「Configuring VTP on a Per-Port Basis」
+- 모드 넷: **서버**(VLAN을 만들고 고치고 지울 수 있다. 기본 모드), **클라이언트**(알림을 주고받지만 그 장치에서 VLAN을 만들거나 고치거나 지울 수 없다),
+  **트랜스페어런트**(VTP에 참여하지 않는다 — 자기 VLAN 설정을 알리지 않고 받은 알림으로 맞추지도 않는다. 버전 2·3에서는 받은 알림을 트렁크로 넘겨준다),
+  **off**(트랜스페어런트와 같되 받은 알림을 트렁크로 넘기지도 않는다) — 9200·2960-L 「VTP Modes」 표
+- 두 문서 모두 off 모드를 특정 VTP 버전에 묶어 적지 않는다(명령 문법 `vtp mode {client | server | transparent | off}`). 「off는 버전 3에만 있다」는 이 두 문서로 확인하지 못했다 — 9200·2960-L 「VTP Modes」
+- 버전은 1·2·3이 있고 기본은 버전 1이다 — 9200 「VTP Version 2」·「VTP Version 3」
+
+쓰인 곳: `exam-notes.md` E8, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(끝 문단 VTP)
