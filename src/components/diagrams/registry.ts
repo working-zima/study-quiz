@@ -49,6 +49,7 @@ import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
@@ -81,6 +82,7 @@ import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
+import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
@@ -272,6 +274,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'icmp.destination-unreachable': UnreachableDiagram,
   'icmp.time-exceeded': TracerouteDiagram,
   'icmp.echo': EchoDiagram,
+  'icmp.ping': PingResultDiagram,
+  'icmp.igmp': IgmpGroupDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -447,6 +447,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 5) `ip-protocol.ipv6`(§3.2.1.3 — IPv4에는 그 물리 네트워크의 모든 호스트가 받는 브로드캐스트 주소가 있다), 도식 `ipv6-changes`의 「브로드캐스트 있음」, 문항 n057 해설
 (phase 73 step 11) `icmp.ip-limits`(§1.1.3 — 비연결형, 손상·중복·순서 바뀜·닿지 않음, 위 계층이 신뢰성을 맡는다, 전송 계층은 끝과 끝 사이의 통신, TCP는 연결형), `icmp.icmp`(§1.1.3 — ICMP는 IP의 일부이고 인터넷 계층 프로토콜, §3.2.2 — 오류 메시지와 질의 메시지의 두 갈래, 에코는 질의 메시지), 문항 n070·n071 해설, 도식 `ip-limits`·`icmp-feedback`
 (phase 73 step 12) `icmp.icmp-message`(§3.2.2 — 리다이렉트·시간 초과는 오류 메시지, 에코는 질의 메시지), `icmp.destination-unreachable`(§3.2.2 — 오류 메시지에는 원래 IP 헤더와 데이터 앞 8옥텟 이상을 담는다, §3.2.2.1 — 호스트가 코드 2·3을 보내고, 코드 0·1은 경로가 잠깐 흔들려 생길 수 있어 받은 쪽이 단서로 다룬다), 문항 n073 해설
+(phase 73 step 14) `icmp.igmp`(§1.1.3 — IGMP는 인터넷 계층 프로토콜이다, §3.2.3 — 라우터는 IGMP로 얻은 정보와 멀티캐스트 라우팅 프로토콜로 멀티캐스트를 받친다: 멀리 있는 라우터와 그 정보를 나누는 일은 IGMP의 몫이 아니다), 문항 n078·n079 해설, 도식 `igmp-group`
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -720,6 +721,7 @@ https://www.rfc-editor.org/rfc/rfc1112
 쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이),
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§2 — 최선형이라는 이름), `icmp.igmp`(부록 I — 비대칭, IP의 일부, 프로토콜 번호 2, 질의·보고, TTL 1), `exam-notes.md` E12·E14
 (phase 73 step 11) `icmp.ip-limits`(§2 — 최선형 전달: 온전히 닿는다는 보장도, 순서가 지켜진다는 보장도 없다), 문항 n070 해설
+(phase 73 step 14) `icmp.igmp`(§2 — 호스트 그룹은 목적지 IP 주소 하나로 가리키고 구성원은 언제든 들고 난다; 부록 I — 비대칭, IP의 일부·프로토콜 번호 2, 첫 판의 메시지는 질의·보고 둘, 질의와 보고를 TTL 1로 보낸다, 라우터는 그룹마다 구성원이 하나라도 있는지만 안다, 새로 든 호스트는 첫 보고를 한두 번 되풀이하라고 권한다), 문항 n078·n079 해설, 도식 `igmp-group`
 
 ## RFC 1983 — Internet Users' Glossary
 https://www.rfc-editor.org/rfc/rfc1983
@@ -876,6 +878,7 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
 (phase 73 step 13) `icmp.time-exceeded`와 `traceroute` 도식: Windows tracert의 TTL 1부터 증가, 중간 시간 초과·끝 에코 응답, 기본 최대 30홉·답이 없으면 *. 2026-10-29 tracert 문서를 다시 확인했다.
+(phase 73 step 14) `icmp.ping`(ping — 목적지에 호스트 이름이나 IP 주소를 적는다, `/n`으로 보낼 요청 수를 정하고 기본은 4개, 받은 에코 응답을 왕복 시간과 함께 보이고 출력 예는 응답마다 `time=`(ms 단위)과 `TTL=`를 적는다). 2026-10-29 ping 문서를 다시 확인했다(Last updated 2024-11-01) — 출력 예에는 응답 줄만 있고 요약 줄은 없다
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -1046,6 +1049,7 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp(7) 캐시와 시간, arp(8) `-s`·`-d`), `icmp.time-exceeded`(traceroute — UDP 기본·`-I`), `icmp.ping`(ping `-c`, 요약, 응답의 TTL), `exam-notes.md` 앞 문단([기출 2025-05-25 #10]의 캐시 시간, [기출 2025-08-24 #8]의 `-d`)
 (phase 73 step 13) `icmp.time-exceeded`: traceroute의 기본 UDP·끝 포트 도달 불가, -I 에코, 최대 30홉·TTL마다 세 번·응답이 없으면 *. `icmp.echo`의 ping은 에코를 이용하는 명령이라는 한 줄에만 쓴다.
+(phase 73 step 14) `icmp.ping`(ping(8) — `-c`로 보낼 요청 수를 정한다, 다 보내면 손실 통계와 왕복 시간의 최소·평균·최대를 요약한다, 출력의 TTL은 받은 응답 패킷의 TTL 값이고 지금 라우터는 TTL을 1씩 줄인다, 응답의 처음 TTL은 시스템마다 다르다), 문항 n077 해설, 도식 `ping-result`. 결과 요약은 Linux ping(8)만 근거로 썼다 — Windows ping 문서는 요약을 적지 않는다(위 「(phase 71) Microsoft Learn」 항목). 왕복 시간(RTT, round-trip time)을 「요청을 보낸 때부터 그 응답을 받은 때까지」로 푼 것은 이름의 뜻이다
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -1429,6 +1433,7 @@ https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(프로토콜 번호 TCP 6·UDP 17·ICMP 1), `ip-protocol.ipv6-header`(다음 헤더 칸은 같은 번호를 쓴다), `ip-protocol.extension-headers`(확장 헤더 번호 — 단편화 44), `ip-protocol.ipv6`(터널링 — 41은 이름만),
 (phase 73 step 1에서 쓰일 곳) `icmp.icmp`(ICMP 1), `icmp.igmp`(IGMP 2), `arp.neighbor-discovery`(ICMPv6 58)
+(phase 73 step 14) `icmp.igmp`(IGMP 2 — 프로토콜 칸의 값)
 
 ## (phase 73) RFC 1752 — The Recommendation for the IP Next Generation Protocol
 https://www.rfc-editor.org/rfc/rfc1752
@@ -1688,6 +1693,7 @@ https://www.rfc-editor.org/rfc/rfc792
 (phase 73 step 11) `icmp.icmp`(Introduction — 라우터나 목적지 호스트가 출발지에 알린다, IP의 일부이고 모든 IP 모듈이 구현한다, IP를 믿을 수 있게 만들지 않고 알림이 꼭 돌아온다는 보장도 없다, 신뢰성은 상위 프로토콜이 갖춘다; 「Message Formats」 — 프로토콜 값 1, ICMP 메시지에는 TTL 칸이 없다; 「Destination Unreachable Message」 — 라우터가 목적지 네트워크로 갈 수 없을 때; 「Echo or Echo Reply Message」 — 받은 쪽이 응답을 돌려보낸다), 문항 n070·n071 해설, 도식 `icmp-feedback`
 (phase 73 step 12) `icmp.icmp-message`(「Message Formats」 — 타입·코드·체크섬 뒤는 타입마다 다르고 받은 쪽은 타입부터 읽는다; 각 메시지 — 에코·에코 응답 코드 0, 리다이렉트는 원래 데이터그램을 그대로 넘긴다, 시간 초과 코드 0; 「Source Quench Message」 — 보내는 속도를 줄여 달라는 요청), `icmp.destination-unreachable`(코드 0~4, 0·1·4는 게이트웨이가·2·3은 호스트가 보낸다, 원래 IP 헤더와 데이터 앞 64비트를 담고 포트 번호가 그 안에 있다고 본다, DF가 켜져 나눌 수 없는 데이터그램은 게이트웨이가 버린다), 문항 n072·n073·n074 해설, 도식 `icmp-message`·`destination-unreachable`
 (phase 73 step 13) `icmp.time-exceeded`(타입 11·코드 0/1, 보내는 쪽, 첫 조각이 없으면 알리지 않아도 됨), `icmp.echo`(타입 8/0·코드 0, 데이터·식별자·순서 번호 유지, 주소 교환·체크섬 재계산), n075·n076 해설, `traceroute`·`echo` 도식. 2026-10-29 원문의 「Time Exceeded Message」·「Echo or Echo Reply Message」를 다시 확인했다.
+(phase 73 step 14) `icmp.ping`(Introduction — ICMP는 문제를 알릴 뿐 IP를 믿을 수 있게 만들지 않는다: ping은 문제를 고치지 않는다; 「Echo or Echo Reply Message」 — 식별자·순서 번호로 응답을 요청과 짝짓는다: 어느 요청의 응답이 오지 않았는지 안다), 문항 n077 해설, 도식 `ping-result`
 
 ## (phase 73 step 1) IANA — Internet Control Message Protocol (ICMP) Parameters
 https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml
@@ -1810,3 +1816,4 @@ RFC 2236(1997)은 Proposed Standard이고 RFC 3376·RFC 9776이 고쳤다. IGMPv
 - v3의 메시지: 멤버십 질의(0x11), v3 멤버십 보고(0x22). 이전 판과 함께 쓰려고 v1 보고·v2 보고·v2 탈퇴(0x12·0x16·0x17)도 지원해야 한다 — RFC 9776 §4
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.igmp`(IP의 일부·프로토콜 2·TTL 1·질의·보고·탈퇴·판의 차이·비대칭 — [기출 2024-05-19 #3], [기출 2024-11-03 #7], [기출 2025-05-25 #3], [기출 2025-11-02 #16]), `exam-notes.md` E12·E14
+(phase 73 step 14) `icmp.igmp`(RFC 2236 §2 — 모든 메시지를 TTL 1로 보낸다, §2.1 — 멤버십 질의(일반 질의·그룹별 질의)·멤버십 보고·그룹 탈퇴, §3 — 무작위 시간을 기다렸다 그 그룹으로 보고하고 같은 그룹의 보고를 먼저 들으면 보내지 않는다, 새로 든 호스트는 곧바로 보고하고 한두 번 되풀이하라고 권한다, 마지막으로 보고한 호스트가 떠나면 그룹 탈퇴를 보낸다, 라우터는 구성원이 있는 그룹의 멀티캐스트만 넘긴다; RFC 9776 §1 — v2가 탈퇴를 빨리 알게 했고 v3가 출발지 거르기를 더했으며 앞 판과 함께 쓸 수 있다, §4 — TTL 1, §5 — 비대칭), 문항 n078·n079 해설, 도식 `igmp-group`. 메시지 이름은 RFC 2236 §2.1의 Membership Query·Membership Report·Leave Group을 옮긴 것이다
