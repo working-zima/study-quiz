@@ -39,6 +39,7 @@ import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FragmentationDiagram } from './FragmentationDiagram'
 import { GovernanceToolTable } from './governanceTables'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -47,6 +48,7 @@ import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { AnalyzerToolTable, CredentialTable, GroupMembersTable } from './iamTables'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
+import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -224,6 +226,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.vlan': VlanSplitDiagram,
   'hub-switch-vlan.vlan-membership': VlanMembershipDiagram,
   'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
+  'ip-protocol.ip': IpAcrossNetworksDiagram,
+  'ip-protocol.fragmentation': FragmentationDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

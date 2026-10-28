@@ -37,6 +37,7 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 step 0(IP와 단편화)의 확인한 날은 2026-10-29다. RFC는 rfc-editor.org의 텍스트판(`https://www.rfc-editor.org/rfc/rfcNNNN.txt`)을 내려받아 절을 직접 읽었고, 지금 유효한지(폐기·개정 관계)는 rfc-editor의 문서 정보(`…/rfcNNNN.json`)로 확인했다.
 「(phase 73 step 1)」이 붙은 줄과 항목은 phase 73 step 1에서 `arp`(ARP·ARP 캐시·다른 네트워크로 보낼 때·RARP·이웃 탐색)·`icmp`(IP의 한계·ICMP·타입과 코드·목적지 도달 불가·시간 초과·에코·ping·IGMP) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
 RFC는 step 0과 같은 방법으로 읽었고, IANA 레지스트리는 XML판(`…/<레지스트리>.xml`)을, man7.org·learn.microsoft.com은 그 페이지를 내려받아 읽었다. 명령 문서는 운영체제·패키지마다 다르므로 어느 판인지 항목에 적는다.
+「(phase 73 step 2)」 이후의 줄은 phase 73의 개념을 쓰는 step(2~14)이 쓰다가 더 확인한 사실이다(같은 방법으로 읽었다, 2026-10-29).
 
 ---
 
@@ -267,6 +268,7 @@ https://www.rfc-editor.org/rfc/rfc8200
   (IPv4 헤더의 칸 몇을 없애거나 선택으로 돌려 처리 비용을 줄인다), 확장과 옵션을 담는 방식을 바꿈, 흐름 레이블, 인증·무결성·(선택) 기밀성 확장 — §1
 - (phase 73) 용어: 링크 MTU는 링크 하나가 실어 나를 수 있는 패킷의 최대 크기(옥텟)다. 경로 MTU는 출발지와 목적지 사이 경로의 모든 링크 MTU 가운데 가장 작은 값이다. 패킷은 IPv6 헤더에 페이로드를 더한 것이다.
   이웃은 같은 링크에 붙은 노드들이다 — §2
+- (phase 73 step 2) 링크는 노드들이 링크 계층(IP 바로 아래 계층)에서 서로 통신하는 통신 수단이나 매체이고, 그 예로 이더넷을 든다 — §2
 - (phase 73) 기본 헤더의 칸 여덟과 크기: 버전(Version) 4비트(값 6), 트래픽 클래스(Traffic Class) 8비트, 흐름 레이블(Flow Label) 20비트, 페이로드 길이(Payload Length) 16비트,
   다음 헤더(Next Header) 8비트, 홉 제한(Hop Limit) 8비트, 출발지 주소(Source Address) 128비트, 목적지 주소(Destination Address) 128비트 — §3
 - (phase 73) 기본 헤더는 40옥텟이다 — §3 그림의 칸을 더한 값(4+4+16+16)이고, §8.3은 확장 헤더가 없는 IPv6 헤더가 최소 길이 IPv4 헤더(20옥텟)보다 20옥텟 길다고 쓴다.
@@ -293,7 +295,8 @@ https://www.rfc-editor.org/rfc/rfc8200
 
 쓰인 곳: 강의 수정 이력 L4, L5, L10, L33, 면접 수정 이력 I3, I8, (phase 72 step 5) `ethernet.ethertype-length`(IPv6는 주소를 32비트에서 128비트로 늘렸다, §1),
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.5 — 출발지만 나눈다), `ip-protocol.mtu`(§2 링크 MTU·경로 MTU, §5 — 1280), `ip-protocol.ipv6`(§1 — 뒤를 잇는 판·달라진 점), `ip-protocol.ipv6-header`(§3·§7·§8.1·§8.3 — 칸 여덟, 40옥텟, 체크섬·단편화 칸 없음),
-`ip-protocol.ttl`(§3 — 홉 제한), `ip-protocol.extension-headers`(§4·§4.5), `exam-notes.md` E9
+`ip-protocol.ttl`(§3 — 홉 제한), `ip-protocol.extension-headers`(§4·§4.5), `exam-notes.md` E9,
+(phase 73 step 2) `ip-protocol.fragmentation`(§2 — 링크의 뜻과 링크 MTU, §4.5 — IPv6는 출발지만 나눈다), 문항 n050 해설
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
