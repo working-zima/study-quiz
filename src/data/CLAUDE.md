@@ -44,7 +44,8 @@ src/data/
 
 - `network/data.test.ts`가 지키는 것: 주제·개념 id 유일과 개념 id 꼴(`<주제 id>.<슬러그>`), 문항 id는 `n001`부터 빈 번호 없이,
   모든 문항이 `format`(`choice`·`yes-no`)을 적고 형식에 맞는 필드만 가진다, 4지선다도 문제문이 물음표로 끝난다,
-  커버리지 100%(ADR-026), 해설 187자 이상(ADR-027), `importance`는 모두 0(별점 없음), `sourcePages`는 강의 통합본 쪽 1~502 안,
+  커버리지 100%(ADR-026), 해설 187자 이상(ADR-027), 주제는 테스트 안 주제 지도 표(`docs/source/network/topic-map.md`와 같은 값)에 있고
+  `importance`는 그 표의 출제 회차에서 계산한 값(9 이상 3, 6~8은 2, 5 이하 0), `sourcePages`는 강의 주제면 강의 통합본 쪽 1~502 안·강의 밖 주제면 `[0, 0]`(ADR-059),
   `parentId`(ADR-041)·목록 항목(ADR-046) 규칙, 굵은 글씨 `**`는 목록 항목 안에만. 커버리지에 예외 목록을 만들지 말고 해설 하한을 낮추지 마라.
 - `network/visuals.test.ts`가 지키는 것: 주제 키와 `sources`가 실제 네트워크 주제·개념 id, 표의 열 셋 이하와 `columnWidths`,
   시나리오 id 유일, `glossary`는 비운다(약어 툴팁은 AWS VPC 주제에만, ADR-037).
