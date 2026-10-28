@@ -1,0 +1,92 @@
+# phase 73 검증 보고
+
+확인한 날: 2026-10-29. 브랜치 `feat-73-network-ip-arp-icmp`(develop 4154830에서 분기), 설계 커밋 2937cf1, phase 완료 커밋 167ffa0.
+사용자가 자리를 비운 동안 메인 세션이 설계를 쓰고(**설계 승인 전**), 저장소 밖 supervisor(`aws-quiz-p73-sup`, phase 34의 것을 복사하고 phase 73 검증 프로파일을 붙임)로 무인 실행했다.
+supervisor는 step마다 `execute.py --max-steps 1`을 부르고, 끝나면 lint·build·test·check-structure와 phase 73 검사(앞 phase 데이터 불변, 기존 도식 파일 불변, 개념·문항 수,
+앞 step 산출물 불변, 교차 검사 「교차 없음」, check-verbatim 「원본 2개」 대조)를 다시 돌렸다. 기본 provider는 codex, 사용량 한도면 step 경계에서 Claude로 넘겼다.
+
+## step별 결과
+
+| step | 에이전트 | 걸린 시간 | 결과 | 테스트 |
+|---|---|---|---|---|
+| 0 ip-sources | codex → Claude | 19분(한도) + 22분 | `ip-protocol`이 쓸 사실, 수정 이력 L33, exam-notes E9·E10 | 3817 |
+| 1 arp-icmp-sources | Claude | 24분 | `arp`·`icmp`가 쓸 사실, L34·L35, E11~E14 | 3817 |
+| 2 ip-fragmentation | Claude | 17분 | 개념 1 IP·2 단편화, n049~n050 — 주제 `ip-protocol` 만듦 | 3863 |
+| 3 mtu-header | Claude | 15분 | 개념 3 MTU·4 IPv4 헤더, n051~n053 | 3908 |
+| 4 fragment-ttl | Claude | 13분 | 개념 5 식별자·플래그·단편화 오프셋·6 TTL, n054~n055 | 3948 |
+| 5 ipv4-ipv6 | Claude | 15분 | 개념 7 IPv4 주소·8 IPv6, n056~n057 | 3994 |
+| 6 ipv6-notation-header | Claude | 17분 | 개념 9 IPv6 주소 표기·10 IPv6 기본 헤더, n058~n060 | 4037 |
+| 7 extension-slaac | Claude | 16분 | 개념 11 확장 헤더·12 주소 자동 설정(SLAAC), n061~n062 — `ip-protocol` 완성 | 4079 |
+| 8 arp-request-reply | Claude | 19분 | 개념 13 ARP·14 ARP 요청과 ARP 응답, n063~n064 — 주제 `arp` 만듦 | 4123 |
+| 9 arp-cache-routers | Claude | 15분 | 개념 15 ARP 캐시·16 다른 네트워크로 보낼 때의 ARP, n065~n067 | 4169 |
+| 10 rarp-nd | Claude | 19분 | 개념 17 RARP·18 IPv6의 이웃 탐색, n068~n069 — `arp` 완성 | 4211 |
+| 11 ip-limits-icmp | Claude | 8분(한도) + 16분 | 개념 19 IP의 비신뢰성과 비연결형·20 ICMP, n070~n071 — 주제 `icmp` 만듦 | 4253 |
+| 12 icmp-types-unreachable | Claude | 18분 | 개념 21 ICMP 메시지의 타입과 코드·22 목적지 도달 불가, n072~n074 | 4295 |
+| 13 time-exceeded-echo | codex | 16분 | 개념 23 시간 초과·24 에코 요청과 에코 응답, n075~n076 | 4327 |
+| 14 ping-igmp | codex → Claude | 0분(한도) + 20분 | 개념 25 ping·26 IGMP, n077~n079 — `icmp` 완성 | 4373 |
+
+결과: 개념 26개(`ip-protocol` 12 ★★★ · `arp` 6 ★★☆ · `icmp` 8 ★★★), 문항 31개(n049~n079), 도식 26개(개념마다 하나), 새 테스트 556개.
+30분 제한에 걸린 step은 없다(가장 긴 것 24분). step 안에서 브라우저 실측을 하지 않게 한 설계(guide.md 「배경」)가 phase 72보다 step을 짧게 했다.
+
+## 실행 중에 일어난 일
+
+- **사용량 한도 세 번.** codex가 step 0 도중(00:47, 해제 05:28), Claude가 step 11 도중(04:07, 해제 05:00), codex가 step 14 시작 직후(05:58)에 한도에 걸렸다.
+  세 번 모두 supervisor의 shim이 부분 변경을 stash로 치우고, step을 pending으로 되돌리는 커밋(9edb27f·ba6b3a2·2722958)을 남긴 뒤 다른 provider로 그 step을 처음부터 다시 했다.
+  04:07~05:08에는 두 provider가 모두 한도라 15분마다 확인하며 기다렸다(누적 대기 약 1시간). 반쯤 된 작업이 커밋에 남은 곳은 없다.
+  stash 셋(`p34-usage-limit … step0/step11/step14`)은 끊긴 step이 처음부터 다시 돌아 끝났으므로 필요 없다 — 복구하지 않고 기록으로 둔다.
+- 실행 중 메인 세션의 Stop 훅이 세 번 빌드·테스트 실패를 알렸다. 모두 같은 작업 트리에서 step 에이전트가 테스트를 먼저 쓰거나 개념을 먼저 넣고 도식을 아직 붙이지 않은 **작업 중 상태**였고,
+  메인 세션은 건드리지 않았다. 해당 step은 끝난 뒤 supervisor 검증을 통과했다.
+- supervisor의 균형·출처 문서 경고는 0건이다.
+
+## 설계와 달라진 것
+
+모두 step summary에 이유가 있고, 받아들였다.
+
+- **예/아니요 방향을 균형에 맞춰 뒤집음**(step 2 n050, step 4 n055, step 10 n069). step 문서의 예시 방향이 아니요였으나 과목 전체 예·아니요 차이를 1 이하로 두려고 맞는 주장으로 세웠다.
+- **다른 네트워크의 목적지를 「호스트 E」로**(step 9). 같은 주제의 호스트 A~D와 겹치지 않게 `198.51.100.1`·`00-00-5E-00-53-05`를 주었다.
+- **이웃 탐색 도식에 스위치를 두지 않음**(step 10). 스위치가 멀티캐스트를 어떻게 넘기는지는 출처에 없어 링크를 그룹 박스로만 그렸다.
+- **오답 보기를 바꿈**(step 7 n062, step 14 n078). step 문서가 든 오답(ARP·MAC 주소 찾기)은 그 주제에서 풀지 않은 말이라, 같은 범주의 다른 오해로 바꿨다.
+- **도식의 선명한 노드·곁말을 조금씩 더함**(step 2·3·4·6·7·8·11·12). 무엇이 무엇으로 바뀌는지 한 화면에 보이게 하려는 것으로, 요점 테스트는 그대로 지켰다.
+- **traceroute 끝 응답**(step 13). Linux 기본(UDP — 끝에서 포트 도달 불가)과 Windows `tracert`(에코 요청 — 끝에서 에코 응답)가 달라, 도식 범례는 `tracert` 방식이라 밝히고 캡션에서 둘을 가렸다.
+
+## 사용자가 볼 것
+
+설계는 사용자 승인 없이 진행했다. 아래는 사용자 몫의 판단이고, 모두 이 브랜치 안에서 되돌릴 수 있다.
+
+1. **설계 결정** — IPv6 개념을 기출 범위로 늘림(주소 표기·기본 헤더·확장 헤더·SLAAC, 전환 기술은 `ipv6` 끝 문단), IPv6의 이웃 탐색을 `arp` 주제 마지막 개념으로 둠,
+   예시 주소를 문서용(RFC 5737·3849·9542)으로만 씀(강의의 10.0.0.x·192.168.x·실제 google 주소는 쓰지 않음).
+2. **기출 처리 넷**(`exam-notes.md`)
+   - **E10** — [기출 2024-05-19 #1]은 조각을 DF 플래그로 구별한다고 본다. 표준은 식별자다. 한 회차의 정답 키 오류로 보고 「자격시험은」 줄을 쓰지 않았다.
+   - **E11** — 기출이 ICMP의 맞는 설명으로 두는 「신뢰성을 확보하려고 에코를 지원한다」는 RFC 792와 반대라 쓰지 않았다.
+   - **E12** — IGMP가 비대칭 프로토콜이라는 것은 RFC 1112·RFC 9776에 있어 본문에 쓰고, 표준에 없는 「TTL을 제공한다」는 「자격시험은」 줄로만 덧붙였다.
+   - **E14** — 「IGMPv1은 첫 보고를 다시 보내지 않는다」는 RFC 1112 부록 I(한두 번 되풀이하라고 권함)과 반대라 쓰지 않았다.
+3. **진행 안내 문장** — 「바로 다음 개념에서 다룬다」, 「이 주제의 뒤쪽에서 다룬다」 같은 문장이 새 개념에도 들어갔다. 배포된 phase 72의 두 주제에도 9곳 있다.
+   문체 기준(진행 안내 문장을 줄인다)에 비춰 한꺼번에 걷어낼지는 사용자가 정한다.
+
+## 남겨 둔 것
+
+- 강의 수정 이력 셋을 더했다 — L33(확장 헤더를 「IPv6 헤더」에 묶은 그림, 한정해 쓴다), L34(ICMP를 비신뢰성 「보완」 프로토콜로 소개, 한정해 쓴다), L35(traceroute 그림의 있을 수 없는 주소, 쓰지 않는다).
+- E9(IPv6의 옛 이름 Priority)·E13(폐기된 ICMP 타입 4·17)은 ADR-059의 「시험이 옛 방식을 물을 때」대로 처리했다 — 사용자 확인이 필요한 판단이 아니다.
+- `check-verbatim`은 공식 문서를 대조하지 못한다(ADR-059 「트레이드오프」). step 0·1은 RFC를 WebFetch의 요약이 아니라 rfc-editor.org 원문 텍스트로 받아 읽었다.
+- `estimateTextWidth`의 반각 0.55em 문제(phase 72 보고)는 guide.md가 곁말 폭을 1.15배로 잡게 해 피했다 — 아래 실측에서 걸침 0.
+
+## 다시 돌린 검증 (phase가 끝난 뒤)
+
+- supervisor의 step 14 검증(phase 완료 커밋 167ffa0과 같은 트리): `npm run lint`·`npm run build`·`npm test`(183파일·4373개 — 새 도식 테스트 파일 26개)·`check-structure` 통과.
+- 교차 검사 「✓ 교차 없음 — 세로 노드 789개·경로 606개, 가로 노드 789개·경로 606개」(phase 시작 629/505에서 +160/+101).
+- `check-verbatim --subject network` 「전사 이상 없음 — network: 원본 2개, 단위 659개」(phase 72 끝 388개).
+- 문항 79개, 예 14·아니요 14, 정답 위치 13/12/13/13 — 균형 규칙 안.
+- 주제 `network-basics,protocols-encapsulation,ethernet,hub-switch-vlan,ip-protocol,arp,icmp`, 개념 69.
+- step마다 앞 phase 데이터(AWS 전부, 네트워크 주제 넷, n001~n048, 기존 도식 JSON 넷, 기존 도식 파일)를 BASE와, 이 phase의 앞 step이 쓴 개념·문항·도식 키를 직전 step 스냅숏과 비교해 바뀐 것 0.
+  AWS 데이터·`src/pages`·`src/lib`·`src/types`·`src/hooks`·`scripts`·교차 검사기·`docs/source/network/CLAUDE.md`·`topic-map.md`는 바뀌지 않았다.
+
+## 화면 확인 (headless Chrome + CDP, 개발 서버 `127.0.0.1:5270`)
+
+설치된 Chrome을 headless로 띄우고 저장소의 `ws`로 CDP를 몰았다(스크립트는 저장소 밖 — phase 72의 측정기를 세 주제로 바꿔 썼다). 폭 320·390(배율 2, 모바일)과 1180(배율 1).
+
+- **넘침** — 세 폭에서 세 주제 모두 페이지 가로 넘침 0. 모든 시나리오 버튼을 누른 뒤에도 0. 도식 폭은 320·380, 1180에서는 가로형 638·621.
+- **도식 26개의 모든 시나리오**(폭마다 93개 상태 — `ip-protocol` 43, `arp` 21, `icmp` 29)를 하나씩 눌러 보이는 SVG 글자를 화면 픽셀로 쟀다.
+  SVG 밖으로 나간 글자 0, 노드 라벨이 자기 상자보다 넓은 곳 0, 글자끼리 겹친 곳 0, 곁말이 노드 상자에 겹친 곳 0.
+- **곁말·라벨이 그룹 박스 테두리에 걸치는 곳** — 0(세 폭·모든 상태). 검사가 실제로 요소를 보는지는 새 주제 셋의 그룹 박스 17개·노드 160개를 세어 확인했다.
+- 콘솔에는 기존의 React Router future flag 경고 둘만 있다(새 것 없음).
+- 캡처해서 눈으로 본 것: `Ipv4HeaderDiagram`(320, 기본 정보), `ArpHopsDiagram`(320, 첫 구간), `PingResultDiagram`(1180, 응답 줄), `Ipv6NotationDiagram`(320, 앞쪽 0 생략) — 칸·곁말·캡션이 제자리에 있고 예시 값이 guide.md와 같다.
