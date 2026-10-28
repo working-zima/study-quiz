@@ -73,7 +73,7 @@ IEEE 802.3 표준 본문은 허용한 곳에서 무료로 열리지 않는다. �
 - 값이 1536(0x0600) 이상이면 MAC 클라이언트 프로토콜이 무엇인지 나타낸다(타입으로 읽기). 두 읽기는 서로 배타적이다 — §3.2.6 b)
 - 데이터가 최소 길이보다 짧으면 데이터 필드 끝과 FCS 사이에 패드를 붙인다 — §3.2.6
 
-쓰인 곳: 강의 수정 이력 L1, (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
+쓰인 곳: 강의 수정 이력 L1, `ethernet.frame`(길이/타입의 역할·패드 위치), (phase 72에서 쓰일 곳) `ethernet.ethertype-length`
 
 ## IEEE 802.3 — Ethernet, 3.2.9 Frame Check Sequence (FCS) field, 3.4 Invalid MAC frame (phase 72: 3.1.1, 3.2.1~3.2.8, 3.3)
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
@@ -100,7 +100,7 @@ https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
 - (phase 72) 데이터 필드가 정해진 최소 길이보다 짧으면 옥텟 단위의 패드를 데이터 뒤에 붙여 늘린 다음 FCS를 계산해 붙인다 — §3.2.7, §3.2.8
 - (phase 72) FCS를 뺀 프레임의 각 옥텟은 낮은 비트부터 보낸다 — §3.3
 
-쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.mac-address`, `ethernet.fcs`
+쓰인 곳: 면접 수정 이력 I1, `protocols-encapsulation.osi-model`, (phase 72) 강의 수정 이력 L28·L29, `ethernet.nic`(브로드캐스트 주소는 그 LAN의 모든 장치를 가리킨다), `ethernet.frame`(필드 순서·크기·프리앰블·SFD·패드·FCS의 역할), `ethernet.mac-address`(48비트·두 구분 비트·브로드캐스트), (phase 72에서 쓰일 곳) `ethernet.fcs`
 
 ## IEEE RA — Use of the IEEE Assigned EtherType
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/ethertype.pdf
@@ -135,7 +135,7 @@ https://www.rfc-editor.org/rfc/rfc9542
 - (phase 72) **문서에 쓰라고 정해 둔 48비트 MAC 주소**: 유니캐스트 00-00-5E-00-53-00~00-00-5E-00-53-FF, 멀티캐스트 01-00-5E-90-10-00~01-00-5E-90-10-FF — §2.1.4
 - (phase 72) 이 RFC에는 모든 비트가 1인 브로드캐스트 주소를 적은 문장이 없다 — 전문 검색. 근거는 IEEE 802.3 §3.2.3.1(위 항목)과 RFC 894(아래 항목)다
 
-쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, (phase 72에서 쓰일 곳) `ethernet.mac-address`와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」)
+쓰인 곳: 강의 수정 이력 L1, L2, (phase 72) L29, `ethernet.mac-address`(전역·지역 관리·16진 표기·문서용 주소)와 두 주제의 예시 주소(`phases/72-network-ethernet-switch/guide.md` 「예시 값」)
 
 ## IEEE RA — Guidelines for Use of EUI, OUI, and CID
 https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
@@ -150,10 +150,12 @@ https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf
 - (phase 72) EUI-48은 흔히 하드웨어 인터페이스의 주소로 쓰이고, 예전에는 「MAC-48」이라고도 불렀다 — PDF 6쪽
 - (phase 72) IEEE RA가 준 OUI·OUI-36은 M 비트가 0이라, 그것으로 만든 주소는 I/G가 0인 개별 주소다. OUI를 받은 쪽은 M 비트를 1로 바꾼 꼴로 그룹 주소(I/G=1)를 만들 수 있고, 그 주소는 장치 하나를 가리키지 않는다 — PDF 6쪽
 
-쓰인 곳: 강의 수정 이력 L2, (phase 72) L29, (phase 72에서 쓰일 곳) `ethernet.mac-address`
+쓰인 곳: 강의 수정 이력 L2, (phase 72) L29, `ethernet.mac-address`(전역 유일성·OUI·구분 비트)
 
 ## RFC 791 — Internet Protocol
 https://www.rfc-editor.org/rfc/rfc791
+
+- (phase 72 step 4, 2026-10-28 확인) 옥텟은 비트 8개인 바이트다 — Glossary 「octet」(본문 43쪽). MAC 주소의 두 자리 묶음과 프레임 필드 크기의 단위를 풀 때만 쓴다.
 
 - IP가 하는 기본 기능은 주소 지정과 단편화 둘이다 — §1.4
 - 주소는 4옥텟(32비트) 고정 길이다. 그러니 이론상 개수는 2^32 = 4,294,967,296이다 — §2.3 「Addressing」
@@ -168,7 +170,7 @@ https://www.rfc-editor.org/rfc/rfc791
 - (phase 71) 데이터그램을 나눠야 하는 것은, 큰 패킷을 실을 수 있는 네트워크에서 출발한 데이터그램이 목적지로 가는 길에 더 작은 패킷만 실을 수 있는 네트워크를 지나야 할 때다 — §2.3 「Fragmentation」.
   IP 모듈은 「작은 패킷」 네트워크를 지나야 할 때 데이터그램을 나누고 다시 합친다 — §1.4 「Operation」
 
-쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`
+쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위)
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -699,7 +701,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - FCS 검사: 받은 비트(FCS 필드는 빼고)로 만든 CRC가 받은 값과 다르면 오류로 보고 그 프레임을 잘못된 것으로 판정한다 — §4.2.4.1.2
 - 프리앰블은 물리 계층 회로가 안정되도록 데이터보다 먼저 보내는 비트열이고, 10101010을 일곱 번 보낸다. 왼쪽 비트부터 보내며 0으로 끝나고, 바로 뒤에 SFD가 온다 — §4.2.5
 
-쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), (phase 72에서 쓰일 곳) `ethernet.frame`(프리앰블·SFD), `ethernet.fcs`
+쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.nic`(자기 주소·브로드캐스트 주소·켜 둔 그룹 주소의 프레임만 받아 위 계층으로 넘긴다, 무차별 모드는 선택 기능), `ethernet.frame`(프리앰블·SFD), (phase 72에서 쓰일 곳) `ethernet.fcs`
 
 ## (phase 72) IEEE 802.3 Working Group — Editorial guidelines (Frames and packets; Mb/s, Gb/s)
 https://www.ieee802.org/3/WG_tools/editorial/requirements/words.html
@@ -711,7 +713,7 @@ IEEE 802.3 작업 그룹이 표준 본문을 쓸 때 따르는 낱말 지침이�
 - (같은 쓰임) 2026년에 진행 중인 P802.3dt 프로젝트의 범위 문안도 메타데이터를 「패킷의 프리앰블 필드」에 싣는다고 쓴다 —
   https://www.ieee802.org/3/dt/public/26_03/law_3dt_01a_2603.pdf PDF 5쪽 「IEEE P802.3dt draft PAR Scope」(802.3dt 태스크 포스 발표 자료, 2026-03-10)
 
-쓰인 곳: (phase 72) 강의 수정 이력 L28, (phase 72에서 쓰일 곳) `ethernet.frame`, `ethernet.standard-names`(속도 단위 표기)
+쓰인 곳: (phase 72) 강의 수정 이력 L28, `ethernet.frame`(목적지 주소~FCS가 프레임, 프리앰블·SFD는 앞에 붙음), `ethernet.standard-names`(속도 단위 표기)
 
 ## (phase 72) IEEE Std 802.3ah-2004 — Introduction, 1.4 Definitions
 https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3ah-2004.pdf
@@ -833,7 +835,7 @@ https://man7.org/linux/man-pages/man8/arp.8.html
 - 48비트 이더넷 주소를 글자로 적는 표준 꼴은 16진수를 콜론으로 이은 꼴이다. ether_aton()은 그 꼴의 글자를 이진값으로 바꾸고, ether_ntoa()는 거꾸로 바꾸면서 앞자리 0을 뺀다 — ether_aton(3) DESCRIPTION
 - arp 명령에 이더넷 주소를 줄 때는 6바이트를 16진수로 적고 콜론으로 가른다 — arp(8) 「arp -s」
 
-쓰인 곳: (phase 72에서 쓰일 곳) `ethernet.mac-address`(콜론 꼴 표기)
+쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기)
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -1062,3 +1064,13 @@ Catalyst 2960-L IOS 15.2(7)E(2020-09-17 고침). **제품과 판마다 달라질
 - 버전은 1·2·3이 있고 기본은 버전 1이다 — 9200 「VTP Version 2」·「VTP Version 3」
 
 쓰인 곳: `exam-notes.md` E8, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(끝 문단 VTP)
+
+## (phase 72 step 4) MDN — Grammar and types, Integer literals
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#integer_literals
+
+2026-10-28 확인. MAC 주소의 16진 표기를 이해하는 바탕만 가져온다. JavaScript 문법은 학습 범위에 넣지 않는다.
+
+- 16진 정수 표기는 0~9와 A~F(또는 a~f)를 쓴다. A는 10, F는 15이고, 대소문자가 값에 영향을 주지 않는다 — 「Integer literals」
+- 2진 표기는 0과 1만 쓴다 — 같은 절. 두 자리 16진수 = 8비트라는 묶음은 RFC 9542 §1.1의 옥텟 표기와 RFC 791 Glossary의 옥텟 정의로 뒷받침한다.
+
+쓰인 곳: `ethernet.mac-address`(16진수의 뜻·대소문자)
