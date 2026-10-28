@@ -29,6 +29,7 @@ Cisco 제품 문서는 VTP에만 쓴다(`docs/source/network/CLAUDE.md` 「허�
 「(phase 72 step 2)」가 붙은 항목은 phase 72 step 2에서 `ethernet.ethernet`이 이더넷 표준을 누가 만드는지 쓰려고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 3)」이 붙은 줄은 phase 72 step 3에서 문항 n030의 해설이 MAC의 풀네임을 쓰려고 더했다(확인한 날 2026-10-28).
 「(phase 72 step 5)」가 붙은 줄은 phase 72 step 5에서 `ethernet.ethertype-length`·`ethernet.fcs`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
+「(phase 72 step 7)」이 붙은 줄과 항목은 phase 72 step 7에서 `hub-switch-vlan.collision-domain`·`hub-switch-vlan.csma-cd`를 쓰며 원문을 다시 열어 확인하고 더했다(확인한 날 2026-10-28).
 
 ---
 
@@ -737,12 +738,13 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
 
 - IEEE 802.3의 프로젝트(개정)는 802.3 뒤에 붙인 꼬리 글자로 부른다(예: 802.3ae) — Introduction(PDF 5쪽)
 - 802.3이 정하는 MAC 프로토콜은 CSMA/CD이고, 802.3-1985는 10 Mb/s로 동작했다. 그 뒤로 새 매체·새 속도·새 기능이 개정으로 더해졌다 — Introduction(PDF 5쪽)
+- (phase 72 step 7) CSMA/CD의 풀네임은 Carrier Sense Multiple Access with Collision Detection이다 — 같은 Introduction 문단(「The media access control (MAC) protocol specified in IEEE Std 802.3 is …」)
 - 802.3u는 100 Mb/s 동작을 더했고 **Fast Ethernet**이라고도 부른다. 802.3z는 1000 Mb/s 동작을 더했고 **Gigabit Ethernet**이라고도 부른다. 802.3ae는 **10 Gigabit Ethernet**이라고도 부른다.
   이런 큰 개정은 시장에서 프로젝트 번호로도 가리킨다. 802.3x는 전이중 동작과 흐름 제어 프로토콜을 정했다 — Introduction(PDF 5쪽)
 - 규격 이름 하나는 「IEEE 802.3의 물리 계층 규격(Physical Layer specification)」 하나로 정의된다. 예: 1000BASE-BX10은 싱글 모드 광섬유 **한 가닥**으로, 1000BASE-LX10은 싱글 모드나 멀티 모드 광섬유 두 가닥으로
   1000 Mb/s 점대점 링크를 만드는 물리 계층 규격이다. 100BASE-FX는 멀티 모드 광섬유 두 가닥을 쓰는 100 Mb/s 규격이다 — §1.4(PDF 20쪽)
 
-쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`
+쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, (phase 72 step 7) `hub-switch-vlan.csma-cd`(풀네임, IEEE 802.3이 매체 접근 방식으로 정한 규칙), 문항 n038·n039 해설(풀네임)
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
 https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
@@ -878,6 +880,8 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - 충돌이 나면 보내던 스테이션은 잼(jam)이라는 비트열을 보내 충돌이 다른 송신 스테이션에도 알려질 만큼 이어지게 한 뒤 전송을 멈추고, 무작위로 고른 시간 뒤 다시 보낸다.
   충돌이 거듭되면 그 무작위 시간을 고르는 범위를 시도마다 넓혀(백오프) 붐비는 매체에 맞춘다. 끝내 성공하거나, 매체가 고장 났거나 너무 붐빈다고 보고 포기한다 — §4.1.2.2
 - 받는 쪽은 충돌로 생긴 조각 프레임을 올바른 프레임과 가려낸다 — §4.1.2.2
+- (phase 72 step 7) 같은 절을 다시 열어 확인한 것: 잼은 충돌이 이어지는 시간을 다른 송신 스테이션이 알아챌 만큼 길게 만든다. 잼을 보낸 뒤 전송을 끝내고 무작위로 고른 시간 뒤의 재전송을 잡는다.
+  충돌이 거듭된다는 것은 매체가 붐빈다는 뜻이어서, 자기 재전송을 일부러 늦춰(백오프) 매체에 주는 부담을 줄인다 — 그 방법이 시도마다 무작위 시간을 고르는 범위를 넓히는 것이다 — §4.1.2.2
 - 반이중의 미루기 규칙: 보낼 것이 없을 때도 MAC은 물리 계층이 주는 carrierSense 신호로 매체에 다른 전송이 있는지 **지켜본다**. 매체가 쓰이고 있으면 자기 전송을 미루고,
   지나가는 프레임이 끝난 뒤에도 프레임 사이 간격(interFrameSpacing)만큼 더 기다렸다가 보낸다. 전이중에서는 carrierSense를 보고 미루지 않는다.
   매체를 살피려고 스테이션이 따로 신호를 보내는 절차는 이 규칙에 없다 — §4.2.3.2.1 a)·b)
@@ -890,7 +894,7 @@ https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
 - 한 네트워크의 스테이션은 모두 같은 방식(반이중이나 전이중)으로 설정해야 한다. **리피터나 공유 구간(mixing segment)에 이은 DTE는 모두 반이중으로 설정해야 한다.**
   두 DTE를 링크 구간으로 바로 이으면 두 장치가 같은 방식을 써야 한다 — §4.4.1
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72 step 6) `hub-switch-vlan.hub`(허브에 이은 장치는 반이중, 같은 때 보내면 충돌 — 한 줄), `hub-switch-vlan.duplex`(반이중·전이중의 뜻과 전이중의 세 조건, 전이중에서는 충돌이 없음, 반이중에서 차례를 정하는 절차 없이 매체를 듣고 미룸, 스위치 포트마다 장치 하나를 잇는 흔한 전이중 구성, 10 Gb/s에는 반이중이 없음), 문항 n035·n036 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.collision-domain`, `hub-switch-vlan.csma-cd`, `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30·L31, `exam-notes.md` E5·E6, (phase 72 step 6) `hub-switch-vlan.hub`(허브에 이은 장치는 반이중, 같은 때 보내면 충돌 — 한 줄), `hub-switch-vlan.duplex`(반이중·전이중의 뜻과 전이중의 세 조건, 전이중에서는 충돌이 없음, 반이중에서 차례를 정하는 절차 없이 매체를 듣고 미룸, 스위치 포트마다 장치 하나를 잇는 흔한 전이중 구성, 10 Gb/s에는 반이중이 없음), 문항 n035·n036 해설, (phase 72 step 7) `hub-switch-vlan.collision-domain`(충돌은 반이중으로 공유 매체를 둘 이상이 쓸 때 전송이 겹치는 것, 받는 쪽은 조각을 가려내고 보낸 쪽이 다시 보냄, 한 충돌 도메인 안에서는 매체가 쓰이면 미룸, 포트에 장치 하나를 잇고 전이중이면 충돌 없음, 허브에 이은 스위치 포트는 반이중), `hub-switch-vlan.csma-cd`(캐리어 감지와 프레임 사이 간격, 다중 접근 — 한 장치의 신호가 매체의 모두에게 닿음, 충돌 감지와 잼·무작위 기다림, 거듭되는 충돌과 범위 넓히기, 16번 시도 뒤 포기, 전이중에서는 쓰지 않음), 문항 n037·n038·n039 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 3.5 Elements of the Tagged MAC Frame
 https://www.ieee802.org/3/as/public/0503/3d0_1_CMP.pdf
@@ -927,7 +931,7 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   https://www.ieee802.org/3/da/public/040622/zimmerman_3da_01_03312022.pdf 22쪽(802.3cg-2019가 9장 리피터를 10BASE-T1L·10BASE-T1S에 적용하지 않기로 했다는 것)
 - (참고) 같은 P802.3bh D3.0 기록 #i-89(ACCEPT): IEEE Std 802.5는 토큰 링 표준이고 철회됐다. 마지막 개정은 802.5v-2001 「Gigabit Token Ring Operation」이다 — 의견 #i-89
 
-쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72에서 쓰일 곳) `hub-switch-vlan.csma-cd`(토큰 방식의 이름)
+쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72 step 7) `hub-switch-vlan.csma-cd`(IEEE 802.5가 토큰 링 표준이라는 이름만), 문항 n038 해설
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
 https://www.ieee802.org/1/files/public/docs2003/ITU%20Q12%20liaison%20from%20dot3.pdf
@@ -938,7 +942,7 @@ IEEE 802.3 작업 그룹이 2003년 7월 회의에서 승인해 ITU-T 15연구�
 - **리피터는 802.3이 정한 장치로, 반이중으로만 동작하고 CSMA/CD 장치 여럿이 한 매체에 접근하게(다중 포트 접근) 한다** — 「Response」 둘째 문단
 - 2계층 네트워크 장치는 IEEE 802.1D 브리지로 모델링하라고 권한다 — 「Response」 권고 2)
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72 step 6) `hub-switch-vlan.hub`(리피터는 반이중으로만 동작하고 여러 장치가 한 매체를 함께 쓰게 한다), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, `exam-notes.md` E7, (phase 72 step 6) `hub-switch-vlan.hub`(리피터는 반이중으로만 동작하고 여러 장치가 한 매체를 함께 쓰게 한다), (phase 72 step 7) `hub-switch-vlan.collision-domain`(허브에 이은 장치 전체가 한 매체를 함께 쓴다, 브리지도 DTE라 허브에 이은 스위치 포트는 반이중), (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`
 
 ## (phase 72 step 1) RFC 2108 — Definitions of Managed Objects for IEEE 802.3 Repeater Devices using SMIv2
 https://www.rfc-editor.org/rfc/rfc2108
@@ -959,7 +963,7 @@ https://standards.ieee.org/ieee/802.1Q/10323/
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(표준의 이름은 브리지), `hub-switch-vlan.collision-domain`(브리지는 포트마다 다른 LAN을 잇는다), `hub-switch-vlan.vlan`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.switch`(표준의 이름은 브리지), `hub-switch-vlan.vlan`
 
 ## (phase 72 step 1) IEEE 802.1 — IETF 86 Tutorial 「IEEE 802.1Q Media Access Control Bridges and Virtual Bridged Local Area Networks」(2013-03-10)
 https://www.ieee802.org/802_tutorials/2013-03/8021-IETF-tutorial-final.pdf
@@ -1089,3 +1093,16 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#
 - 2진 표기는 0과 1만 쓴다 — 같은 절. 두 자리 16진수 = 8비트라는 묶음은 RFC 9542 §1.1의 옥텟 표기와 RFC 791 Glossary의 옥텟 정의로 뒷받침한다.
 
 쓰인 곳: `ethernet.mac-address`(16진수의 뜻·대소문자)
+
+## (phase 72 step 7) RFC 1748 — IEEE 802.5 MIB using SMIv2, RFC 1042 — A Standard for the Transmission of IP Datagrams over IEEE 802 Networks
+https://www.rfc-editor.org/rfc/rfc1748
+https://www.rfc-editor.org/rfc/rfc1042
+
+2026-10-28 확인. RFC 1748은 Draft Standard(Standards Track)인 토큰 링 관리 MIB이고, RFC 1042는 Internet Standard(STD 43)다. CSMA/CD와 견줄 「토큰」이 무엇인지 한 구절로 쓰는 데만 가져온다.
+토큰 링의 동작(토큰이 도는 방식, 모니터, 프레임 형식)은 가져오지 않는다 — 토큰 링은 뒤 주제(`network-topology`, phase 83)의 범위다.
+
+- 토큰 링에서 스테이션은 토큰을 잡은(capturing a token) 뒤 정해 둔 최대 시간 동안 프레임을 보내도록 허락받는다(permitted to transmit) — RFC 1748 `dot5TimerHolding`의 DESCRIPTION
+- IEEE 802.3은 「CSMA/CD 접근 방식(Access Method)」, IEEE 802.5는 「토큰 링 접근 방식(Token Ring Access Method)」을 정한 서로 다른 표준이다 — RFC 1042 References [3]·[5]
+- IEEE 802.5 망의 패킷 최대 크기는 한 노드가 토큰을 쥐고 있을 수 있는 최대 시간에 따라 정해진다 — RFC 1042 「For IEEE 802.5」(MTU를 다룬 대목)
+
+쓰인 곳: `hub-switch-vlan.csma-cd`(토큰을 잡은 장치가 정해 둔 시간 동안 보내도록 허락받는 방식은 CSMA/CD와 다른 매체 접근 방식), 문항 n038 해설

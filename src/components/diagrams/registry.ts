@@ -11,10 +11,12 @@ import { BandwidthDiagram } from './BandwidthDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
+import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
@@ -204,6 +206,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ethernet.fcs': FcsCheckDiagram,
   'hub-switch-vlan.hub': HubRepeatDiagram,
   'hub-switch-vlan.duplex': DuplexDiagram,
+  'hub-switch-vlan.collision-domain': CollisionDomainDiagram,
+  'hub-switch-vlan.csma-cd': CsmaCdDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
