@@ -1,7 +1,10 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
+import arpVisuals from './visuals/arp.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
+import icmpVisuals from './visuals/icmp.json'
+import ipProtocolVisuals from './visuals/ip-protocol.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import type { Question, Topic } from '../../types/content'
@@ -17,6 +20,9 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'protocols-encapsulation': protocolsEncapsulationVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
+  'ip-protocol': ipProtocolVisuals,
+  'arp': arpVisuals,
+  'icmp': icmpVisuals,
 }
 
 export const networkSubject: Subject = {
