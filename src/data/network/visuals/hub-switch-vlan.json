@@ -390,6 +390,108 @@
       "sources": [
         "hub-switch-vlan.stp"
       ]
+    },
+    "broadcast-domain": {
+      "label": "브로드캐스트 프레임이 닿는 범위를 보이는 도식",
+      "svgLabel": "위에는 호스트 A~D를 스위치 한 대에 하나씩 이은 모습, 아래에는 호스트 A·B를 이은 스위치 1과 호스트 C·D를 이은 스위치 2를 라우터로 이은 모습이 있고, 호스트 A가 보낸 브로드캐스트 프레임이 어디까지 닿는지 보이는 모습",
+      "question": "브로드캐스트는 어디까지 퍼질까?",
+      "idleCaption": "위에는 호스트 A~D를 스위치 한 대의 포트에 하나씩 이었고, 아래에는 호스트 A·B를 이은 스위치 1과 호스트 C·D를 이은 스위치 2를 라우터로 이었다. 버튼을 고르면 호스트 A가 보낸 브로드캐스트 프레임이 어디까지 닿는지, 그리고 같은 스위치에서 충돌 도메인은 어떻게 나뉘는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 브로드캐스트 프레임이 가는 길이다. 얇은 선 박스 하나가 도메인 하나다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D",
+        "switch-1": "스위치 1",
+        "router": "라우터",
+        "switch-2": "스위치 2",
+        "r-host-a": "호스트 A",
+        "r-host-b": "호스트 B",
+        "r-host-c": "호스트 C",
+        "r-host-d": "호스트 D"
+      },
+      "notes": {
+        "one-domain": "브로드캐스트 도메인 1개",
+        "four-collision": "충돌 도메인 4개",
+        "stop": "넘기지 않음",
+        "two-domains": "브로드캐스트 도메인 2개"
+      },
+      "scenarios": [
+        {
+          "id": "switch",
+          "label": "스위치 안에서",
+          "caption": "스위치는 호스트 A가 보낸 브로드캐스트 프레임을 들어온 포트를 뺀 모든 포트로 플러딩한다. 그래서 B·C·D가 모두 그 프레임을 받고, 한 스위치에 이은 호스트 전체가 브로드캐스트 도메인 하나를 이룬다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain"
+          ]
+        },
+        {
+          "id": "collision",
+          "label": "충돌 도메인과 견주면",
+          "caption": "같은 스위치에서 충돌 도메인은 포트마다 하나씩 넷으로 나뉜다. 한 포트의 신호가 다른 포트로 그대로 흘러가지 않기 때문이다. 하지만 브로드캐스트 프레임은 스위치가 모든 포트로 내보내므로, 브로드캐스트 도메인은 여전히 하나다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain",
+            "hub-switch-vlan.collision-domain"
+          ]
+        },
+        {
+          "id": "router",
+          "label": "라우터에서",
+          "caption": "스위치 1은 A의 브로드캐스트 프레임을 B와 라우터 쪽으로 플러딩한다. 라우터는 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로, 그 프레임은 스위치 2 쪽의 C와 D에게 가지 않는다. 라우터 양쪽으로 브로드캐스트 도메인이 둘 생긴다.",
+          "sources": [
+            "hub-switch-vlan.broadcast-domain"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.broadcast-domain"
+      ]
+    },
+    "vlan-split": {
+      "label": "VLAN으로 브로드캐스트 도메인을 나누는 도식",
+      "svgLabel": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 스위치 한 대에 이어져 있고, 호스트 A가 보낸 브로드캐스트 프레임이 VLAN으로 나누기 전과 뒤에 어디까지 가는지 보이는 모습",
+      "question": "스위치 하나를 부서별 LAN 둘로 나눌 수 있을까?",
+      "idleCaption": "개발부의 호스트 A·B와 총무부의 호스트 C·D가 스위치 한 대의 포트 1~4에 이어져 있다. 버튼을 고르면 개발부의 A가 보낸 브로드캐스트 프레임이 VLAN으로 나누기 전과 나눈 뒤에 어디까지 가는지 볼 수 있다.",
+      "legend": "가는 선은 케이블, 화살표는 브로드캐스트 프레임이 가는 길이다. 얇은 선 박스 하나가 VLAN 하나다.",
+      "nodes": {
+        "switch": "스위치",
+        "host-a": "호스트 A",
+        "host-b": "호스트 B",
+        "host-c": "호스트 C",
+        "host-d": "호스트 D"
+      },
+      "groups": {
+        "vlan-1": "VLAN 1",
+        "vlan-2": "VLAN 2"
+      },
+      "notes": {
+        "dev": "개발부",
+        "admin": "총무부",
+        "one-domain": "브로드캐스트 도메인 1개",
+        "two-domains": "브로드캐스트 도메인 2개"
+      },
+      "scenarios": [
+        {
+          "id": "no-vlan",
+          "label": "나누기 전",
+          "caption": "VLAN으로 나누지 않으면 네 호스트가 브로드캐스트 도메인 하나에 있다. 스위치가 A의 브로드캐스트 프레임을 포트 2·3·4로 플러딩하므로, 개발부의 공지가 총무부의 C와 D에게까지 간다.",
+          "sources": [
+            "hub-switch-vlan.vlan"
+          ]
+        },
+        {
+          "id": "vlan",
+          "label": "VLAN으로 나누면",
+          "caption": "A·B를 VLAN 1에, C·D를 VLAN 2에 넣으면 스위치는 A의 브로드캐스트 프레임을 VLAN 1에 든 포트 2로만 내보낸다. 공지는 B만 받고, 브로드캐스트 도메인이 VLAN마다 하나씩 둘로 나뉜다.",
+          "sources": [
+            "hub-switch-vlan.vlan"
+          ]
+        }
+      ],
+      "sources": [
+        "hub-switch-vlan.vlan"
+      ]
     }
   },
   "tables": {},

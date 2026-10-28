@@ -967,7 +967,7 @@ https://standards.ieee.org/ieee/802.1Q/10323/
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 포트마다 따로따로의 LAN을 잇는다 — 충돌 도메인과의 차이)
 
 ## (phase 72 step 1) IEEE 802.1 — IETF 86 Tutorial 「IEEE 802.1Q Media Access Control Bridges and Virtual Bridged Local Area Networks」(2013-03-10)
 https://www.ieee802.org/802_tutorials/2013-03/8021-IETF-tutorial-final.pdf
@@ -985,7 +985,7 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
   어디로 보낼지 알면 필요 없는 포트를 걸러 낸다(filter unnecessary ports, 예: 목적지 쪽으로만 전달). 어디로 보낼지 모르면 받은 포트를 뺀 모든 포트로 전달한다 — 12쪽 「Basic Principles」
 - (phase 72 step 9) 스패닝 트리는 실제로 프레임이 다니는 활성 토폴로지(Active Topology)의 한 형태다(같은 자리에 최단 경로·TE 경로가 나란히 적혀 있다). RSTP는 모든 트래픽이 스패닝 트리 하나를 함께 쓴다 — 26쪽, 28쪽
 
-쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`
+쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설
 
 ## (phase 72 step 1) IEEE 802.1 — 802.1w Rapid Reconfiguration of Spanning Tree 프로젝트 페이지
 https://www.ieee802.org/1/pages/802.1w.html
@@ -1049,7 +1049,7 @@ Informational(Independent Submission)이다. VXLAN을 만든 까닭을 설명하
 - (phase 72 step 9) §3.1을 다시 열어 확인했다(2026-10-28). STP는 「IEEE 802.1D 스패닝 트리 프로토콜」이고, 고리는 **중복 경로**(duplicate paths) 때문에 생긴다.
   여러 경로를 두는 데서 오는 회복력(resiliency)은 STP 방식에서 얻지 못한다 — 막아 둔 링크는 평소에 쓰이지 않는다 — §3.1
 
-쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(끊길 때를 대비한 다른 길이 고리를 만든다, STP는 IEEE 802.1D가 정했다, 일부 링크를 막아 프레임이 복제되고 고리를 도는 것을 막는다, 막아 둔 링크는 평소에 쓰지 못한다), 문항 n043 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`, `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
+쓰인 곳: (phase 72 step 9) `hub-switch-vlan.stp`(끊길 때를 대비한 다른 길이 고리를 만든다, STP는 IEEE 802.1D가 정했다, 일부 링크를 막아 프레임이 복제되고 고리를 도는 것을 막는다, 막아 둔 링크는 평소에 쓰지 못한다), 문항 n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(VLAN이 브로드캐스트 도메인을 나눈다 — 다음 개념으로 넘기는 한 줄), `hub-switch-vlan.vlan`(VLAN은 브로드캐스트를 가두고 2계층 네트워크를 여러 브로드캐스트 도메인으로 나눈다), 문항 n045 해설, (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(VLAN ID 12비트)
 
 ## (phase 72 step 1) RFC 5517 — Cisco Systems' Private VLANs: Scalable Security in a Multi-Client Environment
 https://www.rfc-editor.org/rfc/rfc5517
@@ -1059,7 +1059,7 @@ Informational(Independent Submission)이다. 시스코 사설 VLAN을 설명하�
 - **VLAN 하나는 그 안의 호스트들이 2계층에서 서로 바로 통신할 수 있는 브로드캐스트 도메인이다** — §1
 - (보통의 구성에서) VLAN마다 서브넷을 따로 둔다 — §1.2
 
-쓰인 곳: `exam-notes.md` E4, (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`, `hub-switch-vlan.vlan`
+쓰인 곳: `exam-notes.md` E4, (phase 72 step 10) `hub-switch-vlan.vlan`(VLAN 하나는 그 안의 장치들이 데이터 링크 계층에서 서로 바로 통신하는 브로드캐스트 도메인이다 — §1), 문항 n046 해설
 
 ## (phase 72 step 1) RFC 1812 — Requirements for IP Version 4 Routers
 https://www.rfc-editor.org/rfc/rfc1812
@@ -1070,7 +1070,7 @@ Proposed Standard(Standards Track)이다.
 - 라우터는 **링크 계층 브로드캐스트로 받은 패킷을 다른 네트워크로 넘기지 않는다**(목적지가 IP 멀티캐스트 주소인 경우만 예외다). 링크 계층 멀티캐스트로 받은 패킷도 목적지가 IP 멀티캐스트가 아니면 넘기지 않는다 — §5.3.4
 - 링크 계층은 받은 패킷의 목적지 물리 주소가 유니캐스트·브로드캐스트·멀티캐스트 가운데 무엇인지 IP 계층에 알려야 한다 — §3.2
 
-쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72에서 쓰일 곳) `hub-switch-vlan.broadcast-domain`(라우터가 경계가 된다)
+쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1084,7 +1084,7 @@ NIST 특별 간행물이다. 위 csrc.nist.gov 페이지가 링크한 본문 PDF
   VLAN마다 다른 QoS 규칙도 줄 수 있다 — §2.4
 - VLAN ID가 12비트라 VLAN은 4000개 남짓까지만 정할 수 있다 — §2.4.1·§2.4.2
 
-쓰인 곳: (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan`(VLAN마다 다른 보안 정책), `hub-switch-vlan.vlan-tagging`(트렁크라는 낱말)
+쓰인 곳: (phase 72 step 10) `hub-switch-vlan.vlan`(물리적 위치와 상관없이 설정으로 묶는다, 브로드캐스트를 가둔다, VLAN끼리 데이터가 격리되어 VLAN마다 다른 보안 정책을 줄 수 있고 하는 일이 다른 서버들을 VLAN으로 나눠 그 사이를 규칙으로 통제한다 — §2.4), (phase 72에서 쓰일 곳) `hub-switch-vlan.vlan-tagging`(트렁크라는 낱말)
 
 ## (phase 72 step 1) Cisco — Catalyst 9200 「VLAN Configuration Guide, Cisco IOS XE 17.14.x」와 Catalyst 2960-L 「VLAN Configuration Guide, Cisco IOS Release 15.2(7)E」의 Configuring VTP
 https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/17-14/configuration_guide/vlan/b_1714_vlan_9200_cg/configuring_vtp.html

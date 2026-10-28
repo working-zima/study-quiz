@@ -8,6 +8,7 @@ import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
@@ -94,6 +95,7 @@ import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -216,6 +218,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.mac-address-table': MacTableDiagram,
   'hub-switch-vlan.flooding-forwarding-filtering': SwitchDecisionDiagram,
   'hub-switch-vlan.stp': SpanningTreeDiagram,
+  'hub-switch-vlan.broadcast-domain': BroadcastDomainDiagram,
+  'hub-switch-vlan.vlan': VlanSplitDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
