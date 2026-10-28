@@ -15,6 +15,7 @@ import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
@@ -39,6 +40,7 @@ import { InternetworkDiagram } from './InternetworkDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
+import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
@@ -52,6 +54,7 @@ import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
+import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -177,8 +180,10 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.protocol': ProtocolMatchDiagram,
   'protocols-encapsulation.reference-model': LayerJourneyDiagram,
   'protocols-encapsulation.osi-model': OsiStackDiagram,
-  'protocols-encapsulation.tcp-ip-model': ReferenceModelTable,
-  'protocols-encapsulation.decapsulation': EncapsulationDiagram,
+  'protocols-encapsulation.tcp-ip-model': [LayerMappingDiagram, ReferenceModelTable],
+  'protocols-encapsulation.encapsulation': EncapsulationDiagram,
+  'protocols-encapsulation.decapsulation': DecapsulationDiagram,
+  'protocols-encapsulation.pdu-names': PduNamesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -219,6 +219,60 @@
       "scenarios": [],
       "sources": ["protocols-encapsulation.osi-model"]
     },
+    "layer-mapping": {
+      "label": "OSI 모델의 일곱 계층과 TCP/IP 모델의 네 계층을 짝지은 도식",
+      "svgLabel": "왼쪽에 OSI 모델의 일곱 계층, 오른쪽에 TCP/IP 모델의 네 계층을 위에서부터 쌓고 하는 일이 비슷한 계층끼리 선으로 이은 모습",
+      "question": "OSI의 일곱 계층은 TCP/IP의 네 계층과 어떻게 짝지어질까?",
+      "idleCaption": "인터넷에서 쓰는 TCP/IP 모델은 계층이 넷이고 OSI 모델은 일곱이라, 두 모델의 계층은 일대일로 꼭 맞아떨어지지는 않는다. 선은 두 모델에서 하는 일이 비슷한 자리끼리 짝지은 것이다. TCP/IP 모델의 계층을 고르면 OSI 모델의 어느 계층과 짝지어지는지 볼 수 있다.",
+      "legend": "왼쪽 박스는 OSI 모델, 오른쪽 박스는 TCP/IP 모델이고, 두 박스 모두 맨 위가 응용 계층이다. 선은 하는 일이 비슷한 계층끼리 이은 것이고, 점선은 강의가 정리한 짝이라 표준 문서가 정한 대응이 아니다.",
+      "nodes": {
+        "osi-application": "응용 계층",
+        "osi-presentation": "표현 계층",
+        "osi-session": "세션 계층",
+        "osi-transport": "전송 계층",
+        "osi-network": "네트워크 계층",
+        "osi-data-link": "데이터 링크 계층",
+        "osi-physical": "물리 계층",
+        "tcpip-application": "응용 계층",
+        "tcpip-transport": "전송 계층",
+        "tcpip-internet": "인터넷 계층",
+        "tcpip-network-access": "네트워크 액세스 계층"
+      },
+      "groups": {
+        "osi": "OSI 모델",
+        "tcpip": "TCP/IP 모델"
+      },
+      "notes": {
+        "session-note": "세션 계층은 강의의 정리"
+      },
+      "scenarios": [
+        {
+          "id": "application",
+          "label": "응용 계층",
+          "caption": "TCP/IP 모델의 응용 계층 자리에는 OSI 모델의 응용·표현·세션 계층을 놓는다. 다만 표준 문서는 TCP/IP의 응용 계층이 OSI 모델의 표현 계층과 응용 계층이 하던 일을 합친 것이라고만 할 뿐, 세션 계층은 말하지 않는다. TCP/IP 모델에는 처음부터 세션 계층에 해당하는 계층이 없었고, 세션 계층까지 이 자리에 둔 것은 강의의 정리다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        },
+        {
+          "id": "transport",
+          "label": "전송 계층",
+          "caption": "TCP/IP 모델의 전송 계층은 OSI 모델의 전송 계층에 해당한다. 다만 OSI 모델은 신뢰성 있는 전달을 이 계층의 몫으로 정의하지만, TCP/IP 모델의 전송 계층에는 신뢰성을 더하는 TCP와 함께 신뢰성을 더하지 않는 UDP도 있다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model", "protocols-encapsulation.osi-model"]
+        },
+        {
+          "id": "internet",
+          "label": "인터넷 계층",
+          "caption": "TCP/IP 모델의 인터넷 계층은 OSI 모델의 네트워크 계층에 해당한다. 이 계층에서 IP는 IP 주소로 목적지를 가리고, 두 호스트가 서로 다른 네트워크에 있어도 그 사이의 네트워크들을 거쳐 출발지 호스트에서 목적지 호스트까지 데이터를 나른다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        },
+        {
+          "id": "network-access",
+          "label": "네트워크 액세스 계층",
+          "caption": "TCP/IP 모델의 네트워크 액세스 계층은 OSI 모델의 물리 계층과 데이터 링크 계층이 나눠 맡던 일을 함께 맡는다. 호스트가 자기가 직접 이어진 네트워크 안에서 통신할 때 쓰는 이더넷 같은 프로토콜이 이 계층에 속한다.",
+          "sources": ["protocols-encapsulation.tcp-ip-model"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.tcp-ip-model", "protocols-encapsulation.osi-model"]
+    },
     "encapsulation": {
       "label": "계층을 지날 때 헤더가 붙고 떨어지는 과정 도식",
       "svgLabel": "웹 페이지를 TCP로 보낼 때 TCP/IP 모델의 네 계층과 계층마다의 데이터 단위",
@@ -282,6 +336,98 @@
         "protocols-encapsulation.tcp-ip-model",
         "protocols-encapsulation.pdu-names"
       ]
+    },
+    "decapsulation-peel": {
+      "label": "받은 데이터에서 헤더를 바깥쪽부터 떼어 내는 순서 도식",
+      "svgLabel": "웹 페이지를 TCP로 받을 때 이더넷 헤더·IP 헤더·TCP 헤더·HTTP 헤더·데이터·트레일러가 차례로 이어 붙은 데이터 한 덩어리",
+      "question": "받은 데이터에서 헤더는 어떤 순서로 떨어질까?",
+      "idleCaption": "웹 페이지를 TCP로 받고, 네트워크 액세스 계층에서 이더넷을 쓰는 경우다. 받은 데이터는 아래 계층에서 위 계층으로 한 계층씩 올라가고, 각 계층은 보내는 쪽의 같은 계층이 붙였던 헤더를 떼어 낸다. 계층을 아래부터 차례로 고르면 어느 칸이 어떤 순서로 떨어지는지 볼 수 있다.",
+      "legend": "이어 붙은 상자들이 받은 데이터 한 덩어리이고, 왼쪽이 앞이다. 흐린 칸은 아래 계층이 이미 떼어 낸 것이다.",
+      "nodes": {
+        "ethernet": "이더넷 헤더",
+        "ip": "IP 헤더",
+        "tcp": "TCP 헤더",
+        "http": "HTTP 헤더",
+        "data": "데이터",
+        "trailer": "트레일러"
+      },
+      "notes": {
+        "detach-ethernet": "떼어 냄",
+        "detach-ip": "떼어 냄",
+        "detach-tcp": "떼어 냄",
+        "detach-http": "떼어 냄",
+        "detach-trailer": "떼어 냄",
+        "arrive-data": "응용 프로그램에 닿음"
+      },
+      "scenarios": [
+        {
+          "id": "network-access",
+          "label": "네트워크 액세스 계층",
+          "caption": "맨 아래 네트워크 액세스 계층이 맨 먼저 이더넷 헤더와 트레일러를 떼어 내고, 나머지를 위의 인터넷 계층으로 넘긴다. 이더넷 헤더는 보낼 때 맨 마지막에 붙은 가장 바깥쪽 헤더라, 받을 때는 맨 먼저 떨어진다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "internet",
+          "label": "인터넷 계층",
+          "caption": "인터넷 계층은 자기 계층의 헤더인 IP 헤더만 떼어 내고 나머지를 전송 계층으로 넘긴다. 그 안의 TCP 헤더와 HTTP 헤더는 각자의 계층에 닿을 때까지 페이로드 안에 그대로 들어 있다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "transport",
+          "label": "전송 계층",
+          "caption": "전송 계층은 TCP 헤더를 떼어 내고 나머지를 응용 계층으로 넘긴다. 보내는 쪽의 전송 계층이 TCP 헤더에 적어 둔 내용은 받는 쪽의 전송 계층이 같은 TCP의 규칙대로 읽어 처리하므로, 이 헤더를 떼는 것도 같은 전송 계층이다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        },
+        {
+          "id": "application",
+          "label": "응용 계층",
+          "caption": "응용 계층까지 HTTP 헤더를 떼어 내면 데이터만 남아, 웹 브라우저 같은 응용 프로그램에 원래의 데이터가 닿는다. 보낼 때 맨 처음 붙은 HTTP 헤더가 맨 나중에 떨어졌으니, 헤더는 붙은 순서의 반대로 떨어진 셈이다.",
+          "sources": ["protocols-encapsulation.decapsulation"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.decapsulation"]
+    },
+    "pdu-names": {
+      "label": "TCP/IP 모델의 계층마다 데이터 단위를 부르는 이름 도식",
+      "svgLabel": "TCP/IP 모델의 네 계층과, 같은 줄에 놓인 계층마다의 데이터 단위 이름",
+      "question": "계층마다 데이터 단위를 무엇이라 부를까?",
+      "idleCaption": "데이터가 계층을 지나며 헤더가 하나씩 붙으므로, 각 계층에서 만들어진 덩어리는 담고 있는 헤더가 서로 다르다. 그래서 TCP/IP 모델의 계층마다 데이터 단위를 다른 이름으로 부르고, 이름만 들어도 어느 헤더까지 붙어 있는지 알 수 있다. 전송 계층에서 쓰는 프로토콜을 고르면 그 계층의 이름이 어떻게 갈리는지 볼 수 있다.",
+      "legend": "왼쪽 박스는 TCP/IP 모델의 네 계층이고 맨 위가 응용 계층이다. 오른쪽 박스에서 같은 줄에 놓인 이름이 그 계층의 데이터 단위다.",
+      "nodes": {
+        "app": "응용 계층",
+        "transport": "전송 계층",
+        "internet": "인터넷 계층",
+        "network-access": "네트워크 액세스 계층",
+        "message": "메시지",
+        "segment": "세그먼트",
+        "datagram": "데이터그램",
+        "packet": "패킷",
+        "frame": "프레임"
+      },
+      "groups": {
+        "layers": "TCP/IP 모델의 계층",
+        "units": "데이터 단위"
+      },
+      "notes": {
+        "by-tcp": "TCP가 만듦",
+        "by-udp": "UDP가 만듦",
+        "packet-standard": "표준 이름: IP 데이터그램"
+      },
+      "scenarios": [
+        {
+          "id": "tcp",
+          "label": "TCP를 쓸 때",
+          "caption": "전송 계층에서 TCP를 쓰면, 응용 계층이 넘긴 데이터 앞에 TCP 헤더가 붙은 단위를 세그먼트라 부른다. 인터넷 계층은 세그먼트 앞에 IP 헤더를 붙여 패킷을 만들고, 네트워크 액세스 계층은 패킷 앞에 헤더를, 뒤에 트레일러를 붙여 프레임을 만든다.",
+          "sources": ["protocols-encapsulation.pdu-names"]
+        },
+        {
+          "id": "udp",
+          "label": "UDP를 쓸 때",
+          "caption": "같은 전송 계층이라도 UDP를 쓰면, 응용 계층이 넘긴 데이터 앞에 UDP 헤더가 붙은 단위를 데이터그램이라 부른다. 어느 프로토콜을 썼는지에 따라 붙은 헤더가 다르기 때문이다. 메시지·패킷·프레임은 TCP를 쓸 때와 같은 이름이다.",
+          "sources": ["protocols-encapsulation.pdu-names"]
+        }
+      ],
+      "sources": ["protocols-encapsulation.pdu-names"]
     }
   },
   "tables": {
