@@ -1,0 +1,96 @@
+{
+  "project": "Study Quiz",
+  "phase": "75-network-linux-basics",
+  "steps": [
+    {
+      "step": 0,
+      "name": "filesystem-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "directory-hierarchy",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "etc-proc",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "partition-mbr-gpt",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "device-names-mount",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "fstab-swap",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "file-attributes",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "permissions-sources",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "owner-rwx",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "permission-string",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "octal-chmod",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "symbolic-chown",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "shell-sources",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "shell-working-dir",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "paths-file-commands",
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "name": "redirection-pipe",
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "name": "find-vi",
+      "status": "pending"
+    },
+    {
+      "step": 17,
+      "name": "vi-commands",
+      "status": "pending"
+    }
+  ]
+}
