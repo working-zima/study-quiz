@@ -38,6 +38,9 @@ step 0(IP와 단편화)의 확인한 날은 2026-10-29다. RFC는 rfc-editor.org
 「(phase 73 step 1)」이 붙은 줄과 항목은 phase 73 step 1에서 `arp`(ARP·ARP 캐시·다른 네트워크로 보낼 때·RARP·이웃 탐색)·`icmp`(IP의 한계·ICMP·타입과 코드·목적지 도달 불가·시간 초과·에코·ping·IGMP) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
 RFC는 step 0과 같은 방법으로 읽었고, IANA 레지스트리는 XML판(`…/<레지스트리>.xml`)을, man7.org·learn.microsoft.com은 그 페이지를 내려받아 읽었다. 명령 문서는 운영체제·패키지마다 다르므로 어느 판인지 항목에 적는다.
 「(phase 73 step 2)」 이후의 줄은 phase 73의 개념을 쓰는 step(2~14)이 쓰다가 더 확인한 사실이다(같은 방법으로 읽었다, 2026-10-29).
+「(phase 74)」가 붙은 줄과 항목은 phase 74에서 `ip-addressing`(IP 주소와 서브넷 마스크)·`ip-address-types`(공인·사설 IP, NAT, DHCP)·`routing`(라우팅) 주제가 쓸 사실을 확인하며 더했다.
+step 0(`ip-addressing` — 네트워크 부분과 호스트 부분, 네트워크 주소와 브로드캐스트 주소, 주소 클래스, CIDR, 서브넷 마스크, AND 계산, 서브네팅, 서브넷 수와 호스트 수)의 확인한 날은 2026-10-29다.
+RFC는 phase 73과 같은 방법(텍스트판을 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, IANA 레지스트리는 XML판으로 읽었다.
 
 ---
 
@@ -231,6 +234,11 @@ https://www.rfc-editor.org/rfc/rfc791
   그 네트워크의 인터페이스에 넘기며, 그 인터페이스가 새 지역 헤더를 붙여 보낸다. 목적지 호스트의 인터페이스가 지역 헤더를 떼고 IP 모듈에 넘긴다 — §2.2 「Model of Operation」.
   이 모델에서 구간마다 떼고 새로 붙는 것은 지역 네트워크 헤더이고, 목적지를 가리키는 인터넷 주소는 그대로 다음 구간으로 간다(라우터가 넘기는 순서는 아래 RFC 1812 §5.2.1.2 줄)
 - (phase 73 step 11, 2026-10-29 rfc-editor.org 원문) 목록 항목 `icmp.ip-limits`의 영문 이름 가운데 **unreliable은 표준이 붙인 용어가 아니다** — 원문은 IP가 「신뢰성 있는 통신 수단을 주지 않는다(does not provide a reliable communication facility)」고 쓰고(§1.4), RFC 792 Introduction은 「절대적으로 믿을 수 있게 설계되지 않았다」고 쓴다. 그 성질을 형용사 하나로 적은 것이다. connectionless는 RFC 1122 §1.1.3의 말이다(아래 RFC 1122 항목)
+- (phase 74) 주소는 앞쪽의 **네트워크 번호**와 그 뒤의 **그 네트워크 안의 주소**(local address — 이 문서는 「rest」 칸이라고도 부르고, 클래스 표에서는 host라 적는다)로 이루어진다 — §2.3 「Addressing」, §3.2 「Addressing」의 표.
+  클래스마다 앞쪽 몇 비트가 네트워크 번호이고 몇 비트가 호스트 쪽인지는 위 「주소 클래스」 줄과 같다
+- (phase 74) 클래스를 셋으로 나눈 까닭: 호스트가 아주 많은 네트워크 몇 개, 중간 크기 네트워크 중간 개수, 호스트가 적은 네트워크 아주 많이를 함께 담으려고 주소 칸의 해석을 맨 앞 비트로 갈랐다.
+  맨 앞 세 비트가 111이면 「확장 주소 방식으로 넘긴다」는 표시로 남겨 두었고, 그 방식은 정의하지 않았다 — §3.2 「Addressing」. 그러니 클래스 방식에서 쓸 수 있는 네트워크 크기는 셋뿐이다(RFC 4632 §3.1 — 아래 항목)
+- (phase 74) 네트워크 칸의 값 0은 「이 네트워크」를 뜻하고 특정 ICMP 메시지에서만 쓴다 — §3.2 「Addressing」. 첫 옥텟이 0·127인 주소의 지금 쓰임은 아래 RFC 1122 §3.2.1.3 줄과 「(phase 74) IANA」 항목(자세히는 `ip-address-types` — step 5)
 
 쓰인 곳: 강의 수정 이력 L3, L6, 면접 수정 이력 I8, `protocols-encapsulation.packet-switching`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `ethernet.mac-address`(바이트·옥텟의 뜻; `ethernet.frame`에서도 쓰는 단위), (phase 72 step 5) `ethernet.ethertype-length`(IP는 여러 네트워크를 이은 곳에서 데이터그램을 출발지에서 목적지로 나르고 주소를 다룬다 — IPv4·IPv6·IP 주소의 한 줄 풀이, §1.1·§1.2·§2.3),
 (phase 73에서 쓰일 곳) `ip-protocol.ip`(§1.4 두 기능·IP 모듈의 자리), `ip-protocol.fragmentation`(§2.3·§3.2 — 게이트웨이도 나누고 목적지가 합친다, DF), `ip-protocol.mtu`(§3.2 — 68옥텟), `ip-protocol.ipv4-header`(§3.1 칸·IHL·전체 길이·헤더 체크섬·프로토콜·서비스 유형·옵션),
@@ -238,6 +246,7 @@ https://www.rfc-editor.org/rfc/rfc791
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§1.2·§1.4 — 신뢰성 장치가 없다), `icmp.icmp`(§1.4 — 오류는 ICMP로 알린다), `arp.arp-across-routers`(§2.2 — 구간마다 지역 헤더만 바뀐다), 강의 수정 이력 L34·L35(§2.3 — 32비트 주소는 8비트씩 넷)
 (phase 73 step 3) `ip-protocol.ipv4-header`(§3.1 — 버전 칸의 값 4, 헤더 길이 칸이 데이터의 시작을 가리킨다), 문항 n052 해설
 (phase 73 step 11) `icmp.ip-limits`(§1.4 — 확인 응답·재전송이 없다, 데이터그램 하나하나를 서로 관계없는 독립된 것으로 다루고 그 사이에 연결이 없다, 찾아낸 오류는 ICMP로 알린다), `icmp.icmp`(§1.4 — 앞 개념에서 본 대로 IP는 받았는지 확인하지 않는다), 문항 n070·n071 해설, 도식 `ip-limits`
+(phase 74에서 쓰일 곳) `ip-addressing.network-host`(§2.3 — 네트워크 번호 + 그 네트워크 안의 주소), `ip-addressing.address-classes`(§2.3 — A·B·C의 맨 앞 비트와 네트워크 비트 수, §3.2 — 크기 셋을 담으려는 설계·111은 남겨 둔 표시·네트워크 칸 0), `ip-addressing.cidr`(§3.2 — 클래스가 준 크기는 셋뿐), 강의 수정 이력 L6·L36·L37
 
 ## RFC 950 — Internet Standard Subnetting Procedure
 https://www.rfc-editor.org/rfc/rfc950
@@ -247,9 +256,24 @@ https://www.rfc-editor.org/rfc/rfc950
 - 서브넷 마스크는 32비트 마스크이고, IP 네트워크 번호와 서브넷 번호에 해당하는 자리의 비트를 켠 비트 마스크다 — §2.2, Appendix I
 - 예시의 마스크는 255.255.0.0, 255.255.252.0처럼 점으로 구분한 10진수로 적는다 — Appendix II
 - 2진수는 주소의 비트 배치를 설명하는 그림(§2.1)과 예시의 서브넷 필드 값을 풀어 보일 때(Appendix II) 쓴다 — 마스크를 적는 형식으로 쓰지 않는다 — §2.1, Appendix II
+- (phase 74) 상태: 인터넷 표준(STD 5)이고 폐기되지 않았다. RFC 6918이 고쳤다 — 이 문서가 더한 ICMP 주소 마스크 요청·응답(Appendix I)을 폐기한 것이다(`exam-notes.md` E13). 아래 §2.1·§2.2의 주소 해석과 판정 규칙은 그대로다(rfc-editor 상태, 2026-10-29)
+- (phase 74) 서브넷은 인터넷 네트워크 하나를 논리적으로 나눈 부분이다. 조직이 LAN을 여럿 쓰게 되면 네트워크 번호를 여러 개 받는 대신 하나를 서브넷 여럿으로 나눈다 — Overview, §1.
+  케이블마다 네트워크 번호를 따로 받으면 조직 안의 연결 사정까지 인터넷 전체의 라우팅 표에 퍼져 표가 커진다 — §1
+- (phase 74) 서브넷을 쓰는 네트워크의 주소는 <네트워크 번호><서브넷 번호><호스트 번호>로 읽는다. 서브넷 번호 칸의 폭은 네트워크마다 정하고 한 네트워크 안에서는 같으며, 폭이 0이면 서브넷을 쓰지 않는 것이다.
+  호스트 번호 칸은 적어도 1비트다 — §2.1. 예로 B 클래스 네트워크에 6비트 서브넷 칸을 둔 주소 그림(맨 앞 `10` · 네트워크 14비트 · 서브넷 6비트 · 호스트 10비트)을 든다 — §2.1
+- (phase 74) 서브넷 칸은 원래 그 네트워크 안의 주소(호스트 쪽) 비트에서 가져온다. 마스크로 가리키므로 떨어져 있어도 되지만, **이어진 비트로 두고 호스트 쪽의 가장 앞(왼쪽) 비트에 둘 것을 권한다** — §2.1
+- (phase 74) 주소만 보고 서브넷을 쓰는지 알 수 있게 하는 방식(맨 앞 비트로 클래스를 알리듯 서브넷 칸의 폭도 주소 안에 부호로 넣는 방식)을 택하지 않고, **서브넷 여부와 칸의 폭을 주소와 따로 두는 주소 마스크 방식**을 골랐다.
+  조직마다 남은 비트를 서브넷과 호스트에 어떻게 나눌지 고를 수 있기 때문이다 — §2.1. 그러니 서브넷을 쓰면 주소 모양만으로는 네트워크(와 서브넷) 부분이 어디서 끝나는지 알 수 없고 마스크가 함께 있어야 한다
+- (phase 74) 특별 주소: 값이 0인 칸은 「이」(이 네트워크), 모든 비트가 1인 칸은 「모두」(모든 호스트)를 뜻한다 — 예로 128.9.255.255는 128.9 네트워크의 모든 호스트다.
+  이 해석을 서브넷에도 넓혀, **서브넷 칸이 모두 0이거나 모두 1인 값은 실제 서브넷에 주지 않는다**고 했다(6비트 서브넷 칸이면 0과 63을 뺀다) — §2.1 「Special Addresses」.
+  이것이 옛 규칙이다 — RFC 1812 §4.2.2.11 DISCUSSION이 CIDR에서는 이 제한이 뜻이 없어 무시해도 된다고 적었다(아래 RFC 1812 항목)
+- (phase 74) 호스트가 데이터그램을 바로 보낼지 게이트웨이로 보낼지 가르는 규칙: 목적지 주소와 자기 주소를 각각 마스크와 **비트마다 AND**해 결과가 같으면 같은 (서브)네트워크라 바로 보내고, 다르면 게이트웨이로 보낸다.
+  이때 쓰는 마스크는 네트워크 번호와 서브넷 번호 자리의 비트를 켠 32비트 값이다 — §2.2. 같은 판정을 호스트의 요구 사항으로 정한 것은 RFC 1122 §3.3.1.1(아래 항목)
 
 쓰인 곳: 면접 수정 이력 I5
 (phase 73 step 12) `icmp.icmp-message`(§2.2 — 서브넷 마스크는 IP 주소에서 네트워크 번호와 서브넷 번호에 해당하는 자리를 가리키는 마스크 — 한 줄 풀이만)
+(phase 74에서 쓰일 곳) `ip-addressing.network-host`(§2.1 — 서브넷을 쓰면 경계는 주소와 따로 둔 마스크가 정한다), `ip-addressing.subnet-mask`(§2.2 — 마스크로 같은 네트워크인지 가른다), `ip-addressing.network-address-calc`(§2.2 — 비트마다 AND),
+`ip-addressing.subnetting`(Overview·§1 — 서브넷의 뜻과 까닭, §2.1 — 호스트 쪽 앞 비트를 서브넷 칸으로, 칸의 폭이 정해지면 서브넷 수가 정해진다, 모두 0·모두 1 서브넷을 빼던 옛 규칙), `exam-notes.md`의 「phase 74 step 0」 문단
 
 ## RFC 4632 — Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan
 https://www.rfc-editor.org/rfc/rfc4632
@@ -259,8 +283,21 @@ BCP 122다.
 - 접두사는 IPv4 주소 뒤에 `/`와 0~32의 10진수(접두사 길이, 의미 있는 네트워크 비트 수)를 붙여 적는다. 예: 옛 B 클래스 172.16.0.0은 172.16.0.0/16이다 — §3.1
 - /16의 마스크는 앞 16비트가 1이고 뒤 16비트가 0인 32비트 값이고, 점 10진수로는 255.255.0.0이다 — §3.1
 - 마스크의 1은 왼쪽부터 끊김 없이 이어져야 한다 — §5.1
+- (phase 74) CIDR는 문서 제목대로 Classless Inter-domain Routing의 줄임이다. 이 문서가 처음 CIDR 규격 RFC 1519를 폐기하고 대신한다 — 제목, §1(RFC 1519의 상태는 rfc-editor에서 폐기, 2026-10-29)
+- (phase 74) 클래스 셋의 크기: C 클래스 네트워크는 호스트 주소가 최대 254개(8비트로 만들 수 있는 256가지에서 모두 0과 모두 1을 뺀 수), B 클래스는 최대 65534개다 — §2.
+  (§2는 A 클래스의 맨 앞 비트를 「00」으로 적었는데 RFC 791 §2.3은 「0」이다. A의 맨 앞 비트는 RFC 791을 따른다)
+- (phase 74) CIDR가 나온 까닭: 1980년대 끝 무렵 인터넷에 이어지는 조직이 크게 늘자, IETF의 ROAD 그룹이 1992년 세 문제를 짚었다 — ① B 클래스 네트워크 번호의 고갈(중간 크기 조직에 맞는 클래스가 없었다 — C는 너무 작고 B는 대부분에게 너무 컸다),
+  ② 라우터의 라우팅 표가 관리할 수 없을 만큼 커짐, ③ 언젠가 32비트 주소가 다 떨어짐. CIDR는 ①②를 풀려고 만들었고 ③은 풀려고 하지 않았다 — 더 긴 해법이 나올 때까지 버틸 시간을 번다 — §2.
+  다만 주소가 쓰이는 속도도 늦춰 ③에도 단기·중기의 여유를 주었다 — §3
+- (phase 74) 해법은 A·B·C 클래스로 네트워크 번호를 나눠 주는 방식을 그만두고(deprecate), 접두사(prefix)라 부르는 클래스 없는 주소 블록을 쓰는 것이다 — §3
+- (phase 74) 바뀐 것의 핵심은 32비트 주소에서 **어느 비트가 네트워크 번호(접두사)이고 어느 비트가 그 안의 끝 시스템 번호인지를 드러내 적는 것**이다 — §3.1.
+  옛 B 클래스 172.16.0.0은 숨은(implied) 마스크가 255.255.0.0이라 172.16.0.0/16이고, 옛 C 클래스 192.168.99.0은 앞 24비트가 1인 마스크라 192.168.99.0/24다 — §3.1
+- (phase 74) 예전에는 네트워크 크기가 셋뿐이었지만, 접두사 길이를 드러내 적으면 주소 1개부터 2^32개까지 **2의 거듭제곱 크기라면 어느 블록이든** 가리킬 수 있다 — §3.1.
+  그러니 접두사 길이가 n이면 그 블록의 주소는 2^(32−n)개다(계산 — 표준 문장은 아니다. 같은 수를 접두사 길이마다 표로 든 것은 아래 RFC 1878 항목, 역사 기록)
 
 쓰인 곳: 면접 수정 이력 I5
+(phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§3 — 클래스로 나눠 주는 방식을 그만뒀다), `ip-addressing.cidr`(제목 — 풀네임, §2 — 나온 까닭, §3 — 클래스 없는 접두사, §3.1 — 경계를 드러내 적는다·표기·2의 거듭제곱 블록),
+`ip-addressing.subnet-mask`(§3.1 — 옛 B·C 클래스의 숨은 마스크, §5.1 — 1이 이어진다), `ip-addressing.network-broadcast-address`·`ip-addressing.subnet-sizing`(§2 — C 클래스의 254는 256에서 모두 0과 모두 1을 뺀 수, §3.1 — 블록의 주소 수), 강의 수정 이력 L37
 
 ## RFC 8200 — Internet Protocol, Version 6 (IPv6) Specification
 https://www.rfc-editor.org/rfc/rfc8200
@@ -434,6 +471,20 @@ https://www.rfc-editor.org/rfc/rfc1122
 - (phase 73 step 1) 경로 정보가 없는 목적지로 보낼 때 호스트는 **기본(default) 게이트웨이** 가운데 하나를 골라 보낸다. 호스트는 기본 게이트웨이를 여럿 둘 수 있어야 하고, 시작하려면 대개 적어도 하나를 알아야 한다
   (설정 파일이나 BOOTP 같은 시작 절차로 얻는다). 고른 게이트웨이가 가장 좋은 다음 홉이 아니면 그 게이트웨이가 데이터그램을 넘겨주면서 ICMP 리다이렉트를 돌려보낸다 — §3.3.1.2와 DISCUSSION
 - (phase 73 step 11, 2026-10-29 rfc-editor.org 원문) 신뢰성 있는 전달이 필요하면 IP 위의 계층이 그 일을 맡는다. 지금 전송 계층의 주된 프로토콜은 TCP와 UDP 둘이다 — §1.1.3
+- (phase 74) 주소 클래스는 지금 A~E 다섯이다. D는 IP 멀티캐스트에 쓰고, E는 실험용으로 남겨 두었다. D(멀티캐스트) 주소는 호스트 그룹 하나를 가리키는 28비트 논리 주소다 — §3.2.1.3.
+  아래 {네트워크 번호, 호스트 번호} 표기와 특별한 경우는 **A·B·C 주소에 대해서만** 정리한다 — §3.2.1.3(그러니 D 주소는 네트워크 부분과 호스트 부분으로 나눠 읽지 않는다)
+- (phase 74) 주소를 {네트워크 번호, 호스트 번호} 또는 {네트워크 번호, 서브넷 번호, 호스트 번호}로 적고, 모든 비트가 1인 칸을 -1로 적는다. 특별한 경우 가운데 이 주제가 쓰는 것:
+  {네트워크 번호, -1}은 그 네트워크로 보내는 **directed broadcast**, {네트워크 번호, 서브넷 번호, -1}은 그 서브넷으로 보내는 directed broadcast이고, 둘 다 출발지 주소로 쓰면 안 된다(MUST NOT) — §3.2.1.3 (d)(e).
+  나머지 — {-1, -1} 제한 브로드캐스트(c), 네트워크 칸이 0인 「이 네트워크」의 주소(a)(b), {127, 아무 값} 루프백(g) — 는 `ip-address-types`(step 5)에서 쓴다 — §3.2.1.3
+- (phase 74) 호스트 번호·네트워크 번호·서브넷 번호 칸은 위의 특별한 경우를 빼고 0(모두 0)이나 -1(모두 1)일 수 없다. 그래서 칸마다 적어도 2비트가 된다 — §3.2.1.3.
+  **호스트에 줄 수 있는 주소가 2^h − 2개인 근거가 이 줄이다** — h비트 호스트 칸이 가질 수 있는 2^h개 값에서 모두 0과 모두 1을 뺀다(계산. 같은 수를 표준이 직접 적은 예는 RFC 4632 §2의 C 클래스 254개, RFC 3021 §1의 /30 — 아래 항목).
+  서브넷 번호 칸에 대한 같은 제한은 이 문서에 그대로 적혀 있지만, 뒤에 나온 RFC 1812 §4.2.2.11 DISCUSSION이 CIDR에서는 뜻이 없어 무시해도 된다고 적었다(아래 RFC 1812 항목)
+- (phase 74) 호스트는 서브넷 확장(RFC 950)을 반드시 지원하고, 자기 IP 주소마다 주소 마스크가 하나씩 딸린다 — §3.2.1.3.
+  호스트가 보내는 데이터그램의 출발지 주소는 자기 주소 가운데 하나여야 하고 브로드캐스트·멀티캐스트 주소일 수 없다 — §3.2.1.3
+- (phase 74) 목적지가 이어진 네트워크에 있는지 가르는 규칙(MUST): 주소 마스크는 그 IP 주소에서 네트워크 번호와 서브넷 번호 칸을 골라내는 32비트 마스크다.
+  목적지 주소에서 마스크로 골라낸 비트가 출발지 주소에서 같은 마스크로 골라낸 비트와 같으면 목적지는 이어진 네트워크에 있으니 그 호스트로 바로 보내고, 다르면 게이트웨이를 거쳐야만 닿는다 — §3.3.1.1
+- (phase 74) 마스크를 아직 모르면 호스트는 그 주소의 **클래스에 맞는 마스크**를 쓰는 것이 좋다(SHOULD) — 곧 이어진 네트워크가 서브넷으로 나뉘지 않았다고 본다 — §3.2.2.9 (b).
+  (이 줄은 ICMP 주소 마스크 메시지로 마스크를 알아내는 경우의 규칙이고, 그 메시지는 RFC 6918이 폐기했다 — `exam-notes.md` E13. 클래스마다 마스크가 있다는 뜻으로만 쓴다)
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
@@ -448,6 +499,8 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 11) `icmp.ip-limits`(§1.1.3 — 비연결형, 손상·중복·순서 바뀜·닿지 않음, 위 계층이 신뢰성을 맡는다, 전송 계층은 끝과 끝 사이의 통신, TCP는 연결형), `icmp.icmp`(§1.1.3 — ICMP는 IP의 일부이고 인터넷 계층 프로토콜, §3.2.2 — 오류 메시지와 질의 메시지의 두 갈래, 에코는 질의 메시지), 문항 n070·n071 해설, 도식 `ip-limits`·`icmp-feedback`
 (phase 73 step 12) `icmp.icmp-message`(§3.2.2 — 리다이렉트·시간 초과는 오류 메시지, 에코는 질의 메시지), `icmp.destination-unreachable`(§3.2.2 — 오류 메시지에는 원래 IP 헤더와 데이터 앞 8옥텟 이상을 담는다, §3.2.2.1 — 호스트가 코드 2·3을 보내고, 코드 0·1은 경로가 잠깐 흔들려 생길 수 있어 받은 쪽이 단서로 다룬다), 문항 n073 해설
 (phase 73 step 14) `icmp.igmp`(§1.1.3 — IGMP는 인터넷 계층 프로토콜이다, §3.2.3 — 라우터는 IGMP로 얻은 정보와 멀티캐스트 라우팅 프로토콜로 멀티캐스트를 받친다: 멀리 있는 라우터와 그 정보를 나누는 일은 IGMP의 몫이 아니다), 문항 n078·n079 해설, 도식 `igmp-group`
+(phase 74에서 쓰일 곳) `ip-addressing.network-host`(§3.2.1.3 — {네트워크 번호, 호스트 번호}, 주소마다 마스크가 딸린다), `ip-addressing.network-broadcast-address`(§3.2.1.3 — directed broadcast, 칸이 모두 0·모두 1일 수 없다 → 2^h − 2, 출발지로 못 쓴다),
+`ip-addressing.address-classes`(§3.2.1.3 — 다섯 클래스, D 멀티캐스트·E 실험용, 특별한 경우는 A·B·C에만), `ip-addressing.subnet-mask`(§3.3.1.1 — 마스크로 같은 네트워크인지 가른다, §3.2.2.9 — 클래스에 맞는 마스크), `ip-addressing.network-address-calc`(§3.3.1.1 — 마스크로 골라낸 비트), 강의 수정 이력 L36·L38
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -697,8 +750,13 @@ https://www.rfc-editor.org/rfc/rfc919
 
 - IP 주소의 호스트 번호 자리에 정해 둔 값을 넣으면 특정 호스트가 아니라 브로드캐스트를 뜻한다 — §4
 - 예를 들어 36.255.255.255는 「36번 네트워크의 모든 호스트」를 뜻한다 — §7
+- (phase 74) 다른(원격) 네트워크의 모든 호스트로 보내는 브로드캐스트는 보통의 경로로 그 네트워크에 이어진 게이트웨이까지 간 뒤 거기서 브로드캐스트되고, 이것을 **directed broadcasting**이라고도 부른다 — §4
+- (phase 74) 브로드캐스트를 뜻하는 호스트 번호로 **모든 비트가 1인 값**을 고른 것은 실제 호스트에 주어질 일이 없을 값이어야 해서다 — §7.
+  모든 비트가 0인 칸은 「정하지 않음」으로 볼 수 있고, 표기 관례로 **호스트가 아니라 네트워크를 가리킬 때 0인 칸을 쓴다** — 36.0.0.0은 「36번 네트워크」, 36.255.255.255는 「36번 네트워크의 모든 호스트」다 — §7.
+  255.255.255.255는 그 물리 네트워크 안에서만 쓰고 넘기지 않는 브로드캐스트다 — §7(`ip-address-types` — step 5). RFC 922 §7이 서브넷이 있을 때도 같은 관례를 적는다(https://www.rfc-editor.org/rfc/rfc922 , STD 5)
 
 쓰인 곳: `network-basics.cast-types`
+(phase 74에서 쓰일 곳) `ip-addressing.network-broadcast-address`(§4 — directed broadcasting이라는 이름, §7 — 모두 1을 브로드캐스트로 고른 까닭, 모두 0인 칸으로 네트워크를 가리키는 표기 관례), 강의 수정 이력 L36
 
 ## RFC 1112 — Host Extensions for IP Multicasting
 https://www.rfc-editor.org/rfc/rfc1112
@@ -717,11 +775,14 @@ https://www.rfc-editor.org/rfc/rfc1112
   질의와 보고 모두 **IP TTL 1**로 보낸다. 같은 그룹의 다른 호스트 보고를 먼저 들으면 자기 보고를 보내지 않는다. 라우터가 알아야 하는 것은 그 네트워크에 그 그룹의 구성원이 하나라도 있는지이지 누가 구성원인지가 아니다 — 부록 I 「Informal Protocol Description」
 - (phase 73 step 1) 라우터는 질의를 몇 번 보내도 어느 그룹의 보고가 없으면 그 네트워크에 구성원이 없다고 보고, 다른 곳에서 온 그 그룹의 멀티캐스트를 그 네트워크로 넘기지 않는다 — 부록 I
 - (phase 73 step 1) 그룹에 새로 든 호스트는 자기가 그 네트워크의 첫 구성원일 수 있으므로 질의를 기다리지 않고 곧바로 보고를 보낸다. **첫 보고가 사라지거나 망가질 때에 대비해 짧은 간격을 두고 한두 번 되풀이할 것을 권한다** — 부록 I(`exam-notes.md` E14)
+- (phase 74) 호스트 그룹은 **D 클래스** 주소로 가리킨다 — 맨 앞 4비트가 `1110`인 주소이고, 점 10진으로 224.0.0.0~239.255.255.255다. 맨 앞 4비트가 `1111`인 **E 클래스**는 앞으로의 주소 방식을 위해 남겨 두었다 — §4.
+  (RFC 1122 §3.2.1.3·RFC 1812 §4.2.2.11은 E를 「실험용으로 남겨 둔」 클래스라 적는다. 어느 쪽이든 호스트에 주는 주소가 아니다)
 
 쓰인 곳: `network-basics.cast-types`, `protocols-encapsulation.tcp-ip-model`(phase 71 — IGMP 문장의 멀티캐스트 풀이),
 (phase 73 step 1에서 쓰일 곳) `icmp.ip-limits`(§2 — 최선형이라는 이름), `icmp.igmp`(부록 I — 비대칭, IP의 일부, 프로토콜 번호 2, 질의·보고, TTL 1), `exam-notes.md` E12·E14
 (phase 73 step 11) `icmp.ip-limits`(§2 — 최선형 전달: 온전히 닿는다는 보장도, 순서가 지켜진다는 보장도 없다), 문항 n070 해설
 (phase 73 step 14) `icmp.igmp`(§2 — 호스트 그룹은 목적지 IP 주소 하나로 가리키고 구성원은 언제든 들고 난다; 부록 I — 비대칭, IP의 일부·프로토콜 번호 2, 첫 판의 메시지는 질의·보고 둘, 질의와 보고를 TTL 1로 보낸다, 라우터는 그룹마다 구성원이 하나라도 있는지만 안다, 새로 든 호스트는 첫 보고를 한두 번 되풀이하라고 권한다), 문항 n078·n079 해설, 도식 `igmp-group`
+(phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§4 — D의 맨 앞 비트 `1110`과 범위 224~239, E의 맨 앞 비트 `1111`과 남겨 둠)
 
 ## RFC 1983 — Internet Users' Glossary
 https://www.rfc-editor.org/rfc/rfc1983
@@ -1288,6 +1349,17 @@ Proposed Standard(Standards Track)이다.
   4 단편화 필요·DF 설정 — 라우터가 나눠야 하는데 DF가 켜져 있을 때, 5 소스 라우트 실패. 6~15는 그 뒤에 더한 코드다 — §5.2.7.1
 - (phase 73 step 9) 인터넷은 여러 네트워크를 IP 데이터그램을 넘겨주는 장치로 이어 만든 것이고, 그 장치를 라우터(IP 라우터)라 부른다. 예전의 인터넷 문서는 라우터를 **게이트웨이**라고 부른 것이 많다 — §2.2.3
 - (phase 73 step 9) IP 호스트나 라우터의 네트워크 인터페이스는 전통적으로 저마다 자기 IP 주소를 갖는다. 주소를 아끼려고 점대점 회선의 인터페이스에 IP 주소를 주지 않는 구성(unnumbered line)도 있지만, 그것은 예외로 다룬다 — §2.2.7
+- (phase 74) 상태: 폐기되지 않았고 RFC 2644·RFC 6633이 고쳤다(rfc-editor 상태, 2026-10-29). directed broadcast의 기본값을 바꾼 것이 RFC 2644다(아래 항목)
+- (phase 74) 주소 클래스는 A~E 다섯이고, D는 IP 멀티캐스트에 쓰고 E는 실험용으로 남겨 두었다. **A·B·C의 구분은 이제 중요하지 않다** — 일반적인 유니캐스트 네트워크 접두사로 쓰이고, 클래스는 역사적인 의미만 남았다 — §4.2.2.11
+- (phase 74) 유니캐스트 주소를 {네트워크 접두사, 호스트 번호}로 적는다. {네트워크 접두사, -1}은 그 접두사로 보내는 **directed broadcast**이고 출발지 주소로 쓰면 안 된다 — §4.2.2.11 (d).
+  호스트 번호와 네트워크 접두사 칸은 특별한 경우를 빼고 0(모두 0)이나 -1(모두 1)일 수 없어, 칸마다 적어도 2비트다 — §4.2.2.11
+- (phase 74) **서브넷 번호의 제한을 풀었다**: 이 문서의 앞 판은 서브넷 번호가 0도 -1도 아니어야 하고 적어도 2비트여야 한다고 적었다. CIDR에서는 서브넷 번호가 네트워크 접두사를 늘린 것일 뿐이라 접두사의 나머지 없이 따로 해석할 수 없으므로,
+  이 제한은 뜻이 없고 무시해도 된다 — §4.2.2.11 DISCUSSION. 그러니 지금은 서브넷 칸이 k비트이면 서브넷 2^k개를 모두 쓴다(계산. 모두 0·모두 1 서브넷을 빼던 옛 규칙은 위 RFC 950 §2.1, 그 규칙이 낡았다고 적은 표는 아래 RFC 1878 — 역사 기록)
+- (phase 74) IP 브로드캐스트는 두 갈래다 — 제한 브로드캐스트(255.255.255.255)와 directed broadcast. 네트워크 접두사로 보내는 directed broadcast는 접두사 뒤 나머지 부분을 모두 1로 둔 주소다 —
+  예로 A 클래스 네트워크는 net.255.255.255, B는 net.net.255.255, C는 net.net.net.255(net은 네트워크 주소의 한 바이트) — §5.3.5.
+  CIDR에서는 서브넷으로 보내는 directed broadcast가 네트워크 접두사로 보내는 것과 구별되지 않아 함께 다룬다 — §5.3.5.4. 서브넷을 모두 아우르는 directed broadcast는 CIDR에서 뜻이 없어 쓰지 않는다 — §5.3.5, §5.3.5.3
+- (phase 74) 0.0.0.0과 {네트워크 접두사, 0}은 옛 구현이 브로드캐스트로 쓰던 비표준 형태다(앞의 것은 제한 브로드캐스트의, 뒤의 것은 directed broadcast의 낡은 형태).
+  라우터는 이 주소로 온 패킷을 알리지 않고 버리는 것이 좋고, 이 주소로 보내지 않는 것이 좋다(SHOULD) — §4.2.3.1, §5.3.5. RFC 3021 §2.2도 {네트워크 번호, 0}을 「네트워크 주소 자체」라 부르며 같은 말을 한다(아래 항목)
 
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
@@ -1296,6 +1368,8 @@ Proposed Standard(Standards Track)이다.
 (phase 73 step 8) `arp.arp`(§5.3.4 — 라우터는 링크 계층 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않으므로 ARP는 같은 LAN 안에서만 쓴다)
 (phase 73 step 9) `arp.arp-across-routers`(§2.2.3 — 표준 문서는 라우터를 게이트웨이라고도 부른다; §2.2.7 — 라우터의 인터페이스는 저마다 IP 주소를 갖는다; §5.2.1.2·§5.3.4 — 구간마다 다음 장치의 MAC 주소를 알아내 새 프레임에 담고 IP 주소는 바꾸지 않는다), 도식 `arp-hops`, 문항 n067 해설
 (phase 73 step 12) `icmp.destination-unreachable`(§5.2.7.1 — 코드 0은 목적지 네트워크로 가는 경로가 없을 때, 1은 직접 이어진 네트워크의 목적지 호스트에 넘길 수 없을 때, 4는 나눠야 하는데 DF가 켜져 있을 때 라우터가 보낸다), 문항 n074 해설, 도식 `destination-unreachable`
+(phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§4.2.2.11 — 다섯 클래스, A·B·C 구분은 역사적 의미뿐), `ip-addressing.network-broadcast-address`(§4.2.2.11 — directed broadcast, 칸이 0·-1일 수 없다, §5.3.5 — directed broadcast의 꼴, §4.2.3.1 — 호스트 부분이 모두 0인 주소는 낡은 브로드캐스트 형태),
+`ip-addressing.subnetting`·`ip-addressing.subnet-sizing`(§4.2.2.11 DISCUSSION — 모두 0·모두 1 서브넷도 쓴다), `exam-notes.md`의 「phase 74 step 0」 문단, 강의 수정 이력 L38
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1626,6 +1700,8 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(RFC 3849 — 첫 두 묶음이 `2001:0db8`인 주소는 문서의 예로 쓰라고 남겨 둔 주소, 본문 예와 도식 `ipv6-notation`), 문항 n058·n059의 주소
 (phase 73 step 7) `ip-protocol.slaac`(RFC 3849 — 예시 접두사 `2001:db8:0:1`과 주소 `2001:db8:0:1:1234:5678:9abc:def0`, 본문 예와 도식 `slaac`)
 (phase 73 step 8) `arp.arp`·`arp.arp-request-reply`(RFC 5737 §3 — 호스트 A~D의 `192.0.2.1`~`192.0.2.4`, 본문 예와 도식 `arp-purpose`·`arp-exchange`)
+(phase 74) 세 블록의 첫 옥텟은 192·198·203이라 셋 다 옛 C 클래스 범위(192~223, RFC 791 §2.3으로 계산)에 든다 — 문서용 IPv4 주소 가운데 A·B 클래스 범위의 것은 없다.
+`ip-addressing`의 예는 모두 이 안에서 만든다 — 서브네팅 예 `192.0.2.0/24`를 `/26` 넷으로(`192.0.2.0`·`.64`·`.128`·`.192`, 서브넷마다 주소 64개·호스트 62개), AND 예 `192.0.2.130` AND `255.255.255.192` = `192.0.2.128`(마지막 옥텟 `10000010` AND `11000000` = `10000000`) — 계산으로 확인(2026-10-29)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
@@ -1817,3 +1893,50 @@ RFC 2236(1997)은 Proposed Standard이고 RFC 3376·RFC 9776이 고쳤다. IGMPv
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.igmp`(IP의 일부·프로토콜 2·TTL 1·질의·보고·탈퇴·판의 차이·비대칭 — [기출 2024-05-19 #3], [기출 2024-11-03 #7], [기출 2025-05-25 #3], [기출 2025-11-02 #16]), `exam-notes.md` E12·E14
 (phase 73 step 14) `icmp.igmp`(RFC 2236 §2 — 모든 메시지를 TTL 1로 보낸다, §2.1 — 멤버십 질의(일반 질의·그룹별 질의)·멤버십 보고·그룹 탈퇴, §3 — 무작위 시간을 기다렸다 그 그룹으로 보고하고 같은 그룹의 보고를 먼저 들으면 보내지 않는다, 새로 든 호스트는 곧바로 보고하고 한두 번 되풀이하라고 권한다, 마지막으로 보고한 호스트가 떠나면 그룹 탈퇴를 보낸다, 라우터는 구성원이 있는 그룹의 멀티캐스트만 넘긴다; RFC 9776 §1 — v2가 탈퇴를 빨리 알게 했고 v3가 출발지 거르기를 더했으며 앞 판과 함께 쓸 수 있다, §4 — TTL 1, §5 — 비대칭), 문항 n078·n079 해설, 도식 `igmp-group`. 메시지 이름은 RFC 2236 §2.1의 Membership Query·Membership Report·Leave Group을 옮긴 것이다
+
+## (phase 74) RFC 3021 — Using 31-Bit Prefixes on IPv4 Point-to-Point Links
+https://www.rfc-editor.org/rfc/rfc3021
+
+Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
+
+- 그동안 번호를 매긴 서브넷은 대개 30비트보다 긴 마스크를 쓰지 않아, 링크 하나에 주소가 넷 든다 — **호스트 주소 둘, 모두 0인 네트워크 주소 하나, 모두 1인 브로드캐스트 주소 하나** — §1
+- 점대점 링크는 끝이 둘뿐이고 브로드캐스트라는 개념이 없다(한쪽이 보낸 패킷은 늘 다른 쪽이 받는다). 그래서 이 문서는 **점대점 링크에 한해** 31비트 마스크(`/31`)를 써서 링크 하나에 주소 둘만 쓰게 한다 — Abstract, §1
+- `/31`이면 호스트 칸이 1비트라 주소가 {네트워크 번호, 0}과 {네트워크 번호, -1} 둘뿐이고, 예전에는 이 둘이 네트워크 주소와 브로드캐스트 주소였다. `/31`인 점대점 링크에서는 둘을 호스트 주소로 읽어야 한다(MUST) — §2.1.
+  {네트워크 번호, 0}, 곧 「네트워크 주소 자체」는 directed broadcast의 낡은 형태이고 오래된 호스트가 아직 쓸 수 있다 — §2.2
+
+쓰인 곳: (phase 74에서 쓰일 곳) `ip-addressing.network-broadcast-address`(§1 — `/30`이면 주소 넷 가운데 호스트에 둘: 2^h − 2의 예, §2.1 — `/31`은 점대점 링크에만 쓰는 예외: 이름과 절만), `ip-addressing.subnet-sizing`(§1 — `/30`의 호스트 둘), 강의 수정 이력 L36(§2.2)·L38(§1)
+
+## (phase 74) RFC 2644 — Changing the Default for Directed Broadcasts in Routers
+https://www.rfc-editor.org/rfc/rfc2644
+
+BCP 34이고 RFC 1812를 고친다(rfc-editor 상태, 2026-10-29).
+
+- RFC 1812는 라우터가 directed broadcast를 받아 넘기는 것을 기본값으로 정했지만, 인터넷 기간망에서 그 쓰임은 거의 모두 다른 네트워크를 노린 공격이었다(스머프 공격이 directed broadcast를 받아 주는 네트워크를 증폭기로 쓴다) — §1, §2
+- 라우터는 directed broadcast를 받거나 넘기는 설정을 둘 수 있지만, **기본값은 받지도 넘기지도 않는 것**이어야 한다 — §3(RFC 1812 §4.2.2.11 (d)와 §5.3.5.2 둘째 문단을 바꿔 쓴다)
+
+쓰인 곳: (phase 74에서 쓰일 곳) `ip-addressing.network-broadcast-address`(다른 네트워크에서 그 네트워크의 브로드캐스트 주소로 보내도 라우터가 기본으로 막는다 — 쓸지는 step 1이 정한다)
+
+## (phase 74) RFC 1878 — Variable Length Subnet Table For IPv4 [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1878
+
+1995년 Informational로 나왔고 지금 상태는 Historic이다(rfc-editor 상태, 2026-10-29). 아래 두 줄은 계산 결과를 대조하는 역사 기록으로만 쓰고, 지금 규칙의 근거로는 RFC 1812 §4.2.2.11과 계산을 쓴다.
+
+- 접두사 길이 `/1`~`/32`마다 점 10진 마스크와 주소 수를 표로 든다. 예: `/8` 255.0.0.0(옛 A 클래스 하나), `/16` 255.255.0.0(옛 B 하나), `/24` 255.255.255.0(옛 C 하나), `/26` 255.255.255.192 주소 64개, `/27` 255.255.255.224 32개,
+  `/28` 255.255.255.240 16개, `/29` 255.255.255.248 8개, `/30` 255.255.255.252 4개 — 「Table」
+- B·C 클래스를 나누는 표(Table 1-1·1-2)는 **모두 0인 서브넷과 모두 1인 서브넷을 넣어** 센다 — 정의할 수 있는 서브넷을 다 쓰는 것이 RFC 1812에 따른 지금의 관행이라고 밝힌다. 그 두 서브넷을 빼고 세는 표(Table 2-1·2-2)도 싣지만,
+  그 방식은 「낡았다(obsolete)」고 적고 요즘 소프트웨어는 정의할 수 있는 네트워크를 다 쓸 수 있다고 적는다 — 「Subnets and Networks」
+
+쓰인 곳: (phase 74에서 쓰일 곳) `ip-addressing.subnetting`·`ip-addressing.subnet-sizing`(계산 결과의 대조, 모두 0·모두 1 서브넷을 빼던 방식이 낡았다는 기록), `ip-addressing.subnet-mask`(`/8`·`/16`·`/24`가 옛 A·B·C 하나와 같다는 대조)
+
+## (phase 74) IANA — IPv4 Address Space, IPv4 Multicast Address Space, RFC 5771 — IANA Guidelines for IPv4 Multicast Address Assignments
+https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xhtml
+https://www.iana.org/assignments/multicast-addresses/multicast-addresses.xhtml
+https://www.rfc-editor.org/rfc/rfc5771
+
+레지스트리는 XML판(`…/ipv4-address-space.xml` 2025-10-10판, `…/multicast-addresses.xml` 2026-08-20판)을 읽었다. RFC 5771은 BCP 51이다.
+
+- IPv4 Address Space: 224/8~239/8은 「Multicast」이고 주석이 그것을 **「예전 이름 D 클래스」**로 적는다. 240/8~255/8은 「Future use」(예약)이고 주석이 **「예전 이름 E 클래스」**로 적으며 RFC 1112를 근거로 든다 — 레지스트리 주석 14·17
+- IPv4 Address Space: 255.255.255.255는 그 예약 범위 안에서 제한 브로드캐스트 목적지 주소로 남겨 두었다 — 주석 18. 0/8은 자기 식별용(RFC 791 §3.2), 127/8은 루프백(RFC 1122 §3.2.1.3)으로 남겨 둔 블록이다 — 주석 2·3·7(자세히는 `ip-address-types` — step 5)
+- 멀티캐스트 주소는 224.0.0.0~239.255.255.255다 — IPv4 Multicast Address Space 머리 주석. 유니캐스트 주소처럼 블록을 지역 인터넷 등록 기관에 나눠 주지 않고 IANA가 바로 할당한다 — RFC 5771 §3
+
+쓰인 곳: (phase 74에서 쓰일 곳) `ip-addressing.address-classes`(D·E의 지금 이름과 범위, 첫 옥텟 0·127이 따로 쓰인다는 한 줄, E 범위 안에 255.255.255.255가 있다는 것)
