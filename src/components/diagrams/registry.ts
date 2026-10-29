@@ -65,6 +65,7 @@ import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LoopbackDiagram } from './LoopbackDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
@@ -95,6 +96,7 @@ import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
+import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -296,6 +298,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-addressing.subnet-sizing': SubnetSizingDiagram,
   'ip-address-types.public-address': PublicAllocationDiagram,
   'ip-address-types.private-address': PrivateRangesDiagram,
+  'ip-address-types.reserved-addresses': ReservedAddressesDiagram,
+  'ip-address-types.loopback': LoopbackDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
