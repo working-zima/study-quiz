@@ -70,6 +70,8 @@ import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
+import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
+import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
@@ -276,6 +278,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'icmp.echo': EchoDiagram,
   'icmp.ping': PingResultDiagram,
   'icmp.igmp': IgmpGroupDiagram,
+  'ip-addressing.network-host': NetworkHostPartsDiagram,
+  'ip-addressing.network-broadcast-address': NetworkBroadcastDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
