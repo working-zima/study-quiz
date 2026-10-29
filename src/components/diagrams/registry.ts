@@ -7,6 +7,7 @@ import { ArpCacheDiagram } from './ArpCacheDiagram'
 import { ArpExchangeDiagram } from './ArpExchangeDiagram'
 import { ArpHopsDiagram } from './ArpHopsDiagram'
 import { ArpPurposeDiagram } from './ArpPurposeDiagram'
+import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
@@ -326,6 +327,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.as': AutonomousSystemsDiagram,
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
+  'routing.bgp': AsPathDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -365,6 +365,52 @@
       "sources": [
         "routing.ospf"
       ]
+    },
+    "as-path": {
+      "label": "AS 3 안의 네트워크로 가는 경로를 BGP 라우터들이 이웃 AS에 넘겨 알릴 때 AS 경로가 AS마다 한 칸씩 길어지고, 자기 AS 번호가 든 경로는 쓰지 않는 것을 보이는 도식",
+      "svgLabel": "AS 1, AS 2, AS 3이 차례로 이어져 있고 AS마다 라우터가 하나 있다. AS 3 안에는 네트워크 198.51.100.0/24가 있다",
+      "question": "BGP는 경로를 알릴 때 무엇을 함께 보낼까?",
+      "idleCaption": "AS 1, AS 2, AS 3이 차례로 이어져 있고, AS 3 안에 네트워크 198.51.100.0/24가 있다. 버튼을 고르면 이 네트워크로 가는 경로가 AS를 지나며 AS 경로가 어떻게 길어지는지, 자기 번호가 든 경로를 어떻게 걸러 내는지 볼 수 있다.",
+      "legend": "큰 상자 하나가 AS 하나다. 가는 선은 라우터를 잇는 연결이고, 화살표는 경로 정보를 알리는 방향이다.",
+      "groups": {
+        "as-1": "AS 1",
+        "as-2": "AS 2",
+        "as-3": "AS 3"
+      },
+      "nodes": {
+        "router-1": "라우터",
+        "router-2": "라우터",
+        "router-3": "라우터",
+        "network": "네트워크 198.51.100.0/24"
+      },
+      "notes": {
+        "path-3": "AS 경로 「AS 3」",
+        "path-2": "AS 경로 「AS 2, AS 3」",
+        "loop-path": "AS 경로 「AS 1, AS 2, AS 3」",
+        "loop-own": "자기 번호 AS 2가 있다",
+        "loop-skip": "이 경로를 쓰지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "path",
+          "label": "AS 경로",
+          "caption": "AS 3의 라우터가 이 네트워크로 가는 경로를 AS 경로 「AS 3」과 함께 AS 2에 알린다. AS 2의 라우터는 자기 번호를 앞에 붙여 「AS 2, AS 3」으로 AS 1에 알린다. 경로가 AS를 하나 지날 때마다 그 AS의 번호가 목록 앞에 더해진다.",
+          "sources": [
+            "routing.bgp"
+          ]
+        },
+        {
+          "id": "loop",
+          "label": "고리 막기",
+          "caption": "AS 1의 라우터가 이 경로를 자기 번호를 붙여 AS 2에 되돌려 알리면 AS 경로는 「AS 1, AS 2, AS 3」이다. 이 경로를 쓰면 패킷이 AS 2와 AS 1 사이를 맴돌므로, AS 2의 라우터는 목록에서 자기 번호를 찾고 이 경로를 쓰지 않는다.",
+          "sources": [
+            "routing.bgp"
+          ]
+        }
+      ],
+      "sources": [
+        "routing.bgp"
+      ]
     }
   },
   "tables": {},
