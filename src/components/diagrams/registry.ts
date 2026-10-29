@@ -72,7 +72,9 @@ import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
+import { NatTranslationDiagram } from './NatTranslationDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
 import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
 import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
@@ -300,6 +302,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-address-types.private-address': PrivateRangesDiagram,
   'ip-address-types.reserved-addresses': ReservedAddressesDiagram,
   'ip-address-types.loopback': LoopbackDiagram,
+  'ip-address-types.nat': NatTranslationDiagram,
+  'ip-address-types.napt': NaptPortsDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
