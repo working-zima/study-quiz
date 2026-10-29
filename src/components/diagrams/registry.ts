@@ -1,4 +1,5 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
+import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
@@ -304,6 +305,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-address-types.loopback': LoopbackDiagram,
   'ip-address-types.nat': NatTranslationDiagram,
   'ip-address-types.napt': NaptPortsDiagram,
+  'ip-address-types.static-dynamic-address': AddressAssignmentDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

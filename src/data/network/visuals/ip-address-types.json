@@ -286,6 +286,51 @@
       "sources": [
         "ip-address-types.napt"
       ]
+    },
+    "address-assignment": {
+      "label": "관리자가 직접 넣은 정적 IP 주소와 DHCP 서버에게서 받는 동적 IP 주소를 견주는 도식",
+      "svgLabel": "사설 네트워크의 DHCP 서버(192.168.0.1), 관리자가 주소 192.168.0.2를 넣어 둔 네트워크 프린터, DHCP 서버에게서 주소를 받는 PC 1과 PC 2",
+      "question": "주소를 직접 정할 때와 자동으로 받을 때는 무엇이 다를까?",
+      "idleCaption": "사설 네트워크에 DHCP 서버, 네트워크 프린터, PC 1과 PC 2를 놓았다. 버튼을 고르면 관리자가 주소를 직접 넣어 둔 프린터와, DHCP 서버에게서 주소를 받는 두 PC를 따로 볼 수 있다.",
+      "legend": "얇은 선 박스가 사설 네트워크이고, 화살표는 DHCP 서버가 주소를 나눠 주는 방향이다. 장치 아래의 곁말은 그 장치가 쓰는 주소와 그 주소를 얻은 방법이다.",
+      "nodes": {
+        "server": "DHCP 서버",
+        "printer": "네트워크 프린터",
+        "pc1": "PC 1",
+        "pc2": "PC 2"
+      },
+      "groups": {
+        "private": "사설 네트워크"
+      },
+      "notes": {
+        "server-address": "192.168.0.1",
+        "printer-address": "192.168.0.2",
+        "printer-static": "관리자가 직접 넣은 주소",
+        "printer-kept": "바꾸지 않는 한 그대로",
+        "pc1-address": "받은 주소 192.168.0.10",
+        "pc2-address": "받은 주소 192.168.0.11"
+      },
+      "scenarios": [
+        {
+          "id": "static",
+          "label": "정적 할당",
+          "caption": "관리자가 네트워크 프린터의 설정에 사설 주소 192.168.0.2를 직접 넣어 두었다. DHCP 서버에게서 받는 주소가 아니고, 관리자가 바꾸지 않는 한 그대로라 다른 장치들이 늘 같은 주소로 이 프린터를 찾아온다.",
+          "sources": [
+            "ip-address-types.static-dynamic-address"
+          ]
+        },
+        {
+          "id": "dynamic",
+          "label": "동적 할당",
+          "caption": "PC 1과 PC 2는 네트워크에 이어질 때 DHCP 서버에게서 192.168.0.10, 192.168.0.11 같은 주소를 받는다. 더는 쓰지 않는 주소는 다른 장치에게 다시 주어지므로, 다음에 이어질 때는 다른 주소를 받을 수 있다.",
+          "sources": [
+            "ip-address-types.static-dynamic-address"
+          ]
+        }
+      ],
+      "sources": [
+        "ip-address-types.static-dynamic-address"
+      ]
     }
   },
   "tables": {},
