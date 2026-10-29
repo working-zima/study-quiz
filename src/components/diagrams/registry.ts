@@ -108,6 +108,8 @@ import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
+import { SubnetSizingDiagram } from './SubnetSizingDiagram'
+import { SubnettingDiagram } from './SubnettingDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -288,6 +290,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-addressing.cidr': CidrBoundaryDiagram,
   'ip-addressing.subnet-mask': SubnetMaskDiagram,
   'ip-addressing.network-address-calc': MaskAndDiagram,
+  'ip-addressing.subnetting': SubnettingDiagram,
+  'ip-addressing.subnet-sizing': SubnetSizingDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
