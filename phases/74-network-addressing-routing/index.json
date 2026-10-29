@@ -1,0 +1,91 @@
+{
+  "project": "Study Quiz",
+  "phase": "74-network-addressing-routing",
+  "steps": [
+    {
+      "step": 0,
+      "name": "addressing-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "network-host-broadcast",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "classes-cidr",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "mask-and",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "subnetting-sizing",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "address-types-sources",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "public-private",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "reserved-loopback",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "nat-napt",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "static-dynamic-address",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "dhcp",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "routing-sources",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "routing-table",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "prefix-default",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "static-dynamic-as",
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "name": "rip-ospf",
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "name": "bgp",
+      "status": "pending"
+    }
+  ]
+}
