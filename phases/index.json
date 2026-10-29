@@ -372,7 +372,8 @@
     },
     {
       "dir": "74-network-addressing-routing",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-29T16:38:10+0900"
     }
   ]
 }
