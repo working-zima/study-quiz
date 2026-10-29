@@ -1,0 +1,552 @@
+import { act, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { topics, visualsByTopicId } from '../../data/network'
+import { WIDE_DIAGRAM_QUERY } from '../../hooks/useWideDiagram'
+import { stripListMarker } from '../../lib/paragraph-blocks'
+import { boxesOutsideViewBox, estimateTextWidth, type SvgBox } from '../../lib/svg-bounds'
+import { ConceptList } from '../ConceptList'
+import { LongestPrefixDiagram, longestPrefixScenarios } from './LongestPrefixDiagram'
+
+const topicId = 'routing'
+const anchorConceptId = `${topicId}.longest-prefix-match`
+const labels = {
+  dest: '목적지 198.51.100.20',
+  'r24-prefix': '198.51.100.0/24',
+  'r24-gw': '203.0.113.2',
+  'r28-prefix': '198.51.100.16/28',
+  'r28-gw': '203.0.113.6',
+}
+const noteLabels = {
+  'dest-bits': '넷째 수 20 = 00010100',
+  'col-prefix': '목적지 주소',
+  'col-gw': '게이트웨이',
+  'match-24': '첫째 행 · 앞 24비트가 같다',
+  'match-28': '둘째 행 · 앞 28비트가 같다',
+  'bits-28': '둘째 행의 넷째 수 16 = 00010000',
+  'pick-28': '접두사가 더 긴 둘째 행을 고른다',
+  'next-hop': '게이트웨이 203.0.113.6에게 넘긴다',
+}
+type NoteId = keyof typeof noteLabels
+
+const nodeIds = Object.keys(labels)
+// 행 칸은 목적지 주소 칸과 게이트웨이 칸이다. 접두사 칸만 「행 노드」로 센다.
+const prefixCells = ['r24-prefix', 'r28-prefix']
+// 늘 보이는 곁말 — 목적지의 넷째 수와 열 이름.
+const alwaysNotes: NoteId[] = ['dest-bits', 'col-prefix', 'col-gw']
+
+const tallArrows: Record<string, string> = { pick: 'M40 24 H20 V132 H40' }
+const wideArrows: Record<string, string> = { pick: 'M160 88 H200' }
+const ends: Record<string, [string, string]> = { pick: ['dest', 'r28-prefix'] }
+
+type Note = { x: number, y: number, anchor: 'start' | 'middle' | 'end' }
+const tallNotes: Record<NoteId, Note> = {
+  'dest-bits': { x: 116, y: 60, anchor: 'middle' },
+  'col-prefix': { x: 100, y: 76, anchor: 'middle' },
+  'col-gw': { x: 208, y: 76, anchor: 'middle' },
+  'match-24': { x: 8, y: 172, anchor: 'start' },
+  'match-28': { x: 8, y: 188, anchor: 'start' },
+  'bits-28': { x: 8, y: 204, anchor: 'start' },
+  'pick-28': { x: 8, y: 172, anchor: 'start' },
+  'next-hop': { x: 8, y: 188, anchor: 'start' },
+}
+const wideNotes: Record<NoteId, Note> = {
+  'dest-bits': { x: 84, y: 112, anchor: 'middle' },
+  'col-prefix': { x: 260, y: 32, anchor: 'middle' },
+  'col-gw': { x: 368, y: 32, anchor: 'middle' },
+  'match-24': { x: 200, y: 128, anchor: 'start' },
+  'match-28': { x: 200, y: 144, anchor: 'start' },
+  'bits-28': { x: 200, y: 160, anchor: 'start' },
+  'pick-28': { x: 200, y: 128, anchor: 'start' },
+  'next-hop': { x: 200, y: 144, anchor: 'start' },
+}
+
+const question = '두 행에 모두 맞으면 어느 쪽으로 보낼까?'
+const idleCaption = '라우터 1의 라우팅 테이블에 198.51.100.0/24 행과 그 안의 좁은 범위를 가리키는 198.51.100.16/28 행이 있다. 버튼을 고르면 목적지가 198.51.100.20인 패킷이 어느 행에 맞고, 그 가운데 어느 행을 고르는지 볼 수 있다.'
+const legend = '위 상자는 라우터 1이 받은 패킷이고, 그 아래 칸들은 라우터 1의 라우팅 테이블이다. 화살표는 라우터가 고른 행이다.'
+const figureName = '라우터 1의 라우팅 테이블에서 목적지가 198.51.100.20인 패킷이 198.51.100.0/24 행과 198.51.100.16/28 행에 모두 맞을 때, 접두사가 더 긴 행을 고르는 과정을 보이는 도식'
+const expectedScenarios = [
+  {
+    id: 'both-match', label: '두 행 모두',
+    nodes: ['dest', 'r24-prefix', 'r28-prefix'],
+    paths: [] as string[],
+    notes: ['match-24', 'match-28', 'bits-28'] as NoteId[],
+    caption: '목적지 198.51.100.20은 첫째 행과 앞 세 수 198.51.100, 곧 앞 24비트가 같아 맞는다. 넷째 수 20(00010100)과 16(00010000)의 앞 4비트도 0001로 같아, 앞 28비트를 견주는 둘째 행에도 맞는다.',
+    sources: [anchorConceptId],
+  },
+  {
+    id: 'longest', label: '가장 긴 접두사',
+    nodes: ['dest', 'r28-prefix', 'r28-gw'],
+    paths: ['pick'],
+    notes: ['pick-28', 'next-hop'] as NoteId[],
+    caption: '맞는 행이 둘이면 접두사가 더 긴 행을 고른다. 앞 28비트까지 맞는 둘째 행이 더 좁은 범위를 가리키므로, 라우터 1은 그 행의 게이트웨이 203.0.113.6, 곧 라우터 3에게 패킷을 넘긴다.',
+    sources: [anchorConceptId],
+  },
+]
+
+const tallBox: [number, number, number, number] = [0, 0, 280, 216]
+const wideBox: [number, number, number, number] = [0, 0, 440, 168]
+
+function diagram() {
+  return screen.getByRole('img', { name: '목적지가 198.51.100.20인 패킷과 라우터 1의 라우팅 테이블 두 행' })
+}
+
+async function selectScenario(label: string) {
+  await act(async () => { await userEvent.click(screen.getByRole('button', { name: label })) })
+}
+
+function readBox(rect: Element): SvgBox {
+  return {
+    id: rect.parentElement?.getAttribute('data-node') ?? '',
+    x: Number(rect.getAttribute('x')), y: Number(rect.getAttribute('y')),
+    width: Number(rect.getAttribute('width')), height: Number(rect.getAttribute('height')),
+  }
+}
+
+function nodeBox(id: string) {
+  return readBox(diagram().querySelector(`[data-node="${id}"] rect`)!)
+}
+
+function shownIds(selector: string, attribute: string) {
+  return Array.from(diagram().querySelectorAll(selector), (element) => element.getAttribute(attribute)!)
+}
+
+function overlaps(a: SvgBox, b: SvgBox) {
+  return a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height
+}
+
+// 글자 크기 9인 글자가 차지하는 상자. 반각 글자가 화면에서 더 넓게 그려지는 것을 생각해 폭을 1.15배로 잡는다.
+function textBox(text: Element, id: string): SvgBox {
+  const x = Number(text.getAttribute('x'))
+  const y = Number(text.getAttribute('y'))
+  const width = estimateTextWidth(text.textContent!, 9) * 1.15
+  const anchor = text.getAttribute('text-anchor')
+  const left = anchor === 'end' ? x - width : anchor === 'middle' ? x - width / 2 : x
+  return { id, x: left, y: y - 9, width, height: 9 }
+}
+
+type Segment = { x1: number, y1: number, x2: number, y2: number }
+
+// 직교 경로를 선분 목록으로 편다. M/H/V만 나온다.
+function segments(d: string) {
+  const result: Segment[] = []
+  let x = 0
+  let y = 0
+  for (const [, command, first, second] of d.matchAll(/([MHV])(-?\d+)(?: (-?\d+))?/gu)) {
+    if (command === 'M') { x = Number(first); y = Number(second); continue }
+    const next = command === 'H' ? { x: Number(first), y } : { x, y: Number(first) }
+    result.push({ x1: x, y1: y, x2: next.x, y2: next.y })
+    x = next.x
+    y = next.y
+  }
+  return result
+}
+
+// 선분이 상자 안쪽을 지나는가. 변에 닿기만 하는 것은 세지 않는다.
+function crossesInside(segment: Segment, box: SvgBox) {
+  const left = Math.min(segment.x1, segment.x2)
+  const right = Math.max(segment.x1, segment.x2)
+  const top = Math.min(segment.y1, segment.y2)
+  const bottom = Math.max(segment.y1, segment.y2)
+  if (top === bottom) return top > box.y && top < box.y + box.height && Math.min(right, box.x + box.width) > Math.max(left, box.x)
+  return left > box.x && left < box.x + box.width && Math.min(bottom, box.y + box.height) > Math.max(top, box.y)
+}
+
+// 선분이 상자에 닿는가. 변에 닿는 것도 센다.
+function touches(segment: Segment, box: SvgBox) {
+  const left = Math.min(segment.x1, segment.x2)
+  const right = Math.max(segment.x1, segment.x2)
+  const top = Math.min(segment.y1, segment.y2)
+  const bottom = Math.max(segment.y1, segment.y2)
+  return left <= box.x + box.width && right >= box.x && top <= box.y + box.height && bottom >= box.y
+}
+
+function onEdge(x: number, y: number, box: SvgBox) {
+  const insideX = x >= box.x && x <= box.x + box.width
+  const insideY = y >= box.y && y <= box.y + box.height
+  return ((x === box.x || x === box.x + box.width) && insideY) || ((y === box.y || y === box.y + box.height) && insideX)
+}
+
+function lineEnds(element: Element) {
+  const list = segments(element.getAttribute('d')!)
+  return { start: { x: list[0].x1, y: list[0].y1 }, end: { x: list[list.length - 1].x2, y: list[list.length - 1].y2 } }
+}
+
+// 점이 변 위에 놓인 노드. 칸끼리 맞닿은 변 위면 둘 다 나오므로 모두 돌려준다.
+function nodesAt(point: { x: number, y: number }) {
+  return nodeIds.filter((id) => onEdge(point.x, point.y, nodeBox(id)))
+}
+
+// 보이는 곁말이 지정한 id·글·자리이고, viewBox 안에서 노드·선·다른 곁말과 겹치지 않는다.
+function expectNotes(ids: NoteId[], places: Record<NoteId, Note>, width: number, height: number) {
+  const shown = Array.from(diagram().querySelectorAll('[data-note]'))
+  expect(shown.map((note) => note.getAttribute('data-note')).sort()).toEqual([...ids].sort())
+  const boxes = shown.map((note) => textBox(note, note.getAttribute('data-note')!))
+  for (const note of shown) {
+    const id = note.getAttribute('data-note')! as NoteId
+    const box = textBox(note, id)
+    expect(note.textContent).toBe(noteLabels[id])
+    expect(note).toHaveAttribute('x', String(places[id].x))
+    expect(note).toHaveAttribute('y', String(places[id].y))
+    expect(note).toHaveAttribute('text-anchor', places[id].anchor)
+    expect(note).toHaveAttribute('font-size', '9')
+    expect(note).toHaveClass('fill-muted')
+    expect(note.closest('[opacity]')).toBeNull()
+    expect(box.x, id).toBeGreaterThanOrEqual(0)
+    expect(box.x + box.width, id).toBeLessThanOrEqual(width)
+    expect(box.y, id).toBeGreaterThanOrEqual(0)
+    expect(box.y + box.height, id).toBeLessThanOrEqual(height)
+    for (const node of nodeIds.map(nodeBox)) expect(overlaps(box, node), `${id} ↔ ${node.id}`).toBe(false)
+    for (const line of diagram().querySelectorAll('[data-path]')) {
+      for (const segment of segments(line.getAttribute('d')!)) expect(touches(segment, box), `${id} ↔ 선`).toBe(false)
+    }
+    for (const other of boxes.filter((item) => item.id !== id)) expect(overlaps(box, other), `${id} ↔ ${other.id}`).toBe(false)
+  }
+}
+
+async function expectScenario(
+  scenario: typeof expectedScenarios[number],
+  arrows: Record<string, string>,
+  places: Record<NoteId, Note>,
+  width: number,
+  height: number,
+  container: HTMLElement,
+) {
+  await selectScenario(scenario.label)
+
+  for (const element of diagram().querySelectorAll('[data-node]')) {
+    const id = element.getAttribute('data-node')!
+    expect(element, id).toHaveAttribute('opacity', scenario.nodes.includes(id) ? '1' : '0.25')
+  }
+
+  const shownPaths = Array.from(diagram().querySelectorAll('[data-path]'))
+  expect(shownPaths.map((path) => path.getAttribute('data-path'))).toEqual(scenario.paths)
+  for (const path of shownPaths) {
+    expect(path).toHaveAttribute('d', arrows[path.getAttribute('data-path')!])
+    expect(path).toHaveAttribute('stroke-width', '2')
+    expect(path).toHaveAttribute('marker-end', `url(#${diagram().querySelector('marker')!.id})`)
+    expect(path).toHaveClass('stroke-title')
+    expect(path.closest('[opacity]')).toBeNull()
+  }
+  expectNotes([...alwaysNotes, ...scenario.notes], places, width, height)
+  expect(container.querySelector('figcaption')!.textContent).toBe(scenario.caption)
+  expect(container.querySelector('figcaption')).toHaveAttribute('aria-live', 'polite')
+  expect(screen.getByRole('button', { name: scenario.label })).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'false')
+}
+
+// 모든 rect가 viewBox 안에 있고, 라벨은 자기 상자 안에 들어가며 노드끼리 겹치지 않는다. 노드는 모두 회색이다.
+function expectFits(viewBox: [number, number, number, number]) {
+  const boxes = Array.from(diagram().querySelectorAll('[data-node] rect'), readBox)
+  expect(boxes).toHaveLength(nodeIds.length)
+  expect(boxesOutsideViewBox(boxes, viewBox)).toEqual([])
+  expect(diagram().querySelectorAll('rect')).toHaveLength(nodeIds.length)
+
+  for (const [id, label] of Object.entries(labels)) {
+    const node = diagram().querySelector(`[data-node="${id}"]`)!
+    const box = readBox(node.querySelector('rect')!)
+    expect(node.querySelector('text')!.textContent).toBe(label)
+    expect(node.querySelector('text')).toHaveAttribute('font-size', '10')
+    expect(node.querySelector('rect')).toHaveClass('stroke-disabled')
+    expect(box.height).toBe(32)
+    expect(estimateTextWidth(label, 10) + 12, `${id} ${label}`).toBeLessThanOrEqual(box.width)
+    // 반각 글자가 많은 라벨이라 화면에서 넓어지는 만큼도 들어가야 한다.
+    expect(estimateTextWidth(label, 10) * 1.15 + 12, `${id} ${label} ×1.15`).toBeLessThanOrEqual(box.width)
+  }
+  for (let i = 0; i < nodeIds.length; i += 1) {
+    for (let j = i + 1; j < nodeIds.length; j += 1) {
+      expect(overlaps(nodeBox(nodeIds[i]), nodeBox(nodeIds[j])), `${nodeIds[i]} ↔ ${nodeIds[j]}`).toBe(false)
+    }
+  }
+  expect(diagram().querySelector('[class*="green"], [class*="red"], [class*="amber"], [class*="orange"], [class*="diagram-"]')).toBeNull()
+}
+
+async function expectArrowEnds() {
+  for (const { label } of expectedScenarios) {
+    await selectScenario(label)
+    const nodeBoxes = Array.from(diagram().querySelectorAll('[data-node] rect'), readBox)
+    for (const path of diagram().querySelectorAll('[data-path]')) {
+      const id = path.getAttribute('data-path')!
+      for (const segment of segments(path.getAttribute('d')!)) {
+        for (const node of nodeBoxes) expect(crossesInside(segment, node), `${id} ↔ ${node.id}`).toBe(false)
+      }
+      const { start, end } = lineEnds(path)
+      expect(nodesAt(start), `${id} 시작`).toEqual([ends[id][0]])
+      expect(nodesAt(end), `${id} 끝`).toEqual([ends[id][1]])
+    }
+  }
+}
+
+// 요점: 「두 행 모두」는 접두사 칸 둘이 모두 선명하다. 「가장 긴 접두사」는 접두사 칸 가운데 /28 하나만 선명하고,
+// 목적지에서 그 행으로 가는 화살표 하나만 보인다. 그 /28 행은 목적지와 앞 28비트가 같고, /24 행보다 접두사가 길다.
+async function expectPoint() {
+  const body = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!.paragraphs.join('\n')
+  const opacity = (id: string) => diagram().querySelector(`[data-node="${id}"]`)!.getAttribute('opacity')
+  const toBits = (address: string) => address.split('.').map((part) => Number(part).toString(2).padStart(8, '0')).join('')
+
+  await selectScenario('두 행 모두')
+  expect(prefixCells.filter((id) => opacity(id) === '1')).toEqual(['r24-prefix', 'r28-prefix'])
+  expect(diagram().querySelectorAll('[data-path]')).toHaveLength(0)
+
+  await selectScenario('가장 긴 접두사')
+  const chosen = prefixCells.filter((id) => opacity(id) === '1')
+  expect(chosen).toEqual(['r28-prefix'])
+  expect(labels[chosen[0] as keyof typeof labels]).toContain('/28')
+  const paths = Array.from(diagram().querySelectorAll('[data-path]'))
+  expect(paths).toHaveLength(1)
+  const { start, end } = lineEnds(paths[0])
+  expect(nodesAt(start)).toEqual(['dest'])
+  expect(nodesAt(end)).toEqual(['r28-prefix'])
+
+  // 두 행 모두 목적지와 접두사 길이만큼 앞 비트가 같고, 고른 행의 접두사가 더 길다.
+  const destination = toBits('198.51.100.20')
+  for (const label of [labels['r24-prefix'], labels['r28-prefix']]) {
+    const [address, length] = label.split('/')
+    expect(toBits(address).slice(0, Number(length)), label).toBe(destination.slice(0, Number(length)))
+  }
+  expect(Number(labels['r28-prefix'].split('/')[1])).toBeGreaterThan(Number(labels['r24-prefix'].split('/')[1]))
+  expect(noteLabels['dest-bits'].endsWith(Number(20).toString(2).padStart(8, '0'))).toBe(true)
+  expect(noteLabels['bits-28'].endsWith(Number(16).toString(2).padStart(8, '0'))).toBe(true)
+
+  expect(body).toContain('`198.51.100.16/28`로 게이트웨이가 또 다른 이웃 라우터인 라우터 3(`203.0.113.6`)이다')
+  expect(body).toContain('목적지의 넷째 수 20은 `00010100`이라 앞 4비트가 `0001`이고, 둘째 행의 넷째 수 16도 `00010000`이라 앞 4비트가 `0001`이므로 둘째 행에도 맞는다')
+  expect(body).toContain('두 행 모두 맞으니 접두사가 28로 더 긴 둘째 행을 고르고, 패킷을 게이트웨이 `203.0.113.6`, 곧 라우터 3에게 넘긴다')
+}
+
+async function expectUniqueMarkers() {
+  render(<><LongestPrefixDiagram /><LongestPrefixDiagram /></>)
+  const figures = screen.getAllByRole('figure', { name: figureName })
+  for (const figure of figures) {
+    await act(async () => { await userEvent.click(within(figure).getByRole('button', { name: '가장 긴 접두사' })) })
+    expect(figure.querySelectorAll('[data-path]')).toHaveLength(1)
+    for (const path of figure.querySelectorAll('[data-path]')) {
+      expect(path).toHaveAttribute('marker-end', `url(#${figure.querySelector('marker')!.id})`)
+    }
+  }
+  expect(new Set(figures.map((figure) => figure.querySelector('marker')!.id)).size).toBe(2)
+}
+
+describe('LongestPrefixDiagram', () => {
+  it('물음형 제목을 헤딩 없이 시나리오 버튼보다 앞에 보인다', () => {
+    render(<LongestPrefixDiagram />)
+    const title = screen.getByText(question)
+
+    expect(title.tagName).toBe('P')
+    expect(title).toHaveClass('text-sm', 'text-title')
+    expect(title.compareDocumentPosition(screen.getByRole('button', { name: '전체' })) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(screen.queryByRole('heading')).toBeNull()
+  })
+
+  it('처음에는 노드가 모두 선명하고 화살표 없이 늘 보이는 곁말과 선택 안내만 나온다', () => {
+    const { container } = render(<LongestPrefixDiagram />)
+
+    expect(shownIds('[data-node]', 'data-node')).toEqual(nodeIds)
+    for (const element of diagram().querySelectorAll('[data-node]')) expect(element).toHaveAttribute('opacity', '1')
+    expect(diagram().querySelectorAll('[data-path]')).toHaveLength(0)
+    expectNotes(alwaysNotes, tallNotes, 280, 216)
+    expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
+    expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
+  })
+
+  it.each(expectedScenarios)('$label: 지정한 노드·화살표·곁말만 보인다', async (scenario) => {
+    const { container } = render(<LongestPrefixDiagram />)
+    await expectScenario(scenario, tallArrows, tallNotes, 280, 216, container)
+  })
+
+  it('시나리오를 바꾸면 이전 화살표·곁말이 사라지고 전체를 누르면 초기 상태로 돌아온다', async () => {
+    const { container } = render(<LongestPrefixDiagram />)
+    for (const scenario of [...expectedScenarios, expectedScenarios[0]]) {
+      await selectScenario(scenario.label)
+      expect(shownIds('[data-path]', 'data-path')).toEqual(scenario.paths)
+      expect(shownIds('[data-note]', 'data-note').sort()).toEqual([...alwaysNotes, ...scenario.notes].sort())
+    }
+    await selectScenario('전체')
+
+    for (const element of diagram().querySelectorAll('[data-node]')) expect(element).toHaveAttribute('opacity', '1')
+    expect(diagram().querySelectorAll('[data-path]')).toHaveLength(0)
+    expect(shownIds('[data-note]', 'data-note').sort()).toEqual([...alwaysNotes].sort())
+    expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
+  })
+
+  it('노드가 280×216 viewBox 안에 있고 모바일 너비 보정을 유지한다', () => {
+    render(<LongestPrefixDiagram />)
+
+    expect(diagram()).toHaveAttribute('viewBox', '0 0 280 216')
+    expect(diagram().parentElement).toHaveClass('-mx-4', 'w-full', 'max-w-[380px]', 'max-sm:w-[calc(100%+2rem)]', 'sm:mx-0')
+    expect(diagram().parentElement).not.toHaveClass('mx-auto')
+    expectFits(tallBox)
+  })
+
+  it('화살표 양 끝은 두 노드의 변에 닿고 어떤 선분도 노드 안을 지나지 않는다', async () => {
+    render(<LongestPrefixDiagram />)
+    await expectArrowEnds()
+  })
+
+  it('두 행에 모두 맞으면 접두사가 더 긴 /28 행 하나만 고른다', async () => {
+    render(<LongestPrefixDiagram />)
+    await expectPoint()
+  })
+
+  it('두 번 렌더해도 화살표 마커 id가 겹치지 않고 각 화살표가 자기 마커를 가리킨다', async () => {
+    await expectUniqueMarkers()
+  })
+
+  it('JSON과 컴포넌트의 시나리오 id가 같고 지정한 문구와 존재하는 근거 개념을 JSON에서 읽는다', () => {
+    render(<LongestPrefixDiagram />)
+    const text = visualsByTopicId[topicId].diagrams['longest-prefix']
+    const ids = longestPrefixScenarios.map(({ id }) => id).sort()
+    const conceptIds = topics.find(({ id }) => id === topicId)!.concepts.map(({ id }) => id)
+
+    expect(ids).toEqual(expectedScenarios.map(({ id }) => id).sort())
+    expect(ids).toEqual(text.scenarios.map(({ id }) => id).sort())
+    expect(text.nodes).toEqual(labels)
+    expect(text.groups).toBeUndefined()
+    expect(text.notes).toEqual(noteLabels)
+    expect(text.question).toBe(question)
+    expect(text.idleCaption).toBe(idleCaption)
+    expect(text.legend).toBe(legend)
+    expect(text.sources).toEqual([anchorConceptId, `${topicId}.routing-table`])
+    expect(text.label).toBe(figureName)
+    expect(screen.getByText(legend)).toBeInTheDocument()
+    expect(screen.getAllByRole('button').map((button) => button.textContent)).toEqual(['전체', ...expectedScenarios.map(({ label }) => label)])
+    for (const expected of expectedScenarios) {
+      const wording = text.scenarios.find(({ id }) => id === expected.id)!
+      const scenario = longestPrefixScenarios.find(({ id }) => id === expected.id)!
+      expect(wording).toEqual({ id: expected.id, label: expected.label, caption: expected.caption, sources: expected.sources })
+      expect(scenario.label).toBe(wording.label)
+      expect(scenario.caption).toBe(wording.caption)
+      expect(scenario.nodes).toEqual(expected.nodes)
+      expect(scenario.paths).toEqual(expected.paths)
+    }
+    for (const source of [...text.sources, ...text.scenarios.flatMap(({ sources }) => sources)]) {
+      expect(conceptIds).toContain(source)
+    }
+  })
+
+  it.each([2, 4] as const)('공유 본문 h%i에서 롱기스트 프리픽스 매치 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
+    const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
+    render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
+    const figure = screen.getByRole('figure', { name: figureName })
+
+    expect(figure.closest('article')).toHaveAttribute('id', concept.id)
+    expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.map(stripListMarker).join('').replace(/\*\*|`/gu, ''))
+    expect(figure.closest('article')!.lastElementChild).toBe(figure)
+    expect(screen.getAllByRole('figure')).toEqual([figure])
+    expect(within(figure).queryByRole('heading')).toBeNull()
+  })
+
+  describe('가로형 (768px 이상)', () => {
+    function mockMatchMedia(matches: boolean) {
+      const listeners = new Set<(event: MediaQueryListEvent) => void>()
+      const mediaQuery = {
+        matches,
+        media: WIDE_DIAGRAM_QUERY,
+        addEventListener: vi.fn((type: string, listener: (event: MediaQueryListEvent) => void) => {
+          if (type === 'change') listeners.add(listener)
+        }),
+        removeEventListener: vi.fn((type: string, listener: (event: MediaQueryListEvent) => void) => {
+          if (type === 'change') listeners.delete(listener)
+        }),
+      }
+      vi.stubGlobal('matchMedia', vi.fn(() => mediaQuery))
+
+      return {
+        change(nextMatches: boolean) {
+          mediaQuery.matches = nextMatches
+          const event = Object.assign(new Event('change'), { matches: nextMatches, media: mediaQuery.media })
+          listeners.forEach((listener) => listener(event))
+        },
+      }
+    }
+
+    async function collectIds(selector: string, attribute: string) {
+      const found = new Set<string>()
+      for (const { label } of expectedScenarios) {
+        await selectScenario(label)
+        for (const id of shownIds(selector, attribute)) found.add(id)
+      }
+      return [...found].sort()
+    }
+
+    beforeEach(() => {
+      mockMatchMedia(true)
+    })
+
+    afterEach(() => {
+      vi.unstubAllGlobals()
+    })
+
+    it('440×168 viewBox를 w-full 래퍼 하나로 그리고 화살표 마커를 유지한다', () => {
+      render(<LongestPrefixDiagram />)
+
+      expect(screen.getAllByRole('img')).toHaveLength(1)
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 440 168')
+      expect(diagram()).toHaveAttribute('class', 'block h-auto w-full')
+      expect(diagram().parentElement).toHaveAttribute('class', 'w-full')
+      expect(diagram().parentElement).not.toHaveClass('max-w-[380px]', '-mx-4')
+      expect(diagram().querySelector('marker')).not.toBeNull()
+      expectNotes(alwaysNotes, wideNotes, 440, 168)
+    })
+
+    it('노드 id 집합과 화살표·곁말 id 합집합이 세로형과 같다', async () => {
+      const { change } = mockMatchMedia(false)
+      render(<LongestPrefixDiagram />)
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 280 216')
+      const tallNodes = shownIds('[data-node]', 'data-node').sort()
+      const tallPathIds = await collectIds('[data-path]', 'data-path')
+      const tallNoteIds = await collectIds('[data-note]', 'data-note')
+
+      act(() => change(true))
+
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 440 168')
+      expect(shownIds('[data-node]', 'data-node').sort()).toEqual(tallNodes)
+      expect(tallNodes).toEqual([...nodeIds].sort())
+      expect(tallPathIds).toEqual(Object.keys(tallArrows).sort())
+      expect(tallNoteIds).toEqual(Object.keys(noteLabels).sort())
+      expect(await collectIds('[data-path]', 'data-path')).toEqual(tallPathIds)
+      expect(await collectIds('[data-note]', 'data-note')).toEqual(tallNoteIds)
+    })
+
+    it('모든 rect가 440×168 viewBox 안에 있고 라벨이 자기 상자 안에 들어간다', () => {
+      render(<LongestPrefixDiagram />)
+      expectFits(wideBox)
+    })
+
+    it.each(expectedScenarios)('$label: 세로형과 같은 노드·화살표·곁말·캡션을 보인다', async (scenario) => {
+      const { container } = render(<LongestPrefixDiagram />)
+      await expectScenario(scenario, wideArrows, wideNotes, 440, 168, container)
+    })
+
+    it('화살표 양 끝은 두 노드의 변에 닿고 어떤 선분도 노드 안을 지나지 않는다', async () => {
+      render(<LongestPrefixDiagram />)
+      await expectArrowEnds()
+    })
+
+    it('두 행에 모두 맞으면 접두사가 더 긴 /28 행 하나만 고른다', async () => {
+      render(<LongestPrefixDiagram />)
+      await expectPoint()
+    })
+
+    it('두 번 렌더해도 화살표 마커 id가 겹치지 않고 각 화살표가 자기 마커를 가리킨다', async () => {
+      await expectUniqueMarkers()
+    })
+
+    it('세로형에서 고른 시나리오가 폭을 바꾸어도 유지된다', async () => {
+      const { change } = mockMatchMedia(false)
+      const { container } = render(<LongestPrefixDiagram />)
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 280 216')
+      await selectScenario('가장 긴 접두사')
+      const caption = container.querySelector('figcaption')!.textContent
+
+      act(() => change(true))
+
+      expect(diagram().getAttribute('viewBox')!.split(' ').map(Number)[2]).toBe(440)
+      expect(screen.getByRole('button', { name: '가장 긴 접두사' })).toHaveAttribute('aria-pressed', 'true')
+      expect(container.querySelector('figcaption')!.textContent).toBe(caption)
+      const paths = Array.from(diagram().querySelectorAll('[data-path]'))
+      expect(paths.map((path) => path.getAttribute('data-path'))).toEqual(['pick'])
+      expect(paths[0]).toHaveAttribute('d', wideArrows.pick)
+      expect(diagram().querySelector('[data-note="pick-28"]')).toHaveAttribute('x', String(wideNotes['pick-28'].x))
+    })
+  })
+})

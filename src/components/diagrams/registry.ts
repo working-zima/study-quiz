@@ -21,6 +21,7 @@ import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
+import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
@@ -69,6 +70,7 @@ import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
@@ -314,6 +316,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-address-types.dhcp-messages': DhcpExchangeDiagram,
   'routing.routing': HopByHopDiagram,
   'routing.routing-table': RoutingTableDiagram,
+  'routing.longest-prefix-match': LongestPrefixDiagram,
+  'routing.default-route': DefaultRouteDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
