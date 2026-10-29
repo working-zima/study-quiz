@@ -68,6 +68,7 @@ import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
+import { MaskAndDiagram } from './MaskAndDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -106,6 +107,7 @@ import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
+import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -284,6 +286,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-addressing.network-broadcast-address': NetworkBroadcastDiagram,
   'ip-addressing.address-classes': AddressClassesDiagram,
   'ip-addressing.cidr': CidrBoundaryDiagram,
+  'ip-addressing.subnet-mask': SubnetMaskDiagram,
+  'ip-addressing.network-address-calc': MaskAndDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
