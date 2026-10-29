@@ -1,15 +1,20 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
+import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
+import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { ArpCacheDiagram } from './ArpCacheDiagram'
 import { ArpExchangeDiagram } from './ArpExchangeDiagram'
 import { ArpHopsDiagram } from './ArpHopsDiagram'
 import { ArpPurposeDiagram } from './ArpPurposeDiagram'
+import { AsPathDiagram } from './AsPathDiagram'
+import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
@@ -18,7 +23,11 @@ import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
+import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
+import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
+import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -43,6 +52,7 @@ import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
@@ -62,14 +72,22 @@ import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
+import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LongestPrefixDiagram } from './LongestPrefixDiagram'
+import { LoopbackDiagram } from './LoopbackDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
+import { MaskAndDiagram } from './MaskAndDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
+import { NatTranslationDiagram } from './NatTranslationDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
+import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
+import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
@@ -85,14 +103,19 @@ import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
+import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
+import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
 import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
+import { RouteFailoverDiagram } from './RouteFailoverDiagram'
+import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -102,6 +125,9 @@ import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
+import { SubnetMaskDiagram } from './SubnetMaskDiagram'
+import { SubnetSizingDiagram } from './SubnetSizingDiagram'
+import { SubnettingDiagram } from './SubnettingDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -276,6 +302,32 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'icmp.echo': EchoDiagram,
   'icmp.ping': PingResultDiagram,
   'icmp.igmp': IgmpGroupDiagram,
+  'ip-addressing.network-host': NetworkHostPartsDiagram,
+  'ip-addressing.network-broadcast-address': NetworkBroadcastDiagram,
+  'ip-addressing.address-classes': AddressClassesDiagram,
+  'ip-addressing.cidr': CidrBoundaryDiagram,
+  'ip-addressing.subnet-mask': SubnetMaskDiagram,
+  'ip-addressing.network-address-calc': MaskAndDiagram,
+  'ip-addressing.subnetting': SubnettingDiagram,
+  'ip-addressing.subnet-sizing': SubnetSizingDiagram,
+  'ip-address-types.public-address': PublicAllocationDiagram,
+  'ip-address-types.private-address': PrivateRangesDiagram,
+  'ip-address-types.reserved-addresses': ReservedAddressesDiagram,
+  'ip-address-types.loopback': LoopbackDiagram,
+  'ip-address-types.nat': NatTranslationDiagram,
+  'ip-address-types.napt': NaptPortsDiagram,
+  'ip-address-types.static-dynamic-address': AddressAssignmentDiagram,
+  'ip-address-types.dhcp': DhcpLeaseDiagram,
+  'ip-address-types.dhcp-messages': DhcpExchangeDiagram,
+  'routing.routing': HopByHopDiagram,
+  'routing.routing-table': RoutingTableDiagram,
+  'routing.longest-prefix-match': LongestPrefixDiagram,
+  'routing.default-route': DefaultRouteDiagram,
+  'routing.static-dynamic-routing': RouteFailoverDiagram,
+  'routing.as': AutonomousSystemsDiagram,
+  'routing.rip': DistanceVectorDiagram,
+  'routing.ospf': LinkStateDiagram,
+  'routing.bgp': AsPathDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
