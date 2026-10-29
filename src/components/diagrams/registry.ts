@@ -22,6 +22,8 @@ import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
+import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
+import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -306,6 +308,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-address-types.nat': NatTranslationDiagram,
   'ip-address-types.napt': NaptPortsDiagram,
   'ip-address-types.static-dynamic-address': AddressAssignmentDiagram,
+  'ip-address-types.dhcp': DhcpLeaseDiagram,
+  'ip-address-types.dhcp-messages': DhcpExchangeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
