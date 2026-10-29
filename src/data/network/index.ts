@@ -9,6 +9,7 @@ import ipAddressingVisuals from './visuals/ip-addressing.json'
 import ipProtocolVisuals from './visuals/ip-protocol.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
+import routingVisuals from './visuals/routing.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -27,6 +28,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'icmp': icmpVisuals,
   'ip-addressing': ipAddressingVisuals,
   'ip-address-types': ipAddressTypesVisuals,
+  'routing': routingVisuals,
 }
 
 export const networkSubject: Subject = {

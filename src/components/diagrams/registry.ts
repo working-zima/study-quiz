@@ -48,6 +48,7 @@ import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
@@ -107,6 +108,7 @@ import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
 import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
+import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -310,6 +312,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ip-address-types.static-dynamic-address': AddressAssignmentDiagram,
   'ip-address-types.dhcp': DhcpLeaseDiagram,
   'ip-address-types.dhcp-messages': DhcpExchangeDiagram,
+  'routing.routing': HopByHopDiagram,
+  'routing.routing-table': RoutingTableDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
