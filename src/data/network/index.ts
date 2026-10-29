@@ -4,6 +4,7 @@ import arpVisuals from './visuals/arp.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
 import icmpVisuals from './visuals/icmp.json'
+import ipAddressTypesVisuals from './visuals/ip-address-types.json'
 import ipAddressingVisuals from './visuals/ip-addressing.json'
 import ipProtocolVisuals from './visuals/ip-protocol.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
@@ -25,6 +26,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'arp': arpVisuals,
   'icmp': icmpVisuals,
   'ip-addressing': ipAddressingVisuals,
+  'ip-address-types': ipAddressTypesVisuals,
 }
 
 export const networkSubject: Subject = {

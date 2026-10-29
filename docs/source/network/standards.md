@@ -2028,8 +2028,10 @@ Informational이고 RFC 2050을 폐기·대체했다(rfc-editor 상태, 2026-10-
 - RIR은 대륙 규모 지역마다 있고 지금 다섯이다 — AfriNIC(아프리카), APNIC(아시아·태평양 일부), ARIN(북아메리카와 카리브 일부), LACNIC(라틴 아메리카와 카리브 일부), RIPE NCC(유럽, 아시아·중동 일부) — §3
 - 나라 단위 등록 기관(NIR)이라는 말은 이 문서에 없다. LIR은 주소를 받은 곳 — 대개 그 지역의 RIR, 상위 LIR, 또는 **다른 번호 배정 기관** — 과의 관계로 세워진다고만 적는다 — §3.
   그러니 한국의 KISA가 이 계층의 어디에 있는지(APNIC과의 관계)는 허용한 출처로 댈 수 없다(RFC 7020·RFC 2050·RFC 6890과 IANA 레지스트리에서 `KISA`·`KRNIC`·`national`을 찾았다). KISA는 강의 p184 그림이 보이는 사실까지만 쓴다 — `lecture-outline.md` 「phase 74 step 5」 문단
+- (phase 74 step 6) IANA는 Internet Assigned Numbers Authority, RIR은 Regional Internet Registry의 줄임말이다 — §3(rfc-editor.org 텍스트판을 다시 내려받아 확인했다, 2026-10-29)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§2 — 하나뿐이도록 기록한다, §3 — IANA → RIR(아시아·태평양은 APNIC) → LIR → 고객)
+(phase 74 step 6) `ip-address-types.public-address`(§2·§3 — 본문 문단 4·5와 도식 `public-allocation`, IANA·RIR의 풀네임), 문항 n090 해설
 
 ## (phase 74 step 5) IANA — IPv4 Special-Purpose Address Space(RFC 6890의 「IPv4 Special-Purpose Address Registry」), RFC 6890, RFC 8190, RFC 5735 [폐기 — 역사 기록으로만 쓴다]
 https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
