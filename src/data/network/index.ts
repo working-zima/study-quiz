@@ -4,9 +4,12 @@ import arpVisuals from './visuals/arp.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
 import icmpVisuals from './visuals/icmp.json'
+import ipAddressTypesVisuals from './visuals/ip-address-types.json'
+import ipAddressingVisuals from './visuals/ip-addressing.json'
 import ipProtocolVisuals from './visuals/ip-protocol.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
+import routingVisuals from './visuals/routing.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -23,6 +26,9 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'ip-protocol': ipProtocolVisuals,
   'arp': arpVisuals,
   'icmp': icmpVisuals,
+  'ip-addressing': ipAddressingVisuals,
+  'ip-address-types': ipAddressTypesVisuals,
+  'routing': routingVisuals,
 }
 
 export const networkSubject: Subject = {
