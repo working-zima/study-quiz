@@ -26,6 +26,7 @@ import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -70,6 +71,7 @@ import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
+import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
@@ -322,6 +324,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.default-route': DefaultRouteDiagram,
   'routing.static-dynamic-routing': RouteFailoverDiagram,
   'routing.as': AutonomousSystemsDiagram,
+  'routing.rip': DistanceVectorDiagram,
+  'routing.ospf': LinkStateDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
