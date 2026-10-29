@@ -1,4 +1,5 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
+import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { ArpCacheDiagram } from './ArpCacheDiagram'
@@ -10,6 +11,7 @@ import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
@@ -280,6 +282,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'icmp.igmp': IgmpGroupDiagram,
   'ip-addressing.network-host': NetworkHostPartsDiagram,
   'ip-addressing.network-broadcast-address': NetworkBroadcastDiagram,
+  'ip-addressing.address-classes': AddressClassesDiagram,
+  'ip-addressing.cidr': CidrBoundaryDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
