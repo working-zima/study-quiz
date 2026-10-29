@@ -41,6 +41,8 @@ RFC는 step 0과 같은 방법으로 읽었고, IANA 레지스트리는 XML판(`
 「(phase 74)」가 붙은 줄과 항목은 phase 74에서 `ip-addressing`(IP 주소와 서브넷 마스크)·`ip-address-types`(공인·사설 IP, NAT, DHCP)·`routing`(라우팅) 주제가 쓸 사실을 확인하며 더했다.
 step 0(`ip-addressing` — 네트워크 부분과 호스트 부분, 네트워크 주소와 브로드캐스트 주소, 주소 클래스, CIDR, 서브넷 마스크, AND 계산, 서브네팅, 서브넷 수와 호스트 수)의 확인한 날은 2026-10-29다.
 RFC는 phase 73과 같은 방법(텍스트판을 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, IANA 레지스트리는 XML판으로 읽었다.
+「(phase 74 step 5)」가 붙은 줄과 항목은 step 5(`ip-address-types` — 공인 주소, 사설 주소, 예약된 주소, 루프백, NAT·NAPT, 정적·동적 주소, DHCP와 그 메시지)가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
+RFC·IANA는 step 0과 같은 방법으로 읽었고, learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 페이지의 고친 날(`updated_at`)과 적용 판을 적는다.
 
 ---
 
@@ -354,8 +356,22 @@ https://www.rfc-editor.org/rfc/rfc3022
 - 기본 NAT(Basic NAT)는 사설 주소 묶음을 전역 주소 묶음에 대응시킨다 — §2.1
 - NAPT는 (사설 주소, 사설 포트) 짝을 (등록된 주소, 할당한 포트) 짝에 대응시켜, 사설망의 여러 노드가 등록된 주소 **하나**로 바깥과 통신하게 한다 — §2.2, §3.1
 - NAT는 IP 주소가 끝에서 끝까지 갖던 의미를 없앤다 — §1
+- (phase 74 step 5) 상태: Informational이고 RFC 1631을 폐기·대체했으며 자기는 폐기되지 않았다(rfc-editor 상태, 2026-10-29)
+- (phase 74 step 5) 주소 변환이 필요한 것은 한 네트워크의 안쪽 주소를 그 네트워크 밖에서 쓸 수 없을 때다 — 밖에서 유효하지 않은 주소이거나 사생활 때문에 — §1
+- (phase 74 step 5) 이 문서의 「전통적 NAT」는 사설망 안의 호스트가 바깥 호스트에 대개 투명하게 닿게 한다. 세션은 사설망에서 바깥으로 시작하는 한 방향이 기본이고, 바깥에서 시작하는 세션은 미리 고른 호스트를 고정으로 대응시켜(static address map) 예외로만 허용한다.
+  기본 NAT(Basic NAT)는 IP 주소만, NAPT는 IP 주소와 전송 계층 식별자(TCP/UDP 포트, ICMP 질의 식별자)를 함께 바꾼다. 주소 변환은 사설망과 바깥 경계(stub border)의 라우터에만 둔다 — §2와 Figure 1, §6.2
+- (phase 74 step 5) 기본 NAT는 사설 주소 묶음을 전역에서 유효한 주소 묶음에 **동적으로** 대응시킨다. 안쪽 노드가 전역 주소보다 많으면 동시에 바깥에 나갈 수 있는 노드 수가 전역 주소 수로 묶인다.
+  안쪽 주소 하나를 특정 전역 주소에 **고정(static)으로** 대응시켜 늘 나갈 수 있게 하거나, 바깥 호스트가 그 고정 공인 주소로 안쪽 호스트에 들어오게 할 수도 있다. 안쪽 주소는 그 도메인 밖에서 유효하지 않으므로 다른 도메인이 같은 주소를 다시 쓸 수 있다 — §2.1
+- (phase 74 step 5) 대응(binding)은 사설 호스트가 처음 바깥으로 세션을 시작할 때 정해지고, 같은 사설 주소(NAPT는 같은 (사설 주소, 사설 포트))에서 시작한 뒤의 세션은 그 대응을 다시 쓴다. 대응에 기댄 마지막 세션이 끝나면 대응을 없앨 수 있다 — §3.1, §3.3
+- (phase 74 step 5) 바꾸는 칸: 기본 NAT는 **모든 패킷의 IP 헤더**를 고친다 — 나가는 패킷은 출발지 IP 주소, 들어오는 패킷은 목적지 IP 주소와 IP 헤더 체크섬이다. TCP·UDP 체크섬도 IP 주소가 든 의사 헤더를 덮으므로 함께 고친다.
+  NAPT는 여기에 TCP/UDP 헤더의 포트(나가는 패킷은 출발지 포트, 들어오는 패킷은 목적지 포트)를 더 바꾼다 — §4.1. 그러니 NAT는 IP 헤더(네트워크 계층)의 주소를 바꾸는 일이고 데이터 링크 계층의 프레임을 바꾸는 일이 아니며, NAPT는 전송 계층 헤더의 포트까지 바꾼다(§4.1과 RFC 1812 §2.2.3을 함께 읽은 것)
+- (phase 74 step 5) NAPT를 쓰는 예: 작은 사무실·집(SOHO)의 여러 노드가 서비스 제공자가 라우터에 준 IP 주소 **하나**로 동시에 바깥에 나간다 — §1, §2.2
+- (phase 74 step 5) 사생활과 보안: 세션이 사설 호스트에서 바깥으로만 시작되고 **사설 호스트의 실제 주소가 바깥 호스트에 보이지 않으므로** 전통적 NAT를 사생활을 지키는 장치로 볼 수 있다. 같은 성질 때문에 사설망의 호스트가 공격을 해도 출처를 찾기 어렵다 — §6.1.
+  경로에 NAT가 있으면 IPsec이 끝과 끝 사이에 보장하는 네트워크 보안을 기대할 수 없다 — §1
 
 쓰인 곳: 강의 수정 이력 L7, (phase 73) 아래 「RFC 7857·RFC 8512」 항목이 NAT44를 이 문서 §2.1의 기본 NAT로 가리킨다
+(phase 74에서 쓰일 곳) `ip-address-types.nat`(§1·§2 — 경계 라우터가 안쪽 주소를 바꾼다, §2.1 — 동적·고정 대응, §3.1 — 대응 표, §4.1 — IP 헤더의 주소를 바꾼다, §6.1 — 실제 주소가 바깥에 보이지 않는다), `ip-address-types.napt`(§1·§2.2·§3.1·§4.1 — 포트까지 바꿔 주소 하나를 함께 쓴다),
+`ip-address-types.private-address`(§1·§2.1 — 사설 주소로 바깥에 닿게 하는 것이 주소 변환이다), `exam-notes.md` E15
 
 ## RFC 1631 — The IP Network Address Translator (NAT) [폐기, RFC 3022로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1631
@@ -369,8 +385,21 @@ https://www.rfc-editor.org/rfc/rfc1918
 
 - 사설 주소 공간은 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 셋이다 — §3
 - 사설 주소는 전역에서 의미가 없으므로, 사설망의 라우팅 정보는 기업 사이 연결로 퍼뜨리지 않는다 — §3
+- (phase 74 step 5) 상태: BCP 5이고 RFC 1597·RFC 1627을 대체했으며, RFC 6761이 고쳤다(rfc-editor 상태, 2026-10-29)
+- (phase 74 step 5) 세 블록의 범위는 10.0.0.0~10.255.255.255(`10/8`), 172.16.0.0~172.31.255.255(`172.16/12`), 192.168.0.0~192.168.255.255(`192.168/16`)이고, 각각 24비트·20비트·16비트 블록이라 부른다.
+  클래스로 보면 첫째는 A 클래스 네트워크 하나, 둘째는 이어진 B 클래스 네트워크 16개, 셋째는 이어진 C 클래스 네트워크 256개다 — §3
+- (phase 74 step 5) 사설 주소는 IANA나 인터넷 등록 기관과 협의하지 않고 쓸 수 있어 여러 조직이 함께 쓴다. 그래서 사설 주소는 **그 조직 안에서만**(또는 이 공간을 함께 쓰기로 한 조직들 안에서만) 하나뿐이다 — §3.
+  조직 안에서는 겹치지 않아야 하고 조직 사이에서는 겹칠 수 있다는 것은 §2의 호스트 분류(범주 1·2)가 같은 말로 적는다 — §2
+- (phase 74 step 5) 전역에서 하나뿐인 주소가 필요한 조직은 인터넷 등록 기관에서 받아야 하고, 바깥과 이어지려고 주소를 신청하면 이 세 블록의 주소는 받지 않는다 — §3.
+  인터넷 사업자(ISP)는 주소 등록 기관에서 주소 블록을 받아 그 안에서 고객에게 주소를 나눠 준다 — §2
+- (phase 74 step 5) 사설 주소를 쓰는 호스트는 조직 안의 모든 호스트(공인·사설)와 통신하지만 조직 밖 호스트와는 IP로 이어지지 못한다. 응용 계층 게이트웨이 같은 중개 장치로 바깥 서비스에 닿을 수는 있다. 공인 주소를 쓰는 호스트도 다른 조직의 사설 호스트와는 이어지지 않는다 — §3
+- (phase 74 step 5) 사설 출발지·목적지 주소를 담은 패킷은 조직 사이 링크로 넘기지 않는 것이 좋고, 사설 주소를 쓰지 않는 망의 라우터, 특히 ISP의 라우터는 사설망의 라우팅 정보를 걸러 내도록 설정한다 — §3
+- (phase 74 step 5) 이점: 전역에서 하나뿐일 필요가 없는 곳에 전역 주소를 쓰지 않아 그 주소를 아낀다 — §4
+- (phase 74 step 5) 이 문서는 주소 변환(NAT)을 말하지 않는다. 사설 주소로 인터넷에 나가려면 주소를 바꿔야 한다는 근거는 RFC 3022 §1·§2.1이다(그 예가 안쪽에 이 문서의 10.0.0.0/8을 쓴다 — 위 RFC 3022 항목)
 
 쓰인 곳: 강의 수정 이력 L8
+(phase 74에서 쓰일 곳) `ip-address-types.private-address`(§3 — 세 블록과 끝 주소, 조직 안에서만 하나뿐, 바깥과 IP로 이어지지 못한다, 라우팅 정보를 걸러 낸다, §4 — 전역 주소를 아낀다), `ip-address-types.public-address`(§2 — ISP가 등록 기관에서 받은 블록을 고객에게 나눠 준다, §3 — 전역 주소는 등록 기관에서 받는다),
+강의 수정 이력 L39
 
 ## RFC 9293 — Transmission Control Protocol (TCP)
 https://www.rfc-editor.org/rfc/rfc9293
@@ -390,6 +419,7 @@ https://www.rfc-editor.org/rfc/rfc9293
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
 (phase 73 step 12) `icmp.destination-unreachable`(§2.2 — 포트 번호는 한 호스트 안에서 데이터를 받을 응용 프로그램을 가리킨다)
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(§2.2 — 포트는 한 호스트 안의 어느 응용 프로그램의 통신인지 가리키는 번호: NAPT가 바꾸는 포트를 한 줄로 풀 때)
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -404,6 +434,7 @@ https://www.rfc-editor.org/rfc/rfc768
 쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(Introduction — 순서 있고 신뢰할 수 있는 전달이 필요한 응용은 TCP를 쓴다)
 (phase 73 step 12) `icmp.destination-unreachable`(Fields — 포트는 호스트 안의 프로그램을 가리킨다, UDP는 TCP와 같은 전송 계층 프로토콜)
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(Fields — 출발지 포트는 보내는 프로그램의 포트), `ip-address-types.dhcp`(DHCP는 UDP 위에서 동작한다 — RFC 2131 §4.1)
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -485,6 +516,10 @@ https://www.rfc-editor.org/rfc/rfc1122
   목적지 주소에서 마스크로 골라낸 비트가 출발지 주소에서 같은 마스크로 골라낸 비트와 같으면 목적지는 이어진 네트워크에 있으니 그 호스트로 바로 보내고, 다르면 게이트웨이를 거쳐야만 닿는다 — §3.3.1.1
 - (phase 74) 마스크를 아직 모르면 호스트는 그 주소의 **클래스에 맞는 마스크**를 쓰는 것이 좋다(SHOULD) — 곧 이어진 네트워크가 서브넷으로 나뉘지 않았다고 본다 — §3.2.2.9 (b).
   (이 줄은 ICMP 주소 마스크 메시지로 마스크를 알아내는 경우의 규칙이고, 그 메시지는 RFC 6918이 폐기했다 — `exam-notes.md` E13. 클래스마다 마스크가 있다는 뜻으로만 쓴다)
+- (phase 74 step 5) 위 「(phase 74)」 줄이 남겨 둔 특별한 경우 넷: (a) {0, 0}은 「이 네트워크의 이 호스트」이고, 호스트가 자기 IP 주소를 알아내는 초기화 절차에서 **출발지 주소로만** 보내고 그 밖에는 보내지 않는다(MUST NOT).
+  (b) {0, 호스트 번호}는 「이 네트워크의 지정한 호스트」이고 (a)와 같이 초기화 절차의 출발지로만 쓴다. (c) {-1, -1}은 **제한 브로드캐스트**이고 출발지로 쓰지 않으며, 이어진 물리 네트워크의 모든 호스트가 받지만 그 네트워크 밖으로 넘겨지지 않는다.
+  (g) {127, 아무 값}은 **호스트 안의 루프백 주소**이고 이 꼴의 주소는 호스트 밖에 나타나면 안 된다(MUST NOT) — §3.2.1.3 (a)(b)(c)(g)
+- (phase 74 step 5) 네트워크 번호는 **세계 전체에서 하나뿐이도록** 행정적으로 정한다 — §3.2.1.3
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
@@ -501,6 +536,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 73 step 14) `icmp.igmp`(§1.1.3 — IGMP는 인터넷 계층 프로토콜이다, §3.2.3 — 라우터는 IGMP로 얻은 정보와 멀티캐스트 라우팅 프로토콜로 멀티캐스트를 받친다: 멀리 있는 라우터와 그 정보를 나누는 일은 IGMP의 몫이 아니다), 문항 n078·n079 해설, 도식 `igmp-group`
 (phase 74에서 쓰일 곳) `ip-addressing.network-host`(§3.2.1.3 — {네트워크 번호, 호스트 번호}, 주소마다 마스크가 딸린다), `ip-addressing.network-broadcast-address`(§3.2.1.3 — directed broadcast, 칸이 모두 0·모두 1일 수 없다 → 2^h − 2, 출발지로 못 쓴다),
 `ip-addressing.address-classes`(§3.2.1.3 — 다섯 클래스, D 멀티캐스트·E 실험용, 특별한 경우는 A·B·C에만), `ip-addressing.subnet-mask`(§3.3.1.1 — 마스크로 같은 네트워크인지 가른다, §3.2.2.9 — 클래스에 맞는 마스크), `ip-addressing.network-address-calc`(§3.3.1.1 — 마스크로 골라낸 비트), 강의 수정 이력 L36·L38
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§3.2.1.3 — 네트워크 번호는 세계에서 하나뿐), `ip-address-types.reserved-addresses`(§3.2.1.3 (a)(b) — 0.0.0.0은 초기화의 출발지로만, (c) — 제한 브로드캐스트는 넘겨지지 않는다), `ip-address-types.loopback`(§3.2.1.3 (g) — 호스트 밖에 나타나지 않는다), `ip-address-types.dhcp-messages`((a) — 주소가 없는 클라이언트의 출발지 0.0.0.0, (c) — 목적지 255.255.255.255)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -754,8 +790,10 @@ https://www.rfc-editor.org/rfc/rfc919
 - (phase 74) 브로드캐스트를 뜻하는 호스트 번호로 **모든 비트가 1인 값**을 고른 것은 실제 호스트에 주어질 일이 없을 값이어야 해서다 — §7.
   모든 비트가 0인 칸은 「정하지 않음」으로 볼 수 있고, 표기 관례로 **호스트가 아니라 네트워크를 가리킬 때 0인 칸을 쓴다** — 36.0.0.0은 「36번 네트워크」, 36.255.255.255는 「36번 네트워크의 모든 호스트」다 — §7.
   255.255.255.255는 그 물리 네트워크 안에서만 쓰고 넘기지 않는 브로드캐스트다 — §7(`ip-address-types` — step 5). RFC 922 §7이 서브넷이 있을 때도 같은 관례를 적는다(https://www.rfc-editor.org/rfc/rfc922 , STD 5)
+- (phase 74 step 5) 255.255.255.255는 지역 하드웨어 네트워크 안의 브로드캐스트이고 넘기면 안 된다. 자기 네트워크 번호를 모르는 호스트가 서버에게 물을 때 쓸 수 있다 — §7. 폐기되지 않은 인터넷 표준이다(rfc-editor 상태, 2026-10-29)
 
 쓰인 곳: `network-basics.cast-types`
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(§7 — 제한 브로드캐스트는 넘기지 않는다), `ip-address-types.dhcp-messages`(§7 — 주소를 모르는 호스트가 서버를 찾을 때 쓴다)
 (phase 74에서 쓰일 곳) `ip-addressing.network-broadcast-address`(§4 — directed broadcasting이라는 이름, §7 — 모두 1을 브로드캐스트로 고른 까닭, 모두 0인 칸으로 네트워크를 가리키는 표기 관례), 강의 수정 이력 L36
 
 ## RFC 1112 — Host Extensions for IP Multicasting
@@ -1360,6 +1398,9 @@ Proposed Standard(Standards Track)이다.
   CIDR에서는 서브넷으로 보내는 directed broadcast가 네트워크 접두사로 보내는 것과 구별되지 않아 함께 다룬다 — §5.3.5.4. 서브넷을 모두 아우르는 directed broadcast는 CIDR에서 뜻이 없어 쓰지 않는다 — §5.3.5, §5.3.5.3
 - (phase 74) 0.0.0.0과 {네트워크 접두사, 0}은 옛 구현이 브로드캐스트로 쓰던 비표준 형태다(앞의 것은 제한 브로드캐스트의, 뒤의 것은 directed broadcast의 낡은 형태).
   라우터는 이 주소로 온 패킷을 알리지 않고 버리는 것이 좋고, 이 주소로 보내지 않는 것이 좋다(SHOULD) — §4.2.3.1, §5.3.5. RFC 3021 §2.2도 {네트워크 번호, 0}을 「네트워크 주소 자체」라 부르며 같은 말을 한다(아래 항목)
+- (phase 74 step 5) {127, 아무 값}은 호스트 안의 루프백 주소이고 이 꼴의 주소는 호스트 밖에 나타나면 안 된다 — §4.2.2.11 (e).
+  라우터는 출발지나 목적지가 0번 네트워크인 패킷을 넘기지 않는 것이 좋고, 127번 네트워크인 패킷도 루프백 인터페이스로 보내는 경우가 아니면 넘기지 않는 것이 좋다(SHOULD NOT) — §5.3.7
+- (phase 74 step 5) 라우터는 제한 브로드캐스트를 다른 네트워크로 넘기면 안 되고(MUST NOT), 버려서도 안 된다(MUST NOT) — §5.3.5.1
 
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
@@ -1370,6 +1411,7 @@ Proposed Standard(Standards Track)이다.
 (phase 73 step 12) `icmp.destination-unreachable`(§5.2.7.1 — 코드 0은 목적지 네트워크로 가는 경로가 없을 때, 1은 직접 이어진 네트워크의 목적지 호스트에 넘길 수 없을 때, 4는 나눠야 하는데 DF가 켜져 있을 때 라우터가 보낸다), 문항 n074 해설, 도식 `destination-unreachable`
 (phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§4.2.2.11 — 다섯 클래스, A·B·C 구분은 역사적 의미뿐), `ip-addressing.network-broadcast-address`(§4.2.2.11 — directed broadcast, 칸이 0·-1일 수 없다, §5.3.5 — directed broadcast의 꼴, §4.2.3.1 — 호스트 부분이 모두 0인 주소는 낡은 브로드캐스트 형태),
 `ip-addressing.subnetting`·`ip-addressing.subnet-sizing`(§4.2.2.11 DISCUSSION — 모두 0·모두 1 서브넷도 쓴다), `exam-notes.md`의 「phase 74 step 0」 문단, 강의 수정 이력 L38
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(§5.3.5.1 — 제한 브로드캐스트는 넘기지 않는다, §5.3.7 — 0번·127번 네트워크의 패킷은 넘기지 않는다), `ip-address-types.loopback`(§4.2.2.11 (e), §5.3.7), `ip-address-types.nat`(§2.2.3 — 라우터는 IP 데이터그램을 넘기는 장치이고 링크 계층 장치는 브리지다: NAT가 데이터 링크 계층의 일이 아니라는 것의 한쪽 근거)
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -1864,6 +1906,33 @@ https://www.rfc-editor.org/rfc/rfc2131
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.rarp`(BOOTP가 같은 일을 IP 위에서 하려고 나왔고, DHCP는 BOOTP를 바탕으로 한다 — [기출 2024-02-25 #13]의 맞는 보기와 어긋나지 않는다)
 (phase 73 step 10) `arp.rarp`(RFC 951 §6 — RARP가 먼저 나왔고 링크 수준이라 커널·드라이버를 고쳐야 했으며, BOOTP가 같은 일을 IP·UDP 위에서 다른 기능과 함께 한다; RFC 2131 Abstract — DHCP는 BOOTP를 바탕으로 다시 쓸 수 있는 주소를 자동으로 나눠 준다; RFC 1122 §3.2.2.7 — RARP와 BOOTP). 「RARP는 지금 쓰이지 않는다」는 쓰지 않았다
 
+위 머리의 「RARP와의 관계만 가져온다」는 phase 73의 기록이다. 아래 「(phase 74 step 5)」 줄은 `ip-address-types`의 DHCP 개념이 쓸 **DHCP의 동작**을 더한다(RFC 2131 원문을 다시 내려받아 읽었다, 2026-10-29).
+RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·5494·6842가 고쳤다(rfc-editor 상태).
+
+- (phase 74 step 5) DHCP는 인터넷 호스트에 설정 값을 주는 프로토콜이고 두 부분으로 이루어진다 — DHCP 서버가 호스트마다의 설정 값을 전하는 프로토콜과, 호스트에 네트워크 주소를 배정하는 방법이다.
+  클라이언트·서버 모델이고, 서버는 주소를 배정하고 설정 값을 전한다. 관리자가 설정하지 않은 호스트는 DHCP 서버 노릇을 하지 않는 것이 좋다 — RFC 2131 §1
+- (phase 74 step 5) **주소를 배정하는 방식 셋**: 자동 할당(automatic allocation) — 클라이언트에 영구 주소를 준다. 동적 할당(dynamic allocation) — 정한 기간 동안(또는 클라이언트가 돌려줄 때까지) 준다.
+  수동 할당(manual allocation) — 관리자가 정한 주소를 DHCP는 전하기만 한다. 한 네트워크가 관리자 정책에 따라 하나 이상을 쓴다 — RFC 2131 §1
+- (phase 74 step 5) 동적 할당만이 필요 없어진 주소를 자동으로 다시 쓴다. 그래서 잠깐만 네트워크에 이어지는 클라이언트나, 영구 주소가 필요 없는 클라이언트들이 적은 주소 묶음을 나눠 쓸 때 특히 쓸모 있다.
+  수동 할당은 호스트에 손으로 주소를 넣는 실수를 없애려고 쓴다 — RFC 2131 §1
+- (phase 74 step 5) **임대(lease)**: 주소를 배정해 둔 기간이다. 그 기간 안에는 그 주소를 다른 클라이언트에 다시 주지 않음을 보장하고, 클라이언트는 다시 요청해 기간을 늘릴 수 있으며, 필요 없어지면 서버에 돌려줄 수 있다. 무한 임대를 요청하면 영구 배정이 된다 — RFC 2131 §2.2.
+  BOOTP와 다른 점 둘은 정한 기간의 임대로 주소를 차례로 여러 클라이언트에 다시 줄 수 있다는 것과, 클라이언트가 동작에 필요한 IP 설정을 모두 받을 수 있다는 것이다 — RFC 2131 §2
+- (phase 74 step 5) **메시지**(Table 2): DHCPDISCOVER — 클라이언트가 쓸 수 있는 서버를 찾으려고 브로드캐스트한다. DHCPOFFER — 서버가 DISCOVER에 답해 설정 값을 제안한다. DHCPREQUEST — 클라이언트가 서버들에게 보내 한 서버의 제안을 요청하고 다른 서버들의 제안은 암묵적으로 거절하거나,
+  재부팅 뒤 전에 받은 주소가 맞는지 확인하거나, 임대를 늘린다. DHCPACK — 서버가 확정한 주소를 포함한 설정 값을 클라이언트에 보낸다. DHCPNAK — 클라이언트가 아는 주소가 틀렸거나(예: 다른 서브넷으로 옮겼다) 임대가 끝났음을 알린다.
+  DHCPDECLINE — 받은 주소를 이미 누가 쓴다고 클라이언트가 알린다. DHCPRELEASE — 클라이언트가 주소를 돌려주고 남은 임대를 취소한다. DHCPINFORM — 주소는 이미 있고 다른 설정만 묻는다 — RFC 2131 §3.1 Table 2
+- (phase 74 step 5) **처음 주소를 받는 차례** — ① 클라이언트가 자기 물리 서브넷에 DHCPDISCOVER를 브로드캐스트한다(BOOTP 중계 에이전트가 같은 서브넷에 없는 서버로 넘겨줄 수 있다). ② 서버마다 줄 수 있는 주소와 설정을 담은 DHCPOFFER로 답할 수 있다.
+  ③ 클라이언트는 받은 제안 가운데 하나를 골라, 고른 서버를 가리키는 서버 식별자(server identifier) 옵션을 담은 DHCPREQUEST를 **브로드캐스트**한다. ④ 고르지 않은 서버들은 그 REQUEST를 자기 제안이 거절됐다는 알림으로 받고, 고른 서버는 배정을 저장한 뒤 DHCPACK을 보낸다.
+  ⑤ 클라이언트는 ACK를 받고 (예: ARP로) 마지막 확인을 한 뒤 설정을 마친다 — RFC 2131 §3.1의 1~5와 Figure 3. OFFER가 하나도 오지 않으면 DISCOVER를 다시 보낸다 — §3.1의 3
+- (phase 74 step 5) **주소**: 주소를 받기 전의 클라이언트가 브로드캐스트하는 메시지는 IP 헤더의 출발지 주소가 0(`0.0.0.0`)이다 — RFC 2131 §4.1. DHCPDISCOVER는 지역 하드웨어 브로드캐스트 주소로, IP 목적지 `0xffffffff`(`255.255.255.255`)와 서버 포트로 보낸다 — §4.4.1.
+  DHCPREQUEST도 DISCOVER와 같은 IP 브로드캐스트 주소로 보낸다 — §3.1의 3
+- (phase 74 step 5) 서버의 OFFER·ACK는 클라이언트에 바로 보낼 때(중계 에이전트가 없을 때), 클라이언트가 BROADCAST 비트를 켰으면 `0xffffffff`로 브로드캐스트하고 껐으면 클라이언트의 하드웨어 주소와 줄 주소(yiaddr)로 유니캐스트한다.
+  주소를 받기 전에는 유니캐스트를 받지 못하는 클라이언트가 그 비트를 켠다 — RFC 2131 §4.1. 그러니 OFFER·ACK는 브로드캐스트일 수도 유니캐스트일 수도 있다(중계 에이전트를 거치지 않으면 DHCPNAK은 늘 브로드캐스트 — §4.1)
+- (phase 74 step 5) **포트**: DHCP는 UDP를 쓰고, 클라이언트 → 서버 메시지는 서버 포트 67로, 서버 → 클라이언트 메시지는 클라이언트 포트 68로 보낸다 — RFC 2131 §4.1(포트 번호의 IANA 이름은 아래 「(phase 74 step 5) IANA — Service Name and Transport Protocol Port Number Registry」 항목)
+- (phase 74 step 5) **갱신**: 클라이언트는 두 시각 T1·T2를 둔다. T1(기본값 임대 기간의 0.5)이 되면 주소를 준 서버에게 **유니캐스트로** DHCPREQUEST를 보내 임대를 늘린다(RENEWING). T2(기본값 0.875)까지 ACK가 없으면 **브로드캐스트로** DHCPREQUEST를 보내 아무 서버에게나 늘려 달라고 한다(REBINDING).
+  T1 전에 늘려 달라고 해도 된다(MAY). ACK 없이 임대가 끝나면 그 주소로 하던 네트워크 처리를 곧 멈추고 처음부터 주소를 다시 받는다 — RFC 2131 §4.4.5. 필요 없어진 주소는 DHCPRELEASE로 돌려준다 — §4.4.6
+
+(phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
+
 ## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
 https://www.rfc-editor.org/rfc/rfc5227
 
@@ -1872,6 +1941,7 @@ Proposed Standard이고 RFC 826을 고쳤다(rfc-editor 상태, 2026-10-29). **�
 - 같은 링크의 두 호스트가 같은 IPv4 주소를 쓰면 문제가 생긴다. 호스트는 IPv4 주소를 쓰기 시작하기 전에(손으로 정했든 DHCP로 받았든) 그 주소를 이미 누가 쓰는지 **ARP 프로브(ARP 요청)를 브로드캐스트해** 확인한다 — Abstract, §2.1
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `icmp.icmp-message`(「IP 주소 중복」은 ICMP 메시지가 아니다 — IPv4에서 그것을 알아보는 것은 ARP다. 문항·해설에서 쓸 때)
+(phase 74 step 5에서 쓰일 곳) 강의 수정 이력 L39(한 링크에서 두 호스트가 같은 주소를 쓰면 문제가 생긴다 — 사설 주소도 그 네트워크 안에서는 하나뿐이어야 한다), `ip-address-types.private-address`
 
 ## (phase 73 step 1) RFC 2236 — Internet Group Management Protocol, Version 2, RFC 9776 — Internet Group Management Protocol, Version 3
 https://www.rfc-editor.org/rfc/rfc2236
@@ -1938,5 +2008,167 @@ https://www.rfc-editor.org/rfc/rfc5771
 - IPv4 Address Space: 224/8~239/8은 「Multicast」이고 주석이 그것을 **「예전 이름 D 클래스」**로 적는다. 240/8~255/8은 「Future use」(예약)이고 주석이 **「예전 이름 E 클래스」**로 적으며 RFC 1112를 근거로 든다 — 레지스트리 주석 14·17
 - IPv4 Address Space: 255.255.255.255는 그 예약 범위 안에서 제한 브로드캐스트 목적지 주소로 남겨 두었다 — 주석 18. 0/8은 자기 식별용(RFC 791 §3.2), 127/8은 루프백(RFC 1122 §3.2.1.3)으로 남겨 둔 블록이다 — 주석 2·3·7(자세히는 `ip-address-types` — step 5)
 - 멀티캐스트 주소는 224.0.0.0~239.255.255.255다 — IPv4 Multicast Address Space 머리 주석. 유니캐스트 주소처럼 블록을 지역 인터넷 등록 기관에 나눠 주지 않고 IANA가 바로 할당한다 — RFC 5771 §3
+- (phase 74 step 5) IPv4 Address Space는 /8 블록마다 그 블록을 받은 곳이나 쓰임을 적는다 — 예: `1/8`은 APNIC(ALLOCATED), `0/8`은 「Local Identification」, `10/8`은 「Private Use」, `127/8`은 「Loopback」(모두 RESERVED) — 레지스트리의 각 행(2025-10-10판).
+  IANA가 유니캐스트 주소 블록을 지역 인터넷 등록 기관(RIR)에 나눠 준다는 계층은 RFC 7020 §3(아래 항목)
+- (phase 74 step 5) 위 둘째 줄의 0/8·127/8 주석(2·3·7)을 다시 확인했다: 0.0.0.0/8은 자기 식별용(RFC 791 §3.2), 0.0.0.0/32도 자기 식별용(RFC 1122 §3.2.1.3), 127.0.0.0/8은 루프백(RFC 1122 §3.2.1.3)이고 셋 다 「프로토콜이 남겨 둔」 블록이며,
+  자세한 등록은 IPv4 Special-Purpose Address Space에 있다고 적는다. 224.0.0.0/4(224/8~239/8)는 그 특수 용도 레지스트리에는 없고 이 레지스트리와 IPv4 Multicast Address Space에 있다 — 주석 14
 
 쓰인 곳: (phase 74에서 쓰일 곳) `ip-addressing.address-classes`(D·E의 지금 이름과 범위, 첫 옥텟 0·127이 따로 쓰인다는 한 줄, E 범위 안에 255.255.255.255가 있다는 것)
+(phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(/8 블록을 RIR에 나눠 준 기록 — 1/8 APNIC), `ip-address-types.reserved-addresses`(224.0.0.0/4 멀티캐스트 항목의 근거 — 주석 14, 0/8·127/8 — 주석 2·3·7, 240/4 안의 255.255.255.255 — 주석 18)
+
+## (phase 74 step 5) RFC 7020 — The Internet Numbers Registry System
+https://www.rfc-editor.org/rfc/rfc7020
+
+Informational이고 RFC 2050을 폐기·대체했다(rfc-editor 상태, 2026-10-29). RFC 2050은 지금 Historic이다.
+
+- 이 문서는 전역에서 하나뿐인 IP 주소 공간과 AS 번호를 나눠 주는 지금의 체계를 설명한다 — §1
+- 나눠 주는 목표 가운데 하나가 **등록의 정확성**이다 — 배정 기록을 유지해 하나뿐임을 보장한다. 곧 같은 IP 주소와 AS 번호를 동시에 둘 이상에게 배정하지 않는다. 주소를 계층으로 나눠 주는 것은 주소들을 묶어 라우팅 알림을 줄이려는 것이다 — §2 (3)·(2)
+- 계층의 맨 위는 IANA다 — IANA는 조직이 아니라 역할이고 지금은 ICANN이 맡는다. IANA가 지역 인터넷 등록 기관(Regional Internet Registry, RIR)들을 맡고, RIR은 지역(Local) 인터넷 등록 기관(LIR)과 다른 고객을 맡으며,
+  LIR은 다시 자기 고객(ISP, 최종 사용자, 하위 LIR 등)에게 주소를 나눠 준다 — §3
+- RIR은 대륙 규모 지역마다 있고 지금 다섯이다 — AfriNIC(아프리카), APNIC(아시아·태평양 일부), ARIN(북아메리카와 카리브 일부), LACNIC(라틴 아메리카와 카리브 일부), RIPE NCC(유럽, 아시아·중동 일부) — §3
+- 나라 단위 등록 기관(NIR)이라는 말은 이 문서에 없다. LIR은 주소를 받은 곳 — 대개 그 지역의 RIR, 상위 LIR, 또는 **다른 번호 배정 기관** — 과의 관계로 세워진다고만 적는다 — §3.
+  그러니 한국의 KISA가 이 계층의 어디에 있는지(APNIC과의 관계)는 허용한 출처로 댈 수 없다(RFC 7020·RFC 2050·RFC 6890과 IANA 레지스트리에서 `KISA`·`KRNIC`·`national`을 찾았다). KISA는 강의 p184 그림이 보이는 사실까지만 쓴다 — `lecture-outline.md` 「phase 74 step 5」 문단
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§2 — 하나뿐이도록 기록한다, §3 — IANA → RIR(아시아·태평양은 APNIC) → LIR → 고객)
+
+## (phase 74 step 5) IANA — IPv4 Special-Purpose Address Space(RFC 6890의 「IPv4 Special-Purpose Address Registry」), RFC 6890, RFC 8190, RFC 5735 [폐기 — 역사 기록으로만 쓴다]
+https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+https://www.rfc-editor.org/rfc/rfc6890
+https://www.rfc-editor.org/rfc/rfc8190
+https://www.rfc-editor.org/rfc/rfc5735
+
+레지스트리는 XML판(`…/iana-ipv4-special-registry.xml`, 2025-10-09판)을 읽었다. RFC 6890은 BCP 153이고 RFC 5735·5736·4773·5156을 폐기했으며 RFC 8190이 고쳤다. RFC 8190은 BCP다. RFC 5735는 RFC 6890이 폐기했다(rfc-editor 상태, 2026-10-29).
+
+- IETF는 새 프로토콜이나 관행을 위해 가끔 주소 블록을 특정 목적에 남겨 둔다. RFC 6890은 그런 특수 용도 블록을 **모두** 이 레지스트리에 기록하게 하고, 그 목록을 따로 싣던 RFC 5735를 폐기했다 — RFC 6890 §1
+- 레지스트리는 블록마다 이름, 그 블록을 정한 RFC, 그리고 다섯 값을 적는다 — 출발지로 유효한가, 목적지로 유효한가, 라우터가 바깥 인터페이스 사이로 넘겨도 되는가(Forwardable), 한 관리 영역 밖까지 닿는가(Globally Reachable), IP 자체가 남겨 둔 것인가(Reserved-by-Protocol) — 레지스트리 머리 주석, RFC 6890 §2.2.1.
+  이 레지스트리에 든 블록은 어디서든 라우팅이 보장되지 않는다 — 머리 주석
+- 이 phase가 쓰는 행(이름 — RFC — 다섯 값 가운데 필요한 것):
+  - `0.0.0.0/8` 「This network」 — RFC 791 — 출발지 예, 목적지 아니오, 넘김 아니오. `0.0.0.0/32` 「This host on this network」 — RFC 1122 §3.2.1.3 — 같은 값
+  - `10.0.0.0/8`·`172.16.0.0/12`·`192.168.0.0/16` 「Private-Use」 — RFC 1918 — 넘김 예, 전역 도달 아니오
+  - `127.0.0.0/8` 「Loopback」 — RFC 1122 §3.2.1.3 — 출발지·목적지·넘김·전역 도달 모두 아니오(몇몇 프로토콜에는 예외를 두었다 — 주석 1)
+  - `169.254.0.0/16` 「Link Local」 — RFC 3927 — 출발지·목적지 예, 넘김 아니오
+  - `192.0.2.0/24`·`198.51.100.0/24`·`203.0.113.0/24` 「Documentation (TEST-NET-1~3)」 — RFC 5737 — 다섯 값 모두 아니오
+  - `240.0.0.0/4` 「Reserved」 — RFC 1112 §4 — 모두 아니오, 프로토콜이 남겨 둔 블록(RFC 6890은 Table 15 「Reserved for Future Use」로 적는다)
+  - `255.255.255.255/32` 「Limited Broadcast」 — RFC 919 §7, RFC 8190 — 목적지 예, 넘김 아니오. RFC 8190이 이 행의 Reserved-by-Protocol을 RFC 919 §7에 맞춰 예로 바꿨다 — RFC 8190 §2.2
+- 두 행이 겹친다: `240.0.0.0/4`는 240.0.0.0~255.255.255.255(2^28 = 268,435,456개, 계산)이고, 그 마지막 주소 `255.255.255.255`를 따로 제한 브로드캐스트로 정해 둔다(IPv4 Address Space 주석 18 — 위 「(phase 74) IANA」 항목). 강의 수정 이력 L40
+- **`224.0.0.0/4`(멀티캐스트)는 이 레지스트리에 없다.** 근거는 IPv4 Address Space(224/8~239/8 「Multicast」, 주석 14 — 옛 D 클래스)와 IPv4 Multicast Address Space다(위 「(phase 74) IANA」 항목)
+- `192.88.99.0/24`는 「Deprecated (6to4 Relay Anycast)」이고 2015-03에 끝났다(RFC 7526) — 강의 p187 표의 이 행은 이 과목이 쓰지 않는다
+- (RFC 5735, 역사 기록) `127.0.0.0/8` 안의 어느 주소로 보낸 데이터그램이든 호스트 안에서 되돌아오고, 보통 `127.0.0.1/32`만으로 구현한다. `169.254.0.0/16`은 한 링크 위 호스트 사이의 통신에 쓰고, DHCP 서버를 찾지 못할 때처럼 자동 설정으로 얻는다 — RFC 5735 §3.
+  지금 유효한 근거는 루프백이 RFC 1122 §3.2.1.3 (g)·RFC 1812 §4.2.2.11 (e)·§5.3.7, 링크 로컬이 RFC 3927, 「흔히 127.0.0.1」이 아래 Microsoft Learn의 어댑터 확인 문서다
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(레지스트리 이름, 행마다의 이름·RFC·넘김 여부), `ip-address-types.private-address`(Private-Use 셋은 넘길 수는 있지만 전역에서 닿지 않는다), `ip-address-types.loopback`(Loopback 행), 강의 수정 이력 L40
+
+## (phase 74 step 5) RFC 3927 — Dynamic Configuration of IPv4 Link-Local Addresses
+https://www.rfc-editor.org/rfc/rfc3927
+
+Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29).
+
+- 호스트가 인터페이스에 `169.254/16` 안의 주소를 **스스로** 정하는 방법이다. 손으로 정적 주소를 넣거나 DHCP 서버를 두지 않아도 되고, 다른 설정 방법이 없을 때 특히 쓸모 있다. 이 접두사는 이 목적으로 IANA에 등록돼 있다 — §1
+- 링크 로컬 주소로는 같은 물리(또는 논리) 링크에 이어진 장치와만 통신할 수 있다 — §1
+- 주소는 169.254.1.0~169.254.254.255에서 의사 난수로 고른다. `169.254/16`의 처음 256개와 마지막 256개는 남겨 두어 고르지 않는다 — §2.1
+- 출발지나 목적지가 `169.254/16`인 패킷은 라우터로 보내 넘기게 하지 않고, 받은 장치도 넘기지 않는다(MUST NOT) — §2.7. 라우터는 링크 로컬 출발지·목적지 패킷을 기본 경로나 라우팅 프로토콜로 얻은 경로가 있어도 넘기지 않는다 — §7
+- 쓸 수 있는 라우팅 가능한 주소가 있으면 같은 인터페이스에 링크 로컬 주소를 함께 두지 않는 것이 좋다. 링크 로컬 주소를 정했다고 DHCP 같은 다른 프로토콜의 동작을 바꾸지 않는다 — 곧 DHCP로 주소를 받으려는 시도를 멈추지 않는다 — §1.9, §2.11
+- Windows 98 이후와 Mac OS 8.5 이후가 이미 이 기능을 지원한다고 적는다 — §1(Windows에서의 이름 APIPA는 아래 Microsoft Learn 항목)
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254.0.0/16 — 주소를 받지 못한 호스트가 스스로 정하고 같은 링크에서만 쓰며 라우터가 넘기지 않는다)
+
+## (phase 74 step 5) RFC 6761 — Special-Use Domain Names
+https://www.rfc-editor.org/rfc/rfc6761
+
+Proposed Standard이고 RFC 1918·RFC 2606을 고쳤다(rfc-editor 상태, 2026-10-29).
+
+- `localhost.`와 그 아래 이름은 특별하다. 사용자는 localhost 이름의 IPv4·IPv6 주소 질의가 늘 그 IP 루프백 주소로 풀린다고 여겨도 된다 — §6.3 첫째
+- 이름 해석 API와 라이브러리는 localhost 이름을 특별히 다뤄 주소 질의에는 루프백 주소를 돌려주고, 설정된 DNS 서버로 묻지 않는 것이 좋다(SHOULD) — §6.3 셋째
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.loopback`(이름 localhost가 루프백 주소를 가리킨다)
+
+## (phase 74 step 5) RFC 2663 — IP Network Address Translator (NAT) Terminology and Considerations
+https://www.rfc-editor.org/rfc/rfc2663
+
+Informational이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). RFC 3022가 용어를 이 문서에서 가져온다.
+
+- NAT는 IP 주소를 한 주소 영역(realm)에서 다른 영역으로 대응시켜, 끝 호스트에게는 주소가 바뀌는 것이 드러나지 않게(투명하게) 패킷을 넘기는 방법이다 — §3
+- NAT는 사설망 주소와 바깥 주소를 묶고(binding), 그 묶음은 TCP/UDP 포트까지 넓힐 수 있으며 세션을 시작할 때 정한다 — §3.1. 묶는 방식은 둘이다:
+  - **정적 배정**(static address assignment) — NAT가 동작하는 동안 사설 주소와 바깥 주소가 **1:1**로 고정 대응한다 — §3.1.1
+  - **동적 배정**(dynamic address assignment) — 쓰임에 따라 바깥 주소를 그때그때 배정하고, 그 대응을 쓰는 마지막 세션이 끝나면 풀어 그 바깥 주소를 다시 쓴다 — §3.1.2
+- NAPT는 여러 사설 호스트의 전송 식별자(TCP·UDP 포트, ICMP 질의 식별자)를 바깥 주소 **하나**의 전송 식별자로 묶어(multiplex) 여러 호스트가 바깥 주소 하나를 함께 쓰게 한다. 나가는 패킷은 출발지 IP 주소·출발지 포트와 체크섬을, 들어오는 패킷은 목적지 IP 주소·목적지 포트와 체크섬을 바꾼다.
+  NAT 라우터의 바깥 인터페이스 주소를 그 하나의 주소로 쓰는 일이 많다 — §4.1.2
+- 보안 고려: 많은 사람이 전통적 NAT 라우터를 바깥에서 안으로 들어오는 세션을 막는 **한 방향 필터로 여긴다**. 주소를 동적으로 배정하면 공격자가 NAT 안쪽의 특정 호스트를 겨누기 어렵다. NAT 라우터는 원치 않는 트래픽을 거르는 방화벽과 함께 쓸 수 있고, 사설망 경계에서 NAT·ALG·방화벽을 함께 두는 일이 흔하다.
+  경로에 NAT가 있으면 IPsec이 보장하는 끝과 끝 사이 보안을 얻을 수 없다 — §9
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.nat`(§3 — 영역 사이 주소 대응, §3.1.1·§3.1.2 — 정적 1:1과 동적, §9 — 보안), `ip-address-types.napt`(§4.1.2), `exam-notes.md` E15
+
+## (phase 74 step 5) RFC 2993 — Architectural Implications of NAT
+https://www.rfc-editor.org/rfc/rfc2993
+
+Informational이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). **이름 셋**만 가져온다.
+
+- 정적 NAT(Static NAT)는 두 주소 공간 사이를 안정되게 **1:1**로 대응시킨다. 동적 NAT(Dynamic NAT)는 보통 한쪽(사설)의 많은 주소를 다른 쪽(공인)의 적은 주소에 동적으로 대응시킨다.
+  NAPT(Network Address Port Translation)는 한쪽 여러 주소의 전송 계층 식별자를 반대쪽 주소 하나의 전송 식별자로 묶어, 여러 끝점이 IP 주소 하나로 보이게 한다(RFC 2663 §4.1.2를 가리킨다) — §2
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.nat`(정적 NAT·동적 NAT라는 이름), `ip-address-types.napt`(NAPT라는 이름)
+
+## (phase 74 step 5) RFC 4864 — Local Network Protection for IPv6
+https://www.rfc-editor.org/rfc/rfc4864
+
+Informational이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). IPv4 NAT가 **준다고 여겨지는** 이점을 정리한 §2만 가져온다.
+
+- §2는 IPv4 NAT를 쓰면 흔히 얻는다고 여겨지는 이점을 정리하고, 그 이점이 정확한지 따지는 것은 목적이 아니라고 밝힌다 — §2
+- 보안: NAT는 세션마다 상태를 두므로 바깥에서 그 상태를 이용해 안쪽 호스트의 다른 포트를 공격할 수 없다는 이점은 **일부만 실재한다**. 숙련된 공격자는 NAT 경계를 넘는 방법(트로이 목마 등)을 쓰고, NAT가 모든 공격을 막지는 못한다.
+  **헤더의 주소 비트를 바꾸는 일 자체는 보안을 주지 않는다** — 정적 NAT로 들어오는 모든 포트를 한 호스트로 넘기면 그 호스트의 위험은 NAT가 없을 때와 같다.
+  NAT가 주는 것으로 여겨지는 보호는 미리 만들어 둔 대응이 없다는 데서 오고, 같은 수준의 보호는 기본 방화벽도 준다. NAT를 방화벽처럼 내세우기도 하지만 진짜 방화벽은 더 명시적이고 넓은 관리 수단을 준다 — §2.2
+- 구조 숨기기: 공인 주소 하나(또는 몇 개)로 많은 사용자를 인터넷에 내보내므로 안쪽 네트워크 구조를 숨기는 간단한 수단이 된다. 바깥에서는 어느 안쪽 장치가 그 패킷을 보냈는지 알 수 없다 — §2.4
+- 이름: §2.2는 포트까지 바꾸는 방식을 NAPT라 부르고, §2.3은 「Port Address Translation」이라는 말을 **정의 없이 한 번** 쓴다. 약어 PAT는 쓰지 않는다 — §2.2, §2.3.
+  같은 방식을 IETF 문서는 NAPT라 부른다(RFC 2663 §4.1.2, RFC 3022 §2.2, RFC 2993 §2 — 그 밖에 RFC 4787·5382·6888·7857·8512에서도 「PAT」를 찾지 못했다, 2026-10-29)
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.nat`(§2.2 — 주소를 바꾸는 것 자체는 보안이 아니다, §2.4 — 안쪽 구조를 숨긴다), `exam-notes.md` E15·E16
+
+## (phase 74 step 5) RFC 2132 — DHCP Options and BOOTP Vendor Extensions
+https://www.rfc-editor.org/rfc/rfc2132
+
+Draft Standard이고 RFC 1533을 대체했으며 RFC 3442·3942·4361·4833·5494가 고쳤다(rfc-editor 상태, 2026-10-29). DHCP 서버가 주는 설정 값 가운데 이 phase가 쓰는 옵션만 가져온다.
+
+- 서브넷 마스크 옵션(코드 1) — 클라이언트의 서브넷 마스크 — §3.3
+- 라우터 옵션(코드 3) — 클라이언트의 서브넷에 있는 라우터의 IP 주소 목록(먼저 쓸 것부터) — §3.5. Windows 문서는 이것을 기본 게이트웨이라 부른다(아래 Microsoft Learn 항목의 「What is DHCP Server」 줄)
+- DNS 서버 옵션(코드 6) — 클라이언트가 쓸 수 있는 DNS 이름 서버의 목록 — §3.8
+- IP 주소 임대 시간 옵션(코드 51) — 클라이언트가 원하는 임대 시간을 요청하거나 서버가 제안하는 임대 시간을 적는다. 단위는 초 — §9.2
+- DHCP 메시지 종류 옵션(코드 53) — 1 DHCPDISCOVER, 2 DHCPOFFER, 3 DHCPREQUEST, 4 DHCPDECLINE, 5 DHCPACK, 6 DHCPNAK, 7 DHCPRELEASE, 8 DHCPINFORM — §9.6
+- 서버 식별자 옵션(코드 54) — 고른 서버의 IP 주소. 서버는 OFFER에 넣어 클라이언트가 제안들을 가르게 하고, 클라이언트는 REQUEST에 넣어 어느 제안을 받아들이는지 알린다 — §9.7
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(주소와 함께 주는 설정 — 서브넷 마스크·기본 게이트웨이(라우터)·DNS 서버, 임대 시간), `ip-address-types.dhcp-messages`(메시지 종류, 서버 식별자로 고른 서버를 알린다)
+
+## (phase 74 step 5) IANA — Service Name and Transport Protocol Port Number Registry
+https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+
+XML판(`…/service-names-port-numbers.xml`, 2026-10-27판)을 읽었다.
+
+- 67은 `bootps`(Bootstrap Protocol Server), 68은 `bootpc`(Bootstrap Protocol Client)이고 TCP·UDP 둘 다 등록돼 있다. 53은 `domain`(Domain Name Server)이다 — 레지스트리의 각 행
+- DHCP가 이 두 BOOTP 포트를 쓴다는 것은 RFC 2131 §4.1(서버 포트 67, 클라이언트 포트 68)과 §1(DHCP 메시지 형식이 BOOTP를 바탕으로 한다)이다 — 위 RFC 951·RFC 2131 항목
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
+
+## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
+https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-scopes
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/ping-exe-check-microsoft-broadband-network-adapter
+
+2026-10-29에 읽은 판(페이지의 `updated_at`): 자동 주소 지정 2025-09-22, DHCP Server 2025-05-14, DHCP scopes 2025-04-28, 네트워크 어댑터 확인 2026-02-19.
+DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지원되는 Windows 클라이언트를 대상으로 적는다. 자동 주소 지정 문서는 Windows 98~Windows Server 2003의 레지스트리 경로를 함께 적는 옛 KB 글이다 — 기능의 동작만 가져오고 설정 방법은 가져오지 않는다.
+
+- **자동 개인 IP 주소 지정**(Automatic Private IP Addressing, APIPA): DHCP를 쓰도록 설정된 Windows 컴퓨터는 DHCP 서버가 없거나 잠시 멈춰 쓸 수 없으면 **스스로 IP 주소를 정한다**. IANA가 169.254.0.0~169.254.255.255를 이 용도로 남겨 두었고, 그래서 라우팅 가능한 주소와 부딪치지 않는다.
+  서브넷 마스크는 255.255.0.0이고, 같은 LAN에서 APIPA를 쓰는(또는 169.254 주소를 손으로 정한) 컴퓨터와만 통신하며 다른 서브넷의 컴퓨터와는 통신하지 못한다. 기본으로 켜져 있다 — 자동 주소 지정 문서 첫머리와 「More Information」
+- 주소를 정한 뒤에도 DHCP 서버를 다시 찾으려고 몇 분마다 DISCOVER를 보낸다 — 같은 문서 예 1·3(3분, 5분). `ipconfig /all`의 「Autoconfiguration Enabled」 줄이 Yes이고 주소가 169.254로 시작하면 APIPA로 정한 주소다 — 같은 문서.
+  강의 p194의 `ipconfig /all` 화면에도 이 줄(「자동 구성 사용 : 예」)이 있다
+- DHCP는 IP 호스트에 IP 주소와 서브넷 마스크·기본 게이트웨이 같은 설정을 자동으로 주는 클라이언트/서버 프로토콜이고, RFC 2131·2132가 BOOTP를 바탕으로 정의한다. 서버는 주소 묶음(pool)을 두고 클라이언트가 네트워크에서 켜질 때 주소를 **임대**하며,
+  더는 쓰지 않는 주소는 자동으로 묶음에 돌아가 다시 쓰인다. DHCP 옵션의 예는 Router(기본 게이트웨이), DNS 서버, DNS 도메인 이름이다. 손으로 설정할 때 생기는 오타와, 같은 주소를 두 컴퓨터에 주어 생기는 충돌을 줄인다.
+  모든 Windows 클라이언트에 DHCP 클라이언트가 들어 있고 기본으로 켜져 있다 — DHCP Server 문서 첫머리, 「Why use DHCP?」, 「Benefits of DHCP Server」
+- 서버의 데이터베이스에는 특정 DHCP 클라이언트에 묶어 둔 **예약 주소**가 있어 한 클라이언트에 늘 같은 주소를 줄 수 있다 — DHCP Server 문서 「Why use DHCP?」
+- **예약**(reservation): 네트워크에는 서버·라우터·스위치·프린터처럼 예약된(고정) IP 주소가 필요할 수 있는 장치가 있으니 그 목록을 만들어 두라. 예약은 MAC 주소를 기준으로 특정 NIC에 늘 같은 주소를 주고, 그 주소는 바뀌지 않는다. 장치가 DHCP를 지원해야 하고 DHCP 서버에 기대게 된다 — DHCP scopes 문서 「Reservations」.
+  손으로 정적 주소를 넣은 장치는 DHCP 서버가 같은 주소를 남에게 주지 않도록 제외 범위(exclusion range)에 넣어야 한다 — 같은 문서 「Exclusion ranges」.
+  (RFC 2131 §1의 수동 할당 — 관리자가 정한 주소를 DHCP가 전하기만 한다 — 과 같은 꼴로 읽히지만, 두 문서가 서로를 가리키지는 않는다)
+- 범위(scope)는 한 서브넷에서 DHCP 클라이언트에 나눠 줄 주소 범위와 옵션이고, 서브넷 마스크·임대 기간·옵션(DNS 서버, 라우터·기본 게이트웨이 주소 등)을 갖는다 — DHCP scopes 문서 「Single scope」
+- **루프백 확인**: 네트워크 어댑터를 확인하는 첫 단계로 `ping 127.0.0.1`을 실행해 응답 넷이 오는지 본다. 응답이 없으면 그 컴퓨터의 TCP/IP에 문제가 있을 수 있고, 이 단계를 통과해야 다음 단계(자기 어댑터 주소, 기본 게이트웨이로의 ping)로 넘어갈 수 있다 — 네트워크 어댑터 확인 문서 「Use Ping.exe to Check Your Hardware」
+
+쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
+`ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
