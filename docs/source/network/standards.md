@@ -43,6 +43,8 @@ step 0(`ip-addressing` — 네트워크 부분과 호스트 부분, 네트워크
 RFC는 phase 73과 같은 방법(텍스트판을 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, IANA 레지스트리는 XML판으로 읽었다.
 「(phase 74 step 5)」가 붙은 줄과 항목은 step 5(`ip-address-types` — 공인 주소, 사설 주소, 예약된 주소, 루프백, NAT·NAPT, 정적·동적 주소, DHCP와 그 메시지)가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
 RFC·IANA는 step 0과 같은 방법으로 읽었고, learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 페이지의 고친 날(`updated_at`)과 적용 판을 적는다.
+「(phase 74 step 11)」이 붙은 줄과 항목은 step 11(`routing` — 라우팅, 라우팅 테이블, 롱기스트 프리픽스 매치, 디폴트 라우트, 정적·동적 라우팅, AS, RIP, OSPF, BGP)이 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
+RFC·IANA는 step 0과 같은 방법으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. 라우팅 테이블을 보는 명령은 **이름과 무엇을 보여 주는지만** 적었다 — 옵션과 출력 읽기는 `diagnostic-commands` 주제의 몫이다.
 
 ---
 
@@ -296,10 +298,17 @@ BCP 122다.
   옛 B 클래스 172.16.0.0은 숨은(implied) 마스크가 255.255.0.0이라 172.16.0.0/16이고, 옛 C 클래스 192.168.99.0은 앞 24비트가 1인 마스크라 192.168.99.0/24다 — §3.1
 - (phase 74) 예전에는 네트워크 크기가 셋뿐이었지만, 접두사 길이를 드러내 적으면 주소 1개부터 2^32개까지 **2의 거듭제곱 크기라면 어느 블록이든** 가리킬 수 있다 — §3.1.
   그러니 접두사 길이가 n이면 그 블록의 주소는 2^(32−n)개다(계산 — 표준 문장은 아니다. 같은 수를 접두사 길이마다 표로 든 것은 아래 RFC 1878 항목, 역사 기록)
+- (phase 74 step 11) 인터넷의 전달은 **가장 긴 일치(longest match)** 를 기준으로 한다 — §5.1 규칙 1
+- (phase 74 step 11) 접두사 `0.0.0.0/0`은 **디폴트 라우트**로 쓰이고 모든 구현이 받아들여야 한다(MUST). 다른 라우팅 도메인에는 관리자가 일부러 설정했을 때만 알리고, 설정하지 않아도 저절로 알리는 기본값으로 두지 않는다 — §5.1.
+  §3.1의 표도 `0.0.0.0/0`을 「default route」라 적고, 그 블록의 주소 수를 2^32개(모든 주소)로 든다 — §3.1
+- (phase 74 step 11) 클래스가 사라져 주소의 맨 앞 비트로 마스크를 짐작할 수 없으므로, 라우팅 프로토콜은 경로마다 마스크(접두사 길이)를 함께 실어 날라야 한다. OSPF·IS-IS·RIPv2·BGP4는 이것을 지원하고,
+  옛 프로토콜 — RIP(RFC 1058, 곧 RIPv1)·HELLO·시스코의 IGRP와 옛 외부 프로토콜 EGP(RFC 904) — 는 마스크를 싣지 않아 지금은 낡은 것으로 보고 인터넷에 이어진 중계 네트워크에서 쓰지 말라고 한다 — §5.
+  (IGRP는 이름이 여기 한 번 나올 뿐이고, 그것이 어떤 방식의 프로토콜인지는 허용한 출처에 없다 — `exam-notes.md`의 「phase 74 step 11」 문단)
 
 쓰인 곳: 면접 수정 이력 I5
 (phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§3 — 클래스로 나눠 주는 방식을 그만뒀다), `ip-addressing.cidr`(제목 — 풀네임, §2 — 나온 까닭, §3 — 클래스 없는 접두사, §3.1 — 경계를 드러내 적는다·표기·2의 거듭제곱 블록),
 `ip-addressing.subnet-mask`(§3.1 — 옛 B·C 클래스의 숨은 마스크, §5.1 — 1이 이어진다), `ip-addressing.network-broadcast-address`·`ip-addressing.subnet-sizing`(§2 — C 클래스의 254는 256에서 모두 0과 모두 1을 뺀 수, §3.1 — 블록의 주소 수), 강의 수정 이력 L37
+(phase 74 step 11에서 쓰일 곳) `routing.longest-prefix-match`(§5.1 — 전달은 가장 긴 일치), `routing.default-route`(§5.1·§3.1 — `0.0.0.0/0`은 디폴트 라우트, 모든 주소에 맞는다), `routing.rip`(§5 — RIPv1은 마스크를 싣지 않고 RIPv2는 싣는다), `exam-notes.md` E18과 「phase 74 step 11」 문단(IGRP)
 
 ## RFC 8200 — Internet Protocol, Version 6 (IPv6) Specification
 https://www.rfc-editor.org/rfc/rfc8200
@@ -520,6 +529,10 @@ https://www.rfc-editor.org/rfc/rfc1122
   (b) {0, 호스트 번호}는 「이 네트워크의 지정한 호스트」이고 (a)와 같이 초기화 절차의 출발지로만 쓴다. (c) {-1, -1}은 **제한 브로드캐스트**이고 출발지로 쓰지 않으며, 이어진 물리 네트워크의 모든 호스트가 받지만 그 네트워크 밖으로 넘겨지지 않는다.
   (g) {127, 아무 값}은 **호스트 안의 루프백 주소**이고 이 꼴의 주소는 호스트 밖에 나타나면 안 된다(MUST NOT) — §3.2.1.3 (a)(b)(c)(g)
 - (phase 74 step 5) 네트워크 번호는 **세계 전체에서 하나뿐이도록** 행정적으로 정한다 — §3.2.1.3
+- (phase 74 step 11) 호스트도 정적 경로 표를 둘 수 있다(MAY). 정적 경로는 목적지 호스트나 네트워크를 정해 둔 다음 홉 게이트웨이에 미리 짝지어 둔 것이고, 관리자가 자동 라우팅 대신 쓰려고 넣는다.
+  다만 정적 경로 정보는 **구성이 바뀌거나 장비가 고장 나면 장애의 원인이 될 수 있다** — §3.3.1.2와 DISCUSSION
+- (phase 74 step 11) 호스트의 경로 캐시·기본 게이트웨이 목록·정적 경로 표는 개념으로는 따로지만, 실제로는 하나의 「라우팅 테이블」 자료 구조로 합쳐 둘 수 있다 — §3.3.1.3 IMPLEMENTATION.
+  곧 **호스트에도 라우팅 테이블이 있다**(Linux·Windows에서 그 표를 보는 명령은 아래 「(phase 74 step 11) Linux man-pages … Microsoft Learn …」 항목)
 
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
@@ -537,6 +550,8 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 74에서 쓰일 곳) `ip-addressing.network-host`(§3.2.1.3 — {네트워크 번호, 호스트 번호}, 주소마다 마스크가 딸린다), `ip-addressing.network-broadcast-address`(§3.2.1.3 — directed broadcast, 칸이 모두 0·모두 1일 수 없다 → 2^h − 2, 출발지로 못 쓴다),
 `ip-addressing.address-classes`(§3.2.1.3 — 다섯 클래스, D 멀티캐스트·E 실험용, 특별한 경우는 A·B·C에만), `ip-addressing.subnet-mask`(§3.3.1.1 — 마스크로 같은 네트워크인지 가른다, §3.2.2.9 — 클래스에 맞는 마스크), `ip-addressing.network-address-calc`(§3.3.1.1 — 마스크로 골라낸 비트), 강의 수정 이력 L36·L38
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§3.2.1.3 — 네트워크 번호는 세계에서 하나뿐), `ip-address-types.reserved-addresses`(§3.2.1.3 (a)(b) — 0.0.0.0은 초기화의 출발지로만, (c) — 제한 브로드캐스트는 넘겨지지 않는다), `ip-address-types.loopback`(§3.2.1.3 (g) — 호스트 밖에 나타나지 않는다), `ip-address-types.dhcp-messages`((a) — 주소가 없는 클라이언트의 출발지 0.0.0.0, (c) — 목적지 255.255.255.255)
+(phase 74 step 11에서 쓰일 곳) `routing.routing`(§3.3.1 — 호스트도 데이터그램마다 다음 홉을 고른다), `routing.routing-table`(§3.3.1.3 — 호스트에도 라우팅 테이블이 있다), `routing.default-route`(§3.3.1.2 — 경로 정보가 없는 목적지는 기본 게이트웨이로),
+`routing.static-dynamic-routing`(§3.3.1.2 DISCUSSION — 정적 경로는 관리자가 넣고, 구성이 바뀌거나 장비가 고장 나면 장애의 원인이 된다), `exam-notes.md` E17
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -841,11 +856,21 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
 - (phase 71) 서버는 자원을 내주는 쪽이고, 클라이언트는 다른 컴퓨터 시스템이나 프로세스에 서비스를 요청하는 쪽이다 — 「server」, 「client」
 - (phase 71) PING은 목적지에 ICMP echo 요청을 보내고 응답을 기다려, 그 목적지에 닿을 수 있는지 시험하는 프로그램이다 — 「Packet InterNet Groper (PING)」
 - (phase 71) 인터넷 주소는 인터넷에서 노드 하나를 유일하게 가리키는 IP 주소다. IP 주소는 RFC 791이 정한 32비트 주소다 — 「internet address」, 「IP address」
+- (phase 74 step 11) 홉은 라우팅에서 쓰는 말이다 — 목적지까지 가는 길은 출발지에서 라우터들을 거쳐 멀어지는 홉들의 이어짐이다 — 「hop」
+- (phase 74 step 11) 라우팅은 전달할 패킷에 맞는 인터페이스와 다음 홉을 고르는 일이다. 경로(route)는 트래픽이 출발지에서 목적지까지 가는 길이다 — 「routing」, 「route」
+- (phase 74 step 11) 라우터는 네트워크 사이에서 트래픽을 넘기는 장치이고, 넘길 곳은 네트워크 계층 정보와 라우팅 테이블로 정한다. 라우팅 테이블은 흔히 라우팅 프로토콜이 만든다 — 「router」.
+  지금은 라우터를 3계층(네트워크 계층) 게이트웨이로 본다 — 「gateway」
+- (phase 74 step 11) IGP는 한 AS 안의 라우터들에게, EGP는 AS들을 잇는 라우터들에게 라우팅 정보를 나눠 주는 프로토콜이다. 두 이름의 「gateway」는 옛 말이고 지금은 「router」라 부른다.
+  **EGP라는 이름의 라우팅 프로토콜도 따로 있다**(RFC 904) — 「Interior Gateway Protocol (IGP)」, 「Exterior Gateway Protocol (EGP)」
+- (phase 74 step 11) RIP는 링크 상태가 아니라 거리 벡터 방식의 IGP이고, OSPF는 거리 벡터가 아니라 링크 상태 방식의 IGP다. BGP는 외부(exterior) 게이트웨이 프로토콜이고 EGP를 쓴 경험을 바탕으로 만들었다 —
+  「Routing Information Protocol (RIP)」, 「Open Shortest-Path First (OSPF)」, 「Border Gateway Protocol (BGP)」(이 용어집이 가리키는 RFC 1058·1583·1771은 지금 폐기되거나 역사적이 된 판이다 — 현행은 아래 RFC 2453·2328·4271 항목)
+- (phase 74 step 11) AS는 하나의 관리 주체 아래에서 공통의 IGP로 패킷을 라우팅하는 라우터들의 모임이다 — 「Autonomous System (AS)」(옛 정의 — 지금의 정의는 아래 RFC 1930 항목)
 
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
 `network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
 `protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이),
 (phase 72에서 쓰일 곳) `ethernet.ethernet`(LAN), `ethernet.standard-names`(10BaseT — 꼬아 만든 구리선 쌍), `ethernet.mac-address`(브로드캐스트·멀티캐스트·유니캐스트)
+(phase 74 step 11에서 쓰일 곳) `routing.routing`(「hop」·「routing」·「router」·「gateway」 — 라우터는 네트워크 계층 장비), `routing.as`(「IGP」·「EGP」 — EGP는 갈래 이름이자 옛 프로토콜 하나의 이름), `routing.rip`·`routing.ospf`(거리 벡터와 링크 상태), `routing.bgp`, 강의 수정 이력 L42
 
 ## RFC 3013 — Recommended Internet Service Provider Security Services and Procedures
 https://www.rfc-editor.org/rfc/rfc3013
@@ -1401,6 +1426,41 @@ Proposed Standard(Standards Track)이다.
 - (phase 74 step 5) {127, 아무 값}은 호스트 안의 루프백 주소이고 이 꼴의 주소는 호스트 밖에 나타나면 안 된다 — §4.2.2.11 (e).
   라우터는 출발지나 목적지가 0번 네트워크인 패킷을 넘기지 않는 것이 좋고, 127번 네트워크인 패킷도 루프백 인터페이스로 보내는 경우가 아니면 넘기지 않는 것이 좋다(SHOULD NOT) — §5.3.7
 - (phase 74 step 5) 라우터는 제한 브로드캐스트를 다른 네트워크로 넘기면 안 되고(MUST NOT), 버려서도 안 된다(MUST NOT) — §5.3.5.1
+- (phase 74 step 11) **전달(forwarding)과 라우팅(routing)**: IP 데이터그램을 넘기려면 라우터는 다음 홉 라우터(마지막 홉이면 목적지 호스트)의 주소와 내보낼 인터페이스를 골라야 하고, 이 고름을 전달이라 부른다.
+  고름은 라우터 안의 경로 데이터베이스에 기대며, 그것을 **라우팅 테이블**(또는 전달 테이블)이라고도 부른다. 이 데이터베이스를 만드는 과정 — 라우팅 프로토콜과 관리자의 설정이 함께 만드는 과정 — 이 라우팅이다 — §2.2.3.
+  경로 데이터베이스는 지금의 망 모양을 비추도록 동적으로 유지하는 것이 좋고, 라우터는 대개 다른 라우터들과 분산 라우팅 알고리즘에 참여해 이것을 한다 — §2.2.3.
+  (RFC 1983 용어집은 「라우팅」을 넓게, 전달할 패킷의 인터페이스와 다음 홉을 고르는 일로 적는다 — 아래 RFC 1983 항목)
+- (phase 74 step 11) 다음 홉 주소는 패킷을 다음에 보낼 **인접한** 호스트나 라우터의 IP 주소이고, 인접하다는 것은 IP 라우터를 거치지 않고 닿는다는 뜻이다 — §5.2.4.
+  목적지가 라우터에 바로 이어진 네트워크에 있으면 다음 홉은 목적지 자신이고, 아니면 라우팅 테이블에서 다음 홉을 찾는다. 라우터가 아닌 호스트에서는 그 다음 홉이 설정해 둔 기본 라우터일 수 있다 — §5.2.4.2 (3), §5.2.4.3
+- (phase 74 step 11) 다음 홉을 고르는 차례(가지치기 규칙): 라우팅 테이블(FIB)의 경로 전부를 후보로 두고 ① 기본 일치 — 경로의 접두사 길이만큼의 앞 비트가 목적지 주소와 같은 경로만 남긴다 ② **가장 긴 일치** — 남은 것 가운데 접두사 길이가 가장 긴 것만 남긴다
+  ③ TOS(선택) ④ **가장 좋은 메트릭** — 같은 라우팅 도메인에서 온 경로끼리 메트릭을 견줘 못한 쪽을 버린다(대개 단순한 산술 비교) ⑤ 업체 정책. 예: 목적지 10.144.2.5에 10.144.2.0/24·10.144.0.0/16·10.0.0.0/8이 모두 맞으면 /24만 남는다 — §5.2.4.3.
+  그 결과 고르는 순서는 호스트 경로 → 네트워크 접두사 경로(접두사가 긴 것부터) → **디폴트 라우트**이고, 디폴트 라우트는 따로 적힌 경로가 없는 모든 네트워크로 가는 경로이며 **정의상 접두사 길이가 0**이다 — §5.2.4.3.
+  후보가 하나도 남지 않으면 패킷을 버리고 ICMP 목적지 도달 불가를 보낸다 — §5.2.4.3. 여럿이 남으면 하나만 남기거나 나눠 보낼(load-splitting) 수 있다 — §5.2.4.3, §5.2.4.5
+- (phase 74 step 11) 업체 정책의 한 예가 관리 선호도(administrative preference)다 — 경로마다 0~255의 값을 사람이 매겨(0이 가장 선호) 고르는 방식이고, 이웃 라우터와 값이 맞는지 보장하는 프로토콜이 없어 잘못 쓰면 고리를 만든다 — §5.2.4.4.
+  **메트릭은 같은 라우팅 도메인의 경로끼리만 견줄 수 있다** — §5.2.4.3 규칙 4, §7.4 DISCUSSION
+- (phase 74 step 11) 인터페이스가 고장 나거나 꺼지면 라우터는 그 인터페이스를 쓰는 경로를 모두 빼고, 그 인터페이스를 쓰는 **정적 경로도 쓰지 않는다**. 같은 목적지로 가는 다른 경로를 알고 있으면 그 가운데 가장 좋은 것을 넣는다 — §5.3.12.3.
+  인터페이스가 다시 살아나면 그 정적 경로를 다시 쓴다 — §5.3.12.4. (정적 경로가 반응하는 것은 라우터 자신의 인터페이스 상태뿐이다 — 그 너머의 라우터가 멈춘 것은 이 규칙으로 알지 못한다)
+- (phase 74 step 11) 이 문서는 라우팅 프로토콜을 7장 「APPLICATION LAYER - ROUTING PROTOCOLS」에서 다룬다. 인터넷의 라우팅은 내부 라우팅과 외부 라우팅 둘로 나뉘고, 그 경계를 정하는 것이 AS다.
+  **IGP는 한 AS 안에서, 외부 게이트웨이 프로토콜은 AS 사이에서** 라우팅 정보를 주고받는 데 쓴다 — §7.1
+- (phase 74 step 11) AS는 한 운영·관리 조직이 다루는 서브네트워크(와 그에 붙은 호스트)와 라우터들이 경로로 이어진 망의 한 부분이다. AS 안에서는 내부 라우팅 프로토콜을 하나 이상 쓰고 메트릭도 여러 벌일 수 있지만,
+  다른 AS에게는 한결같은 내부 라우팅 계획과 그 AS를 거쳐 닿는 목적지를 보인다. AS는 AS 번호로 가리킨다 — §2.2.4(아래 RFC 1930·RFC 4271 항목의 정의와 같은 뜻)
+- (phase 74 step 11) 지금 쓰는 IGP는 **거리 벡터** 방식이거나 **링크 상태** 방식이다. IGP가 갖출 일 가운데 하나로 부하를 나누도록 비용이 같은 경로를 내주는 것을 든다 — §7.2.1.
+  정적 경로 말고 라우팅 프로토콜을 하나라도 구현하는 라우터는 OSPF를 구현해야 한다 — §7.2.1
+- (phase 74 step 11) SPF(Shortest Path First) 방식은 **다익스트라의 최단 경로 알고리즘**에 바탕을 둔 링크 상태 방식이다. 라우터마다 플러딩(flooding)으로 망 모양 데이터베이스 전체를 얻고, 그 데이터베이스에 SPF 알고리즘을 돌려 IP 라우팅 테이블을 만든다.
+  OSPF가 이 방식의 프로토콜이고 지금 판은 OSPFv2다(OSPFv1을 적은 RFC 1131은 폐기) — §7.2.2
+- (phase 74 step 11) 외부 게이트웨이 프로토콜은 AS 안의 네트워크들에 닿을 수 있다는 정보를 이웃 AS에 건네는 데 쓴다. 이름이 EGP인 옛 프로토콜이 전통적으로 쓰였지만 **지금은 역사적인 것**이고, BGP가 EGP의 제약을 없애 널리 쓰인다 — §7.3.1, 부록 F.1.
+  RIP는 외부 프로토콜로 만들지 않았지만 AS 사이에 쓰이기도 한다 — §7.3.1
+- (phase 74 step 11) BGP-4는 AS 사이의 라우팅 프로토콜이고, 어떤 네트워크에 닿는 정보에 그 네트워크까지 가려면 지나야 하는 **AS의 목록 전체**를 담는다. 이 정보로 고리 없는 경로를 고르고 AS 단위의 정책을 적용할 수 있다 — §7.3.2.1.
+  관리자가 AS마다 가중치를 매겨 특정 경로를 고르게 하거나, 어떤 AS가 AS 경로에 든 경로를 무시하게 할 수 있어야 한다(SHOULD) — §7.3.2.2
+- (phase 74 step 11) **정적 라우팅**은 어떤 목적지로 가는 다음 홉을 관리자가 드러내 적어 정하는 방법이고, 목적지는 네트워크 접두사로 정한다 — §7.4.
+  같은 목적지에 정적 경로와 동적 경로가 함께 있을 때 **어느 쪽을 더 쓸지(또는 메트릭으로 가를지)는 정적 경로마다 설정할 수 있어야 한다**(SHOULD) — §7.4 DISCUSSION. 표준이 정적 경로를 늘 먼저 쓰라고 정하지는 않는다(`exam-notes.md` E17)
+- (phase 74 step 11) 단순한 네트워크라면 전달 데이터베이스의 내용을 정적으로 설정해도 되지만, 네트워크가 복잡해질수록 그것을 **동적으로 고치는 일**이 효율적인 운영에 중요해진다 — §7.5
+- (phase 74 step 11) 용어집(부록 B): 디폴트 라우트는 라우팅 테이블에 따로 적히지 않은 네트워크 접두사로 가는 데이터를 보낼 항목이다. FIB(전달 정보 베이스)는 적어도 닿을 수 있는 목적지 접두사마다 인터페이스와 다음 홉 정보를 담는다.
+  경로(path)는 패킷이 한 라우터에서 목적지 호스트까지 지나는 라우터와 네트워크의 이어짐이고 한 방향이다 — 두 호스트 사이의 오가는 길이 서로 다른 일이 드물지 않다. 라우터는 패킷을 라우터에서 라우터로 넘겨 목적지에 닿게 한다 — 부록 B 「Default Route」, 「Forwarding Information Base (FIB)」, 「Path」, 「router」
+- (phase 74 step 11) 역사(부록 E): 정적 경로가 들어오면서 같은 목적지로 가는 동적 경로와 정적 경로가 함께 있게 됐고, 어느 쪽을 쓸지는 라우터의 **정책**(어떤 것은 설정할 수 있고 어떤 것은 소프트웨어를 만든 쪽이 정했다)이 정했다.
+  다만 그 정책은 가장 긴 일치로 하나가 정해지지 않을 때만 쓰는 판가름이었다 — 그래서 정적 디폴트 라우트는 동적인 네트워크 경로보다 먼저 쓰이지 않는다 — 부록 E
+- (phase 74 step 11) 부록 F는 지금 인터넷의 특성에 맞지 않아 권하지 않는 「역사적」 라우팅 프로토콜을 모은다 — EGP(F.1, 거리 칸에 표준 해석이 없어 라우팅 프로토콜로 보지 않는다)와 RIP(F.2).
+  RIP를 구현하는 라우터는 CIDR 경로를 지원하는 RIP 버전 2를 구현하는 것이 좋다(SHOULD) — 부록 F.2.1
 
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
@@ -1412,6 +1472,10 @@ Proposed Standard(Standards Track)이다.
 (phase 74에서 쓰일 곳) `ip-addressing.address-classes`(§4.2.2.11 — 다섯 클래스, A·B·C 구분은 역사적 의미뿐), `ip-addressing.network-broadcast-address`(§4.2.2.11 — directed broadcast, 칸이 0·-1일 수 없다, §5.3.5 — directed broadcast의 꼴, §4.2.3.1 — 호스트 부분이 모두 0인 주소는 낡은 브로드캐스트 형태),
 `ip-addressing.subnetting`·`ip-addressing.subnet-sizing`(§4.2.2.11 DISCUSSION — 모두 0·모두 1 서브넷도 쓴다), `exam-notes.md`의 「phase 74 step 0」 문단, 강의 수정 이력 L38
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(§5.3.5.1 — 제한 브로드캐스트는 넘기지 않는다, §5.3.7 — 0번·127번 네트워크의 패킷은 넘기지 않는다), `ip-address-types.loopback`(§4.2.2.11 (e), §5.3.7), `ip-address-types.nat`(§2.2.3 — 라우터는 IP 데이터그램을 넘기는 장치이고 링크 계층 장치는 브리지다: NAT가 데이터 링크 계층의 일이 아니라는 것의 한쪽 근거)
+(phase 74 step 11에서 쓰일 곳) `routing.routing`(§2.2.3 — 전달과 라우팅, 경로 데이터베이스 = 라우팅 테이블, §5.2.1.2 — 라우터마다 다음 홉만 정한다, §5.2.4 — 다음 홉·인접, 부록 B 「Path」·「router」), `routing.routing-table`(§2.2.3, §5.2.4.3 규칙 4 — 메트릭, 부록 B 「FIB」),
+`routing.longest-prefix-match`(§5.2.4.3 규칙 1·2와 예), `routing.default-route`(§5.2.4.3 — 접두사 길이 0, 맞는 경로가 하나도 없을 때만, 부록 B 「Default Route」, §5.2.4.2 (3) — 호스트의 기본 라우터),
+`routing.static-dynamic-routing`(§7.4·§7.4 DISCUSSION·§7.5·§5.3.12.3·부록 E — 정적 경로, 선호는 설정, 단순한 네트워크와 복잡한 네트워크, 인터페이스 고장), `routing.as`(§2.2.4, §7.1, §7.3.1 — AS, IGP와 외부 프로토콜, 옛 EGP는 역사적),
+`routing.rip`(§7.2.1 — 거리 벡터, 부록 F.2.1 — RIPv2를 권한다), `routing.ospf`(§7.2.1·§7.2.2 — 링크 상태, 다익스트라, 플러딩, 같은 비용 경로), `routing.bgp`(§7.3.2.1·§7.3.2.2 — AS 목록, 고리 없는 경로, 정책), `exam-notes.md` E17, 강의 수정 이력 L42
 
 ## (phase 72 step 1) NIST SP 800-125B — Secure Virtual Network Configuration for Virtual Machine (VM) Protection (2016-03)
 https://csrc.nist.gov/pubs/sp/800/125/b/final
@@ -2174,3 +2238,185 @@ DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지�
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
 `ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
+
+## (phase 74 step 11) RFC 1930 — Guidelines for creation, selection, and registration of an Autonomous System (AS)
+https://www.rfc-editor.org/rfc/rfc1930
+
+BCP 6(Best Current Practice)이고 폐기되지 않았다. RFC 6996·RFC 7300이 고쳤다(rfc-editor 상태, 2026-10-29).
+
+- AS의 정의는 오래 흐릿했다. 이 문서는 BGP-4 문서의 옛 정의(아래 RFC 4271 §1.1)를 들고 짧게 다시 정리한다 — **AS는 하나 이상의 네트워크 운영자가 운영하는, 서로 이어진 IP 접두사 하나 이상의 묶음이고, 라우팅 정책이 하나이며 분명히 정해져 있다** — §3
+- 라우팅 정책은 AS 사이에 라우팅 정보를 주고받을 때 무엇을 알리고 무엇을 받아들일지의 결정이다. 예: AS X가 자기가 닿을 줄 아는 접두사를 AS Y에 알리고 Y가 그것을 받아들여야 그 접두사로 가는 트래픽이 Y에서 X로 흐른다.
+  받은 정보를 쓸지 말지는 받는 AS의 몫이다 — §3
+- 정책은 접두사 하나하나가 아니라 접두사들의 묶음에 대해 정하고, 그 묶음이 AS다. AS에는 세계에서 하나뿐인 번호(ASN)가 붙고, 이웃 AS와 외부 라우팅 정보를 주고받을 때와 그 AS를 가리킬 때 쓴다.
+  AS는 자기 안에서 닿을 수 있다는 정보를 주고받을 때 보통 IGP를 하나 이상 쓴다 — §3
+- AS에는 예외 없이 라우팅 정책이 **하나**뿐이어야 한다. 같은 관리 아래의 접두사를 묶는 편리한 이름으로 AS를 쓰는 것은 잘못이다 — §4
+- 이 문서의 「접두사」는 CIDR 블록과 같은 말이다 — §3
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.as`(§3 — 정의, 하나의 분명한 라우팅 정책, 세계에서 하나뿐인 AS 번호, AS 안에서는 IGP), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p215의 정의는 표준과 맞는다)
+
+## (phase 74 step 11) IANA — Autonomous System (AS) Numbers, RFC 5398 — Autonomous System (AS) Number Reservation for Documentation Use, RFC 6793 — BGP Support for Four-Octet Autonomous System (AS) Number Space
+https://www.iana.org/assignments/as-numbers/as-numbers.xhtml
+https://www.rfc-editor.org/rfc/rfc5398
+https://www.rfc-editor.org/rfc/rfc6793
+
+레지스트리는 XML판(`…/as-numbers.xml`, 고친 날 2026-06-01)을 2026-10-29에 내려받아 읽었다. RFC 5398은 정보성(Informational), RFC 6793은 Proposed Standard이고 둘 다 폐기되지 않았다.
+
+- AS 번호는 여러 라우팅 프로토콜이 쓴다. **IANA는 AS 번호를 지역 인터넷 등록 기관(RIR) 다섯 곳 — AFRINIC·APNIC·ARIN·LACNIC·RIPE NCC — 에 나눠 주고, RIR은 저마다의 정책에 따라 네트워크 운영자에게 다시 나눠 준다**.
+  AS 번호는 자기 지역의 등록 기관에서 받는다 — 레지스트리 머리 설명
+- 문서·예시에 쓰라고 남겨 둔 AS 번호가 두 묶음 있다 — 64496~64511과 65536~65551. 문서의 예를 실제 장비에 그대로 설정해도 실제로 쓰이는 번호와 부딪치지 않게 하려는 것이다 — RFC 5398 §2·§4, 레지스트리의 같은 행.
+  (이 과목은 AS를 「AS 1」·「AS 2」 같은 이름표로 쓰므로 이 번호를 개념에 쓰지 않는다 — guide 「예시 값」)
+- BGP 기본 규격에서 AS 번호는 2옥텟이었고, 2옥텟 번호가 바닥날 것에 대비해 4옥텟으로 실어 나르는 확장을 정했다 — RFC 6793 Abstract·§1
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.as`(AS마다 번호가 있고 IANA → RIR → 운영자 차례로 나눠 준다 — 쓸지는 step 14가 정한다)
+
+## (phase 74 step 11) RFC 4271 — A Border Gateway Protocol 4 (BGP-4)
+https://www.rfc-editor.org/rfc/rfc4271
+
+Draft Standard이고 폐기되지 않았다. 옛 판 RFC 1771을 폐기하고 대신하며, RFC 6793·RFC 8212 등 여러 문서가 고쳤다(rfc-editor 상태, 2026-10-29).
+
+- BGP는 **AS 사이의 라우팅 프로토콜**이다 — §1, §3
+- BGP를 쓰는 시스템은 다른 BGP 시스템과 네트워크에 닿을 수 있다는 정보를 주고받고, 그 정보에는 **그 정보가 지나온 AS의 목록**이 들어 있다. 이것으로 AS들이 이어진 그래프를 그려 고리(routing loop)를 걸러 내고, AS 단위의 정책을 적용할 수 있다 — §1, §3
+- 옛 정의의 AS는 한 기술 관리 아래의 라우터 묶음으로, AS 안에서는 IGP와 공통의 메트릭으로, 다른 AS로는 AS 사이의 라우팅 프로토콜로 패킷 경로를 정한다. 지금은 한 AS가 IGP와 메트릭을 여럿 쓰는 일이 흔하지만,
+  다른 AS에게는 한결같은 내부 라우팅 계획을 보인다는 점이 AS라는 말의 핵심이다 — §1.1 「Autonomous System (AS)」. IGP는 한 AS 안의 라우터끼리 라우팅 정보를 주고받는 라우팅 프로토콜이다 — §1.1 「IGP」
+- BGP는 EGP(RFC 904)와 그것을 NSFNET에서 쓴 경험을 바탕으로 만들었다 — §3
+- BGP는 전송 프로토콜로 **TCP**를 쓰고 **TCP 포트 179**에서 연결을 기다린다. 처음에는 내보내도 되는 경로 전부를 보내고, 그 뒤에는 바뀐 것만 보낸다 — 주기적으로 표 전체를 다시 보내지 않는다 — §3
+- BGP 스피커(BGP를 구현한 라우터)는 자기가 실제로 쓰는 경로만 이웃에게 알린다 — §1.1 「BGP speaker」, §3
+- **AS_PATH** 속성은 그 경로 정보가 지나온 AS들을 가리킨다. 경로를 다른 AS의 이웃(external peer)에게 알릴 때는 자기 AS 번호를 목록 맨 앞에 붙이고, 같은 AS의 이웃에게 알릴 때는 바꾸지 않는다. 경로를 처음 만든 스피커는 자기 AS 번호 하나로 목록을 시작한다 — §5.1.2
+- 결정 과정은 지역 정책 정보(PIB)를 받은 경로들에 적용해, 자기가 쓸 경로와 이웃에게 알릴 경로를 고른다 — §9.1. 다른 AS의 이웃에게서 받은 경로의 선호도는 **미리 설정한 정책**으로 계산하고, 그 정책과 계산의 세부는 각자 정할 일(local matter)이다 — §9.1.1
+- **받은 경로의 AS_PATH에 고리가 있으면 그 경로는 고르는 후보에서 빼는 것이 좋다.** 고리는 AS 경로 전체를 훑어 자기 AS 번호가 들어 있는지로 찾는다 — §9.1.2
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.bgp`(§1·§3 — AS 사이, AS 목록, 고리·정책, TCP 179, §5.1.2 — AS 번호를 앞에 붙인다, §9.1·§9.1.1 — 정책으로 고른다, §9.1.2 — 자기 AS가 있으면 쓰지 않는다), `routing.as`(§1.1 — 옛 정의, IGP)
+
+## (phase 74 step 11) RFC 4274 — BGP-4 Protocol Analysis
+https://www.rfc-editor.org/rfc/rfc4274
+
+정보성(Informational) 문서이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). 「경로 벡터」라는 이름의 근거로 쓴다.
+
+- BGP의 알고리즘은 순수한 거리 벡터도 순수한 링크 상태도 아니고, **거리 벡터를 고친 알고리즘으로 「경로 벡터(Path Vector)」라 부른다**. 경로 정보를 써서 거리 벡터의 전통적인 문제를 피한다.
+  BGP의 경로는 목적지 정보와 그 목적지까지의 경로 정보(AS_PATH)를 짝으로 갖고, 이 정보로 AS 고리를 찾아 고리 없는 경로를 고른다 — §2.2
+- 경로 정보가 인터넷을 지나는 동안 지나온 AS들이 AS_PATH에 덧붙는다. AS_PATH는 라우팅 정보의 고리를 쉽게 막고, **정책 기반 라우팅**의 수단이 된다 — §2.1
+- BGP는 처음에 전체 정보를 주고받은 뒤 바뀐 것만 주고받고, 그러려면 믿을 수 있는 전송이 필요해 TCP를 쓴다. 새 연결은 TCP 포트 179에서 받는다 — §2.2, §2.3
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.bgp`(§2.2 — 경로 벡터, 거리 벡터를 고친 방식, AS 고리, §2.1 — 정책 기반 라우팅), `exam-notes.md`의 「phase 74 step 11」 문단(BGP를 거리 벡터 쪽에 둔 두 문항)
+
+## (phase 74 step 11) RFC 1772 — Application of the Border Gateway Protocol in the Internet
+https://www.rfc-editor.org/rfc/rfc1772
+
+Draft Standard이고 폐기 표시는 없다(rfc-editor 상태, 2026-10-29). 다만 BGP-4의 옛 규격 RFC 1771(지금은 RFC 4271이 대신한다)과 짝으로 쓴 1995년 문서라, 정책과 메트릭에 관한 설명에만 쓴다.
+
+- AS 경로 전체를 실어 보내므로 라우팅 고리를 막고, 일부 거리 벡터 알고리즘의 「무한대까지 세기(count-to-infinity)」 문제를 없앤다 — §2
+- RIP 같은 전통적인 거리 벡터 프로토콜은 경로에 메트릭이 **하나**(예: 홉 수)뿐이라 경로를 견주는 것이 수 두 개를 견주는 일이 된다. AS 사이에는 모두가 합의한 메트릭이 없어 AS마다 경로를 평가하는 기준이 따로 있다 — §6
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(§6 — RIP는 메트릭이 하나, 홉 수), `routing.bgp`(§2·§6 — AS 경로로 고리를 막는다, AS마다 기준이 다르다)
+
+## (phase 74 step 11) RFC 904 — Exterior Gateway Protocol formal specification [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc904
+
+rfc-editor 상태는 HISTORIC이다(2026-10-29). 지금 쓰지 않는 옛 프로토콜이라는 근거로만 쓴다.
+
+- 이 문서는 **EGP(Exterior Gateway Protocol)라는 이름의 프로토콜 하나**를 정한다. 같은 AS나 서로 다른 AS의 게이트웨이(라우터)끼리 네트워크에 닿을 수 있다는 정보를 주고받는 데 쓰였다 — §1, §1.1
+- 그래서 「EGP」는 AS 사이의 라우팅 프로토콜을 묶어 부르는 이름이자 이 옛 프로토콜의 이름이기도 하다 — RFC 1983 「Exterior Gateway Protocol (EGP)」(위 항목). 그 프로토콜은 지금 역사적인 것이고 BGP가 대신한다 — RFC 1812 §7.3.1, 부록 F.1(위 항목)
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.as`(EGP가 갈래 이름이자 옛 프로토콜 하나의 이름 — 한 줄)
+
+## (phase 74 step 11) RFC 2453 — RIP Version 2
+https://www.rfc-editor.org/rfc/rfc2453
+
+STD 56, Internet Standard이고 폐기되지 않았다. RFC 4822가 고쳤다(rfc-editor 상태, 2026-10-29).
+
+- RIP는 **벨먼-포드(곧 거리 벡터) 알고리즘**에 바탕을 둔 라우팅 프로토콜이다 — §3.1
+- 인터넷은 AS들의 모임이고, AS 안에서 쓰는 라우팅 프로토콜을 IGP, AS 사이에 쓰는 것을 EGP라 한다. **RIP는 중간 크기 AS의 IGP로 만들었고** 더 복잡한 환경에는 맞지 않는다 — §3.1, §3.2.
+  작은 네트워크에서는 쓰는 대역폭과 설정·관리 시간이 아주 적다는 장점이 있다 — §1
+- 라우팅 프로토콜의 목적은 라우팅에 필요한 정보를 대 주는 것이다. 라우팅은 호스트나 라우터가 데이터그램을 어디로 보낼지 정하는 방법이고, 목적지가 바로 이어진 네트워크에 없으면 목적지에 더 가까운 라우터로 보낸다 — §3.1
+- **거리 벡터**: 라우팅에 참여하는 각 장치(라우터나 호스트)는 목적지마다 한 항목을 두고, 항목에는 다음에 보낼 라우터와 그 목적지까지의 거리를 재는 **메트릭**이 있다. 주고받는 정보가 이 거리들의 목록뿐이어도 가장 좋은 경로를 계산할 수 있어서 거리 벡터라 부른다.
+  정보는 **인접한 장치끼리만**, 곧 같은 네트워크를 함께 쓰는 장치끼리만 주고받는다. 데이터베이스는 바로 이어진 것들로 시작해 이웃 라우터가 보낸 메시지로 고친다 — §3.4
+- 항목에 둘 정보의 예: 목적지 주소, 목적지로 가는 첫 라우터, 그 라우터에 닿는 데 쓸 물리 네트워크(인터페이스), 거리를 나타내는 메트릭, 마지막으로 고친 뒤 지난 시간 — §3.4.
+  RIPv2의 항목에는 서브넷 마스크도 있어야 한다 — §3.5
+- **홉**: 장치 i에서 장치 j로 다른 라우터를 거치지 않고 바로 갈 수 있으면 그 사이를 홉 하나로 보고 비용을 매긴다. 경로 전체의 메트릭은 홉마다의 비용을 더한 값이다 — §3.4. (홉의 양 끝은 라우터일 수도 호스트일 수도 있다 — 강의 수정 이력 L42)
+- 이웃이 알려 온 거리에 그 이웃까지의 비용을 더해 견주고 **가장 작은 것**을 고른다. 실제 구현은 지금까지 본 가장 좋은(가장 작은) 메트릭과 그것을 알려 온 이웃을 기억했다가 더 작은 것을 보면 바꾼다 — §3.4
+- **메트릭**: 네트워크마다 1~15의 비용이 있고, 경로의 메트릭은 지나는 네트워크들의 비용을 더한 값이다. 최대 경로 한도가 15라 보통 비용 1을 쓰고, **그러면 RIP의 메트릭은 단순한 홉 수가 된다**. 대역폭이나 신뢰성의 차이를 나타내려고 관리자가 더 큰 비용을 줄 수도 있다 — §3.5.
+  RIP는 고정된 메트릭으로 경로를 견주므로 지연·신뢰성·부하처럼 그때그때 재는 값으로 경로를 고르는 데는 맞지 않는다 — §3.2
+- **15홉 한도**: 가장 긴 경로가 15홉인 네트워크까지만 쓸 수 있다(네트워크마다 비용 1일 때). 메트릭 칸은 1~15이고, **16은 무한대 — 닿을 수 없는 목적지**를 뜻한다 — §3.2, §3.4.1, §3.6
+- 관리자가 직접 넣는 경로를 둘 수도 있고 이것을 정적 경로라 부른다 — §3.5
+- **UDP 포트 520**: RIP 메시지는 UDP로 주고받고, 라우터의 RIP 처리는 UDP 포트 520에서 보내고 받는다 — §3.6
+- **30초마다** 라우팅 테이블 전체를 담은 응답 메시지를 이웃 라우터들에게 보낸다. 경로마다 시간 제한이 있어, 180초 동안 그 경로의 소식이 없으면 경로가 만료되고 메트릭을 16으로 둔 채 120초 뒤 표에서 지운다 — §3.8
+- **RIPv1과 RIPv2**: RIP-1은 메시지에 서브넷 마스크가 없어, 라우터가 멀리 있는 경로의 마스크를 알 수 없고 그 경로가 서브넷 경로인지 호스트 경로인지도 가리지 못한다 — §2. RIPv2는 경로마다 **서브넷 마스크 칸**을 두어 주소에서 네트워크 부분을 가릴 수 있게 했다 — §4.3, §3.5.
+  (마스크를 싣는 RIPv2와 싣지 않는 RIP(RFC 1058)의 구분은 RFC 4632 §5에도 있다 — 위 항목)
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(§3.1·§3.4 — 거리 벡터, 벨먼-포드, 이웃끼리만, §3.5 — 메트릭은 보통 홉 수, §3.2·§3.6 — 15홉, 16은 닿을 수 없음, §3.6 — UDP 520, §3.8 — 30초, §1·§3.2 — 작은·중간 크기 네트워크, §2·§4.3 — RIPv1과 RIPv2),
+`routing.routing-table`(§3.4 — 항목의 칸, 작은 메트릭을 고른다), `routing.routing`(§3.1 — 라우팅 프로토콜의 목적), 강의 수정 이력 L42(§3.4 — 홉), `exam-notes.md` E18
+
+## (phase 74 step 11) RFC 1058 — Routing Information Protocol [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1058
+
+rfc-editor 상태는 HISTORIC이다(2026-10-29). RIP 버전 1을 정한 문서이고, 지금 규격은 위 RFC 2453이다.
+
+- RIP-1의 메시지는 주소 칸에 호스트 주소·서브넷 번호·네트워크 번호·0(디폴트 라우트)을 가리지 않고 담고, **서브넷 마스크를 담지 않는다**. 받는 쪽은 마스크를 알아야 주소의 뜻을 가릴 수 있는데, 보통 바로 이어진 네트워크의 마스크만 안다.
+  그래서 서브넷으로 가는 경로는 그 서브넷이 속한 네트워크 밖으로 내보내지 않는다 — §3.2
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(RIPv1은 마스크를 싣지 않는다 — 역사 기록), `exam-notes.md` E18
+
+## (phase 74 step 11) RFC 2080 — RIPng for IPv6
+https://www.rfc-editor.org/rfc/rfc2080
+
+Proposed Standard이고 폐기되지 않았다(rfc-editor 상태, 2026-10-29). 이름만 쓴다.
+
+- RIPng는 IPv4 인터넷에서 쓰이는 프로토콜과 알고리즘에 바탕을 둔, **IPv6용 라우팅 프로토콜**이다 — Abstract. UDP 포트 521을 쓴다 — §2.1
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(IPv6용은 RIPng — 쓸지는 step 15가 정한다)
+
+## (phase 74 step 11) RFC 2328 — OSPF Version 2
+https://www.rfc-editor.org/rfc/rfc2328
+
+STD 54, Internet Standard이고 폐기되지 않았다. 여러 문서가 고쳤다(rfc-editor 상태, 2026-10-29). IPv4용 OSPF다.
+
+- OSPF는 **IGP**로 분류된다 — 한 AS에 속한 라우터들 사이에 라우팅 정보를 나눠 준다. **링크 상태(SPF) 기술**에 바탕을 두며, 전통적인 TCP/IP 라우팅 프로토콜이 쓰던 벨먼-포드 방식과 다르다 — §1
+- OSPF는 동적 라우팅 프로토콜이다 — 라우터 인터페이스 고장 같은 AS 안의 망 변화를 빨리 알아채고, 잠깐의 수렴 뒤 고리 없는 새 경로를 계산한다 — §1.1
+- **링크 상태 방식**: 라우터마다 AS의 망 모양을 적은 **링크 상태 데이터베이스**를 갖고, 참여하는 모든 라우터의 데이터베이스는 같다. 데이터베이스의 조각 하나하나는 어떤 라우터의 지역 상태(쓸 수 있는 인터페이스, 닿을 수 있는 이웃)이고,
+  라우터는 자기 지역 상태를 **플러딩**으로 AS 전체에 퍼뜨린다. 모든 라우터가 같은 알고리즘을 저마다 돌려, 데이터베이스에서 **자기를 뿌리로 한 최단 경로 나무**를 만든다 — §1.1, §2.2
+- 최단 경로 나무는 목적지까지의 경로 전체를 주지만 전달에는 **다음 홉만** 쓴다 — §2.2
+- 최단 경로 나무는 **다익스트라 알고리즘**으로 만든다 — §16.1, §6 「Shortest-path tree」
+- 경로의 비용은 단위 없는 메트릭 하나로 나타낸다 — §1.1. 인터페이스마다 그 인터페이스로 패킷을 보내는 **비용**(0보다 큰 값)을 두고, 그 값을 링크 비용으로 알린다 — §9 「Interface output cost(s)」, 부록 C.3.
+  두 영역 사이의 경로는 비용이 가장 작은 경로들을 찾는다 — §3.2
+- **같은 비용 다중 경로**: 목적지로 가는 비용이 같은 경로가 여럿이면 모두 찾아 쓰고, 트래픽을 그 경로들에 고르게 나눈다 — §1.1, §2.4, §16.8. 라우터가 그런 경로를 모두 기억해야 하는 것은 아니고 정한 수만큼만 둘 수도 있다 — §16.8
+- **Hello**: Hello 프로토콜은 이웃 관계를 맺고 유지하며 이웃과의 통신이 양방향인지 확인한다. **Hello 패킷은 라우터의 모든 인터페이스로 주기적으로 보내고**, 브로드캐스트 망에서는 이것으로 이웃 라우터를 찾는다 — §1.2 「Hello Protocol」, §4, §7.1, §9.5.
+  패킷 종류 표에서 Hello(타입 1)의 일은 「이웃을 찾고 유지한다」이다 — §4.3 표 8. Hello 패킷에는 보내는 간격(HelloInterval)과, 이웃이 얼마 동안 Hello를 못 들으면 그 라우터가 멈췄다고 볼지(RouterDeadInterval)가 들어 있다 — §9.5, §9 「RouterDeadInterval」
+- OSPF는 망들을 묶은 **영역(area)** 을 둘 수 있다 — §1.1(이름만)
+- 경로마다 목적지와 마스크를 함께 실어, 같은 네트워크 번호의 서브넷들이 서로 다른 크기를 가질 수 있다. 패킷은 가장 긴(가장 구체적인) 일치로 보낸다 — §1.1
+- OSPF는 IP 프로토콜 번호 89다 — 부록 A.1(이름만)
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.ospf`(§1 — IGP, 링크 상태, 벨먼-포드와 다르다, §1.1·§2.2 — 같은 데이터베이스, 플러딩, 자기를 뿌리로 한 최단 경로 나무, §16.1 — 다익스트라, §1.1·§2.4·§16.8 — 같은 비용 다중 경로, §7.1·§9.5 — Hello, 인터페이스 비용),
+`exam-notes.md`의 「phase 74 step 11」 문단
+
+## (phase 74 step 11) RFC 5340 — OSPF for IPv6
+https://www.rfc-editor.org/rfc/rfc5340
+
+Proposed Standard이고 폐기되지 않았다. 옛 판 RFC 2740을 폐기하고 대신한다(rfc-editor 상태, 2026-10-29).
+
+- IPv6를 지원하려고 OSPF를 고친 것이다. 플러딩·영역·SPF 계산 같은 기본 동작은 그대로이고, IPv4와 IPv6의 차이와 커진 주소 때문에 바뀐 것이 있어 버전을 2에서 3으로 올렸다. **IPv6용 OSPF를 OSPFv3**라 부른다.
+  IPv4용은 OSPF 버전 2다 — §1(위 RFC 2328 항목)
+- 다익스트라 계산은 IPv4와 같다 — §4.8.1
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.ospf`(IPv4는 OSPFv2, IPv6는 OSPFv3)
+
+## (phase 74 step 11) Linux man-pages — route(8), netstat(8), ip-route(8), Microsoft Learn — route, netstat
+https://man7.org/linux/man-pages/man8/route.8.html
+https://man7.org/linux/man-pages/man8/netstat.8.html
+https://man7.org/linux/man-pages/man8/ip-route.8.html
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat
+
+2026-10-29에 읽은 판: man7.org는 net-tools(route 2025-09-10판, netstat 2026-05-10판)와 iproute2(ip-route) — 세 페이지 모두 2026-08-04에 upstream에서 가져온 것이다.
+Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 둘 다 Windows Server 2016~2025와 Windows 10·11을 대상으로 적는다.
+**명령의 이름과 그것이 무엇을 보여 주는지만** 적는다. 옵션과 출력 읽기는 `diagnostic-commands` 주제가 쓴다.
+
+- Linux: `route`는 커널의 라우팅 테이블을 보여 주고 고친다. 출력의 칸은 Destination(목적지 네트워크나 호스트), Gateway(게이트웨이 주소, 없으면 `*`), Genmask(목적지의 넷마스크 — 디폴트 라우트는 `0.0.0.0`), Flags, Metric(목적지까지의 「거리」, 대개 홉 수로 센다), Iface 등이다 — route(8) NAME·OUTPUT.
+  netlink 커널 인터페이스가 들어온 뒤로 이 도구는 `ip route` 명령이 대부분 대신한다 — route(8) HISTORY
+- Linux: `netstat -r`(`--route`)은 커널의 라우팅 테이블을 보여 준다. netstat은 대부분 낡았고, `netstat -r`을 대신하는 것은 `ip route`다 — netstat(8) NAME·SYNOPSIS·NOTES
+- Linux: `ip route`는 라우팅 테이블을 관리한다. `ip route show`가 경로를 나열한다 — ip-route(8) NAME·DESCRIPTION
+- Windows: `route`는 그 컴퓨터의 IP 라우팅 테이블 항목을 보여 주고 고친다. `route print`가 표 전체를 보여 준다. 항목의 목적지는 네트워크 주소, 호스트 주소, 또는 **디폴트 라우트를 뜻하는 `0.0.0.0`** 이고,
+  게이트웨이는 그 목적지에 닿으려고 넘길 **다음 홉 IP 주소**다 — 바로 붙은 서브넷이면 그 서브넷에 붙은 인터페이스의 주소, 라우터를 거쳐야 하면 바로 닿는 이웃 라우터의 주소다.
+  메트릭은 목적지에 가장 잘 맞는 경로가 여럿일 때 고르는 데 쓰는 정수 비용이다. 문서의 예 하나가 기본 게이트웨이 주소로 가는 디폴트 라우트를 목적지 `0.0.0.0`·마스크 `0.0.0.0`으로 넣는다 — route 문서의 설명·Parameters·Examples
+- Windows: `netstat -r`은 IP 라우팅 테이블의 내용을 보여 주고, `route print`와 같다 — netstat 문서 Parameters
+
+쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
