@@ -171,6 +171,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 
 쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.preview`(Azure 구독을 푸는 한 줄 — Azure 서비스를 쓰려면 있어야 하고, 서비스를 쓸 수 있게 해 주며 요금을 매기는 단위), az028·az029 해설
 
+쓰인 곳(phase 101 step 7): `azure-service-types.shared-responsibility-model`(리소스를 푸는 한 줄 — 클라우드에서 빌려 쓰는 서버나 저장 공간 하나하나)
+
 ## (phase 100) Learn 「Describe Azure compute services」 — 2 Describe Azure virtual machines
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/2-virtual-machines
 
@@ -187,7 +189,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 - Azure VM은 가상화된 서버를 IaaS로 실행하는 서비스다. IaaS 서비스이므로 VM 안의 패치·업데이트·구성은 쓰는 쪽이 맡는다 — 「첫 문단」·「둘째 문단」 (phase 101)
 
-쓰일 곳(phase 101 step 6): `azure-service-types.iaas`(Azure에서의 예 — VM이 IaaS라는 근거), D32·D34
+쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(Azure에서의 예 — VM이 IaaS이고, 물리 서버를 사서 유지하지 않아도 되지만 VM 안의 패치·업데이트·구성은 고객이 맡는다. 가상 머신을 푸는 한 줄), az034 해설, D32·D34
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -502,7 +504,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-desc
 - 「Responsibility by service model」 절의 유형별 책임 그림은 그림뿐이라 글로 읽을 수 없다. 행마다의 배정은 아래 「Shared responsibility in the cloud」의 표(글)로 확인한다 (phase 101)
 - 한국어 표기(phase 101): 단원 한국어판은 제목·본문 모두 「공유 책임 모델」(다섯 번)이다. 「책임 공유」는 요약 단원에 한 번 나온다
 
-쓰일 곳(phase 101 step 6): `azure-service-types.shared-responsibility-model`, `SharedResponsibilityDiagram`, D30·G18
+쓰인 곳(phase 101 step 7): `azure-service-types.shared-responsibility-model`(온-프레미스에서는 회사가 모두 맡는다, 클라우드에서 책임이 공급자와 고객 사이에 나뉘고 고객이 데이터 센터에 함께 있지 않아 물리 보안·전원·냉각·네트워크 연결은 공급자가 맡는다, 데이터와 접근은 고객, 데이터베이스 서비스와 직접 설치한 데이터베이스의 예, IaaS에서 고객 책임이 가장 많고 SaaS에서 가장 적으며 PaaS는 그 사이, 늘 고객·늘 공급자·유형에 따라의 세 묶음, PaaS·SaaS에서 인증 시스템은 공급자가 실행하고 사용자와 권한은 고객이 정한다), `SharedResponsibilityDiagram`(세 묶음의 이름), az032·az033 해설, D30·G18
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is a public cloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-public-cloud
@@ -834,7 +836,9 @@ phase 101 step 6이 `azure-service-types` 주제를 위해 덧붙인 줄:
 - 세 단원 모두 「Responsibility focus」 앞에 유형별 계층 그림을 두지만 그림이라 글로 읽을 수 없다 (phase 101 step 6)
 - 한국어 표기(phase 101 step 6): 단원 제목은 「서비스로서의 인프라 설명」(단원 2)·「서비스형 플랫폼 설명」(단원 3)·「SaaS(Software as a Service) 설명」(단원 4). lift-and-shift migration → 리프트 앤 시프트 마이그레이션, middleware → 미들웨어, development framework → 개발 프레임워크, business intelligence → 비즈니스 인텔리전스
 
-쓰일 곳(phase 101 step 6): `azure-service-types.iaas`, `azure-service-types.paas`, `azure-service-types.saas`, `ServiceTypesTable`, D31·D33·G17·G18·G19
+쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(가장 유연하고 고객이 리소스를 가장 많이 통제한다, 공급자는 하드웨어 유지 관리·인터넷 연결·물리 보안, 고객은 운영 체제 설치·구성·유지 관리와 네트워크·데이터베이스·스토리지 구성, 하드웨어를 빌려 무엇을 할지 고객이 정한다, 운영 책임이 가장 크다, 리프트 앤 시프트 마이그레이션과 개발·테스트), `azure-service-types.shared-responsibility-model`(세 유형을 한 줄씩 푸는 근거), az034·az035 해설, G19
+
+쓰일 곳(phase 101 step 6): `azure-service-types.paas`, `azure-service-types.saas`, `ServiceTypesTable`, D31·D33·G17·G18
 
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
@@ -1073,7 +1077,9 @@ https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibil
 - Microsoft가 맡는 것: 물리 보안(시설·물리 출입 통제·환경 통제), 물리 네트워크(데이터 센터 안의 라우터·스위치·케이블), 물리 호스트(클라우드 서비스를 올리는 물리 서버), 하이퍼바이저(IaaS·PaaS에서 VM을 가능하게 하는 가상화 계층), 플랫폼 서비스(PaaS·SaaS에서 운영 체제·런타임 환경·미들웨어) — 「Microsoft responsibilities」
 - 한국어 표기: 제목은 「클라우드의 공동 책임」이지만 본문은 「공유 책임 모델」(두 번)이고, 절 제목도 「공유 책임 설명」이다. 표의 행은 고객 데이터·구성 및 설정·ID 및 사용자·클라이언트 디바이스·응용 프로그램·네트워크 제어·운영 체제·물리적 호스트·실제 네트워크·실제 데이터 센터, 칸은 고객·Shared·Microsoft(「Shared」를 옮기지 않았다). 유형 이름은 「인프라-서비스」·「인프라 서비스」(IaaS), 「서비스형 플랫폼」(PaaS, 세 번), 「소프트웨어-서비스」·「서비스형 소프트웨어」(SaaS)로 섞였다
 
-쓰일 곳: `azure-service-types.shared-responsibility-model`(행마다의 배정 — 이 표가 도식의 근거다), `SharedResponsibilityDiagram`, `azure-service-types.iaas`(VM·Disk Storage·가상 네트워크가 IaaS), `azure-service-types.paas`(App Service·Functions·SQL Database·Storage가 PaaS), `azure-service-types.saas`(Microsoft 365가 SaaS), D30·D31·D32·D33·D34·D37·G18
+쓰인 곳(phase 101 step 7): `azure-service-types.shared-responsibility-model`(책임 표 열 행의 배정, 고객이 늘 지는 책임 — 데이터의 보호와 암호화 결정·장치 보호·계정 관리·접근 관리, 함께 지는 책임의 나뉨 — 애플리케이션·네트워크 제어·장치, 물리 네트워크·물리 호스트를 푸는 말, IaaS·PaaS·SaaS에서 고객이 하는 일), `SharedResponsibilityDiagram`(행 열 개와 시나리오마다 선명한 행·「함께」 곁말 — 이 표 그대로. 「고객 데이터」 행은 Learn 단원 4의 말로 「정보와 데이터」, 「ID와 사용자」 행은 「계정과 ID」, 「클라이언트 장치」 행은 「장치」라 적었다), `azure-service-types.iaas`(VM이 IaaS의 예), az032·az033·az034 해설, D30·D32
+
+쓰일 곳: `azure-service-types.paas`(App Service·Functions·SQL Database·Storage가 PaaS), `azure-service-types.saas`(Microsoft 365가 SaaS), D31·D33·D34·D37·G18
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is infrastructure as a service (IaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas
@@ -1084,7 +1090,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-i
 - 공급자는 그 기반 인프라를 자기 데이터 센터에서 호스트하고 관리하며, 쓰는 쪽은 웹 화면이나 API로 리소스에 접근해 구성한다 — 「How does IaaS work?」
 - 한국어 표기: 제목은 「IaaS(서비스 제공 인프라)」다. 본문에서 SaaS를 「서비스형 소프트웨어」(두 번)로 쓴다
 
-쓰일 곳: `azure-service-types.iaas`(필요에 따라 늘리고 줄인다는 것), 표기 결정
+쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(서버·스토리지·네트워크를 필요할 때 빌려 쓰고, 하드웨어를 사지 않으며, 필요에 따라 늘리고 줄이고 쓴 만큼 낸다), 표기 결정
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is platform as a service (PaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-paas

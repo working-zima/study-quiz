@@ -125,6 +125,7 @@ import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
+import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
@@ -344,6 +345,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cloud-benefits.scalability': CloudScalingDiagram,
   'azure-sla-lifecycle.composite-sla': CompositeSlaDiagram,
   'azure-sla-lifecycle.general-availability': ServiceLifecycleDiagram,
+  'azure-service-types.shared-responsibility-model': SharedResponsibilityDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
