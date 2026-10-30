@@ -30,19 +30,21 @@ harness 실행기, 에이전트 훅, 데이터 가드레일·감사 도구가 �
 
 `npm test`·`npm run build`에 엮여 있지 않다. 대상은 AWS 과목 데이터(`src/data/aws/`)와 그 원본이다.
 `check-verbatim.mjs`만 `--subject network`로 네트워크 과목(`src/data/network/`, 강의·면접 추출본)도 보고, 네트워크에서는
-문항의 문제문·해설까지 대조한다(ADR-055).
+문항의 문제문·해설까지 대조한다(ADR-055). `--subject azure`도 같다 — Azure 과목(`src/data/azure/`)을 용어집·덤프·받아 둔 공식 문서와
+대조하고, 원본은 폴더 단위로 읽으며 문항의 문제문·해설까지 본다(ADR-060).
 
 | 스크립트 | 무엇 | 근거 |
 |---|---|---|
 | `check-structure.mjs` + `topics-baseline.json` | 개념 id·name·parentId·순서, 주제 메타데이터, 문항 파일 해시가 스냅샷과 같은가 | ADR-009·ADR-041, ARCHITECTURE 「데이터 모델」 |
 | `sync-baseline.mjs` | 스냅샷의 `name`·`questionsSha256`만 갱신한다. 구조가 달라져 있으면 거부한다 | ADR-041 |
 | `coverage.mjs` | 개념마다 문항이 붙어 있는가 | ADR-026 |
-| `check-verbatim.mjs` | 개념 본문(네트워크는 문항 문제문·해설까지)이 원본을 그대로 옮겼는가. 원본이 없으면 건너뛴다 | ADR-009·ADR-025·ADR-055 |
+| `check-verbatim.mjs` | 개념 본문(네트워크·Azure는 문항 문제문·해설까지)이 원본을 그대로 옮겼는가. 원본 자리에 폴더를 주면 그 안의 `.md`를 원본으로 센다. 원본이 없으면 건너뛴다 | ADR-009·ADR-025·ADR-055·ADR-060 |
 | `check-keywords.mjs`·`encrypt-keywords.mjs` | 키워드 평문 검사와 암호화 | ADR-040 |
 | `content-audit.mjs`·`explanation-audit.mjs` | 개념 제목·문항 문구 감사, 해설 길이 감사 | ADR-030·ADR-027 |
 | `field-diff.mjs`·`notation-diff.mjs` | 기준 커밋과 필드별 대조, 표기 치환만 바뀌었는지 대조 | 각 머리 주석 |
 | `extract-pdf.py`·`extract-dump.py`·`collect-gaps.py`·`concept-index.py` | 원본 PDF·덤프 추출과 정리 | ADR-009·ADR-021 |
 | `extract-network-source.py` | 네트워크 강의 자료 zip → `docs/source/network/raw/`(강의·면접 추출본과 PDF 사본, gitignore) | ADR-009·ADR-055 |
+| `azure-source/` | Azure 원본 → `docs/source/azure/raw/`(gitignore). 덤프 세 단계 `dump_pages.py`(PDF → 쪽별 블록)·`ocr.ps1`(그림 OCR, Windows PowerShell 5.1에서만)·`dump_merge.py`(문항별 추출본), 용어집 `notion_db.py`, 공식 문서 한 쪽 `fetch_page.py`. 순서는 `docs/source/azure/CLAUDE.md` | ADR-009·ADR-060 |
 
 지난 phase 전용 도구(`phases/<phase>/tools/`)는 그 phase의 기록이라 고치지 않는다. 지금도 쓰는 도식 교차 검사기
 `phases/38-service-diagrams/tools/check-path-crossings.mjs`는 `src/components/diagrams/CLAUDE.md`를 본다.

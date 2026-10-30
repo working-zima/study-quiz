@@ -4,7 +4,7 @@
 
 과목마다 URL 접두사(`#/:subjectId/…`)·데이터 폴더(`src/data/<과목 id>/`)·진행률 키(과목의 `progressKey`)가 따로 있고,
 검색·랜덤·복습은 그 과목 안에서만 돈다. 앱에 어떤 과목이 있는지는 `src/data/index.ts`의 `subjects`가 정한다(ADR-053).
-지금 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03)와 네트워크(ADR-055) 둘이다.
+지금 과목은 AWS 솔루션스 아키텍트 어소시에이트(SAA-C03), 네트워크(ADR-055), Azure AZ-900(ADR-060) 셋이다.
 
 ## 기술 스택
 
@@ -79,7 +79,7 @@ worktree마다 `npm install`이 한 번 필요하다.
 - CRITICAL: 새 기능 구현 시 반드시 테스트를 먼저 작성하고, 테스트가 통과하는 구현을 작성할 것 (TDD)
 - 커밋 메시지는 conventional commits 형식을 따를 것 (feat:, fix:, docs:, refactor:)
 - 요청받지 않은 기능을 만들지 마라. step 문서에 적힌 범위만 구현한다.
-- 개념·문항 글(요약·본문, 문제문·해설)은 `docs/WRITING_GUIDE.md`를 따른다(ADR-056). 네트워크 과목은 전부, AWS 과목은 새로 쓰거나 고치는 글만이다.
+- 개념·문항 글(요약·본문, 문제문·해설)은 `docs/WRITING_GUIDE.md`를 따른다(ADR-056). 네트워크·Azure 과목은 전부, AWS 과목은 새로 쓰거나 고치는 글만이다.
 
 ## 명령어
 
@@ -95,7 +95,7 @@ npm run test     # Vitest (CI 모드, watch 금지)
   원문이 그대로 공개된다. 근거는 ADR-009.
 
 원본 목록과 각 원본에서 무엇을 가져올 수 있는지는 과목마다 따로 있다 — AWS는 `docs/source/CLAUDE.md`(ADR-039의 허용 목록 포함),
-네트워크는 `docs/source/network/CLAUDE.md`.
+네트워크는 `docs/source/network/CLAUDE.md`, Azure는 `docs/source/azure/CLAUDE.md`.
 원본에 없는 내용을 지어내지 마라.
 
 ## 하위 CLAUDE.md
@@ -105,6 +105,7 @@ npm run test     # Vitest (CI 모드, watch 금지)
 | `docs/CLAUDE.md` | `docs/` 문서 지도 — PRD·ARCHITECTURE·ADR·UI_GUIDE가 각각 무엇을 정하는가 |
 | `docs/source/CLAUDE.md` | AWS 과목 원본 목록, ADR-039 허용 목록, `exam-types.md`의 쓰임, 전사 금지 |
 | `docs/source/network/CLAUDE.md` | 네트워크 원본 셋(강의·표준·공식 문서·면접), 범위(강의와 네트워크관리사 2급 출제 범위, ADR-059), 허용하는 출처, 충돌하면 표준, 기출의 자리, 수정 이력, 추출본 다시 만들기 |
+| `docs/source/azure/CLAUDE.md` | Azure 원본 셋(공식 문서·덤프·용어집), 허용하는 출처, 덤프·용어집의 자리, 수정 이력, 원본 다시 만들기 |
 | `src/data/CLAUDE.md` | 과목 폴더 구조, 과목 불변식, 데이터 가드레일 스크립트, 도식 문구의 자리 |
 | `src/lib/CLAUDE.md` | 순수 로직, localStorage에 접근하는 유일한 계층, 진행률 키를 넘기는 쪽 |
 | `src/pages/CLAUDE.md` | 화면 단위, `useSubject()`와 테스트용 props override, 링크의 과목 접두사 |
