@@ -42,7 +42,7 @@ Azure AZ-900 과목에 둘 주제 20개의 지도다. 주제를 **앱의 주제 
 | 2 | `azure-cloud-models` | 클라우드 배포 모델 | 퍼블릭·프라이빗·하이브리드(·멀티), 사용 사례 | Describe cloud computing | 17 | ★★☆ | 100 |
 | 3 | `azure-cloud-benefits` | 클라우드의 이점 | 고가용성·확장성·탄력성·안정성·예측 가능성·보안·거버넌스·관리 효율성 | Describe the benefits of using cloud services | 24 | ★★☆ | 101 |
 | 4 | `azure-sla-lifecycle`* | SLA와 서비스 수명 주기 | SLA·서비스 크레딧·복합 SLA, 비공개/공개 미리 보기·GA | — (가이드 밖) | 23 | ★★☆ | 101 |
-| 5 | `azure-service-types` | 서비스 유형과 공동 책임 | IaaS·PaaS·SaaS와 사용 사례, 공동 책임 모델 | Describe cloud service types (공동 책임 모델은 Describe cloud computing) | 34 | ★★★ | 101 |
+| 5 | `azure-service-types` | 서비스 유형과 공유 책임 | IaaS·PaaS·SaaS와 사용 사례, 공동 책임 모델 | Describe cloud service types (공동 책임 모델은 Describe cloud computing) | 34 | ★★★ | 101 |
 | 6 | `azure-regions-zones` | 지역과 가용성 영역 | 지역·지역 쌍·소버린 지역·가용성 영역·데이터 센터 | Describe the core architectural components of Azure | 26 | ★★★ | 102 |
 | 7 | `azure-resource-hierarchy` | 리소스 계층 | 리소스·리소스 그룹·구독·관리 그룹·계층과 상속 | Describe the core architectural components of Azure | 25 | ★★★ | 102 |
 | 8 | `azure-compute` | 컴퓨팅과 앱 호스팅 | VM·확장 집합·가용성 집합·AVD·VM 리소스, 컨테이너(ACI·AKS)·Functions·App Service | Describe Azure compute and networking services | 16 | ★★☆ | 103 |

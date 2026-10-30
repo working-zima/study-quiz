@@ -18,8 +18,10 @@ import { CastTypesDiagram } from './CastTypesDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
+import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
+import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
@@ -120,8 +122,10 @@ import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
+import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
+import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
@@ -149,6 +153,7 @@ import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
+import { ServiceTypesTable } from './azureServiceTypesTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -338,6 +343,11 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
   'azure-cloud-models.hybrid-cloud': HybridCloudDiagram,
   'azure-cloud-models.multicloud': CloudModelsTable,
+  'azure-cloud-benefits.scalability': CloudScalingDiagram,
+  'azure-sla-lifecycle.composite-sla': CompositeSlaDiagram,
+  'azure-sla-lifecycle.general-availability': ServiceLifecycleDiagram,
+  'azure-service-types.shared-responsibility-model': SharedResponsibilityDiagram,
+  'azure-service-types.saas': ServiceTypesTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
