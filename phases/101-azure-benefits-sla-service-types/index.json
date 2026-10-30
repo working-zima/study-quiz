@@ -1,0 +1,51 @@
+{
+  "project": "Study Quiz",
+  "phase": "101-azure-benefits-sla-service-types",
+  "steps": [
+    {
+      "step": 0,
+      "name": "benefits-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "availability-scalability",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "reliability-manageability",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "sla-lifecycle-sources",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "sla-composite",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "preview-ga-lifecycle",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "service-types-sources",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "shared-responsibility-iaas",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "paas-saas",
+      "status": "pending"
+    }
+  ]
+}
