@@ -1,6 +1,5 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
-import azureCloudComputingVisuals from './visuals/azure-cloud-computing.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -9,9 +8,7 @@ import type { TopicVisuals } from '../../types/visuals'
 export const topics: Topic[] = topicsData as Topic[]
 // Azure는 4지선다와 예/아니요를 함께 담는다. 문항마다 format을 적는다(ADR-054).
 export const questions: Question[] = questionsData as Question[]
-export const visualsByTopicId: Record<string, TopicVisuals> = {
-  'azure-cloud-computing': azureCloudComputingVisuals,
-}
+export const visualsByTopicId: Record<string, TopicVisuals> = {}
 
 export const azureSubject: Subject = {
   id: 'azure',

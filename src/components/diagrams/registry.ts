@@ -13,7 +13,6 @@ import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
-import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
@@ -329,7 +328,6 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
-  'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
