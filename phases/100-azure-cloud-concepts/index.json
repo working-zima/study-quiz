@@ -45,7 +45,10 @@
     {
       "step": 5,
       "name": "cloud-computing-capex",
-      "status": "pending"
+      "status": "error",
+      "started_at": "2026-10-30T10:55:36+0900",
+      "error_message": "[3회 시도 후 실패] Step did not update status",
+      "failed_at": "2026-10-30T11:04:11+0900"
     },
     {
       "step": 6,
