@@ -189,8 +189,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.composite-sla`(지역과 데이터 센터를 푸는 한 줄)
 
-쓰일 곳(phase 102): `azure-regions-zones.datacenter`(데이터 센터의 정의와 랙, 온-프레미스 데이터 센터보다 훨씬 크다, 고객은 데이터 센터를 직접 다루지 않고 지역·가용성 영역으로 고른다),
-`azure-regions-zones.region`(정의, 배포할 때 지역을 고른다, 일부 서비스·VM 기능은 일부 지역에만, 지역을 고르지 않는 서비스의 예), `azure-regions-zones.availability-zones`(정의·격리 경계·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건),
+쓰인 곳(phase 102 step 1): `azure-regions-zones.datacenter`(데이터 센터의 정의와 랙, 온-프레미스 데이터 센터보다 훨씬 크다, 고객은 데이터 센터를 직접 다루지 않고 지역·가용성 영역으로 고른다),
+`azure-regions-zones.region`(정의, 배포할 때 지역을 고른다, Azure가 지역 안의 리소스를 배정·관리한다, 일부 서비스·VM 기능은 일부 지역에만, 지역을 고르지 않는 서비스의 예), az039·az040·az041 해설, `AzureRegionDiagram`
+
+쓰일 곳(phase 102): `azure-regions-zones.availability-zones`(정의·격리 경계·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건),
 `azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM·관리 디스크·IP 주소, 영역 중복의 영역 중복 스토리지·SQL Database. 나눔과 이름은 현행), `azure-regions-zones.region-pairs`(짝지은 까닭, 고객이 복구·복제를 구성, 짝의 예, 덧붙은 이점 셋, 한 방향 짝, 짝 없는 지역 — 「현행 문서와 다름」 1~3을 따른다),
 `azure-regions-zones.sovereign-regions`(정의와 예 둘), D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 쓴다**
 
@@ -790,7 +792,9 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 
 쓰일 곳: D20
 
-쓰일 곳(phase 102): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있다), `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐),
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있고 Microsoft Entra ID는 데이터를 둘 지리를 고르게 한다), az040·az041 해설, `AzureRegionDiagram`
+
+쓰일 곳(phase 102): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐),
 `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적을 수 있다), D38·G20·G21·G23
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is a container?
@@ -1304,7 +1308,9 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
 - 목록에 Microsoft Entra ID, Azure DNS(공용 영역·사설 영역), Azure Traffic Manager가 있다. 그 밖에 Azure Policy, 관리 그룹(Azure management groups), 구독(Azure subscriptions), Azure portal도 있다 — 「List of nonregional services」(목록은 바뀌므로 이름은 앞의 셋만 예로 쓴다. 관리 그룹·구독은 `azure-resource-hierarchy`의 몫)
 - 한국어 표기: nonregional services → 비지역 서비스(본문·절 제목. 문서 제목은 「비지정 서비스 Azure」로 잘못 옮겼다), global services → 글로벌 서비스, geographic services → 지리적 서비스
 
-쓰일 곳: `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), `azure-regions-zones.zone-service-categories`(비지역 서비스가 가용성 영역 지원 유형과 다른 갈래라는 근거)
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), az040·az041 해설, `AzureRegionDiagram`
+
+쓰일 곳: `azure-regions-zones.zone-service-categories`(비지역 서비스가 가용성 영역 지원 유형과 다른 갈래라는 근거)
 
 ## (phase 102) Microsoft Entra — What is Microsoft Entra?
 https://learn.microsoft.com/en-us/entra/fundamentals/whatis
@@ -1314,7 +1320,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 - Microsoft Entra ID는 Microsoft Entra 제품군의 바탕이 되는 클라우드 기반 ID·액세스 관리 서비스다. 사용자·장치·앱·리소스가 누구인지 확인(인증)하고, 정책을 적용하고, 보호한다 — 「Microsoft Entra ID」
 - 한국어 표기: Microsoft Entra ID(옮기지 않는다), identity and access management → ID 및 액세스 관리, authentication → 인증
 
-쓰일 곳: `azure-regions-zones.region`(Microsoft Entra ID를 푸는 한 줄 — 사용자가 누구인지 확인하고 무엇에 접근할 수 있는지 관리하는 클라우드 서비스)
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Microsoft Entra ID를 푸는 한 줄 — 사용자가 누구인지 확인하고 무엇에 접근할 수 있는지 관리하는 클라우드 서비스)
 
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
@@ -1325,7 +1331,7 @@ https://learn.microsoft.com/en-us/azure/dns/dns-overview
 - Azure Traffic Manager는 DNS를 써서 트래픽을 나누는 부하 분산 서비스이고, 공개된 애플리케이션으로 오는 요청을 전 세계 Azure 지역에 나눠 보낸다 — 같은 부분(Azure DNS가 제공하는 서비스 목록)
 - 한국어 표기: Azure DNS·Azure Traffic Manager(옮기지 않는다), resolve → 확인, load balancing → 부하 분산
 
-쓰일 곳: `azure-regions-zones.region`(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
 
 ## (phase 102) Azure Government — What is Azure Government?
 https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome

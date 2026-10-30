@@ -3,6 +3,7 @@ import topicsData from './topics.json'
 import azureCloudBenefitsVisuals from './visuals/azure-cloud-benefits.json'
 import azureCloudComputingVisuals from './visuals/azure-cloud-computing.json'
 import azureCloudModelsVisuals from './visuals/azure-cloud-models.json'
+import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
 import azureServiceTypesVisuals from './visuals/azure-service-types.json'
 import azureSlaLifecycleVisuals from './visuals/azure-sla-lifecycle.json'
 import type { Question, Topic } from '../../types/content'
@@ -19,6 +20,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-cloud-benefits': azureCloudBenefitsVisuals,
   'azure-sla-lifecycle': azureSlaLifecycleVisuals,
   'azure-service-types': azureServiceTypesVisuals,
+  'azure-regions-zones': azureRegionsZonesVisuals,
 }
 
 export const azureSubject: Subject = {
