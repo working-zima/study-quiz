@@ -28,6 +28,7 @@ import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
+import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
@@ -84,6 +85,7 @@ import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
+import { MountPointDiagram } from './MountPointDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -340,6 +342,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.proc-filesystem': ProcViewDiagram,
   'linux-filesystem.partition': PartitionLayoutDiagram,
   'linux-filesystem.mbr-gpt': MbrGptDiagram,
+  'linux-filesystem.disk-device-names': DiskDeviceNameDiagram,
+  'linux-filesystem.filesystem-mount': MountPointDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

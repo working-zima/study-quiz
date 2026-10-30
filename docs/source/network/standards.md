@@ -2560,6 +2560,8 @@ https://man7.org/linux/man-pages/man8/swapon.8.html
 - 디렉터리나 장치 하나만 주면 /etc/fstab에서 짝을 찾는다 — DESCRIPTION. 장치는 대개 블록 특수 파일 이름(`/dev/sda1`)으로 가리키지만, 디스크 파티션의 장치 이름은 하드웨어 구성이 바뀌거나 장치를 더하고 빼면 바뀔 수 있어
   UUID·LABEL 같은 식별자를 쓰기를 강하게 권한다 — 「Indicating the device and filesystem」
 - `mount -a`는 fstab에 적힌 파일 시스템을 모두(`noauto`가 붙은 줄은 빼고) 마운트하고, 보통 부팅 스크립트에서 쓴다. 다만 요즘 systemd 기반 배포판의 다수는 부팅 때 `mount -a` 대신 systemd 유닛으로 마운트한다 — 「The files /etc/fstab, /etc/mtab and /proc/mounts」, OPTIONS `-a`
+- `-m`·`--mkdir`(그리고 fstab 옵션 `X-mount.mkdir`)은 마운트 지점이 아직 없으면 만들게 **허용하는** 옵션이다 — OPTIONS. 그래서 이 옵션 없이는 마운트 지점이 미리 있는 디렉터리여야 한다(phase 75 step 4에서 확인, 2026-10-30).
+  비어 있어야 한다는 요구는 없다 — 원래 내용이 있으면 붙어 있는 동안 가려질 뿐이다(위 DESCRIPTION)
 - **umount(8)**: 지정한 파일 시스템을 파일 계층에서 뗀다. 마운트한 디렉터리로 가리키는 것이 기본이다. 열린 파일이 있거나 어떤 프로세스의 작업 디렉터리가 그 안에 있으면(사용 중이면) 뗄 수 없다 — DESCRIPTION
 - **fstab(5)**: 시스템이 마운트할 수 있는 파일 시스템을 적은 파일이다. 프로그램은 읽기만 하고, 만들고 고치는 것은 관리자의 몫이다. fsck(8)·mount(8)·umount(8)가 위에서부터 차례로 읽으므로 줄의 차례가 중요하다.
   systemd 기반 시스템에서는 고친 뒤 `systemctl daemon-reload`를 권한다 — DESCRIPTION. 파일 시스템 하나를 한 줄에 적고 칸은 탭이나 공백으로 나누며, `#`로 시작하는 줄은 주석이다 — DESCRIPTION. 칸 여섯 —
@@ -2576,7 +2578,7 @@ https://man7.org/linux/man-pages/man8/swapon.8.html
 - **swapon(8)**: 페이징과 스와핑이 일어날 장치(나 파일)를 정한다. `swapoff`는 끈다. swapon은 보통 부팅 스크립트에서 불린다 — DESCRIPTION. `-a`는 /etc/fstab에 `swap`으로 적힌 장치를 모두(`noauto`는 빼고) 쓰게 한다 — OPTIONS `-a`.
   구멍이 있는 파일은 스왑 파일로 받지 않으므로, 가장 이식성 좋은 스왑 파일 만들기는 dd와 /dev/zero다 — NOTES 「Files with holes」
 
-쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(mount(8) — 한 나무, 여러 장치), `linux-filesystem.filesystem-mount`(mount(8) 꼴·root 권한·원래 내용이 가려진다, umount(8)), `linux-filesystem.fstab`(fstab(5) 칸 여섯·UUID·noauto, mount(8) `-a`),
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(mount(8) — 한 나무, 여러 장치), `linux-filesystem.filesystem-mount`(mount(8) 꼴·root 권한·원래 내용이 가려진다·`--mkdir`로 본 「마운트 지점은 미리 있어야 한다」, umount(8)), `linux-filesystem.fstab`(fstab(5) 칸 여섯·UUID·noauto, mount(8) `-a`),
 `linux-filesystem.swap`(mkswap(8)·swapon(8) — 파티션이나 파일, 만든 뒤 켜기, fstab에 적기, 스왑 파일을 더하는 절차, 32개), `exam-notes.md` E21
 
 ## (phase 75) e2fsprogs — mke2fs(8), ext4(5), chattr(1), lsattr(1)
