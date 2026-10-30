@@ -373,6 +373,91 @@
         }
       ],
       "sources": ["linux-filesystem.filesystem-mount"]
+    },
+    "fstab-fields": {
+      "label": "/etc/fstab의 예 한 줄 /dev/sdb1 /data ext4 defaults 0 2를 칸 여섯으로 끊어, 칸마다 이름과 값을 나란히 보이는 도식",
+      "svgLabel": "/etc/fstab의 한 줄 테두리 안에 장치 /dev/sdb1, 마운트 지점 /data, 파일 시스템 형식 ext4, 마운트 옵션 defaults, dump 백업 표시 0, fsck 점검 차례 2가 칸 이름과 값의 짝으로 차례로 놓여 있다",
+      "question": "/etc/fstab의 한 줄은 무엇을 말할까?",
+      "idleCaption": "예로 든 줄 /dev/sdb1 /data ext4 defaults 0 2를 칸 여섯으로 끊어, 칸마다 이름과 값을 나란히 놓았다. 버튼을 고르면 칸들이 무엇을 정하는지 볼 수 있다.",
+      "legend": "칸 이름과 그 값을 나란히 놓았고, 값을 왼쪽 칸부터 공백으로 이으면 /etc/fstab의 한 줄이 된다.",
+      "nodes": {
+        "spec-name": "장치",
+        "spec": "/dev/sdb1",
+        "file-name": "마운트 지점",
+        "file": "/data",
+        "type-name": "파일 시스템 형식",
+        "type": "ext4",
+        "opts-name": "마운트 옵션",
+        "opts": "defaults",
+        "freq-name": "dump 백업 표시",
+        "freq": "0",
+        "pass-name": "fsck 점검 차례",
+        "pass": "2"
+      },
+      "groups": {
+        "line": "/etc/fstab의 한 줄"
+      },
+      "scenarios": [
+        {
+          "id": "what-where",
+          "label": "무엇을 어디에",
+          "caption": "첫째 칸은 붙일 장치 /dev/sdb1이고, 둘째 칸은 그 장치의 파일 시스템을 붙일 마운트 지점 /data다. 이 두 칸이 어느 장치를 디렉터리 나무의 어디에 붙일지를 정한다.",
+          "sources": ["linux-filesystem.fstab"]
+        },
+        {
+          "id": "how",
+          "label": "어떻게",
+          "caption": "셋째 칸은 파일 시스템의 형식 ext4이고, 넷째 칸은 붙일 때 적용할 마운트 옵션이다. defaults는 기본 옵션으로 붙이라는 뜻이고, 무엇이 기본인지는 커널과 파일 시스템 형식에 따라 다르다.",
+          "sources": ["linux-filesystem.fstab"]
+        },
+        {
+          "id": "check",
+          "label": "백업과 점검",
+          "caption": "다섯째 칸은 dump라는 백업 프로그램이 볼 표시로, 0이면 백업하지 않는다. 여섯째 칸은 부팅할 때 fsck가 점검하는 차례로, 루트 디렉터리의 파일 시스템은 1, 다른 것은 2이고 0이면 점검하지 않는다.",
+          "sources": ["linux-filesystem.fstab"]
+        }
+      ],
+      "sources": ["linux-filesystem.fstab"]
+    },
+    "swap-space": {
+      "label": "메모리가 모자랄 때 커널이 최근에 덜 쓴 내용을 디스크의 스왑 공간으로 옮기고, 다시 쓸 때 메모리로 들여오며, 설치한 뒤에도 mkswap과 swapon으로 스왑 파일을 더할 수 있음을 보이는 도식",
+      "svgLabel": "메모리(RAM) 테두리 안에 최근에 쓴 내용과 최근에 덜 쓴 내용이, 디스크 테두리 안에 스왑 파티션과 스왑 파일이 있고, 디스크 밖에 명령 mkswap과 swapon이 있다",
+      "question": "메모리가 모자라면 무엇이 일어날까?",
+      "idleCaption": "메모리(RAM)와 디스크를 나란히 놓고, 디스크 안에 스왑 공간 둘을 두었다. 버튼을 고르면 메모리가 모자랄 때와 다시 쓸 때, 스왑 공간을 나중에 더할 때를 볼 수 있다.",
+      "legend": "테두리 안이 메모리와 디스크이고, 화살표는 메모리의 내용이 옮겨 가는 방향이나 명령이 다루는 스왑 파일을 가리킨다.",
+      "nodes": {
+        "recent": "최근에 쓴 내용",
+        "idle": "최근에 덜 쓴 내용",
+        "file": "스왑 파일",
+        "part": "스왑 파티션",
+        "mkswap": "mkswap",
+        "swapon": "swapon"
+      },
+      "groups": {
+        "memory": "메모리(RAM)",
+        "disk": "디스크"
+      },
+      "scenarios": [
+        {
+          "id": "move",
+          "label": "메모리가 모자랄 때",
+          "caption": "메모리가 모자라면 커널은 최근에 덜 쓴 내용을 디스크의 스왑 공간으로 옮겨 두고, 비운 메모리를 다른 데 쓴다. 최근에 쓴 내용은 꼭 필요할 때가 아니면 메모리에 남겨 둔다.",
+          "sources": ["linux-filesystem.swap"]
+        },
+        {
+          "id": "back",
+          "label": "다시 쓸 때",
+          "caption": "스왑 공간에 옮겨 둔 내용을 프로그램이 다시 쓰려 하면 커널이 그 내용을 메모리로 다시 들여온다. 스왑 공간은 메모리 그 자체가 아니고, 이렇게 오가는 일은 프로그램 실행을 늦추는 주된 원인의 하나다.",
+          "sources": ["linux-filesystem.swap"]
+        },
+        {
+          "id": "add",
+          "label": "나중에 더하기",
+          "caption": "설치한 뒤에도 스왑 파일을 만들어 더할 수 있다. mkswap으로 그 파일에 스왑 공간을 만들고 swapon으로 켜면, 이미 있던 스왑 파티션에 더해 이 파일도 스왑 공간으로 쓰인다.",
+          "sources": ["linux-filesystem.swap"]
+        }
+      ],
+      "sources": ["linux-filesystem.swap"]
     }
   },
   "tables": {},
