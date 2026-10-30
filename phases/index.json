@@ -379,6 +379,11 @@
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"
+    },
+    {
+      "dir": "101-azure-benefits-sla-service-types",
+      "status": "completed",
+      "completed_at": "2026-10-31T01:24:27+0900"
     }
   ]
 }
