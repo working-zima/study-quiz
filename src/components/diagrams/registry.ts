@@ -27,6 +27,7 @@ import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
@@ -123,6 +124,7 @@ import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
+import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
@@ -328,6 +330,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
+  'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
+  'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

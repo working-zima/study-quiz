@@ -1,0 +1,108 @@
+{
+  "diagrams": {
+    "directory-tree": {
+      "label": "루트 디렉터리 / 아래로 디렉터리와 파일이 나무 모양으로 이어진 디렉터리 계층 구조에서, 루트 디렉터리와 파일의 경로, 관리자 root의 홈 디렉터리 /root가 어디인지 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래로 etc·home·root 디렉터리와 user1 디렉터리, report.txt 파일이 나무 모양으로 이어져 있다",
+      "question": "Linux의 파일은 어디에 놓일까?",
+      "idleCaption": "루트 디렉터리 / 아래에 etc·home·root 디렉터리가 있고, home 안의 user1 디렉터리에 report.txt 파일이 있다. user1과 report.txt는 예로 붙인 이름이다. 버튼을 고르면 루트 디렉터리, 경로, /root가 어디인지 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안에 든 것을 잇는다. 화살표는 루트 디렉터리에서부터 따라 내려가는 차례다.",
+      "nodes": {
+        "slash": "/",
+        "etc": "etc",
+        "home": "home",
+        "root": "root",
+        "user1": "user1",
+        "report": "report.txt"
+      },
+      "notes": {
+        "root-dir": "루트 디렉터리",
+        "path": "/home/user1/report.txt",
+        "root-home": "관리자 root의 홈 디렉터리"
+      },
+      "scenarios": [
+        {
+          "id": "root-dir",
+          "label": "루트 디렉터리",
+          "caption": "맨 위의 /가 루트 디렉터리다. Linux의 모든 디렉터리와 파일은 이 디렉터리 하나에서 갈라져 나가는 나무 안에 들고, 디스크가 여럿이어도 나무는 하나다.",
+          "sources": ["linux-filesystem.directory-hierarchy"]
+        },
+        {
+          "id": "path",
+          "label": "경로",
+          "caption": "report.txt의 경로는 루트 디렉터리에서 home, user1을 차례로 거쳐 가는 이름을 /로 이은 /home/user1/report.txt다. 맨 앞 /는 루트 디렉터리를 가리키고, 그 뒤의 /는 이름과 이름을 가르는 구분 기호다.",
+          "sources": ["linux-filesystem.directory-hierarchy"]
+        },
+        {
+          "id": "root-home",
+          "label": "/root",
+          "caption": "/root는 루트 디렉터리 바로 안에 있는 root라는 이름의 디렉터리로, 관리자 계정 root의 홈 디렉터리다. 둘 다 「루트」라 읽히지만 /와 /root는 서로 다른 디렉터리다.",
+          "sources": ["linux-filesystem.directory-hierarchy"]
+        }
+      ],
+      "sources": ["linux-filesystem.directory-hierarchy", "linux-filesystem.standard-directories"]
+    },
+    "standard-directories": {
+      "label": "루트 디렉터리 바로 안의 표준 디렉터리 열둘을 명령과 라이브러리, 설정, 사용자의 홈, 바뀌는 데이터와 임시 파일, 부팅·장치·커널 정보의 다섯 묶음으로 나눠, 묶음마다 무엇이 들어 있는지 보이는 도식",
+      "svgLabel": "표준 디렉터리 열둘이 쓰임에 따라 다섯 묶음으로 나뉘어 있다",
+      "question": "어느 디렉터리에 무엇이 들어 있을까?",
+      "idleCaption": "FHS가 루트 디렉터리 / 바로 안에 두라고 정한 디렉터리 열둘을 쓰임에 따라 다섯 묶음으로 나눴다. 버튼을 고르면 그 묶음의 디렉터리에 무엇이 들어 있는지 볼 수 있다.",
+      "legend": "상자 하나가 루트 디렉터리 바로 안의 디렉터리 하나이고, 둘레의 테두리는 쓰임이 같은 디렉터리를 묶은 것이다.",
+      "nodes": {
+        "bin": "/bin",
+        "sbin": "/sbin",
+        "lib": "/lib",
+        "usr": "/usr",
+        "etc": "/etc",
+        "home": "/home",
+        "root": "/root",
+        "var": "/var",
+        "tmp": "/tmp",
+        "boot": "/boot",
+        "dev": "/dev",
+        "proc": "/proc"
+      },
+      "groups": {
+        "programs": "명령과 라이브러리",
+        "config": "설정",
+        "users": "사용자의 홈",
+        "data": "바뀌는 데이터와 임시 파일",
+        "system": "부팅·장치·커널 정보"
+      },
+      "scenarios": [
+        {
+          "id": "programs",
+          "label": "명령과 라이브러리",
+          "caption": "누구나 쓰는 기본 명령은 /bin, 시스템을 관리하는 명령은 /sbin, 그 명령들이 불러 쓰는 라이브러리는 /lib에 있다. /usr도 명령과 라이브러리 같은 읽기 전용 데이터를 두며, 이름이 user를 닮았지만 사용자의 파일을 두는 곳이 아니다.",
+          "sources": ["linux-filesystem.standard-directories"]
+        },
+        {
+          "id": "config",
+          "label": "설정",
+          "caption": "시스템의 설정 파일, 곧 프로그램이 어떻게 동작할지 정해 적어 둔 파일은 /etc에 둔다.",
+          "sources": ["linux-filesystem.standard-directories"]
+        },
+        {
+          "id": "users",
+          "label": "사용자의 홈",
+          "caption": "사용자마다의 홈 디렉터리는 /home 아래에 하나씩 있고(user1이면 /home/user1), 관리자 root의 홈 디렉터리만은 루트 디렉터리 바로 안의 /root다.",
+          "sources": ["linux-filesystem.standard-directories"]
+        },
+        {
+          "id": "data",
+          "label": "바뀌는 데이터",
+          "caption": "로그처럼 시스템이 동작하면서 내용이 바뀌는 데이터는 /var에, 프로그램이 잠깐 쓰고 버리는 임시 파일은 /tmp에 둔다. /tmp의 파일은 컴퓨터를 다시 켤 때 지워질 수 있다.",
+          "sources": ["linux-filesystem.standard-directories"]
+        },
+        {
+          "id": "system",
+          "label": "부팅·장치·커널",
+          "caption": "부팅에 쓰는 파일은 /boot, 디스크 같은 장치를 가리키는 장치 파일은 /dev에 있다. /proc의 파일은 커널이 실행 중인 프로세스와 커널 자신의 정보를 그때그때 파일 꼴로 보여 주는 것이다.",
+          "sources": ["linux-filesystem.standard-directories"]
+        }
+      ],
+      "sources": ["linux-filesystem.standard-directories"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
