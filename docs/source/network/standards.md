@@ -49,6 +49,9 @@ RFC·IANA는 step 0과 같은 방법으로, man7.org·learn.microsoft.com은 페
 이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 내려받아 읽었고, 항목마다 페이지 끝 COLOPHON과 바닥줄이 밝힌 프로젝트·판·날짜를 적는다. FHS 3.0(refspecs.linuxfoundation.org)과
 POSIX 2024년판(pubs.opengroup.org의 `onlinepubs/9799919799/`)은 HTML판을 내려받아 절을 읽었다. `gdisk`의 사실만 GPT fdisk 문서(rodsbooks.com)에서 가져왔고(`docs/source/network/CLAUDE.md` 「허용하는 출처」),
 「섹터」와 「휘발성 메모리」의 뜻은 NIST 용어집(csrc.nist.gov)에서 가져왔다. 명령은 **무엇을 하는지와 기출이 묻는 꼴만** 적었다 — 옵션 목록을 옮기지 않는다.
+「(phase 75 step 7)」이 붙은 줄과 항목은 phase 75 step 7에서 `linux-permissions`(소유자·그룹·그 밖의 사용자, 읽기·쓰기·실행 권한, 권한 문자열, 파일 종류 문자, 8진수 권한 표기, chmod 명령, chmod의 기호 모드, chown 명령) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30).
+POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지를, man7.org는 페이지를 내려받아 읽었다. GNU Coreutils 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`coreutils.html`, 9.12)을 내려받아 절 번호로 적는다.
+특수 비트(setuid·setgid·sticky)·ACL·umask의 계산은 기출이 묻지 않아 사실로 가져오지 않았고, 그것이 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -2480,9 +2483,20 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 - **마운트 지점**은 시스템의 루트 디렉터리이거나, 부모 디렉터리와 다른 장치에 속한 디렉터리다 — §3.210. **파일 시스템**은 파일들과 그 속성 일부를 모은 것이다 — §3.153
 - **블록 특수 파일**은 장치를 가리키는 파일이고, 장치의 하드웨어 특성을 드러내지 않고 장치에 접근하게 한다 — §3.50. **장치**는 컴퓨터 주변 장치나 응용 프로그램에 그렇게 보이는 대상이다 — §3.101
 - **프로세스**: 주소 공간 하나와 그 안에서 실행되는 스레드, 그 스레드가 쓰는 시스템 자원 — §3.189(Live Process), §3.279. **프로세스 ID**는 프로세스가 살아 있는 동안 그것을 가리키는 양의 정수다 — §3.284
+- (phase 75 step 7) **사용자 ID**는 시스템 사용자 한 사람을 가리키는 0 이상의 정수다 — §3.408. **그룹 ID**는 시스템 사용자 여럿을 묶은 그룹을 가리키는 정수이고, 사용자는 누구나 그룹 하나 이상에 든다 — §3.165.
+  프로세스는 실효 그룹 ID 말고도 **보조 그룹 ID**를 여럿 가질 수 있고, 이것도 파일 접근 권한을 가를 때 쓴다 — §3.361, §3.117(실효 사용자 ID도 권한을 가를 때 쓰는 프로세스의 속성이다)
+- (phase 75 step 7) **세 부류**: 프로세스의 실효 사용자 ID가 파일의 사용자 ID와 같으면 그 프로세스는 그 파일의 **소유자 부류**(file owner class)다 — §3.150.
+  소유자 부류가 **아니면서** 실효 그룹 ID나 보조 그룹 ID 가운데 하나가 파일의 그룹 ID와 같으면 **그룹 부류**(file group class)다 — §3.142. 둘 다 아니면 **그 밖의 부류**(file other class)다 — §3.149.
+  그러니 소유자는 그 파일의 그룹에 들어 있어도 그룹 부류로 세지 않는다. **파일 권한 비트**는 소유자·그룹·그 밖의 세 몫으로 나뉘고, 몫마다 같은 이름의 부류에 쓰인다 — §3.151
+- (phase 75 step 7) **파일 접근 권한**: 프로세스가 읽기·쓰기·실행(디렉터리는 검색)을 요청하면, 특권이 없는 프로세스는 자기가 속한 부류의 그 비트가 켜져 있을 때만 허락받는다.
+  적절한 특권(appropriate privileges)을 가진 프로세스는 읽기·쓰기·디렉터리 검색을 늘 허락받지만, **실행은 권한 비트가 적어도 한 부류에게 실행을 주고 있을 때만** 허락받는다 — §4.7 File Access Permissions.
+  무엇이 「적절한 특권」인지는 구현이 정한다 — §3.21(Linux는 아래 path_resolution(7)·capabilities(7))
+- (phase 75 step 7) **문자 특수 파일**은 장치(터미널 장치 파일 같은 것)를 가리키거나 `/dev/null`처럼 특별한 성질을 가진 파일이다 — §3.62. **일반 파일**은 시스템이 아무 짜임도 덧씌우지 않은, 아무 자리나 골라 읽을 수 있는 바이트의 나열이다 — §3.310.
+  **심볼릭 링크**는 경로를 풀다 만나면 그 안에 담긴 문자열로 경로 풀이를 바꾸게 하는 종류의 파일이다 — §3.364. **하드 링크**는 디렉터리 항목의 다른 이름이고, `ln`(`-s` 없이)이나 link()로 한 파일에 여럿을 만들 수 있다. 심볼릭 링크와 대비되는 말이다 — §3.168, §3.104
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(§4.8, §3.103, §3.2·§3.254·§4.16, §3.316), `linux-filesystem.filesystem-mount`(§3.210, §3.153), `linux-filesystem.disk-device-names`(§3.50, §3.101),
-`linux-filesystem.proc-filesystem`(§3.279·§3.284). 경로·작업 디렉터리·홈 디렉터리는 `linux-shell` 주제도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다)
+`linux-filesystem.proc-filesystem`(§3.279·§3.284). 경로·작업 디렉터리·홈 디렉터리는 `linux-shell` 주제도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 7) `linux-permissions.owner-group-others`(§3.408·§3.165·§3.361, §3.150·§3.142·§3.149·§3.151, §4.7·§3.21), `linux-permissions.rwx-permissions`(§4.7), `linux-permissions.file-type-char`(§3.139·§3.310·§3.50·§3.62·§3.364·§3.168·§3.104)
 
 ## (phase 75) Linux man-pages — hier(7), boot(7), intro(2), intro(4), sd(4)
 https://man7.org/linux/man-pages/man7/hier.7.html
@@ -2510,9 +2524,12 @@ https://man7.org/linux/man-pages/man4/sd.4.html
   (CONFIGURATION·FILES의 「5~8」·`sd[a-h]` 같은 상한은 옛 장치 번호 체계의 이야기라 쓰지 않는다 — 논리 파티션 번호는 fdisk(8)대로 「5부터」로 쓴다)
 - **SATA**: 허용한 출처에서 SATA 디스크를 `sd` 이름과 잇는 문장은 찾지 못했다(man-pages·util-linux·FHS, 2026-10-30). 가까운 것은 fdisk(8) DEVICES(아래 util-linux 항목 — libata가 없는 옛 시스템만 IDE `hd*`와 SCSI `sd*`를 가른다)와
   lsblk(8)이 디스크의 연결 방식(TRAN) 값으로 `sata`를 거르는 예뿐이다 — `exam-notes.md` E20
+- (phase 75 step 7) **sd(4)**: `sd` 이름의 꼴을 **블록 장치 이름**이라 부르고, 지금은 블록 장치만 제공한다고 적는다 — CONFIGURATION. 그래서 `/dev/sda` 같은 디스크 장치 파일은 블록 장치다.
+  다만 `ls -l /dev/sda`가 실제로 어떻게 찍히는지(장치 번호 칸 등)는 이 페이지에 없다 — 출력 줄을 그대로 보이지 않는다
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(hier(7) `/`·/root), `linux-filesystem.standard-directories`(hier(7) 항목마다), `linux-filesystem.proc-filesystem`(hier(7) /proc, boot(7) 커널),
-`linux-filesystem.mbr-gpt`(boot(7) MBR이 첫 512바이트 블록이고 파티션 테이블을 담는다), `linux-filesystem.disk-device-names`(sd(4) 이름의 꼴·1~4·5부터, boot(7) 드라이버, intro(4) 장치 파일), `exam-notes.md` E20
+`linux-filesystem.mbr-gpt`(boot(7) MBR이 첫 512바이트 블록이고 파티션 테이블을 담는다), `linux-filesystem.disk-device-names`(sd(4) 이름의 꼴·1~4·5부터, boot(7) 드라이버, intro(4) 장치 파일), `exam-notes.md` E20.
+(phase 75 step 7) `linux-permissions.file-type-char`(sd(4) — 디스크는 블록 장치, intro(4) — 장치 파일은 /dev 아래)
 
 ## (phase 75) util-linux — fdisk(8), fsck(8), mkfs(8), blockdev(8), lsblk(8)
 https://man7.org/linux/man-pages/man8/fdisk.8.html
@@ -2639,10 +2656,16 @@ man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased�
   FS_IMMUTABLE_FL(`i`): 파일 내용도 메타데이터(권한·시각·소유자·링크 수 등)도 바꿀 수 없고, **이 제한은 슈퍼유저에게도 걸린다**. CAP_LINUX_IMMUTABLE을 가진 프로세스만 붙이고 뗀다.
   FS_APPEND_FL(`a`): O_APPEND로만 열 수 있고, 디렉터리에 붙이면 그 안의 파일을 지울 수 없다 — 이것도 슈퍼유저에게 걸린다 — 각 플래그
 - **unlink(2)**: 지우려는 파일이 immutable이나 append-only로 표시되어 있으면 EPERM으로 실패한다 — ERRORS
+- (phase 75 step 7) **capabilities(7)**: CAP_CHOWN은 파일의 사용자 ID와 그룹 ID를 마음대로 바꾸게 한다. CAP_FOWNER는 chmod(2)처럼 원래 파일 소유자만 할 수 있는 일의 검사를 건너뛰게 한다 — 「Capabilities list」.
+  CAP_DAC_OVERRIDE가 실행 권한에는 조건을 단다는 것은 아래 「(phase 75 step 7) Linux man-pages」 항목의 path_resolution(7)
+- (phase 75 step 7) **unlink(2)**: 지우려는 파일이 든 디렉터리에 프로세스의 쓰기 권한이 없거나, 경로의 디렉터리 가운데 하나에 검색 권한이 없으면 EACCES로 실패한다 — ERRORS.
+  이 조건에 지울 파일 자신의 권한은 들어 있지 않다. sticky 비트가 켜진 디렉터리에서는 파일이나 디렉터리의 소유자·특권 프로세스만 지울 수 있다는 조건이 더 붙는다 — 같은 ERRORS(특수 비트는 다루지 않는다)
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.proc-filesystem`(proc(5)·proc_pid(5)·proc_cpuinfo(5)·proc_meminfo(5)), `linux-filesystem.etc-directory`(passwd(5) — /etc/passwd는 계정 목록, /etc/shadow는 슈퍼유저만 읽는다),
 `linux-filesystem.swap`(mlock(2)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2) — 커널이 메모리 페이지를 스왑 영역으로 내보낸다, 페이징은 실행을 늦출 수 있다), `linux-filesystem.file-attributes`(capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) — root는 권한 검사를 건너뛰지만 `i`는 root에게도 걸린다),
-`linux-filesystem.directory-hierarchy`(passwd(5) — root는 UID 0인 슈퍼유저). 권한 검사는 `linux-permissions` 주제도 쓴다(step 7이 그 주제의 쓰임으로 다시 확인한다)
+`linux-filesystem.directory-hierarchy`(passwd(5) — root는 UID 0인 슈퍼유저). 권한 검사는 `linux-permissions` 주제도 쓴다(step 7이 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 7) `linux-permissions.owner-group-others`(capabilities(7)·passwd(5) — root는 UID 0이고 권한 검사를 건너뛴다, 실행의 조건은 path_resolution(7)), `linux-permissions.rwx-permissions`(unlink(2) EACCES — 지우기는 디렉터리의 쓰기·검색 권한),
+`linux-permissions.chmod`(capabilities(7) CAP_FOWNER), `linux-permissions.chown`(capabilities(7) CAP_CHOWN), `exam-notes.md` E22
 
 ## (phase 75) shadow(5), free(1), du(1), cal(1), stat(1), file(1)
 https://man7.org/linux/man-pages/man5/shadow.5.html
@@ -2719,9 +2742,146 @@ https://man7.org/linux/man-pages/man2/chown.2.html
 - **chmod(2)**: 모드를 바꾸려면 호출한 프로세스의 실효 UID가 파일의 소유자와 같거나, 프로세스가 특권을 가져야 한다(Linux: CAP_FOWNER) — DESCRIPTION
 - **chown(1)**: 파일의 소유자와 그룹을 바꾼다. `chown 소유자 파일`은 소유자만 바꾸고 그룹은 그대로 둔다 — NAME, DESCRIPTION. 누가 바꿀 수 있는지는 이 페이지에 없다
 - **chown(2)**: 파일의 소유자는 특권 프로세스(Linux: CAP_CHOWN)만 바꿀 수 있고, 파일의 소유자는 그룹을 자기가 속한 그룹으로 바꿀 수 있다 — DESCRIPTION
+- (phase 75 step 7) **chmod(1)** — 수로 적는 모드: 8진 숫자(0~7) 한 자리에서 네 자리까지이고, 자리마다 4·2·1을 더해 만든다. 네 자리일 때 첫 자리는 특수 비트(set-user-ID 4·set-group-ID 2·sticky 1)이고,
+  이어지는 세 자리가 차례로 **파일 소유자**, **그 파일의 그룹에 든 다른 사용자**, **그룹에 들지 않은 다른 사용자**의 읽기(4)·쓰기(2)·실행(1)이다. 적지 않은 앞자리는 0으로 본다 — 그래서 세 자리 `755`는 특수 비트가 0인 `0755`다 — DESCRIPTION
+- (phase 75 step 7) **chmod(1)** — 기호 모드: 꼴은 `[ugoa...][[-+=][perms...]...]`이고 여럿을 쉼표로 잇는다. `+`는 고른 비트를 지금의 모드 비트에 더하고, `-`는 빼고, `=`는 고른 비트를 더하면서 **적지 않은 비트를 지운다**(디렉터리의 setuid·setgid 비트만 예외).
+  누구(`ugoa`)를 하나도 적지 않으면 `a`를 적은 것처럼 되지만 umask에 켜진 비트는 건드리지 않는다 — DESCRIPTION. `-R`(`--recursive`)은 파일과 디렉터리를 재귀로 바꾼다 — OPTIONS
+- (phase 75 step 7) **chown(1)**: 소유자 뒤에 콜론과 그룹을 붙여 적으면(사이에 공백 없이) 그룹도 바꾼다. 소유자를 빼고 콜론과 그룹만 적으면(`:그룹`) 그룹만 바꾸어 chgrp와 같은 일을 한다.
+  콜론만 붙이고 그룹을 빼면(`소유자:`) 그룹을 그 사용자의 로그인 그룹으로 바꾼다 — DESCRIPTION. `-R`은 파일과 디렉터리를 재귀로 바꾼다 — OPTIONS. 예: `chown root /u`, `chown root:staff /u` — EXAMPLES.
+  `:그룹` 꼴은 GNU 문서가 적은 꼴이다 — POSIX의 operand는 `owner[:group]`이다(아래 「(phase 75 step 7) POSIX.1-2024」 항목)
+- (phase 75 step 7) **chown(2)**: 특권 프로세스(CAP_CHOWN)는 그룹도 아무 그룹으로나 바꿀 수 있다. 소유자나 그룹 자리에 -1을 주면 그 값은 바꾸지 않는다 — DESCRIPTION.
+  정리하면 「소유자를 바꾸는 일은 특권 프로세스(root)만, 그룹을 바꾸는 일은 파일의 소유자도(자기가 속한 그룹으로만)」다 — `exam-notes.md` E22
 
 위 capabilities(7)(root는 커널의 권한 검사를 모두 건너뛴다)과 함께, 「모든 사용자의 쓰기 권한을 빼도, 소유자를 root로 바꿔도 root가 그 파일을 고치고 지우는 일은 막지 못한다」를 쓴다.
 `chmod`·`chown`의 자세한 쓰임(수 모드·기호 모드·`-R`)은 `linux-permissions`(step 7 이후)가 다시 확인한다
 
 쓰인 곳: `linux-filesystem.file-attributes`(rm(1) — `rm`은 파일을 지우는 명령, 「root도 `rm`으로 지우지 못한다」는 unlink(2)·FS_IOC_SETFLAGS(2const)), 문항 n123의 보기·해설(chmod(1)·chmod(2) — `chmod a-w`,
-chown(1)·chown(2) — `chown root`, capabilities(7) — root는 권한 검사를 받지 않는다)
+chown(1)·chown(2) — `chown root`, capabilities(7) — root는 권한 검사를 받지 않는다).
+(phase 75 step 7) `linux-permissions.octal-mode`(chmod(1) 수 모드 — 4·2·1, 자리 차례, 앞자리 0), `linux-permissions.chmod`(chmod(1) `-R`, chmod(2) — 바꿀 수 있는 사람), `linux-permissions.symbolic-mode`(chmod(1) `+`·`-`·`=`·쉼표·umask),
+`linux-permissions.chown`(chown(1) 꼴 셋과 `-R`, chown(2) — 소유자는 특권만·그룹은 소유자도), `exam-notes.md` E22
+
+## (phase 75 step 7) POSIX.1-2024 — Shell and Utilities: chmod, ls, chown, chgrp, rm, cd / System Interfaces: chown(), unlink(), open(), opendir(), chdir()
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chmod.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/ls.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chown.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chgrp.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/rm.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cd.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/chown.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/unlink.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/open.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/opendir.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/chdir.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- **chmod — 누가 바꾸나**: 파일의 사용자 ID와 실효 사용자 ID가 같은 프로세스, 또는 적절한 특권을 가진 프로세스만 그 파일의 모드 비트를 바꿀 수 있다 — DESCRIPTION.
+  `-R`을 주면 operand가 디렉터리일 때 그 디렉터리와 그 아래 파일 계층 전체의 모드 비트를 바꾼다 — OPTIONS
+- **chmod — 기호 모드**: 「누구 + 연산 + 권한」으로 된 절(clause)을 쉼표로 이은 것이고, 절은 적은 차례대로 적용된다 — EXTENDED DESCRIPTION, 「Grammar for chmod」.
+  누구 `u`·`g`·`o`는 모드 비트의 사용자(소유자)·그룹·그 밖의 몫이고, `a`는 `ugo`와 같다. 권한 `r`·`w`·`x`는 읽기·쓰기·실행(디렉터리는 검색) 몫이다.
+  `+`는 적은 누구·권한의 비트를 켜고, `-`는 끈다. `=`는 **적은 누구의 비트를 먼저 모두 지운 뒤** 적은 권한의 비트를 켠다 — 권한을 적지 않으면 지우기만 한다.
+  누구를 적지 않으면 프로세스의 파일 모드 생성 마스크(umask)에 켜진 비트는 켜거나 끄지 않는다 — EXTENDED DESCRIPTION
+- **chmod — 예**: `go+-w`는 그룹과 그 밖의 쓰기 비트를 끄고, `g-r+w`는 그룹의 읽기를 끄고 쓰기를 켠다 — EXAMPLES. `chmod a-w 파일`은 모든 쓰기 권한을 없애지만,
+  누구를 뺀 `-w`는 umask에 따라 남는 쓰기 권한이 있을 수 있다 — APPLICATION USAGE
+- **chmod — 수 모드**: mode가 8진 정수이면 모드 비트를 **절대값으로** 정한다 — 수에서 켜진 비트에 해당하는 권한 비트는 켜고, **나머지 권한 비트는 모두 끈다**.
+  자리값은 소유자 읽기 0400·쓰기 0200·실행 0100, 그룹 0040·0020·0010, 그 밖 0004·0002·0001이고, 특수 비트는 4000(set-user-ID)·2000(set-group-ID)·1000(sticky)이다 — EXTENDED DESCRIPTION의 표
+- **ls -l 한 줄**: 파일마다 한 줄에 `파일 모드`, `링크 수`, `소유자 이름`, `그룹 이름`, `크기`, `날짜와 시각`, `경로 이름`을 이 차례로 공백을 두고 적는다. 문자 특수 파일과 블록 특수 파일은 크기 자리에 장치 정보를 적는다.
+  날짜와 시각은 마지막으로 고친 때이고, POSIX 로캘에서는 고친 지 여섯 달이 안 됐으면 `월 일 시:분`, 그보다 오래됐으면 `월 일 연도` 꼴이다(로캘이 다르면 꼴과 차례가 달라질 수 있다).
+  이름을 알 수 없거나 `-n`을 주면 소유자·그룹 자리에 수(ID)를 적는다. 디렉터리 안의 파일 목록 앞에는 `total`로 시작하는 줄이 하나 붙는다 — STDOUT
+- **ls -l의 파일 모드**: 종류 글자 하나 + 소유자 권한 세 글자 + 그룹 권한 세 글자 + 그 밖 권한 세 글자이고, 그 파일에 다른 접근 제어 방법이 붙어 있으면 끝에 공백이 아닌 글자 하나가 더 붙는다(없으면 아무것도 붙지 않는다).
+  세 글자의 첫 자리는 읽을 수 있으면 `r`, 아니면 `-`이고, 둘째 자리는 쓸 수 있으면 `w`, 아니면 `-`이며, 셋째 자리는 실행할 수 있거나(디렉터리면 검색할 수 있거나) `x`, 아니면 `-`다(특수 비트가 켜지면 `s`·`S`·`t`·`T`) — STDOUT
+- **ls -l의 종류 글자**: `d` 디렉터리, `b` 블록 특수 파일, `c` 문자 특수 파일, `l` 심볼릭 링크, `p` FIFO, `s` 소켓, `-` 일반 파일. 구현이 다른 종류의 글자를 더할 수 있다 — STDOUT.
+  `-a`는 이름이 마침표(`.`)로 시작하는 항목까지 모두 적고, `-l`은 긴 형식으로 적는다 — OPTIONS
+- **chown**: operand `owner[:group]`의 owner로 파일의 사용자 ID를 정하고, 그룹 부분을 적었으면 그룹 ID도 정하며, 적지 않았으면 그룹은 바꾸지 않는다. owner는 사용자 이름이나 사용자 ID, group은 그룹 이름이나 그룹 ID다.
+  `-R`은 디렉터리와 그 아래 파일 계층 전체를 바꾼다 — DESCRIPTION, OPTIONS, OPERANDS
+- **chgrp**: 파일의 그룹 ID를 operand의 그룹으로 바꾼다. 하는 일은 파일의 사용자 ID는 그대로 둔 채 chown() 함수를 부르는 것과 같아서, 누가 바꿀 수 있는지도 chown()의 규칙을 따른다. `-R`도 있다 — DESCRIPTION, OPTIONS
+- **chown() 함수**: 파일의 사용자 ID와 같은 실효 사용자 ID를 가진 프로세스나 특권 프로세스만 소유권을 바꿀 수 있다. `_POSIX_CHOWN_RESTRICTED`가 걸려 있으면 **사용자 ID를 바꾸는 일은 특권 프로세스만** 하고,
+  특권이 없는 파일 소유자는 사용자 ID를 그대로 둔 채 그룹을 자기 실효 그룹 ID나 보조 그룹 ID 가운데 하나로 바꾸는 일만 할 수 있다 — DESCRIPTION. Linux가 이 제한을 따른다는 것은 chown(2)
+- **rm**: 지울 파일에 쓰기 권한이 없고 표준 입력이 터미널이면(`-f`가 없을 때) 지우기 전에 물어보고, 긍정하지 않으면 그 파일을 두고 넘어간다. `-i`를 주면 늘 물어본다 — DESCRIPTION.
+  곧 파일 자신의 쓰기 권한은 지울 수 있는지가 아니라 **물어볼지**를 가른다
+- **unlink() 함수**: 경로의 디렉터리 가운데 하나에 검색 권한이 없거나, 지울 항목이 든 디렉터리에 쓰기 권한이 없으면 EACCES로 실패한다 — ERRORS
+- **open() 함수**: O_CREAT로 새 파일을 만들면 그 파일의 사용자 ID는 프로세스의 실효 사용자 ID가 되고, 그룹 ID는 부모 디렉터리의 그룹 ID나 프로세스의 실효 그룹 ID가 된다 — DESCRIPTION
+- **opendir() 함수**: 디렉터리에 읽기 권한이 없거나 경로에 검색 권한이 없으면 EACCES로 실패한다 — ERRORS. **chdir() 함수**: 경로의 어느 디렉터리에든 검색 권한이 없으면 EACCES로 실패한다 — ERRORS.
+  `cd` 유틸리티는 마지막에 chdir()과 같은 일을 해서 작업 디렉터리를 바꾼다 — cd DESCRIPTION
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.rwx-permissions`(unlink()·open()·opendir()·chdir()·rm — 디렉터리의 읽기·쓰기·검색, 지우기는 디렉터리의 쓰기·검색 권한), `linux-permissions.owner-group-others`(open() — 새 파일의 소유자),
+`linux-permissions.permission-string`(ls STDOUT — 칸의 차례, 파일 모드의 짜임), `linux-permissions.file-type-char`(ls STDOUT — 종류 글자), `linux-permissions.octal-mode`(chmod 수 모드의 표), `linux-permissions.chmod`(chmod DESCRIPTION·`-R`),
+`linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION·EXAMPLES·APPLICATION USAGE), `linux-permissions.chown`(chown·chgrp·chown()), `exam-notes.md`의 「phase 75 step 7」 문단과 E22.
+`cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다)
+
+## (phase 75 step 7) GNU Coreutils 매뉴얼 — 27 File permissions, 10.1.2 What information is listed, 12.2 ln, 12.5 mknod, 13.1 chown, 13.2 chgrp, 13.3 chmod
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html
+
+GNU Coreutils 9.12 매뉴얼(Texinfo 7.2로 만든 HTML, Copyright 1994–2026). 2026-10-30에 한 쪽짜리 HTML판을 내려받아 절을 읽었다. man7.org의 coreutils 페이지(chmod(1)·chown(1)·chgrp(1)·ls(1)·ln(1))는 9.11이고,
+아래 사실은 그 페이지들과 어긋나지 않는다(나란히 놓고 대조했다).
+
+- **27.1 Structure of File Mode Bits**: 파일 모드 비트는 보통의 접근을 가르는 **권한 비트**와, 일부 파일에만 뜻이 있는 **특수 비트**(setuid·setgid·제한 삭제 플래그 곧 sticky)로 나뉜다. 권한은 세 가지다 —
+  **읽기**: 파일을 읽는 것, 디렉터리에서는 그 안의 목록을 보는 것. **쓰기**: 파일을 바꾸는 것, 디렉터리에서는 그 안에 파일을 만들고 지우는 것. **실행**: 파일을 프로그램으로 실행하는 것, 디렉터리에서는 그 안의 파일에 접근하는 것.
+  사용자는 **파일의 소유자**, **그 파일의 그룹에 든 다른 사용자**, **그 밖의 모두** 세 부류로 나뉘고, 부류마다 권한이 다를 수 있다 — 27.1
+- **27.1 — 소유자와 그룹이 정해지는 때**: 파일을 만들 때 소유자와 그룹이 정해진다. 보통 소유자는 지금 사용자이고 그룹은 그 파일이 든 디렉터리의 그룹이라고 적되, 운영체제·파일 시스템·만드는 방법에 따라 다르다고 단서를 단다. 둘은 chown·chgrp로 바꾼다 — 27.1.
+  (Linux에서 새 파일의 그룹이 정해지는 규칙은 아래 「(phase 75 step 7) Linux man-pages」 항목의 inode(7)·open(2))
+- **27.1 — 권한 밖의 제한**: 모드 비트가 허락해도 파일 시스템의 속성(예: immutable)이 막거나 파일 시스템이 읽기 전용으로 마운트되어 있으면 그 작업은 실패한다 — `chmod a+w`를 했더라도 immutable 파일은 고칠 수 없다 — 27.1
+- **27.2.1 Setting Permissions**: 기호 모드는 「누구 연산 권한」을 공백 없이 붙여 적는다. 누구는 `u`(파일 소유자), `g`(그 파일의 그룹에 든 다른 사용자), `o`(그 밖의 모든 사용자), `a`(모든 사용자 — `ugo`와 같다).
+  연산은 `+`(이미 가진 권한에 더하기), `-`(이미 가진 권한에서 빼기), `=`(적은 권한**만** 갖게 하기). 권한은 `r`·`w`·`x`(디렉터리면 검색). `=` 뒤의 권한을 비우면(`go=`) 그 부류는 아무 권한도 갖지 않는다.
+  `go-w`는 소유자의 권한도, 다른 사용자의 읽기·실행도 건드리지 않는다. 그리고 `go=`로 다른 사용자의 권한을 모두 없앤 파일이라도, **그 파일이 든 디렉터리에 쓰기 권한이 있는 다른 사용자는 그 파일을 지울 수 있다** — 27.2.1
+- **27.2.5 Making Multiple Changes**: 기호 모드 여럿을 쉼표로 잇는다 — 예 `a+r,go-w`(모두에게 읽기를 주고 소유자가 아닌 사람의 쓰기를 뺀다), `u=rwx,g=rx,o=`(아홉 비트를 모두 드러내 정한다) — 27.2.5
+- **27.2.6 The Umask and Protection**: 누구를 빼면 `a`처럼 되지만 umask에 켜진 권한은 건드리지 않는다. 반면 `a+w`는 umask와 상관없이 모두에게 쓰기를 준다 — 27.2.6
+- **27.3 Numeric Modes**: 모드를 8진수(base 8)로 적을 수 있다. 부류마다 읽기·쓰기·실행에 한 비트씩, 세 비트를 쓰고 그 세 비트를 **8진 숫자 한 자리**로 적는다 — 세 비트가 모두 켜진 2진수 `111`은 8진수 `7`이다.
+  특수 비트 셋도 한 자리를 차지하고 맨 앞에 온다. 자리값: 소유자 400·200·100, 그 파일의 그룹에 든 다른 사용자 40·20·10, 그룹에 들지 않은 다른 사용자 4·2·1. 예: `664`는 기호 모드 `ug=rw,o=r`과 같고, `0`은 `a=`와 같다.
+  수 모드는 보통 이전 모드 비트를 고려하지 못하고 **절대값으로만** 정한다(디렉터리의 setuid·setgid 비트는 예외). 수 모드는 늘 8진수로 읽으므로 앞에 0을 붙이지 않아도 된다 — 27.3
+- **10.1.2 What information is listed** — `-l`: 이름에 더해 파일 종류, 파일 모드 비트, 하드 링크 수, 소유자 이름, 그룹 이름, 크기, 시각(보통 마지막으로 고친 시각)을 적는다. 블록·문자 특수 파일은 크기 자리에 장치 번호 둘을 적는다.
+  종류 글자는 `-` 일반 파일, `b` 블록 특수 파일, `c` 문자 특수 파일, `d` 디렉터리, `l` 심볼릭 링크, `p` FIFO(이름 있는 파이프), `s` 소켓이고, 다른 시스템의 글자들과 알 수 없는 종류의 `?`도 있다.
+  모드 비트 뒤에는 ACL 같은 다른 접근 방법이 있는지 가리키는 글자 하나가 오는데, 없으면 공백이고 있으면 `.`(보안 문맥만)이나 `+`(그 밖)다 — 10.1.2
+- **12.2 ln**: **하드 링크**는 이미 있는 파일의 또 다른 이름이라 원래 이름과 구별되지 않는다(같은 inode를 함께 쓴다). 대부분의 시스템은 디렉터리에 하드 링크를 만들지 못하게 하고, 하드 링크는 파일 시스템의 경계를 넘지 못한다.
+  **심볼릭 링크**는 다른 파일을 이름으로 가리키는 특수한 종류의 파일이고, 열기·읽기·쓰기 같은 대부분의 일은 커널이 가리키는 파일에 하지만 지우기 같은 몇몇은 링크 파일 자체에 한다. `ln`은 기본으로 하드 링크를, `-s`로 심볼릭 링크를 만든다 — 12.2
+- **12.5 mknod**: 특수 파일은 데이터를 내거나 받는 무언가이고 보통 프린터·플래시 드라이브 같은 물리 하드웨어에 해당한다. 이런 장치는 **한 번에 한 글자씩** 읽거나 **여러 글자를 한 덩어리(블록)로** 읽어서,
+  문자 특수 파일과 블록 특수 파일로 나눈다 — 12.5
+- **13.1 chown**: `[소유자][:[그룹]]` — 소유자만 적으면 그룹은 그대로, `소유자:그룹`은 둘 다, `소유자:`는 그룹을 그 사용자의 로그인 그룹으로, `:그룹`은 그룹만 바꾸어 chgrp와 같다. 콜론만 적으면 아무것도 바꾸지 않는다.
+  사용자가 그룹을 아무것으로나 바꿀 수 있는지는 시스템마다 다르고, 이식성 있는 동작은 자기가 속한 그룹으로만 바꾸는 것이다 — 13.1
+- **13.2 chgrp**: 파일의 그룹을 그룹 이름이나 그룹 ID로 바꾼다 — 13.2
+- **13.3 chmod**: 파일의 사용자 ID와 실효 사용자 ID가 같은 프로세스나 적절한 특권을 가진 프로세스만 모드 비트를 바꿀 수 있다. chmod는 심볼릭 링크 자체의 권한은 바꾸지 않는다(명령 줄에 적은 링크는 그것이 가리키는 파일을 바꾼다) — 13.3
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(27.1 — 세 부류, 새 파일의 소유자), `linux-permissions.rwx-permissions`(27.1 — 파일·디렉터리에서 읽기·쓰기·실행의 뜻, 27.2.1 — 디렉터리 쓰기 권한이 있으면 남의 파일도 지운다),
+`linux-permissions.permission-string`(10.1.2 — `-l`의 칸, 모드 뒤 한 글자), `linux-permissions.file-type-char`(10.1.2 — 종류 글자, 12.2 — 하드 링크·심볼릭 링크, 12.5 — 블록·문자 장치), `linux-permissions.octal-mode`(27.3),
+`linux-permissions.chmod`(13.3), `linux-permissions.symbolic-mode`(27.2.1·27.2.5·27.2.6, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1·13.2)
+
+## (phase 75 step 7) Linux man-pages — path_resolution(7), inode(7), link(2), symlink(7), open(2), rename(2), rmdir(2), tty(4), null(4); GNU coreutils — ls(1), ln(1), chgrp(1)
+https://man7.org/linux/man-pages/man7/path_resolution.7.html
+https://man7.org/linux/man-pages/man7/inode.7.html
+https://man7.org/linux/man-pages/man2/link.2.html
+https://man7.org/linux/man-pages/man7/symlink.7.html
+https://man7.org/linux/man-pages/man2/open.2.html
+https://man7.org/linux/man-pages/man2/rename.2.html
+https://man7.org/linux/man-pages/man2/rmdir.2.html
+https://man7.org/linux/man-pages/man4/tty.4.html
+https://man7.org/linux/man-pages/man4/null.4.html
+https://man7.org/linux/man-pages/man1/ls.1.html
+https://man7.org/linux/man-pages/man1/ln.1.html
+https://man7.org/linux/man-pages/man1/chgrp.1.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — path_resolution(7)·inode(7)·symlink(7)·open(2)·rename(2)·rmdir(2) 2026-02-08, link(2) 2026-02-11, tty(4) 2026-07-02, null(4) 2025-05-17(man7.org가 2026-09-09에 man-pages-6.19 타르볼에서 가져온 것).
+ls(1)·ln(1)·chgrp(1)은 GNU coreutils 9.11(April 2026).
+
+- **path_resolution(7)** — 「Permissions」: 파일 권한 비트는 셋씩 세 묶음이다. 호출한 프로세스의 실효 사용자 ID가 파일 소유자 ID와 같으면 **첫 묶음**을 쓰고, 그렇지 않고 파일의 그룹 ID가 프로세스의 실효 그룹 ID나 보조 그룹 ID 가운데 하나와 같으면 **둘째 묶음**을, 둘 다 아니면 **셋째 묶음**을 쓴다.
+  묶음 안의 세 비트는 차례로 읽기·쓰기, 그리고 일반 파일이면 실행·디렉터리면 검색이다. (Linux는 실효 ID 대신 파일 시스템 ID(fsuid·fsgid)를 쓰지만 보통 둘은 같다)
+- **path_resolution(7)** — 「Step 2: walk along the path」: 경로를 따라가다 지금 찾아 들어가는 디렉터리에 검색 권한이 없으면 EACCES(「Permission denied」)다
+- **path_resolution(7)** — 「Bypassing permission checks: superuser and capabilities」: 전통적인 유닉스에서 슈퍼유저(root, 사용자 ID 0)는 파일에 접근할 때 권한 제한을 모두 건너뛴다. Linux에서 파일 권한 검사와 얽힌 능력은 CAP_DAC_OVERRIDE와 CAP_DAC_READ_SEARCH이고,
+  fsuid가 0인 프로세스는 이 능력을 갖는다. CAP_DAC_OVERRIDE는 권한 검사를 모두 넘어서지만 **실행 권한은 세 실행 비트 가운데 적어도 하나가 켜져 있을 때만** 준다.
+  그러니 「root는 권한 검사를 받지 않는다」는 읽기·쓰기에서는 그대로 맞고, 실행에서는 「누구에게도 `x`가 없는 파일은 root도 실행하지 못한다」는 단서가 붙는다 — POSIX §4.7과 같은 규칙이다
+- **inode(7)**: 사용자 ID 칸은 파일 소유자의 사용자 ID이고, **새로 만든 파일은 만든 프로세스의 실효 사용자 ID를 받는다**. 그룹 ID 칸은 파일 그룹의 ID이고, 새 파일은 부모 디렉터리에 set-group-ID 비트가 켜져 있으면 그 디렉터리의 그룹을, 아니면 만든 프로세스의 실효 그룹 ID를 받는다.
+  둘 다 chown(2)으로 바꾼다. 링크 수 칸은 그 파일의 하드 링크 수다 — 「User ID」·「Group ID」·「Link count」.
+  파일 종류는 소켓·심볼릭 링크·일반 파일·블록 장치·디렉터리·문자 장치·FIFO다. st_mode의 아래 아홉 비트(0777)가 파일 권한 비트이고, 소유자 00400 읽기·00200 쓰기·00100 실행, 그룹 00040·00020·00010, 그 밖(그룹에 들지 않은 사람) 00004·00002·00001이다 — 「The file type and mode」
+- **link(2)**: 이미 있는 파일에 새 링크(하드 링크라고도 한다)를 만든다. 새 이름은 옛 이름과 똑같이 쓰이고, 두 이름이 같은 파일을 가리켜 권한과 소유자도 같으며, 어느 쪽이 「원래」 이름인지 가릴 수 없다 — DESCRIPTION
+- **symlink(7)**: 심볼릭 링크는 다른 파일의 경로 이름을 내용으로 담은 특수한 종류의 파일이다. 밑에 있는 객체가 아니라 다른 이름을 가리키므로 디렉터리도 가리킬 수 있고 파일 시스템의 경계도 넘으며, 가리키는 경로가 없어도 된다(dangling link).
+  하드 링크는 원래 파일과 구별되지 않고, 디렉터리를 가리키지 못하며 파일 시스템의 경계를 넘지 못한다 — DESCRIPTION. Linux에서 보통 심볼릭 링크의 권한은 어떤 동작에도 쓰이지 않고 늘 0777이다 — 「Symbolic link ownership, permissions, and timestamps」
+- **open(2)**: O_CREAT로 새 파일을 만들면 그 파일의 소유자(사용자 ID)는 프로세스의 실효 사용자 ID가 된다 — DESCRIPTION. 파일이 아직 없는데 부모 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS
+- **rename(2)**: oldpath나 newpath가 든 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS. **rmdir(2)**: 지울 디렉터리가 든 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS
+- **tty(4)**: `/dev/tty`는 문자 파일(문자 장치)이고 프로세스의 제어 터미널을 가리킨다 — DESCRIPTION. **null(4)**: `/dev/null`에 쓴 데이터는 버려지고 읽으면 늘 파일 끝이다. 보통 `mknod -m 666 /dev/null c 1 3`처럼 문자 장치(`c`)로 만든다 — DESCRIPTION
+- **ls(1)**: `-l`은 긴 목록 형식, `-a`(`--all`)는 `.`으로 시작하는 항목도 숨기지 않는다 — DESCRIPTION
+- **ln(1)**: 기본으로 하드 링크를 만들고, `-s`(`--symbolic`)를 주면 심볼릭 링크를 만든다. 하드 링크를 만들 때는 대상이 있어야 한다 — DESCRIPTION, OPTIONS
+- **chgrp(1)**: 각 파일의 그룹을 GROUP으로 바꾼다. `-R`은 파일과 디렉터리를 재귀로 바꾼다 — DESCRIPTION, OPTIONS
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(path_resolution(7) — 어느 묶음을 쓰나·root, inode(7)·open(2) — 새 파일의 소유자), `linux-permissions.rwx-permissions`(path_resolution(7) 검색 권한, open(2)·rename(2)·rmdir(2) — 디렉터리의 쓰기 권한),
+`linux-permissions.permission-string`(ls(1), inode(7) 링크 수), `linux-permissions.file-type-char`(inode(7) 파일 종류, link(2)·symlink(7)·ln(1) — 하드 링크와 심볼릭 링크, tty(4)·null(4) — 문자 장치의 예), `linux-permissions.octal-mode`(inode(7) 자리값),
+`linux-permissions.chown`(chgrp(1), inode(7) — 소유자와 그룹은 chown(2)으로 바꾼다)
