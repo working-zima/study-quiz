@@ -28,6 +28,11 @@ phase 101 step 3이 `azure-sla-lifecycle` 주제(SLA와 서비스 수명 주기)
 SLA 약관 원문(`microsoft.com/licensing`)은 받을 수 없어 쓰지 않으므로 서비스마다의 SLA 수치는 확인하지 않았다. 앞 항목에 덧붙인 줄은 「(phase 101 step 3)」을 달았다.
 이번에 받은 사본에는 「Last updated on」 뒤 날짜가 있어 항목마다 적었다.
 
+phase 101 step 6이 `azure-service-types` 주제(서비스 유형과 공유 책임)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-sla-lifecycle`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(「Describe cloud computing」 단원 4, 「Describe Azure compute services」 단원 2, 「Describe cloud service types」 2·3·4)에 덧붙인 줄은 「(phase 101)」 또는 「(phase 101 step 6)」을 달았다.
+**공유 책임 모델의 행마다의 배정은 Azure 보안 문서 「Shared responsibility in the cloud」의 표(글)로 확인했다** — Learn 단원의 유형별 그림은 글로 읽을 수 없어 근거로 치지 않는다.
+Azure 서비스의 유형은 공식 문서가 직접 IaaS·PaaS·SaaS라고 말한 것만 적었다. 「완전 관리형」이라는 말만으로 PaaS로 옮겨 적지 않았다(Azure Cosmos DB).
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -179,6 +184,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신을 푸는 한 줄), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(가상 머신을 푸는 한 줄)
+
+- Azure VM은 가상화된 서버를 IaaS로 실행하는 서비스다. IaaS 서비스이므로 VM 안의 패치·업데이트·구성은 쓰는 쪽이 맡는다 — 「첫 문단」·「둘째 문단」 (phase 101)
+
+쓰일 곳(phase 101 step 6): `azure-service-types.iaas`(Azure에서의 예 — VM이 IaaS라는 근거), D32·D34
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -482,6 +491,18 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-desc
 - 한국어 표기: on-premises datacenter → **온-프레미스 데이터 센터**, cloud provider → 클라우드 공급자, consumer → 소비자, shared responsibility model → 공유 책임 모델(학습 가이드 한국어판은 「공동 책임 모델」 — step 4 메모)
 
 쓰인 곳: `azure-cloud-models.hybrid-cloud`(온-프레미스를 푸는 한 줄), `azure-cloud-models.public-cloud`·`azure-cloud-models.private-cloud`(하드웨어와 데이터 센터를 누가 갖추고 관리하나), D11·D13
+
+- 공유 책임 모델에서는 온-프레미스에서 조직이 지던 책임을 클라우드 공급자와 소비자가 나눠 진다 — 「How responsibilities shift in cloud」 둘째 문단 (phase 101)
+- 클라우드에 저장한 데이터와 정보는 소비자가 맡는다(공급자가 그 정보를 읽게 두고 싶지 않을 것이므로). 접근 보안 — 필요한 사람에게만 접근을 주는 것 — 도 소비자가 맡는다 — 같은 절 셋째 문단 (phase 101)
+- 어떤 것은 상황에 따라 갈린다. 클라우드의 SQL 데이터베이스 서비스를 쓰면 데이터베이스 자체의 유지 관리는 공급자가, 넣는 데이터는 소비자가 맡는다. VM을 만들고 그 위에 SQL 데이터베이스를 직접 설치했다면 데이터베이스의 패치·업데이트까지 소비자가 맡는다 — 같은 절 넷째 문단 (phase 101)
+- 공유 책임 모델은 서비스 유형과 깊이 묶여 있다. IaaS는 소비자에게 책임을 가장 많이 두고 공급자는 물리 보안·전원·연결 같은 기본만 맡는다. SaaS는 책임 대부분을 공급자에게 둔다. PaaS는 그 사이에서 둘이 책임을 나눈다 — 같은 절 다섯째 문단 (phase 101)
+- 늘 소비자가 맡는 것: 클라우드에 저장한 정보와 데이터, 클라우드에 연결하도록 허용한 장치(휴대폰·컴퓨터 등), 환경 안의 사람·서비스·장치의 계정과 ID — 「What always stays with you」 (phase 101)
+- 늘 공급자가 맡는 것으로 물리 데이터 센터·물리 네트워크·물리 호스트에 더해 「인프라」를 든다 — 「What the provider always owns」 (phase 101)
+- 서비스 유형에 따라 갈리는 것: 운영 체제, 네트워크 제어, 애플리케이션, ID와 액세스. ID와 액세스는 PaaS·SaaS에서 함께 맡는다 — 사용자·역할·정책은 소비자가 관리하고, 인증 플랫폼(예: Microsoft Entra ID)은 공급자가 실행한다. 인프라는 온-프레미스를 떠나 IaaS로 가는 순간 공급자에게 넘어간다 — 「What depends on the service type」 (phase 101)
+- 「Responsibility by service model」 절의 유형별 책임 그림은 그림뿐이라 글로 읽을 수 없다. 행마다의 배정은 아래 「Shared responsibility in the cloud」의 표(글)로 확인한다 (phase 101)
+- 한국어 표기(phase 101): 단원 한국어판은 제목·본문 모두 「공유 책임 모델」(다섯 번)이다. 「책임 공유」는 요약 단원에 한 번 나온다
+
+쓰일 곳(phase 101 step 6): `azure-service-types.shared-responsibility-model`, `SharedResponsibilityDiagram`, D30·G18
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is a public cloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-public-cloud
@@ -798,6 +819,23 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(세 유형을 한 줄씩 푸는 근거 — IaaS는 공급자가 하드웨어·인터넷 연결·물리 보안, PaaS는 운영 체제와 개발 도구까지 공급자가 유지 관리, SaaS는 이메일처럼 다 만들어진 앱), az022
 
+phase 101 step 6이 `azure-service-types` 주제를 위해 덧붙인 줄:
+
+- IaaS에서 쓰는 쪽이 맡는 「나머지」는 운영 체제의 설치·구성·유지 관리, 네트워크 구성, 데이터베이스와 스토리지 구성이다. IaaS는 클라우드 데이터 센터의 하드웨어를 빌리는 것이고 그 하드웨어로 무엇을 할지는 쓰는 쪽이 정한다 — 단원 2 첫 문단·둘째 문단 (phase 101 step 6)
+- IaaS에서 쓰는 쪽은 워크로드의 대부분 — 운영 체제, 패치, 구성, 많은 보안 통제 — 를 관리한다. 유연성이 가장 크고 운영 책임도 가장 크다 — 단원 2 「Responsibility focus in IaaS」 (phase 101 step 6)
+- IaaS가 맞는 경우: 리프트 앤 시프트 마이그레이션(온-프레미스 데이터 센터와 비슷한 클라우드 리소스를 갖춘 뒤 워크로드를 그대로 옮긴다), 테스트·개발(정해 둔 구성을 빨리 복제하고, 환경을 빨리 시작하거나 끄면서도 통제를 모두 유지한다) — 단원 2 「Scenarios」 (phase 101 step 6)
+- PaaS는 개발 인프라를 모두 유지 관리하는 수고 없이 완전한 개발 환경을 주는 데 알맞다 — 단원 3 첫 문단 뒤 (phase 101 step 6)
+- PaaS에서 공급자는 물리 인프라와 플랫폼 구성 요소(운영 체제·미들웨어·관리형 런타임)를 관리하고, 쓰는 쪽은 앱 코드·데이터·액세스 제어에 집중한다. 서비스 구성에 따라 일부 네트워크·앱 보안 설정은 함께 맡는다 — 단원 3 「Responsibility focus in PaaS」 (phase 101 step 6)
+- PaaS가 맞는 경우: 개발 프레임워크(개발자가 기본 제공 구성 요소로 앱을 만들거나 고치고, 확장성·고가용성·멀티 테넌트 기능이 이미 들어 있어 코드를 덜 쓴다), 분석·비즈니스 인텔리전스(데이터를 분석해 통찰과 패턴을 찾고 결과를 예측하는 도구를 서비스로 받는다) — 단원 3 「Scenarios」 (phase 101 step 6)
+- SaaS는 제품으로 보면 가장 완전한 클라우드 서비스 모델이다. 이메일·재무 소프트웨어·메시징 앱·연결 소프트웨어가 흔한 예다 — 단원 4 첫 문단 (phase 101 step 6)
+- SaaS는 가장 덜 유연할 수 있지만 시작하기 가장 쉽고, 제대로 쓰는 데 드는 기술 지식이 가장 적다 — 단원 4 둘째 문단 (phase 101 step 6)
+- SaaS에서 공급자는 인프라·플랫폼·앱 유지 관리를 포함해 앱 스택의 거의 전부를 관리하고, 쓰는 쪽은 주로 데이터, ID와 액세스 설정, 장치의 접근 상태를 관리한다. 고객의 운영 부담이 가장 적다. 예: SaaS 협업 플랫폼을 쓰는 팀은 사용자 등록·접근 제어·데이터 거버넌스에 집중하고, 인프라 패치·앱 업데이트·가용성은 공급자가 맡는다 — 단원 4 「Responsibility focus in SaaS」 (phase 101 step 6)
+- SaaS가 쓰이는 경우: 이메일과 메시징, 생산성 앱, 재무와 경비 관리 — 단원 4 「Scenarios」 (phase 101 step 6)
+- 세 단원 모두 「Responsibility focus」 앞에 유형별 계층 그림을 두지만 그림이라 글로 읽을 수 없다 (phase 101 step 6)
+- 한국어 표기(phase 101 step 6): 단원 제목은 「서비스로서의 인프라 설명」(단원 2)·「서비스형 플랫폼 설명」(단원 3)·「SaaS(Software as a Service) 설명」(단원 4). lift-and-shift migration → 리프트 앤 시프트 마이그레이션, middleware → 미들웨어, development framework → 개발 프레임워크, business intelligence → 비즈니스 인텔리전스
+
+쓰일 곳(phase 101 step 6): `azure-service-types.iaas`, `azure-service-types.paas`, `azure-service-types.saas`, `ServiceTypesTable`, D31·D33·G17·G18·G19
+
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
 위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 101 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
@@ -1005,3 +1043,144 @@ https://learn.microsoft.com/en-us/entra/fundamentals/new-name
 | Azure updates | Azure 업데이트 | 한국어 문서에 따로 붙은 이름이 없다(최신 수명 주기 정책 한국어판도 주소만 든다). 쪽 이름을 그대로 옮기고 주소(`azure.microsoft.com/updates`)를 함께 적는다 |
 | end of support / retirement | 지원 종료 / 사용 중지 | 최신 수명 주기 정책 한국어판 「지원을 종료하기 전에」, 인프라 수명 주기 FAQ 한국어판 「사용 중지」(사용 중단·사용 중지 예정·폐기 예정이 섞였다 — 이 주제는 「지원 종료」를 주로 쓴다) |
 | Microsoft Entra ID (옛 Azure AD) | (쓰지 않는다) | 덤프의 옛 이름 「Azure Active Directory」를 대조한 근거로만 적는다 — D22 |
+
+## (phase 101) Azure security — Shared responsibility in the cloud
+https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility
+
+확인한 날 2026-10-31, Last updated on 2026-08-24. 사본: `docs-security-shared-responsibility.md`와 `ko-` 판.
+
+- 워크로드의 책임은 그 워크로드가 SaaS·PaaS·IaaS·온-프레미스 데이터 센터 가운데 어디에 있느냐에 따라 달라진다 — 「첫 문단」
+- 유형마다 쓰는 쪽이 하는 일과 Azure의 예: IaaS는 가상 머신·운영 체제·애플리케이션을 쓰는 쪽이 관리하고, 예는 Azure Virtual Machines·Azure Disk Storage·가상 네트워크다. PaaS는 VM이나 운영 체제를 관리하지 않고 앱을 배포하고, 예는 Azure App Service·Azure Functions·Azure SQL Database·Azure Storage다. SaaS는 다 만들어진 앱을 쓰고, 예는 Microsoft 365·Dynamics 365다 — 「첫 문단」 뒤 목록
+- 많은 Azure 솔루션은 서비스 모델을 섞어 쓴다 — 같은 곳
+- 이 문서의 「책임」은 각 통제를 누가 구성·운영·모니터링하느냐를 뜻하는 거버넌스의 말이고, 법적 결론이나 Microsoft와의 계약 조건을 바꾸지 않는다 — 「Note」
+- 온-프레미스 데이터 센터에서는 스택 전체를 고객이 가진다. 클라우드로 옮기면 일부 책임이 Microsoft로 넘어간다. 어느 배포 유형이든 데이터와 ID는 고객의 것이다 — 「Division of responsibility」
+- **책임 표**(행 10개, 열은 온-프레미스·IaaS·PaaS·SaaS. 칸은 고객·함께·Microsoft) — 「Responsibility matrix」
+  - 고객 데이터 — 온-프레미스는 고객, IaaS는 고객, PaaS는 고객, SaaS는 고객
+  - 구성과 설정 — 온-프레미스는 고객, IaaS는 고객, PaaS는 고객, SaaS는 고객
+  - ID와 사용자 — 온-프레미스는 고객, IaaS는 고객, PaaS는 고객, SaaS는 고객
+  - 클라이언트 장치 — 온-프레미스는 고객, IaaS는 고객, PaaS는 고객, SaaS는 함께
+  - 애플리케이션 — 온-프레미스는 고객, IaaS는 고객, PaaS는 함께, SaaS는 함께
+  - 네트워크 제어 — 온-프레미스는 고객, IaaS는 고객, PaaS는 함께, SaaS는 Microsoft
+  - 운영 체제 — 온-프레미스는 고객, IaaS는 고객, PaaS는 Microsoft, SaaS는 Microsoft
+  - 물리 호스트 — 온-프레미스는 고객, IaaS는 Microsoft, PaaS는 Microsoft, SaaS는 Microsoft
+  - 물리 네트워크 — 온-프레미스는 고객, IaaS는 Microsoft, PaaS는 Microsoft, SaaS는 Microsoft
+  - 물리 데이터 센터 — 온-프레미스는 고객, IaaS는 Microsoft, PaaS는 Microsoft, SaaS는 Microsoft
+- 배포 유형과 관계없이 고객이 늘 지는 책임: 데이터(분류·보호·암호화 결정·데이터 거버넌스 요구 준수), 끝점(클라우드 서비스에 접근하는 휴대폰·노트북·데스크톱 같은 장치의 보호), 계정(사용자 접근을 만들고 관리하고 없애는 일), 접근 관리(역할 기반 액세스 제어·다단계 인증·조건부 액세스 정책) — 「Responsibilities you always retain」
+- 함께 지는 책임의 나뉨 — 「Shared responsibilities explained」
+  - 애플리케이션: IaaS에서는 배포한 앱을 고객이 모두 맡는다. PaaS·SaaS에서는 Microsoft가 앱 스택의 일부를 관리하지만 앱 구성·코드 보안·접근 제어는 고객이 맡는다
+  - 네트워크 제어: IaaS에서는 방화벽·네트워크 분할을 비롯한 네트워크 보안을 고객이 모두 구성한다. PaaS에서는 Microsoft가 기본 네트워크 보안을 주고 앱 수준의 네트워크 통제는 고객이 구성한다. SaaS에서는 네트워크 보안을 Microsoft가 관리한다
+  - 클라이언트 장치: SaaS에서 Microsoft가 일부 장치 관리 기능을 줄 수 있지만 끝점 보호와 규정 준수는 고객이 맡는다
+- Microsoft가 맡는 것: 물리 보안(시설·물리 출입 통제·환경 통제), 물리 네트워크(데이터 센터 안의 라우터·스위치·케이블), 물리 호스트(클라우드 서비스를 올리는 물리 서버), 하이퍼바이저(IaaS·PaaS에서 VM을 가능하게 하는 가상화 계층), 플랫폼 서비스(PaaS·SaaS에서 운영 체제·런타임 환경·미들웨어) — 「Microsoft responsibilities」
+- 한국어 표기: 제목은 「클라우드의 공동 책임」이지만 본문은 「공유 책임 모델」(두 번)이고, 절 제목도 「공유 책임 설명」이다. 표의 행은 고객 데이터·구성 및 설정·ID 및 사용자·클라이언트 디바이스·응용 프로그램·네트워크 제어·운영 체제·물리적 호스트·실제 네트워크·실제 데이터 센터, 칸은 고객·Shared·Microsoft(「Shared」를 옮기지 않았다). 유형 이름은 「인프라-서비스」·「인프라 서비스」(IaaS), 「서비스형 플랫폼」(PaaS, 세 번), 「소프트웨어-서비스」·「서비스형 소프트웨어」(SaaS)로 섞였다
+
+쓰일 곳: `azure-service-types.shared-responsibility-model`(행마다의 배정 — 이 표가 도식의 근거다), `SharedResponsibilityDiagram`, `azure-service-types.iaas`(VM·Disk Storage·가상 네트워크가 IaaS), `azure-service-types.paas`(App Service·Functions·SQL Database·Storage가 PaaS), `azure-service-types.saas`(Microsoft 365가 SaaS), D30·D31·D32·D33·D34·D37·G18
+
+## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is infrastructure as a service (IaaS)?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-iaas.md`와 `ko-` 판.
+
+- IaaS는 서버·스토리지·네트워킹을 필요할 때 빌려 쓰게 하는 클라우드 컴퓨팅 모델이다. 쓰는 쪽은 물리 하드웨어를 사지 않고 필요에 따라 리소스를 늘리거나 줄이며 쓴 만큼 낸다 — 「Infrastructure as a service definition」·「How does IaaS work?」
+- 공급자는 그 기반 인프라를 자기 데이터 센터에서 호스트하고 관리하며, 쓰는 쪽은 웹 화면이나 API로 리소스에 접근해 구성한다 — 「How does IaaS work?」
+- 한국어 표기: 제목은 「IaaS(서비스 제공 인프라)」다. 본문에서 SaaS를 「서비스형 소프트웨어」(두 번)로 쓴다
+
+쓰일 곳: `azure-service-types.iaas`(필요에 따라 늘리고 줄인다는 것), 표기 결정
+
+## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is platform as a service (PaaS)?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-paas
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-paas.md`와 `ko-` 판.
+
+- PaaS는 개발자가 기반 인프라를 신경 쓰지 않고 앱을 만들고 배포하고 관리하게 하는 클라우드 컴퓨팅 모델이다. 개발자는 코드를 쓰는 데 집중하고 인프라·유지 관리·확장은 공급자가 맡는다 — 「Platform as a service definition」
+- PaaS에는 앱 개발에 필요한 운영 체제·런타임 환경·데이터베이스·개발 도구·미들웨어와 호스팅·확장 기능이 들어 있다 — 같은 절
+- 배포하면 런타임·미들웨어·운영 체제 관리는 플랫폼이 맡는다. 수요에 따라 리소스를 자동으로 늘리고 줄이며, 보안 패치·업데이트·인프라 유지 관리는 PaaS 공급자가 한다 — 「How does PaaS work?」
+- 한국어 표기: 제목은 「PaaS(Platform as a Service)」로 한국어 이름을 붙이지 않았다
+
+쓰일 곳: `azure-service-types.paas`(자동 확장, 패치를 공급자가 — D35 대조의 근거), D35·G17
+
+## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is software as a service (SaaS)?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-saas.md`와 `ko-` 판.
+
+- SaaS는 앱을 사서 직접 설치하지 않고 구독해 인터넷으로(대개 웹 브라우저로) 쓰는 클라우드 기반 소프트웨어 제공 모델이다. 기반 인프라·보안·유지 관리·업데이트는 공급자가 맡는다 — 「Software as a service definition」
+- 앱은 공급자의 서버에서 실행되고 처리와 데이터 저장도 거기서 한다. 그래서 인터넷에 연결된 기기라면 어디서나 쓸 수 있다 — 「How does SaaS work?」
+- SaaS의 흔한 예로 이메일 서비스, 고객 관계 관리(CRM) 시스템, 사무용 생산성 도구를 든다 — 「Comparing SaaS, PaaS, and MaaS」
+- 한국어 표기: 제목은 「SaaS(Software as a Service)」로 한국어 이름을 붙이지 않았다
+
+쓰일 곳: `azure-service-types.saas`, G18
+
+## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is middleware?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-middleware
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-middleware.md`와 `ko-` 판.
+
+- 미들웨어는 앱·데이터베이스·운영 체제 사이를 잇는 소프트웨어 계층으로, 서로 다른 앱·시스템·서비스가 데이터를 주고받고 함께 동작하게 돕는다 — 첫 문단·「Middleware definition」
+- 한국어 표기: middleware → 미들웨어(사전 한국어판 제목 「미들웨어란?」, Learn 단원 3 한국어판)
+
+쓰일 곳: `azure-service-types.paas`(미들웨어를 푸는 한 줄)
+
+## (phase 101) Azure App Service — App Service overview
+https://learn.microsoft.com/en-us/azure/app-service/overview
+
+확인한 날 2026-10-31, Last updated on 2026-08-18. 사본: `docs-app-service-overview.md`와 `ko-` 판.
+
+- Azure App Service는 웹앱·모바일 백 엔드·REST API를 그 아래 인프라를 관리하지 않고 실행하게 하는 플랫폼이다 — 「첫 문단」
+- 쓴 리소스만큼 내고, 사업에 맞춰 스케일 업·스케일 아웃할 수 있으며, 수요에 따라 앱을 자동으로 확장한다 — 「Small businesses and startups」
+- 이 문서는 App Service를 「PaaS」라고 부르지 않는다. App Service가 PaaS라는 근거는 위 「Shared responsibility in the cloud」의 PaaS 예다
+- 한국어 표기: 「App Service 개요」, Azure App Service(이름 그대로)
+
+쓰일 곳: `azure-service-types.paas`(Azure에서의 예와 자동 확장), D31·D33·D34·D35
+
+## (phase 101) Azure App Service — Scale up an app in Azure App Service
+https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
+
+확인한 날 2026-10-31, Last updated on 2025-09-08. 사본: `docs-app-service-manage-scale-up.md`와 `ko-` 판.
+
+- App Service 앱의 크기 조정은 둘이다. 스케일 업은 앱이 속한 App Service 플랜의 가격 책정 계층을 바꿔 CPU·메모리·디스크 공간이나 추가 기능을 더 얻는 것이고, 스케일 아웃은 앱을 실행하는 VM 인스턴스 수를 늘리는 것이다. 인스턴스 수는 정한 규칙과 일정에 따라 자동으로 늘릴 수도 있다 — 「첫 문단」
+- 한국어 표기: 제목 「Azure App Service에서 앱 강화」, pricing tier → 가격 책정 계층, scale up → 강화·스케일 업(섞였다)
+
+쓰일 곳: D35(가격 책정 계층을 바꿔 메모리를 더하는가 — 덤프끼리 갈림을 가르는 근거)
+
+## (phase 101) Azure SQL Database — What is Azure SQL Database?
+https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview
+
+확인한 날 2026-10-31, Last updated on 2026-10-13. 사본: `docs-azure-sql-database-paas-overview.md`와 `ko-` 판.
+
+- Azure SQL Database는 완전 관리형 PaaS 데이터베이스 엔진이다. 업그레이드·패치·백업·모니터링 같은 데이터베이스 관리 대부분을 사용자 개입 없이 처리한다 — 「첫 문단」
+- 기본으로 들어 있는 PaaS 기능 덕분에 쓰는 쪽은 업무에 필요한 데이터베이스 관리·최적화에 집중한다 — 같은 문서 본문
+- 한국어 표기: 제목 「Azure SQL Database란?」, Azure SQL Database(이름 그대로)
+
+쓰일 곳: `azure-service-types.paas`(Azure에서의 예 — SQL Database가 PaaS라는 근거), D32·D34
+
+## (phase 101) Azure Cosmos DB — introduction
+https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
+
+확인한 날 2026-10-31, Last updated on 2026-06-08. 사본: `docs-cosmos-db-introduction.md`와 `ko-` 판.
+
+- Azure Cosmos DB는 완전 관리형 NoSQL·벡터 데이터베이스이고, 관리·업데이트·패치를 자동으로 처리한다 — 「첫 문단」
+- **이 문서는 Cosmos DB를 IaaS·PaaS·SaaS 어느 것이라고도 말하지 않는다.** 위 「Shared responsibility in the cloud」의 유형별 예에도 없다. 「완전 관리형」만으로 PaaS라고 적지 않는다
+- 한국어 표기: 「완전 관리형 데이터베이스 서비스」
+
+쓰일 곳: D36(Cosmos DB의 서비스 유형은 쓰지 않는다는 근거). 개념 글에는 쓰지 않는다
+
+## (phase 101) 한국어 표기 정리 — `azure-service-types`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 101 step 6). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+받아 둔 한국어판(`raw/official/ko-…`)을 모두 세어 정했다.
+
+| 영문 | 쓸 이름 | 근거 |
+|---|---|---|
+| shared responsibility model | **공유 책임 모델** | 「공유 책임 모델」이 여섯 문서에 14번 나온다 — Learn 「Describe cloud computing」 단원 2·4·8(1·5·3번), 「Describe cloud service types」 단원 2(1번), 보안 문서 「Shared responsibility in the cloud」 본문(2번), 「Reliability in Azure」 본문(2번). 「공동 책임 모델」은 두 번뿐이다 — 학습 가이드 한국어판의 기술 목록 한 줄, 보안 문서의 다른 문서 링크 한 줄. 보안 문서 제목 「클라우드의 공동 책임」과 「Reliability in Azure」 절 제목 「안정성에 대한 공동 책임」은 본문과 갈린 제목이다. 그래서 **주제 제목도 「서비스 유형과 공유 책임」으로 바꾼다**(guide 「배경」 — 주제 id는 그대로, step 7이 `topic-map.md`의 그 칸을 고친다). 용어집·주제 지도의 「공동 책임」은 쓰지 않는다 |
+| infrastructure as a service | **IaaS(서비스형 인프라)** | 세 이름을 같은 꼴로 맞춘다(guide). 「서비스형 ○○」 꼴이 일곱 번(PaaS 넷 — Learn 단원 3 제목·보안 문서 셋, SaaS 셋 — IaaS 사전 둘·보안 문서 하나)으로 「서비스로서의 ○○」 꼴 세 번(IaaS 둘 — Learn 단원 2 제목·플랫폼 수명 주기 FAQ, SaaS 하나 — 이점 단원 4)보다 많다. **다만 「서비스형 인프라」라는 말 자체는 받은 한국어판에 없다** — IaaS는 「서비스로서의 인프라」(두 번)와 「서비스 제공 인프라」(학습 가이드·사전, 일곱 번)로 쓰인다. 「서비스 제공 인프라」는 「서비스를 제공하는 인프라」로 읽혀 뜻이 흐려 쓰지 않고, 셋을 한 꼴로 맞추려고 PaaS·SaaS와 같은 「서비스형」을 붙인다 |
+| platform as a service | **PaaS(서비스형 플랫폼)** | Learn 단원 3 한국어판 제목, 보안 문서 한국어판(세 번). 「서비스로서의 플랫폼」은 받은 한국어판에 없다 |
+| software as a service | **SaaS(서비스형 소프트웨어)** | IaaS 사전 한국어판(두 번), 보안 문서 한국어판. 「서비스로서의 소프트웨어」(이점 단원 4, 한 번)는 쓰지 않는다. Learn 단원 4·SaaS 사전 한국어판은 영문 「Software as a Service」를 그대로 둔다 |
+| cloud provider / consumer(customer) | 클라우드 공급자 / 고객 | Learn 단원 4 한국어판은 「클라우드 공급자」·「소비자」, 보안 문서는 「고객」. 책임을 나누는 말로는 「고객」을 쓴다. 책임 표의 칸 이름은 「고객」·「함께」·「공급자」(보안 문서는 「Microsoft」 — 공급자가 Microsoft인 Azure의 경우라고 밝히면 「Microsoft」도 쓸 수 있다) |
+| physical datacenter / network / hosts | 물리 데이터 센터 / 물리 네트워크 / 물리 호스트 | Learn 단원 4 한국어판 「물리적 데이터 센터」, 보안 문서 한국어판 「물리적 호스트」. 두 한국어판의 「실제 네트워크」·「실제 호스트」·「실제 데이터 센터」는 physical의 오역이라 쓰지 않는다. 「물리적」은 이 과목의 표기(「물리 보안」)에 맞춰 「물리」로 줄인다 |
+| information and data / devices / accounts and identities | 정보와 데이터 / 장치 / 계정과 ID | Learn 단원 4 한국어판 「정보 및 데이터」·「디바이스」·「계정 및 ID」. 「디바이스」는 이 과목이 다른 주제에서 쓴 「장치」로 쓴다 |
+| operating system / network controls / applications / identity and access | 운영 체제 / 네트워크 제어 / 애플리케이션 / ID와 액세스 | Learn 단원 4·보안 문서 한국어판. 한국어판의 「응용 프로그램」은 이 과목이 쓰는 「앱」·「애플리케이션」과 맞추려고 쓰지 않는다 |
+| configurations and settings / identities and users / client devices | 구성과 설정 / ID와 사용자 / 클라이언트 장치 | 보안 문서 한국어판 「구성 및 설정」·「ID 및 사용자」·「클라이언트 디바이스」 |
+| lift-and-shift migration | 리프트 앤 시프트 마이그레이션 | Learn 단원 2 한국어판 |
+| middleware | 미들웨어 | Learn 단원 3, 미들웨어 사전 한국어판 |
+| Azure Virtual Machines / App Service / SQL Database / Functions / Storage | Azure 가상 머신(VM) / Azure App Service / Azure SQL Database / Azure Functions / Azure Storage | 각 문서 한국어판이 이름을 옮기지 않는다. VM은 phase 100의 「Azure VM(Virtual Machines)」·「가상 머신」 표기를 따른다 |
+| Microsoft 365 | Microsoft 365 | 보안 문서 한국어판. 용어집의 옛 이름 「Office 365」는 쓰지 않는다 — G18 |

@@ -24,6 +24,9 @@
 「D22」부터와 「G15」부터는 phase 101 step 3이 `azure-sla-lifecycle` 주제(SLA와 서비스 수명 주기)에 걸린 덤프 문항과 용어집 항목을 공식 문서와 대조하며 더했다(확인한 날 2026-10-30).
 본 덤프 문항은 `dump-topics.tsv`에서 `primary`가 `sla-lifecycle`인 23문항이다(같은 문항으로 분류된 NO.343·344·421·426·430은 원 문항으로 봤고, NO.493은 `azure-regions-zones` 주제의 문항이라 보지 않았다). 덤프 항목은 D21 뒤에, 용어집 항목은 G14 뒤에 이어 붙였다.
 
+「D30」부터와 「G17」부터는 phase 101 step 6이 `azure-service-types` 주제(서비스 유형과 공유 책임)에 걸린 덤프 문항과 용어집 항목을 공식 문서와 대조하며 더했다(확인한 날 2026-10-31).
+본 덤프 문항은 `dump-topics.tsv`에서 `primary`나 `secondary`가 `service-types`·`shared-responsibility`인 34문항이다(NO.188은 첫 칸을 D16이 다뤘고 둘째 칸을 D37이 다룬다). 덤프 항목은 D29 뒤에, 용어집 항목은 G16 뒤에 이어 붙였다.
+
 ---
 
 ## D1 — 서버리스의 예 (phase 100)
@@ -308,6 +311,76 @@
   값의 변화, 포털에서의 구분, GA 뒤 리소스 다시 만들기는 쓰지 않는다. 「CLI로만」은 미리 보기 기능 문서와 어긋나 쓰지 않는다.
 - **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
 
+## D30 — SaaS에서 고객과 Microsoft가 함께 맡는 책임 (phase 101)
+
+- **덤프**: [덤프 NO.15]는 SaaS에서 Microsoft와 고객이 함께 맡는 책임으로 「정보와 데이터 관리」를 답으로 표시한다(보기에는 ID와 디렉터리 인프라 관리, 애플리케이션 관리, 운영 체제 업데이트도 있다).
+- **공식 문서**: 「Shared responsibility in the cloud」의 책임 표에서 고객 데이터는 온-프레미스·IaaS·PaaS·SaaS 모두 고객 몫이고, SaaS에서 함께 맡는 것은 클라이언트 장치와 애플리케이션이다.
+  Learn 「Describe cloud computing」 단원 4도 클라우드에 저장한 정보와 데이터를 늘 고객이 맡는 것으로 들고, ID와 액세스를 PaaS·SaaS에서 함께 맡는 것(사용자·역할·정책은 고객, 인증 플랫폼은 공급자)으로 든다.
+- **처리**: 고쳐 쓴다. 정보와 데이터는 어느 유형에서나 고객이 맡는다. SaaS에서 함께 맡는 것은 공식 문서대로(애플리케이션·클라이언트 장치·ID와 액세스) 쓴다. 덤프 보기 가운데 공식 문서와 맞는 쪽은 「ID와 디렉터리 인프라 관리」다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.shared-responsibility-model`, `SharedResponsibilityDiagram`
+
+## D31 — 관리 부담을 가장 줄이는 웹앱 이전 (phase 101)
+
+- **덤프**: [덤프 NO.135]는 외부 사용자가 쓰는 웹앱을 Azure로 옮기면서 그 웹앱을 관리하는 수고를 가장 줄이려면 무엇을 권할지 묻고 「IaaS」를 답으로 표시한다.
+- **공식 문서**: Learn 「Describe cloud service types」 단원 2는 IaaS를 고객의 운영 책임이 가장 큰 유형(운영 체제·패치·구성·많은 보안 통제를 고객이 관리)이라 한다. 단원 3은 PaaS에서 공급자가 운영 체제·미들웨어·런타임을 관리하고 고객은 앱 코드·데이터·액세스 제어에 집중한다고 하고,
+  「Shared responsibility in the cloud」는 PaaS를 VM이나 운영 체제를 관리하지 않고 앱을 배포하는 유형으로, Azure App Service를 그 예로 든다.
+- **처리**: 고쳐 쓴다. 자기 웹앱을 옮기면서 관리 부담을 줄이려면 IaaS가 아니라 PaaS 쪽이다. 문항에서 이 상황을 쓰면 정답은 PaaS로 한다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+
+## D32 — 「Azure 가상 머신을 호스트하는 데 쓰인다」는 어느 유형인가 (phase 101)
+
+- **덤프**: [덤프 NO.187](세 유형을 설명에 짝짓는 문항, 답 그림)은 「클라우드 환경을 가장 많이 통제한다」에 IaaS, 「운영 체제를 유지 관리하지 않고 데이터베이스 설계를 가장 많이 통제한다」에 PaaS, 「Azure 가상 머신을 호스트하는 데 쓰인다」에 **SaaS**를 짝짓는다.
+- **공식 문서**: 「Shared responsibility in the cloud」와 Learn 「Describe Azure compute services」 단원 2는 Azure Virtual Machines를 IaaS의 예로 든다. 앞의 두 짝은 Learn 단원 2(IaaS가 통제가 가장 많다)와 Azure SQL Database 개요(완전 관리형 PaaS 데이터베이스 엔진)와 맞는다.
+- **처리**: 고쳐 쓴다. VM은 IaaS다. 앞의 두 짝은 맞다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`
+
+## D33 — 코드를 고칠 앱과 운영 체제를 직접 다룰 앱의 유형 (phase 101)
+
+- **덤프**: [덤프 NO.257](답 그림)은 코드를 고칠 수 있어야 하고 운영 체제 관리 수고를 줄여야 하는 앱1에 「SaaS」를, 서버의 운영 체제와 직접 상호 작용해야 하는 앱2에 「PaaS」를 고른다.
+- **공식 문서**: SaaS는 다 만들어진 앱을 빌려 쓰는 유형이다(Learn 단원 4, 「Shared responsibility in the cloud」). PaaS는 공급자가 운영 체제를 관리하고 고객이 앱 코드에 집중하는 유형이고(Learn 단원 3), IaaS는 고객이 운영 체제를 설치·구성·유지 관리하는 유형이다(Learn 단원 2). 책임 표에서 운영 체제는 IaaS에서 고객, PaaS·SaaS에서 Microsoft 몫이다.
+- **처리**: 고쳐 쓴다. 공식 문서대로라면 앱1은 PaaS, 앱2는 IaaS다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`, `azure-service-types.paas`
+
+## D34 — PaaS만 쓰는 이전 계획에 맞는 구성 — 덤프끼리 갈림 (phase 101)
+
+- **덤프**: 「PaaS만 쓴다」는 같은 계획을 두고 구성마다 답을 묻는 문항들이다.
+  - [덤프 NO.463]·[덤프 NO.189] 보기 A: App Service와 Azure SQL Database → 맞는다
+  - [덤프 NO.166]·[덤프 NO.189] 보기 D: App Service와 SQL Server를 설치한 VM → 맞지 않는다
+  - [덤프 NO.189] 보기 C: VM과 Azure SQL Database와 스토리지 계정 → 정답이 아니다. 그런데 [덤프 NO.290]은 **같은 구성**에 「맞는다」를 답으로 표시한다
+  - [덤프 NO.191]: App Service와 스토리지 계정 → 맞지 않는다
+- **공식 문서**: 「Shared responsibility in the cloud」는 VM을 IaaS의 예로, App Service·Azure Functions·Azure SQL Database·**Azure Storage**를 PaaS의 예로 든다. Learn 「Describe cloud computing」 단원 4는 VM에 SQL 데이터베이스를 직접 설치하면 그 패치·업데이트까지 고객이 맡는다고 한다.
+- **처리**: 고쳐 쓴다. VM이 들어간 구성은 「PaaS만」이 아니다(NO.166·189 보기 C·D가 맞고 NO.290이 틀렸다). App Service와 Azure SQL Database는 PaaS다(NO.463·189 보기 A가 맞다).
+  NO.191의 스토리지 계정은 공식 문서가 Azure Storage를 PaaS의 예로 들므로 덤프의 답(맞지 않는다)과 어긋난다 — 문항에서 Azure Storage의 유형은 묻지 않는다(근거가 문서 한 줄의 예뿐이다).
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+
+## D35 — PaaS 웹앱의 운영 체제 통제·메모리·자동 확장·개발 서비스 — 덤프끼리 갈림 (phase 101)
+
+- **덤프**: Azure에서 웹앱을 호스트하는 PaaS를 두고 진술마다 예/아니요를 묻는 네 문항이다(모두 답 그림으로 확인).
+  - 앱을 호스트하는 운영 체제를 완전히 통제한다 → 넷 모두 아니요([덤프 NO.155]·[덤프 NO.201]·[덤프 NO.301]·[덤프 NO.348])
+  - 자동으로 확장한다(인스턴스 수를 자동으로 늘린다) → 넷 모두 예
+  - 가격 계층을 바꿔 메모리를 더 줄 수 있다 → [덤프 NO.201]은 **예**, [덤프 NO.301]·[덤프 NO.348]은 **아니요**
+  - 전문 개발 서비스가 사용자 지정 앱에 기능을 계속 더해 준다 → [덤프 NO.155]는 예
+- **공식 문서**: Learn 단원 3은 PaaS에서 공급자가 운영 체제를 유지 관리한다고 하고, PaaS 사전은 수요에 따라 리소스를 자동으로 늘리고 줄인다고 한다. App Service 개요도 수요에 따라 자동으로 확장한다고 한다.
+  「Scale up an app in Azure App Service」는 앱이 속한 App Service 플랜의 **가격 책정 계층을 바꿔 CPU·메모리·디스크 공간을 더 얻는 것**을 스케일 업이라 한다.
+  PaaS가 「전문 개발 서비스」로 앱에 기능을 더해 준다는 말은 받은 문서 어디에도 없다 — 공식 문서가 PaaS에 들어 있다고 하는 것은 개발 도구·미들웨어·런타임 같은 플랫폼 구성 요소다.
+- **처리**: 운영 체제 통제(아니요)와 자동 확장(예)은 덤프가 맞다. 가격 계층과 메모리는 고쳐 쓴다 — NO.201이 맞고 NO.301·348이 틀렸다. 다만 근거가 App Service 한 서비스의 문서라, 쓸 때는 「PaaS 일반」이 아니라 App Service의 예로 한정한다.
+  「전문 개발 서비스」는 쓰지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+
+## D36 — Azure Cosmos DB의 서비스 유형 (phase 101)
+
+- **덤프**: Cosmos DB를 PaaS로 답하는 문항 셋([덤프 NO.65]은 문제문 글자로, [덤프 NO.70]·[덤프 NO.104]는 OCR 글자로)과 SaaS가 아니라고 답하는 [덤프 NO.118] 셋째 진술(답 그림)이 있다.
+- **공식 문서**: Cosmos DB 소개 문서는 Cosmos DB를 완전 관리형 NoSQL·벡터 데이터베이스라고만 하고 IaaS·PaaS·SaaS 어느 것이라고도 하지 않는다. 「Shared responsibility in the cloud」의 유형별 예에도 없다.
+- **처리**: 쓰지 않는다. 「완전 관리형」이라는 말만으로 PaaS라고 옮겨 적지 않는다. Cosmos DB를 서비스 유형의 예로 들지 않는다. NO.118의 나머지 두 진술(VM에 설치한 SQL Server는 PaaS가 아니다, Azure SQL Database는 PaaS다)은 공식 문서와 맞다.
+- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+
+## D37 — 공식 문서가 유형을 말하지 않는 서비스 — Azure Backup·Azure Files·Microsoft Intune·Site Recovery (phase 101)
+
+- **덤프**: [덤프 NO.16] 셋째 진술 「Azure Backup은 PaaS의 예다」에 예(답 그림). [덤프 NO.262] 「Azure Files는 IaaS의 예다」에 예, 「Microsoft Intune은 SaaS의 예다」에 예(답 그림). [덤프 NO.188] 둘째 칸은 Site Recovery를 「재해 복구 서비스(DRaaS)」의 예로 고른다(답 그림, 첫 칸은 D16).
+- **공식 문서**: 받은 문서 가운데 Azure Backup·Azure Files·Intune·Site Recovery의 서비스 유형을 직접 말하는 곳이 없다. 「Shared responsibility in the cloud」는 Azure Storage를 PaaS의 예로, Azure Disk Storage를 IaaS의 예로 들 뿐이다 — Azure Files가 IaaS라는 덤프의 답과 맞는지 공식 문서로 가를 수 없다. DRaaS는 이 과목이 다루는 세 유형이 아니다.
+- **처리**: 쓰지 않는다. 이 넷을 서비스 유형의 예로 들지 않는다. NO.16의 앞 두 진술(SaaS는 고객이 소프트웨어 업데이트를 적용하지 않는다 — 아니요, IaaS는 쓸 소프트웨어를 고객이 설치한다 — 예)과 NO.262 둘째 진술(VM에서 실행하는 DNS 서버는 PaaS가 아니다)은 공식 문서와 맞다.
+- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+
 ---
 
 용어집은 1쪽(클라우드 개념)에서 이 주제에 걸린 항목 — 클라우드(1-1)·클라우드 컴퓨팅(1-2)·Pay-As-You-Go(1-10)·예약 인스턴스(1-11)·스팟 인스턴스(1-12)·서버리스(1-13)·FaaS(1-14)·멀티 테넌시(1-24)·
@@ -462,3 +535,30 @@ phase 101 step 3은 `azure-sla-lifecycle` 주제에 걸린 용어집 항목으�
   그러나 「How to read a service-level agreement (SLA)」는 99.9% SLA가 서비스를 늘 쓸 수 있다는 보장도, 그만큼만 멈춘다는 뜻도 아니며, 무엇을 중단으로 셀지는 SLA의 정의가 정한다고 한다. SLA는 그 수준에 못 미쳤을 때 고객이 보상을 받는 조건부 약속이다.
 - **처리**: 한정해 쓴다. 99.9%를 한 달 약 43분으로 바꾸는 셈은 예시 값으로 쓸 수 있다. 「SLA가 중단을 그만큼으로 제한한다(막아 준다)」고는 쓰지 않는다.
 - **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`
+
+phase 101 step 6은 `azure-service-types` 주제에 걸린 용어집 항목으로 1쪽의 IaaS(1-3)·PaaS(1-4)·SaaS(1-5)·공동 책임 모델(1-9)·클라우드 마이그레이션(1-26)을 봤다.
+IaaS(1-3)의 「가상 머신 형태로 빌려 쓴다」·「필요하면 사양을 빠르게 늘리고 줄인다」·「운영 체제 설치부터 보안 구성까지 사용자가 직접」은 IaaS 사전·Learn 단원 2와 맞아 항목을 만들지 않았다.
+공동 책임 모델(1-9)의 「하드웨어와 호스팅 환경 보안은 공급자, 애플리케이션 설정·데이터 암호화는 고객」은 보안 문서의 책임 표(구성과 설정·고객 데이터는 늘 고객, 데이터의 암호화 결정은 고객이 늘 지는 책임)와 맞는다. 이름 「공동 책임 모델」은 쓰지 않는다 — 표기 문제라 `official.md` 「한국어 표기 정리 — `azure-service-types`」에 적었다.
+
+## G17 — PaaS에서 개발자는 「코드 작성에만」 집중하는가 (phase 101)
+
+- **용어집**: PaaS는 런타임·데이터베이스·웹 서버 같은 플랫폼을 통째로 주고, 개발자는 코드 작성에만 집중하며 인프라 관리와 패치는 클라우드가 맡는다고 한다 — [용어집 1-4]
+- **공식 문서**: Learn 「Describe cloud service types」 단원 3은 PaaS에서 고객이 앱 코드·데이터·액세스 제어에 집중하고, 서비스 구성에 따라 일부 네트워크·앱 보안 설정은 함께 맡는다고 한다. 「Shared responsibility in the cloud」의 책임 표에서도 PaaS의 애플리케이션·네트워크 제어는 함께 맡는 것이고, 고객 데이터·구성과 설정·ID와 사용자는 고객 몫이다.
+  운영 체제·데이터베이스의 라이선스와 패치를 고객이 신경 쓰지 않는다는 것(단원 3)과 PaaS에 운영 체제·런타임·데이터베이스·미들웨어가 들어 있다는 것(PaaS 사전)은 맞다.
+- **처리**: 한정해 쓴다. 공급자가 플랫폼과 그 패치를 맡는다는 것은 쓴다. 「코드 작성에만」은 쓰지 않고, 고객이 앱 코드와 함께 데이터·액세스 제어를 맡고 일부 보안 설정을 함께 맡는다고 쓴다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+
+## G18 — SaaS의 예 「Office 365」와 「공급자가 운영을 전담」 (phase 101)
+
+- **용어집**: SaaS의 예로 Office 365를 들고, 공급자가 운영을 전담하므로 사용자는 손쉽게 업무에 쓸 수 있다고 한다 — [용어집 1-5]
+- **공식 문서**: 「Shared responsibility in the cloud」는 SaaS의 예로 **Microsoft 365**와 Dynamics 365를 든다(Office 365는 지금 이름이 아니다). Learn 단원 4는 SaaS에서 공급자가 앱 스택의 거의 전부를 관리하지만 고객은 데이터, ID와 액세스 설정, 장치의 접근 상태를 관리한다고 한다.
+  책임 표에서도 SaaS의 고객 데이터·구성과 설정·ID와 사용자는 고객 몫이고, 클라이언트 장치·애플리케이션은 함께 맡는다.
+- **처리**: 고쳐 쓴다. 예는 Microsoft 365로 쓴다. 「공급자가 운영을 전담」은 쓰지 않고, 공급자가 거의 다 맡되 고객에게 데이터·ID와 액세스·장치가 남는다고 쓴다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.saas`, `azure-service-types.shared-responsibility-model`
+
+## G19 — 클라우드 마이그레이션의 전략 이름 (phase 101)
+
+- **용어집**: 클라우드 마이그레이션을 사전 평가·비용 분석·네트워크 설계·데이터 마이그레이션·재해 복구 구성을 포함하는 과정이라 하고, 전략의 예로 「IaaS 리프트 앤 시프트」와 「PaaS 리팩터링」을 든다 — [용어집 1-26]
+- **공식 문서**: Learn 「Describe cloud service types」 단원 2는 리프트 앤 시프트 마이그레이션을 IaaS가 맞는 경우로 들고, 온-프레미스 데이터 센터와 비슷한 클라우드 리소스를 갖춘 뒤 워크로드를 옮기는 것이라 한다. 받은 문서에는 「PaaS 리팩터링」과 마이그레이션 단계 목록이 없다.
+- **처리**: 한정해 쓴다. 리프트 앤 시프트 마이그레이션은 IaaS가 맞는 경우로 Learn 단원 2대로 쓴다. 「PaaS 리팩터링」과 마이그레이션 단계 목록은 쓰지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`
