@@ -107,6 +107,7 @@ import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
+import { PermissionClassesDiagram } from './PermissionClassesDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -125,6 +126,7 @@ import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
+import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -350,6 +352,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.fstab': FstabFieldsDiagram,
   'linux-filesystem.swap': SwapSpaceDiagram,
   'linux-filesystem.file-attributes': ImmutableAttributeDiagram,
+  'linux-permissions.owner-group-others': PermissionClassesDiagram,
+  'linux-permissions.rwx-permissions': RwxMeaningDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

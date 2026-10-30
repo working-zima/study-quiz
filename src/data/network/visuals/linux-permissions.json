@@ -1,0 +1,109 @@
+{
+  "diagrams": {
+    "permission-classes": {
+      "label": "파일 report.txt에 접근하는 user1·user2·user3가 각각 소유자 권한·그룹 권한·그 밖의 권한을 받는 것을, 소유자인지 먼저 보고 그다음 그룹에 드는지 보는 차례대로 보이는 도식",
+      "svgLabel": "파일 report.txt와 사용자 user1·user2·user3, 그리고 이 파일의 소유자 권한·그룹 권한·그 밖의 권한이 있다. user1과 user2는 dev 그룹 테두리 안에 있다",
+      "question": "이 사람에게는 어느 권한이 적용될까?",
+      "idleCaption": "예로 붙인 파일 report.txt의 소유자는 user1, 그룹은 dev이고, user1과 user2는 dev 그룹에 든다. 버튼을 고르면 세 사람에게 각각 어느 부류의 권한이 적용되는지 볼 수 있다.",
+      "legend": "dev 그룹 테두리 안의 사람은 그 그룹에 든 사용자다. 화살표는 그 사람이 report.txt에 접근할 때 적용되는 권한을 가리킨다.",
+      "nodes": {
+        "file": "report.txt",
+        "user1": "user1",
+        "user2": "user2",
+        "user3": "user3",
+        "owner": "소유자 권한",
+        "group": "그룹 권한",
+        "others": "그 밖의 권한"
+      },
+      "groups": {
+        "dev": "dev 그룹",
+        "perms": "report.txt의 권한"
+      },
+      "notes": {
+        "file-note": "소유자 user1 · 그룹 dev"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "user1",
+          "caption": "user1은 report.txt의 소유자라 소유자 권한을 받는다. user1은 파일의 그룹 dev에도 들어 있지만, 소유자인지를 먼저 가리므로 그룹 권한은 보지 않는다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "user2",
+          "caption": "user2는 report.txt의 소유자가 아니지만 파일의 그룹 dev에 들어 있어 그룹 권한을 받는다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "user3",
+          "caption": "user3는 report.txt의 소유자도 아니고 dev 그룹에도 들지 않아 그 밖의 권한을 받는다. 한 사람에게는 세 부류 가운데 한 부류의 권한만 적용된다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.owner-group-others"
+      ]
+    },
+    "rwx-meaning": {
+      "label": "권한 글자 r·w·x가 파일에서는 내용 읽기·내용 고치기·프로그램으로 실행을, 디렉터리에서는 목록 보기·파일 만들기와 지우기·안으로 들어가기를 허락하고, 파일을 지울 수 있는지는 그 파일이 든 디렉터리의 쓰기·실행 권한이 정하는 것을 보이는 도식",
+      "svgLabel": "권한 글자 r·w·x마다 파일에서의 뜻과 디렉터리에서의 뜻이 한 줄에 놓여 있다",
+      "question": "r·w·x는 파일과 디렉터리에서 무엇을 허락할까?",
+      "idleCaption": "권한 글자 r·w·x가 파일에서와 디렉터리에서 각각 무엇을 허락하는지 한 줄에 하나씩 놓았다. 버튼을 고르면 파일에서의 뜻, 디렉터리에서의 뜻, 파일을 지울 때 따지는 권한을 차례로 볼 수 있다.",
+      "legend": "한 줄이 권한 글자 하나다. 가운데 테두리는 그 글자가 파일에서, 오른쪽 테두리는 디렉터리에서 허락하는 일이다.",
+      "nodes": {
+        "r": "r",
+        "w": "w",
+        "x": "x",
+        "file-r": "내용 읽기",
+        "file-w": "내용 고치기",
+        "file-x": "프로그램으로 실행",
+        "dir-r": "목록 보기",
+        "dir-w": "만들기·지우기",
+        "dir-x": "안으로 들어가기"
+      },
+      "groups": {
+        "file": "파일",
+        "dir": "디렉터리"
+      },
+      "scenarios": [
+        {
+          "id": "file",
+          "label": "파일에서",
+          "caption": "파일에서 r은 내용을 읽게, w는 내용을 고치게, x는 그 파일을 프로그램으로 실행하게 한다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        },
+        {
+          "id": "directory",
+          "label": "디렉터리에서",
+          "caption": "디렉터리에서 r은 안의 목록을 보게, w는 안에 파일을 만들거나 안의 파일을 지우고 이름을 바꾸게, x는 안으로 들어가 안의 파일에 닿게 한다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        },
+        {
+          "id": "delete",
+          "label": "파일 지우기",
+          "caption": "파일을 지울 수 있는지는 그 파일이 든 디렉터리의 쓰기 권한과 실행 권한이 정한다. 지울 파일 자신의 쓰기 권한은 따지지 않는다 — 파일의 쓰기 권한은 내용을 고치는 일에만 걸린다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.rwx-permissions"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
