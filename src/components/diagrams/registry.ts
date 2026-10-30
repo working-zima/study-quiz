@@ -82,6 +82,7 @@ import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
+import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
@@ -99,6 +100,7 @@ import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
+import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
@@ -336,6 +338,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
   'linux-filesystem.proc-filesystem': ProcViewDiagram,
+  'linux-filesystem.partition': PartitionLayoutDiagram,
+  'linux-filesystem.mbr-gpt': MbrGptDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

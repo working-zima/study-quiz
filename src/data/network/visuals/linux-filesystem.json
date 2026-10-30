@@ -183,6 +183,101 @@
         }
       ],
       "sources": ["linux-filesystem.proc-filesystem"]
+    },
+    "partition-layout": {
+      "label": "디스크를 파티션 둘로 나눈 모습에서, fdisk는 디스크 앞쪽의 파티션 테이블을 다루고 fsck는 파티션 안의 파일 시스템을 점검한다는 것을 견줘 보이는 도식",
+      "svgLabel": "fdisk와 fsck 아래에 둘째 디스크가 있고, 디스크 안에 파티션 테이블, 파티션 1, 파티션 2가 차례로 이어져 있다",
+      "question": "디스크를 나누면 무엇이 생길까?",
+      "idleCaption": "예로 든 둘째 디스크를 파티션 둘로 나눈 모습이다. 디스크 앞쪽에 파티션 테이블이 있고 그 뒤로 파티션 1과 파티션 2가 이어진다. 버튼을 고르면 fdisk와 fsck가 각각 무엇을 다루는지 볼 수 있다.",
+      "legend": "맨 앞 칸이 디스크의 앞쪽이고, 칸의 너비는 실제 크기와 상관없다. 화살표는 명령이 다루는 대상을 가리킨다.",
+      "nodes": {
+        "fdisk": "fdisk",
+        "fsck": "fsck",
+        "table": "파티션 테이블",
+        "part1": "파티션 1",
+        "part2": "파티션 2"
+      },
+      "groups": {
+        "disk": "둘째 디스크"
+      },
+      "notes": {
+        "table-note": "디스크 앞쪽",
+        "size1-note": "400GB",
+        "size2-note": "600GB",
+        "check-note": "파일 시스템 점검"
+      },
+      "scenarios": [
+        {
+          "id": "table",
+          "label": "파티션 테이블",
+          "caption": "fdisk는 디스크 앞쪽의 파티션 테이블을 만들고 고친다. 디스크를 나눈다는 것은 이 표에 파티션마다 디스크의 어디서 시작해 얼마만큼 차지하는지를 적는 일이다.",
+          "sources": ["linux-filesystem.partition"]
+        },
+        {
+          "id": "areas",
+          "label": "나뉜 구역",
+          "caption": "파티션 테이블에 적힌 대로 나뉜 파티션 1과 파티션 2는 저마다 따로 된 디스크처럼 쓸 수 있다. 400GB와 600GB는 예로 든 크기다.",
+          "sources": ["linux-filesystem.partition"]
+        },
+        {
+          "id": "check",
+          "label": "점검",
+          "caption": "파티션 안에 만든 파일 시스템을 점검하고 필요하면 고치는 명령은 fsck다. fdisk는 파티션 테이블을 다룰 뿐 파일 시스템을 점검하지 않는다.",
+          "sources": ["linux-filesystem.partition"]
+        }
+      ],
+      "sources": ["linux-filesystem.partition"]
+    },
+    "mbr-gpt": {
+      "label": "MBR 디스크와 GPT 디스크에서 파티션 테이블의 자리, 주 파티션·확장 파티션·논리 파티션의 번호, 다룰 수 있는 디스크 크기의 한계를 견줘 보이는 도식",
+      "svgLabel": "MBR 디스크에는 파티션 테이블 뒤로 주 파티션 1·2·3과 확장 파티션 4, 그 안의 논리 파티션 5·6이 있고, GPT 디스크에는 보호용 MBR과 파티션 테이블 뒤로 파티션 1·2·3이 있다",
+      "question": "MBR과 GPT는 파티션을 어떻게 적을까?",
+      "idleCaption": "MBR로 나눈 디스크와 GPT로 나눈 디스크를 나란히 놓았다. 두 디스크 모두 맨 앞 칸이 첫 섹터다. 버튼을 고르면 각 형식이 파티션 테이블을 어디에 두고 어떤 한계가 있는지, 논리 파티션의 번호가 어떻게 붙는지 볼 수 있다.",
+      "legend": "맨 앞 칸이 디스크의 첫 섹터이고, 숫자는 파티션 번호다. 확장 파티션 바로 아래의 칸은 그 안에 만든 논리 파티션이다. 파티션 칸의 차례와 너비는 실제 자리나 크기를 나타내지 않는다.",
+      "nodes": {
+        "mtable": "파티션 테이블",
+        "p1": "1",
+        "p2": "2",
+        "p3": "3",
+        "ext": "확장 파티션 4",
+        "l5": "5",
+        "l6": "6",
+        "pmbr": "보호용 MBR",
+        "gtable": "파티션 테이블",
+        "g1": "1",
+        "g2": "2",
+        "g3": "3"
+      },
+      "groups": {
+        "mbr": "MBR 디스크",
+        "gpt": "GPT 디스크"
+      },
+      "notes": {
+        "mbr-limit": "32비트 섹터 수 — 약 2TB까지",
+        "logical-note": "번호는 5부터",
+        "gpt-limit": "64비트 — 2TB 한계 없음"
+      },
+      "scenarios": [
+        {
+          "id": "mbr",
+          "label": "MBR",
+          "caption": "MBR 디스크는 첫 섹터에 파티션 테이블을 둔다. 이 표에는 파티션을 적을 칸이 넷 있어 주 파티션이 번호 1~4를 받고, 여기서는 넷째 칸을 확장 파티션으로 두었다. 파티션의 시작 위치와 크기를 32비트 섹터 수로 적으므로 512바이트 섹터의 디스크에서는 약 2TB까지만 다룬다.",
+          "sources": ["linux-filesystem.mbr-gpt"]
+        },
+        {
+          "id": "logical",
+          "label": "논리 파티션",
+          "caption": "확장 파티션은 그 안에 논리 파티션을 여러 개 담는 상자 노릇을 한다. 논리 파티션의 번호는 주 파티션을 몇 개 만들었든 5부터 붙어, 여기서는 5와 6이다.",
+          "sources": ["linux-filesystem.mbr-gpt"]
+        },
+        {
+          "id": "gpt",
+          "label": "GPT",
+          "caption": "GPT 디스크는 파티션의 위치를 64비트 수로 적어 MBR의 약 2TB 한계가 없고, 형식 자체에는 파티션 수의 제한도 없다. 첫 섹터는 MBR만 아는 오래된 도구가 디스크를 덮어쓰지 않게 보호용 MBR에 내주고, 파티션 테이블은 그 뒤에 둔다.",
+          "sources": ["linux-filesystem.mbr-gpt"]
+        }
+      ],
+      "sources": ["linux-filesystem.mbr-gpt"]
     }
   },
   "tables": {},
