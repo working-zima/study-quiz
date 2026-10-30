@@ -52,6 +52,7 @@ POSIX 2024년판(pubs.opengroup.org의 `onlinepubs/9799919799/`)은 HTML판을 �
 「(phase 75 step 7)」이 붙은 줄과 항목은 phase 75 step 7에서 `linux-permissions`(소유자·그룹·그 밖의 사용자, 읽기·쓰기·실행 권한, 권한 문자열, 파일 종류 문자, 8진수 권한 표기, chmod 명령, chmod의 기호 모드, chown 명령) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30).
 POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지를, man7.org는 페이지를 내려받아 읽었다. GNU Coreutils 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`coreutils.html`, 9.12)을 내려받아 절 번호로 적는다.
 특수 비트(setuid·setgid·sticky)·ACL·umask의 계산은 기출이 묻지 않아 사실로 가져오지 않았고, 그것이 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 75 step 9)」가 붙은 줄은 step 9(`linux-permissions.permission-string`·`file-type-char`)가 본문에 쓰려고 같은 문서를 다시 읽어 더한 사실이다(확인한 날 2026-10-30) — `ls -l`의 크기·날짜 칸과 심볼릭 링크의 이름 칸, `ln`의 꼴, 이름을 지울 때의 동작.
 
 ---
 
@@ -2660,12 +2661,15 @@ man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased�
   CAP_DAC_OVERRIDE가 실행 권한에는 조건을 단다는 것은 아래 「(phase 75 step 7) Linux man-pages」 항목의 path_resolution(7)
 - (phase 75 step 7) **unlink(2)**: 지우려는 파일이 든 디렉터리에 프로세스의 쓰기 권한이 없거나, 경로의 디렉터리 가운데 하나에 검색 권한이 없으면 EACCES로 실패한다 — ERRORS.
   이 조건에 지울 파일 자신의 권한은 들어 있지 않다. sticky 비트가 켜진 디렉터리에서는 파일이나 디렉터리의 소유자·특권 프로세스만 지울 수 있다는 조건이 더 붙는다 — 같은 ERRORS(특수 비트는 다루지 않는다)
+- (phase 75 step 9) **unlink(2)** — DESCRIPTION: 파일 시스템에서 이름 하나를 지운다. 그 이름이 그 파일의 마지막 링크이고 그 파일을 연 프로세스가 없으면 파일이 지워지고, 연 프로세스가 있으면 마지막으로 닫힐 때까지 남는다.
+  이름이 심볼릭 링크를 가리키면 링크가 지워진다. 그래서 하드 링크가 둘인 파일은 이름 하나를 지워도 다른 이름으로 남는다(2026-10-30에 다시 읽음)
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.proc-filesystem`(proc(5)·proc_pid(5)·proc_cpuinfo(5)·proc_meminfo(5)), `linux-filesystem.etc-directory`(passwd(5) — /etc/passwd는 계정 목록, /etc/shadow는 슈퍼유저만 읽는다),
 `linux-filesystem.swap`(mlock(2)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2) — 커널이 메모리 페이지를 스왑 영역으로 내보낸다, 페이징은 실행을 늦출 수 있다), `linux-filesystem.file-attributes`(capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) — root는 권한 검사를 건너뛰지만 `i`는 root에게도 걸린다),
 `linux-filesystem.directory-hierarchy`(passwd(5) — root는 UID 0인 슈퍼유저). 권한 검사는 `linux-permissions` 주제도 쓴다(step 7이 그 주제의 쓰임으로 다시 확인한다).
 (phase 75 step 7) `linux-permissions.owner-group-others`(capabilities(7)·passwd(5) — root는 UID 0이고 권한 검사를 건너뛴다, 실행의 조건은 path_resolution(7)), `linux-permissions.rwx-permissions`(unlink(2) EACCES — 지우기는 디렉터리의 쓰기·검색 권한),
-`linux-permissions.chmod`(capabilities(7) CAP_FOWNER), `linux-permissions.chown`(capabilities(7) CAP_CHOWN), `exam-notes.md` E22
+`linux-permissions.chmod`(capabilities(7) CAP_FOWNER), `linux-permissions.chown`(capabilities(7) CAP_CHOWN), `exam-notes.md` E22.
+(phase 75 step 9) `linux-permissions.file-type-char`(unlink(2) DESCRIPTION — 이름 하나를 지워도 다른 하드 링크로 남고, 마지막 이름까지 지워지고 연 프로세스도 없어야 파일이 지워진다)
 
 ## (phase 75) shadow(5), free(1), du(1), cal(1), stat(1), file(1)
 https://man7.org/linux/man-pages/man5/shadow.5.html
@@ -2792,6 +2796,9 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
   세 글자의 첫 자리는 읽을 수 있으면 `r`, 아니면 `-`이고, 둘째 자리는 쓸 수 있으면 `w`, 아니면 `-`이며, 셋째 자리는 실행할 수 있거나(디렉터리면 검색할 수 있거나) `x`, 아니면 `-`다(특수 비트가 켜지면 `s`·`S`·`t`·`T`) — STDOUT
 - **ls -l의 종류 글자**: `d` 디렉터리, `b` 블록 특수 파일, `c` 문자 특수 파일, `l` 심볼릭 링크, `p` FIFO, `s` 소켓, `-` 일반 파일. 구현이 다른 종류의 글자를 더할 수 있다 — STDOUT.
   `-a`는 이름이 마침표(`.`)로 시작하는 항목까지 모두 적고, `-l`은 긴 형식으로 적는다 — OPTIONS
+- (phase 75 step 9) **ls -l의 크기·날짜·심볼릭 링크**: 크기 칸은 그 파일의 st_size 값이다(일반 파일이면 바이트 수 — 아래 「(phase 75 step 7) Linux man-pages」 항목의 inode(7)).
+  날짜와 시각 칸은 POSIX 로캘에서 고친 지 여섯 달이 안 됐으면 `date "+%b %e %H:%M"`의 출력과 같은 꼴, 곧 영어 달 이름 약자·날·시:분(예 `Oct 30 09:15`)이다.
+  심볼릭 링크를 `-L` 없이 적으면 그 줄의 정보는 링크 자신의 것이고, 이름 칸은 `링크 이름 -> 링크 내용` 꼴이다(`->` 앞뒤에 공백 하나) — STDOUT(2026-10-30에 다시 읽음)
 - **chown**: operand `owner[:group]`의 owner로 파일의 사용자 ID를 정하고, 그룹 부분을 적었으면 그룹 ID도 정하며, 적지 않았으면 그룹은 바꾸지 않는다. owner는 사용자 이름이나 사용자 ID, group은 그룹 이름이나 그룹 ID다.
   `-R`은 디렉터리와 그 아래 파일 계층 전체를 바꾼다 — DESCRIPTION, OPTIONS, OPERANDS
 - **chgrp**: 파일의 그룹 ID를 operand의 그룹으로 바꾼다. 하는 일은 파일의 사용자 ID는 그대로 둔 채 chown() 함수를 부르는 것과 같아서, 누가 바꿀 수 있는지도 chown()의 규칙을 따른다. `-R`도 있다 — DESCRIPTION, OPTIONS
@@ -2807,7 +2814,8 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.rwx-permissions`(unlink()·open()·opendir()·chdir()·rm — 디렉터리의 읽기·쓰기·검색, 지우기는 디렉터리의 쓰기·검색 권한), `linux-permissions.owner-group-others`(open() — 새 파일의 소유자),
 `linux-permissions.permission-string`(ls STDOUT — 칸의 차례, 파일 모드의 짜임), `linux-permissions.file-type-char`(ls STDOUT — 종류 글자), `linux-permissions.octal-mode`(chmod 수 모드의 표), `linux-permissions.chmod`(chmod DESCRIPTION·`-R`),
 `linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION·EXAMPLES·APPLICATION USAGE), `linux-permissions.chown`(chown·chgrp·chown()), `exam-notes.md`의 「phase 75 step 7」 문단과 E22.
-`cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다)
+`cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 9) `linux-permissions.permission-string`(ls STDOUT — 크기 칸, POSIX 로캘의 날짜 꼴), `linux-permissions.file-type-char`(ls STDOUT — 심볼릭 링크의 이름 칸 `latest -> report.txt`)
 
 ## (phase 75 step 7) GNU Coreutils 매뉴얼 — 27 File permissions, 10.1.2 What information is listed, 12.2 ln, 12.5 mknod, 13.1 chown, 13.2 chgrp, 13.3 chmod
 https://www.gnu.org/software/coreutils/manual/coreutils.html
@@ -2881,7 +2889,11 @@ ls(1)·ln(1)·chgrp(1)은 GNU coreutils 9.11(April 2026).
 - **ls(1)**: `-l`은 긴 목록 형식, `-a`(`--all`)는 `.`으로 시작하는 항목도 숨기지 않는다 — DESCRIPTION
 - **ln(1)**: 기본으로 하드 링크를 만들고, `-s`(`--symbolic`)를 주면 심볼릭 링크를 만든다. 하드 링크를 만들 때는 대상이 있어야 한다 — DESCRIPTION, OPTIONS
 - **chgrp(1)**: 각 파일의 그룹을 GROUP으로 바꾼다. `-R`은 파일과 디렉터리를 재귀로 바꾼다 — DESCRIPTION, OPTIONS
+- (phase 75 step 9) **ln(1)** — SYNOPSIS·DESCRIPTION: 첫 꼴은 `ln [OPTION]... [-T] TARGET LINK_NAME`이고 TARGET에 LINK_NAME이라는 이름의 링크를 만든다.
+  그래서 `ln report.txt report2.txt`는 `report.txt`에 하드 링크 `report2.txt`를, `ln -s report.txt latest`는 `report.txt`를 가리키는 심볼릭 링크 `latest`를 만든다(2026-10-30에 다시 읽음)
+- (phase 75 step 9) **inode(7)** — 「File size」: 일반 파일과 심볼릭 링크의 크기는 바이트 단위다(심볼릭 링크의 크기는 그것이 담은 경로 이름의 길이)
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(path_resolution(7) — 어느 묶음을 쓰나·root, inode(7)·open(2) — 새 파일의 소유자), `linux-permissions.rwx-permissions`(path_resolution(7) 검색 권한, open(2)·rename(2)·rmdir(2) — 디렉터리의 쓰기 권한),
 `linux-permissions.permission-string`(ls(1), inode(7) 링크 수), `linux-permissions.file-type-char`(inode(7) 파일 종류, link(2)·symlink(7)·ln(1) — 하드 링크와 심볼릭 링크, tty(4)·null(4) — 문자 장치의 예), `linux-permissions.octal-mode`(inode(7) 자리값),
-`linux-permissions.chown`(chgrp(1), inode(7) — 소유자와 그룹은 chown(2)으로 바꾼다)
+`linux-permissions.chown`(chgrp(1), inode(7) — 소유자와 그룹은 chown(2)으로 바꾼다).
+(phase 75 step 9) `linux-permissions.permission-string`(inode(7) — 크기는 바이트 단위), `linux-permissions.file-type-char`(ln(1) — `ln 대상 이름`과 `ln -s 대상 이름`의 꼴)

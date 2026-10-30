@@ -102,6 +102,128 @@
       "sources": [
         "linux-permissions.rwx-permissions"
       ]
+    },
+    "permission-string": {
+      "label": "report.txt의 권한 문자열 -rw-r--r--를 -, rw-, r--, r-- 네 덩어리로 끊어, 덩어리마다 파일의 종류, 소유자의 권한, 그룹의 권한, 그 밖의 사용자의 권한을 뜻한다는 것을 보이는 도식",
+      "svgLabel": "권한 문자열 테두리 안에 -, rw-, r--, r--가 차례로 빈틈없이 이어져 -rw-r--r--를 이루고, 칸마다 위에 종류·소유자·그룹·그 밖이라는 자리 이름이 있다",
+      "question": "-rw-r--r--는 어떻게 읽을까?",
+      "idleCaption": "ls -l이 보여 준 report.txt의 권한 문자열 -rw-r--r--를 한 글자, 세 글자, 세 글자, 세 글자로 끊어 놓았다. 버튼을 고르면 덩어리마다 무엇을 뜻하는지 볼 수 있다.",
+      "legend": "네 칸을 왼쪽부터 이어 읽으면 권한 문자열 하나가 된다. 칸 위의 말은 그 칸이 무엇의 자리인지 알려 준다.",
+      "nodes": {
+        "type": "-",
+        "owner": "rw-",
+        "group": "r--",
+        "others": "r--"
+      },
+      "groups": {
+        "string": "권한 문자열"
+      },
+      "notes": {
+        "type-slot": "종류",
+        "owner-slot": "소유자",
+        "group-slot": "그룹",
+        "others-slot": "그 밖",
+        "type-note": "일반 파일",
+        "owner-note": "읽기와 쓰기",
+        "group-note": "읽기만",
+        "others-note": "읽기만"
+      },
+      "scenarios": [
+        {
+          "id": "type",
+          "label": "종류",
+          "caption": "첫 글자는 권한이 아니라 그 이름이 어떤 종류의 파일인지 알려 준다. report.txt의 첫 글자 -는 일반 파일이라는 뜻이고, 디렉터리라면 이 자리에 d가 온다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "owner",
+          "label": "소유자",
+          "caption": "첫 글자 다음의 세 글자 rw-는 소유자 user1의 권한이다. 읽기 자리에 r, 쓰기 자리에 w가 있고 실행 자리는 -라서, user1은 이 파일을 읽고 고칠 수 있지만 프로그램으로 실행할 수는 없다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "그룹",
+          "caption": "그다음 세 글자 r--는 이 파일의 그룹 dev에 든 사용자의 권한이다. 읽기 자리에만 r이 있고 쓰기·실행 자리는 -라서, dev 그룹의 user2는 이 파일을 읽을 수만 있다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "그 밖",
+          "caption": "마지막 세 글자 r--는 소유자도 아니고 dev 그룹에도 들지 않은 그 밖의 사용자의 권한이다. 그룹 몫과 같은 r--라서, 그 밖의 사용자 user3도 이 파일을 읽을 수만 있다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.permission-string"
+      ]
+    },
+    "file-type-char": {
+      "label": "ls -l로 본 줄 다섯의 첫 글자와 이름을 표로 놓고, 하드 링크 report2.txt는 원래 파일 report.txt와 같은 -로, 심볼릭 링크 latest는 l로, 디렉터리 docs는 d로, 디스크 장치 파일 /dev/sda는 b로 보인다는 것을 보이는 도식",
+      "svgLabel": "첫 글자 열과 이름 열이 있는 표에 - report.txt, - report2.txt, l latest, d docs, b /dev/sda 다섯 줄이 있다",
+      "question": "첫 글자만 보고 무엇인지 알 수 있을까?",
+      "idleCaption": "ls -l로 본 줄 다섯에서 첫 글자와 이름만 옮겨 놓았다. 버튼을 고르면 하드 링크, 심볼릭 링크, 디렉터리와 장치가 첫 글자에 어떻게 나타나는지 볼 수 있다.",
+      "legend": "한 줄이 ls -l의 줄 하나다. 왼쪽 열은 그 줄의 첫 글자, 오른쪽 열은 이름이다. 화살표는 심볼릭 링크가 가리키는 파일로 간다.",
+      "nodes": {
+        "type-report": "-",
+        "type-report2": "-",
+        "type-latest": "l",
+        "type-docs": "d",
+        "type-sda": "b",
+        "name-report": "report.txt",
+        "name-report2": "report2.txt",
+        "name-latest": "latest",
+        "name-docs": "docs",
+        "name-sda": "/dev/sda"
+      },
+      "groups": {
+        "chars": "첫 글자",
+        "names": "이름"
+      },
+      "notes": {
+        "hard-note": "같은 파일의",
+        "hard-note-2": "두 이름",
+        "sym-note": "가리킨다",
+        "dir-note": "디렉터리",
+        "dev-note": "블록 장치"
+      },
+      "scenarios": [
+        {
+          "id": "hard-link",
+          "label": "하드 링크",
+          "caption": "ln report.txt report2.txt로 만든 하드 링크 report2.txt는 report.txt와 같은 파일에 붙은 또 하나의 이름이다. 하드 링크는 따로 된 종류가 아니라서 두 줄 모두 일반 파일의 -로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        },
+        {
+          "id": "symlink",
+          "label": "심볼릭 링크",
+          "caption": "ln -s report.txt latest로 만든 심볼릭 링크 latest는 report.txt의 경로를 담아 그 파일을 가리키는 따로 된 파일이다. 그래서 latest의 줄은 심볼릭 링크를 뜻하는 l로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "디렉터리와 장치",
+          "caption": "디렉터리 docs의 줄은 d로 시작한다. 디스크를 가리키는 장치 파일 /dev/sda는 데이터를 한 덩어리씩 읽고 쓰는 블록 장치라 그 줄이 b로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.file-type-char"
+      ]
     }
   },
   "tables": {},

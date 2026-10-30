@@ -52,6 +52,7 @@ import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FileTypeCharDiagram } from './FileTypeCharDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
@@ -108,6 +109,7 @@ import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
+import { PermissionStringDiagram } from './PermissionStringDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -354,6 +356,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.file-attributes': ImmutableAttributeDiagram,
   'linux-permissions.owner-group-others': PermissionClassesDiagram,
   'linux-permissions.rwx-permissions': RwxMeaningDiagram,
+  'linux-permissions.permission-string': PermissionStringDiagram,
+  'linux-permissions.file-type-char': FileTypeCharDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
