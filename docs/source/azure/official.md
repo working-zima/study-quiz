@@ -36,7 +36,7 @@ https://learn.microsoft.com/ko-kr/credentials/certifications/resources/study-gui
   한국어판은 앞 항목의 이름을 「퍼블릭, 프라이빗 및 하이브리드를 포함한 클라우드 모델 정의」로 옮기고, 뒤 항목은 「사용 사례 식별」이라는 말로 옮긴다 — 「Describe cloud computing」
 
 쓰인 곳: 주제 `azure-cloud-computing`의 범위(개념 7개가 이 묶음의 항목을 덮는다), 사용량 기반 모델의 표기(아래 「한국어 표기 정리」)
-쓰일 곳(phase 100 step 7이 더한 줄): 주제 `azure-cloud-models`의 범위(개념 5개가 위 두 항목과 Learn 단원 5의 다중 클라우드를 덮는다)
+쓰인 곳(phase 100 step 7이 더한 줄): 주제 `azure-cloud-models`의 범위(개념 5개가 위 두 항목과 Learn 단원 5의 다중 클라우드를 덮는다)
 
 ## (phase 100) Learn 「Describe cloud computing」 — 2 Introduction to cloud computing, 8 Summary
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/2-introduction-cloud-compute
@@ -49,7 +49,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/8-summ
 - 요약 단원은 마지막 단원을 「클라우드가 IT 지출을 자본 지출에서 운영 지출로 옮기는 것」에 관한 단원으로 정리한다 — 8 「첫 문단」
 - 한국어 표기: 학습 목표의 consumption-based model → **사용량 기반 모델**, capital expense → 자본 비용, operational expense → 운영 비용
 
-쓰일 곳: `azure-cloud-computing.capex-opex`, `azure-cloud-computing.consumption-based-model`, D6
+쓰인 곳: `azure-cloud-computing.capex-opex`, `azure-cloud-computing.consumption-based-model`, D6
 
 ## (phase 100) Learn 「Describe cloud computing」 — 3 What is cloud computing
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/3-what-cloud-compute
@@ -65,7 +65,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/3-what
 - 이 단원은 「인터넷 연결이 반드시 있어야 한다」, 「자기 물리 서버가 있어야 한다」, 「용량을 늘리는 비용이 더 적다」를 따로 말하지 않는다. 이 단원이 말하는 것은 위의 정의와 기다림의 차이뿐이다(`corrections.md` D7·D8)
 - 한국어 표기: cloud computing → 클라우드 컴퓨팅, virtual machines → 가상 머신, storage → 스토리지, datacenter → 데이터 센터, compute capacity → 컴퓨팅 용량
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`, D7·D8
+쓰인 곳: `azure-cloud-computing.cloud-computing`, D7·D8
 
 ## (phase 100) Learn 「Describe cloud computing」 — 6 Describe the consumption-based model
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-describe-consumption-based-model
@@ -86,7 +86,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-desc
 - 한국어 표기: 단원 제목은 **사용량 기반 모델 설명**이고 본문은 **소비 기반 모델**이라고 쓴다. capital expenditure → CapEx(자본 지출), operational expenditure → 운영 지출(OpEx),
   operational expense → 운영 비용, pay-as-you-go → **종량제**, cloud pricing → 클라우드 가격 책정, capacity planning → 용량 계획
 
-쓰일 곳: `azure-cloud-computing.capex-opex`, `azure-cloud-computing.consumption-based-model`, `azure-cloud-computing.pay-as-you-go`, `CapacityPlanningDiagram`(용량 계획), D2·D3·D4·D5·D6·D8, G1·G8
+쓰인 곳: `azure-cloud-computing.capex-opex`, `azure-cloud-computing.consumption-based-model`, `azure-cloud-computing.pay-as-you-go`, `CapacityPlanningDiagram`(용량 계획), D2·D3·D4·D5·D6·D8, G1·G8
 
 ## (phase 100) Learn 「Describe cloud computing」 — 5 Define cloud models (비교표의 한 칸만)
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/5-define-cloud-models
@@ -119,7 +119,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/5-defi
   third-party cloud provider → 타사 클라우드 공급자, on-site datacenter → 사내 데이터 센터, tenant → 테넌트, Azure Arc → Azure Arc(이름 그대로). 한국어판은 「단일 엔터티」·「프로비전」처럼 영문을 소리대로 옮긴 곳이 많다
 
 쓰인 곳: D3
-쓰일 곳(phase 100 step 7이 더한 줄): `azure-cloud-models.cloud-models`, `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `azure-cloud-models.multicloud`,
+쓰인 곳(phase 100 step 7이 더한 줄): `azure-cloud-models.cloud-models`, `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `azure-cloud-models.multicloud`,
 `PublicPrivateCloudDiagram`, `HybridCloudDiagram`, `CloudModelsTable`, D11·D12·D13·D14·D15, G9
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 5 Describe Azure physical infrastructure
@@ -131,7 +131,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - Azure는 전 세계에 데이터 센터를 두지만, 쓰는 쪽이 데이터 센터 하나하나를 직접 다루지는 않는다 — 「Physical infrastructure」 둘째 문단
 - 한국어 표기: datacenter → 데이터 센터, on-premises datacenter → 온-프레미스 데이터 센터, rack → 랙
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`(데이터 센터·서버를 푸는 한 줄)
+쓰인 곳: `azure-cloud-computing.cloud-computing`(데이터 센터·서버를 푸는 한 줄)
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
@@ -141,7 +141,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - **리소스**는 Azure를 이루는 기본 단위다. Azure에서 만들거나 갖추거나 배포하는 것은 무엇이든 리소스이고, VM·가상 네트워크·데이터베이스가 그 예다 — 「Azure resources and resource groups」 첫 문단
 - 한국어 표기: resource → 리소스
 
-쓰일 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
+쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 2 Describe Azure virtual machines
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/2-virtual-machines
@@ -153,7 +153,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - VM은 테스트·개발에 맞다 — 여러 구성을 빨리 만들고 테스트가 끝나면 VM을 지운다 — 「Examples of when to use VMs」
 - 한국어 표기: Azure Virtual Machines → Azure VM(Virtual Machines), virtual machine → 가상 머신, physical server → 물리적 서버, operating system → 운영 체제
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`(가상 머신을 푸는 한 줄), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
+쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신을 푸는 한 줄), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -163,7 +163,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 - Azure VM은 Azure가 내주는 필요할 때 받아 쓰고 늘릴 수 있는 컴퓨팅 리소스의 한 종류다 — 「첫 문단」
 - Azure VM은 그 VM을 실행하는 물리 하드웨어를 사서 유지하지 않고도 가상화의 유연성을 준다. 대신 구성·패치·소프트웨어 설치 같은 VM 관리는 쓰는 쪽이 계속 한다 — 「둘째 문단」
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`(가상 머신), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
+쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
 
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
@@ -174,7 +174,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - 이 단원에 「스토리지」 낱말 하나를 정의하는 문장은 없다. 위 목록이 스토리지를 「데이터(파일 등)를 담아 두는 곳」으로 풀 근거다
 - 한국어 표기: storage → 스토리지, Azure Storage → Azure Storage(이름 그대로)
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
+쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -190,8 +190,8 @@ https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
 - 위 두 줄이, 퍼블릭 클라우드를 「누구나 쓸 수 있다」는 말이 「한 고객의 리소스에 다른 고객이 들어올 수 있다」는 뜻이 아니라는 근거다. 「누구나」는 서비스를 사서 쓸 수 있는 사람의 범위이고, 고객마다의 리소스는 서로 떨어져 있다
 - 한국어 표기(한국어판 사본 `ko-docs-security-isolation-choices.md`): tenant → 테넌트, multitenancy → 멀티테넌시, multitenant architecture → 멀티테넌트 아키텍처, tenant level isolation → 테넌트 수준 격리, co-tenants → 공동 테넌트
 
-쓰일 곳: `azure-cloud-computing.cloud-computing`([덤프 NO.61] 셋째 진술 — 가상화로 여러 고객에게 동시에 서비스한다 — 를 쓸 근거), 용어집 1-1·1-24·1-40이 이 문서와 맞는다는 확인
-쓰일 곳(phase 100 step 7이 더한 줄): `azure-cloud-models.public-cloud`(테넌트 풀이, 멀티테넌시, 고객 사이의 격리 — [덤프 NO.105·365]), `azure-cloud-models.private-cloud`(다른 테넌트와 데이터를 함께 두지 않는다는 대비)
+쓰인 곳: `azure-cloud-computing.cloud-computing`([덤프 NO.61] 셋째 진술 — 가상화로 여러 고객에게 동시에 서비스한다 — 를 쓸 근거), 용어집 1-1·1-24·1-40이 이 문서와 맞는다는 확인
+쓰인 곳(phase 100 step 7이 더한 줄): `azure-cloud-models.public-cloud`(테넌트 풀이, 멀티테넌시, 고객 사이의 격리 — [덤프 NO.105·365]), `azure-cloud-models.private-cloud`(다른 테넌트와 데이터를 함께 두지 않는다는 대비)
 
 ## (phase 100) Azure ExpressRoute — What is Azure ExpressRoute?
 https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction
@@ -212,7 +212,7 @@ https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform
 - 클라우드로 옮기면 IT 지출이 운영 지출 모델로 옮겨 간다. 운영 지출은 Azure 같은 서비스에 주기적으로 내는 돈처럼 계속 드는 운영 비용이고, 요금은 정해진 장비 값이 아니라 실제 사용량을 따른다 — 같은 절 둘째 문단
 - 운영 지출로 옮길 때 감가상각 대신 바로 받는 세금 공제, 회계 방식의 변화 같은 것을 검토하라고 권한다 — 같은 절 목록. **이 주제에서는 쓰지 않는다**(회계 세부, `corrections.md` G7·G8)
 
-쓰일 곳: `azure-cloud-computing.capex-opex`, D2·D4, G7·G8
+쓰인 곳: `azure-cloud-computing.capex-opex`, D2·D4, G7·G8
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is cloud computing?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing
@@ -234,7 +234,7 @@ https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account
 - 종량제로 쓰면 미리 약속하는 것이 없고 언제든 그만둘 수 있다 — 「Pay as you go」
 - 종량제에서는 쓴 것에 대해서만 낸다 — 「Pay only for what you use」
 
-쓰일 곳: `azure-cloud-computing.pay-as-you-go`, `PricingModelsTable`(종량제 행의 「미리 약속하는 것」)
+쓰인 곳: `azure-cloud-computing.pay-as-you-go`, `PricingModelsTable`(종량제 행의 「미리 약속하는 것」)
 
 ## (phase 100) Learn 「Describe cost management in Azure」 — 2 Describe factors that can affect costs in Azure
 https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/2-describe-factors-affect-costs-azure
@@ -250,7 +250,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 대역폭(Azure 데이터 센터를 드나드는 데이터)은 들어오는 전송 일부가 무료이고, 나가는 전송은 지역을 묶은 청구 영역에 따라 값이 매겨진다 — 「Network traffic」. 그래서 「VM을 드나드는 모든 데이터에 고정 요금」은 틀린 말이다([덤프 NO.10·387] 첫 진술의 「아니요」와 맞는다)
 - 한국어 표기: 단원은 「소비 기반 접근 방식」, pay-as-you-go → 종량제, Reservations → 예약, savings plan for compute → 컴퓨팅에 대한 Azure 절감 계획, Azure Spot Virtual Machines → Azure Spot Virtual Machines(이름 그대로), billing cycle → 청구 주기
 
-쓰일 곳: `azure-cloud-computing.consumption-based-model`, `azure-cloud-computing.pay-as-you-go`, `azure-cloud-computing.reservations`, `azure-cloud-computing.spot-vm`, `PricingModelsTable`, D10, G2
+쓰인 곳: `azure-cloud-computing.consumption-based-model`, `azure-cloud-computing.pay-as-you-go`, `azure-cloud-computing.reservations`, `azure-cloud-computing.spot-vm`, `PricingModelsTable`, D10, G2
 
 ## (phase 100) Cost Management — Review your individual Azure subscription bill
 https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/review-individual-bill
@@ -275,7 +275,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/sav
 - VM 예약은 VM의 컴퓨팅 요금만 덮고, 소프트웨어·Windows 라이선스·네트워킹·스토리지 요금은 덮지 않는다 — 「Charges covered by reservation」
 - 한국어 표기: Azure Reservations → **Azure 예약**, pay-as-you-go prices → 종량제 가격, billing discount → 청구 할인, up front / monthly → 선결제·선불 / 매달·월별
 
-쓰일 곳: `azure-cloud-computing.reservations`, `PricingModelsTable`(예약 행), D5, G3
+쓰인 곳: `azure-cloud-computing.reservations`, `PricingModelsTable`(예약 행), D5, G3
 
 ## (phase 100) Cost Management — How the Azure reservation discount is applied to virtual machines
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/understand-vm-reservation-charges
@@ -437,7 +437,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-desc
 - 공급자가 늘 맡는 것은 물리 데이터 센터, 물리 네트워크, 물리 호스트다 — 「What the provider always owns」
 - 한국어 표기: on-premises datacenter → **온-프레미스 데이터 센터**, cloud provider → 클라우드 공급자, consumer → 소비자, shared responsibility model → 공유 책임 모델(학습 가이드 한국어판은 「공동 책임 모델」 — step 4 메모)
 
-쓰일 곳: `azure-cloud-models.hybrid-cloud`(온-프레미스를 푸는 한 줄), `azure-cloud-models.public-cloud`·`azure-cloud-models.private-cloud`(하드웨어와 데이터 센터를 누가 갖추고 관리하나), D11·D13
+쓰인 곳: `azure-cloud-models.hybrid-cloud`(온-프레미스를 푸는 한 줄), `azure-cloud-models.public-cloud`·`azure-cloud-models.private-cloud`(하드웨어와 데이터 센터를 누가 갖추고 관리하나), D11·D13
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is a public cloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-public-cloud
@@ -453,7 +453,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
   사내 인력 비용이 준다는 비교, 규제 인증의 이름, 「인터넷만 있으면 어디서나」 같은 소개 문장도 쓰지 않는다
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5 한국어판을 따른다
 
-쓰일 곳: `azure-cloud-models.public-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`(퍼블릭 행), D11·D15, [용어집 1-6] 확인
+쓰인 곳: `azure-cloud-models.public-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`(퍼블릭 행), D11·D15, [용어집 1-6] 확인
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is a private cloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-private-cloud
@@ -468,7 +468,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
   **이 과목에서는 쓰지 않는다**(Learn 단원과 학습 가이드에 없다). 「프라이빗이면 조직이 반드시 자기 데이터 센터를 짓고 운영한다」를 단정하지 않을 근거로만 적는다(D11, G9)
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5 한국어판을 따른다
 
-쓰일 곳: `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`(프라이빗 행), D11, G9
+쓰인 곳: `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`(프라이빗 행), D11, G9
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is a hybrid cloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-hybrid-cloud-computing
@@ -484,7 +484,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-h
   성능이 좋아진다거나 비용 효율이 크다는 일반화도 쓰지 않는다
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5·단원 4 한국어판을 따른다(온-프레미스)
 
-쓰일 곳: `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`, `CloudModelsTable`(하이브리드 행), D12·D13·D14, [덤프 NO.125·268·339](온-프레미스와 클라우드를 이은 것을 하이브리드로 보는 근거), [용어집 1-8] 확인
+쓰인 곳: `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`, `CloudModelsTable`(하이브리드 행), D12·D13·D14, [덤프 NO.125·268·339](온-프레미스와 클라우드를 이은 것을 하이브리드로 보는 근거), [용어집 1-8] 확인
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is multicloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-multi-cloud
@@ -499,7 +499,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-m
 - 이 과목은 Learn 단원 5의 정의(퍼블릭 공급자 여럿)를 기준으로 쓴다. 이 페이지의 「프라이빗이 섞일 수도 있다」는 쓰지 않는다
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5 한국어판을 따른다(다중 클라우드)
 
-쓰일 곳: `azure-cloud-models.multicloud`, `CloudModelsTable`(다중 클라우드 행), [용어집 1-28] 확인
+쓰인 곳: `azure-cloud-models.multicloud`, `CloudModelsTable`(다중 클라우드 행), [용어집 1-28] 확인
 
 ## (phase 100) Azure Arc — Azure Arc overview
 https://learn.microsoft.com/en-us/azure/azure-arc/overview
@@ -512,7 +512,7 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 - 간접 연결 모드(indirectly connected mode)는 2025년 9월에 지원이 끝났다 — 「Indirectly connected mode」. 이 주제에서는 쓰지 않는다
 - 한국어 표기: Azure Arc → Azure Arc(이름 그대로), multicloud → 다중 클라우드, on-premises → 온-프레미스
 
-쓰일 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
+쓰인 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
 
 ---
 
