@@ -42,6 +42,7 @@ import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
+import { EtcFilesDiagram } from './EtcFilesDiagram'
 import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EthernetFrameDiagram } from './EthernetFrameDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
@@ -105,6 +106,7 @@ import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
+import { ProcViewDiagram } from './ProcViewDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
@@ -332,6 +334,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.bgp': AsPathDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
+  'linux-filesystem.etc-directory': EtcFilesDiagram,
+  'linux-filesystem.proc-filesystem': ProcViewDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

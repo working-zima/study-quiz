@@ -101,6 +101,88 @@
         }
       ],
       "sources": ["linux-filesystem.standard-directories"]
+    },
+    "etc-files": {
+      "label": "루트 디렉터리 / 아래 etc 디렉터리에 계정 목록 passwd, 암호 정보 shadow, 마운트할 목록 fstab이 있고 명령 cat의 프로그램은 bin 디렉터리에 있어, 설정 파일과 계정 정보는 /etc에 있고 명령의 프로그램은 다른 곳에 있다는 것을 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래 etc 디렉터리에 passwd·shadow·fstab 파일이, bin 디렉터리에 cat 파일이 나무 모양으로 이어져 있다",
+      "question": "설정 파일과 계정 정보는 어디에 있을까?",
+      "idleCaption": "루트 디렉터리 / 아래의 etc 디렉터리에 passwd·shadow·fstab 파일이 있고, bin 디렉터리에 명령 cat의 프로그램 파일이 있다. 버튼을 고르면 계정 정보, 마운트할 목록, 명령의 프로그램이 어디 있는지 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안에 든 것을 잇는다.",
+      "nodes": {
+        "slash": "/",
+        "etc": "etc",
+        "bin": "bin",
+        "passwd": "passwd",
+        "shadow": "shadow",
+        "fstab": "fstab",
+        "cat": "cat"
+      },
+      "notes": {
+        "passwd-note": "계정 목록",
+        "shadow-note": "root만 읽을 수 있다",
+        "fstab-note": "마운트할 목록",
+        "cat-note": "/bin/cat"
+      },
+      "scenarios": [
+        {
+          "id": "accounts",
+          "label": "계정 정보",
+          "caption": "어떤 사용자 계정이 있는지 적은 /etc/passwd와 계정마다의 암호 정보를 적은 /etc/shadow도 /etc의 설정 파일이다. /etc/passwd는 모든 사용자가 읽을 수 있지만, /etc/shadow는 암호를 지키려고 root만 읽을 수 있게 둔다.",
+          "sources": ["linux-filesystem.etc-directory"]
+        },
+        {
+          "id": "mounts",
+          "label": "마운트할 목록",
+          "caption": "부팅할 때 어느 디스크의 저장 공간을 디렉터리 나무의 어디에 마운트할지 적은 목록 /etc/fstab도 /etc에 있는 설정 파일이다.",
+          "sources": ["linux-filesystem.etc-directory"]
+        },
+        {
+          "id": "programs",
+          "label": "명령의 프로그램",
+          "caption": "명령의 프로그램 파일은 /etc에 두지 않는다. 파일 내용을 화면에 보여 주는 명령 cat의 프로그램은 /bin/cat에 있고, /etc에는 프로그램들이 읽는 설정 파일을 둔다.",
+          "sources": ["linux-filesystem.etc-directory"]
+        }
+      ],
+      "sources": ["linux-filesystem.etc-directory"]
+    },
+    "proc-view": {
+      "label": "/proc 아래의 프로세스 디렉터리 1234와 cpuinfo·meminfo 파일은 내용을 커널이 그때그때 내주고, 보통 파일 report.txt는 내용이 디스크에서 온다는 것을 견줘 보이는 도식",
+      "svgLabel": "커널 아래에 /proc의 1234 디렉터리와 cpuinfo·meminfo 파일이, 디스크 옆에 report.txt 파일이 있다",
+      "question": "/proc의 파일은 어디서 올까?",
+      "idleCaption": "/proc 아래에 PID가 1234인 프로세스의 디렉터리와 cpuinfo·meminfo 파일이 있고, 디스크에는 보통 파일 report.txt가 있다. 1234는 예로 붙인 번호다. 버튼을 고르면 각 파일의 내용이 어디서 오는지 볼 수 있다.",
+      "legend": "화살표는 파일의 내용이 어디서 오는지를 가리킨다. 둘레의 테두리는 /proc 디렉터리 아래에 보이는 것을 묶은 것이다.",
+      "nodes": {
+        "kernel": "커널",
+        "disk": "디스크",
+        "pid": "1234",
+        "cpuinfo": "cpuinfo",
+        "meminfo": "meminfo",
+        "report": "report.txt"
+      },
+      "groups": {
+        "proc": "/proc"
+      },
+      "scenarios": [
+        {
+          "id": "process",
+          "label": "프로세스 정보",
+          "caption": "실행 중인 프로세스마다 그 PID를 이름으로 한 디렉터리가 /proc 아래에 있다. PID가 1234인 프로세스의 정보는 /proc/1234 안의 파일로 보이고, 그 내용은 커널이 내준다.",
+          "sources": ["linux-filesystem.proc-filesystem"]
+        },
+        {
+          "id": "hardware",
+          "label": "하드웨어 정보",
+          "caption": "/proc/cpuinfo는 CPU에 관한 정보를, /proc/meminfo는 메모리를 얼마나 쓰고 얼마나 남았는지를 보여 준다. 두 파일의 내용은 디스크에 적혀 있지 않고, 읽는 그 순간 커널이 지금의 상태로 만들어 내준다.",
+          "sources": ["linux-filesystem.proc-filesystem"]
+        },
+        {
+          "id": "ordinary",
+          "label": "보통 파일",
+          "caption": "report.txt 같은 보통 파일은 내용이 디스크에 적혀 있어 누가 고치기 전에는 그대로다. /proc의 파일은 이렇게 디스크에서 내용을 가져오지 않는다.",
+          "sources": ["linux-filesystem.proc-filesystem"]
+        }
+      ],
+      "sources": ["linux-filesystem.proc-filesystem"]
     }
   },
   "tables": {},
