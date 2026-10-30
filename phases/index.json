@@ -382,7 +382,8 @@
     },
     {
       "dir": "101-azure-benefits-sla-service-types",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-31T01:24:27+0900"
     }
   ]
 }
