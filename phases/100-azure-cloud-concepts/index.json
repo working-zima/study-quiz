@@ -5,7 +5,9 @@
     {
       "step": 0,
       "name": "source-rules",
-      "status": "pending"
+      "status": "completed",
+      "started_at": "2026-10-30T09:51:47+0900",
+      "summary": "원본 도구·규칙·주제 지도·덤프 분류를 저장소에 세웠다. [스크립트] raw/_tools/에서 다섯을 scripts/azure-source/로 복사 — dump_pages.py(1단계 `python -I scripts/azure-source/dump_pages.py <덤프 pdf> docs/source/azure/raw`), ocr.ps1(2단계 `powershell.exe -File scripts/azure-source/ocr.ps1 …/dump/img …/dump/ocr`, PS 5.1 전용 이유=WinRT 형식 로딩·AsTask), dump_merge.py(3단계 `… dump_merge.py docs/source/azure/raw`), notion_db.py(`<host> docs/source/azure/raw/glossary <page id>...`, host·page id는 CLAUDE.md에), fetch_page.py(`<url> docs/source/azure/raw/official/<이름>.md`). 머리 주석만 바꾸고 shebang을 더했다 — 파이썬 넷은 docstring을 뺀 AST가 원본과 같고, ocr.ps1은 주석 아닌 줄이 원본과 같다. [재현] dump_merge 재실행 전후 해시 동일(dump.md 00890a1b…ccbfc, index.json 488a6e18…73c92, 506문항 choice 199·yes-no 150·hotspot 88·other 37·drag-drop 32). ocr.ps1은 PS 5.1 구문 오류 0, 임시 폴더에서 그림 하나(p003_02.png)를 돌려 기존 ocr/p003_02.txt와 같은 결과. fetch_page.py는 학습 가이드 URL을 임시 경로로 받아 8946자. [CLAUDE.md] 원본 셋(공식 문서=사실 기준, 덤프=범위·강조 근거이자 사실 후보, 용어집=범위·용어 후보)과 설계 때 본 오류, 전사·덤프 문항 이식 금지, 충돌하면 공식 문서(corrections.md D…/G…, 「자격시험은」 줄 안 씀), 범위, 허용 출처 — learn.microsoft.com(/training/·/azure/·/entra/·/purview/·/credentials/, 사실은 en-us·ko-kr는 표기만), azure.microsoft.com(제품·가격·클라우드 컴퓨팅 사전, 블로그 제외), 쓰지 않는 곳(Q&A·Tech Community·블로그·위키백과·교재·덤프 사이트·타사 문서), 목록 밖은 설계 때 판단(예 microsoft.com/licensing), 확인한 날·지원 종료일 기록, 가리키는 표기([덤프 NO.n]·[용어집 쪽-NO.]·official.md), 파일과 raw/ 재생성 순서·노션 호스트 2miles.notion.site와 page id 넷, 그림 보는 법(PyMuPDF 렌더 → raw/render/). [topic-map.md] 초안의 주제 20개(id·제목·다루는 것·문항·별점·phase·`*` 표시)를 글자 그대로 옮겼다(기계 대조 일치). 별점 ★★★ 9·★★☆ 9·없음 2. 학습 가이드 묶음 열(영문 묶음 이름, `*` 둘은 「— (가이드 밖)」, 주제 5는 공동 책임이 Describe cloud computing임을 덧붙임), 별점 규칙, 바꾸는 법, phase 계획 100~108, 넣지 않는 것(48 갈래별 + 부하 분산 1·Bastion·WAF), 초안에서 바꾼 것, 라벨→주제 id 대응표(cost-management 44→28·16, management-tools 39→30·9는 106·107이 문항별로 정함), 덤프 정답 의심(NO.1·103·126·100). 네트워크 지도를 따라 「숫자의 한계」(경계 25·24, 나누기 전 16·9)를 더했다. 머리말의 441은 주제 20개 합 440 + 주제로 세우지 않은 load-balancing 1(NO.402)이라 그렇게 풀어 적었다(초안 숫자 그대로, 오류 아님). [수 확인] dup_of 빈 줄 489를 primary로 다시 세어 라벨별 수가 지도와 모두 같다 — cost-management 44, management-tools 39, monitoring 33, service-types 26+shared-responsibility 8=34, virtual-machines 6+app-hosting 10=16 등, x-* 48. [dump-topics.tsv] topics-all.tsv와 내용 동일(507줄), 줄바꿈만 CRLF→LF. note는 모두 30자 이하·한국어 포함, 영어 낱말 연속 최대 3개(서비스 이름) — 고친 칸 없음. [참고] raw/dump/ocr/에 OCR 글자가 없는 그림 5장(p014_00·p169_04·p170_01·p223_08·p258_03, dump.md에 「(OCR 없음)」 5곳) — 그 문항은 그림을 직접 봐야 한다. [테스트] npm test 첫 실행에서 KeywordQuizPage 한 건이 5초 시간 초과(src는 건드리지 않음), 그 파일만 다시 돌려 18/18 통과, 전체 재실행 209 파일·4885 테스트 통과. raw/ 무시 확인. 사용자 확인: 없음."
     },
     {
       "step": 1,
@@ -52,5 +54,6 @@
       "name": "hybrid-multicloud",
       "status": "pending"
     }
-  ]
+  ],
+  "created_at": "2026-10-30T09:51:47+0900"
 }
