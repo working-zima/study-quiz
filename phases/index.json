@@ -384,6 +384,10 @@
       "dir": "101-azure-benefits-sla-service-types",
       "status": "completed",
       "completed_at": "2026-10-31T01:24:27+0900"
+    },
+    {
+      "dir": "102-azure-regions-resource-hierarchy",
+      "status": "pending"
     }
   ]
 }

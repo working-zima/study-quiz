@@ -1,0 +1,46 @@
+{
+  "project": "Study Quiz",
+  "phase": "102-azure-regions-resource-hierarchy",
+  "steps": [
+    {
+      "step": 0,
+      "name": "regions-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "datacenter-region",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "availability-zones",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "region-pairs-sovereign",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "hierarchy-sources",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "resource-group",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "subscription",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "management-group-hierarchy",
+      "status": "pending"
+    }
+  ]
+}
