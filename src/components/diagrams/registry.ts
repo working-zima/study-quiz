@@ -145,6 +145,7 @@ import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
+import { PricingModelsTable } from './azureCloudComputingTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -330,6 +331,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
+  'azure-cloud-computing.spot-vm': PricingModelsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
