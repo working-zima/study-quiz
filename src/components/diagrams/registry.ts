@@ -64,6 +64,7 @@ import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
@@ -348,6 +349,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.filesystem-mount': MountPointDiagram,
   'linux-filesystem.fstab': FstabFieldsDiagram,
   'linux-filesystem.swap': SwapSpaceDiagram,
+  'linux-filesystem.file-attributes': ImmutableAttributeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

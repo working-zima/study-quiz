@@ -2702,3 +2702,26 @@ https://csrc.nist.gov/glossary/term/volatile_memory
   RAM이 휘발성 메모리라는 문장은 허용한 출처에서 직접 찾지 못했다(NIST 용어집의 「random access memory」 항목은 약어만 싣는다)
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.mbr-gpt`(섹터의 한 줄 풀이), `linux-filesystem.swap`(메모리의 한 줄 풀이 — 쓸지는 그 step이 정한다)
+
+## (phase 75) GNU coreutils — rm(1), chmod(1), chown(1); Linux man-pages — chmod(2), chown(2)
+https://man7.org/linux/man-pages/man1/rm.1.html
+https://man7.org/linux/man-pages/man1/chmod.1.html
+https://man7.org/linux/man-pages/man1/chown.1.html
+https://man7.org/linux/man-pages/man2/chmod.2.html
+https://man7.org/linux/man-pages/man2/chown.2.html
+
+2026-10-30에 읽은 판(phase 75 step 6): rm(1)·chmod(1)·chown(1)은 GNU coreutils 9.11(April 2026, man7.org가 2026-08-03에 tarball에서 가져옴), chmod(2)·chown(2)는 Linux man-pages 6.19(2026-02-08).
+
+- **rm(1)**: 지정한 파일을 지운다(unlink). 기본으로는 디렉터리를 지우지 않는다 — NAME, DESCRIPTION, OPTIONS. 지우지 못한 경우에 무엇을 출력하는지는 이 페이지에 없다 —
+  본문·도식에 `rm`의 오류 출력을 그대로 보이지 않는다. `i`가 붙은 파일을 지우지 못하는 근거는 위 unlink(2)(EPERM)와 FS_IOC_SETFLAGS(2const)(슈퍼유저에게도 걸린다)다
+- **chmod(1)**: 파일의 모드 비트(권한)를 바꾼다 — NAME, DESCRIPTION. 기호 모드의 누구는 `u`(소유자)·`g`(파일의 그룹에 든 다른 사용자)·`o`(그룹에 들지 않은 다른 사용자)·`a`(모든 사용자),
+  `+`는 고른 비트를 더하고 `-`는 뺀다 — 「SETUID AND SETGID BITS」 앞의 모드 설명. 그래서 `chmod a-w 파일`은 모든 사용자의 쓰기 비트를 뺀다. 누가 모드를 바꿀 수 있는지는 이 페이지에 없다
+- **chmod(2)**: 모드를 바꾸려면 호출한 프로세스의 실효 UID가 파일의 소유자와 같거나, 프로세스가 특권을 가져야 한다(Linux: CAP_FOWNER) — DESCRIPTION
+- **chown(1)**: 파일의 소유자와 그룹을 바꾼다. `chown 소유자 파일`은 소유자만 바꾸고 그룹은 그대로 둔다 — NAME, DESCRIPTION. 누가 바꿀 수 있는지는 이 페이지에 없다
+- **chown(2)**: 파일의 소유자는 특권 프로세스(Linux: CAP_CHOWN)만 바꿀 수 있고, 파일의 소유자는 그룹을 자기가 속한 그룹으로 바꿀 수 있다 — DESCRIPTION
+
+위 capabilities(7)(root는 커널의 권한 검사를 모두 건너뛴다)과 함께, 「모든 사용자의 쓰기 권한을 빼도, 소유자를 root로 바꿔도 root가 그 파일을 고치고 지우는 일은 막지 못한다」를 쓴다.
+`chmod`·`chown`의 자세한 쓰임(수 모드·기호 모드·`-R`)은 `linux-permissions`(step 7 이후)가 다시 확인한다
+
+쓰인 곳: `linux-filesystem.file-attributes`(rm(1) — `rm`은 파일을 지우는 명령, 「root도 `rm`으로 지우지 못한다」는 unlink(2)·FS_IOC_SETFLAGS(2const)), 문항 n123의 보기·해설(chmod(1)·chmod(2) — `chmod a-w`,
+chown(1)·chown(2) — `chown root`, capabilities(7) — root는 권한 검사를 받지 않는다)

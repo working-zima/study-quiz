@@ -458,6 +458,46 @@
         }
       ],
       "sources": ["linux-filesystem.swap"]
+    },
+    "immutable-attribute": {
+      "label": "속성이 없는 notice.txt는 root가 rm으로 지울 수 있지만, chattr +i로 i 속성을 붙이면 root도 지우지 못하고, lsattr로 그 속성을 확인하는 것을 보이는 도식",
+      "svgLabel": "관리자 root와 명령 chattr +i, rm, lsattr, 그리고 이 명령들이 다루는 파일 notice.txt가 있다",
+      "question": "root도 지우지 못하는 파일은 어떻게 만들까?",
+      "idleCaption": "예로 붙인 파일 notice.txt와 이 파일을 다루는 명령 셋, 명령을 입력하는 관리자 root를 놓았다. 버튼을 고르면 속성이 없을 때와 i를 붙였을 때, 속성을 볼 때를 차례로 볼 수 있다.",
+      "legend": "root에서 나가는 화살표는 root가 그 명령을 입력한다는 뜻이고, 명령에서 나가는 화살표는 그 명령이 다루는 파일을 가리킨다. 곁말은 명령의 결과다.",
+      "nodes": {
+        "root": "root",
+        "chattr": "chattr +i",
+        "rm": "rm",
+        "lsattr": "lsattr",
+        "notice": "notice.txt"
+      },
+      "notes": {
+        "deleted-note": "지워진다",
+        "refused-note": "거부 — 지워지지 않는다",
+        "attr-note": "출력에 i가 보인다"
+      },
+      "scenarios": [
+        {
+          "id": "plain",
+          "label": "속성이 없을 때",
+          "caption": "속성이 붙지 않은 notice.txt는 root가 rm notice.txt를 입력하면 지워진다. root는 보통 권한 검사를 받지 않아서, 파일의 권한이 어떻게 정해져 있든 지울 수 있다.",
+          "sources": ["linux-filesystem.file-attributes"]
+        },
+        {
+          "id": "immutable",
+          "label": "i를 붙였을 때",
+          "caption": "root가 chattr +i notice.txt로 i 속성을 붙이면, 그 뒤로는 root가 rm notice.txt를 입력해도 파일이 지워지지 않는다. 지우려는 요청을 커널이 root의 것이라도 거부하기 때문이다.",
+          "sources": ["linux-filesystem.file-attributes"]
+        },
+        {
+          "id": "check",
+          "label": "속성 보기",
+          "caption": "lsattr notice.txt를 입력하면 출력에 i가 보여, 이 파일에 i 속성이 붙어 있음을 확인할 수 있다. 이 파일을 지우려면 root가 먼저 chattr -i notice.txt로 속성을 뗀다.",
+          "sources": ["linux-filesystem.file-attributes"]
+        }
+      ],
+      "sources": ["linux-filesystem.file-attributes"]
     }
   },
   "tables": {},
