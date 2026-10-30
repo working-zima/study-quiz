@@ -99,6 +99,17 @@ describe('App routes', () => {
     }
   })
 
+  // 주제가 생겨도 그대로 통과해야 하므로 주제 수나 빈 상태 문구는 보지 않는다.
+  it('Azure 과목의 화면이 주제 없이도 열린다', () => {
+    for (const path of ['/azure', '/azure/random', '/azure/review', '/azure/search']) {
+      const { unmount } = renderAt(path)
+
+      expect(within(screen.getByRole('banner')).getByRole('link', { name: 'Azure AZ-900' }), path).toHaveAttribute('href', '/azure')
+      expect(currentPath(), path).toBe(path)
+      unmount()
+    }
+  })
+
   // 네트워크 별점은 목표 자격증의 출제 회차에서 계산한다(ADR-059). 실제 과목 데이터로 화면에 그려지는지 본다.
   it('네트워크 주제 목록과 개념 읽기 머리에 별점이 보인다', () => {
     const { unmount } = renderAt('/network')

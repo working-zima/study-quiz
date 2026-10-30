@@ -10,5 +10,5 @@
 | `UI_GUIDE.md` | 어떻게 보이는가 — 색·컴포넌트 클래스·도식·레이아웃·타이포그래피와 그 실측값 |
 | `WRITING_GUIDE.md` | 어떻게 쓰는가 — 개념 요약·본문, 문항 문제문·해설의 작성 기준(ADR-056) |
 
-`docs/source/`는 AWS 과목, `docs/source/network/`는 네트워크 과목 학습 데이터의 근거 원본이다. 규칙은 각 폴더의 `CLAUDE.md`에 있고,
+`docs/source/`는 AWS 과목, `docs/source/network/`는 네트워크 과목, `docs/source/azure/`는 Azure 과목 학습 데이터의 근거 원본이다. 규칙은 각 폴더의 `CLAUDE.md`에 있고,
 그 파일들은 주입되지 않는다.

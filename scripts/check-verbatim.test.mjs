@@ -1,7 +1,10 @@
 // @vitest-environment node
 
-import { describe, expect, it } from 'vitest'
-import { collectUnits, findVerbatimRuns } from './check-verbatim.mjs'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { afterEach, describe, expect, it } from 'vitest'
+import { collectUnits, expandSourcePaths, findVerbatimRuns } from './check-verbatim.mjs'
 
 // 전부 지어낸 문장이다. 실제 강의·면접·AWS 원본 문장을 옮겨 적지 마라(ADR-009).
 // 공백·문장부호를 지우면 40자가 되는 한국어 문장.
@@ -107,5 +110,56 @@ describe('collectUnits', () => {
       { id: 'n001', field: 'prompt', text: '지어낸 문제문인가요?' },
       { id: 'n001', field: 'explanation', text: '지어낸 해설' },
     ])
+  })
+
+  it('Azure 과목도 개념의 요약·문단에 더해 문항의 문제문과 해설을 낸다', () => {
+    const azureQuestions = [{ ...questions[0], id: 'az001' }]
+    expect(collectUnits('azure', topics, azureQuestions)).toEqual([
+      ...conceptUnits,
+      { id: 'az001', field: 'prompt', text: '지어낸 문제문인가요?' },
+      { id: 'az001', field: 'explanation', text: '지어낸 해설' },
+    ])
+  })
+})
+
+describe('expandSourcePaths', () => {
+  let tmp
+  afterEach(() => {
+    if (tmp) rmSync(tmp, { recursive: true, force: true })
+    tmp = undefined
+  })
+
+  it('파일은 그대로 두고 폴더는 그 안의 .md 파일만 이름순으로 펼친다', () => {
+    tmp = mkdtempSync(join(tmpdir(), 'check-verbatim-'))
+    const folder = join(tmp, 'folder')
+    mkdirSync(folder)
+    writeFileSync(join(folder, 'b-second.md'), '지어낸 둘째 원본')
+    writeFileSync(join(folder, 'a-first.md'), '지어낸 첫째 원본')
+    writeFileSync(join(folder, 'note.txt'), '마크다운이 아닌 지어낸 글')
+    mkdirSync(join(folder, 'nested'))
+    writeFileSync(join(folder, 'nested', 'c-inner.md'), '하위 폴더에 든 지어낸 글')
+    const single = join(tmp, 'single.txt')
+    writeFileSync(single, '확장자와 상관없이 그대로 두는 지어낸 파일')
+
+    expect(expandSourcePaths([single, folder])).toEqual({
+      files: [single, join(folder, 'a-first.md'), join(folder, 'b-second.md')],
+      missing: [],
+    })
+  })
+
+  it('없는 폴더·없는 파일·.md가 없는 폴더는 missing에 모은다', () => {
+    tmp = mkdtempSync(join(tmpdir(), 'check-verbatim-'))
+    const present = join(tmp, 'present.md')
+    writeFileSync(present, '있는 지어낸 원본')
+    const empty = join(tmp, 'empty')
+    mkdirSync(empty)
+    writeFileSync(join(empty, 'only.txt'), '마크다운이 아닌 지어낸 글')
+    const noFolder = join(tmp, 'no-folder')
+    const noFile = join(tmp, 'no-file.md')
+
+    expect(expandSourcePaths([noFolder, present, noFile, empty])).toEqual({
+      files: [present],
+      missing: [noFolder, noFile, empty],
+    })
   })
 })

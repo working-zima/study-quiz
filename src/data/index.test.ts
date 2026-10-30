@@ -40,8 +40,8 @@ function yesNoProblems(questions: Question[]): string[] {
 
 describe('과목 목록', () => {
   // 첫 화면(과목 목록)이 이 순서로 카드를 보인다.
-  it('과목이 AWS, 네트워크 순서다', () => {
-    expect(subjects.map((subject) => subject.id)).toEqual(['aws', 'network'])
+  it('과목이 AWS, 네트워크, Azure AZ-900 순서다', () => {
+    expect(subjects.map((subject) => subject.id)).toEqual(['aws', 'network', 'azure'])
   })
 
   it('과목 id가 서로 겹치지 않는다', () => {

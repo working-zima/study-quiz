@@ -8,7 +8,8 @@ src/data/
 ├── index.test.ts   # 과목 불변식
 ├── aws/            # AWS 과목. topics.json·questions.json·visuals/·keywords.enc.json과
 │                   # 과목 객체 awsSubject를 export하는 index.ts
-└── network/        # 네트워크 과목. topics.json·questions.json·visuals/와 과목 객체 networkSubject를 export하는 index.ts
+├── network/        # 네트워크 과목. topics.json·questions.json·visuals/와 과목 객체 networkSubject를 export하는 index.ts
+└── azure/          # Azure AZ-900 과목. topics.json·questions.json·visuals/와 과목 객체 azureSubject를 export하는 index.ts
 ```
 
 - 루트 CRITICAL 그대로다 — 데이터는 import로 번들에 들어가고 `fetch`로 읽지 않는다. 데이터는 빌드 전에 harness step에서
@@ -52,3 +53,17 @@ src/data/
 - 전사 검사는 `node scripts/check-verbatim.mjs --subject network`다. 개념 요약·문단에 더해 문항의 문제문·해설도 본다.
 - 개념마다 도식이 하나 이상이다. 비교표는 도식을 대신하지 않는다. 글은 `docs/WRITING_GUIDE.md`를 따른다(ADR-056).
 - 개념을 더하면 `src/components/diagrams/networkDiagramCoverage.test.ts`가 그 개념의 도식을 요구한다(ADR-056). 예외를 더하지 말고 도식을 그린다.
+
+## Azure 과목 데이터
+
+근거는 ADR-060이다. 사실의 근거와 쓰는 법은 `docs/source/azure/CLAUDE.md`에 있다.
+
+- `azure/data.test.ts`가 지키는 것: 주제·개념 id 유일과 개념 id 꼴(`<주제 id>.<슬러그>`, 주제 id는 모두 `azure-` 접두사), 문항 id는 `az001`부터 빈 번호 없이,
+  모든 문항이 `format`을 적고 형식에 맞는 필드만 가진다, 4지선다도 문제문이 물음표로 끝난다, 커버리지 100%(ADR-026), 해설 187자 이상(ADR-027),
+  주제는 테스트 안 주제 지도 표(`docs/source/azure/topic-map.md`와 같은 값)에 있고 앱의 주제 순서가 그 표의 순서, `importance`는 그 표의 덤프 문항 수에서 계산한 값
+  (25 이상 3, 13~24는 2, 12 이하 0), `sourcePages`는 `[0, 0]`, `parentId`·목록 항목 규칙, 굵은 글씨 `**`는 목록 항목 안에만, 진행 안내 문장 없음.
+  커버리지에 예외 목록을 만들지 말고 해설 하한을 낮추지 마라.
+- `azure/visuals.test.ts`가 지키는 것: 주제 키와 `sources`가 실제 Azure 주제·개념 id, 표의 열 셋 이하와 `columnWidths`(합 100%), 시나리오 id 유일, `glossary`는 비운다.
+- 전사 검사는 `node scripts/check-verbatim.mjs --subject azure`다. 원본은 용어집·덤프·받아 둔 공식 문서이고, 문항의 문제문·해설도 본다.
+- 도식은 주제마다 하나 이상이고 구조·흐름이 있는 개념에는 개념마다 둔다. `src/components/diagrams/azureDiagramCoverage.test.ts`가 주제 단위로 지킨다 —
+  주제를 처음 만드는 step이 그 주제의 첫 도식도 함께 만든다. 비교표는 도식을 대신하지 않는다. 글은 `docs/WRITING_GUIDE.md`를 따른다.
