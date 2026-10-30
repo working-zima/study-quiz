@@ -139,7 +139,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(데이터 센터·서버를 푸는 한 줄)
 
-쓰일 곳(phase 101): `azure-cloud-benefits.reliability`(지역을 푸는 한 줄)
+쓰인 곳(phase 101): `azure-cloud-benefits.reliability`(지역과 데이터 센터를 푸는 줄), az020 해설
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
@@ -576,7 +576,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 - 한국어 표기: 단원 제목 「안정성 및 예측 가능성」, reliability → 안정성(절 제목만 「신뢰도」), predictability → 예측 가능성(절 제목은 「예측」), performance/cost predictability → 성능 예측 가능성 / 비용 예측 가능성,
   autoscaling → 자동 크기 조정, load balancing → 부하 분산, Azure Pricing Calculator → Azure 가격 계산기, Well-Architected Framework → 이름 그대로
 
-쓰일 곳: `azure-cloud-benefits.reliability`, `azure-cloud-benefits.predictability`(두 항목과 부하 분산을 푸는 한 줄), D18, G12, G14
+쓰인 곳: `azure-cloud-benefits.reliability`(정의, 분산된 설계와 세계 여러 지역, 앱을 그 점을 쓰게 설계할 수 있고 클라우드 환경이 스스로 다른 지역으로 옮겨 가기도 한다는 것 — Well-Architected Framework의 기둥이라는 줄은 쓰지 않았다),
+`azure-cloud-benefits.predictability`(소개 문단의 「Azure 설계 지침」 — 이름은 쓰지 않았다, 두 항목과 자동 크기 조정·부하 분산을 푸는 줄), az020, az021, D18, G12, G14
 
 ## (phase 101) Learn 「Describe the benefits of using cloud services」 — 4 Describe the benefits of security and governance in the cloud
 https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/4-security-governance-cloud
@@ -590,7 +591,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 - 클라우드 공급자는 보통 DDoS 공격 같은 것을 다루기에 알맞아, 네트워크를 더 튼튼하고 안전하게 해 준다 — 「넷째 문단」
 - 한국어 표기: security and governance → 보안 및 거버넌스(단원 제목), governance → 거버넌스, compliance → 규정 준수, DDoS → **DDoS(분산 서비스 거부)**, IaaS/PaaS/SaaS → 약어 그대로(첫 문단만 「인프라를 서비스로」·「서비스로서의 소프트웨어」로 풀어 썼다)
 
-쓰일 곳: `azure-cloud-benefits.security-governance`, G12, G13
+쓰인 곳: `azure-cloud-benefits.security-governance`(템플릿·감사·쓰는 방식에 따른 패치 자동 적용, 보안을 가장 많이 통제하려면 IaaS·패치를 맡기려면 PaaS나 SaaS, 공급자가 DDoS 공격에 대비하기 알맞다는 것), az022, G12, G13
 
 ## (phase 101) Learn 「Describe the benefits of using cloud services」 — 5 Describe the benefits of manageability in the cloud
 https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/5-manageability-cloud
@@ -605,7 +606,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 - 한국어 표기: manageability → 관리 효율성, management of the cloud → **클라우드 관리**(절 제목), management in the cloud → **클라우드에서의 관리**(절 제목). 한국어판은 둘째 절 본문 첫 문장을 「클라우드의 관리는 …」이라고 옮겨 첫째 절 이름과 섞였다(번역 오류).
   command line interface → CLI(명령줄 인터페이스), web portal → 웹 포털, API → API, metrics → 메트릭
 
-쓰일 곳: `azure-cloud-benefits.manageability`(두 항목)
+쓰인 곳: `azure-cloud-benefits.manageability`(두 항목과 끝 문단의 운영 팀 예), az023, G14
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is elasticity in cloud computing?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-elastic-computing
@@ -634,7 +635,8 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overvi
 - 수직 크기 조정은 더 큰 하드웨어가 있어야 해서 결국 한계에 닿고, 크기를 바꾸는 동안 VM을 다시 시작해야 할 수 있다 — 같은 절
 - 한국어 표기: autoscale → **자동 크기 조정**, horizontal/vertical scaling → 수평 크기 조정 / 수직 크기 조정(본문에 「수직적 스케일링」도 섞였다), scale out/in → 스케일 아웃 / 스케일 인, scale up/down → 스케일 업 / 스케일 다운
 
-쓰일 곳: `azure-cloud-benefits.scalability`(항목 이름과 늘림·줄임의 이름), `azure-cloud-benefits.predictability`·`azure-cloud-benefits.manageability`(자동 크기 조정이라는 말), `CloudScalingDiagram`
+쓰인 곳: `azure-cloud-benefits.scalability`(항목 이름과 늘림·줄임의 이름, 수직 크기 조정의 한계 문단), `azure-cloud-benefits.predictability`(자동 크기 조정이라는 말), `CloudScalingDiagram`.
+`azure-cloud-benefits.manageability`는 「자동 크기 조정」이라는 이름 대신 Learn 단원 5대로 「리소스를 자동으로 늘리고 줄인다」로 썼다
 
 ## (phase 101) Azure Virtual Machine Scale Sets — What are Virtual Machine Scale Sets?
 https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
@@ -661,7 +663,8 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
   **재해 복구**는 이런 상황에 어떻게 대응할지 계획하는 것이다 — 「Disaster recovery」
 - 한국어 표기: business continuity → 비즈니스 연속성, high availability → 고가용성, disaster recovery → 재해 복구, fault tolerance → **내결함성**, redundancy → 중복성(로컬·영역·지역 중복성), failover → 장애 조치(failover), scalability and elasticity → 확장성 및 탄력성
 
-쓰일 곳: `azure-cloud-benefits.high-availability`(고가용성과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·재해 복구를 한 줄씩 쓸 경우), `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11
+쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
+`azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
 
 ## (phase 101) Azure reliability — Reliability in Azure
 https://learn.microsoft.com/en-us/azure/reliability/glossary (이 주소로 받으면 「Reliability in Azure」 쪽이 열린다)
@@ -673,7 +676,8 @@ https://learn.microsoft.com/en-us/azure/reliability/glossary (이 주소로 받�
 - Azure Site Recovery는 VM 워크로드의 재해 복구를 조율한다(복제와 장애 조치 순서를 자동화한다) — 「Geographic replication and failover」
 - 한국어 표기: 제목 「Azure 안정성」, reliability → 안정성, geographic distribution → 지리적 배포(이 문서의 한국어판. 「지리적 분산」이라는 말은 없다)
 
-쓰일 곳: `azure-cloud-benefits.reliability`(세계 여러 지역에 둔다는 것의 둘째 근거), D16, D20
+쓰인 곳: `azure-cloud-benefits.reliability`(안정적인 시스템이 갖추는 두 성질 — 장애가 나도 받아들일 만한 수준으로 계속 동작, 멈춰도 정해 둔 시간 안에 정상 상태를 되찾음), D16, D20.
+지역 수(70개 넘음), Azure Site Recovery, 「지리적 배포」라는 말은 쓰지 않았다
 
 ## (phase 101) Azure reliability — What are Azure regions?
 https://learn.microsoft.com/en-us/azure/reliability/regions-overview
@@ -705,7 +709,7 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
 - DDoS 공격은 앱의 리소스를 바닥내 정상 사용자가 그 앱을 쓸 수 없게 하려는 공격이다. 인터넷에서 누구나 닿을 수 있는 끝점은 모두 대상이 될 수 있다 — 「첫 문단」
 - 한국어 표기: 이 문서의 한국어판은 DDoS를 「배포된 서비스 거부」로 잘못 옮겼다. Learn 「Describe the benefits of using cloud services」 단원 4 한국어판의 **DDoS(분산 서비스 거부)** 를 쓴다
 
-쓰일 곳: `azure-cloud-benefits.security-governance`(DDoS 공격을 푸는 한 줄)
+쓰인 곳: `azure-cloud-benefits.security-governance`(DDoS 공격을 푸는 한 줄)
 
 ## (phase 101) Cloud Adoption Framework — Build a cloud governance team
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
@@ -716,7 +720,7 @@ https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
 - 거버넌스는 클라우드 사용을 사업 목표에 맞추고, 위험을 줄이고, 규정 준수를 지키고, 관리되지 않거나 허락받지 않은 작업을 막는다. 보안·규정 준수·운영·비용 관리·데이터 관리·리소스 프로비저닝 같은 영역을 다룬다 — 같은 문단
 - 한국어 표기: cloud governance → 클라우드 거버넌스, guardrails → 가드레일, regulatory compliance → 규정 준수
 
-쓰일 곳: `azure-cloud-benefits.security-governance`(거버넌스를 푸는 한 줄)
+쓰인 곳: `azure-cloud-benefits.security-governance`(거버넌스를 푸는 줄 — 해도 되는 일과 안 되는 일을 정책·절차·도구로 정함. 「가드레일」이라는 말은 쓰지 않았다)
 
 ## (phase 101) Azure CLI — What is the Azure CLI?
 https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
@@ -726,7 +730,7 @@ https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
 - Azure CLI는 Azure에 연결해 Azure 리소스에 관리 명령을 실행하는 명령줄 도구이고, 여러 운영 체제에서 쓴다. 명령은 터미널에서 대화하듯 하나씩 입력하거나 스크립트로 실행한다 — 「첫 문단」
 - 한국어 표기: command-line interface → 명령줄 인터페이스(CLI), command-line tool → 명령줄 도구
 
-쓰일 곳: `azure-cloud-benefits.manageability`(명령줄 인터페이스를 푸는 한 줄)
+쓰인 곳: `azure-cloud-benefits.manageability`(명령줄 인터페이스를 푸는 한 줄, 명령을 하나씩 입력하거나 스크립트로 실행한다는 것), az023
 
 ## (phase 101) Azure REST API reference
 https://learn.microsoft.com/en-us/rest/api/azure/
@@ -735,7 +739,29 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 
 - REST API는 HTTP 요청(메서드)을 받아 서비스의 리소스를 만들고·읽고·고치고·지우게 해 주는 서비스의 끝점이다 — 「첫 문단」
 
-쓰일 곳: `azure-cloud-benefits.manageability`(API를 푸는 한 줄 — 「프로그램이 요청을 보내 리소스를 다루게 하는 창구」 정도)
+쓰인 곳: `azure-cloud-benefits.manageability`(API를 푸는 한 줄 — 「프로그램이 요청을 보내 리소스를 만들고, 읽고, 고치고, 지울 수 있게 해 주는 창구」)
+
+## (phase 101) Azure PowerShell — What is Azure PowerShell?
+https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
+
+확인한 날 2026-10-30. 사본: `docs-powershell-what-is-azure-powershell.md`와 `ko-` 판. (phase 101 step 2가 받았다. Azure PowerShell이라는 제품 이름은 이 주제에서 쓰지 않고, PowerShell을 푸는 근거로만 적는다.)
+
+- PowerShell은 명령줄 셸이자 스크립트 언어다. Azure PowerShell은 Azure 리소스를 관리하는 공식 Microsoft PowerShell 모듈들을 묶어 부르는 제품 이름이고, 쓰려면 PowerShell이 있어야 한다 — 「첫 문단」
+- 명령을 하나씩 실행해 대화하듯 쓸 수도, 여러 명령으로 이루어진 스크립트를 만들어 실행할 수도 있다 — 같은 부분
+- 한국어 표기: PowerShell → 이름 그대로(Learn 「Describe the benefits of using cloud services」 단원 5 한국어판도 같다), scripting language → 스크립팅 언어(이 문서 한국어판. 앱에서는 「스크립트를 쓰는 언어」로 풀어 쓴다)
+
+쓰인 곳(phase 101 step 2): `azure-cloud-benefits.manageability`(PowerShell을 푸는 한 줄), az023
+
+## (phase 101) Azure portal — What is the Azure portal?
+https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
+
+확인한 날 2026-10-30. 사본: `docs-azure-portal-overview.md`와 `ko-` 판. (phase 101 step 2가 받았다. 이 주제는 「Azure 포털」이라는 제품 이름 대신 Learn 단원 5의 「웹 포털」을 쓰고, 이 문서는 웹 포털을 푸는 근거로만 적는다.)
+
+- Azure 포털은 Azure 리소스를 만들고 관리하는 웹 기반 콘솔이다. 그래픽 사용자 인터페이스(화면의 메뉴·버튼)로 구독을 관리하고, 안내 마법사로 새 리소스를 만든다 — 「첫 문단」
+- 지원되는 브라우저면 어느 것으로든 들어갈 수 있다 — 둘째 문단
+- 한국어 표기: Azure portal → Azure 포털(이 문서 한국어판), web portal → 웹 포털(Learn 단원 5 한국어판)
+
+쓰인 곳(phase 101 step 2): `azure-cloud-benefits.manageability`(웹 포털을 푸는 한 줄 — 웹 브라우저로 여는 관리 화면, 메뉴와 버튼으로 리소스를 만들고 관리한다), az023
 
 ## (phase 101) Learn 「Describe cloud service types」 — 2·3·4 (이 주제가 쓰는 한 줄 풀이만)
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service
@@ -749,7 +775,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/
 - SaaS는 다 만들어진 애플리케이션을 빌려 쓰는 유형이다. 이메일·재무 소프트웨어·메시징 앱이 흔한 예다 — 단원 4 첫 문단
 - 한국어 표기: 단원 제목이 「서비스로서의 인프라」·「서비스형 플랫폼」·「SaaS(Software as a Service)」로 꼴이 서로 다르다. 이름은 step 6이 정한다 — 이 주제는 약어 IaaS·PaaS·SaaS와 한 줄 풀이만 쓴다
 
-쓰일 곳: `azure-cloud-benefits.security-governance`(세 유형을 한 줄씩 푸는 근거)
+쓰인 곳: `azure-cloud-benefits.security-governance`(세 유형을 한 줄씩 푸는 근거 — IaaS는 공급자가 하드웨어·인터넷 연결·물리 보안, PaaS는 운영 체제와 개발 도구까지 공급자가 유지 관리, SaaS는 이메일처럼 다 만들어진 앱), az022
 
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
