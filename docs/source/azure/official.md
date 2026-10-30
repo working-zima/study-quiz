@@ -33,6 +33,11 @@ phase 101 step 6이 `azure-service-types` 주제(서비스 유형과 공유 책�
 **공유 책임 모델의 행마다의 배정은 Azure 보안 문서 「Shared responsibility in the cloud」의 표(글)로 확인했다** — Learn 단원의 유형별 그림은 글로 읽을 수 없어 근거로 치지 않는다.
 Azure 서비스의 유형은 공식 문서가 직접 IaaS·PaaS·SaaS라고 말한 것만 적었다. 「완전 관리형」이라는 말만으로 PaaS로 옮겨 적지 않았다(Azure Cosmos DB).
 
+phase 102 step 0이 `azure-regions-zones` 주제(지역과 가용성 영역)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-service-types`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(Learn 「Describe the core architectural components of Azure」 단원 5, 「What are Azure regions?」, 「What are business continuity, …」, 「What are Virtual Machine Scale Sets?」)에 덧붙인 줄은 끝에 `(phase 102)`를 달았다.
+**Learn 단원 5와 현행 Azure 안정성 문서가 어긋나는 곳이 있다** — 단원 5 항목의 「현행 문서와 다름」 줄에 모았다. 어긋나면 현행 제품 문서(「Last updated on」이 2026년인 쪽)를 따른다.
+지역 목록·지역 수·데이터 센터 수는 바뀌는 수라 사실로 적지 않았다. 아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -148,12 +153,46 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - 한국어 표기: datacenter → 데이터 센터, on-premises datacenter → 온-프레미스 데이터 센터, rack → 랙
 - **지역**(region)은 지구 위의 한 지리적 영역이다. 그 안에 서로 가까이 있고 대기 시간이 짧은 네트워크로 이어진 데이터 센터가 하나 이상 있다. Azure에 리소스를 배포할 때는 흔히 어느 지역에 둘지 고른다 — 「Regions」 (phase 101)
 - 한국어 표기: region → 지역(절 제목 「지역」) (phase 101)
+- 데이터 센터는 Azure 지역과 가용성 영역으로 묶이고, 그 묶음이 워크로드의 복원력과 안정성을 준다 — 「Physical infrastructure」 둘째 문단 (phase 102)
+- Azure는 지역마다 그 안의 리소스를 배정하고 관리해 워크로드가 알맞게 나뉘게 한다 — 「Regions」 (phase 102)
+- 일부 서비스나 VM 기능(특정 VM 크기나 저장소 종류 등)은 일부 지역에서만 쓸 수 있다. 지역을 고르지 않아도 되는 전역 서비스도 있고, 예로 Microsoft Entra ID·Azure Traffic Manager·Azure DNS를 든다 — 「Regions」 Note (셋 다 현행 「Azure nonregional services」 목록에 있다) (phase 102)
+- **가용성 영역**은 한 지역 안에서 물리적으로 떨어진 데이터 센터다. 영역 하나는 전원·냉각·네트워크를 따로 갖춘 데이터 센터 하나 이상으로 이루어진다. 영역은 격리 경계라서 한 영역이 멈춰도 나머지 영역은 계속 일한다. 영역끼리는 빠른 사설 광섬유 네트워크로 이어진다 — 「Availability Zones」 (phase 102)
+- 가용성 영역을 지원하는 지역에는 서로 떨어진 영역이 최소 셋 있다. 모든 지역이 가용성 영역을 지원하지는 않는다 — 「Availability Zones」 Important (phase 102)
+- 온-프레미스에서 중복을 갖추려면 같은 하드웨어를 한 벌 더 사서 유지해야 한다. Azure에서는 한 지역 안의 여러 가용성 영역에 워크로드를 나눠 두어 보호한다 — 「Use availability zones for your workloads」 (phase 102)
+- 쓰는 법: VM·저장소·데이터베이스 같은 리소스를 한 영역에 두고 같은 지역의 다른 영역에 복제한다. 서비스를 한 벌 더 두는 데 비용이 들 수 있다 — 같은 절 (영역 사이 데이터 전송 요금은 아래 「현행 문서와 다름」) (phase 102)
+- 가용성 영역을 지원하는 서비스를 세 범주로 나눈다 — 영역 서비스(리소스를 특정 영역 하나에 고정한다, 예: VM·관리 디스크·IP 주소), 영역 중복 서비스(플랫폼이 영역들에 걸쳐 저절로 복제한다, 예: 영역 중복 스토리지·SQL Database),
+  비지역 서비스(Azure 지리에서 늘 쓸 수 있고 영역 전체·지역 전체의 중단에도 견딘다) — 같은 절 (나눔은 아래 「현행 문서와 다름」) (phase 102)
+- 가용성 영역이 있어도 한 지역의 여러 영역에 함께 미칠 만큼 큰 사건이 일어날 수 있다. 그보다 큰 대비로 지역 쌍을 든다 — 같은 절 끝 (phase 102)
+- **지역 쌍**: 같은 지리(미국·유럽·아시아 등) 안의 다른 지역과 짝을 지어 두면, 지리 안에서 리소스를 복제해 자연재해·시민 소요·정전·물리 네트워크 중단처럼 지역 하나 전체에 미치는 사건으로 서비스가 끊길 가능성을 줄인다 — 「Region pairs」 (짝의 비율과 거리는 아래 「현행 문서와 다름」) (phase 102)
+- 모든 Azure 서비스가 데이터를 저절로 복제하거나 실패한 지역에서 다른 지역으로 저절로 넘어가지는 않는다. 그런 경우 복구와 복제는 고객이 구성한다 — 「Region pairs」 Important (phase 102)
+- 짝의 예로 미국 서부와 미국 동부, 동남아시아와 동아시아를 든다 — 「Region pairs」 (현행 「Azure region pairs and nonpaired regions」의 짝 목록에도 같다) (phase 102)
+- 지역 쌍의 덧붙은 이점 셋: 큰 중단이 나면 짝마다 한 지역을 먼저 복구한다, 계획된 업데이트는 짝의 두 지역에 한 번에 한 지역씩 적용한다, 데이터 상주와 규정 준수를 위해 데이터가 짝과 같은 지리 안에 남는다(브라질 남부는 예외) — 「Additional advantages of region pairs」 (phase 102)
+- 대부분의 짝은 서로를 백업하는 양방향이다. 브라질 남부처럼 한 방향으로만 짝지은 지역도 있다 — 브라질 남부의 짝은 지리 밖의 미국 중남부이지만 미국 중남부의 짝은 브라질 남부가 아니다. 이탈리아 북부·폴란드 중부·이스라엘 중부처럼 짝이 없는 지역은 가용성 영역과 지역 중복 스토리지로 복원력을 얻는다 — 같은 절 Important (phase 102)
+- **소버린 지역**은 주 Azure 인스턴스와 떨어진 Azure 인스턴스다. 규정 준수나 법적인 이유로 써야 할 수 있다 — 「Sovereign Regions」 (phase 102)
+- 소버린 지역의 예 둘: 미국 정부 기관과 협력사를 위한 지역(US DoD Central·US Gov Virginia·US Gov Arizona 등) — 물리·논리 네트워크가 격리된 인스턴스이고, 심사를 거친 미국인이 운영하며 규정 준수 인증이 더 붙는다.
+  중국의 지역(China East·China North 등) — Microsoft와 21Vianet의 협력으로 제공되고, Microsoft가 데이터 센터를 직접 유지하지 않는다 — 「Sovereign Regions」 (phase 102)
+- 한국어 표기(phase 102): availability zone → 가용성 영역, region pair → 지역 쌍, geography → 지리, redundancy → 중복성, zonal services → 영역 서비스, zone-redundant services → 영역 중복 서비스, non-regional services → 비지역 서비스,
+  sovereign region → 절 제목은 「소버린 지역」, 본문은 「주권 지역」(세 번) — 이 주제가 고른 이름과 근거는 「한국어 표기 정리 — `azure-regions-zones`」
+- **현행 문서와 다름(phase 102)** — 단원 5는 받은 날(2026-10-30) 기준의 학습 단원이지만 아래 일곱 곳이 현행 Azure 안정성 문서와 어긋난다. 모두 **현행을 따른다**.
+  1. 지역 쌍의 비율: 단원 5는 「대부분의 지역이 짝을 이룬다」고 한다. 「Azure region pairs and nonpaired regions」(2026-10-15)는 짝이 없는 지역이 많다고, 「What are Azure regions?」(2026-06-29)는 새 지역 다수가 짝이 없다고 한다 → 「Microsoft가 일부 지역을 짝지어 둔다」로 쓴다.
+  2. 짝 사이 거리: 단원 5의 「300마일 이상」은 현행 두 문서 어디에도 없다 → 수치를 쓰지 않는다. 짝이 같은 지리 안에 있다는 것만 쓴다.
+  3. 짝 지역으로의 자동 장애 조치: 단원 5는 짝의 한 지역이 재해를 입으면 서비스가 짝 지역으로 저절로 넘어간다고 예를 든다. 현행 「Azure region pairs and nonpaired regions」는 짝의 한 지역에 배포하는 것만으로는 복원력·고가용성·재해 복구·장애 조치가 저절로 생기지 않고,
+     Microsoft가 관리하는 장애 조치를 주된 대비로 삼지 말라고 한다 → 「저절로 장애 조치된다」고 쓰지 않는다. 단원 5의 Important(복구와 복제는 고객이 구성)는 현행과 맞다.
+  4. 영역 사이 데이터 전송 요금: 단원 5는 영역 사이 데이터 전송에 비용이 들 수 있다고 한다. 현행 「What are availability zones?」(2026-09-23)는 같은 지역의 가용성 영역 사이 데이터 전송에 요금을 매기지 않는다고 한다 → 전송 요금은 쓰지 않고, 리소스를 영역마다 더 두는 비용만 쓴다.
+  5. 범주의 나눔: 현행 「What are availability zones?」 「Types of availability zone support」는 영역 중복 리소스와 영역 리소스 둘로 나누고, 영역을 쓰도록 구성하지 않은 리소스를 비영역(지역) 배포라 부른다. 비지역 서비스는 가용성 영역 지원 유형이 아니라 「Azure nonregional services」가 따로 다루는 갈래다 → 개념 `zone-service-categories`는 현행의 나눔으로 쓴다(「한국어 표기 정리 — `azure-regions-zones`」).
+  6. 영역 중복의 「저절로」: 단원 5는 플랫폼이 저절로 복제한다고만 한다. 현행은 지원 지역에서 저절로 영역 중복이 되는 서비스도 있고 고객이 영역 중복으로 구성해야 하는 서비스도 있다고 한다 → 「서비스가 여러 영역에 복제한다(고객이 켜야 하는 서비스도 있다)」로 쓴다.
+  7. 비지역 서비스가 「지역 전체 중단에도 견딘다」: 현행 「Azure nonregional services」는 전역 서비스만 지역 장애에 견딘다고 하고, 지리 서비스는 한 지리 영역 안에 배포된다고 한다 → 지역 전체 중단에 견딘다는 말은 전역 서비스로 한정해 쓴다.
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(데이터 센터·서버를 푸는 한 줄)
 
 쓰인 곳(phase 101): `azure-cloud-benefits.reliability`(지역과 데이터 센터를 푸는 줄), az020 해설
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.composite-sla`(지역과 데이터 센터를 푸는 한 줄)
+
+쓰일 곳(phase 102): `azure-regions-zones.datacenter`(데이터 센터의 정의와 랙, 온-프레미스 데이터 센터보다 훨씬 크다, 고객은 데이터 센터를 직접 다루지 않고 지역·가용성 영역으로 고른다),
+`azure-regions-zones.region`(정의, 배포할 때 지역을 고른다, 일부 서비스·VM 기능은 일부 지역에만, 지역을 고르지 않는 서비스의 예), `azure-regions-zones.availability-zones`(정의·격리 경계·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건),
+`azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM·관리 디스크·IP 주소, 영역 중복의 영역 중복 스토리지·SQL Database. 나눔과 이름은 현행), `azure-regions-zones.region-pairs`(짝지은 까닭, 고객이 복구·복제를 구성, 짝의 예, 덧붙은 이점 셋, 한 방향 짝, 짝 없는 지역 — 「현행 문서와 다름」 1~3을 따른다),
+`azure-regions-zones.sovereign-regions`(정의와 예 둘), D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 쓴다**
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
@@ -690,6 +729,10 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 
 쓰인 곳: (표기 근거만) `azure-cloud-benefits.scalability`
 
+- 확장 집합만으로는 데이터 센터 장애에서 보호되지 않는다. 확장 집합 안의 VM을 가용성 영역들에 나눠 두어야 데이터 센터 장애에서 보호된다 — 「Why use Virtual Machine Scale Sets?」 (phase 102)
+
+쓰일 곳(phase 102): 근거 기록 — [덤프 NO.423]의 답(확장 집합에 배포하는 것만으로는 데이터 센터 장애에 대비되지 않는다)이 맞는지 대조했다. 확장 집합은 `azure-compute` 주제의 몫이라 이 주제의 개념 글에는 쓰지 않는다
+
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 
@@ -704,6 +747,9 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 - **재해**는 고가용성 설계로 막을 수 있는 것보다 크고 오래가는 드물고 큰 사건이다. 예로 태풍·지진·홍수·화재 같은 자연재해, 운영 데이터를 실수로 지우는 것 같은 큰 사람 실수, 데이터 손상·손실이나 서비스 중단으로 이어지는 큰 보안 사고를 든다.
   **재해 복구**는 이런 상황에 어떻게 대응할지 계획하는 것이다 — 「Disaster recovery」
 - 한국어 표기: business continuity → 비즈니스 연속성, high availability → 고가용성, disaster recovery → 재해 복구, fault tolerance → **내결함성**, redundancy → 중복성(로컬·영역·지역 중복성), failover → 장애 조치(failover), scalability and elasticity → 확장성 및 탄력성
+- **장애 조치**: 재해 복구 계획에서 다른 곳에 두 번째 배포를 갖춰 두고, 주 배포가 재해를 입으면 트래픽을 그쪽으로 넘기는 것이다. 주 인스턴스가 실패했음을 알아차리고 보조 인스턴스로 바꾸기까지 보통 시간이 걸린다 — 「Failover and failback」 (phase 102)
+
+쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(장애 조치를 푸는 한 줄 — 멈춘 쪽이 하던 일을 다른 쪽이 넘겨받는 것), `azure-regions-zones.availability-zones`(중복을 푸는 한 줄 — 위 「중복성」 줄)
 
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
@@ -731,8 +777,21 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 - Azure 지역은 고용량·내결함성·저지연 네트워크로 이어진 데이터 센터 하나 이상으로 이루어진다 — 「Understand Azure regions and geographies」
 - 지역을 고를 때 따질 것 가운데 하나가 대기 시간이다. 사용자와 지리적으로 가까운 지역을 고르면 대기 시간이 준다 — 「Choosing Azure regions」
 - 한국어 표기: latency → 대기 시간, region → 지역
+- 지역은 데이터 센터와 네트워크 인프라를 포함한 물리 시설의 묶음이다. Azure 데이터 센터는 보통 큰 도시권 안에 있다 — 첫 부분, 「Understand Azure regions and geographies」 (phase 102)
+- **지리**는 데이터를 둘 곳의 경계(데이터 상주 경계)이고 예로 미국·유럽을 든다. 지리 하나에 지역이 하나 이상 있고, 지역은 모두 지리 하나 안에 들어 있다. 데이터 상주 요구가 있으면 요구된 지리 안의 지역을 고른다. 지리마다 가용성 영역을 갖춘 지역이 하나 이상 있다 — 첫 부분, 「Understand Azure regions and geographies」 (phase 102)
+- 대부분의 지역은 모든 Azure 고객이 쓸 수 있지만, 일부 지역은 소버린 클라우드 지리에 속하고 데이터 상주 규제가 엄격한 특정 지역의 고객이 쓴다. 소버린 클라우드 지역은 다른 지역과 같은 방식으로 동작하지만 서비스와 기능이 제한된 경우가 많다 — 「Understand Azure regions and geographies」 Note (phase 102)
+- 지역을 고를 때 따질 것 셋: 대기 시간(사용자와 가까운 지역 — 예: 사용자가 미국에 있으면 미국이나 캐나다의 지역), 가용성 영역(지원하는 지역을 고르고 여러 영역에 리소스를 나눈다), 데이터 상주(조직이 요구하는 경계 안의 지역) — 「Choosing Azure regions」 (phase 102)
+- 가용성 영역은 전원·냉각·네트워크 연결이 격리된 독립 데이터 센터 묶음이다. 영역들은 저지연 네트워크가 될 만큼 가깝고, 폭풍이나 국지 정전 같은 일에서 서로 격리될 만큼 떨어져 있다. 지원 지역에는 영역이 최소 셋 있고 셋보다 많은 지역도 있다 — 「Availability zones」 (phase 102)
+- Microsoft가 일부 지역을 다른 지역과 짝지어 지역 쌍을 만든다. **고객은 짝을 직접 고를 수 없다.** 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다. 짝이 있든 없든 복원력 있는 설계를 할 수 있다 — 「Paired and nonpaired regions」 (phase 102)
+- 여러 지역을 함께 쓰면 여러 종류의 장애에 견디고 재해 복구의 선택지가 많아진다. 지역 사이 복제와 장애 조치를 갖춘 서비스도 있고, 고객이 직접 설계해야 하는 서비스도 있다 — 「Using multiple Azure regions」 (phase 102)
+- 대부분의 서비스는 특정 지역에 배포하지만 지역 하나에 묶이지 않는 서비스(비지역 서비스)도 있다. Microsoft가 비지역 서비스를 지역 둘 이상에 두어, 한 지역이 실패하면 정상 지역의 인스턴스가 요청을 계속 처리한다. Microsoft Entra ID처럼 데이터를 둘 지리(예: 유럽·북아메리카)를 고르게 하는 비지역 서비스도 있다 — 「Nonregional services」 (phase 102)
+- 첫 문단의 지역 수(「70개가 넘는」)는 바뀌는 수라 적지 않는다. 페이지의 「Last updated on」은 2026-06-29 (phase 102)
+- 한국어 표기(phase 102): geography → 지리, data residency → 데이터 상주(데이터 상주 경계), sovereign cloud region → 소버린 클라우드 지역, nonregional services → 비지역 서비스, paired / nonpaired regions → 쌍을 이루는 지역 / 쌍을 이루지 않는 지역(절 제목은 region을 「영역」으로 잘못 옮겨 「쌍을 이루는 영역과 쌍을 이루지 않는 영역」), failover → 장애 조치
 
 쓰일 곳: D20
+
+쓰일 곳(phase 102): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있다), `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐),
+`azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적을 수 있다), D38·G20·G21·G23
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is a container?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-container
@@ -1190,3 +1249,141 @@ https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
 | middleware | 미들웨어 | Learn 단원 3, 미들웨어 사전 한국어판 |
 | Azure Virtual Machines / App Service / SQL Database / Functions / Storage | Azure 가상 머신(VM) / Azure App Service / Azure SQL Database / Azure Functions / Azure Storage | 각 문서 한국어판이 이름을 옮기지 않는다. VM은 phase 100의 「Azure VM(Virtual Machines)」·「가상 머신」 표기를 따른다 |
 | Microsoft 365 | Microsoft 365 | 보안 문서 한국어판. 용어집의 옛 이름 「Office 365」는 쓰지 않는다 — G18 |
+
+## (phase 102) Azure reliability — What are availability zones?
+https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-23. 사본: `docs-reliability-availability-zones-overview.md`와 `ko-` 판.
+
+- 많은 지역이 가용성 영역을 갖춘다. 가용성 영역은 한 지역 안에서 따로 떨어진 데이터 센터 묶음이고, 영역마다 전원·냉각·네트워크 인프라가 따로라서 한 영역이 중단돼도 남은 영역이 지역의 서비스와 용량을 이어 간다. 여러 영역을 저절로 쓰는 서비스도 있고, 고객이 여러 영역 배포를 구성해야 하는 서비스도 있다 — 첫 부분
+- 가용성 영역은 영역 전체가 멈추는 큰 중단뿐 아니라, 한 영역 안의 서버 랙이나 클러스터 하나가 실패하는 작은 장애에도 대비가 된다 — 첫 부분
+- 영역은 한 지역 안에서 물리적으로 떨어진 데이터 센터 하나 이상을 논리적으로 묶은 것이다. 한 영역에 정전·네트워크 문제가 생겨도 다른 영역은 계속 일하게 지어져 있다. **데이터 센터 하나만으로는 이런 보호가 되지 않는다** — 「Datacenters and availability zones」
+- 데이터 센터의 위치는 엄격한 취약성 위험 평가 기준으로 고르고, 영역 사이에 함께 걸리는 위험도 따진다 — 「Datacenters and availability zones」
+- 영역끼리는 보통 몇 킬로미터 떨어져 있고 대개 100킬로미터 안에 있다. 그래서 대기 시간이 짧으면서도 국지 정전이나 날씨가 여러 영역에 한꺼번에 미칠 가능성이 준다 — 같은 절(수치는 「보통」·「대개」라는 단서가 붙은 값이다)
+- **가용성 영역 지원 유형** 둘 — 영역 중복 리소스: 서비스가 리소스를 여러 영역에 복제하거나 나눠 둔다. 지원 지역에서 저절로 영역 중복이 되는 서비스도 있고, 고객이 영역 중복으로 구성해야 하는 서비스도 있다. 영역에 중단이 나면 다른 영역으로의 장애 조치를 Microsoft가 맡는다.
+  영역 리소스: 고객이 고른 영역 하나에 배포한다. 다른 영역의 장애와는 격리되지만 그것만으로 영역 중단에 대비되지 않는다 — 대비하려면 고객이 여러 영역에 리소스를 따로 두고, 영역에 중단이 나면 다른 영역으로의 장애 조치도 고객이 맡는다 — 「Types of availability zone support」
+- 리소스를 영역 중복으로 구성하거나 영역 리소스를 여러 영역에 하나씩 두면, 영역 하나의 중단을 견딘다 — 같은 절
+- 가용성 영역을 쓰도록 구성하지 않은 리소스(지역이 영역을 지원하지 않거나 고객이 그렇게 고른 경우)는 비영역 배포 또는 지역 배포라 부른다. Azure가 그 리소스를 지역의 아무 영역에나 둘 수 있어서, 어느 영역이 중단되면 함께 멈출 수 있다 — 같은 절
+- 데이터 센터마다 물리 영역이 정해지고, 물리 영역은 구독마다 논리 영역 번호(영역 1·2·3 등)로 이어진다. 같은 물리 영역이 구독마다 다른 번호일 수 있다 — 「Physical and logical availability zones」(이 주제에서는 「영역 1」처럼 영역을 가르는 이름표가 공식 문서의 꼴이라는 근거로만 쓴다)
+- Microsoft는 지역마다 Azure 서비스의 업데이트를 한 번에 영역 하나씩 적용하려 한다. 그 덕을 보려면 워크로드가 이미 여러 영역에 걸쳐 있어야 한다 — 「Availability zones and Azure updates」
+- 영역끼리는 고성능 네트워크로 이어지고, **같은 지역의 가용성 영역 사이 데이터 전송에는 요금을 매기지 않는다** — 「Inter-zone networking」(Learn 단원 5와 다름 — 그 항목의 「현행 문서와 다름」 4)
+- 운영 워크로드는 지역이 지원하면 여러 가용성 영역을 쓰도록 구성한다. 데이터 상주 요구로 한 지역에 묶인 워크로드는 여러 영역에 나눠 두는 것이 데이터를 지역 밖으로 옮기지 않고 가용성을 높이는 주된 방법이다. **가용성 영역은 지역 전체의 중단을 막지 못한다** — 「Availability zone architectural guidance」
+- 영역을 지원하는 지역의 표에서 영역 수는 대부분 셋이고 미국 동부 2는 넷이다 — 「Regions with availability zones」(지역마다의 목록은 바뀌므로 적지 않는다. 「최소 셋」이 「언제나 셋」이 아니라는 근거로만 쓴다)
+- 한국어 표기: availability zone → 가용성 영역(제목 「가용성 영역이란?」), types of availability zone support → **가용성 영역 지원 유형**(절 제목), zone-redundant resource → 영역 중복 리소스, zonal resource → 영역 리소스, nonzonal resource → 비 영역 리소스(띄어 씀), regional deployment → 지역 배포, outage → 중단, failover → 장애 조치, datacenter → 데이터 센터
+
+쓰일 곳: `azure-regions-zones.availability-zones`(정의, 랙·클러스터 장애에도, 데이터 센터 하나로는 이 보호가 안 됨, 영역 사이 거리의 질적 설명, 지역 전체 중단은 막지 못함, 영역 사이 전송 요금 없음, 「영역 1·2·3」 이름표),
+`azure-regions-zones.zone-service-categories`(지원 유형의 나눔과 이름, 누가 복제하고 누가 장애 조치를 맡는가, 비영역 배포), D39·D40·D45·G22
+
+## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
+https://learn.microsoft.com/en-us/azure/reliability/regions-paired
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-15. 사본: `docs-reliability-regions-paired.md`와 `ko-` 판.
+
+- Azure 지역은 서로 독립이다. Microsoft는 일부 지역을 다른 지역과 짝짓고, 두 지역은 보통 같은 지리에 있다. 소수의 서비스가 이 짝으로 지역 사이 복제(지역 중복)를 하고, 지역이 복구할 수 없을 만큼 실패하는 드문 경우의 재해 복구 일부에 쓴다 — 첫 부분
+- **짝이 없는 지역도 많고**, 그런 지역은 가용성 영역을 주된 중복 수단으로 쓴다. 짝이 있든 없든 서비스 다수가 지역 중복을 지원한다 — 첫 부분
+- 짝을 쓰는 서비스의 예로 지역 중복 스토리지(GRS)가 데이터를 짝 지역에 저절로 복제할 수 있다고 든다 — 「Paired regions」
+- 짝 지역을 보조 지역으로 쓰면 얻는 것 셋: 지리 전체에 걸친 중단 때 짝마다 한 지역을 먼저 복구한다, 계획된 시스템 업데이트를 짝의 두 지역에 시차를 두고 적용한다, 데이터 상주 요구를 맞추도록 거의 모든 지역이 짝과 같은 지리에 있다(예외는 지역 목록) — 「Paired regions」
+- **짝의 한 지역에 리소스를 배포하는 것만으로는 복원력·고가용성·재해 복구·장애 조치가 저절로 생기지 않는다.** 짝을 쓰든 안 쓰든 고가용성과 재해 복구 계획은 고객이 세운다. Microsoft가 관리하는 짝 사이 장애 조치를 주된 재해 복구 방법으로 삼지 말라 — 예로 GRS 저장소 계정의 Microsoft 관리 장애 조치는 큰 재난에서 복구를 거듭 실패한 뒤에만 한다 — 「Paired regions」 Important
+- 고객은 한 지역이나 그 짝 지역에만 묶이지 않고, 사업 요구에 맞는 어느 지역에나 서비스를 둘 수 있다 — 「Paired regions」
+- 대부분의 짝은 양방향이다(예: 미국 서부와 미국 동부가 서로의 짝). 한 방향으로만 짝지은 비대칭 짝도 있다 — 예: 브라질 남부의 짝은 브라질 지리 밖의 미국 중남부이지만 미국 중남부의 짝은 브라질 남부가 아니다. 미국 서부 3은 미국 동부와 한 방향으로 짝지어 있다 — 「Asymmetrically paired regions」
+- 짝 목록에서 동아시아와 동남아시아, 미국 동부와 미국 서부는 서로의 짝이다. 이탈리아 북부·폴란드 중부·이스라엘 중부는 짝 칸이 비어 있다(N/A) — 「Azure region pairs list」(목록 전체는 바뀌므로 적지 않는다)
+- 짝 사이 거리에 관한 수치는 이 문서에 없다(Learn 단원 5의 「300마일 이상」은 쓰지 않는다 — 단원 5 항목의 「현행 문서와 다름」 2)
+- 한국어 표기: region pair → 지역 쌍, paired region → 쌍을 이루는 지역, nonpaired region → 쌍을 이루지 않는 지역(제목은 「페어링을 이루지 않은 지역」, 본문은 「쌍을 이루지 않는/않은」), asymmetrically paired → 비대칭 쌍, geo-redundant storage → 지역 중복 스토리지(GRS), West US / East US → 미국 서부 / 미국 동부
+
+쓰일 곳: `azure-regions-zones.region-pairs`(Microsoft가 짝짓는다, 짝 없는 지역이 많다, 이점 셋, 저절로 장애 조치되지 않는다, 비대칭 짝, 짝의 예), G21
+
+## (phase 102) Azure reliability — Azure nonregional services
+https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
+
+확인한 날 2026-10-31. 「Last updated on」 2026-01-22. 사본: `docs-reliability-regions-nonregional-services.md`와 `ko-` 판.
+
+- 비지역 서비스는 특정 Azure 지역에 배포하지 않는 서비스다 — 첫 부분
+- 비지역 서비스는 두 갈래다. 전역 서비스는 세계 여러 지역에 배포되어 한 지역이 실패해도 다른 지역의 인스턴스가 계속 동작하므로, 고객이 지역 전체 중단에 따로 대비하지 않아도 된다. 지리 서비스는 특정 지역이 아니라 지리 영역에 배포되고 그 안의 지역 하나 이상이 요청을 처리한다 — 「Types of nonregional services」
+- Microsoft Entra ID는 구성에 따라 전역이 될 수도 지리가 될 수도 있다 — 같은 절
+- 비지역 서비스는 서비스 자체의 지역을 고르지 않지만, 함께 쓰는 부속 구성 요소의 지역은 골라야 할 수 있다(예: Azure Virtual Desktop의 호스트 풀 VM) — 「Regionally dependent service components」
+- 목록에 Microsoft Entra ID, Azure DNS(공용 영역·사설 영역), Azure Traffic Manager가 있다. 그 밖에 Azure Policy, 관리 그룹(Azure management groups), 구독(Azure subscriptions), Azure portal도 있다 — 「List of nonregional services」(목록은 바뀌므로 이름은 앞의 셋만 예로 쓴다. 관리 그룹·구독은 `azure-resource-hierarchy`의 몫)
+- 한국어 표기: nonregional services → 비지역 서비스(본문·절 제목. 문서 제목은 「비지정 서비스 Azure」로 잘못 옮겼다), global services → 글로벌 서비스, geographic services → 지리적 서비스
+
+쓰일 곳: `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), `azure-regions-zones.zone-service-categories`(비지역 서비스가 가용성 영역 지원 유형과 다른 갈래라는 근거)
+
+## (phase 102) Microsoft Entra — What is Microsoft Entra?
+https://learn.microsoft.com/en-us/entra/fundamentals/whatis
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-18. 사본: `docs-entra-whatis.md`와 `ko-` 판.
+
+- Microsoft Entra ID는 Microsoft Entra 제품군의 바탕이 되는 클라우드 기반 ID·액세스 관리 서비스다. 사용자·장치·앱·리소스가 누구인지 확인(인증)하고, 정책을 적용하고, 보호한다 — 「Microsoft Entra ID」
+- 한국어 표기: Microsoft Entra ID(옮기지 않는다), identity and access management → ID 및 액세스 관리, authentication → 인증
+
+쓰일 곳: `azure-regions-zones.region`(Microsoft Entra ID를 푸는 한 줄 — 사용자가 누구인지 확인하고 무엇에 접근할 수 있는지 관리하는 클라우드 서비스)
+
+## (phase 102) Azure DNS — Azure DNS overview
+https://learn.microsoft.com/en-us/azure/dns/dns-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-28. 사본: `docs-dns-overview.md`와 `ko-` 판.
+
+- DNS(Domain Name System)는 서비스 이름을 IP 주소로 바꿔 준다(이름 확인). Azure DNS는 Azure 인프라로 DNS 호스팅·이름 확인·부하 분산을 제공한다 — 첫 부분
+- Azure Traffic Manager는 DNS를 써서 트래픽을 나누는 부하 분산 서비스이고, 공개된 애플리케이션으로 오는 요청을 전 세계 Azure 지역에 나눠 보낸다 — 같은 부분(Azure DNS가 제공하는 서비스 목록)
+- 한국어 표기: Azure DNS·Azure Traffic Manager(옮기지 않는다), resolve → 확인, load balancing → 부하 분산
+
+쓰일 곳: `azure-regions-zones.region`(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
+
+## (phase 102) Azure Government — What is Azure Government?
+https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
+
+확인한 날 2026-10-31. 「Last updated on」 2026-05-19. 사본: `docs-azure-government-welcome.md`와 `ko-` 판.
+
+- Azure Government는 미국 정부 기관과 그 협력사를 위한 전용 클라우드이고, 미국 정부의 여러 규정과 요구를 받는 데이터를 다룰 수 있다 — 첫 부분
+- Azure Government는 미국 안에만 있는 물리적으로 격리된 데이터 센터와 네트워크를 쓴다. 전역 Azure와 비교해, 고객 데이터를 미국 안에 저장한다는 계약상 약속과 고객 데이터를 처리하는 시스템에 접근할 수 있는 사람을 심사를 거친 미국인으로 제한하는 보호가 더 붙는다 — 첫 부분
+- 고객(미국 연방·주·지방 정부나 그 협력사)은 자격 확인을 받는다 — 첫 부분
+- 전역 Azure와 같은 기반 기술로 IaaS·PaaS·SaaS를 제공하고, 연결한 뒤에는 대부분 전역 Azure와 같은 경험이지만 서비스 가용성과 기능에 차이가 있다 — 「Compare Azure Government and global Azure」
+- 지역 목록에 US Gov Arizona·US Gov Texas·US Gov Virginia가 있고, US Gov Arizona와 US Gov Texas가 서로의 짝이다 — 「List of regions」
+- 한국어 표기: Azure Government(옮기지 않는다), global Azure → 글로벌 Azure
+
+쓰일 곳: `azure-regions-zones.sovereign-regions`(미국 정부 기관과 협력사를 위한 지역 — 물리적으로 격리, 심사를 거친 미국인, 자격 확인, 서비스·기능 차이), D43
+
+## (phase 102) Azure in China — Microsoft Azure operated by 21Vianet
+https://learn.microsoft.com/en-us/azure/china/overview-operations
+
+확인한 날 2026-10-31. 「Last updated on」 2023-12-13. 사본: `docs-china-overview-operations.md`와 `ko-` 판(한국어판도 영문 그대로다).
+
+- Microsoft Azure operated by 21Vianet(Azure in China)은 중국에 있는, 물리적으로 분리된 클라우드 서비스 인스턴스다. 21Vianet(Shanghai Blue Cloud Technology Co., Ltd.)이 독립적으로 운영하고 거래한다 — 「What is Microsoft Azure operated by 21Vianet?」
+- Azure in China는 전역 Azure와 기능 차이가 있고 그 차이는 줄어드는 중이다 — 「Service availability and roadmaps」
+- 접근을 중국 안으로 제한한다는 말은 이 문서에 없다
+- 한국어 표기: 한국어판이 이름을 옮기지 않는다. Learn 단원 5 한국어판은 「21Vianet」, 「What are Azure regions?」 한국어판은 「21Vianet에서 운영하는 Microsoft Azure」 — 이 주제는 「21Vianet이 운영하는 Microsoft Azure(Microsoft Azure operated by 21Vianet)」로 쓴다
+
+쓰일 곳: `azure-regions-zones.sovereign-regions`(중국의 지역 — 21Vianet이 운영하는 물리적으로 분리된 인스턴스, 기능 차이), D41·D42
+
+## (phase 102) Azure Germany (이전 버전 문서) — Welcome to Azure Germany
+https://learn.microsoft.com/en-us/previous-versions/azure/germany/germany-welcome
+
+확인한 날 2026-10-31. 「Last updated on」 2020-10-16. 사본: `docs-germany-welcome.md`(영문만).
+
+- Microsoft Cloud Germany는 2018년 8월부터 새 고객을 받지 않았고, 2020년 9월 30일에 2021년 10월 29일로 문을 닫는다고 알렸다 — 첫 부분 Note. 문서는 `previous-versions` 아래로 옮겨져 있다
+- Azure Germany는 독일의 데이터 관리 수탁자가 고객 데이터를 관리하던, 물리적으로 격리된 Azure 인스턴스였다 — 첫 부분(지원이 끝난 서비스라 쓰지 않는다)
+
+쓰일 곳: D44 — 개념 글에 쓰지 않는다(근거 기록)
+
+## (phase 102) 한국어 표기 정리 — `azure-regions-zones`
+
+위 항목들과 단원 5·「What are Azure regions?」 항목의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 102 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+받아 둔 한국어판(`raw/official/ko-…`)에서 낱말을 세어 정했다 — L5는 Learn 단원 5, R은 「What are Azure regions?」, AZ는 「What are availability zones?」, P는 「Azure region pairs and nonpaired regions」, N은 「Azure nonregional services」, SG는 AZ-900 학습 가이드.
+
+| 개념·영문 | 쓸 이름 | 근거 |
+|---|---|---|
+| `datacenter` — datacenter | **데이터 센터** | L5·AZ 한국어판. 「데이터센터」로 붙여 쓰지 않는다(phase 100 표기). rack → 랙(L5), server → 서버 |
+| `region` — region | **지역** | L5 절 제목 「지역」, R 제목 「Azure 지역은 무엇인가요?」. 용어집의 「리전」은 쓰지 않는다(G20, phase 101 표기와 같다) |
+| geography | 지리 | R 절 제목 「Azure 지역 및 지리 이해」, R·P·N 본문. data residency → **데이터 상주**(R 여덟 번·N 세 번. L5는 「데이터 보존」 한 번 — 데이터 보관 기간과 헷갈려 쓰지 않는다) |
+| latency | 대기 시간 | R·AZ 한국어판(열 번씩). phase 101 표기와 같다 |
+| nonregional services | 비지역 서비스 | L5·R·N 본문. N 제목의 「비지정 서비스」는 잘못 옮긴 것이라 쓰지 않는다. global / geographic → 글로벌 서비스 / 지리적 서비스(N) |
+| `availability-zones` — availability zone | **가용성 영역** | L5(17번)·R(17번)·AZ 제목과 본문(71번). 이름표는 「영역 1」·「영역 2」·「영역 3」(AZ의 논리 영역 번호 꼴) |
+| redundancy | 중복성 · 중복 | 「What are business continuity, …」 한국어판 「중복성」. 문장 안에서는 「중복」으로 줄여 써도 된다 — L5 한국어판도 둘을 함께 쓴다 |
+| `zone-service-categories` — types of availability zone support | **가용성 영역 지원 유형** | AZ 절 제목. 잠정 이름 「가용성 영역 서비스 범주」(L5의 「세 범주」)는 쓰지 않는다 — 현행 문서의 나눔이 L5와 다르다(단원 5 항목 「현행 문서와 다름」 5). 슬러그는 그대로 둔다 |
+| zonal resource / zone-redundant resource / nonzonal resource | **영역 리소스**(Zonal resource) / **영역 중복 리소스**(Zone-redundant resource) / **비영역 리소스**(Nonzonal resource) | AZ 한국어판(영역 리소스 9번, 영역 중복 리소스·영역 중복 7번). 셋째는 AZ 한국어판이 「비 영역 리소스」로 띄어 쓰지만, 접두사 「비-」는 붙여 쓰는 한국어 맞춤법을 따라 「비영역」으로 쓴다. L5의 「영역 서비스」·「영역 중복 서비스」는 같은 나눔을 서비스 단위로 부른 이름이라 쓰지 않는다 |
+| `region-pairs` — region pair | **지역 쌍** | L5(9번)·R(4번)·P(18번). 「페어링」은 P 제목에만 섞였다. paired / nonpaired region → 쌍을 이루는 지역 / 쌍을 이루지 않는 지역(R 본문·P 본문) |
+| failover | 장애 조치 | 「What are business continuity, …」·L5·AZ·P 한국어판. phase 101 표기와 같다 |
+| geo-redundant storage | 지역 중복 스토리지(GRS) | P 한국어판. 이 주제에서 쓸 일이 있으면 |
+| `sovereign-regions` — sovereign region | **소버린 지역** | 한국어판이 갈린다 — 「소버린」은 L5 절 제목(1번)과 R의 「소버린 클라우드 지역」(2번), 「주권 지역」은 L5 본문(3번)과 SG의 기술 목록 한 줄(「Azure 지역, 지역 쌍 및 주권 지역 설명」). 수는 「주권 지역」이 하나 많지만 「소버린」으로 쓴다 — 현행 제품 문서(R, 2026-06-29)가 「소버린」을 쓰고, 현행 문서에서 「주권」은 이 지역의 이름이 아니라 sovereignty(주권 요구)를 옮긴 말이다(AZ의 「데이터 상주 또는 주권 요구 사항」은 보통 지역에도 걸리는 요구다). 「주권 지역」이라 쓰면 그 요구를 맞추려면 이 지역을 써야 한다고 읽힐 수 있다. 본문에서 「주권 지역이라고도 옮긴다」를 한 번 밝혀도 된다 |
+| instance (of Azure) | 인스턴스 | L5·R 한국어판. 이 주제에서는 「같은 기술로 지었지만 데이터 센터와 네트워크를 따로 둔 Azure 한 벌」로 푼다(Azure Government·21Vianet 항목) |
+| Azure Government / Microsoft Azure operated by 21Vianet | Azure Government / 21Vianet이 운영하는 Microsoft Azure(Microsoft Azure operated by 21Vianet) | 두 문서 한국어판이 이름을 옮기지 않는다. R 한국어판 「21Vianet에서 운영하는 Microsoft Azure」를 「이」로 고쳐 쓴다. 덤프의 「Azure China」는 쓰지 않는다(D41) |
+| Microsoft Entra ID / Azure DNS / Azure Traffic Manager | Microsoft Entra ID / Azure DNS / Azure Traffic Manager | 한국어판이 옮기지 않는다 |
+| region names | 미국 서부·미국 동부·동아시아·동남아시아·브라질 남부·미국 중남부 | P 한국어판(「미국 서부」·「미국 동부」). 본문에 쓸 때만. 도식은 「지역 A」·「지역 B」 이름표로 그린다(guide 「예시 값」) |
