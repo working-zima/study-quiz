@@ -6,7 +6,7 @@ Azure AZ-900 과목의 **사실 출처**다. Microsoft 공식 문서에서 확�
 규칙:
 
 - **허용하는 곳만 쓴다** — `docs/source/azure/CLAUDE.md` 「허용하는 출처」의 `learn.microsoft.com`(학습 단원·제품 문서·자격증 학습 가이드)과
-  `azure.microsoft.com`(제품·가격 페이지, 클라우드 컴퓨팅 사전). 목록에 없는 곳은 그 목록에 먼저 더하고 쓴다.
+  `azure.microsoft.com`(제품·가격 페이지, 클라우드 컴퓨팅 사전, 약관 쪽 `/support/legal/` — phase 101에서 더함). 목록에 없는 곳은 그 목록에 먼저 더하고 쓴다.
 - **사실은 직접 쓴 말로 적는다**(ADR-009). 원문 문장을 옮기지 않는다. 한국어판은 기계 번역이라 특히 그대로 옮기기 쉽다.
 - 사실은 **영문판(`en-us`)으로 확인**하고, 한국어판(`ko-kr`)은 **용어 표기만** 본다. 항목마다 「한국어 표기」 줄에 그 문서의 한국어판이 쓰는 말을 적는다.
 - 항목마다 사실 줄 끝에 **절 제목**을 「」로 적는다. 절이 없는 짧은 단원은 「첫 문단」처럼 적는다.
@@ -22,6 +22,11 @@ step 4가 만든 항목에 step 7이 더한 줄은 「(phase 100 step 7이 더�
 「(phase 101)」이 붙은 항목은 phase 101 step 0이 `azure-cloud-benefits` 주제(클라우드의 이점)가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30). 맨 아래 「한국어 표기 정리 — `azure-cloud-models`」 다음에 모았다.
 phase 100 항목에 덧붙인 줄은 끝에 `(phase 101)`을 달았다. 아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
 받은 제품 문서의 사본에는 「Last updated on」 뒤 날짜가 비어 있어(페이지가 스크립트로 그린다) 확인한 날만 적었다.
+
+phase 101 step 3이 `azure-sla-lifecycle` 주제(SLA와 서비스 수명 주기)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-cloud-benefits`」 다음에 모았다(확인한 날 2026-10-30).
+이 주제는 공식 학습 가이드 밖이라 Learn 단원이 없다 — Well-Architected Framework·Cloud Adoption Framework·Azure 안정성 문서(SLA), Microsoft 수명 주기 문서(미리 보기·GA·수명 주기 정책), 미리 보기 약관에서 모았다.
+SLA 약관 원문(`microsoft.com/licensing`)은 받을 수 없어 쓰지 않으므로 서비스마다의 SLA 수치는 확인하지 않았다. 앞 항목에 덧붙인 줄은 「(phase 101 step 3)」을 달았다.
+이번에 받은 사본에는 「Last updated on」 뒤 날짜가 있어 항목마다 적었다.
 
 ---
 
@@ -364,6 +369,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 
 쓰인 곳(phase 101): `azure-cloud-benefits.high-availability`(고가용성의 정의, SLA·가동 시간을 푸는 한 줄), `azure-cloud-benefits.scalability`(소개 문단과 수직·수평 크기 조정 두 항목), `CloudScalingDiagram`(수직: VM 한 대에 CPU·RAM을 더함 / 수평: VM을 더함), D17, G10, G11
 
+쓰일 곳(phase 101 step 3): `azure-sla-lifecycle.sla`(Azure의 가동 시간 보장은 서비스마다 다르고 SLA에 담긴다 — 「High availability」 둘째 문단)
+
 ## (phase 100) Learn 「Describe Azure compute services」 — 6 Describe Azure Functions
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/6-functions
 
@@ -666,6 +673,8 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
 
+쓰일 곳(phase 101 step 3): `azure-sla-lifecycle.sla`(가동 시간 백분율을 한 달 중단 시간으로 바꾼 예 — 99.9%는 약 43분, 99.95%는 약 21분. Well-Architected 지표 문서의 표와 같다), G16
+
 ## (phase 101) Azure reliability — Reliability in Azure
 https://learn.microsoft.com/en-us/azure/reliability/glossary (이 주소로 받으면 「Reliability in Azure」 쪽이 열린다)
 
@@ -806,3 +815,179 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/
 | fault tolerance / disaster recovery / redundancy | 내결함성 / 재해 복구 / 중복성 | 비즈니스 연속성·고가용성·재해 복구 문서 한국어판 |
 | agility | 민첩성 | 탄력성 사전 한국어판 |
 | geographic distribution | (이점 이름으로 쓰지 않는다) | 「Azure 안정성」 한국어판은 「지리적 배포」로 옮긴다. 덤프의 「지리적 분산(geo-distribution)」은 공식 문서의 이점 이름이 아니다 — D20 |
+
+## (phase 101) Well-Architected Framework — Architecture strategies for defining reliability targets
+https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2024-08-20. 사본: `docs-well-architected-reliability-metrics.md`와 `ko-` 판.
+
+- **SLA**는 서비스를 내주는 쪽(공급자)과 그 서비스를 쓰는 쪽(고객)이 맺는 계약상 합의다. 약속한 수준을 맞추지 못하면 공급자가 금전적인 책임을 질 수 있다 — 「첫 부분의 용어 표」
+- SLA와 **SLO**는 같은 데이터를 보더라도 목적이 다르다. SLA는 조직이 고객과 맺는 공식 계약이라 지키지 못하면 돈과 법에 걸린 책임이 바로 생기고, SLO는 조직이 「이 정도 중단은 견딜 수 있나」를 따지려고 스스로 세우는 목표다 — 「Set availability objectives」의 Important
+- 클라우드 공급자는 제품마다 SLA를 공개한다. 내 워크로드의 목표를 셀 때 그 SLA를 넣되, SLA가 어디까지 덮는지 모른 채 숫자만 가져다 쓰면 안 된다 — 같은 절
+- 가동 시간 목표를 허용되는 중단 시간으로 바꾼 표가 있다. 한 달 기준으로 99.9%는 약 43.2분, 99.95%는 약 21.6분, 99.99%는 약 4.32분이다 — 「Define composite SLO targets」
+- 여러 요소에 함께 기대는 목표는 요소마다의 값을 곱해 얻는다고 하고, 예로 99.95%와 99.99999%를 곱하면 약 99.95%가 된다고 든다. 이 문서는 이 값을 「복합 SLO」라 부른다 — 같은 절의 Important
+- Microsoft SLA가 알려 주는 것은 Microsoft가 약속한 범위의 가용성뿐이고, 제품을 통째로 보장하지는 않는다. 예로 App Service의 Web Apps는 정해 둔 경우에 200 OK 응답을 돌려주면 「가용」으로 치고, 그 밖의 기능(간편 인증, 슬롯 전환)의 가용성은 금전적 보장에 들지 않는다고 한다 — 「Assess the impact of Microsoft SLAs」
+- 여러 지역에 배포하는 것은 중복성 원칙을 구현한 것이고, 장애 조치에 쓸 두 번째 지역이 생겨 목표를 높일 수 있다. Microsoft는 Azure Cosmos DB를 여러 지역에 배포하면 한 지역에만 둘 때보다 높은 SLA를 약속한다 — 「Implement multiregion targets」
+- **Azure SLA**는 가동 시간과 연결에 대해 Microsoft가 하는 약속이다. 서비스마다 SLA가 다르고, 같은 서비스 안에서도 상품에 따라 다를 때가 있다 — 「Azure facilitation」
+- Azure SLA에는 워크로드가 SLA에 못 미쳤을 때 **서비스 크레딧**을 받는 절차와, 서비스마다 무엇을 「가용」으로 보는지의 정의가 들어 있다 — 같은 절
+- 한국어 표기: service-level agreement → SLA(서비스 수준 계약), service-level objective → SLO(서비스 수준 목표), composite SLO → 복합 SLO, service credit → **서비스 크레딧**, uptime → 가동 시간, connectivity → 연결
+- 쓰지 않는 것: 이 문서의 예(Contoso, 서비스마다의 수치 99.99%·99.95% 등)와 SLI·RTO·RPO 같은 다른 지표. 서비스마다의 SLA 수치는 이 과목에서 쓰지 않는다(guide 「배경」)
+
+쓰일 곳: `azure-sla-lifecycle.sla`(SLA의 정의, 가동 시간과 연결에 대한 약속, 서비스·상품마다 다름, 가용 정의, 정한 범위만 덮음), `azure-sla-lifecycle.service-credit`(SLA에 크레딧을 받는 절차가 있다), `azure-sla-lifecycle.composite-sla`(곱한다, 여러 지역에 두면 높일 수 있다), D22, D23, D24, G15, G16
+
+## (phase 101) Azure reliability — How to read a service-level agreement (SLA)
+https://learn.microsoft.com/en-us/azure/reliability/concept-service-level-agreements
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-04-01. 사본: `docs-reliability-concept-service-level-agreements.md`와 `ko-` 판.
+**주의**: 이 문서는 스스로 Microsoft SLA에만 해당하는 글이 아니라 어느 공급자의 SLA에나 쓰는 읽는 법이라고 밝힌다. 그래서 여기서 가져온 사실은 「Microsoft SLA는 ~」이 아니라 「SLA는 보통 ~」으로 한정해 쓴다.
+
+- 대부분의 SLA는 가동 시간이나 가용성을 약속하지만, 성능·복구 시간·데이터 내구성 같은 다른 요구를 약속하는 SLA도 있다 — 「첫 부분」
+- SLA는 공급자와 고객 사이의 계약상 약속이라 목표를 못 맞췄을 때의 결과가 정해져 있고, SLO는 내 워크로드에 내가 세우는 내부 목표다. SLA는 공급자가 지키겠다는 최소한을 적은 것이다 — 「How SLAs relate to SLOs and reliability targets」
+- SLA는 조건이 붙은 약속이다. 고객이 정해 둔 요건을 맞추면 공급자가 일정한 서비스 수준을 약속하고, 그 수준에 못 미치면 고객이 보상을 받는데 그 보상은 대개 서비스 크레딧이다. SLA는 무엇을 장애(중단)로 셀지 정해 두며, 그 정의에 들지 않는 문제는 덮지 않는다 — 「What an SLA is and isn't」
+- 의존하는 서비스들의 SLA 백분율을 곱해 시스템의 가용성을 어림하는 **복합 SLA**를 만들지 말라고 한다. 곱한 값은 대략의 상한일 뿐이고, 모든 서비스가 서로 따로 멈춘다고 가정하는데 실제로는 그런 일이 드물며, SLA마다의 정의·조건·제외를 빼고 셈해 시스템을 실제보다 믿을 만하게 보이게 한다 — 같은 절
+- 99.9% SLA라고 해서 서비스를 늘 쓸 수 있다는 보장은 아니고, 1년에 그만큼만 멈춘다는 뜻도 아니다. 무엇이 측정되는지는 SLA가 「중단」을 어떻게 정의했는지가 정한다 — 「Pass 1: Definitions」의 Tip
+- SLA는 보통 실시간이 아니라 청구 기간 동안의 가동 시간을 잰다. 몇 분 동안 멈춘 일이 있어도 그달의 SLA는 지켜질 수 있다 — 「Pass 2: Measurement」의 Tip
+- 같은 서비스라도 인스턴스를 하나만 두는 배포는 중복을 둔 여러 인스턴스 배포보다 SLA가 낮을 수 있고, 등급(티어)에 따라 SLA가 다를 수 있다. SLA는 계획된 유지 관리, 고객의 잘못된 구성, 미리 보기나 지원하지 않는 기능 같은 것을 흔히 빼고, 미리 보기 기능과 낮은 등급을 덮지 않을 수 있다 — 「Pass 3: Prerequisites, variations, and exclusions」
+- 서비스 크레딧은 중단에 대한 보상이지만 공급자가 보통 알아서 주지 않는다. 공급자는 SLA 위반을 먼저 찾아 주지도 대신 청구해 주지도 않으므로, 고객이 SLA를 어긴 중단을 찾아 기록하고 기한 안에 청구해야 한다 — 「Pass 5: How to claim service credits」
+- 크레딧은 대개 영향을 받은 서비스의 한 달 요금에 대한 백분율로 정해지고, 잃은 매출·고객·평판은 보상하지 않는다 — 같은 절의 Note
+- 가상의 서비스(PPaaS)를 든 예에서 월간 가동률은 「(청구 대상 분 − 중단 분) ÷ 청구 대상 분 × 100」으로 셈한다. 이 예의 짜임이 실제 SLA 여럿을 닮았다고만 하고, 특정 Azure 서비스의 식이라고 하지는 않는다 — 「A guided example: Decode a fictional SLA」
+- 한국어 표기: service credit → 서비스 크레딧, composite SLA → 복합 SLA, downtime → 가동 중지 시간, billing period → 청구 기간, monthly uptime percentage → 월별 가동 시간 백분율
+- 쓰지 않는 것: 청구 기한(30~60일), 크레딧 비율(10%·25% 등) — 가상의 예이거나 공급자마다 다르다
+
+쓰일 곳: `azure-sla-lifecycle.sla`(조건이 붙은 약속, 중단의 정의가 덮는 범위를 정함, 배포 방식·등급에 따라 SLA가 다름, 청구 기간 단위로 잼), `azure-sla-lifecycle.service-credit`(크레딧은 보상, 보통 고객이 청구해야 함, 한 달 요금의 백분율), `azure-sla-lifecycle.composite-sla`(곱한 값은 대략의 상한이고 따로 멈춘다는 가정에 기댄다), D23, D24, D25, D26, G15, G16
+
+## (phase 101) Cloud Adoption Framework — Protect your cloud estate (Manage reliability)
+https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/considerations/commitment
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-10-27. 사본: `docs-caf-manage-commitment.md`와 `ko-` 판.
+
+- 워크로드의 가동 시간을 어림하려면 워크로드마다 **복합 SLA**를 셈한다. 멈추면 워크로드가 실패하는 서비스(중요 경로)만 넣는다 — 「Manage reliability」
+- 중요 경로가 하나뿐이면 그 경로에 있는 서비스들의 SLA를 모두 곱한다(N = S1 × S2 × … × Sn). 예로 앱 99.99%, 데이터베이스 99.95%, 캐시 99.9%를 한 경로에 둔 워크로드를 든다 — 같은 절의 표
+- 하나가 멈춰도 다른 하나로 계속 돌아가는 경로가 있으면 그 둘이 함께 멈출 확률로 셈하고, 여러 지역에 배포하면 「1 − (1 − 한 지역의 값)^지역 수」로 셈한다 — 같은 표
+- 셈한 가동 시간이 목표에 못 미치면 더 높은 등급의 SLA를 고르거나 중복을 더한다(여러 가용성 영역, 여러 지역). 바꿀 때마다 다시 셈한다 — 같은 절
+- 한국어 표기: composite SLA → **복합 SLA**, critical path → 중요 경로, multi-region SLA → 다중 지역 SLA, redundancy → 중복성(이중화로도 옮겼다)
+- 쓰지 않는 것: 예의 서비스별 수치, 가용성 영역 SLA가 있는 서비스 목록 — 가용성 영역은 `azure-regions-zones` 주제의 몫이다
+
+쓰일 곳: `azure-sla-lifecycle.composite-sla`(이름, 곱하는 법, 중복을 두어 높이기), `CompositeSlaDiagram`(서비스 A·B를 곱한 앱의 값), D23, G15
+
+## (phase 101) Microsoft 수명 주기 — Infrastructure Lifecycle FAQ - Microsoft Azure
+https://learn.microsoft.com/en-us/lifecycle/faq/azure-infrastructure
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-03-18. 사본: `docs-lifecycle-faq-azure-infrastructure.md`와 `ko-` 판.
+이 문서는 대상을 「Azure 인프라 제품과 기능」이라 밝힌다. 단계를 차례로 들 뿐, 모든 서비스(또는 대부분의 서비스)가 모든 단계를 거친다고 하지는 않는다(D29).
+
+- Azure 인프라 제품·기능의 수명 주기에는 큰 단계가 다섯 있다 — 비공개 미리 보기, 공개 미리 보기, 일반 공급(GA), 사용 중단과 이전 세대, 사용 중지 — 「What are the lifecycle stages …」
+- **비공개 미리 보기**는 초대받은 일부 고객만 들어오는 단계다. 더 넓게 내놓기 전에 초기 기능을 평가하고 의견을 준다. 기능이 덜 갖춰졌거나 크게 바뀔 수 있고, 지역·구독 유형·용량 등으로 쓸 수 있는 범위가 좁으며, 지원·문서가 적고 보통 SLA가 없다. 운영(프로덕션) 워크로드에 쓰라고 내놓은 것이 아니다 — 「Private preview」
+- 비공개 미리 보기는 대개 고른 소수의 고객·파트너에게 열린다 — Azure 구독이 있고, 기능을 검증할 뚜렷한 쓰임이 있고, 제때 의견을 줄 수 있고, 필요하면 비밀 유지 계약이나 미리 보기 조건을 맞출 수 있는 곳 — 같은 절
+- **공개 미리 보기**는 GA 전에 모든 Azure 고객이 기능을 평가하고 의견을 줄 수 있는 단계다. 비공개 미리 보기보다 다듬어졌지만 의견에 따라 바뀔 수 있고, 지역·구독 유형·용량으로 쓸 수 있는 범위가 좁을 수 있으며, 지원·문서는 비공개보다 낫지만 보통 SLA가 없고 SLA와 운영 지원 약속이 보장되지 않는다. 따로 밝히지 않는 한 운영 워크로드에 쓰라고 내놓은 것이 아니다 — 「Public preview」
+- 공개 미리 보기는 대개 Azure 구독이 있고, 기능을 시험해 의견을 줄 수 있고, 아직 GA가 아니어서 바뀔 수 있음을 알고, 미리 보기 조건을 맞출 수 있는 모든 Azure 고객이 쓸 수 있다 — 같은 절
+- **일반 공급(GA)**은 기능을 정식으로 내놓아 모든 Azure 고객이 운영에 쓰도록 지원하는 단계다. 기능이 안정되어 운영 워크로드에 맞게 충분히 시험되었고, 따로 밝히지 않는 한 지역·구독 유형·용량으로 막지 않으며, 지원과 문서를 다 갖추고, SLA와 운영 지원 약속이 보장되며, 지원 기간 동안 지원된다. 운영 워크로드에 권한다 — 「General availability (GA)」
+- 사용 중단 단계의 기능은 아직 쓸 수 있고 지원되지만 차차 거두어지는 중이라 새 개선을 받지 않고, 보통 사용 중지 최소 12개월 전에 알리며, 그동안 SLA는 계속 효력이 있다. 사용 중지 뒤에는 기능을 쓸 수 없고 지원·업데이트가 끝나며 SLA도 적용되지 않는다 — 「Deprecation & Previous-gen」, 「Retirement」
+- 한국어 표기: 제목 「인프라 수명 주기 FAQ - Microsoft Azure」. private preview → 프라이빗 미리 보기(본문)·비공개 미리 보기(절 안의 질문 제목), public preview → 공개 미리 보기(절 제목만 「공개 프리뷰」), general availability → GA(일반 공급), production workload → 프로덕션 워크로드, deprecation → 사용 중단·사용 중지 예정(섞였다), retirement → 사용 중지
+
+쓰일 곳: `azure-sla-lifecycle.preview`(두 항목의 정의 — 누가 쓸 수 있나, SLA, 운영 환경), `azure-sla-lifecycle.general-availability`(GA의 정의, SLA 보장, 운영에 권함, 미리 보기와 무엇이 다른가), `ServiceLifecycleDiagram`(세 단계의 차례와 단계마다 누가 쓸 수 있나·SLA), D26, D27, D28, D29
+
+## (phase 101) Microsoft 수명 주기 — Modern Lifecycle Policy
+https://learn.microsoft.com/en-us/lifecycle/policies/modern
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2024-06-18. 사본: `docs-lifecycle-policies-modern.md`와 `ko-` 판.
+
+- **최신 수명 주기 정책**은 계속 서비스되고 지원되는 제품·서비스에 적용된다. 세 조건을 맞추는 동안 지원이 이어진다 — 고객이 그 제품에 공개된 서비스·시스템 요구에 맞춰 최신 상태를 유지할 것, 고객에게 사용 권한(라이선스)이 있을 것, Microsoft가 지금 그 제품을 지원하고 있을 것 — 「첫 부분」
+- 이런 제품은 바뀌는 일이 잦을 수 있어 고객이 다가올 변경을 살펴야 한다. 따로 밝히지 않는 한, 고객이 조치하지 않으면 제품을 평소대로 쓰기 어려워지는 변경은 최소 30일 전에 알린다. 보안 업데이트는 나올 때 함께 알린다 — 「Change notification」
+- 앞으로 나올 기능과 출시 소식을 보는 곳으로 Azure는 Azure 업데이트 쪽(`https://azure.microsoft.com/updates`)을 든다 — 같은 절
+- 후속 제품·서비스 없이 지원을 끝낼 때는 최소 12개월 전에 알린다. 무료 서비스와 미리 보기 릴리스는 이 약속에서 빠진다 — 「Continuity and migration」
+- 이 정책을 따르는 일부 Azure 서비스·제품은 지원이 끝나기 최대 3년 전에 알릴 수 있다 — 같은 절
+- 고정 수명 주기 정책 같은 기존 정책을 따르는 제품은 정해진 기간 동안 서비스와 지원을 받고, 이미 그 정책으로 나온 제품은 공개된 지원 종료 날짜까지 지원된다 — 같은 절
+- 한국어 표기: Modern Lifecycle Policy → **최신 수명 주기 정책**, Fixed Lifecycle Policy → 고정 수명 주기 정책. Azure 업데이트 쪽은 한국어판에도 이름 없이 주소만 있다
+
+쓰일 곳: `azure-sla-lifecycle.lifecycle-policy`(정책의 대상, 지원이 이어지는 세 조건, 30일·12개월·3년 통지, 무료 서비스·미리 보기 제외), `azure-sla-lifecycle.general-availability`(새 기능 소식을 보는 곳 — Azure 업데이트, GA 뒤에도 바뀐다), D29
+
+## (phase 101) Microsoft 수명 주기 — Platform Lifecycle FAQ - Microsoft Azure
+https://learn.microsoft.com/en-us/lifecycle/faq/azure
+
+확인한 날 2026-10-30. 쪽에 적힌 처음 게시 2016-06-06, 갱신 2021-09-01, 「Last updated on」 2026-03-18. 사본: `docs-lifecycle-faq-azure.md`와 `ko-` 판.
+
+- Azure Virtual Machines(IaaS) 위에서 지원되는 Microsoft 소프트웨어는 고정 정책의 일반 지원·확장 지원 단계를 따르고, 그 밖의 모든 Azure 서비스는 최신 수명 주기 정책을 따른다 — 「첫 부분」
+- 한국어 표기: Fixed Policy → 고정 정책(이 쪽 한국어판), Mainstream and Extended Support → 일반 및 확장 지원 단계, Modern Lifecycle Policy → 최신 수명 주기 정책
+- 쓰지 않는 것: SDK·Cloud Services 게스트 OS의 12개월 통지 — 이 주제의 범위가 아니다
+
+쓰일 곳: `azure-sla-lifecycle.lifecycle-policy`(Azure 서비스는 최신 수명 주기 정책, VM에서 쓰는 Microsoft 소프트웨어는 고정 수명 주기 정책)
+
+## (phase 101) Azure 약관 — Supplemental Terms of Use for Microsoft Azure Previews
+https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/
+
+확인한 날 2026-10-30. 쪽에 적힌 「Last Updated」 2026년 6월. 사본: `azure-legal-preview-supplemental-terms.md`와 `ko-` 판. 약관 쪽(`/support/legal/`)은 phase 101 step 3이 허용 목록에 더했다(`docs/source/azure/CLAUDE.md`).
+
+- **미리 보기**는 Microsoft가 고객이 골라 평가해 보도록 내놓는 미리 보기·베타·출시 전의 기능, 서비스, 소프트웨어, 지역을 묶어 부르는 말이다 — 「Preview Terms」
+- 미리 보기는 Azure 사용 계약의 일부로 허가되고 미리 보기에 걸린 조건을 따른다. 이 조건에 동의하지 않으면 미리 보기를 쓰지 말라고 한다 — 쓰려면 동의해야 한다는 뜻이다 — 같은 절
+- 프런티어·조기 액세스·**비공개(프라이빗) 미리 보기**·연구·실험으로 지정된 초기 단계의 미리 보기를 「조기 액세스 미리 보기」로 묶어 따로 조건을 둔다 — 고객 안에서 새 기능을 시험·평가하고 Microsoft에 의견을 주는 데만 쓸 수 있고, 제3자에게 주거나 함께 쓰거나 공개할 수 없으며, 운영(프로덕션·라이브) 환경에 쓸 수 없고, 쓴 일은 기밀이다 — 「Early Access Previews」
+- 미리 보기를 GA와 맞대어 말하는 예: 컨테이너로 쓰는 AI 서비스의 미리 보기는 그 컨테이너가 일반 공급(GA)되면 미리 보기 컨테이너를 그만 쓰고 GA 버전으로 바꿔야 한다 — 「AI Services in Connected or Disconnected Containers (Previews)」
+- 주의: 덤프 NO.63·411의 해설이 이 약관에서 옮겼다는 문장(미리 보기는 있는 그대로 제공되고 SLA와 제한 보증에서 빠진다)은 이번에 받은 판(2026년 6월)에 없다. 미리 보기가 SLA 밖이라는 사실은 위 인프라 수명 주기 FAQ와 아래 AI Search 문서로 댄다(D26)
+- 한국어 표기: 제목 「Microsoft Azure 미리 보기에 대한 추가 사용 약관」, preview → 미리 보기, Early Access Previews → 조기 액세스 미리 보기, private preview → 프라이빗 미리 보기(아래 다른 절에서는 「비공개 미리 보기」·「개인 미리 보기」), public preview → 공개 미리 보기, general availability → 일반 공급("GA"), production → 프로덕션(「프로덕션 또는 "라이브" 운영 환경」)
+- 쓰지 않는 것: 서비스별 미리 보기 조건(생성형 AI, Quantum, Communication Services, Fabric 등) — 이 주제는 서비스 이름을 쓰지 않는다
+
+쓰일 곳: `azure-sla-lifecycle.preview`(미리 보기의 뜻, 쓰려면 약관에 동의, 비공개 미리 보기의 쓰임 — 내부 시험·평가와 의견, 남에게 줄 수 없음, 운영 환경 금지, 기밀), `azure-sla-lifecycle.general-availability`(GA가 되면 미리 보기 판을 GA 판으로 바꾸는 예 — 쓸지는 step 5가 정한다), D27, D28
+
+## (phase 101) Azure Resource Manager — Set up preview features in Azure subscription
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/preview-features
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-02-27. 사본: `docs-arm-preview-features.md`와 `ko-` 판.
+
+- 미리 보기 기능은 새 기능이 정식으로 나오기 전에 고객이 스스로 신청(옵트인)해 써 보게 한다. 그 가운데 일부는 원하는 사람 누구나 신청할 수 있고, 일부는 제품 팀의 승인을 받아야 한다 — 「첫 부분」
+- 구독의 미리 보기 기능은 Azure 포털(구독 → 설정 → 미리 보기 기능), Azure CLI, Azure PowerShell로 나열하고 등록한다 — 「List preview features」, 「Register preview feature」
+- 한국어 표기: preview features → 미리 보기 기능, opt in → 옵트인
+
+쓰일 곳: `azure-sla-lifecycle.preview`(누구나 신청하는 미리 보기와 승인이 필요한 미리 보기가 있다 — 이 문서는 「공개」·「비공개」라는 이름을 붙이지 않으므로 그 이름의 근거로는 쓰지 않는다), D27, D29
+
+## (phase 101) Azure AI Search — What's new in Azure AI Search (미리 보기 안내 문단)
+https://learn.microsoft.com/en-us/azure/search/search-api-preview (이 주소로 받으면 「What's new in Azure AI Search」 쪽이 열린다)
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-10-09. 사본: `docs-search-api-preview.md`(한국어판은 받지 않았다 — 표기는 위 문서들로 확인했다). 서비스 이름은 이 주제에서 쓰지 않는다. Learn 제품 문서가 미리 보기에 붙이는 안내의 실례로 적는다.
+
+- (preview)로 표시한 기능은 SLA가 덮지 않고, 운영 워크로드에 권하지 않으며, 일반 공급되기 전에 바뀌거나 제한될 수 있다 — 쪽 머리의 Important
+
+쓰일 곳: `azure-sla-lifecycle.preview`(미리 보기는 SLA가 없고 운영에 권하지 않는다는 둘째 근거), D26, D27
+
+## (phase 101) Microsoft Entra — What's new (Roadmap column descriptions)
+https://learn.microsoft.com/en-us/entra/fundamentals/whats-new-overview
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2026-03-16. 사본: `docs-entra-whats-new-overview.md`와 `ko-` 판.
+Microsoft Entra 제품의 로드맵 표에서 열을 설명한 것이다. Azure 전체의 정의는 인프라 수명 주기 FAQ로 대고, 이 쪽은 다른 Microsoft 문서도 같은 구분과 한국어 표기를 쓴다는 근거로만 쓴다.
+
+- 공개 미리 보기는 필요한 라이선스가 있는 모든 고객이 쓸 수 있고, 고객 지원이 제한될 수 있으며 표준 SLA가 적용되지 않는다. GA는 사용 허가가 있는 모든 고객이 쓸 수 있고 모든 Microsoft 지원 경로로 지원된다 — 「Roadmap column descriptions」
+- 한국어 표기: public preview → 공개 미리 보기, general availability → GA (일반 공급)
+
+쓰일 곳: (표기 근거) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`
+
+## (phase 101) Microsoft Entra — New name for Azure Active Directory
+https://learn.microsoft.com/en-us/entra/fundamentals/new-name
+
+확인한 날 2026-10-30. 페이지의 「Last updated on」 2025-05-07. 사본: `docs-entra-new-name.md`.
+
+- Microsoft는 Azure Active Directory(Azure AD)의 이름을 Microsoft Entra ID로 바꿨다 — 「첫 부분」
+
+쓰일 곳: D22(덤프의 옛 이름. 이 주제는 이 서비스의 이름을 쓰지 않는다)
+
+## (phase 101) 한국어 표기 정리 — `azure-sla-lifecycle`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 101 step 3). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 영문 | 쓸 이름 | 근거 |
+|---|---|---|
+| service-level agreement | **서비스 수준 계약(SLA)** | Well-Architected 지표 문서·Learn 「Describe the benefits of using cloud services」 단원 2 한국어판이 「SLA(서비스 수준 계약)」로 쓴다. 개념 이름은 이 과목의 다른 이름처럼 한국어를 앞에 둔다(guide의 잠정 이름 그대로) |
+| service-level objective | SLO(서비스 수준 목표) | Well-Architected 지표 문서 한국어판. 이 주제가 꼭 써야 할 때만 한 줄로 푼다 |
+| service credit | **서비스 크레딧** | Well-Architected 지표 문서·SLA 읽는 법 문서 한국어판 |
+| composite SLA | **복합 SLA** | Cloud Adoption Framework 「클라우드 자산 보호」와 SLA 읽는 법 문서가 영문·한국어판 모두 「composite SLA / 복합 SLA」로 쓴다. Well-Architected 지표 문서는 같은 곱셈을 「복합 SLO」로 부른다 — 이 주제가 곱하는 값은 서비스들이 공개한 SLA이고, SLO를 따로 들이면 낱말이 하나 더 늘어나므로 「복합 SLA」를 쓴다. 이 값은 어림이지 Microsoft가 약속하는 SLA가 아니라는 것을 본문이 함께 밝힌다(SLA 읽는 법 문서) |
+| uptime / downtime / connectivity | 가동 시간 / 가동 중지 시간 / 연결 | Well-Architected 지표 문서·SLA 읽는 법 문서 한국어판. 「가동 중지 시간」을 낱말로 세우기 어색하면 「서비스가 멈춘 시간」으로 풀어 쓴다 |
+| preview | **미리 보기** | 미리 보기 약관·인프라 수명 주기 FAQ·미리 보기 기능 문서 한국어판 |
+| private preview (목록 항목) | **비공개 미리 보기**(Private preview) | 인프라 수명 주기 FAQ 한국어판의 절 안 질문 제목, 미리 보기 약관 한국어판의 「비공개 미리 보기 및 공개 미리 보기」. 두 한국어판 본문은 「프라이빗 미리 보기」를 더 많이 쓰고 약관은 「개인 미리 보기」도 쓴다 — 짝 「공개 미리 보기」와 낱말이 맞서 한 쌍으로 읽히는 「비공개」를 고른다 |
+| public preview (목록 항목) | **공개 미리 보기**(Public preview) | 인프라 수명 주기 FAQ·미리 보기 약관·Microsoft Entra 한국어판. 인프라 FAQ의 절 제목 「공개 프리뷰」는 쓰지 않는다 |
+| Early Access Previews | 조기 액세스 미리 보기 | 미리 보기 약관 한국어판. 개념 이름으로 쓰지 않는다 — 비공개 미리 보기의 조건(운영 환경 금지, 남에게 줄 수 없음)을 대는 근거다 |
+| general availability | **일반 공급(GA)** | 인프라 수명 주기 FAQ 「GA(일반 공급)」, 미리 보기 약관 「일반 공급("GA")」, Microsoft Entra 「GA (일반 공급)」. 개념 이름은 한국어를 앞에 둔다 |
+| production workload / environment | 운영 환경 | 한국어판은 「프로덕션 워크로드」(인프라 FAQ)와 「프로덕션 또는 "라이브" 운영 환경」(약관)을 쓴다 — 뜻이 드러나는 「운영 환경」을 쓰고 처음 나올 때 실제 사용자가 쓰는 서비스를 실행하는 환경이라고 푼다 |
+| Modern Lifecycle Policy | **최신 수명 주기 정책** | 최신 수명 주기 정책 한국어판 제목, Azure 플랫폼 수명 주기 FAQ 한국어판 |
+| Fixed Lifecycle Policy | 고정 수명 주기 정책 | 최신 수명 주기 정책 한국어판. Azure 플랫폼 수명 주기 FAQ 한국어판의 「고정 정책」은 줄인 말이라 쓰지 않는다 |
+| Mainstream / Extended Support | 일반 지원 / 확장 지원 | Azure 플랫폼 수명 주기 FAQ 한국어판 「일반 및 확장 지원 단계」. 쓸지는 step 5가 정한다 |
+| Azure updates | Azure 업데이트 | 한국어 문서에 따로 붙은 이름이 없다(최신 수명 주기 정책 한국어판도 주소만 든다). 쪽 이름을 그대로 옮기고 주소(`azure.microsoft.com/updates`)를 함께 적는다 |
+| end of support / retirement | 지원 종료 / 사용 중지 | 최신 수명 주기 정책 한국어판 「지원을 종료하기 전에」, 인프라 수명 주기 FAQ 한국어판 「사용 중지」(사용 중단·사용 중지 예정·폐기 예정이 섞였다 — 이 주제는 「지원 종료」를 주로 쓴다) |
+| Microsoft Entra ID (옛 Azure AD) | (쓰지 않는다) | 덤프의 옛 이름 「Azure Active Directory」를 대조한 근거로만 적는다 — D22 |

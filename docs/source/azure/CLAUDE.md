@@ -33,10 +33,12 @@
 - `learn.microsoft.com` — 학습 경로·단원(`/training/`), 제품 문서(`/azure/`, `/entra/`, `/purview/` 등), 자격증 학습 가이드(`/credentials/`).
   사실은 영문판(`en-us`)으로 확인하고, 한국어판(`ko-kr`)은 **용어 표기를 확인하는 데만** 쓴다 — 기계 번역이라 문장이 어색하거나 뜻이 흐려진 곳이 있다.
 - `azure.microsoft.com` — 제품·가격 페이지와 「클라우드 컴퓨팅 사전」(`/resources/cloud-computing-dictionary/`). 블로그(`/blog/`)는 쓰지 않는다.
+  약관 쪽(`/support/legal/` — 예: 「Supplemental Terms of Use for Microsoft Azure Previews」)도 쓴다 — 2026-10-30 더함. 미리 보기를 정하는 Microsoft 문서가 거기 있고, Microsoft가 낸 공식 문서라 이 목록의 기준에 맞는다(phase 101 설계).
 
 **쓰지 않는 곳**: Microsoft Q&A·Tech Community·블로그, 위키백과, 자격증 교재, 덤프 사이트, 다른 클라우드 업체의 문서. 공식 문서보다 쉽게 풀어 써 있어도 마찬가지다.
 
-**목록에 없는 곳**(예: SLA 약관이 있는 `microsoft.com/licensing`)은 그 주제를 만드는 phase의 설계 때 위 기준으로 판단한다. 쓰기로 하면 이 목록에 먼저 더하고 쓴다.
+**목록에 없는 곳**은 그 주제를 만드는 phase의 설계 때 위 기준으로 판단한다. 쓰기로 하면 이 목록에 먼저 더하고 쓴다.
+SLA 약관이 있는 `microsoft.com/licensing`은 **쓰지 않기로 판단했다** — 그 쪽은 스크립트로 글자를 그려 `fetch_page.py`로 받을 수 없고, 받아 두지 못한 문서는 전사 검사를 할 수 없다(phase 101 설계).
 
 **공식 문서는 바뀐다.** Azure 서비스는 이름과 요금 체계가 자주 바뀐다. `official.md`의 항목마다 확인한 날을 적고,
 지원 종료가 예고된 기능(예: Blueprints)은 그 날짜와 함께 적는다.
