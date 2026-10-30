@@ -1,0 +1,507 @@
+no	primary	secondary	dup_of	note
+1	monitoring	x-data-ai-iot		이벤트 중앙 수집(덤프 답 Event Hubs)
+2	management-tools			macOS PowerShell Core로 스크립트 실행
+3	network-protection			웹 공격 차단·공격 보고서(DDoS)
+4	sla-lifecycle			비공개·공개 미리 보기 특징
+5	shared-responsibility			IaaS에서 공급자 책임
+6	cloud-computing			CapEx vs OpEx 사례
+7	network-protection	load-balancing		VM HTTP 노출: Traffic Manager 불가
+8	cloud-computing			종량제 이전 시 지출 모델(OpEx)
+9	management-tools			PowerShell 스크립트를 CLI 환경에서?
+10	cloud-computing			소비 기반 요금제·서버리스
+11	cloud-computing			스팟 VM: 남는 용량 할인
+12	cost-management	storage-services		지역·읽기쓰기·지역 간 전송 비용
+13	x-trust-privacy			Service Trust Portal·준수 관리자
+14	x-support			24x7 전화 지원 최저가 플랜
+15	shared-responsibility			SaaS에서 공유되는 책임
+16	shared-responsibility	service-types		SaaS·IaaS 책임, Backup 유형
+17	service-types			IaaS 예시 리소스
+18	shared-responsibility			SaaS 고객 책임(구성)
+19	x-data-ai-iot	app-hosting		ML·IoT Hub·봇·Functions 설명
+20	regions-zones			데이터센터 장애 대비 VM 배치
+21	identity			SSO·권한 부여·MFA 정의
+22	cloud-benefits			사용자 가까이 배포: 지리적 분산
+23	shared-responsibility			서비스 모델별 고객 책임 순서
+24	governance			정책 묶음: 이니셔티브
+25	monitoring			페이지 로드 시간: App Insights
+26	identity	security-model		구독용 새 사용자 만드는 곳
+27	regions-zones	virtual-machines		데이터센터 장애: 가용성 영역
+28	identity			Azure AD 온프레미스 앱·SSO·기기
+29	virtual-networking			온프레미스-VNet VPN 필요 리소스
+30	cloud-models			데이터센터 폐쇄 가능한 클라우드
+31	network-protection			Azure Firewall NAT 규칙
+32	virtual-networking			VPN 장치 정의: 로컬 네트워크 게이트웨이
+33	governance			삭제 잠금된 RG 삭제 조건
+34	cost-management	cloud-computing		예약 VM 인스턴스 최장 기간
+35	x-trust-privacy			Compliance Manager 접근 위치
+36	governance			정책 이니셔티브 정의
+37	security-model	x-trust-privacy		규제 준수 보고서: Defender
+38	identity			인증 정의
+39	sla-lifecycle			최신 수명 주기 정책(12개월 고지)
+40	resource-hierarchy			구독 관리자·계정, RG와 구독 관계
+41	governance			여러 구독 규정 준수: Azure Policy
+42	cost-management			미사용 리소스 중 과금: 공용 IP
+43	management-tools			Android에서 Cloud Shell Bash
+44	management-tools			일관된 배포 플랫폼: ARM
+45	regions-zones			Azure China·Government 운영
+46	x-data-ai-iot			SQL DB·Synapse·HDInsight 구분
+47	x-data-ai-iot			IoT Hub·IoT Central·Sphere 구분
+48	resource-hierarchy			VM의 다른 구독 이동 가능 여부
+49	x-support			전화·메일 지원: Premier
+50	storage-services			액세스 계층 설정 수준·용도
+51	resource-hierarchy			VM의 다른 구독 이동(OCR 손상)
+52	security-model	network-protection		DDoS 보호의 심층 방어 계층
+53	governance			허용 안 된 유형 정책과 기존 VNet
+54	resource-hierarchy	cost-management,security-model		RG 지역·태그·권한 상속
+55	management-tools			Android에서 PowerApps로 VM 생성
+56	management-tools			반복 리소스 생성 자동화: ARM 템플릿
+57	sla-lifecycle			미리 보기·GA 공개 범위
+58	sla-lifecycle			SLA 최소 가동률·높이는 법
+59	resource-hierarchy	cost-management		부서별 결제 방식 분리: 구독
+60	monitoring			VM 끈 사용자 확인: 활동 로그
+61	cloud-computing	cloud-benefits		탄력성·CapEx 절감·가상화
+62	cost-management			비용 한도 메일: 예산 경고
+63	sla-lifecycle			공개 미리 보기의 SLA 제외
+64	resource-hierarchy			구독 관리자·계정, RG와 구독 관계
+65	service-types			Cosmos DB 서비스 유형
+66	storage-services			보관 계층 데이터 읽기 전 리하이드레이션
+67	cost-management	virtual-machines		미사용 VM 비용 절감: 포털에서 중지
+68	network-protection			NSG 인바운드 규칙 원본 종류
+69	governance			삭제 잠금된 RG 삭제 조건(OCR 손상)
+70	service-types			Cosmos DB 서비스 유형
+71	sla-lifecycle			SLA 미달 시 서비스 크레딧
+72	regions-zones			데이터센터 장애: 여러 지역 배포
+73	identity			SSO·권한 부여·MFA 정의(OCR 손상)
+74	security-model			디스크 암호화 전 Key Vault
+75	cloud-benefits			사용자 가까이 배포하는 이점
+76	governance			RG 삭제 방지: 잠금
+77	governance			Blueprints 구성·할당·권한
+78	cloud-computing			스팟 VM: 남는 용량 할인
+79	resource-hierarchy			Azure에서 처음 만드는 것: 구독
+80	monitoring	x-other		블레이드 고르기(Advisor·Monitor 등)
+81	security-model			RG에 읽기 권한자 역할 할당 위치
+82	regions-zones			가용성 영역이 막는 장애 범위
+83	management-tools			Azure 밖 리소스 관리: Arc
+84	management-tools			Android에서 Cloud Shell PS로 VM
+85	monitoring	x-data-ai-iot		Log Analytics 경고 쿼리·주기 설정
+86	virtual-networking			VNet 기본 연결·이름·주소 공간
+87	regions-zones	resource-hierarchy		데이터센터 장애: RG 분산은 무효
+88	cloud-benefits			중단 최소화: 고가용성
+89	x-support			지원 요청 만드는 곳
+90	app-hosting	virtual-machines		컴퓨팅 서비스 설명 짝짓기
+91	cost-management			RG 비용·인바운드/아웃바운드 전송 비용
+92	cost-management	cloud-computing		CapEx/OpEx 유연성·VM 비용 요인
+93	resource-hierarchy	cost-management,security-model		RG 지역·태그·권한 상속
+94	cost-management			예약 할인·같은 크기 VM·중지 시 비용
+95	cost-management			무료 계정 서비스 범위·만료·개수
+96	x-other	app-hosting		Service Fabric 클러스터 설계
+97	x-support			전화·메일 지원: Basic 불가
+98	cloud-models			하이브리드·프라이빗·퍼블릭 특징
+99	management-tools			클라우드 관리 수단(OS·CLI·브라우저)
+100	management-tools	monitoring		OS별 관리 도구(그림은 Advisor 진술)
+101	cost-management			사무실별 청구 보고서: 태그
+102	network-protection			VM 포트 허용: NSG 수정
+103	cloud-benefits			Site Recovery 이점(덤프 답 내결함성)
+104	service-types			Cosmos DB 서비스 유형
+105	cloud-models			제3자 소유·다중 테넌트: 퍼블릭
+106	governance			잠금 중복·상속·추가
+107	monitoring			Advisor 권장 사항 범위
+108	storage-services			Blob·Files·Queue 용도 짝짓기
+109	shared-responsibility			SaaS 고객 책임(구성)
+110	virtual-machines			Azure Virtual Desktop 정의
+111	governance			AIP 워터마크(현 Purview 정보 보호)
+112	identity			인증 방식 보안·편의 비교
+113	resource-hierarchy			계정·구독 관계, 구독 병합 불가
+114	monitoring			VM 끈 사용자 확인: 활동 로그
+115	cloud-benefits			자동 크기 조정 = 탄력성
+116	security-model	network-protection	52	DDoS 보호의 심층 방어 계층
+117	app-hosting			ACI의 서비스 범주
+118	service-types			SQL VM·SQL DB·Cosmos DB 유형
+119	virtual-networking			ExpressRoute 동작 OSI 계층
+120	monitoring			Advisor 경고·필터·성능 권장
+121	resource-hierarchy			VM의 다른 구독 이동(OCR 손상)
+122	management-tools			Cloud Shell·CLI·PS 설치와 지원 OS
+123	governance			생성 지역 제한: Azure Policy
+124	cloud-computing			종량제와 CapEx/OpEx
+125	cloud-models			웹앱+온프레미스 SQL: 하이브리드
+126	app-hosting	cloud-computing		서버리스 예시(덤프 답 VM 오류)
+127	network-protection			여러 구독·VNet 필터링: Firewall
+128	x-support			구독 할당량 증가 요청 위치(지원 블레이드)
+129	monitoring			서비스·지역 상태 개요는 Azure 상태
+130	x-data-ai-iot			SQL DB·SQL DW·HDInsight 구분
+131	app-hosting			서버 없이 코드 실행하는 서비스
+132	sla-lifecycle			비공개·공개 미리 보기·GA 공개 대상
+133	app-hosting			서버 없이 코드 실행하는 서비스
+134	cost-management	security-model		구독 소유권 이전·무료→종량제·지출 한도
+135	service-types			관리 노력 최소 웹앱 배포 유형
+136	resource-hierarchy			리소스 그룹 중첩·소속·지역 혼합
+137	security-model			관리 그룹 권한 위임 최소 권한 역할
+138	x-trust-privacy			Compliance Manager 접근 위치
+139	cloud-benefits			확장성·고가용성·지리적 분산 짝짓기
+140	cloud-benefits			월말 급증 사용량에 맞는 탄력성
+141	governance			삭제 잠금 리소스 그룹 삭제 조건
+142	identity			암호+보안 질문은 MFA
+143	sla-lifecycle			복합 SLA 계산
+144	app-hosting			서버리스 컴퓨팅 서비스 고르기
+145	cloud-benefits			클라우드 이점 짝짓기(그림 판독 불가)
+146	storage-services			블록 Blob 계정이 지원하는 중복성
+147	cloud-benefits			수직 확장의 예
+148	storage-services			보관 계층 데이터는 복원 후 접근
+149	monitoring	x-devops,x-data-ai-iot		Advisor·Insights·DevOps·AI 구분
+150	sla-lifecycle			미리 보기·GA 구분과 기능 갱신
+151	identity			패치된 장치만 접근 허용은 조건부 액세스
+152	security-model			배포 중 관리자 자격 증명 보호는 Key Vault
+153	security-model			규정 준수 보고서는 Security Center
+154	resource-hierarchy			부서별 분리는 구독·리소스 그룹
+155	service-types			PaaS 웹앱의 OS 제어·자동 확장 여부
+156	regions-zones			데이터 센터 장애 대비 가용성 영역
+157	identity			MFA 구현 조건·인증 방법·대상 계정
+158	storage-services			스토리지 계정 이름의 전역 고유성
+159	resource-hierarchy	security-model		여러 VM 권한 위임 단위는 리소스 그룹
+160	cloud-benefits			탄력성·민첩성·지리적 분산 짝짓기
+161	storage-services			Blob Storage의 용도
+162	cloud-benefits			서비스 장애 시 접근 보장은 고가용성
+163	network-protection			DDoS 계획으로 HTTP 허용 불가
+164	resource-hierarchy			리소스 그룹 중첩·VM 소속
+165	cloud-benefits			고가용성·지리적 분산·확장성 짝짓기
+166	service-types			App Service+VM은 PaaS만인가
+167	security-model			Sentinel·보안 점수·Key Vault 짝짓기
+168	monitoring			Service Health로 볼 수 있는 것·경고
+169	management-tools			Cloud Shell PowerShell에서 az 명령
+170	security-model			AD 보안 이벤트 자동 분석은 Sentinel
+171	cost-management			SQL 라이선스 절감은 Hybrid Benefit
+172	sla-lifecycle			공개 미리 보기는 모든 고객에게 공개
+173	resource-hierarchy		113	계정과 여러 구독·구독 병합
+174	x-data-ai-iot			Power BI용 대용량 저장소 선택
+175	sla-lifecycle			Azure AD 등급별 SLA와 서비스 크레딧
+176	management-tools			OS별 쓸 수 있는 관리 도구
+177	x-trust-privacy			개인정보처리방침이 설명하는 내용
+178	regions-zones			Azure 중국·Government 운영 주체·대상
+179	cloud-benefits			비용을 예측하는 이점(예측 가능성)
+180	virtual-networking			사이트 간 VPN의 기능
+181	governance			제거된 잠금을 자동 복원하는 서비스
+182	service-types			Azure가 업데이트하는 SQL DB는 PaaS
+183	cost-management			사용 안 하는 사용자 계정 삭제와 비용
+184	virtual-networking			VM 간 연결 차단은 별도 가상 네트워크
+185	security-model			규정 준수 평가는 Security Center
+186	regions-zones	cost-management		북미 지역 수·지역별 데이터 센터·전송 비용
+187	service-types			IaaS·PaaS·SaaS 설명 짝짓기
+188	cloud-benefits	service-types		Site Recovery는 재해 복구·서비스 유형
+189	service-types			PaaS만 쓰는 이전 조합 고르기
+190	storage-services			액세스 계층 설정 수준과 권장 용도
+191	service-types			App Service+스토리지는 PaaS만인가
+192	virtual-machines			VM에 추가로 필요한 리소스
+193	management-tools			ARM 템플릿 배포·코드 정의·범위
+194	identity			앱이 보안 토큰을 받는 곳은 Azure AD
+195	cloud-models			퍼블릭 클라우드의 특징
+196	sla-lifecycle			Azure AD 등급별 SLA와 서비스 크레딧
+197	network-protection			VNet 전체 인바운드 제한은 Firewall
+198	x-trust-privacy			Trust Center의 소속·접근·내용
+199	storage-services			네트워크 드라이브 매핑은 Azure Files
+200	monitoring			VM 중지 시 경고는 Azure Monitor
+201	service-types	app-hosting		PaaS 웹앱의 OS 제어·확장 방식
+202	management-tools			같은 VM 반복 배포는 ARM 템플릿
+203	security-model			심층 방어 계층 짝짓기(그림 판독 불가)
+204	x-trust-privacy			DPA·개인정보처리방침·OST 짝짓기
+205	x-devops			Azure DevOps의 CI/CD·Git·호스팅 여부
+206	monitoring	cost-management		미사용 VM 식별은 Advisor
+207	identity			Azure AD의 DC 필요 여부·인증·라이선스
+208	cloud-models			하이브리드·퍼블릭 클라우드 오해 판별
+209	cost-management			Cost Management로 볼 수 있는 범위
+210	sla-lifecycle			미리 보기 접근·운영 사용·SLA 여부
+211	x-support			전화·메일 지원 플랜(Standard)
+212	identity			Azure 리소스 접근에 쓰는 ID 출처
+213	virtual-machines			확장 집합의 동일 구성·자동 증감
+214	security-model			보안 점수 확인은 Defender for Cloud
+215	governance			정책 할당 후 기존 비준수 리소스 동작
+216	monitoring			모범 사례 비교는 Advisor
+217	security-model			AVD 리소스 권한은 RBAC 역할
+218	monitoring			계획된 유지 관리 알림은 Service Health
+219	security-model			Sentinel 플레이북은 위협 자동 대응
+220	management-tools			iPhone에서 쓰는 관리 도구
+221	regions-zones			지역의 정의(저지연 데이터 센터 묶음)
+222	security-model	network-protection		DDoS 보호의 심층 방어 계층
+223	monitoring			Service Health로 볼 수 있는 것·경고
+224	management-tools			PowerShell·Cloud Shell 실행 환경
+225	security-model			JIT VM 액세스를 켜는 서비스
+226	x-data-ai-iot			다중 지역 쓰기·JSON은 Cosmos DB
+227	cloud-benefits			리소스 할당·해제는 탄력성
+228	management-tools		193	ARM 템플릿 배포·코드 정의·범위
+229	network-protection			VM 포트 허용은 NSG 수정
+230	identity			자격 증명 확인은 인증
+231	storage-services			LRS의 데이터 복사본 수
+232	management-tools			Azure Arc가 관리하는 대상
+233	regions-zones			가용성 영역은 한 지역 안의 분리 위치
+234	regions-zones			Azure 중국은 별개 인스턴스
+235	management-tools			데스크톱 앱의 Azure 관리는 API
+236	network-protection			웹-DB 서버 간 연결 제한은 NSG
+237	sla-lifecycle			유료 서비스 SLA 하한·SLA 높이는 법
+238	cloud-models			데이터 센터가 필요 없는 퍼블릭 클라우드
+239	governance			Azure Policy 할당 대상·비준수 처리
+240	data-movement			AzCopy·Explorer·File Sync 구분
+241	cloud-benefits	cloud-computing		신속한 프로비저닝·CapEx→OpEx
+242	storage-services			액세스 계층 지원 범위·설정 수준
+243	regions-zones			리소스 배포 시 지정하는 단위는 지역
+244	identity			온프레미스 AD 계정을 Azure AD로 동기화
+245	monitoring	security-model		Advisor 백업 목록·보안 점수·권장 의무
+246	monitoring			Azure Monitor 온프레미스 감시·경고
+247	x-support			전화·메일 지원 플랜(Pro Direct)
+248	cloud-models			하이브리드·퍼블릭 클라우드 오해 판별
+249	resource-hierarchy			VM의 다른 구독으로 이동 가능 여부
+250	identity			자격 증명 확인은 인증
+251	cost-management			평가판 만료 후 못 하는 일
+252	virtual-networking			ExpressRoute·피어링·VPN 게이트웨이
+253	x-support			최저 비용 지원 플랜은 Basic
+254	management-tools			온프레미스 서버를 Azure 리소스로(Arc)
+255	cost-management			예산 경고로 비용 초과 알림
+256	management-tools			Cloud Shell Bash로 CLI 실행
+257	service-types			요구 사항별 PaaS·IaaS 선택
+258	governance			삭제 잠금된 리소스 그룹 삭제
+259	cost-management			리소스 그룹·VPN 데이터 전송 비용
+260	management-tools			태블릿에서 VM을 만드는 도구
+261	network-protection			NSG를 연결할 수 있는 대상
+262	service-types			서비스별 IaaS·PaaS·SaaS 구분
+263	virtual-networking	virtual-machines		ExpressRoute·VPN·AVD 설명 매칭
+264	identity			Identity Protection 로그인 위험 정책
+265	management-tools			Azure CLI를 실행하는 도구
+266	service-types			리프트 앤 시프트 이전 모델
+267	regions-zones			Azure 지역 정의
+268	cloud-models			하이브리드 클라우드 정의
+269	network-protection			VM에 HTTP 허용(방화벽·NSG)
+270	resource-hierarchy			권한 일괄 위임 단위(리소스 그룹)
+271	x-data-ai-iot			IoT 센서 데이터 수집 리소스
+272	cloud-models			프라이빗 클라우드와 데이터 센터
+273	monitoring			Azure Monitor에 통합되는 기능
+274	identity			SSO·인증 정의·조건부 액세스
+275	management-tools			클라우드 관리 수단(인터넷·브라우저)
+276	x-other			Marketplace 타사 어플라이언스 구매
+277	cloud-models			비용 최소 확장에 하이브리드
+278	cost-management			미사용 NIC 삭제와 비용
+279	management-tools			포털의 Cloud Shell 아이콘
+280	cloud-benefits			데이터 센터 장애 대비 내결함성
+281	regions-zones			Azure China·Government 운영 주체
+282	x-trust-privacy			Trust Center 성격·접근
+283	cloud-models	cloud-computing		프라이빗·하이브리드 제어, CapEx
+284	network-protection			방화벽·NSG의 트래픽 암호화 여부
+285	x-data-ai-iot	app-hosting		Synapse·ML·IoT Hub 등 매칭
+286	cost-management			무료 계정 한도
+287	management-tools			포털로 VM 생성(Android)
+288	virtual-networking	network-protection		VNet→스토리지 인터넷 경유 차단
+289	resource-hierarchy	identity		구독 관리자·계정·RG 관계
+290	service-types			PaaS만 쓰는 이전 계획
+291	identity			Azure AD 조인·그룹 동적 멤버십
+292	security-model			Defender for Cloud 규정 준수 평가
+293	x-devops			Azure Repos 버전 관리
+294	storage-services			스토리지 계정 복제본·용량
+295	virtual-networking			ExpressRoute 특성(BGP·회선)
+296	identity			Azure AD 특성(DC·M365 인증·라이선스)
+297	storage-services			GRS 복사본 수
+298	cost-management			리소스 비용 영향 요인
+299	cost-management			TCO 계산기 사용 대상
+300	x-support			지원 요청 가능한 플랜
+301	service-types			PaaS 특성(OS 제어·가격 계층·확장)
+302	management-tools			Cloud Shell 시작 위치
+303	cloud-benefits			내결함성·DR·확장성·지연 매칭
+304	app-hosting			컨테이너 실행 서비스(ACI·AKS)
+305	x-data-ai-iot			서버리스 이메일 알림(Logic Apps)
+306	storage-services			VM 데이터 디스크 저장 서비스
+307	storage-services			스토리지 계정 복제본·용량
+308	management-tools			PowerShell 스크립트 실행 환경
+309	resource-hierarchy	cost-management,security-model		OCR 훼손, NO.335 RG 진술로 추정
+310	service-types			VM은 IaaS, SQL DB는 PaaS
+311	identity			인증의 정의
+312	monitoring			Azure Monitor 대상·경고
+313	governance			잠금 중복·상속·조합
+314	virtual-machines			확장 집합과 데이터 센터 장애
+315	cloud-benefits			확장성·고가용성·지리적 분산
+316	cost-management			Cost Management 조회 범위
+317	cloud-models			물리 서버를 둘 수 있는 모델
+318	resource-hierarchy			계정·구독 관리와 구독 병합
+319	monitoring			Azure Monitor 로그·경고·다중 구독
+320	regions-zones			가용성 영역 지원 범위·용도
+321	governance			정책을 묶는 이니셔티브
+322	monitoring		107	Advisor 권장 사항 범위
+323	cost-management			웹사이트 이전 시 월 사용 요금
+324	data-movement			Data Box 오프라인 전송
+325	management-tools			Cloud Shell 접근(웹 브라우저)
+326	management-tools			ARM 템플릿 배포·IaC
+327	service-types			선행 앱 설치 필요한 앱 → IaaS
+328	sla-lifecycle			공개 미리 보기의 SLA
+329	x-data-ai-iot			SQL Data Warehouse 고가용성
+330	governance			삭제 잠금된 리소스 그룹 삭제
+331	cost-management	x-other		지역별 송신 요금·EA·Marketplace
+332	monitoring			Monitor 성능 데이터 저장소
+333	management-tools			ARM 템플릿의 일관된 배포
+334	cost-management			태그로 부서별 비용 구분
+335	resource-hierarchy	cost-management,security-model		RG 지역·태그·권한 상속
+336	cloud-computing	cloud-benefits		CapEx·구성 옵션·확장
+337	sla-lifecycle			복합 SLA 계산
+338	cloud-computing			종량제·CapEx/OpEx
+339	cloud-models			온프레미스+Azure VM 연결 모델
+340	regions-zones			가용성 영역 보호 범위
+341	cost-management			TCO 계산기 전기료 절감
+342	virtual-networking			VNet 기능(격리·분할)
+343	sla-lifecycle		58	SLA 보장 수준·높이는 법
+344	sla-lifecycle		132	미리 보기·GA 공개 범위
+345	cost-management			미사용 Azure AD 그룹과 비용
+346	monitoring			VM 서비스 장애 알림 확인
+347	x-trust-privacy			Trust Center 정보 제공
+348	service-types			PaaS 특성(OS 제어·가격 계층·확장)
+349	x-trust-privacy			개인정보처리방침
+350	cloud-computing			종량제·전기료·데이터 센터 CapEx/OpEx
+351	identity			온프레미스 AD 동기화·ID 사용
+352	storage-services			온프레미스와 동기화되는 스토리지
+353	x-data-ai-iot	app-hosting		ML·음성·IoT Hub·Functions 매칭
+354	storage-services			보관 계층 데이터 접근
+355	cloud-benefits			수직 확장 정의
+356	cloud-computing	cloud-benefits		CapEx·구성 옵션·확장
+357	governance			Policy로 VM 생성만 금지
+358	sla-lifecycle			서비스 공개 단계와 비용
+359	cost-management			Cost Management 사용 조건
+360	x-data-ai-iot			예측 분석 구축(ML 디자이너)
+361	identity			MFA 요건·방법·적용 대상
+362	identity		351	온프레미스 AD 동기화·ID 사용
+363	cloud-benefits			내결함성·DR·확장성·지연 매칭
+364	identity			Azure AD 그룹 정책·디바이스 조인
+365	cloud-models			퍼블릭 클라우드 공유 모델
+366	resource-hierarchy			RG 간 접근·삭제·다중 지역
+367	x-trust-privacy			GDPR 정의·적용·Azure 지원
+368	security-model			심층 방어 계층 순서
+369	resource-hierarchy			구독과 테넌트 관계
+370	cloud-models	cloud-computing		프라이빗·하이브리드 제어, CapEx
+371	cloud-benefits			수직·수평 확장 구분
+372	cost-management			할당 해제 VM에 남는 요금
+373	cost-management			비용 경고 발생 조건
+374	monitoring			Service Health 전역 상태 보기
+375	identity			SSO·인증 정의·조건부 액세스
+376	service-types			레거시 DB 앱 이전 모델
+377	app-hosting	x-data-ai-iot,monitoring		서버리스·빅데이터·APM·웹앱 매칭
+378	sla-lifecycle			VM SLA가 보장하는 것
+379	network-protection			방화벽으로 VM HTTP 허용
+380	x-support			아키텍처 리뷰 지원 플랜
+381	identity			Azure AD 조인·그룹 동적 멤버십
+382	cost-management			미사용 공용 IP 삭제로 비용 절감
+383	security-model			사용자 지정 역할·역할 할당 대상
+384	monitoring			Application Insights 소속 서비스
+385	x-data-ai-iot			MCU 포함 IoT 보안 솔루션(Sphere)
+386	security-model			사용자 지정 역할·다중 역할 할당
+387	cloud-computing			소비 기반 요금제와 서버리스
+388	governance			거버넌스 기능별 용도 매칭
+389	cost-management			ExpressRoute·지역 내 대역폭 과금
+390	sla-lifecycle			복합 SLA 계산
+391	regions-zones	cost-management		북미 지역 수·데이터센터·지역 간 전송비
+392	regions-zones			Azure Government 이용 자격
+393	monitoring			Azure Advisor 권장 사항 범위
+394	cost-management			무료 계정 제한·만료·개수
+395	virtual-networking			VM 간 통신 차단은 별도 VNet
+396	cost-management			체험 계정 만료 후 VM 시작 불가
+397	sla-lifecycle			장애 시 서비스 크레딧 지급
+398	service-types			서비스별 IaaS·PaaS·SaaS 매칭
+399	identity			Azure AD 그룹 정책·장치 조인
+400	cloud-computing			CapEx와 OpEx 구분
+401	security-model			Defender for Cloud 대상·요금·보고서
+402	load-balancing			전 세계 대용량 영상 전송은 CDN
+403	regions-zones	cost-management		북미 지역 수·데이터센터·지역 간 전송비
+404	monitoring			Azure Monitor와 통합되는 기능
+405	cloud-benefits			Site Recovery는 재해 복구
+406	app-hosting			Functions·App Service·ACI 용도
+407	sla-lifecycle			후속 없는 서비스 종료 사전 고지 기간
+408	governance			AIP(현 Purview)로 문서·메일 암호화
+409	cost-management			SA 라이선스 재사용(Hybrid Benefit)
+410	cloud-computing			클라우드 사용 조건과 용량 증설 비용
+411	sla-lifecycle			공개 미리 보기는 SLA 제외
+412	storage-services			파일 공유는 스토리지 계정에서 생성
+413	data-movement			File Sync로 온프레미스 데이터 동기화
+414	security-model			인증서 저장은 Key Vault
+415	governance			리소스 잠금 중복·상속·조합
+416	cost-management			예산 경고로 지출 한도 알림
+417	management-tools			ARM은 일관된 배포 플랫폼
+418	service-types			VM은 IaaS, SQL Database는 PaaS
+419	regions-zones		320	가용성 영역 지원 지역·OS·범위
+420	management-tools			Chrome OS+Cloud Shell 스크립트 실행
+421	sla-lifecycle		132	비공개·공개 미리 보기·GA 공개 범위
+422	security-model			Security Center 대상·요금·보고서
+423	virtual-machines	regions-zones		확장 집합으로 데이터센터 장애 대비 여부
+424	x-trust-privacy			지역 규정 준수 확인은 Trust Center
+425	monitoring	security-model		Advisor 백업 목록·보안 점수·지원 조건
+426	sla-lifecycle		58	SLA 기준치와 SLA 높이는 방법
+427	governance			AIP 레이블로 문서 워터마크 자동 추가
+428	network-protection			NSG로 특정 포트 허용
+429	shared-responsibility	service-types		SaaS에서 고객이 제공하는 것
+430	sla-lifecycle		358	미리 보기→GA 순서·관리 도구·비용
+431	cost-management			지역별 가격·예약·SQL DB 중지
+432	network-protection			여러 VNet 인바운드 제한은 Firewall
+433	x-trust-privacy			규정 준수 추적은 Compliance Manager
+434	cloud-benefits			요구 변화에 빠른 적응은 민첩성
+435	storage-services			보관 계층 데이터는 리하이드레이션 필요
+436	cost-management	storage-services	12	Blob 저장 비용의 지역·작업·전송 요인
+437	monitoring			VM 이벤트 쿼리 도구(Log Analytics)
+438	storage-services			액세스 계층 설정 수준·최저 비용·변경
+439	cost-management		259	리소스 그룹 비용·VPN 송수신 과금
+440	governance			리소스 그룹 삭제 방지는 잠금
+441	network-protection			NSG로 VM 포트 8080 허용
+442	governance			Policy 이니셔티브의 정의
+443	network-protection			인터넷→VM 포트 제어는 NSG
+444	resource-hierarchy			VM은 리소스 그룹에 배치
+445	management-tools			관리 도구별 지원 OS·브라우저
+446	x-data-ai-iot			PostgreSQL 배포·가격 계층 선택
+447	sla-lifecycle			월간 가동률 계산식
+448	management-tools			Windows 10에서 Azure CLI로 VM 생성
+449	management-tools			ARM 템플릿 형식은 JSON
+450	governance			허용 위치 제한은 Azure Policy
+451	virtual-networking			서버 네트워크 분리는 별도 VNet
+452	monitoring			VM 중지한 사용자 확인은 활동 로그
+453	x-data-ai-iot			Spark 기반 분석 서비스(Databricks)
+454	management-tools			반복 가능한 동일 배포는 ARM 템플릿
+455	regions-zones			가용성 영역이 막는 장애 범위
+456	app-hosting			컨테이너 관리는 AKS·ACI
+457	x-devops			VM 반복 생성·삭제는 DevTest Labs
+458	service-types			Microsoft 365는 SaaS
+459	cost-management			미사용 리소스 중 공용 IP 삭제
+460	security-model			Defender for Cloud 대상·요금·보고서
+461	regions-zones			가용성 영역은 한 지역 안
+462	x-trust-privacy	regions-zones		규정 표준·Azure Government 정의
+463	service-types			App Service·SQL DB는 PaaS
+464	cost-management			비용 추적은 예산
+465	cost-management		95	무료 계정 서비스 범위·만료·개수
+466	shared-responsibility			IaaS VM 이전 시 줄어드는 책임
+467	network-protection			NSG 연결 대상(서브넷·NIC)
+468	regions-zones			Azure Germany 이용 대상
+469	identity			SSO 제공은 Azure AD
+470	management-tools			Azure 포털 URL
+471	cloud-computing			웹사이트 이전 시 월 사용료(종량제)
+472	resource-hierarchy			리소스 그룹 간 접근·그룹 삭제
+473	x-data-ai-iot			SQL Data Warehouse 기본 고가용성
+474	virtual-networking			VM 간 통신 차단은 별도 VNet
+475	x-support			지원 플랜 포함·구매 조건·포럼
+476	cost-management			지역별 가격·예약·SQL DB 중지
+477	storage-services		307	스토리지 복제본 수·백업·용량 한도
+478	regions-zones			가용성 영역은 한 지역 안
+479	resource-hierarchy	governance		여러 구독 규정 관리는 관리 그룹
+480	x-data-ai-iot			Spark 기반 분석 서비스(Databricks)
+481	management-tools			온프레미스 서버 포털 관리는 Arc
+482	cost-management			TCO 계산기가 보여 주는 것
+483	network-protection			Firewall·NSG의 트래픽 암호화 여부
+484	cloud-models			퍼블릭·프라이빗·하이브리드 장점
+485	x-data-ai-iot			Spark 기반 분석 서비스(Databricks)
+486	x-support			구독 한도 증가는 지원 요청
+487	storage-services	virtual-machines		VM 데이터 디스크 저장소(페이지 Blob)
+488	security-model			SIEM은 Sentinel
+489	cost-management			지역별 가격·예약·SQL DB 중지
+490	cost-management			미사용 VM 비용 절감은 중지
+491	monitoring			계획된 유지 관리 확인은 Service Health
+492	cost-management			예약 VM 인스턴스 최장 기간
+493	regions-zones	sla-lifecycle		99.99% 위한 최소 VM·영역 수
+494	cloud-computing			유휴 용량 할인 제공은 스팟 VM
+495	storage-services		294	스토리지 복제본 수·백업·용량 한도
+496	identity	security-model		센서 위협 감지(ATP)·조건부 MFA
+497	virtual-networking			온프레미스 VPN 장치는 로컬 네트워크 게이트웨이
+498	governance			Policy 이니셔티브의 정의
+499	virtual-machines			AVD 세션 호스트 OS·연결 수·기능
+500	governance			정책 할당 후 기존 비준수 리소스 동작
+501	monitoring			Azure Advisor로 할 수 있는 일
+502	regions-zones			가용성 영역 지원 지역·OS·범위
+503	monitoring			비용 절감 권장은 Advisor
+504	storage-services			쿨 계층의 최적 용도
+505	identity			암호+보안 질문 로그인 인증 방식
+506	storage-services		307	스토리지 복제본 수·백업·용량 한도

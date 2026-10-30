@@ -7,6 +7,10 @@
  * 과목마다 원본이 다르다(ADR-053).
  * - aws: docs/source/concepts-raw.md
  * - network: docs/source/network/raw/lecture.md(강의), docs/source/network/raw/interview.md(면접)
+ * - azure: docs/source/azure/raw/glossary/(용어집), docs/source/azure/raw/dump/dump.md(덤프),
+ *   docs/source/azure/raw/official/(공식 문서 추출본)
+ * 원본 자리에 폴더를 주면 그 안의 `.md` 파일 하나하나를 원본 하나로 센다(하위 폴더는 보지 않는다).
+ * azure의 공식 문서는 주제를 만드는 step마다 그 폴더에 늘어나므로 파일이 아니라 폴더로 적는다.
  *
  * 공백·문장부호를 지운 뒤 원본과 32자 이상 연속으로 일치하는 구간을 잡아낸다.
  * 임계값 32자는 1-exam-gaps 개념 77개가 전부 통과하는 최소값이다. 이 값을 바꾸지 마라 —
@@ -20,27 +24,57 @@
  * ADR-009가 재작성 대상에서 제외한 필드이고(대신 check-structure.mjs가 baseline으로
  * 고정한다), 한글 없는 겹침은 베낀 문장이 아니라 서비스 이름 나열이다.
  * network는 여기에 문항의 `prompt`와 `explanation`을 더한다. 면접 답은 완성된 문장이라
- * 해설로 그대로 옮겨지기 쉽기 때문이다. aws의 대상은 ADR-025 그대로 개념뿐이다.
+ * 해설로 그대로 옮겨지기 쉽기 때문이다. azure도 문항을 본다. 덤프 해설과 용어집 설명이 완성된
+ * 문장이고, 한국어판 공식 문서가 기계 번역이라 그대로 옮기기 쉽기 때문이다.
+ * aws의 대상은 ADR-025 그대로 개념뿐이다.
  *
  * 원본은 ADR-009에 따라 gitignore로 로컬에만 둔다. clone한 환경에는 없는 것이 정상이라,
  * 원본이 없으면 실패가 아니라 건너뜀(exit 0)으로 끝난다. 일부만 있으면 있는 것으로 검사한다.
+ * `.md`가 하나도 없는 폴더는 없는 원본으로 친다.
  * 그래서 이 검사는 npm test·npm run build에 엮지 않고 원본을 가진 사람이 손으로 돌린다.
  *
- * 사용법: node scripts/check-verbatim.mjs [--subject aws|network] [원본 경로 ...]
+ * 사용법: node scripts/check-verbatim.mjs [--subject aws|network|azure] [원본 경로 ...]
  * --subject가 없으면 aws다. 원본 경로를 주면 그 과목의 기본 원본 대신 그것을 쓴다.
+ * 원본 경로에는 파일도 폴더도 줄 수 있다.
  * 겹침이 있으면 exit 1, 인자가 잘못되면 exit 2.
  */
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, relative, resolve } from 'node:path'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const MIN_RUN = 32 // ADR-009가 정한 임계값. 바꾸지 마라.
 
-/** 과목마다 기본 원본. 데이터는 src/data/<과목>/에 있다. */
+/** 과목마다 기본 원본. 데이터는 src/data/<과목>/에 있다. 폴더는 끝에 `/`를 붙여 적는다. */
 const DEFAULT_SOURCES = {
   aws: ['docs/source/concepts-raw.md'],
   network: ['docs/source/network/raw/lecture.md', 'docs/source/network/raw/interview.md'],
+  azure: ['docs/source/azure/raw/glossary/', 'docs/source/azure/raw/dump/dump.md', 'docs/source/azure/raw/official/'],
+}
+
+/**
+ * 원본 경로를 파일 목록으로 펼친다. 파일은 그대로 두고, 폴더는 그 안의 `.md` 파일을 이름순으로 낸다.
+ * 하위 폴더는 보지 않는다. 없는 경로와 `.md`가 하나도 없는 폴더는 missing에 모은다.
+ */
+export function expandSourcePaths(paths) {
+  const files = []
+  const missing = []
+  for (const path of paths) {
+    const stat = statSync(path, { throwIfNoEntry: false })
+    if (!stat) {
+      missing.push(path)
+    } else if (stat.isDirectory()) {
+      const names = readdirSync(path, { withFileTypes: true })
+        .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+        .map((entry) => entry.name)
+        .sort()
+      if (names.length) files.push(...names.map((name) => join(path, name)))
+      else missing.push(path)
+    } else {
+      files.push(path)
+    }
+  }
+  return { files, missing }
 }
 
 /** 한글이 한 글자도 없는 겹침은 서비스 이름 나열이다. 근거는 ADR-025. */
@@ -97,8 +131,9 @@ export function collectUnits(subjectId, topics, questions) {
       concept.paragraphs.forEach((text, i) => units.push({ id: concept.id, field: `paragraphs[${i}]`, text }))
     }
   }
-  // 네트워크는 면접 답이 해설로 옮겨지기 쉬워 문항도 본다. AWS는 ADR-025 그대로 개념만 본다.
-  if (subjectId === 'network') {
+  // 네트워크는 면접 답이, Azure는 덤프 해설·용어집 설명·한국어판 공식 문서가 문항으로 옮겨지기 쉬워
+  // 문항도 본다. AWS는 ADR-025 그대로 개념만 본다. 새 과목은 그 원본을 보고 여기에 이름으로 더한다.
+  if (subjectId === 'network' || subjectId === 'azure') {
     for (const question of questions) {
       units.push({ id: question.id, field: 'prompt', text: question.prompt })
       units.push({ id: question.id, field: 'explanation', text: question.explanation })
@@ -120,7 +155,7 @@ function main(args) {
   }
   if (!Object.hasOwn(DEFAULT_SOURCES, subject)) {
     console.error(`과목은 ${Object.keys(DEFAULT_SOURCES).join('·')} 가운데 하나다: ${subject ?? '(없음)'}`)
-    console.error('사용법: node scripts/check-verbatim.mjs [--subject aws|network] [원본 경로 ...]')
+    console.error('사용법: node scripts/check-verbatim.mjs [--subject aws|network|azure] [원본 경로 ...]')
     process.exit(2)
   }
 
@@ -129,9 +164,10 @@ function main(args) {
     : DEFAULT_SOURCES[subject].map((path) => join(ROOT, path))
   const shown = (path) => relative(ROOT, path) || path
 
+  const { files, missing: absent } = expandSourcePaths(sourcePaths)
   const sourceTexts = []
-  const missing = []
-  for (const path of sourcePaths) {
+  const missing = absent.map(shown)
+  for (const path of files) {
     try {
       sourceTexts.push(readFileSync(path, 'utf8'))
     } catch {

@@ -13,6 +13,7 @@ import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
+import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
@@ -55,6 +56,7 @@ import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
+import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
@@ -106,6 +108,7 @@ import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
+import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -144,6 +147,8 @@ import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
+import { PricingModelsTable } from './azureCloudComputingTables'
+import { CloudModelsTable } from './azureCloudModelsTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -328,6 +333,11 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
+  'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
+  'azure-cloud-computing.spot-vm': PricingModelsTable,
+  'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
+  'azure-cloud-models.hybrid-cloud': HybridCloudDiagram,
+  'azure-cloud-models.multicloud': CloudModelsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -14,7 +14,8 @@ src/
 │   ├── index.ts       # 과목 목록 subjects. 과목 불변식은 index.test.ts
 │   ├── aws/           # AWS 과목. topics.json·questions.json·keywords.enc.json과 과목 객체를 export하는 index.ts
 │   │   └── visuals/   # 주제별 시각 요소의 문구(도식 캡션·표·약어). 좌표는 컴포넌트에 둔다(ADR-037).
-│   └── network/       # 네트워크 과목(ADR-055). topics.json·questions.json·visuals/와 과목 객체 networkSubject를 export하는 index.ts
+│   ├── network/       # 네트워크 과목(ADR-055). topics.json·questions.json·visuals/와 과목 객체 networkSubject를 export하는 index.ts
+│   └── azure/         # Azure AZ-900 과목(ADR-060). topics.json·questions.json·visuals/와 과목 객체 azureSubject를 export하는 index.ts
 ├── types/             # TypeScript 타입 정의 (단일 출처). 과목은 subject.ts
 └── lib/               # 순수 로직. React 의존 없음.
 ```
@@ -534,6 +535,8 @@ pages/*  ──읽기──▶  lib/storage.ts  ──▶  localStorage (키 = �
 `docs/source/<과목>/`에 둔다(ADR-053).
 네트워크 과목도 같은 흐름이다 — 원본은 `docs/source/network/raw/`(강의·면접 추출본, gitignore)이고,
 데이터는 `src/data/network/topics.json`·`questions.json`, 과목 객체는 `src/data/network/index.ts`의 `networkSubject`다(ADR-055).
+Azure AZ-900 과목도 같은 흐름이다 — 원본은 `docs/source/azure/raw/`(덤프·용어집·공식 문서 추출본, gitignore)이고,
+데이터는 `src/data/azure/topics.json`·`questions.json`, 과목 객체는 `src/data/azure/index.ts`의 `azureSubject`다(ADR-060).
 
 핵심: **런타임에 네트워크를 타는 경로가 하나도 없다.** 새 코드가 `fetch`를
 쓰고 있다면 설계에서 벗어난 것이다.
@@ -561,6 +564,8 @@ pages/*  ──읽기──▶  lib/storage.ts  ──▶  localStorage (키 = �
 | `lib/*` (채점·진행률·저장소) | Vitest 단위 테스트. DOM 불필요. |
 | `src/data/aws/*.json` | `src/data/aws/data.test.ts`의 스키마 검증 테스트 — 타입 일치, id 유일성, `conceptId` 참조 무결성, `answerIndex` 범위, **개념 커버리지 100%**(개념 640개가 모두 문항 하나 이상을 갖는가), 문항 id의 연속성 |
 | `src/data/network/*.json`·`visuals/` | `src/data/network/data.test.ts` — 주제·개념 id 유일, 개념 id는 `<주제 id>.<슬러그>`, 문항 id `n001`부터 연속, 모든 문항의 `format`과 형식별 필드, 4지선다도 문제문이 물음표로 끝남, **개념 커버리지 100%**, 해설 187자 이상, 모든 주제가 주제 지도 표(`topic-map.md`)에 있음, `importance`는 출제 회차에서 계산(9 이상 3, 6~8은 2, 5 이하 0), `sourcePages`는 강의 주제면 강의 통합본 1~502·강의 밖 주제면 `[0, 0]` (ADR-059), `parentId`·목록 항목 규칙, 굵은 글씨는 목록 항목 안에만. `visuals.test.ts` — `sources`가 실제 네트워크 개념 id, 표 열 셋 이하, 시나리오 id 유일, `glossary`는 비움 (ADR-055) |
+| `src/data/azure/*.json`·`visuals/` | `src/data/azure/data.test.ts` — 주제·개념 id 유일, 개념 id는 `<주제 id>.<슬러그>`, 문항 id `az001`부터 연속, `topicId`·`conceptId` 참조 일치, 모든 문항의 `format`과 형식별 필드, 4지선다도 문제문이 물음표로 끝남, **개념 커버리지 100%**, 해설 187자 이상, 모든 주제가 주제 지도 표(`topic-map.md`)에 있고 앱의 주제 순서가 지도 순서, `importance`는 덤프 문항 수에서 계산(25 이상 3, 13~24는 2, 12 이하 0), `sourcePages`는 `[0, 0]`, `parentId`·목록 항목 규칙, 굵은 글씨는 목록 항목 안에만, 진행 안내 문장 없음. `visuals.test.ts` — `sources`가 실제 Azure 개념 id, 표 열 셋 이하와 `columnWidths` 합 100%, 시나리오 id 유일, `glossary`는 비움 (ADR-060) |
+| `src/components/diagrams/azureDiagramCoverage.test.ts` | 모든 Azure 주제에 도식이 하나 이상, 도식과 표가 함께 붙으면 도식이 앞, registry의 Azure 키가 실제 개념 id. 주제 단위로만 본다 (ADR-060) |
 | `src/data/index.ts` (과목 목록) | `src/data/index.test.ts` — 과목 id 유일, 과목 id가 예전 주소의 첫 세그먼트와 겹치지 않음, 주제·개념 id가 과목을 넘어 유일, `progressKey` 유일 (ADR-053), 모든 과목의 예/아니요 문항 — 물음표로 끝남, 「항상」「절대」 없음, 예·아니요 대략 반반 (ADR-054) |
 | `pages/`, `components/` | @testing-library/react. 사용자 관점 동작만. |
 | `lib/keyword-crypto.ts` | `@vitest-environment node`. jsdom에는 `crypto.subtle`이 없다. 화면 테스트에서는 이 모듈을 mock한다. |
