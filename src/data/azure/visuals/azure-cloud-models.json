@@ -45,8 +45,103 @@
       "sources": [
         "azure-cloud-models.private-cloud"
       ]
+    },
+    "hybrid-cloud": {
+      "label": "하이브리드 클라우드에서 회사 A의 데이터 센터와 Azure를 이어 쓰는 두 방식 도식",
+      "svgLabel": "서로 연결된 회사 A의 데이터 센터(프라이빗 클라우드)와 퍼블릭 클라우드(Azure). 데이터 센터에는 고객 데이터와 웹 앱이, Azure에는 웹 앱과 추가 서버가 있다",
+      "question": "자기 데이터 센터와 퍼블릭 클라우드를 이어 두면 무엇을 할 수 있을까?",
+      "idleCaption": "회사 A의 데이터 센터와 Azure가 서로 이어져 있다. 버튼을 고르면 회사 A가 두 곳을 이어 쓰는 두 방식에서 무엇을 어디에 두고 실행하는지 볼 수 있다.",
+      "legend": "큰 박스는 회사 A의 데이터 센터와 Azure이고, 둘을 잇는 선은 두 곳이 서로 연결되어 있다는 뜻이다. 웹 앱은 방식마다 실행되는 곳이 달라 양쪽에 그려 두었다.",
+      "nodes": {
+        "private-data": "고객 데이터",
+        "private-app": "웹 앱",
+        "public-app": "웹 앱",
+        "public-extra": "추가 서버"
+      },
+      "groups": {
+        "private": "회사 A의 데이터 센터(프라이빗 클라우드)",
+        "public": "퍼블릭 클라우드(Azure)"
+      },
+      "notes": {
+        "connect-note": "서로 연결",
+        "data-note": "여기에 둔다",
+        "app-note": "여기에 둔다",
+        "usual-note": "평소 몫",
+        "extra-note": "늘어난 몫"
+      },
+      "scenarios": [
+        {
+          "id": "placement",
+          "label": "둘 곳을 고른다",
+          "caption": "서비스마다 둘 곳을 고른다. 회사 A는 고객 데이터를 자기 데이터 센터의 프라이빗 클라우드에 두고, 웹 앱은 Azure에 두어 실행한다. 두 곳이 이어져 있으므로 Azure의 웹 앱이 프라이빗 클라우드의 고객 데이터를 쓴다.",
+          "sources": [
+            "azure-cloud-models.hybrid-cloud"
+          ]
+        },
+        {
+          "id": "burst",
+          "label": "수요가 잠시 늘 때",
+          "caption": "평소 몫의 주문은 자기 데이터 센터에서 실행하는 웹 앱이 처리한다. 행사 기간에 주문이 몰리면 Azure에 추가 서버를 만들어 늘어난 몫을 맡기고, 행사가 끝나면 줄인다. 한때 몰리는 주문 때문에 하드웨어를 새로 사지 않아도 된다.",
+          "sources": [
+            "azure-cloud-models.hybrid-cloud"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cloud-models.hybrid-cloud"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "cloud-models": {
+      "label": "네 클라우드 모델 견주기",
+      "columns": [
+        "모델",
+        "하드웨어를 갖추고 관리하는 쪽",
+        "이럴 때 고른다"
+      ],
+      "columnWidths": [
+        "31%",
+        "31%",
+        "38%"
+      ],
+      "sources": [
+        "azure-cloud-models.public-cloud",
+        "azure-cloud-models.private-cloud",
+        "azure-cloud-models.hybrid-cloud",
+        "azure-cloud-models.multicloud"
+      ],
+      "rows": [
+        {
+          "header": "퍼블릭 클라우드",
+          "cells": [
+            "클라우드 공급자",
+            "하드웨어를 사지 않고 리소스를 빨리 만들어 쓰고, 쓴 만큼 내고 싶을 때"
+          ]
+        },
+        {
+          "header": "프라이빗 클라우드",
+          "cells": [
+            "그 조직. 데이터 센터는 사업장 안에도 밖에도 둘 수 있다",
+            "리소스와 보안을 직접 통제해야 할 때"
+          ]
+        },
+        {
+          "header": "하이브리드 클라우드",
+          "cells": [
+            "프라이빗 쪽은 조직이, 퍼블릭 쪽은 클라우드 공급자가",
+            "서비스마다 둘 곳을 고르거나, 잠시 늘어난 수요를 퍼블릭 쪽에 맡기고 싶을 때"
+          ]
+        },
+        {
+          "header": "다중 클라우드",
+          "cells": [
+            "둘 이상의 공급자가 각자 자기 클라우드를",
+            "공급자마다 다른 기능을 쓰거나, 다른 공급자로 옮겨 가는 중일 때"
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }
