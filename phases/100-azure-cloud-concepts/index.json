@@ -1,0 +1,56 @@
+{
+  "project": "Study Quiz",
+  "phase": "100-azure-cloud-concepts",
+  "steps": [
+    {
+      "step": 0,
+      "name": "source-rules",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "subject-skeleton",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "verbatim-guard",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "subject-docs",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "cloud-computing-sources",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "cloud-computing-capex",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "pricing-serverless",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "cloud-models-sources",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "public-private-cloud",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "hybrid-multicloud",
+      "status": "pending"
+    }
+  ]
+}

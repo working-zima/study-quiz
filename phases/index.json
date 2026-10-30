@@ -374,6 +374,10 @@
       "dir": "74-network-addressing-routing",
       "status": "completed",
       "completed_at": "2026-10-29T16:38:10+0900"
+    },
+    {
+      "dir": "100-azure-cloud-concepts",
+      "status": "pending"
     }
   ]
 }
