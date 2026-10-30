@@ -224,6 +224,103 @@
       "sources": [
         "linux-permissions.file-type-char"
       ]
+    },
+    "octal-mode": {
+      "label": "권한 rwxr-xr-x를 소유자 rwx, 그룹 r-x, 그 밖의 사용자 r-x로 나누고, 읽기 4·쓰기 2·실행 1을 켜진 자리만 더해 각각 7, 5, 5가 되어 755가 되는 것을 보이는 도식",
+      "svgLabel": "소유자·그룹·그 밖의 사용자 세 열에 위에서부터 권한 세 글자, 더하는 식, 숫자 한 자리가 있다. 소유자 열은 rwx, 4 + 2 + 1, 7이고 그룹 열과 그 밖의 사용자 열은 r-x, 4 + 0 + 1, 5다",
+      "question": "rwxr-xr-x는 왜 755일까?",
+      "idleCaption": "예로 붙인 파일 backup.sh의 권한 rwxr-xr-x를 소유자·그룹·그 밖의 사용자 몫으로 세 글자씩 나눠 놓았다. 버튼을 고르면 부류마다 켜진 권한의 값을 더해 숫자 한 자리를 만드는 과정을 볼 수 있다.",
+      "legend": "한 열이 한 부류의 몫이다. 위에서 아래로 권한 세 글자, 읽기 4·쓰기 2·실행 1 가운데 켜진 것만 더하는 식, 그 결과인 숫자 한 자리다.",
+      "nodes": {
+        "chunk-owner": "rwx",
+        "sum-owner": "4 + 2 + 1",
+        "digit-owner": "7",
+        "chunk-group": "r-x",
+        "sum-group": "4 + 0 + 1",
+        "digit-group": "5",
+        "chunk-others": "r-x",
+        "sum-others": "4 + 0 + 1",
+        "digit-others": "5"
+      },
+      "groups": {
+        "owner": "소유자",
+        "group": "그룹",
+        "others": "그 밖의 사용자"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "소유자",
+          "caption": "소유자 몫 rwx는 읽기·쓰기·실행이 모두 켜져 있어, 읽기 4와 쓰기 2와 실행 1을 모두 더한 7이 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "그룹",
+          "caption": "그룹 몫 r-x는 쓰기 자리가 -라서 쓰기의 값 2 대신 0을 더해, 4 + 0 + 1 = 5가 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "그 밖",
+          "caption": "그 밖의 사용자 몫도 r-x라서 5다. 세 숫자를 소유자, 그룹, 그 밖의 차례로 이어 적으면 755가 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.octal-mode"
+      ]
+    },
+    "chmod-change": {
+      "label": "chmod 640 report.txt가 report.txt의 권한을 -rw-r--r--에서 -rw-r-----로 바꾸고, chmod -R 750 project가 디렉터리 project와 그 안의 readme.txt·src까지 권한을 모두 rwxr-x---로 바꾸는 것을 보이는 도식",
+      "svgLabel": "위에 권한 -rw-r--r--, 명령 chmod 640 report.txt, 권한 -rw-r-----가 있고, 아래에 명령 chmod -R 750 project와, project와 그 안의 것 테두리 안에 project·readme.txt·src가 있다",
+      "question": "chmod를 입력하면 무엇이 바뀔까?",
+      "idleCaption": "위는 파일 report.txt의 권한을 숫자로 바꾸는 명령이고, 아래는 디렉터리 project와 그 안에 든 것의 권한을 한꺼번에 바꾸는 명령이다. 버튼을 고르면 명령을 입력해 무엇이 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 바꾸기 전의 권한에서 명령을 거쳐 바꾼 뒤의 권한으로 가거나, 명령에서 그 명령이 바꾸는 디렉터리로 간다. 테두리 안은 디렉터리 project와 그 안에 든 것이다.",
+      "nodes": {
+        "before": "-rw-r--r--",
+        "cmd-numeric": "chmod 640 report.txt",
+        "after": "-rw-r-----",
+        "cmd-recursive": "chmod -R 750 project",
+        "dir-project": "project",
+        "file-readme": "readme.txt",
+        "dir-src": "src"
+      },
+      "groups": {
+        "project": "project와 그 안의 것"
+      },
+      "notes": {
+        "before-note": "바꾸기 전 · 644",
+        "after-note": "바꾼 뒤 · 640",
+        "all-note": "셋 모두 rwxr-x---"
+      },
+      "scenarios": [
+        {
+          "id": "numeric",
+          "label": "숫자로 바꾸기",
+          "caption": "chmod 640 report.txt를 입력하면 report.txt의 권한이 -rw-r--r--에서 -rw-r-----로 바뀐다. 숫자로 준 권한은 아홉 자리를 새로 정해서, 그룹에는 읽기만 남기고 그 밖의 사용자의 권한은 모두 지운다.",
+          "sources": [
+            "linux-permissions.chmod"
+          ]
+        },
+        {
+          "id": "recursive",
+          "label": "-R",
+          "caption": "chmod -R 750 project를 입력하면 디렉터리 project 자신과 그 안의 readme.txt, 하위 디렉터리 src까지 모두 권한이 rwxr-x---가 된다. -R 없이 입력하면 project 하나만 바뀐다.",
+          "sources": [
+            "linux-permissions.chmod"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.chmod"
+      ]
     }
   },
   "tables": {},

@@ -2816,6 +2816,7 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 `linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION·EXAMPLES·APPLICATION USAGE), `linux-permissions.chown`(chown·chgrp·chown()), `exam-notes.md`의 「phase 75 step 7」 문단과 E22.
 `cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
 (phase 75 step 9) `linux-permissions.permission-string`(ls STDOUT — 크기 칸, POSIX 로캘의 날짜 꼴), `linux-permissions.file-type-char`(ls STDOUT — 심볼릭 링크의 이름 칸 `latest -> report.txt`)
+(phase 75 step 10) `linux-permissions.chmod`(chmod EXTENDED DESCRIPTION — 수 모드는 절대값이라 `chmod 640`이 그 밖의 읽기 비트를 끈다, DESCRIPTION — 바꾸는 사람은 소유자나 특권이라 쓰기 권한이 있는 그룹 사용자는 못 바꾸고 소유자는 아홉 비트를 다 꺼도 다시 켠다, OPTIONS `-R` — 디렉터리와 그 아래 전체에 같은 모드), 문항 n128·n129(chmod 수 모드의 표 — 4·2·1), n130(chmod DESCRIPTION)
 
 ## (phase 75 step 7) GNU Coreutils 매뉴얼 — 27 File permissions, 10.1.2 What information is listed, 12.2 ln, 12.5 mknod, 13.1 chown, 13.2 chgrp, 13.3 chmod
 https://www.gnu.org/software/coreutils/manual/coreutils.html

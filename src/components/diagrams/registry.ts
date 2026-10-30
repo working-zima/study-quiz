@@ -14,6 +14,7 @@ import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
@@ -100,6 +101,7 @@ import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
+import { OctalModeDiagram } from './OctalModeDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
@@ -358,6 +360,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-permissions.rwx-permissions': RwxMeaningDiagram,
   'linux-permissions.permission-string': PermissionStringDiagram,
   'linux-permissions.file-type-char': FileTypeCharDiagram,
+  'linux-permissions.octal-mode': OctalModeDiagram,
+  'linux-permissions.chmod': ChmodChangeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
