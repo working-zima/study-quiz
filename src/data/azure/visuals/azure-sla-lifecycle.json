@@ -1,0 +1,45 @@
+{
+  "diagrams": {
+    "composite-sla": {
+      "label": "앱이 기대는 서비스의 SLA를 곱해 복합 SLA를 어림하는 도식",
+      "svgLabel": "회사 A의 앱에서 서비스 A와 서비스 B로 화살표가 하나씩 이어진 모습",
+      "question": "서비스 두 개에 함께 기대는 앱은, 가동률이 어떻게 될까?",
+      "idleCaption": "회사 A의 앱이 서비스 A와 서비스 B에 기대는 모습이다. 버튼을 고르면 앱이 기대는 서비스가 하나일 때와 둘일 때 앱 전체의 가동률이 어떻게 되는지 볼 수 있다. 서비스 이름과 백분율은 예로 든 것이다.",
+      "legend": "화살표는 앱이 그 서비스에 기댄다는 뜻으로, 그 서비스가 멈추면 앱도 멈춘다. 서비스에 붙은 글은 그 서비스의 SLA이고, 앱에 붙은 글은 앱 전체의 가동률을 어림한 값이다. 흐린 상자와 화살표는 그 경우에 쓰지 않는 서비스다.",
+      "nodes": {
+        "app": "회사 A의 앱",
+        "service-a": "서비스 A",
+        "service-b": "서비스 B"
+      },
+      "notes": {
+        "a-value": "99.9%",
+        "b-value": "99.95%",
+        "app-single": "99.9%",
+        "app-composite": "99.9% × 99.95% ≈ 99.85%"
+      },
+      "scenarios": [
+        {
+          "id": "single",
+          "label": "서비스 하나",
+          "caption": "회사 A의 앱이 서비스 A 하나에만 기대면, 서비스 A가 멈출 때만 앱이 멈춘다. 곱할 값이 하나뿐이므로 앱의 가동률은 서비스 A의 SLA 99.9%와 같다.",
+          "sources": [
+            "azure-sla-lifecycle.composite-sla"
+          ]
+        },
+        {
+          "id": "composite",
+          "label": "서비스 둘",
+          "caption": "회사 A의 앱이 서비스 A와 서비스 B에 함께 기대면, 둘 중 어느 하나만 멈춰도 앱이 멈춘다. 그래서 두 값을 곱해 약 99.85%로 어림하고, 이 값은 99.9%와 99.95% 어느 쪽보다도 낮다. 이 값은 어림값이지 Microsoft가 앱 전체를 두고 약속하는 SLA가 아니다.",
+          "sources": [
+            "azure-sla-lifecycle.composite-sla"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-sla-lifecycle.composite-sla"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

@@ -76,6 +76,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/3-what
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`, D7·D8
 
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(Azure와 서비스를 푸는 첫 문단 — 가상 머신·데이터베이스 같은 컴퓨팅 서비스를 인터넷으로 빌려 쓴다)
+
 ## (phase 100) Learn 「Describe cloud computing」 — 6 Describe the consumption-based model
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/6-describe-consumption-based-model
 
@@ -146,6 +148,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 
 쓰인 곳(phase 101): `azure-cloud-benefits.reliability`(지역과 데이터 센터를 푸는 줄), az020 해설
 
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.composite-sla`(지역과 데이터 센터를 푸는 한 줄)
+
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
 
@@ -155,6 +159,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - 한국어 표기: resource → 리소스
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
+
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(리소스를 푸는 한 줄 — 서비스로 만들어 쓰는 것 하나하나, 가상 머신 한 대가 그 예)
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 2 Describe Azure virtual machines
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/2-virtual-machines
@@ -167,6 +173,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - 한국어 표기: Azure Virtual Machines → Azure VM(Virtual Machines), virtual machine → 가상 머신, physical server → 물리적 서버, operating system → 운영 체제
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신을 푸는 한 줄), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
+
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(가상 머신을 푸는 한 줄)
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -369,7 +377,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 
 쓰인 곳(phase 101): `azure-cloud-benefits.high-availability`(고가용성의 정의, SLA·가동 시간을 푸는 한 줄), `azure-cloud-benefits.scalability`(소개 문단과 수직·수평 크기 조정 두 항목), `CloudScalingDiagram`(수직: VM 한 대에 CPU·RAM을 더함 / 수평: VM을 더함), D17, G10, G11
 
-쓰일 곳(phase 101 step 3): `azure-sla-lifecycle.sla`(Azure의 가동 시간 보장은 서비스마다 다르고 SLA에 담긴다 — 「High availability」 둘째 문단)
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(Azure의 가동 시간 보장은 서비스마다 다르고 SLA에 담긴다 — 서비스마다 SLA가 따로 있다는 문단)
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 6 Describe Azure Functions
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/6-functions
@@ -673,7 +681,7 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
 
-쓰일 곳(phase 101 step 3): `azure-sla-lifecycle.sla`(가동 시간 백분율을 한 달 중단 시간으로 바꾼 예 — 99.9%는 약 43분, 99.95%는 약 21분. Well-Architected 지표 문서의 표와 같다), G16
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(가동 시간 백분율을 한 달 중단 시간으로 바꾼 예 — 99.9%는 약 43분, 예시 값으로만. Well-Architected 지표 문서의 표와 같다), az024 해설, G16. 99.95%의 약 21분은 쓰지 않았다
 
 ## (phase 101) Azure reliability — Reliability in Azure
 https://learn.microsoft.com/en-us/azure/reliability/glossary (이 주소로 받으면 「Reliability in Azure」 쪽이 열린다)
@@ -833,7 +841,7 @@ https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics
 - 한국어 표기: service-level agreement → SLA(서비스 수준 계약), service-level objective → SLO(서비스 수준 목표), composite SLO → 복합 SLO, service credit → **서비스 크레딧**, uptime → 가동 시간, connectivity → 연결
 - 쓰지 않는 것: 이 문서의 예(Contoso, 서비스마다의 수치 99.99%·99.95% 등)와 SLI·RTO·RPO 같은 다른 지표. 서비스마다의 SLA 수치는 이 과목에서 쓰지 않는다(guide 「배경」)
 
-쓰일 곳: `azure-sla-lifecycle.sla`(SLA의 정의, 가동 시간과 연결에 대한 약속, 서비스·상품마다 다름, 가용 정의, 정한 범위만 덮음), `azure-sla-lifecycle.service-credit`(SLA에 크레딧을 받는 절차가 있다), `azure-sla-lifecycle.composite-sla`(곱한다, 여러 지역에 두면 높일 수 있다), D22, D23, D24, G15, G16
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(SLA의 정의 — 공급자와 고객이 맺는 계약, 가동 시간과 연결에 대한 약속, 못 미치면 공급자가 금전적 책임을 질 수 있어 스스로 세운 목표와 다르다는 것, 서비스·상품마다 다름, 가용 정의, 약속한 범위만 덮음, 99.9%가 한 달 약 43분이라는 둘째 근거), `azure-sla-lifecycle.service-credit`(SLA에 크레딧을 받는 절차가 들어 있다), `azure-sla-lifecycle.composite-sla`(곱한다, 여러 지역에 두는 중복으로 높일 수 있고 여러 지역 배포에 더 높은 SLA를 약속하는 서비스가 있다 — 「복합 SLO」·「SLO」라는 말은 쓰지 않았다), `CompositeSlaDiagram`, az024·az025·az026·az027 해설, D22, D23, D24, G15, G16
 
 ## (phase 101) Azure reliability — How to read a service-level agreement (SLA)
 https://learn.microsoft.com/en-us/azure/reliability/concept-service-level-agreements
@@ -854,7 +862,9 @@ https://learn.microsoft.com/en-us/azure/reliability/concept-service-level-agreem
 - 한국어 표기: service credit → 서비스 크레딧, composite SLA → 복합 SLA, downtime → 가동 중지 시간, billing period → 청구 기간, monthly uptime percentage → 월별 가동 시간 백분율
 - 쓰지 않는 것: 청구 기한(30~60일), 크레딧 비율(10%·25% 등) — 가상의 예이거나 공급자마다 다르다
 
-쓰일 곳: `azure-sla-lifecycle.sla`(조건이 붙은 약속, 중단의 정의가 덮는 범위를 정함, 배포 방식·등급에 따라 SLA가 다름, 청구 기간 단위로 잼), `azure-sla-lifecycle.service-credit`(크레딧은 보상, 보통 고객이 청구해야 함, 한 달 요금의 백분율), `azure-sla-lifecycle.composite-sla`(곱한 값은 대략의 상한이고 따로 멈춘다는 가정에 기댄다), D23, D24, D25, D26, G15, G16
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(중단의 정의가 덮는 범위를 정함, 보통 청구 기간 단위로 잼, 많은 SLA가 쓰는 셈의 꼴 — D25, SLA는 멈춤을 막는 장치가 아니라 못 미치면 보상받는 약속 — G16), `azure-sla-lifecycle.service-credit`(크레딧은 보상이고 보통 한 달 요금의 백분율, 보통 저절로 오지 않아 고객이 중단을 기록해 기한 안에 청구, 놓친 매출·고객·평판은 보통 보상하지 않음), `azure-sla-lifecycle.composite-sla`(리소스를 하나만 두는 배포가 여러 개 두는 배포보다 SLA가 낮을 수 있음, 곱한 값은 따로 멈춘다는 가정에 기댄 대략의 상한이고 SLA마다의 정의·조건을 빼고 셈한다), `CompositeSlaDiagram`(composite 캡션의 「어림값」), az024·az025·az026·az027 해설, D23, D24, D25, G15, G16. 「등급」이라는 말은 쓰지 않고 「상품」으로 썼다
+
+쓰일 곳: D26
 
 ## (phase 101) Cloud Adoption Framework — Protect your cloud estate (Manage reliability)
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/considerations/commitment
@@ -868,7 +878,7 @@ https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/consider
 - 한국어 표기: composite SLA → **복합 SLA**, critical path → 중요 경로, multi-region SLA → 다중 지역 SLA, redundancy → 중복성(이중화로도 옮겼다)
 - 쓰지 않는 것: 예의 서비스별 수치, 가용성 영역 SLA가 있는 서비스 목록 — 가용성 영역은 `azure-regions-zones` 주제의 몫이다
 
-쓰일 곳: `azure-sla-lifecycle.composite-sla`(이름, 곱하는 법, 중복을 두어 높이기), `CompositeSlaDiagram`(서비스 A·B를 곱한 앱의 값), D23, G15
+쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.composite-sla`(이름, 멈추면 앱도 멈추는 서비스만 골라 곱하는 법, 중복(여러 지역)을 두거나 SLA가 더 높은 상품을 골라 높이기), `CompositeSlaDiagram`(서비스 A·B를 곱한 앱의 값), az026·az027 해설, D23, G15. 「중요 경로」라는 말, 여러 지역의 셈(1 − (1 − N)^R), 가용성 영역은 쓰지 않았다
 
 ## (phase 101) Microsoft 수명 주기 — Infrastructure Lifecycle FAQ - Microsoft Azure
 https://learn.microsoft.com/en-us/lifecycle/faq/azure-infrastructure

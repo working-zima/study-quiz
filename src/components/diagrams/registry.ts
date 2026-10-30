@@ -21,6 +21,7 @@ import { ClientServerDiagram } from './ClientServerDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
+import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
@@ -340,6 +341,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cloud-models.hybrid-cloud': HybridCloudDiagram,
   'azure-cloud-models.multicloud': CloudModelsTable,
   'azure-cloud-benefits.scalability': CloudScalingDiagram,
+  'azure-sla-lifecycle.composite-sla': CompositeSlaDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
