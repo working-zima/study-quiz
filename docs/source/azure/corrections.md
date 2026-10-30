@@ -181,7 +181,7 @@
 - **공식 문서**: 「Reliability in Azure」는 Azure Site Recovery가 VM 워크로드의 **재해 복구**를 조율한다(복제와 장애 조치 순서를 자동화한다)고 한다.
   「What are business continuity, high availability, and disaster recovery?」는 내결함성을 장애가 나도 정해 둔 수준으로 계속 동작하는 능력(고가용성을 이루는 설계 요소의 하나)으로, 재해 복구를 드물고 큰 사건에 어떻게 대응할지 계획하는 것으로 나눈다.
 - **처리**: 고쳐 쓴다. Site Recovery가 VM에 주는 것은 재해 복구다. `azure-cloud-benefits` 주제는 Site Recovery라는 이름을 쓰지 않으므로(guide) 재해 복구의 정의만 안정성 개념에 쓸 수 있다. Site Recovery를 다루는 주제가 생기면 이 항목을 따른다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.reliability`
+- **쓰인 곳**: `azure-cloud-benefits.reliability`
 
 ## D17 — 수직·수평 크기 조정의 예 (phase 101)
 
@@ -189,14 +189,14 @@
 - **공식 문서**: Learn 「Describe the benefits of high availability and scalability in the cloud」는 VM에 CPU·RAM을 더하는 것을 수직(스케일 업), VM·컨테이너를 더하는 것을 수평(스케일 아웃)으로 들고, 수평은 자동이나 수동으로 한다고 한다. 「Overview of autoscale in Azure Monitor」도 같다.
   같은 덤프의 [덤프 NO.147]·[덤프 NO.355]는 CPU·메모리를 더하는 것을 수직으로 맞게 답한다.
 - **처리**: 고쳐 쓴다. 앞의 두 진술은 틀리다 — RAM을 더하는 것은 수직, VM을 더 두는 것은 수평이다. 셋째 진술은 맞다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.scalability`, `CloudScalingDiagram`
+- **쓰인 곳**: `azure-cloud-benefits.scalability`, `CloudScalingDiagram`
 
 ## D18 — 클라우드 서비스 비용을 셈할 수 있게 하는 이점 (phase 101)
 
 - **덤프**: 클라우드 서비스가 얼마 들지 계산할 수 있게 하는 이점으로 답 그림이 「민첩성」을 표시한다. 보기는 민첩성·탄력성·고가용성·예측 가능성이다 — [덤프 NO.179](p110의 답 그림)
 - **공식 문서**: Learn 「Describe the benefits of reliability and predictability in the cloud」는 비용 예측 가능성을 클라우드에 쓸 돈을 내다보는 것이라 하고, 리소스 사용의 실시간 추적·모니터링·분석과 Azure 가격 계산기로 앞으로 쓸 돈을 어림한다고 한다.
 - **처리**: 고쳐 쓴다. 비용을 셈하고 내다보게 하는 이점은 예측 가능성(비용 예측 가능성)이다. 민첩성은 비용 계산과 관계없다(D19).
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.predictability`
+- **쓰인 곳**: `azure-cloud-benefits.predictability`
 
 ## D19 — 민첩성과 탄력성 (phase 101)
 
@@ -208,7 +208,7 @@
   사전 「What is cloud computing?」의 「Speed」(주문형이라 몇 분 만에 리소스를 마련한다)는 이름이 다르다.
 - **처리**: 한정해 쓴다. 수요에 따라 리소스를 자동으로 늘리고 줄이는 것은 탄력성이다 — NO.145의 짝은 따르지 않는다. 민첩성은 이 주제의 이점 이름으로 따로 세우지 않고 정의도 쓰지 않는다.
   쓴다면 탄력성 개념 안에서 「탄력성 덕분에 장비 조달을 오래 기다리지 않고 새 서비스를 빨리 내놓을 수 있다」처럼 사전이 말하는 만큼만 한 줄로 쓴다. 민첩성을 문항의 정답으로 삼지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.elasticity`
+- **쓰인 곳**: `azure-cloud-benefits.elasticity`
 
 ## D20 — 「지리적 분산」이라는 이점 (phase 101)
 
@@ -220,7 +220,7 @@
   Learn 단원 3은 세계 곳곳의 지역에 리소스를 둘 수 있어 한 지역이 큰 재해를 입어도 다른 지역이 계속 돈다고 한다. 사전 「What is cloud computing?」은 「Global scale」에서 알맞은 지리적 위치에서 리소스를 내준다고 한다.
 - **처리**: 한정해 쓴다. 「지리적 분산」을 이 주제의 이점 이름(개념 이름·문항 보기·정답)으로 세우지 않는다. 안정성 개념은 Learn 단원 3대로 「세계 여러 지역에 리소스를 둔다」로 쓴다.
   「사용자 가까운 지역을 고르면 대기 시간이 준다」는 지역을 다루는 `azure-regions-zones` 주제의 사실이라 이 주제에서 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.reliability`
+- **쓰인 곳**: `azure-cloud-benefits.reliability`
 
 ## D21 — 「동적 확장성」·「낮은 지연」을 이점 이름으로 묻는 짝짓기 (phase 101)
 
@@ -228,7 +228,7 @@
 - **공식 문서**: 내결함성(장애가 나도 정해 둔 수준으로 계속 동작)과 재해 복구(드물고 큰 사건에 대응하는 계획)의 짝은 「What are business continuity, high availability, and disaster recovery?」와 맞는다. 「Reliability in Azure」도 안정적인 워크로드의 성질로 복원력과 복구 가능성을 나눈다.
   「동적 확장성」·「낮은 지연」은 받은 공식 문서에 클라우드의 이점 이름으로 나오지 않는다. 대기 시간은 지역을 고르는 기준으로만 나온다(D20).
 - **처리**: 한정해 쓴다. 내결함성과 재해 복구는 공식 정의대로 안정성 개념에 한 줄씩 쓸 수 있다. 「동적 확장성」·「낮은 지연」은 이점 이름으로 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.reliability`
+- **쓰인 곳**: `azure-cloud-benefits.reliability`
 
 ## D22 — 서비스마다의 SLA 수치와 Azure AD라는 옛 이름 (phase 101)
 
@@ -240,7 +240,7 @@
   「New name for Azure Active Directory」는 Azure Active Directory(Azure AD)의 이름이 Microsoft Entra ID로 바뀌었다고 한다.
 - **처리**: 쓰지 않는다 — 유료 서비스의 SLA 하한, VM 배치마다의 수치, Microsoft Entra ID 등급마다의 SLA와 등급끼리 같은지. 「Azure AD」라는 이름도 쓰지 않는다(쓸 일이 생기면 Microsoft Entra ID).
   NO.378의 답 「가동 시간」은 Well-Architected 문서의 「가동 시간과 연결」과 맞으므로, 「Azure SLA가 약속하는 것은 가동 시간과 연결이다」는 쓸 수 있다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`
+- **쓰인 곳**: `azure-sla-lifecycle.sla`
 
 ## D23 — SLA를 높이는 법: 여러 지역에 두기, 구독 늘리기 (phase 101)
 
@@ -250,7 +250,7 @@
   「How to read a service-level agreement (SLA)」는 같은 서비스라도 인스턴스 하나만 둔 배포가 중복을 둔 배포보다 SLA가 낮을 수 있다고 한다. 「보통 99.95%로」라는 수치와 구독 수가 SLA와 어떤 관계인지는 받은 문서에 없다.
 - **처리**: 한정해 쓴다. 중복(여러 지역, 여러 인스턴스)을 두면 앱 전체의 어림 가용성이 올라가고, 일부 서비스는 중복을 둔 배포에 더 높은 SLA를 약속한다(배포 방식에 따라 SLA가 다르다)고 쓴다.
   「여러 지역에 두면 SLA가 99.95%가 된다」 같은 수치와 「모든 서비스의 SLA가 오른다」는 쓰지 않는다. 구독 수에 관한 진술도 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`, `azure-sla-lifecycle.composite-sla`
+- **쓰인 곳**: `azure-sla-lifecycle.sla`, `azure-sla-lifecycle.composite-sla`
 
 ## D24 — 서비스 크레딧은 저절로 들어오나 — 덤프끼리 갈림 (phase 101)
 
@@ -261,7 +261,7 @@
   이 문서는 Microsoft SLA에만 해당하는 글이 아니라고 스스로 밝힌다. 「은행 계좌로 환불」이라는 말은 받은 문서에 없다.
 - **처리**: 고쳐 쓴다. 「자동으로」는 따르지 않는다 — NO.175·196 쪽을 따른다. 서비스 크레딧은 SLA에 못 미쳤을 때의 보상이고, 보통 서비스 요금(한 달 요금)에 대한 백분율로 정해지며, 받으려면 고객이 청구해야 한다고 쓴다.
   「청구해야 한다」는 SLA 일반에 대한 문서의 말이므로 「보통」을 붙이거나 「Azure SLA에는 크레딧을 받는 절차가 들어 있다」와 함께 쓴다. 「은행 계좌 환불」·크레딧 비율(10% 등)·청구 기한(30~60일)은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.service-credit`
+- **쓰인 곳**: `azure-sla-lifecycle.service-credit`
 
 ## D25 — 월간 가동률 계산식 (phase 101)
 
@@ -269,7 +269,7 @@
 - **공식 문서**: 「How to read a service-level agreement (SLA)」는 가상의 서비스를 든 예에서 「(청구 대상 분 − 중단 분) ÷ 청구 대상 분 × 100」을 들고, 이 짜임이 실제 SLA 여럿을 닮았다고 한다. 같은 문서는 SLA가 보통 청구 기간 단위로 가동 시간을 잰다고 한다.
   「최대 가용 분」이라는 이름과 Azure 서비스마다의 실제 정의는 SLA 약관에 있어 이 과목은 확인할 수 없다.
 - **처리**: 한정해 쓴다. 「한 달(청구 기간) 동안 셀 수 있는 시간에서 멈춘 시간을 빼고, 그 값을 셀 수 있는 시간으로 나눈 백분율」 꼴은 SLA 일반의 예로 쓸 수 있다. Azure SLA의 식이라고 단정하거나 「최대 가용 분」이라는 이름을 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`
+- **쓰인 곳**: `azure-sla-lifecycle.sla`
 
 ## D26 — 공개 미리 보기의 SLA (phase 101)
 
@@ -279,7 +279,7 @@
   Azure AI Search 문서의 미리 보기 안내는 (preview)로 표시한 기능을 SLA가 덮지 않는다고 하고, Microsoft Entra 로드맵 설명도 공개 미리 보기에는 표준 SLA가 적용되지 않는다고 한다.
   지금 판(2026년 6월)의 「Supplemental Terms of Use for Microsoft Azure Previews」에는 NO.63·411이 인용한 문장이 없다.
 - **처리**: 고쳐 쓴다. 공개 미리 보기에는 SLA가 보장되지 않는다(보통 SLA가 없다)고 쓴다. 「서비스마다 미리 보기의 SLA를 정한다」는 쓰지 않는다. 근거는 약관 인용이 아니라 인프라 수명 주기 FAQ와 AI Search 문서로 댄다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
+- **쓰인 곳**: `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
 
 ## D27 — 공개 미리 보기를 운영 환경에 쓸 수 있나 (phase 101)
 
@@ -288,7 +288,7 @@
   미리 보기 약관은 조기 액세스 미리 보기(비공개 미리 보기를 포함한다)를 운영 환경에 쓸 수 없다고 정한다. 「Set up preview features in Azure subscription」은 미리 보기 기능을 Azure 포털·Azure CLI·Azure PowerShell로 구독에 등록한다고 할 뿐, 별도 포털은 말하지 않는다.
 - **처리**: 고쳐 쓴다. 공개 미리 보기는 따로 밝히지 않는 한 운영 환경에 쓰라고 내놓은 것이 아니다(운영 작업에 권하지 않는다)고 쓴다. 쓰는 것을 막는 문장은 비공개 미리 보기(조기 액세스 미리 보기) 약관에만 있으므로, 공개 미리 보기를 「운영 환경에 쓸 수 없다」고 단정하지도 않는다.
   「별도 포털」 진술은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.preview`
+- **쓰인 곳**: `azure-sla-lifecycle.preview`
 
 ## D28 — 비공개·공개 미리 보기와 GA는 누구에게 열리나 — 덤프끼리 갈림 (phase 101)
 
@@ -298,7 +298,7 @@
 - **공식 문서**: 「Infrastructure Lifecycle FAQ - Microsoft Azure」는 비공개 미리 보기를 초대받은 일부 고객만 들어오는 단계로, 공개 미리 보기를 Azure 구독이 있는 모든 Azure 고객이 평가할 수 있는 단계로(지역·구독 유형·용량으로 범위가 좁을 수 있다), GA를 모든 Azure 고객이 운영에 쓰도록 정식으로 내놓은 단계로 정의한다.
   미리 보기 약관은 조기 액세스 미리 보기(비공개 미리 보기를 포함한다)를 제3자에게 줄 수 없고 기밀이라고 한다. 미리 보기의 값(할인)은 받은 문서에 없다.
 - **처리**: 고쳐 쓴다. NO.132를 따른다 — 비공개 미리 보기는 모든 고객에게 열리지 않는다. 공개 미리 보기의 「할인된 값」은 쓰지 않는다. 공개 미리 보기를 「누구나」로 쓸 때는 「Azure 구독이 있는 모든 고객」으로 쓰고, 지역 등에 따라 범위가 좁을 수 있다는 것을 함께 둔다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
+- **쓰인 곳**: `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
 
 ## D29 — 출시 단계의 차례, 미리 보기의 값·관리 도구, GA 뒤의 변화 (phase 101)
 
@@ -309,7 +309,7 @@
   미리 보기·GA의 값, 포털이 GA와 미리 보기를 구분해 보여 주는지, GA 뒤에 리소스를 다시 만드는지는 받은 문서에 없다(미리 보기 약관은 컨테이너로 쓰는 AI 서비스의 미리 보기를 GA 버전으로 바꿔야 한다는 한 서비스의 예만 든다).
 - **처리**: 한정해 쓴다. 단계의 차례(비공개 미리 보기 → 공개 미리 보기 → GA)는 인프라 수명 주기 FAQ대로 쓰되, 「모든(대부분의) 서비스가 세 단계를 다 거친다」고는 쓰지 않는다. GA 뒤에도 서비스가 바뀐다는 것은 최신 수명 주기 정책대로 쓸 수 있다.
   값의 변화, 포털에서의 구분, GA 뒤 리소스 다시 만들기는 쓰지 않는다. 「CLI로만」은 미리 보기 기능 문서와 어긋나 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
+- **쓰인 곳**: `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`, `ServiceLifecycleDiagram`
 
 ## D30 — SaaS에서 고객과 Microsoft가 함께 맡는 책임 (phase 101)
 
@@ -317,7 +317,7 @@
 - **공식 문서**: 「Shared responsibility in the cloud」의 책임 표에서 고객 데이터는 온-프레미스·IaaS·PaaS·SaaS 모두 고객 몫이고, SaaS에서 함께 맡는 것은 클라이언트 장치와 애플리케이션이다.
   Learn 「Describe cloud computing」 단원 4도 클라우드에 저장한 정보와 데이터를 늘 고객이 맡는 것으로 들고, ID와 액세스를 PaaS·SaaS에서 함께 맡는 것(사용자·역할·정책은 고객, 인증 플랫폼은 공급자)으로 든다.
 - **처리**: 고쳐 쓴다. 정보와 데이터는 어느 유형에서나 고객이 맡는다. SaaS에서 함께 맡는 것은 공식 문서대로(애플리케이션·클라이언트 장치·ID와 액세스) 쓴다. 덤프 보기 가운데 공식 문서와 맞는 쪽은 「ID와 디렉터리 인프라 관리」다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.shared-responsibility-model`, `SharedResponsibilityDiagram`
+- **쓰인 곳**: `azure-service-types.shared-responsibility-model`, `SharedResponsibilityDiagram`
 
 ## D31 — 관리 부담을 가장 줄이는 웹앱 이전 (phase 101)
 
@@ -325,21 +325,21 @@
 - **공식 문서**: Learn 「Describe cloud service types」 단원 2는 IaaS를 고객의 운영 책임이 가장 큰 유형(운영 체제·패치·구성·많은 보안 통제를 고객이 관리)이라 한다. 단원 3은 PaaS에서 공급자가 운영 체제·미들웨어·런타임을 관리하고 고객은 앱 코드·데이터·액세스 제어에 집중한다고 하고,
   「Shared responsibility in the cloud」는 PaaS를 VM이나 운영 체제를 관리하지 않고 앱을 배포하는 유형으로, Azure App Service를 그 예로 든다.
 - **처리**: 고쳐 쓴다. 자기 웹앱을 옮기면서 관리 부담을 줄이려면 IaaS가 아니라 PaaS 쪽이다. 문항에서 이 상황을 쓰면 정답은 PaaS로 한다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+- **쓰인 곳**: `azure-service-types.paas`
 
 ## D32 — 「Azure 가상 머신을 호스트하는 데 쓰인다」는 어느 유형인가 (phase 101)
 
 - **덤프**: [덤프 NO.187](세 유형을 설명에 짝짓는 문항, 답 그림)은 「클라우드 환경을 가장 많이 통제한다」에 IaaS, 「운영 체제를 유지 관리하지 않고 데이터베이스 설계를 가장 많이 통제한다」에 PaaS, 「Azure 가상 머신을 호스트하는 데 쓰인다」에 **SaaS**를 짝짓는다.
 - **공식 문서**: 「Shared responsibility in the cloud」와 Learn 「Describe Azure compute services」 단원 2는 Azure Virtual Machines를 IaaS의 예로 든다. 앞의 두 짝은 Learn 단원 2(IaaS가 통제가 가장 많다)와 Azure SQL Database 개요(완전 관리형 PaaS 데이터베이스 엔진)와 맞는다.
 - **처리**: 고쳐 쓴다. VM은 IaaS다. 앞의 두 짝은 맞다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`
+- **쓰인 곳**: `azure-service-types.iaas`
 
 ## D33 — 코드를 고칠 앱과 운영 체제를 직접 다룰 앱의 유형 (phase 101)
 
 - **덤프**: [덤프 NO.257](답 그림)은 코드를 고칠 수 있어야 하고 운영 체제 관리 수고를 줄여야 하는 앱1에 「SaaS」를, 서버의 운영 체제와 직접 상호 작용해야 하는 앱2에 「PaaS」를 고른다.
 - **공식 문서**: SaaS는 다 만들어진 앱을 빌려 쓰는 유형이다(Learn 단원 4, 「Shared responsibility in the cloud」). PaaS는 공급자가 운영 체제를 관리하고 고객이 앱 코드에 집중하는 유형이고(Learn 단원 3), IaaS는 고객이 운영 체제를 설치·구성·유지 관리하는 유형이다(Learn 단원 2). 책임 표에서 운영 체제는 IaaS에서 고객, PaaS·SaaS에서 Microsoft 몫이다.
 - **처리**: 고쳐 쓴다. 공식 문서대로라면 앱1은 PaaS, 앱2는 IaaS다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`, `azure-service-types.paas`
+- **쓰인 곳**: `azure-service-types.iaas`, `azure-service-types.paas`
 
 ## D34 — PaaS만 쓰는 이전 계획에 맞는 구성 — 덤프끼리 갈림 (phase 101)
 
@@ -351,7 +351,7 @@
 - **공식 문서**: 「Shared responsibility in the cloud」는 VM을 IaaS의 예로, App Service·Azure Functions·Azure SQL Database·**Azure Storage**를 PaaS의 예로 든다. Learn 「Describe cloud computing」 단원 4는 VM에 SQL 데이터베이스를 직접 설치하면 그 패치·업데이트까지 고객이 맡는다고 한다.
 - **처리**: 고쳐 쓴다. VM이 들어간 구성은 「PaaS만」이 아니다(NO.166·189 보기 C·D가 맞고 NO.290이 틀렸다). App Service와 Azure SQL Database는 PaaS다(NO.463·189 보기 A가 맞다).
   NO.191의 스토리지 계정은 공식 문서가 Azure Storage를 PaaS의 예로 들므로 덤프의 답(맞지 않는다)과 어긋난다 — 문항에서 Azure Storage의 유형은 묻지 않는다(근거가 문서 한 줄의 예뿐이다).
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+- **쓰인 곳**: `azure-service-types.paas`
 
 ## D35 — PaaS 웹앱의 운영 체제 통제·메모리·자동 확장·개발 서비스 — 덤프끼리 갈림 (phase 101)
 
@@ -365,7 +365,7 @@
   PaaS가 「전문 개발 서비스」로 앱에 기능을 더해 준다는 말은 받은 문서 어디에도 없다 — 공식 문서가 PaaS에 들어 있다고 하는 것은 개발 도구·미들웨어·런타임 같은 플랫폼 구성 요소다.
 - **처리**: 운영 체제 통제(아니요)와 자동 확장(예)은 덤프가 맞다. 가격 계층과 메모리는 고쳐 쓴다 — NO.201이 맞고 NO.301·348이 틀렸다. 다만 근거가 App Service 한 서비스의 문서라, 쓸 때는 「PaaS 일반」이 아니라 App Service의 예로 한정한다.
   「전문 개발 서비스」는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+- **쓰인 곳**: `azure-service-types.paas`
 
 ## D36 — Azure Cosmos DB의 서비스 유형 (phase 101)
 
@@ -479,7 +479,7 @@ phase 101 step 0은 용어집 1쪽(클라우드 개념)에서 `azure-cloud-benef
   같은 덤프의 [덤프 NO.115]도 자동 크기 조정을 탄력성의 예로 답한다.
 - **처리**: 한정해 쓴다. 확장성은 「수요에 맞춰 리소스를 늘리고 줄이는 능력(자동이나 수동)」으로 쓰고, 자동 크기 조정을 확장성의 대표 예로 들지 않는다. 「수요가 바뀌는 그때그때 자동으로」는 탄력성을 가르는 말로 쓴다.
   이름은 「클라우드 확장성」이 아니라 Microsoft 한국어 문서의 「확장성」이다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.scalability`, `azure-cloud-benefits.elasticity`
+- **쓰인 곳**: `azure-cloud-benefits.scalability`, `azure-cloud-benefits.elasticity`
 
 ## G11 — 고가용성의 「빠른 복구」와 「대부분 SLA 99.9% 이상」 (phase 101)
 
@@ -487,7 +487,7 @@ phase 101 step 0은 용어집 1쪽(클라우드 개념)에서 `azure-cloud-benef
 - **공식 문서**: Learn 「Describe the benefits of high availability and scalability in the cloud」는 고가용성을 어떤 중단이나 사건이 생기든 가용성을 가장 높게 지키는 데 초점을 둔 것이라 하고, Azure의 가동 시간 보장은 서비스마다 다르며 SLA에 담긴다고 한다.
   장애에서 회복해 계속 동작하는 능력은 Learn 「Describe the benefits of reliability and predictability in the cloud」가 **안정성**으로 정의한다. 「대부분 99.9% 이상」은 받은 문서 어디에도 없다 — 「What are business continuity, …」의 99.9%는 가동 시간 요구의 예일 뿐이다.
 - **처리**: 고쳐 쓴다. 고가용성은 「쓸 수 있는 시간을 가장 길게 지키는 것」으로 쓰고, 「장애에서 회복하는 능력」은 안정성에 둔다. SLA 수치는 쓰지 않는다(guide 「배경」 — 서비스마다의 SLA 수치를 쓰지 않는다).
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.high-availability`, `azure-cloud-benefits.reliability`
+- **쓰인 곳**: `azure-cloud-benefits.high-availability`, `azure-cloud-benefits.reliability`
 
 ## G12 — 신뢰성을 「예측 가능한 성능」으로 정의하는 것 (phase 101)
 
@@ -495,7 +495,7 @@ phase 101 step 0은 용어집 1쪽(클라우드 개념)에서 `azure-cloud-benef
 - **공식 문서**: Learn 「Describe the benefits of reliability and predictability in the cloud」는 안정성을 시스템이 장애에서 회복해 계속 동작하는 능력이라 정의하고, 성능을 내다보는 것은 같은 단원의 성능 예측 가능성으로 따로 둔다.
   패치가 자동으로 적용되는 것은 Learn 「Describe the benefits of security and governance in the cloud」가 **운영 모델에 따라** 그렇다고 하며 보안·거버넌스의 이점으로 든다(IaaS면 운영 체제와 설치한 소프트웨어의 패치를 쓰는 쪽이 관리한다).
 - **처리**: 고쳐 쓴다. 안정성은 「장애에서 회복해 계속 동작하는 능력」으로 쓴다. 「예측 가능한 성능」은 예측 가능성에, 패치의 자동 적용은 「운영 모델에 따라」로 한정해 보안과 거버넌스에 둔다. 이름은 「신뢰성」이 아니라 Microsoft 한국어 문서의 「안정성」이다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.reliability`, `azure-cloud-benefits.predictability`, `azure-cloud-benefits.security-governance`
+- **쓰인 곳**: `azure-cloud-benefits.reliability`, `azure-cloud-benefits.predictability`, `azure-cloud-benefits.security-governance`
 
 ## G13 — 일관된 보안 — 「고객은 애플리케이션 계층이나 데이터 암호화만」 (phase 101)
 
@@ -503,7 +503,7 @@ phase 101 step 0은 용어집 1쪽(클라우드 개념)에서 `azure-cloud-benef
 - **공식 문서**: Learn 「Describe the benefits of security and governance in the cloud」는 IaaS를 쓰면 운영 체제와 설치한 소프트웨어의 패치·유지 관리를 쓰는 쪽이 맡고, 패치를 맡기고 싶으면 PaaS나 SaaS가 낫다고 한다 — 쓰는 쪽이 맡는 범위는 서비스 유형에 따라 다르다.
   VM 안의 패치를 쓰는 쪽이 관리한다는 것은 phase 100의 G1과 같다. 「표준화된 보안 프레임워크를 모든 데이터 센터에」라는 말은 받은 문서에 없다.
 - **처리**: 고쳐 쓴다. 쓰는 쪽이 맡는 보안의 범위는 서비스 유형에 따라 다르다고 쓴다(IaaS면 운영 체제와 소프트웨어의 패치까지). 「일관된 보안」이라는 이름과 「모든 데이터 센터에 표준화된 보안」은 쓰지 않는다 — Learn 단원의 이름은 「보안과 거버넌스」(한국어판 「보안 및 거버넌스」)다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.security-governance`
+- **쓰인 곳**: `azure-cloud-benefits.security-governance`
 
 ## G14 — 예측 가능 비용의 「일정 규모 이상」과 관리 효율성의 「백업 간소화」 (phase 101)
 
@@ -511,7 +511,7 @@ phase 101 step 0은 용어집 1쪽(클라우드 개념)에서 `azure-cloud-benef
 - **공식 문서**: Learn 「Describe the benefits of reliability and predictability in the cloud」의 비용 예측 가능성은 리소스 사용을 실시간으로 추적·모니터링하고 분석과 Azure 가격 계산기로 비용을 내다보는 것이다. 사용 규모에 따라 정확도가 달라진다는 말은 없다.
   Learn 「Describe the benefits of manageability in the cloud」의 관리 효율성은 클라우드 관리(자동 크기 조정·템플릿 배포·상태 모니터링과 실패한 리소스 교체·지표 경고)와 클라우드에서의 관리(웹 포털·CLI·API·PowerShell) 둘이고, 백업은 들지 않는다.
 - **처리**: 한정해 쓴다. 비용 예측 가능성과 관리 효율성은 Learn 단원이 드는 것만 쓴다. 「일정 규모 이상」과 관리 효율성의 예로서의 「백업」은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-benefits.predictability`, `azure-cloud-benefits.manageability`
+- **쓰인 곳**: `azure-cloud-benefits.predictability`, `azure-cloud-benefits.manageability`
 
 ---
 
@@ -526,7 +526,7 @@ phase 101 step 3은 `azure-sla-lifecycle` 주제에 걸린 용어집 항목으�
   SLA를 곱한 복합 SLA는 서비스가 서로 따로 멈춘다고 가정한 대략의 상한일 뿐이라 믿을 수 없다고 한다. Cloud Adoption Framework 「Protect your cloud estate」는 중요 경로의 SLA를 곱해 복합 SLA를 어림하라고 한다.
 - **처리**: 한정해 쓴다. Azure SLA가 약속하는 것은 Well-Architected 문서대로 가동 시간과 연결로 쓴다. 「지원 수준」과 「99.9% 미달 시」라는 수치는 쓰지 않는다. 크레딧은 D24대로 쓴다.
   곱셈은 Cloud Adoption Framework대로 쓰되 SLA 읽는 법 문서의 한계(서로 따로 멈춘다는 가정, 대략의 상한)를 함께 쓴다 — 곱한 값을 Microsoft가 약속하는 SLA처럼 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`, `azure-sla-lifecycle.service-credit`, `azure-sla-lifecycle.composite-sla`
+- **쓰인 곳**: `azure-sla-lifecycle.sla`, `azure-sla-lifecycle.service-credit`, `azure-sla-lifecycle.composite-sla`
 
 ## G16 — 99.9% SLA는 한 달 중단을 수십 분으로 제한하나 (phase 101)
 
@@ -534,7 +534,7 @@ phase 101 step 3은 `azure-sla-lifecycle` 주제에 걸린 용어집 항목으�
 - **공식 문서**: Well-Architected 지표 문서의 표는 99.9%를 한 달 중단 시간으로 바꾸면 약 43.2분이라 하고, 「What are business continuity, high availability, and disaster recovery?」도 약 43분이라 한다 — 셈은 맞다.
   그러나 「How to read a service-level agreement (SLA)」는 99.9% SLA가 서비스를 늘 쓸 수 있다는 보장도, 그만큼만 멈춘다는 뜻도 아니며, 무엇을 중단으로 셀지는 SLA의 정의가 정한다고 한다. SLA는 그 수준에 못 미쳤을 때 고객이 보상을 받는 조건부 약속이다.
 - **처리**: 한정해 쓴다. 99.9%를 한 달 약 43분으로 바꾸는 셈은 예시 값으로 쓸 수 있다. 「SLA가 중단을 그만큼으로 제한한다(막아 준다)」고는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-sla-lifecycle.sla`
+- **쓰인 곳**: `azure-sla-lifecycle.sla`
 
 phase 101 step 6은 `azure-service-types` 주제에 걸린 용어집 항목으로 1쪽의 IaaS(1-3)·PaaS(1-4)·SaaS(1-5)·공동 책임 모델(1-9)·클라우드 마이그레이션(1-26)을 봤다.
 IaaS(1-3)의 「가상 머신 형태로 빌려 쓴다」·「필요하면 사양을 빠르게 늘리고 줄인다」·「운영 체제 설치부터 보안 구성까지 사용자가 직접」은 IaaS 사전·Learn 단원 2와 맞아 항목을 만들지 않았다.
@@ -546,7 +546,7 @@ IaaS(1-3)의 「가상 머신 형태로 빌려 쓴다」·「필요하면 사양
 - **공식 문서**: Learn 「Describe cloud service types」 단원 3은 PaaS에서 고객이 앱 코드·데이터·액세스 제어에 집중하고, 서비스 구성에 따라 일부 네트워크·앱 보안 설정은 함께 맡는다고 한다. 「Shared responsibility in the cloud」의 책임 표에서도 PaaS의 애플리케이션·네트워크 제어는 함께 맡는 것이고, 고객 데이터·구성과 설정·ID와 사용자는 고객 몫이다.
   운영 체제·데이터베이스의 라이선스와 패치를 고객이 신경 쓰지 않는다는 것(단원 3)과 PaaS에 운영 체제·런타임·데이터베이스·미들웨어가 들어 있다는 것(PaaS 사전)은 맞다.
 - **처리**: 한정해 쓴다. 공급자가 플랫폼과 그 패치를 맡는다는 것은 쓴다. 「코드 작성에만」은 쓰지 않고, 고객이 앱 코드와 함께 데이터·액세스 제어를 맡고 일부 보안 설정을 함께 맡는다고 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.paas`
+- **쓰인 곳**: `azure-service-types.paas`
 
 ## G18 — SaaS의 예 「Office 365」와 「공급자가 운영을 전담」 (phase 101)
 
@@ -554,11 +554,11 @@ IaaS(1-3)의 「가상 머신 형태로 빌려 쓴다」·「필요하면 사양
 - **공식 문서**: 「Shared responsibility in the cloud」는 SaaS의 예로 **Microsoft 365**와 Dynamics 365를 든다(Office 365는 지금 이름이 아니다). Learn 단원 4는 SaaS에서 공급자가 앱 스택의 거의 전부를 관리하지만 고객은 데이터, ID와 액세스 설정, 장치의 접근 상태를 관리한다고 한다.
   책임 표에서도 SaaS의 고객 데이터·구성과 설정·ID와 사용자는 고객 몫이고, 클라이언트 장치·애플리케이션은 함께 맡는다.
 - **처리**: 고쳐 쓴다. 예는 Microsoft 365로 쓴다. 「공급자가 운영을 전담」은 쓰지 않고, 공급자가 거의 다 맡되 고객에게 데이터·ID와 액세스·장치가 남는다고 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.saas`, `azure-service-types.shared-responsibility-model`
+- **쓰인 곳**: `azure-service-types.saas`, `azure-service-types.shared-responsibility-model`
 
 ## G19 — 클라우드 마이그레이션의 전략 이름 (phase 101)
 
 - **용어집**: 클라우드 마이그레이션을 사전 평가·비용 분석·네트워크 설계·데이터 마이그레이션·재해 복구 구성을 포함하는 과정이라 하고, 전략의 예로 「IaaS 리프트 앤 시프트」와 「PaaS 리팩터링」을 든다 — [용어집 1-26]
 - **공식 문서**: Learn 「Describe cloud service types」 단원 2는 리프트 앤 시프트 마이그레이션을 IaaS가 맞는 경우로 들고, 온-프레미스 데이터 센터와 비슷한 클라우드 리소스를 갖춘 뒤 워크로드를 옮기는 것이라 한다. 받은 문서에는 「PaaS 리팩터링」과 마이그레이션 단계 목록이 없다.
 - **처리**: 한정해 쓴다. 리프트 앤 시프트 마이그레이션은 IaaS가 맞는 경우로 Learn 단원 2대로 쓴다. 「PaaS 리팩터링」과 마이그레이션 단계 목록은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-service-types.iaas`
+- **쓰인 곳**: `azure-service-types.iaas`

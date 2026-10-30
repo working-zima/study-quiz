@@ -838,7 +838,7 @@ phase 101 step 6이 `azure-service-types` 주제를 위해 덧붙인 줄:
 
 쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(가장 유연하고 고객이 리소스를 가장 많이 통제한다, 공급자는 하드웨어 유지 관리·인터넷 연결·물리 보안, 고객은 운영 체제 설치·구성·유지 관리와 네트워크·데이터베이스·스토리지 구성, 하드웨어를 빌려 무엇을 할지 고객이 정한다, 운영 책임이 가장 크다, 리프트 앤 시프트 마이그레이션과 개발·테스트), `azure-service-types.shared-responsibility-model`(세 유형을 한 줄씩 푸는 근거), az034·az035 해설, G19
 
-쓰일 곳(phase 101 step 6): `azure-service-types.paas`, `azure-service-types.saas`, `ServiceTypesTable`, D31·D33·G17·G18
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(IaaS와 SaaS의 중간, 공급자가 물리 인프라·물리 보안·인터넷 연결에 더해 운영 체제·미들웨어·개발 도구·분석 서비스를 유지 관리한다, 운영 체제·데이터베이스의 라이선스와 패치를 고객이 신경 쓰지 않는다, 고객은 앱 코드·데이터·액세스 제어를 맡고 일부 네트워크·앱 보안 설정은 함께 맡는다, 개발 프레임워크와 분석·비즈니스 인텔리전스), `azure-service-types.saas`(제품으로 보면 가장 완성된 유형, 다 만들어진 앱을 빌려 쓴다, 이메일·재무 소프트웨어·메시지 앱, 가장 덜 유연할 수 있지만 시작이 가장 쉽고 기술 지식이 가장 적게 든다, 공급자가 인프라·플랫폼·앱 유지 관리를 거의 다 맡고 고객은 데이터·ID와 액세스 설정·장치를 맡는다, 협업 앱의 예, 이메일과 메시지·생산성 앱·재무와 경비 관리), `ServiceTypesTable`(PaaS·SaaS 행의 칸과 IaaS 행의 맞는 경우), az036·az037·az038 해설, D31·D33·G17·G18(위 두 개념이 고친 쪽을 따랐다)
 
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
@@ -1079,7 +1079,7 @@ https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibil
 
 쓰인 곳(phase 101 step 7): `azure-service-types.shared-responsibility-model`(책임 표 열 행의 배정, 고객이 늘 지는 책임 — 데이터의 보호와 암호화 결정·장치 보호·계정 관리·접근 관리, 함께 지는 책임의 나뉨 — 애플리케이션·네트워크 제어·장치, 물리 네트워크·물리 호스트를 푸는 말, IaaS·PaaS·SaaS에서 고객이 하는 일), `SharedResponsibilityDiagram`(행 열 개와 시나리오마다 선명한 행·「함께」 곁말 — 이 표 그대로. 「고객 데이터」 행은 Learn 단원 4의 말로 「정보와 데이터」, 「ID와 사용자」 행은 「계정과 ID」, 「클라이언트 장치」 행은 「장치」라 적었다), `azure-service-types.iaas`(VM이 IaaS의 예), az032·az033·az034 해설, D30·D32
 
-쓰일 곳: `azure-service-types.paas`(App Service·Functions·SQL Database·Storage가 PaaS), `azure-service-types.saas`(Microsoft 365가 SaaS), D31·D33·D34·D37·G18
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(App Service·SQL Database가 PaaS의 예 — Functions·Storage는 쓰지 않았다, IaaS에서는 VM과 운영 체제를 고객이 관리하고 PaaS에서는 VM이나 운영 체제를 관리하지 않고 앱을 실행한다, 애플리케이션·네트워크 제어의 나뉨), `azure-service-types.saas`(Microsoft 365가 SaaS의 예 — Dynamics 365는 쓰지 않았다, 장치 보호는 고객), `ServiceTypesTable`(세 행의 「고객이 맡는 것」), az036·az037 해설, D31·D33·D34·D37·G18(위 두 개념이 고친 쪽을 따랐다)
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is infrastructure as a service (IaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas
@@ -1102,7 +1102,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-p
 - 배포하면 런타임·미들웨어·운영 체제 관리는 플랫폼이 맡는다. 수요에 따라 리소스를 자동으로 늘리고 줄이며, 보안 패치·업데이트·인프라 유지 관리는 PaaS 공급자가 한다 — 「How does PaaS work?」
 - 한국어 표기: 제목은 「PaaS(Platform as a Service)」로 한국어 이름을 붙이지 않았다
 
-쓰일 곳: `azure-service-types.paas`(자동 확장, 패치를 공급자가 — D35 대조의 근거), D35·G17
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(플랫폼에 운영 체제·개발 도구가 들어 있다는 것으로 플랫폼을 푸는 한 줄, 수요에 따라 리소스를 자동으로 늘리고 줄인다), D35·G17
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is software as a service (SaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas
@@ -1114,7 +1114,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-s
 - SaaS의 흔한 예로 이메일 서비스, 고객 관계 관리(CRM) 시스템, 사무용 생산성 도구를 든다 — 「Comparing SaaS, PaaS, and MaaS」
 - 한국어 표기: 제목은 「SaaS(Software as a Service)」로 한국어 이름을 붙이지 않았다
 
-쓰일 곳: `azure-service-types.saas`, G18
+쓰인 곳(phase 101 step 8): `azure-service-types.saas`(사서 설치하지 않고 인터넷으로 — 대개 웹 브라우저로 — 쓴다, 앱이 공급자의 서버에서 실행되고 처리·저장도 거기서 해 인터넷에 연결된 기기라면 어디서나 쓴다, 업데이트는 공급자, 생산성 앱을 「사무용 앱」으로 푸는 근거), az038 해설, G18
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is middleware?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-middleware
@@ -1124,7 +1124,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-m
 - 미들웨어는 앱·데이터베이스·운영 체제 사이를 잇는 소프트웨어 계층으로, 서로 다른 앱·시스템·서비스가 데이터를 주고받고 함께 동작하게 돕는다 — 첫 문단·「Middleware definition」
 - 한국어 표기: middleware → 미들웨어(사전 한국어판 제목 「미들웨어란?」, Learn 단원 3 한국어판)
 
-쓰일 곳: `azure-service-types.paas`(미들웨어를 푸는 한 줄)
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(미들웨어를 푸는 한 줄)
 
 ## (phase 101) Azure App Service — App Service overview
 https://learn.microsoft.com/en-us/azure/app-service/overview
@@ -1136,7 +1136,7 @@ https://learn.microsoft.com/en-us/azure/app-service/overview
 - 이 문서는 App Service를 「PaaS」라고 부르지 않는다. App Service가 PaaS라는 근거는 위 「Shared responsibility in the cloud」의 PaaS 예다
 - 한국어 표기: 「App Service 개요」, Azure App Service(이름 그대로)
 
-쓰일 곳: `azure-service-types.paas`(Azure에서의 예와 자동 확장), D31·D33·D34·D35
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(App Service는 웹 앱 같은 앱을 그 아래 인프라를 관리하지 않고 실행하게 해 준다 — 자동 확장은 PaaS 사전을 근거로 썼다), D31·D33·D34·D35
 
 ## (phase 101) Azure App Service — Scale up an app in Azure App Service
 https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
@@ -1146,7 +1146,7 @@ https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
 - App Service 앱의 크기 조정은 둘이다. 스케일 업은 앱이 속한 App Service 플랜의 가격 책정 계층을 바꿔 CPU·메모리·디스크 공간이나 추가 기능을 더 얻는 것이고, 스케일 아웃은 앱을 실행하는 VM 인스턴스 수를 늘리는 것이다. 인스턴스 수는 정한 규칙과 일정에 따라 자동으로 늘릴 수도 있다 — 「첫 문단」
 - 한국어 표기: 제목 「Azure App Service에서 앱 강화」, pricing tier → 가격 책정 계층, scale up → 강화·스케일 업(섞였다)
 
-쓰일 곳: D35(가격 책정 계층을 바꿔 메모리를 더하는가 — 덤프끼리 갈림을 가르는 근거)
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(App Service의 예로 한정해 — 가격 책정 계층을 높은 것으로 바꿔 CPU와 메모리를 더 얻는다), D35(가격 책정 계층을 바꿔 메모리를 더하는가 — 덤프끼리 갈림을 가르는 근거)
 
 ## (phase 101) Azure SQL Database — What is Azure SQL Database?
 https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview
@@ -1157,7 +1157,7 @@ https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-ove
 - 기본으로 들어 있는 PaaS 기능 덕분에 쓰는 쪽은 업무에 필요한 데이터베이스 관리·최적화에 집중한다 — 같은 문서 본문
 - 한국어 표기: 제목 「Azure SQL Database란?」, Azure SQL Database(이름 그대로)
 
-쓰일 곳: `azure-service-types.paas`(Azure에서의 예 — SQL Database가 PaaS라는 근거), D32·D34
+쓰인 곳(phase 101 step 8): `azure-service-types.paas`(Azure에서의 예 — SQL Database가 PaaS라는 근거, 업그레이드·패치·백업 같은 관리 대부분을 사람 손 없이 처리한다), D32·D34
 
 ## (phase 101) Azure Cosmos DB — introduction
 https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
