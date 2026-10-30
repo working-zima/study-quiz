@@ -122,6 +122,7 @@ import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
+import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
@@ -342,6 +343,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cloud-models.multicloud': CloudModelsTable,
   'azure-cloud-benefits.scalability': CloudScalingDiagram,
   'azure-sla-lifecycle.composite-sla': CompositeSlaDiagram,
+  'azure-sla-lifecycle.general-availability': ServiceLifecycleDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

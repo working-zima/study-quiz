@@ -157,10 +157,14 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 
 - **리소스**는 Azure를 이루는 기본 단위다. Azure에서 만들거나 갖추거나 배포하는 것은 무엇이든 리소스이고, VM·가상 네트워크·데이터베이스가 그 예다 — 「Azure resources and resource groups」 첫 문단
 - 한국어 표기: resource → 리소스
+- Azure를 쓰려면 **Azure 구독**이 있어야 한다. 구독은 Azure 제품과 서비스에 접근하게 해 주고, 요금을 매기는 단위가 된다 — 「Azure subscriptions」 둘째 문단 (phase 101)
+- 한국어 표기: subscription → 구독, Azure subscription → Azure 구독 (phase 101)
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(리소스를 푸는 한 줄 — 서비스로 만들어 쓰는 것 하나하나, 가상 머신 한 대가 그 예)
+
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.preview`(Azure 구독을 푸는 한 줄 — Azure 서비스를 쓰려면 있어야 하고, 서비스를 쓸 수 있게 해 주며 요금을 매기는 단위), az028·az029 해설
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 2 Describe Azure virtual machines
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/2-virtual-machines
@@ -895,7 +899,7 @@ https://learn.microsoft.com/en-us/lifecycle/faq/azure-infrastructure
 - 사용 중단 단계의 기능은 아직 쓸 수 있고 지원되지만 차차 거두어지는 중이라 새 개선을 받지 않고, 보통 사용 중지 최소 12개월 전에 알리며, 그동안 SLA는 계속 효력이 있다. 사용 중지 뒤에는 기능을 쓸 수 없고 지원·업데이트가 끝나며 SLA도 적용되지 않는다 — 「Deprecation & Previous-gen」, 「Retirement」
 - 한국어 표기: 제목 「인프라 수명 주기 FAQ - Microsoft Azure」. private preview → 프라이빗 미리 보기(본문)·비공개 미리 보기(절 안의 질문 제목), public preview → 공개 미리 보기(절 제목만 「공개 프리뷰」), general availability → GA(일반 공급), production workload → 프로덕션 워크로드, deprecation → 사용 중단·사용 중지 예정(섞였다), retirement → 사용 중지
 
-쓰일 곳: `azure-sla-lifecycle.preview`(두 항목의 정의 — 누가 쓸 수 있나, SLA, 운영 환경), `azure-sla-lifecycle.general-availability`(GA의 정의, SLA 보장, 운영에 권함, 미리 보기와 무엇이 다른가), `ServiceLifecycleDiagram`(세 단계의 차례와 단계마다 누가 쓸 수 있나·SLA), D26, D27, D28, D29
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.preview`(두 항목 — 비공개는 초대받은 일부 고객, 더 넓게 내놓기 전 초기 기능의 평가와 의견, 덜 갖춰졌거나 크게 바뀔 수 있음, 지원·문서가 적음 / 공개는 Azure 구독이 있는 모든 고객이 정식 출시 전에 평가와 의견, 비공개보다 다듬어지고 지원·문서가 더 갖춰짐, 의견에 따라 바뀔 수 있음, 지역 같은 조건으로 범위가 좁을 수 있음 / 둘 다 보통 SLA가 없고 따로 밝히지 않는 한 운영에 쓰라고 내놓은 것이 아님), `azure-sla-lifecycle.general-availability`(GA의 정의 — 정식으로 내놓아 모든 고객이 운영에 쓰도록 지원, 안정·충분히 시험, 따로 밝히지 않는 한 지역 같은 조건으로 막지 않음, 지원·문서 완비, SLA와 운영 지원 약속 보장, 운영에 권함, 세 단계의 차례), `ServiceLifecycleDiagram`(세 단계의 차례와 단계마다 누가 쓸 수 있나·SLA), az028·az029·az030 해설, D26, D27, D28, D29. 사용 중단·사용 중지 단계는 쓰지 않았다
 
 ## (phase 101) Microsoft 수명 주기 — Modern Lifecycle Policy
 https://learn.microsoft.com/en-us/lifecycle/policies/modern
@@ -910,7 +914,7 @@ https://learn.microsoft.com/en-us/lifecycle/policies/modern
 - 고정 수명 주기 정책 같은 기존 정책을 따르는 제품은 정해진 기간 동안 서비스와 지원을 받고, 이미 그 정책으로 나온 제품은 공개된 지원 종료 날짜까지 지원된다 — 같은 절
 - 한국어 표기: Modern Lifecycle Policy → **최신 수명 주기 정책**, Fixed Lifecycle Policy → 고정 수명 주기 정책. Azure 업데이트 쪽은 한국어판에도 이름 없이 주소만 있다
 
-쓰일 곳: `azure-sla-lifecycle.lifecycle-policy`(정책의 대상, 지원이 이어지는 세 조건, 30일·12개월·3년 통지, 무료 서비스·미리 보기 제외), `azure-sla-lifecycle.general-availability`(새 기능 소식을 보는 곳 — Azure 업데이트, GA 뒤에도 바뀐다), D29
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.lifecycle-policy`(정책의 대상, 지원이 이어지는 세 조건, 30일·12개월·3년 통지, 무료 서비스·미리 보기 제외, 고정 수명 주기 정책은 정해 둔 기간 동안 지원하고 지원 종료 날짜를 공개해 둔다는 것), `azure-sla-lifecycle.general-availability`(정식으로 내놓은 뒤에도 계속 업데이트하며 지원해 서비스가 자주 바뀔 수 있고 고객이 다가올 변경을 살펴야 한다는 것, 앞으로 나올 기능과 출시 소식을 보는 Azure 업데이트 쪽), az030·az031 해설, D29. 보안 업데이트를 나올 때 알린다는 것은 쓰지 않았다
 
 ## (phase 101) Microsoft 수명 주기 — Platform Lifecycle FAQ - Microsoft Azure
 https://learn.microsoft.com/en-us/lifecycle/faq/azure
@@ -921,7 +925,7 @@ https://learn.microsoft.com/en-us/lifecycle/faq/azure
 - 한국어 표기: Fixed Policy → 고정 정책(이 쪽 한국어판), Mainstream and Extended Support → 일반 및 확장 지원 단계, Modern Lifecycle Policy → 최신 수명 주기 정책
 - 쓰지 않는 것: SDK·Cloud Services 게스트 OS의 12개월 통지 — 이 주제의 범위가 아니다
 
-쓰일 곳: `azure-sla-lifecycle.lifecycle-policy`(Azure 서비스는 최신 수명 주기 정책, VM에서 쓰는 Microsoft 소프트웨어는 고정 수명 주기 정책)
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.lifecycle-policy`(Azure 가상 머신 위에서 쓰도록 지원되는 Microsoft 소프트웨어는 고정 수명 주기 정책을, 그 밖의 Azure 서비스는 모두 최신 수명 주기 정책을 따른다), `azure-sla-lifecycle.general-availability`(Azure 서비스가 정식으로 내놓은 뒤에도 최신 수명 주기 정책으로 계속 업데이트·지원된다는 근거), az030 해설. 「일반 지원·확장 지원 단계」라는 이름은 쓰지 않았다
 
 ## (phase 101) Azure 약관 — Supplemental Terms of Use for Microsoft Azure Previews
 https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/
@@ -936,7 +940,7 @@ https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/
 - 한국어 표기: 제목 「Microsoft Azure 미리 보기에 대한 추가 사용 약관」, preview → 미리 보기, Early Access Previews → 조기 액세스 미리 보기, private preview → 프라이빗 미리 보기(아래 다른 절에서는 「비공개 미리 보기」·「개인 미리 보기」), public preview → 공개 미리 보기, general availability → 일반 공급("GA"), production → 프로덕션(「프로덕션 또는 "라이브" 운영 환경」)
 - 쓰지 않는 것: 서비스별 미리 보기 조건(생성형 AI, Quantum, Communication Services, Fabric 등) — 이 주제는 서비스 이름을 쓰지 않는다
 
-쓰일 곳: `azure-sla-lifecycle.preview`(미리 보기의 뜻, 쓰려면 약관에 동의, 비공개 미리 보기의 쓰임 — 내부 시험·평가와 의견, 남에게 줄 수 없음, 운영 환경 금지, 기밀), `azure-sla-lifecycle.general-availability`(GA가 되면 미리 보기 판을 GA 판으로 바꾸는 예 — 쓸지는 step 5가 정한다), D27, D28
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.preview`(미리 보기의 뜻 — 정식으로 내놓기 전의 기능·서비스를 고객이 골라 평가하게 하는 것, 쓰려면 미리 보기 조건(약관)에 동의, 비공개 미리 보기의 쓰임 — 회사 안의 시험·평가와 의견에만, 다른 회사에 넘기거나 밖에 알릴 수 없음, 운영 환경 금지), `ServiceLifecycleDiagram`(private 캡션), D27, D28. GA가 되면 미리 보기 판을 GA 판으로 바꾸는 컨테이너의 예는 한 서비스의 예라 쓰지 않았다(D29)
 
 ## (phase 101) Azure Resource Manager — Set up preview features in Azure subscription
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/preview-features
@@ -947,7 +951,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/previe
 - 구독의 미리 보기 기능은 Azure 포털(구독 → 설정 → 미리 보기 기능), Azure CLI, Azure PowerShell로 나열하고 등록한다 — 「List preview features」, 「Register preview feature」
 - 한국어 표기: preview features → 미리 보기 기능, opt in → 옵트인
 
-쓰일 곳: `azure-sla-lifecycle.preview`(누구나 신청하는 미리 보기와 승인이 필요한 미리 보기가 있다 — 이 문서는 「공개」·「비공개」라는 이름을 붙이지 않으므로 그 이름의 근거로는 쓰지 않는다), D27, D29
+쓰인 곳(phase 101 step 5): 이 문서의 사실은 개념 글에 쓰지 않았다 — 누구나 신청하는 미리 보기와 승인이 필요한 미리 보기의 구분은 「공개」·「비공개」라는 이름과 이어지지 않아 `azure-sla-lifecycle.preview`에 넣지 않았다. D27·D29의 대조 근거로만 남는다
 
 ## (phase 101) Azure AI Search — What's new in Azure AI Search (미리 보기 안내 문단)
 https://learn.microsoft.com/en-us/azure/search/search-api-preview (이 주소로 받으면 「What's new in Azure AI Search」 쪽이 열린다)
@@ -956,7 +960,7 @@ https://learn.microsoft.com/en-us/azure/search/search-api-preview (이 주소로
 
 - (preview)로 표시한 기능은 SLA가 덮지 않고, 운영 워크로드에 권하지 않으며, 일반 공급되기 전에 바뀌거나 제한될 수 있다 — 쪽 머리의 Important
 
-쓰일 곳: `azure-sla-lifecycle.preview`(미리 보기는 SLA가 없고 운영에 권하지 않는다는 둘째 근거), D26, D27
+쓰인 곳(phase 101 step 5): `azure-sla-lifecycle.preview`(미리 보기는 SLA가 없고 운영에 권하지 않는다는 둘째 근거), `ServiceLifecycleDiagram`(public 캡션), az029 해설, D26, D27
 
 ## (phase 101) Microsoft Entra — What's new (Roadmap column descriptions)
 https://learn.microsoft.com/en-us/entra/fundamentals/whats-new-overview
@@ -967,7 +971,7 @@ Microsoft Entra 제품의 로드맵 표에서 열을 설명한 것이다. Azure 
 - 공개 미리 보기는 필요한 라이선스가 있는 모든 고객이 쓸 수 있고, 고객 지원이 제한될 수 있으며 표준 SLA가 적용되지 않는다. GA는 사용 허가가 있는 모든 고객이 쓸 수 있고 모든 Microsoft 지원 경로로 지원된다 — 「Roadmap column descriptions」
 - 한국어 표기: public preview → 공개 미리 보기, general availability → GA (일반 공급)
 
-쓰일 곳: (표기 근거) `azure-sla-lifecycle.preview`, `azure-sla-lifecycle.general-availability`
+쓰인 곳(phase 101 step 5): (표기 근거) `azure-sla-lifecycle.preview`(「공개 미리 보기」), `azure-sla-lifecycle.general-availability`(「일반 공급(GA)」)
 
 ## (phase 101) Microsoft Entra — New name for Azure Active Directory
 https://learn.microsoft.com/en-us/entra/fundamentals/new-name

@@ -38,6 +38,56 @@
       "sources": [
         "azure-sla-lifecycle.composite-sla"
       ]
+    },
+    "service-lifecycle": {
+      "label": "새 Azure 기능이 비공개 미리 보기와 공개 미리 보기를 거쳐 일반 공급에 이르는 차례를 보이는 도식",
+      "svgLabel": "비공개 미리 보기에서 공개 미리 보기로, 공개 미리 보기에서 일반 공급(GA)으로 화살표가 이어진 모습",
+      "question": "새 Azure 기능은 어떤 단계를 거쳐 운영에 쓸 수 있게 될까?",
+      "idleCaption": "새 기능이 비공개 미리 보기와 공개 미리 보기를 거쳐 일반 공급(GA)에 이르는 차례를 화살표로 이은 모습이다. 버튼으로 단계를 고르면 그 단계에서 누가 쓸 수 있고 SLA가 있는지 볼 수 있다.",
+      "legend": "화살표는 단계가 넘어가는 차례다. 고른 단계에 붙은 글은 그 단계에서 누가 쓸 수 있는지와 SLA가 있는지를 말한다. 흐린 상자는 고르지 않은 단계다.",
+      "nodes": {
+        "private-preview": "비공개 미리 보기",
+        "public-preview": "공개 미리 보기",
+        "ga": "일반 공급(GA)"
+      },
+      "notes": {
+        "private-who": "초대받은 일부 고객",
+        "private-sla": "보통 SLA 없음",
+        "public-who": "구독이 있는 모든 고객",
+        "public-sla": "보통 SLA 없음",
+        "ga-who": "모든 고객",
+        "ga-sla": "SLA 보장"
+      },
+      "scenarios": [
+        {
+          "id": "private",
+          "label": "비공개 미리 보기",
+          "caption": "비공개 미리 보기는 Microsoft가 초대한 일부 고객만 쓴다. 회사 안에서 시험·평가하고 의견을 주는 데에만 쓰고, 보통 SLA가 없으며 운영 환경에는 쓸 수 없다.",
+          "sources": [
+            "azure-sla-lifecycle.preview"
+          ]
+        },
+        {
+          "id": "public",
+          "label": "공개 미리 보기",
+          "caption": "공개 미리 보기는 Azure 구독이 있는 모든 고객이 초대 없이 써 볼 수 있다. 그래도 보통 SLA가 없고, Microsoft는 따로 밝힌 경우가 아니면 운영 환경에 쓰기를 권하지 않는다.",
+          "sources": [
+            "azure-sla-lifecycle.preview"
+          ]
+        },
+        {
+          "id": "ga",
+          "label": "일반 공급(GA)",
+          "caption": "일반 공급은 기능을 정식으로 내놓은 단계다. 모든 고객이 쓸 수 있고 SLA와 운영 지원 약속이 보장되어, Microsoft가 운영 환경에 쓰기를 권한다.",
+          "sources": [
+            "azure-sla-lifecycle.general-availability"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-sla-lifecycle.preview",
+        "azure-sla-lifecycle.general-availability"
+      ]
     }
   },
   "tables": {},
