@@ -107,6 +107,7 @@ import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
+import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -332,6 +333,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.bgp': AsPathDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
+  'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -1,0 +1,52 @@
+{
+  "diagrams": {
+    "public-private-cloud": {
+      "label": "퍼블릭 클라우드와 프라이빗 클라우드에서 하드웨어를 갖추는 쪽과 쓰는 쪽 도식",
+      "svgLabel": "클라우드 공급자의 데이터 센터에 있는 하드웨어와 그것을 쓰는 회사 A·B·C, 한 조직 전용 데이터 센터에 있는 하드웨어와 그것을 쓰는 회사 D",
+      "question": "클라우드의 하드웨어는 누가 갖추고, 누가 함께 쓸까?",
+      "idleCaption": "두 데이터 센터에 하드웨어가 하나씩 있다. 버튼을 고르면 각 하드웨어를 누가 갖추고 관리하는지, 어느 회사가 그 하드웨어를 쓰는지 볼 수 있다.",
+      "legend": "큰 박스는 데이터 센터이고, 그 안의 하드웨어는 서버와 저장 장치 같은 실제 장비다. 화살표는 회사가 그 하드웨어를 쓴다는 뜻이다.",
+      "nodes": {
+        "provider-hardware": "하드웨어",
+        "company-a": "회사 A",
+        "company-b": "회사 B",
+        "company-c": "회사 C",
+        "dedicated-hardware": "하드웨어",
+        "company-d": "회사 D"
+      },
+      "groups": {
+        "provider": "클라우드 공급자의 데이터 센터",
+        "dedicated": "한 조직 전용 데이터 센터"
+      },
+      "notes": {
+        "provider-note": "공급자가 갖추고 관리",
+        "shared-note": "여러 회사가 함께 씀",
+        "dedicated-note": "회사 D가 사서 관리",
+        "only-note": "한 조직만 씀"
+      },
+      "scenarios": [
+        {
+          "id": "public",
+          "label": "퍼블릭 클라우드",
+          "caption": "퍼블릭 클라우드에서는 클라우드 공급자가 하드웨어와 데이터 센터를 갖추고 관리한다. 서비스를 산 회사 A·B·C가 그 하드웨어를 함께 쓰지만, 테넌트 사이에 보안 경계가 있어 허락 없이 다른 회사의 리소스에 접근할 수 없다.",
+          "sources": [
+            "azure-cloud-models.public-cloud"
+          ]
+        },
+        {
+          "id": "private",
+          "label": "프라이빗 클라우드",
+          "caption": "프라이빗 클라우드의 하드웨어는 회사 D 한 곳만 쓴다. 그 하드웨어를 사서 유지 관리하는 일은 회사 D가 맡는다. 데이터 센터는 회사 D의 사업장 안에 있을 수도, 사업장 밖에서 다른 회사가 운영하는 곳일 수도 있다.",
+          "sources": [
+            "azure-cloud-models.private-cloud"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cloud-models.private-cloud"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
