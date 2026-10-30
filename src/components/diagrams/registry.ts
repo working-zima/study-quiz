@@ -54,6 +54,7 @@ import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
+import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -136,6 +137,7 @@ import { StateMachineDiagram } from './StateMachineDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
+import { SwapSpaceDiagram } from './SwapSpaceDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -344,6 +346,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-filesystem.mbr-gpt': MbrGptDiagram,
   'linux-filesystem.disk-device-names': DiskDeviceNameDiagram,
   'linux-filesystem.filesystem-mount': MountPointDiagram,
+  'linux-filesystem.fstab': FstabFieldsDiagram,
+  'linux-filesystem.swap': SwapSpaceDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

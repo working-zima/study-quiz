@@ -2562,6 +2562,7 @@ https://man7.org/linux/man-pages/man8/swapon.8.html
 - `mount -a`는 fstab에 적힌 파일 시스템을 모두(`noauto`가 붙은 줄은 빼고) 마운트하고, 보통 부팅 스크립트에서 쓴다. 다만 요즘 systemd 기반 배포판의 다수는 부팅 때 `mount -a` 대신 systemd 유닛으로 마운트한다 — 「The files /etc/fstab, /etc/mtab and /proc/mounts」, OPTIONS `-a`
 - `-m`·`--mkdir`(그리고 fstab 옵션 `X-mount.mkdir`)은 마운트 지점이 아직 없으면 만들게 **허용하는** 옵션이다 — OPTIONS. 그래서 이 옵션 없이는 마운트 지점이 미리 있는 디렉터리여야 한다(phase 75 step 4에서 확인, 2026-10-30).
   비어 있어야 한다는 요구는 없다 — 원래 내용이 있으면 붙어 있는 동안 가려질 뿐이다(위 DESCRIPTION)
+- `defaults`는 기본 옵션(rw·suid·dev·exec·auto·nouser·async)으로 마운트하라는 옵션이고, 실제 기본 옵션의 묶음은 커널과 파일 시스템 형식에 따라 다르다 — 「FILESYSTEM-INDEPENDENT MOUNT OPTIONS」 `defaults`(phase 75 step 5에서 확인, 2026-10-30). 본문은 옵션의 목록을 쓰지 않고 「기본 옵션, 무엇이 기본인지는 커널과 형식에 따라 다르다」까지만 쓴다
 - **umount(8)**: 지정한 파일 시스템을 파일 계층에서 뗀다. 마운트한 디렉터리로 가리키는 것이 기본이다. 열린 파일이 있거나 어떤 프로세스의 작업 디렉터리가 그 안에 있으면(사용 중이면) 뗄 수 없다 — DESCRIPTION
 - **fstab(5)**: 시스템이 마운트할 수 있는 파일 시스템을 적은 파일이다. 프로그램은 읽기만 하고, 만들고 고치는 것은 관리자의 몫이다. fsck(8)·mount(8)·umount(8)가 위에서부터 차례로 읽으므로 줄의 차례가 중요하다.
   systemd 기반 시스템에서는 고친 뒤 `systemctl daemon-reload`를 권한다 — DESCRIPTION. 파일 시스템 하나를 한 줄에 적고 칸은 탭이나 공백으로 나누며, `#`로 시작하는 줄은 주석이다 — DESCRIPTION. 칸 여섯 —
@@ -2623,6 +2624,8 @@ man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased�
 - **proc_meminfo(5)**: /proc/meminfo는 시스템의 메모리 사용 통계를 보인다. free(1)가 이 파일로 쓰고 남은 메모리(물리 메모리와 스왑 모두)를 보여 준다 — DESCRIPTION.
   MemTotal은 쓸 수 있는 RAM 전체, MemAvailable은 스와핑 없이 새 애플리케이션을 시작하는 데 쓸 수 있는 메모리의 추정치다. SwapCached는 스왑으로 나갔다가 다시 들어왔지만 스왑 파일에도 남아 있는 메모리로,
   메모리 압박이 커지면 이 페이지는 다시 내보낼 필요가 없어 입출력을 아낀다 — 각 항목
+  **Active**는 최근에 쓴 메모리라 꼭 필요하지 않으면 되찾지 않고, **Inactive**는 최근에 덜 쓴 메모리라 다른 데 쓰도록 되찾을 대상으로 더 알맞다. SwapTotal은 쓸 수 있는 스왑 공간 전체, SwapFree는 아직 쓰지 않은 스왑 공간이다 — 각 항목(phase 75 step 5에서 확인, 2026-10-30).
+  위 mlock(2)(묶지 않은 메모리는 커널의 메모리 관리자가 필요할 때 스왑 영역으로 내보낸다)과 함께 「메모리가 모자라면 스왑으로 옮겨 가는 것은 주로 최근에 덜 쓴 내용이다」를 쓴다. 되찾는 일이 곧 스왑으로 내보내는 일이라고 적은 문장은 없어서 「주로」로 한정한다
 - **proc_sys_vm(5)**: /proc/sys/vm/swappiness는 커널이 메모리 페이지를 얼마나 적극적으로 스왑할지 정한다(기본값 60) — DESCRIPTION
 - **swapon(2)**: 지정한 파일이나 블록 장치를 스왑 영역으로 정하고, swapoff()는 그 영역으로의 스와핑을 멈춘다 — DESCRIPTION
 - **mlock(2)**: 프로세스의 가상 주소 공간 일부나 전체를 RAM에 묶어 **그 메모리가 스왑 영역으로 내보내지지 않게** 한다. 풀면 커널의 메모리 관리자가 필요할 때 다시 내보낼 수 있다 — DESCRIPTION.
