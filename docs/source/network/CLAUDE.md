@@ -41,6 +41,8 @@
 - **스위치 업체 기술**: `cisco.com`의 **제품 문서**(Cisco Catalyst 스위치의 설정 가이드·명령 참조 같은 것) — 시스코가 만든 기술(VTP)의 사실에만 쓴다.
   강의 주제 `hub-switch-vlan`의 VTP가 쓴다(phase 72, 사용자 결정 2026-10-28). 학습·마케팅·블로그·커뮤니티 페이지는 쓰지 않고,
   VLAN·태그·트렁크 같은 일반 사실은 IEEE 802.1Q·RFC·NIST에서 가져온다. 제품·판마다 달라지므로 어느 제품·판의 문서인지 `standards.md` 항목에 적는다.
+- **`gdisk`**: `rodsbooks.com`의 GPT fdisk 문서(`www.rodsbooks.com/gdisk/` 아래 — GPT fdisk를 만든 Rod Smith의 공식 문서) — `gdisk`가 무엇을 하는 도구인지에만 쓴다.
+  강의 밖 주제 `linux-filesystem`이 쓴다(phase 75, 사용자 결정 2026-10-30). GPT·MBR의 일반 사실은 man7.org의 fdisk(8)에서 가져온다. 어느 판의 문서인지 `standards.md` 항목에 적는다.
 
 **위키백과·블로그·자격증 교재·업체 학습 페이지는 쓰지 않는다** — 강의가 그런 곳을 링크해도, 공식 문서보다 쉽게 풀어 써 있어도 마찬가지다.
 

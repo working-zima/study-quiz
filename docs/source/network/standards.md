@@ -45,6 +45,10 @@ RFC는 phase 73과 같은 방법(텍스트판을 내려받아 절을 직접 읽�
 RFC·IANA는 step 0과 같은 방법으로 읽었고, learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 페이지의 고친 날(`updated_at`)과 적용 판을 적는다.
 「(phase 74 step 11)」이 붙은 줄과 항목은 step 11(`routing` — 라우팅, 라우팅 테이블, 롱기스트 프리픽스 매치, 디폴트 라우트, 정적·동적 라우팅, AS, RIP, OSPF, BGP)이 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
 RFC·IANA는 step 0과 같은 방법으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. 라우팅 테이블을 보는 명령은 **이름과 무엇을 보여 주는지만** 적었다 — 옵션과 출력 읽기는 `diagnostic-commands` 주제의 몫이다.
+「(phase 75)」가 붙은 항목은 phase 75 step 0에서 `linux-filesystem`(디렉터리 계층 구조, 표준 디렉터리, /etc, /proc, 파티션, MBR과 GPT, 디스크 장치 이름, 파일 시스템과 마운트, /etc/fstab, 스왑, 파일 속성) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 내려받아 읽었고, 항목마다 페이지 끝 COLOPHON과 바닥줄이 밝힌 프로젝트·판·날짜를 적는다. FHS 3.0(refspecs.linuxfoundation.org)과
+POSIX 2024년판(pubs.opengroup.org의 `onlinepubs/9799919799/`)은 HTML판을 내려받아 절을 읽었다. `gdisk`의 사실만 GPT fdisk 문서(rodsbooks.com)에서 가져왔고(`docs/source/network/CLAUDE.md` 「허용하는 출처」),
+「섹터」와 「휘발성 메모리」의 뜻은 NIST 용어집(csrc.nist.gov)에서 가져왔다. 명령은 **무엇을 하는지와 기출이 묻는 꼴만** 적었다 — 옵션 목록을 옮기지 않는다.
 
 ---
 
@@ -2422,3 +2426,274 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
 - Windows: `netstat -r`은 IP 라우팅 테이블의 내용을 보여 주고, `route print`와 같다 — netstat 문서 Parameters
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
+
+## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
+https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
+
+Version 3.0, 2015-03-19 발행. The Linux Foundation의 LSB Workgroup이 낸 판이고, hier(7)도 이 판을 근거 표준으로 든다(아래 hier(7) 항목). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- **무엇인가**: 유닉스 계열 운영체제에서 파일과 디렉터리를 어디에 둘지 정한 요구와 지침이다. 소프트웨어와 사용자가 설치된 파일·디렉터리가 어디 있을지 미리 알 수 있게 하는 것이 목적이다 — Abstract, §1.1
+- 파일을 두 기준으로 가른다 — 여러 컴퓨터가 함께 쓸 수 있는가(shareable·unshareable), 관리자가 손대지 않으면 바뀌지 않는가(static·variable). 성질이 다른 파일은 다른 디렉터리에 둔다.
+  바뀌는 파일을 /usr에서 /var로 옮겨서 /usr를 읽기 전용으로 마운트할 수 있게 됐다 — ch.2
+- 루트 파일 시스템에는 시스템을 부팅하고 복구하는 데 필요한 것이 있어야 한다. /usr·/opt·/var는 다른 파티션이나 파일 시스템에 둘 수 있게 설계했다 — §3.1
+- 루트 디렉터리 바로 아래 있어야 하는 것(디렉터리나, 디렉터리를 가리키는 심볼릭 링크): bin, boot, dev, etc, lib, media, mnt, opt, run, sbin, srv, tmp, usr, var — §3.2. 그 하위 시스템이 있으면 home, lib<qual>, root도 — §3.3.
+  /proc은 이 목록에 없고 Linux 부록(§6.1.5)에 있다
+- **/bin**: 관리자와 사용자가 함께 쓰는 명령 가운데, 다른 파일 시스템이 하나도 마운트되지 않았을 때(예: 단일 사용자 모드)에도 있어야 하는 것 — §3.4.1. 그만큼 필수적이지 않은 명령은 /usr/bin에 둔다 — §3.4 각주 1.
+  /bin에 있어야 하는 명령의 예: cat, chmod, chown, cp — §3.4.2
+- **/boot**: 부트 로더가 쓰는 정적 파일 — 커널이 사용자 모드 프로그램을 실행하기 전에 쓰는 데이터 — §3.5.1. 운영체제 커널은 / 나 /boot에 있어야 한다 — §3.5.2
+- **/dev**: 특수 파일, 곧 장치 파일을 두는 곳 — §3.6.1
+- **/etc**: 설정 파일을 둔다. 설정 파일은 프로그램의 동작을 정하는 정적인 로컬 파일이고 실행 가능한 바이너리일 수 없다. /etc 아래에는 바이너리를 두지 않는다 — §3.7.1, §3.7.2.
+  시작·종료 때 쓰는 명령 스크립트처럼 사람이 읽을 수 있는 실행 스크립트는 둘 수 있다 — §3.7 각주 2.
+  그 하위 시스템이 있으면 있어야 할 파일로 fstab(파일 시스템의 정적 정보), passwd(암호 파일), group, hosts, resolv.conf 등을 든다 — §3.7.3. shadow 암호 묶음을 쓰는 시스템은 /etc/shadow 같은 설정 파일을 /etc에 더 둔다 — §3.7.3 각주 3
+- **/home**: 사용자 홈 디렉터리(선택). 사이트마다 다르므로 프로그램은 홈 디렉터리 위치를 가정하지 말고 물어야 한다 — §3.8.1. 사용자 계정을 어디 둘지는 사람마다 다르지만 FHS는 /home을 기본 자리로 권하고,
+  작은 시스템에서는 사용자마다 /home 바로 아래 디렉터리를 둔다(문서의 예는 /home/smith) — §3.8 각주 6. 애플리케이션의 사용자별 설정 파일은 홈 디렉터리에 점(.)으로 시작하는 이름으로 둔다 — §3.8.2
+- **/lib**: 시스템을 부팅하고 루트 파일 시스템의 명령(/bin·/sbin의 것)을 실행하는 데 필요한 공유 라이브러리 — §3.9.1. 커널 모듈은 /lib/modules — §3.9.3
+- **/mnt**: 관리자가 파일 시스템을 잠깐 마운트하는 자리 — §3.12.1. **/media**: 이동식 매체의 마운트 지점 — §3.11.1
+- **/root**: root 계정 홈 디렉터리의 권장 기본 위치(선택) — §3.14.1
+- **/sbin**: 시스템 관리에 쓰는 명령(root만 쓰는 명령 포함)은 /sbin·/usr/sbin·/usr/local/sbin에 두고, /sbin에는 그 가운데 부팅·복구에 꼭 필요한 것을 둔다 — §3.16.1.
+  있으면 /sbin에 둘 것으로 `fsck.*`(파일 시스템별 점검·복구)와 `mkfs.*`(파일 시스템별 만들기)를 든다 — §3.16.3. Linux는 파일 시스템 유지보수와 부트 로더 관리 명령을 /sbin에 둔다 — §6.1.6
+- **/tmp**: 임시 파일이 필요한 프로그램을 위한 곳이고, 프로그램은 실행과 실행 사이에 /tmp의 파일이 남아 있다고 가정하면 안 된다. 부팅할 때 지우기를 권한다(요구는 아니다) — §3.18.1
+- **/usr**: 파일 시스템의 두 번째 큰 부분으로, 여러 호스트가 함께 쓸 수 있는 **읽기 전용 데이터**다. 운영 중에 쓰면 안 되고, 호스트마다 다르거나 시간에 따라 바뀌는 것은 다른 곳에 둔다 — §4.1.
+  있어야 하는 하위 디렉터리: bin(대부분의 사용자 명령), lib, local, sbin, share — §4.2
+- **/var**: 바뀌는 데이터 파일 — 스풀, 관리·로그 데이터, 일시·임시 파일. /usr를 읽기 전용으로 마운트할 수 있게 하려고 정한 곳이다 — §5.1.
+  **/var/log**는 여러 로그 파일을 두는 곳이고 로그 대부분을 여기에 쓴다 — §5.10.1. **/var/mail**은 사용자 메일함 파일을 둔다 — §5.11.1
+- **/proc**(Linux 부록): proc 파일 시스템은 Linux에서 프로세스와 시스템 정보를 다루는 사실상 표준 방법이다 — §6.1.5
+- FHS는 /bin을 /usr/bin과 합쳐 두는 배치(이른바 /usr 병합)를 말하지 않는다. 루트 바로 아래 항목을 「디렉터리 또는 디렉터리를 가리키는 심볼릭 링크」로 허용할 뿐이다 — §3.2.
+  그 배치를 다룰 법한 systemd의 file-hierarchy(7)는 이제 UAPI 그룹의 문서(허용한 출처가 아니다)를 가리키기만 한다(아래 systemd 항목). **그러니 /usr 병합은 쓰지 않는다**
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(Abstract·§1.1 — FHS가 무엇인가, §3.1 — /usr·/var를 다른 파티션에 둘 수 있다), `linux-filesystem.standard-directories`(항목마다의 절),
+`linux-filesystem.etc-directory`(§3.7.1·§3.7.2·§3.7.3, 각주 3), `linux-filesystem.proc-filesystem`(§6.1.5), `exam-notes.md`의 「phase 75 step 0」 문단
+
+## (phase 75) POSIX.1-2024 — Base Definitions §3 Definitions, §4 General Concepts
+https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html
+https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap04.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- 시스템의 파일은 나무 꼴로 짜여 있고, 끝이 아닌 마디는 모두 디렉터리, 끝 마디는 디렉터리가 아닌 파일이다(한 파일을 여러 디렉터리 항목이 가리킬 수 있어 엄밀히는 방향 그래프다) — §4.8 File Hierarchy
+- **디렉터리**는 디렉터리 항목들을 담은 파일이고, 한 디렉터리 안의 항목 이름은 서로 겹치지 않는다. **디렉터리 항목**(하드 링크)은 파일 이름 하나를 파일 하나와 잇는다 — §3.103, §3.104
+- **파일**은 읽거나 쓸 수 있는 대상이고, 접근 권한과 종류 같은 속성을 가진다. 종류에는 일반 파일·문자 특수 파일·블록 특수 파일·FIFO·심볼릭 링크·소켓·디렉터리가 있다 — §3.139
+- **경로**(pathname)는 파일을 가리키는 문자열이고, 앞에 `/`가 올 수 있으며 파일 이름들을 `/`로 이어 적는다 — §3.254. `/`로 시작하는 경로가 **절대 경로**다 — §3.2.
+  경로를 풀 때는 앞 이름이 가리키는 디렉터리에서 다음 이름을 찾는다. `/`로 시작하면 첫 이름을 그 프로세스의 루트 디렉터리에서 찾고, 그렇지 않으면 현재 작업 디렉터리에서 찾는다(상대 경로) — §4.16 Pathname Resolution
+- **루트 디렉터리**는 `/`로 시작하는 경로를 풀 때 쓰는 디렉터리다 — §3.316
+- **홈 디렉터리**는 HOME 환경 변수가 가리키는 디렉터리다 — §3.170
+- **마운트 지점**은 시스템의 루트 디렉터리이거나, 부모 디렉터리와 다른 장치에 속한 디렉터리다 — §3.210. **파일 시스템**은 파일들과 그 속성 일부를 모은 것이다 — §3.153
+- **블록 특수 파일**은 장치를 가리키는 파일이고, 장치의 하드웨어 특성을 드러내지 않고 장치에 접근하게 한다 — §3.50. **장치**는 컴퓨터 주변 장치나 응용 프로그램에 그렇게 보이는 대상이다 — §3.101
+- **프로세스**: 주소 공간 하나와 그 안에서 실행되는 스레드, 그 스레드가 쓰는 시스템 자원 — §3.189(Live Process), §3.279. **프로세스 ID**는 프로세스가 살아 있는 동안 그것을 가리키는 양의 정수다 — §3.284
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(§4.8, §3.103, §3.2·§3.254·§4.16, §3.316), `linux-filesystem.filesystem-mount`(§3.210, §3.153), `linux-filesystem.disk-device-names`(§3.50, §3.101),
+`linux-filesystem.proc-filesystem`(§3.279·§3.284). 경로·작업 디렉터리·홈 디렉터리는 `linux-shell` 주제도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다)
+
+## (phase 75) Linux man-pages — hier(7), boot(7), intro(2), intro(4), sd(4)
+https://man7.org/linux/man-pages/man7/hier.7.html
+https://man7.org/linux/man-pages/man7/boot.7.html
+https://man7.org/linux/man-pages/man2/intro.2.html
+https://man7.org/linux/man-pages/man4/intro.4.html
+https://man7.org/linux/man-pages/man4/sd.4.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — hier(7)·intro(2)·sd(4) 2026-02-08, boot(7) 2025-09-21, intro(4) 2025-05-17. man7.org가 2026-09-09에 man-pages-6.19 타르볼에서 가져온 것이다.
+
+- **hier(7)**: Linux 시스템에 흔히 있는 디렉터리를 설명한다 — `/`는 루트 디렉터리이고 나무 전체가 여기서 시작한다. /bin은 단일 사용자 모드와 시스템을 띄우거나 고치는 데 필요한 실행 프로그램,
+  /sbin은 /bin처럼 부팅에 필요한 명령이지만 보통 일반 사용자는 실행하지 않는 것, /boot는 부트 로더의 정적 파일(운영체제 커널은 / 나 /boot에 있어야 한다), /dev는 물리 장치를 가리키는 특수 파일(장치 파일),
+  /etc는 그 컴퓨터에 딸린 설정 파일, /home은 사용자 홈 디렉터리가 보통 그 아래 있는 곳, /lib는 부팅과 루트 파일 시스템의 명령에 필요한 공유 라이브러리,
+  /proc은 실행 중인 프로세스와 커널의 정보를 주는 proc 파일 시스템(pseudo-filesystem)의 마운트 지점, /root는 보통 root 사용자의 홈 디렉터리, /tmp는 정기 작업이나 부팅 때 예고 없이 지워질 수 있는 임시 파일,
+  /usr는 흔히 따로 된 파티션에서 마운트되고 공유할 수 있는 읽기 전용 데이터만 두는 곳, /usr/bin은 일반 사용자가 실행하는 대부분 프로그램의 주 디렉터리, /var는 스풀·로그처럼 크기가 바뀌는 파일,
+  /var/log는 여러 로그 파일, /var/mail은 사용자 메일함 — DESCRIPTION. 근거 표준은 FHS 3.0이다 — STANDARDS. 이 목록은 다 적은 것이 아니고 배포판·시스템마다 다를 수 있다 — BUGS
+- **boot(7)**: 부팅은 대략 하드웨어 → 운영체제 로더 → 커널 → 첫 사용자 공간 프로세스 → 부팅 스크립트의 차례로 나뉜다. 운영체제 로더의 일은 커널을 장치에서 찾아 불러와 실행하는 것이다.
+  전통적인 PC에서 로더는 부팅 장치의 첫 512바이트 블록에 있고 이 블록을 **MBR**(Master Boot Record)이라 부르며, 그 512바이트에는 파티션 테이블도 들어 있다. 2단계 로더는 디스크 파티션 같은 영구 저장 장치에 둘 수 있다 — DESCRIPTION 「OS loader」.
+  **커널**은 불려 오면 컴퓨터와 운영체제의 여러 구성 요소를 초기화하는데, 그 일을 맡는 소프트웨어 부분을 그 구성 요소의 **드라이버**라 부른다. 커널은 가상 메모리 스와퍼(커널 프로세스 kswapd)를 시작하고,
+  루트 경로 `/`에 파일 시스템을 마운트한 뒤, 첫 사용자 공간 프로세스(PID 1)를 만든다 — 「Kernel」
+- **intro(2)**: 시스템 호출은 Linux 커널로 들어가는 입구다 — DESCRIPTION
+- **intro(4)**: 매뉴얼 4절은 특수 파일(장치)을 설명하고, 장치 파일은 /dev 아래 있다 — DESCRIPTION, FILES
+- **sd(4)**: **SCSI 디스크 드라이브의 드라이버**다 — NAME. 블록 장치 이름은 `sd` + 물리 드라이브를 가리키는 글자 + 그 드라이브의 파티션 번호이고, 드라이브 전체를 가리킬 때는 번호를 뺀다.
+  `/dev/sda`는 첫째 SCSI 드라이브 전체, `/dev/sdb3`는 둘째 드라이브의 셋째 주 파티션이다. 드라이브 번호는 감지한 차례다. 파티션 1~4는 DOS의 주 파티션, 5부터는 확장(논리) 파티션이다 — CONFIGURATION.
+  (CONFIGURATION·FILES의 「5~8」·`sd[a-h]` 같은 상한은 옛 장치 번호 체계의 이야기라 쓰지 않는다 — 논리 파티션 번호는 fdisk(8)대로 「5부터」로 쓴다)
+- **SATA**: 허용한 출처에서 SATA 디스크를 `sd` 이름과 잇는 문장은 찾지 못했다(man-pages·util-linux·FHS, 2026-10-30). 가까운 것은 fdisk(8) DEVICES(아래 util-linux 항목 — libata가 없는 옛 시스템만 IDE `hd*`와 SCSI `sd*`를 가른다)와
+  lsblk(8)이 디스크의 연결 방식(TRAN) 값으로 `sata`를 거르는 예뿐이다 — `exam-notes.md` E20
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(hier(7) `/`·/root), `linux-filesystem.standard-directories`(hier(7) 항목마다), `linux-filesystem.proc-filesystem`(hier(7) /proc, boot(7) 커널),
+`linux-filesystem.mbr-gpt`(boot(7) MBR이 첫 512바이트 블록이고 파티션 테이블을 담는다), `linux-filesystem.disk-device-names`(sd(4) 이름의 꼴·1~4·5부터, boot(7) 드라이버, intro(4) 장치 파일), `exam-notes.md` E20
+
+## (phase 75) util-linux — fdisk(8), fsck(8), mkfs(8), blockdev(8), lsblk(8)
+https://man7.org/linux/man-pages/man8/fdisk.8.html
+https://man7.org/linux/man-pages/man8/fsck.8.html
+https://man7.org/linux/man-pages/man8/mkfs.8.html
+https://man7.org/linux/man-pages/man8/blockdev.8.html
+https://man7.org/linux/man-pages/man8/lsblk.8.html
+
+2026-10-30에 읽은 판: util-linux 2.43 개발판 — fdisk(8) 2026-08-04, fsck(8)·mkfs(8)·blockdev(8)·lsblk(8) 2026-05-24. man7.org가 2026-08-04에 util-linux 저장소에서 가져온 것이다.
+
+- **fdisk(8)**: 파티션 테이블을 만들고 고치는 대화형 프로그램이고, GPT·MBR(과 Sun·SGI·BSD) 파티션 테이블을 다룬다 — DESCRIPTION
+- 블록 장치는 **파티션**이라 부르는 논리적인 디스크 하나 이상으로 나눌 수 있고, 그 나눔은 **파티션 테이블**에 적힌다. 파티션 테이블은 보통 디스크의 섹터 0에 있다 — DESCRIPTION
+- **MBR(DOS 형식)**: 섹터 0에 파티션 넷을 적을 자리가 있고 이것을 주(primary) 파티션이라 한다. 그 하나를 확장 파티션으로 둘 수 있고, 확장 파티션은 논리 파티션을 담는 상자다.
+  주 파티션 넷은 있든 없든 번호 1~4를 받고, 논리 파티션은 5부터 번호가 붙는다 — DISK LABELS 「DOS-type (MBR)」.
+  파티션의 시작 위치와 크기는 섹터 수로 적는데 32비트이므로, 512바이트 섹터면 2TB까지 된다(문서의 표기는 「2 TB」) — 같은 절.
+  계산: 2^32 × 512 = 2^32 × 2^9 = 2^41 = 2,199,023,255,552바이트 — 2^40바이트를 1TB(TiB)로 세면 2, 10^12바이트를 1TB로 세면 약 2.2다
+- **GPT(GUID Partition Table)**: 지금의 표준 배치로, 64비트 논리 블록 주소를 쓰고, 파티션마다 UUID와 이름을 두며, 파티션 수에 제한이 없다(여러 파티션 도구가 보통 128개로 묶어 둔다).
+  첫 섹터는 여전히 **보호용 MBR**에 비워 두는데, MBR만 아는 도구가 GPT 디스크를 잘못 알아보고 덮어쓰지 않게 하려는 것이다. 특히 UEFI 부트 로더를 쓰는 요즘 하드웨어에서는 GPT가 MBR보다 늘 나은 선택이라고 적는다 — DISK LABELS 「GPT」
+- 파티션 테이블이 없는 장치를 받으면 fdisk가 하나를 만든다. util-linux 2.43부터는 대화형 터미널이면서 EFI 시스템이면 GPT, 아니면 DOS(MBR)가 기본이다 — DISK LABELS 「Default label on empty devices」
+- 장치는 보통 `/dev/sda`, `/dev/sdb`이고 장치 이름은 디스크 전체를 가리킨다. 파티션은 장치 이름 뒤에 파티션 번호를 붙인 것이고, `/dev/sda1`은 시스템의 첫째 하드 디스크의 첫째 파티션이다.
+  **libata**(커널 안에서 ATA 호스트 컨트롤러와 장치를 지원하는 라이브러리)가 없는 옛 시스템만 IDE 디스크(`/dev/hd*`)와 SCSI 디스크(`/dev/sd*`)를 다르게 부른다 — DEVICES
+- 섹터 크기로 512·1024·2048·4096바이트를 받고, 논리 섹터 크기와 물리 섹터 크기를 가른다 — OPTIONS `-b`. 파티션 크기는 섹터 수나 `+크기{K,M,G…}`로 준다 — SIZES
+- **fsck(8)**: 하나 이상의 Linux 파일 시스템을 **점검하고, 고르면 고친다**. 파일 시스템별 점검 프로그램(`fsck.형식`)의 앞단이다. 대상을 주지 않으면 /etc/fstab의 파일 시스템을 차례로 점검한다 — NAME, DESCRIPTION
+- **mkfs(8)**: 장치(보통 하드 디스크 파티션)나 파일에 **Linux 파일 시스템을 만든다**. 실제로는 파일 시스템별 만들기 프로그램(`mkfs.형식`)의 앞단일 뿐이고,
+  이 앞단 자체는 파일 시스템별 `mkfs.<형식>` 도구에 자리를 내주어 **권장하지 않는다(deprecated)** — NAME, DESCRIPTION
+- **blockdev(8)**: `--getss`는 논리 섹터 크기를 바이트로 보이며 보통 512다. `--getpbsz`는 물리 블록(섹터) 크기를 보인다 — OPTIONS
+- **lsblk(8)**: 블록 장치를 나열한다 — NAME. 디스크의 연결 방식(TRAN) 값이 `sata`인 디스크를 세는 예가 있다 — `--ct-filter` 설명
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.partition`(fdisk(8) DESCRIPTION — 파티션·파티션 테이블·섹터 0, fsck(8) — 점검·복구), `linux-filesystem.mbr-gpt`(DISK LABELS — MBR 넷·확장·논리 5부터·32비트·2TB, GPT 64비트·128·보호용 MBR, 지금의 fdisk가 GPT를 다룬다),
+`linux-filesystem.disk-device-names`(DEVICES), `linux-filesystem.filesystem-mount`(mkfs(8) — 만들기, 앞단), `exam-notes.md` E19·E20
+
+## (phase 75) util-linux — mount(8), umount(8), fstab(5), mkswap(8), swapon(8)
+https://man7.org/linux/man-pages/man8/mount.8.html
+https://man7.org/linux/man-pages/man8/umount.8.html
+https://man7.org/linux/man-pages/man5/fstab.5.html
+https://man7.org/linux/man-pages/man8/mkswap.8.html
+https://man7.org/linux/man-pages/man8/swapon.8.html
+
+2026-10-30에 읽은 판: util-linux 2.43 개발판 — mount(8)·umount(8) 2026-08-03, fstab(5)·mkswap(8)·swapon(8) 2026-05-24. man7.org가 2026-08-04에 util-linux 저장소에서 가져온 것이다.
+
+- **mount(8)**: 유닉스 시스템에서 접근할 수 있는 파일은 모두 `/`를 뿌리로 한 큰 나무 하나(파일 계층)에 놓이고, 그 파일들은 여러 장치에 흩어져 있을 수 있다. `mount`는 어떤 장치에 있는 파일 시스템을 이 나무에 붙이고, umount(8)는 다시 뗀다.
+  파일 시스템은 데이터를 장치에 어떻게 저장할지(또는 네트워크 같은 것으로 가상으로 제공할지)를 정한다 — DESCRIPTION
+- 기본 꼴은 `mount -t 형식 장치 디렉터리`이고, 커널에게 그 장치의 파일 시스템을 그 디렉터리에 붙이라고 한다. `-t`는 생략할 수 있다(대개 형식을 알아낸다). 기본으로는 root 권한이 있어야 마운트한다.
+  붙어 있는 동안 그 디렉터리의 원래 내용과 소유자·모드는 보이지 않고, 그 경로는 장치에 있는 파일 시스템의 루트를 가리킨다 — DESCRIPTION
+- 디렉터리나 장치 하나만 주면 /etc/fstab에서 짝을 찾는다 — DESCRIPTION. 장치는 대개 블록 특수 파일 이름(`/dev/sda1`)으로 가리키지만, 디스크 파티션의 장치 이름은 하드웨어 구성이 바뀌거나 장치를 더하고 빼면 바뀔 수 있어
+  UUID·LABEL 같은 식별자를 쓰기를 강하게 권한다 — 「Indicating the device and filesystem」
+- `mount -a`는 fstab에 적힌 파일 시스템을 모두(`noauto`가 붙은 줄은 빼고) 마운트하고, 보통 부팅 스크립트에서 쓴다. 다만 요즘 systemd 기반 배포판의 다수는 부팅 때 `mount -a` 대신 systemd 유닛으로 마운트한다 — 「The files /etc/fstab, /etc/mtab and /proc/mounts」, OPTIONS `-a`
+- **umount(8)**: 지정한 파일 시스템을 파일 계층에서 뗀다. 마운트한 디렉터리로 가리키는 것이 기본이다. 열린 파일이 있거나 어떤 프로세스의 작업 디렉터리가 그 안에 있으면(사용 중이면) 뗄 수 없다 — DESCRIPTION
+- **fstab(5)**: 시스템이 마운트할 수 있는 파일 시스템을 적은 파일이다. 프로그램은 읽기만 하고, 만들고 고치는 것은 관리자의 몫이다. fsck(8)·mount(8)·umount(8)가 위에서부터 차례로 읽으므로 줄의 차례가 중요하다.
+  systemd 기반 시스템에서는 고친 뒤 `systemctl daemon-reload`를 권한다 — DESCRIPTION. 파일 시스템 하나를 한 줄에 적고 칸은 탭이나 공백으로 나누며, `#`로 시작하는 줄은 주석이다 — DESCRIPTION. 칸 여섯 —
+  (1) **fs_spec**: 마운트할 블록 장치(또는 원격 파일 시스템), 스왑으로 켤 파일이나 장치. 장치 이름 대신 `LABEL=`·`UUID=`를 쓸 수 있고, 장치 이름은 하드웨어를 감지한 차례에 따라 바뀔 수 있어 이쪽을 권한다.
+  (2) **fs_file**: 마운트 지점. 스왑이면 `none`. (3) **fs_vfstype**: 파일 시스템 형식(ext4·xfs·vfat 등). `swap`은 스왑으로 쓸 파일이나 파티션.
+  (4) **fs_mntops**: 쉼표로 이은 마운트 옵션. 보통 적어도 `defaults`를 쓴다. `noauto`는 `mount -a`가 주어질 때(예: 부팅할 때) 마운트하지 않는다는 뜻이다.
+  (5) **fs_freq**: dump(8)가 백업할 파일 시스템을 정할 때 쓴다. 없으면 0(백업하지 않음). (6) **fs_passno**: fsck(8)가 부팅할 때 점검할 차례. 루트 파일 시스템은 1, 다른 것은 2, 없으면 0(점검하지 않음) — 각 칸의 절
+- 스왑 영역을 fstab에 적는 자세한 방법은 swapon(8)에 미룬다 — fstab(5) DESCRIPTION
+- **mkswap(8)**: 장치나 파일에 Linux **스왑 영역**을 만든다. 장치는 보통 디스크 파티션이지만 파일이어도 된다. 만든 뒤 쓰기 시작하려면 swapon(8)이 필요하고,
+  스왑 영역은 보통 /etc/fstab에 적어 부팅 때 `swapon -a`로 쓰게 한다 — DESCRIPTION. 커널은 파티션 종류 번호를 보지 않지만 설치 스크립트는 종류 82(LINUX_SWAP) 파티션을 스왑으로 여기는 경우가 많다 — DESCRIPTION.
+  권하는 구성은 스왑을 위한 파티션을 따로 두는 것이다 — WARNING
+- `mkswap --file`은 알맞은 권한으로 스왑 파일을 만든다. 파일을 미리 만들어 둔 뒤 mkswap으로 초기화할 수도 있다(문서의 예는 dd로 8GiB 파일을 만든다). 지금 Linux는 스왑 영역을 32개까지 쓸 수 있고, 쓰고 있는 영역은 /proc/swaps에 보인다.
+  스왑 영역의 쓸모 있는 최대 크기는 아키텍처와 커널 판에 달렸다 — OPTIONS `-F`, NOTES. **알맞은 크기(메모리의 몇 배 같은 권고)는 적지 않는다** — `exam-notes.md` E21
+- **swapon(8)**: 페이징과 스와핑이 일어날 장치(나 파일)를 정한다. `swapoff`는 끈다. swapon은 보통 부팅 스크립트에서 불린다 — DESCRIPTION. `-a`는 /etc/fstab에 `swap`으로 적힌 장치를 모두(`noauto`는 빼고) 쓰게 한다 — OPTIONS `-a`.
+  구멍이 있는 파일은 스왑 파일로 받지 않으므로, 가장 이식성 좋은 스왑 파일 만들기는 dd와 /dev/zero다 — NOTES 「Files with holes」
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(mount(8) — 한 나무, 여러 장치), `linux-filesystem.filesystem-mount`(mount(8) 꼴·root 권한·원래 내용이 가려진다, umount(8)), `linux-filesystem.fstab`(fstab(5) 칸 여섯·UUID·noauto, mount(8) `-a`),
+`linux-filesystem.swap`(mkswap(8)·swapon(8) — 파티션이나 파일, 만든 뒤 켜기, fstab에 적기, 스왑 파일을 더하는 절차, 32개), `exam-notes.md` E21
+
+## (phase 75) e2fsprogs — mke2fs(8), ext4(5), chattr(1), lsattr(1)
+https://man7.org/linux/man-pages/man8/mke2fs.8.html
+https://man7.org/linux/man-pages/man5/ext4.5.html
+https://man7.org/linux/man-pages/man1/chattr.1.html
+https://man7.org/linux/man-pages/man1/lsattr.1.html
+
+2026-10-30에 읽은 판: E2fsprogs 1.47.4(March 2025). man7.org가 2026-08-03에 e2fsprogs 저장소에서 가져온 것이다. (man7.org에 `mkfs.ext4(8)` 페이지는 따로 없다 — mke2fs(8)이 그 이름을 설명한다)
+
+- **mke2fs(8)**: ext2·ext3·ext4 파일 시스템을 (보통 디스크 파티션에) 만든다. `mkfs.ext4`처럼 `mkfs.형식` 이름으로 실행하면 `-t 형식`을 준 것과 같아서, `mkfs.ext4`는 ext4 파일 시스템을 만든다 — DESCRIPTION
+- **ext4(5)**: ext2·ext3·ext4는 많은 Linux 배포판의 기본 파일 시스템이었던 Linux 파일 시스템이고, 확장성과 이전 판 호환을 염두에 둔 범용 파일 시스템이다 — DESCRIPTION
+- **chattr(1)**: Linux 파일 시스템에서 파일 속성을 바꾼다. `+`는 속성을 더하고, `-`는 빼고, `=`는 적은 속성만 남긴다. 모든 파일 시스템이 모든 속성을 지원하지는 않는다 — DESCRIPTION
+- **a**(append only): 쓰기는 덧붙이기 모드로만 열 수 있다. 슈퍼유저나 CAP_LINUX_IMMUTABLE 능력을 가진 프로세스만 붙이고 뗄 수 있다 — chattr(1) ATTRIBUTES
+- **i**(immutable): 파일을 고칠 수 없다 — 지울 수도 이름을 바꿀 수도 없고, 이 파일로 링크를 만들 수 없고, 메타데이터 대부분을 바꿀 수 없고, 쓰기 모드로 열 수 없다.
+  슈퍼유저나 CAP_LINUX_IMMUTABLE 능력을 가진 프로세스만 붙이고 뗄 수 있다 — chattr(1) ATTRIBUTES. 슈퍼유저에게도 걸린다는 것은 아래 FS_IOC_SETFLAGS(2const)
+- **lsattr(1)**: ext2·ext3·ext4 파일 시스템의 파일 속성을 나열한다. 속성의 뜻은 chattr(1)을 보라고 한다. `-l`은 한 글자 대신 긴 이름으로 보인다 — NAME, DESCRIPTION, OPTIONS.
+  **출력 줄의 꼴(속성 글자를 늘어놓는 칸의 모양)은 문서에 없다** — 본문·도식에 lsattr 출력 줄을 그대로 그리지 않는다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.filesystem-mount`(mke2fs(8) — `mkfs.ext4`, ext4(5) — ext4가 무엇인가), `linux-filesystem.file-attributes`(chattr(1)·lsattr(1) — `+`·`-`·`=`, `a`, `i`, 붙이고 떼는 사람)
+
+## (phase 75) Linux man-pages — proc(5), proc_pid(5), proc_cpuinfo(5), proc_meminfo(5), proc_sys_vm(5), swapon(2), mlock(2), passwd(5), capabilities(7), FS_IOC_SETFLAGS(2const), unlink(2)
+https://man7.org/linux/man-pages/man5/proc.5.html
+https://man7.org/linux/man-pages/man5/proc_pid.5.html
+https://man7.org/linux/man-pages/man5/proc_cpuinfo.5.html
+https://man7.org/linux/man-pages/man5/proc_meminfo.5.html
+https://man7.org/linux/man-pages/man5/proc_sys_vm.5.html
+https://man7.org/linux/man-pages/man2/swapon.2.html
+https://man7.org/linux/man-pages/man2/mlock.2.html
+https://man7.org/linux/man-pages/man5/passwd.5.html
+https://man7.org/linux/man-pages/man7/capabilities.7.html
+https://man7.org/linux/man-pages/man2/FS_IOC_SETFLAGS.2const.html
+https://man7.org/linux/man-pages/man2/unlink.2.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — proc(5)·proc_cpuinfo(5)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2)·capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) 2026-02-08, proc_pid(5) 2026-03-18, mlock(2) 2026-02-11, passwd(5) 2025-09-21.
+man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased」로 남은 옛 페이지라 쓰지 않고 FS_IOC_SETFLAGS(2const)를 쓴다.
+
+- **proc(5)**: proc 파일 시스템은 **커널의 자료 구조를 들여다보는 창구 노릇을 하는 가상(pseudo) 파일 시스템**이고 보통 /proc에 마운트된다. 대개 시스템이 자동으로 마운트한다.
+  그 안의 파일은 대부분 읽기 전용이지만 일부는 써서 커널 변수를 바꿀 수 있다 — DESCRIPTION. /proc 아래에는 프로세스마다의 /proc/pid 디렉터리와, 시스템 전체 정보를 보여 주는 여러 파일이 있다 — 「Overview」
+- **proc_pid(5)**: 실행 중인 프로세스마다 숫자 이름의 하위 디렉터리가 있고, 그 이름이 프로세스 ID다 — DESCRIPTION
+- **proc_cpuinfo(5)**: /proc/cpuinfo는 CPU와 시스템 아키텍처에 따른 항목을 모은 것이다(흔한 항목: CPU 번호 processor). lscpu(1)가 이 파일에서 정보를 모은다 — DESCRIPTION
+- **proc_meminfo(5)**: /proc/meminfo는 시스템의 메모리 사용 통계를 보인다. free(1)가 이 파일로 쓰고 남은 메모리(물리 메모리와 스왑 모두)를 보여 준다 — DESCRIPTION.
+  MemTotal은 쓸 수 있는 RAM 전체, MemAvailable은 스와핑 없이 새 애플리케이션을 시작하는 데 쓸 수 있는 메모리의 추정치다. SwapCached는 스왑으로 나갔다가 다시 들어왔지만 스왑 파일에도 남아 있는 메모리로,
+  메모리 압박이 커지면 이 페이지는 다시 내보낼 필요가 없어 입출력을 아낀다 — 각 항목
+- **proc_sys_vm(5)**: /proc/sys/vm/swappiness는 커널이 메모리 페이지를 얼마나 적극적으로 스왑할지 정한다(기본값 60) — DESCRIPTION
+- **swapon(2)**: 지정한 파일이나 블록 장치를 스왑 영역으로 정하고, swapoff()는 그 영역으로의 스와핑을 멈춘다 — DESCRIPTION
+- **mlock(2)**: 프로세스의 가상 주소 공간 일부나 전체를 RAM에 묶어 **그 메모리가 스왑 영역으로 내보내지지 않게** 한다. 풀면 커널의 메모리 관리자가 필요할 때 다시 내보낼 수 있다 — DESCRIPTION.
+  페이징은 프로그램 실행이 예상 밖으로 늦어지는 주된 원인의 하나이고, 페이징 때문에 비밀 정보가 영구적인 스왑 저장 매체로 옮겨져 RAM에서 지운 뒤에도 남을 수 있다 — NOTES
+- **passwd(5)**: /etc/passwd는 시스템의 사용자 로그인 계정을 적은 텍스트 파일이고, 모든 사용자가 읽을 수 있되 쓰기는 슈퍼유저만 할 수 있어야 한다. 요즘은 대개 shadow 암호 묶음을 써서 /etc/passwd의 암호 칸에는 `x`를 두고,
+  암호화된 암호는 **슈퍼유저만 읽을 수 있는 /etc/shadow**에 둔다 — DESCRIPTION. 루트 로그인 계정(슈퍼유저)의 사용자 ID는 0이다. 홈 디렉터리 칸은 로그인한 사용자가 처음 놓이는 디렉터리이고 HOME 환경 변수가 이 값이 된다 — 각 칸(UID, directory).
+  칸 일곱의 해석은 `linux-accounts`(phase 76)의 몫이다
+- **capabilities(7)**: 전통적인 유닉스는 권한 검사를 할 때 실효 사용자 ID가 0인 **특권 프로세스(슈퍼유저, root)**와 그렇지 않은 프로세스를 가르고, **특권 프로세스는 커널의 권한 검사를 모두 건너뛴다**.
+  Linux 2.2부터 슈퍼유저의 특권을 능력(capability)이라는 단위로 나눠 따로 켜고 끌 수 있게 했다 — DESCRIPTION. CAP_DAC_OVERRIDE는 파일의 읽기·쓰기·실행 권한 검사를 건너뛴다. CAP_LINUX_IMMUTABLE은 append-only·immutable 플래그를 붙일 수 있게 한다 — 「Capabilities list」
+- **FS_IOC_SETFLAGS(2const)**: 여러 Linux 파일 시스템이 지원하는 inode 플래그(파일의 동작을 바꾸는 속성)를 읽고 바꾸는 ioctl이고, lsattr(1)과 chattr(1)이 그 명령 창구다 — DESCRIPTION.
+  FS_IMMUTABLE_FL(`i`): 파일 내용도 메타데이터(권한·시각·소유자·링크 수 등)도 바꿀 수 없고, **이 제한은 슈퍼유저에게도 걸린다**. CAP_LINUX_IMMUTABLE을 가진 프로세스만 붙이고 뗀다.
+  FS_APPEND_FL(`a`): O_APPEND로만 열 수 있고, 디렉터리에 붙이면 그 안의 파일을 지울 수 없다 — 이것도 슈퍼유저에게 걸린다 — 각 플래그
+- **unlink(2)**: 지우려는 파일이 immutable이나 append-only로 표시되어 있으면 EPERM으로 실패한다 — ERRORS
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.proc-filesystem`(proc(5)·proc_pid(5)·proc_cpuinfo(5)·proc_meminfo(5)), `linux-filesystem.etc-directory`(passwd(5) — /etc/passwd는 계정 목록, /etc/shadow는 슈퍼유저만 읽는다),
+`linux-filesystem.swap`(mlock(2)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2) — 커널이 메모리 페이지를 스왑 영역으로 내보낸다, 페이징은 실행을 늦출 수 있다), `linux-filesystem.file-attributes`(capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) — root는 권한 검사를 건너뛰지만 `i`는 root에게도 걸린다),
+`linux-filesystem.directory-hierarchy`(passwd(5) — root는 UID 0인 슈퍼유저). 권한 검사는 `linux-permissions` 주제도 쓴다(step 7이 그 주제의 쓰임으로 다시 확인한다)
+
+## (phase 75) shadow(5), free(1), du(1), cal(1), stat(1), file(1)
+https://man7.org/linux/man-pages/man5/shadow.5.html
+https://man7.org/linux/man-pages/man1/free.1.html
+https://man7.org/linux/man-pages/man1/du.1.html
+https://man7.org/linux/man-pages/man1/cal.1.html
+https://man7.org/linux/man-pages/man1/stat.1.html
+https://man7.org/linux/man-pages/man1/file.1.html
+
+2026-10-30에 읽은 판: shadow(5)는 shadow-utils 4.19.0(2026-08-04), free(1)는 procps-ng(2023-05-02판, man7.org가 2026-08-04에 저장소에서 가져옴), du(1)·stat(1)는 GNU coreutils 9.11(April 2026),
+cal(1)은 util-linux 2.43 개발판(2026-05-24), file(1)은 file 프로젝트의 2025-06-17판. 뒤의 넷은 기출의 보기를 판정하려고 **이름과 하는 일만** 확인했다.
+
+- **shadow(5)**: 시스템 계정의 암호 정보와 암호 만료 정보를 담은 파일이고, 암호를 지키려면 일반 사용자가 읽을 수 없어야 한다 — DESCRIPTION. 파일 이름은 /etc/shadow다 — FILES. 칸 아홉의 해석은 `linux-accounts`(phase 76)의 몫이다
+- **free(1)**: 시스템의 물리 메모리와 스왑 메모리의 전체·사용·남은 양을 보여 주고, /proc/meminfo를 읽어 얻는다 — DESCRIPTION
+- **du(1)**: 파일들이 차지한 공간을 어림해 보이고, 디렉터리는 그 안까지 더한다 — NAME, DESCRIPTION
+- **cal(1)**: 달력을 보인다. **stat(1)**: 파일이나 파일 시스템의 상태를 보인다. **file(1)**: 파일의 종류를 알아낸다 — 각 NAME
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.etc-directory`(shadow(5) — 암호 정보, 일반 사용자가 읽지 못한다), `linux-filesystem.proc-filesystem`(free(1)이 /proc/meminfo를 읽는다 — 쓸지는 그 step이 정한다),
+`exam-notes.md`의 「phase 75 step 0」 문단(du·cal·stat·file — 기출 보기의 판정)
+
+## (phase 75) systemd — systemd-fstab-generator(8), systemd.mount(5), file-hierarchy(7)
+https://man7.org/linux/man-pages/man8/systemd-fstab-generator.8.html
+https://man7.org/linux/man-pages/man5/systemd.mount.5.html
+https://man7.org/linux/man-pages/man7/file-hierarchy.7.html
+
+2026-10-30에 읽은 판: systemd 262 개발판. man7.org가 2026-08-04에 systemd 저장소에서 가져온 것이다.
+
+- **systemd-fstab-generator(8)**: 부팅 초기에(그리고 시스템 관리자의 설정을 다시 읽을 때) /etc/fstab을 systemd의 마운트·스왑 유닛으로 바꾼다 — DESCRIPTION
+- **systemd.mount(5)**: /etc/fstab에 적힌 마운트는 부팅 때 유닛으로 바뀌고, 사람이 마운트를 관리할 때는 /etc/fstab이 권하는 방법이다 — FSTAB.
+  `noauto`이면 그 마운트 유닛이 local-fs.target·remote-fs.target의 의존 대상이 되지 않아 **부팅 때 자동으로 마운트되지 않고**, 그 반대인 `auto`가 기본값이다 — 「noauto, auto」
+- **file-hierarchy(7)**: systemd를 쓰는 운영체제의 파일 계층은 UAPI.9 문서(uapi-group.org)를 따른다고 적고 그 문서를 가리키기만 한다 — DESCRIPTION, NOTES. **그 문서는 허용한 출처가 아니므로 쓰지 않는다**
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.fstab`(부팅 때 fstab의 항목이 자동으로 마운트된다는 근거 — mount(8) `-a`와 함께, `noauto`), `linux-filesystem.swap`(fstab의 스왑 항목도 부팅 때 스왑 유닛이 된다)
+
+## (phase 75) GPT fdisk 문서(Rod Smith) — GPT fdisk Tutorial, Why Use GPT fdisk?, gdisk(8)
+https://www.rodsbooks.com/gdisk/
+https://www.rodsbooks.com/gdisk/whygdisk.html
+https://www.rodsbooks.com/gdisk/gdisk.html
+
+2026-10-30에 읽은 판: GPT fdisk 1.0.9를 다룬 판 — 「GPT fdisk Tutorial」 2022-04-18, 「Why Use GPT fdisk?」 2022-04-24에 고침. gdisk(8)은 같은 곳에 올린 매뉴얼 페이지다.
+`docs/source/network/CLAUDE.md` 「허용하는 출처」대로 **`gdisk`의 사실에만** 쓴다. GPT·MBR 자체의 사실은 fdisk(8)에서 가져온다(위 util-linux 항목).
+
+- GPT fdisk는 `gdisk`·`cgdisk`·`sgdisk`·`fixparts`로 이뤄진 텍스트 모드 파티션 도구 묶음이고, 그 가운데 `gdisk`·`cgdisk`·`sgdisk`는 옛 MBR 파티션 테이블이 아니라 **GPT 디스크**를 다룬다 — GPT fdisk Tutorial 첫머리
+- `gdisk`는 GPT 파티션 테이블을 만들고 고치는 대화형 프로그램이다. 화면은 Linux `fdisk`와 비슷하지만 GPT 파티션을 고친다. MBR 파티션 테이블을 받으면 GPT로 바꿔 읽고, 필요하면 보호용 MBR을 새로 만든다 — gdisk(8) NAME, DESCRIPTION
+- 2009년 `gdisk`를 처음 만들 때는 Linux `fdisk`가 GPT를 지원하지 않았고, 그 뒤 util-linux의 `fdisk`도 GPT 기능을 갖췄다. `gdisk`의 화면은 util-linux `fdisk`를 본떴지만 코드는 전혀 다르다 — Why Use GPT fdisk?
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.mbr-gpt`(`gdisk`는 GPT 디스크용으로 따로 만든 도구, 지금의 `fdisk`도 GPT를 다룬다), `exam-notes.md` E19
+
+## (phase 75) NIST 용어집 — sector, volatile memory
+https://csrc.nist.gov/glossary/term/sector
+https://csrc.nist.gov/glossary/term/volatile_memory
+
+2026-10-30에 읽었다. 용어집은 정의마다 출처 문서를 밝힌다.
+
+- **섹터**(sector): 매체에서 접근할 수 있는 가장 작은 단위 — 출처 NIST SP 800-86
+- **휘발성 메모리**(volatile memory): 전원이 꺼지거나 끊기면 내용을 잃는 메모리 — 출처 NIST SP 800-101 Rev. 1, NIST SP 800-72.
+  RAM이 휘발성 메모리라는 문장은 허용한 출처에서 직접 찾지 못했다(NIST 용어집의 「random access memory」 항목은 약어만 싣는다)
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.mbr-gpt`(섹터의 한 줄 풀이), `linux-filesystem.swap`(메모리의 한 줄 풀이 — 쓸지는 그 step이 정한다)
