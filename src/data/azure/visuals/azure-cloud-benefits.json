@@ -1,0 +1,47 @@
+{
+  "diagrams": {
+    "cloud-scaling": {
+      "label": "수직 크기 조정과 수평 크기 조정을 견주는 도식",
+      "svgLabel": "회사 A의 웹사이트를 실행하는 VM 1, VM 2, VM 3을 한 줄에 나란히 놓은 모습",
+      "question": "VM 한 대로 수요를 감당하지 못하면, 어떻게 늘릴 수 있을까?",
+      "idleCaption": "회사 A의 웹사이트를 VM 1 한 대로 실행하다가 사용자가 늘어 VM 1로는 감당하지 못하게 된 상황이다. VM 대수는 예로 든 것이다. 버튼을 고르면 수직 크기 조정과 수평 크기 조정이 각각 무엇을 늘리는지 볼 수 있다.",
+      "legend": "상자 하나가 VM 한 대다. VM 2와 VM 3은 수평 크기 조정에서 더하는 VM이다. 흐린 상자는 그 방식에서 쓰지 않는 VM이고, 상자 아래 글은 그 VM에 하는 일이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3"
+      },
+      "groups": {
+        "vms": "회사 A의 웹사이트를 실행하는 VM"
+      },
+      "notes": {
+        "vm-1-note": "CPU와 RAM을 더한다",
+        "vm-2-note": "더한 VM",
+        "vm-3-note": "더한 VM"
+      },
+      "scenarios": [
+        {
+          "id": "vertical",
+          "label": "수직 크기 조정",
+          "caption": "VM 수는 그대로 두고 VM 1에 CPU와 RAM을 더해 VM 1 한 대의 성능을 올린다. 이것이 스케일 업이다. 필요한 양을 너무 크게 잡았다면 CPU와 RAM을 줄이는데, 이것이 스케일 다운이다.",
+          "sources": [
+            "azure-cloud-benefits.scalability"
+          ]
+        },
+        {
+          "id": "horizontal",
+          "label": "수평 크기 조정",
+          "caption": "같은 웹사이트를 실행하는 VM 2와 VM 3을 더해 VM을 세 대로 늘린다. 이것이 스케일 아웃이고, 자동으로도 사람이 직접 손으로도 할 수 있다. 수요가 줄면 더했던 VM을 빼는데, 이것이 스케일 인이다.",
+          "sources": [
+            "azure-cloud-benefits.scalability"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cloud-benefits.scalability"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

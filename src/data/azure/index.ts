@@ -1,5 +1,6 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
+import azureCloudBenefitsVisuals from './visuals/azure-cloud-benefits.json'
 import azureCloudComputingVisuals from './visuals/azure-cloud-computing.json'
 import azureCloudModelsVisuals from './visuals/azure-cloud-models.json'
 import type { Question, Topic } from '../../types/content'
@@ -13,6 +14,7 @@ export const questions: Question[] = questionsData as Question[]
 export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-cloud-computing': azureCloudComputingVisuals,
   'azure-cloud-models': azureCloudModelsVisuals,
+  'azure-cloud-benefits': azureCloudBenefitsVisuals,
 }
 
 export const azureSubject: Subject = {

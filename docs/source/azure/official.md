@@ -362,7 +362,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 
 쓰인 곳: `azure-cloud-computing.spot-vm`(SLA를 푸는 한 줄)
 
-쓰일 곳(phase 101): `azure-cloud-benefits.high-availability`(고가용성의 정의, SLA·가동 시간을 푸는 한 줄), `azure-cloud-benefits.scalability`(소개 문단과 수직·수평 크기 조정 두 항목), `CloudScalingDiagram`(수직: VM 한 대에 CPU·RAM을 더함 / 수평: VM을 더함), D17, G10, G11
+쓰인 곳(phase 101): `azure-cloud-benefits.high-availability`(고가용성의 정의, SLA·가동 시간을 푸는 한 줄), `azure-cloud-benefits.scalability`(소개 문단과 수직·수평 크기 조정 두 항목), `CloudScalingDiagram`(수직: VM 한 대에 CPU·RAM을 더함 / 수평: VM을 더함), D17, G10, G11
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 6 Describe Azure Functions
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/6-functions
@@ -621,7 +621,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-e
   이 쪽은 「탄력성은 수요가 바뀌는 그때그때 자동으로 조정한다」는 차이를 대는 데만 쓴다. 아래 「What are business continuity, …」도 같은 차이를 말한다(확장성 = 리소스를 더하고 빼서 부하를 받아 냄, 탄력성 = 그것을 요구가 바뀔 때 빨리)
 - 한국어 표기: elasticity → 탄력성, scalability → 확장성, vertical scaling → 수직 크기 조정(스케일 업/다운), horizontal scaling → 수평 크기 조정(스케일 아웃/인), agility → 민첩성
 
-쓰일 곳: `azure-cloud-benefits.elasticity`(정의, 확장성과의 차이, 민첩성 한 줄), `azure-cloud-benefits.scalability`(확장성과 탄력성을 가르는 한 줄을 쓸 경우), D19, G10
+쓰인 곳: `azure-cloud-benefits.elasticity`(정의, 확장성과의 차이, 긴 조달 과정 없이 새 서비스를 빨리 내놓는다는 한 줄 — 「민첩성」이라는 이름은 쓰지 않았다), D19, G10. `azure-cloud-benefits.scalability`에는 확장성과 탄력성을 가르는 줄을 두지 않았다(그 차이는 탄력성 개념이 맡는다)
 
 ## (phase 101) Azure Monitor — Overview of autoscale in Azure Monitor
 https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview
@@ -644,7 +644,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 - 확장 집합은 부하가 분산되는 VM 무리를 만들고 관리하게 하며, VM의 수가 수요나 정해 둔 일정에 따라 자동으로 늘거나 준다 — 「첫 문단」
 - 한국어 표기: scale(크기를 바꾸는 일) → 크기 조정, autoscale → 자동 크기 조정, scale out → 스케일 아웃. 서비스 이름은 「가상 머신 스케일 세트」(제목)와 「확장 집합」(본문)이 섞였다
 
-쓰일 곳: (표기 근거만) `azure-cloud-benefits.scalability`
+쓰인 곳: (표기 근거만) `azure-cloud-benefits.scalability`
 
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
@@ -695,7 +695,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 - 컨테이너는 VM보다 가볍고 옮기기 쉬워 크기를 조정하기 쉽다 — 「Key takeaways」
 - 한국어 표기: container → 컨테이너(Learn 단원 2 한국어판)
 
-쓰일 곳: `azure-cloud-benefits.scalability`(컨테이너를 푸는 한 줄)
+쓰인 곳: `azure-cloud-benefits.scalability`(컨테이너를 푸는 한 줄)
 
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
