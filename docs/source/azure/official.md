@@ -944,7 +944,9 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 - 마이크로 서비스 아키텍처는 큰 앱을 특정 기능을 맡는 작은 서비스들로 나누고, 서비스끼리 API로 통신하게 하는 방식이다. 서비스마다 자기 컨테이너에서 실행되어 따로 업데이트·크기 조정·배포한다 — 「Containers and modern app development」 (phase 103)
 - 한국어 표기: 한국어판은 받지 않았다. Learn 단원 5 한국어판의 「컨테이너」·「가상 머신」·「마이크로 서비스 아키텍처」를 쓴다 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.containers`(VM과 다른 점 — 호스트 운영 체제를 함께 쓴다, 그래서 가볍다, 덜 격리된다, 마이크로 서비스), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트 운영 체제 위), `HostingOptionsTable`(컨테이너 행), D53·D55
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(앱 코드와 필요한 라이브러리를 한 꾸러미로 묶어 어디서든 같게 실행, VM과 다른 점 — 호스트의 운영 체제를 함께 쓴다, 운영 체제를 새로 시작하지 않아 가볍다, 덜 격리된다, 마이크로 서비스는 서비스마다 자기 컨테이너에서 따로 고치고 늘리고 배포), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트의 운영 체제 하나를 함께 쓴다), az062 해설, D53·D55
+
+쓰일 곳(phase 103): `HostingOptionsTable`(컨테이너 행)
 
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
@@ -1046,6 +1048,8 @@ phase 101 step 6이 `azure-service-types` 주제를 위해 덧붙인 줄:
 쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(가장 유연하고 고객이 리소스를 가장 많이 통제한다, 공급자는 하드웨어 유지 관리·인터넷 연결·물리 보안, 고객은 운영 체제 설치·구성·유지 관리와 네트워크·데이터베이스·스토리지 구성, 하드웨어를 빌려 무엇을 할지 고객이 정한다, 운영 책임이 가장 크다, 리프트 앤 시프트 마이그레이션과 개발·테스트), `azure-service-types.shared-responsibility-model`(세 유형을 한 줄씩 푸는 근거), az034·az035 해설, G19
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(IaaS와 SaaS의 중간, 공급자가 물리 인프라·물리 보안·인터넷 연결에 더해 운영 체제·미들웨어·개발 도구·분석 서비스를 유지 관리한다, 운영 체제·데이터베이스의 라이선스와 패치를 고객이 신경 쓰지 않는다, 고객은 앱 코드·데이터·액세스 제어를 맡고 일부 네트워크·앱 보안 설정은 함께 맡는다, 개발 프레임워크와 분석·비즈니스 인텔리전스), `azure-service-types.saas`(제품으로 보면 가장 완성된 유형, 다 만들어진 앱을 빌려 쓴다, 이메일·재무 소프트웨어·메시지 앱, 가장 덜 유연할 수 있지만 시작이 가장 쉽고 기술 지식이 가장 적게 든다, 공급자가 인프라·플랫폼·앱 유지 관리를 거의 다 맡고 고객은 데이터·ID와 액세스 설정·장치를 맡는다, 협업 앱의 예, 이메일과 메시지·생산성 앱·재무와 경비 관리), `ServiceTypesTable`(PaaS·SaaS 행의 칸과 IaaS 행의 맞는 경우), az036·az037·az038 해설, D31·D33·G17·G18(위 두 개념이 고친 쪽을 따랐다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(PaaS를 이 주제에서 다시 푸는 한 줄 — 공급자가 서버와 운영 체제 같은 바탕을 맡고 고객은 그 위의 앱에 집중한다), az063·az064 해설
 
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
@@ -1487,6 +1491,8 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 
 쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`, az051 해설(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
 
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
+
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
 
@@ -1870,7 +1876,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - 특징 셋 — ID와 접근 제어를 Microsoft Entra ID와 통합해 관리한다, 앱과 데이터가 Azure의 세션에 남을 수 있어 사용자 기기에 데이터가 노출될 일이 준다, 단일 세션과 다중 세션 Windows 환경을 지원한다 — 「Key points」
 - 한국어 표기: 단원 제목 「Azure 가상 데스크톱 설명」, 본문은 **Azure Virtual Desktop**(옮기지 않는다), desktop and application virtualization → 데스크톱 및 애플리케이션 가상화, single-session / multi-session → **단일 세션 / 다중 세션**, hybrid workers → 하이브리드 작업자
 
-쓰일 곳: `azure-compute.virtual-desktop`(정의·쓰는 경우·특징 셋), D54
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(정의·데스크톱과 앱이 Azure에 머문다·쓰는 경우와 VM으로 따로 만드는 것보다 운영하기 쉬운 경우가 많다·특징 셋 — 협력업체 직원 예는 직접 만들었다), az061 해설, D54
 
 ## (phase 103) Azure Virtual Desktop — What is Azure Virtual Desktop?
 https://learn.microsoft.com/en-us/azure/virtual-desktop/overview
@@ -1884,7 +1890,7 @@ https://learn.microsoft.com/en-us/azure/virtual-desktop/overview
 - Azure Virtual Desktop의 옛 이름은 Windows Virtual Desktop이다 — 「Introductory video」. 「Azure Virtual Desktop (classic)」은 2026-09-30에 사용 중지 예고 — 「Important」(둘 다 쓰지 않는다)
 - 한국어 표기: 다중 세션, 단일 세션, 세션 호스트, 호스트 풀(본문)
 
-쓰일 곳: `azure-compute.virtual-desktop`(데스크톱과 앱을 함께 지원, 다중 세션), D52·D54
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(데스크톱 가상화와 앱 가상화를 둘 다 지원, Windows 11·Windows 10과 Windows Server, 다중 세션으로 VM 수를 줄이면서 같은 환경을 내준다 — 자동 크기 조정과 옛 이름은 쓰지 않았다), az061 해설, D52·D54
 
 ## (phase 103) Azure Virtual Desktop — Azure Virtual Desktop terminology
 https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology
@@ -1897,7 +1903,7 @@ https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology
 - 앱 그룹은 데스크톱(전체 Windows 데스크톱)과 RemoteApp(골라 게시한 앱 하나하나)이다 — 「Application groups」
 - 한국어 표기: 한국어판을 받지 않았다. 개요·필수 조건 한국어판의 「세션 호스트」·「호스트 풀」을 쓴다
 
-쓰일 곳: `azure-compute.virtual-desktop`(다중 세션 — VM 한 대에 여러 사용자가 동시에. 세션 호스트·호스트 풀은 쓰지 않아도 된다), D52
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(단일 세션은 VM 한 대를 한 사용자가, 다중 세션은 VM 한 대에 여러 사용자가 동시에 — 세션 호스트·호스트 풀이라는 말과 최대 세션 수는 쓰지 않았다), az061 해설, D52
 
 ## (phase 103) Azure Virtual Desktop — Prerequisites for Azure Virtual Desktop
 https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites
@@ -1906,7 +1912,7 @@ https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites
 
 - 세션 호스트에 쓸 수 있는 운영 체제 표에 Windows 11 Enterprise(다중 세션 포함)·Windows 10 Enterprise(다중 세션 포함)와 **Windows Server 2025·2022·2019·2016**이 있다(64비트) — 「Operating systems and licenses」(판 이름은 쓰지 않는다 — 「Windows Server도 된다」까지만)
 
-쓰일 곳: `azure-compute.virtual-desktop`, D52
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(데스크톱을 실행하는 VM의 운영 체제로 Windows Server도 — 판 이름은 쓰지 않았다), D52
 
 ## (phase 103) Learn 「Describe Azure compute services」 — 5 Describe Azure containers
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/5-containers
@@ -1924,7 +1930,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - 한국어 표기: 단원 제목 「Azure 컨테이너 설명」, container → 컨테이너, container engine → 컨테이너 엔진, host → 호스트(「물리적 또는 가상 호스트」), Azure Container Instances / Azure Container Apps / Azure Kubernetes Service → **이름 그대로**(「AKS(Azure Kubernetes Service)」), orchestration → 오케스트레이션, lifecycle → 수명 주기,
   microservice architecture → 마이크로 서비스 아키텍처, front end / back end → 프런트 엔드 / 백 엔드
 
-쓰일 곳: `azure-compute.containers`(정의·VM과 다른 점·가볍고 빨리·Docker·마이크로 서비스와 예), `azure-compute.container-services`(세 서비스와 각 한 줄, ACI·Container Apps는 PaaS, 오케스트레이션 풀이), `VmContainerDiagram`, `HostingOptionsTable`(컨테이너 행), D53·D55
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(VM마다 운영 체제는 하나, 가상화 환경, 호스트는 실제 서버이거나 VM, 고객이 컨테이너의 운영 체제를 관리하지 않는다, 가볍고 빨리 만들고 늘리고 멈추며 크래시·하드웨어 중단 뒤 빨리 다시 시작, 컨테이너 엔진과 Docker, 마이크로 서비스 — 예는 온라인 서점의 화면·주문·결제로 직접 만들었다, 프런트 엔드·백 엔드 풀이), `azure-compute.container-services`(세 서비스와 각 한 줄, ACI·Container Apps는 PaaS, 오케스트레이션은 컨테이너의 수명 주기 관리), `VmContainerDiagram`, az062~az064 해설, D53·D55
+
+쓰일 곳(phase 103): `HostingOptionsTable`(컨테이너 행)
 
 ## (phase 103) Windows containers — Windows containers overview
 https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
@@ -1934,7 +1942,7 @@ https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
 - 컨테이너는 호스트 운영 체제 위에서 앱을 실행하는 격리된 가벼운 꾸러미다. **컨테이너는 호스트 운영 체제의 커널 위에서 실행되고 그 커널을 함께 쓰지만**, 커널에 마음대로 닿지는 못하고 격리된 시야를 받는다 — 「How it works」
 - AKS는 Azure VM에 컨테이너를 배포하고 대규모로 관리한다 — 「Containers in Azure」 → 컨테이너는 VM을 호스트로 삼아 실행될 수 있다(위 Learn 단원 5 「물리 또는 가상 호스트」와 같다)
 
-쓰일 곳: `azure-compute.containers`(운영 체제를 함께 쓰는 방식의 근거 — 「커널」이라는 말은 쓰지 않고 「호스트의 운영 체제를 함께 쓴다」까지), `VmContainerDiagram`
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(「호스트의 운영 체제를 함께 쓴다」까지 — 「커널」이라는 말은 쓰지 않았다, 호스트가 VM일 수도 있다), `VmContainerDiagram`
 
 ## (phase 103) Azure IoT Edge — Supported systems (Container engines 절만)
 https://learn.microsoft.com/en-us/azure/iot-edge/support
@@ -1943,7 +1951,7 @@ https://learn.microsoft.com/en-us/azure/iot-edge/support
 
 - 컨테이너를 띄우려면 컨테이너 엔진이 있어야 한다. Docker는 널리 쓰이는 컨테이너 엔진이다 — 「Container engines」(IoT Edge 자체는 쓰지 않는다)
 
-쓰일 곳: `azure-compute.containers`(엔진을 푸는 한 줄 — 컨테이너를 만들고 실행하는 소프트웨어)
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(엔진을 푸는 한 줄 — 호스트에서 컨테이너를 만들고 실행하는 소프트웨어, 컨테이너를 실행하려면 엔진이 있어야 한다), az063 해설
 
 ## (phase 103) Azure 클라우드 컴퓨팅 사전 — What is a virtual machine?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-virtual-machine
@@ -1956,7 +1964,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 
 쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(가상화를 푸는 한 줄), D53
 
-쓰일 곳: `azure-compute.containers`(호스트), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제)
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(VM은 저마다 운영 체제를 실행한다 — 호스트 위의 VM 견줌), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제)
 
 ## (phase 103) Azure Container Instances — What is Azure Container Instances?
 https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview
@@ -1968,7 +1976,7 @@ https://learn.microsoft.com/en-us/azure/container-instances/container-instances-
 - 이 문서는 ACI를 PaaS라 부르지 않는다. PaaS라는 근거는 Learn 단원 5다
 - 한국어 표기: Azure Container Instances(옮기지 않는다)
 
-쓰일 곳: `azure-compute.container-services`(ACI 항목), G29
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(ACI 항목 — VM 관리 없이, 더 복잡한 서비스를 갖추지 않고 가장 빠르고 간단하게. 「컨테이너 하나만」·요금·컨테이너 그룹은 쓰지 않았다), az063·az064 해설, G29
 
 ## (phase 103) Azure Container Apps — Azure Container Apps overview
 https://learn.microsoft.com/en-us/azure/container-apps/overview
@@ -1979,7 +1987,7 @@ https://learn.microsoft.com/en-us/azure/container-apps/overview
 - 흔한 쓰임은 API 끝점 배포, 백그라운드 처리 작업, 이벤트 기반 처리, 마이크로 서비스 실행이다. HTTP 트래픽·이벤트·CPU나 메모리 부하에 따라 크기를 바꾼다 — 「첫 부분」
 - 한국어 표기: Azure Container Apps(옮기지 않는다 — Learn 단원 5 한국어판 절 제목에는 「(애저 컨테이너 앱)」이 붙었다)
 
-쓰일 곳: `azure-compute.container-services`(Container Apps 항목 — 부하에 따라 크기를 바꾼다)
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(Container Apps 항목 — 서버를 구성하는 일을 직접 다루지 않는다, 요청이나 처리할 일의 양에 따라 크기를 바꾼다), az063·az064 해설
 
 ## (phase 103) Azure Kubernetes Service — What is Azure Kubernetes Service (AKS)?
 https://learn.microsoft.com/en-us/azure/aks/what-is-aks
@@ -1990,7 +1998,7 @@ https://learn.microsoft.com/en-us/azure/aks/what-is-aks
 - 클러스터 모드는 둘이다 — AKS Automatic(노드 관리·크기 조정·보안·모니터링·업그레이드를 Azure가 저절로 맡는다)과 AKS Standard(클러스터 구성과 노드 풀 관리를 고객이 완전히 통제한다) — 같은 부분(모드 이름은 쓰지 않는다 — G31의 근거)
 - 한국어 표기: 「AKS(Azure Kubernetes Service)」, managed Kubernetes service → 관리되는 Kubernetes 서비스
 
-쓰일 곳: `azure-compute.container-services`(AKS 항목 — Kubernetes로 많은 컨테이너를 관리), G31
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목 — Kubernetes를 바탕으로 하고 Kubernetes를 운영하는 부담을 Azure가 덜어 준다. 모드와 고객이 맡는 노드는 쓰지 않았다), az063·az064 해설, G31
 
 ## (phase 103) Azure Architecture Center — Choose an Azure container service
 https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-container-service
@@ -2002,7 +2010,9 @@ https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-containe
 - 그래서 셋을 고르는 기준(Learn 단원 5의 말로): 컨테이너 하나를 VM 관리 없이 빨리 실행 → ACI, 부하 분산·크기 조정이 들어 있어야 하는 앱 → Container Apps, 많은 컨테이너의 수명 주기를 Kubernetes로 관리·통제 → AKS. **「AKS는 PaaS다」로 쓰지 않는다**(이 안내는 IaaS와 PaaS가 섞였다고 한다)
 - 한국어 표기: 제목 「Azure 컨테이너 서비스 선택」
 
-쓰일 곳: `azure-compute.container-services`(셋을 고르는 기준 문단), G31
+- AKS는 컨테이너 오케스트레이션의 표준 시스템인 Kubernetes를 쓴다 — 「Compare the service models of Azure container solutions」의 「Azure Kubernetes Service (AKS)」 (phase 103 step 3)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목의 「컨테이너 오케스트레이션에 표준으로 쓰이는 Kubernetes」, 셋을 고르는 기준 문단 — AKS는 통제가 많은 대신 Kubernetes에 익숙하지 않으면 배울 것이 많다, Container Apps는 Kubernetes 위의 한 층. 「AKS는 PaaS다」는 쓰지 않았다), az063·az064 해설, G31
 
 ## (phase 103) Learn 「Describe Azure compute services」 — 7 Describe application hosting options
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/7-describe-application-hosting-options

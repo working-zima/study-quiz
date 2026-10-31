@@ -153,6 +153,7 @@ import { UnreachableDiagram } from './UnreachableDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
+import { VmContainerDiagram } from './VmContainerDiagram'
 import { VmResourcesDiagram } from './VmResourcesDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
@@ -366,6 +367,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-compute.vm-resources': VmResourcesDiagram,
   'azure-compute.scale-sets': ScaleSetDiagram,
   'azure-compute.availability-sets': AvailabilitySetDiagram,
+  'azure-compute.containers': VmContainerDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
