@@ -979,7 +979,7 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(DDoS 공격을 푸는 한 줄)
 
-쓰일 곳(phase 103): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
 
 ## (phase 101) Cloud Adoption Framework — Build a cloud governance team
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
@@ -2214,7 +2214,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `VnetIsolationDiagram`
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
-쓰일 곳(phase 103): D58, D59, D60
+쓰인 곳(phase 103 step 12): D58, D59, D60
 
 ## (phase 103) Azure Virtual Network — Plan virtual networks
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-plan-design-arm
@@ -2232,7 +2232,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-pla
 - 한국어 표기: 구독, 지역, 서브넷, 주소 공간, 주소 범위
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`
-쓰일 곳(phase 103): D58, D60
+쓰인 곳(phase 103 step 12): D58, D60
 
 ## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure (서브넷 절만 — step 5)
 https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
@@ -2243,7 +2243,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
 - 주소 공간은 다른 네트워크와 잇는다면 겹치지 않게 고른다 — 같은 절
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
-쓰일 곳(phase 103): D58, D60
+쓰인 곳(phase 103 step 12): D58, D60
 
 ## (phase 103) Azure Virtual Network — Virtual network traffic routing (기본 경로만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
@@ -2304,7 +2304,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-
 - 한국어 표기: 가상 네트워크 피어링, 글로벌 가상 네트워크 피어링(제품 문서 FAQ 한국어판. 개요 한국어판의 표기도 「글로벌」), 피어링된 가상 네트워크
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
-쓰일 곳: D60
+쓰인 곳(phase 103 step 12): D60
 
 ## (phase 103) Azure networking — Microsoft global network (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network
@@ -2329,7 +2329,7 @@ https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview
 - 한국어 표기: 프라이빗 엔드포인트, 개인 IP 주소, 네트워크 인터페이스, Azure Private Link(옮기지 않는다)
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
-쓰일 곳: D59, G38
+쓰인 곳(phase 103 step 12): D59, G38
 
 ## (phase 103) Azure Private Link — What is Azure Private Link?
 https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
@@ -2342,7 +2342,7 @@ https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
 - 한국어 표기: Azure Private Link, 프라이빗 링크
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
-쓰일 곳: D59
+쓰인 곳(phase 103 step 12): D59
 
 ## (phase 103) Azure Storage — Use private endpoints for Azure Storage
 https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
@@ -2355,7 +2355,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 - 한국어 표기: 프라이빗 엔드포인트, 퍼블릭 엔드포인트(이 문서 한국어판에도 그대로), 스토리지 계정, 스토리지 방화벽
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
-쓰일 곳: G38
+쓰인 곳(phase 103 step 12): G38
 
 ## (phase 103) Azure Storage — Storage account overview (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
@@ -2621,7 +2621,7 @@ https://learn.microsoft.com/en-us/training/modules/network-fundamentals/4-networ
 - 한국어 표기: 프로토콜, 포트, 포트 번호
 
 쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`
-쓰일 곳: `azure-network-protection.azure-firewall`, D64
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, D64
 
 ## (phase 103) Azure Firewall — What is Azure Firewall?
 https://learn.microsoft.com/en-us/azure/firewall/overview
@@ -2635,7 +2635,7 @@ https://learn.microsoft.com/en-us/azure/firewall/overview
 - Azure Firewall·Azure DDoS Protection·Azure Web Application Firewall은 Azure의 네트워크 보안 범주로 함께 묶이고, 서비스마다 하는 일이 다르다 — 첫 부분의 메모
 - 한국어 표기: 제품 이름 Azure Firewall(옮기지 않는다), 상태 저장(`features` 한국어판. 이 문서 한국어판은 「상태 유지형」 — 표기 정리), 고가용성, 워크로드, 방화벽 정책, Basic·Standard·Premium(이 문서 한국어판은 기본·표준·프리미엄 — 표기 정리)
 
-쓰일 곳: `azure-network-protection.azure-firewall`, `FirewallHubDiagram`
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, `FirewallHubDiagram`
 
 ## (phase 103) Azure Firewall — Azure Firewall features by SKU
 https://learn.microsoft.com/en-us/azure/firewall/features
@@ -2652,7 +2652,7 @@ https://learn.microsoft.com/en-us/azure/firewall/features
 - Firewall Manager로 중앙 관리하는 것은 세 종류 모두 된다 — 비교 표의 「Central management via Firewall Manager」
 - 한국어 표기: 상태 저장 방화벽, 기본 제공 고가용성, 네트워크 필터링 규칙, 위협 인텔리전스, 자동 크기 조정
 
-쓰일 곳: `azure-network-protection.azure-firewall`, G40
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, G40
 
 ## (phase 103) Azure Firewall — Configure Azure Firewall rules
 https://learn.microsoft.com/en-us/azure/firewall/rule-processing
@@ -2664,7 +2664,7 @@ https://learn.microsoft.com/en-us/azure/firewall/rule-processing
 - NSG와의 차이로 쓸 수 있는 것: NSG는 기본 규칙이 가상 네트워크 안을 허용하지만, Azure Firewall은 허용 규칙이 없으면 모두 거부한다(이 문서 첫 문단 + NSG 개요의 기본 규칙)
 - 한국어 표기: NAT 규칙, 네트워크 규칙, 애플리케이션 규칙(한국어판 그대로), 방화벽 정책
 
-쓰일 곳: `azure-network-protection.azure-firewall`
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`
 
 ## (phase 103) Azure Firewall — Azure Firewall FAQ
 https://learn.microsoft.com/en-us/azure/firewall/firewall-faq
@@ -2676,10 +2676,11 @@ https://learn.microsoft.com/en-us/azure/firewall/firewall-faq
 - 흔한 배치는 중앙 가상 네트워크에 방화벽을 두고 다른 가상 네트워크를 그곳에 피어링한 뒤, 그들의 기본 경로가 방화벽을 가리키게 하는 허브-스포크다. 가상 네트워크마다 방화벽을 두지 않아도 된다. 어떤 가상 네트워크에도 배포할 수는 있다 — 「What is the typical deployment model for Azure Firewall?」. **`FirewallHubDiagram`의 근거다.** 경로·허브-스포크 설계 방법과 이름은 **쓰지 않고** 「피어링으로 이어 트래픽이 방화벽을 지나게 한다」까지만 쓴다
 - **그래서 「방화벽 하나를 두면 저절로 모든 가상 네트워크가 보호된다」로 쓰지 않는다.** 트래픽이 방화벽을 지나도록 이어 두어야 한다. NO.127·197·432의 답(Azure Firewall)은 맞고 이 조건은 덤프에 없다
 - **「NSG 하나로는 여러 가상 네트워크를 걸 수 없다」로 쓰지 않는다.** 같은 NSG를 서브넷 여럿에 연결할 수 있다(`How network security groups filter network traffic`). 경계는 「구독마다 흩어져 놓이는 규칙 / 구독과 가상 네트워크를 가로질러 한곳에서」다
+- 피어링한 가상 네트워크들 사이의 트래픽도 가운데 가상 네트워크의 Azure Firewall을 지나게 해 거를 수 있다. 각 서브넷에서 방화벽으로 가도록 경로를 두어야 한다 — 「Can Azure Firewall in a hub virtual network forward and filter network traffic between multiple spoke virtual networks?」. **`FirewallHubDiagram`의 「가상 네트워크 사이」 장면의 근거다.** 경로 설정 방법은 쓰지 않는다 (phase 103 step 12)
 - 웹 앱 쪽의 차이: Application Gateway WAF는 웹 앱으로 들어오는 흔한 공격을 막고, Azure Firewall은 HTTP·HTTPS 밖의 프로토콜로 들어오는 것과 나가는 트래픽을 지킨다 — 「What is the difference between Application Gateway WAF and Azure Firewall?」(WAF는 쓰지 않는다 — 금지 범위)
 - 한국어 표기: NSG(네트워크 보안 그룹), 심층 방어(이 phase에서는 쓰지 않는다)
 
-쓰일 곳: `azure-network-protection.azure-firewall`, `FirewallHubDiagram`, G40
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, `FirewallHubDiagram`, G40
 
 ## (phase 103) Azure Firewall Manager — What is Azure Firewall Manager?
 https://learn.microsoft.com/en-us/azure/firewall-manager/overview
@@ -2690,7 +2691,7 @@ https://learn.microsoft.com/en-us/azure/firewall-manager/overview
 - **이름과 한 줄 풀이만 쓴다.** 보안 가상 허브, 허브 가상 네트워크, 파트너 공급자는 **쓰지 않는다**
 - 한국어 표기: Azure Firewall Manager(옮기지 않는다), 방화벽 정책
 
-쓰일 곳: `azure-network-protection.azure-firewall`
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`
 
 ## (phase 103) Azure Firewall — Azure Firewall Premium features (암호화의 경계만)
 https://learn.microsoft.com/en-us/azure/firewall/premium-features
@@ -2700,7 +2701,7 @@ https://learn.microsoft.com/en-us/azure/firewall/premium-features
 - Premium의 TLS 검사는 **이미 암호화된** 나가는 연결을 풀어 살펴본 뒤 다시 암호화해 보낸다. 검사하지 않으면 방화벽은 TLS 터널 안의 내용을 보지 못한다 — 「TLS inspection」
 - **그래서 「Azure Firewall에는 암호화와 관련된 기능이 전혀 없다」로 쓰지 않는다**(D64). 암호화되지 않은 트래픽을 대신 암호화하는 기능으로 든 곳은 받은 문서에 없다. TLS 검사 자체는 이 주제에 **쓰지 않는다**
 
-쓰일 곳: D64
+쓰인 곳(phase 103 step 12): D64
 
 ## (phase 103) Azure DDoS Protection — About Azure DDoS Protection tier comparison
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comparison
@@ -2714,7 +2715,7 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comp
 - 제한(NAT 게이트웨이의 공용 IP 주소 등)과 가격 기준은 **쓰지 않는다**
 - 한국어 표기: 아래 「한국어 표기 정리」
 
-쓰일 곳: `azure-network-protection.ddos-protection`, D62, G39
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, D62, G39
 
 ## (phase 103) Azure DDoS Protection — Types of attacks Azure DDoS Protection mitigates
 https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks
@@ -2726,7 +2727,7 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks
 - 공격 이름 표는 **쓰지 않는다**
 - 한국어 표기: 웹 애플리케이션 방화벽(WAF), SQL 주입
 
-쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
 
 ## (phase 103) Azure DDoS Protection — Azure DDoS Protection FAQ
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-faq
@@ -2739,7 +2740,7 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-faq
 - 웹 앱 쪽은 WAF와 함께 쓴다 — 「What about protection at the service layer (layer 7)?」
 - 한국어 표기: 공용 IP 주소
 
-쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
 
 ## (phase 103) Azure networking — DDoS protection for Azure networks
 https://learn.microsoft.com/en-us/azure/networking/design-guide/ddos
@@ -2751,7 +2752,7 @@ https://learn.microsoft.com/en-us/azure/networking/design-guide/ddos
 - 이 문서는 첫 절에서 앱 계층 공격까지 방어한다고도 적는다. 개요와 공격 유형 문서가 그쪽은 WAF의 몫이라 하므로 **앱 계층까지 막는다고 쓰지 않는다**
 - 한국어 표기: DDoS 인프라 보호, DDoS 네트워크 보호, DDoS IP 보호
 
-쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
 
 ## (phase 103) Azure Traffic Manager — What is Azure Traffic Manager? (덤프 대조만)
 https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview
@@ -2760,7 +2761,7 @@ https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview
 
 - Traffic Manager는 DNS로 요청을 알맞은 서비스 끝점에 보내는 부하 분산 서비스다 — 첫 문단. VM 포트를 여는 일과 관계가 없다. **그래서 NO.7(아니요)은 맞다.** 개념 글에는 쓰지 않는다
 
-쓰일 곳: 없음(덤프 대조 기록)
+쓰인 곳(phase 103 step 12): 없음(덤프 대조 기록)
 
 ## (phase 103) Windows Server — netsh ipsec (덤프 대조만)
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh-ipsec
@@ -2769,7 +2770,7 @@ https://learn.microsoft.com/en-us/windows-server/administration/windows-commands
 
 - 적용 대상에 Windows Server 2016이 있고, IPsec은 IP 패킷을 암호화한다 — 첫 부분. **NO.284·483의 셋째 칸을 대조하는 데만 쓴다.** 설정법과 IPsec은 개념 글에 쓰지 않는다
 
-쓰일 곳: D64
+쓰인 곳(phase 103 step 12): D64
 
 ## (phase 103) Azure security — Azure network security overview (범주만)
 https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
@@ -2780,7 +2781,7 @@ https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
 - **세 서비스를 하나로 묶는 말로 쓴다.** 심층 방어, Defender for Cloud, Bastion, WAF의 세부는 **쓰지 않는다**
 
 쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`
-쓰일 곳: D64
+쓰인 곳(phase 103 step 12): D64
 
 ## (phase 103) 한국어 표기 정리 — `azure-network-protection`
 

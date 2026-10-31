@@ -87,6 +87,92 @@
       "sources": [
         "azure-network-protection.security-rules"
       ]
+    },
+    "firewall-hub": {
+      "label": "여러 가상 네트워크의 트래픽이 지나는 한곳의 Azure Firewall",
+      "svgLabel": "가상 네트워크 A의 VM 1과 가상 네트워크 B의 VM 2, 방화벽을 둔 가상 네트워크의 Azure Firewall, 그리고 인터넷",
+      "question": "여러 가상 네트워크의 트래픽을 한곳에서 거르려면?",
+      "idleCaption": "회사 F가 가상 네트워크 A와 B의 트래픽이 한곳의 Azure Firewall을 지나게 구성한 예다. 트래픽을 골라, 어느 길로 가는지 따라가 보자.",
+      "legend": "화살표는 트래픽이 지나는 길이다. 세 가상 네트워크는 피어링으로 이어 두었고, 피어링 선은 그리지 않았다. 가상 네트워크와 VM의 이름과 수는 예다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "firewall": "Azure Firewall",
+        "internet": "인터넷"
+      },
+      "groups": {
+        "vnet-a": "가상 네트워크 A",
+        "vnet-b": "가상 네트워크 B",
+        "fw-vnet": "방화벽을 둔 가상 네트워크"
+      },
+      "notes": {
+        "outbound-note": "규칙 한 벌로 거름",
+        "between-note": "가상 네트워크 사이도 거름"
+      },
+      "scenarios": [
+        {
+          "id": "outbound",
+          "label": "인터넷으로 나갈 때",
+          "caption": "VM 1과 VM 2가 인터넷으로 나가는 트래픽이 한곳의 Azure Firewall을 지난다. 가상 네트워크마다 방화벽을 두지 않고, 규칙 한 벌로 허용하거나 거부한다.",
+          "sources": [
+            "azure-network-protection.azure-firewall"
+          ]
+        },
+        {
+          "id": "between",
+          "label": "가상 네트워크 사이",
+          "caption": "가상 네트워크 A의 VM 1에서 가상 네트워크 B의 VM 2로 가는 트래픽도 Azure Firewall을 지나며, 규칙에 따라 허용되거나 거부된다.",
+          "sources": [
+            "azure-network-protection.azure-firewall"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-network-protection.azure-firewall"
+      ]
+    },
+    "ddos-protection": {
+      "label": "공격 트래픽을 걸러 내는 DDoS Protection",
+      "svgLabel": "정상 사용자와 공격 트래픽이 DDoS Protection으로 오고, 그 뒤 가상 네트워크의 공용 IP 주소와 VM 1이 있는 구성",
+      "question": "공격 트래픽이 몰려올 때, DDoS Protection은 무엇을 걸러 낼까?",
+      "idleCaption": "회사 G의 웹 서버 VM 1이 공용 IP 주소로 인터넷에 열려 있는 예다. 장면을 골라, 트래픽이 어디까지 가는지 비교해 보자.",
+      "legend": "가상 네트워크 안의 선은 공용 IP 주소가 VM 1에 이어져 있다는 뜻이다. 화살표는 트래픽이 가는 길이고, 화살표가 DDoS Protection에서 끝나면 거기서 걸러진 것이다.",
+      "nodes": {
+        "users": "정상 사용자",
+        "attack": "공격 트래픽",
+        "ddos": "DDoS Protection",
+        "public-ip": "공용 IP 주소",
+        "vm-1": "VM 1"
+      },
+      "groups": {
+        "vnet": "가상 네트워크"
+      },
+      "notes": {
+        "watch-note": "트래픽을 지켜봄",
+        "filter-note": "걸러 냄",
+        "pass-note": "정상 트래픽은 계속 통과"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "평소에는 DDoS Protection이 공용 IP 주소로 오는 트래픽을 지켜보고, 정상 사용자의 트래픽은 VM 1에 닿는다.",
+          "sources": [
+            "azure-network-protection.ddos-protection"
+          ]
+        },
+        {
+          "id": "attack",
+          "label": "공격이 올 때",
+          "caption": "공격의 낌새를 찾으면 DDoS Protection이 공격 트래픽을 걸러 낸다. 정상 사용자의 트래픽은 계속 통과해 VM 1에 닿는다.",
+          "sources": [
+            "azure-network-protection.ddos-protection"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-network-protection.ddos-protection"
+      ]
     }
   },
   "tables": {},

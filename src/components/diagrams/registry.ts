@@ -27,6 +27,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
@@ -55,6 +56,7 @@ import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
@@ -386,6 +388,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-virtual-networking.expressroute': ExpressRouteDiagram,
   'azure-network-protection.network-security-groups': NsgAssociationDiagram,
   'azure-network-protection.security-rules': NsgRuleOrderDiagram,
+  'azure-network-protection.azure-firewall': FirewallHubDiagram,
+  'azure-network-protection.ddos-protection': DdosProtectionDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
