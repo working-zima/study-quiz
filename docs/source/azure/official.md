@@ -296,7 +296,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), D51
 
-쓰일 곳(phase 103): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), `HostingOptionsTable`(VM 행), G27·G28
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), az058~az060 해설, G27·G28
+
+쓰일 곳(phase 103): `HostingOptionsTable`(VM 행)
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -324,7 +326,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 
 쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `VmResourcesDiagram`, D51·D57
 
-쓰일 곳(phase 103): `azure-compute.scale-sets`(영역에 나눠 배포)
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(영역에 나눠 배포 — 여러 가용성 영역에 걸쳐 만드는 것만 썼다. 한 영역에만 두거나 영역을 정하지 않는 선택지는 쓰지 않았다)
 
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
@@ -518,6 +520,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 쓰인 곳(phase 101): `azure-cloud-benefits.high-availability`(고가용성의 정의, SLA·가동 시간을 푸는 한 줄), `azure-cloud-benefits.scalability`(소개 문단과 수직·수평 크기 조정 두 항목), `CloudScalingDiagram`(수직: VM 한 대에 CPU·RAM을 더함 / 수평: VM을 더함), D17, G10, G11
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(Azure의 가동 시간 보장은 서비스마다 다르고 SLA에 담긴다 — 서비스마다 SLA가 따로 있다는 문단)
+
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(고가용성을 푸는 한 줄 — 장애가 나도 서비스를 쓸 수 있는 시간을 가장 길게 지키는 것)
 
 ## (phase 100) Learn 「Describe Azure compute services」 — 6 Describe Azure Functions
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/6-functions
@@ -853,7 +857,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 - 인스턴스 수의 상한(1,000·600)은 확인만 했다. 쓰지 않는다 (phase 103)
 - 한국어 표기: 제목 「가상 머신 확장 집합이란?」 — 본문은 「확장 집합」, load balancer → 부하 분산 장치, fault domain → 장애 도메인 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.scale-sets`(같은 구성, 요청이 부하 분산 장치를 거쳐 여러 VM으로, 한 대가 문제여도 다른 VM으로, 수요에 따른 증감과 비용, 추가 비용 없음), `ScaleSetDiagram`, D56·G28
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(같은 구성 — VM 크기·디스크·설치한 앱이 같아야 성능이 고르다, 「언제나 똑같다」로 쓰지 않았다 / 요청이 부하 분산 장치를 거쳐 여러 VM으로, 한 대가 문제여도 다른 VM으로, 수요에 따른 증감과 비용, 추가 비용 없음, 확장 집합만으로는 데이터 센터 장애에 대비되지 않음), `ScaleSetDiagram`, az058 해설, D56·G28
 
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
@@ -915,6 +919,8 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 쓰일 곳: D20
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있고 Microsoft Entra ID는 데이터를 둘 지리를 고르게 한다), az040·az041 해설, `AzureRegionDiagram`
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(지역을 푸는 한 줄 — Azure가 데이터 센터를 모아 둔 지리적 장소), az059 해설
 
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐)
 
@@ -1429,6 +1435,8 @@ https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹을 나눠도 데이터 센터 하나의 장애에 대비가 되지 않고, 그 대비는 여러 가용성 영역에 나눠 두는 것이다 — ARM 항목의 NO.87 판단), az049·az050 해설
 
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(가용성 영역을 푸는 한 줄 — 한 지역 안에서 전원·냉각·네트워크를 따로 갖춘 데이터 센터 묶음, 한 영역이 멈춰도 다른 영역은 영향을 받지 않음), `azure-compute.availability-sets`(같은 풀이를 되짚음), az058~az060 해설
+
 ## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
 https://learn.microsoft.com/en-us/azure/reliability/regions-paired
 
@@ -1795,7 +1803,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overvi
 - 도메인 번호: 글은 번호를 매기지 않는다. 같은 페이지의 그림(「Diagram that shows compute clusters split into fault domains that contain update domains.」, `media/virtual-machines-common-manage-availability/ud-fd-configuration.png` — 사본 `ud-fd-configuration.png`)은 장애 도메인을 0·1·2로, 업데이트 도메인을 1~5로 매긴다(VM 여섯째가 업데이트 도메인 1). **번호 매김이 하나로 정해지지 않으므로 도식은 이름표(「장애 도메인 A」 같은 것)로 쓴다**
 - 한국어 표기: 제목 「가용성 집합 개요」, availability set → 가용성 집합, fault domain → 장애 도메인, update domain → 업데이트 도메인, Virtual Machine Scale Sets → 「가상 머신 스케일 세트」(이 문서 한국어판), flexible orchestration mode → 유연한 오케스트레이션 모드, correlated failure → 상관 관계 오류(쓰지 않는다 — 「함께 걸리는 고장」으로 푼다)
 
-쓰일 곳: `azure-compute.availability-sets`(정의·VM 둘 이상·추가 비용 없음·두 도메인의 정의·최대 3과 20·만든 뒤 못 바꿈·한 번에 하나씩·여섯째 VM 배정·막지 못하는 것·영역과의 차이(대기 시간, 데이터 센터 수준 중단)·권장), `AvailabilitySetDiagram`(도메인은 이름표로, 전원 장애 때와 계획된 유지 관리 때), G27
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(정의·VM 둘 이상·추가 비용 없음·두 도메인의 정의·최대 3과 20·만든 뒤 못 바꿈·한 번에 하나씩·여섯째 VM 배정·막지 못하는 것·영역과의 차이(대기 시간, 데이터 센터 수준 중단)·권장), `AvailabilitySetDiagram`(도메인은 이름표 「장애 도메인 A·B·C」로, 전원 장애 때와 계획된 유지 관리 때), az059·az060 해설, G27
 
 ## (phase 103) Azure CLI — az vm availability-set (create의 기본값만)
 https://learn.microsoft.com/en-us/cli/azure/vm/availability-set?view=azure-cli-latest
@@ -1805,7 +1813,19 @@ https://learn.microsoft.com/en-us/cli/azure/vm/availability-set?view=azure-cli-l
 - `az vm availability-set create`의 장애 도메인 수 기본값은 2이고, 업데이트 도메인 수는 정하지 않으면 서버가 알맞은 수(예: 5)를 고른다 — 「az vm availability-set create」의 매개 변수 설명
 - 위 개요는 「기본으로 장애 도메인 최대 셋」이라 하고, CLI는 기본값을 2로 둔다 — **만드는 도구마다 기본값이 달라 「기본 수」는 쓰지 않는다.** 최대 수(3·20)와 「만든 뒤 못 바꾼다」만 쓴다
 
-쓰일 곳: (근거 기록) `azure-compute.availability-sets`에 기본 수를 쓰지 않은 까닭
+쓰인 곳(phase 103 step 2): (근거 기록) `azure-compute.availability-sets`에 기본 수를 쓰지 않은 까닭. 본문의 「장애 도메인 셋, 업데이트 도메인 다섯」은 기본 수가 아니라 「예를 들어」로 고른 값이다
+
+## (phase 103) Azure Virtual Machines — Maintenance for virtual machines in Azure
+https://learn.microsoft.com/en-us/azure/virtual-machines/maintenance-and-updates
+
+확인한 날 2026-10-31(phase 103 step 2가 계획된 유지 관리를 풀려고 받았다). 사본: `docs-virtual-machines-maintenance-and-updates.md`와 `ko-` 판.
+
+- Azure는 VM을 받치는 호스트 인프라의 안정성·성능·보안을 높이려고 플랫폼을 때때로 업데이트한다. 그 일은 호스팅 환경의 소프트웨어 구성 요소에 패치를 적용하는 것부터 네트워킹 구성 요소를 바꾸거나 하드웨어를 퇴역시키는 것까지다 — 「첫 부분」
+- 업데이트가 VM에 영향을 주는 일은 드물다. 다시 부팅이 필요하면 Azure가 계획된 유지 관리를 미리 알린다 — 「첫 부분」(다시 부팅이 없는 방식의 세부, 일시 중지 시간, 직접 유지 관리를 시작할 수 있는 기간의 일수는 쓰지 않는다)
+- 가용성 집합에 VM을 두면 중단 때나 다시 부팅이 필요한 유지 관리 때 적어도 VM 하나는 쓸 수 있다. 가용성 집합의 VM은 업데이트 도메인 최대 20개에 나뉘고, 예약된 유지 관리 때는 업데이트 도메인을 한 번에 하나만 업데이트하며 순서대로 하지는 않을 수 있다 — 「Availability sets and Uniform scale sets」
+- 한국어 표기: planned maintenance → 계획된 유지 관리, update domain → 업데이트 도메인, live migration → 실시간 마이그레이션(쓰지 않는다)
+
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(계획된 유지 관리를 푸는 문장 — 바탕 설비를 때때로 업데이트하고, VM에 영향을 주는 일은 드물며, 다시 시작해야 하는 업데이트는 미리 알린다), `AvailabilitySetDiagram`(계획된 유지 관리 시나리오), az059 해설
 
 ## (phase 103) Azure Virtual Machine Scale Sets — Availability zone options for Azure Virtual Machine Scale Sets
 https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones
@@ -1817,7 +1837,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machi
 - 한 영역에만 두는 확장 집합(영역 정렬)과 영역을 정하지 않는 지역 배포도 있다 — 「Choose an availability zone deployment option」(선택지의 세부와 99.99% 수치는 쓰지 않는다)
 - 한국어 표기: 「가용성 영역을 가로지르는 확장 집합」, 「데이터 센터 수준의 장애」
 
-쓰일 곳: `azure-compute.scale-sets`(확장 집합이 여러 가용성 영역에 VM을 나눠 둘 수 있다 — 그래야 데이터 센터 장애에 대비된다), D56
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합을 여러 가용성 영역에 걸쳐 만들어 VM을 영역 둘 이상에 나눠 둔다 — 그래야 데이터 센터 장애에 대비된다, 가용성 영역을 지원하는 지역이어야 한다), D56
 
 ## (phase 103) Azure Load Balancer — What is Azure Load Balancer?
 https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview
@@ -1828,7 +1848,7 @@ https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview
 - Basic Load Balancer는 2025-09-30에 사용 중지되었다(Standard로 옮기라고 한다) — 「첫 부분의 Important」(쓰지 않는다)
 - 한국어 표기: load balancing → 부하 분산, load balancer → **부하 분산 장치**(한국어판 12번), VMSS → VMSS(가상 머신 확장 집합)
 
-쓰일 곳: `azure-compute.scale-sets`(부하 분산 장치를 푸는 한 줄 — 들어오는 요청을 여러 VM에 나눠 보내는 것), `ScaleSetDiagram`, G32
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(부하 분산 장치를 푸는 한 줄 — 들어오는 요청을 받아 여러 VM에 나눠 보내는 것), `ScaleSetDiagram`, az058 해설, G32
 
 ## (phase 103) Azure Load Balancer — Azure Load Balancer distribution modes
 https://learn.microsoft.com/en-us/azure/load-balancer/distribution-mode-concepts
@@ -1837,7 +1857,7 @@ https://learn.microsoft.com/en-us/azure/load-balancer/distribution-mode-concepts
 
 - Azure Load Balancer는 기본으로 다섯 값(five-tuple)의 해시로 연결을 나눈다. 같은 클라이언트 IP의 연결을 같은 인스턴스로 보내는 세션 유지 방식도 고를 수 있다 — 「첫 부분」(나누는 방식은 이 주제에 쓰지 않는다 — 「나눠 보낸다」까지만)
 
-쓰일 곳: G32
+쓰인 곳(phase 103 step 2): G32 — `azure-compute.scale-sets`와 `ScaleSetDiagram`은 나누는 방식을 쓰지 않고 「나눠 보낸다」까지만 썼다
 
 ## (phase 103) Learn 「Describe Azure compute services」 — 4 Describe Azure virtual desktop
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/4-virtual-desktop

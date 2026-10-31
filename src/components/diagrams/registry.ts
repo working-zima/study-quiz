@@ -9,6 +9,7 @@ import { ArpHopsDiagram } from './ArpHopsDiagram'
 import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
+import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
@@ -126,6 +127,7 @@ import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
+import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -362,6 +364,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-resource-hierarchy.subscription-boundaries': SubscriptionBoundaryDiagram,
   'azure-resource-hierarchy.hierarchy': HierarchyInheritanceDiagram,
   'azure-compute.vm-resources': VmResourcesDiagram,
+  'azure-compute.scale-sets': ScaleSetDiagram,
+  'azure-compute.availability-sets': AvailabilitySetDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

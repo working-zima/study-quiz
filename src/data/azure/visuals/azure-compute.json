@@ -46,6 +46,92 @@
         "azure-compute.virtual-machines",
         "azure-compute.vm-resources"
       ]
+    },
+    "scale-sets": {
+      "label": "사용자가 몰리면 확장 집합이 같은 구성의 VM을 더하는 모습을 보이는 도식",
+      "svgLabel": "부하 분산 장치가 확장 집합 안의 VM 1부터 VM 4로 요청을 나눠 보낸다",
+      "question": "사용자가 몰리면, 확장 집합은 무엇을 할까?",
+      "idleCaption": "회사 A의 웹사이트를 실행하는 확장 집합이다. 사용자의 요청은 부하 분산 장치를 거쳐 확장 집합의 VM으로 간다. 화살표가 닿은 VM 1과 VM 2는 평소에도 요청을 받는 VM이다. 버튼을 고르면 평소와 사용자가 몰릴 때를 비교할 수 있다.",
+      "legend": "화살표는 부하 분산 장치가 VM으로 요청을 나눠 보내는 길이다. 큰 박스는 확장 집합이다. 흐린 VM은 그 상황에서 아직 더해지지 않은 VM이다. VM 대수는 예로 든 것이다.",
+      "nodes": {
+        "lb": "부하 분산 장치",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "vm-4": "VM 4"
+      },
+      "groups": {
+        "scale-set": "확장 집합"
+      },
+      "notes": {
+        "vm-3-note": "저절로 더해짐",
+        "vm-4-note": "저절로 더해짐"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "평소에는 확장 집합의 VM 1과 VM 2가 요청을 받는다. 사용자는 VM이 아니라 부하 분산 장치로 요청을 보내고, 부하 분산 장치가 그 요청을 두 VM에 나눠 보낸다. VM 3과 VM 4는 아직 더해지지 않았다.",
+          "sources": [
+            "azure-compute.scale-sets"
+          ]
+        },
+        {
+          "id": "peak",
+          "label": "사용자가 몰릴 때",
+          "caption": "할인 행사로 사용자가 몰리면 확장 집합이 같은 구성의 VM 3과 VM 4를 저절로 더하고, 부하 분산 장치는 새로 더해진 VM에도 요청을 보낸다. 사용자가 줄면 확장 집합이 VM 수를 다시 줄인다.",
+          "sources": [
+            "azure-compute.scale-sets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.scale-sets"
+      ]
+    },
+    "availability-sets": {
+      "label": "전원 장애 때와 계획된 유지 관리 때 가용성 집합에서 멈추는 VM을 비교하는 도식",
+      "svgLabel": "가용성 집합 안의 장애 도메인 A에 VM 1과 VM 4, 장애 도메인 B에 VM 2, 장애 도메인 C에 VM 3이 있다",
+      "question": "전원이 끊길 때와 유지 관리 때, 함께 멈추는 VM은 같을까?",
+      "idleCaption": "회사 B가 가용성 집합에 넣은 VM 네 대를 Azure가 장애 도메인 셋에 나눠 두었다. 장애 도메인 A에는 VM 1과 VM 4가 함께 있고, 업데이트 도메인은 네 대가 저마다 다르다. 버튼을 고르면 전원 장애 때와 계획된 유지 관리 때 멈추는 VM을 비교할 수 있다.",
+      "legend": "큰 박스는 가용성 집합이고, 그 안의 박스는 장애 도메인이다. 업데이트 도메인은 박스로 그리지 않았다. 흐린 VM은 그 상황에서 멈춘 VM이다. VM 대수와 배치는 예로 든 것이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "vm-4": "VM 4"
+      },
+      "groups": {
+        "availability-set": "가용성 집합",
+        "fd-a": "장애 도메인 A",
+        "fd-b": "장애 도메인 B",
+        "fd-c": "장애 도메인 C"
+      },
+      "notes": {
+        "fd-a-note": "전원이 멈춤",
+        "vm-1-note": "다시 시작 중"
+      },
+      "scenarios": [
+        {
+          "id": "power",
+          "label": "전원 장애",
+          "caption": "장애 도메인 A의 전원이 끊기면, 그 전원과 네트워크 스위치를 함께 쓰는 VM 1과 VM 4가 함께 멈춘다. 다른 장애 도메인에 있는 VM 2와 VM 3은 계속 동작한다.",
+          "sources": [
+            "azure-compute.availability-sets"
+          ]
+        },
+        {
+          "id": "maintenance",
+          "label": "계획된 유지 관리",
+          "caption": "계획된 유지 관리 때 Azure는 업데이트 도메인을 한 번에 하나씩 다시 시작한다. VM 1의 업데이트 도메인이 다시 시작되는 동안, 업데이트 도메인이 다른 VM 2·VM 3·VM 4는 계속 동작한다. VM 4는 VM 1과 장애 도메인이 같지만 업데이트 도메인은 다르다.",
+          "sources": [
+            "azure-compute.availability-sets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.availability-sets"
+      ]
     }
   },
   "tables": {},
