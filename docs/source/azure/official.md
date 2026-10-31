@@ -1762,7 +1762,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
-쓰일 곳(phase 103): `azure-virtual-networking.vpn-connection-types`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간은 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다, 지점 및 사이트 간은 컴퓨터마다 설정하고 기존 네트워크를 거의 바꾸지 않는다, 지점 및 사이트 간 연결이 컴퓨터와 가상 네트워크 사이에 놓인다), `SiteToSiteVpnDiagram`, az075 해설
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -2128,7 +2128,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
-쓰일 곳(phase 103): `azure-virtual-networking.vpn-connection-types`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간 터널, 로컬 네트워크에 있는 것처럼 보임, 바깥의 컴퓨터가 연결을 시작), `SiteToSiteVpnDiagram`, az075 해설
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 3 Describe Azure virtual private networks
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/3-virtual-private-networks
@@ -2145,7 +2145,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - 정책 기반·경로 기반, 활성/활성, 영역 중복 게이트웨이, 미리 공유한 키는 **쓰지 않는다**(guide 「배경」)
 - 한국어 표기: VPN(가상 사설망), VPN 게이트웨이, 가상 네트워크 게이트웨이, 전용 서브넷, 사이트 간, 지점 및 사이트 간, 네트워크 간, 활성/대기
 
-쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`, `azure-virtual-networking.expressroute`, `SiteToSiteVpnDiagram`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(VPN의 정의·도청을 막는 암호화, 가상 네트워크 게이트웨이의 한 종류, 전용 서브넷, 가상 네트워크마다 하나와 여러 곳, 기본 구성의 대기), `azure-virtual-networking.vpn-connection-types`(세 유형), `SiteToSiteVpnDiagram`, az073~az075 해설
+쓰일 곳: `azure-virtual-networking.expressroute`
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 4 Describe Azure ExpressRoute
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/4-expressroute
@@ -2367,7 +2368,7 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateway
 - 프로토콜 이름(IPsec/IKE·OpenVPN 등), SKU, 요금은 **쓰지 않는다**
 - 한국어 표기: 제품 이름 Azure VPN Gateway, 리소스 VPN 게이트웨이, 가상 네트워크 게이트웨이, 사이트 간(이 문서 한국어판에 「사이트 및 사이트 간」도 섞인다), 지점 및 사이트 간, VNet 간, 온-프레미스 VPN 디바이스
 
-쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`, `SiteToSiteVpnDiagram`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(연결을 여럿 만든다), `azure-virtual-networking.vpn-connection-types`(사이트 간·지점 및 사이트 간·VNet 간의 두 끝), `SiteToSiteVpnDiagram`
 
 ## (phase 103) Azure VPN Gateway — Tutorial: Create a site-to-site VPN connection in the Azure portal
 https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
@@ -2384,7 +2385,19 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
 - 게이트웨이 서브넷의 크기, 실제 주소 값, 미리 공유한 키, SKU는 **쓰지 않는다**
 - 한국어 표기: 로컬 네트워크 게이트웨이, 게이트웨이 서브넷(이름 `GatewaySubnet`), VPN 디바이스, 온-프레미스 VPN 디바이스, VPN 연결, 사이트 간
 
-쓰일 곳: `azure-virtual-networking.vpn-gateway`, `SiteToSiteVpnDiagram`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(사이트 간 연결에 필요한 네 가지, 게이트웨이 서브넷의 이름, 로컬 네트워크 게이트웨이, VPN 연결, 둘 다 공용 IP 주소), `SiteToSiteVpnDiagram`, az073·az074 해설
+
+## (phase 103) Azure VPN Gateway — About Point-to-Site VPN
+https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about
+
+확인한 날 2026-10-31. 사본: `docs-vpn-gateway-point-to-site-about.md`와 `ko-` 판(step 8이 받았다).
+
+- 지점 및 사이트 간 연결은 개별 컴퓨터에서 가상 네트워크로 잇는 연결이고, 그 컴퓨터 쪽에서 시작해 만들어진다. 집이나 회의장 같은 원격 위치에서 쓰고, 연결할 컴퓨터가 몇 대뿐이면 사이트 간 대신 쓸 만하다 — 첫 문단
+- **이 문서와 받은 다른 문서는 「온-프레미스 VPN 디바이스가 필요 없다」고 문장으로 말하지 않는다.** 그래서 그 말로 쓰지 않고, 연결이 컴퓨터와 가상 네트워크 사이에 놓인다는 사실(「What is Azure Virtual Network?」 항목)대로 「온-프레미스 VPN 디바이스를 거치지 않는다」로 쓴다
+- 프로토콜 이름과 인증 방식은 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: 지점 및 사이트 간
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`, `SiteToSiteVpnDiagram`, az075 해설
 
 ## (phase 103) Azure VPN Gateway — VPN Gateway FAQ (VNet 간 절만)
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq
@@ -2397,7 +2410,7 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq
 - 한국어 표기: VNet 간
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`
-쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(VNet 간 트래픽은 Microsoft 백본 네트워크로, VPN 디바이스가 필요 없다 — 온-프레미스도 함께 이을 때가 아니면)
 
 ## (phase 103) Azure VPN Gateway — Design highly available gateway connectivity (기본 구성만)
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable
@@ -2406,7 +2419,7 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable
 
 - VPN 게이트웨이는 기본으로 인스턴스 둘의 활성/대기 구성이고, 유지 관리나 뜻밖의 중단이 활성 쪽에 오면 대기 쪽이 저절로 이어받으며 그동안 잠깐 끊긴다 — 「About VPN gateway redundancy」. 시간 수치는 **쓰지 않는다**(Learn 단원 3과 수가 다르다)
 
-쓰일 곳: `azure-virtual-networking.vpn-gateway`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(기본으로 실행 단위 둘, 대기 쪽이 이어받고 잠깐 끊긴다)
 
 ## (phase 103) Azure ExpressRoute — ExpressRoute FAQ와 circuit peerings (근거 기록)
 https://learn.microsoft.com/en-us/azure/expressroute/expressroute-faqs

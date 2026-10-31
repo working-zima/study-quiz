@@ -134,6 +134,7 @@ import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
+import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
@@ -378,6 +379,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-virtual-networking.virtual-network': VnetIsolationDiagram,
   'azure-virtual-networking.peering': VnetPeeringDiagram,
   'azure-virtual-networking.endpoints': PrivateEndpointDiagram,
+  'azure-virtual-networking.vpn-gateway': SiteToSiteVpnDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
