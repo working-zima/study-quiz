@@ -1,0 +1,49 @@
+{
+  "diagrams": {
+    "resource-group": {
+      "label": "리소스 그룹을 지우거나 접근 권한을 줄 때 그 일이 어느 리소스에 미치는지 보는 도식",
+      "svgLabel": "리소스 그룹 「개발 환경」 안에 VM 1·가상 네트워크·데이터베이스가 있고, 리소스 그룹 「운영」 안에 VM 2가 있다",
+      "question": "리소스 그룹에 한 일은, 그 안의 리소스에 어떻게 미칠까?",
+      "idleCaption": "회사 A는 2주 동안 시험할 VM 1·가상 네트워크·데이터베이스를 리소스 그룹 「개발 환경」에, 이미 서비스에 쓰고 있는 VM 2를 리소스 그룹 「운영」에 두었다. 버튼을 고르면 리소스 그룹을 지우거나 접근 권한을 줄 때 그 일이 어느 리소스에 미치는지 볼 수 있다.",
+      "legend": "박스는 리소스 그룹이고, 리소스는 저마다 리소스 그룹 하나에만 들어 있다. 리소스의 수와 종류는 예다. 흐리게 그린 노드는 지워졌거나 그 일이 미치지 않은 리소스다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vnet": "가상 네트워크",
+        "db": "데이터베이스",
+        "vm-2": "VM 2"
+      },
+      "groups": {
+        "rg-dev": "리소스 그룹: 개발 환경",
+        "rg-prod": "리소스 그룹: 운영"
+      },
+      "notes": {
+        "delete-note": "그룹과 함께 모두 삭제",
+        "access-note": "팀 A의 권한이 셋 모두에"
+      },
+      "scenarios": [
+        {
+          "id": "delete",
+          "label": "그룹 삭제",
+          "caption": "리소스 그룹 「개발 환경」을 지우면 그 안의 VM 1·가상 네트워크·데이터베이스가 함께 지워진다. 다른 리소스 그룹 「운영」에 있는 VM 2는 그대로 남는다.",
+          "sources": [
+            "azure-resource-hierarchy.resource-group"
+          ]
+        },
+        {
+          "id": "access",
+          "label": "권한 부여",
+          "caption": "리소스 그룹 「개발 환경」에 팀 A의 접근 권한을 주면, 그 권한이 그룹 안의 VM 1·가상 네트워크·데이터베이스 모두에 적용된다. 다른 리소스 그룹 「운영」의 VM 2에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.resource-group"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.resource",
+        "azure-resource-hierarchy.resource-group"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

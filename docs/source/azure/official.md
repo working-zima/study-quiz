@@ -204,6 +204,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(짝지은 까닭 — 자연재해·정전처럼 지역 전체에 미치는 사건, 고객이 복제와 장애 조치를 구성, 짝의 예 — 미국 서부·미국 동부와 동아시아·동남아시아, 덧붙은 이점 셋, 브라질 남부의 예외와 한 방향 짝. 「현행 문서와 다름」 1~3을 따라 「일부 지역」으로 쓰고 거리 수치와 「저절로 장애 조치된다」는 쓰지 않았다),
 `azure-regions-zones.sovereign-regions`(주 인스턴스와 격리된 인스턴스, 규정 준수·법적 이유, 예 둘 — 심사를 거친 미국인이 운영, 추가 규정 준수 인증, Microsoft가 데이터 센터를 직접 유지하지 않음, 지역 이름은 단원 5 한국어판 표기로 US Gov 버지니아·US Gov 애리조나·중국 동부·중국 북부. US DoD Central은 쓰지 않았다), az045·az046·az047 해설, `RegionPairDiagram`, D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 썼다**
 
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(지역과 데이터 센터를 푸는 한 줄, 리소스를 배포할 때 지역을 고르는 경우가 많다), `azure-resource-hierarchy.resource-group`(가용성 영역을 푸는 한 줄), az049·az050 해설(데이터 센터·가용성 영역을 푸는 줄)
+
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
 
@@ -232,7 +234,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
   1. 단원 6은 리소스마다 리소스 그룹 하나에 **반드시** 속한다고 한다. 「What is Azure Resource Manager?」(2026-08-04)는 리소스가 리소스 그룹 하나에만 있을 수 있다고 하면서도, **일부 리소스는 리소스 그룹 밖에 있을 수 있다**(구독·관리 그룹·테넌트에 배포한다)고 하고, 리소스 그룹·구독·관리 그룹·태그 자체도 리소스라고 한다. → VM·가상 네트워크·데이터베이스처럼 리소스 그룹에 넣는 리소스는 리소스 그룹 하나에만 속한다고 쓰고, 「모든 리소스가 리소스 그룹에 들어간다」로 일반화하지 않는다
   2. 단원 6은 리소스 그룹의 지역을 말하지 않는다. 같은 문서와 「Manage Azure resource groups by using the Azure portal」은 리소스 그룹에도 위치(지역)가 있고 그 위치가 리소스의 메타데이터를 두는 곳이며, 안의 리소스는 리소스 그룹과 다른 지역에 있어도 된다고 한다 — 어긋남이 아니라 단원 6에 없는 사실이다
 
-쓰일 곳(phase 102): `azure-resource-hierarchy.resource`(정의와 예), `azure-resource-hierarchy.resource-group`(한 그룹에만 속함·옮길 수 있음·중첩 불가·이름 변경 불가·그룹에 한 일이 안의 리소스 모두에·쓰는 예, 「현행 문서와 다름」 1), `azure-resource-hierarchy.subscription`(관리·청구·규모의 단위, 계정과 Microsoft Entra ID, 계정 하나에 구독 여럿), `azure-resource-hierarchy.subscription-boundaries`(두 경계와 구독을 더 만드는 까닭), `azure-resource-hierarchy.management-group`(구독 위의 묶음, 거버넌스 조건의 상속, 여섯 단계, 테넌트 루트 그룹, 10,000개, 부모 하나), `azure-resource-hierarchy.hierarchy`(쓰는 예 둘, 절 제목), D46·D47·D48·D49·D50·G24·G25·G26
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(정의와 예 — VM·가상 네트워크·데이터베이스. 「현행 문서와 다름」 1대로 「VM·가상 네트워크·데이터베이스 같은 리소스는」 리소스 그룹 하나에 들어간다고 한정했다),
+`azure-resource-hierarchy.resource-group`(한 그룹에만 속함·옮길 수 있음·중첩 불가·이름 변경 불가·그룹에 한 일이 안의 리소스 모두에·쓰는 예 둘·정해진 규칙 없음, 「현행 문서와 다름」 1·2), az048·az049·az050 해설, `ResourceGroupScopeDiagram`, D48·G24
+
+쓰일 곳(phase 102): `azure-resource-hierarchy.subscription`(관리·청구·규모의 단위, 계정과 Microsoft Entra ID, 계정 하나에 구독 여럿), `azure-resource-hierarchy.subscription-boundaries`(두 경계와 구독을 더 만드는 까닭), `azure-resource-hierarchy.management-group`(구독 위의 묶음, 거버넌스 조건의 상속, 여섯 단계, 테넌트 루트 그룹, 10,000개, 부모 하나), `azure-resource-hierarchy.hierarchy`(쓰는 예 둘, 절 제목), D46·D47·D48·D49·D50·G24·G25·G26
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
@@ -259,6 +264,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - Azure VM은 가상화된 서버를 IaaS로 실행하는 서비스다. IaaS 서비스이므로 VM 안의 패치·업데이트·구성은 쓰는 쪽이 맡는다 — 「첫 문단」·「둘째 문단」 (phase 101)
 
 쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(Azure에서의 예 — VM이 IaaS이고, 물리 서버를 사서 유지하지 않아도 되지만 VM 안의 패치·업데이트·구성은 고객이 맡는다. 가상 머신을 푸는 한 줄), az034 해설, D32·D34
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(VM을 푸는 한 줄 — Azure 안에서 실행되는 서버이고, 서버 장비를 사서 관리하지 않고도 운영 체제와 프로그램을 골라 쓴다), az048 해설
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -1311,6 +1318,8 @@ https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의, 랙 장애에도 — 클러스터는 쓰지 않았다, 데이터 센터 하나로는 이 보호가 안 됨, 영역 사이 거리의 질적 설명, 지역 전체 중단은 막지 못함, 영역 사이 전송 요금 없음, 「영역 1·2·3」 이름표),
 `azure-regions-zones.zone-service-categories`(지원 유형의 나눔과 이름, 누가 복제하고 누가 장애 조치를 맡는가, 저절로 되는 서비스와 고객이 구성하는 서비스, 비영역 배포), az042·az043·az044 해설, `ZoneIsolationDiagram`, D39·D40·D45(D45는 쓰지 않은 근거)·G22
 
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹을 나눠도 데이터 센터 하나의 장애에 대비가 되지 않고, 그 대비는 여러 가용성 영역에 나눠 두는 것이다 — ARM 항목의 NO.87 판단), az049·az050 해설
+
 ## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
 https://learn.microsoft.com/en-us/azure/reliability/regions-paired
 
@@ -1346,6 +1355,8 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), az040·az041 해설, `AzureRegionDiagram`
 
 쓰인 곳(phase 102 step 2): `azure-regions-zones.zone-service-categories`(비영역 리소스와 비지역 서비스를 가르는 문단 — 비지역 서비스는 가용성 영역 지원 유형과 다른 갈래다)
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(지역을 고르지 않고 쓰는 서비스도 있어 모든 리소스가 특정 지역에 놓이는 것은 아니다 — G24. 서비스 이름은 들지 않았다)
 
 ## (phase 102) Microsoft Entra — What is Microsoft Entra?
 https://learn.microsoft.com/en-us/entra/fundamentals/whatis
@@ -1451,7 +1462,10 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 - 리소스 그룹이 데이터 센터 장애에 대비가 되는지는 문서가 직접 말하지 않는다. 판단 근거는 셋이다 — 리소스 그룹은 함께 관리할 리소스를 담는 컨테이너다(「Terminology」), 안의 리소스는 그룹과 다른 지역에 있어도 된다(「What is a resource group?」), 리소스를 다른 그룹으로 옮겨도 리소스의 물리적 지역은 바뀌지 않는다(「Move Azure resources to a new resource group or subscription」). 리소스를 어느 리소스 그룹에 두는지는 리소스가 놓이는 데이터 센터·영역을 정하지 않으므로 대비가 되지 않는다. 데이터 센터·영역 하나의 장애에 대비하는 것은 리소스를 여러 가용성 영역에 두는 것이다(「What are availability zones?」) — D 항목 없음, 덤프 NO.87의 답 「아니요」의 근거
 - 한국어 표기: Azure Resource Manager(옮기지 않는다), resource → 리소스, resource group → 리소스 그룹, scope → 범위(「네 가지 관리 범위 수준」), inherit → 상속, metadata → 메타데이터, location → 위치, tag → 태그
 
-쓰일 곳: `azure-resource-hierarchy.resource`(리소스의 정의와 예, 리소스 그룹 밖의 리소스가 있다는 한정), `azure-resource-hierarchy.resource-group`(한 그룹에만, 옮기기, 그룹의 위치와 메타데이터, 다른 지역의 리소스, 다른 그룹의 리소스와의 연결, 그룹 삭제, 접근 제어 범위, NO.87의 판단), `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 다른 리소스 그룹에는 걸리지 않음), D48
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(리소스 하나하나가 관리할 수 있는 항목이다, 리소스 그룹 밖의 리소스가 있다는 한정 — 「VM·가상 네트워크·데이터베이스 같은 리소스는」으로 한정했고, 리소스 그룹·구독 자체도 리소스라는 말은 쓰지 않았다),
+`azure-resource-hierarchy.resource-group`(무엇을 한 그룹에 넣을지 고객이 정한다, 한 그룹에만, 옮기기, 수명 주기가 같은 리소스를 한 그룹에, 그룹의 지역과 메타데이터, 다른 지역의 리소스, 다른 그룹의 리소스와의 연결 — 웹앱과 데이터베이스의 예, 그룹 삭제, 접근 제어 범위, 다른 리소스 그룹에는 미치지 않음, NO.87의 판단), az049·az050 해설, `ResourceGroupScopeDiagram`, D48
+
+쓰일 곳: `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 다른 리소스 그룹에는 걸리지 않음)
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
@@ -1462,7 +1476,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage
 - 리소스 그룹을 만들 때 이름과 지역을 정한다 — 「Create resource groups」
 - 한국어 표기: resource group → 리소스 그룹, region → 지역
 
-쓰일 곳: `azure-resource-hierarchy.resource-group`(그룹을 만들 때 지역을 고른다, 메타데이터)
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(그룹을 만들 때 지역을 고른다, 메타데이터, 안의 리소스는 다른 지역에 있어도 된다)
 
 ## (phase 102) Azure Resource Manager — Move Azure resources to a new resource group or subscription
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription
@@ -1477,7 +1491,9 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-r
 - 구독 둘을 하나로 합친다는 말은 이 문서에 없다(리소스를 다른 구독으로 옮기는 방법만 있다) — D49
 - 한국어 표기: move → 이동, resource group → 리소스 그룹, subscription → 구독, Microsoft Entra tenant → Microsoft Entra 테넌트
 
-쓰일 곳: `azure-resource-hierarchy.resource-group`(다른 그룹으로 옮겨도 한 그룹에만 속한다, 옮겨도 지역은 그대로), `azure-resource-hierarchy.subscription`(리소스를 다른 구독으로 옮길 수 있다 — 같은 테넌트, 지원하는 유형), D47·D49
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(다른 그룹으로 옮겨도 한 그룹에만 속한다, 옮겨도 지역은 그대로), az050 해설
+
+쓰일 곳: `azure-resource-hierarchy.subscription`(리소스를 다른 구독으로 옮길 수 있다 — 같은 테넌트, 지원하는 유형), D47·D49
 
 ## (phase 102) Azure Resource Manager — Handling special cases when moving virtual machines to resource group or subscription
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations
@@ -1548,7 +1564,9 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 - 관리 그룹은 구독 위의 범위이고 더 복잡한 계층을 만들 수 있다 — 「Scope levels」
 - 한국어 표기: scope → 범위, role assignment → 역할 할당, inherit → 상속
 
-쓰일 곳: `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 위에서 아래로 상속), `azure-resource-hierarchy.resource-group`(리소스 그룹에 준 권한이 안의 리소스에 — 덤프 NO.54·93·159·270·309·335의 권한 진술은 이 사실과 맞다)
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹에 준 접근 권한이 안의 리소스에 미치고 다른 리소스 그룹에는 미치지 않는다 — 「역할」·「범위」라는 말은 쓰지 않고 「접근 권한」으로 썼다. 덤프 NO.54·93·159·270·309·335의 권한 진술은 이 사실과 맞다), `ResourceGroupScopeDiagram`(권한 부여)
+
+쓰일 곳: `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 위에서 아래로 상속)
 
 ## (phase 102) Azure RBAC — What is Azure role-based access control (Azure RBAC)? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
@@ -1590,7 +1608,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 - Azure 가상 네트워크는 Azure 안의 사설 네트워크를 이루는 기본 단위다. VM 같은 Azure 리소스가 서로, 인터넷과, 온-프레미스 네트워크와 안전하게 통신하게 해 준다 — 첫 부분
 - 한국어 표기: Azure Virtual Network → Azure Virtual Network(제목), virtual network → 가상 네트워크(한국어판 46번)
 
-쓰일 곳: `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로 통신하게 해 주는, Azure 안의 사설 네트워크)
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 

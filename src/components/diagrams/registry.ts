@@ -116,6 +116,7 @@ import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
+import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -354,6 +355,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-regions-zones.region': AzureRegionDiagram,
   'azure-regions-zones.availability-zones': ZoneIsolationDiagram,
   'azure-regions-zones.region-pairs': RegionPairDiagram,
+  'azure-resource-hierarchy.resource-group': ResourceGroupScopeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
