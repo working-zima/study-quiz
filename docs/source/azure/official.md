@@ -298,7 +298,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), az058~az060 해설, G27·G28
 
-쓰일 곳(phase 103): `HostingOptionsTable`(VM 행)
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(VM 행)
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -546,7 +546,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
   그래서 요금은 **「서버리스 요금제에서는」으로 한정해** 「실행되는 동안 쓴 만큼 낸다」로 쓴다. 「CPU 시간에만」을 모든 Functions에 일반화하지 않는다 — 같은 절과 호스팅 옵션 「Billing」 대조 (phase 103)
 - 한국어 표기: stateless → 상태 비저장, stateful → 상태 저장, Durable Functions(옮기지 않는다), REST request → REST 요청, timer → 타이머, trigger → 트리거(「트리거될 때」) (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.functions`(트리거의 종류 셋·몇 초 안의 일·저절로 늘어남·끝나면 리소스를 놓음·서버리스 요금제로 한정한 요금·상태 비저장과 Durable Functions·서버리스가 아닌 환경으로 옮김), `FunctionTriggerDiagram`, `HostingOptionsTable`(Functions 행), D53·D55·G30
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(트리거의 종류 셋·몇 초 안의 일·저절로 늘어남·끝나면 리소스를 놓음·서버리스 요금제로 한정한 요금·상태 비저장과 Durable Functions·서버리스가 아닌 환경으로 옮김), `FunctionTriggerDiagram`, `HostingOptionsTable`(Functions 행), D53·D55·G30
 
 ## (phase 100) Azure Functions — What is Azure Functions?
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
@@ -564,7 +564,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
 
 - 트리거와 바인딩이 함수를 다른 서비스에 이어 준다. 예: HTTP 트리거로 웹 앱이 부를 REST 끝점을 만들고, Durable Functions로 함수 여러 개를 이어 이벤트 기반 워크플로를 만든다 — 「Scenarios」 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.functions`(이벤트의 흔한 예인 REST 요청, Durable Functions), `FunctionTriggerDiagram`
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(이벤트의 흔한 예인 REST 요청, Durable Functions), `FunctionTriggerDiagram`
 
 ## (phase 100) Azure Functions — Azure Functions hosting options
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
@@ -587,7 +587,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
 - Premium 요금제는 필요한 인스턴스와 미리 데워 둔 인스턴스의 코어 초·메모리로 청구하고, **요금제마다 적어도 한 인스턴스를 늘 데워 둔다**. Dedicated 요금제는 같은 App Service 요금제의 웹 앱과 똑같이 낸다. Flex Consumption은 늘 준비해 둔 인스턴스를 두면 그 값도 낸다 — 「Billing」
   그래서 「이벤트가 없으면 요금이 없다」는 서버리스 요금제(그것도 늘 준비해 둔 인스턴스를 두지 않을 때)에만 맞다. 도식·표에서 Functions의 요금을 그릴 때는 「서버리스 요금제에서」라는 한정을 같이 쓴다 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.functions`(요금의 한정), `FunctionTriggerDiagram`(이벤트가 없을 때의 요금 곁말), `HostingOptionsTable`, G30
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(요금의 한정), `FunctionTriggerDiagram`(이벤트가 없을 때의 요금 캡션 — 곁말에는 쓰지 않았다), G30. `HostingOptionsTable`에는 요금을 쓰지 않았다
 
 ## (phase 100) Azure Virtual Machines — States and billing status of Azure Virtual Machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing
@@ -946,7 +946,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 
 쓰인 곳(phase 103 step 3): `azure-compute.containers`(앱 코드와 필요한 라이브러리를 한 꾸러미로 묶어 어디서든 같게 실행, VM과 다른 점 — 호스트의 운영 체제를 함께 쓴다, 운영 체제를 새로 시작하지 않아 가볍다, 덜 격리된다, 마이크로 서비스는 서비스마다 자기 컨테이너에서 따로 고치고 늘리고 배포), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트의 운영 체제 하나를 함께 쓴다), az062 해설, D53·D55
 
-쓰일 곳(phase 103): `HostingOptionsTable`(컨테이너 행)
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
 
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
@@ -992,7 +992,7 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 
 다시 확인한 날 2026-10-31(사본을 다시 받았다 — 위 사실 그대로). REST 요청은 이 끝점에 HTTP 메서드로 보내는 요청이다 — 「첫 문단」의 「REST API request/response pair」 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.functions`(REST 요청을 푸는 한 줄 — 프로그램이 HTTP로 서비스에 보내는 요청), `azure-compute.app-service`(REST API)
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(REST 요청을 푸는 한 줄 — 프로그램이 HTTP로 서비스에 보내는 요청), `azure-compute.app-service`(REST API)
 
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
 https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
@@ -1356,7 +1356,7 @@ https://learn.microsoft.com/en-us/azure/app-service/overview
 - 표준 App Service 요금제를 고르는 경우의 하나로 「운영 체제와 런타임의 관리·패치가 저절로 되기를 원할 때」를 든다 — 운영 체제 패치를 플랫폼이 맡는다는 근거 — 「Quick decision guide」 (phase 103)
 - 같은 문서의 Managed Instance(설치 스크립트로 운영 체제 수준 기능을 구성하는 선택지)는 확인만 했다. 쓰지 않는다 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.app-service`(Windows·Linux, 여러 언어, 운영 체제는 플랫폼이 맡는다, 지속적 배포), `HostingOptionsTable`(App Service 행), D53·D55
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(Windows·Linux, 여러 언어, 운영 체제는 플랫폼이 맡는다, 지속적 배포), `HostingOptionsTable`(App Service 행), D53·D55
 
 ## (phase 101) Azure App Service — Scale up an app in Azure App Service
 https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
@@ -1932,7 +1932,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳(phase 103 step 3): `azure-compute.containers`(VM마다 운영 체제는 하나, 가상화 환경, 호스트는 실제 서버이거나 VM, 고객이 컨테이너의 운영 체제를 관리하지 않는다, 가볍고 빨리 만들고 늘리고 멈추며 크래시·하드웨어 중단 뒤 빨리 다시 시작, 컨테이너 엔진과 Docker, 마이크로 서비스 — 예는 온라인 서점의 화면·주문·결제로 직접 만들었다, 프런트 엔드·백 엔드 풀이), `azure-compute.container-services`(세 서비스와 각 한 줄, ACI·Container Apps는 PaaS, 오케스트레이션은 컨테이너의 수명 주기 관리), `VmContainerDiagram`, az062~az064 해설, D53·D55
 
-쓰일 곳(phase 103): `HostingOptionsTable`(컨테이너 행)
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
 
 ## (phase 103) Windows containers — Windows containers overview
 https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
@@ -2026,7 +2026,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - App Service가 맡는 인프라 결정 — 배포와 관리가 플랫폼에 들어 있다, 끝점을 보호할 수 있다, 트래픽이 많으면 빨리 크기를 늘린다, 부하 분산과 트래픽 관리자로 고가용성을 준다 — 같은 절
 - 한국어 표기: 단원 제목 「Azure 애플리케이션 호스팅 옵션 설명」, web apps → **웹앱**(붙여 쓴다), API apps → API 앱, WebJobs(옮기지 않는다), mobile apps → 모바일 앱, background jobs → 백그라운드 작업, mobile back end → 모바일 백 엔드, continuous deployment → 지속적인 배포, Git repo → Git 리포지토리
 
-쓰일 곳: `azure-compute.app-service`(정의·HTTP 기반·자동 크기 조정과 고가용성·Windows와 Linux·지속적 배포·앱 종류 넷·맡는 인프라 결정·VM·컨테이너와 견주는 문단), `HostingOptionsTable`, D53·D55
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(정의·HTTP 기반·자동 크기 조정과 고가용성·Windows와 Linux·지속적 배포·앱 종류 넷·맡는 인프라 결정·VM·컨테이너와 견주는 문단), `HostingOptionsTable`, D53·D55
 
 ## (phase 103) Azure App Service — Configure continuous deployment to Azure App Service
 https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment
@@ -2035,7 +2035,18 @@ https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment
 
 - 지속적 배포(CD)를 구성하면 GitHub·Bitbucket·Azure Repos 같은 리포지토리의 변경을 App Service가 끌어와 배포한다. 고른 리포지토리·브랜치에 새 커밋이 생기면 앱에 계속 배포된다 — 「첫 문단」·GitHub Actions 절
 
-쓰일 곳: `azure-compute.app-service`(지속적 배포를 푸는 한 줄 — 코드 저장소에 바뀐 코드를 올리면 앱에 저절로 배포되는 것)
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(지속적 배포를 푸는 한 줄 — 코드 저장소에 바뀐 코드를 올리면 앱에 저절로 배포되는 것)
+
+## (phase 103) Azure Functions — Azure Functions triggers and bindings
+https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings
+
+확인한 날 2026-10-31, Last updated on 2026-10-12. 사본: `docs-azure-functions-functions-triggers-bindings.md`, `ko-docs-azure-functions-functions-triggers-bindings.md`.
+
+- 트리거는 함수를 어떻게 실행할지 정하는 것이고, **함수 하나에는 트리거가 꼭 하나 있어야 한다** — 「첫 부분」
+- 그래서 「함수 하나가 REST 요청으로도 타이머로도 실행된다」는 틀린 말이다. REST 요청과 타이머로 실행할 일이 따로 있으면 함수를 둘 둔다(phase 103 step 4가 step 문서의 예를 이렇게 고쳤다)
+- 한국어 표기: trigger → 트리거, bindings → 바인딩(이 주제에서는 쓰지 않는다)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(함수 하나에 트리거 하나, 회사 D의 예를 함수 둘로), `FunctionTriggerDiagram`(캡션·범례)
 
 ## (phase 103) .NET — Choosing a Transport (HTTP 절만)
 https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-a-transport
@@ -2044,7 +2055,7 @@ https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-
 
 - HTTP는 클라이언트와 서버 사이의 요청·응답 프로토콜이다. 흔한 예는 웹 브라우저가 웹 서버와 통신하는 것 — 클라이언트가 요청을 보내면 서버가 요청의 상태를 담은 응답을 돌려주고, 성공하면 웹 페이지 같은 데이터가 함께 온다 — 「HTTP Transport」
 
-쓰일 곳: `azure-compute.app-service`(HTTP를 푸는 한 줄 — 웹 브라우저 같은 클라이언트가 요청을 보내고 서버가 응답하는 규칙), `azure-compute.functions`(REST 요청 풀이)
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(HTTP를 푸는 한 줄 — 웹 브라우저 같은 클라이언트가 요청을 보내고 서버가 응답하는 규칙), `azure-compute.functions`(REST 요청 풀이)
 
 ---
 

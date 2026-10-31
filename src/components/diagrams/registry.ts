@@ -56,6 +56,7 @@ import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
+import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
@@ -163,6 +164,7 @@ import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
+import { HostingOptionsTable } from './azureComputeTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
@@ -368,6 +370,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-compute.scale-sets': ScaleSetDiagram,
   'azure-compute.availability-sets': AvailabilitySetDiagram,
   'azure-compute.containers': VmContainerDiagram,
+  'azure-compute.functions': FunctionTriggerDiagram,
+  'azure-compute.app-service': HostingOptionsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

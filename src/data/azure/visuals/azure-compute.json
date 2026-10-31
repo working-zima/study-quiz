@@ -181,8 +181,114 @@
         "azure-compute.virtual-machines",
         "azure-compute.containers"
       ]
+    },
+    "function-trigger": {
+      "label": "이벤트가 없을 때와 올 때 Azure Functions의 함수가 실행되는지를 견주는 도식",
+      "svgLabel": "REST 요청·타이머·다른 서비스의 메시지가 함수를 실행하게 하는 트리거로 놓여 있다",
+      "question": "이벤트가 없을 때, 함수는 무엇을 하고 있을까?",
+      "idleCaption": "함수를 실행하게 하는 트리거로 흔히 쓰는 것이 셋 있다. 함수 하나에는 그 가운데 트리거를 하나 둔다. 버튼을 고르면 이벤트가 없을 때와 트리거마다 함수가 실행되는 때를 볼 수 있다.",
+      "legend": "화살표는 트리거가 함수를 실행하게 하는 길이다. 흐린 것은 그 상황에서 일어나지 않은 트리거다. 트리거 셋은 고를 수 있는 종류를 보인 것이고, 함수 하나에 셋을 함께 둔다는 뜻이 아니다.",
+      "nodes": {
+        "request": "REST 요청",
+        "timer": "타이머",
+        "message": "다른 서비스의 메시지",
+        "function": "함수"
+      },
+      "notes": {
+        "idle-note": "실행되지 않음",
+        "request-note": "요청을 처리하는 동안 실행",
+        "timer-note": "정해 둔 시각에 실행",
+        "message-note": "메시지를 처리하는 동안 실행"
+      },
+      "scenarios": [
+        {
+          "id": "idle",
+          "label": "이벤트가 없을 때",
+          "caption": "이벤트가 없으면 함수는 실행되지 않고, 함수를 실행할 리소스를 갖춰 둘 필요도 없다. 서버리스 요금제에서는 함수가 실행되는 동안 쓴 만큼 내므로, 실행되지 않는 동안에는 그 값이 더해지지 않는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "request",
+          "label": "REST 요청이 올 때",
+          "caption": "앱이 보낸 REST 요청이 오면 그 요청을 트리거로 둔 함수가 실행되어 요청을 처리한다. 일을 마치면 함수는 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "timer",
+          "label": "정해 둔 시각",
+          "caption": "타이머를 트리거로 둔 함수는 정해 둔 시각마다 실행된다. 요청이 오지 않아도 실행되고, 일을 마치면 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "message",
+          "label": "메시지가 올 때",
+          "caption": "다른 Azure 서비스가 보낸 메시지가 도착하면 그 메시지를 트리거로 둔 함수가 실행된다. 이때도 일을 마치면 함수는 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.functions"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "hosting-options": {
+      "label": "앱을 실행할 네 곳 견주기",
+      "columns": [
+        "실행할 곳",
+        "고객이 관리하는 것",
+        "알맞은 일"
+      ],
+      "columnWidths": [
+        "28%",
+        "34%",
+        "38%"
+      ],
+      "sources": [
+        "azure-compute.virtual-machines",
+        "azure-compute.containers",
+        "azure-compute.functions",
+        "azure-compute.app-service"
+      ],
+      "rows": [
+        {
+          "header": "가상 머신",
+          "cells": [
+            "운영 체제와 그 위의 소프트웨어, 패치와 구성까지",
+            "운영 체제를 직접 통제해야 하는 일, 직접 만든 소프트웨어 실행"
+          ]
+        },
+        {
+          "header": "컨테이너",
+          "cells": [
+            "컨테이너에 담을 앱. 컨테이너의 운영 체제는 맡지 않는다",
+            "빨리 만들고 늘리고 멈추는 일, 앱을 부분마다 따로 관리하는 마이크로 서비스"
+          ]
+        },
+        {
+          "header": "Azure Functions",
+          "cells": [
+            "함수의 코드. 서버와 운영 체제는 맡지 않는다",
+            "이벤트에 따라 실행되어 몇 초 안에 끝나는 일"
+          ]
+        },
+        {
+          "header": "Azure App Service",
+          "cells": [
+            "앱을 만들고 유지하는 일. 서버와 운영 체제는 맡지 않는다",
+            "늘 웹 요청을 받는 웹앱과 REST API, 백그라운드 작업"
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }
