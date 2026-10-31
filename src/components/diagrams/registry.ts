@@ -138,6 +138,7 @@ import { StateMachineDiagram } from './StateMachineDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
+import { SubscriptionBoundaryDiagram } from './SubscriptionBoundaryDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -356,6 +357,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-regions-zones.availability-zones': ZoneIsolationDiagram,
   'azure-regions-zones.region-pairs': RegionPairDiagram,
   'azure-resource-hierarchy.resource-group': ResourceGroupScopeDiagram,
+  'azure-resource-hierarchy.subscription-boundaries': SubscriptionBoundaryDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

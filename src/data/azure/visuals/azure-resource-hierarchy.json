@@ -42,6 +42,54 @@
         "azure-resource-hierarchy.resource",
         "azure-resource-hierarchy.resource-group"
       ]
+    },
+    "subscription-boundaries": {
+      "label": "Azure 계정 하나에 둔 두 구독에서 청구서와 액세스 규칙이 구독마다 따로 갈리는 것을 보는 도식",
+      "svgLabel": "Azure 계정 안에 구독 「개발」과 구독 「운영」이 있고, 구독마다 리소스 그룹·청구서·액세스 규칙이 있다",
+      "question": "구독을 둘로 나누면, 무엇이 따로 갈릴까?",
+      "idleCaption": "회사 A는 Azure 계정 하나에 구독 「개발」과 구독 「운영」을 두고, 구독마다 리소스 그룹을 만들어 리소스를 넣었다. 버튼을 고르면 구독을 나눌 때 무엇이 구독마다 따로 갈리는지 볼 수 있다.",
+      "legend": "큰 박스는 Azure 계정이고, 그 안의 두 박스는 구독이다. 구독마다 리소스 그룹을 하나씩 그린 것은 예다. 시나리오를 고르면 그 경계 때문에 구독마다 따로 정해지는 것만 선명하게 남는다.",
+      "nodes": {
+        "rg-dev": "리소스 그룹",
+        "bill-dev": "청구서",
+        "access-dev": "액세스 규칙",
+        "rg-prod": "리소스 그룹",
+        "bill-prod": "청구서",
+        "access-prod": "액세스 규칙"
+      },
+      "groups": {
+        "account": "Azure 계정",
+        "sub-dev": "구독: 개발",
+        "sub-prod": "구독: 운영"
+      },
+      "notes": {
+        "dev-billing-note": "따로 청구",
+        "prod-billing-note": "따로 청구",
+        "dev-access-note": "다른 규칙",
+        "prod-access-note": "다른 규칙"
+      },
+      "scenarios": [
+        {
+          "id": "billing",
+          "label": "청구 경계",
+          "caption": "청구서는 구독마다 따로 나온다. 구독 「개발」에서 쓴 비용과 구독 「운영」에서 쓴 비용이 서로 다른 청구서로 청구되므로, 비용을 나눠 받으려면 구독을 나눈다. 같은 구독 안에서 리소스 그룹을 나눠서는 청구서가 나뉘지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.subscription-boundaries"
+          ]
+        },
+        {
+          "id": "access",
+          "label": "액세스 제어 경계",
+          "caption": "액세스 규칙과 지출 한도는 구독마다 따로 둘 수 있다. 구독 「개발」과 구독 「운영」에 서로 다른 액세스 규칙과 지출 한도를 두어, 개발 환경과 운영 환경을 따로 관리한다.",
+          "sources": [
+            "azure-resource-hierarchy.subscription-boundaries"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.subscription",
+        "azure-resource-hierarchy.subscription-boundaries"
+      ]
     }
   },
   "tables": {},

@@ -224,6 +224,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - **청구 경계**: Azure 계정에 요금을 어떻게 매기는지를 가른다. 청구 요구가 다르면 구독을 따로 만들 수 있고, Azure는 구독마다 청구 보고서와 청구서를 따로 낸다 — 같은 절 목록 (phase 102)
 - **액세스 제어 경계**: Azure는 액세스 관리 정책을 구독 수준에서 적용한다. 예로 개발용 구독과 운영용 구독을 따로 두어 지출 한도와 액세스 규칙을 달리한다 — 같은 절 목록 (phase 102)
 - 구독을 더 만드는 까닭 셋: 환경(샌드박스·개발·테스트·운영처럼 수명 주기 단계마다 — 액세스 제어가 구독 수준이라 자연스러운 경계가 된다), 팀·워크로드(프로젝트마다 구독을 주면 비용을 따로 보기 쉽고, 샌드박스를 운영과 떼어 둘 수 있다), 청구(비용을 따로 추적한다 — 예: 운영 워크로드용 하나, 개발·테스트용 하나) — 「Create additional Azure subscriptions」 (phase 102)
+- 같은 구독 안에서 리소스 그룹을 여럿으로 나눠도 청구서가 나뉘지 않는다는 것은 문서가 직접 말하지 않는다. 판단 근거는 둘이다 — Azure가 청구 보고서와 청구서를 따로 내는 단위는 구독이다(위 「청구 경계」), 리소스 그룹은 구독 안에 든다(「Azure management groups」 첫 문단). 그래서 비용을 서로 다른 청구서로 받으려면 리소스 그룹이 아니라 구독을 나눈다 (phase 102 step 6)
 - 리소스는 리소스 그룹에, 리소스 그룹은 구독에 들어간다. 구독이 많고 여러 팀이나 지리에 걸치면 접근과 정책을 더 높은 수준에서 관리할 수단이 필요하다 — 「Azure management groups」 첫 문단 (phase 102)
 - 관리 그룹은 구독 위에 있다. 구독을 관리 그룹으로 묶고 거버넌스 조건(액세스 정책·규정 준수 규칙 같은 것)을 그룹에 걸면, 그룹 안의 구독이 모두 그 조건을 저절로 물려받는다 — 리소스가 자기 리소스 그룹의 설정을 물려받는 것과 같다. 관리 그룹은 여섯 단계까지 중첩할 수 있다(루트 단계와 구독 단계는 세지 않는다) — 같은 절 둘째 문단 (phase 102)
 - Microsoft Entra 테넌트마다 최상위 **테넌트 루트 그룹**이 하나 있고, 다른 관리 그룹과 구독은 모두 그 아래로 모인다. 그래서 거버넌스 정책을 전체에 걸 수 있다 — 같은 절 셋째 문단 (phase 102)
@@ -237,7 +238,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(정의와 예 — VM·가상 네트워크·데이터베이스. 「현행 문서와 다름」 1대로 「VM·가상 네트워크·데이터베이스 같은 리소스는」 리소스 그룹 하나에 들어간다고 한정했다),
 `azure-resource-hierarchy.resource-group`(한 그룹에만 속함·옮길 수 있음·중첩 불가·이름 변경 불가·그룹에 한 일이 안의 리소스 모두에·쓰는 예 둘·정해진 규칙 없음, 「현행 문서와 다름」 1·2), az048·az049·az050 해설, `ResourceGroupScopeDiagram`, D48·G24
 
-쓰일 곳(phase 102): `azure-resource-hierarchy.subscription`(관리·청구·규모의 단위, 계정과 Microsoft Entra ID, 계정 하나에 구독 여럿), `azure-resource-hierarchy.subscription-boundaries`(두 경계와 구독을 더 만드는 까닭), `azure-resource-hierarchy.management-group`(구독 위의 묶음, 거버넌스 조건의 상속, 여섯 단계, 테넌트 루트 그룹, 10,000개, 부모 하나), `azure-resource-hierarchy.hierarchy`(쓰는 예 둘, 절 제목), D46·D47·D48·D49·D50·G24·G25·G26
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(Azure를 쓰려면 구독이 있어야 한다, 쓰고 관리하며 요금을 내는 단위 — 「규모」는 이 주제에서 풀 말이 없어 쓰지 않았다, 계정은 Microsoft Entra ID 또는 그것이 믿는 디렉터리의 ID, 계정 하나에 구독 여럿·적어도 하나, 구독이 리소스 그룹을 담는다 — D46),
+`azure-resource-hierarchy.subscription-boundaries`(청구 경계·액세스 제어 경계, 구독마다 다른 지출 한도와 액세스 규칙, 구독을 더 만드는 까닭 셋, 「프로덕션」 대신 「운영 환경」, 리소스 그룹을 나눠도 청구서가 나뉘지 않는다는 판단), az051·az052 해설, `SubscriptionBoundaryDiagram`, D46·G25. 클래식 관리자 역할·「Microsoft 계정」·「Azure AD」는 쓰지 않았다
+
+쓰일 곳(phase 102): `azure-resource-hierarchy.management-group`(구독 위의 묶음, 거버넌스 조건의 상속, 여섯 단계, 테넌트 루트 그룹, 10,000개, 부모 하나), `azure-resource-hierarchy.hierarchy`(쓰는 예 둘, 절 제목), D46·D47·D48·D49·D50·G24·G25·G26
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
@@ -1368,6 +1372,8 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Microsoft Entra ID를 푸는 한 줄 — 사용자가 누구인지 확인하고 무엇에 접근할 수 있는지 관리하는 클라우드 서비스)
 
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`, az051 해설(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
+
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
 
@@ -1493,7 +1499,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-r
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(다른 그룹으로 옮겨도 한 그룹에만 속한다, 옮겨도 지역은 그대로), az050 해설
 
-쓰일 곳: `azure-resource-hierarchy.subscription`(리소스를 다른 구독으로 옮길 수 있다 — 같은 테넌트, 지원하는 유형), D47·D49
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(VM 같은 리소스를 다른 구독으로 옮길 수 있다 — 두 구독이 같은 테넌트를 믿어야 하고, 옮기기를 지원하는 유형이어야 하며, 기대는 리소스(VM과 디스크)와 함께 옮긴다, 옮겨도 지역은 그대로), D47. 구독을 합친다는 말은 쓰지 않았다(D49)
 
 ## (phase 102) Azure Resource Manager — Handling special cases when moving virtual machines to resource group or subscription
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations
@@ -1504,7 +1510,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-l
 - 옮길 수 없는 경우가 있다 — 예: 가용성 집합 안의 VM은 하나씩 옮길 수 없고, 기존 가상 네트워크 안의 VM은 그 가상 네트워크와 기대는 리소스를 함께 옮길 때만 다른 구독으로 옮길 수 있다 — 「Scenarios not supported」(이 주제는 「옮길 수 없는 경우도 있다」까지만 쓴다)
 - 한국어 표기: virtual machine → 가상 머신
 
-쓰일 곳: `azure-resource-hierarchy.subscription`(VM을 다른 구독으로 옮길 수 있다 — 조건이 있다), D47
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(VM을 다른 구독으로 옮길 수 있되 옮길 수 없는 경우도 있다 — 가용성 집합 같은 경우의 예는 들지 않았다), D47
 
 ## (phase 102) Azure Resource Manager — Use tags to organize your Azure resources and management hierarchy (상속 한 줄만)
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources
@@ -1528,7 +1534,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/how-subscriptions-associate
 - 구독의 소유자는 구독을 다른 디렉터리(테넌트)에 연결할 수 있다. 그러면 Azure RBAC로 역할을 받은 사용자는 접근을 잃는다 — 「Overview」 Important, 「Associate a subscription to a directory」
 - 한국어 표기: tenant → 테넌트, directory → 디렉터리, trust relationship → 트러스트 관계(이 앱은 「믿는다」로 쓴다), associate → 연결
 
-쓰일 곳: `azure-resource-hierarchy.subscription`(구독과 테넌트의 관계 — 구독은 테넌트 하나를 믿고, 테넌트 하나를 구독 여럿이 믿을 수 있다), 덤프 NO.369의 세 답(아니요·예·아니요)의 근거 — D 항목 없음
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(구독은 테넌트 하나만 믿고 그 테넌트의 ID로 누가 로그인했는지 확인하고 무엇을 할 수 있는지 따진다, 테넌트 하나를 구독 여럿이 믿을 수 있다, 테넌트에는 로그인하고 접근 권한을 받는 데 쓰는 ID가 들어 있다), az051 해설. 구독이 만료될 때와 구독을 다른 디렉터리에 연결하는 일은 쓰지 않았다. 덤프 NO.369의 세 답(아니요·예·아니요)의 근거 — D 항목 없음
 
 ## (phase 102) Microsoft Entra — Quickstart: Create a new tenant in Microsoft Entra ID
 https://learn.microsoft.com/en-us/entra/fundamentals/create-new-tenant
@@ -1538,7 +1544,9 @@ https://learn.microsoft.com/en-us/entra/fundamentals/create-new-tenant
 - 테넌트는 조직 하나를 나타내고, 그 조직의 내부·외부 사용자를 위한 Microsoft 클라우드 서비스의 한 인스턴스를 관리하게 해 준다 — 「Create a new tenant for your organization」
 - 한국어 표기: tenant → 테넌트, instance → 인스턴스
 
-쓰일 곳: `azure-resource-hierarchy.subscription`(테넌트를 푸는 한 줄 — 조직 하나를 위한 Microsoft Entra ID의 디렉터리), `azure-resource-hierarchy.management-group`(테넌트 루트 그룹의 「테넌트」)
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(테넌트를 푸는 한 줄 — 조직 하나를 나타내는 Microsoft Entra ID의 디렉터리), az051 해설
+
+쓰일 곳: `azure-resource-hierarchy.management-group`(테넌트 루트 그룹의 「테넌트」)
 
 ## (phase 102) Azure governance — What are Azure management groups?
 https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
@@ -1551,6 +1559,8 @@ https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
 - 디렉터리 하나에 관리 그룹을 10,000개까지 둘 수 있다. 관리 그룹 나무는 여섯 단계 깊이까지이고, 이 제한에 루트 단계와 구독 단계는 들지 않는다. 관리 그룹과 구독은 저마다 부모가 하나다 — 「Important facts about management groups」 (Learn 단원 6과 같다)
 - 디렉터리마다 최상위 관리 그룹이 하나 있다(**루트 관리 그룹**). 모든 관리 그룹과 구독이 그 아래로 모이고, 전체에 걸 정책과 역할 할당을 여기에 건다. 루트 관리 그룹의 표시 이름은 기본으로 **Tenant root group**이고, 그 자체도 관리 그룹으로 동작하며, ID가 Microsoft Entra 테넌트 ID와 같다. 루트 관리 그룹은 옮기거나 지울 수 없다 — 「Root management group for each directory」
 - 한국어 표기: management group → 관리 그룹, root management group → 루트 관리 그룹(한국어판 28번), Tenant root group → 테넌트 루트 그룹(한국어판 1번 — 표시 이름), inheritance → 상속, governance → 거버넌스, compliance → 규정 준수
+
+쓰인 곳(phase 102 step 6): az052 해설(관리 그룹을 푸는 한 줄 — 구독 여럿을 묶어 같은 조건을 한꺼번에 거는, 구독보다 위의 단위)
 
 쓰일 곳: `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예), D50·G26
 
