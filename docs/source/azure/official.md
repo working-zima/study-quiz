@@ -294,7 +294,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - 한국어 표기: 단원 제목 「Azure 가상 머신 설명」, Azure Virtual Machines → Azure VM(Virtual Machines), image → 이미지, total control over the OS → OS(운영 체제)에 대한 완전한 제어, custom software → 사용자 지정 소프트웨어, datacenter extension → 데이터 센터 확장, disaster recovery → 재해 복구, lift and shift migration → 리프트 앤 시프트 마이그레이션,
   vCPU → vCPU(가상 CPU), Virtual machine scale sets → 절 제목은 영문 그대로, 본문 「가상 머신 확장 집합」·「확장 집합」, Virtual machine availability sets → 가상 머신 가용성 집합·가용성 집합, update domain → 업데이트 도메인, fault domain → 장애 도메인, availability zones → 가용성 영역 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), `HostingOptionsTable`(VM 행), D51·G27·G28
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), D51
+
+쓰일 곳(phase 103): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), `HostingOptionsTable`(VM 행), G27·G28
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -320,7 +322,9 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 - **이 표는 필수 여부를 말하지 않는다.** 표 제목이 「기본으로 만들어지는 리소스」일 뿐이고, 무엇이 꼭 있어야 하는지는 「Virtual networks and virtual machines in Azure」 항목을 따른다 (phase 103)
 - 한국어 표기: virtual network → 가상 네트워크, virtual Network Interface Card (NIC) → 가상 네트워크 인터페이스 카드(NIC), private IP address → **개인 IP 주소**, public IP address → **공용 IP 주소**, Network security group (NSG) → NSG(네트워크 보안 그룹), OS disk → OS 디스크(「운영 체제 디스크」도 섞였다), data disk → 데이터 디스크, resource group → 리소스 그룹 (phase 103)
 
-쓰일 곳(phase 103): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `azure-compute.scale-sets`(영역에 나눠 배포), `VmResourcesDiagram`, D51·D57
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `VmResourcesDiagram`, D51·D57
+
+쓰일 곳(phase 103): `azure-compute.scale-sets`(영역에 나눠 배포)
 
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
@@ -1759,7 +1763,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
 - 포털에서 VM을 만들면 NIC가 저절로 하나 만들어지고, 네트워크 보안 그룹도 저절로 만들어져 그 NIC에 걸린다 — 「Network interfaces」·「Network security groups」
 - 한국어 표기: network interface → 네트워크 인터페이스, optional resources → 선택적 리소스, private/public IP address → **개인 IP 주소 / 공용 IP 주소**, network security group → 네트워크 보안 그룹, load balancer → 부하 분산 장치
 
-쓰일 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
+쓰인 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
 
 ## (phase 103) Azure Managed Disks — Azure managed disks overview
 https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
@@ -1771,7 +1775,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
 - 이미지와 스냅샷은 VM에 붙은 관리 디스크(OS 디스크와 데이터 디스크)를 담는다 — 「Compare managed images and managed disk snapshots」(쓰지 않는다 — 데이터 디스크라는 말의 근거로만)
 - 한국어 표기: 받은 한국어판이 없다. VM 개요 한국어판의 「OS 디스크」·「데이터 디스크」를 쓴다
 
-쓰일 곳: `azure-compute.vm-resources`(디스크를 푸는 한 줄 — VM에 붙이는 가상 디스크), D57
+쓰인 곳: `azure-compute.vm-resources`(디스크를 푸는 한 줄 — VM에 붙이는 가상 디스크), D57
 
 ## (phase 103) Azure Virtual Machines — Availability sets overview
 https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview
@@ -1930,7 +1934,9 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 - **가상화**는 소프트웨어로 된(가상의) 컴퓨터를 만드는 과정이고, 그 가상 컴퓨터는 물리 호스트 컴퓨터의 CPU·메모리·스토리지를 일정 부분씩 받는다 — 「How does a cloud virtual machine work?」
 - VM은 저마다 운영 체제와 앱을 가진 별개의 컴퓨터처럼 동작하고, 하이퍼바이저가 여러 VM에서 서로 다른 운영 체제를 함께 실행하게 한다 — 「What benefits do VMs offer?」(하이퍼바이저라는 말은 쓰지 않는다)
 
-쓰일 곳: `azure-compute.virtual-machines`(가상화를 푸는 한 줄), `azure-compute.containers`(호스트), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제), D53
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(가상화를 푸는 한 줄), D53
+
+쓰일 곳: `azure-compute.containers`(호스트), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제)
 
 ## (phase 103) Azure Container Instances — What is Azure Container Instances?
 https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview

@@ -151,6 +151,7 @@ import { UnreachableDiagram } from './UnreachableDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
+import { VmResourcesDiagram } from './VmResourcesDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -360,6 +361,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-resource-hierarchy.resource-group': ResourceGroupScopeDiagram,
   'azure-resource-hierarchy.subscription-boundaries': SubscriptionBoundaryDiagram,
   'azure-resource-hierarchy.hierarchy': HierarchyInheritanceDiagram,
+  'azure-compute.vm-resources': VmResourcesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
