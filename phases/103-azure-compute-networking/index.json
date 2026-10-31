@@ -61,9 +61,7 @@
     {
       "step": 7,
       "name": "peering-endpoints",
-      "status": "error",
-      "error_message": "[3회 시도 후 실패] Step did not update status",
-      "failed_at": "2026-10-31T19:32:31+0900"
+      "status": "pending"
     },
     {
       "step": 8,
