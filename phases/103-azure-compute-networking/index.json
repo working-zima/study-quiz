@@ -1,0 +1,71 @@
+{
+  "project": "Study Quiz",
+  "phase": "103-azure-compute-networking",
+  "steps": [
+    {
+      "step": 0,
+      "name": "compute-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "virtual-machines",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "scale-availability-sets",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "desktop-containers",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "functions-app-service",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "networking-sources",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "virtual-network-subnets",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "peering-endpoints",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "vpn-gateway",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "expressroute-dns",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "protection-sources",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "network-security-groups",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "firewall-ddos",
+      "status": "pending"
+    }
+  ]
+}
