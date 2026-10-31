@@ -375,9 +375,10 @@ https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction
 - 닿는 곳은 Azure 서비스와 Microsoft 365 서비스다. **다만 Microsoft 365는 인터넷으로 쓰도록 만들어졌다며 ExpressRoute를 특정 상황에만 권한다.** 그래서 「Microsoft 365에도 닿을 수 있다」까지 쓰고, 권하는 것처럼 쓰지 않는다 — 「Connectivity to Microsoft cloud services」 (phase 103)
 - 이 문서는 모든 지역으로 넓히는 연결을 premium add-on이 맡는다고 하고, Learn 단원 4는 같은 줄을 Global Reach로 적는다. **Global Reach는 Learn 단원 4의 「온-프레미스 사이트끼리」 뜻으로만 쓴다**(요금제 이름 premium은 쓰지 않는다) — 「Key benefits」 (phase 103)
 - 한국어 표기: ExpressRoute(옮기지 않는다), ExpressRoute 회로, 연결 공급자, 프라이빗 연결 (phase 103)
+- 피어링 위치 하나로 이으면 같은 지정학적 지역 안의 지역들에 닿는다. 이 문서의 예는 암스테르담에서 이어 북유럽·서유럽에 닿는 것이다. **지정학적 지역을 「유럽처럼 지역 여럿을 넓게 묶은 범위」로 푸는 근거로 쓴다** — 「Connectivity to all regions within a geopolitical region」 (phase 103)
 
 쓰인 곳: D7
-쓰일 곳(phase 103): `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(프라이빗 연결, 공용 인터넷을 지나지 않아 생기는 이점, BGP, 회로 안의 연결 둘, Microsoft 365에도 닿는다, 지정학적 지역을 푸는 한 줄), `ExpressRouteDiagram`, az076·az077 해설
 
 ## (phase 100) Cloud Adoption Framework — Cost efficiency (Shift from a CapEx model to an OpEx model)
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform/cost-efficiency
@@ -1326,7 +1327,10 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-p
 - 배포하면 런타임·미들웨어·운영 체제 관리는 플랫폼이 맡는다. 수요에 따라 리소스를 자동으로 늘리고 줄이며, 보안 패치·업데이트·인프라 유지 관리는 PaaS 공급자가 한다 — 「How does PaaS work?」
 - 한국어 표기: 제목은 「PaaS(Platform as a Service)」로 한국어 이름을 붙이지 않았다
 
+- Microsoft 365는 Word·Excel·Outlook·Teams 같은 생산성 도구를 클라우드로 제공하는 SaaS다 — 「Is M365 a PaaS?」 (phase 103)
+
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(플랫폼에 운영 체제·개발 도구가 들어 있다는 것으로 플랫폼을 푸는 한 줄, 수요에 따라 리소스를 자동으로 늘리고 줄인다), D35·G17
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(Microsoft 365를 푸는 한 줄)
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is software as a service (SaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas
@@ -1519,7 +1523,7 @@ https://learn.microsoft.com/en-us/azure/dns/dns-overview
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`(DNS를 푸는 한 줄)
-쓰일 곳(phase 103): `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`(DNS를 되짚는 한 줄, 프라이빗 DNS 도메인), az078 해설
 
 ## (phase 102) Azure Government — What is Azure Government?
 https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
@@ -2146,7 +2150,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - 한국어 표기: VPN(가상 사설망), VPN 게이트웨이, 가상 네트워크 게이트웨이, 전용 서브넷, 사이트 간, 지점 및 사이트 간, 네트워크 간, 활성/대기
 
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(VPN의 정의·도청을 막는 암호화, 가상 네트워크 게이트웨이의 한 종류, 전용 서브넷, 가상 네트워크마다 하나와 여러 곳, 기본 구성의 대기), `azure-virtual-networking.vpn-connection-types`(세 유형), `SiteToSiteVpnDiagram`, az073~az075 해설
-쓰일 곳: `azure-virtual-networking.expressroute`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(VPN의 터널과 견주기, VPN 게이트웨이를 대체 경로로), `ExpressRouteDiagram`
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 4 Describe Azure ExpressRoute
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/4-expressroute
@@ -2163,7 +2167,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - 연결 모델 셋(IP VPN·지점 간 이더넷·코로케이션)은 **쓰지 않는다** — 이 단원도 그 수준에서는 고르는 때에 집중하라고 한다(guide 「배경」)
 - 한국어 표기: ExpressRoute 회로, 연결 공급자, 프라이빗 연결, 지정학적 지역, Global Reach, BGP(Border Gateway Protocol), 동적 라우팅, 피어링 위치, 대기 시간, 인증서 해지 목록
 
-쓰일 곳: `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`, az076·az077 해설
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 5 Describe Azure DNS
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/5-domain-name-system
@@ -2179,7 +2183,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - **Azure DNS로는 도메인 이름을 살 수 없다.** App Service 도메인이나 다른 도메인 이름 등록 기관에서 해마다 값을 내고 산 뒤 Azure DNS에 호스트한다 — 「Alias records」 뒤의 알림
 - 한국어 표기: Azure DNS, DNS 레코드, 이름 서버, 애니캐스트 네트워킹, 활동 로그, 리소스 잠금, 프라이빗 DNS 도메인, 별칭 레코드, App Service 도메인
 
-쓰일 곳: `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`, az078 해설
 
 ## (phase 103) Azure Virtual Network — Azure Virtual Network frequently asked questions (FAQ)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
@@ -2242,7 +2246,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-ove
 - 사용자 정의 경로와 경로 선택 규칙은 **쓰지 않는다**(guide 「배경」)
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`
-쓰일 곳(phase 103): `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
 
 ## (phase 103) Azure Virtual Network — Private IP addresses (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses
@@ -2275,7 +2279,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outb
 - 나가는 방법을 정하지 않은 VM에 Azure가 공용 IP 주소를 저절로 주는 기본 아웃바운드 액세스가 있지만, 2026-03-31 뒤에 나온 API로 만든 새 가상 네트워크의 서브넷은 기본으로 이 액세스가 꺼진다. 기존 가상 네트워크는 바뀌지 않는다 — 첫 부분과 「How and when default outbound access is provided」
 - **그래서 「가상 네트워크의 리소스는 기본으로 인터넷으로 나갈 수 있다」를 쓰지 않는다.** 이 주제는 들어오는 연결(공용 IP 주소·공용 부하 분산 장치)만 쓴다
 
-쓰일 곳: `azure-virtual-networking.virtual-network`(쓰지 않는다는 기록)
+쓰인 곳(phase 103 step 9가 확인): `azure-virtual-networking.virtual-network`(쓰지 않는다는 기록 — 개념에 쓰지 않았다)
 
 ## (phase 103) Azure Virtual Network — Azure virtual network peering
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview
@@ -2432,7 +2436,7 @@ https://learn.microsoft.com/en-us/azure/expressroute/expressroute-circuit-peerin
 - Azure까지 Layer 2를 넓히는 것은 지원하지 않는다 — FAQ. 계층은 **쓰지 않는다**(guide 「배경」)
 - 받은 문서에는 ExpressRoute 트래픽이 암호화된다는 말도, 되지 않는다는 말도 없다. **그래서 암호화 여부를 쓰지 않고 「보안이 높다」는 공용 인터넷을 지나지 않는다는 데서만 쓴다**
 
-쓰일 곳: `azure-virtual-networking.expressroute`, G37, `ExpressRouteDiagram`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(연결 공급자를 푸는 한 줄), `ExpressRouteDiagram`, G37
 
 ## (phase 103) Azure Resource Manager — Lock your Azure resources (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources
@@ -2442,7 +2446,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-r
 - 잠금은 구독·리소스 그룹·리소스가 실수로 지워지거나 바뀌지 않게 한다 — 첫 문단. **`azure-dns`의 「리소스 잠금」 한 줄 풀이에만 쓴다**
 - 한국어 표기: 잠금, 리소스 잠금
 
-쓰일 곳: `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
 
 ## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
@@ -2452,7 +2456,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
 - 활동 로그는 Azure 리소스의 관리 작업(만들기, 정책 변경 같은 것)을 기록해 나중에 살피거나 감사하게 한다 — 첫 문단. **`azure-dns`의 한 줄 풀이에만 쓴다**
 - 한국어 표기: 활동 로그
 
-쓰일 곳: `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
 
 ## (phase 103) Azure DNS — Overview of DNS zones and records
 https://learn.microsoft.com/en-us/azure/dns/dns-zones-records
@@ -2465,7 +2469,17 @@ https://learn.microsoft.com/en-us/azure/dns/dns-zones-records
 - 레코드 유형 표와 레코드 집합의 세부는 **쓰지 않는다**
 - 한국어 표기: DNS 영역, 레코드, 레코드 집합, 도메인 이름 등록 기관(Learn 단원 5 한국어판의 「도메인 이름 등록자」는 같은 뜻이다 — 이 문서의 「등록 기관」을 쓴다)
 
-쓰일 곳: `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`, az078 해설
+
+## (phase 103) Azure CDN — What is Azure Content Delivery Network? (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/cdn/cdn-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-02-28. 사본: `docs-cdn-cdn-overview.md`.
+
+- 콘텐츠 전송 네트워크는 서버를 여러 곳에 두어 웹 콘텐츠를 전달하는 네트워크이고, 콘텐츠를 사용자 가까운 에지 서버에 캐시해 대기 시간을 줄인다 — 첫 부분. **`expressroute`의 Azure CDN 한 줄 풀이에만 쓴다**
+- 이 문서는 Azure CDN Standard from Microsoft (classic)가 2027-09-30에 끝나고 Azure Front Door로 옮기라고 적는다 — 맨 앞의 알림. Learn 단원 4가 Azure CDN을 드는 줄을 따라 이름을 쓰고, 지원 종료는 본문에 쓰지 않는다
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`, az077 해설
 
 ## (phase 103) 한국어 표기 정리 — `azure-virtual-networking`
 

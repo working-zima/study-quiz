@@ -52,6 +52,7 @@ import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
@@ -380,6 +381,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-virtual-networking.peering': VnetPeeringDiagram,
   'azure-virtual-networking.endpoints': PrivateEndpointDiagram,
   'azure-virtual-networking.vpn-gateway': SiteToSiteVpnDiagram,
+  'azure-virtual-networking.expressroute': ExpressRouteDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
