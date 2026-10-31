@@ -36,6 +36,9 @@
 「D51」부터와 「G27」부터는 phase 103 step 0이 `azure-compute` 주제(컴퓨팅과 앱 호스팅)에 걸린 덤프 문항과 용어집 항목을 공식 문서와 대조하며 더했다(확인한 날 2026-10-31).
 본 덤프 문항은 `dump-topics.tsv`에서 `primary`나 `secondary`가 `virtual-machines`·`app-hosting`인 25문항이다(NO.19·96·285·353·377은 데이터·AI·IoT와 기타 주제가 대표인 짝짓기·설계 문항이라 보지 않았다 — 그 범위는 넣지 않거나 다른 phase의 몫이다, NO.67은 `azure-cost-factors`의 몫이라 보지 않았다, NO.126은 D1이 이미 다뤘다). 덤프 항목은 D50 뒤에, 용어집 항목은 G26 뒤에 이어 붙였다.
 
+「D58」부터와 「G33」부터는 phase 103 step 5가 `azure-virtual-networking` 주제(가상 네트워크와 연결)에 걸린 덤프 문항과 용어집 항목을 공식 문서와 대조하며 더했다(확인한 날 2026-10-31).
+본 덤프 문항은 `dump-topics.tsv`에서 `primary`나 `secondary`가 `virtual-networking`인 15문항이다(NO.263의 셋째 칸은 D54가 이미 다뤘다). 덤프 항목은 D57 뒤에, 용어집 항목은 G32 뒤에 이어 붙였다.
+
 ---
 
 ## D1 — 서버리스의 예 (phase 100)
@@ -532,6 +535,27 @@
 - **처리**: 쓰지 않는다 — 「데이터 디스크를 담을 Blob 컨테이너를 고른다」와 디스크의 저장 형식(페이지 Blob). 이 주제는 OS 디스크와 데이터 디스크의 쓰임만 쓴다. 스토리지 서비스의 종류는 `azure-storage`의 몫이다.
 - **쓰인 곳**: `azure-compute.vm-resources`(근거 기록)
 
+## D58 — 가상 네트워크의 주소 공간은 구독 안에서 달라야 하나 (phase 103)
+
+- **덤프**: 예/아니요 세 진술 가운데 셋째 — 가상 네트워크의 주소 공간이 구독 안에서 달라야 한다 — 를 「예」로 표시한다(`p049_06.png`) — [덤프 NO.86]
+- **공식 문서**: 「Plan virtual networks」(Segmentation)는 **다른 가상 네트워크나 온-프레미스와 잇는** 가상 네트워크의 주소 공간이 달라야 한다고 하고, 「Virtual networks and virtual machines in Azure」와 FAQ도 조건을 「잇는다면」으로 둔다. 구독 안에서 언제나 달라야 한다는 말은 받은 문서에 없다.
+- **처리**: 고쳐 쓴다. 「이어야 할 가상 네트워크끼리는 주소 공간이 겹치면 안 된다」로 쓰고, 「구독 안에서 달라야 한다」로 쓰지 않는다. 같은 문항의 다른 두 진술은 맞다 — 같은 지역이어도 기본으로 이어지지 않는다(「아니요」), 같은 리소스 그룹 안에서 이름이 달라야 한다(「예」).
+- **쓰인 곳**: `azure-virtual-networking.virtual-network`
+
+## D59 — 스토리지 계정으로 가는 트래픽을 인터넷에서 떼는 것을 NSG로 답한 문항 (phase 103)
+
+- **덤프**: 가상 네트워크에서 Azure Storage 계정으로 가는 트래픽이 인터넷으로 가지 않게 하는 것의 답을 네트워크 보안 그룹으로 적는다. 보기에는 서비스 엔드포인트도 있다 — [덤프 NO.288]
+- **공식 문서**: Learn 단원 2는 네트워크 보안 그룹을 트래픽을 허용하거나 막는 규칙으로 설명한다 — 경로를 바꾸는 것이 아니다. 가상 네트워크 FAQ는 서비스 엔드포인트 트래픽이 Microsoft 백본으로 다닌다고 하고, 「What is Azure Private Link?」와 「Use private endpoints for Azure Storage」는 프라이빗 엔드포인트의 트래픽이 Microsoft 백본으로 다녀 공용 인터넷에 드러나지 않는다고 한다.
+- **처리**: 고쳐 쓴다 — 이 요구의 답은 네트워크 보안 그룹이 아니다. 이 주제는 서비스 엔드포인트를 쓰지 않으므로(guide 「배경」) 프라이빗 엔드포인트로만 가르치고, 이 덤프 문항은 문항 근거로 쓰지 않는다. 「네트워크 보안 그룹을 걸면 트래픽이 인터넷을 거치지 않는다」로 쓰지 않는다.
+- **쓰인 곳**: `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+
+## D60 — VM끼리 통신을 막으려면 「반드시」 다른 가상 네트워크인가 (phase 103)
+
+- **덤프**: VM 하나가 다른 VM에 닿지 못하게 하려면 다른 가상 네트워크에 두어야 한다고 답한다(`p112_02.png`) — [덤프 NO.184]·[덤프 NO.395]·[덤프 NO.474]. 서버 하나를 다른 네트워크 구역에 두는 문항의 해설은 다른 가상 네트워크가 유일한 방법이라고 한다 — [덤프 NO.451]. 네 문항의 답은 서로 같고, 그 보기들(운영 체제, 리소스 그룹, 네트워크 인터페이스 둘) 가운데에서는 맞다.
+- **공식 문서**: FAQ는 가상 네트워크가 서로 격리되어 있다고 한다. 그러나 「Plan virtual networks」와 「Virtual networks and virtual machines in Azure」는 **같은 가상 네트워크 안에서도** 네트워크 보안 그룹으로 리소스 사이 트래픽을 거를 수 있다고 하고, 서브넷으로도 구역을 나눈다. 「Azure virtual network peering」은 피어링하면 다른 가상 네트워크의 리소스도 서로 통신한다고 한다.
+- **처리**: 한정해 쓴다. 「다른 가상 네트워크의 리소스와는 따로 잇지 않으면 통신하지 않는다」까지 쓰고, 「막는 방법은 다른 가상 네트워크뿐이다」로 쓰지 않는다. 문항은 guide 「문항」 4항대로 조건을 줘서 둘이 함께 맞게 읽히지 않게 한다.
+- **쓰인 곳**: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
+
 ---
 
 용어집은 1쪽(클라우드 개념)에서 이 주제에 걸린 항목 — 클라우드(1-1)·클라우드 컴퓨팅(1-2)·Pay-As-You-Go(1-10)·예약 인스턴스(1-11)·스팟 인스턴스(1-12)·서버리스(1-13)·FaaS(1-14)·멀티 테넌시(1-24)·
@@ -782,6 +806,9 @@ phase 102 step 4는 용어집 2쪽(아키텍처와 서비스)에서 `azure-resou
 phase 103 step 0은 용어집 2쪽(아키텍처와 서비스)에서 `azure-compute` 주제에 걸린 항목 — 가용성 집합(2-4)·가상 머신(2-11)·가상 머신 확장 집합(2-12)·Azure Virtual Desktop(2-13)·웹앱(2-14)·컨테이너(2-15)·서버리스 함수(2-16)·Azure Container Instances(2-34)·Azure Kubernetes Service(2-35)·Azure Functions(2-36)·Azure App Service(2-37)·Azure Load Balancer(2-39) — 을 봤다.
 가상 머신(2-11)·Azure Virtual Desktop(2-13)·웹앱(2-14)·Azure App Service(2-37)는 Learn 단원 2·4·7과 제품 문서와 어긋나지 않아 항목을 만들지 않았다(2-13의 「다중 세션 Windows 10/11」은 맞지만 Windows Server도 된다 — D52의 공식 문서 쪽).
 
+phase 103 step 5는 용어집 2쪽에서 `azure-virtual-networking` 주제에 걸린 항목 — 가상 네트워크(2-17)·서브넷(2-18)·피어링(2-20)·Azure DNS(2-21)·VPN Gateway(2-22)·ExpressRoute(2-23)·퍼블릭 엔드포인트(2-24)·프라이빗 엔드포인트(2-25)·Public/Private Endpoint(2-42) — 을 봤다.
+Azure DNS(2-21)는 공식 문서와 어긋나지 않는다(DNSSEC은 받은 문서에 없어 쓰지 않는다 — official.md 「Azure DNS overview」). 네트워크 보안 그룹(2-19)은 `azure-network-protection`의 몫이라 phase 103 step 10이 본다.
+
 ## G27 — 가용성 집합: 「물리 도메인」·「OS 업데이트 때도 함께 멈추지 않는다」 (phase 103)
 
 - **용어집**: 같은 데이터 센터의 VM을 여러 「물리/업데이트 도메인」에 나눠 하드웨어 고장이나 OS 업데이트 때 함께 멈추지 않게 하는 설정이라 하고, VM 두 대 이상을 묶으면 Azure가 서로 다른 호스트에 둔다고 한다 — [용어집 2-4]
@@ -823,3 +850,45 @@ phase 103 step 0은 용어집 2쪽(아키텍처와 서비스)에서 `azure-compu
 - **공식 문서**: 「Azure Load Balancer distribution modes」는 Load Balancer가 기본으로 다섯 값(five-tuple)의 해시로 연결을 나누고, 같은 클라이언트 IP를 같은 인스턴스로 보내는 세션 유지 방식도 고를 수 있다고 한다. 라운드 로빈이라는 말은 없다.
 - **처리**: 고쳐 쓴다 — 쓰는 곳에서는 나누는 방식을 쓰지 않는다. 이 주제는 부하 분산 장치를 「들어오는 요청을 여러 VM에 나눠 보내는 것」까지만 푼다. 「라운드 로빈」·「돌아가며 차례로」 같은 말을 쓰지 않는다.
 - **쓰인 곳**: `azure-compute.scale-sets`, `ScaleSetDiagram`
+
+## G33 — 가상 네트워크를 「가상 사설 네트워크」로 부르는 것 (phase 103)
+
+- **용어집**: 가상 네트워크를 Azure의 「가상 사설 네트워크」라 하고, 라우트 테이블로 트래픽을 제어한다고 한다 — [용어집 2-17]
+- **공식 문서**: 「What is Azure Virtual Network?」는 Azure 안의 사설 네트워크를 이루는 기본 단위라 하고, Learn 단원 3 한국어판은 「가상 사설망」을 VPN의 이름으로 쓴다. 라우트 테이블은 있지만 이 주제가 쓰지 않는 세부다(guide 「배경」).
+- **처리**: 고쳐 쓴다. 「Azure 안의 사설 네트워크」로 쓰고 「가상 사설 네트워크」로 쓰지 않는다 — VPN과 헷갈린다. 경로 테이블은 쓰지 않는다.
+- **쓰인 곳**: `azure-virtual-networking.virtual-network`
+
+## G34 — 서브넷마다 IP 할당 방식을 달리한다는 것 (phase 103)
+
+- **용어집**: 서브넷별로 퍼블릭·프라이빗 IP 할당 방식을 달리할 수 있다고 한다 — [용어집 2-18]
+- **공식 문서**: 「Plan virtual networks」와 「Virtual networks and virtual machines in Azure」는 서브넷이 주소 공간의 일부라 하고, 공용 IP 주소는 네트워크 인터페이스 같은 리소스에 붙인다고 한다. 서브넷마다 할당 방식을 달리한다는 말은 받은 문서에 없다. 서브넷을 역할로 나누고 네트워크 보안 그룹을 건다는 것은 맞다.
+- **처리**: 쓰지 않는다 — 「서브넷마다 IP 할당 방식이 다르다」. 나누는 까닭은 용도마다 리소스를 나누는 것과 서브넷마다 규칙을 거는 것까지 쓴다.
+- **쓰인 곳**: `azure-virtual-networking.subnets`
+
+## G35 — 피어링을 「백엔드로 직접 연결」로 적는 것 (phase 103)
+
+- **용어집**: 피어링이 두 가상 네트워크를 「백엔드」로 직접 잇는다고 하고, 다른 지역의 피어링을 「Global Peering」으로 적는다 — [용어집 2-20]
+- **공식 문서**: 「Azure virtual network peering」은 트래픽이 **Microsoft 백본 네트워크**에 머문다고 하고, 다른 지역을 잇는 것을 글로벌 가상 네트워크 피어링이라 한다. 인터넷을 거치지 않는다는 것은 맞다.
+- **처리**: 고쳐 쓴다. 「Microsoft 백본 네트워크」와 「글로벌 가상 네트워크 피어링」으로 쓴다.
+- **쓰인 곳**: `azure-virtual-networking.peering`, `VnetPeeringDiagram`
+
+## G36 — VPN Gateway: 「ExpressRoute보다 설정이 간단하고 비용이 낮다」·「사이트 간/지점 간」 (phase 103)
+
+- **용어집**: 설정이 ExpressRoute보다 간단하고 비용이 낮다고 하고, 쓰임을 온-프레미스와 잇는 사이트 간·「지점 간」 VPN으로 적는다 — [용어집 2-22]
+- **공식 문서**: 받은 VPN Gateway 문서는 ExpressRoute와 설정의 난이도나 비용을 견주지 않는다. Learn 단원 3과 「What is Azure VPN Gateway?」는 연결이 셋(사이트 간·지점 및 사이트 간·VNet 간)이라 하고, VNet 간 트래픽은 인터넷이 아니라 Microsoft 백본으로 다닌다고 한다(VPN Gateway FAQ).
+- **처리**: 쓰지 않는다 — 비용·설정의 비교. 고쳐 쓴다 — 연결은 셋이고 표기는 「지점 및 사이트 간」(official.md 「한국어 표기 정리 — `azure-virtual-networking`」). 「VPN 게이트웨이의 트래픽은 모두 인터넷으로 간다」로 쓰지 않는다.
+- **쓰인 곳**: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`, `azure-virtual-networking.expressroute`
+
+## G37 — ExpressRoute: 「수십 Gbps」·「금융, 대기업」 (phase 103)
+
+- **용어집**: 대역폭이 수십 Gbps까지 되고 금융·대기업에 맞는다고 한다 — [용어집 2-23]
+- **공식 문서**: Learn 단원 4는 고르는 때를 업종이 아니라 요구(프라이빗하고 고른 연결, 규정 준수, 예측할 수 있는 대기 시간과 처리량, 중요한 트래픽을 인터넷에 보내지 않기)로 적는다. 회로의 대역폭은 문서에 표가 있지만 이 phase는 대역폭 수치를 쓰지 않는다(guide 공통 금지). 인터넷을 거치지 않는다는 것은 맞다.
+- **처리**: 쓰지 않는다 — 대역폭 수치와 업종. 고르는 때는 Learn 단원 4의 요구로 쓴다.
+- **쓰인 곳**: `azure-virtual-networking.expressroute`
+
+## G38 — 프라이빗 엔드포인트: 「PaaS 서비스」로 한정·「외부 노출 없이」 (phase 103)
+
+- **용어집**: 프라이빗 엔드포인트를 Azure PaaS 서비스에 사설 IP를 주는 기능이라 하고, 그렇게 설정하면 외부 노출 없이 안전하게 통신한다고 한다. 퍼블릭 엔드포인트는 IP 주소나 DNS 이름이라 한다 — [용어집 2-24]·[용어집 2-25]·[용어집 2-42]
+- **공식 문서**: 「What is a private endpoint?」는 Azure 서비스뿐 아니라 Private Link 서비스로 내놓은 고객 자신의 서비스도 대상으로 들고, 프라이빗 엔드포인트를 가상 네트워크의 개인 IP 주소를 쓰는 네트워크 인터페이스라 한다. 「Use private endpoints for Azure Storage」는 **프라이빗 엔드포인트를 만들어도 퍼블릭 엔드포인트의 연결이 저절로 막히지 않는다**고 한다. Learn 단원 2는 퍼블릭 엔드포인트를 공용 IP 주소를 가져 어디서나 닿는 것이라 한다.
+- **처리**: 한정해 쓴다. 대상은 「스토리지 계정 같은 Azure 서비스」로 예를 들어 쓰고 PaaS만이라고 쓰지 않는다. 「프라이빗 엔드포인트를 만들면 바깥에서 닿지 못한다」로 쓰지 않는다 — 퍼블릭 엔드포인트를 막는 일은 따로 한다고 쓴다. 퍼블릭 엔드포인트는 Learn 단원 2의 말대로 쓴다.
+- **쓰인 곳**: `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`

@@ -48,6 +48,10 @@ phase 103 step 0이 `azure-compute` 주제(컴퓨팅과 앱 호스팅)가 쓸 �
 VM에 꼭 있어야 하는 리소스와 선택인 리소스는 VM 개요의 표가 아니라 「Virtual networks and virtual machines in Azure」의 글로 갈랐다 — 표는 VM을 만들 때 함께 생기는 리소스를 늘어놓을 뿐 필수 여부를 말하지 않는다.
 아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
 
+phase 103 step 5가 `azure-virtual-networking` 주제(가상 네트워크와 연결)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-compute`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(ExpressRoute 소개, Azure DNS 개요, 가상 네트워크 개요)에 덧붙인 줄은 끝에 `(phase 103)`을 달았다. Learn 네트워킹 단원은 새 모듈 「Describe Azure networking services」로 옮겨져 새 항목으로 두었다.
+**설계와 달라진 사실 하나**: VNet 간 VPN 트래픽은 인터넷이 아니라 Microsoft 백본으로 다닌다(「VPN Gateway FAQ」 항목). 그래서 피어링과 VNet 간 VPN은 지나는 길이 아니라 **게이트웨이와 암호화 터널이 있는가**로 갈린다.
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -363,8 +367,17 @@ https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction
 
 - ExpressRoute는 회사 네트워크를 통신 사업자를 거쳐 사설 연결로 Microsoft 클라우드에 잇는다. 이 연결은 공용 인터넷을 지나지 않는다 — 「첫 두 문단」
 - 이 주제에서는 ExpressRoute를 쓰지 않는다. 「클라우드를 쓰려면 인터넷 연결이 반드시 있어야 한다」를 단정하지 않을 근거로만 적는다
+- 사본 `ko-docs-expressroute-expressroute-introduction.md`도 받았다(확인한 날 2026-10-31) (phase 103)
+- 공용 인터넷을 지나지 않아서 보통의 인터넷 연결보다 안정적이고, 빠르고, 대기 시간이 고르고, 보안이 높다 — 「첫 두 문단」 (phase 103)
+- 이 문서는 ExpressRoute를 Layer 3 연결이라고 적는다(덤프 NO.119의 답과 같다). **계층은 쓰지 않는다**(guide 「배경」) — 「Key benefits」·「Layer 3 connectivity」 (phase 103)
+- BGP는 업계 표준인 동적 라우팅 프로토콜이고, Microsoft는 이것으로 온-프레미스 네트워크·Azure의 인스턴스·Microsoft 공용 주소 사이의 경로를 주고받는다 — 「Layer 3 connectivity」 (phase 103)
+- 회로 하나는 Microsoft 쪽 에지 라우터 둘로 가는 연결 둘로 되어 있고, 연결 공급자도 중복된 장치를 쓴다. 가장 높은 복원력에는 두 피어링 위치에 회로 둘을 권장한다 — 「Redundancy」·「Resiliency」 (phase 103)
+- 닿는 곳은 Azure 서비스와 Microsoft 365 서비스다. **다만 Microsoft 365는 인터넷으로 쓰도록 만들어졌다며 ExpressRoute를 특정 상황에만 권한다.** 그래서 「Microsoft 365에도 닿을 수 있다」까지 쓰고, 권하는 것처럼 쓰지 않는다 — 「Connectivity to Microsoft cloud services」 (phase 103)
+- 이 문서는 모든 지역으로 넓히는 연결을 premium add-on이 맡는다고 하고, Learn 단원 4는 같은 줄을 Global Reach로 적는다. **Global Reach는 Learn 단원 4의 「온-프레미스 사이트끼리」 뜻으로만 쓴다**(요금제 이름 premium은 쓰지 않는다) — 「Key benefits」 (phase 103)
+- 한국어 표기: ExpressRoute(옮기지 않는다), ExpressRoute 회로, 연결 공급자, 프라이빗 연결 (phase 103)
 
 쓰인 곳: D7
+쓰일 곳(phase 103): `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`
 
 ## (phase 100) Cloud Adoption Framework — Cost efficiency (Shift from a CapEx model to an OpEx model)
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform/cost-efficiency
@@ -1501,8 +1514,11 @@ https://learn.microsoft.com/en-us/azure/dns/dns-overview
 - DNS(Domain Name System)는 서비스 이름을 IP 주소로 바꿔 준다(이름 확인). Azure DNS는 Azure 인프라로 DNS 호스팅·이름 확인·부하 분산을 제공한다 — 첫 부분
 - Azure Traffic Manager는 DNS를 써서 트래픽을 나누는 부하 분산 서비스이고, 공개된 애플리케이션으로 오는 요청을 전 세계 Azure 지역에 나눠 보낸다 — 같은 부분(Azure DNS가 제공하는 서비스 목록)
 - 한국어 표기: Azure DNS·Azure Traffic Manager(옮기지 않는다), resolve → 확인, load balancing → 부하 분산
+- Azure DNS의 서비스는 셋이다 — 도메인을 호스트하는 Azure Public DNS, 가상 네트워크 안의 이름을 맡는 Azure Private DNS, 온-프레미스와 프라이빗 영역 사이의 질의를 잇는 Azure DNS Private Resolver. `azure-dns`는 앞의 둘을 「프라이빗 DNS 도메인」까지만 쓴다. Private Resolver는 쓰지 않는다 — 첫 부분 (phase 103)
+- 이 사본에는 DNSSEC이 나오지 않는다. 용어집 2-21이 드는 DNSSEC은 쓰지 않는다 (phase 103)
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
+쓰일 곳(phase 103): `azure-virtual-networking.virtual-network`(DNS를 푸는 한 줄), `azure-virtual-networking.azure-dns`
 
 ## (phase 102) Azure Government — What is Azure Government?
 https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
@@ -1738,8 +1754,13 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 
 - Azure 가상 네트워크는 Azure 안의 사설 네트워크를 이루는 기본 단위다. VM 같은 Azure 리소스가 서로, 인터넷과, 온-프레미스 네트워크와 안전하게 통신하게 해 준다 — 첫 부분
 - 한국어 표기: Azure Virtual Network → Azure Virtual Network(제목), virtual network → 가상 네트워크(한국어판 46번)
+- 이 개요가 꼽는 쓰임은 여섯이다 — 인터넷과 통신, Azure 리소스끼리 통신, 온-프레미스와 통신, 트래픽 거르기, 트래픽 경로 정하기, Azure 서비스와 통합. Learn 단원 2의 일곱과 거의 겹치고, 그쪽은 격리와 분할·가상 네트워크 잇기를 따로 센다 — 「Why use an Azure virtual network?」 (phase 103)
+- 지점 및 사이트 간 VPN은 연결할 컴퓨터마다 설정이 필요하고 기존 네트워크를 거의 바꾸지 않아도 된다. 사이트 간 VPN은 온-프레미스 VPN 디바이스와 VPN 게이트웨이 사이에 놓이고, 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다. 둘 다 트래픽이 인터넷 위의 암호화된 터널로 간다. ExpressRoute 트래픽은 인터넷으로 가지 않는다 — 「Communicate with on-premises resources」 (phase 103)
+- Azure는 서브넷·연결된 가상 네트워크·온-프레미스 네트워크·인터넷 사이의 트래픽 경로를 기본으로 잡아 주고, 경로 테이블이나 BGP로 바꿀 수 있다. **바꾸는 방법은 쓰지 않는다**(guide 「배경」) — 「Route network traffic」 (phase 103)
+- 이 개요는 「모든 리소스가 기본으로 인터넷으로 나갈 수 있다」고 적는다(2025-07-17). 뒤의 「Default outbound access in Azure」(2026-09-10)가 새 가상 네트워크의 기본을 바꿨다고 하므로 **이 문장을 쓰지 않는다** — 「Communicate with the internet」 (phase 103)
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
+쓰일 곳(phase 103): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.vpn-connection-types`
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -2083,3 +2104,364 @@ https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-
 - **부하 분산 장치** — Load Balancer 개요 한국어판(12번). 「로드 밸런서」·「부하 분산기」는 쓰지 않는다
 - **장애 도메인 / 업데이트 도메인** — 두 한국어판이 같다. 도식은 번호 대신 이름표(가용성 집합 개요 항목의 「도메인 번호」)
 - **리프트 앤 시프트 마이그레이션, 재해 복구, 데이터 센터 확장** — Learn 단원 2 한국어판
+
+## (phase 103) Learn 「Describe Azure networking services」 — 2 Describe Azure virtual networking
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/2-virtual-network
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-2-virtual-network.md`와 `ko-` 판. 옛 주소(`…/describe-azure-compute-networking-services/8-virtual-network`)는 이 모듈로 옮겨졌다.
+
+- 가상 네트워크와 서브넷은 VM·웹앱·데이터베이스 같은 Azure 리소스가 서로, 인터넷의 사용자와, 온-프레미스의 클라이언트 컴퓨터와 통신하게 한다. 온-프레미스 네트워크를 Azure로 넓힌 것으로 볼 수 있다 — 첫 문단
+- 핵심 기능은 일곱이다 — 격리와 분할, 인터넷 통신, Azure 리소스 사이 통신, 온-프레미스 리소스와 통신, 트래픽 경로 정하기, 트래픽 거르기, 가상 네트워크 잇기 — 같은 곳
+- Azure Virtual Network로 서로 격리된 가상 네트워크를 여럿 만들 수 있다. 가상 네트워크를 만들 때 개인 IP 주소 공간을 정하는데, 그 범위는 가상 네트워크 안에만 있고 인터넷에서 경로가 잡히지 않는다 — 「Isolation and segmentation」
+- 그 주소 공간을 서브넷으로 나누고, 이름 붙인 서브넷마다 주소 공간의 일부를 준다 — 같은 절
+- 이름 확인은 Azure에 들어 있는 서비스를 쓰거나, 내부 또는 외부 DNS 서버를 쓰도록 가상 네트워크를 구성한다 — 같은 절
+- 인터넷에서 들어오는 연결을 열려면 리소스에 공용 IP 주소를 붙이거나 공용 부하 분산 장치 뒤에 둔다 — 「Internet communications」
+- 온-프레미스와 잇는 방법은 셋이다 — 지점 및 사이트 간 VPN(바깥의 컴퓨터가 암호화된 연결을 시작한다), 사이트 간 VPN(온-프레미스 VPN 디바이스나 게이트웨이를 가상 네트워크의 VPN 게이트웨이에 잇는다. 암호화되어 인터넷으로 간다. Azure의 장치가 로컬 네트워크에 있는 것처럼 보일 수 있다), ExpressRoute(인터넷으로 가지 않는 전용 프라이빗 연결) — 「Communicate with on-premises resources」
+- Azure는 기본으로 서브넷·연결된 가상 네트워크·온-프레미스 네트워크·인터넷 사이의 트래픽 경로를 잡아 준다 — 「Route network traffic」. 경로 테이블·BGP·사용자 정의 경로는 **쓰지 않는다**(guide 「배경」)
+- 서브넷 사이 트래픽을 거르는 방법으로 네트워크 보안 그룹을 든다 — 들어오고 나가는 규칙을 담은 Azure 리소스이고, 원본·대상 IP 주소, 포트, 프로토콜로 허용하거나 막는다 — 「Filter network traffic」. 네트워크 가상 어플라이언스는 **쓰지 않는다**(guide 「배경」)
+- 가상 네트워크 피어링은 두 가상 네트워크를 서로 직접 잇는다. 트래픽은 사설이고 Microsoft 백본 네트워크로 다니며 공용 인터넷에 들어가지 않는다. 다른 지역의 가상 네트워크도 이을 수 있다 — 「Connect virtual networks」
+- 퍼블릭 엔드포인트는 공용 IP 주소를 가져 세계 어디서나 닿는다. 프라이빗 엔드포인트는 가상 네트워크 안에 있고 그 주소 공간에서 받은 개인 IP 주소를 쓴다 — 첫 부분
+- 서비스 엔드포인트도 이 단원에 나오지만 **쓰지 않는다**(guide 「배경」) — 「Communicate between Azure resources」
+- 한국어 표기: 가상 네트워크, 서브넷, 격리 및 구분(제목. 이 주제의 글은 「격리」와 「나눔」으로 쓴다), 공용 IP 주소, 개인 IP 주소, 공용 부하 분산 장치, 퍼블릭 엔드포인트, 프라이빗 엔드포인트, 온-프레미스, 가상 네트워크 피어링, Microsoft 백본 네트워크, 네트워크 보안 그룹
+
+쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `azure-virtual-networking.vpn-connection-types`, `VnetIsolationDiagram`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
+
+## (phase 103) Learn 「Describe Azure networking services」 — 3 Describe Azure virtual private networks
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/3-virtual-private-networks
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-3-virtual-private-networks.md`와 `ko-` 판.
+
+- VPN은 다른 네트워크 안에 암호화된 터널을 두는 것이다. 흔히 믿을 수 있는 사설 네트워크들을 믿을 수 없는 네트워크(대개 공용 인터넷) 너머로 잇는 데 쓰고, 도청 같은 공격을 막으려고 트래픽을 암호화한다 — 첫 문단
+- VPN 게이트웨이는 가상 네트워크 게이트웨이의 한 종류이고, 가상 네트워크의 전용 서브넷에 배포한다 — 「VPN gateways」
+- 잇는 방식은 셋이다 — 온-프레미스 데이터 센터와는 사이트 간, 개별 장치와는 지점 및 사이트 간, 다른 가상 네트워크와는 네트워크 간(제품 문서의 이름은 VNet 간) — 같은 절
+- 가상 네트워크마다 VPN 게이트웨이는 하나만 둘 수 있고, 게이트웨이 하나로 다른 가상 네트워크나 온-프레미스 데이터 센터 같은 여러 곳에 이을 수 있다 — 같은 절
+- 이 단원은 데이터가 인터넷을 건널 때 사설 터널 안에서 암호화된다고 적는다. **VNet 간 연결은 인터넷을 건너지 않으므로(「VPN Gateway FAQ」 항목) 「VPN 게이트웨이의 트래픽은 모두 인터넷으로 간다」로 쓰지 않는다** — 같은 절
+- 기본으로 인스턴스 둘이 활성/대기로 배포되고, 활성 쪽이 멈추면 대기 쪽이 연결을 이어받는다. 그 사이 연결은 잠깐 끊긴다 — 「Active/standby」. 복구 시간은 이 단원과 「Highly available」 문서의 수가 달라 **쓰지 않는다**
+- VPN 게이트웨이를 ExpressRoute의 대체 경로로 둘 수 있다. 회로의 복원력이 들어 있어도 케이블 문제나 위치 전체의 중단까지 막지는 못하므로, 인터넷을 쓰는 다른 길을 하나 더 둔다 — 「ExpressRoute failover」
+- 정책 기반·경로 기반, 활성/활성, 영역 중복 게이트웨이, 미리 공유한 키는 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: VPN(가상 사설망), VPN 게이트웨이, 가상 네트워크 게이트웨이, 전용 서브넷, 사이트 간, 지점 및 사이트 간, 네트워크 간, 활성/대기
+
+쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`, `azure-virtual-networking.expressroute`, `SiteToSiteVpnDiagram`
+
+## (phase 103) Learn 「Describe Azure networking services」 — 4 Describe Azure ExpressRoute
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/4-expressroute
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-4-expressroute.md`와 `ko-` 판.
+
+- ExpressRoute는 연결 공급자의 도움으로 온-프레미스 네트워크를 프라이빗 연결로 Microsoft 클라우드까지 넓힌다. 이 연결이 ExpressRoute 회로이고, 사무실·데이터 센터 같은 장소마다 회로를 둔다 — 첫 문단
+- 이 단원이 꼽는 이점은 넷이다 — 지정학적 지역 안 모든 지역의 Microsoft 클라우드 서비스에 연결, Global Reach, BGP로 하는 동적 라우팅, 피어링 위치마다 든 중복 — 「Features and benefits of ExpressRoute」
+- Global Reach는 회로끼리 이어 온-프레미스 사이트끼리 공용 인터넷을 거치지 않고 데이터를 주고받게 한다. 이 단원의 예는 아시아의 사무실과 유럽의 데이터 센터다 — 「Global connectivity」
+- ExpressRoute는 BGP로 온-프레미스 네트워크와 Azure의 리소스 사이에 경로를 주고받는다 — 「Dynamic routing」
+- 연결 공급자는 중복된 장치를 쓰고, 회로를 여러 개 둘 수도 있다 — 「Built-in redundancy」
+- 고르는 때 — 프라이빗하고 고른 연결이 필요할 때, 규정 준수나 데이터 전송 요건이 엄격할 때, 예측할 수 있는 대기 시간과 높은 처리량이 필요할 때, 중요한 트래픽을 공용 인터넷에 보내지 않으려 할 때 — 「Connectivity model options」
+- ExpressRoute가 있어도 DNS 쿼리, 인증서 해지 목록 확인, Azure CDN 요청은 공용 인터넷으로 간다 — 「Security considerations」
+- 연결 모델 셋(IP VPN·지점 간 이더넷·코로케이션)은 **쓰지 않는다** — 이 단원도 그 수준에서는 고르는 때에 집중하라고 한다(guide 「배경」)
+- 한국어 표기: ExpressRoute 회로, 연결 공급자, 프라이빗 연결, 지정학적 지역, Global Reach, BGP(Border Gateway Protocol), 동적 라우팅, 피어링 위치, 대기 시간, 인증서 해지 목록
+
+쓰일 곳: `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`
+
+## (phase 103) Learn 「Describe Azure networking services」 — 5 Describe Azure DNS
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/5-domain-name-system
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-5-domain-name-system.md`와 `ko-` 판.
+
+- Azure DNS는 DNS 도메인을 Azure 인프라에서 호스트해 이름 확인을 맡는 서비스다. 도메인을 Azure에 두면 다른 Azure 서비스와 같은 자격 증명·API·도구·청구로 DNS 레코드를 관리한다 — 첫 문단
+- DNS 이름 서버의 전 세계 네트워크에 호스트되고, 애니캐스트 네트워킹을 써서 사용할 수 있는 가장 가까운 서버가 질의에 답한다 — 「Reliability and performance」
+- Azure Resource Manager 위에 있어 Azure RBAC·활동 로그·리소스 잠금으로 DNS 리소스와 레코드를 지킨다 — 「Security」
+- 포털·Azure PowerShell·Azure CLI로 관리한다 — 「Ease of use」
+- 가상 네트워크 안에서 Azure가 준 이름 대신 직접 정한 도메인 이름을 쓰는 프라이빗 DNS 도메인을 지원한다 — 「Customizable virtual networks with private domains」
+- 별칭 레코드 집합은 공용 IP 주소 같은 Azure 리소스를 가리키고, 그 리소스의 IP 주소가 바뀌면 DNS 확인 때 저절로 따라간다 — 「Alias records」
+- **Azure DNS로는 도메인 이름을 살 수 없다.** App Service 도메인이나 다른 도메인 이름 등록 기관에서 해마다 값을 내고 산 뒤 Azure DNS에 호스트한다 — 「Alias records」 뒤의 알림
+- 한국어 표기: Azure DNS, DNS 레코드, 이름 서버, 애니캐스트 네트워킹, 활동 로그, 리소스 잠금, 프라이빗 DNS 도메인, 별칭 레코드, App Service 도메인
+
+쓰일 곳: `azure-virtual-networking.azure-dns`
+
+## (phase 103) Azure Virtual Network — Azure Virtual Network frequently asked questions (FAQ)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-08. 사본: `docs-virtual-network-virtual-networks-faq.md`와 `ko-` 판.
+
+- 가상 네트워크는 서로 격리되어 있고, Azure 인프라에 호스트된 다른 서비스와도 격리되어 있다. 가상 네트워크 하나가 신뢰 경계다 — 「What is the security model for virtual networks?」
+- 가상 네트워크는 Azure 클라우드를 논리적으로 나눈 부분이고 구독에 딸려 있다. 그 안의 서비스와 VM은 서로 바로 통신한다 — 「What is a virtual network?」
+- 가상 네트워크는 지역 하나에 묶이고 그 지역의 가용성 영역에는 걸칠 수 있다 — 「Can a virtual network span regions?」
+- 가상 네트워크끼리는 피어링이나 VPN 게이트웨이로 잇는다 — 「Can I connect a virtual network to another virtual network in Azure?」
+- 가상 네트워크를 다른 가상 네트워크나 온-프레미스와 잇는 조건은 주소 범위가 겹치지 않는 것이다 — 「What is a virtual network?」. 피어링도 주소 공간이 겹치면 켤 수 없다 — 「Can I peer two virtual networks that have matching or overlapping address ranges?」
+- 네트워크 보안 그룹은 서브넷이나 네트워크 인터페이스, 또는 둘 다에 걸 수 있다 — 「Can I restrict inbound or outbound traffic flow…?」 (세부는 `azure-network-protection`의 몫이라 그 말을 쓰지 않는다)
+- 피어링한 가상 네트워크의 VM은 같은 네트워크에 있는 것처럼 통신한다. 같은 지역이든 다른 지역이든(글로벌 가상 네트워크 피어링) 되고, 다른 구독도 다른 Microsoft Entra 테넌트도 된다 — 「What is virtual network peering?」 등
+- **피어링은 이어지지 않는다** — A와 B, B와 C를 피어링해도 A와 C는 피어링된 것이 아니다. A와 C를 직접 피어링해야 한다 — 「If I peer VNetA to VNetB…」
+- 피어링 트래픽은 Microsoft가 통제하지 않는 물리 경계 바깥으로 데이터 센터 사이를 옮길 때 데이터 링크 수준의 MACsec 암호화를 받는다 — 「Is virtual network peering traffic encrypted?」. **그래서 「피어링 트래픽은 암호화되지 않는다」로 쓰지 않는다**. MACsec이라는 말은 쓰지 않는다
+- Azure PaaS 리소스의 네트워크 접근은 서비스 엔드포인트나 Private Link로 좁힌다. 서비스 엔드포인트 트래픽은 Microsoft 백본으로 다닌다(D59의 근거) — 「How can I restrict access to Azure PaaS resources…?」·「How do virtual network service endpoints provide security?」
+- 주소 범위의 값(RFC 1918 등)은 **쓰지 않는다**(guide 「예시 값」)
+- 한국어 표기: 글로벌 가상 네트워크 피어링, 전이적 피어링(이 낱말은 쓰지 않고 「이어지지 않는다」로 푼다)
+
+쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.peering`, D58, D59, D60, `VnetIsolationDiagram`, `VnetPeeringDiagram`
+
+## (phase 103) Azure Virtual Network — Plan virtual networks
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-plan-design-arm
+
+확인한 날 2026-10-31. 「Last updated on」 2025-04-17. 사본: `docs-virtual-network-virtual-network-vnet-plan-design-arm.md`와 `ko-` 판.
+
+- 가상 네트워크 이름은 리소스 그룹 안에서 겹치면 안 되지만, 구독이나 지역 안에서는 겹쳐도 된다 — 「Naming」
+- 리소스는 자기와 같은 지역·같은 구독의 가상 네트워크 안에만 만들 수 있고, 다른 지역·다른 구독의 가상 네트워크끼리는 이을 수 있다 — 「Regions」
+- 가상 네트워크는 구독과 지역마다 여럿 만들 수 있고, 잇고 잇지 않는 것은 고르는 일이다. 가상 네트워크 하나에 서브넷도 여럿 둔다 — 「Segmentation」
+- **주소 공간이 달라야 하는 것은 다른 가상 네트워크나 온-프레미스와 잇는 가상 네트워크다.** 구독 안에서 언제나 달라야 한다는 말은 없다(D58) — 「Segmentation」
+- 서브넷의 주소 범위는 가상 네트워크의 주소 공간 안에 있고 다른 서브넷과 겹치면 안 된다 — 「Subnets」
+- 서브넷을 나누는 까닭으로 드는 것: 어떤 Azure 서비스가 자기 서브넷을 요구한다(VPN 게이트웨이의 게이트웨이 서브넷 등), 서브넷마다 네트워크 보안 그룹을 다르게 건다, 트래픽이 특정 장비를 지나게 한다, 서비스 접근을 특정 서브넷으로 좁힌다. **쓰는 것은 앞의 둘과 「용도마다 리소스를 나눈다」까지다** — 같은 절
+- 가상 네트워크 안의 리소스 사이 트래픽을 거르려면 네트워크 보안 그룹을 쓴다 — 「Traffic filtering」
+- 서브넷 수·주소 표기(CIDR)는 **쓰지 않는다**(guide 표 11)
+- 한국어 표기: 구독, 지역, 서브넷, 주소 공간, 주소 범위
+
+쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, D58, D60
+
+## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure (서브넷 절만 — step 5)
+https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
+
+확인한 날 2026-10-31. 사본: `docs-virtual-network-network-overview.md`와 `ko-` 판(step 0이 받았다).
+
+- 서브넷 사이에는 기본으로 보안 경계가 없어 각 서브넷의 VM이 서로 통신한다. 경계가 필요하면 네트워크 보안 그룹을 쓴다 — 「Virtual network and subnets」
+- 주소 공간은 다른 네트워크와 잇는다면 겹치지 않게 고른다 — 같은 절
+
+쓰일 곳: `azure-virtual-networking.subnets`, D58, D60, `VnetIsolationDiagram`
+
+## (phase 103) Azure Virtual Network — Virtual network traffic routing (기본 경로만)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-03-31. 사본: `docs-virtual-network-virtual-networks-udr-overview.md`와 `ko-` 판.
+
+- 가상 네트워크를 만들면 Azure가 서브넷마다 시스템 경로를 저절로 만든다. 그 가운데 하나가 가상 네트워크의 주소 공간 안 범위끼리 트래픽을 보낸다 — 그래서 같은 가상 네트워크의 서브넷끼리 고객이 경로를 만들지 않아도 통신한다 — 「Default system routes」
+- 경로는 주소 범위와 다음 도착지로 이루어지고, 트래픽이 서브넷을 나갈 때 Azure가 맞는 경로를 쓴다. **라우팅을 「트래픽이 어느 길로 갈지 정하는 것」으로 푸는 근거로만 쓴다** — 같은 절
+- 사용자 정의 경로와 경로 선택 규칙은 **쓰지 않는다**(guide 「배경」)
+
+쓰일 곳: `azure-virtual-networking.subnets`, `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
+
+## (phase 103) Azure Virtual Network — Private IP addresses (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses
+
+확인한 날 2026-10-31. 「Last updated on」 2024-11-10. 사본: `docs-virtual-network-ip-services-private-ip-addresses.md`와 `ko-` 판.
+
+- 개인 IP 주소는 Azure 리소스끼리 공용 IP 주소 없이 통신하게 한다. 같은 가상 네트워크의 리소스뿐 아니라 VPN 게이트웨이나 ExpressRoute 회로로 이어진 온-프레미스 네트워크와도 통신한다 — 첫 부분
+- 한국어 표기: 제목은 「프라이빗 IP 주소」인데 본문은 「개인 IP」다. 다른 한국어판과 같이 「개인 IP 주소」로 쓴다
+
+쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure Virtual Network — Public IP addresses (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses
+
+확인한 날 2026-10-31. 「Last updated on」 2025-11-18. 사본: `docs-virtual-network-ip-services-public-ip-addresses.md`와 `ko-` 판.
+
+- 공용 IP 주소는 인터넷에서 Azure 리소스로 들어오는 통신을 받고, Azure 리소스가 인터넷과 공용 Azure 서비스로 통신하게 한다. 붙인 리소스에는 떼거나 리소스를 지울 때까지 그 리소스 전용으로 남는다 — 첫 부분
+- VM의 네트워크 인터페이스 같은 리소스에 붙인다. Azure Resource Manager에서 공용 IP 주소는 자기 속성을 가진 리소스다 — 같은 곳
+- 한국어 표기: 공용 IP 주소
+
+쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+
+## (phase 103) Azure Virtual Network — Default outbound access in Azure (쓰지 않는 근거)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-10. 사본: `docs-virtual-network-ip-services-default-outbound-access.md`.
+
+- 나가는 방법을 정하지 않은 VM에 Azure가 공용 IP 주소를 저절로 주는 기본 아웃바운드 액세스가 있지만, 2026-03-31 뒤에 나온 API로 만든 새 가상 네트워크의 서브넷은 기본으로 이 액세스가 꺼진다. 기존 가상 네트워크는 바뀌지 않는다 — 첫 부분과 「How and when default outbound access is provided」
+- **그래서 「가상 네트워크의 리소스는 기본으로 인터넷으로 나갈 수 있다」를 쓰지 않는다.** 이 주제는 들어오는 연결(공용 IP 주소·공용 부하 분산 장치)만 쓴다
+
+쓰일 곳: `azure-virtual-networking.virtual-network`(쓰지 않는다는 기록)
+
+## (phase 103) Azure Virtual Network — Azure virtual network peering
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-20. 사본: `docs-virtual-network-virtual-network-peering-overview.md`와 `ko-` 판.
+
+- 피어링은 가상 네트워크 둘 이상을 이어 연결 면에서 하나처럼 보이게 한다. 같은 지역을 잇는 가상 네트워크 피어링과 다른 지역을 잇는 글로벌 가상 네트워크 피어링이 있다 — 첫 부분
+- 구독·Microsoft Entra 테넌트·지역이 달라도 데이터를 옮길 수 있고, 피어링을 만드는 동안이나 뒤에 양쪽 리소스가 멈추지 않는다 — 같은 곳
+- 피어링한 가상 네트워크 사이 트래픽은 사설이고 Microsoft 백본 네트워크에 머문다. 통신에 공용 인터넷·게이트웨이·암호화가 필요 없다 — 같은 곳
+- 트래픽은 게이트웨이나 공용 인터넷을 지나지 않고 백본으로 바로 간다. 같은 지역 VM 사이의 지연은 한 가상 네트워크 안과 같다 — 「Connectivity」
+- 어느 쪽 가상 네트워크든 네트워크 보안 그룹으로 다른 가상 네트워크나 서브넷으로 가는 접근을 막을 수 있다. 기본은 전체 연결이다 — 같은 절
+- 서브넷 피어링, 서비스 체이닝, 허브 앤 스포크, Virtual Network Manager는 **쓰지 않는다**
+- 한국어 표기: 가상 네트워크 피어링, 글로벌 가상 네트워크 피어링(제품 문서 FAQ 한국어판. 개요 한국어판의 표기도 「글로벌」), 피어링된 가상 네트워크
+
+쓰일 곳: `azure-virtual-networking.peering`, D60, `VnetPeeringDiagram`
+
+## (phase 103) Azure networking — Microsoft global network (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network
+
+확인한 날 2026-10-31. 「Last updated on」 2026-08-27. 사본: `docs-networking-microsoft-global-network.md`와 `ko-` 판.
+
+- Microsoft 글로벌 네트워크는 Microsoft 데이터 센터들을 서로, 그리고 전 세계 고객과 잇는 광역 네트워크이고 백본 네트워크다. **그래서 「Microsoft 백본 네트워크」를 「Microsoft가 운영하며 자기 데이터 센터들을 잇는 네트워크」로 푼다.** 지역 수와 길이는 **쓰지 않는다** — 첫 문단
+- 한국어 표기: Microsoft 글로벌 네트워크, 백본 네트워크
+
+쓰일 곳: `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure Private Link — What is a private endpoint?
+https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-08-11. 사본: `docs-private-link-private-endpoint-overview.md`와 `ko-` 판.
+
+- 프라이빗 엔드포인트는 가상 네트워크의 개인 IP 주소를 쓰는 네트워크 인터페이스이고, Azure Private Link로 제공되는 서비스에 사설로 잇는다. 서비스를 가상 네트워크 안으로 들이는 셈이다 — 첫 문단
+- 그 서비스는 Azure Storage·Azure Cosmos DB·Azure SQL Database 같은 Azure 서비스이거나, Private Link 서비스로 내놓은 고객 자신의 서비스다 — 같은 곳
+- 프라이빗 엔드포인트는 서브넷에 배포되고 그 서브넷에서 IP 주소를 받는다 — 「Private endpoint properties」
+- 연결은 프라이빗 엔드포인트에 닿는 클라이언트 쪽에서만 시작한다. 프라이빗 엔드포인트는 가상 네트워크와 같은 지역·같은 구독에 있어야 하지만 연결할 리소스는 다른 지역에 있어도 된다 — 「Private endpoint properties」 아래 목록. **쓰지 않아도 된다**
+- 승인 절차·DNS 구성·네트워크 정책은 **쓰지 않는다**
+- 한국어 표기: 프라이빗 엔드포인트, 개인 IP 주소, 네트워크 인터페이스, Azure Private Link(옮기지 않는다)
+
+쓰일 곳: `azure-virtual-networking.endpoints`, D59, G38, `PrivateEndpointDiagram`
+
+## (phase 103) Azure Private Link — What is Azure Private Link?
+https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-23. 사본: `docs-private-link-private-link-overview.md`와 `ko-` 판.
+
+- Private Link는 가상 네트워크의 프라이빗 엔드포인트를 거쳐 Azure PaaS 서비스(Azure Storage 등)와 Azure에 호스트된 고객·파트너 서비스에 닿게 한다. 가상 네트워크와 그 서비스 사이 트래픽은 Microsoft 백본 네트워크로 다니고, 서비스를 공용 인터넷에 내놓을 필요가 없어진다 — 첫 문단
+- 프라이빗 엔드포인트는 PaaS 리소스 인스턴스 하나에 대응하므로 그 서비스의 다른 리소스에는 닿지 못한다 — 「Key benefits」
+- 온-프레미스도 VPN 터널이나 ExpressRoute로, 피어링한 가상 네트워크도 프라이빗 엔드포인트로 서비스에 닿는다 — 같은 절
+- 한국어 표기: Azure Private Link, 프라이빗 링크
+
+쓰일 곳: `azure-virtual-networking.endpoints`, D59, `PrivateEndpointDiagram`
+
+## (phase 103) Azure Storage — Use private endpoints for Azure Storage
+https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-16. 사본: `docs-storage-common-storage-private-endpoints.md`와 `ko-` 판.
+
+- 스토리지 계정의 프라이빗 엔드포인트는 가상 네트워크의 주소 공간에서 받은 IP 주소를 쓰고, 가상 네트워크의 클라이언트와 스토리지 계정 사이 트래픽은 Microsoft 백본 네트워크의 private link로 다녀 공용 인터넷에 드러나지 않는다 — 첫 문단
+- **프라이빗 엔드포인트를 만들어도 퍼블릭 엔드포인트의 연결이 저절로 막히지는 않는다.** 프라이빗 엔드포인트로만 받으려면 스토리지 방화벽으로 퍼블릭 엔드포인트를 막는다 — 첫 문단 다음 목록과 「Conceptual overview」
+- 가상 네트워크 밖에서 스토리지 주소를 찾으면 퍼블릭 엔드포인트로, 프라이빗 엔드포인트가 있는 가상 네트워크 안에서 찾으면 그 프라이빗 엔드포인트의 IP 주소로 이어진다 — DNS 절
+- 한국어 표기: 프라이빗 엔드포인트, 퍼블릭 엔드포인트(이 문서 한국어판에도 그대로), 스토리지 계정, 스토리지 방화벽
+
+쓰일 곳: `azure-virtual-networking.endpoints`, G38, `PrivateEndpointDiagram`
+
+## (phase 103) Azure Storage — Storage account overview (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-16. 사본: `docs-storage-common-storage-account-overview.md`.
+
+- 스토리지 계정은 Azure Storage의 데이터 개체를 담고, HTTP나 HTTPS로 세계 어디서나 닿을 수 있는 고유한 이름 공간을 준다 — 첫 문단. **「데이터를 담는 Azure 저장소의 단위」로 푸는 데만 쓴다**(종류는 `azure-storage`의 몫이다)
+- 저장한 개체마다 계정 이름이 든 URL 주소가 있고, 계정 이름과 서비스 엔드포인트를 합친 것이 그 계정의 엔드포인트다 — 「Storage account endpoints」. **이 문서가 엔드포인트를 그 데이터에 닿는 주소로 쓴다.** 받은 문서에는 엔드포인트만 따로 정의하는 문장이 없으므로, `endpoints`는 이 쓰임과 Learn 단원 2의 두 정의로 「서비스에 닿을 때 연결하는 접속 지점」까지만 푼다
+
+쓰일 곳: `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure VPN Gateway — What is Azure VPN Gateway?
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-08. 사본: `docs-vpn-gateway-vpn-gateway-about-vpngateways.md`와 `ko-` 판.
+
+- VPN Gateway는 가상 네트워크와 온-프레미스 사이에는 공용 인터넷으로, 가상 네트워크끼리는 Microsoft 네트워크로 암호화된 트래픽을 보낸다. 쓰는 것은 VPN 게이트웨이라는 종류의 가상 네트워크 게이트웨이다 — 첫 문단
+- 한 VPN 게이트웨이에 연결을 여럿 만들 수 있고, 그 터널들이 게이트웨이의 대역폭을 나눠 쓴다 — 같은 곳. 대역폭 수치는 **쓰지 않는다**
+- 사이트 간 연결은 VPN 게이트웨이와 온-프레미스 VPN 디바이스 사이의 터널이다 — 「Why use VPN Gateway?」
+- 지점 및 사이트 간 연결은 회의장이나 집 같은 원격 위치에서 가상 네트워크로 잇는다 — 같은 절
+- VNet 간 연결은 VPN 게이트웨이와 다른 Azure VPN 게이트웨이 사이의 터널이다 — 같은 절
+- 사이트 간 VPN은 ExpressRoute의 대체 경로로 쓸 수 있고, 두 연결을 함께 둘 수도 있다 — 같은 절
+- 프로토콜 이름(IPsec/IKE·OpenVPN 등), SKU, 요금은 **쓰지 않는다**
+- 한국어 표기: 제품 이름 Azure VPN Gateway, 리소스 VPN 게이트웨이, 가상 네트워크 게이트웨이, 사이트 간(이 문서 한국어판에 「사이트 및 사이트 간」도 섞인다), 지점 및 사이트 간, VNet 간, 온-프레미스 VPN 디바이스
+
+쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`, `SiteToSiteVpnDiagram`
+
+## (phase 103) Azure VPN Gateway — Tutorial: Create a site-to-site VPN connection in the Azure portal
+https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-09. 사본: `docs-vpn-gateway-tutorial-site-to-site-portal.md`와 `ko-` 판.
+
+- 사이트 간 연결을 만드는 순서: 가상 네트워크 → 게이트웨이 서브넷 → VPN 게이트웨이 → 로컬 네트워크 게이트웨이 → VPN 디바이스 구성 → VPN 연결 — 「What you accomplish」과 절 제목
+- 가상 네트워크 게이트웨이에는 이름이 `GatewaySubnet`인 서브넷이 꼭 있어야 하고, 이 서브넷은 가상 네트워크 주소 범위의 일부다 — 「Create a gateway subnet」
+- **로컬 네트워크 게이트웨이**는 Azure에 만드는 개체이고 온-프레미스 위치(사이트)를 라우팅 목적으로 나타낸다. 온-프레미스 VPN 디바이스의 IP 주소와, VPN 게이트웨이를 지나 그쪽으로 보낼 온-프레미스 주소 범위를 적는다. VPN 디바이스마다 하나 만든다 — 「Create a local network gateway」
+- VPN 연결은 가상 네트워크 게이트웨이와 온-프레미스 VPN 디바이스 사이에 만든다. 만들 때 그 VPN 게이트웨이와 로컬 네트워크 게이트웨이를 고른다 — 「Create VPN connections」
+- 온-프레미스 VPN 디바이스는 호환되는 장비여야 하고 바깥에서 닿는 공용 IPv4 주소가 있어야 한다. VPN 게이트웨이도 공용 IP 주소를 쓴다 — 「Prerequisites」·「Create a VPN gateway」
+- 온-프레미스와 가상 네트워크의 주소 범위가 겹치면 트래픽이 뜻하지 않게 간다 — 「Prerequisites」·「Create a virtual network」 알림
+- 이 자습서는 활성-활성 게이트웨이를 고가용성에 권장하며 만든다. 기본 구성은 「Highly available」 항목대로 활성/대기다. **활성-활성은 쓰지 않는다**(guide 「배경」)
+- 게이트웨이 서브넷의 크기, 실제 주소 값, 미리 공유한 키, SKU는 **쓰지 않는다**
+- 한국어 표기: 로컬 네트워크 게이트웨이, 게이트웨이 서브넷(이름 `GatewaySubnet`), VPN 디바이스, 온-프레미스 VPN 디바이스, VPN 연결, 사이트 간
+
+쓰일 곳: `azure-virtual-networking.vpn-gateway`, `SiteToSiteVpnDiagram`
+
+## (phase 103) Azure VPN Gateway — VPN Gateway FAQ (VNet 간 절만)
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-04. 사본: `docs-vpn-gateway-vpn-gateway-vpn-faq.md`.
+
+- **VNet 간 트래픽은 인터넷이 아니라 Microsoft Azure 백본으로 다니고**, IPsec·IKE 암호화로 보호된다 — 「Does VNet-to-VNet traffic travel across the internet?」·「Is VNet-to-VNet traffic secure?」
+- 가상 네트워크끼리 잇는 데는 VPN 디바이스가 필요 없다. 온-프레미스도 함께 이을 때만 필요하다 — 「Do I need a VPN device to connect VNets together?」
+- 그래서 **피어링과 VNet 간 VPN은 둘 다 인터넷을 지나지 않고, 갈리는 것은 VPN 게이트웨이와 암호화 터널이 있는가다.** 피어링 쪽 근거는 「Azure virtual network peering」 항목(게이트웨이·암호화가 필요 없다)
+- 한국어 표기: VNet 간
+
+쓰일 곳: `azure-virtual-networking.peering`, `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`
+
+## (phase 103) Azure VPN Gateway — Design highly available gateway connectivity (기본 구성만)
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable
+
+확인한 날 2026-10-31. 「Last updated on」 2025-03-31. 사본: `docs-vpn-gateway-vpn-gateway-highlyavailable.md`.
+
+- VPN 게이트웨이는 기본으로 인스턴스 둘의 활성/대기 구성이고, 유지 관리나 뜻밖의 중단이 활성 쪽에 오면 대기 쪽이 저절로 이어받으며 그동안 잠깐 끊긴다 — 「About VPN gateway redundancy」. 시간 수치는 **쓰지 않는다**(Learn 단원 3과 수가 다르다)
+
+쓰일 곳: `azure-virtual-networking.vpn-gateway`
+
+## (phase 103) Azure ExpressRoute — ExpressRoute FAQ와 circuit peerings (근거 기록)
+https://learn.microsoft.com/en-us/azure/expressroute/expressroute-faqs
+https://learn.microsoft.com/en-us/azure/expressroute/expressroute-circuit-peerings
+
+확인한 날 2026-10-31. 「Last updated on」 FAQ 2026-03-31, circuit peerings 2026-08-28. 사본: `docs-expressroute-expressroute-faqs.md`·`docs-expressroute-expressroute-circuit-peerings.md`.
+
+- 프라이빗 연결은 서비스 공급자에게서 사고, 회로 하나는 공급자 하나에 대응하며, 회로를 여러 공급자로 여럿 둘 수 있다 — FAQ 「Can I have ExpressRoute circuits from different service providers?」 등. **연결 공급자를 「온-프레미스와 Microsoft 사이의 연결을 맡는 업체」로 푸는 근거로 쓴다**
+- 회로는 공급자·피어링 위치에 묶인 고정 대역폭을 갖는다 — circuit peerings. 대역폭 수치는 **쓰지 않는다**(guide 금지)
+- Azure까지 Layer 2를 넓히는 것은 지원하지 않는다 — FAQ. 계층은 **쓰지 않는다**(guide 「배경」)
+- 받은 문서에는 ExpressRoute 트래픽이 암호화된다는 말도, 되지 않는다는 말도 없다. **그래서 암호화 여부를 쓰지 않고 「보안이 높다」는 공용 인터넷을 지나지 않는다는 데서만 쓴다**
+
+쓰일 곳: `azure-virtual-networking.expressroute`, G37, `ExpressRouteDiagram`
+
+## (phase 103) Azure Resource Manager — Lock your Azure resources (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources
+
+확인한 날 2026-10-31. 「Last updated on」 2025-02-06. 사본: `docs-azure-resource-manager-management-lock-resources.md`와 `ko-` 판.
+
+- 잠금은 구독·리소스 그룹·리소스가 실수로 지워지거나 바뀌지 않게 한다 — 첫 문단. **`azure-dns`의 「리소스 잠금」 한 줄 풀이에만 쓴다**
+- 한국어 표기: 잠금, 리소스 잠금
+
+쓰일 곳: `azure-virtual-networking.azure-dns`
+
+## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-19. 사본: `docs-azure-monitor-platform-activity-log.md`와 `ko-` 판.
+
+- 활동 로그는 Azure 리소스의 관리 작업(만들기, 정책 변경 같은 것)을 기록해 나중에 살피거나 감사하게 한다 — 첫 문단. **`azure-dns`의 한 줄 풀이에만 쓴다**
+- 한국어 표기: 활동 로그
+
+쓰일 곳: `azure-virtual-networking.azure-dns`
+
+## (phase 103) Azure DNS — Overview of DNS zones and records
+https://learn.microsoft.com/en-us/azure/dns/dns-zones-records
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-14. 사본: `docs-dns-dns-zones-records.md`와 `ko-` 판.
+
+- 도메인 이름 등록 기관은 도메인 이름을 살 수 있게 해 주는 조직이다. 이름을 사면 그 아래의 DNS 계층을 다스릴 권리를 얻는다 — 「Domain names」
+- Azure DNS는 도메인을 호스트할 이름 서버를 주지만 도메인 이름을 파는 일은 지원하지 않는다 — 같은 절
+- 도메인을 호스트하려면 DNS 영역을 만들고 그 안에 레코드를 둔다. 예로 웹 사이트용 `www`나 메일 서버용 `mail` 같은 이름을 들고, A 레코드 `www`가 IP 주소를 가리키는 예를 보인다. **그래서 레코드를 「도메인 안의 어떤 이름이 어디를 가리키는지 적어 둔 항목」으로 푼다** — 「DNS zones」·「Record sets」
+- 레코드 유형 표와 레코드 집합의 세부는 **쓰지 않는다**
+- 한국어 표기: DNS 영역, 레코드, 레코드 집합, 도메인 이름 등록 기관(Learn 단원 5 한국어판의 「도메인 이름 등록자」는 같은 뜻이다 — 이 문서의 「등록 기관」을 쓴다)
+
+쓰일 곳: `azure-virtual-networking.azure-dns`
+
+## (phase 103) 한국어 표기 정리 — `azure-virtual-networking`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 5). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `virtual-network` | **가상 네트워크** | Learn 단원 2 한국어판·가상 네트워크 개요 한국어판 본문. 제품 이름 Azure Virtual Network는 옮기지 않는다 |
+| `subnets` | **서브넷** | Learn 단원 2 한국어판·Plan virtual networks 한국어판 |
+| `peering` | **가상 네트워크 피어링** | Learn 단원 2·피어링 개요 한국어판. 다른 지역을 잇는 것은 **글로벌 가상 네트워크 피어링**(FAQ 한국어판) |
+| `endpoints` | **퍼블릭 엔드포인트와 프라이빗 엔드포인트** | Learn 단원 2 한국어판. 목록 항목 이름 — **퍼블릭 엔드포인트**(Public Endpoint), **프라이빗 엔드포인트**(Private Endpoint) |
+| `vpn-gateway` | **VPN 게이트웨이** | Learn 단원 3 한국어판의 절 제목, VPN Gateway 개요 한국어판의 「VPN 게이트웨이」. 제품 이름은 Azure VPN Gateway |
+| `vpn-connection-types` | **VPN 게이트웨이 연결 유형** | 이름표 개념이라 한국어판 문구가 따로 없다 — Learn 단원 3의 「연결」. 목록 항목 이름 — **사이트 간**(Site-to-Site), **지점 및 사이트 간**(Point-to-Site), **VNet 간**(VNet-to-VNet) |
+| `expressroute` | **ExpressRoute** | Learn 단원 4 한국어판(옮기지 않는다). ExpressRoute 회로, 연결 공급자 |
+| `azure-dns` | **Azure DNS** | Learn 단원 5 한국어판(옮기지 않는다) |
+
+섞여 쓰인 표기와 고른 것:
+
+- **퍼블릭 / 공용** — 엔드포인트는 Learn 단원 2와 스토리지 프라이빗 엔드포인트 문서 한국어판이 모두 **「퍼블릭 엔드포인트」**, IP 주소는 공용 IP 주소 문서와 Learn 단원 2 한국어판이 모두 **「공용 IP 주소」**다. 한 문장 안에서 갈려도 한국어판대로 쓴다 — 「퍼블릭 엔드포인트는 공용 IP 주소를 쓴다」
+- **개인 / 프라이빗 / 사설** — step 0의 물음에 대한 답: IP 주소는 **「개인 IP 주소」**로 확정한다(Learn 단원 2, 개인 IP 문서 본문, 프라이빗 엔드포인트 개요 한국어판. 개인 IP 문서의 제목만 「프라이빗 IP 주소」다). 엔드포인트와 ExpressRoute의 연결은 한국어판대로 **「프라이빗 엔드포인트」·「프라이빗 연결」**이다. 네트워크 자체는 phase 102가 쓴 **「사설 네트워크」**를 잇는다. 프라이빗 연결은 처음 쓸 때 「공용 인터넷을 지나지 않는 연결」로 푼다
+- **지점 및 사이트 간 / 지점 간** — Learn 단원 2·3과 VPN Gateway 개요 한국어판이 **「지점 및 사이트 간」**이다(개요 한국어판의 다른 곳에는 「지점-사이트 간」도 있다). 「지점 간」은 Learn 단원 4 한국어판에서 point-to-point(이더넷 연결 모델)를 옮긴 말이고 용어집 2-22의 표현이라 쓰지 않는다
+- **사이트 간 / 사이트 및 사이트 간 / S2S** — 자습서 제목과 Learn 단원 3 한국어판의 **「사이트 간」**을 쓴다. VPN Gateway 개요 한국어판 한 줄의 「사이트 및 사이트 간」은 쓰지 않는다
+- **VNet 간 / 네트워크 간** — Learn 단원 3 한국어판은 「네트워크 간」, VPN Gateway 개요 한국어판은 **「VNet 간」**이다. 제품 문서의 이름인 「VNet 간」을 쓰고, VNet을 가상 네트워크로 한 번 푼다
+- **VPN 게이트웨이 / 가상 네트워크 게이트웨이** — 다른 것을 가리키는 낱말이다. 가상 네트워크 게이트웨이가 넓은 종류이고 VPN 게이트웨이는 그 한 종류다(Learn 단원 3). 본문은 「VPN 게이트웨이」로 쓰고 위 관계를 한 번 밝힌다
+- **VPN 디바이스 / VPN 장치** — 한국어판이 모두 **「VPN 디바이스」**다. guide의 「VPN 장치」는 잠정 표기이고, 도식 라벨도 「온-프레미스 VPN 디바이스」로 쓴다
+- **게이트웨이 서브넷** — 자습서 한국어판. 그 서브넷의 이름은 `GatewaySubnet`이다(이름 자체가 정해져 있다)
+- **온-프레미스** — phase 100의 표기를 잇는다. Learn 단원 2 한국어판도 같다
+- **애니캐스트 네트워킹 / 이름 서버 / 별칭 레코드 / 활동 로그 / 리소스 잠금** — Learn 단원 5 한국어판
