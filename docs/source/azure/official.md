@@ -192,8 +192,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 쓰인 곳(phase 102 step 1): `azure-regions-zones.datacenter`(데이터 센터의 정의와 랙, 온-프레미스 데이터 센터보다 훨씬 크다, 고객은 데이터 센터를 직접 다루지 않고 지역·가용성 영역으로 고른다),
 `azure-regions-zones.region`(정의, 배포할 때 지역을 고른다, Azure가 지역 안의 리소스를 배정·관리한다, 일부 서비스·VM 기능은 일부 지역에만, 지역을 고르지 않는 서비스의 예), az039·az040·az041 해설, `AzureRegionDiagram`
 
-쓰일 곳(phase 102): `azure-regions-zones.availability-zones`(정의·격리 경계·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건),
-`azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM·관리 디스크·IP 주소, 영역 중복의 영역 중복 스토리지·SQL Database. 나눔과 이름은 현행), `azure-regions-zones.region-pairs`(짝지은 까닭, 고객이 복구·복제를 구성, 짝의 예, 덧붙은 이점 셋, 한 방향 짝, 짝 없는 지역 — 「현행 문서와 다름」 1~3을 따른다),
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의·격리 경계·빠른 사설 네트워크·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건 — 자연재해를 예로·그보다 큰 대비로 지역 쌍),
+`azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM, 영역 중복의 영역 중복 스토리지·SQL Database. 관리 디스크·IP 주소는 예로 쓰지 않았다. 나눔과 이름은 현행), az042·az043·az044 해설, `ZoneIsolationDiagram`
+
+쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(짝지은 까닭, 고객이 복구·복제를 구성, 짝의 예, 덧붙은 이점 셋, 한 방향 짝, 짝 없는 지역 — 「현행 문서와 다름」 1~3을 따른다),
 `azure-regions-zones.sovereign-regions`(정의와 예 둘), D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 쓴다**
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
@@ -751,7 +753,9 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 - 한국어 표기: business continuity → 비즈니스 연속성, high availability → 고가용성, disaster recovery → 재해 복구, fault tolerance → **내결함성**, redundancy → 중복성(로컬·영역·지역 중복성), failover → 장애 조치(failover), scalability and elasticity → 확장성 및 탄력성
 - **장애 조치**: 재해 복구 계획에서 다른 곳에 두 번째 배포를 갖춰 두고, 주 배포가 재해를 입으면 트래픽을 그쪽으로 넘기는 것이다. 주 인스턴스가 실패했음을 알아차리고 보조 인스턴스로 바꾸기까지 보통 시간이 걸린다 — 「Failover and failback」 (phase 102)
 
-쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(장애 조치를 푸는 한 줄 — 멈춘 쪽이 하던 일을 다른 쪽이 넘겨받는 것), `azure-regions-zones.availability-zones`(중복을 푸는 한 줄 — 위 「중복성」 줄)
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(중복을 푸는 한 줄 — 위 「중복성」 줄), `azure-regions-zones.zone-service-categories`(장애 조치를 푸는 한 줄 — 멈춘 쪽이 하던 일을 미리 갖춰 둔 다른 쪽이 넘겨받는 것. 이 주제에서 장애 조치를 처음 푼 자리다), az044 해설
+
+쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(장애 조치 — 같은 주제의 `zone-service-categories`가 이미 풀었다)
 
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
@@ -794,8 +798,9 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있고 Microsoft Entra ID는 데이터를 둘 지리를 고르게 한다), az040·az041 해설, `AzureRegionDiagram`
 
-쓰일 곳(phase 102): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐),
-`azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적을 수 있다), D38·G20·G21·G23
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐)
+
+쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적을 수 있다), D38·G20·G21·G23
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is a container?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-container
@@ -1222,6 +1227,8 @@ https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-ove
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(Azure에서의 예 — SQL Database가 PaaS라는 근거, 업그레이드·패치·백업 같은 관리 대부분을 사람 손 없이 처리한다), D32·D34
 
+쓰인 곳(phase 102 step 2): `azure-regions-zones.zone-service-categories`(Azure SQL Database를 푸는 한 구절 — 업그레이드·백업 같은 관리를 Azure가 대신 처리하는 데이터베이스 서비스)
+
 ## (phase 101) Azure Cosmos DB — introduction
 https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
 
@@ -1275,8 +1282,8 @@ https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
 - 영역을 지원하는 지역의 표에서 영역 수는 대부분 셋이고 미국 동부 2는 넷이다 — 「Regions with availability zones」(지역마다의 목록은 바뀌므로 적지 않는다. 「최소 셋」이 「언제나 셋」이 아니라는 근거로만 쓴다)
 - 한국어 표기: availability zone → 가용성 영역(제목 「가용성 영역이란?」), types of availability zone support → **가용성 영역 지원 유형**(절 제목), zone-redundant resource → 영역 중복 리소스, zonal resource → 영역 리소스, nonzonal resource → 비 영역 리소스(띄어 씀), regional deployment → 지역 배포, outage → 중단, failover → 장애 조치, datacenter → 데이터 센터
 
-쓰일 곳: `azure-regions-zones.availability-zones`(정의, 랙·클러스터 장애에도, 데이터 센터 하나로는 이 보호가 안 됨, 영역 사이 거리의 질적 설명, 지역 전체 중단은 막지 못함, 영역 사이 전송 요금 없음, 「영역 1·2·3」 이름표),
-`azure-regions-zones.zone-service-categories`(지원 유형의 나눔과 이름, 누가 복제하고 누가 장애 조치를 맡는가, 비영역 배포), D39·D40·D45·G22
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의, 랙 장애에도 — 클러스터는 쓰지 않았다, 데이터 센터 하나로는 이 보호가 안 됨, 영역 사이 거리의 질적 설명, 지역 전체 중단은 막지 못함, 영역 사이 전송 요금 없음, 「영역 1·2·3」 이름표),
+`azure-regions-zones.zone-service-categories`(지원 유형의 나눔과 이름, 누가 복제하고 누가 장애 조치를 맡는가, 저절로 되는 서비스와 고객이 구성하는 서비스, 비영역 배포), az042·az043·az044 해설, `ZoneIsolationDiagram`, D39·D40·D45(D45는 쓰지 않은 근거)·G22
 
 ## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
 https://learn.microsoft.com/en-us/azure/reliability/regions-paired
@@ -1310,7 +1317,7 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), az040·az041 해설, `AzureRegionDiagram`
 
-쓰일 곳: `azure-regions-zones.zone-service-categories`(비지역 서비스가 가용성 영역 지원 유형과 다른 갈래라는 근거)
+쓰인 곳(phase 102 step 2): `azure-regions-zones.zone-service-categories`(비영역 리소스와 비지역 서비스를 가르는 문단 — 비지역 서비스는 가용성 영역 지원 유형과 다른 갈래다)
 
 ## (phase 102) Microsoft Entra — What is Microsoft Entra?
 https://learn.microsoft.com/en-us/entra/fundamentals/whatis

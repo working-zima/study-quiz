@@ -150,6 +150,7 @@ import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
@@ -350,6 +351,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-service-types.shared-responsibility-model': SharedResponsibilityDiagram,
   'azure-service-types.saas': ServiceTypesTable,
   'azure-regions-zones.region': AzureRegionDiagram,
+  'azure-regions-zones.availability-zones': ZoneIsolationDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

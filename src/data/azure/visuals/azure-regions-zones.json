@@ -45,6 +45,54 @@
         "azure-regions-zones.datacenter",
         "azure-regions-zones.region"
       ]
+    },
+    "availability-zones": {
+      "label": "가용성 영역 셋에 나눠 둔 VM이 영역 하나가 멈출 때와 지역 전체가 멈출 때 어떻게 되는지 보는 도식",
+      "svgLabel": "지역 A 안에 가용성 영역 셋이 있고, 영역 1·영역 2·영역 3마다 데이터 센터 하나와 VM 한 대가 있다",
+      "question": "영역마다 나눠 둔 VM은 영역 하나가 멈출 때와 지역 전체가 멈출 때 어떻게 될까?",
+      "idleCaption": "회사 A는 지역 A의 영역 1·영역 2·영역 3에 VM을 한 대씩 두었다. 버튼을 고르면 영역 하나가 멈출 때와 지역 전체가 멈출 때 VM이 어떻게 되는지 볼 수 있다.",
+      "legend": "큰 박스는 지역이고, 그 안의 박스 셋은 가용성 영역이다. 영역마다 데이터 센터를 하나씩 그렸지만 영역 하나에 데이터 센터가 여럿일 수도 있다. VM을 세 대 둔 것은 예다. 흐리게 그린 노드는 멈춘 것이다.",
+      "nodes": {
+        "dc-1": "데이터 센터",
+        "vm-1": "VM 1",
+        "dc-2": "데이터 센터",
+        "vm-2": "VM 2",
+        "dc-3": "데이터 센터",
+        "vm-3": "VM 3"
+      },
+      "groups": {
+        "region": "지역 A",
+        "zone-1": "영역 1",
+        "zone-2": "영역 2",
+        "zone-3": "영역 3"
+      },
+      "notes": {
+        "region-note": "지역 전체 중단",
+        "zone-1-note": "중단",
+        "zone-2-note": "계속 동작",
+        "zone-3-note": "계속 동작"
+      },
+      "scenarios": [
+        {
+          "id": "zone-down",
+          "label": "영역 하나 중단",
+          "caption": "영역 1이 멈추면 그 안의 VM 1도 멈춘다. 하지만 영역마다 전원·냉각·네트워크가 따로라서, 영역 2와 영역 3에 둔 VM 2와 VM 3은 계속 동작한다.",
+          "sources": [
+            "azure-regions-zones.availability-zones"
+          ]
+        },
+        {
+          "id": "region-down",
+          "label": "지역 전체 중단",
+          "caption": "지역 A 전체에 미칠 만큼 큰 사건이 일어나면 영역 셋이 함께 멈추고 VM 셋도 모두 멈춘다. 가용성 영역은 지역 전체의 중단을 막지 못하므로, 이에 대비하려면 리소스를 다른 지역에도 둔다.",
+          "sources": [
+            "azure-regions-zones.availability-zones"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-regions-zones.availability-zones"
+      ]
     }
   },
   "tables": {},
