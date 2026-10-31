@@ -968,9 +968,16 @@ https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
 확인한 날 2026-10-30. 사본: `docs-ddos-protection-overview.md`와 `ko-` 판. (DDoS Protection 서비스는 이 주제에서 이름을 쓰지 않는다. DDoS 공격을 푸는 근거로만 적는다.)
 
 - DDoS 공격은 앱의 리소스를 바닥내 정상 사용자가 그 앱을 쓸 수 없게 하려는 공격이다. 인터넷에서 누구나 닿을 수 있는 끝점은 모두 대상이 될 수 있다 — 「첫 문단」
+- DDoS Protection은 가상 네트워크의 특정 Azure 리소스에 맞춰 저절로 조정되고, 새 가상 네트워크든 있는 가상 네트워크든 앱이나 리소스를 바꾸지 않고 켠다 — 「둘째 문단」 (phase 103)
+- 앱의 트래픽을 늘 지켜보다 공격의 낌새를 찾으면 저절로 완화한다 — 「Always-on traffic monitoring」. 공격 중에는 일정 간격의 보고서를, 끝나면 요약을 준다 — 「Attack analytics」. 공격의 시작·끝에 경고를 받을 수 있다 — 「Attack alerting」 (phase 103)
+- 네트워크 쪽(계층 3·4)을 지키고, 웹 앱 쪽(계층 7)은 웹 애플리케이션 방화벽을 더해야 한다 — 「셋째 문단」·「Multilayered protection」 (phase 103)
+- DDoS Network Protection을 켜면 그 가상 네트워크의 리소스가, DDoS IP Protection을 켜면 그 공용 IP 주소가 보호된다. 후자는 보호 계획이 필요 없고, 전자의 계획 하나는 테넌트 안 여러 구독에 쓸 수 있다. 차이는 신속 대응 지원·비용 보호·WAF 할인이다 — 「Turnkey protection」·「Pricing」·「DDoS IP Protection」 (phase 103)
+- 가상 네트워크에 두지 않는 서비스에는 기본 인프라 수준 보호가 적용되어 흔한 네트워크 공격을 막는다 — 「Architecture」 (phase 103)
 - 한국어 표기: 이 문서의 한국어판은 DDoS를 「배포된 서비스 거부」로 잘못 옮겼다. Learn 「Describe the benefits of using cloud services」 단원 4 한국어판의 **DDoS(분산 서비스 거부)** 를 쓴다
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(DDoS 공격을 푸는 한 줄)
+
+쓰일 곳(phase 103): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
 
 ## (phase 101) Cloud Adoption Framework — Build a cloud governance team
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
@@ -2508,3 +2515,300 @@ https://learn.microsoft.com/en-us/azure/cdn/cdn-overview
 - **게이트웨이 서브넷** — 자습서 한국어판. 그 서브넷의 이름은 `GatewaySubnet`이다(이름 자체가 정해져 있다)
 - **온-프레미스** — phase 100의 표기를 잇는다. Learn 단원 2 한국어판도 같다
 - **애니캐스트 네트워킹 / 이름 서버 / 별칭 레코드 / 활동 로그 / 리소스 잠금** — Learn 단원 5 한국어판
+
+## (phase 103) Azure Virtual Network — Azure network security groups overview
+https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-15. 사본: `docs-virtual-network-network-security-groups-overview.md`와 `ko-` 판.
+
+- 네트워크 보안 그룹은 가상 네트워크 안 Azure 리소스의 트래픽을 거르는 리소스이고, 들어오거나 나가는 트래픽을 허용하거나 막는 보안 규칙을 담는다 — 첫 문단
+- 규칙의 속성은 일곱이다 — 이름, 우선순위, 원본 또는 대상, 프로토콜, 방향, 포트 범위, 작업 — 「Security rules」의 표
+- 우선순위는 100~4096의 수다. **번호가 낮을수록 먼저 처리하고, 트래픽이 어떤 규칙에 맞으면 거기서 처리를 멈춘다.** 그래서 뒤의 규칙은 보지 않는다 — 같은 표 「Priority」
+- 우선순위와 방향이 모두 같은 규칙은 둘 만들 수 없다 — 표 다음 문단
+- 원본·대상에는 모두(Any), IP 주소 하나, 주소 범위, **서비스 태그, 애플리케이션 보안 그룹**을 쓸 수 있다 — 표 「Source or destination」. **그래서 NO.68의 「애플리케이션 보안 그룹만」은 틀리다**(D61). 한 규칙에 서비스 태그나 애플리케이션 보안 그룹을 여럿 쓰지는 못한다 — 같은 칸(세부라 쓰지 않는다)
+- 프로토콜은 TCP·UDP·ICMP 또는 모두(Any)로 고른다(ESP·AH는 포털에 없어 쓰지 않는다) — 표 「Protocol」. 방향은 인바운드나 아웃바운드, 작업은 허용이나 거부다 — 표 「Direction」·「Action」
+- **상태 저장**: 이미 맺어진 연결마다 흐름 기록이 만들어져, 나가는 요청을 허용했으면 그 응답이 들어오는 규칙을 따로 만들지 않아도 되고, 들어오는 쪽을 허용했으면 나가는 응답도 마찬가지다. 들어오는 규칙이 꼭 필요한 것은 바깥에서 먼저 연결을 시작할 때다 — 표 다음 문단
+- 규칙을 지워도 이미 맺어진 연결은 끊기지 않는다. 규칙의 변경은 새 연결에만 적용된다 — 같은 곳의 다음 문단(세부라 쓰지 않아도 된다)
+- **기본 규칙**(만든 NSG마다 Azure가 넣는다) — 「Default security rules」. 들어오는 쪽: `AllowVNetInBound`(65000, 가상 네트워크끼리 허용), `AllowAzureLoadBalancerInBound`(65001, Azure 부하 분산 장치에서 오는 것 허용), `DenyAllInbound`(65500, 나머지 모두 거부). 나가는 쪽: `AllowVnetOutBound`(65000, 가상 네트워크끼리 허용), `AllowInternetOutBound`(65001, 인터넷으로 나가는 것 허용), `DenyAllOutBound`(65500, 나머지 모두 거부)
+- **그래서 인터넷에서 들어오는 트래픽은 `DenyAllInbound`에 걸린다.** 「인터넷 인바운드 거부」라는 이름의 규칙이 따로 있는 것은 아니다 — 위 표에서 읽는다. 기본 규칙에는 가장 낮은 우선순위(가장 큰 번호)가 붙어 고객이 만든 규칙이 먼저 처리된다 — 표 「Priority」
+- 기본 규칙은 지울 수 없고, 더 높은 우선순위(더 작은 번호)의 규칙으로 덮어쓴다 — 「Default security rules」 끝
+- 서비스 태그와 애플리케이션 보안 그룹의 정의도 이 문서에 짧게 있다. 강화된 보안 규칙(augmented)·보안 관리 규칙·흐름 시간 제한·포트 25 규칙은 **쓰지 않는다**
+- 한국어 표기: 네트워크 보안 그룹, 보안 규칙, 기본 보안 규칙(이 phase의 글은 「기본 규칙」으로 줄인다), 우선 순위(이 문서. 앱 글은 띄지 않고 「우선순위」 — 표기 정리), 원본 또는 대상, 프로토콜, 방향, 포트 범위, 작업, 인바운드, 아웃바운드, 서비스 태그, 애플리케이션 보안 그룹
+
+쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+
+## (phase 103) Azure Virtual Network — How network security groups filter network traffic
+https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-29. 사본: `docs-virtual-network-network-security-group-how-it-works.md`와 `ko-` 판.
+
+- **연결할 수 있는 곳**은 서브넷과 VM의 네트워크 인터페이스다. 같은 NSG를 서브넷과 네트워크 인터페이스 여럿에 연결할 수 있고, 그 수에 이 문서가 정한 제한은 없다 — 둘째 문단
+- **가상 네트워크 자체에 연결하지 못한다고 말하는 문장은 받은 문서 어디에도 없다.** 대상을 서브넷과 네트워크 인터페이스 둘로 드는 말(이 문서, 「Plan virtual networks」 「Traffic filtering」, 가상 네트워크 FAQ)과, 서브넷에 연결할 때 가상 네트워크를 먼저 찾은 뒤 그 안의 서브넷을 고르는 절차(「Create, change, or delete a network security group」)로 세운다. 그래서 본문은 「서브넷이나 네트워크 인터페이스에 연결한다」로 쓴다(D63)
+- 서브넷에 연결하면 그 서브넷의 모든 리소스에 같은 결과가 적용된다 — 「Inbound traffic」의 VM2. 네트워크 인터페이스에 연결하면 그 인터페이스가 붙은 VM에 걸린다 — 같은 절의 VM3
+- **들어오는 트래픽**은 서브넷의 NSG를 먼저, 그다음 네트워크 인터페이스의 NSG를 본다. 둘 다 연결된 VM으로 들어오려면 **둘 다** 허용해야 하고, 서브넷 쪽에서 막히면 뒤쪽은 보지 않는다 — 「Inbound traffic」의 VM1. **나가는 트래픽**은 거꾸로 네트워크 인터페이스 쪽이 먼저다 — 「Outbound traffic」
+- 같은 서브넷 안의 VM끼리도 NSG 규칙의 영향을 받는다. 기본 규칙이 허용하므로 평소에는 통신하지만, 서브넷에 연결한 NSG에 모두 거부하는 규칙을 넣으면 막힌다 — 「Intra-subnet traffic」
+- 공식 문서는 서브넷과 그 네트워크 인터페이스에 NSG를 함께 연결하지 말고 한쪽만 쓰라고 권한다. 규칙이 부딪혀 원인을 찾기 어렵기 때문이다 — 「Intra-subnet traffic」 끝의 Tip. **그래서 도식은 서브넷 NSG와 네트워크 인터페이스 NSG를 서로 다른 VM에 그린다**
+- NSG가 어디에도 없는 VM의 동작은 **쓰지 않는다** — 이 문서의 VM4는 표준 공용 IP 주소를 가진 VM의 이야기이고, 들어오는 쪽(막힘)과 나가는 쪽(통과)이 갈려 한 줄로 쓰면 틀리기 쉽다
+- 한국어 표기: 네트워크 보안 그룹, 서브넷, 네트워크 인터페이스, 인바운드 트래픽, 아웃바운드 트래픽
+
+쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgAssociationDiagram`, D63
+
+## (phase 103) Azure Virtual Network — Create, change, or delete a network security group
+https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-26. 사본: `docs-virtual-network-manage-network-security-group.md`와 `ko-` 판.
+
+- NSG를 서브넷에 연결할 때 포털에서 가상 네트워크를 고른 뒤 그 안의 서브넷을 고른다. 대상을 정하는 마지막 칸은 서브넷이다 — 「Associate or dissociate a network security group to or from a subnet」
+- 한국어 표기: 네트워크 보안 그룹, 연결(associate)
+
+쓰일 곳: `azure-network-protection.network-security-groups`, D63
+
+## (phase 103) Azure Virtual Network — Diagnose a virtual machine network traffic filter problem
+https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-08. 사본: `docs-virtual-network-diagnose-network-traffic-filter-problem.md`와 `ko-` 판.
+
+- **서브넷 하나와 네트워크 인터페이스 하나에 연결할 수 있는 NSG는 0개나 1개다.** 그 NSG는 서로 같아도 달라도 된다 — 본문의 VM 네트워크 인터페이스 설명. 「Plan virtual networks」 「Subnets」도 서브넷을 두고 같은 수를 말한다
+
+쓰일 곳: `azure-network-protection.network-security-groups`, `NsgAssociationDiagram`, D63
+
+## (phase 103) Azure Virtual Network — Create, change, or delete a network interface (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-28. 사본: `docs-virtual-network-network-interface.md`와 `ko-` 판.
+
+- 네트워크 인터페이스(NIC)는 VM이 인터넷·Azure·온-프레미스의 리소스와 통신하게 하는 것이다. **그래서 「VM이 네트워크에 연결되는 접속 부품」으로 푼다** — 첫 문단
+
+쓰일 곳: `azure-network-protection.network-security-groups`
+
+## (phase 103) Azure Virtual Network — Azure service tags overview
+https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-09-16. 사본: `docs-virtual-network-service-tags-overview.md`와 `ko-` 판.
+
+- 서비스 태그는 어떤 Azure 서비스가 쓰는 IP 주소 범위 묶음을 이름 하나로 가리키는 것이다. 주소 범위가 바뀌면 Microsoft가 태그를 고치므로 고객이 규칙을 고치지 않아도 된다 — 첫 문단
+- 보안 규칙의 원본·대상 칸에 서비스 태그 이름을 적는다. Azure Firewall 규칙에도 쓴다 — 「How service tags work」와 첫 부분
+- 기본 규칙 표의 `VirtualNetwork`·`AzureLoadBalancer`·`Internet`도 IP 주소가 아니라 서비스 태그다 — NSG 개요의 「Default security rules」
+- 태그 목록은 **쓰지 않는다**
+- 한국어 표기: 서비스 태그
+
+쓰일 곳: `azure-network-protection.security-rules`, D61
+
+## (phase 103) Azure Virtual Network — Application security groups
+https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-25. 사본: `docs-virtual-network-application-security-groups.md`와 `ko-` 판.
+
+- 애플리케이션 보안 그룹은 VM(의 네트워크 인터페이스)을 앱의 역할에 따라 묶는 이름표이고, 규칙의 원본·대상에 IP 주소 대신 그 묶음을 적는다 — 첫 문단
+- 예시 규칙에서 인터넷에서 웹 서버 묶음의 TCP 포트 80으로 들어오는 것을 우선순위 100으로 허용한다. 그런 규칙이 없는 묶음은 `DenyAllInbound` 때문에 인터넷에서 들어오는 트래픽을 받지 못한다 — 「Allow-HTTP-Inbound-Internet」. 데이터베이스 묶음에는 허용 규칙(110)과 모두 거부 규칙(120)을 함께 두어 작은 번호가 먼저 처리되는 것을 이용한다 — 「Allow-Database-BusinessLogic」. **`NsgRuleOrderDiagram`의 「우선순위 100의 허용과 기본 거부」는 이 예와 같은 짜임이다**
+- 예시 이름(`AsgWeb` 등)은 **쓰지 않는다**
+- 한국어 표기: 애플리케이션 보안 그룹
+
+쓰일 곳: `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+
+## (phase 103) Learn 「Fundamentals of computer networking」 — Network protocols (한 줄 풀이만)
+https://learn.microsoft.com/en-us/training/modules/network-fundamentals/4-network-protocols
+
+확인한 날 2026-11-01. 쪽에 날짜 표시 없음. 사본: `learn-network-fundamentals-4-network-protocols.md`와 `ko-` 판. 이 주제의 낱말을 푸는 근거로만 쓴다.
+
+- 프로토콜은 네트워크 장치끼리 어떻게 통신할지 정한 조건과 규칙이다 — 「Network protocols」의 첫 문장
+- 포트는 들어오는 메시지를 컴퓨터 안의 어느 프로그램에 줄지 가르는 번호이고, 0~65535 범위다. 서비스마다 자기 번호가 있다 — 「Ports」
+- 잘 알려진 포트 번호 표에서 웹의 HTTP는 80이다 — 「Well-known port numbers」. **예시 포트로 쓴다(guide 「예시 값」)**
+- HTTPS는 HTTP에 TLS·SSL 암호화를 더한 것이다 — 「Network security protocols」. **암호화가 필요할 때 쓰는 것의 근거 둘 가운데 하나다**(다른 하나는 VPN Gateway 개요)
+- `트래픽`을 따로 정의한 문장은 찾지 못했다. 공식 문서는 network traffic을 설명 없이 쓴다. **앞 주제의 글처럼 「네트워크로 오가는 데이터」로 푼다.** 사실 주장이 아니라 낱말 풀이다
+- 한국어 표기: 프로토콜, 포트, 포트 번호
+
+쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `azure-network-protection.azure-firewall`, `NsgRuleOrderDiagram`, D64
+
+## (phase 103) Azure Firewall — What is Azure Firewall?
+https://learn.microsoft.com/en-us/azure/firewall/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-09. 사본: `docs-firewall-overview.md`와 `ko-` 판.
+
+- Azure Firewall은 Azure의 클라우드 워크로드를 지키는 네트워크 방화벽 서비스이고, 상태 저장 방화벽을 서비스로 받는 것이며 고가용성이 들어 있다 — 첫 문단. 「최상위」·「지능형」은 꾸밈말이라 옮기지 않는다
+- 종류(SKU)는 Basic·Standard·Premium 셋이다 — 첫 부분. Basic은 위협 인텔리전스를 경고로만 쓰고 실행 규모가 고정이다. Standard는 네트워크 계층부터 앱 계층까지 거르며 알려진 악성 IP 주소·도메인의 트래픽을 알리고 막는다 — 「Azure Firewall Basic」·「Azure Firewall Standard」. **이름까지만 쓴다.** Premium의 세부, 처리량 수치는 쓰지 않는다
+- **이 문서 첫 문단의 「무제한 클라우드 확장」을 그대로 쓰지 않는다.** 같은 문서가 Basic의 규모를 고정이라 하고 기능 문서가 종류마다 상한을 둔다(`Azure Firewall features by SKU`). 「트래픽이 늘면 저절로 규모가 커진다(종류마다 상한이 있다)」까지로 쓴다. 수치는 쓰지 않는다
+- Azure Firewall Manager는 여러 구독의 Azure Firewall을 한곳에서 관리하는 자리이고, 방화벽 정책으로 같은 규칙을 여러 방화벽에 적용한다 — 「Azure Firewall Manager」
+- Azure Firewall·Azure DDoS Protection·Azure Web Application Firewall은 Azure의 네트워크 보안 범주로 함께 묶이고, 서비스마다 하는 일이 다르다 — 첫 부분의 메모
+- 한국어 표기: 제품 이름 Azure Firewall(옮기지 않는다), 상태 저장(`features` 한국어판. 이 문서 한국어판은 「상태 유지형」 — 표기 정리), 고가용성, 워크로드, 방화벽 정책, Basic·Standard·Premium(이 문서 한국어판은 기본·표준·프리미엄 — 표기 정리)
+
+쓰일 곳: `azure-network-protection.azure-firewall`, `FirewallHubDiagram`
+
+## (phase 103) Azure Firewall — Azure Firewall features by SKU
+https://learn.microsoft.com/en-us/azure/firewall/features
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-14. 사본: `docs-firewall-features.md`와 `ko-` 판.
+
+- 고가용성이 들어 있어 부하 분산 장치를 더하거나 구성할 것이 없다 — 「Key Basic features」·「Built-in high availability and Availability Zones」
+- 네트워크 규칙: 원본·대상 IP 주소, 포트, 프로토콜로 허용하거나 거부한다 — 「Network traffic filtering rules」
+- 애플리케이션 규칙: 나가는 HTTP·HTTPS(또는 Azure SQL) 트래픽을 정해 둔 도메인 이름 목록으로 좁힌다 — 「Application FQDN filtering rules」. FQDN이라는 말은 **쓰지 않고** 「도메인 이름」으로 쓴다
+- **NAT**: 인터넷에서 방화벽의 공용 IP 주소로 들어온 트래픽의 주소를 가상 네트워크 안의 개인 IP 주소로 바꿔 넘긴다(DNAT). 나가는 트래픽은 출발지를 방화벽의 공용 IP 주소로 바꾼다(SNAT) — 「Inbound DNAT support」·「Outbound SNAT support」. **그래서 NAT를 「주소를 다른 주소로 바꿔 넘기는 일」로 푼다.** NO.31의 답(NAT 규칙)은 맞다
+- 위협 인텔리전스: 알려진 악성 IP 주소·도메인과 오가는 트래픽을 Basic은 경고만 하고 Standard·Premium은 경고하거나 막는다 — 비교 표
+- 상태 저장: 연결의 종류마다 정상 패킷을 구별한다 — 「Network traffic filtering rules」. 비교 표의 첫 줄이 상태 저장 방화벽이고 셋 다 해당한다. 상태 저장의 뜻 자체는 NSG 개요의 설명(응답을 따로 허용하지 않아도 된다)으로 푼다
+- 규모: 세 종류 모두 트래픽이 늘면 저절로 커지되 종류마다 상한이 있다 — 비교 표의 「Cloud scalability」. **수치는 쓰지 않는다**(guide 금지)
+- Firewall Manager로 중앙 관리하는 것은 세 종류 모두 된다 — 비교 표의 「Central management via Firewall Manager」
+- 한국어 표기: 상태 저장 방화벽, 기본 제공 고가용성, 네트워크 필터링 규칙, 위협 인텔리전스, 자동 크기 조정
+
+쓰일 곳: `azure-network-protection.azure-firewall`, G40
+
+## (phase 103) Azure Firewall — Configure Azure Firewall rules
+https://learn.microsoft.com/en-us/azure/firewall/rule-processing
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-02. 사본: `docs-firewall-rule-processing.md`와 `ko-` 판.
+
+- 규칙 종류는 **NAT 규칙·네트워크 규칙·애플리케이션 규칙** 셋이다. **아무 규칙도 없으면 모든 트래픽을 거부하고**, 허용하는 규칙을 구성해야 지나간다. 규칙에 맞으면 거기서 처리를 멈춘다 — 첫 문단
+- 처리 순서는 종류끼리는 언제나 DNAT 규칙 → 네트워크 규칙 → 애플리케이션 규칙이다 — 「Rule processing by using Firewall Policy」의 요약. **쓰지 않아도 된다** — 규칙 컬렉션 그룹과 우선순위 세부는 쓰지 않는다
+- NSG와의 차이로 쓸 수 있는 것: NSG는 기본 규칙이 가상 네트워크 안을 허용하지만, Azure Firewall은 허용 규칙이 없으면 모두 거부한다(이 문서 첫 문단 + NSG 개요의 기본 규칙)
+- 한국어 표기: NAT 규칙, 네트워크 규칙, 애플리케이션 규칙(한국어판 그대로), 방화벽 정책
+
+쓰일 곳: `azure-network-protection.azure-firewall`
+
+## (phase 103) Azure Firewall — Azure Firewall FAQ
+https://learn.microsoft.com/en-us/azure/firewall/firewall-faq
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-14. 사본: `docs-firewall-firewall-faq.md`와 `ko-` 판.
+
+- 구독과 가상 네트워크에 걸쳐 앱과 네트워크 연결에 대한 정책을 **한곳에서 만들고 적용하고 기록한다** — 「What is Azure Firewall?」. **「중앙」은 이 말로 쓴다**
+- **NSG와의 차이**: 둘은 함께 쓰는 관계다. NSG는 구독마다 가상 네트워크 안에 흩어져 놓이며 네트워크 계층에서 거르고, Azure Firewall은 구독과 가상 네트워크를 가로질러 한곳에서 네트워크 수준과 앱 수준으로 지킨다 — 「What is the difference between Network Security Groups (NSGs) and Azure Firewall?」
+- 흔한 배치는 중앙 가상 네트워크에 방화벽을 두고 다른 가상 네트워크를 그곳에 피어링한 뒤, 그들의 기본 경로가 방화벽을 가리키게 하는 허브-스포크다. 가상 네트워크마다 방화벽을 두지 않아도 된다. 어떤 가상 네트워크에도 배포할 수는 있다 — 「What is the typical deployment model for Azure Firewall?」. **`FirewallHubDiagram`의 근거다.** 경로·허브-스포크 설계 방법과 이름은 **쓰지 않고** 「피어링으로 이어 트래픽이 방화벽을 지나게 한다」까지만 쓴다
+- **그래서 「방화벽 하나를 두면 저절로 모든 가상 네트워크가 보호된다」로 쓰지 않는다.** 트래픽이 방화벽을 지나도록 이어 두어야 한다. NO.127·197·432의 답(Azure Firewall)은 맞고 이 조건은 덤프에 없다
+- **「NSG 하나로는 여러 가상 네트워크를 걸 수 없다」로 쓰지 않는다.** 같은 NSG를 서브넷 여럿에 연결할 수 있다(`How network security groups filter network traffic`). 경계는 「구독마다 흩어져 놓이는 규칙 / 구독과 가상 네트워크를 가로질러 한곳에서」다
+- 웹 앱 쪽의 차이: Application Gateway WAF는 웹 앱으로 들어오는 흔한 공격을 막고, Azure Firewall은 HTTP·HTTPS 밖의 프로토콜로 들어오는 것과 나가는 트래픽을 지킨다 — 「What is the difference between Application Gateway WAF and Azure Firewall?」(WAF는 쓰지 않는다 — 금지 범위)
+- 한국어 표기: NSG(네트워크 보안 그룹), 심층 방어(이 phase에서는 쓰지 않는다)
+
+쓰일 곳: `azure-network-protection.azure-firewall`, `FirewallHubDiagram`, G40
+
+## (phase 103) Azure Firewall Manager — What is Azure Firewall Manager?
+https://learn.microsoft.com/en-us/azure/firewall-manager/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-01-27. 사본: `docs-firewall-manager-overview.md`와 `ko-` 판.
+
+- Azure Firewall Manager는 여러 지역과 구독에 걸친 Azure Firewall 인스턴스를 한곳에서 배포하고 구성하는 보안 관리 서비스다. 조직 전체 규칙을 전역 방화벽 정책으로 두고 팀마다 지역 정책을 더할 수 있다 — 「Central Azure Firewall deployment and configuration」·「Hierarchical policies」
+- **이름과 한 줄 풀이만 쓴다.** 보안 가상 허브, 허브 가상 네트워크, 파트너 공급자는 **쓰지 않는다**
+- 한국어 표기: Azure Firewall Manager(옮기지 않는다), 방화벽 정책
+
+쓰일 곳: `azure-network-protection.azure-firewall`
+
+## (phase 103) Azure Firewall — Azure Firewall Premium features (암호화의 경계만)
+https://learn.microsoft.com/en-us/azure/firewall/premium-features
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-09. 사본: `docs-firewall-premium-features.md`와 `ko-` 판.
+
+- Premium의 TLS 검사는 **이미 암호화된** 나가는 연결을 풀어 살펴본 뒤 다시 암호화해 보낸다. 검사하지 않으면 방화벽은 TLS 터널 안의 내용을 보지 못한다 — 「TLS inspection」
+- **그래서 「Azure Firewall에는 암호화와 관련된 기능이 전혀 없다」로 쓰지 않는다**(D64). 암호화되지 않은 트래픽을 대신 암호화하는 기능으로 든 곳은 받은 문서에 없다. TLS 검사 자체는 이 주제에 **쓰지 않는다**
+
+쓰일 곳: D64
+
+## (phase 103) Azure DDoS Protection — About Azure DDoS Protection tier comparison
+https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comparison
+
+확인한 날 2026-11-01. 「Last updated on」 2026-03-17. 사본: `docs-ddos-protection-ddos-protection-sku-comparison.md`와 `ko-` 판.
+
+- 고르는 **계층은 DDoS IP Protection과 DDoS Network Protection 둘**이다 — 「Tiers」
+- 두 계층 모두 늘 켜진 감시, 자동 완화, 지표와 경고, **완화 보고서**, 흐름 로그를 준다. **DDoS 신속 대응 지원, 비용 보호, WAF 할인은 Network Protection에만 있다** — 같은 표
+- 표 아래 메모: 추가 비용 없이 **DDoS 인프라 보호**가 공용 IPv4·IPv6 주소를 쓰는 모든 Azure 서비스를 지킨다. 구성이 필요 없다 — 「Tiers」 끝의 메모
+- Basic이라는 말은 이 표에 공용 IP 주소의 계층(Public IP Basic tier)으로만 나온다. DDoS Protection 자체의 종류가 아니다 — 같은 표. **옛 이름과 헷갈리지 않게 쓰지 않는다**
+- 제한(NAT 게이트웨이의 공용 IP 주소 등)과 가격 기준은 **쓰지 않는다**
+- 한국어 표기: 아래 「한국어 표기 정리」
+
+쓰일 곳: `azure-network-protection.ddos-protection`, D62, G39
+
+## (phase 103) Azure DDoS Protection — Types of attacks Azure DDoS Protection mitigates
+https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-01. 사본: `docs-ddos-protection-types-of-attacks.md`와 `ko-` 판.
+
+- DDoS Protection이 완화하는 것은 네트워크 쪽 공격이다 — 많은 양을 퍼붓는 공격과 프로토콜의 약점을 노린 공격. 대량 공격은 Azure의 네트워크 규모로 받아 걸러 내고, 프로토콜 공격은 악성 트래픽과 정상 트래픽을 가려 악성 쪽을 막는다 — 첫 부분과 앞의 두 항목
+- **웹 앱 계층의 공격(SQL 주입, 교차 사이트 스크립팅, HTTP 프로토콜 위반 등)은 웹 애플리케이션 방화벽을 함께 써야 한다** — 첫 문장과 셋째 항목. **「DDoS Protection이 하지 않는 일」의 근거다.** 웹 애플리케이션 방화벽은 이 한 줄만 쓴다. 계층 번호(3·4·7)는 쓰지 않는다(guide 「배경」) — 「네트워크 쪽」·「웹 앱 쪽」으로 쓴다
+- 공격 이름 표는 **쓰지 않는다**
+- 한국어 표기: 웹 애플리케이션 방화벽(WAF), SQL 주입
+
+쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
+
+## (phase 103) Azure DDoS Protection — Azure DDoS Protection FAQ
+https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-faq
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-02. 사본: `docs-ddos-protection-ddos-faq.md`와 `ko-` 판.
+
+- **무엇을 지키는가**: 계층을 켜서 지키는 대상은 가상 네트워크(ARM 기반)의 공용 IP 주소이고, VM·부하 분산 장치·Azure Firewall·VPN 게이트웨이 등에 붙은 공용 IP 주소가 든다 — 「What are the supported protected resource types?」. 스토리지나 App Service처럼 여러 고객이 함께 쓰는 PaaS의 공용 IP 주소는 대상이 아니다 — 「Can I protect my PaaS resources using DDoS Protection?」
+- 기본 인프라 보호는 원격 분석도 경고도 주지 않고, 그 문턱이 대부분의 앱이 감당할 양보다 높다. 그래서 플랫폼에는 작은 양이어도 앱에는 큰일일 수 있다. 계층을 켜면 그 앱에 맞춘 문턱이 생긴다 — 「Are services unsafe in Azure without the service?」
+- **특정 IP 주소를 허용·차단 목록에 넣는 설정은 없다** — 「Can I allowlist/blocklist specific IP addresses?」. **그래서 NO.163은 맞다.** 트래픽을 열거나 막는 규칙은 NSG의 일이다
+- 웹 앱 쪽은 WAF와 함께 쓴다 — 「What about protection at the service layer (layer 7)?」
+- 한국어 표기: 공용 IP 주소
+
+쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+
+## (phase 103) Azure networking — DDoS protection for Azure networks
+https://learn.microsoft.com/en-us/azure/networking/design-guide/ddos
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-19. 사본: `docs-networking-design-guide-ddos.md`와 `ko-` 판.
+
+- 세 가지를 나란히 든다 — DDoS 인프라 보호(모든 Azure 고객에게 저절로, 추가 비용·구성 없음), DDoS Network Protection(계획 하나로 구독에 걸친 가상 네트워크의 공용 IP 주소), DDoS IP Protection(공용 IP 주소마다) — 「Azure services and features」의 표. **현행 종류는 이 표대로 쓴다.** 가격 칸의 수와 SLA는 **쓰지 않는다**
+- 계층을 켜면 앱의 평소 트래픽을 배워 문턱을 맞추고, 정상 트래픽이 몰리는 때를 공격으로 잘못 보는 일을 줄인다. UDP 쪽 정책은 대량 공격을 걸러 내면서 정상 앱 트래픽을 통과시킨다 — 「What each tier protects」. **「공격은 걸러지고 정상 트래픽은 통과한다」의 근거다**
+- 이 문서는 첫 절에서 앱 계층 공격까지 방어한다고도 적는다. 개요와 공격 유형 문서가 그쪽은 WAF의 몫이라 하므로 **앱 계층까지 막는다고 쓰지 않는다**
+- 한국어 표기: DDoS 인프라 보호, DDoS 네트워크 보호, DDoS IP 보호
+
+쓰일 곳: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+
+## (phase 103) Azure Traffic Manager — What is Azure Traffic Manager? (덤프 대조만)
+https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-19. 사본: `docs-traffic-manager-overview.md`와 `ko-` 판.
+
+- Traffic Manager는 DNS로 요청을 알맞은 서비스 끝점에 보내는 부하 분산 서비스다 — 첫 문단. VM 포트를 여는 일과 관계가 없다. **그래서 NO.7(아니요)은 맞다.** 개념 글에는 쓰지 않는다
+
+쓰일 곳: 없음(덤프 대조 기록)
+
+## (phase 103) Windows Server — netsh ipsec (덤프 대조만)
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh-ipsec
+
+확인한 날 2026-11-01. 「Last updated on」 2025-08-04. 사본: `docs-windows-server-netsh-ipsec.md`(영문만).
+
+- 적용 대상에 Windows Server 2016이 있고, IPsec은 IP 패킷을 암호화한다 — 첫 부분. **NO.284·483의 셋째 칸을 대조하는 데만 쓴다.** 설정법과 IPsec은 개념 글에 쓰지 않는다
+
+쓰일 곳: D64
+
+## (phase 103) Azure security — Azure network security overview (범주만)
+https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-07-20. 사본: `docs-security-network-overview.md`와 `ko-` 판.
+
+- 네트워크 보안은 네트워크 트래픽을 통제해 무단 접근과 공격에서 리소스를 지키는 일이라고 적는다 — 첫 문장. NSG는 IP 주소와 TCP·UDP 프로토콜을 기준으로 상태 저장 패킷 필터링을 한다 — 「Network security groups」
+- **세 서비스를 하나로 묶는 말로 쓴다.** 심층 방어, Defender for Cloud, Bastion, WAF의 세부는 **쓰지 않는다**
+
+쓰일 곳: `azure-network-protection.network-security-groups`, D64
+
+## (phase 103) 한국어 표기 정리 — `azure-network-protection`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 10). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `network-security-groups` | **네트워크 보안 그룹** | NSG 개요·작동 방식 문서 한국어판. 약어 NSG를 괄호로 함께 세운다 |
+| `security-rules` | **보안 규칙** | NSG 개요 한국어판 절 제목 「보안 규칙」 |
+| `azure-firewall` | **Azure Firewall** | 개요 한국어판(옮기지 않는다) |
+| `ddos-protection` | **Azure DDoS Protection** | 개요 한국어판(옮기지 않는다). DDoS는 phase 101이 정한 **DDoS(분산 서비스 거부)** — 이 문서 한국어판의 「배포된 서비스 거부」는 오역이라 쓰지 않는다 |
+
+규칙 속성과 기본 규칙:
+
+- **이름, 우선순위, 원본·대상, 프로토콜, 방향, 포트 범위, 작업** — NSG 개요 한국어판의 표. 「우선 순위」는 한국어 맞춤법과 앞 phase의 글에 맞춰 붙여 쓴다. **허용·거부**를 쓴다(작업의 값)
+- **인바운드·아웃바운드** — 처음 쓸 때 「들어오는 쪽」·「나가는 쪽」으로 푼다
+- **기본 규칙**(한국어판 「기본 보안 규칙」을 줄인다). 규칙 이름 `AllowVNetInBound`·`DenyAllInbound` 등은 옮기지 않고 코드 표기로 쓴다. 문서의 철자는 나가는 쪽이 `AllowVnetOutBound`이고 들어오는 쪽이 `AllowVNetInBound`다 — 그대로 옮긴다
+- **서비스 태그, 애플리케이션 보안 그룹** — 한국어판 그대로
+
+Azure Firewall:
+
+- **NAT 규칙, 네트워크 규칙, 애플리케이션 규칙** — 규칙 처리 문서 한국어판. **DNAT 규칙**이라는 이름은 쓰지 않는다
+- **상태 저장 / 상태 유지형** — 개요 한국어판은 「상태 유지형」, 기능·FAQ 한국어판과 NSG 쪽은 **「상태 저장」**이다. 「상태 저장」으로 쓴다
+- **SKU 이름** — 개요 한국어판의 기본·표준·프리미엄은 다른 뜻의 「기본」(기본 규칙, 기본 인프라 보호)과 헷갈린다. 영문 이름 **Basic·Standard·Premium**을 쓴다
+- **위협 인텔리전스, 방화벽 정책, 고가용성, 워크로드** — 기능·Firewall Manager 문서 한국어판
+
+Azure DDoS Protection:
+
+- **DDoS 인프라 보호**(Azure DDoS infrastructure protection) — 설계 가이드 한국어판
+- **DDoS 네트워크 보호**(DDoS Network Protection), **DDoS IP 보호**(DDoS IP Protection) — 개요 한국어판의 절 제목. 비교 표 한국어판은 영문 이름을 그대로 둔다. 목록 항목으로 쓰면 ADR-046의 꼴(`**DDoS 네트워크 보호**(DDoS Network Protection)는 …`)이 맞다
+- **계층** — 두 유료 종류를 묶는 말(개요 한국어판). 인프라 보호까지 셋을 말할 때는 「종류」로 쓴다
+- **웹 애플리케이션 방화벽(WAF)** — 공격 유형 문서 한국어판. 한 줄에만 쓴다
+- **공용 IP 주소, 개인 IP 주소, 부하 분산 장치, 네트워크 인터페이스, 서브넷** — `azure-compute`·`azure-virtual-networking` 표기를 잇는다
+
+**쓰지 않는 이름**: DDoS Protection Basic·Standard(옛 이름 — D62·G39), 강화된 보안 규칙, 허브-스포크, FQDN, TLS 검사, 심층 방어, Defender for Cloud, Azure Bastion.

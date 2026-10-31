@@ -892,3 +892,49 @@ Azure DNS(2-21)는 공식 문서와 어긋나지 않는다(DNSSEC은 받은 문�
 - **공식 문서**: 「What is a private endpoint?」는 Azure 서비스뿐 아니라 Private Link 서비스로 내놓은 고객 자신의 서비스도 대상으로 들고, 프라이빗 엔드포인트를 가상 네트워크의 개인 IP 주소를 쓰는 네트워크 인터페이스라 한다. 「Use private endpoints for Azure Storage」는 **프라이빗 엔드포인트를 만들어도 퍼블릭 엔드포인트의 연결이 저절로 막히지 않는다**고 한다. Learn 단원 2는 퍼블릭 엔드포인트를 공용 IP 주소를 가져 어디서나 닿는 것이라 한다.
 - **처리**: 한정해 쓴다. 대상은 「스토리지 계정 같은 Azure 서비스」로 예를 들어 쓰고 PaaS만이라고 쓰지 않는다. 「프라이빗 엔드포인트를 만들면 바깥에서 닿지 못한다」로 쓰지 않는다 — 퍼블릭 엔드포인트를 막는 일은 따로 한다고 쓴다. 퍼블릭 엔드포인트는 Learn 단원 2의 말대로 쓴다.
 - **쓰인 곳**: `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+
+phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-protection`인 24문항을 읽었고, 그림으로만 표시된 정답(NO.102·229·261·284·467·483)은 `raw/dump/img/`의 그림을 직접 봤다. NO.52·116·222(심층 방어 계층)는 `azure-security-model`의 몫이라 보지 않았다. NO.288은 D59가 이미 처리했다.
+용어집은 NSG(2-19)·Azure Firewall(2-44)·Azure DDoS Protection(3-11)을 봤다. NSG(2-19)는 공식 문서와 어긋나지 않는다.
+
+## D61 — NSG 인바운드 규칙의 원본을 「애플리케이션 보안 그룹만」으로 적는 것 (phase 103)
+
+- **덤프**: NSG 인바운드 규칙의 원본으로 쓸 수 있는 것을 묻고, 「IP 주소·서비스 태그·애플리케이션 보안 그룹 모두」라는 보기를 두고도 답을 「애플리케이션 보안 그룹만」으로 적는다 — [덤프 NO.68]
+- **공식 문서**: 「Azure network security groups overview」의 「Security rules」 표는 원본·대상에 모두(Any), IP 주소, 주소 범위, 서비스 태그, 애플리케이션 보안 그룹을 쓸 수 있다고 한다.
+- **처리**: 고쳐 쓴다. 애플리케이션 보안 그룹은 쓸 수 있는 것 가운데 하나다. 맞는 보기는 「모두」다.
+- **쓰인 곳**: `azure-network-protection.security-rules`
+
+## D62 — DDoS Protection을 Basic·Standard로 적는 것 (phase 103)
+
+- **덤프**: 웹사이트를 공격에서 지키고 공격 보고서를 내는 것을 묻고 답을 DDoS Protection으로 적는다. 해설은 종류를 기본으로 들어 있는 Basic과 유료 Standard로 나누고, 보고서를 Standard의 이점으로 든다 — [덤프 NO.3]
+- **공식 문서**: 현행 문서의 종류는 DDoS 인프라 보호(추가 비용 없음)와 계층 둘 — DDoS Network Protection·DDoS IP Protection이다. 완화 보고서는 두 계층 모두 주고, 인프라 보호는 원격 분석과 경고를 주지 않는다(「tier comparison」, 「FAQ」, 설계 가이드). 웹 앱 계층의 공격(SQL 주입 등)은 웹 애플리케이션 방화벽을 함께 써야 한다(「Types of attacks」).
+  **받은 현행 문서에는 DDoS Protection Basic·Standard라는 이름이 나오지 않아**, 옛 이름이 어느 현행 이름과 이어지는지는 문장으로 확인하지 못했다.
+- **처리**: 고쳐 쓰고 한정한다. 현행 세 이름으로 쓴다. 답(DDoS Protection)은 네트워크 공격과 보고서에 대해서는 맞지만 「웹사이트의 공격을 모두 막는다」로 넓히지 않는다. 옛 이름과 현행 이름의 대응은 쓰지 않는다.
+- **쓰인 곳**: `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`
+
+## D63 — NSG를 가상 네트워크 자체에 연결한다는 답 (phase 103)
+
+- **덤프**: 같은 세 문장(서브넷·가상 네트워크·네트워크 인터페이스에 연결할 수 있는가)을 묻는데 답이 갈린다. NO.261은 예·아니요·예이고 NO.467은 예·예·예다(그림 `p155_04.png`·`p270_02.png`). NO.236은 답(NSG)은 맞지만 해설이 가상 네트워크에도 붙인다고 적는다 — [덤프 NO.261·467·236]
+- **공식 문서**: 「How network security groups filter network traffic」, 「Plan virtual networks」, 가상 네트워크 FAQ가 드는 대상은 서브넷과 네트워크 인터페이스 둘이다. 포털의 연결 절차도 가상 네트워크 안의 서브넷을 고르게 한다. 서브넷·네트워크 인터페이스마다 NSG는 0개나 1개다(「Diagnose a virtual machine network traffic filter problem」). 「가상 네트워크에는 연결할 수 없다」는 문장 자체는 없다.
+- **처리**: 고쳐 쓴다. NO.261이 맞고, NO.467의 둘째 칸과 NO.236 해설의 그 대목은 따르지 않는다. 본문은 「서브넷이나 네트워크 인터페이스에 연결한다」로 쓴다.
+- **쓰인 곳**: `azure-network-protection.network-security-groups`, `NsgAssociationDiagram`
+
+## D64 — Azure Firewall·NSG가 트래픽을 모두 암호화하는가 (phase 103)
+
+- **덤프**: 세 문장(Azure Firewall이 인터넷으로 나가는 트래픽을 모두 암호화한다, NSG가 그렇게 한다, Windows Server 2016 VM이 인터넷의 호스트로 가는 트래픽을 암호화할 수 있다)의 답이 갈린다. NO.284는 아니요·아니요·아니요이고 NO.483은 예·예·아니요다(그림 `p166_02.png`·`p278_03.png`). NO.284의 해설은 셋째 칸을 두고 상대가 받아들이면 암호화할 수 있다고 하면서 답은 아니요로 둔다 — [덤프 NO.284·483]
+- **공식 문서**: NSG는 허용·거부 규칙을, Azure Firewall은 규칙에 따른 필터링을 기능으로 든다(「Azure network security groups overview」, 「Azure Firewall features by SKU」). 두 서비스가 트래픽을 대신 암호화한다고 말하는 곳은 없고, **암호화하지 않는다고 못 박은 문장도 없다.** Premium의 TLS 검사는 이미 암호화된 연결을 풀어 보고 다시 암호화한다(「Azure Firewall Premium features」). 암호화된 트래픽을 보내는 일은 VPN Gateway 개요가, HTTPS의 암호화는 Learn 「Network protocols」가 말한다. Windows Server 2016은 `netsh ipsec`의 적용 대상이고 IPsec은 패킷을 암호화한다.
+- **처리**: 한정해 쓴다. 앞 두 칸은 NO.284(아니요)를 따른다. 본문은 **하는 일**(규칙으로 허용·거부하고 기록한다)과 **암호화가 필요할 때 쓰는 것**(VPN 게이트웨이의 암호화된 터널, HTTPS)을 쓰고, 「지나가는 트래픽을 모두 암호화해 주지는 않는다」까지로 쓴다. 「암호화 기능이 전혀 없다」로 넓히지 않는다. az084의 주장도 이 범위 안에서 쓴다. 셋째 칸은 설정하면 암호화할 수 있으므로 「할 수 없다」로 쓰지 않고, 이 주제에 쓰지 않는다.
+- **쓰인 곳**: `azure-network-protection.azure-firewall`, az084 해설
+
+## G39 — Azure DDoS Protection을 Basic·Standard로 나누는 것 (phase 103)
+
+- **용어집**: 공용 IP가 있는 리소스를 지킨다고 하고, 종류를 자동으로 적용되는 Basic과 구독하는 Standard로 나누어 모니터링·경고·보고서를 Standard 쪽으로 든다 — [용어집 3-11]
+- **공식 문서**: 현행 이름은 DDoS 인프라 보호·DDoS Network Protection·DDoS IP Protection이다. 지표·경고·완화 보고서는 두 계층 모두 주고, 신속 대응 지원과 비용 보호는 Network Protection에만 있다(「tier comparison」). 계층으로 지키는 대상은 가상 네트워크의 공용 IP 주소다(「FAQ」).
+- **처리**: 고쳐 쓴다. 현행 이름으로 쓰고 Basic·Standard를 쓰지 않는다(D62와 같다).
+- **쓰인 곳**: `azure-network-protection.ddos-protection`
+
+## G40 — Azure Firewall이 「NSG보다 상위 레벨」로 세부를 제어한다는 것 (phase 103)
+
+- **용어집**: 규칙을 애플리케이션 규칙과 네트워크 규칙 둘로 들고, NSG보다 상위 레벨에서 세부 트래픽을 제어한다고 한다 — [용어집 2-44]
+- **공식 문서**: 규칙 종류는 NAT·네트워크·애플리케이션 셋이다(「Configure Azure Firewall rules」). FAQ는 둘을 함께 쓰는 관계로 두고, NSG는 구독마다 흩어져 네트워크 계층에서 거르며 Azure Firewall은 구독과 가상 네트워크를 가로질러 한곳에서 네트워크 수준과 앱 수준으로 지킨다고 한다. 「상위 레벨」이라는 위아래 관계는 말하지 않는다.
+- **처리**: 고쳐 쓴다. 규칙은 셋으로 쓰고, 차이는 거는 곳(흩어져 / 한곳에서)과 거르는 폭으로 쓴다. 「상위」는 쓰지 않는다.
+- **쓰인 곳**: `azure-network-protection.azure-firewall`
