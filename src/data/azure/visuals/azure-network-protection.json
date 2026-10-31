@@ -1,0 +1,94 @@
+{
+  "diagrams": {
+    "nsg-association": {
+      "label": "NSG를 연결한 곳과 규칙이 미치는 범위",
+      "svgLabel": "가상 네트워크 안의 웹 서브넷과 데이터베이스 서브넷, 그리고 NSG A와 NSG B",
+      "question": "NSG를 서브넷에 걸 때와 네트워크 인터페이스에 걸 때, 규칙은 어느 VM에 미칠까?",
+      "idleCaption": "회사 E가 NSG 둘을 서로 다른 곳에 연결한 예다. 연결한 곳을 골라, 규칙이 미치는 VM을 비교해 보자.",
+      "legend": "NSG A가 웹 서브넷 상자 안에 있는 것은 그 서브넷에 연결했다는 뜻이다. 선은 VM 3, 네트워크 인터페이스, NSG B의 연결 관계이고 통신 경로가 아니다. VM과 NSG의 이름과 수는 예다.",
+      "nodes": {
+        "nsg-a": "NSG A",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "nic-3": "네트워크 인터페이스",
+        "nsg-b": "NSG B"
+      },
+      "groups": {
+        "vnet": "가상 네트워크",
+        "subnet-web": "웹 서브넷",
+        "subnet-db": "데이터베이스 서브넷"
+      },
+      "notes": {
+        "subnet-note": "웹 서브넷의 VM 모두에 적용",
+        "nic-note": "VM 3에만 적용"
+      },
+      "scenarios": [
+        {
+          "id": "subnet",
+          "label": "서브넷에 연결",
+          "caption": "NSG A를 웹 서브넷에 연결하면 그 서브넷의 VM 1과 VM 2에 같은 규칙이 걸린다. 나중에 이 서브넷에 더한 VM에도 걸린다. 데이터베이스 서브넷의 VM 3에는 NSG A의 규칙이 걸리지 않는다.",
+          "sources": [
+            "azure-network-protection.network-security-groups"
+          ]
+        },
+        {
+          "id": "nic",
+          "label": "네트워크 인터페이스에 연결",
+          "caption": "NSG B를 VM 3의 네트워크 인터페이스에 연결하면 규칙이 VM 3에만 걸린다. VM 1과 VM 2에는 NSG B의 규칙이 걸리지 않는다.",
+          "sources": [
+            "azure-network-protection.network-security-groups"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-network-protection.network-security-groups"
+      ]
+    },
+    "nsg-rule-order": {
+      "label": "보안 규칙을 살피는 차례",
+      "svgLabel": "포트 80 웹 요청과 다른 포트 요청이 우선순위 100과 65500의 규칙을 거쳐 가는 길",
+      "question": "규칙이 여러 개면, NSG는 어느 규칙을 따를까?",
+      "idleCaption": "회사 E의 NSG에 우선순위 100의 허용 규칙을 더한 예다. 요청을 골라, 어느 규칙에서 멈추는지 따라가 보자.",
+      "legend": "두 요청 모두 인터넷에서 VM 1로 온다. 기본 규칙 가운데 이 요청이 맞는 우선순위 65500만 그렸다. 위에 있는 규칙을 먼저 살핀다.",
+      "nodes": {
+        "web-req": "포트 80 웹 요청",
+        "other-req": "다른 포트 요청",
+        "rule-100": "우선순위 100: 포트 80 허용",
+        "rule-default": "우선순위 65500: 나머지 거부",
+        "vm-1": "VM 1"
+      },
+      "groups": {
+        "nsg": "NSG"
+      },
+      "notes": {
+        "match-note": "맞음 — 허용하고 멈춤",
+        "pass-note": "맞지 않음 — 다음 규칙으로",
+        "default-note": "맞음 — 거부"
+      },
+      "scenarios": [
+        {
+          "id": "match",
+          "label": "웹 요청",
+          "caption": "포트 80 웹 요청은 번호가 낮은 우선순위 100의 규칙을 먼저 만난다. 이 규칙에 맞으므로 허용되고 거기서 멈춘다. 그래서 기본 규칙까지 가지 않고 VM 1에 닿는다.",
+          "sources": [
+            "azure-network-protection.security-rules"
+          ]
+        },
+        {
+          "id": "no-match",
+          "label": "다른 포트 요청",
+          "caption": "다른 포트로 오는 요청은 우선순위 100의 규칙에 맞지 않아 다음 규칙으로 넘어간다. 인터넷에서 온 요청이라 기본 허용 규칙에도 맞지 않고, 끝의 우선순위 65500에서 거부되어 VM 1에 닿지 않는다.",
+          "sources": [
+            "azure-network-protection.security-rules"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-network-protection.security-rules"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

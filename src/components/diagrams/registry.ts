@@ -101,6 +101,8 @@ import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
+import { NsgAssociationDiagram } from './NsgAssociationDiagram'
+import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
@@ -382,6 +384,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-virtual-networking.endpoints': PrivateEndpointDiagram,
   'azure-virtual-networking.vpn-gateway': SiteToSiteVpnDiagram,
   'azure-virtual-networking.expressroute': ExpressRouteDiagram,
+  'azure-network-protection.network-security-groups': NsgAssociationDiagram,
+  'azure-network-protection.security-rules': NsgRuleOrderDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

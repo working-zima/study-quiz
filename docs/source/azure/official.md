@@ -332,6 +332,8 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 
 쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(영역에 나눠 배포 — 여러 가용성 영역에 걸쳐 만드는 것만 썼다. 한 영역에만 두거나 영역을 정하지 않는 선택지는 쓰지 않았다)
 
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`(네트워크 보안 그룹에 추가 요금이 없다)
+
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
 
@@ -2535,7 +2537,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-
 - 서비스 태그와 애플리케이션 보안 그룹의 정의도 이 문서에 짧게 있다. 강화된 보안 규칙(augmented)·보안 관리 규칙·흐름 시간 제한·포트 25 규칙은 **쓰지 않는다**
 - 한국어 표기: 네트워크 보안 그룹, 보안 규칙, 기본 보안 규칙(이 phase의 글은 「기본 규칙」으로 줄인다), 우선 순위(이 문서. 앱 글은 띄지 않고 「우선순위」 — 표기 정리), 원본 또는 대상, 프로토콜, 방향, 포트 범위, 작업, 인바운드, 아웃바운드, 서비스 태그, 애플리케이션 보안 그룹
 
-쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
 
 ## (phase 103) Azure Virtual Network — How network security groups filter network traffic
 https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works
@@ -2551,7 +2553,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-h
 - NSG가 어디에도 없는 VM의 동작은 **쓰지 않는다** — 이 문서의 VM4는 표준 공용 IP 주소를 가진 VM의 이야기이고, 들어오는 쪽(막힘)과 나가는 쪽(통과)이 갈려 한 줄로 쓰면 틀리기 쉽다
 - 한국어 표기: 네트워크 보안 그룹, 서브넷, 네트워크 인터페이스, 인바운드 트래픽, 아웃바운드 트래픽
 
-쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgAssociationDiagram`, D63
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgAssociationDiagram`, D63
 
 ## (phase 103) Azure Virtual Network — Create, change, or delete a network security group
 https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group
@@ -2561,7 +2563,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-
 - NSG를 서브넷에 연결할 때 포털에서 가상 네트워크를 고른 뒤 그 안의 서브넷을 고른다. 대상을 정하는 마지막 칸은 서브넷이다 — 「Associate or dissociate a network security group to or from a subnet」
 - 한국어 표기: 네트워크 보안 그룹, 연결(associate)
 
-쓰일 곳: `azure-network-protection.network-security-groups`, D63
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, D63
 
 ## (phase 103) Azure Virtual Network — Diagnose a virtual machine network traffic filter problem
 https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem
@@ -2570,7 +2572,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic
 
 - **서브넷 하나와 네트워크 인터페이스 하나에 연결할 수 있는 NSG는 0개나 1개다.** 그 NSG는 서로 같아도 달라도 된다 — 본문의 VM 네트워크 인터페이스 설명. 「Plan virtual networks」 「Subnets」도 서브넷을 두고 같은 수를 말한다
 
-쓰일 곳: `azure-network-protection.network-security-groups`, `NsgAssociationDiagram`, D63
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `NsgAssociationDiagram`, D63
 
 ## (phase 103) Azure Virtual Network — Create, change, or delete a network interface (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface
@@ -2579,7 +2581,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-network-
 
 - 네트워크 인터페이스(NIC)는 VM이 인터넷·Azure·온-프레미스의 리소스와 통신하게 하는 것이다. **그래서 「VM이 네트워크에 연결되는 접속 부품」으로 푼다** — 첫 문단
 
-쓰일 곳: `azure-network-protection.network-security-groups`
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`
 
 ## (phase 103) Azure Virtual Network — Azure service tags overview
 https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview
@@ -2592,7 +2594,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview
 - 태그 목록은 **쓰지 않는다**
 - 한국어 표기: 서비스 태그
 
-쓰일 곳: `azure-network-protection.security-rules`, D61
+쓰인 곳(phase 103 step 11): `azure-network-protection.security-rules`, D61
 
 ## (phase 103) Azure Virtual Network — Application security groups
 https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups
@@ -2604,7 +2606,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/application-security-gro
 - 예시 이름(`AsgWeb` 등)은 **쓰지 않는다**
 - 한국어 표기: 애플리케이션 보안 그룹
 
-쓰일 곳: `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+쓰인 곳(phase 103 step 11): `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
 
 ## (phase 103) Learn 「Fundamentals of computer networking」 — Network protocols (한 줄 풀이만)
 https://learn.microsoft.com/en-us/training/modules/network-fundamentals/4-network-protocols
@@ -2618,7 +2620,8 @@ https://learn.microsoft.com/en-us/training/modules/network-fundamentals/4-networ
 - `트래픽`을 따로 정의한 문장은 찾지 못했다. 공식 문서는 network traffic을 설명 없이 쓴다. **앞 주제의 글처럼 「네트워크로 오가는 데이터」로 푼다.** 사실 주장이 아니라 낱말 풀이다
 - 한국어 표기: 프로토콜, 포트, 포트 번호
 
-쓰일 곳: `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `azure-network-protection.azure-firewall`, `NsgRuleOrderDiagram`, D64
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`
+쓰일 곳: `azure-network-protection.azure-firewall`, D64
 
 ## (phase 103) Azure Firewall — What is Azure Firewall?
 https://learn.microsoft.com/en-us/azure/firewall/overview
@@ -2776,7 +2779,8 @@ https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
 - 네트워크 보안은 네트워크 트래픽을 통제해 무단 접근과 공격에서 리소스를 지키는 일이라고 적는다 — 첫 문장. NSG는 IP 주소와 TCP·UDP 프로토콜을 기준으로 상태 저장 패킷 필터링을 한다 — 「Network security groups」
 - **세 서비스를 하나로 묶는 말로 쓴다.** 심층 방어, Defender for Cloud, Bastion, WAF의 세부는 **쓰지 않는다**
 
-쓰일 곳: `azure-network-protection.network-security-groups`, D64
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`
+쓰일 곳: D64
 
 ## (phase 103) 한국어 표기 정리 — `azure-network-protection`
 
