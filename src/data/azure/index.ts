@@ -8,6 +8,7 @@ import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
 import azureResourceHierarchyVisuals from './visuals/azure-resource-hierarchy.json'
 import azureServiceTypesVisuals from './visuals/azure-service-types.json'
 import azureSlaLifecycleVisuals from './visuals/azure-sla-lifecycle.json'
+import azureVirtualNetworkingVisuals from './visuals/azure-virtual-networking.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -25,6 +26,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-regions-zones': azureRegionsZonesVisuals,
   'azure-resource-hierarchy': azureResourceHierarchyVisuals,
   'azure-compute': azureComputeVisuals,
+  'azure-virtual-networking': azureVirtualNetworkingVisuals,
 }
 
 export const azureSubject: Subject = {

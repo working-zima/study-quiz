@@ -1518,7 +1518,8 @@ https://learn.microsoft.com/en-us/azure/dns/dns-overview
 - 이 사본에는 DNSSEC이 나오지 않는다. 용어집 2-21이 드는 DNSSEC은 쓰지 않는다 (phase 103)
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
-쓰일 곳(phase 103): `azure-virtual-networking.virtual-network`(DNS를 푸는 한 줄), `azure-virtual-networking.azure-dns`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`(DNS를 푸는 한 줄)
+쓰일 곳(phase 103): `azure-virtual-networking.azure-dns`
 
 ## (phase 102) Azure Government — What is Azure Government?
 https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
@@ -1760,7 +1761,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 - 이 개요는 「모든 리소스가 기본으로 인터넷으로 나갈 수 있다」고 적는다(2025-07-17). 뒤의 「Default outbound access in Azure」(2026-09-10)가 새 가상 네트워크의 기본을 바꿨다고 하므로 **이 문장을 쓰지 않는다** — 「Communicate with the internet」 (phase 103)
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
-쓰일 곳(phase 103): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.vpn-connection-types`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰일 곳(phase 103): `azure-virtual-networking.vpn-connection-types`
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -2124,7 +2126,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - 서비스 엔드포인트도 이 단원에 나오지만 **쓰지 않는다**(guide 「배경」) — 「Communicate between Azure resources」
 - 한국어 표기: 가상 네트워크, 서브넷, 격리 및 구분(제목. 이 주제의 글은 「격리」와 「나눔」으로 쓴다), 공용 IP 주소, 개인 IP 주소, 공용 부하 분산 장치, 퍼블릭 엔드포인트, 프라이빗 엔드포인트, 온-프레미스, 가상 네트워크 피어링, Microsoft 백본 네트워크, 네트워크 보안 그룹
 
-쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `azure-virtual-networking.vpn-connection-types`, `VnetIsolationDiagram`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
+쓰일 곳(phase 103): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `azure-virtual-networking.vpn-connection-types`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 3 Describe Azure virtual private networks
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/3-virtual-private-networks
@@ -2194,7 +2197,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
 - 주소 범위의 값(RFC 1918 등)은 **쓰지 않는다**(guide 「예시 값」)
 - 한국어 표기: 글로벌 가상 네트워크 피어링, 전이적 피어링(이 낱말은 쓰지 않고 「이어지지 않는다」로 푼다)
 
-쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.peering`, D58, D59, D60, `VnetIsolationDiagram`, `VnetPeeringDiagram`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `VnetIsolationDiagram`
+쓰일 곳(phase 103): `azure-virtual-networking.peering`, D58, D59, D60, `VnetPeeringDiagram`
 
 ## (phase 103) Azure Virtual Network — Plan virtual networks
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-plan-design-arm
@@ -2211,7 +2215,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-pla
 - 서브넷 수·주소 표기(CIDR)는 **쓰지 않는다**(guide 표 11)
 - 한국어 표기: 구독, 지역, 서브넷, 주소 공간, 주소 범위
 
-쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, D58, D60
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`
+쓰일 곳(phase 103): D58, D60
 
 ## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure (서브넷 절만 — step 5)
 https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
@@ -2221,7 +2226,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
 - 서브넷 사이에는 기본으로 보안 경계가 없어 각 서브넷의 VM이 서로 통신한다. 경계가 필요하면 네트워크 보안 그룹을 쓴다 — 「Virtual network and subnets」
 - 주소 공간은 다른 네트워크와 잇는다면 겹치지 않게 고른다 — 같은 절
 
-쓰일 곳: `azure-virtual-networking.subnets`, D58, D60, `VnetIsolationDiagram`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
+쓰일 곳(phase 103): D58, D60
 
 ## (phase 103) Azure Virtual Network — Virtual network traffic routing (기본 경로만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
@@ -2232,7 +2238,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-ove
 - 경로는 주소 범위와 다음 도착지로 이루어지고, 트래픽이 서브넷을 나갈 때 Azure가 맞는 경로를 쓴다. **라우팅을 「트래픽이 어느 길로 갈지 정하는 것」으로 푸는 근거로만 쓴다** — 같은 절
 - 사용자 정의 경로와 경로 선택 규칙은 **쓰지 않는다**(guide 「배경」)
 
-쓰일 곳: `azure-virtual-networking.subnets`, `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`
+쓰일 곳(phase 103): `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
 
 ## (phase 103) Azure Virtual Network — Private IP addresses (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses
@@ -2242,7 +2249,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-a
 - 개인 IP 주소는 Azure 리소스끼리 공용 IP 주소 없이 통신하게 한다. 같은 가상 네트워크의 리소스뿐 아니라 VPN 게이트웨이나 ExpressRoute 회로로 이어진 온-프레미스 네트워크와도 통신한다 — 첫 부분
 - 한국어 표기: 제목은 「프라이빗 IP 주소」인데 본문은 「개인 IP」다. 다른 한국어판과 같이 「개인 IP 주소」로 쓴다
 
-쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.endpoints`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰일 곳(phase 103): `azure-virtual-networking.endpoints`
 
 ## (phase 103) Azure Virtual Network — Public IP addresses (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses
@@ -2253,7 +2261,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-ad
 - VM의 네트워크 인터페이스 같은 리소스에 붙인다. Azure Resource Manager에서 공용 IP 주소는 자기 속성을 가진 리소스다 — 같은 곳
 - 한국어 표기: 공용 IP 주소
 
-쓰일 곳: `azure-virtual-networking.virtual-network`, `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰일 곳(phase 103): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
 
 ## (phase 103) Azure Virtual Network — Default outbound access in Azure (쓰지 않는 근거)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access

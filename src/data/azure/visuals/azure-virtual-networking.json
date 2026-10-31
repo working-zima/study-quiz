@@ -1,0 +1,51 @@
+{
+  "diagrams": {
+    "vnet-isolation": {
+      "label": "가상 네트워크와 서브넷의 통신 범위",
+      "svgLabel": "가상 네트워크 A의 웹·데이터베이스 서브넷과 별도의 가상 네트워크 B",
+      "question": "서로 다른 가상 네트워크의 VM끼리도 바로 통신할 수 있을까?",
+      "idleCaption": "회사 A가 VM을 나눠 둔 예다. 같은 가상 네트워크 안의 VM과 다른 가상 네트워크의 VM을 각각 골라, 통신할 수 있는 범위를 비교해 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 VM이 비교 대상이고, 화살표는 요청이 갈 수 있는 길이다. 두 가상 네트워크는 따로 연결하지 않은 상태다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3"
+      },
+      "groups": {
+        "vnet-a": "가상 네트워크 A",
+        "subnet-web": "웹 서브넷",
+        "subnet-db": "데이터베이스 서브넷",
+        "vnet-b": "가상 네트워크 B"
+      },
+      "notes": {
+        "same-note": "서브넷이 달라도 통신",
+        "other-note": "따로 잇지 않으면 통신하지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "same",
+          "label": "같은 가상 네트워크",
+          "caption": "웹 서브넷의 VM 1은 데이터베이스 서브넷의 VM 2와 기본으로 통신한다. Azure가 한 가상 네트워크 안의 서브넷 사이에 기본 경로를 만들기 때문이다. 통신을 막으려면 네트워크 보안 그룹에 차단 규칙을 둔다.",
+          "sources": [
+            "azure-virtual-networking.virtual-network",
+            "azure-virtual-networking.subnets"
+          ]
+        },
+        {
+          "id": "other",
+          "label": "다른 가상 네트워크",
+          "caption": "VM 1과 VM 3은 서로 다른 가상 네트워크에 있다. 두 네트워크를 연결하지 않았으므로 서로 통신하지 않는다. 통신이 필요하면 두 가상 네트워크를 직접 잇는 피어링 같은 방법으로 연결한다.",
+          "sources": [
+            "azure-virtual-networking.virtual-network"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.virtual-network",
+        "azure-virtual-networking.subnets"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
