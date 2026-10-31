@@ -387,7 +387,8 @@
     },
     {
       "dir": "102-azure-regions-resource-hierarchy",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-10-31T11:04:24+0900"
     }
   ]
 }
