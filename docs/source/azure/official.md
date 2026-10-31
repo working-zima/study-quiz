@@ -42,6 +42,12 @@ phase 102 step 4가 `azure-resource-hierarchy` 주제(리소스 계층)가 쓸 �
 Learn 단원 6 항목에 덧붙인 줄은 끝에 `(phase 102)`를 달았다. 단원 6과 현행 Azure Resource Manager 문서가 어긋나는 곳은 단원 6 항목의 「현행 문서와 다름」 줄에 모았다.
 Azure 역할 기반 액세스 제어(Azure RBAC)·Azure Policy·태그는 다른 주제의 몫이라 이 주제가 한 줄로 풀 근거와 덤프 처리에 쓸 사실만 적었다.
 
+phase 103 step 0이 `azure-compute` 주제(컴퓨팅과 앱 호스팅)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-resource-hierarchy`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(Learn 「Describe Azure compute services」 단원 2·6, 「Virtual machines in Azure」, Functions 문서 둘, 「What are Virtual Machine Scale Sets?」, 「What is a container?」, 「App Service overview」, 「Azure REST API reference」)에 덧붙인 줄은 끝에 `(phase 103)`을 달았다.
+**Learn 단원 2가 phase 100 뒤에 바뀌었다** — 확장 집합·가용성 집합 절(「Scale and resiliency options for VMs」)과 VM 크기 계열 표가 들어왔다. 크기 계열 표·크기 이름 읽는 법·SLA 수치는 확인만 하고 「쓰지 않는다」로 적었다(guide 「배경」).
+VM에 꼭 있어야 하는 리소스와 선택인 리소스는 VM 개요의 표가 아니라 「Virtual networks and virtual machines in Azure」의 글로 갈랐다 — 표는 VM을 만들 때 함께 생기는 리소스를 늘어놓을 뿐 필수 여부를 말하지 않는다.
+아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -272,6 +278,24 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(VM을 푸는 한 줄 — Azure 안에서 실행되는 서버이고, 서버 장비를 사서 관리하지 않고도 운영 체제와 프로그램을 골라 쓴다), az048 해설
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다 — 단원에 「VM resources and sizing」의 크기 계열 표와 「Scale and resiliency options for VMs」 절이 새로 들어와 있다. (phase 103)
+
+- VM이 맞는 경우는 셋이다 — 운영 체제를 통째로 통제해야 할 때, 직접 만든 소프트웨어를 실행해야 할 때, 호스팅 구성을 직접 정해야 할 때 — 「첫 문단」 (phase 103)
+- 미리 만들어 둔 이미지로 VM을 빨리 배포한다. 이미지는 운영 체제와 도구(예: 웹 호스팅 구성 요소)가 이미 들어 있는 틀이다 — 「첫 문단」 (phase 103)
+- 쓰임 다섯 — 테스트와 개발(여러 운영 체제·앱 구성을 빨리 만들고 끝나면 VM을 지운다), 클라우드 앱 호스팅(Azure에서 앱을 실행하고 수요에 따라 용량을 늘리고 줄인다), 데이터 센터 확장(온-프레미스 네트워크를 Azure로 넓혀 이어진 가상 네트워크에서 워크로드를 실행한다),
+  재해 복구(주 사이트를 쓸 수 없을 때 Azure에 둔 대체 용량으로 중요한 워크로드를 실행한다), 리프트 앤 시프트 마이그레이션(앱을 거의 다시 설계하지 않고 기존 서버 워크로드를 옮긴다) — 「Examples of when to use VMs」 (phase 103)
+- VM을 만들 때 고르는 것은 크기(용도·프로세서 코어 수·RAM 양), 스토리지 디스크, 네트워킹(가상 네트워크·공용 IP 주소·포트 구성)이다. **고르는 설정의 목록이고, 공용 IP 주소가 꼭 있어야 한다는 말이 아니다**(필수 여부는 아래 「Virtual networks and virtual machines in Azure」 항목) — 「VM resources and sizing」 (phase 103)
+- vCPU는 가상 CPU다. vCPU 수는 VM이 한꺼번에 해낼 수 있는 계산의 양에, RAM은 VM이 메모리에 올려 두고 일할 수 있는 데이터의 양에 영향을 준다 — 「Understand VM size families and names」 (phase 103)
+- 같은 절의 크기 계열 표(B·D·E·F·M·L·N 시리즈)와 크기 이름 읽는 법은 확인만 했다. **쓰지 않는다**(guide 「배경」 — 「크기는 용도와 vCPU 수·메모리로 고른다」까지만) (phase 103)
+- VM은 한 대로도 실행하고(테스트·개발·작은 일), 여러 대를 묶어 고가용성·확장성·중복성을 얻기도 한다. Azure는 그 묶음을 확장 집합·가용성 집합 같은 기능으로 관리한다 — 「Scale and resiliency options for VMs」 (phase 103)
+- 가상 머신 확장 집합은 같은 구성이고 부하가 분산되는 VM 무리를 만들고 관리하게 한다. 확장 집합이 없으면 VM 구성을 손으로 맞추고, 사용률을 지켜보고, 인스턴스 수를 손으로 바꿔야 한다. 확장 집합은 구성을 한곳에 모으고, 수요나 일정에 따라 저절로 스케일 아웃·스케일 인하며, 부하 분산과 함께 동작해 트래픽을 나눈다 — 「Virtual machine scale sets」 (phase 103)
+- 가상 머신 가용성 집합은 한 지역 안에서 VM의 복원력을 높인다 — 유지 관리 한 번이나 하드웨어 고장 하나가 모든 VM에 미칠 가능성을 줄인다. VM을 **업데이트 도메인**(계획된 유지 관리 때 함께 다시 부팅될 수 있는 VM)과 **장애 도메인**(전원이나 네트워크의 고장 지점을 함께 쓰는 VM)으로 나눈다 — 「Virtual machine availability sets」 (phase 103)
+- 가용성 집합은 VM 수준의 중복에 쓴다. 가용성 영역을 지원하는 지역에서는 장애를 더 넓게 격리하는 영역 기반 설계를 흔히 더 낫게 본다. 가용성 집합 자체에는 비용이 없고 VM 인스턴스 값만 낸다 — 같은 절 (phase 103)
+- 한국어 표기: 단원 제목 「Azure 가상 머신 설명」, Azure Virtual Machines → Azure VM(Virtual Machines), image → 이미지, total control over the OS → OS(운영 체제)에 대한 완전한 제어, custom software → 사용자 지정 소프트웨어, datacenter extension → 데이터 센터 확장, disaster recovery → 재해 복구, lift and shift migration → 리프트 앤 시프트 마이그레이션,
+  vCPU → vCPU(가상 CPU), Virtual machine scale sets → 절 제목은 영문 그대로, 본문 「가상 머신 확장 집합」·「확장 집합」, Virtual machine availability sets → 가상 머신 가용성 집합·가용성 집합, update domain → 업데이트 도메인, fault domain → 장애 도메인, availability zones → 가용성 영역 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), `HostingOptionsTable`(VM 행), D51·G27·G28
+
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 
@@ -281,6 +305,22 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 - Azure VM은 그 VM을 실행하는 물리 하드웨어를 사서 유지하지 않고도 가상화의 유연성을 준다. 대신 구성·패치·소프트웨어 설치 같은 VM 관리는 쓰는 쪽이 계속 한다 — 「둘째 문단」
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
+
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받고 `ko-docs-virtual-machines-overview.md`를 새로 받았다(사본의 「Last updated on」 뒤 날짜는 비어 있다). (phase 103)
+
+- 다른 선택지보다 컴퓨팅 환경을 더 많이 통제해야 할 때 흔히 VM을 고른다 — 「첫 문단」 (phase 103)
+- VM을 만들면 VM을 받쳐 주는 리소스도 함께 만들어지고, 그 리소스에는 저마다 비용이 붙을 수 있다 — 「Parts of a VM and how they're billed」 (phase 103)
+- 그 표의 리소스와 쓰임: 가상 네트워크(VM이 다른 리소스와 통신하게 한다), 가상 네트워크 인터페이스 카드(NIC — 가상 네트워크에 잇는다), 개인 IP 주소와 때로 공용 IP 주소(자기 네트워크와 바깥 네트워크에서 통신하고 데이터를 주고받는다),
+  네트워크 보안 그룹(NSG — VM으로 오가는 트래픽을 다룬다. 예: 어떤 포트는 열고 어떤 포트는 막는다), OS 디스크와 경우에 따라 데이터를 둘 디스크 따로, 경우에 따라 운영 체제 라이선스 — 같은 표 (phase 103)
+- 데이터는 운영 체제와 다른 디스크에 두는 것이 좋다 — VM이 고장 나면 데이터 디스크를 떼어 새 VM에 붙일 수 있다 — 같은 표 (phase 103)
+- 새 VM에는 모두 OS 디스크가 있다(로컬 임시 디스크도 함께 생기지만 이 주제에서는 쓰지 않는다). 데이터 디스크는 「경우에 따라 따로」 둔다 — 같은 표의 비용 칸 (phase 103)
+- NIC에는 따로 비용이 없고, 네트워크 보안 그룹에도 추가 요금이 없다. 가상 네트워크·IP 주소·디스크·라이선스는 저마다 가격 쪽을 가리킨다. **그래서 「모든 리소스에 비용이 붙는다」로 쓰지 않고 「비용이 따로 붙을 수 있다」로 쓴다.** 금액은 쓰지 않는다 — 같은 표 (phase 103)
+- 이 리소스들은 기본으로 VM과 같은 리소스 그룹에 만들어진다 — 같은 절 마지막 문장 (phase 103)
+- 확장 집합의 VM은 여러 가용성 영역에, 한 영역에, 또는 영역을 정하지 않고(지역) 배포할 수 있다 — 「Availability」(같은 절의 99.99% 수치는 쓰지 않는다) (phase 103)
+- **이 표는 필수 여부를 말하지 않는다.** 표 제목이 「기본으로 만들어지는 리소스」일 뿐이고, 무엇이 꼭 있어야 하는지는 「Virtual networks and virtual machines in Azure」 항목을 따른다 (phase 103)
+- 한국어 표기: virtual network → 가상 네트워크, virtual Network Interface Card (NIC) → 가상 네트워크 인터페이스 카드(NIC), private IP address → **개인 IP 주소**, public IP address → **공용 IP 주소**, Network security group (NSG) → NSG(네트워크 보안 그룹), OS disk → OS 디스크(「운영 체제 디스크」도 섞였다), data disk → 데이터 디스크, resource group → 리소스 그룹 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `azure-compute.scale-sets`(영역에 나눠 배포), `VmResourcesDiagram`, D51·D57
 
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
@@ -490,6 +530,16 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳: `azure-cloud-computing.serverless`, D1, G5
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다 — 본문은 phase 100 때와 같다. (phase 103)
+
+- 함수는 상태 비저장(기본)이거나 상태 저장이다. 상태 비저장이면 이벤트에 응답할 때마다 처음부터 다시 시작하는 것처럼 동작하고, 상태 저장(**Durable Functions**)이면 런타임이 함수에 맥락을 넘겨 앞의 활동을 추적한다 — 「Benefits of Azure Functions」 (phase 103)
+- Functions는 어떤 코드든 실행하는 일반 컴퓨팅 플랫폼이기도 하다. 앱의 요구가 바뀌면 프로젝트를 서버리스가 아닌 환경에 배포할 수 있고, 그러면 크기 조정을 직접 다루고 가상 네트워크에서 실행하고 함수를 완전히 격리할 수도 있다 — 같은 절 (phase 103)
+- **「CPU 시간에만 요금」은 이 단원의 한 줄이다.** 아래 「Azure Functions hosting options」의 「Billing」은 요금제마다 다르게 청구한다고 한다 — 서버리스 요금제(Flex Consumption·Consumption)에서는 실행할 때 쓴 만큼 내지만, Premium은 늘 한 인스턴스 이상을 데워 두어 그 값을 내고, Dedicated는 App Service 요금제 값을 낸다.
+  그래서 요금은 **「서버리스 요금제에서는」으로 한정해** 「실행되는 동안 쓴 만큼 낸다」로 쓴다. 「CPU 시간에만」을 모든 Functions에 일반화하지 않는다 — 같은 절과 호스팅 옵션 「Billing」 대조 (phase 103)
+- 한국어 표기: stateless → 상태 비저장, stateful → 상태 저장, Durable Functions(옮기지 않는다), REST request → REST 요청, timer → 타이머, trigger → 트리거(「트리거될 때」) (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.functions`(트리거의 종류 셋·몇 초 안의 일·저절로 늘어남·끝나면 리소스를 놓음·서버리스 요금제로 한정한 요금·상태 비저장과 Durable Functions·서버리스가 아닌 환경으로 옮김), `FunctionTriggerDiagram`, `HostingOptionsTable`(Functions 행), D53·D55·G30
+
 ## (phase 100) Azure Functions — What is Azure Functions?
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
 
@@ -501,6 +551,12 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
 - 한국어 표기: serverless solution → 서버리스 솔루션
 
 쓰인 곳: `azure-cloud-computing.serverless`, D1
+
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받았다. (phase 103)
+
+- 트리거와 바인딩이 함수를 다른 서비스에 이어 준다. 예: HTTP 트리거로 웹 앱이 부를 REST 끝점을 만들고, Durable Functions로 함수 여러 개를 이어 이벤트 기반 워크플로를 만든다 — 「Scenarios」 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.functions`(이벤트의 흔한 예인 REST 요청, Durable Functions), `FunctionTriggerDiagram`
 
 ## (phase 100) Azure Functions — Azure Functions hosting options
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
@@ -517,6 +573,13 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
 - 한국어 표기: Flex Consumption plan → Flex 소비 계획, Consumption plan → 소비 계획(「사용량 계획」·「사용량 플랜」도 섞여 있다)
 
 쓰인 곳: `azure-cloud-computing.serverless`(「실행한 만큼 낸다」의 근거 — 서버리스 요금제에서)
+
+다시 확인한 날 2026-10-31. 영문 사본의 「Billing」을 다시 읽었다. (phase 103)
+
+- Premium 요금제는 필요한 인스턴스와 미리 데워 둔 인스턴스의 코어 초·메모리로 청구하고, **요금제마다 적어도 한 인스턴스를 늘 데워 둔다**. Dedicated 요금제는 같은 App Service 요금제의 웹 앱과 똑같이 낸다. Flex Consumption은 늘 준비해 둔 인스턴스를 두면 그 값도 낸다 — 「Billing」
+  그래서 「이벤트가 없으면 요금이 없다」는 서버리스 요금제(그것도 늘 준비해 둔 인스턴스를 두지 않을 때)에만 맞다. 도식·표에서 Functions의 요금을 그릴 때는 「서버리스 요금제에서」라는 한정을 같이 쓴다 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.functions`(요금의 한정), `FunctionTriggerDiagram`(이벤트가 없을 때의 요금 곁말), `HostingOptionsTable`, G30
 
 ## (phase 100) Azure Virtual Machines — States and billing status of Azure Virtual Machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing
@@ -775,6 +838,19 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 
 쓰일 곳(phase 102): 근거 기록 — [덤프 NO.423]의 답(확장 집합에 배포하는 것만으로는 데이터 센터 장애에 대비되지 않는다)이 맞는지 대조했다. 확장 집합은 `azure-compute` 주제의 몫이라 이 주제의 개념 글에는 쓰지 않는다
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다. (phase 103)
+
+- 확장 집합의 이점 넷 — VM 여러 대를 쉽게 만들고 관리한다, VM을 가용성 영역이나 장애 도메인에 나눠 고가용성과 복원력을 준다, 수요에 따라 앱이 저절로 크기를 바꾼다, 큰 규모로 동작한다 — 「첫 문단」 (phase 103)
+- 앱의 성능을 고르게 하려면 VM 크기·디스크 구성·설치한 앱이 모든 VM에서 같아야 한다. 확장 집합에서는 모든 VM 인스턴스를 같은 기본 OS 이미지와 구성으로 만든다 — 「Easy to create and manage multiple VMs」 (phase 103)
+- 단, 유연한 오케스트레이션 모드는 서로 다른 VM 유형을 섞어 쓰는 경우도 지원한다고 한다. **「같은 구성」은 확장 집합의 기본 쓰임으로 쓰고, 「확장 집합의 VM은 언제나 똑같다」로 일반화하지 않는다** — 「첫 부분」(오케스트레이션 모드의 세부는 쓰지 않는다) (phase 103)
+- 앱 사용자는 부하 분산 장치를 거쳐 앱 인스턴스 가운데 하나로 요청을 보낸다. VM 인스턴스 하나에 문제가 생겨도 다른 인스턴스로 계속 앱에 닿는다 — 「Why use Virtual Machine Scale Sets?」·「Provides high availability and application resiliency」 (phase 103)
+- 수요가 줄면 불필요한 VM을 줄여 비용을 아끼고, 늘면 VM을 더해 성능을 지킨다 — 「Allows your application to automatically scale …」 (phase 103)
+- 확장 집합 자체에는 추가 비용이 없다. 확장 집합이 쓰는 컴퓨팅·네트워크·스토리지 리소스에 대해 낸다 — 「Cost-effective service」 (phase 103)
+- 인스턴스 수의 상한(1,000·600)은 확인만 했다. 쓰지 않는다 (phase 103)
+- 한국어 표기: 제목 「가상 머신 확장 집합이란?」 — 본문은 「확장 집합」, load balancer → 부하 분산 장치, fault domain → 장애 도메인 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.scale-sets`(같은 구성, 요청이 부하 분산 장치를 거쳐 여러 VM으로, 한 대가 문제여도 다른 VM으로, 수요에 따른 증감과 비용, 추가 비용 없음), `ScaleSetDiagram`, D56·G28
+
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 
@@ -851,6 +927,15 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 
 쓰인 곳: `azure-cloud-benefits.scalability`(컨테이너를 푸는 한 줄)
 
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받았다. (phase 103)
+
+- 컨테이너와 VM은 둘 다 워크로드를 컴퓨팅 리소스와 떼어 두는 가상화지만 방법이 다르다. VM은 밑의 리소스를 가상화해 운영 체제 여러 개를 한 하드웨어에서 실행하고, VM마다 운영 체제 이미지·라이브러리·앱을 담아 크다 — 「What's the difference between a container and a virtual machine?」 (phase 103)
+- **컨테이너는 호스트의 운영 체제를 함께 쓴다.** 그래서 운영 체제를 시작하거나 라이브러리를 올릴 필요가 없어 가볍고 효율적이지만, VM보다 덜 격리된다. 컨테이너는 자기가 정의된 운영 체제에 묶인다 — 같은 절과 마지막 「What is the difference …」 문답 (phase 103)
+- 마이크로 서비스 아키텍처는 큰 앱을 특정 기능을 맡는 작은 서비스들로 나누고, 서비스끼리 API로 통신하게 하는 방식이다. 서비스마다 자기 컨테이너에서 실행되어 따로 업데이트·크기 조정·배포한다 — 「Containers and modern app development」 (phase 103)
+- 한국어 표기: 한국어판은 받지 않았다. Learn 단원 5 한국어판의 「컨테이너」·「가상 머신」·「마이크로 서비스 아키텍처」를 쓴다 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.containers`(VM과 다른 점 — 호스트 운영 체제를 함께 쓴다, 그래서 가볍다, 덜 격리된다, 마이크로 서비스), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트 운영 체제 위), `HostingOptionsTable`(컨테이너 행), D53·D55
+
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
 
@@ -892,6 +977,10 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 - REST API는 HTTP 요청(메서드)을 받아 서비스의 리소스를 만들고·읽고·고치고·지우게 해 주는 서비스의 끝점이다 — 「첫 문단」
 
 쓰인 곳: `azure-cloud-benefits.manageability`(API를 푸는 한 줄 — 「프로그램이 요청을 보내 리소스를 만들고, 읽고, 고치고, 지울 수 있게 해 주는 창구」)
+
+다시 확인한 날 2026-10-31(사본을 다시 받았다 — 위 사실 그대로). REST 요청은 이 끝점에 HTTP 메서드로 보내는 요청이다 — 「첫 문단」의 「REST API request/response pair」 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.functions`(REST 요청을 푸는 한 줄 — 프로그램이 HTTP로 서비스에 보내는 요청), `azure-compute.app-service`(REST API)
 
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
 https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
@@ -1245,6 +1334,15 @@ https://learn.microsoft.com/en-us/azure/app-service/overview
 - 한국어 표기: 「App Service 개요」, Azure App Service(이름 그대로)
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(App Service는 웹 앱 같은 앱을 그 아래 인프라를 관리하지 않고 실행하게 해 준다 — 자동 확장은 PaaS 사전을 근거로 썼다), D31·D33·D34·D35
+
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다. (phase 103)
+
+- App Service는 여러 웹 스택(.NET·Java·Node.js·Python·PHP)을 Windows와 Linux에서 실행한다. 컨테이너로 만든 앱은 사용자 지정 컨테이너로 배포할 수도 있다 — 「첫 부분」 (phase 103)
+- GitHub Actions·Azure Pipelines 등으로 지속적으로 배포하고, 스테이징 환경을 거쳐 배포할 수 있다 — 같은 부분의 기능 목록 (phase 103)
+- 표준 App Service 요금제를 고르는 경우의 하나로 「운영 체제와 런타임의 관리·패치가 저절로 되기를 원할 때」를 든다 — 운영 체제 패치를 플랫폼이 맡는다는 근거 — 「Quick decision guide」 (phase 103)
+- 같은 문서의 Managed Instance(설치 스크립트로 운영 체제 수준 기능을 구성하는 선택지)는 확인만 했다. 쓰지 않는다 (phase 103)
+
+쓰일 곳(phase 103): `azure-compute.app-service`(Windows·Linux, 여러 언어, 운영 체제는 플랫폼이 맡는다, 지속적 배포), `HostingOptionsTable`(App Service 행), D53·D55
 
 ## (phase 101) Azure App Service — Scale up an app in Azure App Service
 https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
@@ -1646,3 +1744,295 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 | Azure Policy / policy | Azure Policy / 정책 | Policy 개요 한국어판이 이름을 옮기지 않는다 |
 | governance / compliance | 거버넌스 / 규정 준수 | L6·MG 한국어판. phase 101 표기와 같다 |
 | Microsoft Entra ID | Microsoft Entra ID | 한국어판이 옮기지 않는다. 옛 이름 Azure Active Directory(Azure AD)는 쓰지 않는다(phase 101 「New name for Azure Active Directory」 항목, D46·G25) |
+
+---
+
+## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure
+https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
+
+확인한 날 2026-10-31(사본의 「Last updated on」 뒤 날짜는 비어 있다). 사본: `docs-virtual-network-network-overview.md`와 `ko-` 판.
+
+- VM을 만들 때 가상 네트워크를 새로 만들거나 이미 있는 것을 쓴다. 가상 네트워크는 VM보다 먼저 만들어도 되고 VM을 만들면서 만들어도 된다 — 「첫 부분」
+- **VM과 통신하려고 만드는 리소스**는 네트워크 인터페이스, IP 주소, 가상 네트워크와 서브넷이고, **선택적 리소스**는 네트워크 보안 그룹과 부하 분산 장치다 — 「첫 부분」의 두 목록
+- 네트워크 인터페이스(NIC)는 VM과 가상 네트워크를 잇는 것이고 **VM에는 NIC가 적어도 하나 있어야 한다**. NIC는 VM과 같은 위치·구독의 가상 네트워크에 이어져야 한다 — 「Network interfaces」
+- **공용 IP 주소를 NIC에 붙이는 것은 선택이다.** 공용 IP 주소는 인터넷, 그리고 가상 네트워크에 이어지지 않은 Azure 리소스와 통신하는 데 쓴다. **개인 IP 주소는 VM에 적어도 하나 있어야 하고** 가상 네트워크 안·온-프레미스 네트워크와의 통신에 쓴다 — 「IP addresses」
+- 포털에서 VM을 만들면 NIC가 저절로 하나 만들어지고, 네트워크 보안 그룹도 저절로 만들어져 그 NIC에 걸린다 — 「Network interfaces」·「Network security groups」
+- 한국어 표기: network interface → 네트워크 인터페이스, optional resources → 선택적 리소스, private/public IP address → **개인 IP 주소 / 공용 IP 주소**, network security group → 네트워크 보안 그룹, load balancer → 부하 분산 장치
+
+쓰일 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
+
+## (phase 103) Azure Managed Disks — Azure managed disks overview
+https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
+
+확인한 날 2026-10-31, Last updated on 2026-08-20. 사본: `docs-virtual-machines-managed-disks-overview.md`.
+
+- 관리 디스크는 Azure가 관리하는 블록 수준 저장 볼륨이고 Azure VM에 붙여 쓴다. 온-프레미스 서버의 물리 디스크처럼 쓰지만 가상화되어 있다. 쓰는 쪽은 디스크 유형과 크기만 정하고, 나머지는 Azure가 맡는다 — 「첫 문단」
+- 관리 디스크는 스토리지 계정을 만들고 관리하는 일을 뒤에서 대신 해 준다(VM 개요 「Managed disks」도 같은 말을 한다) — VM 개요 「Managed disks」
+- 이미지와 스냅샷은 VM에 붙은 관리 디스크(OS 디스크와 데이터 디스크)를 담는다 — 「Compare managed images and managed disk snapshots」(쓰지 않는다 — 데이터 디스크라는 말의 근거로만)
+- 한국어 표기: 받은 한국어판이 없다. VM 개요 한국어판의 「OS 디스크」·「데이터 디스크」를 쓴다
+
+쓰일 곳: `azure-compute.vm-resources`(디스크를 푸는 한 줄 — VM에 붙이는 가상 디스크), D57
+
+## (phase 103) Azure Virtual Machines — Availability sets overview
+https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview
+
+확인한 날 2026-10-31, Last updated on 2026-04-07. 사본: `docs-virtual-machines-availability-set-overview.md`와 `ko-` 판.
+
+- **권장**: 고가용성에는 유연한 오케스트레이션 모드의 가상 머신 확장 집합을 권한다(VM을 한곳에서 관리하고 수요·일정에 따라 수를 바꾼다). 가용성 집합은 고가용성을 주지만 가용성 영역만큼의 복원력은 주지 않는다 — 「첫 부분의 Note」
+- 가용성 집합은 관련된 VM이 함께 걸리는 고장으로 한꺼번에 멈출 가능성을 줄이는 VM의 논리적 묶음이다. VM을 여러 장애 도메인에 나눠 두고, 가용성 영역을 지원하지 않는 지역에서 특히 쓸모 있다 — 「What is an availability set?」
+- 가용성 집합에는 VM을 둘 이상 만든다. 가용성 집합 자체에는 추가 비용이 없고 VM 인스턴스 값만 낸다 — 같은 절(같은 문장의 99.95% SLA 수치는 쓰지 않는다)
+- VM끼리 물리적으로 더 가까이 놓여 **VM 사이 대기 시간은 가용성 영역보다 짧다**. 그래도 여러 장애 도메인에 함께 미치는 공유 인프라의 고장 — 예: **데이터 센터 수준의 네트워크 중단** — 에는 여전히 약하다 — 같은 절
+- 더 높은 안정성이 필요하면 가용성 영역을 쓴다. 영역에 VM을 나눠 두면 데이터 센터 하나의 전원·네트워킹·냉각 손실에서 보호된다 — 같은 절
+- Azure 플랫폼이 가용성 집합의 VM마다 **업데이트 도메인과 장애 도메인을 정해 준다**. 가용성 집합 하나에 **장애 도메인은 최대 3개, 업데이트 도메인은 최대 20개**까지이고, **만든 뒤에는 바꿀 수 없다** — 「How do availability sets work?」
+- 업데이트 도메인은 함께 다시 시작될 수 있는 VM과 그 밑의 물리 하드웨어의 묶음이다. 계획된 유지 관리 때 업데이트 도메인이 번호 순서대로 다시 시작되지 않을 수 있지만 **한 번에 하나씩만** 다시 시작되고, 다시 시작된 업데이트 도메인은 30분 동안 회복한 뒤 다음 도메인의 유지 관리가 시작된다 — 「Update domains」(30분은 쓰지 않는다)
+- 업데이트 도메인이 다섯인 가용성 집합에 VM이 다섯 대를 넘으면 여섯째 VM은 첫째와, 일곱째는 둘째와 같은 업데이트 도메인에 놓인다 — 같은 절
+- 장애 도메인은 전원과 네트워크 스위치를 함께 쓰는 VM의 묶음이다. 기본으로 가용성 집합의 VM은 장애 도메인 최대 셋에 나뉜다 — 「Fault domains」
+- **가용성 집합에 두어도 운영 체제나 앱 자체의 고장은 막지 못한다.** 막는 것은 물리 하드웨어 고장·네트워크 중단·전원 중단의 영향을 줄이는 것이다 — 같은 절
+- 도메인 번호: 글은 번호를 매기지 않는다. 같은 페이지의 그림(「Diagram that shows compute clusters split into fault domains that contain update domains.」, `media/virtual-machines-common-manage-availability/ud-fd-configuration.png` — 사본 `ud-fd-configuration.png`)은 장애 도메인을 0·1·2로, 업데이트 도메인을 1~5로 매긴다(VM 여섯째가 업데이트 도메인 1). **번호 매김이 하나로 정해지지 않으므로 도식은 이름표(「장애 도메인 A」 같은 것)로 쓴다**
+- 한국어 표기: 제목 「가용성 집합 개요」, availability set → 가용성 집합, fault domain → 장애 도메인, update domain → 업데이트 도메인, Virtual Machine Scale Sets → 「가상 머신 스케일 세트」(이 문서 한국어판), flexible orchestration mode → 유연한 오케스트레이션 모드, correlated failure → 상관 관계 오류(쓰지 않는다 — 「함께 걸리는 고장」으로 푼다)
+
+쓰일 곳: `azure-compute.availability-sets`(정의·VM 둘 이상·추가 비용 없음·두 도메인의 정의·최대 3과 20·만든 뒤 못 바꿈·한 번에 하나씩·여섯째 VM 배정·막지 못하는 것·영역과의 차이(대기 시간, 데이터 센터 수준 중단)·권장), `AvailabilitySetDiagram`(도메인은 이름표로, 전원 장애 때와 계획된 유지 관리 때), G27
+
+## (phase 103) Azure CLI — az vm availability-set (create의 기본값만)
+https://learn.microsoft.com/en-us/cli/azure/vm/availability-set?view=azure-cli-latest
+
+확인한 날 2026-10-31. 사본: `docs-cli-vm-availability-set.md`.
+
+- `az vm availability-set create`의 장애 도메인 수 기본값은 2이고, 업데이트 도메인 수는 정하지 않으면 서버가 알맞은 수(예: 5)를 고른다 — 「az vm availability-set create」의 매개 변수 설명
+- 위 개요는 「기본으로 장애 도메인 최대 셋」이라 하고, CLI는 기본값을 2로 둔다 — **만드는 도구마다 기본값이 달라 「기본 수」는 쓰지 않는다.** 최대 수(3·20)와 「만든 뒤 못 바꾼다」만 쓴다
+
+쓰일 곳: (근거 기록) `azure-compute.availability-sets`에 기본 수를 쓰지 않은 까닭
+
+## (phase 103) Azure Virtual Machine Scale Sets — Availability zone options for Azure Virtual Machine Scale Sets
+https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones
+
+확인한 날 2026-10-31, Last updated on 2026-09-09. 사본: `docs-virtual-machine-scale-sets-availability-zones.md`와 `ko-` 판.
+
+- **확장 집합을 데이터 센터 수준의 고장에서 지키려면 가용성 영역에 걸쳐 확장 집합을 만든다.** 가용성 영역을 지원하는 지역이어야 한다 — 「첫 부분」
+- 영역에 걸친 확장 집합은 인스턴스를 영역 둘 이상에 나눠 둔다. 한 영역이 중단되면 그 영역의 인스턴스는 닿지 않을 수 있지만 다른 영역의 인스턴스는 영향을 받지 않는다 — 「Zone spanning」
+- 한 영역에만 두는 확장 집합(영역 정렬)과 영역을 정하지 않는 지역 배포도 있다 — 「Choose an availability zone deployment option」(선택지의 세부와 99.99% 수치는 쓰지 않는다)
+- 한국어 표기: 「가용성 영역을 가로지르는 확장 집합」, 「데이터 센터 수준의 장애」
+
+쓰일 곳: `azure-compute.scale-sets`(확장 집합이 여러 가용성 영역에 VM을 나눠 둘 수 있다 — 그래야 데이터 센터 장애에 대비된다), D56
+
+## (phase 103) Azure Load Balancer — What is Azure Load Balancer?
+https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview
+
+확인한 날 2026-10-31, Last updated on 2026-08-21. 사본: `docs-load-balancer-overview.md`와 `ko-` 판.
+
+- Azure Load Balancer는 들어오는 네트워크 트래픽을 뒤쪽의 VM이나 가상 머신 확장 집합에 나눠 보내는 클라우드 서비스다. 부하 분산은 들어오는 트래픽을 VM 무리에 효율적으로 나누는 일이다 — 「첫 부분」
+- Basic Load Balancer는 2025-09-30에 사용 중지되었다(Standard로 옮기라고 한다) — 「첫 부분의 Important」(쓰지 않는다)
+- 한국어 표기: load balancing → 부하 분산, load balancer → **부하 분산 장치**(한국어판 12번), VMSS → VMSS(가상 머신 확장 집합)
+
+쓰일 곳: `azure-compute.scale-sets`(부하 분산 장치를 푸는 한 줄 — 들어오는 요청을 여러 VM에 나눠 보내는 것), `ScaleSetDiagram`, G32
+
+## (phase 103) Azure Load Balancer — Azure Load Balancer distribution modes
+https://learn.microsoft.com/en-us/azure/load-balancer/distribution-mode-concepts
+
+확인한 날 2026-10-31(설계 세션이 받은 사본), Last updated on 2026-05-20. 사본: `lb-distribution-mode.md`.
+
+- Azure Load Balancer는 기본으로 다섯 값(five-tuple)의 해시로 연결을 나눈다. 같은 클라이언트 IP의 연결을 같은 인스턴스로 보내는 세션 유지 방식도 고를 수 있다 — 「첫 부분」(나누는 방식은 이 주제에 쓰지 않는다 — 「나눠 보낸다」까지만)
+
+쓰일 곳: G32
+
+## (phase 103) Learn 「Describe Azure compute services」 — 4 Describe Azure virtual desktop
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/4-virtual-desktop
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-4-virtual-desktop.md`와 `ko-` 판.
+
+- Azure Virtual Desktop은 데스크톱과 앱을 가상화해 주는 Azure 서비스다. 사용자는 여러 종류의 장치로, 여러 장소에서 Windows 데스크톱과 앱에 안전하게 접속한다 — 「첫 문단」
+- 데스크톱과 앱이 사용자의 기기가 아니라 클라우드에 머무는, 관리형 원격 데스크톱 접속 방식이다 — 「둘째 문단」
+- 흩어져 일하는 사용자·협력업체 직원·하이브리드 근무자에게 데스크톱과 앱을 한곳에서 내줄 때 쓴다. 많은 사용자에게 전체 데스크톱을 중앙에서 관리하며 내주려면, 사용자 무리마다 VM으로 데스크톱 환경을 따로 만드는 것보다 운영하기 쉬운 경우가 많다 — 「When to use Azure Virtual Desktop」
+- 특징 셋 — ID와 접근 제어를 Microsoft Entra ID와 통합해 관리한다, 앱과 데이터가 Azure의 세션에 남을 수 있어 사용자 기기에 데이터가 노출될 일이 준다, 단일 세션과 다중 세션 Windows 환경을 지원한다 — 「Key points」
+- 한국어 표기: 단원 제목 「Azure 가상 데스크톱 설명」, 본문은 **Azure Virtual Desktop**(옮기지 않는다), desktop and application virtualization → 데스크톱 및 애플리케이션 가상화, single-session / multi-session → **단일 세션 / 다중 세션**, hybrid workers → 하이브리드 작업자
+
+쓰일 곳: `azure-compute.virtual-desktop`(정의·쓰는 경우·특징 셋), D54
+
+## (phase 103) Azure Virtual Desktop — What is Azure Virtual Desktop?
+https://learn.microsoft.com/en-us/azure/virtual-desktop/overview
+
+확인한 날 2026-10-31, Last updated on 2026-09-18. 사본: `docs-virtual-desktop-overview.md`와 `ko-` 판.
+
+- **Windows 11·Windows 10·Windows Server**로 전체 Windows 환경을 내준다. 단일 세션은 장치를 한 사용자에게 주고, 다중 세션은 규모를 키운다 — 「첫 목록」
+- 전체 데스크톱을 내주거나, RemoteApp으로 앱 하나하나를 내줄 수 있다 — 「첫 목록」 → **데스크톱 가상화와 앱 가상화를 둘 다 지원한다**
+- 풀링된 다중 세션 리소스로 비용을 줄인다 — Windows 11·10 Enterprise 다중 세션이나 Windows Server로 VM 수와 운영 체제 부담을 줄이면서 사용자에게 같은 리소스를 준다 — 「Key capabilities」
+- 시간·요일·수요에 따라 용량을 저절로 늘리고 줄일 수 있다 — 같은 절
+- Azure Virtual Desktop의 옛 이름은 Windows Virtual Desktop이다 — 「Introductory video」. 「Azure Virtual Desktop (classic)」은 2026-09-30에 사용 중지 예고 — 「Important」(둘 다 쓰지 않는다)
+- 한국어 표기: 다중 세션, 단일 세션, 세션 호스트, 호스트 풀(본문)
+
+쓰일 곳: `azure-compute.virtual-desktop`(데스크톱과 앱을 함께 지원, 다중 세션), D52·D54
+
+## (phase 103) Azure Virtual Desktop — Azure Virtual Desktop terminology
+https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology
+
+확인한 날 2026-10-31. 사본: `docs-virtual-desktop-terminology.md`(영문판만 받았다).
+
+- **호스트 풀**은 Azure Virtual Desktop에 **세션 호스트**로 등록한 Azure VM의 모음이다 — 「Host pools」
+- 호스트 풀은 둘이다 — 개인(세션 호스트마다 한 사용자에게 배정)과 **풀링(한 세션 호스트에 여러 사용자가 동시에 접속할 수 있다)** — 같은 절
+- 풀링 호스트 풀은 사용자 세션을 세션 호스트의 세션 수에 따라 나눠 보내고, 세션 호스트마다 최대 세션 수를 정한다 — 같은 절의 표
+- 앱 그룹은 데스크톱(전체 Windows 데스크톱)과 RemoteApp(골라 게시한 앱 하나하나)이다 — 「Application groups」
+- 한국어 표기: 한국어판을 받지 않았다. 개요·필수 조건 한국어판의 「세션 호스트」·「호스트 풀」을 쓴다
+
+쓰일 곳: `azure-compute.virtual-desktop`(다중 세션 — VM 한 대에 여러 사용자가 동시에. 세션 호스트·호스트 풀은 쓰지 않아도 된다), D52
+
+## (phase 103) Azure Virtual Desktop — Prerequisites for Azure Virtual Desktop
+https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites
+
+확인한 날 2026-10-31. 사본: `docs-virtual-desktop-prerequisites.md`와 `ko-` 판.
+
+- 세션 호스트에 쓸 수 있는 운영 체제 표에 Windows 11 Enterprise(다중 세션 포함)·Windows 10 Enterprise(다중 세션 포함)와 **Windows Server 2025·2022·2019·2016**이 있다(64비트) — 「Operating systems and licenses」(판 이름은 쓰지 않는다 — 「Windows Server도 된다」까지만)
+
+쓰일 곳: `azure-compute.virtual-desktop`, D52
+
+## (phase 103) Learn 「Describe Azure compute services」 — 5 Describe Azure containers
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/5-containers
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-5-containers.md`와 `ko-` 판.
+
+- VM은 물리 하드웨어보다 비용을 줄이지만 VM마다 운영 체제는 하나다. 호스트 컴퓨터 하나에서 앱 인스턴스를 여럿 실행하려면 컨테이너가 알맞다 — 「첫 문단」
+- 컨테이너는 가상화 환경이다. 물리 호스트 하나에서 VM 여러 대를 실행하듯, **물리 또는 가상 호스트** 하나에서 컨테이너 여러 개를 실행한다 — 「What are containers?」
+- **VM과 달리 컨테이너의 운영 체제는 고객이 관리하지 않는다.** VM은 저마다 운영 체제를 실행하고 고객이 그 운영 체제에 접속해 관리한다 — 같은 절
+- 컨테이너는 가볍고, 그때그때 만들고 스케일 아웃하고 멈추도록 설계되었다. 수요 변화에 빨리 대응하고, 크래시나 하드웨어 중단 뒤 빨리 다시 시작한다. 널리 쓰이는 컨테이너 엔진의 하나가 Docker이고 Azure가 Docker를 지원한다 — 같은 절
+- **Azure Container Instances**는 VM을 관리하거나 다른 서비스를 들이지 않고 Azure에서 컨테이너를 실행하는 가장 빠르고 간단한 방법이고, **PaaS**다. 컨테이너를 올리면 서비스가 실행한다 — 「Azure Container Instances」
+- **Azure Container Apps**도 바로 실행하고 컨테이너 관리 부담을 덜어 주는 PaaS이고, **부하 분산과 크기 조정이 들어 있어** 수요 변화에 맞춘다 — 「Azure Container Apps」
+- **Azure Kubernetes Service(AKS)**는 컨테이너 **오케스트레이션** 서비스다. 오케스트레이션 서비스는 컨테이너의 수명 주기를 관리하고, AKS는 컨테이너를 무리로 배포할 때 그 관리를 쉽게 한다 — 「Azure Kubernetes Service」
+- 컨테이너는 마이크로 서비스 아키텍처에 자주 쓰인다 — 솔루션을 작고 독립된 조각으로 나눈다. 예: 웹사이트를 프런트 엔드·백 엔드·저장 부분의 컨테이너로 나누면 부분마다 따로 유지·크기 조정·업데이트하고, 백 엔드만 부담이 몰리면 백 엔드만 늘린다 — 「Use containers in your solutions」
+- 한국어 표기: 단원 제목 「Azure 컨테이너 설명」, container → 컨테이너, container engine → 컨테이너 엔진, host → 호스트(「물리적 또는 가상 호스트」), Azure Container Instances / Azure Container Apps / Azure Kubernetes Service → **이름 그대로**(「AKS(Azure Kubernetes Service)」), orchestration → 오케스트레이션, lifecycle → 수명 주기,
+  microservice architecture → 마이크로 서비스 아키텍처, front end / back end → 프런트 엔드 / 백 엔드
+
+쓰일 곳: `azure-compute.containers`(정의·VM과 다른 점·가볍고 빨리·Docker·마이크로 서비스와 예), `azure-compute.container-services`(세 서비스와 각 한 줄, ACI·Container Apps는 PaaS, 오케스트레이션 풀이), `VmContainerDiagram`, `HostingOptionsTable`(컨테이너 행), D53·D55
+
+## (phase 103) Windows containers — Windows containers overview
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
+
+확인한 날 2026-10-31. 사본: `docs-windowscontainers-about.md`(영문판만 받았다).
+
+- 컨테이너는 호스트 운영 체제 위에서 앱을 실행하는 격리된 가벼운 꾸러미다. **컨테이너는 호스트 운영 체제의 커널 위에서 실행되고 그 커널을 함께 쓰지만**, 커널에 마음대로 닿지는 못하고 격리된 시야를 받는다 — 「How it works」
+- AKS는 Azure VM에 컨테이너를 배포하고 대규모로 관리한다 — 「Containers in Azure」 → 컨테이너는 VM을 호스트로 삼아 실행될 수 있다(위 Learn 단원 5 「물리 또는 가상 호스트」와 같다)
+
+쓰일 곳: `azure-compute.containers`(운영 체제를 함께 쓰는 방식의 근거 — 「커널」이라는 말은 쓰지 않고 「호스트의 운영 체제를 함께 쓴다」까지), `VmContainerDiagram`
+
+## (phase 103) Azure IoT Edge — Supported systems (Container engines 절만)
+https://learn.microsoft.com/en-us/azure/iot-edge/support
+
+확인한 날 2026-10-31. 사본: `docs-iot-edge-support.md`.
+
+- 컨테이너를 띄우려면 컨테이너 엔진이 있어야 한다. Docker는 널리 쓰이는 컨테이너 엔진이다 — 「Container engines」(IoT Edge 자체는 쓰지 않는다)
+
+쓰일 곳: `azure-compute.containers`(엔진을 푸는 한 줄 — 컨테이너를 만들고 실행하는 소프트웨어)
+
+## (phase 103) Azure 클라우드 컴퓨팅 사전 — What is a virtual machine?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-virtual-machine
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-a-virtual-machine.md`.
+
+- 클라우드 VM은 물리 서버 위에서 자기 운영 체제와 앱을 실행하는, 소프트웨어로 만든 컴퓨터다. 물리 컴퓨터를 흉내 내고 호스트 시스템과 격리된다 — 「첫 부분」·「Virtual machine defined」
+- **가상화**는 소프트웨어로 된(가상의) 컴퓨터를 만드는 과정이고, 그 가상 컴퓨터는 물리 호스트 컴퓨터의 CPU·메모리·스토리지를 일정 부분씩 받는다 — 「How does a cloud virtual machine work?」
+- VM은 저마다 운영 체제와 앱을 가진 별개의 컴퓨터처럼 동작하고, 하이퍼바이저가 여러 VM에서 서로 다른 운영 체제를 함께 실행하게 한다 — 「What benefits do VMs offer?」(하이퍼바이저라는 말은 쓰지 않는다)
+
+쓰일 곳: `azure-compute.virtual-machines`(가상화를 푸는 한 줄), `azure-compute.containers`(호스트), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제), D53
+
+## (phase 103) Azure Container Instances — What is Azure Container Instances?
+https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview
+
+확인한 날 2026-10-31, Last updated on 2026-07-25. 사본: `docs-container-instances-overview.md`와 `ko-` 판.
+
+- ACI는 VM을 관리하지 않고, 더 높은 수준의 서비스를 들이지 않고 Azure에서 Linux·Windows 컨테이너를 실행하는 가장 빠르고 간단한 방법이다 — 「첫 문단」
+- ACI는 인스턴스 하나로도, NGroups로 여럿으로도 쓰고, AKS 클러스터의 가상 노드로 오케스트레이션과 함께 쓸 수도 있다. 컨테이너 그룹 하나에 컨테이너 여럿을 둘 수 있다 — 「첫 문단」·「Linux and Windows containers」 표(세부는 쓰지 않는다 — G29의 근거)
+- 이 문서는 ACI를 PaaS라 부르지 않는다. PaaS라는 근거는 Learn 단원 5다
+- 한국어 표기: Azure Container Instances(옮기지 않는다)
+
+쓰일 곳: `azure-compute.container-services`(ACI 항목), G29
+
+## (phase 103) Azure Container Apps — Azure Container Apps overview
+https://learn.microsoft.com/en-us/azure/container-apps/overview
+
+확인한 날 2026-10-31, Last updated on 2026-07-07. 사본: `docs-container-apps-overview.md`와 `ko-` 판.
+
+- Container Apps는 그 밑의 인프라를 관리하지 않고 컨테이너로 만든 앱을 실행하는 서버리스 플랫폼이다. 서버 구성·컨테이너 오케스트레이션·배포 세부를 직접 다루지 않는다 — 「첫 문단」
+- 흔한 쓰임은 API 끝점 배포, 백그라운드 처리 작업, 이벤트 기반 처리, 마이크로 서비스 실행이다. HTTP 트래픽·이벤트·CPU나 메모리 부하에 따라 크기를 바꾼다 — 「첫 부분」
+- 한국어 표기: Azure Container Apps(옮기지 않는다 — Learn 단원 5 한국어판 절 제목에는 「(애저 컨테이너 앱)」이 붙었다)
+
+쓰일 곳: `azure-compute.container-services`(Container Apps 항목 — 부하에 따라 크기를 바꾼다)
+
+## (phase 103) Azure Kubernetes Service — What is Azure Kubernetes Service (AKS)?
+https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+
+확인한 날 2026-10-31, Last updated on 2026-06-04. 사본: `docs-aks-what-is-aks.md`와 `ko-` 판.
+
+- AKS는 컨테이너로 만든 앱을 배포하고 관리하는 관리형 Kubernetes 서비스이고, Kubernetes를 관리하는 복잡함과 운영 부담을 Azure가 맡는다 — 「첫 문단」
+- 클러스터 모드는 둘이다 — AKS Automatic(노드 관리·크기 조정·보안·모니터링·업그레이드를 Azure가 저절로 맡는다)과 AKS Standard(클러스터 구성과 노드 풀 관리를 고객이 완전히 통제한다) — 같은 부분(모드 이름은 쓰지 않는다 — G31의 근거)
+- 한국어 표기: 「AKS(Azure Kubernetes Service)」, managed Kubernetes service → 관리되는 Kubernetes 서비스
+
+쓰일 곳: `azure-compute.container-services`(AKS 항목 — Kubernetes로 많은 컨테이너를 관리), G31
+
+## (phase 103) Azure Architecture Center — Choose an Azure container service
+https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-container-service
+
+확인한 날 2026-10-31. 사본: `docs-architecture-choose-azure-container-service.md`와 `ko-` 판.
+
+- 이 안내가 견주는 것은 Container Apps·AKS·Web App for Containers 셋이고 ACI는 들지 않는다 — 「Azure container services in scope for this guide」
+- AKS는 IaaS와 PaaS가 섞여 단순함보다 통제를 앞세우고 Kubernetes에 익숙하지 않으면 배울 것이 많다. Container Apps는 Kubernetes 위의 추상화 층이라 인프라를 직접 관리하지 않고 앱을 실행·크기 조정한다 — 「Compare the service models of Azure container solutions」
+- 그래서 셋을 고르는 기준(Learn 단원 5의 말로): 컨테이너 하나를 VM 관리 없이 빨리 실행 → ACI, 부하 분산·크기 조정이 들어 있어야 하는 앱 → Container Apps, 많은 컨테이너의 수명 주기를 Kubernetes로 관리·통제 → AKS. **「AKS는 PaaS다」로 쓰지 않는다**(이 안내는 IaaS와 PaaS가 섞였다고 한다)
+- 한국어 표기: 제목 「Azure 컨테이너 서비스 선택」
+
+쓰일 곳: `azure-compute.container-services`(셋을 고르는 기준 문단), G31
+
+## (phase 103) Learn 「Describe Azure compute services」 — 7 Describe application hosting options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/7-describe-application-hosting-options
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-7-describe-application-hosting-options.md`와 `ko-` 판.
+
+- Azure에 앱을 호스트할 때 흔히 VM이나 컨테이너를 먼저 떠올린다. **VM은 호스팅 환경을 가장 많이 통제**하고 원하는 대로 구성하며, **컨테이너는 호스팅 솔루션의 부분을 떼어 따로 관리**할 수 있다. 그 밖의 선택지로 Azure App Service가 있다 — 「첫 문단」
+- App Service는 고른 언어로 웹 앱·백그라운드 작업·모바일 백 엔드·RESTful API를 인프라 관리 없이 만들고 호스트한다. 자동 크기 조정과 고가용성을 갖췄고, Windows·Linux를 지원하며, 지속적 배포를 위해 GitHub·Azure DevOps·Git 리포지토리에서 자동 배포한다 — 「Azure App Service」
+- App Service는 웹 앱·REST API·모바일 백 엔드를 호스트하는 **HTTP 기반 서비스**이고, 고객은 앱을 만들고 유지하는 데 집중하며 환경을 실행 상태로 두는 일은 Azure가 맡는다. 여러 언어·프레임워크를 지원한다 — 같은 절
+- 앱 종류 넷 — 웹 앱(Windows나 Linux를 호스트 운영 체제로 고른다), API 앱(REST 기반 웹 API — HTTP·HTTPS 클라이언트가 쓴다), WebJobs(웹 앱 등과 같은 맥락에서 프로그램이나 스크립트를 실행 — 일정이나 트리거로, 흔히 백그라운드 작업), 모바일 앱(iOS·Android 앱의 백 엔드) — 「Types of app services」 이하(모바일 앱의 세부 기능은 쓰지 않는다)
+- App Service가 맡는 인프라 결정 — 배포와 관리가 플랫폼에 들어 있다, 끝점을 보호할 수 있다, 트래픽이 많으면 빨리 크기를 늘린다, 부하 분산과 트래픽 관리자로 고가용성을 준다 — 같은 절
+- 한국어 표기: 단원 제목 「Azure 애플리케이션 호스팅 옵션 설명」, web apps → **웹앱**(붙여 쓴다), API apps → API 앱, WebJobs(옮기지 않는다), mobile apps → 모바일 앱, background jobs → 백그라운드 작업, mobile back end → 모바일 백 엔드, continuous deployment → 지속적인 배포, Git repo → Git 리포지토리
+
+쓰일 곳: `azure-compute.app-service`(정의·HTTP 기반·자동 크기 조정과 고가용성·Windows와 Linux·지속적 배포·앱 종류 넷·맡는 인프라 결정·VM·컨테이너와 견주는 문단), `HostingOptionsTable`, D53·D55
+
+## (phase 103) Azure App Service — Configure continuous deployment to Azure App Service
+https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment
+
+확인한 날 2026-10-31, Last updated on 2025-06-16. 사본: `docs-app-service-deploy-continuous-deployment.md`.
+
+- 지속적 배포(CD)를 구성하면 GitHub·Bitbucket·Azure Repos 같은 리포지토리의 변경을 App Service가 끌어와 배포한다. 고른 리포지토리·브랜치에 새 커밋이 생기면 앱에 계속 배포된다 — 「첫 문단」·GitHub Actions 절
+
+쓰일 곳: `azure-compute.app-service`(지속적 배포를 푸는 한 줄 — 코드 저장소에 바뀐 코드를 올리면 앱에 저절로 배포되는 것)
+
+## (phase 103) .NET — Choosing a Transport (HTTP 절만)
+https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-a-transport
+
+확인한 날 2026-10-31. 사본: `docs-dotnet-choosing-a-transport.md`.
+
+- HTTP는 클라이언트와 서버 사이의 요청·응답 프로토콜이다. 흔한 예는 웹 브라우저가 웹 서버와 통신하는 것 — 클라이언트가 요청을 보내면 서버가 요청의 상태를 담은 응답을 돌려주고, 성공하면 웹 페이지 같은 데이터가 함께 온다 — 「HTTP Transport」
+
+쓰일 곳: `azure-compute.app-service`(HTTP를 푸는 한 줄 — 웹 브라우저 같은 클라이언트가 요청을 보내고 서버가 응답하는 규칙), `azure-compute.functions`(REST 요청 풀이)
+
+---
+
+## (phase 103) 한국어 표기 정리 — `azure-compute`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `virtual-machines` | **가상 머신(Azure Virtual Machines)** | Learn 단원 2 한국어판 제목 「Azure 가상 머신 설명」, 본문 「Azure VM(Virtual Machines)」. 본문의 줄임은 phase 100·101대로 「VM(가상 머신)」 |
+| `vm-resources` | **가상 머신에 필요한 리소스** | 「Virtual networks and virtual machines in Azure」 한국어판 「가상 머신에 대한 통신을 지원하기 위해 … 리소스」, VM 개요 한국어판의 표. 목록 항목 이름 — **가상 네트워크**(Virtual Network), **네트워크 인터페이스**(Network Interface — VM 개요 한국어판은 「가상 네트워크 인터페이스 카드(NIC)」, 네트워킹 문서 한국어판은 「네트워크 인터페이스」 — 짧은 쪽), **IP 주소**(IP Address — 「개인 IP 주소」와 「공용 IP 주소」), **네트워크 보안 그룹**(Network Security Group), **디스크**(Disk — 「OS 디스크」·「데이터 디스크」) |
+| `scale-sets` | **가상 머신 확장 집합** | Learn 단원 2 한국어판 본문 「가상 머신 확장 집합」(본문에서는 「확장 집합」). 제품 문서 한국어판 제목은 「가상 머신 확장 집합이란?」이고 가용성 집합 개요 한국어판에는 「가상 머신 스케일 세트」가 섞였다 — Learn 쪽과 확장 집합 문서 제목을 따른다 |
+| `availability-sets` | **가용성 집합** | Learn 단원 2 한국어판 「가상 머신 가용성 집합」·「가용성 집합」, 가용성 집합 개요 한국어판 제목 「가용성 집합 개요」. 업데이트 도메인 / 장애 도메인도 두 한국어판이 같다 |
+| `virtual-desktop` | **Azure Virtual Desktop** | Learn 단원 4·개요 한국어판 본문이 옮기지 않는다(단원 제목만 「Azure 가상 데스크톱 설명」). 다중 세션 / 단일 세션 |
+| `containers` | **컨테이너** | Learn 단원 5 한국어판. 컨테이너 엔진, 호스트, 마이크로 서비스 아키텍처, 프런트 엔드 / 백 엔드 |
+| `container-services` | **Azure의 컨테이너 서비스** | 이름표 개념이라 한국어판 문구가 따로 없다 — Architecture Center 한국어판 제목 「Azure 컨테이너 서비스 선택」의 「컨테이너 서비스」. 목록 항목 이름 — **Azure Container Instances**, **Azure Container Apps**, **Azure Kubernetes Service(AKS)** — 세 문서 한국어판이 옮기지 않는다. ACI·Container Apps는 굵은 이름 뒤에 영문 괄호를 따로 붙이지 않는다(이름이 이미 영문) |
+| `functions` | **Azure Functions** | Learn 단원 6·Functions 문서 한국어판(옮기지 않는다). 상태 비저장 / 상태 저장, Durable Functions, 트리거, REST 요청 |
+| `app-service` | **Azure App Service** | Learn 단원 7·App Service 개요 한국어판(옮기지 않는다). 앱 종류는 웹앱(한국어판은 붙여 쓴다)·API 앱·WebJobs·모바일 앱. 지속적 배포(「지속적인 배포」) |
+
+섞여 쓰인 표기와 고른 것:
+
+- **개인 IP 주소 / 사설 IP 주소** — 받은 한국어판(VM 개요, 네트워킹 문서)은 private IP address를 모두 「개인 IP 주소」로 쓴다. 이 과목은 phase 102가 가상 네트워크를 「사설 네트워크」로 풀었다. IP 주소는 한국어판대로 **「개인 IP 주소」**를 쓰고, 처음 쓸 때 「가상 네트워크 안에서만 쓰는 주소」로 푼다. guide의 「사설 IP」는 잠정 표기다 — step 5가 네트워킹 문서 한국어판으로 다시 본다
+- **공용 IP 주소** — 받은 한국어판이 모두 「공용 IP」다(Learn 단원 2 포함). 「퍼블릭 IP」는 쓰지 않는다
+- **확장 집합 / 스케일 세트** — 위 표대로 「가상 머신 확장 집합」, 본문 줄임은 「확장 집합」
+- **부하 분산 장치** — Load Balancer 개요 한국어판(12번). 「로드 밸런서」·「부하 분산기」는 쓰지 않는다
+- **장애 도메인 / 업데이트 도메인** — 두 한국어판이 같다. 도식은 번호 대신 이름표(가용성 집합 개요 항목의 「도메인 번호」)
+- **리프트 앤 시프트 마이그레이션, 재해 복구, 데이터 센터 확장** — Learn 단원 2 한국어판
