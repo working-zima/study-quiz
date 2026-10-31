@@ -114,6 +114,7 @@ import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
+import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
@@ -352,6 +353,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-service-types.saas': ServiceTypesTable,
   'azure-regions-zones.region': AzureRegionDiagram,
   'azure-regions-zones.availability-zones': ZoneIsolationDiagram,
+  'azure-regions-zones.region-pairs': RegionPairDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

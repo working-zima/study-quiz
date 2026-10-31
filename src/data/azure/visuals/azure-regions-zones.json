@@ -93,6 +93,47 @@
       "sources": [
         "azure-regions-zones.availability-zones"
       ]
+    },
+    "region-pairs": {
+      "label": "지역 쌍을 이룬 두 지역이 지역 전체의 재해와 계획된 업데이트 때 어떻게 되는지 보는 도식",
+      "svgLabel": "지리 하나 안에 지역 A와 지역 B가 있고, 두 지역이 짝이라는 것을 선으로 이었다",
+      "question": "짝을 이룬 두 지역은 재해가 날 때와 업데이트할 때 어떻게 쓰일까?",
+      "idleCaption": "같은 지리 안의 지역 A와 지역 B가 지역 쌍을 이룬다. 버튼을 고르면 지역 A 전체가 멈출 때와 계획된 업데이트를 할 때 두 지역이 어떻게 되는지 볼 수 있다.",
+      "legend": "큰 박스는 지리다. 두 지역을 잇는 가는 선은 둘이 짝이라는 뜻이고, 화살표는 고객이 구성해 둔 장애 조치로 일이 넘어가는 방향이다. 흐리게 그린 노드는 멈춘 것이다.",
+      "nodes": {
+        "region-a": "지역 A",
+        "region-b": "지역 B"
+      },
+      "groups": {
+        "geography": "지리"
+      },
+      "notes": {
+        "a-down-note": "지역 전체 중단",
+        "b-takeover-note": "일을 이어받음",
+        "a-update-note": "업데이트 중",
+        "b-running-note": "계속 동작"
+      },
+      "scenarios": [
+        {
+          "id": "disaster",
+          "label": "지역 A 전체 중단",
+          "caption": "큰 재해로 지역 A 전체가 멈췄다. 회사 A가 지역 B에도 리소스와 데이터를 복제해 두고 장애 조치를 구성했다면 지역 B가 일을 이어받는다. 지역 B가 지역 A의 짝이라는 것만으로는 일이 저절로 넘어가지 않는다.",
+          "sources": [
+            "azure-regions-zones.region-pairs"
+          ]
+        },
+        {
+          "id": "update",
+          "label": "계획된 업데이트",
+          "caption": "Microsoft는 계획된 업데이트를 짝의 두 지역에 한꺼번에 하지 않고 한 지역씩 한다. 지역 A를 업데이트하는 동안 지역 B는 계속 동작하므로, 드물게 업데이트에 문제가 있어도 두 지역이 함께 영향을 받지 않는다.",
+          "sources": [
+            "azure-regions-zones.region-pairs"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-regions-zones.region-pairs"
+      ]
     }
   },
   "tables": {},

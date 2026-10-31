@@ -195,8 +195,10 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의·격리 경계·빠른 사설 네트워크·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건 — 자연재해를 예로·그보다 큰 대비로 지역 쌍),
 `azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM, 영역 중복의 영역 중복 스토리지·SQL Database. 관리 디스크·IP 주소는 예로 쓰지 않았다. 나눔과 이름은 현행), az042·az043·az044 해설, `ZoneIsolationDiagram`
 
-쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(짝지은 까닭, 고객이 복구·복제를 구성, 짝의 예, 덧붙은 이점 셋, 한 방향 짝, 짝 없는 지역 — 「현행 문서와 다름」 1~3을 따른다),
-`azure-regions-zones.sovereign-regions`(정의와 예 둘), D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 쓴다**
+- 한국어 표기(phase 102 step 3): main instance of Azure → Azure의 주 인스턴스(L5 한국어판). 이 주제는 「주 인스턴스」로 쓰고 「모두가 함께 쓰는 Azure」로 풀어 쓴다
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(짝지은 까닭 — 자연재해·정전처럼 지역 전체에 미치는 사건, 고객이 복제와 장애 조치를 구성, 짝의 예 — 미국 서부·미국 동부와 동아시아·동남아시아, 덧붙은 이점 셋, 브라질 남부의 예외와 한 방향 짝. 「현행 문서와 다름」 1~3을 따라 「일부 지역」으로 쓰고 거리 수치와 「저절로 장애 조치된다」는 쓰지 않았다),
+`azure-regions-zones.sovereign-regions`(주 인스턴스와 격리된 인스턴스, 규정 준수·법적 이유, 예 둘 — 심사를 거친 미국인이 운영, 추가 규정 준수 인증, Microsoft가 데이터 센터를 직접 유지하지 않음, 지역 이름은 단원 5 한국어판 표기로 US Gov 버지니아·US Gov 애리조나·중국 동부·중국 북부. US DoD Central은 쓰지 않았다), az045·az046·az047 해설, `RegionPairDiagram`, D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 썼다**
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
@@ -755,7 +757,7 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(중복을 푸는 한 줄 — 위 「중복성」 줄), `azure-regions-zones.zone-service-categories`(장애 조치를 푸는 한 줄 — 멈춘 쪽이 하던 일을 미리 갖춰 둔 다른 쪽이 넘겨받는 것. 이 주제에서 장애 조치를 처음 푼 자리다), az044 해설
 
-쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(장애 조치 — 같은 주제의 `zone-service-categories`가 이미 풀었다)
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(장애 조치를 다시 풀지 않고 썼다 — 같은 주제의 `zone-service-categories`가 이미 풀었다), az045 해설(장애 조치를 푸는 한 줄 — 해설은 혼자 읽혀야 해서 다시 풀었다)
 
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
@@ -800,7 +802,7 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐)
 
-쓰일 곳(phase 102): `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적을 수 있다), D38·G20·G21·G23
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 가운데 많은 곳이 짝 없이 가용성 영역을 주된 대비 수단으로 쓴다, 짝이 있든 없든 여러 지역을 함께 써서 대비할 수 있다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적은 경우가 많다, 데이터 상주 요구는 지리 안의 지역을 골라 맞춘다 — G23), az045·az046 해설, D38·G20·G21·G23
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is a container?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-container
@@ -1301,7 +1303,9 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-paired
 - 짝 사이 거리에 관한 수치는 이 문서에 없다(Learn 단원 5의 「300마일 이상」은 쓰지 않는다 — 단원 5 항목의 「현행 문서와 다름」 2)
 - 한국어 표기: region pair → 지역 쌍, paired region → 쌍을 이루는 지역, nonpaired region → 쌍을 이루지 않는 지역(제목은 「페어링을 이루지 않은 지역」, 본문은 「쌍을 이루지 않는/않은」), asymmetrically paired → 비대칭 쌍, geo-redundant storage → 지역 중복 스토리지(GRS), West US / East US → 미국 서부 / 미국 동부
 
-쓰일 곳: `azure-regions-zones.region-pairs`(Microsoft가 짝짓는다, 짝 없는 지역이 많다, 이점 셋, 저절로 장애 조치되지 않는다, 비대칭 짝, 짝의 예), G21
+- 계획된 업데이트에 시차를 두는 까닭: 드물게 업데이트에 결함이 있을 때 그 영향을 줄이고, 짝의 두 지역을 함께 쓰도록 설계한 솔루션이 멈추지 않게 하려는 것이다 — 「Paired regions」 Sequential updating (Learn 단원 5도 중단 시간과 애플리케이션 중단 위험을 줄이려는 것이라 한다) (phase 102 step 3)
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(Microsoft가 짝짓는다, 짝 없는 지역이 많다, 지역 중복 스토리지(GRS)가 짝 지역에 복제한다, 이점 셋과 업데이트에 시차를 두는 까닭, 저절로 장애 조치되지 않고 대비 계획은 고객이 세운다, 고객은 지역이나 그 짝에 묶이지 않는다, 비대칭 짝, 짝의 예), az045·az046 해설, `RegionPairDiagram`(지역 재해 때 고객이 구성해 둔 장애 조치, 계획된 업데이트는 한 지역씩), G21
 
 ## (phase 102) Azure reliability — Azure nonregional services
 https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
@@ -1352,7 +1356,7 @@ https://learn.microsoft.com/en-us/azure/azure-government/documentation-governmen
 - 지역 목록에 US Gov Arizona·US Gov Texas·US Gov Virginia가 있고, US Gov Arizona와 US Gov Texas가 서로의 짝이다 — 「List of regions」
 - 한국어 표기: Azure Government(옮기지 않는다), global Azure → 글로벌 Azure
 
-쓰일 곳: `azure-regions-zones.sovereign-regions`(미국 정부 기관과 협력사를 위한 지역 — 물리적으로 격리, 심사를 거친 미국인, 자격 확인, 서비스·기능 차이), D43
+쓰인 곳(phase 102 step 3): `azure-regions-zones.sovereign-regions`(미국 정부 기관과 협력사를 위한 Azure — 미국 안의 물리적으로 격리된 데이터 센터와 네트워크, 고객 데이터를 다루는 시스템에 접근하는 사람을 심사를 거친 미국인으로 제한, 연방·주·지방 정부 기관이나 협력사가 자격 확인을 받아 쓴다, 같은 기반 기술 — 인스턴스를 푸는 줄), az047 해설, D43. 짝(US Gov Arizona·US Gov Texas)은 쓰지 않았다
 
 ## (phase 102) Azure in China — Microsoft Azure operated by 21Vianet
 https://learn.microsoft.com/en-us/azure/china/overview-operations
@@ -1364,7 +1368,7 @@ https://learn.microsoft.com/en-us/azure/china/overview-operations
 - 접근을 중국 안으로 제한한다는 말은 이 문서에 없다
 - 한국어 표기: 한국어판이 이름을 옮기지 않는다. Learn 단원 5 한국어판은 「21Vianet」, 「What are Azure regions?」 한국어판은 「21Vianet에서 운영하는 Microsoft Azure」 — 이 주제는 「21Vianet이 운영하는 Microsoft Azure(Microsoft Azure operated by 21Vianet)」로 쓴다
 
-쓰일 곳: `azure-regions-zones.sovereign-regions`(중국의 지역 — 21Vianet이 운영하는 물리적으로 분리된 인스턴스, 기능 차이), D41·D42
+쓰인 곳(phase 102 step 3): `azure-regions-zones.sovereign-regions`(중국 안에 있고 물리적으로 분리된 인스턴스, 21Vianet이 독립적으로 운영), az047 해설, D41·D42. 「중국에서만 접근」은 쓰지 않았다(D42)
 
 ## (phase 102) Azure Germany (이전 버전 문서) — Welcome to Azure Germany
 https://learn.microsoft.com/en-us/previous-versions/azure/germany/germany-welcome
