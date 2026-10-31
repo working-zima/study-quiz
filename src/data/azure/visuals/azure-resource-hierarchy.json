@@ -90,6 +90,59 @@
         "azure-resource-hierarchy.subscription",
         "azure-resource-hierarchy.subscription-boundaries"
       ]
+    },
+    "hierarchy": {
+      "label": "테넌트 루트 그룹 아래로 관리 그룹·구독·리소스 그룹·리소스가 이어진 계층에서, 한 층에 건 정책이나 역할 할당이 어디까지 미치는지 보는 도식",
+      "svgLabel": "테넌트 루트 그룹 아래에 관리 그룹 「운영」과 「개발」이 있고, 「운영」 아래에 구독 A와 구독 B가, 「개발」 아래에 구독 C가 있다. 구독 A 안에는 리소스 그룹 「웹」이, 그 안에는 VM 1이 있다",
+      "question": "한 층에 건 규칙은, 아래 어디까지 내려갈까?",
+      "idleCaption": "회사 A의 테넌트 루트 그룹 아래에 관리 그룹 「운영」과 「개발」이 있고, 「운영」 아래에 구독 A·B가, 「개발」 아래에 구독 C가 있다. 구독 A 안에는 리소스 그룹 「웹」과 VM 1이 있다. 버튼을 고르면 한 층에 건 정책이나 역할 할당이 어디까지 미치는지 볼 수 있다.",
+      "legend": "선은 위의 단위가 바로 아래 단위를 담는다는 뜻이다. 맨 아래 VM 1은 리소스이고, 구독과 리소스의 수는 예다. 시나리오를 고르면 정책이나 역할 할당이 미치는 곳만 선명하게 남는다.",
+      "nodes": {
+        "root": "테넌트 루트 그룹",
+        "mg-prod": "관리 그룹: 운영",
+        "mg-dev": "관리 그룹: 개발",
+        "sub-a": "구독 A",
+        "sub-b": "구독 B",
+        "sub-c": "구독 C",
+        "rg-web": "리소스 그룹: 웹",
+        "vm-1": "VM 1"
+      },
+      "notes": {
+        "policy-note": "정책을 건 곳",
+        "inherit-note": "물려받음",
+        "sub-role-note": "역할 할당",
+        "rg-role-note": "역할 할당"
+      },
+      "scenarios": [
+        {
+          "id": "at-mg",
+          "label": "관리 그룹에 정책",
+          "caption": "관리 그룹 「운영」에 VM을 둘 수 있는 지역을 한 곳으로 제한하는 정책을 걸면, 그 아래 구독 A·B와 리소스 그룹 「웹」, VM 1이 모두 이 정책을 물려받는다. 구독 A의 소유자도 이 정책을 바꿀 수 없다. 「개발」 아래의 구독 C에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        },
+        {
+          "id": "at-sub",
+          "label": "구독에 역할 할당",
+          "caption": "구독 A에 역할 할당을 만들면, 그 접근 권한은 구독 A 안의 리소스 그룹 「웹」과 VM 1에 미친다. 같은 관리 그룹 「운영」 아래에 있어도 구독 B에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        },
+        {
+          "id": "at-rg",
+          "label": "리소스 그룹에 역할 할당",
+          "caption": "리소스 그룹 「웹」에 역할 할당을 만들면, 그 접근 권한은 만든 층인 리소스 그룹 「웹」과 그 아래의 VM 1에만 미친다. 세 경우 가운데 가장 아래층에 걸어서, 미치는 곳도 가장 좁다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.management-group",
+        "azure-resource-hierarchy.hierarchy"
+      ]
     }
   },
   "tables": {},

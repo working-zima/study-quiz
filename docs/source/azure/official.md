@@ -241,7 +241,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(Azure를 쓰려면 구독이 있어야 한다, 쓰고 관리하며 요금을 내는 단위 — 「규모」는 이 주제에서 풀 말이 없어 쓰지 않았다, 계정은 Microsoft Entra ID 또는 그것이 믿는 디렉터리의 ID, 계정 하나에 구독 여럿·적어도 하나, 구독이 리소스 그룹을 담는다 — D46),
 `azure-resource-hierarchy.subscription-boundaries`(청구 경계·액세스 제어 경계, 구독마다 다른 지출 한도와 액세스 규칙, 구독을 더 만드는 까닭 셋, 「프로덕션」 대신 「운영 환경」, 리소스 그룹을 나눠도 청구서가 나뉘지 않는다는 판단), az051·az052 해설, `SubscriptionBoundaryDiagram`, D46·G25. 클래식 관리자 역할·「Microsoft 계정」·「Azure AD」는 쓰지 않았다
 
-쓰일 곳(phase 102): `azure-resource-hierarchy.management-group`(구독 위의 묶음, 거버넌스 조건의 상속, 여섯 단계, 테넌트 루트 그룹, 10,000개, 부모 하나), `azure-resource-hierarchy.hierarchy`(쓰는 예 둘, 절 제목), D46·D47·D48·D49·D50·G24·G25·G26
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독이 많고 여러 팀에 걸치면 더 높은 수준의 관리가 필요하다, 구독 위의 묶음, 거버넌스 조건(액세스 정책·규정 준수 규칙)의 상속과 리소스 그룹 설정 상속과의 비교, 여섯 단계 — 테넌트 루트 그룹 단계와 구독 단계는 세지 않음, 테넌트 루트 그룹, 10,000개 — 「디렉터리 하나에」를 개념 9가 푼 테넌트로 「테넌트 하나에」라고 썼다, 부모 하나, 관리 그룹으로 묶어도 청구서는 구독마다 — 위 step 6의 판단 줄),
+`azure-resource-hierarchy.hierarchy`(쓰는 예 둘 — Production·US West 대신 이름표 「운영」과 「지역을 한 곳으로 제한」으로 썼다, 절 제목을 명사구로 줄인 name), az053·az054·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
@@ -871,6 +872,8 @@ https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(거버넌스를 푸는 줄 — 해도 되는 일과 안 되는 일을 정책·절차·도구로 정함. 「가드레일」이라는 말은 쓰지 않았다)
 
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(거버넌스와 규정 준수를 푸는 한 줄 — 해도 되는 일과 안 되는 일을 정해 두고 지켜지게 통제하는 일, 규정 준수는 `azure-cloud-benefits`가 쓴 풀이와 같은 뜻 「법이나 업계가 정한 규칙을 지키는 것」)
+
 ## (phase 101) Azure CLI — What is the Azure CLI?
 https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
 
@@ -1471,7 +1474,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(리소스 하나하나가 관리할 수 있는 항목이다, 리소스 그룹 밖의 리소스가 있다는 한정 — 「VM·가상 네트워크·데이터베이스 같은 리소스는」으로 한정했고, 리소스 그룹·구독 자체도 리소스라는 말은 쓰지 않았다),
 `azure-resource-hierarchy.resource-group`(무엇을 한 그룹에 넣을지 고객이 정한다, 한 그룹에만, 옮기기, 수명 주기가 같은 리소스를 한 그룹에, 그룹의 지역과 메타데이터, 다른 지역의 리소스, 다른 그룹의 리소스와의 연결 — 웹앱과 데이터베이스의 예, 그룹 삭제, 접근 제어 범위, 다른 리소스 그룹에는 미치지 않음, NO.87의 판단), az049·az050 해설, `ResourceGroupScopeDiagram`, D48
 
-쓰일 곳: `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 다른 리소스 그룹에는 걸리지 않음)
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 구독에 건 설정은 그 구독의 모든 리소스 그룹·리소스에, 리소스 그룹에 건 설정은 그 리소스 그룹과 안의 리소스에 적용되고 다른 리소스 그룹에는 걸리지 않음 — 「위로 올라가지 않는다」는 쓰지 않고 「건 층과 그 아래에만 미친다」로 썼다), az053·az054 해설, `HierarchyInheritanceDiagram`, G26
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
@@ -1546,7 +1549,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/create-new-tenant
 
 쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(테넌트를 푸는 한 줄 — 조직 하나를 나타내는 Microsoft Entra ID의 디렉터리), az051 해설
 
-쓰일 곳: `azure-resource-hierarchy.management-group`(테넌트 루트 그룹의 「테넌트」)
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(테넌트 루트 그룹의 「테넌트」 — 개념 9가 이미 푼 낱말이라 다시 풀지 않았다)
 
 ## (phase 102) Azure governance — What are Azure management groups?
 https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
@@ -1558,11 +1561,13 @@ https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
 - 예: 관리 그룹에 VM을 만들 수 있는 지역을 제한하는 정책을 걸면 아래의 관리 그룹·구독·리소스 모두에 적용되고, 리소스나 구독의 소유자는 그 정책을 바꿀 수 없다. 관리 그룹에 역할 할당을 하나 만들면 그 접근이 아래 구독 모두에 상속된다 — 첫 부분, 「Hierarchy of management groups and subscriptions」
 - 디렉터리 하나에 관리 그룹을 10,000개까지 둘 수 있다. 관리 그룹 나무는 여섯 단계 깊이까지이고, 이 제한에 루트 단계와 구독 단계는 들지 않는다. 관리 그룹과 구독은 저마다 부모가 하나다 — 「Important facts about management groups」 (Learn 단원 6과 같다)
 - 디렉터리마다 최상위 관리 그룹이 하나 있다(**루트 관리 그룹**). 모든 관리 그룹과 구독이 그 아래로 모이고, 전체에 걸 정책과 역할 할당을 여기에 건다. 루트 관리 그룹의 표시 이름은 기본으로 **Tenant root group**이고, 그 자체도 관리 그룹으로 동작하며, ID가 Microsoft Entra 테넌트 ID와 같다. 루트 관리 그룹은 옮기거나 지울 수 없다 — 「Root management group for each directory」
+- 새로 만든 구독은 기본으로 루트 관리 그룹 바로 아래에 놓인다 — 「Important facts about the root management group」 (phase 102 step 7)
+- 루트 관리 그룹에 건 사용자 접근 할당이나 정책 할당은 그 디렉터리의 모든 리소스에 적용된다. 그래서 루트에는 꼭 필요한 것만 건다 — 같은 절 Important (phase 102 step 7)
 - 한국어 표기: management group → 관리 그룹, root management group → 루트 관리 그룹(한국어판 28번), Tenant root group → 테넌트 루트 그룹(한국어판 1번 — 표시 이름), inheritance → 상속, governance → 거버넌스, compliance → 규정 준수
 
 쓰인 곳(phase 102 step 6): az052 해설(관리 그룹을 푸는 한 줄 — 구독 여럿을 묶어 같은 조건을 한꺼번에 거는, 구독보다 위의 단위)
 
-쓰일 곳: `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예), D50·G26
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹 — 표시 이름이 테넌트 루트 그룹이고 루트 관리 그룹이라고도 부른다, 그 자체가 관리 그룹이다, 옮기거나 지울 수 없다, 새 구독이 그 바로 아래에 놓인다, 거기에 건 접근 권한·규칙은 테넌트의 모든 리소스에 미친다 — ID가 테넌트 ID와 같다는 것은 쓰지 않았다), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예 — 리소스나 구독의 소유자가 정책을 바꿀 수 없다), az053·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
 
 ## (phase 102) Azure RBAC — Understand scope for Azure RBAC
 https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
@@ -1576,7 +1581,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹에 준 접근 권한이 안의 리소스에 미치고 다른 리소스 그룹에는 미치지 않는다 — 「역할」·「범위」라는 말은 쓰지 않고 「접근 권한」으로 썼다. 덤프 NO.54·93·159·270·309·335의 권한 진술은 이 사실과 맞다), `ResourceGroupScopeDiagram`(권한 부여)
 
-쓰일 곳: `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 위에서 아래로 상속)
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 아래로 갈수록 좁아진다, 위에서 아래로 상속 — 구독에 준 역할 할당이 그 구독의 리소스 그룹·리소스에, 리소스 그룹에 준 역할 할당이 그 안의 리소스에 미친다), az054 해설, `HierarchyInheritanceDiagram`(구독·리소스 그룹에 역할 할당)
 
 ## (phase 102) Azure RBAC — What is Azure role-based access control (Azure RBAC)? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
@@ -1587,7 +1592,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 - **역할 할당**은 사용자·그룹 같은 대상에게 역할 정의를 특정 범위에서 붙여 접근을 주는 일이다. 역할 할당을 만들면 접근이 생기고 지우면 접근이 사라진다 — 「Role assignments」
 - 한국어 표기: Azure role-based access control → Azure RBAC(Azure 역할 기반 액세스 제어), role assignment → 역할 할당, role definition → 역할 정의
 
-쓰일 곳: `azure-resource-hierarchy.hierarchy`(역할 할당을 푸는 한 줄 — 누구에게 어느 범위에서 무엇을 할 수 있게 하는지 정해 붙이는 것). 역할 정의의 종류·보안 주체의 종류는 `azure-security-model`의 몫이라 적지 않았다
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(Azure RBAC와 역할 할당을 푸는 줄 — 누가 어떤 리소스에 접근해 무엇을 할 수 있는지 관리하는 서비스, 사용자나 사용자 그룹 같은 대상에게 어느 범위에서 무엇을 할 수 있는지 정해 붙이는 것, 만들면 접근이 생기고 지우면 사라진다), az054 해설. 역할 정의의 종류·보안 주체의 종류는 `azure-security-model`의 몫이라 적지 않았고 쓰지도 않았다
 
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
@@ -1608,7 +1613,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 - Azure Policy는 조직이 정한 기준을 리소스에 강제하고, 여러 리소스가 그 기준을 지키는지(규정 준수) 한꺼번에 평가한다. 규정 준수 대시보드로 전체 상태를 보고, 기준에 어긋난 기존 리소스를 한꺼번에 고치게 돕는다 — 첫 부분
 - 한국어 표기: Azure Policy(옮기지 않는다), compliance → 규정 준수, policy definition → 정책 정의
 
-쓰일 곳: `azure-resource-hierarchy.hierarchy`(정책을 푸는 한 줄 — 리소스가 지켜야 할 규칙을 정해 걸고, 지키는지 평가하는 것), D50. 정책 효과·정책 정의의 구조는 `azure-governance`의 몫이라 적지 않았다
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(정책을 푸는 줄 — Azure Policy로 정하는 규칙, 조직의 기준을 리소스에 강제하고 여러 리소스가 지키는지 평가한다), az055 해설, D50(문항이 「규칙을 걸 자리」를 조건으로 주어 관리 그룹만 정답이 되게 했다 — az053). 정책 효과·정책 정의의 구조는 `azure-governance`의 몫이라 적지 않았고 쓰지도 않았다
 
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
