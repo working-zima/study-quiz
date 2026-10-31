@@ -1,0 +1,150 @@
+{
+  "diagrams": {
+    "resource-group": {
+      "label": "리소스 그룹을 지우거나 접근 권한을 줄 때 그 일이 어느 리소스에 미치는지 보는 도식",
+      "svgLabel": "리소스 그룹 「개발 환경」 안에 VM 1·가상 네트워크·데이터베이스가 있고, 리소스 그룹 「운영」 안에 VM 2가 있다",
+      "question": "리소스 그룹에 한 일은, 그 안의 리소스에 어떻게 미칠까?",
+      "idleCaption": "회사 A는 2주 동안 시험할 VM 1·가상 네트워크·데이터베이스를 리소스 그룹 「개발 환경」에, 이미 서비스에 쓰고 있는 VM 2를 리소스 그룹 「운영」에 두었다. 버튼을 고르면 리소스 그룹을 지우거나 접근 권한을 줄 때 그 일이 어느 리소스에 미치는지 볼 수 있다.",
+      "legend": "박스는 리소스 그룹이고, 리소스는 저마다 리소스 그룹 하나에만 들어 있다. 리소스의 수와 종류는 예다. 흐리게 그린 노드는 지워졌거나 그 일이 미치지 않은 리소스다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vnet": "가상 네트워크",
+        "db": "데이터베이스",
+        "vm-2": "VM 2"
+      },
+      "groups": {
+        "rg-dev": "리소스 그룹: 개발 환경",
+        "rg-prod": "리소스 그룹: 운영"
+      },
+      "notes": {
+        "delete-note": "그룹과 함께 모두 삭제",
+        "access-note": "팀 A의 권한이 셋 모두에"
+      },
+      "scenarios": [
+        {
+          "id": "delete",
+          "label": "그룹 삭제",
+          "caption": "리소스 그룹 「개발 환경」을 지우면 그 안의 VM 1·가상 네트워크·데이터베이스가 함께 지워진다. 다른 리소스 그룹 「운영」에 있는 VM 2는 그대로 남는다.",
+          "sources": [
+            "azure-resource-hierarchy.resource-group"
+          ]
+        },
+        {
+          "id": "access",
+          "label": "권한 부여",
+          "caption": "리소스 그룹 「개발 환경」에 팀 A의 접근 권한을 주면, 그 권한이 그룹 안의 VM 1·가상 네트워크·데이터베이스 모두에 적용된다. 다른 리소스 그룹 「운영」의 VM 2에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.resource-group"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.resource",
+        "azure-resource-hierarchy.resource-group"
+      ]
+    },
+    "subscription-boundaries": {
+      "label": "Azure 계정 하나에 둔 두 구독에서 청구서와 액세스 규칙이 구독마다 따로 갈리는 것을 보는 도식",
+      "svgLabel": "Azure 계정 안에 구독 「개발」과 구독 「운영」이 있고, 구독마다 리소스 그룹·청구서·액세스 규칙이 있다",
+      "question": "구독을 둘로 나누면, 무엇이 따로 갈릴까?",
+      "idleCaption": "회사 A는 Azure 계정 하나에 구독 「개발」과 구독 「운영」을 두고, 구독마다 리소스 그룹을 만들어 리소스를 넣었다. 버튼을 고르면 구독을 나눌 때 무엇이 구독마다 따로 갈리는지 볼 수 있다.",
+      "legend": "큰 박스는 Azure 계정이고, 그 안의 두 박스는 구독이다. 구독마다 리소스 그룹을 하나씩 그린 것은 예다. 시나리오를 고르면 그 경계 때문에 구독마다 따로 정해지는 것만 선명하게 남는다.",
+      "nodes": {
+        "rg-dev": "리소스 그룹",
+        "bill-dev": "청구서",
+        "access-dev": "액세스 규칙",
+        "rg-prod": "리소스 그룹",
+        "bill-prod": "청구서",
+        "access-prod": "액세스 규칙"
+      },
+      "groups": {
+        "account": "Azure 계정",
+        "sub-dev": "구독: 개발",
+        "sub-prod": "구독: 운영"
+      },
+      "notes": {
+        "dev-billing-note": "따로 청구",
+        "prod-billing-note": "따로 청구",
+        "dev-access-note": "다른 규칙",
+        "prod-access-note": "다른 규칙"
+      },
+      "scenarios": [
+        {
+          "id": "billing",
+          "label": "청구 경계",
+          "caption": "청구서는 구독마다 따로 나온다. 구독 「개발」에서 쓴 비용과 구독 「운영」에서 쓴 비용이 서로 다른 청구서로 청구되므로, 비용을 나눠 받으려면 구독을 나눈다. 같은 구독 안에서 리소스 그룹을 나눠서는 청구서가 나뉘지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.subscription-boundaries"
+          ]
+        },
+        {
+          "id": "access",
+          "label": "액세스 제어 경계",
+          "caption": "액세스 규칙과 지출 한도는 구독마다 따로 둘 수 있다. 구독 「개발」과 구독 「운영」에 서로 다른 액세스 규칙과 지출 한도를 두어, 개발 환경과 운영 환경을 따로 관리한다.",
+          "sources": [
+            "azure-resource-hierarchy.subscription-boundaries"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.subscription",
+        "azure-resource-hierarchy.subscription-boundaries"
+      ]
+    },
+    "hierarchy": {
+      "label": "테넌트 루트 그룹 아래로 관리 그룹·구독·리소스 그룹·리소스가 이어진 계층에서, 한 층에 건 정책이나 역할 할당이 어디까지 미치는지 보는 도식",
+      "svgLabel": "테넌트 루트 그룹 아래에 관리 그룹 「운영」과 「개발」이 있고, 「운영」 아래에 구독 A와 구독 B가, 「개발」 아래에 구독 C가 있다. 구독 A 안에는 리소스 그룹 「웹」이, 그 안에는 VM 1이 있다",
+      "question": "한 층에 건 규칙은, 아래 어디까지 내려갈까?",
+      "idleCaption": "회사 A의 테넌트 루트 그룹 아래에 관리 그룹 「운영」과 「개발」이 있고, 「운영」 아래에 구독 A·B가, 「개발」 아래에 구독 C가 있다. 구독 A 안에는 리소스 그룹 「웹」과 VM 1이 있다. 버튼을 고르면 한 층에 건 정책이나 역할 할당이 어디까지 미치는지 볼 수 있다.",
+      "legend": "선은 위의 단위가 바로 아래 단위를 담는다는 뜻이다. 맨 아래 VM 1은 리소스이고, 구독과 리소스의 수는 예다. 시나리오를 고르면 정책이나 역할 할당이 미치는 곳만 선명하게 남는다.",
+      "nodes": {
+        "root": "테넌트 루트 그룹",
+        "mg-prod": "관리 그룹: 운영",
+        "mg-dev": "관리 그룹: 개발",
+        "sub-a": "구독 A",
+        "sub-b": "구독 B",
+        "sub-c": "구독 C",
+        "rg-web": "리소스 그룹: 웹",
+        "vm-1": "VM 1"
+      },
+      "notes": {
+        "policy-note": "정책을 건 곳",
+        "inherit-note": "물려받음",
+        "sub-role-note": "역할 할당",
+        "rg-role-note": "역할 할당"
+      },
+      "scenarios": [
+        {
+          "id": "at-mg",
+          "label": "관리 그룹에 정책",
+          "caption": "관리 그룹 「운영」에 VM을 둘 수 있는 지역을 한 곳으로 제한하는 정책을 걸면, 그 아래 구독 A·B와 리소스 그룹 「웹」, VM 1이 모두 이 정책을 물려받는다. 구독 A의 소유자도 이 정책을 바꿀 수 없다. 「개발」 아래의 구독 C에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        },
+        {
+          "id": "at-sub",
+          "label": "구독에 역할 할당",
+          "caption": "구독 A에 역할 할당을 만들면, 그 접근 권한은 구독 A 안의 리소스 그룹 「웹」과 VM 1에 미친다. 같은 관리 그룹 「운영」 아래에 있어도 구독 B에는 미치지 않는다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        },
+        {
+          "id": "at-rg",
+          "label": "리소스 그룹에 역할 할당",
+          "caption": "리소스 그룹 「웹」에 역할 할당을 만들면, 그 접근 권한은 만든 층인 리소스 그룹 「웹」과 그 아래의 VM 1에만 미친다. 세 경우 가운데 가장 아래층에 걸어서, 미치는 곳도 가장 좁다.",
+          "sources": [
+            "azure-resource-hierarchy.hierarchy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-resource-hierarchy.management-group",
+        "azure-resource-hierarchy.hierarchy"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

@@ -10,6 +10,7 @@ import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
+import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
@@ -55,6 +56,7 @@ import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
@@ -113,7 +115,9 @@ import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
+import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
+import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -135,6 +139,7 @@ import { StateMachineDiagram } from './StateMachineDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
+import { SubscriptionBoundaryDiagram } from './SubscriptionBoundaryDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
@@ -149,6 +154,7 @@ import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
@@ -348,6 +354,12 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-sla-lifecycle.general-availability': ServiceLifecycleDiagram,
   'azure-service-types.shared-responsibility-model': SharedResponsibilityDiagram,
   'azure-service-types.saas': ServiceTypesTable,
+  'azure-regions-zones.region': AzureRegionDiagram,
+  'azure-regions-zones.availability-zones': ZoneIsolationDiagram,
+  'azure-regions-zones.region-pairs': RegionPairDiagram,
+  'azure-resource-hierarchy.resource-group': ResourceGroupScopeDiagram,
+  'azure-resource-hierarchy.subscription-boundaries': SubscriptionBoundaryDiagram,
+  'azure-resource-hierarchy.hierarchy': HierarchyInheritanceDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -33,6 +33,15 @@ phase 101 step 6이 `azure-service-types` 주제(서비스 유형과 공유 책�
 **공유 책임 모델의 행마다의 배정은 Azure 보안 문서 「Shared responsibility in the cloud」의 표(글)로 확인했다** — Learn 단원의 유형별 그림은 글로 읽을 수 없어 근거로 치지 않는다.
 Azure 서비스의 유형은 공식 문서가 직접 IaaS·PaaS·SaaS라고 말한 것만 적었다. 「완전 관리형」이라는 말만으로 PaaS로 옮겨 적지 않았다(Azure Cosmos DB).
 
+phase 102 step 0이 `azure-regions-zones` 주제(지역과 가용성 영역)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-service-types`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(Learn 「Describe the core architectural components of Azure」 단원 5, 「What are Azure regions?」, 「What are business continuity, …」, 「What are Virtual Machine Scale Sets?」)에 덧붙인 줄은 끝에 `(phase 102)`를 달았다.
+**Learn 단원 5와 현행 Azure 안정성 문서가 어긋나는 곳이 있다** — 단원 5 항목의 「현행 문서와 다름」 줄에 모았다. 어긋나면 현행 제품 문서(「Last updated on」이 2026년인 쪽)를 따른다.
+지역 목록·지역 수·데이터 센터 수는 바뀌는 수라 사실로 적지 않았다. 아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
+
+phase 102 step 4가 `azure-resource-hierarchy` 주제(리소스 계층)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-regions-zones`」 다음에 모았다(확인한 날 2026-10-31).
+Learn 단원 6 항목에 덧붙인 줄은 끝에 `(phase 102)`를 달았다. 단원 6과 현행 Azure Resource Manager 문서가 어긋나는 곳은 단원 6 항목의 「현행 문서와 다름」 줄에 모았다.
+Azure 역할 기반 액세스 제어(Azure RBAC)·Azure Policy·태그는 다른 주제의 몫이라 이 주제가 한 줄로 풀 근거와 덤프 처리에 쓸 사실만 적었다.
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -148,12 +157,54 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - 한국어 표기: datacenter → 데이터 센터, on-premises datacenter → 온-프레미스 데이터 센터, rack → 랙
 - **지역**(region)은 지구 위의 한 지리적 영역이다. 그 안에 서로 가까이 있고 대기 시간이 짧은 네트워크로 이어진 데이터 센터가 하나 이상 있다. Azure에 리소스를 배포할 때는 흔히 어느 지역에 둘지 고른다 — 「Regions」 (phase 101)
 - 한국어 표기: region → 지역(절 제목 「지역」) (phase 101)
+- 데이터 센터는 Azure 지역과 가용성 영역으로 묶이고, 그 묶음이 워크로드의 복원력과 안정성을 준다 — 「Physical infrastructure」 둘째 문단 (phase 102)
+- Azure는 지역마다 그 안의 리소스를 배정하고 관리해 워크로드가 알맞게 나뉘게 한다 — 「Regions」 (phase 102)
+- 일부 서비스나 VM 기능(특정 VM 크기나 저장소 종류 등)은 일부 지역에서만 쓸 수 있다. 지역을 고르지 않아도 되는 전역 서비스도 있고, 예로 Microsoft Entra ID·Azure Traffic Manager·Azure DNS를 든다 — 「Regions」 Note (셋 다 현행 「Azure nonregional services」 목록에 있다) (phase 102)
+- **가용성 영역**은 한 지역 안에서 물리적으로 떨어진 데이터 센터다. 영역 하나는 전원·냉각·네트워크를 따로 갖춘 데이터 센터 하나 이상으로 이루어진다. 영역은 격리 경계라서 한 영역이 멈춰도 나머지 영역은 계속 일한다. 영역끼리는 빠른 사설 광섬유 네트워크로 이어진다 — 「Availability Zones」 (phase 102)
+- 가용성 영역을 지원하는 지역에는 서로 떨어진 영역이 최소 셋 있다. 모든 지역이 가용성 영역을 지원하지는 않는다 — 「Availability Zones」 Important (phase 102)
+- 온-프레미스에서 중복을 갖추려면 같은 하드웨어를 한 벌 더 사서 유지해야 한다. Azure에서는 한 지역 안의 여러 가용성 영역에 워크로드를 나눠 두어 보호한다 — 「Use availability zones for your workloads」 (phase 102)
+- 쓰는 법: VM·저장소·데이터베이스 같은 리소스를 한 영역에 두고 같은 지역의 다른 영역에 복제한다. 서비스를 한 벌 더 두는 데 비용이 들 수 있다 — 같은 절 (영역 사이 데이터 전송 요금은 아래 「현행 문서와 다름」) (phase 102)
+- 가용성 영역을 지원하는 서비스를 세 범주로 나눈다 — 영역 서비스(리소스를 특정 영역 하나에 고정한다, 예: VM·관리 디스크·IP 주소), 영역 중복 서비스(플랫폼이 영역들에 걸쳐 저절로 복제한다, 예: 영역 중복 스토리지·SQL Database),
+  비지역 서비스(Azure 지리에서 늘 쓸 수 있고 영역 전체·지역 전체의 중단에도 견딘다) — 같은 절 (나눔은 아래 「현행 문서와 다름」) (phase 102)
+- 가용성 영역이 있어도 한 지역의 여러 영역에 함께 미칠 만큼 큰 사건이 일어날 수 있다. 그보다 큰 대비로 지역 쌍을 든다 — 같은 절 끝 (phase 102)
+- **지역 쌍**: 같은 지리(미국·유럽·아시아 등) 안의 다른 지역과 짝을 지어 두면, 지리 안에서 리소스를 복제해 자연재해·시민 소요·정전·물리 네트워크 중단처럼 지역 하나 전체에 미치는 사건으로 서비스가 끊길 가능성을 줄인다 — 「Region pairs」 (짝의 비율과 거리는 아래 「현행 문서와 다름」) (phase 102)
+- 모든 Azure 서비스가 데이터를 저절로 복제하거나 실패한 지역에서 다른 지역으로 저절로 넘어가지는 않는다. 그런 경우 복구와 복제는 고객이 구성한다 — 「Region pairs」 Important (phase 102)
+- 짝의 예로 미국 서부와 미국 동부, 동남아시아와 동아시아를 든다 — 「Region pairs」 (현행 「Azure region pairs and nonpaired regions」의 짝 목록에도 같다) (phase 102)
+- 지역 쌍의 덧붙은 이점 셋: 큰 중단이 나면 짝마다 한 지역을 먼저 복구한다, 계획된 업데이트는 짝의 두 지역에 한 번에 한 지역씩 적용한다, 데이터 상주와 규정 준수를 위해 데이터가 짝과 같은 지리 안에 남는다(브라질 남부는 예외) — 「Additional advantages of region pairs」 (phase 102)
+- 대부분의 짝은 서로를 백업하는 양방향이다. 브라질 남부처럼 한 방향으로만 짝지은 지역도 있다 — 브라질 남부의 짝은 지리 밖의 미국 중남부이지만 미국 중남부의 짝은 브라질 남부가 아니다. 이탈리아 북부·폴란드 중부·이스라엘 중부처럼 짝이 없는 지역은 가용성 영역과 지역 중복 스토리지로 복원력을 얻는다 — 같은 절 Important (phase 102)
+- **소버린 지역**은 주 Azure 인스턴스와 떨어진 Azure 인스턴스다. 규정 준수나 법적인 이유로 써야 할 수 있다 — 「Sovereign Regions」 (phase 102)
+- 소버린 지역의 예 둘: 미국 정부 기관과 협력사를 위한 지역(US DoD Central·US Gov Virginia·US Gov Arizona 등) — 물리·논리 네트워크가 격리된 인스턴스이고, 심사를 거친 미국인이 운영하며 규정 준수 인증이 더 붙는다.
+  중국의 지역(China East·China North 등) — Microsoft와 21Vianet의 협력으로 제공되고, Microsoft가 데이터 센터를 직접 유지하지 않는다 — 「Sovereign Regions」 (phase 102)
+- 한국어 표기(phase 102): availability zone → 가용성 영역, region pair → 지역 쌍, geography → 지리, redundancy → 중복성, zonal services → 영역 서비스, zone-redundant services → 영역 중복 서비스, non-regional services → 비지역 서비스,
+  sovereign region → 절 제목은 「소버린 지역」, 본문은 「주권 지역」(세 번) — 이 주제가 고른 이름과 근거는 「한국어 표기 정리 — `azure-regions-zones`」
+- **현행 문서와 다름(phase 102)** — 단원 5는 받은 날(2026-10-30) 기준의 학습 단원이지만 아래 일곱 곳이 현행 Azure 안정성 문서와 어긋난다. 모두 **현행을 따른다**.
+  1. 지역 쌍의 비율: 단원 5는 「대부분의 지역이 짝을 이룬다」고 한다. 「Azure region pairs and nonpaired regions」(2026-10-15)는 짝이 없는 지역이 많다고, 「What are Azure regions?」(2026-06-29)는 새 지역 다수가 짝이 없다고 한다 → 「Microsoft가 일부 지역을 짝지어 둔다」로 쓴다.
+  2. 짝 사이 거리: 단원 5의 「300마일 이상」은 현행 두 문서 어디에도 없다 → 수치를 쓰지 않는다. 짝이 같은 지리 안에 있다는 것만 쓴다.
+  3. 짝 지역으로의 자동 장애 조치: 단원 5는 짝의 한 지역이 재해를 입으면 서비스가 짝 지역으로 저절로 넘어간다고 예를 든다. 현행 「Azure region pairs and nonpaired regions」는 짝의 한 지역에 배포하는 것만으로는 복원력·고가용성·재해 복구·장애 조치가 저절로 생기지 않고,
+     Microsoft가 관리하는 장애 조치를 주된 대비로 삼지 말라고 한다 → 「저절로 장애 조치된다」고 쓰지 않는다. 단원 5의 Important(복구와 복제는 고객이 구성)는 현행과 맞다.
+  4. 영역 사이 데이터 전송 요금: 단원 5는 영역 사이 데이터 전송에 비용이 들 수 있다고 한다. 현행 「What are availability zones?」(2026-09-23)는 같은 지역의 가용성 영역 사이 데이터 전송에 요금을 매기지 않는다고 한다 → 전송 요금은 쓰지 않고, 리소스를 영역마다 더 두는 비용만 쓴다.
+  5. 범주의 나눔: 현행 「What are availability zones?」 「Types of availability zone support」는 영역 중복 리소스와 영역 리소스 둘로 나누고, 영역을 쓰도록 구성하지 않은 리소스를 비영역(지역) 배포라 부른다. 비지역 서비스는 가용성 영역 지원 유형이 아니라 「Azure nonregional services」가 따로 다루는 갈래다 → 개념 `zone-service-categories`는 현행의 나눔으로 쓴다(「한국어 표기 정리 — `azure-regions-zones`」).
+  6. 영역 중복의 「저절로」: 단원 5는 플랫폼이 저절로 복제한다고만 한다. 현행은 지원 지역에서 저절로 영역 중복이 되는 서비스도 있고 고객이 영역 중복으로 구성해야 하는 서비스도 있다고 한다 → 「서비스가 여러 영역에 복제한다(고객이 켜야 하는 서비스도 있다)」로 쓴다.
+  7. 비지역 서비스가 「지역 전체 중단에도 견딘다」: 현행 「Azure nonregional services」는 전역 서비스만 지역 장애에 견딘다고 하고, 지리 서비스는 한 지리 영역 안에 배포된다고 한다 → 지역 전체 중단에 견딘다는 말은 전역 서비스로 한정해 쓴다.
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(데이터 센터·서버를 푸는 한 줄)
 
 쓰인 곳(phase 101): `azure-cloud-benefits.reliability`(지역과 데이터 센터를 푸는 줄), az020 해설
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.composite-sla`(지역과 데이터 센터를 푸는 한 줄)
+
+쓰인 곳(phase 102 step 1): `azure-regions-zones.datacenter`(데이터 센터의 정의와 랙, 온-프레미스 데이터 센터보다 훨씬 크다, 고객은 데이터 센터를 직접 다루지 않고 지역·가용성 영역으로 고른다),
+`azure-regions-zones.region`(정의, 배포할 때 지역을 고른다, Azure가 지역 안의 리소스를 배정·관리한다, 일부 서비스·VM 기능은 일부 지역에만, 지역을 고르지 않는 서비스의 예), az039·az040·az041 해설, `AzureRegionDiagram`
+
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의·격리 경계·빠른 사설 네트워크·최소 셋·모든 지역이 지원하지는 않음·쓰는 법·온-프레미스와의 대비·한 지역의 여러 영역에 미치는 큰 사건 — 자연재해를 예로·그보다 큰 대비로 지역 쌍),
+`azure-regions-zones.zone-service-categories`(예로 든 서비스 — 영역 리소스의 VM, 영역 중복의 영역 중복 스토리지·SQL Database. 관리 디스크·IP 주소는 예로 쓰지 않았다. 나눔과 이름은 현행), az042·az043·az044 해설, `ZoneIsolationDiagram`
+
+- 한국어 표기(phase 102 step 3): main instance of Azure → Azure의 주 인스턴스(L5 한국어판). 이 주제는 「주 인스턴스」로 쓰고 「모두가 함께 쓰는 Azure」로 풀어 쓴다
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(짝지은 까닭 — 자연재해·정전처럼 지역 전체에 미치는 사건, 고객이 복제와 장애 조치를 구성, 짝의 예 — 미국 서부·미국 동부와 동아시아·동남아시아, 덧붙은 이점 셋, 브라질 남부의 예외와 한 방향 짝. 「현행 문서와 다름」 1~3을 따라 「일부 지역」으로 쓰고 거리 수치와 「저절로 장애 조치된다」는 쓰지 않았다),
+`azure-regions-zones.sovereign-regions`(주 인스턴스와 격리된 인스턴스, 규정 준수·법적 이유, 예 둘 — 심사를 거친 미국인이 운영, 추가 규정 준수 인증, Microsoft가 데이터 센터를 직접 유지하지 않음, 지역 이름은 단원 5 한국어판 표기로 US Gov 버지니아·US Gov 애리조나·중국 동부·중국 북부. US DoD Central은 쓰지 않았다), az045·az046·az047 해설, `RegionPairDiagram`, D38·D39·D40·D41·D42·D43, G21·G22. **「현행 문서와 다름」의 일곱 곳은 단원 5의 말이 아니라 현행 문서의 말로 썼다**
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(지역과 데이터 센터를 푸는 한 줄, 리소스를 배포할 때 지역을 고르는 경우가 많다), `azure-resource-hierarchy.resource-group`(가용성 영역을 푸는 한 줄), az049·az050 해설(데이터 센터·가용성 영역을 푸는 줄)
 
 ## (phase 100) Learn 「Describe the core architectural components of Azure」 — 6 Describe Azure management infrastructure
 https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/6-describe-azure-management-infrastructure
@@ -164,6 +215,34 @@ https://learn.microsoft.com/en-us/training/modules/describe-core-architectural-c
 - 한국어 표기: resource → 리소스
 - Azure를 쓰려면 **Azure 구독**이 있어야 한다. 구독은 Azure 제품과 서비스에 접근하게 해 주고, 요금을 매기는 단위가 된다 — 「Azure subscriptions」 둘째 문단 (phase 101)
 - 한국어 표기: subscription → 구독, Azure subscription → Azure 구독 (phase 101)
+- 리소스 그룹은 리소스를 묶은 것이다. 리소스는 리소스 그룹 하나에 속해야 하고, 일부 리소스는 다른 그룹으로 옮길 수 있지만 어느 때든 한 그룹에만 속한다. 리소스 그룹 안에 리소스 그룹을 둘 수 없고, 만든 뒤에는 이름을 바꿀 수 없다 — 「Azure resources and resource groups」 둘째 문단 (phase 102)
+- 리소스 그룹에 한 일은 그 안의 리소스 모두에 미친다 — 그룹을 지우면 안의 것이 모두 지워지고, 그룹에 접근을 허용하거나 막으면 안의 리소스 모두에 적용된다 — 같은 절 셋째 문단 (phase 102)
+- 쓰는 예 둘: 잠깐 쓸 개발 환경을 한 그룹에 모아 두면 다 쓴 뒤 그룹째 지울 수 있다. 프로젝트가 여럿이면 프로젝트마다 그룹을 따로 두어 팀마다 자기 리소스만 보고 관리하게 한다. 리소스 그룹을 짜는 정해진 규칙은 없다 — 같은 절 넷째·다섯째 문단 (phase 102)
+- 구독은 관리·청구·규모의 단위다. 구독으로 리소스 그룹을 정리하고, 청구를 접근과 따로 다룬다 — 「Azure subscriptions」 첫 문단 (phase 102)
+- 구독은 Azure 계정에 이어지고, 그 계정은 Microsoft Entra ID 안의 ID이거나 Microsoft Entra ID가 믿는 디렉터리 안의 ID다 — 같은 절 둘째 문단 (phase 102)
+- 계정 하나에 구독이 여럿일 수 있고, 하나는 있어야 한다. 구독이 여럿이면 청구 방식과 액세스 정책을 구독마다 달리 정할 수 있다 — 구독이 두 가지 경계가 되기 때문이다 — 같은 절 셋째 문단 (phase 102)
+- **청구 경계**: Azure 계정에 요금을 어떻게 매기는지를 가른다. 청구 요구가 다르면 구독을 따로 만들 수 있고, Azure는 구독마다 청구 보고서와 청구서를 따로 낸다 — 같은 절 목록 (phase 102)
+- **액세스 제어 경계**: Azure는 액세스 관리 정책을 구독 수준에서 적용한다. 예로 개발용 구독과 운영용 구독을 따로 두어 지출 한도와 액세스 규칙을 달리한다 — 같은 절 목록 (phase 102)
+- 구독을 더 만드는 까닭 셋: 환경(샌드박스·개발·테스트·운영처럼 수명 주기 단계마다 — 액세스 제어가 구독 수준이라 자연스러운 경계가 된다), 팀·워크로드(프로젝트마다 구독을 주면 비용을 따로 보기 쉽고, 샌드박스를 운영과 떼어 둘 수 있다), 청구(비용을 따로 추적한다 — 예: 운영 워크로드용 하나, 개발·테스트용 하나) — 「Create additional Azure subscriptions」 (phase 102)
+- 같은 구독 안에서 리소스 그룹을 여럿으로 나눠도 청구서가 나뉘지 않는다는 것은 문서가 직접 말하지 않는다. 판단 근거는 둘이다 — Azure가 청구 보고서와 청구서를 따로 내는 단위는 구독이다(위 「청구 경계」), 리소스 그룹은 구독 안에 든다(「Azure management groups」 첫 문단). 그래서 비용을 서로 다른 청구서로 받으려면 리소스 그룹이 아니라 구독을 나눈다 (phase 102 step 6)
+- 리소스는 리소스 그룹에, 리소스 그룹은 구독에 들어간다. 구독이 많고 여러 팀이나 지리에 걸치면 접근과 정책을 더 높은 수준에서 관리할 수단이 필요하다 — 「Azure management groups」 첫 문단 (phase 102)
+- 관리 그룹은 구독 위에 있다. 구독을 관리 그룹으로 묶고 거버넌스 조건(액세스 정책·규정 준수 규칙 같은 것)을 그룹에 걸면, 그룹 안의 구독이 모두 그 조건을 저절로 물려받는다 — 리소스가 자기 리소스 그룹의 설정을 물려받는 것과 같다. 관리 그룹은 여섯 단계까지 중첩할 수 있다(루트 단계와 구독 단계는 세지 않는다) — 같은 절 둘째 문단 (phase 102)
+- Microsoft Entra 테넌트마다 최상위 **테넌트 루트 그룹**이 하나 있고, 다른 관리 그룹과 구독은 모두 그 아래로 모인다. 그래서 거버넌스 정책을 전체에 걸 수 있다 — 같은 절 셋째 문단 (phase 102)
+- 관리 그룹을 쓰는 예 둘 — (1) 여러 구독에 정책을 건다: Production이라는 관리 그룹에서 VM을 둘 수 있는 곳을 US West 지역으로 제한하면, 그 아래 모든 구독이 물려받아 그 구독들의 VM 모두에 적용되고, 리소스나 구독의 소유자가 그것을 바꿀 수 없다. (2) 여러 구독에 접근을 한 번에 준다: 관리 그룹에 Azure RBAC 할당을 하나 만들면 그 아래 하위 관리 그룹·구독·리소스 그룹·리소스가 모두 그 권한을 물려받는다 — 「Management group, subscriptions, and resource group hierarchy」 (phase 102)
+- 디렉터리 하나에 관리 그룹을 10,000개까지 둘 수 있다. 관리 그룹과 구독은 저마다 부모가 하나뿐이다 — 같은 절 「Important facts about management groups」 (phase 102)
+- 한국어 표기: resource group → 리소스 그룹, account → 계정, subscription boundaries → 구독 경계(「구독 경계에는 두 가지 유형이 있습니다」), billing boundary → 청구 경계, access control boundary → 액세스 제어 경계, management group → 관리 그룹, Tenant Root Group → 테넌트 루트 그룹, governance → 거버넌스, compliance → 규정 준수, sandbox → 샌드박스, production → 프로덕션(이 앱은 phase 101이 정한 「운영 환경」을 쓴다), 절 제목 「관리 그룹, 구독 및 리소스 그룹 계층 구조」 (phase 102)
+- **현행 문서와 다름** (phase 102) — 어긋나면 현행 제품 문서를 따른다:
+  1. 단원 6은 리소스마다 리소스 그룹 하나에 **반드시** 속한다고 한다. 「What is Azure Resource Manager?」(2026-08-04)는 리소스가 리소스 그룹 하나에만 있을 수 있다고 하면서도, **일부 리소스는 리소스 그룹 밖에 있을 수 있다**(구독·관리 그룹·테넌트에 배포한다)고 하고, 리소스 그룹·구독·관리 그룹·태그 자체도 리소스라고 한다. → VM·가상 네트워크·데이터베이스처럼 리소스 그룹에 넣는 리소스는 리소스 그룹 하나에만 속한다고 쓰고, 「모든 리소스가 리소스 그룹에 들어간다」로 일반화하지 않는다
+  2. 단원 6은 리소스 그룹의 지역을 말하지 않는다. 같은 문서와 「Manage Azure resource groups by using the Azure portal」은 리소스 그룹에도 위치(지역)가 있고 그 위치가 리소스의 메타데이터를 두는 곳이며, 안의 리소스는 리소스 그룹과 다른 지역에 있어도 된다고 한다 — 어긋남이 아니라 단원 6에 없는 사실이다
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(정의와 예 — VM·가상 네트워크·데이터베이스. 「현행 문서와 다름」 1대로 「VM·가상 네트워크·데이터베이스 같은 리소스는」 리소스 그룹 하나에 들어간다고 한정했다),
+`azure-resource-hierarchy.resource-group`(한 그룹에만 속함·옮길 수 있음·중첩 불가·이름 변경 불가·그룹에 한 일이 안의 리소스 모두에·쓰는 예 둘·정해진 규칙 없음, 「현행 문서와 다름」 1·2), az048·az049·az050 해설, `ResourceGroupScopeDiagram`, D48·G24
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(Azure를 쓰려면 구독이 있어야 한다, 쓰고 관리하며 요금을 내는 단위 — 「규모」는 이 주제에서 풀 말이 없어 쓰지 않았다, 계정은 Microsoft Entra ID 또는 그것이 믿는 디렉터리의 ID, 계정 하나에 구독 여럿·적어도 하나, 구독이 리소스 그룹을 담는다 — D46),
+`azure-resource-hierarchy.subscription-boundaries`(청구 경계·액세스 제어 경계, 구독마다 다른 지출 한도와 액세스 규칙, 구독을 더 만드는 까닭 셋, 「프로덕션」 대신 「운영 환경」, 리소스 그룹을 나눠도 청구서가 나뉘지 않는다는 판단), az051·az052 해설, `SubscriptionBoundaryDiagram`, D46·G25. 클래식 관리자 역할·「Microsoft 계정」·「Azure AD」는 쓰지 않았다
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독이 많고 여러 팀에 걸치면 더 높은 수준의 관리가 필요하다, 구독 위의 묶음, 거버넌스 조건(액세스 정책·규정 준수 규칙)의 상속과 리소스 그룹 설정 상속과의 비교, 여섯 단계 — 테넌트 루트 그룹 단계와 구독 단계는 세지 않음, 테넌트 루트 그룹, 10,000개 — 「디렉터리 하나에」를 개념 9가 푼 테넌트로 「테넌트 하나에」라고 썼다, 부모 하나, 관리 그룹으로 묶어도 청구서는 구독마다 — 위 step 6의 판단 줄),
+`azure-resource-hierarchy.hierarchy`(쓰는 예 둘 — Production·US West 대신 이름표 「운영」과 「지역을 한 곳으로 제한」으로 썼다, 절 제목을 명사구로 줄인 name), az053·az054·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
 
 쓰인 곳: `azure-cloud-computing.consumption-based-model`(리소스를 푸는 한 줄)
 
@@ -190,6 +269,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 - Azure VM은 가상화된 서버를 IaaS로 실행하는 서비스다. IaaS 서비스이므로 VM 안의 패치·업데이트·구성은 쓰는 쪽이 맡는다 — 「첫 문단」·「둘째 문단」 (phase 101)
 
 쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(Azure에서의 예 — VM이 IaaS이고, 물리 서버를 사서 유지하지 않아도 되지만 VM 안의 패치·업데이트·구성은 고객이 맡는다. 가상 머신을 푸는 한 줄), az034 해설, D32·D34
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(VM을 푸는 한 줄 — Azure 안에서 실행되는 서버이고, 서버 장비를 사서 관리하지 않고도 운영 체제와 프로그램을 골라 쓴다), az048 해설
 
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
@@ -690,6 +771,10 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 
 쓰인 곳: (표기 근거만) `azure-cloud-benefits.scalability`
 
+- 확장 집합만으로는 데이터 센터 장애에서 보호되지 않는다. 확장 집합 안의 VM을 가용성 영역들에 나눠 두어야 데이터 센터 장애에서 보호된다 — 「Why use Virtual Machine Scale Sets?」 (phase 102)
+
+쓰일 곳(phase 102): 근거 기록 — [덤프 NO.423]의 답(확장 집합에 배포하는 것만으로는 데이터 센터 장애에 대비되지 않는다)이 맞는지 대조했다. 확장 집합은 `azure-compute` 주제의 몫이라 이 주제의 개념 글에는 쓰지 않는다
+
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 
@@ -704,6 +789,11 @@ https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 - **재해**는 고가용성 설계로 막을 수 있는 것보다 크고 오래가는 드물고 큰 사건이다. 예로 태풍·지진·홍수·화재 같은 자연재해, 운영 데이터를 실수로 지우는 것 같은 큰 사람 실수, 데이터 손상·손실이나 서비스 중단으로 이어지는 큰 보안 사고를 든다.
   **재해 복구**는 이런 상황에 어떻게 대응할지 계획하는 것이다 — 「Disaster recovery」
 - 한국어 표기: business continuity → 비즈니스 연속성, high availability → 고가용성, disaster recovery → 재해 복구, fault tolerance → **내결함성**, redundancy → 중복성(로컬·영역·지역 중복성), failover → 장애 조치(failover), scalability and elasticity → 확장성 및 탄력성
+- **장애 조치**: 재해 복구 계획에서 다른 곳에 두 번째 배포를 갖춰 두고, 주 배포가 재해를 입으면 트래픽을 그쪽으로 넘기는 것이다. 주 인스턴스가 실패했음을 알아차리고 보조 인스턴스로 바꾸기까지 보통 시간이 걸린다 — 「Failover and failback」 (phase 102)
+
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(중복을 푸는 한 줄 — 위 「중복성」 줄), `azure-regions-zones.zone-service-categories`(장애 조치를 푸는 한 줄 — 멈춘 쪽이 하던 일을 미리 갖춰 둔 다른 쪽이 넘겨받는 것. 이 주제에서 장애 조치를 처음 푼 자리다), az044 해설
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(장애 조치를 다시 풀지 않고 썼다 — 같은 주제의 `zone-service-categories`가 이미 풀었다), az045 해설(장애 조치를 푸는 한 줄 — 해설은 혼자 읽혀야 해서 다시 풀었다)
 
 쓰인 곳: `azure-cloud-benefits.high-availability`(고가용성의 둘째 설명과 안정성을 가르는 근거), `azure-cloud-benefits.reliability`(내결함성·중복성·재해 복구를 푸는 문단 — 자연재해와 데이터를 실수로 지우는 일을 예로),
 `azure-cloud-benefits.elasticity`(확장성과의 차이의 둘째 근거), D16, D21, G11. 가동 시간 백분율의 예(99.9% = 약 43분)는 쓰지 않았다
@@ -731,8 +821,24 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 - Azure 지역은 고용량·내결함성·저지연 네트워크로 이어진 데이터 센터 하나 이상으로 이루어진다 — 「Understand Azure regions and geographies」
 - 지역을 고를 때 따질 것 가운데 하나가 대기 시간이다. 사용자와 지리적으로 가까운 지역을 고르면 대기 시간이 준다 — 「Choosing Azure regions」
 - 한국어 표기: latency → 대기 시간, region → 지역
+- 지역은 데이터 센터와 네트워크 인프라를 포함한 물리 시설의 묶음이다. Azure 데이터 센터는 보통 큰 도시권 안에 있다 — 첫 부분, 「Understand Azure regions and geographies」 (phase 102)
+- **지리**는 데이터를 둘 곳의 경계(데이터 상주 경계)이고 예로 미국·유럽을 든다. 지리 하나에 지역이 하나 이상 있고, 지역은 모두 지리 하나 안에 들어 있다. 데이터 상주 요구가 있으면 요구된 지리 안의 지역을 고른다. 지리마다 가용성 영역을 갖춘 지역이 하나 이상 있다 — 첫 부분, 「Understand Azure regions and geographies」 (phase 102)
+- 대부분의 지역은 모든 Azure 고객이 쓸 수 있지만, 일부 지역은 소버린 클라우드 지리에 속하고 데이터 상주 규제가 엄격한 특정 지역의 고객이 쓴다. 소버린 클라우드 지역은 다른 지역과 같은 방식으로 동작하지만 서비스와 기능이 제한된 경우가 많다 — 「Understand Azure regions and geographies」 Note (phase 102)
+- 지역을 고를 때 따질 것 셋: 대기 시간(사용자와 가까운 지역 — 예: 사용자가 미국에 있으면 미국이나 캐나다의 지역), 가용성 영역(지원하는 지역을 고르고 여러 영역에 리소스를 나눈다), 데이터 상주(조직이 요구하는 경계 안의 지역) — 「Choosing Azure regions」 (phase 102)
+- 가용성 영역은 전원·냉각·네트워크 연결이 격리된 독립 데이터 센터 묶음이다. 영역들은 저지연 네트워크가 될 만큼 가깝고, 폭풍이나 국지 정전 같은 일에서 서로 격리될 만큼 떨어져 있다. 지원 지역에는 영역이 최소 셋 있고 셋보다 많은 지역도 있다 — 「Availability zones」 (phase 102)
+- Microsoft가 일부 지역을 다른 지역과 짝지어 지역 쌍을 만든다. **고객은 짝을 직접 고를 수 없다.** 새 지역 다수는 짝이 없고 가용성 영역을 주된 중복 수단으로 쓴다. 짝이 있든 없든 복원력 있는 설계를 할 수 있다 — 「Paired and nonpaired regions」 (phase 102)
+- 여러 지역을 함께 쓰면 여러 종류의 장애에 견디고 재해 복구의 선택지가 많아진다. 지역 사이 복제와 장애 조치를 갖춘 서비스도 있고, 고객이 직접 설계해야 하는 서비스도 있다 — 「Using multiple Azure regions」 (phase 102)
+- 대부분의 서비스는 특정 지역에 배포하지만 지역 하나에 묶이지 않는 서비스(비지역 서비스)도 있다. Microsoft가 비지역 서비스를 지역 둘 이상에 두어, 한 지역이 실패하면 정상 지역의 인스턴스가 요청을 계속 처리한다. Microsoft Entra ID처럼 데이터를 둘 지리(예: 유럽·북아메리카)를 고르게 하는 비지역 서비스도 있다 — 「Nonregional services」 (phase 102)
+- 첫 문단의 지역 수(「70개가 넘는」)는 바뀌는 수라 적지 않는다. 페이지의 「Last updated on」은 2026-06-29 (phase 102)
+- 한국어 표기(phase 102): geography → 지리, data residency → 데이터 상주(데이터 상주 경계), sovereign cloud region → 소버린 클라우드 지역, nonregional services → 비지역 서비스, paired / nonpaired regions → 쌍을 이루는 지역 / 쌍을 이루지 않는 지역(절 제목은 region을 「영역」으로 잘못 옮겨 「쌍을 이루는 영역과 쌍을 이루지 않는 영역」), failover → 장애 조치
 
 쓰일 곳: D20
+
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있고 Microsoft Entra ID는 데이터를 둘 지리를 고르게 한다), az040·az041 해설, `AzureRegionDiagram`
+
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐)
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 가운데 많은 곳이 짝 없이 가용성 영역을 주된 대비 수단으로 쓴다, 짝이 있든 없든 여러 지역을 함께 써서 대비할 수 있다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적은 경우가 많다, 데이터 상주 요구는 지리 안의 지역을 골라 맞춘다 — G23), az045·az046 해설, D38·G20·G21·G23
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is a container?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-container
@@ -765,6 +871,8 @@ https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
 - 한국어 표기: cloud governance → 클라우드 거버넌스, guardrails → 가드레일, regulatory compliance → 규정 준수
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(거버넌스를 푸는 줄 — 해도 되는 일과 안 되는 일을 정책·절차·도구로 정함. 「가드레일」이라는 말은 쓰지 않았다)
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(거버넌스와 규정 준수를 푸는 한 줄 — 해도 되는 일과 안 되는 일을 정해 두고 지켜지게 통제하는 일, 규정 준수는 `azure-cloud-benefits`가 쓴 풀이와 같은 뜻 「법이나 업계가 정한 규칙을 지키는 것」)
 
 ## (phase 101) Azure CLI — What is the Azure CLI?
 https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
@@ -1159,6 +1267,8 @@ https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-ove
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(Azure에서의 예 — SQL Database가 PaaS라는 근거, 업그레이드·패치·백업 같은 관리 대부분을 사람 손 없이 처리한다), D32·D34
 
+쓰인 곳(phase 102 step 2): `azure-regions-zones.zone-service-categories`(Azure SQL Database를 푸는 한 구절 — 업그레이드·백업 같은 관리를 Azure가 대신 처리하는 데이터베이스 서비스)
+
 ## (phase 101) Azure Cosmos DB — introduction
 https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
 
@@ -1190,3 +1300,349 @@ https://learn.microsoft.com/en-us/azure/cosmos-db/introduction
 | middleware | 미들웨어 | Learn 단원 3, 미들웨어 사전 한국어판 |
 | Azure Virtual Machines / App Service / SQL Database / Functions / Storage | Azure 가상 머신(VM) / Azure App Service / Azure SQL Database / Azure Functions / Azure Storage | 각 문서 한국어판이 이름을 옮기지 않는다. VM은 phase 100의 「Azure VM(Virtual Machines)」·「가상 머신」 표기를 따른다 |
 | Microsoft 365 | Microsoft 365 | 보안 문서 한국어판. 용어집의 옛 이름 「Office 365」는 쓰지 않는다 — G18 |
+
+## (phase 102) Azure reliability — What are availability zones?
+https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-23. 사본: `docs-reliability-availability-zones-overview.md`와 `ko-` 판.
+
+- 많은 지역이 가용성 영역을 갖춘다. 가용성 영역은 한 지역 안에서 따로 떨어진 데이터 센터 묶음이고, 영역마다 전원·냉각·네트워크 인프라가 따로라서 한 영역이 중단돼도 남은 영역이 지역의 서비스와 용량을 이어 간다. 여러 영역을 저절로 쓰는 서비스도 있고, 고객이 여러 영역 배포를 구성해야 하는 서비스도 있다 — 첫 부분
+- 가용성 영역은 영역 전체가 멈추는 큰 중단뿐 아니라, 한 영역 안의 서버 랙이나 클러스터 하나가 실패하는 작은 장애에도 대비가 된다 — 첫 부분
+- 영역은 한 지역 안에서 물리적으로 떨어진 데이터 센터 하나 이상을 논리적으로 묶은 것이다. 한 영역에 정전·네트워크 문제가 생겨도 다른 영역은 계속 일하게 지어져 있다. **데이터 센터 하나만으로는 이런 보호가 되지 않는다** — 「Datacenters and availability zones」
+- 데이터 센터의 위치는 엄격한 취약성 위험 평가 기준으로 고르고, 영역 사이에 함께 걸리는 위험도 따진다 — 「Datacenters and availability zones」
+- 영역끼리는 보통 몇 킬로미터 떨어져 있고 대개 100킬로미터 안에 있다. 그래서 대기 시간이 짧으면서도 국지 정전이나 날씨가 여러 영역에 한꺼번에 미칠 가능성이 준다 — 같은 절(수치는 「보통」·「대개」라는 단서가 붙은 값이다)
+- **가용성 영역 지원 유형** 둘 — 영역 중복 리소스: 서비스가 리소스를 여러 영역에 복제하거나 나눠 둔다. 지원 지역에서 저절로 영역 중복이 되는 서비스도 있고, 고객이 영역 중복으로 구성해야 하는 서비스도 있다. 영역에 중단이 나면 다른 영역으로의 장애 조치를 Microsoft가 맡는다.
+  영역 리소스: 고객이 고른 영역 하나에 배포한다. 다른 영역의 장애와는 격리되지만 그것만으로 영역 중단에 대비되지 않는다 — 대비하려면 고객이 여러 영역에 리소스를 따로 두고, 영역에 중단이 나면 다른 영역으로의 장애 조치도 고객이 맡는다 — 「Types of availability zone support」
+- 리소스를 영역 중복으로 구성하거나 영역 리소스를 여러 영역에 하나씩 두면, 영역 하나의 중단을 견딘다 — 같은 절
+- 가용성 영역을 쓰도록 구성하지 않은 리소스(지역이 영역을 지원하지 않거나 고객이 그렇게 고른 경우)는 비영역 배포 또는 지역 배포라 부른다. Azure가 그 리소스를 지역의 아무 영역에나 둘 수 있어서, 어느 영역이 중단되면 함께 멈출 수 있다 — 같은 절
+- 데이터 센터마다 물리 영역이 정해지고, 물리 영역은 구독마다 논리 영역 번호(영역 1·2·3 등)로 이어진다. 같은 물리 영역이 구독마다 다른 번호일 수 있다 — 「Physical and logical availability zones」(이 주제에서는 「영역 1」처럼 영역을 가르는 이름표가 공식 문서의 꼴이라는 근거로만 쓴다)
+- Microsoft는 지역마다 Azure 서비스의 업데이트를 한 번에 영역 하나씩 적용하려 한다. 그 덕을 보려면 워크로드가 이미 여러 영역에 걸쳐 있어야 한다 — 「Availability zones and Azure updates」
+- 영역끼리는 고성능 네트워크로 이어지고, **같은 지역의 가용성 영역 사이 데이터 전송에는 요금을 매기지 않는다** — 「Inter-zone networking」(Learn 단원 5와 다름 — 그 항목의 「현행 문서와 다름」 4)
+- 운영 워크로드는 지역이 지원하면 여러 가용성 영역을 쓰도록 구성한다. 데이터 상주 요구로 한 지역에 묶인 워크로드는 여러 영역에 나눠 두는 것이 데이터를 지역 밖으로 옮기지 않고 가용성을 높이는 주된 방법이다. **가용성 영역은 지역 전체의 중단을 막지 못한다** — 「Availability zone architectural guidance」
+- 영역을 지원하는 지역의 표에서 영역 수는 대부분 셋이고 미국 동부 2는 넷이다 — 「Regions with availability zones」(지역마다의 목록은 바뀌므로 적지 않는다. 「최소 셋」이 「언제나 셋」이 아니라는 근거로만 쓴다)
+- 한국어 표기: availability zone → 가용성 영역(제목 「가용성 영역이란?」), types of availability zone support → **가용성 영역 지원 유형**(절 제목), zone-redundant resource → 영역 중복 리소스, zonal resource → 영역 리소스, nonzonal resource → 비 영역 리소스(띄어 씀), regional deployment → 지역 배포, outage → 중단, failover → 장애 조치, datacenter → 데이터 센터
+
+쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(정의, 랙 장애에도 — 클러스터는 쓰지 않았다, 데이터 센터 하나로는 이 보호가 안 됨, 영역 사이 거리의 질적 설명, 지역 전체 중단은 막지 못함, 영역 사이 전송 요금 없음, 「영역 1·2·3」 이름표),
+`azure-regions-zones.zone-service-categories`(지원 유형의 나눔과 이름, 누가 복제하고 누가 장애 조치를 맡는가, 저절로 되는 서비스와 고객이 구성하는 서비스, 비영역 배포), az042·az043·az044 해설, `ZoneIsolationDiagram`, D39·D40·D45(D45는 쓰지 않은 근거)·G22
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹을 나눠도 데이터 센터 하나의 장애에 대비가 되지 않고, 그 대비는 여러 가용성 영역에 나눠 두는 것이다 — ARM 항목의 NO.87 판단), az049·az050 해설
+
+## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
+https://learn.microsoft.com/en-us/azure/reliability/regions-paired
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-15. 사본: `docs-reliability-regions-paired.md`와 `ko-` 판.
+
+- Azure 지역은 서로 독립이다. Microsoft는 일부 지역을 다른 지역과 짝짓고, 두 지역은 보통 같은 지리에 있다. 소수의 서비스가 이 짝으로 지역 사이 복제(지역 중복)를 하고, 지역이 복구할 수 없을 만큼 실패하는 드문 경우의 재해 복구 일부에 쓴다 — 첫 부분
+- **짝이 없는 지역도 많고**, 그런 지역은 가용성 영역을 주된 중복 수단으로 쓴다. 짝이 있든 없든 서비스 다수가 지역 중복을 지원한다 — 첫 부분
+- 짝을 쓰는 서비스의 예로 지역 중복 스토리지(GRS)가 데이터를 짝 지역에 저절로 복제할 수 있다고 든다 — 「Paired regions」
+- 짝 지역을 보조 지역으로 쓰면 얻는 것 셋: 지리 전체에 걸친 중단 때 짝마다 한 지역을 먼저 복구한다, 계획된 시스템 업데이트를 짝의 두 지역에 시차를 두고 적용한다, 데이터 상주 요구를 맞추도록 거의 모든 지역이 짝과 같은 지리에 있다(예외는 지역 목록) — 「Paired regions」
+- **짝의 한 지역에 리소스를 배포하는 것만으로는 복원력·고가용성·재해 복구·장애 조치가 저절로 생기지 않는다.** 짝을 쓰든 안 쓰든 고가용성과 재해 복구 계획은 고객이 세운다. Microsoft가 관리하는 짝 사이 장애 조치를 주된 재해 복구 방법으로 삼지 말라 — 예로 GRS 저장소 계정의 Microsoft 관리 장애 조치는 큰 재난에서 복구를 거듭 실패한 뒤에만 한다 — 「Paired regions」 Important
+- 고객은 한 지역이나 그 짝 지역에만 묶이지 않고, 사업 요구에 맞는 어느 지역에나 서비스를 둘 수 있다 — 「Paired regions」
+- 대부분의 짝은 양방향이다(예: 미국 서부와 미국 동부가 서로의 짝). 한 방향으로만 짝지은 비대칭 짝도 있다 — 예: 브라질 남부의 짝은 브라질 지리 밖의 미국 중남부이지만 미국 중남부의 짝은 브라질 남부가 아니다. 미국 서부 3은 미국 동부와 한 방향으로 짝지어 있다 — 「Asymmetrically paired regions」
+- 짝 목록에서 동아시아와 동남아시아, 미국 동부와 미국 서부는 서로의 짝이다. 이탈리아 북부·폴란드 중부·이스라엘 중부는 짝 칸이 비어 있다(N/A) — 「Azure region pairs list」(목록 전체는 바뀌므로 적지 않는다)
+- 짝 사이 거리에 관한 수치는 이 문서에 없다(Learn 단원 5의 「300마일 이상」은 쓰지 않는다 — 단원 5 항목의 「현행 문서와 다름」 2)
+- 한국어 표기: region pair → 지역 쌍, paired region → 쌍을 이루는 지역, nonpaired region → 쌍을 이루지 않는 지역(제목은 「페어링을 이루지 않은 지역」, 본문은 「쌍을 이루지 않는/않은」), asymmetrically paired → 비대칭 쌍, geo-redundant storage → 지역 중복 스토리지(GRS), West US / East US → 미국 서부 / 미국 동부
+
+- 계획된 업데이트에 시차를 두는 까닭: 드물게 업데이트에 결함이 있을 때 그 영향을 줄이고, 짝의 두 지역을 함께 쓰도록 설계한 솔루션이 멈추지 않게 하려는 것이다 — 「Paired regions」 Sequential updating (Learn 단원 5도 중단 시간과 애플리케이션 중단 위험을 줄이려는 것이라 한다) (phase 102 step 3)
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(Microsoft가 짝짓는다, 짝 없는 지역이 많다, 지역 중복 스토리지(GRS)가 짝 지역에 복제한다, 이점 셋과 업데이트에 시차를 두는 까닭, 저절로 장애 조치되지 않고 대비 계획은 고객이 세운다, 고객은 지역이나 그 짝에 묶이지 않는다, 비대칭 짝, 짝의 예), az045·az046 해설, `RegionPairDiagram`(지역 재해 때 고객이 구성해 둔 장애 조치, 계획된 업데이트는 한 지역씩), G21
+
+## (phase 102) Azure reliability — Azure nonregional services
+https://learn.microsoft.com/en-us/azure/reliability/regions-nonregional-services
+
+확인한 날 2026-10-31. 「Last updated on」 2026-01-22. 사본: `docs-reliability-regions-nonregional-services.md`와 `ko-` 판.
+
+- 비지역 서비스는 특정 Azure 지역에 배포하지 않는 서비스다 — 첫 부분
+- 비지역 서비스는 두 갈래다. 전역 서비스는 세계 여러 지역에 배포되어 한 지역이 실패해도 다른 지역의 인스턴스가 계속 동작하므로, 고객이 지역 전체 중단에 따로 대비하지 않아도 된다. 지리 서비스는 특정 지역이 아니라 지리 영역에 배포되고 그 안의 지역 하나 이상이 요청을 처리한다 — 「Types of nonregional services」
+- Microsoft Entra ID는 구성에 따라 전역이 될 수도 지리가 될 수도 있다 — 같은 절
+- 비지역 서비스는 서비스 자체의 지역을 고르지 않지만, 함께 쓰는 부속 구성 요소의 지역은 골라야 할 수 있다(예: Azure Virtual Desktop의 호스트 풀 VM) — 「Regionally dependent service components」
+- 목록에 Microsoft Entra ID, Azure DNS(공용 영역·사설 영역), Azure Traffic Manager가 있다. 그 밖에 Azure Policy, 관리 그룹(Azure management groups), 구독(Azure subscriptions), Azure portal도 있다 — 「List of nonregional services」(목록은 바뀌므로 이름은 앞의 셋만 예로 쓴다. 관리 그룹·구독은 `azure-resource-hierarchy`의 몫)
+- 한국어 표기: nonregional services → 비지역 서비스(본문·절 제목. 문서 제목은 「비지정 서비스 Azure」로 잘못 옮겼다), global services → 글로벌 서비스, geographic services → 지리적 서비스
+
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(지역을 고르지 않는 서비스의 현행 예 — Microsoft Entra ID·Azure DNS), az040·az041 해설, `AzureRegionDiagram`
+
+쓰인 곳(phase 102 step 2): `azure-regions-zones.zone-service-categories`(비영역 리소스와 비지역 서비스를 가르는 문단 — 비지역 서비스는 가용성 영역 지원 유형과 다른 갈래다)
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(지역을 고르지 않고 쓰는 서비스도 있어 모든 리소스가 특정 지역에 놓이는 것은 아니다 — G24. 서비스 이름은 들지 않았다)
+
+## (phase 102) Microsoft Entra — What is Microsoft Entra?
+https://learn.microsoft.com/en-us/entra/fundamentals/whatis
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-18. 사본: `docs-entra-whatis.md`와 `ko-` 판.
+
+- Microsoft Entra ID는 Microsoft Entra 제품군의 바탕이 되는 클라우드 기반 ID·액세스 관리 서비스다. 사용자·장치·앱·리소스가 누구인지 확인(인증)하고, 정책을 적용하고, 보호한다 — 「Microsoft Entra ID」
+- 한국어 표기: Microsoft Entra ID(옮기지 않는다), identity and access management → ID 및 액세스 관리, authentication → 인증
+
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Microsoft Entra ID를 푸는 한 줄 — 사용자가 누구인지 확인하고 무엇에 접근할 수 있는지 관리하는 클라우드 서비스)
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`, az051 해설(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
+
+## (phase 102) Azure DNS — Azure DNS overview
+https://learn.microsoft.com/en-us/azure/dns/dns-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-28. 사본: `docs-dns-overview.md`와 `ko-` 판.
+
+- DNS(Domain Name System)는 서비스 이름을 IP 주소로 바꿔 준다(이름 확인). Azure DNS는 Azure 인프라로 DNS 호스팅·이름 확인·부하 분산을 제공한다 — 첫 부분
+- Azure Traffic Manager는 DNS를 써서 트래픽을 나누는 부하 분산 서비스이고, 공개된 애플리케이션으로 오는 요청을 전 세계 Azure 지역에 나눠 보낸다 — 같은 부분(Azure DNS가 제공하는 서비스 목록)
+- 한국어 표기: Azure DNS·Azure Traffic Manager(옮기지 않는다), resolve → 확인, load balancing → 부하 분산
+
+쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
+
+## (phase 102) Azure Government — What is Azure Government?
+https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
+
+확인한 날 2026-10-31. 「Last updated on」 2026-05-19. 사본: `docs-azure-government-welcome.md`와 `ko-` 판.
+
+- Azure Government는 미국 정부 기관과 그 협력사를 위한 전용 클라우드이고, 미국 정부의 여러 규정과 요구를 받는 데이터를 다룰 수 있다 — 첫 부분
+- Azure Government는 미국 안에만 있는 물리적으로 격리된 데이터 센터와 네트워크를 쓴다. 전역 Azure와 비교해, 고객 데이터를 미국 안에 저장한다는 계약상 약속과 고객 데이터를 처리하는 시스템에 접근할 수 있는 사람을 심사를 거친 미국인으로 제한하는 보호가 더 붙는다 — 첫 부분
+- 고객(미국 연방·주·지방 정부나 그 협력사)은 자격 확인을 받는다 — 첫 부분
+- 전역 Azure와 같은 기반 기술로 IaaS·PaaS·SaaS를 제공하고, 연결한 뒤에는 대부분 전역 Azure와 같은 경험이지만 서비스 가용성과 기능에 차이가 있다 — 「Compare Azure Government and global Azure」
+- 지역 목록에 US Gov Arizona·US Gov Texas·US Gov Virginia가 있고, US Gov Arizona와 US Gov Texas가 서로의 짝이다 — 「List of regions」
+- 한국어 표기: Azure Government(옮기지 않는다), global Azure → 글로벌 Azure
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.sovereign-regions`(미국 정부 기관과 협력사를 위한 Azure — 미국 안의 물리적으로 격리된 데이터 센터와 네트워크, 고객 데이터를 다루는 시스템에 접근하는 사람을 심사를 거친 미국인으로 제한, 연방·주·지방 정부 기관이나 협력사가 자격 확인을 받아 쓴다, 같은 기반 기술 — 인스턴스를 푸는 줄), az047 해설, D43. 짝(US Gov Arizona·US Gov Texas)은 쓰지 않았다
+
+## (phase 102) Azure in China — Microsoft Azure operated by 21Vianet
+https://learn.microsoft.com/en-us/azure/china/overview-operations
+
+확인한 날 2026-10-31. 「Last updated on」 2023-12-13. 사본: `docs-china-overview-operations.md`와 `ko-` 판(한국어판도 영문 그대로다).
+
+- Microsoft Azure operated by 21Vianet(Azure in China)은 중국에 있는, 물리적으로 분리된 클라우드 서비스 인스턴스다. 21Vianet(Shanghai Blue Cloud Technology Co., Ltd.)이 독립적으로 운영하고 거래한다 — 「What is Microsoft Azure operated by 21Vianet?」
+- Azure in China는 전역 Azure와 기능 차이가 있고 그 차이는 줄어드는 중이다 — 「Service availability and roadmaps」
+- 접근을 중국 안으로 제한한다는 말은 이 문서에 없다
+- 한국어 표기: 한국어판이 이름을 옮기지 않는다. Learn 단원 5 한국어판은 「21Vianet」, 「What are Azure regions?」 한국어판은 「21Vianet에서 운영하는 Microsoft Azure」 — 이 주제는 「21Vianet이 운영하는 Microsoft Azure(Microsoft Azure operated by 21Vianet)」로 쓴다
+
+쓰인 곳(phase 102 step 3): `azure-regions-zones.sovereign-regions`(중국 안에 있고 물리적으로 분리된 인스턴스, 21Vianet이 독립적으로 운영), az047 해설, D41·D42. 「중국에서만 접근」은 쓰지 않았다(D42)
+
+## (phase 102) Azure Germany (이전 버전 문서) — Welcome to Azure Germany
+https://learn.microsoft.com/en-us/previous-versions/azure/germany/germany-welcome
+
+확인한 날 2026-10-31. 「Last updated on」 2020-10-16. 사본: `docs-germany-welcome.md`(영문만).
+
+- Microsoft Cloud Germany는 2018년 8월부터 새 고객을 받지 않았고, 2020년 9월 30일에 2021년 10월 29일로 문을 닫는다고 알렸다 — 첫 부분 Note. 문서는 `previous-versions` 아래로 옮겨져 있다
+- Azure Germany는 독일의 데이터 관리 수탁자가 고객 데이터를 관리하던, 물리적으로 격리된 Azure 인스턴스였다 — 첫 부분(지원이 끝난 서비스라 쓰지 않는다)
+
+쓰일 곳: D44 — 개념 글에 쓰지 않는다(근거 기록)
+
+## (phase 102) 한국어 표기 정리 — `azure-regions-zones`
+
+위 항목들과 단원 5·「What are Azure regions?」 항목의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 102 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+받아 둔 한국어판(`raw/official/ko-…`)에서 낱말을 세어 정했다 — L5는 Learn 단원 5, R은 「What are Azure regions?」, AZ는 「What are availability zones?」, P는 「Azure region pairs and nonpaired regions」, N은 「Azure nonregional services」, SG는 AZ-900 학습 가이드.
+
+| 개념·영문 | 쓸 이름 | 근거 |
+|---|---|---|
+| `datacenter` — datacenter | **데이터 센터** | L5·AZ 한국어판. 「데이터센터」로 붙여 쓰지 않는다(phase 100 표기). rack → 랙(L5), server → 서버 |
+| `region` — region | **지역** | L5 절 제목 「지역」, R 제목 「Azure 지역은 무엇인가요?」. 용어집의 「리전」은 쓰지 않는다(G20, phase 101 표기와 같다) |
+| geography | 지리 | R 절 제목 「Azure 지역 및 지리 이해」, R·P·N 본문. data residency → **데이터 상주**(R 여덟 번·N 세 번. L5는 「데이터 보존」 한 번 — 데이터 보관 기간과 헷갈려 쓰지 않는다) |
+| latency | 대기 시간 | R·AZ 한국어판(열 번씩). phase 101 표기와 같다 |
+| nonregional services | 비지역 서비스 | L5·R·N 본문. N 제목의 「비지정 서비스」는 잘못 옮긴 것이라 쓰지 않는다. global / geographic → 글로벌 서비스 / 지리적 서비스(N) |
+| `availability-zones` — availability zone | **가용성 영역** | L5(17번)·R(17번)·AZ 제목과 본문(71번). 이름표는 「영역 1」·「영역 2」·「영역 3」(AZ의 논리 영역 번호 꼴) |
+| redundancy | 중복성 · 중복 | 「What are business continuity, …」 한국어판 「중복성」. 문장 안에서는 「중복」으로 줄여 써도 된다 — L5 한국어판도 둘을 함께 쓴다 |
+| `zone-service-categories` — types of availability zone support | **가용성 영역 지원 유형** | AZ 절 제목. 잠정 이름 「가용성 영역 서비스 범주」(L5의 「세 범주」)는 쓰지 않는다 — 현행 문서의 나눔이 L5와 다르다(단원 5 항목 「현행 문서와 다름」 5). 슬러그는 그대로 둔다 |
+| zonal resource / zone-redundant resource / nonzonal resource | **영역 리소스**(Zonal resource) / **영역 중복 리소스**(Zone-redundant resource) / **비영역 리소스**(Nonzonal resource) | AZ 한국어판(영역 리소스 9번, 영역 중복 리소스·영역 중복 7번). 셋째는 AZ 한국어판이 「비 영역 리소스」로 띄어 쓰지만, 접두사 「비-」는 붙여 쓰는 한국어 맞춤법을 따라 「비영역」으로 쓴다. L5의 「영역 서비스」·「영역 중복 서비스」는 같은 나눔을 서비스 단위로 부른 이름이라 쓰지 않는다 |
+| `region-pairs` — region pair | **지역 쌍** | L5(9번)·R(4번)·P(18번). 「페어링」은 P 제목에만 섞였다. paired / nonpaired region → 쌍을 이루는 지역 / 쌍을 이루지 않는 지역(R 본문·P 본문) |
+| failover | 장애 조치 | 「What are business continuity, …」·L5·AZ·P 한국어판. phase 101 표기와 같다 |
+| geo-redundant storage | 지역 중복 스토리지(GRS) | P 한국어판. 이 주제에서 쓸 일이 있으면 |
+| `sovereign-regions` — sovereign region | **소버린 지역** | 한국어판이 갈린다 — 「소버린」은 L5 절 제목(1번)과 R의 「소버린 클라우드 지역」(2번), 「주권 지역」은 L5 본문(3번)과 SG의 기술 목록 한 줄(「Azure 지역, 지역 쌍 및 주권 지역 설명」). 수는 「주권 지역」이 하나 많지만 「소버린」으로 쓴다 — 현행 제품 문서(R, 2026-06-29)가 「소버린」을 쓰고, 현행 문서에서 「주권」은 이 지역의 이름이 아니라 sovereignty(주권 요구)를 옮긴 말이다(AZ의 「데이터 상주 또는 주권 요구 사항」은 보통 지역에도 걸리는 요구다). 「주권 지역」이라 쓰면 그 요구를 맞추려면 이 지역을 써야 한다고 읽힐 수 있다. 본문에서 「주권 지역이라고도 옮긴다」를 한 번 밝혀도 된다 |
+| instance (of Azure) | 인스턴스 | L5·R 한국어판. 이 주제에서는 「같은 기술로 지었지만 데이터 센터와 네트워크를 따로 둔 Azure 한 벌」로 푼다(Azure Government·21Vianet 항목) |
+| Azure Government / Microsoft Azure operated by 21Vianet | Azure Government / 21Vianet이 운영하는 Microsoft Azure(Microsoft Azure operated by 21Vianet) | 두 문서 한국어판이 이름을 옮기지 않는다. R 한국어판 「21Vianet에서 운영하는 Microsoft Azure」를 「이」로 고쳐 쓴다. 덤프의 「Azure China」는 쓰지 않는다(D41) |
+| Microsoft Entra ID / Azure DNS / Azure Traffic Manager | Microsoft Entra ID / Azure DNS / Azure Traffic Manager | 한국어판이 옮기지 않는다 |
+| region names | 미국 서부·미국 동부·동아시아·동남아시아·브라질 남부·미국 중남부 | P 한국어판(「미국 서부」·「미국 동부」). 본문에 쓸 때만. 도식은 「지역 A」·「지역 B」 이름표로 그린다(guide 「예시 값」) |
+
+## (phase 102) Azure Resource Manager — What is Azure Resource Manager?
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-08-04. 사본: `docs-arm-overview.md`와 `ko-` 판.
+
+- Azure Resource Manager는 Azure의 배포·관리 서비스다. Azure 포털·명령줄 도구·API로 보낸 요청을 모두 받아 인증·권한 확인을 한 뒤 해당 서비스로 넘긴다 — 첫 부분, 「Consistent management layer」
+- 리소스는 Azure로 쓸 수 있는, 관리할 수 있는 항목이다. 예로 가상 머신·스토리지 계정·웹앱·데이터베이스·가상 네트워크를 들고, 리소스 그룹·구독·관리 그룹·태그도 리소스라고 한다 — 「Terminology」
+- 리소스 그룹은 한 솔루션에 관련된 리소스를 담는 컨테이너이고, 함께 관리할 리소스를 넣는다. 무엇을 한 그룹에 넣을지는 조직에 맞게 고객이 정한다 — 「Terminology」, 「What is a resource group?」
+- 관리 범위는 네 층이다 — 관리 그룹, 구독, 리소스 그룹, 리소스. 관리 설정은 어느 층에나 걸 수 있고, 고른 층이 설정이 미치는 넓이를 정한다. **아래층은 위층의 설정을 물려받는다** — 「Understand scope」
+- 예: 구독에 정책을 걸면 그 구독의 모든 리소스 그룹과 리소스에 적용된다. 리소스 그룹에 정책을 걸면 그 리소스 그룹과 안의 리소스에 적용되고, **다른 리소스 그룹에는 그 정책이 걸리지 않는다** — 「Understand scope」(위층으로 올라가지 않는다는 말을 직접 하지는 않는다 — 고른 층과 그 아래에만 미친다는 데서 읽는다)
+- 리소스 그룹에 둘 리소스는 수명 주기가 같은 것이 좋다 — 함께 배포하고 고치고 지운다 — 「What is a resource group?」
+- 리소스는 리소스 그룹 하나에만 있을 수 있다. 리소스는 언제든 리소스 그룹에 넣거나 뺄 수 있고, 다른 리소스 그룹으로 옮길 수 있다 — 같은 절
+- **리소스 그룹 안의 리소스는 리소스 그룹과 다른 지역에 있어도 된다**(같은 위치를 권한다) — 같은 절
+- 리소스 그룹을 접근 제어의 범위로 쓸 수 있고, 리소스 그룹에 정책·역할·리소스 잠금을 걸어 관리한다 — 같은 절
+- 리소스 그룹에 태그를 붙여도 안의 리소스는 그 태그를 물려받지 않는다 — 같은 절(`azure-cost-management`의 몫 — 이 phase는 쓰지 않는다)
+- **리소스는 다른 리소스 그룹의 리소스와 연결될 수 있다.** 관련은 있지만 수명 주기가 다를 때 흔하다 — 예: 웹앱이 다른 리소스 그룹의 데이터베이스에 연결한다 — 같은 절
+- 리소스 그룹을 지우면 안의 리소스도 모두 지워진다 — 같은 절
+- 일부 리소스는 리소스 그룹 밖에 있을 수 있다 — 구독·관리 그룹·테넌트에 배포하는 특정 리소스 유형이다 — 같은 절(Learn 단원 6과 다름 — 그 항목의 「현행 문서와 다름」 1)
+- 리소스 그룹을 만들 때 위치를 정한다. **리소스 그룹은 리소스의 메타데이터(리소스에 관한 정보)를 저장하고, 리소스 그룹의 위치가 그 메타데이터를 두는 곳이다.** 규정 준수 때문에 데이터를 특정 지역에 두어야 할 때 이 위치가 중요하다 — 「Which location should I use for my resource group?」
+- 리소스 그룹이 데이터 센터 장애에 대비가 되는지는 문서가 직접 말하지 않는다. 판단 근거는 셋이다 — 리소스 그룹은 함께 관리할 리소스를 담는 컨테이너다(「Terminology」), 안의 리소스는 그룹과 다른 지역에 있어도 된다(「What is a resource group?」), 리소스를 다른 그룹으로 옮겨도 리소스의 물리적 지역은 바뀌지 않는다(「Move Azure resources to a new resource group or subscription」). 리소스를 어느 리소스 그룹에 두는지는 리소스가 놓이는 데이터 센터·영역을 정하지 않으므로 대비가 되지 않는다. 데이터 센터·영역 하나의 장애에 대비하는 것은 리소스를 여러 가용성 영역에 두는 것이다(「What are availability zones?」) — D 항목 없음, 덤프 NO.87의 답 「아니요」의 근거
+- 한국어 표기: Azure Resource Manager(옮기지 않는다), resource → 리소스, resource group → 리소스 그룹, scope → 범위(「네 가지 관리 범위 수준」), inherit → 상속, metadata → 메타데이터, location → 위치, tag → 태그
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(리소스 하나하나가 관리할 수 있는 항목이다, 리소스 그룹 밖의 리소스가 있다는 한정 — 「VM·가상 네트워크·데이터베이스 같은 리소스는」으로 한정했고, 리소스 그룹·구독 자체도 리소스라는 말은 쓰지 않았다),
+`azure-resource-hierarchy.resource-group`(무엇을 한 그룹에 넣을지 고객이 정한다, 한 그룹에만, 옮기기, 수명 주기가 같은 리소스를 한 그룹에, 그룹의 지역과 메타데이터, 다른 지역의 리소스, 다른 그룹의 리소스와의 연결 — 웹앱과 데이터베이스의 예, 그룹 삭제, 접근 제어 범위, 다른 리소스 그룹에는 미치지 않음, NO.87의 판단), az049·az050 해설, `ResourceGroupScopeDiagram`, D48
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 구독에 건 설정은 그 구독의 모든 리소스 그룹·리소스에, 리소스 그룹에 건 설정은 그 리소스 그룹과 안의 리소스에 적용되고 다른 리소스 그룹에는 걸리지 않음 — 「위로 올라가지 않는다」는 쓰지 않고 「건 층과 그 아래에만 미친다」로 썼다), az053·az054 해설, `HierarchyInheritanceDiagram`, G26
+
+## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
+
+확인한 날 2026-10-31. 「Last updated on」 2026-02-27. 사본: `docs-arm-manage-resource-groups-portal.md`와 `ko-` 판.
+
+- 리소스 그룹은 리소스의 메타데이터를 저장하고, 리소스 그룹의 위치를 정하는 것이 그 메타데이터를 둘 곳을 정하는 것이다. 안의 리소스는 다른 지역에 있을 수 있다 — 「What is a resource group」
+- 리소스 그룹을 만들 때 이름과 지역을 정한다 — 「Create resource groups」
+- 한국어 표기: resource group → 리소스 그룹, region → 지역
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(그룹을 만들 때 지역을 고른다, 메타데이터, 안의 리소스는 다른 지역에 있어도 된다)
+
+## (phase 102) Azure Resource Manager — Move Azure resources to a new resource group or subscription
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-29. 사본: `docs-arm-move-resource-group-and-subscription.md`와 `ko-` 판.
+
+- 리소스를 같은 구독 안의 다른 리소스 그룹으로도, **다른 구독으로도 옮길 수 있다.** 다른 구독으로 옮길 때는 두 구독이 같은 Microsoft Entra 테넌트에 속해야 한다 — 첫 부분, 「Checklist before moving resources」
+- 옮길 리소스는 옮기기 작업을 지원하는 유형이어야 한다 — 리소스 유형마다 다르다 — 「Checklist before moving resources」
+- 다른 구독으로 옮길 때는 리소스와 그 리소스가 기대는 리소스가 같은 리소스 그룹에 있어야 하고 함께 옮긴다 — 예: 관리 디스크가 붙은 VM은 VM과 디스크를 함께 옮긴다 — 같은 절
+- 리소스를 옮기면 리소스가 속한 리소스 그룹(과 리소스 ID)만 바뀌고 **리소스의 물리적 지역은 바뀌지 않는다** — 첫 부분
+- 옮기는 동안 원래 그룹과 대상 그룹은 잠겨 그 안의 리소스를 만들거나 지우거나 고칠 수 없지만, 이미 있는 리소스는 계속 동작한다 — 첫 부분
+- 구독 둘을 하나로 합친다는 말은 이 문서에 없다(리소스를 다른 구독으로 옮기는 방법만 있다) — D49
+- 한국어 표기: move → 이동, resource group → 리소스 그룹, subscription → 구독, Microsoft Entra tenant → Microsoft Entra 테넌트
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(다른 그룹으로 옮겨도 한 그룹에만 속한다, 옮겨도 지역은 그대로), az050 해설
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(VM 같은 리소스를 다른 구독으로 옮길 수 있다 — 두 구독이 같은 테넌트를 믿어야 하고, 옮기기를 지원하는 유형이어야 하며, 기대는 리소스(VM과 디스크)와 함께 옮긴다, 옮겨도 지역은 그대로), D47. 구독을 합친다는 말은 쓰지 않았다(D49)
+
+## (phase 102) Azure Resource Manager — Handling special cases when moving virtual machines to resource group or subscription
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-limitations/virtual-machines-move-limitations
+
+확인한 날 2026-10-31. 「Last updated on」 2025-09-15. 사본: `docs-arm-move-limitations-vm.md`와 `ko-` 판.
+
+- VM은 새 리소스 그룹이나 다른 구독으로 옮길 수 있다. 디스크 암호화·Marketplace 플랜·Azure Backup을 쓰는 VM은 따로 거칠 단계가 있다 — 첫 부분
+- 옮길 수 없는 경우가 있다 — 예: 가용성 집합 안의 VM은 하나씩 옮길 수 없고, 기존 가상 네트워크 안의 VM은 그 가상 네트워크와 기대는 리소스를 함께 옮길 때만 다른 구독으로 옮길 수 있다 — 「Scenarios not supported」(이 주제는 「옮길 수 없는 경우도 있다」까지만 쓴다)
+- 한국어 표기: virtual machine → 가상 머신
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(VM을 다른 구독으로 옮길 수 있되 옮길 수 없는 경우도 있다 — 가용성 집합 같은 경우의 예는 들지 않았다), D47
+
+## (phase 102) Azure Resource Manager — Use tags to organize your Azure resources and management hierarchy (상속 한 줄만)
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources
+
+확인한 날 2026-10-31. 「Last updated on」 2025-09-15. 사본: `docs-arm-tag-resources.md`와 `ko-` 판.
+
+- 리소스는 리소스 그룹이나 구독에 붙인 태그를 물려받지 않는다. 물려받게 하려면 Azure Policy로 태그 규칙을 건다 — 「Inherit tags」
+- 한국어 표기: tag → 태그
+
+쓰일 곳: `azure-cost-management` 주제(이 phase는 쓰지 않는다). 덤프 NO.54·93·309·335의 태그 진술 「아니요」는 이 사실과 맞다 — D 항목 없음
+
+## (phase 102) Microsoft Entra — Associate or add an Azure subscription to your Microsoft Entra tenant
+https://learn.microsoft.com/en-us/entra/fundamentals/how-subscriptions-associated-directory
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-19. 사본: `docs-entra-how-subscriptions-associated-directory.md`와 `ko-` 판.
+
+- 모든 Azure 구독은 Microsoft Entra 테넌트 하나와 신뢰 관계를 맺고, 그 테넌트(디렉터리)로 사용자와 장치를 인증하고 권한을 확인한다 — 「Overview」
+- **구독은 디렉터리 하나만 믿는다. 테넌트 하나는 여러 구독이 믿을 수 있다** — 「Overview」
+- 구독은 Azure 리소스와 Azure 역할 할당을 관리하는 범위이고, 테넌트는 로그인하고 접근을 받는 데 쓰는 ID를 담은 디렉터리다 — 「Overview」
+- 구독이 만료되어도 믿던 테넌트는 남지만, 사용자 등은 Azure 리소스에 접근하지 못하게 된다 — 「Overview」
+- 구독의 소유자는 구독을 다른 디렉터리(테넌트)에 연결할 수 있다. 그러면 Azure RBAC로 역할을 받은 사용자는 접근을 잃는다 — 「Overview」 Important, 「Associate a subscription to a directory」
+- 한국어 표기: tenant → 테넌트, directory → 디렉터리, trust relationship → 트러스트 관계(이 앱은 「믿는다」로 쓴다), associate → 연결
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(구독은 테넌트 하나만 믿고 그 테넌트의 ID로 누가 로그인했는지 확인하고 무엇을 할 수 있는지 따진다, 테넌트 하나를 구독 여럿이 믿을 수 있다, 테넌트에는 로그인하고 접근 권한을 받는 데 쓰는 ID가 들어 있다), az051 해설. 구독이 만료될 때와 구독을 다른 디렉터리에 연결하는 일은 쓰지 않았다. 덤프 NO.369의 세 답(아니요·예·아니요)의 근거 — D 항목 없음
+
+## (phase 102) Microsoft Entra — Quickstart: Create a new tenant in Microsoft Entra ID
+https://learn.microsoft.com/en-us/entra/fundamentals/create-new-tenant
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-31. 사본: `docs-entra-create-new-tenant.md`와 `ko-` 판.
+
+- 테넌트는 조직 하나를 나타내고, 그 조직의 내부·외부 사용자를 위한 Microsoft 클라우드 서비스의 한 인스턴스를 관리하게 해 준다 — 「Create a new tenant for your organization」
+- 한국어 표기: tenant → 테넌트, instance → 인스턴스
+
+쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`(테넌트를 푸는 한 줄 — 조직 하나를 나타내는 Microsoft Entra ID의 디렉터리), az051 해설
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(테넌트 루트 그룹의 「테넌트」 — 개념 9가 이미 푼 낱말이라 다시 풀지 않았다)
+
+## (phase 102) Azure governance — What are Azure management groups?
+https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-21. 사본: `docs-management-groups-overview.md`와 `ko-` 판.
+
+- 관리 그룹은 구독 위의 거버넌스 범위다. 구독이 많을 때 그 구독들의 접근·정책·규정 준수를 한꺼번에 관리하려고 쓴다. 관리 그룹에 건 거버넌스 조건은 상속으로 그 아래 구독 모두에 내려간다 — 첫 부분
+- 한 관리 그룹 안의 구독은 모두 같은 Microsoft Entra 테넌트를 믿어야 한다 — 첫 부분
+- 예: 관리 그룹에 VM을 만들 수 있는 지역을 제한하는 정책을 걸면 아래의 관리 그룹·구독·리소스 모두에 적용되고, 리소스나 구독의 소유자는 그 정책을 바꿀 수 없다. 관리 그룹에 역할 할당을 하나 만들면 그 접근이 아래 구독 모두에 상속된다 — 첫 부분, 「Hierarchy of management groups and subscriptions」
+- 디렉터리 하나에 관리 그룹을 10,000개까지 둘 수 있다. 관리 그룹 나무는 여섯 단계 깊이까지이고, 이 제한에 루트 단계와 구독 단계는 들지 않는다. 관리 그룹과 구독은 저마다 부모가 하나다 — 「Important facts about management groups」 (Learn 단원 6과 같다)
+- 디렉터리마다 최상위 관리 그룹이 하나 있다(**루트 관리 그룹**). 모든 관리 그룹과 구독이 그 아래로 모이고, 전체에 걸 정책과 역할 할당을 여기에 건다. 루트 관리 그룹의 표시 이름은 기본으로 **Tenant root group**이고, 그 자체도 관리 그룹으로 동작하며, ID가 Microsoft Entra 테넌트 ID와 같다. 루트 관리 그룹은 옮기거나 지울 수 없다 — 「Root management group for each directory」
+- 새로 만든 구독은 기본으로 루트 관리 그룹 바로 아래에 놓인다 — 「Important facts about the root management group」 (phase 102 step 7)
+- 루트 관리 그룹에 건 사용자 접근 할당이나 정책 할당은 그 디렉터리의 모든 리소스에 적용된다. 그래서 루트에는 꼭 필요한 것만 건다 — 같은 절 Important (phase 102 step 7)
+- 한국어 표기: management group → 관리 그룹, root management group → 루트 관리 그룹(한국어판 28번), Tenant root group → 테넌트 루트 그룹(한국어판 1번 — 표시 이름), inheritance → 상속, governance → 거버넌스, compliance → 규정 준수
+
+쓰인 곳(phase 102 step 6): az052 해설(관리 그룹을 푸는 한 줄 — 구독 여럿을 묶어 같은 조건을 한꺼번에 거는, 구독보다 위의 단위)
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹 — 표시 이름이 테넌트 루트 그룹이고 루트 관리 그룹이라고도 부른다, 그 자체가 관리 그룹이다, 옮기거나 지울 수 없다, 새 구독이 그 바로 아래에 놓인다, 거기에 건 접근 권한·규칙은 테넌트의 모든 리소스에 미친다 — ID가 테넌트 ID와 같다는 것은 쓰지 않았다), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예 — 리소스나 구독의 소유자가 정책을 바꿀 수 없다), az053·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
+
+## (phase 102) Azure RBAC — Understand scope for Azure RBAC
+https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2025-03-30. 사본: `docs-rbac-scope-overview.md`와 `ko-` 판.
+
+- 범위(scope)는 접근이 미치는 리소스의 묶음이다. Azure에서 범위는 네 층 — 관리 그룹, 구독, 리소스 그룹, 리소스 — 이고 부모와 자식 관계로 이어지며, 아래로 갈수록 범위가 좁아진다 — 첫 부분, 「Scope levels」
+- 역할은 어느 층에나 할당할 수 있고, 고른 층이 역할이 미치는 넓이를 정한다. **아래층은 위층의 역할 권한을 물려받는다** — 「Scope levels」
+- 관리 그룹은 구독 위의 범위이고 더 복잡한 계층을 만들 수 있다 — 「Scope levels」
+- 한국어 표기: scope → 범위, role assignment → 역할 할당, inherit → 상속
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹에 준 접근 권한이 안의 리소스에 미치고 다른 리소스 그룹에는 미치지 않는다 — 「역할」·「범위」라는 말은 쓰지 않고 「접근 권한」으로 썼다. 덤프 NO.54·93·159·270·309·335의 권한 진술은 이 사실과 맞다), `ResourceGroupScopeDiagram`(권한 부여)
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 아래로 갈수록 좁아진다, 위에서 아래로 상속 — 구독에 준 역할 할당이 그 구독의 리소스 그룹·리소스에, 리소스 그룹에 준 역할 할당이 그 안의 리소스에 미친다), az054 해설, `HierarchyInheritanceDiagram`(구독·리소스 그룹에 역할 할당)
+
+## (phase 102) Azure RBAC — What is Azure role-based access control (Azure RBAC)? (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
+
+확인한 날 2026-10-31. 「Last updated on」 2024-03-12. 사본: `docs-rbac-overview.md`와 `ko-` 판.
+
+- Azure RBAC는 누가 Azure 리소스에 접근하고, 그 리소스로 무엇을 할 수 있고, 어느 범위에 접근하는지를 관리하게 해 준다. Azure Resource Manager 위에 지은 권한 부여 시스템이다 — 첫 부분
+- **역할 할당**은 사용자·그룹 같은 대상에게 역할 정의를 특정 범위에서 붙여 접근을 주는 일이다. 역할 할당을 만들면 접근이 생기고 지우면 접근이 사라진다 — 「Role assignments」
+- 한국어 표기: Azure role-based access control → Azure RBAC(Azure 역할 기반 액세스 제어), role assignment → 역할 할당, role definition → 역할 정의
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(Azure RBAC와 역할 할당을 푸는 줄 — 누가 어떤 리소스에 접근해 무엇을 할 수 있는지 관리하는 서비스, 사용자나 사용자 그룹 같은 대상에게 어느 범위에서 무엇을 할 수 있는지 정해 붙이는 것, 만들면 접근이 생기고 지우면 사라진다), az054 해설. 역할 정의의 종류·보안 주체의 종류는 `azure-security-model`의 몫이라 적지 않았고 쓰지도 않았다
+
+## (phase 102) Azure RBAC — Azure classic subscription administrators
+https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
+
+확인한 날 2026-10-31. 「Last updated on」 2026-05-07. 사본: `docs-rbac-classic-administrators.md`와 `ko-` 판.
+
+- Azure의 클래식 관리자 역할(서비스 관리자·공동 관리자)은 2024년 8월 31일부터 지원이 끝났다. 2025년 12월부터 Azure가 아직 그 역할을 가진 사용자에게 구독 범위의 소유자(Owner) 역할을 자동으로 할당했고, 2026년 5월부터 클래식 관리자 역할은 완전히 없어져 접근은 Azure RBAC 역할 할당으로 관리해야 한다 — 첫 부분 Important, 「Frequently asked questions」
+- 계정 관리자(Account Administrator)는 청구 계정의 주 사용자이고 지원 종료 대상이 아니다. 구독마다 계정 관리자를 몇 명 둘 수 있는지는 이 문서에 없다 — 「Frequently asked questions」
+- 한국어 표기: Azure classic subscription administrators → Azure 클래식 구독 관리자, Service Administrator → 서비스 관리자, Co-Administrator → Co-Administrator(옮기지 않는다), Account Administrator → 계정 관리자, retired → 사용 중지
+
+쓰일 곳: D46 — 개념 글에 쓰지 않는다(근거 기록)
+
+## (phase 102) Azure governance — What is Azure Policy? (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/governance/policy/overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-08. 사본: `docs-policy-overview.md`와 `ko-` 판.
+
+- Azure Policy는 조직이 정한 기준을 리소스에 강제하고, 여러 리소스가 그 기준을 지키는지(규정 준수) 한꺼번에 평가한다. 규정 준수 대시보드로 전체 상태를 보고, 기준에 어긋난 기존 리소스를 한꺼번에 고치게 돕는다 — 첫 부분
+- 한국어 표기: Azure Policy(옮기지 않는다), compliance → 규정 준수, policy definition → 정책 정의
+
+쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(정책을 푸는 줄 — Azure Policy로 정하는 규칙, 조직의 기준을 리소스에 강제하고 여러 리소스가 지키는지 평가한다), az055 해설, D50(문항이 「규칙을 걸 자리」를 조건으로 주어 관리 그룹만 정답이 되게 했다 — az053). 정책 효과·정책 정의의 구조는 `azure-governance`의 몫이라 적지 않았고 쓰지도 않았다
+
+## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-17. 사본: `docs-virtual-network-overview.md`와 `ko-` 판.
+
+- Azure 가상 네트워크는 Azure 안의 사설 네트워크를 이루는 기본 단위다. VM 같은 Azure 리소스가 서로, 인터넷과, 온-프레미스 네트워크와 안전하게 통신하게 해 준다 — 첫 부분
+- 한국어 표기: Azure Virtual Network → Azure Virtual Network(제목), virtual network → 가상 네트워크(한국어판 46번)
+
+쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
+
+## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
+
+위 항목들과 Learn 단원 6 항목의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 102 step 4). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+받아 둔 한국어판(`raw/official/ko-…`)에서 낱말을 세어 정했다 — L6은 Learn 단원 6, ARM은 「What is Azure Resource Manager?」, MG는 「What are Azure management groups?」, SC는 「Understand scope for Azure RBAC」, EN은 「Associate or add an Azure subscription to your Microsoft Entra tenant」.
+
+| 개념·영문 | 쓸 이름 | 근거 |
+|---|---|---|
+| `resource` — resource | **리소스** | L6·ARM 한국어판. phase 100 표기와 같다. virtual machine → 가상 머신(VM), virtual network → 가상 네트워크, database → 데이터베이스 |
+| `resource-group` — resource group | **리소스 그룹** | L6·ARM 한국어판. metadata → 메타데이터. 리소스 그룹을 만들 때 고르는 곳은 「지역」으로 쓴다 — 「Manage Azure resource groups by using the Azure portal」이 그 칸을 Region으로 적는다(ARM의 location → 위치는 같은 것을 가리킨다) |
+| `subscription` — subscription | **구독** | L6·EN 한국어판. phase 101 표기와 같다. account → 계정, tenant → 테넌트, directory → 디렉터리 |
+| `subscription-boundaries` — subscription boundaries | **구독 경계** | L6 한국어판 「구독 경계에는 두 가지 유형이 있습니다」. 잠정 이름 그대로다 |
+| billing boundary / access control boundary | **청구 경계**(Billing boundary) / **액세스 제어 경계**(Access control boundary) | L6 한국어판 목록. 영문은 L6 목록의 굵은 이름 |
+| production | 운영 환경 | L6 한국어판은 「프로덕션」을 쓴다. phase 101이 정한 「운영 환경」을 쓴다(`azure-sla-lifecycle` 표기 정리 — 뜻이 드러나는 쪽) |
+| `management-group` — management group | **관리 그룹** | L6(15번)·MG(141번) 한국어판 |
+| Tenant Root Group / root management group | **테넌트 루트 그룹** | L6 한국어판(1번)과 MG 한국어판의 표시 이름(1번). MG 본문은 「루트 관리 그룹」(28번)을 쓰지만, 학습 단원과 표시 이름이 「테넌트 루트 그룹」이라 그것을 쓴다. 본문에서 「루트 관리 그룹이라고도 부른다」를 한 번 밝혀도 된다 |
+| `hierarchy` — management group, subscriptions, and resource group hierarchy | **관리 그룹·구독·리소스 그룹 계층 구조** | L6 한국어판 절 제목 「관리 그룹, 구독 및 리소스 그룹 계층 구조」를 명사구로 줄였다(「및」·쉼표를 가운뎃점으로). 잠정 이름 「…계층」에 「구조」를 붙인 것은 L6 절 제목과 용어집 「계층 구조」가 함께 쓰는 말이라서다 |
+| scope / inherit | 범위 / 상속(물려받는다) | ARM 「네 가지 관리 범위 수준」, SC 한국어판 「범위」(35번). 본문에서는 「물려받는다」로 풀어 써도 된다 |
+| role assignment / Azure RBAC | 역할 할당 / Azure 역할 기반 액세스 제어(Azure RBAC) | SC·RBAC 개요 한국어판 |
+| Azure Policy / policy | Azure Policy / 정책 | Policy 개요 한국어판이 이름을 옮기지 않는다 |
+| governance / compliance | 거버넌스 / 규정 준수 | L6·MG 한국어판. phase 101 표기와 같다 |
+| Microsoft Entra ID | Microsoft Entra ID | 한국어판이 옮기지 않는다. 옛 이름 Azure Active Directory(Azure AD)는 쓰지 않는다(phase 101 「New name for Azure Active Directory」 항목, D46·G25) |
