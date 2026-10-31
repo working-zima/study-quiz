@@ -111,6 +111,7 @@ import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
@@ -157,6 +158,7 @@ import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VmContainerDiagram } from './VmContainerDiagram'
 import { VmResourcesDiagram } from './VmResourcesDiagram'
 import { VnetIsolationDiagram } from './VnetIsolationDiagram'
+import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -374,6 +376,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-compute.functions': FunctionTriggerDiagram,
   'azure-compute.app-service': HostingOptionsTable,
   'azure-virtual-networking.virtual-network': VnetIsolationDiagram,
+  'azure-virtual-networking.peering': VnetPeeringDiagram,
+  'azure-virtual-networking.endpoints': PrivateEndpointDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

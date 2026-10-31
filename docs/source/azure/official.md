@@ -2127,7 +2127,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-ser
 - 한국어 표기: 가상 네트워크, 서브넷, 격리 및 구분(제목. 이 주제의 글은 「격리」와 「나눔」으로 쓴다), 공용 IP 주소, 개인 IP 주소, 공용 부하 분산 장치, 퍼블릭 엔드포인트, 프라이빗 엔드포인트, 온-프레미스, 가상 네트워크 피어링, Microsoft 백본 네트워크, 네트워크 보안 그룹
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
-쓰일 곳(phase 103): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `azure-virtual-networking.vpn-connection-types`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
+쓰일 곳(phase 103): `azure-virtual-networking.vpn-connection-types`
 
 ## (phase 103) Learn 「Describe Azure networking services」 — 3 Describe Azure virtual private networks
 https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/3-virtual-private-networks
@@ -2198,7 +2199,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
 - 한국어 표기: 글로벌 가상 네트워크 피어링, 전이적 피어링(이 낱말은 쓰지 않고 「이어지지 않는다」로 푼다)
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `VnetIsolationDiagram`
-쓰일 곳(phase 103): `azure-virtual-networking.peering`, D58, D59, D60, `VnetPeeringDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
+쓰일 곳(phase 103): D58, D59, D60
 
 ## (phase 103) Azure Virtual Network — Plan virtual networks
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-plan-design-arm
@@ -2250,7 +2252,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-a
 - 한국어 표기: 제목은 「프라이빗 IP 주소」인데 본문은 「개인 IP」다. 다른 한국어판과 같이 「개인 IP 주소」로 쓴다
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
-쓰일 곳(phase 103): `azure-virtual-networking.endpoints`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
 
 ## (phase 103) Azure Virtual Network — Public IP addresses (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses
@@ -2262,7 +2264,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-ad
 - 한국어 표기: 공용 IP 주소
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
-쓰일 곳(phase 103): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
 
 ## (phase 103) Azure Virtual Network — Default outbound access in Azure (쓰지 않는 근거)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access
@@ -2287,7 +2289,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-
 - 서브넷 피어링, 서비스 체이닝, 허브 앤 스포크, Virtual Network Manager는 **쓰지 않는다**
 - 한국어 표기: 가상 네트워크 피어링, 글로벌 가상 네트워크 피어링(제품 문서 FAQ 한국어판. 개요 한국어판의 표기도 「글로벌」), 피어링된 가상 네트워크
 
-쓰일 곳: `azure-virtual-networking.peering`, D60, `VnetPeeringDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
+쓰일 곳: D60
 
 ## (phase 103) Azure networking — Microsoft global network (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network
@@ -2297,7 +2300,7 @@ https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network
 - Microsoft 글로벌 네트워크는 Microsoft 데이터 센터들을 서로, 그리고 전 세계 고객과 잇는 광역 네트워크이고 백본 네트워크다. **그래서 「Microsoft 백본 네트워크」를 「Microsoft가 운영하며 자기 데이터 센터들을 잇는 네트워크」로 푼다.** 지역 수와 길이는 **쓰지 않는다** — 첫 문단
 - 한국어 표기: Microsoft 글로벌 네트워크, 백본 네트워크
 
-쓰일 곳: `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`
 
 ## (phase 103) Azure Private Link — What is a private endpoint?
 https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview
@@ -2311,7 +2314,8 @@ https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview
 - 승인 절차·DNS 구성·네트워크 정책은 **쓰지 않는다**
 - 한국어 표기: 프라이빗 엔드포인트, 개인 IP 주소, 네트워크 인터페이스, Azure Private Link(옮기지 않는다)
 
-쓰일 곳: `azure-virtual-networking.endpoints`, D59, G38, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰일 곳: D59, G38
 
 ## (phase 103) Azure Private Link — What is Azure Private Link?
 https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
@@ -2323,7 +2327,8 @@ https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
 - 온-프레미스도 VPN 터널이나 ExpressRoute로, 피어링한 가상 네트워크도 프라이빗 엔드포인트로 서비스에 닿는다 — 같은 절
 - 한국어 표기: Azure Private Link, 프라이빗 링크
 
-쓰일 곳: `azure-virtual-networking.endpoints`, D59, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰일 곳: D59
 
 ## (phase 103) Azure Storage — Use private endpoints for Azure Storage
 https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
@@ -2335,7 +2340,8 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
 - 가상 네트워크 밖에서 스토리지 주소를 찾으면 퍼블릭 엔드포인트로, 프라이빗 엔드포인트가 있는 가상 네트워크 안에서 찾으면 그 프라이빗 엔드포인트의 IP 주소로 이어진다 — DNS 절
 - 한국어 표기: 프라이빗 엔드포인트, 퍼블릭 엔드포인트(이 문서 한국어판에도 그대로), 스토리지 계정, 스토리지 방화벽
 
-쓰일 곳: `azure-virtual-networking.endpoints`, G38, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰일 곳: G38
 
 ## (phase 103) Azure Storage — Storage account overview (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
@@ -2345,7 +2351,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 - 스토리지 계정은 Azure Storage의 데이터 개체를 담고, HTTP나 HTTPS로 세계 어디서나 닿을 수 있는 고유한 이름 공간을 준다 — 첫 문단. **「데이터를 담는 Azure 저장소의 단위」로 푸는 데만 쓴다**(종류는 `azure-storage`의 몫이다)
 - 저장한 개체마다 계정 이름이 든 URL 주소가 있고, 계정 이름과 서비스 엔드포인트를 합친 것이 그 계정의 엔드포인트다 — 「Storage account endpoints」. **이 문서가 엔드포인트를 그 데이터에 닿는 주소로 쓴다.** 받은 문서에는 엔드포인트만 따로 정의하는 문장이 없으므로, `endpoints`는 이 쓰임과 Learn 단원 2의 두 정의로 「서비스에 닿을 때 연결하는 접속 지점」까지만 푼다
 
-쓰일 곳: `azure-virtual-networking.endpoints`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
 
 ## (phase 103) Azure VPN Gateway — What is Azure VPN Gateway?
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways
@@ -2390,7 +2396,8 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq
 - 그래서 **피어링과 VNet 간 VPN은 둘 다 인터넷을 지나지 않고, 갈리는 것은 VPN 게이트웨이와 암호화 터널이 있는가다.** 피어링 쪽 근거는 「Azure virtual network peering」 항목(게이트웨이·암호화가 필요 없다)
 - 한국어 표기: VNet 간
 
-쓰일 곳: `azure-virtual-networking.peering`, `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`
+쓰일 곳: `azure-virtual-networking.vpn-gateway`, `azure-virtual-networking.vpn-connection-types`
 
 ## (phase 103) Azure VPN Gateway — Design highly available gateway connectivity (기본 구성만)
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable
