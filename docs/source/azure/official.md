@@ -757,6 +757,8 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 - 간접 연결 모드(indirectly connected mode)는 2025년 9월에 지원이 끝났다 — 「Indirectly connected mode」. 이 주제에서는 쓰지 않는다
 - 한국어 표기: Azure Arc → Azure Arc(이름 그대로), multicloud → 다중 클라우드, on-premises → 온-프레미스
 
+쓰일 곳: `azure-security-model.defender-for-cloud`(Azure Arc를 푸는 한 줄 — 온-프레미스와 다른 클라우드의 서버를 Azure에서 관리하게 해 주는 것) (phase 105)
+
 쓰인 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
 
 ---
@@ -1750,6 +1752,10 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(네 층이 범위라는 것, 아래로 갈수록 좁아진다, 위에서 아래로 상속 — 구독에 준 역할 할당이 그 구독의 리소스 그룹·리소스에, 리소스 그룹에 준 역할 할당이 그 안의 리소스에 미친다), az054 해설, `HierarchyInheritanceDiagram`(구독·리소스 그룹에 역할 할당)
 
+- 범위를 좁히면 대상이 침해되어도 위험에 놓이는 리소스가 준다. 역할은 네 층 어디에나 할당하고, 고른 층이 넓이를 정한다 (phase 105)
+
+쓰일 곳: `azure-security-model.rbac-scope`, `RbacScopeDiagram` (phase 105)
+
 ## (phase 102) Azure RBAC — What is Azure role-based access control (Azure RBAC)? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 
@@ -1762,6 +1768,11 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(Azure RBAC와 역할 할당을 푸는 줄 — 누가 어떤 리소스에 접근해 무엇을 할 수 있는지 관리하는 서비스, 사용자나 사용자 그룹 같은 대상에게 어느 범위에서 무엇을 할 수 있는지 정해 붙이는 것, 만들면 접근이 생기고 지우면 사라진다), az054 해설. 역할 정의의 종류·보안 주체의 종류는 `azure-security-model`의 몫이라 적지 않았고 쓰지도 않았다
 
 쓰인 곳(phase 105 step 4): `az118` 해설(Azure RBAC를 푸는 한 줄)
+
+- 역할 할당은 대상·역할 정의·범위 셋으로 이루어지고, 할당을 지우면 접근이 사라진다. 마케팅 그룹이 어느 리소스 그룹의 기여자면 그 밖의 리소스에는 다른 할당이 없는 한 닿지 못한다 — 「How Azure RBAC works」 (phase 105)
+- 그룹에 역할을 주면 그 그룹의 구성원이 권한을 받는다. 할당은 포털·CLI·PowerShell·SDK·REST API로 한다 — 「Groups」, 「Role assignments」 (phase 105)
+
+쓰일 곳: `azure-security-model.rbac`, `azure-security-model.rbac-scope`, `RbacAssignmentDiagram`, `RbacScopeDiagram`, D84 (phase 105)
 
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
@@ -3672,3 +3683,242 @@ https://learn.microsoft.com/en-us/entra/identity/devices/overview
 
 **쓰지 않는 이름**: Azure AD·Azure Active Directory(`entra-id`의 「예전 이름」 한 번 말고), Azure AD Connect, Azure AD B2C, Azure Multi-Factor Authentication, Azure AD Identity Protection, Microsoft Entra ID Protection, Privileged Identity Management, Azure Advanced Threat Protection, Defender for Identity, Connect Health, Verified ID, OpenID Connect, OAuth, SAML, Entra ID Free·P1·P2, Dynamics CRM Online(「Microsoft 365·Azure 구독자」로 줄인다), 동기화된 패스키, 동적 멤버 그룹.
 
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 6 Describe Azure role-based access control
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/6-role-based-access-control
+
+확인한 날 2026-11-02. 사본: `learn-describe-azure-identity-access-security-6-role-based-access-control.md`와 `ko-` 판.
+
+- 최소 권한 원칙: 일을 마치는 데 필요한 만큼만 접근을 준다. Blob 하나를 읽기만 하면 그 Blob의 읽기만 준다 — 머리글
+- 사람마다 권한을 적고 사람이나 리소스가 늘 때마다 고치면 일이 많아져서, 역할로 다룬다. 기본 제공 역할이 있고 직접 역할을 정의할 수도 있으며, 역할마다 권한 묶음이 있다. 개인이나 그룹을 역할 하나 이상에 할당하면 그 권한을 모두 받는다 — 머리글
+- 새 엔지니어를 그 그룹에 넣으면 다른 구성원과 같은 접근을 저절로 받는다. 리소스를 더하고 Azure RBAC를 거기에 걸면 그룹의 모두가 새 리소스에도 같은 권한을 갖는다 — 머리글
+- 범위는 접근이 미치는 리소스나 리소스 묶음이고, 넷이다 — 관리 그룹(구독 여럿의 묶음), 구독, 리소스 그룹, 리소스 — 「How is role-based access control applied to resources?」
+- 부모 범위에 준 접근은 자식 범위가 모두 물려받는다. 관리 그룹 범위의 소유자는 그 안 모든 구독의 모든 것을 관리하고, 구독 범위의 읽기 권한자 그룹은 그 구독의 리소스 그룹과 리소스를 모두 본다 — 같은 절
+- Resource Manager를 거치는 Azure 리소스 작업에 Azure RBAC가 적용된다. Resource Manager는 포털·Cloud Shell·PowerShell·CLI에서 쓰는 관리 서비스다 — 「How is Azure RBAC enforced?」
+- Learn은 「앱·데이터 수준의 권한은 강제하지 않고 앱 보안은 앱이 맡는다」고 적는다. **데이터 쪽은 제품 문서와 어긋나 그대로 쓰지 않는다** — 아래 「Azure RBAC — 역할의 작업과 데이터 작업」 — 같은 절
+- 허용 모델: 역할이 정한 작업을 그 범위에서 허용한다. 읽기를 주는 할당과 쓰기를 주는 할당이 같은 리소스 그룹에 있으면 둘 다 갖는다 — 같은 절
+- 한국어 표기: 최소 권한 원칙, 기본 제공 역할, 역할, 범위, 관리 그룹, 구독, 리소스 그룹, 소유자, 읽기 권한자, 상속, 허용 모델, Azure Resource Manager·Resource Manager(이름 그대로)
+
+쓰일 곳: `azure-security-model.rbac`, `azure-security-model.rbac-scope`, `RbacAssignmentDiagram`, `RbacScopeDiagram`
+
+## (phase 105) Azure RBAC — 기본 제공 역할 넷
+https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
+
+확인한 날 2026-11-02. 사본: `docs-rbac-built-in-roles.md`, `docs-rbac-builtin-privileged.md`(`built-in-roles/privileged`), `docs-rbac-builtin-general.md`(`built-in-roles/general`)와 `ko-` 판.
+
+- 소유자(Owner): 모든 리소스를 관리할 수 있고 역할도 할당한다. 작업이 `*`이고 제외가 없다 — `privileged` 「Owner」
+- 기여자(Contributor): 모든 리소스를 관리하지만 역할을 할당하지 못한다. 제외 목록에 권한 쪽 쓰기·지우기가 들어 있어 정책 할당도 하지 못한다. Blueprints 할당과 이미지 갤러리 공유, 구독 취소도 제외다(이 셋은 **쓰지 않는다**) — `privileged` 「Contributor」
+- 사용자 액세스 관리자(User Access Administrator): Azure 리소스의 사용자 접근을 관리한다. 모든 리소스의 정보를 읽을 수 있고 권한 쪽(`Microsoft.Authorization/*`) 작업을 할 수 있지만, 리소스를 만들거나 고치는 작업은 없다 — `privileged` 「User Access Administrator」
+- 읽기 권한자(Reader): 모든 리소스를 보지만 아무것도 바꾸지 못한다 — `general` 「Reader」
+- 이 넷만 있는 것이 아니다. 역할 기반 액세스 제어 관리자(Role Based Access Control Administrator)와 서비스별 역할이 더 있다. 그래서 본문은 **「역할은 넷이다」로 쓰지 않고 「자주 보는 넷」으로** 쓴다 — 「Built-in roles」 표
+- 네 역할 모두 작업 표에서 데이터 작업이 「none」이다 — 위 세 쪽의 표
+- 한국어 표기: Owner → 소유자, Contributor → 기여자, Reader → 읽기 권한자, User Access Administrator → 사용자 액세스 관리자
+
+**`RbacRolesTable`의 칸**(리소스 관리 · 역할 할당)의 근거는 위 줄들이다.
+
+| 역할 | 리소스 관리 | 역할 할당 |
+|---|---|---|
+| 소유자 | 모든 리소스를 관리한다 | 할 수 있다 |
+| 기여자 | 모든 리소스를 관리한다 | 할 수 없다 |
+| 읽기 권한자 | 보기만 한다 | 할 수 없다 |
+| 사용자 액세스 관리자 | 보기만 한다 | 할 수 있다 |
+
+쓰일 곳: `azure-security-model.rbac`, `RbacRolesTable`, D84, G50
+
+## (phase 105) Azure RBAC — 역할을 할당하는 곳과 대상, 사용자 지정 역할
+https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal
+
+확인한 날 2026-11-02. 사본: `docs-rbac-assign-portal.md`, `docs-rbac-custom-roles.md`(`custom-roles`), `docs-rbac-best-practices.md`(`best-practices`), `docs-management-groups-overview.md`(`governance/management-groups/overview`)와 `ko-` 판.
+
+- 포털에서 역할을 할당하는 곳은 그 범위(예: 리소스 그룹)의 **액세스 제어(IAM)** 쪽이다. 역할 할당 탭에서 그 범위의 할당을 보고, 추가 메뉴에서 역할 할당을 더한다 — 「Step 2: Open the Add role assignment page」
+- 역할은 사용자·그룹·서비스 주체·관리 ID에게 특정 범위로 할당한다 — 첫 문단
+- 기본 제공 역할이 조직의 요구에 맞지 않으면 사용자 지정 역할을 만들 수 있고, 만든 역할도 사용자·그룹 등에 할당한다. 보통 기본 제공 역할에서 출발해 고친다 — 「Azure custom roles」 첫 문단과 「Steps to create a custom role」. 개수 한도와 JSON은 **쓰지 않는다**
+- **한 범위에 소유자를 여럿 둘 수 있다.** 제품 문서는 구독 소유자 수를 제한하라고 권하는데, 여럿일 수 있음을 전제로 하는 권고다(권장 수치는 **쓰지 않는다**). 역할을 사람마다 주기보다 그룹에 주라고도 권한다 — `best-practices` 「Limit the number of subscription owners」, 「Assign roles to groups, not users」
+- 관리 그룹에서 접근과 정책을 함께 할당할 수 있고 리소스를 관리하지 않는 역할은 사용자 액세스 관리자다. 소유자도 할 수 있지만 범위가 더 넓고, 기여자·관리 그룹 기여자는 그 둘을 하지 못한다 — `management-groups/overview`의 역할 표. **NO.137의 답(사용자 액세스 관리자)은 맞다.**
+- 한국어 표기: Access control (IAM) → 액세스 제어(IAM), Add role assignment → 역할 할당 추가, custom role → 사용자 지정 역할, group → 그룹
+
+쓰일 곳: `azure-security-model.rbac`, D81, D84
+
+## (phase 105) Azure RBAC — 역할의 작업과 데이터 작업, 거부 할당
+https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions
+
+확인한 날 2026-11-02. 사본: `docs-rbac-role-definitions.md`, `docs-rbac-builtin-storage.md`(`built-in-roles/storage`), `docs-rbac-deny-assignments.md`(`deny-assignments`)와 `ko-` 판, 앞 phase의 `docs-rbac-overview.md`.
+
+- 역할 정의의 작업은 둘이다 — 리소스를 관리하는 제어 쪽 작업(Actions)과, 그 안의 데이터에 하는 데이터 작업(DataActions) — 「Role definition」 속성 표
+- 데이터 작업으로 개체 안 데이터의 접근을 줄 수 있다. 저장소 계정의 데이터 읽기 접근이 있으면 그 안의 Blob을 읽는다. 예: Storage Blob 데이터 읽기 권한자(Storage Blob Data Reader) — `overview` 「Role definition」, `built-in-roles/storage`
+- 접근을 판단하는 단계는 Resource Manager와 **Azure RBAC에 통합된 데이터 쪽 서비스**에 적용된다 — `overview` 「How Azure RBAC determines …」
+- **한정**: Learn 단원 6의 「데이터 수준은 강제하지 않는다」를 그대로 쓰지 않는다. 쓸 수 있는 말은 다음과 같다 — 리소스를 관리하는 작업(만들기·고치기·지우기)은 Resource Manager를 거치며 그때 역할이 적용된다. 소유자·기여자·읽기 권한자에는 데이터 작업이 없어 이 역할만으로 Blob의 내용까지 주어지는 것은 아니고, 저장소처럼 데이터 작업이 있는 서비스는 전용 역할로 데이터 접근을 준다. 앱 안의 권한(그 앱의 사용자가 앱에서 무엇을 할 수 있는가)은 앱이 맡는다. **「RBAC는 데이터 권한을 다루지 않는다」로 쓰지 않는다**
+- 역할 할당끼리는 **더해진다** — 구독의 기여자와 리소스 그룹의 읽기 권한자를 함께 가지면 실제로는 기여자다 — `overview` 「Multiple role assignments」
+- **거부 할당**은 역할 할당이 허용해도 작업을 막는다. 정식 제공되는 범위에서는 Azure가 리소스를 보호하려고 만들고 관리한다 — `deny-assignments` 첫 부분. 그래서 본문은 **「허용 모델」을 「역할 할당끼리는 합쳐진다」로 쓰고 「막는 방법이 없다」로 단정하지 않는다.** 거부 할당은 필요하면 한 구절까지
+- 한국어 표기: data action → 데이터 작업, role assignment → 역할 할당, deny assignment → 거부 할당, Storage Blob Data Reader → Storage Blob 데이터 읽기 권한자
+
+쓰일 곳: `azure-security-model.rbac-scope`, `RbacScopeDiagram`
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 7 Describe Zero Trust model
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model
+
+확인한 날 2026-11-02. 사본: `learn-describe-azure-identity-access-security-7-describe-zero-trust-model.md`와 `ko-` 판.
+
+- 제로 트러스트는 최악의 경우를 가정하는 보안 모델이다. 침해가 이미 있었다고 보고, 요청마다 믿을 수 없는 네트워크에서 온 것처럼 확인한다 — 머리글
+- 원칙 셋: 명시적으로 확인(쓸 수 있는 데이터를 모두 보고 인증·권한 부여), 최소 권한 액세스 사용, 침해 가정(피해 범위를 줄이고 접근을 나누며 암호화를 확인하고 분석으로 위협을 찾는다) — 머리글의 목록
+- 예전의 경계 기반 네트워크는 제한되어 있어 안전하다고 여겼고, 관리되는 컴퓨터만 들어왔다. 제로 트러스트는 디바이스가 내부 네트워크에 있다고 안전하다고 보지 않고, 모두를 인증하며 위치가 아니라 인증으로 접근을 준다 — 「Adjusting to Zero Trust」
+- 공용 네트워크의 관리되지 않는 디바이스에서 로그인하면 ID 신호·디바이스 상태·위험을 평가한다. 위험이 낮은 앱은 허용하고, 민감한 시스템은 다단계 인증을 요구하고, 위험이 너무 높으면 로그인을 막을 수 있다 — 「Example in practice」
+- 한국어 표기: 제로 트러스트, 명시적으로 확인, 최소 권한 액세스 사용, 침해 가정, JIT/JEA(Just-In-Time and Just-Enough-Access)
+
+쓰일 곳: `azure-security-model.zero-trust`, `ZeroTrustDiagram`
+
+## (phase 105) Zero Trust — Zero Trust as the foundation for security
+https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
+
+확인한 날 2026-11-02. 사본: `docs-zero-trust-overview.md`와 `ko-` 판.
+
+- 접근을 주기 전에 누가, 어떤 디바이스로, 어떤 위치와 동작으로, 어떤 위험 수준에서 요청하는지 확인하고, 확인은 한 번으로 끝나지 않고 이어진다 — 첫 부분
+- 세 원칙 각각: 모든 요청을 쓸 수 있는 신호로 인증·권한 부여한다 / 필요한 접근만 가장 짧은 시간 동안 준다 / 공격자가 이미 안에 있을 수 있다고 보고 피해를 줄이고 빨리 찾아 대응한다 — 「Zero Trust principles」
+- **JIT·JEA 풀이의 근거**: 권한은 필요할 때만 주고 쓸모없어지면 없앤다(Just-In-Time — 필요한 때에만), 필요한 최소한만 준다(Just-Enough-Access — 필요한 만큼만) — 「Zero Trust outcomes」. 문서가 JIT·JEA라는 낱말을 이 문장에 직접 붙이지는 않았으므로, 본문은 낱말의 글자 뜻으로 풀고 이 문장으로 뒷받침한다. 약어만 쓰지 않는다
+- **제로 트러스트와 심층 방어를 함께 쓴다는 문장은 받은 문서에서 찾지 못했다**(이 문서와 Learn 단원 7·8 모두). 그래서 본문은 **「둘을 함께 쓴다」로 단정하지 않고**, 각 정의로 차이만 말한다 — 제로 트러스트는 요청마다 믿지 않고 확인하는 태도이고, 심층 방어는 계층을 겹쳐 두는 구조다
+
+쓰일 곳: `azure-security-model.zero-trust`, `azure-security-model.defense-in-depth`
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 8 Describe defense-in-depth
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/8-describe-defense-depth
+
+확인한 날 2026-11-02. 사본: `learn-describe-azure-identity-access-security-8-describe-defense-depth.md`와 `ko-` 판.
+
+- 심층 방어는 정보를 지키고 빼앗기지 않게 하는 것이 목적이고, 여러 장치를 겹쳐 공격을 늦춘다 — 머리글
+- 계층 일곱. 데이터를 가운데 두고 나머지가 그것을 둘러싼다. 순서는 물리적 보안 → ID 및 액세스 → 경계 → 네트워크 → 컴퓨팅 → 애플리케이션 → 데이터다 — 「Layers of defense-in-depth」
+- 한 계층이 뚫려도 다음 계층이 더 드러나지 않게 막으므로 한 계층에만 기대지 않는다. 공격을 늦추고, 보안 팀이 자동이나 수동으로 대응할 경고 정보를 준다 — 같은 절
+- 물리적 보안: 건물 출입과 데이터 센터 하드웨어 접근을 통제하는 첫 방어선이다. Microsoft가 클라우드 데이터 센터에 여러 물리 보안 장치를 쓴다 — 「Physical security」
+- ID 및 액세스: ID를 지키고 필요한 것만 접근을 주며 로그인과 변경을 기록한다. SSO와 다단계 인증을 쓴다 — 「Identity and access」
+- 경계: 네트워크 공격에서 리소스를 지킨다. **DDoS 보호로 대규모 공격을 사용자에게 닿기 전에 걸러 내고**, 경계 방화벽으로 악의적 공격을 찾아 알린다 — 「Perimeter」
+- 네트워크: 리소스 사이의 연결을 필요한 만큼만 허용한다. 통신 제한, 기본 거부, 인바운드 인터넷 접근 제한, 온-프레미스와의 보안 연결 — 「Network」. 네트워크 보안 그룹은 Learn이 여기 이름을 적지 않는다. 본문은 phase 103의 사실(트래픽을 규칙으로 허용·거부한다)로 「이런 일을 하는 도구의 예」로만 쓴다
+- 컴퓨팅: VM 접근을 지키고, 디바이스에 엔드포인트 보호를 쓰고, 패치를 최신으로 유지한다 — 「Compute」
+- 애플리케이션: 개발 과정에 보안을 넣고, 앱의 민감한 비밀을 Azure Key Vault 같은 곳에 둔다 — 「Application」
+- 데이터: 저장된 데이터와 이동 중인 데이터를 암호화하고, Azure Key Vault가 앱의 키와 비밀을 지키고 관리한다. 공격자가 노리는 곳은 데이터베이스, VM 디스크, SaaS, 클라우드 저장소다 — 「Data」
+- 한국어 표기: 심층 방어, 물리적 보안, ID 및 액세스, 경계, 네트워크, 컴퓨팅, 애플리케이션, 데이터, 첫 번째 방어선. 「계층」과 「레이어」가 섞여 있으면 **계층**을 쓴다
+
+쓰일 곳: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`, D82, D83, G52
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 9 Describe Microsoft Defender for Cloud
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/9-describe-microsoft-defender-for-cloud
+
+확인한 날 2026-11-02. 사본: `learn-describe-azure-identity-access-security-9-describe-microsoft-defender-for-cloud.md`와 `ko-` 판.
+
+- Defender for Cloud는 보안 상태를 관리하고 위협을 막는 서비스다. 클라우드·온-프레미스·하이브리드·다중 클라우드의 리소스를 살피고 권장 사항과 경고를 준다 — 머리글
+- Azure 서비스의 많은 것은 추가 배포 없이 본다. 온-프레미스 컴퓨터로 넓히려면 Azure Arc를 배포하고 강화된 보안 기능을 켠다 — 「Coverage across cloud and hybrid environments」, 「Defend your hybrid resources」
+- AWS·GCP를 포함한 다른 클라우드의 리소스도 지킨다. 연결한 AWS 환경에 권장 사항과 규정 준수 평가를 넓힌다 — 「Defend resources running on other clouds」
+- 하는 일 셋: **지속적인 평가**(보안 상태를 알고 취약성을 찾아 추적한다), **보안**(Microsoft 클라우드 보안 벤치마크로 리소스를 강화한다), **방어**(위협을 찾아 해결한다) — 「Assess, Secure, and Defend」
+- 새 리소스를 모범 사례에 견주어 평가하고 우선순위 있는 권장 사항을 내며, 권장 사항을 모아 보안 점수를 계산한다 — 「Secure」
+- 위협을 찾으면 보안 경고를 내고, 경고는 영향받는 리소스와 고치는 단계를 적는다. Just-In-Time VM 액세스가 방어 기능에 든다 — 「Defend」
+- 한국어 표기: Defender for Cloud, 보안 상태, 지속적인 평가, 보안, 방어, 권장 사항, 경고, 보안 점수, 온-프레미스, 다중 클라우드, Microsoft 클라우드 보안 벤치마크, Just-In-Time VM 액세스
+
+쓰일 곳: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`
+
+## (phase 105) Microsoft Defender for Cloud — 옛 이름, 무료와 유료, 규정 준수
+https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction
+
+확인한 날 2026-11-02. 사본: `docs-defender-introduction.md`, `docs-defender-release-archive.md`(`release-notes-archive`), `docs-defender-cspm.md`(`concept-cloud-security-posture-management`), `docs-defender-support-matrix.md`(`support-matrix-defender-for-cloud`), `docs-defender-secure-score.md`(`secure-score-security-controls`), `docs-defender-jit.md`(`just-in-time-access-overview`), `docs-defender-regulatory.md`(`concept-regulatory-compliance-standards`), `docs-defender-regulatory-concept.md`(`concept-regulatory-compliance`), `docs-defender-regulatory-dashboard.md`(`regulatory-compliance-dashboard`)와 `ko-` 판.
+
+- **옛 이름**: Azure Security Center와 Azure Defender가 Microsoft Defender for Cloud가 되었다 — `release-notes-archive` 「Azure Security Center and Azure Defender become Microsoft Defender for Cloud」
+- **무료**: 기본 CSPM(Foundational CSPM)은 비용 없이 제공된다. 보안 점수, 보안 권장 사항, Microsoft 클라우드 보안 벤치마크, 자산 인벤토리가 여기 든다 — `concept-cloud-security-posture-management` 「CSPM plans」, 「Azure features and capabilities」
+- **유료**: Defender CSPM과 서버·컨테이너·저장소 같은 워크로드 보호 플랜은 유료로 더 켠다 — 같은 곳, `introduction`의 플랜 표. 보안 경고는 플랜을 하나 이상 켜야 나온다 — `support-matrix` 「Security alerts」. Just-In-Time 머신 액세스는 Defender for Servers Plan 2의 기능이다 — `just-in-time-access-overview` 첫 문단
+- **금액 없이 쓸 수 있는 말**: 「보안 점수와 권장 사항 같은 기본 기능은 비용 없이 쓰고, 위협 경고와 Just-In-Time VM 액세스 같은 고급 보호는 유료 플랜을 켜야 한다」. **「모든 기능이 무료」는 틀리다.** 플랜 하나하나와 금액은 **쓰지 않는다**
+- 보안 점수는 보안 결과를 한 숫자로 모은 값이고, 높을수록 찾아낸 위험이 낮다. 켜면 Microsoft 클라우드 보안 벤치마크가 기본 적용되고 그 권장 사항이 점수를 만든다 — `secure-score-security-controls` 첫 부분. 두 점수 모델의 구분은 **쓰지 않는다**
+- Just-In-Time은 VM의 관리 포트를 막아 두고 필요한 때에만 연다 — `just-in-time-access-overview`
+- **규정 준수**: 업계·규제 표준과 벤치마크가 보안 표준으로 **규정 준수 대시보드**에 나오고, 환경을 계속 평가해 통과·실패를 보여 준다. 보고서를 PDF로 내려받고 감사 보고서를 받을 수 있다 — `concept-regulatory-compliance-standards`, `regulatory-compliance-dashboard`. 기본 벤치마크 밖의 표준을 더하려면 유료 플랜이 하나 이상 켜져 있어야 한다 — `regulatory-compliance-dashboard` 사전 조건. NO.37·292의 답은 맞다
+- 쓰지 않음: CNAPP·CSPM·CWPP의 나열, Defender 포털 확장, 킬 체인 분석, AI 보안, 플랜 표
+- 한국어 표기: 제품 문서는 **클라우드용 Microsoft Defender**, Learn 단원 9는 **Microsoft Defender for Cloud**다. 아래 「한국어 표기 정리」
+
+쓰일 곳: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, D85, D86, G53
+
+## (phase 105) Azure Key Vault — 개요와 쓰임
+https://learn.microsoft.com/en-us/azure/key-vault/general/overview
+
+확인한 날 2026-11-02. 사본: `docs-key-vault-overview.md`, `docs-key-vault-basic-concepts.md`(`basic-concepts`), `docs-key-vault-secure.md`(`secure-key-vault`), `docs-arm-key-vault-parameter.md`(`azure-resource-manager/templates/key-vault-parameter`)와 `ko-` 판.
+
+- Key Vault는 세 가지를 다룬다 — **비밀**(토큰·암호·API 키처럼 접근을 엄격히 통제할 값), **키**(데이터를 암호화하는 키를 만들고 다룬다), **인증서**(TLS/SSL 인증서를 발급·관리·배포한다) — 「Azure Key Vault」 첫 목록. 낱말 풀이는 `basic-concepts` 첫 문단
+- 앱의 비밀을 Key Vault에 모으면 비밀이 새는 일이 크게 줄고, 개발자가 보안 정보를 앱에 저장하지 않아도 된다. 앱은 URI로 필요한 값을 받는다 — 「Centralize application secrets」
+- 접근은 먼저 인증하고 권한을 받아야 한다. 인증은 Microsoft Entra ID로 하고 권한 부여는 Azure RBAC나 액세스 정책으로 한다 — 「Securely store secrets and keys」. 제품 문서가 **액세스 정책은 옛 방식이니 쓰지 말고 Azure RBAC를 쓰라**고 권하므로 본문은 Azure RBAC로 쓴다 — `secure-key-vault`
+- 배포 중에 암호를 템플릿이나 매개 변수 파일에 직접 적지 않고 Key Vault에서 가져올 수 있다. 파일에는 Key Vault와 비밀을 가리키는 참조만 있어 값이 드러나지 않는다 — `key-vault-parameter` 첫 문단. **NO.152의 답(Key Vault)은 맞다**
+- NO.414의 답은 맞다. NO.167의 Key Vault 짝(Azure Functions 앱이 쓸 암호)은 비밀의 쓰임으로 맞다
+- 쓰지 않음: Standard·Premium, HSM, FIPS 수준, 키 길이, 관리되는 HSM, 액세스 정책, Azure Functions 연동의 방법
+- 한국어 표기: Azure Key Vault(이름 그대로), 비밀, 키, 인증서, 키 자격 증명 모음(vault). 본문은 그릇을 **Key Vault**로 쓴다
+
+쓰일 곳: `azure-security-model.key-vault`, `SecurityToolsTable`, G54
+
+## (phase 105) Azure Disk Encryption — Key Vault가 필요한가
+https://learn.microsoft.com/en-us/azure/virtual-machines/windows/disk-encryption-overview
+
+확인한 날 2026-11-02. 사본: `docs-vm-windows-ade.md`, `docs-vm-windows-ade-kv.md`(`windows/disk-encryption-key-vault`), `docs-vm-disk-encryption-overview.md`(`disk-encryption-overview`)와 `ko-` 판.
+
+- Azure Disk Encryption은 VM의 OS·데이터 디스크를 암호화하고 키와 비밀을 Key Vault에서 다루므로 **Key Vault가 있어야 한다**. Key Vault와 VM은 같은 지역·같은 구독에 있어야 한다 — `disk-encryption-overview`(Windows) 「Encryption key storage requirements」, `disk-encryption-key-vault`
+- **지원 종료 예고: 2028-09-15.** 그날 뒤에는 VM을 다시 시작하면 암호화된 디스크가 풀리지 않는다. 새 VM에는 호스트 암호화(encryption at host)를 권한다 — `disk-encryption-overview`(Windows) 맨 위 안내
+- 그래서 **NO.74의 답은 맞지만** 본문은 D87대로 쓴다
+
+쓰일 곳: `azure-security-model.key-vault`, D87
+
+## (phase 105) Microsoft Sentinel — 개요와 플레이북
+https://learn.microsoft.com/en-us/azure/sentinel/overview
+
+확인한 날 2026-11-02. 사본: `docs-sentinel-overview.md`, `docs-sentinel-playbooks.md`(`automation/automate-responses-with-playbooks`), `docs-sentinel-entra.md`(`connect-azure-active-directory`), `docs-sentinel-whats-new-archive.md`(`whats-new-archive`)와 `ko-` 판.
+
+- Microsoft Sentinel은 클라우드 네이티브 **SIEM**이다. 한국어판 제목이 SIEM을 보안 정보 및 이벤트 관리로 푼다. 위협을 탐지하고 조사하고 대응하며 찾아 나서는 일을 돕는다 — 첫 문단, 제목
+- **수집**: 온-프레미스와 여러 클라우드의 사용자·디바이스·애플리케이션·인프라에서 데이터를 모은다. 커넥터로 Microsoft Entra ID, Azure 활동 등을 잇는다 — 「Collect data at scale」
+- **탐지**: 분석 규칙이 경고를 인시던트(함께 살펴볼 경고 묶음)로 모아, 살펴볼 경고 수를 줄인다 — 「Detect threats」
+- **조사**: 잠재적 위협의 범위를 알고 근본 원인을 찾는다 — 「Investigate threats」
+- **대응**: 자주 하는 일을 자동화하고 플레이북으로 대응을 묶는다 — 「Respond to incidents rapidly」
+- **플레이북**은 정해 둔 조치 묶음을 자동으로 실행하는 워크플로이고, 경고·인시던트에 맞춰 자동으로 또는 손으로 실행한다. 계정과 컴퓨터가 침해되면 컴퓨터를 네트워크에서 떼어 내고 계정을 막는 예가 있다. Azure Logic Apps로 만든다 — `automate-responses-with-playbooks`. **NO.219의 답(플레이북은 위협에 자동으로 대응한다)은 맞다**
+- Microsoft Entra ID 데이터 커넥터가 그 로그를 Sentinel로 보낸다 — `connect-azure-active-directory`. **NO.170의 답은 맞고 이름만 고친다**. 필요한 라이선스는 **쓰지 않는다**
+- **SOAR는 쓰지 않는다.** 현행 개요는 그 낱말을 쓰지 않고 「자동화하고 오케스트레이션한다」로 적는다. `whats-new-archive`의 기능 이름 「SOAR playbook generator」가 있지만 정의가 아니다 — 본문은 「대응을 자동화한다」로 쓴다
+- 옛 이름 Azure Sentinel: `whats-new-archive`에 그 낱말이 남아 있지만 이름을 바꿨다고 말한 문장은 찾지 못했다. guide도 예전 이름 표기를 허용하지 않는다 — 본문은 Microsoft Sentinel만 쓴다
+- **Azure 포털 지원 종료 예고: 2027-03-31.** 그 뒤로는 Defender 포털에서만 쓴다 — `automate-responses-with-playbooks` Important. 포털 전환 일정은 **쓰지 않는다**(guide 「배경」). 근거로만 적는다
+- 쓰지 않음: AI·위협 인텔리전스 소개, 데이터 레이크, 사냥(hunting), UEBA, 요금
+- 한국어 표기: Microsoft Sentinel(이름 그대로), SIEM(보안 정보 및 이벤트 관리), 커넥터, 인시던트, 플레이북, 조사, 대응. 절 제목 「위협 검색」은 첫 문단의 「위협 탐지」와 섞여 있어 **탐지**로 쓴다. 「수집」은 절 제목 그대로다
+
+쓰일 곳: `azure-security-model.sentinel`, `SentinelFlowDiagram`, `SecurityToolsTable`, D85, G55
+
+## (phase 105) 도식·표의 사실 — `azure-security-model`
+
+확인한 날 2026-11-02. 위 항목의 사실로 각 도식을 맞춰 봤다.
+
+- `RbacAssignmentDiagram`: 사실 있음(Learn 단원 6 머리글). 그룹에 역할을 건다, 새 사람을 그룹에 넣는다, 범위 안 새 리소스에도 미친다. 역할 라벨은 본문이 쓴 예(기여자 등)
+- `RbacScopeDiagram`: 사실 있음. `at-mg` 소유자, `at-subscription` 읽기 권한자는 Learn 단원 6의 예 그대로다. `at-resource`: 범위 밖에는 다른 할당이 없는 한 접근이 없다는 사실의 근거는 `overview`의 역할 할당 예다
+- `ZeroTrustDiagram`: 사실 있음(Learn 단원 7). 낱말은 앞 주제처럼 **디바이스**로 쓴다(step 문서의 잠정 「사내 기기」 대신 「사내 디바이스」, 「공용 네트워크의 디바이스」). `high-risk`의 곁말 「로그인 차단」은 Learn 「Example in practice」가 근거다
+- `DefenseInDepthDiagram`: 사실 있음(Learn 단원 8). 라벨은 위 계층 이름. `ddos` 곁말 「DDoS 보호」, `identity` 곁말 「SSO·다단계 인증」. `breach`의 「다음 계층이 막는다」 근거는 「Layers of defense-in-depth」다
+- `DefenderForCloudDiagram`: 사실 있음(Learn 단원 9). `azure` 곁말의 「따로 배포하지 않아도 된다」는 **많은 Azure 서비스에 한한다** — 캡션에 「많은」을 뺀 단정을 쓰지 않는다. `hybrid` 곁말 「Azure Arc로 연결」, `multicloud` 곁말 「환경을 연결」. 방향은 Defender for Cloud가 살피는 쪽이다(`defender`→각 노드). GCP를 잇는 방법은 쓰지 않는다
+- `SentinelFlowDiagram`: 사실 있음. 라벨은 **수집·탐지·조사·대응**, 곁말 「사용자·디바이스·앱·인프라」(step 문서의 「기기」 대신), 「플레이북으로 자동화」. 조사 단계를 탐지와 묶는 `detect` 시나리오의 곁말 「위협을 찾아 조사」는 그대로 쓸 수 있다
+- `SecurityToolsTable`(도구 · 맡는 일 · 고르는 때):
+  - Microsoft Defender for Cloud — 리소스의 보안 상태를 평가하고 권장 사항을 준다, 위협을 찾아 경고한다 / 내 리소스의 설정이 안전한지, 무엇을 고칠지 알고 싶을 때
+  - Azure Key Vault — 비밀·키·인증서를 한곳에 두고 접근을 통제한다 / 앱의 암호를 코드에 적고 싶지 않을 때
+  - Microsoft Sentinel — 여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다 / 흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때
+
+쓰일 곳: 위 도식과 표
+
+## (phase 105) 한국어 표기 정리 — `azure-security-model`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 105 step 5). Microsoft 한국어 문서의 표기를 따르고, 문서가 이름을 옮기지 않으면 그대로 둔다.
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `rbac` | **Azure RBAC(역할 기반 액세스 제어)** | 제품 문서 한국어판 제목 「Azure RBAC(Azure 역할 기반 액세스 제어)란?」에서 되풀이되는 Azure를 뺐다. Learn 단원 6 한국어판 제목은 「Azure 역할 기반 액세스 제어 설명」이다 |
+| `rbac-scope` | **역할을 적용하는 범위** | 범위는 Learn 단원 6·제품 문서의 표기다. 이름 전체는 이 앱이 쓴 설명이다 |
+| `zero-trust` | **제로 트러스트** | Learn 단원 7 제목 「제로 트러스트 모델 설명」, 제품 문서 |
+| `defense-in-depth` | **심층 방어** | Learn 단원 8 제목 |
+| `defender-for-cloud` | **Microsoft Defender for Cloud** | Learn 단원 9 한국어판 제목. 제품 문서는 「클라우드용 Microsoft Defender」다. 학습 가이드와 덤프, 포털 메뉴로 찾는 이름이 영문이라 이쪽을 이름으로 쓰고, 본문에서 한 번 「제품 문서의 한국어 이름은 클라우드용 Microsoft Defender다」를 밝힌다 |
+| `key-vault` | **Azure Key Vault** | 「Azure Key Vault 정보」 제목 |
+| `sentinel` | **Microsoft Sentinel** | 개요 제목 |
+
+항목 이름:
+
+- **`defense-in-depth`**: 물리적 보안(Physical security), ID 및 액세스(Identity and access), 경계(Perimeter), 네트워크(Network), 컴퓨팅(Compute), 애플리케이션(Application), 데이터(Data)
+
+낱말과 라벨:
+
+- 역할: **소유자**, **기여자**, **읽기 권한자**, **사용자 액세스 관리자**, **사용자 지정 역할**, **기본 제공 역할**. 메뉴: **액세스 제어(IAM)**
+- 제로 트러스트 원칙: **명시적으로 확인**, **최소 권한 액세스 사용**, **침해 가정**
+- Defender 하는 일: **지속적인 평가**, **보안**, **방어**. 그 밖에 **보안 점수**, **권장 사항**, **경고**, **규정 준수 대시보드**, **Just-In-Time VM 액세스**(`JIT`만 쓰지 않는다)
+- Key Vault: **비밀**, **키**, **인증서**. 「시크릿」은 쓰지 않는다
+- Sentinel: **SIEM(보안 정보 및 이벤트 관리)**, **수집**, **탐지**, **조사**, **대응**, **플레이북**, **인시던트**
+- **디바이스**(「기기」·「장치」 대신, 앞 주제와 같다)
+
+**섞여 쓰인 표기**: 「계층」과 「레이어」, 「탐지」와 「검색」, 「Microsoft Defender for Cloud」와 「클라우드용 Microsoft Defender」 — 위에서 정한 쪽을 쓴다.
+
+**쓰지 않는 이름**: Azure Security Center·Azure Defender(`defender-for-cloud`의 「예전 이름」 한 번 말고), Azure Sentinel, SOAR, Foundational CSPM·Defender CSPM·CWPP·CNAPP(「기본 기능」·「유료 플랜」으로 쓴다), Defender for Servers Plan 2, Security Reader, 역할 기반 액세스 제어 관리자(표와 본문의 넷 밖), Blueprints, Compliance Manager, Azure Information Protection.

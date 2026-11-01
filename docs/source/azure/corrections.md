@@ -1113,3 +1113,94 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: 「How it works: Microsoft Entra multifactor authentication」의 현행 방법은 Authenticator·패스키·SMS·음성 통화·OATH 토큰 등이다. 위험 기반 정책은 Microsoft Entra ID Protection의 기능이다(「What is Microsoft Entra?」, 「What is Conditional Access?」).
 - **처리**: 한정해 쓴다 — 방법은 전화·앱 알림을 예로 든다. 생체는 범주(사용자의 속성)로 쓰고, 방법 이름 표로 쓰지 않는다. 위험 감지 뒤 자동 MFA는 쓰지 않는다(Identity Protection은 guide 「배경」이 쓰지 않기로 했다). 상황에 따라 MFA를 요구하는 것은 조건부 액세스로 쓴다.
 - **쓰인 곳**: `azure-identity.multifactor-authentication`, `azure-identity.conditional-access`
+
+## D81 — 역할 할당을 「Policies」에서 한다는 답 (phase 105)
+
+- **덤프**: 리소스 그룹에 읽기 권한자 역할을 줄 포털 메뉴를 묻고 Policies에 표시한다 — [덤프 NO.81](`p047_00.png`). 그림의 보기는 Deployments·Security·Policies·Properties·Locks 등이고, 목록 맨 위는 잘려 있어 액세스 제어(IAM)가 보기에 있었는지는 알 수 없다.
+- **공식 문서**: 「Assign Azure roles using the Azure portal」은 역할을 할당하는 페이지가 액세스 제어(IAM)라고 적는다.
+- **처리**: 고쳐 쓴다 — 포털에서는 그 범위의 액세스 제어(IAM)에서 역할을 할당한다. Policies를 답으로 가르치지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`
+
+## D82 — DDoS 보호가 네트워크 계층이라는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: DDoS 보호를 어느 계층에서 구현하는가에 [덤프 NO.52]·[덤프 NO.116]은 networking layer, [덤프 NO.222]는 perimeter layer로 답한다.
+- **공식 문서**: Learn 단원 8은 경계 계층이 DDoS 보호로 대규모 공격을 걸러 낸다고 적는다.
+- **처리**: 고쳐 쓴다 — DDoS 보호는 경계 계층이다. NO.52·116의 답을 따르지 않는다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## D83 — 심층 방어 계층의 순서 (phase 105)
+
+- **덤프**: 빈칸을 채워 바깥부터 애플리케이션 → ID 및 액세스 → 물리적 보안 → 네트워크 → 컴퓨팅 → 경계 순으로 표시한다 — [덤프 NO.368](`p211_05.png`, 그림 아래가 잘려 데이터 칸은 보이지 않는다).
+- **공식 문서**: Learn 단원 8의 순서는 물리적 보안 → ID 및 액세스 → 경계 → 네트워크 → 컴퓨팅 → 애플리케이션 → 데이터다.
+- **처리**: 고쳐 쓴다 — Learn의 일곱 계층과 순서로 쓴다. 이 문항의 순서를 쓰지 않는다. [덤프 NO.203]의 짝(패치 — 컴퓨팅, MFA — ID 및 액세스, 감시 카메라 — 물리적 보안)은 맞지만 감시 카메라라는 예는 공식 문서에 없어 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## D84 — 리소스 그룹에 소유자를 여럿 둘 수 없다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「리소스 그룹에 소유자 역할을 여러 사용자에게 줄 수 있다」에 [덤프 NO.386]의 답은 아니요(`p222_02.png`·`p222_04.png`), 같은 문장의 다른 그림은 예(`p221_00.png`)를 표시한다. 그림 p221_00은 쪽 위치로 [덤프 NO.383]의 설명이다. 다른 두 문장(사용자 지정 역할, 사용자에게 역할 여럿)의 예는 맞다.
+- **공식 문서**: 역할은 사용자·그룹 같은 대상마다 범위를 정해 할당한다. 「Best practices for Azure RBAC」는 구독 소유자 수를 제한하라고 권하는데 소유자가 여럿일 수 있음을 전제로 한다. 같은 역할을 그룹에 주면 구성원 모두가 받는다(「What is Azure RBAC?」).
+- **처리**: 고쳐 쓴다 — 한 역할을 여러 사용자에게 줄 수 있다. NO.386의 셋째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`
+
+## D85 — Azure Security Center·Azure Sentinel이라는 이름 (phase 105)
+
+- **덤프**: 규정 준수 보고서, Just-In-Time VM 액세스, 보안 점수의 답을 Azure Security Center로, SIEM·보안 로그 분석·플레이북의 답을 Azure Sentinel로 쓴다 — [덤프 NO.153]·[덤프 NO.167]·[덤프 NO.170]·[덤프 NO.185]·[덤프 NO.219]·[덤프 NO.225]·[덤프 NO.422]·[덤프 NO.488]. NO.185의 표준 목록과 「블레이드」 설명은 예전 화면을 적은 것이다.
+- **공식 문서**: 「Release notes archive」는 Azure Security Center와 Azure Defender가 Microsoft Defender for Cloud가 되었다고 적는다. Sentinel의 현행 이름은 Microsoft Sentinel이다(「What is Microsoft Sentinel?」). 이름을 바꿨다고 말한 문장은 찾지 못했다.
+- **처리**: 고쳐 쓴다 — 답의 내용은 맞고 이름은 현행으로 쓴다. Azure Security Center는 `defender-for-cloud`의 「예전 이름」에서 한 번만 밝히고, Azure Sentinel은 본문에 쓰지 않는다. 표준 목록은 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`, `azure-security-model.sentinel`
+
+## D86 — 무료 기능이 두 가지뿐이라는 설명 (phase 105)
+
+- **덤프**: 「모든 기능이 무료인가」의 답은 아니요로 맞다 — [덤프 NO.401](`p232_04.png`)·[덤프 NO.422]·[덤프 NO.460]. 그런데 NO.422의 설명은 지속적 평가·보안 권장 사항과 보안 점수 두 기능만 무료라고 한다.
+- **공식 문서**: 무료는 기본 CSPM이고 보안 점수와 보안 권장 사항 외에 자산 인벤토리, 벤치마크 등이 든다(「Cloud security posture management」의 표). 보안 경고는 플랜을 하나 이상 켜야 나온다(지원 표).
+- **처리**: 한정해 쓴다 — 「모든 기능이 무료인 것은 아니다」로 쓰고, 기본 기능과 유료 플랜으로 가른다. 「두 가지뿐」으로 세지 않는다. 금액은 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`
+
+## D87 — Azure Disk Encryption에 Key Vault를 먼저 만든다는 답 (phase 105)
+
+- **덤프**: VM을 Azure Disk Encryption으로 암호화하려면 Key Vault를 먼저 만든다고 답한다 — [덤프 NO.74]
+- **공식 문서**: 그 사실은 맞다(「Azure Disk Encryption for Windows VMs」, 키 자격 증명 모음 만들기 문서). 그러나 이 기능은 2028-09-15에 지원이 끝난다고 예고되어 있고, 새 VM에는 호스트 암호화를 권한다.
+- **처리**: 한정해 쓴다 — 쓴다면 본문에 한 문장만 쓰고 종료 예고와 함께 쓴다. 문항으로 묻지 않고, 새 VM의 권장 방법처럼 쓰지 않는다. 호스트 암호화는 자세히 풀지 않는다.
+- **쓰인 곳**: `azure-security-model.key-vault`
+
+## G50 — 대표 역할을 Reader·Contributor·Owner 셋으로 적는 것 (phase 105)
+
+- **용어집**: 사전 정의 역할의 예로 Reader, Contributor, Owner를 들고, 사용자 지정 역할과 최소 권한을 함께 적는다 — [용어집 3-4]
+- **공식 문서**: 그 셋은 맞고 이름은 읽기 권한자·기여자·소유자, 묶음의 이름은 기본 제공 역할이다. 소유자와 기여자를 가르는 사용자 액세스 관리자가 문항에 나오고(NO.137), 기본 제공 역할은 이 밖에도 많다.
+- **처리**: 한정해 쓴다 — 넷을 자주 보는 역할로 표에 둔다. 「역할은 셋」이나 「넷」으로 세지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`, `RbacRolesTable`
+
+## G51 — 제로 트러스트의 구현 수단 (phase 105)
+
+- **용어집**: 내부망도 믿지 않고 모든 접근을 계속 검증하며 최소 권한을 적용한다고 하고, Azure에서는 조건부 액세스·MFA·세분화한 네트워크 정책으로 구현한다고 한다 — [용어집 3-5]
+- **공식 문서**: 앞부분은 맞다(Learn 단원 7, 「Zero Trust overview」). 받은 문서는 도구 셋을 구현 수단으로 묶어 말하지 않는다. MFA는 Learn 단원 7의 예에 있다.
+- **처리**: 한정해 쓴다 — 원칙과 예로 쓴다. 「이 셋으로 구현한다」고 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.zero-trust`
+
+## G52 — 심층 방어를 네 계층처럼 적는 것 (phase 105)
+
+- **용어집**: 네트워크·호스트·애플리케이션·데이터 계층을 겹쳐 지킨다고 하고, NSG·방화벽·암호화·RBAC·MFA를 예로 든다 — [용어집 3-6]
+- **공식 문서**: Learn 단원 8의 계층은 일곱이고 호스트가 아니라 컴퓨팅이라 부른다. 물리적 보안·ID 및 액세스·경계가 더 있다.
+- **처리**: 고쳐 쓴다 — 일곱 계층과 Learn의 이름으로 쓴다. 「단일 장애 지점」도 쓰지 않고 「한 계층에만 기대지 않는다」로 쓴다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## G53 — Defender for Cloud를 Azure와 하이브리드로 적는 것 (phase 105)
+
+- **용어집**: Azure와 하이브리드 워크로드 보안을 관리하는 솔루션이라 하고, 리소스에 방어 기능을 더 켤 수 있다고 한다 — [용어집 3-7]
+- **공식 문서**: Learn 단원 9는 AWS·GCP 같은 다른 클라우드도 대상으로 적는다. 방어 기능을 더 켜는 것은 유료 플랜이다.
+- **처리**: 한정해 쓴다 — 보는 곳을 Azure·온-프레미스·다른 클라우드 셋으로 쓴다. 더 켜는 기능은 유료 플랜이라고 밝힌다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`
+
+## G54 — Key Vault의 HSM 옵션 (phase 105)
+
+- **용어집**: 키·비밀·인증서를 저장하고 접근을 통제한다고 하고, 엄격한 규제 환경을 위한 HSM 옵션과 앱이 키를 드러내지 않고 호출한다는 것을 적는다 — [용어집 3-9]
+- **공식 문서**: 셋과 접근 통제는 맞다. HSM은 Premium 계층의 내용이다(「About Azure Key Vault」). 앱은 URI로 비밀을 받는다.
+- **처리**: 쓰지 않는다 — HSM과 요금제는 쓰지 않는다(guide 「배경」). 비밀을 코드에 적지 않는다는 쪽만 쓴다.
+- **쓰인 곳**: `azure-security-model.key-vault`
+
+## G55 — Sentinel을 SIEM·SOAR, AI 기반으로 적는 것 (phase 105)
+
+- **용어집**: 클라우드 기반 SIEM·SOAR이고 AI 기반으로 위협을 탐지하며 플레이북으로 대응한다고 한다 — [용어집 3-8]
+- **공식 문서**: SIEM과 플레이북은 맞다(「What is Microsoft Sentinel?」, 플레이북 문서). 현행 개요는 SOAR를 정의하지 않고 대응을 자동화하고 오케스트레이션한다고 적는다.
+- **처리**: 한정해 쓴다 — SIEM으로 소개하고 대응은 「플레이북으로 자동화한다」로 쓴다. SOAR와 「AI 기반」은 쓰지 않는다(guide 「배경」).
+- **쓰인 곳**: `azure-security-model.sentinel`, `SentinelFlowDiagram`
