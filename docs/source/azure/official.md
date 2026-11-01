@@ -3127,3 +3127,206 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create
 
 **쓰지 않는 이름**: 스마트 계층, Data Lake Storage Gen2, 옛 계정 유형(범용 v1, 레거시 Blob Storage), 비관리 디스크, 추가 Blob(표 밖에서 풀 일이 없다), Azure Elastic SAN, Azure NetApp Files, 수명 주기 관리, 일시 삭제.
 
+## (phase 104) Learn 「Describe Azure storage services」 — 6 Identify Azure data migration options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/6-identify-azure-data-migration-options
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-storage-services-6-identify-azure-data-migration-options.md`와 `ko-` 판.
+
+- Azure Migrate는 온-프레미스 환경을 클라우드로 옮기는 일을 돕고, 데이터 센터의 평가와 이전을 관리하는 허브 구실을 한다. 이전을 시작하고 진행하고 지켜보는 포털이 하나다 — 「Azure Migrate」
+- 허브에 통합된 선택지는 검색 및 평가, 서버·데이터베이스·웹 앱의 마이그레이션이다 — 「Integrated tools」
+- Data Box는 물리 장치로 큰 데이터를 옮기는 서비스다. 포털에서 주문하고 지역 배송 업체가 오가며, 로컬 웹 UI로 설정해 네트워크에 연결하고, 다 옮기면 돌려보낸다. Azure로 가져오는 경우 Microsoft가 받은 뒤 저절로 올라간다. 과정 전체를 포털에서 지켜본다 — 「Azure Data Box」
+- 네트워크 대역폭이 모자랄 때의 큰 데이터에 맞고, 쓰임은 일회성 대량 이전, 온라인 전송이 너무 느린 주기적 업로드, 복구·규제 때문에 Azure에서 내보내기다 — 「Use cases」
+- 가져오기는 업로드 뒤에 디스크를 지우고, 내보내기는 장치가 Azure 데이터 센터에 닿은 뒤에 지운다 — 「Use cases」 끝. 지우는 표준의 이름은 쓰지 않는다(guide 「배경」)
+- **현행 문서와 다른 곳 넷 — 제품 문서를 따른다**: (1) 장치 용량 — 이 단원은 80테라바이트 하나를 적지만 제품 개요는 120TB·525TB 장치를 들고 80TB 장치가 차례로 끝난다고 한다. **용량은 어느 쪽도 쓰지 않는다.** (2) 「실시간(real-time) 마이그레이션」과 「비동기」 — 제품 개요에 없는 말이다. 쓰지 않고 「네트워크로」·「장치를 배송해」로 가른다. (3) 도구 이름 「Server Migration」 — 제품 문서의 이름은 Migrate and Modernize다. (4) 이 단원에 없는 범위(가상 데스크톱, Data Box가 Azure Migrate의 통합 도구라는 것)가 제품 개요에 있다
+- **쓰지 않는 것**: ISV 도구, 지우는 표준의 이름, 장치 용량, 「tens of terabytes」의 수치
+- 한국어 표기: 이 판의 「지역 이동 통신 사업자」는 regional carrier의 오역이다 — **지역 배송 업체**로 쓴다. 「Azure Migrate (Azure 마이그레이션)」의 괄호와 「재산적 가치를 가지는」은 따르지 않는다
+
+쓰일 곳: `azure-data-movement.azure-migrate`, `azure-data-movement.data-box`, `AzureMigrateDiagram`, `DataBoxDiagram`, `DataMoveOptionsTable`, G45, G46
+
+## (phase 104) Learn 「Describe Azure storage services」 — 7 Identify Azure file movement options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/7-identify-azure-file-movement-options
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-storage-services-7-identify-azure-file-movement-options.md`와 `ko-` 판.
+
+- AzCopy는 스토리지 계정과 Blob·파일을 주고받는 명령줄 유틸리티이고, 올리기·내려받기·계정 사이 복사·동기화를 한다 — 「AzCopy」
+- AzCopy의 동기화는 원본과 대상을 정해 그 방향으로만 복사한다. 시간 표시나 메타데이터로 양쪽을 맞추지 않는다 — 「AzCopy」의 Important
+- Storage Explorer는 스토리지 계정의 파일과 Blob을 화면으로 관리하는 독립 실행형 앱이고 Windows·macOS·Linux에서 돈다. 올리기·내려받기·계정 사이 옮기기를 한다 — 「Azure Storage Explorer」
+- File Sync는 Azure Files에 파일 공유를 모으면서 Windows 파일 서버의 쓰임을 유지하게 하고, 서버에 설치하면 Azure의 파일과 양방향으로 저절로 맞춘다. 서버에서는 SMB·NFS·FTPS처럼 Windows Server가 쓸 수 있는 프로토콜로 닿고, 캐시를 세계 곳곳에 필요한 만큼 둘 수 있다. 클라우드 계층화는 자주 쓰는 파일을 서버에 복제해 두고 나머지를 요청받을 때까지 클라우드에 둔다 — 「Azure File Sync」
+- **현행 문서와 다른 곳 셋 — 제품 문서를 따른다**: (1) 「다른 클라우드와 파일을 오간다(back and forth)」 — 제품 문서는 Amazon S3와 Google Cloud Storage **에서 Azure로** 복사하는 안내만 둔다. 「다른 클라우드의 저장소에서 Azure로 복사」까지 쓴다. (2) Storage Explorer가 「모든」 관리 작업을 AzCopy로 한다 — 제품 문서는 「대부분의 데이터 전송」이다. (3) 고장 난 서버를 「같은 데이터 센터」의 새 서버로 바꾼다 — 제품 문서는 데이터 센터를 한정하지 않고 새 Windows Server라고만 한다. 「새 Windows Server」로 쓴다
+- **쓰지 않는 말**: 「미니어처 콘텐츠 배달 네트워크」라는 비유(캐시로 충분하다)
+- 한국어 표기: 명령줄 유틸리티, 독립 실행형 앱, 원본과 대상, 단방향·양방향 동기화, Azure 파일 동기화, 클라우드 계층화
+
+쓰일 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`
+
+## (phase 104) AzCopy — Get started with AzCopy
+https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-23. 사본: `docs-storage-common-storage-use-azcopy-v10.md`와 `ko-` 판.
+
+- AzCopy는 스토리지 계정으로, 계정에서, 계정 사이로 데이터를 복사하는 명령줄 유틸리티다 — 머리글
+- 쓰임: 온-프레미스에서 계정으로, 계정에서 온-프레미스로, 계정에서 다른 계정으로. Blob Storage와 Azure Files를 고를 수 있고 둘 사이로도 복사한다. 복사 명령과 동기화 명령이 따로 있다 — 「AzCopy use cases」
+- 내려받아 Windows·Linux·macOS에서 실행하는 파일이고, 명령 셸에 `azcopy`를 친다 — 「Get AzCopy」. **「명령줄」을 풀 때 「글자로 명령을 쳐서 프로그램을 다루는 방식」까지 쓰고 나머지는 일반 IT 용어로 푼다(ADR-010)**
+- 명령을 직접 치는 것 말고 스크립트에 넣어 일괄·예약 전송을 할 수 있다 — 「Transfer data」. **표의 「작업을 자동으로」의 근거다**
+- 전송 중에 원본이나 대상이 계속 바뀌는 상황은 지원하지 않는다 — 「Transfer data」의 Note
+- **이 쪽 맨 위의 Note**: Azure Storage로 데이터를 옮길 계획이면 Azure Storage Mover를 쓰라고 한다. Storage Mover는 학습 가이드의 줄에 없어 **개념으로 쓰지 않는다.** 다만 **「AzCopy는 대량 이전 도구」로 쓰지 않는다** — G44
+- **쓰지 않는 것**: Microsoft Entra ID·SAS 인증, 버전 번호, 명령 목록, Azure Storage Mover
+- 한국어 표기: AzCopy, 명령줄 유틸리티, 스토리지 계정
+
+쓰일 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, `DataMoveOptionsTable`, G44
+
+## (phase 104) AzCopy — 동기화의 방향과 비교 기준
+- Azure Files 전송 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-files — 「Last updated on」 2026-08-17. 사본 `docs-storage-common-storage-use-azcopy-files.md`
+- Blob 동기화 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize — 「Last updated on」 2025-10-28. 사본 `docs-storage-common-azcopy-blobs-synchronize.md`
+- 명령 참조 https://learn.microsoft.com/en-us/azure/storage/common/storage-ref-azcopy-sync — 사본 `docs-storage-common-azcopy-sync-ref.md`. 쪽에 수정 날이 없다
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다(명령 참조의 `ko-` 판은 영문 그대로다).
+
+- 동기화는 한 방향이다. 두 끝 가운데 어느 쪽이 원본이고 어느 쪽이 대상인지 쓰는 쪽이 고른다 — 두 문서의 「Synchronize」 절. **Blob과 Files 모두에 든다**
+- 맞출 수 있는 짝: 로컬 파일 시스템과 Blob 컨테이너, 컨테이너끼리, 로컬 파일 시스템과 파일 공유, 파일 공유끼리. Blob과 Files 사이의 동기화는 지금 판이 지원하지 않는다(복사는 된다) — 같은 절의 경고
+- Azure Files의 동기화는 지원하지만 전적으로 권하지는 않는다고 적는다 — Azure Files 쪽 경고. **동기화를 File Sync의 대안으로 권하는 문장을 쓰지 않는다**
+- **시간 표시의 쓰임**: 동기화 명령은 기본으로 파일 이름과 마지막 수정 시간을 비교해 무엇을 보낼지 정하고, 대상 쪽이 더 새 파일은 건너뛴다 — 「Guidelines」, 명령 참조 「Synopsis」. 그러므로 **guide의 「시간 표시로 양쪽을 맞추지 않는다」를 「시간 표시를 쓰지 않는다」로 읽히게 쓰지 않는다.** 비교에 쓰되 복사는 한 방향이라고 쓰거나 시간 표시를 꺼내지 않는다
+- 대상에만 있는 파일은 기본값으로 지우지 않는다(`--delete-destination`의 기본값 false) — 명령 참조. 그러므로 **「동기화하면 대상이 원본과 똑같아진다」로 쓰지 않는다.** 「대상에서 바꾸거나 지운 것이 원본으로 돌아오지 않는다」는 쓸 수 있다
+- 한국어 표기: 동기화, 원본, 대상. 제품 문서의 「소스」는 쓰지 않고 Learn 한국어판의 **원본**으로 쓴다
+
+쓰일 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`
+
+## (phase 104) AzCopy — 다른 클라우드에서 복사
+- Amazon S3 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3 — 「Last updated on」 2026-05-27. 사본 `docs-storage-common-storage-use-azcopy-s3.md`
+- Google Cloud Storage https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-google-cloud — 「Last updated on」 2025-10-31. 사본 `docs-storage-common-storage-use-azcopy-google-cloud.md`
+
+확인한 날 2026-11-01. 둘 다 `ko-` 판이 있다.
+
+- 두 문서 모두 제목과 머리글이 다른 클라우드 저장소에서 **Azure로** 복사하는 안내이고, 반대 방향의 안내는 찾지 못했다. Get started의 표는 Google Cloud 쪽을 미리 보기로 적는다
+- 본문에는 「Amazon S3 같은 다른 클라우드의 저장소에서 Azure로 복사할 수 있다」까지 쓴다. Google Cloud의 미리 보기 여부는 쓰지 않는다
+
+쓰일 곳: `azure-data-movement.azcopy`
+
+## (phase 104) Azure Storage Explorer — 쓰는 곳과 하는 일
+- Get started https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer — 「Last updated on」 2025-04-14. 사본 `docs-storage-explorer-get-started.md`
+- Blob 관리 https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs — 「Last updated on」 2024-02-04. 사본 `docs-storage-explorer-blobs.md`
+- 네트워크 연결 https://learn.microsoft.com/en-us/azure/storage/common/storage-explorer-network — 「Last updated on」 2025-06-27. 사본 `docs-storage-explorer-network.md`
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다.
+
+- Storage Explorer는 내려받아 설치하는 독립 실행형 앱이고 Windows·macOS·Linux에서 돈다 — Get started 「Overview」·「Download and install」. **덤프의 「클라우드에 있는 서비스」가 틀린 근거다**(D73)
+- Azure 계정으로 로그인하거나 리소스 하나에 연결해 스토리지 계정·Blob 컨테이너·파일 공유·큐·테이블을 다룬다 — Get started 「Connect to a storage account or service」
+- 화면의 도구 모음으로 Blob을 올리고 내려받고, 컨테이너를 복사해 다른 스토리지 계정에 붙여 넣는다 — Blob 관리 「Copy a blob container」·「Managing blobs in a blob container」
+- 대부분의 데이터 전송에 AzCopy를 쓴다 — 네트워크 연결 「AzCopy proxy usage」. **「안에서 대부분의 전송을 AzCopy로 한다」로 쓴다. 「모든」으로 쓰지 않는다**
+- **쓰지 않는 것**: 인증 방식, 에뮬레이터, 지원 운영 체제의 판, Data Lake 컨테이너, 프록시 설정
+- 한국어 표기: Azure Storage Explorer(제목은 Storage Explorer), 독립 실행형 앱, 업로드·다운로드. Learn 한국어판의 「그래픽 인터페이스」는 **화면**으로 풀어 쓴다
+
+쓰일 곳: `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`, D73, G44
+
+## (phase 104) Azure File Sync — 하는 일과 맞추는 상대
+- What is Azure File Sync? https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction — 「Last updated on」 2026-08-18. 사본 `docs-file-sync-introduction.md`
+- Deploy Azure File Sync https://learn.microsoft.com/en-us/azure/storage/files/storage-sync-files-deployment-guide — 「Last updated on」 2026-07-22. 사본 `docs-storage-sync-files-deployment-guide.md`
+- Plan for an Azure File Sync deployment https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-planning — 「Last updated on」 2026-08-17. 사본 `docs-file-sync-planning.md`
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다.
+
+- 파일 공유를 Azure Files에 모으면서 Windows 파일 서버의 쓰임을 유지한다. 등록한 Windows Server마다 가운데의 Azure 파일 공유와 양쪽으로 데이터를 맞춘다 — What is 첫머리. **맞추는 상대는 Azure 파일 공유다**(클라우드 엔드포인트가 곧 Azure 파일 공유다 — Plan 「Management concepts」). Blob 컨테이너나 Data Lake 컨테이너, 큐를 상대로 삼는 설명은 없다
+- 한 서버의 변경은 Azure 파일 공유를 거쳐 다른 서버로 저절로 간다. 지점끼리 서버를 직접 잇지 않아도 된다 — What is 「Key benefits」
+- 설치: Azure에 Storage Sync Service를 두고, 서버에 Azure 파일 동기화 에이전트를 설치해 등록하고, 동기화 그룹으로 파일 공유와 서버의 폴더를 잇는다 — What is 「How it works」. **본문은 「서버에 에이전트를 설치한다」까지 쓰고 나머지 이름은 쓰지 않는다**
+- 서버에서는 SMB·NFS·FTPS처럼 Windows Server가 쓸 수 있는 프로토콜로 데이터에 닿는다 — Deploy 첫머리. **현행 제품 문서로 확인했다.** 이 프로토콜은 서버에 닿을 때의 것이고, Azure 쪽 상대는 앞 항목 「Azure Files」대로 SMB 파일 공유다. 새 방식(Microsoft.FileShares)의 NFS 공유는 File Sync가 지원하지 않는다 — Plan 「Management concepts」의 Note. 둘을 섞어 「File Sync는 NFS 파일 공유와 맞춘다」로 쓰지 않는다
+- 캐시를 세계 곳곳에 필요한 만큼 둔다 — What is 첫머리, Deploy 첫머리
+- 서버가 고장 나면 새 Windows Server에 에이전트를 설치하고 Azure에서 네임스페이스를 내려받아 되살린다 — What is 「Key benefits」. **「같은 데이터 센터」로 한정하지 않는다**
+- 서버는 온-프레미스 Windows Server이거나 Azure VM이거나 둘 다일 수 있다 — Plan 머리의 「Key decisions」. 본문의 예는 온-프레미스로 쓰되 「온-프레미스에서만」으로 쓰지 않는다
+- 양방향은 저절로지만 곧바로라는 뜻이 아니다. 파일 공유를 Azure 쪽에서 직접 바꾸면 변경 감지 작업이 찾아낸 뒤에 서버로 간다 — Plan 「Management concepts」의 Important. **「실시간」, 「곧바로」로 쓰지 않는다.** 주기의 값은 쓰지 않는다
+- **쓰지 않는 것**: Storage Sync Service·동기화 그룹·엔드포인트라는 이름, Windows Server 판, 개수 한도, 다른 도구와의 조합
+- 한국어 표기: **Azure 파일 동기화**, Azure 파일 공유, 에이전트, 동기화. 아래 표기 정리
+
+쓰일 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`, D73
+
+## (phase 104) Azure File Sync — Cloud tiering overview
+https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-cloud-tiering-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-09. 사본: `docs-file-sync-cloud-tiering-overview.md`와 `ko-` 판.
+
+- 클라우드 계층화는 고를 수 있는 기능이고, 서버에 필요한 저장 공간을 줄인다 — 머리글
+- 자주 쓰는 파일만 서버에 두고, 드물게 쓰는 파일은 이름과 폴더 구조만 서버에 남기고 내용을 Azure 파일 공유에 둔다. 그 파일을 열면 Azure 파일 공유에서 가져온다 — 머리글
+- 서버의 여유 공간이나 마지막으로 쓴 날을 기준으로 정책을 정한다 — 「Cloud tiering policies」. 정책의 이름과 값은 쓰지 않는다
+- **Blob 액세스 계층과 다른 말이라는 근거**: 이 문서가 옮기는 자리는 서버와 Azure 파일 공유 사이이고, 「Access tiers for blob data」가 정하는 것은 스토리지 계정 안 Blob의 핫·쿨·콜드·보관이다. 이 문서가 둘을 직접 견주는 문장은 없다 — **두 문서의 사실을 나란히 놓은 것**이라 「File Sync 문서가 다르다고 한다」로 쓰지 않는다
+- 이 문서는 자주 쓰는 파일과 드물게 쓰는 파일을 hot·cool로도 부른다. Blob 계층 이름과 헷갈리므로 **본문은 핫·쿨을 쓰지 않고 「자주 쓰는 파일」·「나머지 파일」로 쓴다**
+- 한국어 표기: **클라우드 계층화**. 이 문서 한국어판은 제목만 「클라우드 티어링」이고 절 제목과 본문은 「클라우드 계층화」다. What is 한국어판도 둘이 섞였고, Learn 단원 7 한국어판은 「클라우드 계층화」다. 그래서 「클라우드 티어링」은 쓰지 않는다
+
+쓰일 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`
+
+## (phase 104) Azure Migrate — What is Azure Migrate?
+https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-05-19. 사본: `docs-migrate-services-overview.md`와 `ko-` 판.
+
+- Azure로 옮길지 정하고 계획하고 실행하는 일을 돕는 서비스다. 준비 상태와 비용을 평가하고 실제 이전까지 한다 — 머리글
+- 포털 하나에서 시작하고 진행하고 지켜본다 — 「Benefits」의 Unified migration platform. **허브와 「한곳에서 지켜본다」의 근거다**
+- 허브에서 평가·이전하는 것: 서버, 데이터베이스, 웹 앱, 그리고 Data Box 제품으로 옮기는 큰 데이터 — 「Benefits」. 머리글은 가상 데스크톱도 든다. **본문은 「서버·데이터베이스·웹 앱 같은 것」으로 쓰고 전부인 것처럼 쓰지 않는다**
+- 순서: 먼저 무엇이 있는지 찾고(검색), 평가로 Azure 준비 상태·크기·비용·서버 사이 의존성을 보고, 그다음 실행 단계에서 옮긴다 — 「Migration phases」의 Decide·Plan·Execute. **본문은 「검색 및 평가 → 마이그레이션」 둘로 줄여 쓴다.** 비즈니스 사례는 쓰지 않는다
+- 통합 도구의 현행 이름: **Discovery and Assessment**(검색 및 평가), **Migrate and Modernize**(마이그레이션 및 현대화). 데이터베이스·웹 앱 도구와 **Azure Data Box**도 표에 있다 — 「Integrated tools and features」. Learn 단원 6의 「Server Migration」, 덤프의 「Server Assessment」는 옛 이름이다
+- **Data Box와의 관계**: Data Box는 Azure Migrate 허브의 통합 도구이기도 하다. 그러므로 guide의 「데이터를 옮기는 서비스가 아니라」로 단정하지 않는다. **「Azure Migrate는 무엇을 옮길지 평가하고 이전을 묶는 허브이고, Data Box는 큰 데이터를 장치에 담아 옮기는 서비스이며 허브에서 고를 수 있는 도구의 하나다」** 로 쓴다
+- **쓰지 않는 것**: 「실시간」(이 문서는 쓰지 않고 「가동 중지 시간과 위험을 줄여」로 쓴다), ISV 도구(SDC 표), Azure Copilot 에이전트(미리 보기), 어플라이언스, Movere(지원 종료), 무료라는 것, 대상 서비스 이름
+- 한국어 표기: Azure Migrate(이 문서는 이름을 옮기지 않는다), 허브, 검색 및 평가, 마이그레이션 및 현대화, 마이그레이션, 평가
+
+쓰일 곳: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`, `DataMoveOptionsTable`, G45
+
+## (phase 104) Azure Data Box — What is Azure Data Box?
+https://learn.microsoft.com/en-us/azure/databox/data-box-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-24. 사본: `docs-data-box-overview.md`와 `ko-` 판.
+
+- 큰 데이터를 Azure로 가져오거나 Azure에서 내보내려고 Microsoft가 전용 저장 장치를 지역 배송 업체로 보내 주는 서비스다 — 머리글
+- 네트워크 연결이 없거나 제한된 곳의 큰 데이터에 맞고, 일회성·주기적이거나 처음에 대량으로 옮긴 뒤 네트워크로 이어 보낼 수 있다 — 「Use cases」
+- 가져오기의 쓰임: 일회성 이전, 처음 한 번의 대량 전송, 주기적 업로드 — 「Use cases」
+- 내보내기의 쓰임: 재해 복구, 정부·보안 요구, 온-프레미스나 다른 클라우드로 되돌아가기 — 「Use cases」
+- **가져오기 흐름**: 포털에서 배송 정보와 대상 스토리지 계정을 적어 주문 → 받아서 전원과 네트워크를 연결하고 설정한 뒤 복사할 컴퓨터에 공유를 탑재 → 데이터를 복사 → 돌려보냄 → Azure 데이터 센터에서 스토리지 계정으로 저절로 복사되고 디스크를 지움 — 「The workflow」
+- **내보내기 흐름**: 포털에서 원본 스토리지 계정을 적어 주문 → **Microsoft가 데이터를 장치에 담은 뒤 보냄** → 받아서 연결하고 공유를 탑재 → 장치에서 서버로 복사 → 돌려보냄 → 디스크를 지움 — 「The workflow」
+- 장치의 데이터는 언제나 암호화되어 있고 포털의 암호로만 열린다 — 「Benefits」. 설정에 쓰는 것은 장치의 로컬 웹 UI다 — 「Data Box components」
+- **용량은 쓰지 않는다.** 이 문서 안에서도 120TB·525TB 판과 80TB 판의 설명이 나뉘어 있고, Data Box Heavy는 지원이 끝났으며 80TB 장치도 차례로 끝난다 — 머리글의 Note. 이것은 **어긋난다는 처리로만** 남긴다(guide 「배경」). 「40TB」 같은 알맞은 크기 값, 속도, 무게도 쓰지 않는다
+- **쓰지 않는 것**: Data Box Heavy, 지우는 표준의 이름, 장치 사양, 파트너 제품, 지역 간 업로드 조건
+- 한국어 표기: Azure Data Box, **Data Box 디바이스**(이 문서 한국어판이 일관되게 쓴다. 처음 쓰는 자리에서 「저장 장치」로 푼다), 가져오기·내보내기, 로컬 웹 UI. 「지역 이동 통신 사업자」는 오역이라 **지역 배송 업체**로 쓴다
+
+쓰일 곳: `azure-data-movement.data-box`, `DataBoxDiagram`, `DataMoveOptionsTable`, G46
+
+## (phase 104) Azure Data Box — Tutorial: Create export order
+https://learn.microsoft.com/en-us/azure/databox/data-box-deploy-export-ordered
+
+확인한 날 2026-11-01. 「Last updated on」 2025-04-22. 사본: `docs-data-box-deploy-export-ordered.md`와 `ko-` 판.
+
+- 내보내기 주문의 주된 까닭은 온-프레미스 저장소가 손상됐을 때의 복구다 — 머리글
+- 주문하면 Microsoft가 장치를 준비해 지역 배송 업체로 보낸다. 받는 쪽은 데이터 센터 네트워크에 연결한 컴퓨터로 장치에서 복사한다 — 「For device」, 「Track the order」
+- 보관 계층의 Blob은 내보낼 수 없어 먼저 리하이드레이션해야 한다 — 「Track the order」의 Note. **쓰려면 한 줄로만 쓴다**(앞 주제 `archive-rehydration`과 이어진다). 쓰지 않아도 된다
+- 한국어 표기: 내보내기 주문
+
+쓰일 곳: `azure-data-movement.data-box`, `DataBoxDiagram`
+
+## (phase 104) Azure Storage — Migrating your data to Azure - overview
+https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-transfer-solution
+
+확인한 날 2026-11-01. 「Last updated on」 2025-09-25. 사본: `docs-storage-common-choose-data-transfer.md`와 `ko-` 판.
+
+- 상황별 도구 표 — 「Select migration tools」: 네트워크가 없거나 낮은 대역폭의 오프라인 전송은 Data Box. 빠르고 작거나 중간 규모의 전송과 스크립트로 세밀하게 다루는 일은 AzCopy. 물리 서버와 VM은 Azure Migrate. Windows 파일 서버, 양방향 동기화, 온-프레미스 캐시와 클라우드 계층화는 Azure File Sync. **표 `DataMoveOptionsTable`의 「알맞은 때」 근거다**
+- **Data Box가 맞지 않는 때의 근거**: 이 표가 작거나 중간 규모의 온라인 전송에 AzCopy를 고르고, Data Box 개요가 네트워크가 제한된 큰 데이터에 맞다고 하므로, 「네트워크로 보낼 만한 작은 데이터면 AzCopy 같은 온라인 도구가 맞다」로 쓴다. 「Data Box를 쓸 수 없다」로 쓰지 않는다
+- 이 표에는 Storage Explorer 행이 없다. Storage Explorer의 「알맞은 때」는 위 Storage Explorer 항목(화면에서 올리고 내려받기)에서 가져온다
+- 이 표의 크기 경계 값은 쓰지 않는다. Azure Storage Mover, Data Box Gateway, robocopy 같은 이름은 학습 가이드의 줄 밖이라 쓰지 않는다
+- 한국어 표기: 온라인·오프라인 전송, 마이그레이션
+
+쓰일 곳: `azure-data-movement.data-box`, `azure-data-movement.azcopy`, `DataMoveOptionsTable`, G44
+
+## (phase 104) 한국어 표기 정리 — `azure-data-movement`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 104 step 5). 근거는 `azure-storage`의 표기 정리와 같다 — Microsoft 한국어 문서의 표기를 따르고, 문서가 이름을 옮기지 않으면 그대로 둔다.
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `azcopy` | **AzCopy** | 「AzCopy 시작」 제목 |
+| `storage-explorer` | **Azure Storage Explorer** | Learn 단원 7 한국어판. 제품 문서 제목은 줄여 Storage Explorer로 쓴다 |
+| `file-sync` | **Azure 파일 동기화(Azure File Sync)** | 「Azure 파일 동기화란?」 제목과 Learn 단원 4·7, Azure Files 소개·계획 한국어판이 모두 이 이름이다. 영문 이름이 달라 괄호에 둔다(guide 「예시 값」). 학습 가이드와 덤프는 영문으로 쓰므로 두 이름을 함께 세운다 |
+| `azure-migrate` | **Azure Migrate** | 「Azure Migrate란?」 제목. Learn 한국어판 괄호의 「Azure 마이그레이션」은 쓰지 않는다 |
+| `data-box` | **Azure Data Box** | 「Azure Data Box란?」 제목 |
+
+이름과 낱말:
+
+- **`file-sync`의 다음 자리**: 본문·문제문·표·시나리오 버튼은 **Azure 파일 동기화**로 쓰고, 영문은 개념 이름과 처음 쓰는 자리의 괄호에만 둔다. 앞 개념 `azure-storage.azure-files`는 「Azure File Sync」로 적어 두었다(step 2). 영문이 괄호에 함께 있어 이어 읽히므로 그 글은 고치지 않는다
+- **도식의 노드**: Windows 파일 서버, **Azure 파일 공유**(guide의 잠정 「Azure Files 파일 공유」 대신), 검색 및 평가, 마이그레이션, **Data Box 디바이스**(guide의 잠정 「Data Box 장치」 대신), **스토리지 계정**(guide의 잠정 「Azure 스토리지」 대신 — 흐름의 대상이 대상 스토리지 계정이다), 온-프레미스 데이터
+- **낱말**: 명령줄, 원본, 대상, 동기화, 단방향·양방향(본문은 「한 방향」·「양쪽으로」로 풀어도 된다), 독립 실행형 앱, 캐시, 에이전트, 클라우드 계층화, 마이그레이션, 허브, 대역폭, 가져오기, 내보내기, 로컬 웹 UI, 지역 배송 업체
+
+**쓰지 않는 이름**: Azure Storage Mover, Data Box Heavy, Data Box Gateway, Server Migration, Server Assessment, Movere, Storage Sync Service, 동기화 그룹, 클라우드·서버 엔드포인트, 클라우드 티어링, 소스, 이동 통신 사업자.
+

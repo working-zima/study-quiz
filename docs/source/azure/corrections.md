@@ -1015,3 +1015,31 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: LRS의 복제본 셋은 지역이 아니라 **데이터 센터 한 곳** 안에 있다. ZRS도 지역 안이고 복사본이 셋이다(Learn 단원 3, 「Azure Storage redundancy」).
 - **처리**: 고쳐 쓴다. 「지역 내」는 LRS만의 특징이 아니다 — 복사본 셋을 데이터 센터 하나에 두느냐, 가용성 영역 셋에 두느냐로 가른다.
 - **쓰인 곳**: `azure-storage.storage-redundancy`, `LrsZrsDiagram`
+
+## D73 — Storage Explorer가 클라우드의 이전 서비스이고 File Sync는 Windows 서버와 맞추지 않는다는 답 (phase 104)
+
+- **덤프**: 세 문장의 답을 예·예·아니요로 표시한다(`p142_06.png`, 해설 그림 `p142_08.png`도 같다). 둘째는 Storage Explorer가 클라우드에 있는 이전 서비스로 큰 데이터를 옮긴다는 문장이고, 셋째는 File Sync가 Azure Files와 Windows 파일 서버를 맞춘다는 문장이다 — [덤프 NO.240]
+- **공식 문서**: Storage Explorer는 Windows·macOS·Linux에 내려받아 설치하는 독립 실행형 앱이다(Learn 단원 7, 「Get started with Storage Explorer」). 큰 데이터를 네트워크 없이 옮기는 것은 Data Box다. File Sync는 등록한 Windows Server와 Azure 파일 공유를 맞춘다(Learn 단원 7, 「What is Azure File Sync?」). 첫째 문장(AzCopy가 명령줄 유틸리티다)은 맞다.
+- **처리**: 고쳐 쓴다. 맞는 답은 예·아니요·예다. 본문은 Storage Explorer를 「내 컴퓨터에 설치하는 앱」으로, File Sync를 「Windows 파일 서버와 Azure 파일 공유를 맞추는 것」으로 쓴다.
+- **쓰인 곳**: `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`
+
+## G44 — AzCopy와 Storage Explorer를 올리고 내려받는 도구로만 적는 것 (phase 104)
+
+- **용어집**: 둘을 로컬 파일을 Blob Storage 등에 올리고 내려받는 도구로 묶고, AzCopy가 대량 작업에 유리하다고 한다 — [용어집 2-30]
+- **공식 문서**: AzCopy는 계정 사이 복사와 한 방향 동기화도 하고, Azure Files도 다룬다(Learn 단원 7, 「Get started with AzCopy」). Storage Explorer도 계정 사이로 옮긴다(Learn 단원 7, Blob 관리 문서). 데이터 이전 개요는 AzCopy를 작거나 중간 규모의 전송과 스크립트 작업에 고르고, 큰 규모의 이전에는 다른 도구를 고른다(「Migrating your data to Azure - overview」). 「Get started with AzCopy」도 이전 계획에는 Azure Storage Mover를 먼저 권한다.
+- **처리**: 고쳐 쓴다. 하는 일을 넓혀 쓰고, 「대량 이전에 유리하다」로 쓰지 않는다. 명령과 스크립트로 다룬다는 것으로 Storage Explorer와 가른다. 크기 경계 값과 Storage Mover는 쓰지 않는다.
+- **쓰인 곳**: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`
+
+## G45 — Azure Migrate를 평가하고 안내하는 도구로 적는 것 (phase 104)
+
+- **용어집**: 온-프레미스 VM과 DB를 평가해 크기와 비용을 산출하는 도구이고, 실제 이전에는 가이드를 준다고 한다 — [용어집 2-32]
+- **공식 문서**: 평가에 그치지 않고 이전을 실제로 수행하고, 서버·데이터베이스·웹 앱을 포함한다. 시작·진행·추적을 포털 하나에서 한다(「What is Azure Migrate?」, Learn 단원 6).
+- **처리**: 고쳐 쓴다. 「평가와 이전을 한곳에서 하는 허브」로 쓴다. 「다운타임을 최소화」와 「리프트 앤 시프트」는 쓰지 않는다.
+- **쓰인 곳**: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`
+
+## G46 — Azure Data Box를 Azure로 옮기는 방향으로만 적는 것 (phase 104)
+
+- **용어집**: 큰 데이터를 Azure로 옮기는 물리 디바이스이고, 로컬에서 암호화해 담아 Microsoft 데이터 센터로 보내 올린다고 한다 — [용어집 2-33]
+- **공식 문서**: Azure에서 내보내는 방향도 있다. 내보내기는 Microsoft가 데이터를 담아 보내고, 받는 쪽이 복사해 돌려보낸다(「What is Azure Data Box?」 「The workflow」, Learn 단원 6). 이 항목에는 낡은 장치 이름이나 용량 값 주장이 없다. 「수십 TB」는 Learn 단원 6과 맞지만 값은 쓰지 않는다.
+- **처리**: 고쳐 쓴다. 가져오기와 내보내기 두 방향으로 쓴다. 수치는 쓰지 않는다(guide 「배경」).
+- **쓰인 곳**: `azure-data-movement.data-box`, `DataBoxDiagram`
