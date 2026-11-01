@@ -342,8 +342,18 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - Azure Storage는 데이터를 담아 두는 서비스들의 묶음이다 — 글자·이진 데이터를 담는 Blob, 파일 공유를 내주는 Files, VM이 쓰는 블록 단위 저장 공간인 Disks 등 — 「첫 목록」
 - 이 단원에 「스토리지」 낱말 하나를 정의하는 문장은 없다. 위 목록이 스토리지를 「데이터(파일 등)를 담아 두는 곳」으로 풀 근거다
 - 한국어 표기: storage → 스토리지, Azure Storage → Azure Storage(이름 그대로)
+- Azure Storage의 핵심 서비스는 다섯이다 — Blob(글자·이진 데이터를 담는 객체 저장소), Files(클라우드나 온-프레미스에서 쓰는 관리형 파일 공유), Queue(앱 구성 요소 사이의 메시지 저장소), Disk(VM의 블록 수준 볼륨), Table(구조적이고 비관계형인 데이터를 담는 NoSQL 저장소) — 「첫 목록」 (phase 104)
+- 이점 가운데 쓸 것: 계정에 쓰는 데이터를 서비스가 모두 암호화한다. 하드웨어 유지 관리·업데이트·심각한 문제 처리를 Azure가 맡는다. 데이터에는 HTTP나 HTTPS로 세계 어디서나 닿는다 — 「Benefits of Azure Storage」 (phase 104)
+- Blob의 쓰임: 브라우저에 이미지·문서를 바로 내주기, 분산해서 쓰는 파일 저장, 동영상·오디오 스트리밍, 백업과 복원·재해 복구·보관, 온-프레미스나 Azure의 서비스가 분석할 데이터 저장. 개체에는 URL, REST API, PowerShell, CLI, 클라이언트 라이브러리로 닿는다 — 「Azure Blobs」·「Accessing blob storage」 (phase 104)
+- 네 계층의 쓰임과 최소 보관: 핫은 자주 읽는 데이터(예: 웹사이트 이미지), 쿨은 자주 읽지 않고 30일 이상 두는 데이터(예: 고객 송장), 콜드는 자주 읽지 않고 90일 이상 두는 데이터, 보관은 거의 읽지 않고 180일 이상 두며 읽기까지 기다려도 되는 데이터(예: 장기 백업) — 「Blob storage tiers」 (phase 104)
+- 핫·쿨·콜드는 계정 수준에서 정할 수 있고 보관은 계정 수준에 없다. 네 계층 모두 Blob 수준에서 올릴 때나 올린 뒤 정한다. 쿨·콜드는 저장 비용이 낮고 읽는 비용이 높다. 보관은 저장 비용이 가장 낮고 리하이드레이션 시간과 읽는 비용이 가장 크다 — 「Considerations for access tiers」 (phase 104)
+- Azure Files: SMB나 NFS로 닿는 완전 관리형 파일 공유이고, 클라우드와 온-프레미스가 동시에 탑재할 수 있다. 서버 하드웨어와 운영 체제 패치를 쓰는 쪽이 맡지 않는다. SMB 공유는 Azure File Sync로 Windows Server에 캐시할 수 있다 — 「Azure Files」 (phase 104). **이 단원은 NFS를 Linux·macOS로 적지만 제품 문서는 Linux만 든다 — 제품 문서를 따른다(아래 「What is Azure Files?」)**
+- Queue: 비동기로 처리할 메시지를 많이 담는다. Disk: 관리 디스크라고도 하고, Azure VM에 붙이는 블록 수준 볼륨을 Azure가 가상화해 관리한다. Table: 구조적이고 비관계형인 데이터를 담는 NoSQL 저장소다 — 각 절 (phase 104). 메시지 크기 값은 쓰지 않는다(guide 「배경」)
+- **쓰지 않는 것**: Data Lake Storage Gen2, 클라이언트 라이브러리의 언어 목록, 쿨·콜드의 가용성 SLA (phase 104, guide 「배경」)
+- 한국어 표기: 이 단원 한국어판은 「Azure 블롭스」·「Azure 큐」·「Azure 테이블」·「Azure 디스크」·「리하일레이션」처럼 흔들린다. **제품 문서 한국어판의 이름을 쓴다** — 맨 아래 「한국어 표기 정리 — `azure-storage`」 (phase 104)
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
+쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, `azure-storage.azure-files`, D65, D66, G41, G42
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -2364,8 +2374,19 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 
 - 스토리지 계정은 Azure Storage의 데이터 개체를 담고, HTTP나 HTTPS로 세계 어디서나 닿을 수 있는 고유한 이름 공간을 준다 — 첫 문단. **「데이터를 담는 Azure 저장소의 단위」로 푸는 데만 쓴다**(종류는 `azure-storage`의 몫이다)
 - 저장한 개체마다 계정 이름이 든 URL 주소가 있고, 계정 이름과 서비스 엔드포인트를 합친 것이 그 계정의 엔드포인트다 — 「Storage account endpoints」. **이 문서가 엔드포인트를 그 데이터에 닿는 주소로 쓴다.** 받은 문서에는 엔드포인트만 따로 정의하는 문장이 없으므로, `endpoints`는 이 쓰임과 Learn 단원 2의 두 정의로 「서비스에 닿을 때 연결하는 접속 지점」까지만 푼다
+- 스토리지 계정은 Blob·파일·큐·테이블 데이터 개체를 담는다 — 첫 문단 (phase 104, 다시 확인 2026-11-01)
+- 계정 유형 넷의 지원 서비스: 표준 범용 v2는 Blob·Queue·Table·Files, 프리미엄 블록 Blob은 Blob, 프리미엄 파일 공유는 Files, 프리미엄 페이지 Blob은 페이지 Blob만이다. 중복성은 표준 범용 v2가 여섯 옵션, 프리미엄 블록 Blob과 프리미엄 파일 공유가 LRS·ZRS다 — 「Types of storage accounts」 (phase 104)
+- **프리미엄 페이지 Blob의 중복성을 이 문서만 LRS·ZRS로 적는다.** Learn 단원 2, 「Azure Storage redundancy」(2026-08-11)의 표, 「Create a storage account」(`Premium_LRS`만)는 LRS 하나다. 셋을 따라 **LRS로 쓴다** (phase 104)
+- 권장 용도: 표준 범용 v2는 대부분의 경우에 권장된다. 프리미엄 블록 Blob은 트랜잭션이 많거나 작은 개체를 쓰거나 대기 시간이 늘 낮아야 할 때, 프리미엄 파일 공유는 규모가 크거나 성능이 중요한 앱과 SMB·NFS 공유를 함께 두려는 계정, 프리미엄 페이지 Blob은 페이지 Blob 전용이다 — 같은 표 (phase 104)
+- 프리미엄 계정은 SSD를 써서 대기 시간이 낮고 처리량이 높다 — 같은 표 각주 3. **표준 계정의 저장 장치를 말하는 문장은 받은 문서에 없다 — 쓰지 않는다** (phase 104)
+- 계정을 만든 뒤에는 유형을 바꿀 수 없다. 다른 유형으로 옮기려면 새 계정을 만들어 데이터를 복사한다 — 같은 절 Note (phase 104)
+- 계정 이름은 3~24자이고 숫자와 소문자만 쓴다. Azure 안에서 하나뿐이라 같은 이름의 계정이 둘일 수 없다 — 「Storage account name」 (phase 104)
+- 표준 엔드포인트는 프로토콜, 하위 도메인인 계정 이름, 서비스 이름이 든 고정 도메인으로 이루어진다. Blob은 `https://<계정 이름>.blob.core.windows.net`, Files는 `https://<계정 이름>.file.core.windows.net`이다 — 「Standard endpoints」 (phase 104)
+- **쓰지 않는 것**: 옛 계정 유형, DNS 영역 엔드포인트, 계정 수 한도, 워크로드 표 (phase 104, guide 「배경」)
+- 한국어 표기: 스토리지 계정, 네임스페이스(이 한국어판과 Blob 소개 한국어판), 표준 범용 v2, 프리미엄 블록 Blob, 프리미엄 파일 공유, 프리미엄 페이지 Blob, 엔드포인트 (phase 104)
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
+쓰인 곳(phase 104): `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`, D67, D68
 
 ## (phase 103) Azure VPN Gateway — What is Azure VPN Gateway?
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways
@@ -2817,3 +2838,495 @@ Azure DDoS Protection:
 - **공용 IP 주소, 개인 IP 주소, 부하 분산 장치, 네트워크 인터페이스, 서브넷** — `azure-compute`·`azure-virtual-networking` 표기를 잇는다
 
 **쓰지 않는 이름**: DDoS Protection Basic·Standard(옛 이름 — D62·G39), 강화된 보안 규칙, 허브-스포크, FQDN, TLS 검사, 심층 방어, Defender for Cloud, Azure Bastion.
+
+## (phase 104) Learn 「Describe Azure storage services」 — 2 Describe Azure storage accounts
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/2-accounts
+
+확인한 날 2026-11-01. 쪽에 날짜 표시 없음. 사본: `learn-describe-azure-storage-services-2-accounts.md`와 `ko-` 판.
+
+- 계정 유형이 쓸 수 있는 서비스와 중복성 옵션을 정하고, 쓰임에도 영향을 준다. 계정을 만들 때 유형부터 고른다 — 첫 문단
+- 중복성 옵션은 여섯이다 — LRS, GRS, RA-GRS, ZRS, GZRS, RA-GZRS — 같은 곳
+- 유형 넷의 표: 표준 범용 v2(네 서비스, 여섯 옵션, 대부분의 경우에 권장), 프리미엄 블록 Blob(LRS·ZRS), 프리미엄 파일 공유(LRS·ZRS), 프리미엄 페이지 Blob(LRS) — 유형 표. 페이지 Blob의 중복성이 제품 문서 하나와 갈리는 것은 위 「Storage account overview」 항목에 적었다
+- NFS 파일 공유가 필요하면 프리미엄 파일 공유를 쓴다 — 표준 범용 v2 행의 쓰임 칸
+- 계정 이름과 서비스 엔드포인트를 합친 것이 계정의 엔드포인트다. Blob·Files·Queue·Table의 주소 꼴 — 「Storage account endpoints」
+- **쓰지 않는 것**: Data Lake Storage 엔드포인트(guide 「배경」)
+- 한국어 표기: 표준 범용 v2, 프리미엄 블록 Blob, 프리미엄 파일 공유, 프리미엄 페이지 Blob, 네임스페이스, 엔드포인트
+
+쓰인 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountTypesTable`, D67
+
+## (phase 104) Learn 「Describe Azure storage services」 — 3 Describe Azure storage redundancy
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/3-redundancy
+
+확인한 날 2026-11-01. 쪽에 날짜 표시 없음. 사본: `learn-describe-azure-storage-services-3-redundancy.md`와 `ko-` 판.
+
+- Azure Storage는 하드웨어 고장·중단·지역 재해에서 지키려고 데이터 복사본을 여럿 둔다. 고를 때는 비용과 가용성 사이에서 균형을 잡는다 — 첫 문단
+- **주 지역에서 데이터는 언제나 세 번 복제된다.** 주 지역의 옵션은 LRS와 ZRS다 — 「Redundancy in the primary region」
+- LRS는 주 지역의 데이터 센터 한 곳 안에 세 번 복제한다. 가장 싸고 서버 랙·드라이브 고장을 막지만, 복제본이 모두 그 데이터 센터에 있어 데이터 센터 규모의 재해로 잃을 수 있다 — 「Locally redundant storage」
+- ZRS는 가용성 영역을 지원하는 지역에서 주 지역의 가용성 영역 셋에 동기로 복제한다. 영역 하나를 쓸 수 없어도 읽고 쓸 수 있다 — 「Zone-redundant storage」
+- 보조 지역은 주 지역에서 멀리 떨어진 곳이고, 계정을 만들 때 고른 주 지역에 맞춰 Azure가 지역 쌍으로 정한다. 옵션은 GRS와 GZRS다. GRS는 두 지역 모두 LRS, GZRS는 주 지역 ZRS에 보조 지역 LRS다 — 「Redundancy in a secondary region」
+- 기본으로 보조 지역의 데이터는 장애 조치 전에는 읽을 수 없고, 주 지역을 쓸 수 없을 때 장애 조치하면 보조 지역이 주 지역이 된다. 보조 지역으로는 비동기로 복제하므로 주 지역을 복구하지 못하면 데이터를 잃을 수 있다 — 같은 곳
+- 장애 조치 전에 보조 지역을 읽으려면 RA-GRS나 RA-GZRS를 켠다. 그 데이터는 최신이 아닐 수 있다 — 「Read access to data in the secondary region」
+- **복사본 수의 근거**: LRS·ZRS는 위 「세 번」이다(ZRS는 아래 「Disaster recovery」의 「영역마다 하나」도 같은 말). GRS·GZRS의 **여섯은 받은 문서에 낱말로 없고, 주 지역 셋과 보조 지역의 LRS 셋을 더한 값이다.** 덤프 NO.297의 답(6)과 같다
+- **쓰지 않는 것**: 내구성의 9 개수, RPO 값, SLA(guide 「배경」)
+- 한국어 표기: 로컬 중복 스토리지(LRS), 영역 중복 스토리지(ZRS), 지역 중복 스토리지(GRS), 지역 영역 중복 스토리지(GZRS), 읽기 액세스 지역 중복 스토리지(RA-GRS), 읽기 액세스 지역 영역 중복 스토리지(RA-GZRS), 주 지역, 보조 지역, 지역 쌍, 장애 조치(failover). 이 단원 한국어판의 「기본 지역」·「이차 지역」은 쓰지 않는다
+
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43
+
+## (phase 104) Azure Storage — Introduction to Azure Storage
+https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-11. 사본: `docs-storage-common-introduction.md`와 `ko-` 판.
+
+- 서비스 고르는 기준(비교 표): Azure Files는 파일 시스템 API로 공유하는 앱을 옮기거나 온-프레미스 파일 서버를 대신할 때, Blob은 스트리밍·임의 접근이나 어디서나 앱 데이터에 닿아야 할 때, Disk는 붙인 가상 하드 디스크에 데이터를 두고 그 VM 밖에서 닿을 필요가 없을 때, Queue는 앱 구성 요소를 떼어 놓고 비동기 메시지로 통신할 때, Table은 사용자 데이터·주소록·장치 정보 같은 유연한 데이터 집합을 둘 때다 — 「Sample scenarios for Azure Storage services」
+- Azure Storage는 데이터를 저장하기 전에 저절로 암호화하고 읽을 때 복호화한다 — 「Encryption at rest」
+- 관리 디스크는 가상 하드 디스크이고, 온-프레미스 서버의 물리 디스크를 가상화한 것으로 생각할 수 있다 — 「Disk Storage」. **이 절의 「페이지 Blob으로 저장된다」는 쓰지 않는다**(D57·D72 — 쓰는 쪽이 고르는 것이 아니다)
+- 한국어 표기: Azure 관리 디스크, 비동기 메시지
+
+쓰인 곳: `azure-storage.storage-services`, D57, D72
+
+## (phase 104) Azure Blob Storage — Introduction to Azure Blob Storage
+https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
+
+확인한 날 2026-11-01. 「Last updated on」 2026-05-15. 사본: `docs-storage-blobs-introduction.md`와 `ko-` 판.
+
+- Blob Storage는 비정형 데이터를 많이 담도록 만든 객체 저장소다. 비정형 데이터는 정해진 데이터 모델을 따르지 않는 데이터이고, 글자나 이진 데이터가 그 예다 — 첫 문단
+- 자원은 세 단계다 — 스토리지 계정, 그 안의 컨테이너, 컨테이너 안의 Blob — 「Blob Storage resources」
+- **컨테이너**는 Blob을 묶는 단위이고 파일 시스템의 디렉터리와 비슷하다 — 「Containers」. 앱을 담는 컨테이너(Azure Container Instances 같은)와 같은 낱말이지만 다른 것이라는 점은 본문이 그 자리에서 밝힌다(두 쓰임 모두 공식 문서에 있다)
+- Blob의 종류: 블록 Blob은 글자·이진 데이터를 담고 따로 관리할 수 있는 블록으로 이루어진다. 추가 Blob은 뒤에 덧붙이는 일에 맞췄다. 페이지 Blob은 임의 접근 파일을 담고 가상 하드 디스크 파일을 담아 VM의 디스크 구실을 한다 — 「Blobs」
+- **Blob도 NFS 3.0이나 BlobFuse로 탑재하는 길이 있다**(첫 문단 뒤와 도구 목록). 그래서 Files와 가르는 말은 「주로 어떻게 쓰는가」이고, **「Blob은 탑재할 수 없다」로 쓰지 않는다**
+- 객체 주소에는 계정 이름이 들어가고, 계정 이름과 Blob 엔드포인트를 합친 것이 기본 주소다 — 「Storage accounts」
+- **쓰지 않는 것**: Data Lake Storage, 크기 한도, 이름 규칙의 세부(guide 「배경」)
+- 한국어 표기: Azure Blob Storage, 비정형 데이터, 컨테이너, 블록 Blob, 추가 Blob, 페이지 Blob, 네임스페이스
+
+쓰인 곳: `azure-storage.blob-storage`, `azure-storage.account-types`, D69
+
+## (phase 104) Azure Blob Storage — Access tiers for blob data
+https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-06-15. 사본: `docs-storage-blobs-access-tiers.md`와 `ko-` 판.
+
+- 핫·쿨·콜드는 **온라인 계층**이라 바로 읽을 수 있고, 보관은 **오프라인 계층**이다 — 첫 목록·「Online access tiers」
+- 표현이 Learn 단원 4와 조금 다르다: 쿨은 자주 읽거나 고치지 않는 데이터, 콜드는 드물게 읽거나 고치지만 **빨리 꺼낼 수 있어야 하는** 데이터, 보관은 드물게 읽고 **몇 시간쯤 기다려도 되는** 데이터다 — 첫 목록. **쿨과 콜드는 낱말보다 최소 보관 기간(30·90일)으로 가른다**
+- 쿨·콜드는 핫과 내구성·첫 바이트까지의 시간이 같고 밀리초 단위다. 가용성이 조금 낮다. 보관은 시간 단위다 — 「Online access tiers」·요약 표. 가용성 값은 쓰지 않는다
+- **비용의 방향**: 계층이 차가워질수록 GB당 저장 비용은 내려가고, 읽는 비용과 트랜잭션 비용은 올라간다. 핫은 저장이 가장 비싸고 읽기가 가장 싸며, 보관은 저장이 가장 싸고 읽기가 가장 비싸다 — 「Storage capacity costs」·「Data access costs」·「Transaction costs」·첫 목록
+- **최소 보관 기간은 금지가 아니라 요금 조건이다.** 쿨 30일·콜드 90일·보관 180일 전에 지우거나 덮어쓰거나 옮기면 남은 날만큼 조기 삭제 요금이 붙는다(쿨에서 21일 만에 지우면 9일치) — 「Online access tiers」·「Archive access tier」. 표는 「권장 최소 보관 기간」이라 부른다. 금액은 쓰지 않는다. 범용 v2 계정 기준이다
+- **계정의 기본 액세스 계층**은 새 Blob이 만들어질 온라인 계층을 가리키고 핫·쿨·콜드 가운데 고른다. 보관은 기본값이 될 수 없다. 새 범용 v2 계정은 핫으로 시작하고, 계정을 만들 때나 만든 뒤 바꿀 수 있다 — 「Default account access tier setting」
+- 계층을 따로 정하지 않은 Blob은 계정 기본값을 따른다. 기본값을 바꾸면 그런 Blob 모두에 적용되고 그에 따른 요금이 붙는다. 계층을 지정한 Blob은 그대로다 — 같은 절
+- Blob 하나의 계층은 올릴 때 정하거나 만든 뒤 바꿀 수 있다 — 「Setting or changing a blob's tier」. 온라인 계층끼리 옮기는 것은 바로 끝나고 보관에서 나오는 것만 오래 걸린다 — 같은 절
+- **계층은 블록 Blob에 쓰는 것이다.** 추가 Blob·페이지 Blob에는 정할 수 없고, 프리미엄 블록 Blob 계정의 데이터도 이 계층들로 옮기지 못한다 — 첫 목록 Note·「Blob lifecycle management」
+- **보관 계층과 중복성은 서로 걸린다.** 핫·쿨·콜드는 모든 중복성을 지원하지만 보관은 LRS·GRS·RA-GRS 계정에서만 된다(ZRS·GZRS·RA-GZRS는 안 된다) — 「Archive access tier」·요약 표. **「계층과 중복성은 서로 다른 질문이다」라고 쓸 때 이 예외와 어긋나게 쓰지 않는다**
+- 이 문서의 첫 목록에는 **스마트 계층**(smart tier — 사용 패턴에 따라 핫·쿨·콜드 사이를 저절로 옮긴다)도 있다. Learn 단원 4와 학습 가이드에 없고 데이터가 머무는 또 하나의 온도도 아니므로 **쓰지 않는다.** 본문은 「핫·쿨·콜드·보관 가운데 고른다」로 쓰고, 「계층은 넷뿐이다」로 단정하지 않는다
+- 표준 저장소의 Blob에 핫 계층을 쓸 수 있고 쿨을 계정 수준에 정할 수 있다 — 위 두 절. Azure Files는 이 계층이 아니라 SSD·HDD 미디어 계층을 쓴다(아래 「Plan to deploy Azure Files」)
+- **쓰지 않는 것**: 수명 주기 관리, 일시 삭제, 암호화 범위, 작업 이름(Set Blob Tier 등), Storage Actions(guide 「배경」과 범위 밖)
+- 한국어 표기: 액세스 계층, 핫·쿨·콜드·보관 계층, 온라인 계층, 오프라인 계층, 기본 액세스 계층, 조기 삭제, 트랜잭션
+
+쓰인 곳: `azure-storage.access-tiers`, `azure-storage.archive-rehydration`, `AccessTierDiagram`, D65, D66, G41
+
+## (phase 104) Azure Blob Storage — Blob rehydration from the archive tier
+https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-09-01. 사본: `docs-storage-blobs-archive-rehydration.md`와 `ko-` 판.
+
+- 보관 계층의 Blob은 오프라인이라 읽거나 고칠 수 없고, 데이터를 쓰려면 먼저 핫·쿨·콜드 가운데 하나로 리하이드레이션한다 — 첫 문단
+- 방법은 둘이다 — 온라인 계층의 새 Blob으로 복사하거나, 그 Blob의 계층을 온라인 계층으로 바꾼다. 복사하면 원본은 보관 계층에 그대로 남는다 — 첫 문단·「Copy an archived blob to an online tier」
+- **리하이드레이션**(rehydrate)이라는 낱말을 문서가 따로 풀지는 않는다. 쓰임대로 「보관 계층에서 오프라인으로 있던 Blob을 온라인 계층으로 되돌려 읽을 수 있게 하는 일」로 푼다. 낱말의 원뜻(말린 것에 물을 다시 넣다)은 **문서에 없다 — 쓰지 않는다**
+- 걸리는 시간은 몇 시간이고, 우선순위가 둘이다. 표준(기본값)은 10GB 미만 객체 기준으로 15시간까지 걸릴 수 있고, 높음은 더 빠르지만 비용이 더 든다. 크거나 많으면 더 오래 걸릴 수 있다 — 첫 문단 뒤·「Rehydration priority」. **본문은 「몇 시간, 표준은 15시간까지 걸릴 수 있다」와 「높음은 더 빠르고 비용이 더 든다」까지 쓴다.** 높음의 1시간과 계정당 시간 한도 값은 조건이 많아 쓰지 않는다
+- 보관 계층에 두는 쓰임은 장기 백업, 처리한 뒤에도 보존할 원본 데이터, 오래 두고 거의 읽지 않는 규정 준수 데이터다 — 「Access tiers」의 「Archive access tier」
+- 보관 계층에 있는 동안에도 메타데이터는 읽을 수 있다 — 같은 곳. **도식에 「아무것도 볼 수 없다」로 그리지 않는다.** 그리는 것은 「데이터를 읽을 수 없다」다
+- 문서 어디에도 AzCopy로 언제든 읽는다거나 Azure Backup으로만 읽는다는 말이 없다 — D65
+- 한국어 표기: **리하이드레이션**(이 문서 제목 「보관 계층에서 Blob 리하이드레이션」과 절 제목). 같은 한국어판 안의 「재수화」·「재하이드레이션」·「재충전」, Access tiers 한국어판의 「재활성화」, Learn 단원 4 한국어판의 「리하일레이션」은 쓰지 않는다. 표준 우선순위, 높은 우선순위
+
+쓰인 곳: `azure-storage.archive-rehydration`, `ArchiveRehydrationDiagram`, D65
+
+## (phase 104) Azure Files — What is Azure Files?
+https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-16. 사본: `docs-storage-files-introduction.md`와 `ko-` 판.
+
+- 클라우드에 있는 완전 관리형 파일 공유이고 SMB·NFS로 닿는다. 클라우드와 온-프레미스의 Windows·Linux·macOS 클라이언트가 동시에 탑재할 수 있고 따로 설치할 소프트웨어가 없다 — 첫 문단
+- 프로토콜과 클라이언트: **SMB는 Windows·Linux·macOS, NFS는 Linux** — 첫 표. 「Plan to deploy Azure Files」도 NFS를 Linux만으로 적는다. Learn 단원 4의 「Linux·macOS」는 따르지 않는다
+- 온-프레미스 파일 서버를 대신하거나 보완하고, 직접 탑재하거나 Azure File Sync로 Windows 서버에 캐시할 수 있다 — 「Why use Azure Files?」
+- 관리할 하드웨어·패치할 운영 체제·바꿀 디스크가 없다 — 「Key benefits」
+- 한국어 표기: Azure Files, 파일 공유, 탑재, 클라이언트, 온-프레미스
+
+쓰인 곳: `azure-storage.azure-files`, `FileShareDiagram`, D69
+
+## (phase 104) Azure Files — Plan to deploy Azure Files
+https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-26. 사본: `docs-storage-files-planning.md`와 `ko-` 판.
+
+- SMB와 NFS는 파일 공유를 탑재하는 표준 파일 시스템 프로토콜이다. 한 파일 공유에 둘을 함께 쓰지 못하지만 한 스토리지 계정에 SMB 공유와 NFS 공유를 함께 둘 수 있다 — 「Available protocols」
+- **파일 공유를 만드는 곳이 둘이다.** 클래식 파일 공유는 스토리지 계정 안에 만들고 SMB·NFS와 모든 중복성을 지원한다. 새 `Microsoft.FileShares` 방식은 계정 없이 최상위 리소스로 만들지만 지금은 NFS 공유뿐이다 — 「Management concepts」. **본문은 「SMB 파일 공유를 비롯한 클래식 파일 공유는 스토리지 계정 안에 만든다」처럼 한정하고, 「파일 공유는 언제나 스토리지 계정 안에 있다」로 쓰지 않는다**
+- Azure Files의 미디어 계층은 SSD·HDD다. Blob의 핫·쿨·콜드와 다른 낱말이다 — 「Storage tiers」. NO.242의 「프리미엄 저장소의 파일 공유에 쿨 계층」은 그래서 해당하지 않는다(덤프 답 「아니요」가 맞다). **파일 공유의 계층은 본문에 쓰지 않는다**(guide 표)
+- 한국어 표기: 클래식 파일 공유, SMB(서버 메시지 블록), NFS(네트워크 파일 시스템), SSD, HDD
+
+쓰인 곳: `azure-storage.access-tiers`(근거 기록), `azure-storage.azure-files`
+
+## (phase 104) Azure Files — Mount SMB Azure file share on Windows
+https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-09. 사본: `docs-storage-files-windows.md`와 `ko-` 판.
+
+- Windows에서는 파일 공유를 탑재(드라이브 문자나 탑재 지점 경로에 연결)하거나 UNC 경로로 닿는다 — 「Use an Azure file share with Windows」. **「탑재」의 풀이는 이 문장에서 가져온다**
+- 포털이나 PowerShell, `net use` 명령으로 드라이브 문자를 골라 탑재할 수 있다 — 「Mount the Azure file share」
+- SMB는 TCP 포트 445를 쓰고, 막혀 있으면 VPN이나 ExpressRoute로 연결한다 — 「Ensure port 445 is open」. **본문에는 쓰지 않아도 된다.** 예를 든다면 포트 이야기 없이 드라이브 연결까지만 쓴다
+- **현행 문서는 ID 기반 인증을 권하고 스토리지 계정 키만 쓰라고 하지 않는다** — 「Use identity-based authentication」. D71
+- 한국어 표기: 탑재, 드라이브 문자, 탑재 지점
+
+쓰인 곳: `azure-storage.azure-files`, D71
+
+## (phase 104) Azure Queue Storage — What is Azure Queue Storage?
+https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction
+
+확인한 날 2026-11-01. 「Last updated on」 2023-11-17. 사본: `docs-storage-queues-introduction.md`와 `ko-` 판.
+
+- 메시지를 많이 쌓아 두는 서비스이고, 인증한 HTTP·HTTPS 호출로 닿는다. 나중에 비동기로 처리할 일감을 쌓아 두는 데 흔히 쓴다 — 첫 문단
+- **쓰지 않는 것**: 메시지 크기, 수명(guide 「배경」)
+- 한국어 표기: Azure Queue Storage, 큐, 메시지
+
+쓰인 곳: `azure-storage.storage-services`
+
+## (phase 104) Azure Table Storage — What is Azure Table storage?
+https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2022-11-29. 사본: `docs-storage-tables-overview.md`와 `ko-` 판.
+
+- 구조적이고 비관계형인 데이터(구조적 NoSQL 데이터라고도 한다)를 클라우드에 담는다. 키와 특성으로 저장하고 스키마가 없어 앱의 필요에 맞춰 데이터 모양을 바꾸기 쉽다 — 첫 문단
+- 복잡한 조인·외래 키·저장 프로시저가 필요 없는 데이터에 맞는다 — 「What is Table storage」. **`NoSQL`은 「표끼리 잇는 관계형 데이터베이스와 달리, 정해진 틀 없이 키와 특성으로 담는 방식」으로 푼다.** 조인·외래 키라는 낱말은 쓰지 않는다
+- 사용자 데이터·주소록·장치 정보 같은 유연한 데이터 집합을 둔다 — 첫 문단 뒤. **「행과 속성」은 guide의 잠정 표현이고 문서 낱말은 엔터티·키/특성이다** — 본문은 「키와 특성」으로 쓴다
+- 머리 Tip에 더 새로운 Azure Cosmos DB for Table이 있지만 범위 밖이라 쓰지 않는다
+- 한국어 표기: Azure Table Storage, 구조화된 NoSQL 데이터, 키/특성 저장소
+
+쓰인 곳: `azure-storage.storage-services`, G42
+
+## (phase 104) Azure Virtual Machines — Azure managed disks overview
+https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-20. 사본: `docs-virtual-machines-managed-disks-overview.md`와 `ko-` 판.
+
+- 관리 디스크는 Azure가 관리하고 Azure VM과 함께 쓰는 블록 수준 저장 볼륨이다. 온-프레미스 서버의 물리 디스크와 비슷하되 가상화한 것이고, 쓰는 쪽은 디스크 유형과 크기만 정한다 — 첫 문단
+- 관리 디스크가 스토리지 계정을 뒤에서 대신 관리한다는 것은 VM 개요(phase 103 항목)가 말하고 D57에 있다
+- **쓰지 않는 것**: 디스크 유형 다섯, 수치 한도(guide 「배경」)
+- 한국어 표기: Azure 관리 디스크, 블록 수준
+
+쓰인 곳: `azure-storage.storage-services`, D72, `azure-storage.storage-accounts`, `StorageAccountDiagram`
+
+## (phase 104) Azure 클라우드 컴퓨팅 사전 — What is cloud storage?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-storage/
+
+확인한 날 2026-11-01. 사본: `docs-dictionary-cloud-storage.md`와 `ko-` 판.
+
+- 클라우드 스토리지는 로컬 하드 드라이브 대신 인터넷으로 닿는 원격 서버에 데이터를 두는 방식이다 — 「Cloud storage definition」. **「스토리지」의 풀이 근거다**
+- 저장 유형: 객체 스토리지는 메타데이터를 가진 객체 단위로 묶어 사진·동영상·백업 같은 비정형 데이터에 맞고, 파일 스토리지는 폴더와 디렉터리 구조로 두어 공유 파일에 맞으며, **블록 스토리지는 데이터를 정해진 크기의 블록으로 나눠 저장해 빨리 꺼낼 수 있고** 데이터베이스와 성능이 중요한 앱에 맞는다 — 「Types of cloud storage」. **「블록 수준」의 풀이 근거다**
+- 한국어 표기: 객체 스토리지, 파일 스토리지, 블록 스토리지
+
+쓰인 곳: `azure-storage.storage-services`
+
+## (phase 104) Azure Storage — Azure Storage redundancy
+https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-11. 사본: `docs-storage-common-redundancy.md`와 `ko-` 판.
+
+- 중복성 설정은 계정에 하나이고 그 계정의 서비스 모두가 함께 쓴다. 요구가 다르면 계정을 나눈다 — 첫 문단 뒤
+- LRS는 드라이브·서버·랙 고장을 막지만 데이터 센터 안의 화재·홍수로 복제본을 모두 잃을 수 있다 — 「Locally redundant storage」
+- ZRS는 쓰기가 동기로 이루어져, 가용성 영역 셋의 복제본에 다 써야 성공을 돌려준다. 각 영역은 전원·냉각·네트워크가 따로인 별개의 장소다. 지역 전체 재해에는 ZRS만으로 부족할 수 있다 — 「Zone-redundant storage」. 이 문서의 머리는 「셋 이상의 영역」이라 하고 쓰기 절과 Learn 단원 3은 「셋」이다. **「복사본 셋을 영역 셋에」로 쓴다**
+- **복제는 백업이 아니다의 첫째 근거**: 복제본은 모두 현재 상태를 담아, 지우고 덮어쓴 것이 모든 복사본에 함께 적용된다. 중복성은 하드웨어 고장을 막을 뿐 데이터를 바꾸는 작업을 막지 못한다 — 「Locally redundant storage」
+- 보조 지역: 주 지역에 맞춰 정해지고 바꿀 수 없다. GRS는 주 지역에서 LRS로 동기 복사한 뒤 보조 지역으로 비동기 복사하고, 보조 지역 안에서는 LRS다. GZRS와의 차이는 주 지역에서 복제하는 방식뿐이다 — 「Redundancy in a secondary region」
+- 장애 조치 전에는 보조 지역을 읽거나 쓸 수 없고, 장애 조치 중에는 데이터에 닿을 수 없으며, 끝나면 보조 지역이 주 지역이 되어 읽고 쓴다 — 같은 곳·「Read access to data in the secondary region」
+- 보조 지역은 쓰기가 보통 주 지역보다 뒤처져 있어 재해 때 일부 데이터를 잃을 수 있다 — 「Plan for data loss」
+- 장애 표(무엇이 남는가): 노드 하나가 멈추면 네 옵션 모두 남는다. 데이터 센터 전체가 멈추면 LRS는 안 되고 ZRS·GZRS는 그대로이며 GRS는 **장애 조치를 거치면** 된다. 주 지역 전체가 멈추면 GRS·GZRS만 되고 장애 조치가 필요하다 — 「Durability and availability by outage scenario」. **「LRS·ZRS·GRS 모두」처럼 묶어 쓸 때 이 표를 따른다**
+- 서비스마다의 지원: Blob·Queue·Table은 여섯 옵션 모두. **Azure Files는 LRS·ZRS·GRS·GZRS이고 RA-GRS·RA-GZRS를 지원하지 않는다.** 관리 디스크는 LRS·ZRS다 — 「Supported Azure Storage services」. **표준 범용 v2 칸의 「여섯 옵션」은 계정 기준으로 맞지만, Files까지 여섯이라고 쓰지 않는다**
+- 계정 유형 표: 표준 범용 v2는 여섯, 프리미엄 블록 Blob과 파일 공유(이 문서 이름은 SSD file shares)는 LRS·ZRS, 프리미엄 페이지 Blob은 LRS — 「Supported storage account types」. 지역에 따라 못 쓰는 옵션이 있다
+- 보관 계층은 LRS·GRS·RA-GRS에서만 된다 — 같은 절. 위 「Access tiers」 항목과 같다
+- GZRS는 지역이 가용성 영역을 지원하고 지역 쌍이 있어야 쓸 수 있다 — 「Geo-zone-redundant storage」
+- 규정(데이터 거버넌스) 때문에 복제를 한 지역 안으로 제한해야 하면 LRS를 고려하고, ZRS도 그런 경우에 권장한다 — 「Locally redundant storage」·「Zone-redundant storage」 (phase 104 step 3)
+- **쓰지 않는 것**: 내구성의 9 개수, RPO 값, 가용성 수치, 비관리 디스크, CRC(guide 「배경」)
+- 한국어 표기: 이 한국어판은 GRS를 「지리중복 저장소」·「지리적 중복 저장」, GZRS를 「지오존 중복 저장소」로도 적어 흔들린다. Learn 단원 3 한국어판과 이 문서의 RA 이름을 따라 **지역 중복 스토리지·지역 영역 중복 스토리지**로 쓴다. 「기본 지역」과 「주 지역」은 **주 지역**으로 쓴다
+
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43, `azure-storage.account-types`, `StorageAccountTypesTable`, D67
+
+## (phase 104) Azure reliability — What are redundancy, replication, and backup?
+https://learn.microsoft.com/en-us/azure/reliability/concept-redundancy-replication-backup
+
+확인한 날 2026-11-01. 「Last updated on」 2026-09-23. 사본: `docs-reliability-redundancy-replication-backup.md`와 `ko-` 판.
+
+- **복제는 백업이 아니다의 둘째 근거**: 복제는 변경을 복제본 모두에 맞추고 옛 사본을 남기지 않는다. 실수로 지우면 그 삭제도 복제본에 전해져 데이터가 어디서나 사라지므로 백업에서 되살려야 한다 — 「Replication: Redundancy for data」. **이 문장은 쓸 수 있다**
+- 백업은 어느 시점의 사본을 떠 두었다가 복원하는 것이고, 삭제와 손상에 대비한다 — 「Backup」
+- 동기 복제는 모든 복제본에 다 반영해야 끝난 것으로 치고, 비동기는 먼저 끝낸 뒤 나중에 복제한다 — 「Synchronous and asynchronous replication」. **「동기」·「비동기」의 풀이 근거다**
+- 한국어 표기: 복제, 복제본, 백업, 동기, 비동기
+
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, D70
+
+## (phase 104) Azure Storage — Disaster recovery and storage account failover
+https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance
+
+확인한 날 2026-11-01. 「Last updated on」 2025-11-03. 사본: `docs-storage-common-disaster-recovery.md`와 `ko-` 판.
+
+- LRS는 복사본 셋을 데이터 센터 하나에 두고, ZRS는 같은 지역의 가용성 영역 셋에 하나씩 둔다 — 「Choose the right redundancy option」. **ZRS 복사본 셋의 직접 근거다**
+- 장애 조치 때 계정의 서비스 엔드포인트 DNS가 저절로 갱신되어 보조 지역의 엔드포인트가 새 주 엔드포인트가 된다 — 「Geo-redundant storage and failover」
+- 장애 조치의 종류는 고객이 하는 계획·비계획과 Microsoft가 할 수 있는 것이다. Microsoft 쪽에 기대지 말라고 한다 — 「Plan for failover」. **본문은 「장애 조치를 하면」까지 쓰고 종류는 쓰지 않는다.** 「Azure가 저절로 넘긴다」로 쓰지 않는다
+- 한국어 표기: 장애 조치(failover)
+
+쓰인 곳: `azure-storage.geo-redundancy`, `GeoRedundancyDiagram`
+
+## (phase 104) Azure Storage — Create a storage account
+https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create
+
+확인한 날 2026-11-01. 「Last updated on」 2026-05-08. 사본: `docs-storage-common-create-account.md`와 `ko-` 판.
+
+- 계정을 만들 때 기본 탭에서 이름, 지역, 성능(표준은 범용 v2이고 기본값), 중복성을 고른다. 지역에 따라 못 쓰는 유형·옵션이 있다 — 「Basics tab」
+- 유형 표: 프리미엄 페이지 Blob은 `Premium_LRS`만, 프리미엄 블록 Blob과 파일 공유는 LRS·ZRS — 「Storage account type parameters」
+- 포털에서 계정은 「스토리지 계정」으로 찾아 만든다 — 포털 절차 첫머리
+- 한국어 표기: 지역, 성능, 중복성
+
+쓰인 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`
+
+## (phase 104) Azure Blob Storage — 낱말을 푸는 근거: 페이지 Blob, 대기 시간, 트랜잭션
+- 페이지 Blob 개요 https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-pageblob-overview — 「Last updated on」 2023-05-11. 페이지 Blob은 임의의 범위를 읽고 쓸 수 있어 VM의 OS·데이터 디스크 같은 곳에 맞는다 — 첫 문단. 블록 Blob은 글자·이진 파일과 큰 파일 올리기에 맞다 — 같은 곳. 이 쪽의 「페이지 Blob은 핫 계층만」은 쓰지 않는다(2023년 글이고 쿨·보관만 들어 콜드가 없다)
+- Blob 대기 시간 https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-latency — 「Last updated on」 2023-04-03. 대기 시간은 앱이 요청이 끝나기를 기다리는 시간이고, 프리미엄 블록 Blob은 SSD로 표준보다 낮고 고른 대기 시간을 낸다 — 첫 문단
+- REST 작업과 가격 https://learn.microsoft.com/en-us/azure/storage/blobs/map-rest-apis-transaction-categories — 도구와 앱의 요청은 저마다 REST 작업으로 서비스에 가고 요금은 작업 종류(읽기·쓰기 등)로 나뉜다 — 첫머리. 다른 계정에서 복사할 때 읽기 요청마다 트랜잭션 하나로 센다 — 각주 2. **「트랜잭션」을 「읽기·쓰기 같은 요청 한 번」으로 푸는 근거다**
+
+확인한 날 2026-11-01. 사본: `docs-storage-blobs-page-overview.md`, `docs-storage-blobs-latency.md`, `docs-storage-blobs-map-rest-apis-transaction-categories.md`와 `ko-` 판.
+한국어 표기: 페이지 Blob, 블록 Blob, 대기 시간, 트랜잭션
+
+쓰인 곳: `azure-storage.account-types`, `StorageAccountTypesTable`
+
+## (phase 104) Azure Storage — 쓰지 않는 근거: 용량 한도와 데이터 보호
+- 표준 스토리지 계정 확장 목표 https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account — 「Last updated on」 2025-11-02. 계정의 기본 최대 용량은 페타바이트 단위이고 Blob·파일 개수에는 한도가 없다. **덤프의 「2TB·파일 100만 개」가 틀렸음을 확인하는 데만 썼고, 값은 가르치지 않는다**(D70, guide 「배경」)
+- Blob Storage 확장 목표 https://learn.microsoft.com/en-us/azure/storage/blobs/scalability-targets — 같은 확인에만 썼다
+- Blob 데이터 보호 개요 https://learn.microsoft.com/en-us/azure/storage/blobs/data-protection-overview — 넓은 데이터 손실에는 계정 안의 기능에 더해 Azure Backup을 켜라고 한다. 일시 삭제·버전 관리 같은 기능 이름은 범위 밖이라 쓰지 않는다. **「복제는 백업이 아니다」의 보조 근거로만 둔다**
+
+확인한 날 2026-11-01. 사본: `docs-storage-common-scalability-targets-standard-account.md`, `docs-storage-blobs-scalability-targets.md`, `docs-storage-blobs-data-protection.md`와 `ko-` 판.
+
+쓰일 곳: D70(근거 기록)
+
+## (phase 104) 한국어 표기 정리 — `azure-storage`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 104 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다. 제품 문서가 절 제목에 쓴 이름을 먼저 고르고, Learn 한국어판의 기계 번역 이름은 쓰지 않는다.
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `storage-services` | **Azure Storage 서비스** | 「Azure Storage 소개」 한국어판. 제품 이름은 옮기지 않는다 |
+| `blob-storage` | **Azure Blob Storage** | 「Azure Blob Storage 소개」 한국어판 제목. Learn의 「Azure 블롭스」는 쓰지 않는다 |
+| `access-tiers` | **Blob 액세스 계층** | 「Blob 데이터를 위한 액세스 계층」 제목을 줄였다 |
+| `archive-rehydration` | **보관 계층 데이터 읽기(리하이드레이션)** | 「보관 계층에서 Blob 리하이드레이션」 제목. 명사구로 쓰려고 「데이터 읽기」를 앞에 뒀다 |
+| `azure-files` | **Azure Files** | 「Azure Files란?」 제목 |
+| `storage-redundancy` | **스토리지 중복성** | 「Azure Storage 중복성」 제목과 본문의 「스토리지」 |
+| `geo-redundancy` | **보조 지역으로 복제** | Learn 단원 3 한국어판의 「보조 지역」·「복제」. 고유 이름이 아니라 하는 일을 쓴 제목이다 |
+| `storage-accounts` | **스토리지 계정** | 「스토리지 계정 개요」 제목 |
+| `account-types` | **스토리지 계정 유형** | 같은 문서 절 제목 |
+
+목록 항목과 표의 이름:
+
+- **서비스 다섯**(`storage-services`, ADR-046 꼴): **Azure Blob Storage**, **Azure Files**, **Azure Queue Storage**, **Azure Table Storage**, **Azure Disk Storage**(관리 디스크). 앞 넷은 제품 문서 한국어판이 이름을 옮기지 않고 제목에 쓴다. Disk만 한국어판이 「Azure 관리 디스크」·「Azure 디스크」로 갈리므로, Learn 영문판의 Azure Disk storage를 이름으로 쓰고 뒤에 「관리 디스크」를 괄호로 둔다. 이름이 이미 영문이라 영문 괄호를 붙이지 않는다
+- **계층 넷**: **핫 계층**, **쿨 계층**, **콜드 계층**, **보관 계층**(Hot·Cool·Cold·Archive) — Access tiers 한국어판. 묶는 말은 **온라인 계층**·**오프라인 계층**, 계정 설정은 **기본 액세스 계층**
+- **중복성 옵션 여섯**: **로컬 중복 스토리지(LRS)**, **영역 중복 스토리지(ZRS)**, **지역 중복 스토리지(GRS)**, **지역 영역 중복 스토리지(GZRS)**, **읽기 액세스 지역 중복 스토리지(RA-GRS)**, **읽기 액세스 지역 영역 중복 스토리지(RA-GZRS)** — Learn 단원 3 한국어판. 앞 phase의 「지역 중복 스토리지(GRS)」를 잇는다. 「지리적 중복」·「지리중복」·「지오존」은 쓰지 않는다. **지역**은 region의 표기인데 geo- 도 같은 낱말로 옮겨져 있다 — 본문에서 「다른 지역까지 복제」로 뜻을 함께 쓴다
+- **계정 유형 넷**: **표준 범용 v2**, **프리미엄 블록 Blob**, **프리미엄 파일 공유**, **프리미엄 페이지 Blob** — 계정 개요·Learn 단원 2 한국어판. 「SSD file shares」는 중복성 문서만의 이름이라 쓰지 않는다
+- **낱말**: 스토리지, 스토리지 계정, 네임스페이스(guide의 잠정 「이름공간」 대신 — 계정 개요·Blob 소개 한국어판. 처음 쓸 때 뜻을 푼다), 엔드포인트, 컨테이너, 블록 Blob, 페이지 Blob, 탑재, 온-프레미스, 주 지역, 보조 지역, 지역 쌍, 가용성 영역, 장애 조치(failover), 복제, 동기, 비동기, 트랜잭션, 대기 시간, 조기 삭제, 비정형 데이터, NoSQL, SMB(서버 메시지 블록), NFS(네트워크 파일 시스템)
+
+**쓰지 않는 이름**: 스마트 계층, Data Lake Storage Gen2, 옛 계정 유형(범용 v1, 레거시 Blob Storage), 비관리 디스크, 추가 Blob(표 밖에서 풀 일이 없다), Azure Elastic SAN, Azure NetApp Files, 수명 주기 관리, 일시 삭제.
+
+## (phase 104) Learn 「Describe Azure storage services」 — 6 Identify Azure data migration options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/6-identify-azure-data-migration-options
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-storage-services-6-identify-azure-data-migration-options.md`와 `ko-` 판.
+
+- Azure Migrate는 온-프레미스 환경을 클라우드로 옮기는 일을 돕고, 데이터 센터의 평가와 이전을 관리하는 허브 구실을 한다. 이전을 시작하고 진행하고 지켜보는 포털이 하나다 — 「Azure Migrate」
+- 허브에 통합된 선택지는 검색 및 평가, 서버·데이터베이스·웹 앱의 마이그레이션이다 — 「Integrated tools」
+- Data Box는 물리 장치로 큰 데이터를 옮기는 서비스다. 포털에서 주문하고 지역 배송 업체가 오가며, 로컬 웹 UI로 설정해 네트워크에 연결하고, 다 옮기면 돌려보낸다. Azure로 가져오는 경우 Microsoft가 받은 뒤 저절로 올라간다. 과정 전체를 포털에서 지켜본다 — 「Azure Data Box」
+- 네트워크 대역폭이 모자랄 때의 큰 데이터에 맞고, 쓰임은 일회성 대량 이전, 온라인 전송이 너무 느린 주기적 업로드, 복구·규제 때문에 Azure에서 내보내기다 — 「Use cases」
+- 가져오기는 업로드 뒤에 디스크를 지우고, 내보내기는 장치가 Azure 데이터 센터에 닿은 뒤에 지운다 — 「Use cases」 끝. 지우는 표준의 이름은 쓰지 않는다(guide 「배경」)
+- **현행 문서와 다른 곳 넷 — 제품 문서를 따른다**: (1) 장치 용량 — 이 단원은 80테라바이트 하나를 적지만 제품 개요는 120TB·525TB 장치를 들고 80TB 장치가 차례로 끝난다고 한다. **용량은 어느 쪽도 쓰지 않는다.** (2) 「실시간(real-time) 마이그레이션」과 「비동기」 — 제품 개요에 없는 말이다. 쓰지 않고 「네트워크로」·「장치를 배송해」로 가른다. (3) 도구 이름 「Server Migration」 — 제품 문서의 이름은 Migrate and Modernize다. (4) 이 단원에 없는 범위(가상 데스크톱, Data Box가 Azure Migrate의 통합 도구라는 것)가 제품 개요에 있다
+- **쓰지 않는 것**: ISV 도구, 지우는 표준의 이름, 장치 용량, 「tens of terabytes」의 수치
+- 한국어 표기: 이 판의 「지역 이동 통신 사업자」는 regional carrier의 오역이다 — **지역 배송 업체**로 쓴다. 「Azure Migrate (Azure 마이그레이션)」의 괄호와 「재산적 가치를 가지는」은 따르지 않는다
+
+쓰인 곳: `azure-data-movement.azure-migrate`, `azure-data-movement.data-box`, `AzureMigrateDiagram`, `DataBoxDiagram`, `DataMoveOptionsTable`, G45, G46
+
+## (phase 104) Learn 「Describe Azure storage services」 — 7 Identify Azure file movement options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/7-identify-azure-file-movement-options
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-storage-services-7-identify-azure-file-movement-options.md`와 `ko-` 판.
+
+- AzCopy는 스토리지 계정과 Blob·파일을 주고받는 명령줄 유틸리티이고, 올리기·내려받기·계정 사이 복사·동기화를 한다 — 「AzCopy」
+- AzCopy의 동기화는 원본과 대상을 정해 그 방향으로만 복사한다. 시간 표시나 메타데이터로 양쪽을 맞추지 않는다 — 「AzCopy」의 Important
+- Storage Explorer는 스토리지 계정의 파일과 Blob을 화면으로 관리하는 독립 실행형 앱이고 Windows·macOS·Linux에서 돈다. 올리기·내려받기·계정 사이 옮기기를 한다 — 「Azure Storage Explorer」
+- File Sync는 Azure Files에 파일 공유를 모으면서 Windows 파일 서버의 쓰임을 유지하게 하고, 서버에 설치하면 Azure의 파일과 양방향으로 저절로 맞춘다. 서버에서는 SMB·NFS·FTPS처럼 Windows Server가 쓸 수 있는 프로토콜로 닿고, 캐시를 세계 곳곳에 필요한 만큼 둘 수 있다. 클라우드 계층화는 자주 쓰는 파일을 서버에 복제해 두고 나머지를 요청받을 때까지 클라우드에 둔다 — 「Azure File Sync」
+- **현행 문서와 다른 곳 셋 — 제품 문서를 따른다**: (1) 「다른 클라우드와 파일을 오간다(back and forth)」 — 제품 문서는 Amazon S3와 Google Cloud Storage **에서 Azure로** 복사하는 안내만 둔다. 「다른 클라우드의 저장소에서 Azure로 복사」까지 쓴다. (2) Storage Explorer가 「모든」 관리 작업을 AzCopy로 한다 — 제품 문서는 「대부분의 데이터 전송」이다. (3) 고장 난 서버를 「같은 데이터 센터」의 새 서버로 바꾼다 — 제품 문서는 데이터 센터를 한정하지 않고 새 Windows Server라고만 한다. 「새 Windows Server」로 쓴다
+- **쓰지 않는 말**: 「미니어처 콘텐츠 배달 네트워크」라는 비유(캐시로 충분하다)
+- 한국어 표기: 명령줄 유틸리티, 독립 실행형 앱, 원본과 대상, 단방향·양방향 동기화, Azure 파일 동기화, 클라우드 계층화
+
+쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`
+
+## (phase 104) AzCopy — Get started with AzCopy
+https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-23. 사본: `docs-storage-common-storage-use-azcopy-v10.md`와 `ko-` 판.
+
+- AzCopy는 스토리지 계정으로, 계정에서, 계정 사이로 데이터를 복사하는 명령줄 유틸리티다 — 머리글
+- 쓰임: 온-프레미스에서 계정으로, 계정에서 온-프레미스로, 계정에서 다른 계정으로. Blob Storage와 Azure Files를 고를 수 있고 둘 사이로도 복사한다. 복사 명령과 동기화 명령이 따로 있다 — 「AzCopy use cases」
+- 내려받아 Windows·Linux·macOS에서 실행하는 파일이고, 명령 셸에 `azcopy`를 친다 — 「Get AzCopy」. **「명령줄」을 풀 때 「글자로 명령을 쳐서 프로그램을 다루는 방식」까지 쓰고 나머지는 일반 IT 용어로 푼다(ADR-010)**
+- 명령을 직접 치는 것 말고 스크립트에 넣어 일괄·예약 전송을 할 수 있다 — 「Transfer data」. **표의 「작업을 자동으로」의 근거다**
+- 전송 중에 원본이나 대상이 계속 바뀌는 상황은 지원하지 않는다 — 「Transfer data」의 Note
+- **이 쪽 맨 위의 Note**: Azure Storage로 데이터를 옮길 계획이면 Azure Storage Mover를 쓰라고 한다. Storage Mover는 학습 가이드의 줄에 없어 **개념으로 쓰지 않는다.** 다만 **「AzCopy는 대량 이전 도구」로 쓰지 않는다** — G44
+- **쓰지 않는 것**: Microsoft Entra ID·SAS 인증, 버전 번호, 명령 목록, Azure Storage Mover
+- 한국어 표기: AzCopy, 명령줄 유틸리티, 스토리지 계정
+
+쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, `DataMoveOptionsTable`, G44
+
+## (phase 104) AzCopy — 동기화의 방향과 비교 기준
+- Azure Files 전송 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-files — 「Last updated on」 2026-08-17. 사본 `docs-storage-common-storage-use-azcopy-files.md`
+- Blob 동기화 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs-synchronize — 「Last updated on」 2025-10-28. 사본 `docs-storage-common-azcopy-blobs-synchronize.md`
+- 명령 참조 https://learn.microsoft.com/en-us/azure/storage/common/storage-ref-azcopy-sync — 사본 `docs-storage-common-azcopy-sync-ref.md`. 쪽에 수정 날이 없다
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다(명령 참조의 `ko-` 판은 영문 그대로다).
+
+- 동기화는 한 방향이다. 두 끝 가운데 어느 쪽이 원본이고 어느 쪽이 대상인지 쓰는 쪽이 고른다 — 두 문서의 「Synchronize」 절. **Blob과 Files 모두에 든다**
+- 맞출 수 있는 짝: 로컬 파일 시스템과 Blob 컨테이너, 컨테이너끼리, 로컬 파일 시스템과 파일 공유, 파일 공유끼리. Blob과 Files 사이의 동기화는 지금 판이 지원하지 않는다(복사는 된다) — 같은 절의 경고
+- Azure Files의 동기화는 지원하지만 전적으로 권하지는 않는다고 적는다 — Azure Files 쪽 경고. **동기화를 File Sync의 대안으로 권하는 문장을 쓰지 않는다**
+- **시간 표시의 쓰임**: 동기화 명령은 기본으로 파일 이름과 마지막 수정 시간을 비교해 무엇을 보낼지 정하고, 대상 쪽이 더 새 파일은 건너뛴다 — 「Guidelines」, 명령 참조 「Synopsis」. 그러므로 **guide의 「시간 표시로 양쪽을 맞추지 않는다」를 「시간 표시를 쓰지 않는다」로 읽히게 쓰지 않는다.** 비교에 쓰되 복사는 한 방향이라고 쓰거나 시간 표시를 꺼내지 않는다
+- 대상에만 있는 파일은 기본값으로 지우지 않는다(`--delete-destination`의 기본값 false) — 명령 참조. 그러므로 **「동기화하면 대상이 원본과 똑같아진다」로 쓰지 않는다.** 「대상에서 바꾸거나 지운 것이 원본으로 돌아오지 않는다」는 쓸 수 있다
+- 한국어 표기: 동기화, 원본, 대상. 제품 문서의 「소스」는 쓰지 않고 Learn 한국어판의 **원본**으로 쓴다
+
+쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`
+
+## (phase 104) AzCopy — 다른 클라우드에서 복사
+- Amazon S3 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3 — 「Last updated on」 2026-05-27. 사본 `docs-storage-common-storage-use-azcopy-s3.md`
+- Google Cloud Storage https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-google-cloud — 「Last updated on」 2025-10-31. 사본 `docs-storage-common-storage-use-azcopy-google-cloud.md`
+
+확인한 날 2026-11-01. 둘 다 `ko-` 판이 있다.
+
+- 두 문서 모두 제목과 머리글이 다른 클라우드 저장소에서 **Azure로** 복사하는 안내이고, 반대 방향의 안내는 찾지 못했다. Get started의 표는 Google Cloud 쪽을 미리 보기로 적는다
+- 본문에는 「Amazon S3 같은 다른 클라우드의 저장소에서 Azure로 복사할 수 있다」까지 쓴다. Google Cloud의 미리 보기 여부는 쓰지 않는다
+
+쓰인 곳: `azure-data-movement.azcopy`
+
+## (phase 104) Azure Storage Explorer — 쓰는 곳과 하는 일
+- Get started https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer — 「Last updated on」 2025-04-14. 사본 `docs-storage-explorer-get-started.md`
+- Blob 관리 https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs — 「Last updated on」 2024-02-04. 사본 `docs-storage-explorer-blobs.md`
+- 네트워크 연결 https://learn.microsoft.com/en-us/azure/storage/common/storage-explorer-network — 「Last updated on」 2025-06-27. 사본 `docs-storage-explorer-network.md`
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다.
+
+- Storage Explorer는 내려받아 설치하는 독립 실행형 앱이고 Windows·macOS·Linux에서 돈다 — Get started 「Overview」·「Download and install」. **덤프의 「클라우드에 있는 서비스」가 틀린 근거다**(D73)
+- Azure 계정으로 로그인하거나 리소스 하나에 연결해 스토리지 계정·Blob 컨테이너·파일 공유·큐·테이블을 다룬다 — Get started 「Connect to a storage account or service」
+- 화면의 도구 모음으로 Blob을 올리고 내려받고, 컨테이너를 복사해 다른 스토리지 계정에 붙여 넣는다 — Blob 관리 「Copy a blob container」·「Managing blobs in a blob container」
+- 대부분의 데이터 전송에 AzCopy를 쓴다 — 네트워크 연결 「AzCopy proxy usage」. **「안에서 대부분의 전송을 AzCopy로 한다」로 쓴다. 「모든」으로 쓰지 않는다**
+- **쓰지 않는 것**: 인증 방식, 에뮬레이터, 지원 운영 체제의 판, Data Lake 컨테이너, 프록시 설정
+- 한국어 표기: Azure Storage Explorer(제목은 Storage Explorer), 독립 실행형 앱, 업로드·다운로드. Learn 한국어판의 「그래픽 인터페이스」는 **화면**으로 풀어 쓴다
+
+쓰인 곳: `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`, D73, G44
+
+## (phase 104) Azure File Sync — 하는 일과 맞추는 상대
+- What is Azure File Sync? https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction — 「Last updated on」 2026-08-18. 사본 `docs-file-sync-introduction.md`
+- Deploy Azure File Sync https://learn.microsoft.com/en-us/azure/storage/files/storage-sync-files-deployment-guide — 「Last updated on」 2026-07-22. 사본 `docs-storage-sync-files-deployment-guide.md`
+- Plan for an Azure File Sync deployment https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-planning — 「Last updated on」 2026-08-17. 사본 `docs-file-sync-planning.md`
+
+확인한 날 2026-11-01. 셋 다 `ko-` 판이 있다.
+
+- 파일 공유를 Azure Files에 모으면서 Windows 파일 서버의 쓰임을 유지한다. 등록한 Windows Server마다 가운데의 Azure 파일 공유와 양쪽으로 데이터를 맞춘다 — What is 첫머리. **맞추는 상대는 Azure 파일 공유다**(클라우드 엔드포인트가 곧 Azure 파일 공유다 — Plan 「Management concepts」). Blob 컨테이너나 Data Lake 컨테이너, 큐를 상대로 삼는 설명은 없다
+- 한 서버의 변경은 Azure 파일 공유를 거쳐 다른 서버로 저절로 간다. 지점끼리 서버를 직접 잇지 않아도 된다 — What is 「Key benefits」
+- 설치: Azure에 Storage Sync Service를 두고, 서버에 Azure 파일 동기화 에이전트를 설치해 등록하고, 동기화 그룹으로 파일 공유와 서버의 폴더를 잇는다 — What is 「How it works」. **본문은 「서버에 에이전트를 설치한다」까지 쓰고 나머지 이름은 쓰지 않는다**
+- 서버에서는 SMB·NFS·FTPS처럼 Windows Server가 쓸 수 있는 프로토콜로 데이터에 닿는다 — Deploy 첫머리. **현행 제품 문서로 확인했다.** 이 프로토콜은 서버에 닿을 때의 것이고, Azure 쪽 상대는 앞 항목 「Azure Files」대로 SMB 파일 공유다. 새 방식(Microsoft.FileShares)의 NFS 공유는 File Sync가 지원하지 않는다 — Plan 「Management concepts」의 Note. 둘을 섞어 「File Sync는 NFS 파일 공유와 맞춘다」로 쓰지 않는다
+- 캐시를 세계 곳곳에 필요한 만큼 둔다 — What is 첫머리, Deploy 첫머리
+- 서버가 고장 나면 새 Windows Server에 에이전트를 설치하고 Azure에서 네임스페이스를 내려받아 되살린다 — What is 「Key benefits」. **「같은 데이터 센터」로 한정하지 않는다**
+- 서버는 온-프레미스 Windows Server이거나 Azure VM이거나 둘 다일 수 있다 — Plan 머리의 「Key decisions」. 본문의 예는 온-프레미스로 쓰되 「온-프레미스에서만」으로 쓰지 않는다
+- 양방향은 저절로지만 곧바로라는 뜻이 아니다. 파일 공유를 Azure 쪽에서 직접 바꾸면 변경 감지 작업이 찾아낸 뒤에 서버로 간다 — Plan 「Management concepts」의 Important. **「실시간」, 「곧바로」로 쓰지 않는다.** 주기의 값은 쓰지 않는다
+- **쓰지 않는 것**: Storage Sync Service·동기화 그룹·엔드포인트라는 이름, Windows Server 판, 개수 한도, 다른 도구와의 조합
+- 한국어 표기: **Azure 파일 동기화**, Azure 파일 공유, 에이전트, 동기화. 아래 표기 정리
+
+쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`, D73
+
+## (phase 104) Azure File Sync — Cloud tiering overview
+https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-cloud-tiering-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-09. 사본: `docs-file-sync-cloud-tiering-overview.md`와 `ko-` 판.
+
+- 클라우드 계층화는 고를 수 있는 기능이고, 서버에 필요한 저장 공간을 줄인다 — 머리글
+- 자주 쓰는 파일만 서버에 두고, 드물게 쓰는 파일은 이름과 폴더 구조만 서버에 남기고 내용을 Azure 파일 공유에 둔다. 그 파일을 열면 Azure 파일 공유에서 가져온다 — 머리글
+- 서버의 여유 공간이나 마지막으로 쓴 날을 기준으로 정책을 정한다 — 「Cloud tiering policies」. 정책의 이름과 값은 쓰지 않는다
+- **Blob 액세스 계층과 다른 말이라는 근거**: 이 문서가 옮기는 자리는 서버와 Azure 파일 공유 사이이고, 「Access tiers for blob data」가 정하는 것은 스토리지 계정 안 Blob의 핫·쿨·콜드·보관이다. 이 문서가 둘을 직접 견주는 문장은 없다 — **두 문서의 사실을 나란히 놓은 것**이라 「File Sync 문서가 다르다고 한다」로 쓰지 않는다
+- 이 문서는 자주 쓰는 파일과 드물게 쓰는 파일을 hot·cool로도 부른다. Blob 계층 이름과 헷갈리므로 **본문은 핫·쿨을 쓰지 않고 「자주 쓰는 파일」·「나머지 파일」로 쓴다**
+- 한국어 표기: **클라우드 계층화**. 이 문서 한국어판은 제목만 「클라우드 티어링」이고 절 제목과 본문은 「클라우드 계층화」다. What is 한국어판도 둘이 섞였고, Learn 단원 7 한국어판은 「클라우드 계층화」다. 그래서 「클라우드 티어링」은 쓰지 않는다
+
+쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`
+
+## (phase 104) Azure Migrate — What is Azure Migrate?
+https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-05-19. 사본: `docs-migrate-services-overview.md`와 `ko-` 판.
+
+- Azure로 옮길지 정하고 계획하고 실행하는 일을 돕는 서비스다. 준비 상태와 비용을 평가하고 실제 이전까지 한다 — 머리글
+- 포털 하나에서 시작하고 진행하고 지켜본다 — 「Benefits」의 Unified migration platform. **허브와 「한곳에서 지켜본다」의 근거다**
+- 허브에서 평가·이전하는 것: 서버, 데이터베이스, 웹 앱, 그리고 Data Box 제품으로 옮기는 큰 데이터 — 「Benefits」. 머리글은 가상 데스크톱도 든다. **본문은 「서버·데이터베이스·웹 앱 같은 것」으로 쓰고 전부인 것처럼 쓰지 않는다**
+- 순서: 먼저 무엇이 있는지 찾고(검색), 평가로 Azure 준비 상태·크기·비용·서버 사이 의존성을 보고, 그다음 실행 단계에서 옮긴다 — 「Migration phases」의 Decide·Plan·Execute. **본문은 「검색 및 평가 → 마이그레이션」 둘로 줄여 쓴다.** 비즈니스 사례는 쓰지 않는다
+- 통합 도구의 현행 이름: **Discovery and Assessment**(검색 및 평가), **Migrate and Modernize**(마이그레이션 및 현대화). 데이터베이스·웹 앱 도구와 **Azure Data Box**도 표에 있다 — 「Integrated tools and features」. Learn 단원 6의 「Server Migration」, 덤프의 「Server Assessment」는 옛 이름이다
+- **Data Box와의 관계**: Data Box는 Azure Migrate 허브의 통합 도구이기도 하다. 그러므로 guide의 「데이터를 옮기는 서비스가 아니라」로 단정하지 않는다. **「Azure Migrate는 무엇을 옮길지 평가하고 이전을 묶는 허브이고, Data Box는 큰 데이터를 장치에 담아 옮기는 서비스이며 허브에서 고를 수 있는 도구의 하나다」** 로 쓴다
+- **쓰지 않는 것**: 「실시간」(이 문서는 쓰지 않고 「가동 중지 시간과 위험을 줄여」로 쓴다), ISV 도구(SDC 표), Azure Copilot 에이전트(미리 보기), 어플라이언스, Movere(지원 종료), 무료라는 것, 대상 서비스 이름
+- 한국어 표기: Azure Migrate(이 문서는 이름을 옮기지 않는다), 허브, 검색 및 평가, 마이그레이션 및 현대화, 마이그레이션, 평가
+
+쓰인 곳: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`, `DataMoveOptionsTable`, G45
+
+## (phase 104) Azure Data Box — What is Azure Data Box?
+https://learn.microsoft.com/en-us/azure/databox/data-box-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-24. 사본: `docs-data-box-overview.md`와 `ko-` 판.
+
+- 큰 데이터를 Azure로 가져오거나 Azure에서 내보내려고 Microsoft가 전용 저장 장치를 지역 배송 업체로 보내 주는 서비스다 — 머리글
+- 네트워크 연결이 없거나 제한된 곳의 큰 데이터에 맞고, 일회성·주기적이거나 처음에 대량으로 옮긴 뒤 네트워크로 이어 보낼 수 있다 — 「Use cases」
+- 가져오기의 쓰임: 일회성 이전, 처음 한 번의 대량 전송, 주기적 업로드 — 「Use cases」
+- 내보내기의 쓰임: 재해 복구, 정부·보안 요구, 온-프레미스나 다른 클라우드로 되돌아가기 — 「Use cases」
+- **가져오기 흐름**: 포털에서 배송 정보와 대상 스토리지 계정을 적어 주문 → 받아서 전원과 네트워크를 연결하고 설정한 뒤 복사할 컴퓨터에 공유를 탑재 → 데이터를 복사 → 돌려보냄 → Azure 데이터 센터에서 스토리지 계정으로 저절로 복사되고 디스크를 지움 — 「The workflow」
+- **내보내기 흐름**: 포털에서 원본 스토리지 계정을 적어 주문 → **Microsoft가 데이터를 장치에 담은 뒤 보냄** → 받아서 연결하고 공유를 탑재 → 장치에서 서버로 복사 → 돌려보냄 → 디스크를 지움 — 「The workflow」
+- 장치의 데이터는 언제나 암호화되어 있고 포털의 암호로만 열린다 — 「Benefits」. 설정에 쓰는 것은 장치의 로컬 웹 UI다 — 「Data Box components」
+- **용량은 쓰지 않는다.** 이 문서 안에서도 120TB·525TB 판과 80TB 판의 설명이 나뉘어 있고, Data Box Heavy는 지원이 끝났으며 80TB 장치도 차례로 끝난다 — 머리글의 Note. 이것은 **어긋난다는 처리로만** 남긴다(guide 「배경」). 「40TB」 같은 알맞은 크기 값, 속도, 무게도 쓰지 않는다
+- **쓰지 않는 것**: Data Box Heavy, 지우는 표준의 이름, 장치 사양, 파트너 제품, 지역 간 업로드 조건
+- 한국어 표기: Azure Data Box, **Data Box 디바이스**(이 문서 한국어판이 일관되게 쓴다. 처음 쓰는 자리에서 「저장 장치」로 푼다), 가져오기·내보내기, 로컬 웹 UI. 「지역 이동 통신 사업자」는 오역이라 **지역 배송 업체**로 쓴다
+
+쓰인 곳: `azure-data-movement.data-box`, `DataBoxDiagram`, `DataMoveOptionsTable`, G46
+
+## (phase 104) Azure Data Box — Tutorial: Create export order
+https://learn.microsoft.com/en-us/azure/databox/data-box-deploy-export-ordered
+
+확인한 날 2026-11-01. 「Last updated on」 2025-04-22. 사본: `docs-data-box-deploy-export-ordered.md`와 `ko-` 판.
+
+- 내보내기 주문의 주된 까닭은 온-프레미스 저장소가 손상됐을 때의 복구다 — 머리글
+- 주문하면 Microsoft가 장치를 준비해 지역 배송 업체로 보낸다. 받는 쪽은 데이터 센터 네트워크에 연결한 컴퓨터로 장치에서 복사한다 — 「For device」, 「Track the order」
+- 보관 계층의 Blob은 내보낼 수 없어 먼저 리하이드레이션해야 한다 — 「Track the order」의 Note. **쓰려면 한 줄로만 쓴다**(앞 주제 `archive-rehydration`과 이어진다). 쓰지 않아도 된다
+- 한국어 표기: 내보내기 주문
+
+쓰인 곳: `azure-data-movement.data-box`, `DataBoxDiagram`
+
+## (phase 104) Azure Storage — Migrating your data to Azure - overview
+https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-transfer-solution
+
+확인한 날 2026-11-01. 「Last updated on」 2025-09-25. 사본: `docs-storage-common-choose-data-transfer.md`와 `ko-` 판.
+
+- 상황별 도구 표 — 「Select migration tools」: 네트워크가 없거나 낮은 대역폭의 오프라인 전송은 Data Box. 빠르고 작거나 중간 규모의 전송과 스크립트로 세밀하게 다루는 일은 AzCopy. 물리 서버와 VM은 Azure Migrate. Windows 파일 서버, 양방향 동기화, 온-프레미스 캐시와 클라우드 계층화는 Azure File Sync. **표 `DataMoveOptionsTable`의 「알맞은 때」 근거다**
+- **Data Box가 맞지 않는 때의 근거**: 이 표가 작거나 중간 규모의 온라인 전송에 AzCopy를 고르고, Data Box 개요가 네트워크가 제한된 큰 데이터에 맞다고 하므로, 「네트워크로 보낼 만한 작은 데이터면 AzCopy 같은 온라인 도구가 맞다」로 쓴다. 「Data Box를 쓸 수 없다」로 쓰지 않는다
+- 이 표에는 Storage Explorer 행이 없다. Storage Explorer의 「알맞은 때」는 위 Storage Explorer 항목(화면에서 올리고 내려받기)에서 가져온다
+- 이 표의 크기 경계 값은 쓰지 않는다. Azure Storage Mover, Data Box Gateway, robocopy 같은 이름은 학습 가이드의 줄 밖이라 쓰지 않는다
+- 한국어 표기: 온라인·오프라인 전송, 마이그레이션
+
+쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.data-box`, `DataMoveOptionsTable`, G44
+
+## (phase 104) 한국어 표기 정리 — `azure-data-movement`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 104 step 5). 근거는 `azure-storage`의 표기 정리와 같다 — Microsoft 한국어 문서의 표기를 따르고, 문서가 이름을 옮기지 않으면 그대로 둔다.
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `azcopy` | **AzCopy** | 「AzCopy 시작」 제목 |
+| `storage-explorer` | **Azure Storage Explorer** | Learn 단원 7 한국어판. 제품 문서 제목은 줄여 Storage Explorer로 쓴다 |
+| `file-sync` | **Azure 파일 동기화(Azure File Sync)** | 「Azure 파일 동기화란?」 제목과 Learn 단원 4·7, Azure Files 소개·계획 한국어판이 모두 이 이름이다. 영문 이름이 달라 괄호에 둔다(guide 「예시 값」). 학습 가이드와 덤프는 영문으로 쓰므로 두 이름을 함께 세운다 |
+| `azure-migrate` | **Azure Migrate** | 「Azure Migrate란?」 제목. Learn 한국어판 괄호의 「Azure 마이그레이션」은 쓰지 않는다 |
+| `data-box` | **Azure Data Box** | 「Azure Data Box란?」 제목 |
+
+이름과 낱말:
+
+- **`file-sync`의 다음 자리**: 본문·문제문·표·시나리오 버튼은 **Azure 파일 동기화**로 쓰고, 영문은 개념 이름과 처음 쓰는 자리의 괄호에만 둔다. 앞 개념 `azure-storage.azure-files`는 「Azure File Sync」로 적어 두었다(step 2). 영문이 괄호에 함께 있어 이어 읽히므로 그 글은 고치지 않는다
+- **도식의 노드**: Windows 파일 서버, **Azure 파일 공유**(guide의 잠정 「Azure Files 파일 공유」 대신), 검색 및 평가, 마이그레이션, **Data Box 디바이스**(guide의 잠정 「Data Box 장치」 대신), **스토리지 계정**(guide의 잠정 「Azure 스토리지」 대신 — 흐름의 대상이 대상 스토리지 계정이다), 온-프레미스 데이터
+- **낱말**: 명령줄, 원본, 대상, 동기화, 단방향·양방향(본문은 「한 방향」·「양쪽으로」로 풀어도 된다), 독립 실행형 앱, 캐시, 에이전트, 클라우드 계층화, 마이그레이션, 허브, 대역폭, 가져오기, 내보내기, 로컬 웹 UI, 지역 배송 업체
+
+**쓰지 않는 이름**: Azure Storage Mover, Data Box Heavy, Data Box Gateway, Server Migration, Server Assessment, Movere, Storage Sync Service, 동기화 그룹, 클라우드·서버 엔드포인트, 클라우드 티어링, 소스, 이동 통신 사업자.
+

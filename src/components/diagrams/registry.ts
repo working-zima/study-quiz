@@ -1,8 +1,10 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
+import { AccessTierDiagram } from './AccessTierDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
+import { ArchiveRehydrationDiagram } from './ArchiveRehydrationDiagram'
 import { ArpCacheDiagram } from './ArpCacheDiagram'
 import { ArpExchangeDiagram } from './ArpExchangeDiagram'
 import { ArpHopsDiagram } from './ArpHopsDiagram'
@@ -11,6 +13,7 @@ import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
+import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
@@ -27,6 +30,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DataBoxDiagram } from './DataBoxDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
@@ -56,10 +60,13 @@ import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FileShareDiagram } from './FileShareDiagram'
+import { FileSyncDiagram } from './FileSyncDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
+import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
@@ -87,6 +94,7 @@ import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
+import { LrsZrsDiagram } from './LrsZrsDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
@@ -146,6 +154,7 @@ import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
+import { StorageAccountDiagram } from './StorageAccountDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
@@ -174,7 +183,9 @@ import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
+import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
+import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -390,6 +401,16 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-network-protection.security-rules': NsgRuleOrderDiagram,
   'azure-network-protection.azure-firewall': FirewallHubDiagram,
   'azure-network-protection.ddos-protection': DdosProtectionDiagram,
+  'azure-storage.access-tiers': AccessTierDiagram,
+  'azure-storage.archive-rehydration': ArchiveRehydrationDiagram,
+  'azure-storage.azure-files': FileShareDiagram,
+  'azure-storage.storage-redundancy': LrsZrsDiagram,
+  'azure-storage.geo-redundancy': [GeoRedundancyDiagram, RedundancyOptionsTable],
+  'azure-storage.storage-accounts': StorageAccountDiagram,
+  'azure-storage.account-types': StorageAccountTypesTable,
+  'azure-data-movement.file-sync': FileSyncDiagram,
+  'azure-data-movement.azure-migrate': AzureMigrateDiagram,
+  'azure-data-movement.data-box': [DataBoxDiagram, DataMoveOptionsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
