@@ -42,6 +42,16 @@ phase 102 step 4가 `azure-resource-hierarchy` 주제(리소스 계층)가 쓸 �
 Learn 단원 6 항목에 덧붙인 줄은 끝에 `(phase 102)`를 달았다. 단원 6과 현행 Azure Resource Manager 문서가 어긋나는 곳은 단원 6 항목의 「현행 문서와 다름」 줄에 모았다.
 Azure 역할 기반 액세스 제어(Azure RBAC)·Azure Policy·태그는 다른 주제의 몫이라 이 주제가 한 줄로 풀 근거와 덤프 처리에 쓸 사실만 적었다.
 
+phase 103 step 0이 `azure-compute` 주제(컴퓨팅과 앱 호스팅)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-resource-hierarchy`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(Learn 「Describe Azure compute services」 단원 2·6, 「Virtual machines in Azure」, Functions 문서 둘, 「What are Virtual Machine Scale Sets?」, 「What is a container?」, 「App Service overview」, 「Azure REST API reference」)에 덧붙인 줄은 끝에 `(phase 103)`을 달았다.
+**Learn 단원 2가 phase 100 뒤에 바뀌었다** — 확장 집합·가용성 집합 절(「Scale and resiliency options for VMs」)과 VM 크기 계열 표가 들어왔다. 크기 계열 표·크기 이름 읽는 법·SLA 수치는 확인만 하고 「쓰지 않는다」로 적었다(guide 「배경」).
+VM에 꼭 있어야 하는 리소스와 선택인 리소스는 VM 개요의 표가 아니라 「Virtual networks and virtual machines in Azure」의 글로 갈랐다 — 표는 VM을 만들 때 함께 생기는 리소스를 늘어놓을 뿐 필수 여부를 말하지 않는다.
+아직 개념이 없어 「쓰일 곳」으로 적고, 그 개념을 만든 step이 「쓰인 곳」으로 고친다.
+
+phase 103 step 5가 `azure-virtual-networking` 주제(가상 네트워크와 연결)가 쓸 사실을 확인하며 더한 항목은 맨 아래 「한국어 표기 정리 — `azure-compute`」 다음에 모았다(확인한 날 2026-10-31).
+앞 항목(ExpressRoute 소개, Azure DNS 개요, 가상 네트워크 개요)에 덧붙인 줄은 끝에 `(phase 103)`을 달았다. Learn 네트워킹 단원은 새 모듈 「Describe Azure networking services」로 옮겨져 새 항목으로 두었다.
+**설계와 달라진 사실 하나**: VNet 간 VPN 트래픽은 인터넷이 아니라 Microsoft 백본으로 다닌다(「VPN Gateway FAQ」 항목). 그래서 피어링과 VNet 간 VPN은 지나는 길이 아니라 **게이트웨이와 암호화 터널이 있는가**로 갈린다.
+
 ---
 
 ## (phase 100) AZ-900 공식 학습 가이드 — Skills measured as of July 20, 2026
@@ -272,6 +282,28 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(VM을 푸는 한 줄 — Azure 안에서 실행되는 서버이고, 서버 장비를 사서 관리하지 않고도 운영 체제와 프로그램을 골라 쓴다), az048 해설
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다 — 단원에 「VM resources and sizing」의 크기 계열 표와 「Scale and resiliency options for VMs」 절이 새로 들어와 있다. (phase 103)
+
+- VM이 맞는 경우는 셋이다 — 운영 체제를 통째로 통제해야 할 때, 직접 만든 소프트웨어를 실행해야 할 때, 호스팅 구성을 직접 정해야 할 때 — 「첫 문단」 (phase 103)
+- 미리 만들어 둔 이미지로 VM을 빨리 배포한다. 이미지는 운영 체제와 도구(예: 웹 호스팅 구성 요소)가 이미 들어 있는 틀이다 — 「첫 문단」 (phase 103)
+- 쓰임 다섯 — 테스트와 개발(여러 운영 체제·앱 구성을 빨리 만들고 끝나면 VM을 지운다), 클라우드 앱 호스팅(Azure에서 앱을 실행하고 수요에 따라 용량을 늘리고 줄인다), 데이터 센터 확장(온-프레미스 네트워크를 Azure로 넓혀 이어진 가상 네트워크에서 워크로드를 실행한다),
+  재해 복구(주 사이트를 쓸 수 없을 때 Azure에 둔 대체 용량으로 중요한 워크로드를 실행한다), 리프트 앤 시프트 마이그레이션(앱을 거의 다시 설계하지 않고 기존 서버 워크로드를 옮긴다) — 「Examples of when to use VMs」 (phase 103)
+- VM을 만들 때 고르는 것은 크기(용도·프로세서 코어 수·RAM 양), 스토리지 디스크, 네트워킹(가상 네트워크·공용 IP 주소·포트 구성)이다. **고르는 설정의 목록이고, 공용 IP 주소가 꼭 있어야 한다는 말이 아니다**(필수 여부는 아래 「Virtual networks and virtual machines in Azure」 항목) — 「VM resources and sizing」 (phase 103)
+- vCPU는 가상 CPU다. vCPU 수는 VM이 한꺼번에 해낼 수 있는 계산의 양에, RAM은 VM이 메모리에 올려 두고 일할 수 있는 데이터의 양에 영향을 준다 — 「Understand VM size families and names」 (phase 103)
+- 같은 절의 크기 계열 표(B·D·E·F·M·L·N 시리즈)와 크기 이름 읽는 법은 확인만 했다. **쓰지 않는다**(guide 「배경」 — 「크기는 용도와 vCPU 수·메모리로 고른다」까지만) (phase 103)
+- VM은 한 대로도 실행하고(테스트·개발·작은 일), 여러 대를 묶어 고가용성·확장성·중복성을 얻기도 한다. Azure는 그 묶음을 확장 집합·가용성 집합 같은 기능으로 관리한다 — 「Scale and resiliency options for VMs」 (phase 103)
+- 가상 머신 확장 집합은 같은 구성이고 부하가 분산되는 VM 무리를 만들고 관리하게 한다. 확장 집합이 없으면 VM 구성을 손으로 맞추고, 사용률을 지켜보고, 인스턴스 수를 손으로 바꿔야 한다. 확장 집합은 구성을 한곳에 모으고, 수요나 일정에 따라 저절로 스케일 아웃·스케일 인하며, 부하 분산과 함께 동작해 트래픽을 나눈다 — 「Virtual machine scale sets」 (phase 103)
+- 가상 머신 가용성 집합은 한 지역 안에서 VM의 복원력을 높인다 — 유지 관리 한 번이나 하드웨어 고장 하나가 모든 VM에 미칠 가능성을 줄인다. VM을 **업데이트 도메인**(계획된 유지 관리 때 함께 다시 부팅될 수 있는 VM)과 **장애 도메인**(전원이나 네트워크의 고장 지점을 함께 쓰는 VM)으로 나눈다 — 「Virtual machine availability sets」 (phase 103)
+- 가용성 집합은 VM 수준의 중복에 쓴다. 가용성 영역을 지원하는 지역에서는 장애를 더 넓게 격리하는 영역 기반 설계를 흔히 더 낫게 본다. 가용성 집합 자체에는 비용이 없고 VM 인스턴스 값만 낸다 — 같은 절 (phase 103)
+- 한국어 표기: 단원 제목 「Azure 가상 머신 설명」, Azure Virtual Machines → Azure VM(Virtual Machines), image → 이미지, total control over the OS → OS(운영 체제)에 대한 완전한 제어, custom software → 사용자 지정 소프트웨어, datacenter extension → 데이터 센터 확장, disaster recovery → 재해 복구, lift and shift migration → 리프트 앤 시프트 마이그레이션,
+  vCPU → vCPU(가상 CPU), Virtual machine scale sets → 절 제목은 영문 그대로, 본문 「가상 머신 확장 집합」·「확장 집합」, Virtual machine availability sets → 가상 머신 가용성 집합·가용성 집합, update domain → 업데이트 도메인, fault domain → 장애 도메인, availability zones → 가용성 영역 (phase 103)
+
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), D51
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), az058~az060 해설, G27·G28
+
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(VM 행)
+
 ## (phase 100) Azure Virtual Machines — Virtual machines in Azure
 https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 
@@ -281,6 +313,26 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 - Azure VM은 그 VM을 실행하는 물리 하드웨어를 사서 유지하지 않고도 가상화의 유연성을 준다. 대신 구성·패치·소프트웨어 설치 같은 VM 관리는 쓰는 쪽이 계속 한다 — 「둘째 문단」
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(가상 머신), `azure-cloud-computing.serverless`(VM과의 차이), D1, G1
+
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받고 `ko-docs-virtual-machines-overview.md`를 새로 받았다(사본의 「Last updated on」 뒤 날짜는 비어 있다). (phase 103)
+
+- 다른 선택지보다 컴퓨팅 환경을 더 많이 통제해야 할 때 흔히 VM을 고른다 — 「첫 문단」 (phase 103)
+- VM을 만들면 VM을 받쳐 주는 리소스도 함께 만들어지고, 그 리소스에는 저마다 비용이 붙을 수 있다 — 「Parts of a VM and how they're billed」 (phase 103)
+- 그 표의 리소스와 쓰임: 가상 네트워크(VM이 다른 리소스와 통신하게 한다), 가상 네트워크 인터페이스 카드(NIC — 가상 네트워크에 잇는다), 개인 IP 주소와 때로 공용 IP 주소(자기 네트워크와 바깥 네트워크에서 통신하고 데이터를 주고받는다),
+  네트워크 보안 그룹(NSG — VM으로 오가는 트래픽을 다룬다. 예: 어떤 포트는 열고 어떤 포트는 막는다), OS 디스크와 경우에 따라 데이터를 둘 디스크 따로, 경우에 따라 운영 체제 라이선스 — 같은 표 (phase 103)
+- 데이터는 운영 체제와 다른 디스크에 두는 것이 좋다 — VM이 고장 나면 데이터 디스크를 떼어 새 VM에 붙일 수 있다 — 같은 표 (phase 103)
+- 새 VM에는 모두 OS 디스크가 있다(로컬 임시 디스크도 함께 생기지만 이 주제에서는 쓰지 않는다). 데이터 디스크는 「경우에 따라 따로」 둔다 — 같은 표의 비용 칸 (phase 103)
+- NIC에는 따로 비용이 없고, 네트워크 보안 그룹에도 추가 요금이 없다. 가상 네트워크·IP 주소·디스크·라이선스는 저마다 가격 쪽을 가리킨다. **그래서 「모든 리소스에 비용이 붙는다」로 쓰지 않고 「비용이 따로 붙을 수 있다」로 쓴다.** 금액은 쓰지 않는다 — 같은 표 (phase 103)
+- 이 리소스들은 기본으로 VM과 같은 리소스 그룹에 만들어진다 — 같은 절 마지막 문장 (phase 103)
+- 확장 집합의 VM은 여러 가용성 영역에, 한 영역에, 또는 영역을 정하지 않고(지역) 배포할 수 있다 — 「Availability」(같은 절의 99.99% 수치는 쓰지 않는다) (phase 103)
+- **이 표는 필수 여부를 말하지 않는다.** 표 제목이 「기본으로 만들어지는 리소스」일 뿐이고, 무엇이 꼭 있어야 하는지는 「Virtual networks and virtual machines in Azure」 항목을 따른다 (phase 103)
+- 한국어 표기: virtual network → 가상 네트워크, virtual Network Interface Card (NIC) → 가상 네트워크 인터페이스 카드(NIC), private IP address → **개인 IP 주소**, public IP address → **공용 IP 주소**, Network security group (NSG) → NSG(네트워크 보안 그룹), OS disk → OS 디스크(「운영 체제 디스크」도 섞였다), data disk → 데이터 디스크, resource group → 리소스 그룹 (phase 103)
+
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `VmResourcesDiagram`, D51·D57
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(영역에 나눠 배포 — 여러 가용성 영역에 걸쳐 만드는 것만 썼다. 한 영역에만 두거나 영역을 정하지 않는 선택지는 쓰지 않았다)
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`(네트워크 보안 그룹에 추가 요금이 없다)
 
 ## (phase 100) Learn 「Describe Azure storage services」 — 4 Describe Azure storage services
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/4-describe-azure-storage-services
@@ -317,8 +369,18 @@ https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction
 
 - ExpressRoute는 회사 네트워크를 통신 사업자를 거쳐 사설 연결로 Microsoft 클라우드에 잇는다. 이 연결은 공용 인터넷을 지나지 않는다 — 「첫 두 문단」
 - 이 주제에서는 ExpressRoute를 쓰지 않는다. 「클라우드를 쓰려면 인터넷 연결이 반드시 있어야 한다」를 단정하지 않을 근거로만 적는다
+- 사본 `ko-docs-expressroute-expressroute-introduction.md`도 받았다(확인한 날 2026-10-31) (phase 103)
+- 공용 인터넷을 지나지 않아서 보통의 인터넷 연결보다 안정적이고, 빠르고, 대기 시간이 고르고, 보안이 높다 — 「첫 두 문단」 (phase 103)
+- 이 문서는 ExpressRoute를 Layer 3 연결이라고 적는다(덤프 NO.119의 답과 같다). **계층은 쓰지 않는다**(guide 「배경」) — 「Key benefits」·「Layer 3 connectivity」 (phase 103)
+- BGP는 업계 표준인 동적 라우팅 프로토콜이고, Microsoft는 이것으로 온-프레미스 네트워크·Azure의 인스턴스·Microsoft 공용 주소 사이의 경로를 주고받는다 — 「Layer 3 connectivity」 (phase 103)
+- 회로 하나는 Microsoft 쪽 에지 라우터 둘로 가는 연결 둘로 되어 있고, 연결 공급자도 중복된 장치를 쓴다. 가장 높은 복원력에는 두 피어링 위치에 회로 둘을 권장한다 — 「Redundancy」·「Resiliency」 (phase 103)
+- 닿는 곳은 Azure 서비스와 Microsoft 365 서비스다. **다만 Microsoft 365는 인터넷으로 쓰도록 만들어졌다며 ExpressRoute를 특정 상황에만 권한다.** 그래서 「Microsoft 365에도 닿을 수 있다」까지 쓰고, 권하는 것처럼 쓰지 않는다 — 「Connectivity to Microsoft cloud services」 (phase 103)
+- 이 문서는 모든 지역으로 넓히는 연결을 premium add-on이 맡는다고 하고, Learn 단원 4는 같은 줄을 Global Reach로 적는다. **Global Reach는 Learn 단원 4의 「온-프레미스 사이트끼리」 뜻으로만 쓴다**(요금제 이름 premium은 쓰지 않는다) — 「Key benefits」 (phase 103)
+- 한국어 표기: ExpressRoute(옮기지 않는다), ExpressRoute 회로, 연결 공급자, 프라이빗 연결 (phase 103)
+- 피어링 위치 하나로 이으면 같은 지정학적 지역 안의 지역들에 닿는다. 이 문서의 예는 암스테르담에서 이어 북유럽·서유럽에 닿는 것이다. **지정학적 지역을 「유럽처럼 지역 여럿을 넓게 묶은 범위」로 푸는 근거로 쓴다** — 「Connectivity to all regions within a geopolitical region」 (phase 103)
 
 쓰인 곳: D7
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(프라이빗 연결, 공용 인터넷을 지나지 않아 생기는 이점, BGP, 회로 안의 연결 둘, Microsoft 365에도 닿는다, 지정학적 지역을 푸는 한 줄), `ExpressRouteDiagram`, az076·az077 해설
 
 ## (phase 100) Cloud Adoption Framework — Cost efficiency (Shift from a CapEx model to an OpEx model)
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform/cost-efficiency
@@ -475,6 +537,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 
 쓰인 곳(phase 101 step 4): `azure-sla-lifecycle.sla`(Azure의 가동 시간 보장은 서비스마다 다르고 SLA에 담긴다 — 서비스마다 SLA가 따로 있다는 문단)
 
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(고가용성을 푸는 한 줄 — 장애가 나도 서비스를 쓸 수 있는 시간을 가장 길게 지키는 것)
+
 ## (phase 100) Learn 「Describe Azure compute services」 — 6 Describe Azure Functions
 https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/6-functions
 
@@ -490,6 +554,16 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
 
 쓰인 곳: `azure-cloud-computing.serverless`, D1, G5
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다 — 본문은 phase 100 때와 같다. (phase 103)
+
+- 함수는 상태 비저장(기본)이거나 상태 저장이다. 상태 비저장이면 이벤트에 응답할 때마다 처음부터 다시 시작하는 것처럼 동작하고, 상태 저장(**Durable Functions**)이면 런타임이 함수에 맥락을 넘겨 앞의 활동을 추적한다 — 「Benefits of Azure Functions」 (phase 103)
+- Functions는 어떤 코드든 실행하는 일반 컴퓨팅 플랫폼이기도 하다. 앱의 요구가 바뀌면 프로젝트를 서버리스가 아닌 환경에 배포할 수 있고, 그러면 크기 조정을 직접 다루고 가상 네트워크에서 실행하고 함수를 완전히 격리할 수도 있다 — 같은 절 (phase 103)
+- **「CPU 시간에만 요금」은 이 단원의 한 줄이다.** 아래 「Azure Functions hosting options」의 「Billing」은 요금제마다 다르게 청구한다고 한다 — 서버리스 요금제(Flex Consumption·Consumption)에서는 실행할 때 쓴 만큼 내지만, Premium은 늘 한 인스턴스 이상을 데워 두어 그 값을 내고, Dedicated는 App Service 요금제 값을 낸다.
+  그래서 요금은 **「서버리스 요금제에서는」으로 한정해** 「실행되는 동안 쓴 만큼 낸다」로 쓴다. 「CPU 시간에만」을 모든 Functions에 일반화하지 않는다 — 같은 절과 호스팅 옵션 「Billing」 대조 (phase 103)
+- 한국어 표기: stateless → 상태 비저장, stateful → 상태 저장, Durable Functions(옮기지 않는다), REST request → REST 요청, timer → 타이머, trigger → 트리거(「트리거될 때」) (phase 103)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(트리거의 종류 셋·몇 초 안의 일·저절로 늘어남·끝나면 리소스를 놓음·서버리스 요금제로 한정한 요금·상태 비저장과 Durable Functions·서버리스가 아닌 환경으로 옮김), `FunctionTriggerDiagram`, `HostingOptionsTable`(Functions 행), D53·D55·G30
+
 ## (phase 100) Azure Functions — What is Azure Functions?
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
 
@@ -501,6 +575,12 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview
 - 한국어 표기: serverless solution → 서버리스 솔루션
 
 쓰인 곳: `azure-cloud-computing.serverless`, D1
+
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받았다. (phase 103)
+
+- 트리거와 바인딩이 함수를 다른 서비스에 이어 준다. 예: HTTP 트리거로 웹 앱이 부를 REST 끝점을 만들고, Durable Functions로 함수 여러 개를 이어 이벤트 기반 워크플로를 만든다 — 「Scenarios」 (phase 103)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(이벤트의 흔한 예인 REST 요청, Durable Functions), `FunctionTriggerDiagram`
 
 ## (phase 100) Azure Functions — Azure Functions hosting options
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
@@ -517,6 +597,13 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
 - 한국어 표기: Flex Consumption plan → Flex 소비 계획, Consumption plan → 소비 계획(「사용량 계획」·「사용량 플랜」도 섞여 있다)
 
 쓰인 곳: `azure-cloud-computing.serverless`(「실행한 만큼 낸다」의 근거 — 서버리스 요금제에서)
+
+다시 확인한 날 2026-10-31. 영문 사본의 「Billing」을 다시 읽었다. (phase 103)
+
+- Premium 요금제는 필요한 인스턴스와 미리 데워 둔 인스턴스의 코어 초·메모리로 청구하고, **요금제마다 적어도 한 인스턴스를 늘 데워 둔다**. Dedicated 요금제는 같은 App Service 요금제의 웹 앱과 똑같이 낸다. Flex Consumption은 늘 준비해 둔 인스턴스를 두면 그 값도 낸다 — 「Billing」
+  그래서 「이벤트가 없으면 요금이 없다」는 서버리스 요금제(그것도 늘 준비해 둔 인스턴스를 두지 않을 때)에만 맞다. 도식·표에서 Functions의 요금을 그릴 때는 「서버리스 요금제에서」라는 한정을 같이 쓴다 (phase 103)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(요금의 한정), `FunctionTriggerDiagram`(이벤트가 없을 때의 요금 캡션 — 곁말에는 쓰지 않았다), G30. `HostingOptionsTable`에는 요금을 쓰지 않았다
 
 ## (phase 100) Azure Virtual Machines — States and billing status of Azure Virtual Machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing
@@ -775,6 +862,19 @@ https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
 
 쓰일 곳(phase 102): 근거 기록 — [덤프 NO.423]의 답(확장 집합에 배포하는 것만으로는 데이터 센터 장애에 대비되지 않는다)이 맞는지 대조했다. 확장 집합은 `azure-compute` 주제의 몫이라 이 주제의 개념 글에는 쓰지 않는다
 
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다. (phase 103)
+
+- 확장 집합의 이점 넷 — VM 여러 대를 쉽게 만들고 관리한다, VM을 가용성 영역이나 장애 도메인에 나눠 고가용성과 복원력을 준다, 수요에 따라 앱이 저절로 크기를 바꾼다, 큰 규모로 동작한다 — 「첫 문단」 (phase 103)
+- 앱의 성능을 고르게 하려면 VM 크기·디스크 구성·설치한 앱이 모든 VM에서 같아야 한다. 확장 집합에서는 모든 VM 인스턴스를 같은 기본 OS 이미지와 구성으로 만든다 — 「Easy to create and manage multiple VMs」 (phase 103)
+- 단, 유연한 오케스트레이션 모드는 서로 다른 VM 유형을 섞어 쓰는 경우도 지원한다고 한다. **「같은 구성」은 확장 집합의 기본 쓰임으로 쓰고, 「확장 집합의 VM은 언제나 똑같다」로 일반화하지 않는다** — 「첫 부분」(오케스트레이션 모드의 세부는 쓰지 않는다) (phase 103)
+- 앱 사용자는 부하 분산 장치를 거쳐 앱 인스턴스 가운데 하나로 요청을 보낸다. VM 인스턴스 하나에 문제가 생겨도 다른 인스턴스로 계속 앱에 닿는다 — 「Why use Virtual Machine Scale Sets?」·「Provides high availability and application resiliency」 (phase 103)
+- 수요가 줄면 불필요한 VM을 줄여 비용을 아끼고, 늘면 VM을 더해 성능을 지킨다 — 「Allows your application to automatically scale …」 (phase 103)
+- 확장 집합 자체에는 추가 비용이 없다. 확장 집합이 쓰는 컴퓨팅·네트워크·스토리지 리소스에 대해 낸다 — 「Cost-effective service」 (phase 103)
+- 인스턴스 수의 상한(1,000·600)은 확인만 했다. 쓰지 않는다 (phase 103)
+- 한국어 표기: 제목 「가상 머신 확장 집합이란?」 — 본문은 「확장 집합」, load balancer → 부하 분산 장치, fault domain → 장애 도메인 (phase 103)
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(같은 구성 — VM 크기·디스크·설치한 앱이 같아야 성능이 고르다, 「언제나 똑같다」로 쓰지 않았다 / 요청이 부하 분산 장치를 거쳐 여러 VM으로, 한 대가 문제여도 다른 VM으로, 수요에 따른 증감과 비용, 추가 비용 없음, 확장 집합만으로는 데이터 센터 장애에 대비되지 않음), `ScaleSetDiagram`, az058 해설, D56·G28
+
 ## (phase 101) Azure reliability — What are business continuity, high availability, and disaster recovery?
 https://learn.microsoft.com/en-us/azure/reliability/disaster-recovery-overview
 
@@ -836,6 +936,8 @@ https://learn.microsoft.com/en-us/azure/reliability/regions-overview
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`(데이터 센터 하나 이상과 저지연 네트워크, 지리와 데이터 상주, 지역을 고를 때 따질 것 셋, 비지역 서비스가 있고 Microsoft Entra ID는 데이터를 둘 지리를 고르게 한다), az040·az041 해설, `AzureRegionDiagram`
 
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(지역을 푸는 한 줄 — Azure가 데이터 센터를 모아 둔 지리적 장소), az059 해설
+
 쓰인 곳(phase 102 step 2): `azure-regions-zones.availability-zones`(최소 셋·셋보다 많은 지역, 가깝되 격리될 만큼 떨어짐)
 
 쓰인 곳(phase 102 step 3): `azure-regions-zones.region-pairs`(Microsoft가 짝짓고 고객은 고를 수 없다, 새 지역 가운데 많은 곳이 짝 없이 가용성 영역을 주된 대비 수단으로 쓴다, 짝이 있든 없든 여러 지역을 함께 써서 대비할 수 있다), `azure-regions-zones.sovereign-regions`(다른 지역처럼 동작하지만 서비스·기능이 적은 경우가 많다, 데이터 상주 요구는 지리 안의 지역을 골라 맞춘다 — G23), az045·az046 해설, D38·G20·G21·G23
@@ -851,15 +953,33 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 
 쓰인 곳: `azure-cloud-benefits.scalability`(컨테이너를 푸는 한 줄)
 
+다시 확인한 날 2026-10-31. 영문 사본을 다시 받았다. (phase 103)
+
+- 컨테이너와 VM은 둘 다 워크로드를 컴퓨팅 리소스와 떼어 두는 가상화지만 방법이 다르다. VM은 밑의 리소스를 가상화해 운영 체제 여러 개를 한 하드웨어에서 실행하고, VM마다 운영 체제 이미지·라이브러리·앱을 담아 크다 — 「What's the difference between a container and a virtual machine?」 (phase 103)
+- **컨테이너는 호스트의 운영 체제를 함께 쓴다.** 그래서 운영 체제를 시작하거나 라이브러리를 올릴 필요가 없어 가볍고 효율적이지만, VM보다 덜 격리된다. 컨테이너는 자기가 정의된 운영 체제에 묶인다 — 같은 절과 마지막 「What is the difference …」 문답 (phase 103)
+- 마이크로 서비스 아키텍처는 큰 앱을 특정 기능을 맡는 작은 서비스들로 나누고, 서비스끼리 API로 통신하게 하는 방식이다. 서비스마다 자기 컨테이너에서 실행되어 따로 업데이트·크기 조정·배포한다 — 「Containers and modern app development」 (phase 103)
+- 한국어 표기: 한국어판은 받지 않았다. Learn 단원 5 한국어판의 「컨테이너」·「가상 머신」·「마이크로 서비스 아키텍처」를 쓴다 (phase 103)
+
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(앱 코드와 필요한 라이브러리를 한 꾸러미로 묶어 어디서든 같게 실행, VM과 다른 점 — 호스트의 운영 체제를 함께 쓴다, 운영 체제를 새로 시작하지 않아 가볍다, 덜 격리된다, 마이크로 서비스는 서비스마다 자기 컨테이너에서 따로 고치고 늘리고 배포), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트의 운영 체제 하나를 함께 쓴다), az062 해설, D53·D55
+
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
+
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
 
 확인한 날 2026-10-30. 사본: `docs-ddos-protection-overview.md`와 `ko-` 판. (DDoS Protection 서비스는 이 주제에서 이름을 쓰지 않는다. DDoS 공격을 푸는 근거로만 적는다.)
 
 - DDoS 공격은 앱의 리소스를 바닥내 정상 사용자가 그 앱을 쓸 수 없게 하려는 공격이다. 인터넷에서 누구나 닿을 수 있는 끝점은 모두 대상이 될 수 있다 — 「첫 문단」
+- DDoS Protection은 가상 네트워크의 특정 Azure 리소스에 맞춰 저절로 조정되고, 새 가상 네트워크든 있는 가상 네트워크든 앱이나 리소스를 바꾸지 않고 켠다 — 「둘째 문단」 (phase 103)
+- 앱의 트래픽을 늘 지켜보다 공격의 낌새를 찾으면 저절로 완화한다 — 「Always-on traffic monitoring」. 공격 중에는 일정 간격의 보고서를, 끝나면 요약을 준다 — 「Attack analytics」. 공격의 시작·끝에 경고를 받을 수 있다 — 「Attack alerting」 (phase 103)
+- 네트워크 쪽(계층 3·4)을 지키고, 웹 앱 쪽(계층 7)은 웹 애플리케이션 방화벽을 더해야 한다 — 「셋째 문단」·「Multilayered protection」 (phase 103)
+- DDoS Network Protection을 켜면 그 가상 네트워크의 리소스가, DDoS IP Protection을 켜면 그 공용 IP 주소가 보호된다. 후자는 보호 계획이 필요 없고, 전자의 계획 하나는 테넌트 안 여러 구독에 쓸 수 있다. 차이는 신속 대응 지원·비용 보호·WAF 할인이다 — 「Turnkey protection」·「Pricing」·「DDoS IP Protection」 (phase 103)
+- 가상 네트워크에 두지 않는 서비스에는 기본 인프라 수준 보호가 적용되어 흔한 네트워크 공격을 막는다 — 「Architecture」 (phase 103)
 - 한국어 표기: 이 문서의 한국어판은 DDoS를 「배포된 서비스 거부」로 잘못 옮겼다. Learn 「Describe the benefits of using cloud services」 단원 4 한국어판의 **DDoS(분산 서비스 거부)** 를 쓴다
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(DDoS 공격을 푸는 한 줄)
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
 
 ## (phase 101) Cloud Adoption Framework — Build a cloud governance team
 https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/
@@ -892,6 +1012,10 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 - REST API는 HTTP 요청(메서드)을 받아 서비스의 리소스를 만들고·읽고·고치고·지우게 해 주는 서비스의 끝점이다 — 「첫 문단」
 
 쓰인 곳: `azure-cloud-benefits.manageability`(API를 푸는 한 줄 — 「프로그램이 요청을 보내 리소스를 만들고, 읽고, 고치고, 지울 수 있게 해 주는 창구」)
+
+다시 확인한 날 2026-10-31(사본을 다시 받았다 — 위 사실 그대로). REST 요청은 이 끝점에 HTTP 메서드로 보내는 요청이다 — 「첫 문단」의 「REST API request/response pair」 (phase 103)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(REST 요청을 푸는 한 줄 — 프로그램이 HTTP로 서비스에 보내는 요청), `azure-compute.app-service`(REST API)
 
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
 https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
@@ -947,6 +1071,8 @@ phase 101 step 6이 `azure-service-types` 주제를 위해 덧붙인 줄:
 쓰인 곳(phase 101 step 7): `azure-service-types.iaas`(가장 유연하고 고객이 리소스를 가장 많이 통제한다, 공급자는 하드웨어 유지 관리·인터넷 연결·물리 보안, 고객은 운영 체제 설치·구성·유지 관리와 네트워크·데이터베이스·스토리지 구성, 하드웨어를 빌려 무엇을 할지 고객이 정한다, 운영 책임이 가장 크다, 리프트 앤 시프트 마이그레이션과 개발·테스트), `azure-service-types.shared-responsibility-model`(세 유형을 한 줄씩 푸는 근거), az034·az035 해설, G19
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(IaaS와 SaaS의 중간, 공급자가 물리 인프라·물리 보안·인터넷 연결에 더해 운영 체제·미들웨어·개발 도구·분석 서비스를 유지 관리한다, 운영 체제·데이터베이스의 라이선스와 패치를 고객이 신경 쓰지 않는다, 고객은 앱 코드·데이터·액세스 제어를 맡고 일부 네트워크·앱 보안 설정은 함께 맡는다, 개발 프레임워크와 분석·비즈니스 인텔리전스), `azure-service-types.saas`(제품으로 보면 가장 완성된 유형, 다 만들어진 앱을 빌려 쓴다, 이메일·재무 소프트웨어·메시지 앱, 가장 덜 유연할 수 있지만 시작이 가장 쉽고 기술 지식이 가장 적게 든다, 공급자가 인프라·플랫폼·앱 유지 관리를 거의 다 맡고 고객은 데이터·ID와 액세스 설정·장치를 맡는다, 협업 앱의 예, 이메일과 메시지·생산성 앱·재무와 경비 관리), `ServiceTypesTable`(PaaS·SaaS 행의 칸과 IaaS 행의 맞는 경우), az036·az037·az038 해설, D31·D33·G17·G18(위 두 개념이 고친 쪽을 따랐다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(PaaS를 이 주제에서 다시 푸는 한 줄 — 공급자가 서버와 운영 체제 같은 바탕을 맡고 고객은 그 위의 앱에 집중한다), az063·az064 해설
 
 ## (phase 101) 한국어 표기 정리 — `azure-cloud-benefits`
 
@@ -1210,7 +1336,10 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-p
 - 배포하면 런타임·미들웨어·운영 체제 관리는 플랫폼이 맡는다. 수요에 따라 리소스를 자동으로 늘리고 줄이며, 보안 패치·업데이트·인프라 유지 관리는 PaaS 공급자가 한다 — 「How does PaaS work?」
 - 한국어 표기: 제목은 「PaaS(Platform as a Service)」로 한국어 이름을 붙이지 않았다
 
+- Microsoft 365는 Word·Excel·Outlook·Teams 같은 생산성 도구를 클라우드로 제공하는 SaaS다 — 「Is M365 a PaaS?」 (phase 103)
+
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(플랫폼에 운영 체제·개발 도구가 들어 있다는 것으로 플랫폼을 푸는 한 줄, 수요에 따라 리소스를 자동으로 늘리고 줄인다), D35·G17
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(Microsoft 365를 푸는 한 줄)
 
 ## (phase 101) Azure 클라우드 컴퓨팅 사전 — What is software as a service (SaaS)?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas
@@ -1245,6 +1374,15 @@ https://learn.microsoft.com/en-us/azure/app-service/overview
 - 한국어 표기: 「App Service 개요」, Azure App Service(이름 그대로)
 
 쓰인 곳(phase 101 step 8): `azure-service-types.paas`(App Service는 웹 앱 같은 앱을 그 아래 인프라를 관리하지 않고 실행하게 해 준다 — 자동 확장은 PaaS 사전을 근거로 썼다), D31·D33·D34·D35
+
+다시 확인한 날 2026-10-31. 영문·`ko-` 사본을 다시 받았다. (phase 103)
+
+- App Service는 여러 웹 스택(.NET·Java·Node.js·Python·PHP)을 Windows와 Linux에서 실행한다. 컨테이너로 만든 앱은 사용자 지정 컨테이너로 배포할 수도 있다 — 「첫 부분」 (phase 103)
+- GitHub Actions·Azure Pipelines 등으로 지속적으로 배포하고, 스테이징 환경을 거쳐 배포할 수 있다 — 같은 부분의 기능 목록 (phase 103)
+- 표준 App Service 요금제를 고르는 경우의 하나로 「운영 체제와 런타임의 관리·패치가 저절로 되기를 원할 때」를 든다 — 운영 체제 패치를 플랫폼이 맡는다는 근거 — 「Quick decision guide」 (phase 103)
+- 같은 문서의 Managed Instance(설치 스크립트로 운영 체제 수준 기능을 구성하는 선택지)는 확인만 했다. 쓰지 않는다 (phase 103)
+
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(Windows·Linux, 여러 언어, 운영 체제는 플랫폼이 맡는다, 지속적 배포), `HostingOptionsTable`(App Service 행), D53·D55
 
 ## (phase 101) Azure App Service — Scale up an app in Azure App Service
 https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
@@ -1327,6 +1465,8 @@ https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹을 나눠도 데이터 센터 하나의 장애에 대비가 되지 않고, 그 대비는 여러 가용성 영역에 나눠 두는 것이다 — ARM 항목의 NO.87 판단), az049·az050 해설
 
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(가용성 영역을 푸는 한 줄 — 한 지역 안에서 전원·냉각·네트워크를 따로 갖춘 데이터 센터 묶음, 한 영역이 멈춰도 다른 영역은 영향을 받지 않음), `azure-compute.availability-sets`(같은 풀이를 되짚음), az058~az060 해설
+
 ## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
 https://learn.microsoft.com/en-us/azure/reliability/regions-paired
 
@@ -1377,6 +1517,8 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 
 쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`, az051 해설(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
 
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
+
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
 
@@ -1385,8 +1527,12 @@ https://learn.microsoft.com/en-us/azure/dns/dns-overview
 - DNS(Domain Name System)는 서비스 이름을 IP 주소로 바꿔 준다(이름 확인). Azure DNS는 Azure 인프라로 DNS 호스팅·이름 확인·부하 분산을 제공한다 — 첫 부분
 - Azure Traffic Manager는 DNS를 써서 트래픽을 나누는 부하 분산 서비스이고, 공개된 애플리케이션으로 오는 요청을 전 세계 Azure 지역에 나눠 보낸다 — 같은 부분(Azure DNS가 제공하는 서비스 목록)
 - 한국어 표기: Azure DNS·Azure Traffic Manager(옮기지 않는다), resolve → 확인, load balancing → 부하 분산
+- Azure DNS의 서비스는 셋이다 — 도메인을 호스트하는 Azure Public DNS, 가상 네트워크 안의 이름을 맡는 Azure Private DNS, 온-프레미스와 프라이빗 영역 사이의 질의를 잇는 Azure DNS Private Resolver. `azure-dns`는 앞의 둘을 「프라이빗 DNS 도메인」까지만 쓴다. Private Resolver는 쓰지 않는다 — 첫 부분 (phase 103)
+- 이 사본에는 DNSSEC이 나오지 않는다. 용어집 2-21이 드는 DNSSEC은 쓰지 않는다 (phase 103)
 
 쓰인 곳(phase 102 step 1): `azure-regions-zones.region`, az041 해설(Azure DNS를 푸는 한 줄 — 웹 주소 같은 이름을 컴퓨터가 쓰는 IP 주소로 바꿔 주는 서비스. Traffic Manager는 쓰지 않아도 된다)
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`(DNS를 푸는 한 줄)
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`(DNS를 되짚는 한 줄, 프라이빗 DNS 도메인), az078 해설
 
 ## (phase 102) Azure Government — What is Azure Government?
 https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome
@@ -1622,8 +1768,14 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 
 - Azure 가상 네트워크는 Azure 안의 사설 네트워크를 이루는 기본 단위다. VM 같은 Azure 리소스가 서로, 인터넷과, 온-프레미스 네트워크와 안전하게 통신하게 해 준다 — 첫 부분
 - 한국어 표기: Azure Virtual Network → Azure Virtual Network(제목), virtual network → 가상 네트워크(한국어판 46번)
+- 이 개요가 꼽는 쓰임은 여섯이다 — 인터넷과 통신, Azure 리소스끼리 통신, 온-프레미스와 통신, 트래픽 거르기, 트래픽 경로 정하기, Azure 서비스와 통합. Learn 단원 2의 일곱과 거의 겹치고, 그쪽은 격리와 분할·가상 네트워크 잇기를 따로 센다 — 「Why use an Azure virtual network?」 (phase 103)
+- 지점 및 사이트 간 VPN은 연결할 컴퓨터마다 설정이 필요하고 기존 네트워크를 거의 바꾸지 않아도 된다. 사이트 간 VPN은 온-프레미스 VPN 디바이스와 VPN 게이트웨이 사이에 놓이고, 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다. 둘 다 트래픽이 인터넷 위의 암호화된 터널로 간다. ExpressRoute 트래픽은 인터넷으로 가지 않는다 — 「Communicate with on-premises resources」 (phase 103)
+- Azure는 서브넷·연결된 가상 네트워크·온-프레미스 네트워크·인터넷 사이의 트래픽 경로를 기본으로 잡아 주고, 경로 테이블이나 BGP로 바꿀 수 있다. **바꾸는 방법은 쓰지 않는다**(guide 「배경」) — 「Route network traffic」 (phase 103)
+- 이 개요는 「모든 리소스가 기본으로 인터넷으로 나갈 수 있다」고 적는다(2025-07-17). 뒤의 「Default outbound access in Azure」(2026-09-10)가 새 가상 네트워크의 기본을 바꿨다고 하므로 **이 문장을 쓰지 않는다** — 「Communicate with the internet」 (phase 103)
 
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간은 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다, 지점 및 사이트 간은 컴퓨터마다 설정하고 기존 네트워크를 거의 바꾸지 않는다, 지점 및 사이트 간 연결이 컴퓨터와 가상 네트워크 사이에 놓인다), `SiteToSiteVpnDiagram`, az075 해설
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -1646,3 +1798,1022 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 | Azure Policy / policy | Azure Policy / 정책 | Policy 개요 한국어판이 이름을 옮기지 않는다 |
 | governance / compliance | 거버넌스 / 규정 준수 | L6·MG 한국어판. phase 101 표기와 같다 |
 | Microsoft Entra ID | Microsoft Entra ID | 한국어판이 옮기지 않는다. 옛 이름 Azure Active Directory(Azure AD)는 쓰지 않는다(phase 101 「New name for Azure Active Directory」 항목, D46·G25) |
+
+---
+
+## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure
+https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
+
+확인한 날 2026-10-31(사본의 「Last updated on」 뒤 날짜는 비어 있다). 사본: `docs-virtual-network-network-overview.md`와 `ko-` 판.
+
+- VM을 만들 때 가상 네트워크를 새로 만들거나 이미 있는 것을 쓴다. 가상 네트워크는 VM보다 먼저 만들어도 되고 VM을 만들면서 만들어도 된다 — 「첫 부분」
+- **VM과 통신하려고 만드는 리소스**는 네트워크 인터페이스, IP 주소, 가상 네트워크와 서브넷이고, **선택적 리소스**는 네트워크 보안 그룹과 부하 분산 장치다 — 「첫 부분」의 두 목록
+- 네트워크 인터페이스(NIC)는 VM과 가상 네트워크를 잇는 것이고 **VM에는 NIC가 적어도 하나 있어야 한다**. NIC는 VM과 같은 위치·구독의 가상 네트워크에 이어져야 한다 — 「Network interfaces」
+- **공용 IP 주소를 NIC에 붙이는 것은 선택이다.** 공용 IP 주소는 인터넷, 그리고 가상 네트워크에 이어지지 않은 Azure 리소스와 통신하는 데 쓴다. **개인 IP 주소는 VM에 적어도 하나 있어야 하고** 가상 네트워크 안·온-프레미스 네트워크와의 통신에 쓴다 — 「IP addresses」
+- 포털에서 VM을 만들면 NIC가 저절로 하나 만들어지고, 네트워크 보안 그룹도 저절로 만들어져 그 NIC에 걸린다 — 「Network interfaces」·「Network security groups」
+- 한국어 표기: network interface → 네트워크 인터페이스, optional resources → 선택적 리소스, private/public IP address → **개인 IP 주소 / 공용 IP 주소**, network security group → 네트워크 보안 그룹, load balancer → 부하 분산 장치
+
+쓰인 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
+
+## (phase 103) Azure Managed Disks — Azure managed disks overview
+https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
+
+확인한 날 2026-10-31, Last updated on 2026-08-20. 사본: `docs-virtual-machines-managed-disks-overview.md`.
+
+- 관리 디스크는 Azure가 관리하는 블록 수준 저장 볼륨이고 Azure VM에 붙여 쓴다. 온-프레미스 서버의 물리 디스크처럼 쓰지만 가상화되어 있다. 쓰는 쪽은 디스크 유형과 크기만 정하고, 나머지는 Azure가 맡는다 — 「첫 문단」
+- 관리 디스크는 스토리지 계정을 만들고 관리하는 일을 뒤에서 대신 해 준다(VM 개요 「Managed disks」도 같은 말을 한다) — VM 개요 「Managed disks」
+- 이미지와 스냅샷은 VM에 붙은 관리 디스크(OS 디스크와 데이터 디스크)를 담는다 — 「Compare managed images and managed disk snapshots」(쓰지 않는다 — 데이터 디스크라는 말의 근거로만)
+- 한국어 표기: 받은 한국어판이 없다. VM 개요 한국어판의 「OS 디스크」·「데이터 디스크」를 쓴다
+
+쓰인 곳: `azure-compute.vm-resources`(디스크를 푸는 한 줄 — VM에 붙이는 가상 디스크), D57
+
+## (phase 103) Azure Virtual Machines — Availability sets overview
+https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview
+
+확인한 날 2026-10-31, Last updated on 2026-04-07. 사본: `docs-virtual-machines-availability-set-overview.md`와 `ko-` 판.
+
+- **권장**: 고가용성에는 유연한 오케스트레이션 모드의 가상 머신 확장 집합을 권한다(VM을 한곳에서 관리하고 수요·일정에 따라 수를 바꾼다). 가용성 집합은 고가용성을 주지만 가용성 영역만큼의 복원력은 주지 않는다 — 「첫 부분의 Note」
+- 가용성 집합은 관련된 VM이 함께 걸리는 고장으로 한꺼번에 멈출 가능성을 줄이는 VM의 논리적 묶음이다. VM을 여러 장애 도메인에 나눠 두고, 가용성 영역을 지원하지 않는 지역에서 특히 쓸모 있다 — 「What is an availability set?」
+- 가용성 집합에는 VM을 둘 이상 만든다. 가용성 집합 자체에는 추가 비용이 없고 VM 인스턴스 값만 낸다 — 같은 절(같은 문장의 99.95% SLA 수치는 쓰지 않는다)
+- VM끼리 물리적으로 더 가까이 놓여 **VM 사이 대기 시간은 가용성 영역보다 짧다**. 그래도 여러 장애 도메인에 함께 미치는 공유 인프라의 고장 — 예: **데이터 센터 수준의 네트워크 중단** — 에는 여전히 약하다 — 같은 절
+- 더 높은 안정성이 필요하면 가용성 영역을 쓴다. 영역에 VM을 나눠 두면 데이터 센터 하나의 전원·네트워킹·냉각 손실에서 보호된다 — 같은 절
+- Azure 플랫폼이 가용성 집합의 VM마다 **업데이트 도메인과 장애 도메인을 정해 준다**. 가용성 집합 하나에 **장애 도메인은 최대 3개, 업데이트 도메인은 최대 20개**까지이고, **만든 뒤에는 바꿀 수 없다** — 「How do availability sets work?」
+- 업데이트 도메인은 함께 다시 시작될 수 있는 VM과 그 밑의 물리 하드웨어의 묶음이다. 계획된 유지 관리 때 업데이트 도메인이 번호 순서대로 다시 시작되지 않을 수 있지만 **한 번에 하나씩만** 다시 시작되고, 다시 시작된 업데이트 도메인은 30분 동안 회복한 뒤 다음 도메인의 유지 관리가 시작된다 — 「Update domains」(30분은 쓰지 않는다)
+- 업데이트 도메인이 다섯인 가용성 집합에 VM이 다섯 대를 넘으면 여섯째 VM은 첫째와, 일곱째는 둘째와 같은 업데이트 도메인에 놓인다 — 같은 절
+- 장애 도메인은 전원과 네트워크 스위치를 함께 쓰는 VM의 묶음이다. 기본으로 가용성 집합의 VM은 장애 도메인 최대 셋에 나뉜다 — 「Fault domains」
+- **가용성 집합에 두어도 운영 체제나 앱 자체의 고장은 막지 못한다.** 막는 것은 물리 하드웨어 고장·네트워크 중단·전원 중단의 영향을 줄이는 것이다 — 같은 절
+- 도메인 번호: 글은 번호를 매기지 않는다. 같은 페이지의 그림(「Diagram that shows compute clusters split into fault domains that contain update domains.」, `media/virtual-machines-common-manage-availability/ud-fd-configuration.png` — 사본 `ud-fd-configuration.png`)은 장애 도메인을 0·1·2로, 업데이트 도메인을 1~5로 매긴다(VM 여섯째가 업데이트 도메인 1). **번호 매김이 하나로 정해지지 않으므로 도식은 이름표(「장애 도메인 A」 같은 것)로 쓴다**
+- 한국어 표기: 제목 「가용성 집합 개요」, availability set → 가용성 집합, fault domain → 장애 도메인, update domain → 업데이트 도메인, Virtual Machine Scale Sets → 「가상 머신 스케일 세트」(이 문서 한국어판), flexible orchestration mode → 유연한 오케스트레이션 모드, correlated failure → 상관 관계 오류(쓰지 않는다 — 「함께 걸리는 고장」으로 푼다)
+
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(정의·VM 둘 이상·추가 비용 없음·두 도메인의 정의·최대 3과 20·만든 뒤 못 바꿈·한 번에 하나씩·여섯째 VM 배정·막지 못하는 것·영역과의 차이(대기 시간, 데이터 센터 수준 중단)·권장), `AvailabilitySetDiagram`(도메인은 이름표 「장애 도메인 A·B·C」로, 전원 장애 때와 계획된 유지 관리 때), az059·az060 해설, G27
+
+## (phase 103) Azure CLI — az vm availability-set (create의 기본값만)
+https://learn.microsoft.com/en-us/cli/azure/vm/availability-set?view=azure-cli-latest
+
+확인한 날 2026-10-31. 사본: `docs-cli-vm-availability-set.md`.
+
+- `az vm availability-set create`의 장애 도메인 수 기본값은 2이고, 업데이트 도메인 수는 정하지 않으면 서버가 알맞은 수(예: 5)를 고른다 — 「az vm availability-set create」의 매개 변수 설명
+- 위 개요는 「기본으로 장애 도메인 최대 셋」이라 하고, CLI는 기본값을 2로 둔다 — **만드는 도구마다 기본값이 달라 「기본 수」는 쓰지 않는다.** 최대 수(3·20)와 「만든 뒤 못 바꾼다」만 쓴다
+
+쓰인 곳(phase 103 step 2): (근거 기록) `azure-compute.availability-sets`에 기본 수를 쓰지 않은 까닭. 본문의 「장애 도메인 셋, 업데이트 도메인 다섯」은 기본 수가 아니라 「예를 들어」로 고른 값이다
+
+## (phase 103) Azure Virtual Machines — Maintenance for virtual machines in Azure
+https://learn.microsoft.com/en-us/azure/virtual-machines/maintenance-and-updates
+
+확인한 날 2026-10-31(phase 103 step 2가 계획된 유지 관리를 풀려고 받았다). 사본: `docs-virtual-machines-maintenance-and-updates.md`와 `ko-` 판.
+
+- Azure는 VM을 받치는 호스트 인프라의 안정성·성능·보안을 높이려고 플랫폼을 때때로 업데이트한다. 그 일은 호스팅 환경의 소프트웨어 구성 요소에 패치를 적용하는 것부터 네트워킹 구성 요소를 바꾸거나 하드웨어를 퇴역시키는 것까지다 — 「첫 부분」
+- 업데이트가 VM에 영향을 주는 일은 드물다. 다시 부팅이 필요하면 Azure가 계획된 유지 관리를 미리 알린다 — 「첫 부분」(다시 부팅이 없는 방식의 세부, 일시 중지 시간, 직접 유지 관리를 시작할 수 있는 기간의 일수는 쓰지 않는다)
+- 가용성 집합에 VM을 두면 중단 때나 다시 부팅이 필요한 유지 관리 때 적어도 VM 하나는 쓸 수 있다. 가용성 집합의 VM은 업데이트 도메인 최대 20개에 나뉘고, 예약된 유지 관리 때는 업데이트 도메인을 한 번에 하나만 업데이트하며 순서대로 하지는 않을 수 있다 — 「Availability sets and Uniform scale sets」
+- 한국어 표기: planned maintenance → 계획된 유지 관리, update domain → 업데이트 도메인, live migration → 실시간 마이그레이션(쓰지 않는다)
+
+쓰인 곳(phase 103 step 2): `azure-compute.availability-sets`(계획된 유지 관리를 푸는 문장 — 바탕 설비를 때때로 업데이트하고, VM에 영향을 주는 일은 드물며, 다시 시작해야 하는 업데이트는 미리 알린다), `AvailabilitySetDiagram`(계획된 유지 관리 시나리오), az059 해설
+
+## (phase 103) Azure Virtual Machine Scale Sets — Availability zone options for Azure Virtual Machine Scale Sets
+https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones
+
+확인한 날 2026-10-31, Last updated on 2026-09-09. 사본: `docs-virtual-machine-scale-sets-availability-zones.md`와 `ko-` 판.
+
+- **확장 집합을 데이터 센터 수준의 고장에서 지키려면 가용성 영역에 걸쳐 확장 집합을 만든다.** 가용성 영역을 지원하는 지역이어야 한다 — 「첫 부분」
+- 영역에 걸친 확장 집합은 인스턴스를 영역 둘 이상에 나눠 둔다. 한 영역이 중단되면 그 영역의 인스턴스는 닿지 않을 수 있지만 다른 영역의 인스턴스는 영향을 받지 않는다 — 「Zone spanning」
+- 한 영역에만 두는 확장 집합(영역 정렬)과 영역을 정하지 않는 지역 배포도 있다 — 「Choose an availability zone deployment option」(선택지의 세부와 99.99% 수치는 쓰지 않는다)
+- 한국어 표기: 「가용성 영역을 가로지르는 확장 집합」, 「데이터 센터 수준의 장애」
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합을 여러 가용성 영역에 걸쳐 만들어 VM을 영역 둘 이상에 나눠 둔다 — 그래야 데이터 센터 장애에 대비된다, 가용성 영역을 지원하는 지역이어야 한다), D56
+
+## (phase 103) Azure Load Balancer — What is Azure Load Balancer?
+https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview
+
+확인한 날 2026-10-31, Last updated on 2026-08-21. 사본: `docs-load-balancer-overview.md`와 `ko-` 판.
+
+- Azure Load Balancer는 들어오는 네트워크 트래픽을 뒤쪽의 VM이나 가상 머신 확장 집합에 나눠 보내는 클라우드 서비스다. 부하 분산은 들어오는 트래픽을 VM 무리에 효율적으로 나누는 일이다 — 「첫 부분」
+- Basic Load Balancer는 2025-09-30에 사용 중지되었다(Standard로 옮기라고 한다) — 「첫 부분의 Important」(쓰지 않는다)
+- 한국어 표기: load balancing → 부하 분산, load balancer → **부하 분산 장치**(한국어판 12번), VMSS → VMSS(가상 머신 확장 집합)
+
+쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(부하 분산 장치를 푸는 한 줄 — 들어오는 요청을 받아 여러 VM에 나눠 보내는 것), `ScaleSetDiagram`, az058 해설, G32
+
+## (phase 103) Azure Load Balancer — Azure Load Balancer distribution modes
+https://learn.microsoft.com/en-us/azure/load-balancer/distribution-mode-concepts
+
+확인한 날 2026-10-31(설계 세션이 받은 사본), Last updated on 2026-05-20. 사본: `lb-distribution-mode.md`.
+
+- Azure Load Balancer는 기본으로 다섯 값(five-tuple)의 해시로 연결을 나눈다. 같은 클라이언트 IP의 연결을 같은 인스턴스로 보내는 세션 유지 방식도 고를 수 있다 — 「첫 부분」(나누는 방식은 이 주제에 쓰지 않는다 — 「나눠 보낸다」까지만)
+
+쓰인 곳(phase 103 step 2): G32 — `azure-compute.scale-sets`와 `ScaleSetDiagram`은 나누는 방식을 쓰지 않고 「나눠 보낸다」까지만 썼다
+
+## (phase 103) Learn 「Describe Azure compute services」 — 4 Describe Azure virtual desktop
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/4-virtual-desktop
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-4-virtual-desktop.md`와 `ko-` 판.
+
+- Azure Virtual Desktop은 데스크톱과 앱을 가상화해 주는 Azure 서비스다. 사용자는 여러 종류의 장치로, 여러 장소에서 Windows 데스크톱과 앱에 안전하게 접속한다 — 「첫 문단」
+- 데스크톱과 앱이 사용자의 기기가 아니라 클라우드에 머무는, 관리형 원격 데스크톱 접속 방식이다 — 「둘째 문단」
+- 흩어져 일하는 사용자·협력업체 직원·하이브리드 근무자에게 데스크톱과 앱을 한곳에서 내줄 때 쓴다. 많은 사용자에게 전체 데스크톱을 중앙에서 관리하며 내주려면, 사용자 무리마다 VM으로 데스크톱 환경을 따로 만드는 것보다 운영하기 쉬운 경우가 많다 — 「When to use Azure Virtual Desktop」
+- 특징 셋 — ID와 접근 제어를 Microsoft Entra ID와 통합해 관리한다, 앱과 데이터가 Azure의 세션에 남을 수 있어 사용자 기기에 데이터가 노출될 일이 준다, 단일 세션과 다중 세션 Windows 환경을 지원한다 — 「Key points」
+- 한국어 표기: 단원 제목 「Azure 가상 데스크톱 설명」, 본문은 **Azure Virtual Desktop**(옮기지 않는다), desktop and application virtualization → 데스크톱 및 애플리케이션 가상화, single-session / multi-session → **단일 세션 / 다중 세션**, hybrid workers → 하이브리드 작업자
+
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(정의·데스크톱과 앱이 Azure에 머문다·쓰는 경우와 VM으로 따로 만드는 것보다 운영하기 쉬운 경우가 많다·특징 셋 — 협력업체 직원 예는 직접 만들었다), az061 해설, D54
+
+## (phase 103) Azure Virtual Desktop — What is Azure Virtual Desktop?
+https://learn.microsoft.com/en-us/azure/virtual-desktop/overview
+
+확인한 날 2026-10-31, Last updated on 2026-09-18. 사본: `docs-virtual-desktop-overview.md`와 `ko-` 판.
+
+- **Windows 11·Windows 10·Windows Server**로 전체 Windows 환경을 내준다. 단일 세션은 장치를 한 사용자에게 주고, 다중 세션은 규모를 키운다 — 「첫 목록」
+- 전체 데스크톱을 내주거나, RemoteApp으로 앱 하나하나를 내줄 수 있다 — 「첫 목록」 → **데스크톱 가상화와 앱 가상화를 둘 다 지원한다**
+- 풀링된 다중 세션 리소스로 비용을 줄인다 — Windows 11·10 Enterprise 다중 세션이나 Windows Server로 VM 수와 운영 체제 부담을 줄이면서 사용자에게 같은 리소스를 준다 — 「Key capabilities」
+- 시간·요일·수요에 따라 용량을 저절로 늘리고 줄일 수 있다 — 같은 절
+- Azure Virtual Desktop의 옛 이름은 Windows Virtual Desktop이다 — 「Introductory video」. 「Azure Virtual Desktop (classic)」은 2026-09-30에 사용 중지 예고 — 「Important」(둘 다 쓰지 않는다)
+- 한국어 표기: 다중 세션, 단일 세션, 세션 호스트, 호스트 풀(본문)
+
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(데스크톱 가상화와 앱 가상화를 둘 다 지원, Windows 11·Windows 10과 Windows Server, 다중 세션으로 VM 수를 줄이면서 같은 환경을 내준다 — 자동 크기 조정과 옛 이름은 쓰지 않았다), az061 해설, D52·D54
+
+## (phase 103) Azure Virtual Desktop — Azure Virtual Desktop terminology
+https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology
+
+확인한 날 2026-10-31. 사본: `docs-virtual-desktop-terminology.md`(영문판만 받았다).
+
+- **호스트 풀**은 Azure Virtual Desktop에 **세션 호스트**로 등록한 Azure VM의 모음이다 — 「Host pools」
+- 호스트 풀은 둘이다 — 개인(세션 호스트마다 한 사용자에게 배정)과 **풀링(한 세션 호스트에 여러 사용자가 동시에 접속할 수 있다)** — 같은 절
+- 풀링 호스트 풀은 사용자 세션을 세션 호스트의 세션 수에 따라 나눠 보내고, 세션 호스트마다 최대 세션 수를 정한다 — 같은 절의 표
+- 앱 그룹은 데스크톱(전체 Windows 데스크톱)과 RemoteApp(골라 게시한 앱 하나하나)이다 — 「Application groups」
+- 한국어 표기: 한국어판을 받지 않았다. 개요·필수 조건 한국어판의 「세션 호스트」·「호스트 풀」을 쓴다
+
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(단일 세션은 VM 한 대를 한 사용자가, 다중 세션은 VM 한 대에 여러 사용자가 동시에 — 세션 호스트·호스트 풀이라는 말과 최대 세션 수는 쓰지 않았다), az061 해설, D52
+
+## (phase 103) Azure Virtual Desktop — Prerequisites for Azure Virtual Desktop
+https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites
+
+확인한 날 2026-10-31. 사본: `docs-virtual-desktop-prerequisites.md`와 `ko-` 판.
+
+- 세션 호스트에 쓸 수 있는 운영 체제 표에 Windows 11 Enterprise(다중 세션 포함)·Windows 10 Enterprise(다중 세션 포함)와 **Windows Server 2025·2022·2019·2016**이 있다(64비트) — 「Operating systems and licenses」(판 이름은 쓰지 않는다 — 「Windows Server도 된다」까지만)
+
+쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(데스크톱을 실행하는 VM의 운영 체제로 Windows Server도 — 판 이름은 쓰지 않았다), D52
+
+## (phase 103) Learn 「Describe Azure compute services」 — 5 Describe Azure containers
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/5-containers
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-5-containers.md`와 `ko-` 판.
+
+- VM은 물리 하드웨어보다 비용을 줄이지만 VM마다 운영 체제는 하나다. 호스트 컴퓨터 하나에서 앱 인스턴스를 여럿 실행하려면 컨테이너가 알맞다 — 「첫 문단」
+- 컨테이너는 가상화 환경이다. 물리 호스트 하나에서 VM 여러 대를 실행하듯, **물리 또는 가상 호스트** 하나에서 컨테이너 여러 개를 실행한다 — 「What are containers?」
+- **VM과 달리 컨테이너의 운영 체제는 고객이 관리하지 않는다.** VM은 저마다 운영 체제를 실행하고 고객이 그 운영 체제에 접속해 관리한다 — 같은 절
+- 컨테이너는 가볍고, 그때그때 만들고 스케일 아웃하고 멈추도록 설계되었다. 수요 변화에 빨리 대응하고, 크래시나 하드웨어 중단 뒤 빨리 다시 시작한다. 널리 쓰이는 컨테이너 엔진의 하나가 Docker이고 Azure가 Docker를 지원한다 — 같은 절
+- **Azure Container Instances**는 VM을 관리하거나 다른 서비스를 들이지 않고 Azure에서 컨테이너를 실행하는 가장 빠르고 간단한 방법이고, **PaaS**다. 컨테이너를 올리면 서비스가 실행한다 — 「Azure Container Instances」
+- **Azure Container Apps**도 바로 실행하고 컨테이너 관리 부담을 덜어 주는 PaaS이고, **부하 분산과 크기 조정이 들어 있어** 수요 변화에 맞춘다 — 「Azure Container Apps」
+- **Azure Kubernetes Service(AKS)**는 컨테이너 **오케스트레이션** 서비스다. 오케스트레이션 서비스는 컨테이너의 수명 주기를 관리하고, AKS는 컨테이너를 무리로 배포할 때 그 관리를 쉽게 한다 — 「Azure Kubernetes Service」
+- 컨테이너는 마이크로 서비스 아키텍처에 자주 쓰인다 — 솔루션을 작고 독립된 조각으로 나눈다. 예: 웹사이트를 프런트 엔드·백 엔드·저장 부분의 컨테이너로 나누면 부분마다 따로 유지·크기 조정·업데이트하고, 백 엔드만 부담이 몰리면 백 엔드만 늘린다 — 「Use containers in your solutions」
+- 한국어 표기: 단원 제목 「Azure 컨테이너 설명」, container → 컨테이너, container engine → 컨테이너 엔진, host → 호스트(「물리적 또는 가상 호스트」), Azure Container Instances / Azure Container Apps / Azure Kubernetes Service → **이름 그대로**(「AKS(Azure Kubernetes Service)」), orchestration → 오케스트레이션, lifecycle → 수명 주기,
+  microservice architecture → 마이크로 서비스 아키텍처, front end / back end → 프런트 엔드 / 백 엔드
+
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(VM마다 운영 체제는 하나, 가상화 환경, 호스트는 실제 서버이거나 VM, 고객이 컨테이너의 운영 체제를 관리하지 않는다, 가볍고 빨리 만들고 늘리고 멈추며 크래시·하드웨어 중단 뒤 빨리 다시 시작, 컨테이너 엔진과 Docker, 마이크로 서비스 — 예는 온라인 서점의 화면·주문·결제로 직접 만들었다, 프런트 엔드·백 엔드 풀이), `azure-compute.container-services`(세 서비스와 각 한 줄, ACI·Container Apps는 PaaS, 오케스트레이션은 컨테이너의 수명 주기 관리), `VmContainerDiagram`, az062~az064 해설, D53·D55
+
+쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
+
+## (phase 103) Windows containers — Windows containers overview
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
+
+확인한 날 2026-10-31. 사본: `docs-windowscontainers-about.md`(영문판만 받았다).
+
+- 컨테이너는 호스트 운영 체제 위에서 앱을 실행하는 격리된 가벼운 꾸러미다. **컨테이너는 호스트 운영 체제의 커널 위에서 실행되고 그 커널을 함께 쓰지만**, 커널에 마음대로 닿지는 못하고 격리된 시야를 받는다 — 「How it works」
+- AKS는 Azure VM에 컨테이너를 배포하고 대규모로 관리한다 — 「Containers in Azure」 → 컨테이너는 VM을 호스트로 삼아 실행될 수 있다(위 Learn 단원 5 「물리 또는 가상 호스트」와 같다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(「호스트의 운영 체제를 함께 쓴다」까지 — 「커널」이라는 말은 쓰지 않았다, 호스트가 VM일 수도 있다), `VmContainerDiagram`
+
+## (phase 103) Azure IoT Edge — Supported systems (Container engines 절만)
+https://learn.microsoft.com/en-us/azure/iot-edge/support
+
+확인한 날 2026-10-31. 사본: `docs-iot-edge-support.md`.
+
+- 컨테이너를 띄우려면 컨테이너 엔진이 있어야 한다. Docker는 널리 쓰이는 컨테이너 엔진이다 — 「Container engines」(IoT Edge 자체는 쓰지 않는다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(엔진을 푸는 한 줄 — 호스트에서 컨테이너를 만들고 실행하는 소프트웨어, 컨테이너를 실행하려면 엔진이 있어야 한다), az063 해설
+
+## (phase 103) Azure 클라우드 컴퓨팅 사전 — What is a virtual machine?
+https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a-virtual-machine
+
+확인한 날 2026-10-31. 사본: `azure-dictionary-what-is-a-virtual-machine.md`.
+
+- 클라우드 VM은 물리 서버 위에서 자기 운영 체제와 앱을 실행하는, 소프트웨어로 만든 컴퓨터다. 물리 컴퓨터를 흉내 내고 호스트 시스템과 격리된다 — 「첫 부분」·「Virtual machine defined」
+- **가상화**는 소프트웨어로 된(가상의) 컴퓨터를 만드는 과정이고, 그 가상 컴퓨터는 물리 호스트 컴퓨터의 CPU·메모리·스토리지를 일정 부분씩 받는다 — 「How does a cloud virtual machine work?」
+- VM은 저마다 운영 체제와 앱을 가진 별개의 컴퓨터처럼 동작하고, 하이퍼바이저가 여러 VM에서 서로 다른 운영 체제를 함께 실행하게 한다 — 「What benefits do VMs offer?」(하이퍼바이저라는 말은 쓰지 않는다)
+
+쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(가상화를 푸는 한 줄), D53
+
+쓰인 곳(phase 103 step 3): `azure-compute.containers`(VM은 저마다 운영 체제를 실행한다 — 호스트 위의 VM 견줌), `VmContainerDiagram`(호스트 위의 VM마다 운영 체제)
+
+## (phase 103) Azure Container Instances — What is Azure Container Instances?
+https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview
+
+확인한 날 2026-10-31, Last updated on 2026-07-25. 사본: `docs-container-instances-overview.md`와 `ko-` 판.
+
+- ACI는 VM을 관리하지 않고, 더 높은 수준의 서비스를 들이지 않고 Azure에서 Linux·Windows 컨테이너를 실행하는 가장 빠르고 간단한 방법이다 — 「첫 문단」
+- ACI는 인스턴스 하나로도, NGroups로 여럿으로도 쓰고, AKS 클러스터의 가상 노드로 오케스트레이션과 함께 쓸 수도 있다. 컨테이너 그룹 하나에 컨테이너 여럿을 둘 수 있다 — 「첫 문단」·「Linux and Windows containers」 표(세부는 쓰지 않는다 — G29의 근거)
+- 이 문서는 ACI를 PaaS라 부르지 않는다. PaaS라는 근거는 Learn 단원 5다
+- 한국어 표기: Azure Container Instances(옮기지 않는다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(ACI 항목 — VM 관리 없이, 더 복잡한 서비스를 갖추지 않고 가장 빠르고 간단하게. 「컨테이너 하나만」·요금·컨테이너 그룹은 쓰지 않았다), az063·az064 해설, G29
+
+## (phase 103) Azure Container Apps — Azure Container Apps overview
+https://learn.microsoft.com/en-us/azure/container-apps/overview
+
+확인한 날 2026-10-31, Last updated on 2026-07-07. 사본: `docs-container-apps-overview.md`와 `ko-` 판.
+
+- Container Apps는 그 밑의 인프라를 관리하지 않고 컨테이너로 만든 앱을 실행하는 서버리스 플랫폼이다. 서버 구성·컨테이너 오케스트레이션·배포 세부를 직접 다루지 않는다 — 「첫 문단」
+- 흔한 쓰임은 API 끝점 배포, 백그라운드 처리 작업, 이벤트 기반 처리, 마이크로 서비스 실행이다. HTTP 트래픽·이벤트·CPU나 메모리 부하에 따라 크기를 바꾼다 — 「첫 부분」
+- 한국어 표기: Azure Container Apps(옮기지 않는다 — Learn 단원 5 한국어판 절 제목에는 「(애저 컨테이너 앱)」이 붙었다)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(Container Apps 항목 — 서버를 구성하는 일을 직접 다루지 않는다, 요청이나 처리할 일의 양에 따라 크기를 바꾼다), az063·az064 해설
+
+## (phase 103) Azure Kubernetes Service — What is Azure Kubernetes Service (AKS)?
+https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+
+확인한 날 2026-10-31, Last updated on 2026-06-04. 사본: `docs-aks-what-is-aks.md`와 `ko-` 판.
+
+- AKS는 컨테이너로 만든 앱을 배포하고 관리하는 관리형 Kubernetes 서비스이고, Kubernetes를 관리하는 복잡함과 운영 부담을 Azure가 맡는다 — 「첫 문단」
+- 클러스터 모드는 둘이다 — AKS Automatic(노드 관리·크기 조정·보안·모니터링·업그레이드를 Azure가 저절로 맡는다)과 AKS Standard(클러스터 구성과 노드 풀 관리를 고객이 완전히 통제한다) — 같은 부분(모드 이름은 쓰지 않는다 — G31의 근거)
+- 한국어 표기: 「AKS(Azure Kubernetes Service)」, managed Kubernetes service → 관리되는 Kubernetes 서비스
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목 — Kubernetes를 바탕으로 하고 Kubernetes를 운영하는 부담을 Azure가 덜어 준다. 모드와 고객이 맡는 노드는 쓰지 않았다), az063·az064 해설, G31
+
+## (phase 103) Azure Architecture Center — Choose an Azure container service
+https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-container-service
+
+확인한 날 2026-10-31. 사본: `docs-architecture-choose-azure-container-service.md`와 `ko-` 판.
+
+- 이 안내가 견주는 것은 Container Apps·AKS·Web App for Containers 셋이고 ACI는 들지 않는다 — 「Azure container services in scope for this guide」
+- AKS는 IaaS와 PaaS가 섞여 단순함보다 통제를 앞세우고 Kubernetes에 익숙하지 않으면 배울 것이 많다. Container Apps는 Kubernetes 위의 추상화 층이라 인프라를 직접 관리하지 않고 앱을 실행·크기 조정한다 — 「Compare the service models of Azure container solutions」
+- 그래서 셋을 고르는 기준(Learn 단원 5의 말로): 컨테이너 하나를 VM 관리 없이 빨리 실행 → ACI, 부하 분산·크기 조정이 들어 있어야 하는 앱 → Container Apps, 많은 컨테이너의 수명 주기를 Kubernetes로 관리·통제 → AKS. **「AKS는 PaaS다」로 쓰지 않는다**(이 안내는 IaaS와 PaaS가 섞였다고 한다)
+- 한국어 표기: 제목 「Azure 컨테이너 서비스 선택」
+
+- AKS는 컨테이너 오케스트레이션의 표준 시스템인 Kubernetes를 쓴다 — 「Compare the service models of Azure container solutions」의 「Azure Kubernetes Service (AKS)」 (phase 103 step 3)
+
+쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목의 「컨테이너 오케스트레이션에 표준으로 쓰이는 Kubernetes」, 셋을 고르는 기준 문단 — AKS는 통제가 많은 대신 Kubernetes에 익숙하지 않으면 배울 것이 많다, Container Apps는 Kubernetes 위의 한 층. 「AKS는 PaaS다」는 쓰지 않았다), az063·az064 해설, G31
+
+## (phase 103) Learn 「Describe Azure compute services」 — 7 Describe application hosting options
+https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/7-describe-application-hosting-options
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-compute-networking-services-7-describe-application-hosting-options.md`와 `ko-` 판.
+
+- Azure에 앱을 호스트할 때 흔히 VM이나 컨테이너를 먼저 떠올린다. **VM은 호스팅 환경을 가장 많이 통제**하고 원하는 대로 구성하며, **컨테이너는 호스팅 솔루션의 부분을 떼어 따로 관리**할 수 있다. 그 밖의 선택지로 Azure App Service가 있다 — 「첫 문단」
+- App Service는 고른 언어로 웹 앱·백그라운드 작업·모바일 백 엔드·RESTful API를 인프라 관리 없이 만들고 호스트한다. 자동 크기 조정과 고가용성을 갖췄고, Windows·Linux를 지원하며, 지속적 배포를 위해 GitHub·Azure DevOps·Git 리포지토리에서 자동 배포한다 — 「Azure App Service」
+- App Service는 웹 앱·REST API·모바일 백 엔드를 호스트하는 **HTTP 기반 서비스**이고, 고객은 앱을 만들고 유지하는 데 집중하며 환경을 실행 상태로 두는 일은 Azure가 맡는다. 여러 언어·프레임워크를 지원한다 — 같은 절
+- 앱 종류 넷 — 웹 앱(Windows나 Linux를 호스트 운영 체제로 고른다), API 앱(REST 기반 웹 API — HTTP·HTTPS 클라이언트가 쓴다), WebJobs(웹 앱 등과 같은 맥락에서 프로그램이나 스크립트를 실행 — 일정이나 트리거로, 흔히 백그라운드 작업), 모바일 앱(iOS·Android 앱의 백 엔드) — 「Types of app services」 이하(모바일 앱의 세부 기능은 쓰지 않는다)
+- App Service가 맡는 인프라 결정 — 배포와 관리가 플랫폼에 들어 있다, 끝점을 보호할 수 있다, 트래픽이 많으면 빨리 크기를 늘린다, 부하 분산과 트래픽 관리자로 고가용성을 준다 — 같은 절
+- 한국어 표기: 단원 제목 「Azure 애플리케이션 호스팅 옵션 설명」, web apps → **웹앱**(붙여 쓴다), API apps → API 앱, WebJobs(옮기지 않는다), mobile apps → 모바일 앱, background jobs → 백그라운드 작업, mobile back end → 모바일 백 엔드, continuous deployment → 지속적인 배포, Git repo → Git 리포지토리
+
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(정의·HTTP 기반·자동 크기 조정과 고가용성·Windows와 Linux·지속적 배포·앱 종류 넷·맡는 인프라 결정·VM·컨테이너와 견주는 문단), `HostingOptionsTable`, D53·D55
+
+## (phase 103) Azure App Service — Configure continuous deployment to Azure App Service
+https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment
+
+확인한 날 2026-10-31, Last updated on 2025-06-16. 사본: `docs-app-service-deploy-continuous-deployment.md`.
+
+- 지속적 배포(CD)를 구성하면 GitHub·Bitbucket·Azure Repos 같은 리포지토리의 변경을 App Service가 끌어와 배포한다. 고른 리포지토리·브랜치에 새 커밋이 생기면 앱에 계속 배포된다 — 「첫 문단」·GitHub Actions 절
+
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(지속적 배포를 푸는 한 줄 — 코드 저장소에 바뀐 코드를 올리면 앱에 저절로 배포되는 것)
+
+## (phase 103) Azure Functions — Azure Functions triggers and bindings
+https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings
+
+확인한 날 2026-10-31, Last updated on 2026-10-12. 사본: `docs-azure-functions-functions-triggers-bindings.md`, `ko-docs-azure-functions-functions-triggers-bindings.md`.
+
+- 트리거는 함수를 어떻게 실행할지 정하는 것이고, **함수 하나에는 트리거가 꼭 하나 있어야 한다** — 「첫 부분」
+- 그래서 「함수 하나가 REST 요청으로도 타이머로도 실행된다」는 틀린 말이다. REST 요청과 타이머로 실행할 일이 따로 있으면 함수를 둘 둔다(phase 103 step 4가 step 문서의 예를 이렇게 고쳤다)
+- 한국어 표기: trigger → 트리거, bindings → 바인딩(이 주제에서는 쓰지 않는다)
+
+쓰인 곳(phase 103 step 4): `azure-compute.functions`(함수 하나에 트리거 하나, 회사 D의 예를 함수 둘로), `FunctionTriggerDiagram`(캡션·범례)
+
+## (phase 103) .NET — Choosing a Transport (HTTP 절만)
+https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/choosing-a-transport
+
+확인한 날 2026-10-31. 사본: `docs-dotnet-choosing-a-transport.md`.
+
+- HTTP는 클라이언트와 서버 사이의 요청·응답 프로토콜이다. 흔한 예는 웹 브라우저가 웹 서버와 통신하는 것 — 클라이언트가 요청을 보내면 서버가 요청의 상태를 담은 응답을 돌려주고, 성공하면 웹 페이지 같은 데이터가 함께 온다 — 「HTTP Transport」
+
+쓰인 곳(phase 103 step 4): `azure-compute.app-service`(HTTP를 푸는 한 줄 — 웹 브라우저 같은 클라이언트가 요청을 보내고 서버가 응답하는 규칙), `azure-compute.functions`(REST 요청 풀이)
+
+---
+
+## (phase 103) 한국어 표기 정리 — `azure-compute`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 0). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `virtual-machines` | **가상 머신(Azure Virtual Machines)** | Learn 단원 2 한국어판 제목 「Azure 가상 머신 설명」, 본문 「Azure VM(Virtual Machines)」. 본문의 줄임은 phase 100·101대로 「VM(가상 머신)」 |
+| `vm-resources` | **가상 머신에 필요한 리소스** | 「Virtual networks and virtual machines in Azure」 한국어판 「가상 머신에 대한 통신을 지원하기 위해 … 리소스」, VM 개요 한국어판의 표. 목록 항목 이름 — **가상 네트워크**(Virtual Network), **네트워크 인터페이스**(Network Interface — VM 개요 한국어판은 「가상 네트워크 인터페이스 카드(NIC)」, 네트워킹 문서 한국어판은 「네트워크 인터페이스」 — 짧은 쪽), **IP 주소**(IP Address — 「개인 IP 주소」와 「공용 IP 주소」), **네트워크 보안 그룹**(Network Security Group), **디스크**(Disk — 「OS 디스크」·「데이터 디스크」) |
+| `scale-sets` | **가상 머신 확장 집합** | Learn 단원 2 한국어판 본문 「가상 머신 확장 집합」(본문에서는 「확장 집합」). 제품 문서 한국어판 제목은 「가상 머신 확장 집합이란?」이고 가용성 집합 개요 한국어판에는 「가상 머신 스케일 세트」가 섞였다 — Learn 쪽과 확장 집합 문서 제목을 따른다 |
+| `availability-sets` | **가용성 집합** | Learn 단원 2 한국어판 「가상 머신 가용성 집합」·「가용성 집합」, 가용성 집합 개요 한국어판 제목 「가용성 집합 개요」. 업데이트 도메인 / 장애 도메인도 두 한국어판이 같다 |
+| `virtual-desktop` | **Azure Virtual Desktop** | Learn 단원 4·개요 한국어판 본문이 옮기지 않는다(단원 제목만 「Azure 가상 데스크톱 설명」). 다중 세션 / 단일 세션 |
+| `containers` | **컨테이너** | Learn 단원 5 한국어판. 컨테이너 엔진, 호스트, 마이크로 서비스 아키텍처, 프런트 엔드 / 백 엔드 |
+| `container-services` | **Azure의 컨테이너 서비스** | 이름표 개념이라 한국어판 문구가 따로 없다 — Architecture Center 한국어판 제목 「Azure 컨테이너 서비스 선택」의 「컨테이너 서비스」. 목록 항목 이름 — **Azure Container Instances**, **Azure Container Apps**, **Azure Kubernetes Service(AKS)** — 세 문서 한국어판이 옮기지 않는다. ACI·Container Apps는 굵은 이름 뒤에 영문 괄호를 따로 붙이지 않는다(이름이 이미 영문) |
+| `functions` | **Azure Functions** | Learn 단원 6·Functions 문서 한국어판(옮기지 않는다). 상태 비저장 / 상태 저장, Durable Functions, 트리거, REST 요청 |
+| `app-service` | **Azure App Service** | Learn 단원 7·App Service 개요 한국어판(옮기지 않는다). 앱 종류는 웹앱(한국어판은 붙여 쓴다)·API 앱·WebJobs·모바일 앱. 지속적 배포(「지속적인 배포」) |
+
+섞여 쓰인 표기와 고른 것:
+
+- **개인 IP 주소 / 사설 IP 주소** — 받은 한국어판(VM 개요, 네트워킹 문서)은 private IP address를 모두 「개인 IP 주소」로 쓴다. 이 과목은 phase 102가 가상 네트워크를 「사설 네트워크」로 풀었다. IP 주소는 한국어판대로 **「개인 IP 주소」**를 쓰고, 처음 쓸 때 「가상 네트워크 안에서만 쓰는 주소」로 푼다. guide의 「사설 IP」는 잠정 표기다 — step 5가 네트워킹 문서 한국어판으로 다시 본다
+- **공용 IP 주소** — 받은 한국어판이 모두 「공용 IP」다(Learn 단원 2 포함). 「퍼블릭 IP」는 쓰지 않는다
+- **확장 집합 / 스케일 세트** — 위 표대로 「가상 머신 확장 집합」, 본문 줄임은 「확장 집합」
+- **부하 분산 장치** — Load Balancer 개요 한국어판(12번). 「로드 밸런서」·「부하 분산기」는 쓰지 않는다
+- **장애 도메인 / 업데이트 도메인** — 두 한국어판이 같다. 도식은 번호 대신 이름표(가용성 집합 개요 항목의 「도메인 번호」)
+- **리프트 앤 시프트 마이그레이션, 재해 복구, 데이터 센터 확장** — Learn 단원 2 한국어판
+
+## (phase 103) Learn 「Describe Azure networking services」 — 2 Describe Azure virtual networking
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/2-virtual-network
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-2-virtual-network.md`와 `ko-` 판. 옛 주소(`…/describe-azure-compute-networking-services/8-virtual-network`)는 이 모듈로 옮겨졌다.
+
+- 가상 네트워크와 서브넷은 VM·웹앱·데이터베이스 같은 Azure 리소스가 서로, 인터넷의 사용자와, 온-프레미스의 클라이언트 컴퓨터와 통신하게 한다. 온-프레미스 네트워크를 Azure로 넓힌 것으로 볼 수 있다 — 첫 문단
+- 핵심 기능은 일곱이다 — 격리와 분할, 인터넷 통신, Azure 리소스 사이 통신, 온-프레미스 리소스와 통신, 트래픽 경로 정하기, 트래픽 거르기, 가상 네트워크 잇기 — 같은 곳
+- Azure Virtual Network로 서로 격리된 가상 네트워크를 여럿 만들 수 있다. 가상 네트워크를 만들 때 개인 IP 주소 공간을 정하는데, 그 범위는 가상 네트워크 안에만 있고 인터넷에서 경로가 잡히지 않는다 — 「Isolation and segmentation」
+- 그 주소 공간을 서브넷으로 나누고, 이름 붙인 서브넷마다 주소 공간의 일부를 준다 — 같은 절
+- 이름 확인은 Azure에 들어 있는 서비스를 쓰거나, 내부 또는 외부 DNS 서버를 쓰도록 가상 네트워크를 구성한다 — 같은 절
+- 인터넷에서 들어오는 연결을 열려면 리소스에 공용 IP 주소를 붙이거나 공용 부하 분산 장치 뒤에 둔다 — 「Internet communications」
+- 온-프레미스와 잇는 방법은 셋이다 — 지점 및 사이트 간 VPN(바깥의 컴퓨터가 암호화된 연결을 시작한다), 사이트 간 VPN(온-프레미스 VPN 디바이스나 게이트웨이를 가상 네트워크의 VPN 게이트웨이에 잇는다. 암호화되어 인터넷으로 간다. Azure의 장치가 로컬 네트워크에 있는 것처럼 보일 수 있다), ExpressRoute(인터넷으로 가지 않는 전용 프라이빗 연결) — 「Communicate with on-premises resources」
+- Azure는 기본으로 서브넷·연결된 가상 네트워크·온-프레미스 네트워크·인터넷 사이의 트래픽 경로를 잡아 준다 — 「Route network traffic」. 경로 테이블·BGP·사용자 정의 경로는 **쓰지 않는다**(guide 「배경」)
+- 서브넷 사이 트래픽을 거르는 방법으로 네트워크 보안 그룹을 든다 — 들어오고 나가는 규칙을 담은 Azure 리소스이고, 원본·대상 IP 주소, 포트, 프로토콜로 허용하거나 막는다 — 「Filter network traffic」. 네트워크 가상 어플라이언스는 **쓰지 않는다**(guide 「배경」)
+- 가상 네트워크 피어링은 두 가상 네트워크를 서로 직접 잇는다. 트래픽은 사설이고 Microsoft 백본 네트워크로 다니며 공용 인터넷에 들어가지 않는다. 다른 지역의 가상 네트워크도 이을 수 있다 — 「Connect virtual networks」
+- 퍼블릭 엔드포인트는 공용 IP 주소를 가져 세계 어디서나 닿는다. 프라이빗 엔드포인트는 가상 네트워크 안에 있고 그 주소 공간에서 받은 개인 IP 주소를 쓴다 — 첫 부분
+- 서비스 엔드포인트도 이 단원에 나오지만 **쓰지 않는다**(guide 「배경」) — 「Communicate between Azure resources」
+- 한국어 표기: 가상 네트워크, 서브넷, 격리 및 구분(제목. 이 주제의 글은 「격리」와 「나눔」으로 쓴다), 공용 IP 주소, 개인 IP 주소, 공용 부하 분산 장치, 퍼블릭 엔드포인트, 프라이빗 엔드포인트, 온-프레미스, 가상 네트워크 피어링, Microsoft 백본 네트워크, 네트워크 보안 그룹
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`, `VnetPeeringDiagram`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간 터널, 로컬 네트워크에 있는 것처럼 보임, 바깥의 컴퓨터가 연결을 시작), `SiteToSiteVpnDiagram`, az075 해설
+
+## (phase 103) Learn 「Describe Azure networking services」 — 3 Describe Azure virtual private networks
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/3-virtual-private-networks
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-3-virtual-private-networks.md`와 `ko-` 판.
+
+- VPN은 다른 네트워크 안에 암호화된 터널을 두는 것이다. 흔히 믿을 수 있는 사설 네트워크들을 믿을 수 없는 네트워크(대개 공용 인터넷) 너머로 잇는 데 쓰고, 도청 같은 공격을 막으려고 트래픽을 암호화한다 — 첫 문단
+- VPN 게이트웨이는 가상 네트워크 게이트웨이의 한 종류이고, 가상 네트워크의 전용 서브넷에 배포한다 — 「VPN gateways」
+- 잇는 방식은 셋이다 — 온-프레미스 데이터 센터와는 사이트 간, 개별 장치와는 지점 및 사이트 간, 다른 가상 네트워크와는 네트워크 간(제품 문서의 이름은 VNet 간) — 같은 절
+- 가상 네트워크마다 VPN 게이트웨이는 하나만 둘 수 있고, 게이트웨이 하나로 다른 가상 네트워크나 온-프레미스 데이터 센터 같은 여러 곳에 이을 수 있다 — 같은 절
+- 이 단원은 데이터가 인터넷을 건널 때 사설 터널 안에서 암호화된다고 적는다. **VNet 간 연결은 인터넷을 건너지 않으므로(「VPN Gateway FAQ」 항목) 「VPN 게이트웨이의 트래픽은 모두 인터넷으로 간다」로 쓰지 않는다** — 같은 절
+- 기본으로 인스턴스 둘이 활성/대기로 배포되고, 활성 쪽이 멈추면 대기 쪽이 연결을 이어받는다. 그 사이 연결은 잠깐 끊긴다 — 「Active/standby」. 복구 시간은 이 단원과 「Highly available」 문서의 수가 달라 **쓰지 않는다**
+- VPN 게이트웨이를 ExpressRoute의 대체 경로로 둘 수 있다. 회로의 복원력이 들어 있어도 케이블 문제나 위치 전체의 중단까지 막지는 못하므로, 인터넷을 쓰는 다른 길을 하나 더 둔다 — 「ExpressRoute failover」
+- 정책 기반·경로 기반, 활성/활성, 영역 중복 게이트웨이, 미리 공유한 키는 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: VPN(가상 사설망), VPN 게이트웨이, 가상 네트워크 게이트웨이, 전용 서브넷, 사이트 간, 지점 및 사이트 간, 네트워크 간, 활성/대기
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(VPN의 정의·도청을 막는 암호화, 가상 네트워크 게이트웨이의 한 종류, 전용 서브넷, 가상 네트워크마다 하나와 여러 곳, 기본 구성의 대기), `azure-virtual-networking.vpn-connection-types`(세 유형), `SiteToSiteVpnDiagram`, az073~az075 해설
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(VPN의 터널과 견주기, VPN 게이트웨이를 대체 경로로), `ExpressRouteDiagram`
+
+## (phase 103) Learn 「Describe Azure networking services」 — 4 Describe Azure ExpressRoute
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/4-expressroute
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-4-expressroute.md`와 `ko-` 판.
+
+- ExpressRoute는 연결 공급자의 도움으로 온-프레미스 네트워크를 프라이빗 연결로 Microsoft 클라우드까지 넓힌다. 이 연결이 ExpressRoute 회로이고, 사무실·데이터 센터 같은 장소마다 회로를 둔다 — 첫 문단
+- 이 단원이 꼽는 이점은 넷이다 — 지정학적 지역 안 모든 지역의 Microsoft 클라우드 서비스에 연결, Global Reach, BGP로 하는 동적 라우팅, 피어링 위치마다 든 중복 — 「Features and benefits of ExpressRoute」
+- Global Reach는 회로끼리 이어 온-프레미스 사이트끼리 공용 인터넷을 거치지 않고 데이터를 주고받게 한다. 이 단원의 예는 아시아의 사무실과 유럽의 데이터 센터다 — 「Global connectivity」
+- ExpressRoute는 BGP로 온-프레미스 네트워크와 Azure의 리소스 사이에 경로를 주고받는다 — 「Dynamic routing」
+- 연결 공급자는 중복된 장치를 쓰고, 회로를 여러 개 둘 수도 있다 — 「Built-in redundancy」
+- 고르는 때 — 프라이빗하고 고른 연결이 필요할 때, 규정 준수나 데이터 전송 요건이 엄격할 때, 예측할 수 있는 대기 시간과 높은 처리량이 필요할 때, 중요한 트래픽을 공용 인터넷에 보내지 않으려 할 때 — 「Connectivity model options」
+- ExpressRoute가 있어도 DNS 쿼리, 인증서 해지 목록 확인, Azure CDN 요청은 공용 인터넷으로 간다 — 「Security considerations」
+- 연결 모델 셋(IP VPN·지점 간 이더넷·코로케이션)은 **쓰지 않는다** — 이 단원도 그 수준에서는 고르는 때에 집중하라고 한다(guide 「배경」)
+- 한국어 표기: ExpressRoute 회로, 연결 공급자, 프라이빗 연결, 지정학적 지역, Global Reach, BGP(Border Gateway Protocol), 동적 라우팅, 피어링 위치, 대기 시간, 인증서 해지 목록
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`, `ExpressRouteDiagram`, az076·az077 해설
+
+## (phase 103) Learn 「Describe Azure networking services」 — 5 Describe Azure DNS
+https://learn.microsoft.com/en-us/training/modules/describe-azure-networking-services/5-domain-name-system
+
+확인한 날 2026-10-31. 사본: `learn-describe-azure-networking-services-5-domain-name-system.md`와 `ko-` 판.
+
+- Azure DNS는 DNS 도메인을 Azure 인프라에서 호스트해 이름 확인을 맡는 서비스다. 도메인을 Azure에 두면 다른 Azure 서비스와 같은 자격 증명·API·도구·청구로 DNS 레코드를 관리한다 — 첫 문단
+- DNS 이름 서버의 전 세계 네트워크에 호스트되고, 애니캐스트 네트워킹을 써서 사용할 수 있는 가장 가까운 서버가 질의에 답한다 — 「Reliability and performance」
+- Azure Resource Manager 위에 있어 Azure RBAC·활동 로그·리소스 잠금으로 DNS 리소스와 레코드를 지킨다 — 「Security」
+- 포털·Azure PowerShell·Azure CLI로 관리한다 — 「Ease of use」
+- 가상 네트워크 안에서 Azure가 준 이름 대신 직접 정한 도메인 이름을 쓰는 프라이빗 DNS 도메인을 지원한다 — 「Customizable virtual networks with private domains」
+- 별칭 레코드 집합은 공용 IP 주소 같은 Azure 리소스를 가리키고, 그 리소스의 IP 주소가 바뀌면 DNS 확인 때 저절로 따라간다 — 「Alias records」
+- **Azure DNS로는 도메인 이름을 살 수 없다.** App Service 도메인이나 다른 도메인 이름 등록 기관에서 해마다 값을 내고 산 뒤 Azure DNS에 호스트한다 — 「Alias records」 뒤의 알림
+- 한국어 표기: Azure DNS, DNS 레코드, 이름 서버, 애니캐스트 네트워킹, 활동 로그, 리소스 잠금, 프라이빗 DNS 도메인, 별칭 레코드, App Service 도메인
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`, az078 해설
+
+## (phase 103) Azure Virtual Network — Azure Virtual Network frequently asked questions (FAQ)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-08. 사본: `docs-virtual-network-virtual-networks-faq.md`와 `ko-` 판.
+
+- 가상 네트워크는 서로 격리되어 있고, Azure 인프라에 호스트된 다른 서비스와도 격리되어 있다. 가상 네트워크 하나가 신뢰 경계다 — 「What is the security model for virtual networks?」
+- 가상 네트워크는 Azure 클라우드를 논리적으로 나눈 부분이고 구독에 딸려 있다. 그 안의 서비스와 VM은 서로 바로 통신한다 — 「What is a virtual network?」
+- 가상 네트워크는 지역 하나에 묶이고 그 지역의 가용성 영역에는 걸칠 수 있다 — 「Can a virtual network span regions?」
+- 가상 네트워크끼리는 피어링이나 VPN 게이트웨이로 잇는다 — 「Can I connect a virtual network to another virtual network in Azure?」
+- 가상 네트워크를 다른 가상 네트워크나 온-프레미스와 잇는 조건은 주소 범위가 겹치지 않는 것이다 — 「What is a virtual network?」. 피어링도 주소 공간이 겹치면 켤 수 없다 — 「Can I peer two virtual networks that have matching or overlapping address ranges?」
+- 네트워크 보안 그룹은 서브넷이나 네트워크 인터페이스, 또는 둘 다에 걸 수 있다 — 「Can I restrict inbound or outbound traffic flow…?」 (세부는 `azure-network-protection`의 몫이라 그 말을 쓰지 않는다)
+- 피어링한 가상 네트워크의 VM은 같은 네트워크에 있는 것처럼 통신한다. 같은 지역이든 다른 지역이든(글로벌 가상 네트워크 피어링) 되고, 다른 구독도 다른 Microsoft Entra 테넌트도 된다 — 「What is virtual network peering?」 등
+- **피어링은 이어지지 않는다** — A와 B, B와 C를 피어링해도 A와 C는 피어링된 것이 아니다. A와 C를 직접 피어링해야 한다 — 「If I peer VNetA to VNetB…」
+- 피어링 트래픽은 Microsoft가 통제하지 않는 물리 경계 바깥으로 데이터 센터 사이를 옮길 때 데이터 링크 수준의 MACsec 암호화를 받는다 — 「Is virtual network peering traffic encrypted?」. **그래서 「피어링 트래픽은 암호화되지 않는다」로 쓰지 않는다**. MACsec이라는 말은 쓰지 않는다
+- Azure PaaS 리소스의 네트워크 접근은 서비스 엔드포인트나 Private Link로 좁힌다. 서비스 엔드포인트 트래픽은 Microsoft 백본으로 다닌다(D59의 근거) — 「How can I restrict access to Azure PaaS resources…?」·「How do virtual network service endpoints provide security?」
+- 주소 범위의 값(RFC 1918 등)은 **쓰지 않는다**(guide 「예시 값」)
+- 한국어 표기: 글로벌 가상 네트워크 피어링, 전이적 피어링(이 낱말은 쓰지 않고 「이어지지 않는다」로 푼다)
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `VnetIsolationDiagram`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
+쓰인 곳(phase 103 step 12): D58, D59, D60
+
+## (phase 103) Azure Virtual Network — Plan virtual networks
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-vnet-plan-design-arm
+
+확인한 날 2026-10-31. 「Last updated on」 2025-04-17. 사본: `docs-virtual-network-virtual-network-vnet-plan-design-arm.md`와 `ko-` 판.
+
+- 가상 네트워크 이름은 리소스 그룹 안에서 겹치면 안 되지만, 구독이나 지역 안에서는 겹쳐도 된다 — 「Naming」
+- 리소스는 자기와 같은 지역·같은 구독의 가상 네트워크 안에만 만들 수 있고, 다른 지역·다른 구독의 가상 네트워크끼리는 이을 수 있다 — 「Regions」
+- 가상 네트워크는 구독과 지역마다 여럿 만들 수 있고, 잇고 잇지 않는 것은 고르는 일이다. 가상 네트워크 하나에 서브넷도 여럿 둔다 — 「Segmentation」
+- **주소 공간이 달라야 하는 것은 다른 가상 네트워크나 온-프레미스와 잇는 가상 네트워크다.** 구독 안에서 언제나 달라야 한다는 말은 없다(D58) — 「Segmentation」
+- 서브넷의 주소 범위는 가상 네트워크의 주소 공간 안에 있고 다른 서브넷과 겹치면 안 된다 — 「Subnets」
+- 서브넷을 나누는 까닭으로 드는 것: 어떤 Azure 서비스가 자기 서브넷을 요구한다(VPN 게이트웨이의 게이트웨이 서브넷 등), 서브넷마다 네트워크 보안 그룹을 다르게 건다, 트래픽이 특정 장비를 지나게 한다, 서비스 접근을 특정 서브넷으로 좁힌다. **쓰는 것은 앞의 둘과 「용도마다 리소스를 나눈다」까지다** — 같은 절
+- 가상 네트워크 안의 리소스 사이 트래픽을 거르려면 네트워크 보안 그룹을 쓴다 — 「Traffic filtering」
+- 서브넷 수·주소 표기(CIDR)는 **쓰지 않는다**(guide 표 11)
+- 한국어 표기: 구독, 지역, 서브넷, 주소 공간, 주소 범위
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`, `azure-virtual-networking.subnets`
+쓰인 곳(phase 103 step 12): D58, D60
+
+## (phase 103) Azure Virtual Network — Virtual networks and virtual machines in Azure (서브넷 절만 — step 5)
+https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
+
+확인한 날 2026-10-31. 사본: `docs-virtual-network-network-overview.md`와 `ko-` 판(step 0이 받았다).
+
+- 서브넷 사이에는 기본으로 보안 경계가 없어 각 서브넷의 VM이 서로 통신한다. 경계가 필요하면 네트워크 보안 그룹을 쓴다 — 「Virtual network and subnets」
+- 주소 공간은 다른 네트워크와 잇는다면 겹치지 않게 고른다 — 같은 절
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`, `VnetIsolationDiagram`
+쓰인 곳(phase 103 step 12): D58, D60
+
+## (phase 103) Azure Virtual Network — Virtual network traffic routing (기본 경로만)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-03-31. 사본: `docs-virtual-network-virtual-networks-udr-overview.md`와 `ko-` 판.
+
+- 가상 네트워크를 만들면 Azure가 서브넷마다 시스템 경로를 저절로 만든다. 그 가운데 하나가 가상 네트워크의 주소 공간 안 범위끼리 트래픽을 보낸다 — 그래서 같은 가상 네트워크의 서브넷끼리 고객이 경로를 만들지 않아도 통신한다 — 「Default system routes」
+- 경로는 주소 범위와 다음 도착지로 이루어지고, 트래픽이 서브넷을 나갈 때 Azure가 맞는 경로를 쓴다. **라우팅을 「트래픽이 어느 길로 갈지 정하는 것」으로 푸는 근거로만 쓴다** — 같은 절
+- 사용자 정의 경로와 경로 선택 규칙은 **쓰지 않는다**(guide 「배경」)
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.subnets`
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(라우팅을 푸는 한 줄)
+
+## (phase 103) Azure Virtual Network — Private IP addresses (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses
+
+확인한 날 2026-10-31. 「Last updated on」 2024-11-10. 사본: `docs-virtual-network-ip-services-private-ip-addresses.md`와 `ko-` 판.
+
+- 개인 IP 주소는 Azure 리소스끼리 공용 IP 주소 없이 통신하게 한다. 같은 가상 네트워크의 리소스뿐 아니라 VPN 게이트웨이나 ExpressRoute 회로로 이어진 온-프레미스 네트워크와도 통신한다 — 첫 부분
+- 한국어 표기: 제목은 「프라이빗 IP 주소」인데 본문은 「개인 IP」다. 다른 한국어판과 같이 「개인 IP 주소」로 쓴다
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure Virtual Network — Public IP addresses (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses
+
+확인한 날 2026-10-31. 「Last updated on」 2025-11-18. 사본: `docs-virtual-network-ip-services-public-ip-addresses.md`와 `ko-` 판.
+
+- 공용 IP 주소는 인터넷에서 Azure 리소스로 들어오는 통신을 받고, Azure 리소스가 인터넷과 공용 Azure 서비스로 통신하게 한다. 붙인 리소스에는 떼거나 리소스를 지울 때까지 그 리소스 전용으로 남는다 — 첫 부분
+- VM의 네트워크 인터페이스 같은 리소스에 붙인다. Azure Resource Manager에서 공용 IP 주소는 자기 속성을 가진 리소스다 — 같은 곳
+- 한국어 표기: 공용 IP 주소
+
+쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+
+## (phase 103) Azure Virtual Network — Default outbound access in Azure (쓰지 않는 근거)
+https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-10. 사본: `docs-virtual-network-ip-services-default-outbound-access.md`.
+
+- 나가는 방법을 정하지 않은 VM에 Azure가 공용 IP 주소를 저절로 주는 기본 아웃바운드 액세스가 있지만, 2026-03-31 뒤에 나온 API로 만든 새 가상 네트워크의 서브넷은 기본으로 이 액세스가 꺼진다. 기존 가상 네트워크는 바뀌지 않는다 — 첫 부분과 「How and when default outbound access is provided」
+- **그래서 「가상 네트워크의 리소스는 기본으로 인터넷으로 나갈 수 있다」를 쓰지 않는다.** 이 주제는 들어오는 연결(공용 IP 주소·공용 부하 분산 장치)만 쓴다
+
+쓰인 곳(phase 103 step 9가 확인): `azure-virtual-networking.virtual-network`(쓰지 않는다는 기록 — 개념에 쓰지 않았다)
+
+## (phase 103) Azure Virtual Network — Azure virtual network peering
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-20. 사본: `docs-virtual-network-virtual-network-peering-overview.md`와 `ko-` 판.
+
+- 피어링은 가상 네트워크 둘 이상을 이어 연결 면에서 하나처럼 보이게 한다. 같은 지역을 잇는 가상 네트워크 피어링과 다른 지역을 잇는 글로벌 가상 네트워크 피어링이 있다 — 첫 부분
+- 구독·Microsoft Entra 테넌트·지역이 달라도 데이터를 옮길 수 있고, 피어링을 만드는 동안이나 뒤에 양쪽 리소스가 멈추지 않는다 — 같은 곳
+- 피어링한 가상 네트워크 사이 트래픽은 사설이고 Microsoft 백본 네트워크에 머문다. 통신에 공용 인터넷·게이트웨이·암호화가 필요 없다 — 같은 곳
+- 트래픽은 게이트웨이나 공용 인터넷을 지나지 않고 백본으로 바로 간다. 같은 지역 VM 사이의 지연은 한 가상 네트워크 안과 같다 — 「Connectivity」
+- 어느 쪽 가상 네트워크든 네트워크 보안 그룹으로 다른 가상 네트워크나 서브넷으로 가는 접근을 막을 수 있다. 기본은 전체 연결이다 — 같은 절
+- 서브넷 피어링, 서비스 체이닝, 허브 앤 스포크, Virtual Network Manager는 **쓰지 않는다**
+- 한국어 표기: 가상 네트워크 피어링, 글로벌 가상 네트워크 피어링(제품 문서 FAQ 한국어판. 개요 한국어판의 표기도 「글로벌」), 피어링된 가상 네트워크
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `VnetPeeringDiagram`
+쓰인 곳(phase 103 step 12): D60
+
+## (phase 103) Azure networking — Microsoft global network (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/networking/microsoft-global-network
+
+확인한 날 2026-10-31. 「Last updated on」 2026-08-27. 사본: `docs-networking-microsoft-global-network.md`와 `ko-` 판.
+
+- Microsoft 글로벌 네트워크는 Microsoft 데이터 센터들을 서로, 그리고 전 세계 고객과 잇는 광역 네트워크이고 백본 네트워크다. **그래서 「Microsoft 백본 네트워크」를 「Microsoft가 운영하며 자기 데이터 센터들을 잇는 네트워크」로 푼다.** 지역 수와 길이는 **쓰지 않는다** — 첫 문단
+- 한국어 표기: Microsoft 글로벌 네트워크, 백본 네트워크
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`, `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure Private Link — What is a private endpoint?
+https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-08-11. 사본: `docs-private-link-private-endpoint-overview.md`와 `ko-` 판.
+
+- 프라이빗 엔드포인트는 가상 네트워크의 개인 IP 주소를 쓰는 네트워크 인터페이스이고, Azure Private Link로 제공되는 서비스에 사설로 잇는다. 서비스를 가상 네트워크 안으로 들이는 셈이다 — 첫 문단
+- 그 서비스는 Azure Storage·Azure Cosmos DB·Azure SQL Database 같은 Azure 서비스이거나, Private Link 서비스로 내놓은 고객 자신의 서비스다 — 같은 곳
+- 프라이빗 엔드포인트는 서브넷에 배포되고 그 서브넷에서 IP 주소를 받는다 — 「Private endpoint properties」
+- 연결은 프라이빗 엔드포인트에 닿는 클라이언트 쪽에서만 시작한다. 프라이빗 엔드포인트는 가상 네트워크와 같은 지역·같은 구독에 있어야 하지만 연결할 리소스는 다른 지역에 있어도 된다 — 「Private endpoint properties」 아래 목록. **쓰지 않아도 된다**
+- 승인 절차·DNS 구성·네트워크 정책은 **쓰지 않는다**
+- 한국어 표기: 프라이빗 엔드포인트, 개인 IP 주소, 네트워크 인터페이스, Azure Private Link(옮기지 않는다)
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 12): D59, G38
+
+## (phase 103) Azure Private Link — What is Azure Private Link?
+https://learn.microsoft.com/en-us/azure/private-link/private-link-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-23. 사본: `docs-private-link-private-link-overview.md`와 `ko-` 판.
+
+- Private Link는 가상 네트워크의 프라이빗 엔드포인트를 거쳐 Azure PaaS 서비스(Azure Storage 등)와 Azure에 호스트된 고객·파트너 서비스에 닿게 한다. 가상 네트워크와 그 서비스 사이 트래픽은 Microsoft 백본 네트워크로 다니고, 서비스를 공용 인터넷에 내놓을 필요가 없어진다 — 첫 문단
+- 프라이빗 엔드포인트는 PaaS 리소스 인스턴스 하나에 대응하므로 그 서비스의 다른 리소스에는 닿지 못한다 — 「Key benefits」
+- 온-프레미스도 VPN 터널이나 ExpressRoute로, 피어링한 가상 네트워크도 프라이빗 엔드포인트로 서비스에 닿는다 — 같은 절
+- 한국어 표기: Azure Private Link, 프라이빗 링크
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 12): D59
+
+## (phase 103) Azure Storage — Use private endpoints for Azure Storage
+https://learn.microsoft.com/en-us/azure/storage/common/storage-private-endpoints
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-16. 사본: `docs-storage-common-storage-private-endpoints.md`와 `ko-` 판.
+
+- 스토리지 계정의 프라이빗 엔드포인트는 가상 네트워크의 주소 공간에서 받은 IP 주소를 쓰고, 가상 네트워크의 클라이언트와 스토리지 계정 사이 트래픽은 Microsoft 백본 네트워크의 private link로 다녀 공용 인터넷에 드러나지 않는다 — 첫 문단
+- **프라이빗 엔드포인트를 만들어도 퍼블릭 엔드포인트의 연결이 저절로 막히지는 않는다.** 프라이빗 엔드포인트로만 받으려면 스토리지 방화벽으로 퍼블릭 엔드포인트를 막는다 — 첫 문단 다음 목록과 「Conceptual overview」
+- 가상 네트워크 밖에서 스토리지 주소를 찾으면 퍼블릭 엔드포인트로, 프라이빗 엔드포인트가 있는 가상 네트워크 안에서 찾으면 그 프라이빗 엔드포인트의 IP 주소로 이어진다 — DNS 절
+- 한국어 표기: 프라이빗 엔드포인트, 퍼블릭 엔드포인트(이 문서 한국어판에도 그대로), 스토리지 계정, 스토리지 방화벽
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
+쓰인 곳(phase 103 step 12): G38
+
+## (phase 103) Azure Storage — Storage account overview (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-07-16. 사본: `docs-storage-common-storage-account-overview.md`.
+
+- 스토리지 계정은 Azure Storage의 데이터 개체를 담고, HTTP나 HTTPS로 세계 어디서나 닿을 수 있는 고유한 이름 공간을 준다 — 첫 문단. **「데이터를 담는 Azure 저장소의 단위」로 푸는 데만 쓴다**(종류는 `azure-storage`의 몫이다)
+- 저장한 개체마다 계정 이름이 든 URL 주소가 있고, 계정 이름과 서비스 엔드포인트를 합친 것이 그 계정의 엔드포인트다 — 「Storage account endpoints」. **이 문서가 엔드포인트를 그 데이터에 닿는 주소로 쓴다.** 받은 문서에는 엔드포인트만 따로 정의하는 문장이 없으므로, `endpoints`는 이 쓰임과 Learn 단원 2의 두 정의로 「서비스에 닿을 때 연결하는 접속 지점」까지만 푼다
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
+
+## (phase 103) Azure VPN Gateway — What is Azure VPN Gateway?
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-08. 사본: `docs-vpn-gateway-vpn-gateway-about-vpngateways.md`와 `ko-` 판.
+
+- VPN Gateway는 가상 네트워크와 온-프레미스 사이에는 공용 인터넷으로, 가상 네트워크끼리는 Microsoft 네트워크로 암호화된 트래픽을 보낸다. 쓰는 것은 VPN 게이트웨이라는 종류의 가상 네트워크 게이트웨이다 — 첫 문단
+- 한 VPN 게이트웨이에 연결을 여럿 만들 수 있고, 그 터널들이 게이트웨이의 대역폭을 나눠 쓴다 — 같은 곳. 대역폭 수치는 **쓰지 않는다**
+- 사이트 간 연결은 VPN 게이트웨이와 온-프레미스 VPN 디바이스 사이의 터널이다 — 「Why use VPN Gateway?」
+- 지점 및 사이트 간 연결은 회의장이나 집 같은 원격 위치에서 가상 네트워크로 잇는다 — 같은 절
+- VNet 간 연결은 VPN 게이트웨이와 다른 Azure VPN 게이트웨이 사이의 터널이다 — 같은 절
+- 사이트 간 VPN은 ExpressRoute의 대체 경로로 쓸 수 있고, 두 연결을 함께 둘 수도 있다 — 같은 절
+- 프로토콜 이름(IPsec/IKE·OpenVPN 등), SKU, 요금은 **쓰지 않는다**
+- 한국어 표기: 제품 이름 Azure VPN Gateway, 리소스 VPN 게이트웨이, 가상 네트워크 게이트웨이, 사이트 간(이 문서 한국어판에 「사이트 및 사이트 간」도 섞인다), 지점 및 사이트 간, VNet 간, 온-프레미스 VPN 디바이스
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(연결을 여럿 만든다), `azure-virtual-networking.vpn-connection-types`(사이트 간·지점 및 사이트 간·VNet 간의 두 끝), `SiteToSiteVpnDiagram`
+
+## (phase 103) Azure VPN Gateway — Tutorial: Create a site-to-site VPN connection in the Azure portal
+https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
+
+확인한 날 2026-10-31. 「Last updated on」 2025-07-09. 사본: `docs-vpn-gateway-tutorial-site-to-site-portal.md`와 `ko-` 판.
+
+- 사이트 간 연결을 만드는 순서: 가상 네트워크 → 게이트웨이 서브넷 → VPN 게이트웨이 → 로컬 네트워크 게이트웨이 → VPN 디바이스 구성 → VPN 연결 — 「What you accomplish」과 절 제목
+- 가상 네트워크 게이트웨이에는 이름이 `GatewaySubnet`인 서브넷이 꼭 있어야 하고, 이 서브넷은 가상 네트워크 주소 범위의 일부다 — 「Create a gateway subnet」
+- **로컬 네트워크 게이트웨이**는 Azure에 만드는 개체이고 온-프레미스 위치(사이트)를 라우팅 목적으로 나타낸다. 온-프레미스 VPN 디바이스의 IP 주소와, VPN 게이트웨이를 지나 그쪽으로 보낼 온-프레미스 주소 범위를 적는다. VPN 디바이스마다 하나 만든다 — 「Create a local network gateway」
+- VPN 연결은 가상 네트워크 게이트웨이와 온-프레미스 VPN 디바이스 사이에 만든다. 만들 때 그 VPN 게이트웨이와 로컬 네트워크 게이트웨이를 고른다 — 「Create VPN connections」
+- 온-프레미스 VPN 디바이스는 호환되는 장비여야 하고 바깥에서 닿는 공용 IPv4 주소가 있어야 한다. VPN 게이트웨이도 공용 IP 주소를 쓴다 — 「Prerequisites」·「Create a VPN gateway」
+- 온-프레미스와 가상 네트워크의 주소 범위가 겹치면 트래픽이 뜻하지 않게 간다 — 「Prerequisites」·「Create a virtual network」 알림
+- 이 자습서는 활성-활성 게이트웨이를 고가용성에 권장하며 만든다. 기본 구성은 「Highly available」 항목대로 활성/대기다. **활성-활성은 쓰지 않는다**(guide 「배경」)
+- 게이트웨이 서브넷의 크기, 실제 주소 값, 미리 공유한 키, SKU는 **쓰지 않는다**
+- 한국어 표기: 로컬 네트워크 게이트웨이, 게이트웨이 서브넷(이름 `GatewaySubnet`), VPN 디바이스, 온-프레미스 VPN 디바이스, VPN 연결, 사이트 간
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(사이트 간 연결에 필요한 네 가지, 게이트웨이 서브넷의 이름, 로컬 네트워크 게이트웨이, VPN 연결, 둘 다 공용 IP 주소), `SiteToSiteVpnDiagram`, az073·az074 해설
+
+## (phase 103) Azure VPN Gateway — About Point-to-Site VPN
+https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about
+
+확인한 날 2026-10-31. 사본: `docs-vpn-gateway-point-to-site-about.md`와 `ko-` 판(step 8이 받았다).
+
+- 지점 및 사이트 간 연결은 개별 컴퓨터에서 가상 네트워크로 잇는 연결이고, 그 컴퓨터 쪽에서 시작해 만들어진다. 집이나 회의장 같은 원격 위치에서 쓰고, 연결할 컴퓨터가 몇 대뿐이면 사이트 간 대신 쓸 만하다 — 첫 문단
+- **이 문서와 받은 다른 문서는 「온-프레미스 VPN 디바이스가 필요 없다」고 문장으로 말하지 않는다.** 그래서 그 말로 쓰지 않고, 연결이 컴퓨터와 가상 네트워크 사이에 놓인다는 사실(「What is Azure Virtual Network?」 항목)대로 「온-프레미스 VPN 디바이스를 거치지 않는다」로 쓴다
+- 프로토콜 이름과 인증 방식은 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: 지점 및 사이트 간
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`, `SiteToSiteVpnDiagram`, az075 해설
+
+## (phase 103) Azure VPN Gateway — VPN Gateway FAQ (VNet 간 절만)
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq
+
+확인한 날 2026-10-31. 「Last updated on」 2026-06-04. 사본: `docs-vpn-gateway-vpn-gateway-vpn-faq.md`.
+
+- **VNet 간 트래픽은 인터넷이 아니라 Microsoft Azure 백본으로 다니고**, IPsec·IKE 암호화로 보호된다 — 「Does VNet-to-VNet traffic travel across the internet?」·「Is VNet-to-VNet traffic secure?」
+- 가상 네트워크끼리 잇는 데는 VPN 디바이스가 필요 없다. 온-프레미스도 함께 이을 때만 필요하다 — 「Do I need a VPN device to connect VNets together?」
+- 그래서 **피어링과 VNet 간 VPN은 둘 다 인터넷을 지나지 않고, 갈리는 것은 VPN 게이트웨이와 암호화 터널이 있는가다.** 피어링 쪽 근거는 「Azure virtual network peering」 항목(게이트웨이·암호화가 필요 없다)
+- 한국어 표기: VNet 간
+
+쓰인 곳(phase 103 step 7): `azure-virtual-networking.peering`
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(VNet 간 트래픽은 Microsoft 백본 네트워크로, VPN 디바이스가 필요 없다 — 온-프레미스도 함께 이을 때가 아니면)
+
+## (phase 103) Azure VPN Gateway — Design highly available gateway connectivity (기본 구성만)
+https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable
+
+확인한 날 2026-10-31. 「Last updated on」 2025-03-31. 사본: `docs-vpn-gateway-vpn-gateway-highlyavailable.md`.
+
+- VPN 게이트웨이는 기본으로 인스턴스 둘의 활성/대기 구성이고, 유지 관리나 뜻밖의 중단이 활성 쪽에 오면 대기 쪽이 저절로 이어받으며 그동안 잠깐 끊긴다 — 「About VPN gateway redundancy」. 시간 수치는 **쓰지 않는다**(Learn 단원 3과 수가 다르다)
+
+쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(기본으로 실행 단위 둘, 대기 쪽이 이어받고 잠깐 끊긴다)
+
+## (phase 103) Azure ExpressRoute — ExpressRoute FAQ와 circuit peerings (근거 기록)
+https://learn.microsoft.com/en-us/azure/expressroute/expressroute-faqs
+https://learn.microsoft.com/en-us/azure/expressroute/expressroute-circuit-peerings
+
+확인한 날 2026-10-31. 「Last updated on」 FAQ 2026-03-31, circuit peerings 2026-08-28. 사본: `docs-expressroute-expressroute-faqs.md`·`docs-expressroute-expressroute-circuit-peerings.md`.
+
+- 프라이빗 연결은 서비스 공급자에게서 사고, 회로 하나는 공급자 하나에 대응하며, 회로를 여러 공급자로 여럿 둘 수 있다 — FAQ 「Can I have ExpressRoute circuits from different service providers?」 등. **연결 공급자를 「온-프레미스와 Microsoft 사이의 연결을 맡는 업체」로 푸는 근거로 쓴다**
+- 회로는 공급자·피어링 위치에 묶인 고정 대역폭을 갖는다 — circuit peerings. 대역폭 수치는 **쓰지 않는다**(guide 금지)
+- Azure까지 Layer 2를 넓히는 것은 지원하지 않는다 — FAQ. 계층은 **쓰지 않는다**(guide 「배경」)
+- 받은 문서에는 ExpressRoute 트래픽이 암호화된다는 말도, 되지 않는다는 말도 없다. **그래서 암호화 여부를 쓰지 않고 「보안이 높다」는 공용 인터넷을 지나지 않는다는 데서만 쓴다**
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`(연결 공급자를 푸는 한 줄), `ExpressRouteDiagram`, G37
+
+## (phase 103) Azure Resource Manager — Lock your Azure resources (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources
+
+확인한 날 2026-10-31. 「Last updated on」 2025-02-06. 사본: `docs-azure-resource-manager-management-lock-resources.md`와 `ko-` 판.
+
+- 잠금은 구독·리소스 그룹·리소스가 실수로 지워지거나 바뀌지 않게 한다 — 첫 문단. **`azure-dns`의 「리소스 잠금」 한 줄 풀이에만 쓴다**
+- 한국어 표기: 잠금, 리소스 잠금
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
+
+## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
+
+확인한 날 2026-10-31. 「Last updated on」 2026-10-19. 사본: `docs-azure-monitor-platform-activity-log.md`와 `ko-` 판.
+
+- 활동 로그는 Azure 리소스의 관리 작업(만들기, 정책 변경 같은 것)을 기록해 나중에 살피거나 감사하게 한다 — 첫 문단. **`azure-dns`의 한 줄 풀이에만 쓴다**
+- 한국어 표기: 활동 로그
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
+
+## (phase 103) Azure DNS — Overview of DNS zones and records
+https://learn.microsoft.com/en-us/azure/dns/dns-zones-records
+
+확인한 날 2026-10-31. 「Last updated on」 2026-09-14. 사본: `docs-dns-dns-zones-records.md`와 `ko-` 판.
+
+- 도메인 이름 등록 기관은 도메인 이름을 살 수 있게 해 주는 조직이다. 이름을 사면 그 아래의 DNS 계층을 다스릴 권리를 얻는다 — 「Domain names」
+- Azure DNS는 도메인을 호스트할 이름 서버를 주지만 도메인 이름을 파는 일은 지원하지 않는다 — 같은 절
+- 도메인을 호스트하려면 DNS 영역을 만들고 그 안에 레코드를 둔다. 예로 웹 사이트용 `www`나 메일 서버용 `mail` 같은 이름을 들고, A 레코드 `www`가 IP 주소를 가리키는 예를 보인다. **그래서 레코드를 「도메인 안의 어떤 이름이 어디를 가리키는지 적어 둔 항목」으로 푼다** — 「DNS zones」·「Record sets」
+- 레코드 유형 표와 레코드 집합의 세부는 **쓰지 않는다**
+- 한국어 표기: DNS 영역, 레코드, 레코드 집합, 도메인 이름 등록 기관(Learn 단원 5 한국어판의 「도메인 이름 등록자」는 같은 뜻이다 — 이 문서의 「등록 기관」을 쓴다)
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`, az078 해설
+
+## (phase 103) Azure CDN — What is Azure Content Delivery Network? (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/cdn/cdn-overview
+
+확인한 날 2026-10-31. 「Last updated on」 2026-02-28. 사본: `docs-cdn-cdn-overview.md`.
+
+- 콘텐츠 전송 네트워크는 서버를 여러 곳에 두어 웹 콘텐츠를 전달하는 네트워크이고, 콘텐츠를 사용자 가까운 에지 서버에 캐시해 대기 시간을 줄인다 — 첫 부분. **`expressroute`의 Azure CDN 한 줄 풀이에만 쓴다**
+- 이 문서는 Azure CDN Standard from Microsoft (classic)가 2027-09-30에 끝나고 Azure Front Door로 옮기라고 적는다 — 맨 앞의 알림. Learn 단원 4가 Azure CDN을 드는 줄을 따라 이름을 쓰고, 지원 종료는 본문에 쓰지 않는다
+
+쓰인 곳(phase 103 step 9): `azure-virtual-networking.expressroute`, az077 해설
+
+## (phase 103) 한국어 표기 정리 — `azure-virtual-networking`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 5). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `virtual-network` | **가상 네트워크** | Learn 단원 2 한국어판·가상 네트워크 개요 한국어판 본문. 제품 이름 Azure Virtual Network는 옮기지 않는다 |
+| `subnets` | **서브넷** | Learn 단원 2 한국어판·Plan virtual networks 한국어판 |
+| `peering` | **가상 네트워크 피어링** | Learn 단원 2·피어링 개요 한국어판. 다른 지역을 잇는 것은 **글로벌 가상 네트워크 피어링**(FAQ 한국어판) |
+| `endpoints` | **퍼블릭 엔드포인트와 프라이빗 엔드포인트** | Learn 단원 2 한국어판. 목록 항목 이름 — **퍼블릭 엔드포인트**(Public Endpoint), **프라이빗 엔드포인트**(Private Endpoint) |
+| `vpn-gateway` | **VPN 게이트웨이** | Learn 단원 3 한국어판의 절 제목, VPN Gateway 개요 한국어판의 「VPN 게이트웨이」. 제품 이름은 Azure VPN Gateway |
+| `vpn-connection-types` | **VPN 게이트웨이 연결 유형** | 이름표 개념이라 한국어판 문구가 따로 없다 — Learn 단원 3의 「연결」. 목록 항목 이름 — **사이트 간**(Site-to-Site), **지점 및 사이트 간**(Point-to-Site), **VNet 간**(VNet-to-VNet) |
+| `expressroute` | **ExpressRoute** | Learn 단원 4 한국어판(옮기지 않는다). ExpressRoute 회로, 연결 공급자 |
+| `azure-dns` | **Azure DNS** | Learn 단원 5 한국어판(옮기지 않는다) |
+
+섞여 쓰인 표기와 고른 것:
+
+- **퍼블릭 / 공용** — 엔드포인트는 Learn 단원 2와 스토리지 프라이빗 엔드포인트 문서 한국어판이 모두 **「퍼블릭 엔드포인트」**, IP 주소는 공용 IP 주소 문서와 Learn 단원 2 한국어판이 모두 **「공용 IP 주소」**다. 한 문장 안에서 갈려도 한국어판대로 쓴다 — 「퍼블릭 엔드포인트는 공용 IP 주소를 쓴다」
+- **개인 / 프라이빗 / 사설** — step 0의 물음에 대한 답: IP 주소는 **「개인 IP 주소」**로 확정한다(Learn 단원 2, 개인 IP 문서 본문, 프라이빗 엔드포인트 개요 한국어판. 개인 IP 문서의 제목만 「프라이빗 IP 주소」다). 엔드포인트와 ExpressRoute의 연결은 한국어판대로 **「프라이빗 엔드포인트」·「프라이빗 연결」**이다. 네트워크 자체는 phase 102가 쓴 **「사설 네트워크」**를 잇는다. 프라이빗 연결은 처음 쓸 때 「공용 인터넷을 지나지 않는 연결」로 푼다
+- **지점 및 사이트 간 / 지점 간** — Learn 단원 2·3과 VPN Gateway 개요 한국어판이 **「지점 및 사이트 간」**이다(개요 한국어판의 다른 곳에는 「지점-사이트 간」도 있다). 「지점 간」은 Learn 단원 4 한국어판에서 point-to-point(이더넷 연결 모델)를 옮긴 말이고 용어집 2-22의 표현이라 쓰지 않는다
+- **사이트 간 / 사이트 및 사이트 간 / S2S** — 자습서 제목과 Learn 단원 3 한국어판의 **「사이트 간」**을 쓴다. VPN Gateway 개요 한국어판 한 줄의 「사이트 및 사이트 간」은 쓰지 않는다
+- **VNet 간 / 네트워크 간** — Learn 단원 3 한국어판은 「네트워크 간」, VPN Gateway 개요 한국어판은 **「VNet 간」**이다. 제품 문서의 이름인 「VNet 간」을 쓰고, VNet을 가상 네트워크로 한 번 푼다
+- **VPN 게이트웨이 / 가상 네트워크 게이트웨이** — 다른 것을 가리키는 낱말이다. 가상 네트워크 게이트웨이가 넓은 종류이고 VPN 게이트웨이는 그 한 종류다(Learn 단원 3). 본문은 「VPN 게이트웨이」로 쓰고 위 관계를 한 번 밝힌다
+- **VPN 디바이스 / VPN 장치** — 한국어판이 모두 **「VPN 디바이스」**다. guide의 「VPN 장치」는 잠정 표기이고, 도식 라벨도 「온-프레미스 VPN 디바이스」로 쓴다
+- **게이트웨이 서브넷** — 자습서 한국어판. 그 서브넷의 이름은 `GatewaySubnet`이다(이름 자체가 정해져 있다)
+- **온-프레미스** — phase 100의 표기를 잇는다. Learn 단원 2 한국어판도 같다
+- **애니캐스트 네트워킹 / 이름 서버 / 별칭 레코드 / 활동 로그 / 리소스 잠금** — Learn 단원 5 한국어판
+
+## (phase 103) Azure Virtual Network — Azure network security groups overview
+https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-15. 사본: `docs-virtual-network-network-security-groups-overview.md`와 `ko-` 판.
+
+- 네트워크 보안 그룹은 가상 네트워크 안 Azure 리소스의 트래픽을 거르는 리소스이고, 들어오거나 나가는 트래픽을 허용하거나 막는 보안 규칙을 담는다 — 첫 문단
+- 규칙의 속성은 일곱이다 — 이름, 우선순위, 원본 또는 대상, 프로토콜, 방향, 포트 범위, 작업 — 「Security rules」의 표
+- 우선순위는 100~4096의 수다. **번호가 낮을수록 먼저 처리하고, 트래픽이 어떤 규칙에 맞으면 거기서 처리를 멈춘다.** 그래서 뒤의 규칙은 보지 않는다 — 같은 표 「Priority」
+- 우선순위와 방향이 모두 같은 규칙은 둘 만들 수 없다 — 표 다음 문단
+- 원본·대상에는 모두(Any), IP 주소 하나, 주소 범위, **서비스 태그, 애플리케이션 보안 그룹**을 쓸 수 있다 — 표 「Source or destination」. **그래서 NO.68의 「애플리케이션 보안 그룹만」은 틀리다**(D61). 한 규칙에 서비스 태그나 애플리케이션 보안 그룹을 여럿 쓰지는 못한다 — 같은 칸(세부라 쓰지 않는다)
+- 프로토콜은 TCP·UDP·ICMP 또는 모두(Any)로 고른다(ESP·AH는 포털에 없어 쓰지 않는다) — 표 「Protocol」. 방향은 인바운드나 아웃바운드, 작업은 허용이나 거부다 — 표 「Direction」·「Action」
+- **상태 저장**: 이미 맺어진 연결마다 흐름 기록이 만들어져, 나가는 요청을 허용했으면 그 응답이 들어오는 규칙을 따로 만들지 않아도 되고, 들어오는 쪽을 허용했으면 나가는 응답도 마찬가지다. 들어오는 규칙이 꼭 필요한 것은 바깥에서 먼저 연결을 시작할 때다 — 표 다음 문단
+- 규칙을 지워도 이미 맺어진 연결은 끊기지 않는다. 규칙의 변경은 새 연결에만 적용된다 — 같은 곳의 다음 문단(세부라 쓰지 않아도 된다)
+- **기본 규칙**(만든 NSG마다 Azure가 넣는다) — 「Default security rules」. 들어오는 쪽: `AllowVNetInBound`(65000, 가상 네트워크끼리 허용), `AllowAzureLoadBalancerInBound`(65001, Azure 부하 분산 장치에서 오는 것 허용), `DenyAllInbound`(65500, 나머지 모두 거부). 나가는 쪽: `AllowVnetOutBound`(65000, 가상 네트워크끼리 허용), `AllowInternetOutBound`(65001, 인터넷으로 나가는 것 허용), `DenyAllOutBound`(65500, 나머지 모두 거부)
+- **그래서 인터넷에서 들어오는 트래픽은 `DenyAllInbound`에 걸린다.** 「인터넷 인바운드 거부」라는 이름의 규칙이 따로 있는 것은 아니다 — 위 표에서 읽는다. 기본 규칙에는 가장 낮은 우선순위(가장 큰 번호)가 붙어 고객이 만든 규칙이 먼저 처리된다 — 표 「Priority」
+- 기본 규칙은 지울 수 없고, 더 높은 우선순위(더 작은 번호)의 규칙으로 덮어쓴다 — 「Default security rules」 끝
+- 서비스 태그와 애플리케이션 보안 그룹의 정의도 이 문서에 짧게 있다. 강화된 보안 규칙(augmented)·보안 관리 규칙·흐름 시간 제한·포트 25 규칙은 **쓰지 않는다**
+- 한국어 표기: 네트워크 보안 그룹, 보안 규칙, 기본 보안 규칙(이 phase의 글은 「기본 규칙」으로 줄인다), 우선 순위(이 문서. 앱 글은 띄지 않고 「우선순위」 — 표기 정리), 원본 또는 대상, 프로토콜, 방향, 포트 범위, 작업, 인바운드, 아웃바운드, 서비스 태그, 애플리케이션 보안 그룹
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+
+## (phase 103) Azure Virtual Network — How network security groups filter network traffic
+https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-29. 사본: `docs-virtual-network-network-security-group-how-it-works.md`와 `ko-` 판.
+
+- **연결할 수 있는 곳**은 서브넷과 VM의 네트워크 인터페이스다. 같은 NSG를 서브넷과 네트워크 인터페이스 여럿에 연결할 수 있고, 그 수에 이 문서가 정한 제한은 없다 — 둘째 문단
+- **가상 네트워크 자체에 연결하지 못한다고 말하는 문장은 받은 문서 어디에도 없다.** 대상을 서브넷과 네트워크 인터페이스 둘로 드는 말(이 문서, 「Plan virtual networks」 「Traffic filtering」, 가상 네트워크 FAQ)과, 서브넷에 연결할 때 가상 네트워크를 먼저 찾은 뒤 그 안의 서브넷을 고르는 절차(「Create, change, or delete a network security group」)로 세운다. 그래서 본문은 「서브넷이나 네트워크 인터페이스에 연결한다」로 쓴다(D63)
+- 서브넷에 연결하면 그 서브넷의 모든 리소스에 같은 결과가 적용된다 — 「Inbound traffic」의 VM2. 네트워크 인터페이스에 연결하면 그 인터페이스가 붙은 VM에 걸린다 — 같은 절의 VM3
+- **들어오는 트래픽**은 서브넷의 NSG를 먼저, 그다음 네트워크 인터페이스의 NSG를 본다. 둘 다 연결된 VM으로 들어오려면 **둘 다** 허용해야 하고, 서브넷 쪽에서 막히면 뒤쪽은 보지 않는다 — 「Inbound traffic」의 VM1. **나가는 트래픽**은 거꾸로 네트워크 인터페이스 쪽이 먼저다 — 「Outbound traffic」
+- 같은 서브넷 안의 VM끼리도 NSG 규칙의 영향을 받는다. 기본 규칙이 허용하므로 평소에는 통신하지만, 서브넷에 연결한 NSG에 모두 거부하는 규칙을 넣으면 막힌다 — 「Intra-subnet traffic」
+- 공식 문서는 서브넷과 그 네트워크 인터페이스에 NSG를 함께 연결하지 말고 한쪽만 쓰라고 권한다. 규칙이 부딪혀 원인을 찾기 어렵기 때문이다 — 「Intra-subnet traffic」 끝의 Tip. **그래서 도식은 서브넷 NSG와 네트워크 인터페이스 NSG를 서로 다른 VM에 그린다**
+- NSG가 어디에도 없는 VM의 동작은 **쓰지 않는다** — 이 문서의 VM4는 표준 공용 IP 주소를 가진 VM의 이야기이고, 들어오는 쪽(막힘)과 나가는 쪽(통과)이 갈려 한 줄로 쓰면 틀리기 쉽다
+- 한국어 표기: 네트워크 보안 그룹, 서브넷, 네트워크 인터페이스, 인바운드 트래픽, 아웃바운드 트래픽
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgAssociationDiagram`, D63
+
+## (phase 103) Azure Virtual Network — Create, change, or delete a network security group
+https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-26. 사본: `docs-virtual-network-manage-network-security-group.md`와 `ko-` 판.
+
+- NSG를 서브넷에 연결할 때 포털에서 가상 네트워크를 고른 뒤 그 안의 서브넷을 고른다. 대상을 정하는 마지막 칸은 서브넷이다 — 「Associate or dissociate a network security group to or from a subnet」
+- 한국어 표기: 네트워크 보안 그룹, 연결(associate)
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, D63
+
+## (phase 103) Azure Virtual Network — Diagnose a virtual machine network traffic filter problem
+https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-08. 사본: `docs-virtual-network-diagnose-network-traffic-filter-problem.md`와 `ko-` 판.
+
+- **서브넷 하나와 네트워크 인터페이스 하나에 연결할 수 있는 NSG는 0개나 1개다.** 그 NSG는 서로 같아도 달라도 된다 — 본문의 VM 네트워크 인터페이스 설명. 「Plan virtual networks」 「Subnets」도 서브넷을 두고 같은 수를 말한다
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `NsgAssociationDiagram`, D63
+
+## (phase 103) Azure Virtual Network — Create, change, or delete a network interface (한 줄 풀이만)
+https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-28. 사본: `docs-virtual-network-network-interface.md`와 `ko-` 판.
+
+- 네트워크 인터페이스(NIC)는 VM이 인터넷·Azure·온-프레미스의 리소스와 통신하게 하는 것이다. **그래서 「VM이 네트워크에 연결되는 접속 부품」으로 푼다** — 첫 문단
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`
+
+## (phase 103) Azure Virtual Network — Azure service tags overview
+https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-09-16. 사본: `docs-virtual-network-service-tags-overview.md`와 `ko-` 판.
+
+- 서비스 태그는 어떤 Azure 서비스가 쓰는 IP 주소 범위 묶음을 이름 하나로 가리키는 것이다. 주소 범위가 바뀌면 Microsoft가 태그를 고치므로 고객이 규칙을 고치지 않아도 된다 — 첫 문단
+- 보안 규칙의 원본·대상 칸에 서비스 태그 이름을 적는다. Azure Firewall 규칙에도 쓴다 — 「How service tags work」와 첫 부분
+- 기본 규칙 표의 `VirtualNetwork`·`AzureLoadBalancer`·`Internet`도 IP 주소가 아니라 서비스 태그다 — NSG 개요의 「Default security rules」
+- 태그 목록은 **쓰지 않는다**
+- 한국어 표기: 서비스 태그
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.security-rules`, D61
+
+## (phase 103) Azure Virtual Network — Application security groups
+https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-25. 사본: `docs-virtual-network-application-security-groups.md`와 `ko-` 판.
+
+- 애플리케이션 보안 그룹은 VM(의 네트워크 인터페이스)을 앱의 역할에 따라 묶는 이름표이고, 규칙의 원본·대상에 IP 주소 대신 그 묶음을 적는다 — 첫 문단
+- 예시 규칙에서 인터넷에서 웹 서버 묶음의 TCP 포트 80으로 들어오는 것을 우선순위 100으로 허용한다. 그런 규칙이 없는 묶음은 `DenyAllInbound` 때문에 인터넷에서 들어오는 트래픽을 받지 못한다 — 「Allow-HTTP-Inbound-Internet」. 데이터베이스 묶음에는 허용 규칙(110)과 모두 거부 규칙(120)을 함께 두어 작은 번호가 먼저 처리되는 것을 이용한다 — 「Allow-Database-BusinessLogic」. **`NsgRuleOrderDiagram`의 「우선순위 100의 허용과 기본 거부」는 이 예와 같은 짜임이다**
+- 예시 이름(`AsgWeb` 등)은 **쓰지 않는다**
+- 한국어 표기: 애플리케이션 보안 그룹
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`, D61
+
+## (phase 103) Learn 「Fundamentals of computer networking」 — Network protocols (한 줄 풀이만)
+https://learn.microsoft.com/en-us/training/modules/network-fundamentals/4-network-protocols
+
+확인한 날 2026-11-01. 쪽에 날짜 표시 없음. 사본: `learn-network-fundamentals-4-network-protocols.md`와 `ko-` 판. 이 주제의 낱말을 푸는 근거로만 쓴다.
+
+- 프로토콜은 네트워크 장치끼리 어떻게 통신할지 정한 조건과 규칙이다 — 「Network protocols」의 첫 문장
+- 포트는 들어오는 메시지를 컴퓨터 안의 어느 프로그램에 줄지 가르는 번호이고, 0~65535 범위다. 서비스마다 자기 번호가 있다 — 「Ports」
+- 잘 알려진 포트 번호 표에서 웹의 HTTP는 80이다 — 「Well-known port numbers」. **예시 포트로 쓴다(guide 「예시 값」)**
+- HTTPS는 HTTP에 TLS·SSL 암호화를 더한 것이다 — 「Network security protocols」. **암호화가 필요할 때 쓰는 것의 근거 둘 가운데 하나다**(다른 하나는 VPN Gateway 개요)
+- `트래픽`을 따로 정의한 문장은 찾지 못했다. 공식 문서는 network traffic을 설명 없이 쓴다. **앞 주제의 글처럼 「네트워크로 오가는 데이터」로 푼다.** 사실 주장이 아니라 낱말 풀이다
+- 한국어 표기: 프로토콜, 포트, 포트 번호
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`, `azure-network-protection.security-rules`, `NsgRuleOrderDiagram`
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, D64
+
+## (phase 103) Azure Firewall — What is Azure Firewall?
+https://learn.microsoft.com/en-us/azure/firewall/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-09. 사본: `docs-firewall-overview.md`와 `ko-` 판.
+
+- Azure Firewall은 Azure의 클라우드 워크로드를 지키는 네트워크 방화벽 서비스이고, 상태 저장 방화벽을 서비스로 받는 것이며 고가용성이 들어 있다 — 첫 문단. 「최상위」·「지능형」은 꾸밈말이라 옮기지 않는다
+- 종류(SKU)는 Basic·Standard·Premium 셋이다 — 첫 부분. Basic은 위협 인텔리전스를 경고로만 쓰고 실행 규모가 고정이다. Standard는 네트워크 계층부터 앱 계층까지 거르며 알려진 악성 IP 주소·도메인의 트래픽을 알리고 막는다 — 「Azure Firewall Basic」·「Azure Firewall Standard」. **이름까지만 쓴다.** Premium의 세부, 처리량 수치는 쓰지 않는다
+- **이 문서 첫 문단의 「무제한 클라우드 확장」을 그대로 쓰지 않는다.** 같은 문서가 Basic의 규모를 고정이라 하고 기능 문서가 종류마다 상한을 둔다(`Azure Firewall features by SKU`). 「트래픽이 늘면 저절로 규모가 커진다(종류마다 상한이 있다)」까지로 쓴다. 수치는 쓰지 않는다
+- Azure Firewall Manager는 여러 구독의 Azure Firewall을 한곳에서 관리하는 자리이고, 방화벽 정책으로 같은 규칙을 여러 방화벽에 적용한다 — 「Azure Firewall Manager」
+- Azure Firewall·Azure DDoS Protection·Azure Web Application Firewall은 Azure의 네트워크 보안 범주로 함께 묶이고, 서비스마다 하는 일이 다르다 — 첫 부분의 메모
+- 한국어 표기: 제품 이름 Azure Firewall(옮기지 않는다), 상태 저장(`features` 한국어판. 이 문서 한국어판은 「상태 유지형」 — 표기 정리), 고가용성, 워크로드, 방화벽 정책, Basic·Standard·Premium(이 문서 한국어판은 기본·표준·프리미엄 — 표기 정리)
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, `FirewallHubDiagram`
+
+## (phase 103) Azure Firewall — Azure Firewall features by SKU
+https://learn.microsoft.com/en-us/azure/firewall/features
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-14. 사본: `docs-firewall-features.md`와 `ko-` 판.
+
+- 고가용성이 들어 있어 부하 분산 장치를 더하거나 구성할 것이 없다 — 「Key Basic features」·「Built-in high availability and Availability Zones」
+- 네트워크 규칙: 원본·대상 IP 주소, 포트, 프로토콜로 허용하거나 거부한다 — 「Network traffic filtering rules」
+- 애플리케이션 규칙: 나가는 HTTP·HTTPS(또는 Azure SQL) 트래픽을 정해 둔 도메인 이름 목록으로 좁힌다 — 「Application FQDN filtering rules」. FQDN이라는 말은 **쓰지 않고** 「도메인 이름」으로 쓴다
+- **NAT**: 인터넷에서 방화벽의 공용 IP 주소로 들어온 트래픽의 주소를 가상 네트워크 안의 개인 IP 주소로 바꿔 넘긴다(DNAT). 나가는 트래픽은 출발지를 방화벽의 공용 IP 주소로 바꾼다(SNAT) — 「Inbound DNAT support」·「Outbound SNAT support」. **그래서 NAT를 「주소를 다른 주소로 바꿔 넘기는 일」로 푼다.** NO.31의 답(NAT 규칙)은 맞다
+- 위협 인텔리전스: 알려진 악성 IP 주소·도메인과 오가는 트래픽을 Basic은 경고만 하고 Standard·Premium은 경고하거나 막는다 — 비교 표
+- 상태 저장: 연결의 종류마다 정상 패킷을 구별한다 — 「Network traffic filtering rules」. 비교 표의 첫 줄이 상태 저장 방화벽이고 셋 다 해당한다. 상태 저장의 뜻 자체는 NSG 개요의 설명(응답을 따로 허용하지 않아도 된다)으로 푼다
+- 규모: 세 종류 모두 트래픽이 늘면 저절로 커지되 종류마다 상한이 있다 — 비교 표의 「Cloud scalability」. **수치는 쓰지 않는다**(guide 금지)
+- Firewall Manager로 중앙 관리하는 것은 세 종류 모두 된다 — 비교 표의 「Central management via Firewall Manager」
+- 한국어 표기: 상태 저장 방화벽, 기본 제공 고가용성, 네트워크 필터링 규칙, 위협 인텔리전스, 자동 크기 조정
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, G40
+
+## (phase 103) Azure Firewall — Configure Azure Firewall rules
+https://learn.microsoft.com/en-us/azure/firewall/rule-processing
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-02. 사본: `docs-firewall-rule-processing.md`와 `ko-` 판.
+
+- 규칙 종류는 **NAT 규칙·네트워크 규칙·애플리케이션 규칙** 셋이다. **아무 규칙도 없으면 모든 트래픽을 거부하고**, 허용하는 규칙을 구성해야 지나간다. 규칙에 맞으면 거기서 처리를 멈춘다 — 첫 문단
+- 처리 순서는 종류끼리는 언제나 DNAT 규칙 → 네트워크 규칙 → 애플리케이션 규칙이다 — 「Rule processing by using Firewall Policy」의 요약. **쓰지 않아도 된다** — 규칙 컬렉션 그룹과 우선순위 세부는 쓰지 않는다
+- NSG와의 차이로 쓸 수 있는 것: NSG는 기본 규칙이 가상 네트워크 안을 허용하지만, Azure Firewall은 허용 규칙이 없으면 모두 거부한다(이 문서 첫 문단 + NSG 개요의 기본 규칙)
+- 한국어 표기: NAT 규칙, 네트워크 규칙, 애플리케이션 규칙(한국어판 그대로), 방화벽 정책
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`
+
+## (phase 103) Azure Firewall — Azure Firewall FAQ
+https://learn.microsoft.com/en-us/azure/firewall/firewall-faq
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-14. 사본: `docs-firewall-firewall-faq.md`와 `ko-` 판.
+
+- 구독과 가상 네트워크에 걸쳐 앱과 네트워크 연결에 대한 정책을 **한곳에서 만들고 적용하고 기록한다** — 「What is Azure Firewall?」. **「중앙」은 이 말로 쓴다**
+- **NSG와의 차이**: 둘은 함께 쓰는 관계다. NSG는 구독마다 가상 네트워크 안에 흩어져 놓이며 네트워크 계층에서 거르고, Azure Firewall은 구독과 가상 네트워크를 가로질러 한곳에서 네트워크 수준과 앱 수준으로 지킨다 — 「What is the difference between Network Security Groups (NSGs) and Azure Firewall?」
+- 흔한 배치는 중앙 가상 네트워크에 방화벽을 두고 다른 가상 네트워크를 그곳에 피어링한 뒤, 그들의 기본 경로가 방화벽을 가리키게 하는 허브-스포크다. 가상 네트워크마다 방화벽을 두지 않아도 된다. 어떤 가상 네트워크에도 배포할 수는 있다 — 「What is the typical deployment model for Azure Firewall?」. **`FirewallHubDiagram`의 근거다.** 경로·허브-스포크 설계 방법과 이름은 **쓰지 않고** 「피어링으로 이어 트래픽이 방화벽을 지나게 한다」까지만 쓴다
+- **그래서 「방화벽 하나를 두면 저절로 모든 가상 네트워크가 보호된다」로 쓰지 않는다.** 트래픽이 방화벽을 지나도록 이어 두어야 한다. NO.127·197·432의 답(Azure Firewall)은 맞고 이 조건은 덤프에 없다
+- **「NSG 하나로는 여러 가상 네트워크를 걸 수 없다」로 쓰지 않는다.** 같은 NSG를 서브넷 여럿에 연결할 수 있다(`How network security groups filter network traffic`). 경계는 「구독마다 흩어져 놓이는 규칙 / 구독과 가상 네트워크를 가로질러 한곳에서」다
+- 피어링한 가상 네트워크들 사이의 트래픽도 가운데 가상 네트워크의 Azure Firewall을 지나게 해 거를 수 있다. 각 서브넷에서 방화벽으로 가도록 경로를 두어야 한다 — 「Can Azure Firewall in a hub virtual network forward and filter network traffic between multiple spoke virtual networks?」. **`FirewallHubDiagram`의 「가상 네트워크 사이」 장면의 근거다.** 경로 설정 방법은 쓰지 않는다 (phase 103 step 12)
+- 웹 앱 쪽의 차이: Application Gateway WAF는 웹 앱으로 들어오는 흔한 공격을 막고, Azure Firewall은 HTTP·HTTPS 밖의 프로토콜로 들어오는 것과 나가는 트래픽을 지킨다 — 「What is the difference between Application Gateway WAF and Azure Firewall?」(WAF는 쓰지 않는다 — 금지 범위)
+- 한국어 표기: NSG(네트워크 보안 그룹), 심층 방어(이 phase에서는 쓰지 않는다)
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`, `FirewallHubDiagram`, G40
+
+## (phase 103) Azure Firewall Manager — What is Azure Firewall Manager?
+https://learn.microsoft.com/en-us/azure/firewall-manager/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-01-27. 사본: `docs-firewall-manager-overview.md`와 `ko-` 판.
+
+- Azure Firewall Manager는 여러 지역과 구독에 걸친 Azure Firewall 인스턴스를 한곳에서 배포하고 구성하는 보안 관리 서비스다. 조직 전체 규칙을 전역 방화벽 정책으로 두고 팀마다 지역 정책을 더할 수 있다 — 「Central Azure Firewall deployment and configuration」·「Hierarchical policies」
+- **이름과 한 줄 풀이만 쓴다.** 보안 가상 허브, 허브 가상 네트워크, 파트너 공급자는 **쓰지 않는다**
+- 한국어 표기: Azure Firewall Manager(옮기지 않는다), 방화벽 정책
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.azure-firewall`
+
+## (phase 103) Azure Firewall — Azure Firewall Premium features (암호화의 경계만)
+https://learn.microsoft.com/en-us/azure/firewall/premium-features
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-09. 사본: `docs-firewall-premium-features.md`와 `ko-` 판.
+
+- Premium의 TLS 검사는 **이미 암호화된** 나가는 연결을 풀어 살펴본 뒤 다시 암호화해 보낸다. 검사하지 않으면 방화벽은 TLS 터널 안의 내용을 보지 못한다 — 「TLS inspection」
+- **그래서 「Azure Firewall에는 암호화와 관련된 기능이 전혀 없다」로 쓰지 않는다**(D64). 암호화되지 않은 트래픽을 대신 암호화하는 기능으로 든 곳은 받은 문서에 없다. TLS 검사 자체는 이 주제에 **쓰지 않는다**
+
+쓰인 곳(phase 103 step 12): D64
+
+## (phase 103) Azure DDoS Protection — About Azure DDoS Protection tier comparison
+https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comparison
+
+확인한 날 2026-11-01. 「Last updated on」 2026-03-17. 사본: `docs-ddos-protection-ddos-protection-sku-comparison.md`와 `ko-` 판.
+
+- 고르는 **계층은 DDoS IP Protection과 DDoS Network Protection 둘**이다 — 「Tiers」
+- 두 계층 모두 늘 켜진 감시, 자동 완화, 지표와 경고, **완화 보고서**, 흐름 로그를 준다. **DDoS 신속 대응 지원, 비용 보호, WAF 할인은 Network Protection에만 있다** — 같은 표
+- 표 아래 메모: 추가 비용 없이 **DDoS 인프라 보호**가 공용 IPv4·IPv6 주소를 쓰는 모든 Azure 서비스를 지킨다. 구성이 필요 없다 — 「Tiers」 끝의 메모
+- Basic이라는 말은 이 표에 공용 IP 주소의 계층(Public IP Basic tier)으로만 나온다. DDoS Protection 자체의 종류가 아니다 — 같은 표. **옛 이름과 헷갈리지 않게 쓰지 않는다**
+- 제한(NAT 게이트웨이의 공용 IP 주소 등)과 가격 기준은 **쓰지 않는다**
+- 한국어 표기: 아래 「한국어 표기 정리」
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, D62, G39
+
+## (phase 103) Azure DDoS Protection — Types of attacks Azure DDoS Protection mitigates
+https://learn.microsoft.com/en-us/azure/ddos-protection/types-of-attacks
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-01. 사본: `docs-ddos-protection-types-of-attacks.md`와 `ko-` 판.
+
+- DDoS Protection이 완화하는 것은 네트워크 쪽 공격이다 — 많은 양을 퍼붓는 공격과 프로토콜의 약점을 노린 공격. 대량 공격은 Azure의 네트워크 규모로 받아 걸러 내고, 프로토콜 공격은 악성 트래픽과 정상 트래픽을 가려 악성 쪽을 막는다 — 첫 부분과 앞의 두 항목
+- **웹 앱 계층의 공격(SQL 주입, 교차 사이트 스크립팅, HTTP 프로토콜 위반 등)은 웹 애플리케이션 방화벽을 함께 써야 한다** — 첫 문장과 셋째 항목. **「DDoS Protection이 하지 않는 일」의 근거다.** 웹 애플리케이션 방화벽은 이 한 줄만 쓴다. 계층 번호(3·4·7)는 쓰지 않는다(guide 「배경」) — 「네트워크 쪽」·「웹 앱 쪽」으로 쓴다
+- 공격 이름 표는 **쓰지 않는다**
+- 한국어 표기: 웹 애플리케이션 방화벽(WAF), SQL 주입
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62
+
+## (phase 103) Azure DDoS Protection — Azure DDoS Protection FAQ
+https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-faq
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-02. 사본: `docs-ddos-protection-ddos-faq.md`와 `ko-` 판.
+
+- **무엇을 지키는가**: 계층을 켜서 지키는 대상은 가상 네트워크(ARM 기반)의 공용 IP 주소이고, VM·부하 분산 장치·Azure Firewall·VPN 게이트웨이 등에 붙은 공용 IP 주소가 든다 — 「What are the supported protected resource types?」. 스토리지나 App Service처럼 여러 고객이 함께 쓰는 PaaS의 공용 IP 주소는 대상이 아니다 — 「Can I protect my PaaS resources using DDoS Protection?」
+- 기본 인프라 보호는 원격 분석도 경고도 주지 않고, 그 문턱이 대부분의 앱이 감당할 양보다 높다. 그래서 플랫폼에는 작은 양이어도 앱에는 큰일일 수 있다. 계층을 켜면 그 앱에 맞춘 문턱이 생긴다 — 「Are services unsafe in Azure without the service?」
+- **특정 IP 주소를 허용·차단 목록에 넣는 설정은 없다** — 「Can I allowlist/blocklist specific IP addresses?」. **그래서 NO.163은 맞다.** 트래픽을 열거나 막는 규칙은 NSG의 일이다
+- 웹 앱 쪽은 WAF와 함께 쓴다 — 「What about protection at the service layer (layer 7)?」
+- 한국어 표기: 공용 IP 주소
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+
+## (phase 103) Azure networking — DDoS protection for Azure networks
+https://learn.microsoft.com/en-us/azure/networking/design-guide/ddos
+
+확인한 날 2026-11-01. 「Last updated on」 2026-08-19. 사본: `docs-networking-design-guide-ddos.md`와 `ko-` 판.
+
+- 세 가지를 나란히 든다 — DDoS 인프라 보호(모든 Azure 고객에게 저절로, 추가 비용·구성 없음), DDoS Network Protection(계획 하나로 구독에 걸친 가상 네트워크의 공용 IP 주소), DDoS IP Protection(공용 IP 주소마다) — 「Azure services and features」의 표. **현행 종류는 이 표대로 쓴다.** 가격 칸의 수와 SLA는 **쓰지 않는다**
+- 계층을 켜면 앱의 평소 트래픽을 배워 문턱을 맞추고, 정상 트래픽이 몰리는 때를 공격으로 잘못 보는 일을 줄인다. UDP 쪽 정책은 대량 공격을 걸러 내면서 정상 앱 트래픽을 통과시킨다 — 「What each tier protects」. **「공격은 걸러지고 정상 트래픽은 통과한다」의 근거다**
+- 이 문서는 첫 절에서 앱 계층 공격까지 방어한다고도 적는다. 개요와 공격 유형 문서가 그쪽은 WAF의 몫이라 하므로 **앱 계층까지 막는다고 쓰지 않는다**
+- 한국어 표기: DDoS 인프라 보호, DDoS 네트워크 보호, DDoS IP 보호
+
+쓰인 곳(phase 103 step 12): `azure-network-protection.ddos-protection`, `DdosProtectionDiagram`, D62, G39
+
+## (phase 103) Azure Traffic Manager — What is Azure Traffic Manager? (덤프 대조만)
+https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-19. 사본: `docs-traffic-manager-overview.md`와 `ko-` 판.
+
+- Traffic Manager는 DNS로 요청을 알맞은 서비스 끝점에 보내는 부하 분산 서비스다 — 첫 문단. VM 포트를 여는 일과 관계가 없다. **그래서 NO.7(아니요)은 맞다.** 개념 글에는 쓰지 않는다
+
+쓰인 곳(phase 103 step 12): 없음(덤프 대조 기록)
+
+## (phase 103) Windows Server — netsh ipsec (덤프 대조만)
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netsh-ipsec
+
+확인한 날 2026-11-01. 「Last updated on」 2025-08-04. 사본: `docs-windows-server-netsh-ipsec.md`(영문만).
+
+- 적용 대상에 Windows Server 2016이 있고, IPsec은 IP 패킷을 암호화한다 — 첫 부분. **NO.284·483의 셋째 칸을 대조하는 데만 쓴다.** 설정법과 IPsec은 개념 글에 쓰지 않는다
+
+쓰인 곳(phase 103 step 12): D64
+
+## (phase 103) Azure security — Azure network security overview (범주만)
+https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-07-20. 사본: `docs-security-network-overview.md`와 `ko-` 판.
+
+- 네트워크 보안은 네트워크 트래픽을 통제해 무단 접근과 공격에서 리소스를 지키는 일이라고 적는다 — 첫 문장. NSG는 IP 주소와 TCP·UDP 프로토콜을 기준으로 상태 저장 패킷 필터링을 한다 — 「Network security groups」
+- **세 서비스를 하나로 묶는 말로 쓴다.** 심층 방어, Defender for Cloud, Bastion, WAF의 세부는 **쓰지 않는다**
+
+쓰인 곳(phase 103 step 11): `azure-network-protection.network-security-groups`
+쓰인 곳(phase 103 step 12): D64
+
+## (phase 103) 한국어 표기 정리 — `azure-network-protection`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 103 step 10). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
+
+| 개념·항목 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `network-security-groups` | **네트워크 보안 그룹** | NSG 개요·작동 방식 문서 한국어판. 약어 NSG를 괄호로 함께 세운다 |
+| `security-rules` | **보안 규칙** | NSG 개요 한국어판 절 제목 「보안 규칙」 |
+| `azure-firewall` | **Azure Firewall** | 개요 한국어판(옮기지 않는다) |
+| `ddos-protection` | **Azure DDoS Protection** | 개요 한국어판(옮기지 않는다). DDoS는 phase 101이 정한 **DDoS(분산 서비스 거부)** — 이 문서 한국어판의 「배포된 서비스 거부」는 오역이라 쓰지 않는다 |
+
+규칙 속성과 기본 규칙:
+
+- **이름, 우선순위, 원본·대상, 프로토콜, 방향, 포트 범위, 작업** — NSG 개요 한국어판의 표. 「우선 순위」는 한국어 맞춤법과 앞 phase의 글에 맞춰 붙여 쓴다. **허용·거부**를 쓴다(작업의 값)
+- **인바운드·아웃바운드** — 처음 쓸 때 「들어오는 쪽」·「나가는 쪽」으로 푼다
+- **기본 규칙**(한국어판 「기본 보안 규칙」을 줄인다). 규칙 이름 `AllowVNetInBound`·`DenyAllInbound` 등은 옮기지 않고 코드 표기로 쓴다. 문서의 철자는 나가는 쪽이 `AllowVnetOutBound`이고 들어오는 쪽이 `AllowVNetInBound`다 — 그대로 옮긴다
+- **서비스 태그, 애플리케이션 보안 그룹** — 한국어판 그대로
+
+Azure Firewall:
+
+- **NAT 규칙, 네트워크 규칙, 애플리케이션 규칙** — 규칙 처리 문서 한국어판. **DNAT 규칙**이라는 이름은 쓰지 않는다
+- **상태 저장 / 상태 유지형** — 개요 한국어판은 「상태 유지형」, 기능·FAQ 한국어판과 NSG 쪽은 **「상태 저장」**이다. 「상태 저장」으로 쓴다
+- **SKU 이름** — 개요 한국어판의 기본·표준·프리미엄은 다른 뜻의 「기본」(기본 규칙, 기본 인프라 보호)과 헷갈린다. 영문 이름 **Basic·Standard·Premium**을 쓴다
+- **위협 인텔리전스, 방화벽 정책, 고가용성, 워크로드** — 기능·Firewall Manager 문서 한국어판
+
+Azure DDoS Protection:
+
+- **DDoS 인프라 보호**(Azure DDoS infrastructure protection) — 설계 가이드 한국어판
+- **DDoS 네트워크 보호**(DDoS Network Protection), **DDoS IP 보호**(DDoS IP Protection) — 개요 한국어판의 절 제목. 비교 표 한국어판은 영문 이름을 그대로 둔다. 목록 항목으로 쓰면 ADR-046의 꼴(`**DDoS 네트워크 보호**(DDoS Network Protection)는 …`)이 맞다
+- **계층** — 두 유료 종류를 묶는 말(개요 한국어판). 인프라 보호까지 셋을 말할 때는 「종류」로 쓴다
+- **웹 애플리케이션 방화벽(WAF)** — 공격 유형 문서 한국어판. 한 줄에만 쓴다
+- **공용 IP 주소, 개인 IP 주소, 부하 분산 장치, 네트워크 인터페이스, 서브넷** — `azure-compute`·`azure-virtual-networking` 표기를 잇는다
+
+**쓰지 않는 이름**: DDoS Protection Basic·Standard(옛 이름 — D62·G39), 강화된 보안 규칙, 허브-스포크, FQDN, TLS 검사, 심층 방어, Defender for Cloud, Azure Bastion.
