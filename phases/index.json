@@ -394,6 +394,10 @@
       "dir": "103-azure-compute-networking",
       "status": "completed",
       "completed_at": "2026-11-01T02:19:28+0900"
+    },
+    {
+      "dir": "104-azure-storage-migration",
+      "status": "pending"
     }
   ]
 }

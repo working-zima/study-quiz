@@ -1,0 +1,46 @@
+{
+  "project": "Study Quiz",
+  "phase": "104-azure-storage-migration",
+  "steps": [
+    {
+      "step": 0,
+      "name": "storage-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "services-blob-tiers",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "rehydration-files",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "redundancy",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "storage-accounts",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "movement-sources",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "file-tools",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "migrate-data-box",
+      "status": "pending"
+    }
+  ]
+}
