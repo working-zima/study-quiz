@@ -13,6 +13,7 @@ import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
+import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
@@ -29,6 +30,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DataBoxDiagram } from './DataBoxDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
@@ -181,6 +183,7 @@ import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
+import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
@@ -406,6 +409,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-storage.storage-accounts': StorageAccountDiagram,
   'azure-storage.account-types': StorageAccountTypesTable,
   'azure-data-movement.file-sync': FileSyncDiagram,
+  'azure-data-movement.azure-migrate': AzureMigrateDiagram,
+  'azure-data-movement.data-box': [DataBoxDiagram, DataMoveOptionsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

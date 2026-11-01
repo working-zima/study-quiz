@@ -3141,7 +3141,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - **쓰지 않는 것**: ISV 도구, 지우는 표준의 이름, 장치 용량, 「tens of terabytes」의 수치
 - 한국어 표기: 이 판의 「지역 이동 통신 사업자」는 regional carrier의 오역이다 — **지역 배송 업체**로 쓴다. 「Azure Migrate (Azure 마이그레이션)」의 괄호와 「재산적 가치를 가지는」은 따르지 않는다
 
-쓰일 곳: `azure-data-movement.azure-migrate`, `azure-data-movement.data-box`, `AzureMigrateDiagram`, `DataBoxDiagram`, `DataMoveOptionsTable`, G45, G46
+쓰인 곳: `azure-data-movement.azure-migrate`, `azure-data-movement.data-box`, `AzureMigrateDiagram`, `DataBoxDiagram`, `DataMoveOptionsTable`, G45, G46
 
 ## (phase 104) Learn 「Describe Azure storage services」 — 7 Identify Azure file movement options
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/7-identify-azure-file-movement-options
@@ -3156,8 +3156,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - **쓰지 않는 말**: 「미니어처 콘텐츠 배달 네트워크」라는 비유(캐시로 충분하다)
 - 한국어 표기: 명령줄 유틸리티, 독립 실행형 앱, 원본과 대상, 단방향·양방향 동기화, Azure 파일 동기화, 클라우드 계층화
 
-쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`
-쓰일 곳: `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`
 
 ## (phase 104) AzCopy — Get started with AzCopy
 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
@@ -3173,8 +3172,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: Microsoft Entra ID·SAS 인증, 버전 번호, 명령 목록, Azure Storage Mover
 - 한국어 표기: AzCopy, 명령줄 유틸리티, 스토리지 계정
 
-쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, G44
-쓰일 곳: `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, `DataMoveOptionsTable`, G44
 
 ## (phase 104) AzCopy — 동기화의 방향과 비교 기준
 - Azure Files 전송 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-files — 「Last updated on」 2026-08-17. 사본 `docs-storage-common-storage-use-azcopy-files.md`
@@ -3217,8 +3215,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: 인증 방식, 에뮬레이터, 지원 운영 체제의 판, Data Lake 컨테이너, 프록시 설정
 - 한국어 표기: Azure Storage Explorer(제목은 Storage Explorer), 독립 실행형 앱, 업로드·다운로드. Learn 한국어판의 「그래픽 인터페이스」는 **화면**으로 풀어 쓴다
 
-쓰인 곳: `azure-data-movement.storage-explorer`, D73, G44
-쓰일 곳: `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`, D73, G44
 
 ## (phase 104) Azure File Sync — 하는 일과 맞추는 상대
 - What is Azure File Sync? https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction — 「Last updated on」 2026-08-18. 사본 `docs-file-sync-introduction.md`
@@ -3238,8 +3235,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: Storage Sync Service·동기화 그룹·엔드포인트라는 이름, Windows Server 판, 개수 한도, 다른 도구와의 조합
 - 한국어 표기: **Azure 파일 동기화**, Azure 파일 공유, 에이전트, 동기화. 아래 표기 정리
 
-쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, D73
-쓰일 곳: `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`, D73
 
 ## (phase 104) Azure File Sync — Cloud tiering overview
 https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-cloud-tiering-overview
@@ -3269,7 +3265,7 @@ https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
 - **쓰지 않는 것**: 「실시간」(이 문서는 쓰지 않고 「가동 중지 시간과 위험을 줄여」로 쓴다), ISV 도구(SDC 표), Azure Copilot 에이전트(미리 보기), 어플라이언스, Movere(지원 종료), 무료라는 것, 대상 서비스 이름
 - 한국어 표기: Azure Migrate(이 문서는 이름을 옮기지 않는다), 허브, 검색 및 평가, 마이그레이션 및 현대화, 마이그레이션, 평가
 
-쓰일 곳: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`, `DataMoveOptionsTable`, G45
+쓰인 곳: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`, `DataMoveOptionsTable`, G45
 
 ## (phase 104) Azure Data Box — What is Azure Data Box?
 https://learn.microsoft.com/en-us/azure/databox/data-box-overview
@@ -3287,7 +3283,7 @@ https://learn.microsoft.com/en-us/azure/databox/data-box-overview
 - **쓰지 않는 것**: Data Box Heavy, 지우는 표준의 이름, 장치 사양, 파트너 제품, 지역 간 업로드 조건
 - 한국어 표기: Azure Data Box, **Data Box 디바이스**(이 문서 한국어판이 일관되게 쓴다. 처음 쓰는 자리에서 「저장 장치」로 푼다), 가져오기·내보내기, 로컬 웹 UI. 「지역 이동 통신 사업자」는 오역이라 **지역 배송 업체**로 쓴다
 
-쓰일 곳: `azure-data-movement.data-box`, `DataBoxDiagram`, `DataMoveOptionsTable`, G46
+쓰인 곳: `azure-data-movement.data-box`, `DataBoxDiagram`, `DataMoveOptionsTable`, G46
 
 ## (phase 104) Azure Data Box — Tutorial: Create export order
 https://learn.microsoft.com/en-us/azure/databox/data-box-deploy-export-ordered
@@ -3299,7 +3295,7 @@ https://learn.microsoft.com/en-us/azure/databox/data-box-deploy-export-ordered
 - 보관 계층의 Blob은 내보낼 수 없어 먼저 리하이드레이션해야 한다 — 「Track the order」의 Note. **쓰려면 한 줄로만 쓴다**(앞 주제 `archive-rehydration`과 이어진다). 쓰지 않아도 된다
 - 한국어 표기: 내보내기 주문
 
-쓰일 곳: `azure-data-movement.data-box`, `DataBoxDiagram`
+쓰인 곳: `azure-data-movement.data-box`, `DataBoxDiagram`
 
 ## (phase 104) Azure Storage — Migrating your data to Azure - overview
 https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-transfer-solution
@@ -3312,8 +3308,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-trans
 - 이 표의 크기 경계 값은 쓰지 않는다. Azure Storage Mover, Data Box Gateway, robocopy 같은 이름은 학습 가이드의 줄 밖이라 쓰지 않는다
 - 한국어 표기: 온라인·오프라인 전송, 마이그레이션
 
-쓰인 곳: `azure-data-movement.azcopy`, G44
-쓰일 곳: `azure-data-movement.data-box`, `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.data-box`, `DataMoveOptionsTable`, G44
 
 ## (phase 104) 한국어 표기 정리 — `azure-data-movement`
 
