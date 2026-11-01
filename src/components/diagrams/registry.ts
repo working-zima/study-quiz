@@ -9,6 +9,7 @@ import { ArpHopsDiagram } from './ArpHopsDiagram'
 import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AsPathDiagram } from './AsPathDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
+import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
@@ -26,6 +27,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
@@ -51,10 +53,13 @@ import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
+import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
+import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
@@ -98,6 +103,8 @@ import { NetworkStructureDiagram } from './NetworkStructureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
+import { NsgAssociationDiagram } from './NsgAssociationDiagram'
+import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
@@ -109,6 +116,7 @@ import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
@@ -126,10 +134,12 @@ import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
+import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
+import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
@@ -151,6 +161,10 @@ import { UnreachableDiagram } from './UnreachableDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
+import { VmContainerDiagram } from './VmContainerDiagram'
+import { VmResourcesDiagram } from './VmResourcesDiagram'
+import { VnetIsolationDiagram } from './VnetIsolationDiagram'
+import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
@@ -159,6 +173,7 @@ import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
+import { HostingOptionsTable } from './azureComputeTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
@@ -360,6 +375,21 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-resource-hierarchy.resource-group': ResourceGroupScopeDiagram,
   'azure-resource-hierarchy.subscription-boundaries': SubscriptionBoundaryDiagram,
   'azure-resource-hierarchy.hierarchy': HierarchyInheritanceDiagram,
+  'azure-compute.vm-resources': VmResourcesDiagram,
+  'azure-compute.scale-sets': ScaleSetDiagram,
+  'azure-compute.availability-sets': AvailabilitySetDiagram,
+  'azure-compute.containers': VmContainerDiagram,
+  'azure-compute.functions': FunctionTriggerDiagram,
+  'azure-compute.app-service': HostingOptionsTable,
+  'azure-virtual-networking.virtual-network': VnetIsolationDiagram,
+  'azure-virtual-networking.peering': VnetPeeringDiagram,
+  'azure-virtual-networking.endpoints': PrivateEndpointDiagram,
+  'azure-virtual-networking.vpn-gateway': SiteToSiteVpnDiagram,
+  'azure-virtual-networking.expressroute': ExpressRouteDiagram,
+  'azure-network-protection.network-security-groups': NsgAssociationDiagram,
+  'azure-network-protection.security-rules': NsgRuleOrderDiagram,
+  'azure-network-protection.azure-firewall': FirewallHubDiagram,
+  'azure-network-protection.ddos-protection': DdosProtectionDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

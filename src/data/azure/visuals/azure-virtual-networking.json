@@ -1,0 +1,230 @@
+{
+  "diagrams": {
+    "vnet-isolation": {
+      "label": "가상 네트워크와 서브넷의 통신 범위",
+      "svgLabel": "가상 네트워크 A의 웹·데이터베이스 서브넷과 별도의 가상 네트워크 B",
+      "question": "서로 다른 가상 네트워크의 VM끼리도 바로 통신할 수 있을까?",
+      "idleCaption": "회사 A가 VM을 나눠 둔 예다. 같은 가상 네트워크 안의 VM과 다른 가상 네트워크의 VM을 각각 골라, 통신할 수 있는 범위를 비교해 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 VM이 비교 대상이고, 화살표는 요청이 갈 수 있는 길이다. 두 가상 네트워크는 따로 연결하지 않은 상태다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3"
+      },
+      "groups": {
+        "vnet-a": "가상 네트워크 A",
+        "subnet-web": "웹 서브넷",
+        "subnet-db": "데이터베이스 서브넷",
+        "vnet-b": "가상 네트워크 B"
+      },
+      "notes": {
+        "same-note": "서브넷이 달라도 통신",
+        "other-note": "따로 잇지 않으면 통신하지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "same",
+          "label": "같은 가상 네트워크",
+          "caption": "웹 서브넷의 VM 1은 데이터베이스 서브넷의 VM 2와 기본으로 통신한다. Azure가 한 가상 네트워크 안의 서브넷 사이에 기본 경로를 만들기 때문이다. 통신을 막으려면 네트워크 보안 그룹에 차단 규칙을 둔다.",
+          "sources": [
+            "azure-virtual-networking.virtual-network",
+            "azure-virtual-networking.subnets"
+          ]
+        },
+        {
+          "id": "other",
+          "label": "다른 가상 네트워크",
+          "caption": "VM 1과 VM 3은 서로 다른 가상 네트워크에 있다. 두 네트워크를 연결하지 않았으므로 서로 통신하지 않는다. 통신이 필요하면 두 가상 네트워크를 직접 잇는 피어링 같은 방법으로 연결한다.",
+          "sources": [
+            "azure-virtual-networking.virtual-network"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.virtual-network",
+        "azure-virtual-networking.subnets"
+      ]
+    },
+    "vnet-peering": {
+      "label": "가상 네트워크 피어링의 트래픽이 다니는 길",
+      "svgLabel": "지역 A의 가상 네트워크 A·B와 지역 B의 가상 네트워크 C, 그 사이의 Microsoft 백본 네트워크와 공용 인터넷",
+      "question": "피어링한 가상 네트워크 사이의 트래픽은 어디로 다닐까?",
+      "idleCaption": "회사 C가 가상 네트워크 A를 같은 지역의 B, 다른 지역의 C와 각각 피어링한 예다. 지역을 골라 VM 1의 트래픽이 어디로 다니는지 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 VM이 통신하는 쪽이고, 화살표는 트래픽이 다니는 길이다. 가상 네트워크 B와 C는 서로 피어링하지 않은 상태다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "backbone": "Microsoft 백본 네트워크",
+        "internet": "공용 인터넷"
+      },
+      "groups": {
+        "region-a": "지역 A",
+        "vnet-a": "가상 네트워크 A",
+        "vnet-b": "가상 네트워크 B",
+        "region-b": "지역 B",
+        "vnet-c": "가상 네트워크 C"
+      },
+      "notes": {
+        "regional-note": "지나지 않음",
+        "global-note": "지역이 달라도"
+      },
+      "scenarios": [
+        {
+          "id": "regional",
+          "label": "같은 지역",
+          "caption": "피어링한 가상 네트워크 A와 B 사이의 트래픽은 사설로 Microsoft 백본 네트워크를 다닌다. 공용 인터넷에는 들어가지 않는다.",
+          "sources": [
+            "azure-virtual-networking.peering"
+          ]
+        },
+        {
+          "id": "global",
+          "label": "다른 지역",
+          "caption": "다른 지역에 있는 가상 네트워크 C와도 피어링할 수 있다. 글로벌 가상 네트워크 피어링의 트래픽도 Microsoft 백본 네트워크로 다닌다.",
+          "sources": [
+            "azure-virtual-networking.peering"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.peering"
+      ]
+    },
+    "private-endpoint": {
+      "label": "스토리지 계정에 닿는 두 엔드포인트",
+      "svgLabel": "인터넷의 사용자와 퍼블릭 엔드포인트, 가상 네트워크 안의 VM 1과 프라이빗 엔드포인트, 그리고 스토리지 계정",
+      "question": "VM이 스토리지 계정에 닿을 때, 인터넷을 거치지 않으려면?",
+      "idleCaption": "회사 B의 스토리지 계정에 닿는 두 길이다. 엔드포인트를 골라 누가 어떤 길로 닿는지 비교해 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 상자가 그 길에 쓰이는 것이고, 화살표는 트래픽이 다니는 길이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "pe": "프라이빗 엔드포인트",
+        "storage": "스토리지 계정",
+        "public-ep": "퍼블릭 엔드포인트",
+        "user": "인터넷의 사용자"
+      },
+      "groups": {
+        "vnet": "가상 네트워크"
+      },
+      "notes": {
+        "public-note": "공용 IP 주소 — 어디서나 닿음",
+        "private-note": "가상 네트워크의 개인 IP 주소"
+      },
+      "scenarios": [
+        {
+          "id": "public",
+          "label": "퍼블릭 엔드포인트",
+          "caption": "인터넷의 사용자는 퍼블릭 엔드포인트로 스토리지 계정에 닿는다. 퍼블릭 엔드포인트는 공용 IP 주소를 써서 세계 어디서나 닿을 수 있다.",
+          "sources": [
+            "azure-virtual-networking.endpoints"
+          ]
+        },
+        {
+          "id": "private",
+          "label": "프라이빗 엔드포인트",
+          "caption": "VM 1은 가상 네트워크 안의 프라이빗 엔드포인트를 거쳐 스토리지 계정에 닿는다. 이 트래픽은 공용 인터넷에 드러나지 않는다. 다만 프라이빗 엔드포인트를 만들어도 퍼블릭 엔드포인트의 연결이 저절로 막히지는 않는다.",
+          "sources": [
+            "azure-virtual-networking.endpoints"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.endpoints"
+      ]
+    },
+    "site-to-site-vpn": {
+      "label": "VPN 게이트웨이로 잇는 사이트 간 연결과 지점 및 사이트 간 연결",
+      "svgLabel": "온-프레미스 네트워크의 온-프레미스 VPN 디바이스, 집의 컴퓨터, 로컬 네트워크 게이트웨이, 가상 네트워크의 게이트웨이 서브넷에 있는 VPN 게이트웨이와 VM 1",
+      "question": "회사 네트워크나 집의 컴퓨터를 인터넷 너머 가상 네트워크에 어떻게 이을까?",
+      "idleCaption": "회사 C가 본사와 직원의 집에서 가상 네트워크로 닿는 두 연결이다. 연결 유형을 골라 터널이 무엇과 무엇을 잇는지 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 상자가 그 연결에 쓰이는 것이고, 화살표는 트래픽이 다니는 길이다. 로컬 네트워크 게이트웨이는 Azure에 만들어 온-프레미스 위치를 나타내는 개체라, 터널의 끝이 아니다.",
+      "nodes": {
+        "vpn-device": "온-프레미스 VPN 디바이스",
+        "lng": "로컬 네트워크 게이트웨이",
+        "laptop": "집의 컴퓨터",
+        "vpn-gw": "VPN 게이트웨이",
+        "vm-1": "VM 1"
+      },
+      "groups": {
+        "onprem": "온-프레미스 네트워크",
+        "vnet": "가상 네트워크",
+        "gateway-subnet": "게이트웨이 서브넷"
+      },
+      "notes": {
+        "s2s-note": "인터넷 위의 암호화된 터널",
+        "lng-note": "온-프레미스 위치를 Azure에 알림",
+        "laptop-note": "컴퓨터가 연결을 시작"
+      },
+      "scenarios": [
+        {
+          "id": "site-to-site",
+          "label": "사이트 간",
+          "caption": "본사의 온-프레미스 VPN 디바이스와 게이트웨이 서브넷의 VPN 게이트웨이가 인터넷 너머로 암호화된 터널을 잇는다. 로컬 네트워크 게이트웨이에는 그 디바이스의 IP 주소와 본사의 주소 범위를 적어 둔다. 터널을 지난 트래픽은 가상 네트워크 안의 VM 1까지 간다.",
+          "sources": [
+            "azure-virtual-networking.vpn-gateway",
+            "azure-virtual-networking.vpn-connection-types"
+          ]
+        },
+        {
+          "id": "point-to-site",
+          "label": "지점 및 사이트 간",
+          "caption": "집의 컴퓨터 한 대가 스스로 VPN 연결을 시작해 인터넷 위의 암호화된 터널로 VPN 게이트웨이에 닿고, VM 1까지 간다. 이 연결은 컴퓨터와 가상 네트워크 사이에 놓이므로 본사의 온-프레미스 VPN 디바이스를 거치지 않는다.",
+          "sources": [
+            "azure-virtual-networking.vpn-connection-types"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.vpn-gateway",
+        "azure-virtual-networking.vpn-connection-types"
+      ]
+    },
+    "expressroute": {
+      "label": "ExpressRoute와 사이트 간 VPN이 온-프레미스 네트워크에서 Azure 가상 네트워크로 가는 두 길",
+      "svgLabel": "온-프레미스 네트워크, 연결 공급자, 공용 인터넷, Microsoft 클라우드 안의 Azure 가상 네트워크와 Microsoft 365",
+      "question": "ExpressRoute 연결은 사이트 간 VPN과 어느 길로 다르게 다닐까?",
+      "idleCaption": "회사 D의 온-프레미스 네트워크에서 Azure 가상 네트워크로 가는 두 길이다. 연결을 골라 트래픽이 어디를 지나는지 보자.",
+      "legend": "상자 안의 위치가 소속을 나타낸다. 선명한 상자가 그 연결에 쓰이는 것이고, 화살표는 트래픽이 다니는 길이다. 두 연결 모두 온-프레미스 네트워크에서 시작해 Azure 가상 네트워크에 닿는다.",
+      "nodes": {
+        "onprem": "온-프레미스 네트워크",
+        "provider": "연결 공급자",
+        "internet": "공용 인터넷",
+        "vnet": "Azure 가상 네트워크",
+        "m365": "Microsoft 365"
+      },
+      "groups": {
+        "microsoft": "Microsoft 클라우드"
+      },
+      "notes": {
+        "er-note": "공용 인터넷을 지나지 않음",
+        "vpn-note": "암호화된 터널로 지남"
+      },
+      "scenarios": [
+        {
+          "id": "expressroute",
+          "label": "ExpressRoute",
+          "caption": "ExpressRoute는 연결 공급자를 거친 프라이빗 연결로 Azure 가상 네트워크에 닿고, 같은 회로로 Microsoft 365에도 닿을 수 있다. 회로로 다니는 트래픽은 공용 인터넷을 지나지 않는다.",
+          "sources": [
+            "azure-virtual-networking.expressroute"
+          ]
+        },
+        {
+          "id": "vpn",
+          "label": "사이트 간 VPN",
+          "caption": "사이트 간 VPN은 공용 인터넷 위에 암호화된 터널을 두어 Azure 가상 네트워크에 잇는다. 시작과 끝은 ExpressRoute와 같고, 공용 인터넷을 지난다는 것이 다르다.",
+          "sources": [
+            "azure-virtual-networking.expressroute",
+            "azure-virtual-networking.vpn-gateway"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-virtual-networking.expressroute",
+        "azure-virtual-networking.vpn-gateway"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

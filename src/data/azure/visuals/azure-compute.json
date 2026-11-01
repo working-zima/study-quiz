@@ -1,0 +1,294 @@
+{
+  "diagrams": {
+    "vm-resources": {
+      "label": "가상 머신에 꼭 있어야 하는 리소스와 필요할 때 붙이는 리소스를 구분하는 도식",
+      "svgLabel": "가상 네트워크 안의 VM 1과 네트워크 인터페이스에 OS 디스크·데이터 디스크·공용 IP 주소·네트워크 보안 그룹이 연결되어 있다",
+      "question": "VM 하나를 만들면, 무엇이 함께 있어야 할까?",
+      "idleCaption": "회사 A가 만든 VM 1에는 OS 디스크와 네트워크 인터페이스가 연결되어 있고, 네트워크 인터페이스는 개인 IP 주소를 갖고 가상 네트워크에 이어진다. 버튼을 고르면 꼭 있어야 하는 것과 필요할 때 붙이는 것을 구분할 수 있다.",
+      "legend": "선은 VM이나 네트워크 인터페이스에 리소스가 연결되어 있다는 뜻이다. 통신이 흘러가는 경로는 아니다. 큰 박스는 가상 네트워크이며, 그 안의 서브넷은 생략했다. 흐린 리소스는 선택한 구분에 들지 않는 것이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "nic": "네트워크 인터페이스",
+        "os-disk": "OS 디스크",
+        "data-disk": "데이터 디스크",
+        "public-ip": "공용 IP 주소",
+        "nsg": "네트워크 보안 그룹"
+      },
+      "groups": {
+        "vnet": "가상 네트워크"
+      },
+      "notes": {
+        "private-ip-note": "개인 IP 주소",
+        "nic-note": "가상 네트워크에 잇는다",
+        "ip-note": "인터넷과 직접 통신할 때",
+        "data-note": "데이터를 따로 둘 때",
+        "nsg-note": "통신을 거를 때"
+      },
+      "scenarios": [
+        {
+          "id": "required",
+          "label": "꼭 있는 것",
+          "caption": "VM 1에는 운영 체제를 담은 OS 디스크와 가상 네트워크에 잇는 네트워크 인터페이스가 필요하다. 네트워크 인터페이스는 가상 네트워크 안의 서브넷에 연결되며 개인 IP 주소가 있어야 한다. 공용 IP 주소·네트워크 보안 그룹·데이터 디스크는 선택 사항이다.",
+          "sources": [
+            "azure-compute.vm-resources"
+          ]
+        },
+        {
+          "id": "optional",
+          "label": "필요할 때 붙이는 것",
+          "caption": "회사 A는 인터넷에서 VM 1에 바로 접속하려고 공용 IP 주소를 붙이고, 통신을 거르려고 네트워크 보안 그룹을 연결한다. 데이터를 따로 둘 때는 데이터 디스크를 붙인다. VM이 고장 나면 그 데이터 디스크를 떼어 새 VM에 붙일 수 있다. 이 셋은 필요에 따라 추가하는 자원이다.",
+          "sources": [
+            "azure-compute.vm-resources"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.virtual-machines",
+        "azure-compute.vm-resources"
+      ]
+    },
+    "scale-sets": {
+      "label": "사용자가 몰리면 확장 집합이 같은 구성의 VM을 더하는 모습을 보이는 도식",
+      "svgLabel": "부하 분산 장치가 확장 집합 안의 VM 1부터 VM 4로 요청을 나눠 보낸다",
+      "question": "사용자가 몰리면, 확장 집합은 무엇을 할까?",
+      "idleCaption": "회사 A의 웹사이트를 실행하는 확장 집합이다. 사용자의 요청은 부하 분산 장치를 거쳐 확장 집합의 VM으로 간다. 화살표가 닿은 VM 1과 VM 2는 평소에도 요청을 받는 VM이다. 버튼을 고르면 평소와 사용자가 몰릴 때를 비교할 수 있다.",
+      "legend": "화살표는 부하 분산 장치가 VM으로 요청을 나눠 보내는 길이다. 큰 박스는 확장 집합이다. 흐린 VM은 그 상황에서 아직 더해지지 않은 VM이다. VM 대수는 예로 든 것이다.",
+      "nodes": {
+        "lb": "부하 분산 장치",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "vm-4": "VM 4"
+      },
+      "groups": {
+        "scale-set": "확장 집합"
+      },
+      "notes": {
+        "vm-3-note": "저절로 더해짐",
+        "vm-4-note": "저절로 더해짐"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "평소에는 확장 집합의 VM 1과 VM 2가 요청을 받는다. 사용자는 VM이 아니라 부하 분산 장치로 요청을 보내고, 부하 분산 장치가 그 요청을 두 VM에 나눠 보낸다. VM 3과 VM 4는 아직 더해지지 않았다.",
+          "sources": [
+            "azure-compute.scale-sets"
+          ]
+        },
+        {
+          "id": "peak",
+          "label": "사용자가 몰릴 때",
+          "caption": "할인 행사로 사용자가 몰리면 확장 집합이 같은 구성의 VM 3과 VM 4를 저절로 더하고, 부하 분산 장치는 새로 더해진 VM에도 요청을 보낸다. 사용자가 줄면 확장 집합이 VM 수를 다시 줄인다.",
+          "sources": [
+            "azure-compute.scale-sets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.scale-sets"
+      ]
+    },
+    "availability-sets": {
+      "label": "전원 장애 때와 계획된 유지 관리 때 가용성 집합에서 멈추는 VM을 비교하는 도식",
+      "svgLabel": "가용성 집합 안의 장애 도메인 A에 VM 1과 VM 4, 장애 도메인 B에 VM 2, 장애 도메인 C에 VM 3이 있다",
+      "question": "전원이 끊길 때와 유지 관리 때, 함께 멈추는 VM은 같을까?",
+      "idleCaption": "회사 B가 가용성 집합에 넣은 VM 네 대를 Azure가 장애 도메인 셋에 나눠 두었다. 장애 도메인 A에는 VM 1과 VM 4가 함께 있고, 업데이트 도메인은 네 대가 저마다 다르다. 버튼을 고르면 전원 장애 때와 계획된 유지 관리 때 멈추는 VM을 비교할 수 있다.",
+      "legend": "큰 박스는 가용성 집합이고, 그 안의 박스는 장애 도메인이다. 업데이트 도메인은 박스로 그리지 않았다. 흐린 VM은 그 상황에서 멈춘 VM이다. VM 대수와 배치는 예로 든 것이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "vm-3": "VM 3",
+        "vm-4": "VM 4"
+      },
+      "groups": {
+        "availability-set": "가용성 집합",
+        "fd-a": "장애 도메인 A",
+        "fd-b": "장애 도메인 B",
+        "fd-c": "장애 도메인 C"
+      },
+      "notes": {
+        "fd-a-note": "전원이 멈춤",
+        "vm-1-note": "다시 시작 중"
+      },
+      "scenarios": [
+        {
+          "id": "power",
+          "label": "전원 장애",
+          "caption": "장애 도메인 A의 전원이 끊기면, 그 전원과 네트워크 스위치를 함께 쓰는 VM 1과 VM 4가 함께 멈춘다. 다른 장애 도메인에 있는 VM 2와 VM 3은 계속 동작한다.",
+          "sources": [
+            "azure-compute.availability-sets"
+          ]
+        },
+        {
+          "id": "maintenance",
+          "label": "계획된 유지 관리",
+          "caption": "계획된 유지 관리 때 Azure는 업데이트 도메인을 한 번에 하나씩 다시 시작한다. VM 1의 업데이트 도메인이 다시 시작되는 동안, 업데이트 도메인이 다른 VM 2·VM 3·VM 4는 계속 동작한다. VM 4는 VM 1과 장애 도메인이 같지만 업데이트 도메인은 다르다.",
+          "sources": [
+            "azure-compute.availability-sets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.availability-sets"
+      ]
+    },
+    "vm-containers": {
+      "label": "VM으로 실행할 때와 컨테이너로 실행할 때 운영 체제를 두는 방식을 견주는 도식",
+      "svgLabel": "VM으로 실행하는 호스트에서는 VM 1과 VM 2가 저마다 앱과 운영 체제를 담고, 컨테이너로 실행하는 호스트에서는 컨테이너 1~3이 호스트의 운영 체제를 함께 쓴다",
+      "question": "VM과 컨테이너는 운영 체제를 어떻게 다르게 둘까?",
+      "idleCaption": "호스트 한 대에서 앱을 VM 두 대로 실행할 때와, 호스트 한 대에서 컨테이너 세 개를 실행할 때를 함께 두었다. VM에는 운영 체제가 하나씩 있고, 컨테이너 셋은 호스트의 운영 체제 하나에 이어져 있다. 버튼을 고르면 두 방식을 하나씩 볼 수 있다.",
+      "legend": "큰 박스는 호스트이고, 그 안의 작은 박스는 VM이다. 선은 앱이나 컨테이너가 어느 운영 체제를 쓰는지 잇는다. VM으로 실행하는 호스트 자체의 소프트웨어는 생략했다. 흐린 것은 선택한 방식에 들지 않는 것이다. VM과 컨테이너의 개수는 예로 든 것이다.",
+      "nodes": {
+        "vm-1-app": "앱 1",
+        "vm-1-os": "운영 체제",
+        "vm-2-app": "앱 2",
+        "vm-2-os": "운영 체제",
+        "ctr-1": "컨테이너 1",
+        "ctr-2": "컨테이너 2",
+        "ctr-3": "컨테이너 3",
+        "host-os": "호스트의 운영 체제"
+      },
+      "groups": {
+        "vm-host": "VM으로 실행하는 호스트",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "container-host": "컨테이너로 실행하는 호스트"
+      },
+      "notes": {
+        "vm-os-note": "VM마다 따로, 고객이 관리",
+        "container-note": "컨테이너마다 운영 체제를 두지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "vm",
+          "label": "VM",
+          "caption": "VM 1과 VM 2는 저마다 운영 체제를 실행하고, 고객이 그 운영 체제에 접속해 하나하나 관리한다. 앱 둘을 VM 두 대로 실행하면 운영 체제도 둘을 실행하는 셈이다.",
+          "sources": [
+            "azure-compute.containers"
+          ]
+        },
+        {
+          "id": "container",
+          "label": "컨테이너",
+          "caption": "컨테이너 1~3은 컨테이너마다 운영 체제를 두지 않고 호스트의 운영 체제를 함께 쓰며, 고객은 컨테이너의 운영 체제를 관리하지 않는다. 운영 체제를 새로 시작할 필요가 없어 가볍고, 빨리 만들고 늘리고 멈출 수 있다.",
+          "sources": [
+            "azure-compute.containers"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.virtual-machines",
+        "azure-compute.containers"
+      ]
+    },
+    "function-trigger": {
+      "label": "이벤트가 없을 때와 올 때 Azure Functions의 함수가 실행되는지를 견주는 도식",
+      "svgLabel": "REST 요청·타이머·다른 서비스의 메시지가 함수를 실행하게 하는 트리거로 놓여 있다",
+      "question": "이벤트가 없을 때, 함수는 무엇을 하고 있을까?",
+      "idleCaption": "함수를 실행하게 하는 트리거로 흔히 쓰는 것이 셋 있다. 함수 하나에는 그 가운데 트리거를 하나 둔다. 버튼을 고르면 이벤트가 없을 때와 트리거마다 함수가 실행되는 때를 볼 수 있다.",
+      "legend": "화살표는 트리거가 함수를 실행하게 하는 길이다. 흐린 것은 그 상황에서 일어나지 않은 트리거다. 트리거 셋은 고를 수 있는 종류를 보인 것이고, 함수 하나에 셋을 함께 둔다는 뜻이 아니다.",
+      "nodes": {
+        "request": "REST 요청",
+        "timer": "타이머",
+        "message": "다른 서비스의 메시지",
+        "function": "함수"
+      },
+      "notes": {
+        "idle-note": "실행되지 않음",
+        "request-note": "요청을 처리하는 동안 실행",
+        "timer-note": "정해 둔 시각에 실행",
+        "message-note": "메시지를 처리하는 동안 실행"
+      },
+      "scenarios": [
+        {
+          "id": "idle",
+          "label": "이벤트가 없을 때",
+          "caption": "이벤트가 없으면 함수는 실행되지 않고, 함수를 실행할 리소스를 갖춰 둘 필요도 없다. 서버리스 요금제에서는 함수가 실행되는 동안 쓴 만큼 내므로, 실행되지 않는 동안에는 그 값이 더해지지 않는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "request",
+          "label": "REST 요청이 올 때",
+          "caption": "앱이 보낸 REST 요청이 오면 그 요청을 트리거로 둔 함수가 실행되어 요청을 처리한다. 일을 마치면 함수는 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "timer",
+          "label": "정해 둔 시각",
+          "caption": "타이머를 트리거로 둔 함수는 정해 둔 시각마다 실행된다. 요청이 오지 않아도 실행되고, 일을 마치면 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        },
+        {
+          "id": "message",
+          "label": "메시지가 올 때",
+          "caption": "다른 Azure 서비스가 보낸 메시지가 도착하면 그 메시지를 트리거로 둔 함수가 실행된다. 이때도 일을 마치면 함수는 쓰던 리소스를 저절로 놓는다.",
+          "sources": [
+            "azure-compute.functions"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-compute.functions"
+      ]
+    }
+  },
+  "tables": {
+    "hosting-options": {
+      "label": "앱을 실행할 네 곳 견주기",
+      "columns": [
+        "실행할 곳",
+        "고객이 관리하는 것",
+        "알맞은 일"
+      ],
+      "columnWidths": [
+        "28%",
+        "34%",
+        "38%"
+      ],
+      "sources": [
+        "azure-compute.virtual-machines",
+        "azure-compute.containers",
+        "azure-compute.functions",
+        "azure-compute.app-service"
+      ],
+      "rows": [
+        {
+          "header": "가상 머신",
+          "cells": [
+            "운영 체제와 그 위의 소프트웨어, 패치와 구성까지",
+            "운영 체제를 직접 통제해야 하는 일, 직접 만든 소프트웨어 실행"
+          ]
+        },
+        {
+          "header": "컨테이너",
+          "cells": [
+            "컨테이너에 담을 앱. 컨테이너의 운영 체제는 맡지 않는다",
+            "빨리 만들고 늘리고 멈추는 일, 앱을 부분마다 따로 관리하는 마이크로 서비스"
+          ]
+        },
+        {
+          "header": "Azure Functions",
+          "cells": [
+            "함수의 코드. 서버와 운영 체제는 맡지 않는다",
+            "이벤트에 따라 실행되어 몇 초 안에 끝나는 일"
+          ]
+        },
+        {
+          "header": "Azure App Service",
+          "cells": [
+            "앱을 만들고 유지하는 일. 서버와 운영 체제는 맡지 않는다",
+            "늘 웹 요청을 받는 웹앱과 REST API, 백그라운드 작업"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}
