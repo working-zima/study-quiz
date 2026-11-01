@@ -1,0 +1,49 @@
+{
+  "diagrams": {
+    "entra-connect": {
+      "label": "온-프레미스 Active Directory와 Microsoft Entra ID를 잇기 전과 Microsoft Entra Connect로 이은 뒤를 보인 모습",
+      "svgLabel": "온-프레미스 안에 Active Directory와 Microsoft Entra Connect가 있고, 클라우드 안에 Microsoft Entra ID와 클라우드 앱이 있다",
+      "question": "온-프레미스 계정을 클라우드에서도 쓰려면?",
+      "idleCaption": "회사 A의 온-프레미스에 있는 Active Directory와 Microsoft Entra Connect, 클라우드에 있는 Microsoft Entra ID와 앱이다. 버튼을 고르면 두 곳을 잇기 전과 이은 뒤에 ID를 어떻게 관리하는지 볼 수 있다.",
+      "legend": "큰 박스는 온-프레미스와 클라우드다. 앞의 두 화살표는 사용자 ID가 동기화되는 방향이고, 마지막 화살표는 그 ID로 로그인해 클라우드 앱에 들어가는 길이다.",
+      "nodes": {
+        "ad": "Active Directory",
+        "connect": "Microsoft Entra Connect",
+        "entra": "Microsoft Entra ID",
+        "cloud-app": "클라우드 앱"
+      },
+      "groups": {
+        "on-premises": "온-프레미스",
+        "cloud": "클라우드"
+      },
+      "notes": {
+        "separate-note": "ID를 따로 두 벌 관리",
+        "sync-note": "사용자 ID를 동기화",
+        "sign-in-note": "같은 ID로 로그인"
+      },
+      "scenarios": [
+        {
+          "id": "separate",
+          "label": "연결하지 않을 때",
+          "caption": "두 곳이 이어져 있지 않으면 같은 직원의 ID를 온-프레미스 Active Directory와 Microsoft Entra ID에 따로 두고, 바뀔 때마다 양쪽을 고쳐야 한다.",
+          "sources": [
+            "azure-identity.entra-connect"
+          ]
+        },
+        {
+          "id": "synced",
+          "label": "연결한 뒤",
+          "caption": "Microsoft Entra Connect가 온-프레미스의 사용자 ID를 Microsoft Entra ID로 동기화한다. 직원은 같은 ID로 온-프레미스의 앱과 클라우드 앱에 로그인한다.",
+          "sources": [
+            "azure-identity.entra-connect"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.entra-connect"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

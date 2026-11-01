@@ -1270,7 +1270,9 @@ https://learn.microsoft.com/en-us/entra/fundamentals/new-name
 
 - Azure Active Directory·Azure AD·AAD라는 이름을 Microsoft Entra ID가 대신한다. Microsoft Entra는 제품군의 이름이고 Microsoft Entra ID는 그 가운데 제품 하나다. 기능 이름도 Azure AD Conditional Access → Microsoft Entra Conditional Access처럼 바뀌었다 — 「Product name」, 「Feature names」 (phase 105, 2026-11-01 확인)
 
-쓰일 곳(phase 105): `azure-identity.entra-id`(예전 이름을 한 번 밝힌다), D74~D80(덤프의 옛 이름을 현행 이름으로 읽는 근거)
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`(예전 이름을 한 번 밝힌다)
+
+쓰일 곳(phase 105): D74~D80(덤프의 옛 이름을 현행 이름으로 읽는 근거)
 
 ## (phase 101) 한국어 표기 정리 — `azure-sla-lifecycle`
 
@@ -1536,7 +1538,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 - Microsoft 365·Azure·Dynamics CRM Online 구독자는 이미 Microsoft Entra ID를 쓰고 있고, 새 디렉터리에는 처음부터 `contoso.onmicrosoft.com` 꼴의 도메인 이름이 붙으며 조직의 도메인 이름을 더할 수 있다 — 「Microsoft Entra ID」 (phase 105)
 - Microsoft Entra Domain Services는 최신 인증을 쓰지 못하는 클라우드의 옛 앱을 위한 것이고, 관리되는 도메인의 핵심 구성 요소는 Microsoft가 배포하고 유지한다 — 「Microsoft Entra Domain Services」 (phase 105)
 - 위험 기반 조건부 액세스 정책은 Microsoft Entra ID Protection의 기능이다 — 「Microsoft Entra ID Protection」. **쓰지 않는다**(guide 「배경」). NO.264·496을 처리한 근거로만 적는다 (phase 105)
-- 2026-11-01에 다시 확인했다. 쓰일 곳: `azure-identity.entra-id` (phase 105)
+- 2026-11-01에 다시 확인했다. 쓰인 곳(phase 105 step 1): `azure-identity.entra-id` (phase 105)
 
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
@@ -3355,7 +3357,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 동기화는 Entra ID에서 Domain Services로 한 방향이다. 관리되는 도메인에서 직접 만든 리소스는 Entra ID로 돌아가지 않는다. 온-프레미스가 있으면 Connect가 Entra ID로, Entra ID가 관리되는 도메인으로 잇는다 — 「Is information synchronized?」
 - 한국어 표기: 온-프레미스 Active Directory, Microsoft Entra Connect, 셀프 서비스 암호 재설정, 관리되는 도메인, 도메인 컨트롤러, 그룹 정책, 단방향 동기화. 이 단원은 domain join을 「도메인 가입」과 「도메인 조인」으로 섞어 쓴다
 
-쓰일 곳: `azure-identity.entra-id`, `azure-identity.entra-connect`, `azure-identity.domain-services`, `EntraConnectDiagram`, `DomainServicesDiagram`, G47
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`, `azure-identity.entra-connect`, `EntraConnectDiagram`
+
+쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, G47
 
 ## (phase 105) Windows Server — Active Directory Domain Services overview
 https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
@@ -3365,7 +3369,7 @@ https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virt
 - 디렉터리는 네트워크에 있는 대상(서버·프린터·사용자와 컴퓨터 계정 등)의 정보를 계층으로 담아 두는 저장소다. AD DS는 그 데이터를 저장하고 사용자와 관리자가 찾아 쓰게 하는 디렉터리 서비스이고, 로그인 인증과 접근 제어가 함께 들어 있다 — 머리글
 - 한국어 표기: 디렉터리, AD DS(Active Directory Domain Services)
 
-쓰일 곳: `azure-identity.entra-id`(**디렉터리**를 푸는 한 줄), `azure-identity.entra-connect`(**Active Directory**를 푸는 한 줄)
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`(**디렉터리**를 푸는 한 줄), `azure-identity.entra-connect`(**Active Directory**를 푸는 한 줄)
 
 ## (phase 105) Microsoft Entra — Identity and access management fundamental concepts
 https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concepts
@@ -3378,7 +3382,9 @@ https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concep
 - ID 공급자는 ID 정보를 만들고 관리하며 인증·권한 부여 서비스를 제공한다. Microsoft Entra가 그 예이고 Google·GitHub 등도 있다 — 「Identity provider」
 - 한국어 표기: 디지털 ID, 자격 증명, 인증, 권한 부여, ID 공급자
 
-쓰일 곳: `azure-identity.entra-id`(**ID**를 푸는 한 줄), `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, `azure-identity.external-identities`(ID 공급자), D80
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`(**ID**를 푸는 한 줄)
+
+쓰일 곳: `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, `azure-identity.external-identities`(ID 공급자), D80
 
 ## (phase 105) Microsoft Entra — Authentication vs. authorization
 https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization
@@ -3404,7 +3410,7 @@ https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-
 - Microsoft Entra Cloud Sync가 Connect를 이어받을 동기화 서비스이고, Azure AD Connect V1은 2022-08-31에 끝났다 — 「Consider moving to Microsoft Entra Cloud Sync」, Important. 무료 여부·Connect Health는 **쓰지 않는다**
 - 한국어 표기: Microsoft Entra Connect, 온-프레미스, 동기화 — 제목 「Microsoft Entra Connect란?」
 
-쓰일 곳: `azure-identity.entra-connect`, `EntraConnectDiagram`
+쓰인 곳(phase 105 step 1): `azure-identity.entra-connect`, `EntraConnectDiagram`
 
 ## (phase 105) Microsoft Entra — Microsoft Entra Connect Sync와 쓰기 저장
 https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis
@@ -3419,7 +3425,7 @@ https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-s
 - **동기화 방향의 처리**: Learn의 「두 시스템 사이」는 맞는 말이지만, 기본 흐름은 온-프레미스 AD에서 Entra ID로 가고 반대 방향은 선택 기능이다. 도식은 기본 흐름 하나로 그리고, 선택 기능의 쓰기 저장은 본문 한 줄로만 쓴다(쓰지 않아도 된다)
 - 한국어 표기: Microsoft Entra Connect Sync, Microsoft Entra 클라우드 동기화(Cloud Sync)
 
-쓰일 곳: `azure-identity.entra-connect`, `EntraConnectDiagram`(`sync-1` `ad`→`connect`, `sync-2` `connect`→`entra`)
+쓰인 곳(phase 105 step 1): `azure-identity.entra-connect`, `EntraConnectDiagram`(`sync-1` `ad`→`connect`, `sync-2` `connect`→`entra`)
 
 ## (phase 105) Microsoft Entra — Connect 설치 위치
 https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-prerequisites
@@ -3429,7 +3435,7 @@ https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-i
 - Connect는 도메인에 가입한 서버에 설치해야 한다 — 「Installation prerequisites」. 서버 버전과 사양은 **쓰지 않는다**
 - **도식의 자리**: 「온-프레미스 애플리케이션」과 합쳐 `connect` 노드를 그룹 `on-premises` 안에 둔다
 
-쓰일 곳: `EntraConnectDiagram`
+쓰인 곳(phase 105 step 1): `EntraConnectDiagram`
 
 ## (phase 105) Microsoft Entra Domain Services — 개요와 비교
 https://learn.microsoft.com/en-us/entra/identity/domain-services/overview
@@ -3445,7 +3451,9 @@ https://learn.microsoft.com/en-us/entra/identity/domain-services/overview
 - 사용자가 클라우드뿐이고 모바일 디바이스를 쓰면 AD DS를 직접 세우지 않고 Entra ID만 쓸 수 있다 — 「compare」 머리글(NO.207·296의 「Entra ID에 도메인 컨트롤러가 필요한가」의 근거)
 - 한국어 표기: **관리되는 도메인**(Learn 단원 2 여덟 번, 개요 열여덟 번, 비교 열두 번. 「관리형 도메인」은 Learn과 비교에 한 번씩뿐이다), **도메인 가입**(개요 다섯 줄, 비교 표 머리글. 「도메인 조인」은 Learn에 한 번), 복제본 집합, 도메인 컨트롤러, 그룹 정책
 
-쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, `azure-identity.entra-id`, D78
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`
+
+쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, D78
 
 ## (phase 105) 낱말을 푸는 근거 — 도메인 가입, 그룹 정책, LDAP, Kerberos
 https://learn.microsoft.com/en-us/entra/identity/domain-services/join-windows-vm
@@ -3617,7 +3625,9 @@ https://learn.microsoft.com/en-us/entra/identity/devices/overview
 - 사용자 하나에 라이선스를 더 줄 수 있다(기존 라이선스를 두고 더한다) — 「license-users-groups」. 라이선스 수는 **쓰지 않는다**(guide 「배경」). D76의 근거로만 적는다
 - 한국어 표기: 디바이스, 가입, 등록, 하이브리드 가입, 그룹
 
-쓰일 곳: D75, D76, D77, D78, `azure-identity.entra-id`(디바이스 관리 항목은 「등록·관리」까지)
+쓰인 곳(phase 105 step 1): `azure-identity.entra-id`(디바이스 관리 항목은 「등록·관리」까지)
+
+쓰일 곳: D75, D76, D77, D78
 
 ## (phase 105) 한국어 표기 정리 — `azure-identity`
 

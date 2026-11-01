@@ -51,6 +51,7 @@ import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
 import { EmrNodeRolesDiagram } from './EmrNodeRolesDiagram'
 import { EmrRuntimeRoleDiagram } from './EmrRuntimeRoleDiagram'
 import { EncapsulationDiagram } from './EncapsulationDiagram'
+import { EntraConnectDiagram } from './EntraConnectDiagram'
 import { EtherTypeLengthDiagram } from './EtherTypeLengthDiagram'
 import { EthernetFrameDiagram } from './EthernetFrameDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
@@ -411,6 +412,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-data-movement.file-sync': FileSyncDiagram,
   'azure-data-movement.azure-migrate': AzureMigrateDiagram,
   'azure-data-movement.data-box': [DataBoxDiagram, DataMoveOptionsTable],
+  'azure-identity.entra-connect': EntraConnectDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
