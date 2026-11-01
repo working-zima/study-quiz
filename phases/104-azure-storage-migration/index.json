@@ -29,9 +29,7 @@
     {
       "step": 3,
       "name": "redundancy",
-      "status": "error",
-      "error_message": "[3회 시도 후 실패] Step did not update status",
-      "failed_at": "2026-11-01T12:01:59+0900"
+      "status": "pending"
     },
     {
       "step": 4,
