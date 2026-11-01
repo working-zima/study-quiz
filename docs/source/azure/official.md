@@ -3156,7 +3156,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - **쓰지 않는 말**: 「미니어처 콘텐츠 배달 네트워크」라는 비유(캐시로 충분하다)
 - 한국어 표기: 명령줄 유틸리티, 독립 실행형 앱, 원본과 대상, 단방향·양방향 동기화, Azure 파일 동기화, 클라우드 계층화
 
-쓰일 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`
+쓰인 곳: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`, `FileSyncDiagram`
+쓰일 곳: `DataMoveOptionsTable`
 
 ## (phase 104) AzCopy — Get started with AzCopy
 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
@@ -3172,7 +3173,8 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: Microsoft Entra ID·SAS 인증, 버전 번호, 명령 목록, Azure Storage Mover
 - 한국어 표기: AzCopy, 명령줄 유틸리티, 스토리지 계정
 
-쓰일 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, `DataMoveOptionsTable`, G44
+쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`, G44
+쓰일 곳: `DataMoveOptionsTable`
 
 ## (phase 104) AzCopy — 동기화의 방향과 비교 기준
 - Azure Files 전송 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-files — 「Last updated on」 2026-08-17. 사본 `docs-storage-common-storage-use-azcopy-files.md`
@@ -3188,7 +3190,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - 대상에만 있는 파일은 기본값으로 지우지 않는다(`--delete-destination`의 기본값 false) — 명령 참조. 그러므로 **「동기화하면 대상이 원본과 똑같아진다」로 쓰지 않는다.** 「대상에서 바꾸거나 지운 것이 원본으로 돌아오지 않는다」는 쓸 수 있다
 - 한국어 표기: 동기화, 원본, 대상. 제품 문서의 「소스」는 쓰지 않고 Learn 한국어판의 **원본**으로 쓴다
 
-쓰일 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`
+쓰인 곳: `azure-data-movement.azcopy`, `FileSyncDiagram`
 
 ## (phase 104) AzCopy — 다른 클라우드에서 복사
 - Amazon S3 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3 — 「Last updated on」 2026-05-27. 사본 `docs-storage-common-storage-use-azcopy-s3.md`
@@ -3199,7 +3201,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - 두 문서 모두 제목과 머리글이 다른 클라우드 저장소에서 **Azure로** 복사하는 안내이고, 반대 방향의 안내는 찾지 못했다. Get started의 표는 Google Cloud 쪽을 미리 보기로 적는다
 - 본문에는 「Amazon S3 같은 다른 클라우드의 저장소에서 Azure로 복사할 수 있다」까지 쓴다. Google Cloud의 미리 보기 여부는 쓰지 않는다
 
-쓰일 곳: `azure-data-movement.azcopy`
+쓰인 곳: `azure-data-movement.azcopy`
 
 ## (phase 104) Azure Storage Explorer — 쓰는 곳과 하는 일
 - Get started https://learn.microsoft.com/en-us/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer — 「Last updated on」 2025-04-14. 사본 `docs-storage-explorer-get-started.md`
@@ -3215,7 +3217,8 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: 인증 방식, 에뮬레이터, 지원 운영 체제의 판, Data Lake 컨테이너, 프록시 설정
 - 한국어 표기: Azure Storage Explorer(제목은 Storage Explorer), 독립 실행형 앱, 업로드·다운로드. Learn 한국어판의 「그래픽 인터페이스」는 **화면**으로 풀어 쓴다
 
-쓰일 곳: `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`, D73, G44
+쓰인 곳: `azure-data-movement.storage-explorer`, D73, G44
+쓰일 곳: `DataMoveOptionsTable`
 
 ## (phase 104) Azure File Sync — 하는 일과 맞추는 상대
 - What is Azure File Sync? https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction — 「Last updated on」 2026-08-18. 사본 `docs-file-sync-introduction.md`
@@ -3235,7 +3238,8 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 - **쓰지 않는 것**: Storage Sync Service·동기화 그룹·엔드포인트라는 이름, Windows Server 판, 개수 한도, 다른 도구와의 조합
 - 한국어 표기: **Azure 파일 동기화**, Azure 파일 공유, 에이전트, 동기화. 아래 표기 정리
 
-쓰일 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, `DataMoveOptionsTable`, D73
+쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`, D73
+쓰일 곳: `DataMoveOptionsTable`
 
 ## (phase 104) Azure File Sync — Cloud tiering overview
 https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-cloud-tiering-overview
@@ -3249,7 +3253,7 @@ https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-cloud-tierin
 - 이 문서는 자주 쓰는 파일과 드물게 쓰는 파일을 hot·cool로도 부른다. Blob 계층 이름과 헷갈리므로 **본문은 핫·쿨을 쓰지 않고 「자주 쓰는 파일」·「나머지 파일」로 쓴다**
 - 한국어 표기: **클라우드 계층화**. 이 문서 한국어판은 제목만 「클라우드 티어링」이고 절 제목과 본문은 「클라우드 계층화」다. What is 한국어판도 둘이 섞였고, Learn 단원 7 한국어판은 「클라우드 계층화」다. 그래서 「클라우드 티어링」은 쓰지 않는다
 
-쓰일 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`
+쓰인 곳: `azure-data-movement.file-sync`, `FileSyncDiagram`
 
 ## (phase 104) Azure Migrate — What is Azure Migrate?
 https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
@@ -3308,7 +3312,8 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-trans
 - 이 표의 크기 경계 값은 쓰지 않는다. Azure Storage Mover, Data Box Gateway, robocopy 같은 이름은 학습 가이드의 줄 밖이라 쓰지 않는다
 - 한국어 표기: 온라인·오프라인 전송, 마이그레이션
 
-쓰일 곳: `azure-data-movement.data-box`, `azure-data-movement.azcopy`, `DataMoveOptionsTable`, G44
+쓰인 곳: `azure-data-movement.azcopy`, G44
+쓰일 곳: `azure-data-movement.data-box`, `DataMoveOptionsTable`
 
 ## (phase 104) 한국어 표기 정리 — `azure-data-movement`
 

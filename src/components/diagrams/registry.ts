@@ -59,6 +59,7 @@ import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FileShareDiagram } from './FileShareDiagram'
+import { FileSyncDiagram } from './FileSyncDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
@@ -404,6 +405,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-storage.geo-redundancy': [GeoRedundancyDiagram, RedundancyOptionsTable],
   'azure-storage.storage-accounts': StorageAccountDiagram,
   'azure-storage.account-types': StorageAccountTypesTable,
+  'azure-data-movement.file-sync': FileSyncDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

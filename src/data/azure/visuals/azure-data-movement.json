@@ -1,0 +1,57 @@
+{
+  "diagrams": {
+    "file-sync": {
+      "label": "AzCopy의 한 방향 복사와 Azure 파일 동기화의 양방향 동기화, 클라우드 계층화를 Windows 파일 서버와 Azure 파일 공유 사이에 보인 모습",
+      "svgLabel": "온-프레미스 안에 Windows 파일 서버가 있고, Azure 안에 Azure 파일 공유가 있다",
+      "question": "한 방향 복사와 양쪽을 맞추는 일은 어떻게 다를까?",
+      "idleCaption": "회사 D의 온-프레미스에 있는 Windows 파일 서버와 Azure 파일 공유다. 버튼을 고르면 두 곳 사이에서 파일이 어느 쪽으로 가고 어디에 놓이는지 볼 수 있다.",
+      "legend": "큰 박스는 서버와 파일 공유가 있는 곳이다. 화살표는 파일의 변경이 가는 방향이다. AzCopy는 서버를 원본으로, 파일 공유를 대상으로 정한 예다.",
+      "nodes": {
+        "server": "Windows 파일 서버",
+        "share": "Azure 파일 공유"
+      },
+      "groups": {
+        "on-premises": "온-프레미스",
+        "azure": "Azure"
+      },
+      "notes": {
+        "azcopy-note": "정한 방향으로만 복사",
+        "sync-note": "양쪽이 저절로 맞춰진다",
+        "server-tier-note": "자주 쓰는 파일",
+        "share-tier-note": "나머지 파일의 내용"
+      },
+      "scenarios": [
+        {
+          "id": "azcopy",
+          "label": "AzCopy",
+          "caption": "서버를 원본으로, 파일 공유를 대상으로 정하고 AzCopy로 동기화하면 그 방향으로만 복사한다. 파일 공유에서 고치거나 지운 것은 서버로 돌아오지 않는다.",
+          "sources": [
+            "azure-data-movement.azcopy"
+          ]
+        },
+        {
+          "id": "file-sync",
+          "label": "Azure 파일 동기화",
+          "caption": "서버에 에이전트를 설치하면 서버와 파일 공유의 파일이 양쪽으로 저절로 맞춰진다. 어느 쪽에서 바꾼 파일이든 다른 쪽으로 간다.",
+          "sources": [
+            "azure-data-movement.file-sync"
+          ]
+        },
+        {
+          "id": "cloud-tiering",
+          "label": "클라우드 계층화",
+          "caption": "자주 쓰는 파일은 서버에 두고, 나머지 파일은 내용을 파일 공유에 두었다가 그 파일을 열 때 가져온다. Blob 액세스 계층과는 다른 일이다.",
+          "sources": [
+            "azure-data-movement.file-sync"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-data-movement.azcopy",
+        "azure-data-movement.file-sync"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
