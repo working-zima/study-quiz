@@ -1043,3 +1043,73 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: Azure에서 내보내는 방향도 있다. 내보내기는 Microsoft가 데이터를 담아 보내고, 받는 쪽이 복사해 돌려보낸다(「What is Azure Data Box?」 「The workflow」, Learn 단원 6). 이 항목에는 낡은 장치 이름이나 용량 값 주장이 없다. 「수십 TB」는 Learn 단원 6과 맞지만 값은 쓰지 않는다.
 - **처리**: 고쳐 쓴다. 가져오기와 내보내기 두 방향으로 쓴다. 수치는 쓰지 않는다(guide 「배경」).
 - **쓰인 곳**: `azure-data-movement.data-box`, `DataBoxDiagram`
+
+## D74 — 암호와 보안 질문을 다단계 인증의 예로 든 답 (phase 105)
+
+- **덤프**: Azure AD에 로그인할 때 암호를 넣고 보안 질문에 답하는 것이 다단계 인증의 예라고 답한다 — [덤프 NO.142](글자), [덤프 NO.505](`p294_05.png`)
+- **공식 문서**: Learn 단원 3은 암호와 질문을 같은 범주(아는 것)로 적는다. 「How it works: Microsoft Entra multifactor authentication」은 세 범주 가운데 둘 이상을 요구한다고 한다. 「Authentication methods in Microsoft Entra ID - security questions」는 보안 질문이 로그인의 인증 방법이 아니고 암호 셀프 서비스 재설정에만 쓰이며 그마저 2027년 3월에 끝난다고 한다. 「같은 범주 둘은 다단계 인증이 아니다」라고 바로 쓴 문장은 찾지 못했다 — 처리는 위 사실에서 나온다.
+- **처리**: 고쳐 쓴다. 이 조합을 다단계 인증의 예로 들지 않는다. 본문은 「암호와 보안 질문은 둘 다 아는 것이라 범주가 하나다」와 「보안 질문은 Entra 로그인의 인증 방법이 아니다」를 쓴다. 다른 범주의 조합은 암호 + 휴대폰으로 든다.
+- **쓰인 곳**: `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`
+
+## D75 — 구독에서 새 사용자를 만든다는 답 (phase 105)
+
+- **덤프**: 구독에 쓸 새 사용자를 만드는 곳으로 「구독」을 고르고, 해설은 구독의 액세스 제어에서 추가한다고 적는다 — [덤프 NO.26](`p014_04.png`)
+- **공식 문서**: 「How to create, invite, and delete users」는 사용자를 Entra ID 테넌트에서 만들거나 초대한다고 한다. 구독에 대한 접근은 역할 할당으로 다룬다(phase 102 「Azure RBAC」 항목).
+- **처리**: 고쳐 쓴다. 사용자는 Entra ID에서 만들고, 구독에서는 이미 있는 사용자에게 역할을 준다. 해설이 가리키는 메뉴 이름은 step 5가 확인한다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D76 — 사용자 계정에 라이선스를 하나만 줄 수 있다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「계정마다 라이선스는 하나다」에 [덤프 NO.207]은 예(`p126_00.png`·`p126_02.png`), 비슷한 문장에 [덤프 NO.296]은 아니요(`p173_06.png`·`p173_08.png`)를 표시한다. 같은 묶음의 「도메인 컨트롤러가 필요하다」는 둘 다 아니요, 「Azure와 Microsoft 365의 인증을 맡는다」는 둘 다 예로 맞다.
+- **공식 문서**: 「Assign or unassign licenses」는 기존 라이선스를 두고 더 주는 길을 적는다. Compare 문서는 Entra ID를 AD DS를 세우지 않고 쓰는 클라우드 서비스로 적는다.
+- **처리**: 쓰지 않는다 — 라이선스 수(guide 「배경」). NO.207의 답을 따르지 않는다. 「도메인 컨트롤러를 설치하지 않는다」와 「Azure·Microsoft 365의 인증」은 쓴다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D77 — 사용자를 리소스 그룹으로 묶는다는 답과 디바이스 가입, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「사용자는 리소스 그룹으로 묶는다」에 [덤프 NO.291]은 예(`p171_02.png`·`p171_04.png`), [덤프 NO.381]은 해설 그림에서 아니요(`p219_06.png`)다. NO.381의 답 그림(`p219_04.png`)은 셋 다 예로 표시해 자기 해설 그림과도 다르다. 「Entra 자격 증명으로 Windows 10 PC에 로그인하려면 PC를 가입해야 한다」에는 NO.291이 아니요, NO.381이 예다. 동적 멤버 규칙은 둘 다 예로 맞다.
+- **공식 문서**: 사용자는 Entra 그룹으로 묶는다(「What is enterprise user management?」). 리소스 그룹은 Azure 리소스를 담는다(Learn 단원 6, phase 102). 가입과 하이브리드 가입은 조직 계정으로 디바이스에 로그인하고, 등록은 그렇지 않다(디바이스 문서들).
+- **처리**: 고쳐 쓴다 — 사용자는 Entra 그룹으로 묶고 리소스 그룹은 리소스를 담는다. NO.291의 둘째 답을 따르지 않는다. 디바이스 로그인의 세부와 동적 멤버 규칙은 쓰지 않는다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D78 — Entra ID에서 그룹 정책을 만들고, 가입은 Windows 10만 된다는 답 (phase 105)
+
+- **덤프**: 「Entra ID에서 그룹 정책을 만든다」에 예, Windows 디바이스 가입에 예, Android 가입에 아니요를 표시하고(`p209_01.png`·`p209_03.png`, `p230_06.png`), NO.364 해설은 가입이 Windows 10에만 해당한다고 적는다 — [덤프 NO.364], [덤프 NO.399]
+- **공식 문서**: 「Compare … Microsoft Entra ID, and managed Microsoft Entra Domain Services」의 표는 Entra ID에 가입한 디바이스를 Intune 같은 모바일 디바이스 관리 소프트웨어로, Domain Services에 가입한 디바이스를 그룹 정책으로 관리한다고 한다. Learn 단원 2도 그룹 정책을 Domain Services의 기능으로 든다. 「Microsoft Entra joined devices」는 macOS·일부 Linux도 든다. Android는 등록 쪽이라 가입 답은 맞다.
+- **처리**: 고쳐 쓴다 — 그룹 정책은 Domain Services와 온-프레미스 AD의 기능으로 쓰고, Entra ID 쪽 디바이스 관리는 Intune 한 낱말로 쓴다. 「Windows 10만」은 따르지 않는다. OS 목록은 쓰지 않는다.
+- **쓰인 곳**: `azure-identity.domain-services`, `azure-identity.entra-id`
+
+## D79 — 온-프레미스 AD·제삼자 ID로 Azure 리소스에 닿는가, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「Entra ID·제삼자 클라우드 서비스·온-프레미스 AD에 저장된 ID로 Azure 리소스에 닿는다」에 [덤프 NO.212]와 [덤프 NO.362]는 예(`p129_04.png`, `p207_04.png`), [덤프 NO.351]은 아니요(`p201_02.png`)를 표시한다.
+- **공식 문서**: 온-프레미스 ID는 Connect가 Entra ID로 동기화한다(Learn 단원 2). 외부 ID는 회사 계정·소셜 ID를 쓰고, 조직은 그 사용자에게 권한을 준다(Learn 단원 4, External ID 개요).
+- **처리**: 한정해 쓴다 — 「예」 쪽을 따르되 경로를 밝힌다. 온-프레미스 ID는 동기화해서, 외부 ID는 게스트로 초대해서 Entra ID를 거쳐 닿는다. 온-프레미스 AD에 직접 묻는다고 쓰지 않는다. NO.351의 둘째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-identity.entra-connect`, `azure-identity.external-identities`
+
+## D80 — 인증이 접근 수준을 정한다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「인증은 인증된 사용자의 접근 수준을 정하는 과정이다」에 [덤프 NO.274]는 아니요(`p161_00.png`·`p161_02.png`), [덤프 NO.375]는 예(`p216_00.png`·`p216_02.png`)를 표시한다. 「SSO는 Authenticator 앱을 요구한다」의 아니요와 조건부 액세스 문장의 예는 둘 다 맞다.
+- **공식 문서**: 「Authentication vs. authorization」과 「Identity and access management fundamental concepts」는 접근 수준을 정하는 일을 권한 부여로 적는다.
+- **처리**: 고쳐 쓴다 — 접근 수준을 정하는 것은 권한 부여다. NO.375의 둘째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-identity.authentication-authorization`
+
+## G47 — Entra ID에서 「B2C 시나리오」가 가능하다는 것 (phase 105)
+
+- **용어집**: Entra ID의 예전 이름을 적고, 온-프레미스 AD와 동기화해 하이브리드 환경을 지원하며, 조건부 액세스·B2B·B2C 시나리오가 가능해진다고 한다 — [용어집 3-1]
+- **공식 문서**: 현행 이름은 Microsoft Entra External ID이고, Azure AD B2C는 옛 해법으로 2025-05-01부터 새 고객이 살 수 없으며 External ID의 옛 이름도 아니다(External ID 개요·FAQ). 동기화와 조건부 액세스는 맞다(Learn 단원 2·5).
+- **처리**: 고쳐 쓴다 — B2C를 외부 테넌트의 외부 ID로 쓴다. 옛 이름은 `entra-id`에서 Azure Active Directory를 한 번만 밝힌다.
+- **쓰인 곳**: `azure-identity.entra-id`, `azure-identity.external-identities`
+
+## G48 — SSO로 보안 수준이 올라간다는 것 (phase 105)
+
+- **용어집**: Azure AD로 SSO를 구현하면 편의와 보안 수준이 모두 올라간다고 한다 — [용어집 3-2]
+- **공식 문서**: 「What is single sign-on …」은 자격 증명 노출이 준다는 것을 이점으로 든다. Learn 단원 3은 SSO가 처음 인증만큼만 안전하다고 한다.
+- **처리**: 한정해 쓴다 — 외울 자격 증명과 노출이 줄지만 요소를 더하지는 않고, 처음 인증만큼만 안전하다. 「보안 수준이 올라간다」로 끝내지 않는다. 「보안을 더하지 않는다」로 단정하지도 않는다. 이름은 Microsoft Entra ID로 쓴다.
+- **쓰인 곳**: `azure-identity.single-sign-on`, `SingleSignOnDiagram`
+
+## G49 — MFA의 방법 목록과 위험 감지 뒤 자동 MFA (phase 105)
+
+- **용어집**: 암호 외에 OTP·문자·생체를 더 요구하고, Azure AD MFA를 설정하면 위험한 로그인을 감지했을 때 자동으로 MFA를 거치게 구성할 수 있다고 한다 — [용어집 3-3]
+- **공식 문서**: 「How it works: Microsoft Entra multifactor authentication」의 현행 방법은 Authenticator·패스키·SMS·음성 통화·OATH 토큰 등이다. 위험 기반 정책은 Microsoft Entra ID Protection의 기능이다(「What is Microsoft Entra?」, 「What is Conditional Access?」).
+- **처리**: 한정해 쓴다 — 방법은 전화·앱 알림을 예로 든다. 생체는 범주(사용자의 속성)로 쓰고, 방법 이름 표로 쓰지 않는다. 위험 감지 뒤 자동 MFA는 쓰지 않는다(Identity Protection은 guide 「배경」이 쓰지 않기로 했다). 상황에 따라 MFA를 요구하는 것은 조건부 액세스로 쓴다.
+- **쓰인 곳**: `azure-identity.multifactor-authentication`, `azure-identity.conditional-access`

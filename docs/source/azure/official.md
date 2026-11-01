@@ -1268,6 +1268,10 @@ https://learn.microsoft.com/en-us/entra/fundamentals/new-name
 
 쓰일 곳: D22(덤프의 옛 이름. 이 주제는 이 서비스의 이름을 쓰지 않는다)
 
+- Azure Active Directory·Azure AD·AAD라는 이름을 Microsoft Entra ID가 대신한다. Microsoft Entra는 제품군의 이름이고 Microsoft Entra ID는 그 가운데 제품 하나다. 기능 이름도 Azure AD Conditional Access → Microsoft Entra Conditional Access처럼 바뀌었다 — 「Product name」, 「Feature names」 (phase 105, 2026-11-01 확인)
+
+쓰일 곳(phase 105): `azure-identity.entra-id`(예전 이름을 한 번 밝힌다), D74~D80(덤프의 옛 이름을 현행 이름으로 읽는 근거)
+
 ## (phase 101) 한국어 표기 정리 — `azure-sla-lifecycle`
 
 위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 101 step 3). Microsoft 한국어 문서의 표기를 따르고(guide 「배경」), 한국어판 사이에 표기가 갈리면 근거를 적는다.
@@ -1528,6 +1532,11 @@ https://learn.microsoft.com/en-us/entra/fundamentals/whatis
 쓰인 곳(phase 102 step 6): `azure-resource-hierarchy.subscription`, az051 해설(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
 
 쓰인 곳(phase 103 step 3): `azure-compute.virtual-desktop`(Microsoft Entra ID를 이 주제에서 다시 푸는 한 줄 — 같은 뜻)
+
+- Microsoft 365·Azure·Dynamics CRM Online 구독자는 이미 Microsoft Entra ID를 쓰고 있고, 새 디렉터리에는 처음부터 `contoso.onmicrosoft.com` 꼴의 도메인 이름이 붙으며 조직의 도메인 이름을 더할 수 있다 — 「Microsoft Entra ID」 (phase 105)
+- Microsoft Entra Domain Services는 최신 인증을 쓰지 못하는 클라우드의 옛 앱을 위한 것이고, 관리되는 도메인의 핵심 구성 요소는 Microsoft가 배포하고 유지한다 — 「Microsoft Entra Domain Services」 (phase 105)
+- 위험 기반 조건부 액세스 정책은 Microsoft Entra ID Protection의 기능이다 — 「Microsoft Entra ID Protection」. **쓰지 않는다**(guide 「배경」). NO.264·496을 처리한 근거로만 적는다 (phase 105)
+- 2026-11-01에 다시 확인했다. 쓰일 곳: `azure-identity.entra-id` (phase 105)
 
 ## (phase 102) Azure DNS — Azure DNS overview
 https://learn.microsoft.com/en-us/azure/dns/dns-overview
@@ -3329,4 +3338,316 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-trans
 - **낱말**: 명령줄, 원본, 대상, 동기화, 단방향·양방향(본문은 「한 방향」·「양쪽으로」로 풀어도 된다), 독립 실행형 앱, 캐시, 에이전트, 클라우드 계층화, 마이그레이션, 허브, 대역폭, 가져오기, 내보내기, 로컬 웹 UI, 지역 배송 업체
 
 **쓰지 않는 이름**: Azure Storage Mover, Data Box Heavy, Data Box Gateway, Server Migration, Server Assessment, Movere, Storage Sync Service, 동기화 그룹, 클라우드·서버 엔드포인트, 클라우드 티어링, 소스, 이동 통신 사업자.
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 2 Describe Azure directory services
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/2-directory-services
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-identity-access-security-2-directory-services.md`와 `ko-` 판.
+
+- Microsoft Entra ID는 Microsoft의 클라우드 ID·액세스 관리 서비스이고, 이것으로 로그인해 Microsoft 클라우드 앱과 직접 만든 클라우드 앱에 닿는다 — 머리글
+- 온-프레미스 Active Directory와 다른 점: ID 계정은 고객이 관리하고, 서비스를 전 세계에서 쓸 수 있게 하는 일은 Microsoft가 맡는다 — 머리글
+- 온-프레미스 Active Directory는 그것만으로는 로그인 동작을 살피지 않는다. Entra ID에 연결하면 낯선 위치·모르는 장치에서 오는 수상한 로그인을 Microsoft가 찾아낼 수 있다 — 머리글. **「추가 비용 없음」은 쓰지 않는다**(guide 「배경」의 가격 규칙)
+- 쓰는 사람 넷: IT 관리자(작업과 보안 요구에 따라 앱·리소스 접근을 정한다), 앱 개발자(만드는 앱에 SSO 등을 넣는다), 사용자(암호 셀프 서비스 재설정 등을 직접 한다), 온라인 서비스 구독자(Microsoft 365·Azure 등의 계정 인증에 이미 쓴다) — 「Who uses Microsoft Entra ID?」
+- 제공하는 일 넷: 인증(암호 셀프 서비스 재설정, 다단계 인증, 금지 암호 목록, 스마트 잠금 포함), SSO, 애플리케이션 관리(클라우드·온-프레미스 앱, Application Proxy, SaaS 앱 통합, 내 앱 포털), 디바이스 관리(등록과 관리, 디바이스 기반 조건부 액세스) — 「What does Microsoft Entra ID do?」
+- 연결이 없으면 온-프레미스와 클라우드의 ID 집합을 따로 유지해야 한다. Entra Connect가 둘 사이의 사용자 ID를 동기화하면 온-프레미스든 클라우드든 SSO·다단계 인증·암호 셀프 서비스 재설정을 같은 방식으로 쓴다 — 「Can I connect my on-premises AD with Microsoft Entra ID?」
+- Domain Services는 도메인 조인·그룹 정책·LDAP·Kerberos/NTLM 인증을 제공하고, 클라우드에 도메인 컨트롤러를 두거나 유지하지 않아도 된다. 최신 인증을 쓰지 못하는 옛 앱을 옮길 때 특히 쓸모가 있고, 기존 자격 증명과 그룹·계정을 그대로 쓴다 — 「What is Microsoft Entra Domain Services?」
+- 관리되는 도메인을 만들 때 고유한 네임스페이스(도메인 이름)를 정하면 고른 지역에 Windows Server 도메인 컨트롤러 둘이 놓인다. 이것을 복제본 집합이라 부른다. 구성·업데이트·백업·미사용 암호화는 Azure 플랫폼이 맡는다 — 「How does Microsoft Entra Domain Services work?」
+- 동기화는 Entra ID에서 Domain Services로 한 방향이다. 관리되는 도메인에서 직접 만든 리소스는 Entra ID로 돌아가지 않는다. 온-프레미스가 있으면 Connect가 Entra ID로, Entra ID가 관리되는 도메인으로 잇는다 — 「Is information synchronized?」
+- 한국어 표기: 온-프레미스 Active Directory, Microsoft Entra Connect, 셀프 서비스 암호 재설정, 관리되는 도메인, 도메인 컨트롤러, 그룹 정책, 단방향 동기화. 이 단원은 domain join을 「도메인 가입」과 「도메인 조인」으로 섞어 쓴다
+
+쓰일 곳: `azure-identity.entra-id`, `azure-identity.entra-connect`, `azure-identity.domain-services`, `EntraConnectDiagram`, `DomainServicesDiagram`, G47
+
+## (phase 105) Windows Server — Active Directory Domain Services overview
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2025-03-11. 사본: `docs-windows-adds-overview.md`와 `ko-` 판.
+
+- 디렉터리는 네트워크에 있는 대상(서버·프린터·사용자와 컴퓨터 계정 등)의 정보를 계층으로 담아 두는 저장소다. AD DS는 그 데이터를 저장하고 사용자와 관리자가 찾아 쓰게 하는 디렉터리 서비스이고, 로그인 인증과 접근 제어가 함께 들어 있다 — 머리글
+- 한국어 표기: 디렉터리, AD DS(Active Directory Domain Services)
+
+쓰일 곳: `azure-identity.entra-id`(**디렉터리**를 푸는 한 줄), `azure-identity.entra-connect`(**Active Directory**를 푸는 한 줄)
+
+## (phase 105) Microsoft Entra — Identity and access management fundamental concepts
+https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concepts
+
+확인한 날 2026-11-01. 「Last updated on」 2026-06-18. 사본: `docs-entra-terminology.md`와 `ko-` 판.
+
+- 디지털 ID는 시스템에서 사람·소프트웨어·기계 같은 대상 하나를 나타내는 고유 식별자나 특성의 묶음이고, 전자 메일 주소나 사용자 이름·암호가 식별자의 예다 — 「Identity」
+- 인증은 자격 증명으로 그 대상이 스스로 말하는 대상이 맞는지 확인하고, 권한 부여는 확인된 대상에게 어떤 리소스를 어느 수준까지 허용할지 정한다. 인증이 먼저이고 권한 부여는 인증이 성공한 뒤에 한다 — 「Authentication vs. authorization」
+- 호텔 비유가 있다: 프런트의 신분 확인이 인증, 객실 키로 열 수 있는 문이 권한 부여다 — 「Example」. 비유 자체는 옮기지 않고, 일상의 예는 직접 만든다
+- ID 공급자는 ID 정보를 만들고 관리하며 인증·권한 부여 서비스를 제공한다. Microsoft Entra가 그 예이고 Google·GitHub 등도 있다 — 「Identity provider」
+- 한국어 표기: 디지털 ID, 자격 증명, 인증, 권한 부여, ID 공급자
+
+쓰일 곳: `azure-identity.entra-id`(**ID**를 푸는 한 줄), `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, `azure-identity.external-identities`(ID 공급자), D80
+
+## (phase 105) Microsoft Entra — Authentication vs. authorization
+https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization
+
+확인한 날 2026-11-01. 「Last updated on」 2025-03-21. 사본: `docs-entra-authn-authz.md`와 `ko-` 판.
+
+- 인증은 자기가 말하는 사람이 맞음을 증명하는 과정이고, 사람이나 장치의 ID를 확인해서 이룬다 — 「Authentication」
+- 권한 부여는 인증된 쪽에 무엇을 해도 되는지를 허락하는 일이다. 어떤 데이터에 닿고 그 데이터로 무엇을 할 수 있는지를 정한다 — 「Authorization」
+- 앱이 사용자 이름과 암호를 저마다 들고 있으면 사용자를 더하고 뺄 때 관리 부담이 커서, 인증과 권한 부여를 중앙의 ID 공급자인 Entra ID에 맡길 수 있다 — 「Authentication and authorization using the Microsoft identity platform」
+- 프로토콜(OpenID Connect·OAuth·SAML)은 **쓰지 않는다**(guide 「배경」). NO.194의 「보안 토큰」도 이 주제에서 낱말로 세우지 않는다
+- 한국어 표기: 인증, 권한 부여 — 제목 「인증과 권한 부여의 차이점」
+
+쓰일 곳: `azure-identity.authentication-authorization`, `AuthVsAuthzDiagram`, D80
+
+## (phase 105) Microsoft Entra — What is Microsoft Entra Connect?
+https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect
+
+확인한 날 2026-11-01. 「Last updated on」 2026-09-16. 사본: `docs-entra-connect-overview.md`와 `ko-` 판.
+
+- Microsoft Entra Connect는 온-프레미스에 두는 Microsoft 애플리케이션이다 — 첫 문단
+- 온-프레미스 디렉터리와 Entra ID를 이으면 사용자가 ID 하나로 온-프레미스 앱과 Microsoft 365 같은 클라우드 서비스에 닿는다 — 「Why use Microsoft Entra Connect?」
+- 동기화는 사용자·그룹 등을 만들고, 온-프레미스 사용자와 그룹의 ID 정보가 클라우드와 일치하게 한다. 암호 해시도 이 동기화에 든다 — 「Microsoft Entra Connect features」
+- Microsoft Entra Cloud Sync가 Connect를 이어받을 동기화 서비스이고, Azure AD Connect V1은 2022-08-31에 끝났다 — 「Consider moving to Microsoft Entra Cloud Sync」, Important. 무료 여부·Connect Health는 **쓰지 않는다**
+- 한국어 표기: Microsoft Entra Connect, 온-프레미스, 동기화 — 제목 「Microsoft Entra Connect란?」
+
+쓰일 곳: `azure-identity.entra-connect`, `EntraConnectDiagram`
+
+## (phase 105) Microsoft Entra — Microsoft Entra Connect Sync와 쓰기 저장
+https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis
+
+확인한 날 2026-11-01. 「Last updated on」 2026-10-06(설치 로드맵 2026-09-16, 하이브리드 ID 2025-04-09, 아키텍처 2025-04-09). 사본: `docs-entra-connect-sync.md`, `docs-entra-connect-roadmap.md`, `docs-entra-hybrid-identity.md`, `docs-entra-connect-architecture.md`와 `ko-` 판.
+
+- Connect Sync는 온-프레미스 동기화 엔진과 Entra ID 쪽 서비스 구성 요소로 이루어지고, 온-프레미스 디렉터리와 Entra ID 사이의 ID 데이터를 동기화한다 — 「how-to-connect-sync-whatis」 첫 문단
+- Cloud Sync가 Connect Sync를 대신하는 중이며, 기능이 같아진 뒤 Connect Sync가 끝난다. 날짜는 없다 — 같은 쪽 Important
+- 하이브리드 ID의 동기화는 온-프레미스 사용자·그룹의 ID 정보를 클라우드와 일치시키는 일이다 — 「What is hybrid identity」
+- 반대 방향은 선택 기능으로 있다: 암호 쓰기 저장(클라우드에서 바꾼 암호에 온-프레미스 암호 정책을 적용)과 디바이스 쓰기 저장(Entra ID에 등록한 디바이스를 온-프레미스 AD에 적는다) — 설치 로드맵 「Configure sync features」
+- 동기화 엔진의 커넥터는 양쪽 방향으로 데이터를 옮길 수 있다 — 아키텍처 「Connected Data Sources and Connectors」. 내부 구조(커넥터 공간·메타버스)는 **쓰지 않는다**
+- **동기화 방향의 처리**: Learn의 「두 시스템 사이」는 맞는 말이지만, 기본 흐름은 온-프레미스 AD에서 Entra ID로 가고 반대 방향은 선택 기능이다. 도식은 기본 흐름 하나로 그리고, 선택 기능의 쓰기 저장은 본문 한 줄로만 쓴다(쓰지 않아도 된다)
+- 한국어 표기: Microsoft Entra Connect Sync, Microsoft Entra 클라우드 동기화(Cloud Sync)
+
+쓰일 곳: `azure-identity.entra-connect`, `EntraConnectDiagram`(`sync-1` `ad`→`connect`, `sync-2` `connect`→`entra`)
+
+## (phase 105) Microsoft Entra — Connect 설치 위치
+https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-prerequisites
+
+확인한 날 2026-11-01. 「Last updated on」 2026-01-16. 사본: `docs-entra-connect-prerequisites.md`와 `ko-` 판.
+
+- Connect는 도메인에 가입한 서버에 설치해야 한다 — 「Installation prerequisites」. 서버 버전과 사양은 **쓰지 않는다**
+- **도식의 자리**: 「온-프레미스 애플리케이션」과 합쳐 `connect` 노드를 그룹 `on-premises` 안에 둔다
+
+쓰일 곳: `EntraConnectDiagram`
+
+## (phase 105) Microsoft Entra Domain Services — 개요와 비교
+https://learn.microsoft.com/en-us/entra/identity/domain-services/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-03-03(비교 2025-06-30, 동기화 2025-02-19). 사본: `docs-entra-domain-services-overview.md`, `docs-entra-domain-services-compare.md`, `docs-entra-domain-services-sync.md`와 `ko-` 판.
+
+- 앱을 고쳐 최신 인증을 쓰게 하기 어려울 때, 이 서비스로 옛 앱을 클라우드로 옮긴다. 일반적인 대체 서비스가 아니라 옛 앱을 받아 주는 자리다 — 「overview」, 「When to use」
+- 도메인 컨트롤러의 설정·패치·감시는 Microsoft가 맡는다. 관리되는 도메인은 독립된 도메인이고 온-프레미스 도메인의 연장이 아니다 — 「How does Microsoft Entra Domain Services work?」, 「features and benefits」
+- 온-프레미스 AD 없이 클라우드만 쓰는 테넌트에서도 쓸 수 있다 — 「How does Microsoft Entra Domain Services work?」
+- 동기화는 자동이고 Domain Services에서 Entra ID로 되돌아가지 않는다. 관리되는 도메인에서는 사용자 특성·암호·그룹 구성원을 바꿀 수 없다 — 「synchronization」 「Synchronization from Microsoft Entra ID to Domain Services」
+- 세 가지의 구분: AD DS는 조직이 직접 운영하는 디렉터리, Entra ID는 Microsoft 365나 SaaS 앱 같은 곳의 사용자 인증을 맡는 클라우드 서비스, Domain Services는 전통적인 AD DS 기능의 일부를 관리형으로 주는 서비스다 — 「compare」 머리글
+- 디바이스의 차이: Entra ID에 가입하면 디렉터리에 디바이스 개체가 생기고 Intune 같은 모바일 디바이스 관리 소프트웨어로 관리하며 인터넷으로 동작한다. Domain Services에 가입하면 컴퓨터 개체가 생기고 **그룹 정책**으로 관리하며 관리되는 도메인의 가상 네트워크에 연결돼 있어야 한다. 인증은 Entra ID 쪽이 OAuth·OpenID Connect 계열, Domain Services 쪽이 Kerberos·NTLM이다 — 「compare」 「Domain Services and Microsoft Entra ID」 표. 프로토콜 이름은 Kerberos/NTLM만 쓴다
+- 사용자가 클라우드뿐이고 모바일 디바이스를 쓰면 AD DS를 직접 세우지 않고 Entra ID만 쓸 수 있다 — 「compare」 머리글(NO.207·296의 「Entra ID에 도메인 컨트롤러가 필요한가」의 근거)
+- 한국어 표기: **관리되는 도메인**(Learn 단원 2 여덟 번, 개요 열여덟 번, 비교 열두 번. 「관리형 도메인」은 Learn과 비교에 한 번씩뿐이다), **도메인 가입**(개요 다섯 줄, 비교 표 머리글. 「도메인 조인」은 Learn에 한 번), 복제본 집합, 도메인 컨트롤러, 그룹 정책
+
+쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, `azure-identity.entra-id`, D78
+
+## (phase 105) 낱말을 푸는 근거 — 도메인 가입, 그룹 정책, LDAP, Kerberos
+https://learn.microsoft.com/en-us/entra/identity/domain-services/join-windows-vm
+
+확인한 날 2026-11-01. 사본: `docs-entra-domain-join.md`(2025-02-05), `docs-windows-group-policy.md`(2026-04-16), `docs-windows-ldap.md`(2018-05-31), `docs-windows-kerberos.md`(2026-09-15)와 `ko-` 판. 나머지 URL은 `learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview`, `learn.microsoft.com/en-us/previous-versions/windows/desktop/ldap/lightweight-directory-access-protocol-ldap-api`, `learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview`.
+
+- 도메인 가입: VM을 관리되는 도메인에 가입해 다시 시작하면 그 도메인의 정책이 VM에 적용되고, 도메인 자격 증명으로 그 VM에 로그인할 수 있다 — 「join-windows-vm」의 가입 절
+- 그룹 정책: Windows의 기능으로, 운영 체제·앱·사용자 설정을 중앙에서 관리한다. 컴퓨터와 사용자에게 적용된다. AD와 함께 쓰면 설정을 AD DS에 저장한다 — 「What is a Group Policy」
+- LDAP: 디렉터리에 연결해 찾고 고치게 하는 디렉터리 서비스 프로토콜이다 — 「Purpose」
+- Kerberos: 사용자나 호스트의 ID를 확인하는 인증 프로토콜이고, Windows Server에서는 도메인 컨트롤러가 그 일을 돕는다 — 머리글, 「How Kerberos authentication works」. NTLM은 낱말로만 쓰고 동작을 풀지 않는다
+- 한국어 표기: 도메인 가입, 그룹 정책, LDAP, Kerberos
+
+쓰일 곳: `azure-identity.domain-services`
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 3 Describe Azure authentication methods
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/3-authentication-methods
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-identity-access-security-3-authentication-methods.md`와 `ko-` 판. 그림 둘은 같은 쪽의 `media/authentication-methods-options.png`, `media/authentication-methods-option-passwordless-comparison.png`로 받아 봤다(저장소·`raw/`에 두지 않는다).
+
+- 인증은 자격 증명을 요구해 사람·서비스·디바이스의 ID를 세운다 — 머리글
+- 글: 암호 없는 인증은 보안도 편의도 높고, 암호만 쓰면 보안은 낮지만 편의는 높다 — 머리글
+- 그림의 순서: 보안은 암호 → MFA → 암호 없는 인증 순으로 높고, 편의는 MFA → 암호 → 암호 없는 인증 순으로 높다 — 그림 「Authentication Methods: Security and Convenience」
+- 그림의 요소: 암호만은 아는 것 하나, MFA는 아는 것에 가진 것이나 사용자의 속성을 더한 것(암호 + 휴대폰이나 생체), 암호 없는 인증은 가진 것에 사용자의 속성이나 아는 것을 더한 것(디바이스 + 생체나 PIN)이다 — 같은 그림
+- 그림의 까닭: 암호만은 피싱당하거나 짐작될 수 있고 여러 사이트에서 다시 쓰이며, MFA는 단계가 하나 늘어 로그인이 느려지고, 암호 없는 인증은 훔칠 암호가 없다 — 같은 그림
+- SSO: 한 번 로그인해 믿을 수 있는 앱 여럿에 닿는다. 외울 암호가 줄어 자격 증명 사고와 계정 잠금·재설정 일이 준다. 접근이 ID 하나에 묶여 역할이 바뀔 때 고치거나 없애기 쉽다 — 「What's single sign-on?」
+- SSO는 처음 인증만큼만 안전하다. 이후 연결이 모두 처음 인증의 보안에 기대기 때문이다 — 같은 절 Important
+- MFA: 로그인 중에 요소를 하나 더 요구해 암호가 새어도 그것만으로는 들어가지 못하게 한다. 요소의 세 범주는 아는 것(암호, 질문과 대답), 가진 것(휴대폰으로 받은 코드), 사용자의 속성(지문·얼굴 같은 생체 신호)이다 — 「What's multifactor authentication?」
+- Microsoft Entra 다단계 인증은 Microsoft의 서비스이고, 로그인 때 전화나 앱 알림 같은 추가 인증을 고르게 한다 — 「What's Microsoft Entra multifactor authentication?」
+- 암호 없는 인증은 암호를 없애고, 믿을 수 있는 디바이스와 생체 신호나 PIN으로 대신한다. 처음 등록한 뒤에는 암호를 입력하는 대신 PIN이나 지문을 쓴다 — 「What's passwordless authentication?」
+- 세 가지: 비즈니스용 Windows Hello(자기 전용 Windows PC가 있는 근로자에게 맞고 생체·PIN이 그 PC에 묶인다), Microsoft Authenticator 앱(iOS·Android 휴대폰에서 알림을 받아 화면의 숫자를 맞추고 생체나 PIN으로 확인한다), FIDO2 보안 키(USB·Bluetooth·NFC 하드웨어이고 로그인 화면에서 골라 쓰며 노출될 암호가 없다) — 같은 절. 공유 워크스테이션·높은 보안 환경에 맞는다는 것과 일선 근로자 얘기는 그림에만 있다
+- 한국어 표기: SSO(Single Sign-On), MFA(다단계 인증), 암호 없는 인증, 비즈니스용 Windows Hello, Microsoft Authenticator 앱, FIDO2 보안 키, 사용자가 알고 있는 것·사용자가 가지고 있는 것·사용자의 속성
+
+쓰일 곳: `azure-identity.authentication-authorization`, `azure-identity.single-sign-on`, `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `SingleSignOnDiagram`, `MfaFactorsDiagram`, `SignInMethodsTable`, D74, G48
+
+## (phase 105) Microsoft Entra — What is single sign-on in Microsoft Entra ID?
+https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on
+
+확인한 날 2026-11-01. 「Last updated on」 2026-06-23. 사본: `docs-entra-sso-overview.md`와 `ko-` 판.
+
+- 자격 증명 한 벌로 로그인하면 할당된 앱을 다시 로그인하지 않고 연다 — 머리글
+- 흐름: 사용자가 앱을 연다 → 앱이 사용자를 Entra ID로 보낸다 → Entra ID가 자격 증명을 확인한다 → Entra ID가 ID를 확인해 주면 앱이 접근을 허용한다. 앱은 자격 증명을 직접 다루지 않는다 — 「How SSO works with Microsoft Entra ID」
+- 이점: 자격 증명이 적어 사용자가 편하고, 로그인이 한곳에 모여 자격 증명 노출이 줄고 같은 정책을 건다. 관리자는 ID 공급자 한곳에서 접근을 다루고, 암호 재설정 일이 준다 — 「For end users and organizations」
+- **SSO와 보안**: 「SSO는 보안을 더하지 않는다」고 단정하지 않는다. 이 쪽은 자격 증명 노출이 준다는 것을 이점으로 든다. 쓸 수 있는 것은 「요소를 더하는 일이 아니고(그것은 MFA의 일이다), 처음 인증만큼만 안전하다」까지다
+- 페더레이션·SAML·OpenID Connect 같은 방식은 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: SSO, Single Sign-On — 제목 「Microsoft Entra ID에서 Single Sign-On이란?」, 본문은 SSO 서른두 번. 「통합 인증」·「싱글 사인온」은 쓰지 않는다
+
+쓰일 곳: `azure-identity.single-sign-on`, `SingleSignOnDiagram`, G48
+
+## (phase 105) Microsoft Entra — How it works: Microsoft Entra multifactor authentication
+https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks
+
+확인한 날 2026-11-01. 「Last updated on」 2025-07-15. 사본: `docs-entra-mfa-howitworks.md`와 `ko-` 판.
+
+- Microsoft Entra 다단계 인증은 아는 것(대개 암호), 가진 것(휴대폰이나 하드웨어 키처럼 쉽게 복제되지 않는 믿을 수 있는 장치), 사용자의 속성(지문·얼굴 같은 생체) 가운데 **둘 이상**을 요구한다 — 머리글
+- 앱과 서비스를 고치지 않아도 된다. 확인 요청이 Entra 로그인의 한 부분이다 — 머리글
+- 현행 확인 방법: Microsoft Authenticator, Authenticator Lite, 비즈니스용 Windows Hello, 패스키(FIDO2), Microsoft Authenticator의 패스키, QR 코드, 인증서 기반 인증, 외부 MFA, 임시 액세스 패스, OATH 하드웨어·소프트웨어 토큰, SMS, 음성 통화 — 「Available verification methods」. **목록을 다 쓰지 않는다** — 본문은 Learn처럼 전화·앱 알림을 예로 들고, 「현재 목록에 사진 신분증·여권 번호는 없다」까지만 쓴다
+- 조건부 액세스 정책으로 어떤 경우에 MFA를 요구할지 정한다. 회사 네트워크나 등록된 디바이스에서는 평소대로 두고, 원격이나 개인 디바이스에서만 추가 확인을 요구할 수 있다 — 「How to enable and use」
+- 한국어 표기: **다단계 인증**(「다중 요소 인증」은 받은 한국어판 어디에도 없다), Microsoft Entra 다단계 인증
+
+쓰일 곳: `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`, `azure-identity.conditional-access`, D74, G49
+
+## (phase 105) Microsoft Entra — 인증 방법: 보안 질문, 표, 표준 용어
+https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-security-questions
+
+확인한 날 2026-11-01. 사본: `docs-entra-security-questions.md`(2026-02-18), `docs-entra-authentication-overview.md`(`concept-authentication-methods`가 이어지는 쪽, 2026-05-07), `docs-entra-nist-basics.md`(`entra/standards/nist-authentication-basics`, 2023-10-23)와 `ko-` 판.
+
+- **보안 질문은 로그인할 때 쓰는 인증 방법이 아니다.** 암호 셀프 서비스 재설정 때 본인을 확인하는 데만 쓰고, 관리자 계정은 그마저 쓰지 못한다 — 「security questions」 첫 문단
+- 보안 질문은 다른 사람이 답을 알 수 있어 덜 안전하다. 암호 셀프 서비스 재설정에서도 **2027년 3월**에 지원이 끝난다 — 같은 쪽 Warning
+- 인증 방법 표에 첫째 요소·둘째 요소로 쓸 수 있는 방법이 있고, 암호는 첫째 요소로만, 전화 통화와 Authenticator 푸시 알림은 둘째 요소로만 쓴다. 보안 질문은 표에 없다 — 「Authentication methods supported by Microsoft Entra ID」
+- Verified ID의 정부 발급 신분증 확인은 모든 방법을 잃었을 때의 계정 복구용이고, 로그인·MFA·암호 재설정에 쓸 수 없다 — 「Verified ID identity verification」(NO.157·361의 사진 신분증·여권 번호를 처리한 근거). Verified ID 자체는 **쓰지 않는다**
+- MFA는 인증 요소 둘을 요구한다. 예는 암호 + SMS, 암호 + 일회용 암호다. Authenticator 암호 없는 모드는 생체나 PIN이 휴대폰 안의 키를 풀어 요소 둘을 쓴다 — 「nist-authentication-basics」 「Multi-factor authentication」
+- **같은 범주의 조합**: 「같은 범주 둘은 MFA가 아니다」라고 바로 쓴 문장은 찾지 못했다. 쓸 수 있는 것은 위 사실들에서 나온다 — 암호와 보안 질문은 둘 다 아는 것(Learn 단원 3)이고 Entra 다단계 인증은 세 범주 가운데 둘 이상을 요구하므로 그 조합은 범주가 하나뿐이다. 그리고 보안 질문은 Entra 로그인의 인증 방법이 아니다
+- 한국어 표기: 보안 질문, 셀프 서비스 암호 재설정, 인증 요소
+
+쓰일 곳: `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `MfaFactorsDiagram`, D74
+
+## (phase 105) Microsoft Entra — 다단계 인증의 전제와 대상
+https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted
+
+확인한 날 2026-11-01. 「Last updated on」 2025-11-02(자습서 2025-03-04). 사본: `docs-entra-mfa-plan.md`, `docs-entra-cloud-mfa-tutorial.md`와 `ko-` 판.
+
+- 클라우드 ID만 쓰는 환경에는 미리 할 일이 없고, 온-프레미스 ID가 섞인 환경에서만 Entra Connect로 동기화해 둔다 — 「Prerequisites」 표(NO.157·361 첫 문장의 근거)
+- 관리자가 아닌 일반 사용자 계정에도 건다. 자습서가 일반 사용자와 그룹을 대상으로 정책을 만든다 — 「tutorial-enable-azure-mfa」 「Prerequisites」, 「Create a Conditional Access policy」(관리 역할 사용자에게 거는 예는 조건부 액세스 항목)
+- 한국어 표기: 클라우드 전용 ID, 하이브리드 ID
+
+쓰일 곳: `azure-identity.multifactor-authentication`
+
+## (phase 105) 암호 없는 인증 — 패스키, Authenticator, Windows Hello의 PIN
+https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless
+
+확인한 날 2026-11-01. 사본: `docs-entra-passwordless.md`(2026-04-06, 현재 제목은 「passkeys (FIDO2)」), `docs-entra-authenticator-passwordless.md`(`howto-authentication-passwordless-phone`, 2025-03-04), `docs-windows-hello-pin.md`(`windows/security/identity-protection/hello-for-business/faq`, 2026-10-08)와 `ko-` 판.
+
+- **이름의 차이**: 제품 문서의 현행 방법 이름은 **패스키(FIDO2)**이고, FIDO2 보안 키와 Microsoft Authenticator는 그 가운데 장치에 묶인 패스키의 예다 — 「Types of passkeys」. Learn의 「FIDO2 보안 키」도 현행 제품 문서가 쓰는 말이라 틀린 것이 아니다. **이 앱은 Learn의 세 가지 이름을 쓰고, `FIDO2 보안 키` 항목에서 패스키의 한 종류라고 한 줄을 밝힌다.** 동기화된 패스키는 쓰지 않는다
+- 패스키는 개인 키를 디바이스에, 공개 키를 앱이나 웹사이트에 두고, 로그인할 때마다 그 자리에서 생체나 PIN으로 개인 키를 푼다 — 머리글, 「What are passkeys?」. 피싱에 강한 까닭은 낱말(피싱)을 풀고 쓴다. 숫자(99%, 14배)는 **쓰지 않는다**
+- Authenticator 암호 없는 로그인은 로그인 화면의 숫자를 앱에 넣고 승인한 뒤 PIN이나 생체를 입력한다. 사용자 이름과 암호를 묻지 않는다 — 「howto-authentication-passwordless-phone」 머리글. Learn의 「숫자를 맞춘다」와 같은 동작이다
+- **PIN이 왜 암호가 아닌가**: Hello PIN은 설정한 그 디바이스에 묶여 다른 곳에서 쓸 수 없고, 서버로 보내지도 저장되지도 않으며, TPM이라는 보안 칩이 뒷받침한다. 온라인 암호는 서버로 보내져 어디서나 쓸 수 있다 — 「Why a PIN is better than an online password」. **이 근거는 Windows Hello의 PIN에 대한 것이다** — 다른 두 방법으로 넓혀 쓰지 않는다. 일반화하면 「PIN은 디바이스를 푸는 것」까지다
+- 피싱에 강한 방법으로 비즈니스용 Windows Hello, FIDO2 보안 키 등을 권한다 — `overview-authentication` 「Phishing-resistant authentication methods」
+- 한국어 표기: 패스키(FIDO2), 디바이스, PIN, 비즈니스용 Windows Hello, FIDO2 보안 키
+
+쓰일 곳: `azure-identity.passwordless`, `SignInMethodsTable`
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 4 Describe Azure external identities
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/4-external-identities
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-identity-access-security-4-external-identities.md`와 `ko-` 판.
+
+- 외부 ID는 테넌트 밖에 있는 사람·디바이스·서비스다 — 머리글
+- 협력사가 이미 가진 자격 증명으로 승인받은 리소스에 닿고, 접근 정책은 우리 쪽이 건다. 사람마다 자격 증명을 새로 만들지 않아도 된다 — 「Why external identities matter」
+- SSO와의 차이: 외부 ID는 테넌트를 넘나들거나 소비자가 닿는 경우에 쓴다. 회사 계정·정부 발급 ID·Google이나 Facebook 같은 소셜 ID를 가져올 수 있다. 인증은 외부 ID 공급자가, 앱에 대한 권한 부여는 우리가 맡는다 — 같은 절
+- 게스트 접근은 액세스 검토로 다시 확인한다. 게스트 자신이나 결정권자가 계속 필요한지 답하고, 끝나면 필요 없는 게스트의 접근을 없앤다 — 「Manage guest access over time」
+- **Learn을 따르지 않는 곳**: 이 단원은 셋째를 「Microsoft Entra External ID for customers(formerly Azure AD B2C)」라 쓰고 권한 부여 주체에 「Azure AD B2C」를 넣지만, 제품 FAQ는 External ID가 Azure AD B2C의 새 이름이 아니라고 답한다. 다음 항목대로 쓴다
+- 한국어 표기: 외부 ID, B2B 협업, B2B 직접 연결, 게스트 사용자, 액세스 검토
+
+쓰일 곳: `azure-identity.external-identities`, `ExternalIdentitiesDiagram`
+
+## (phase 105) Microsoft Entra External ID — 개요와 FAQ
+https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-24(FAQ `entra/external-id/customers/faq-customers` 2026-05-20). 사본: `docs-entra-external-identities.md`, `docs-entra-external-faq.md`와 `ko-` 판.
+
+- 테넌트는 Microsoft Entra ID의 전용 인스턴스이고 앱과 사용자 디렉터리 같은 조직의 리소스를 담는다. 직원 구성과 외부 구성 두 가지로 쓴다 — 「What are workforce and external tenants?」
+- B2B 협업: 직원 테넌트에서 쓴다. 게스트에게는 우리 쪽 자격 증명이 없고, 그들의 조직이나 ID 공급자가 인증한 뒤 우리가 자격을 확인한다. 직원과 같은 디렉터리에 사용자 개체가 생겨 그룹에 넣을 수 있고 권한을 줄 수 있다 — 「Collaborate with business guests」
+- 소비자·고객용: **외부 구성 테넌트의 External ID**. 직원과 분리된 별도 테넌트에 앱과 고객 계정을 두고, 앞에서 본 게스트와 달리 그 테넌트에서 고객 계정을 관리한다. 이메일과 암호, 일회용 암호, Google·Facebook으로 로그인한다. 대상은 직접 만든 앱과 SaaS 앱이고 Microsoft 앱은 아니다 — 「Secure your apps for consumers and business customers」, 「Comparing External ID feature sets」
+- **이름**: External ID는 Azure AD B2C의 새 이름이 아니다. Azure AD B2C는 옛 해법이고 2025-05-01부터 새 고객이 살 수 없다. 이전 이름 「Azure AD for customers」는 Microsoft Entra External ID로, 「Customer tenant」는 External tenant로 바뀌었다 — FAQ 「About External ID」, 개요 「Azure Active Directory B2C」
+- B2B 직접 연결: 두 조직이 양쪽 다 켜야 하는 상호 신뢰이고, 현재 Teams 공유 채널에서 동작한다. 자기 조직에서 인증하고, 우리 디렉터리에 게스트로 들지 않는다 — 개요 「B2B direct connect」, `entra/external-id/b2b-direct-connect-overview`(2026-04-24, 사본 `docs-entra-b2b-direct-connect.md`)
+- 조건부 액세스 정책을 외부 사용자에게도 걸 수 있다 — 개요 「Conditional Access」. 월간 활성 사용자 요금은 **쓰지 않는다**
+- **도식의 자리**: 고객은 회사 A의 테넌트(직원 테넌트) 밖의 **별도 테넌트**에 계정을 둔다. 그룹 `external-tenant`(「외부 테넌트」)를 더해 그 안에 `customer-app`을 두고, `consumer` 경로는 그쪽으로 잇는다 — `app`(직원 테넌트의 앱)으로 잇지 않는다
+- 한국어 표기: **외부 ID**(Learn 열한 번, 개요 스물두 번. 제품 이름 「Microsoft Entra External ID」는 영문 그대로 괄호에), B2B 협업, B2B 직접 연결, **직원 테넌트**, **외부 테넌트**, **외부 테넌트의 외부 ID**, 소셜 ID 공급자, 게스트 사용자
+
+쓰일 곳: `azure-identity.external-identities`, `ExternalIdentitiesDiagram`, G47
+
+## (phase 105) Learn 「Describe Azure identity, access, and security」 — 5 Describe Azure conditional access
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/5-conditional-access
+
+확인한 날 2026-11-01. 사본: `learn-describe-azure-identity-access-security-5-conditional-access.md`와 `ko-` 판.
+
+- 조건부 액세스는 Entra ID가 사용자·위치·디바이스 같은 ID 신호에 따라 리소스 접근을 허용하거나 거부하는 도구다 — 머리글
+- 로그인 중에 신호를 모으고, 신호로 결정하고, 허용·거부·다단계 인증 요구로 결정을 적용한다. 신호에는 요청하는 앱도 든다 — 머리글과 흐름 설명
+- 평소 위치면 전부 허용할 수 있고, 낯설거나 위험하다고 표시된 위치면 막거나 둘째 인증을 받은 뒤 허용할 수 있다 — 같은 곳
+- 쓰임 넷: 역할·위치·네트워크에 따라 MFA 요구, 승인된 클라이언트 앱으로만 접근, 관리 디바이스에서만 접근, 모르거나 뜻밖의 곳에서 오는 접근 차단 — 「When can I use Conditional Access?」
+- **관리 디바이스**는 조직의 보안·규정 준수 기준을 충족하는 디바이스다 — 같은 절
+- 한국어 표기: 조건부 액세스, 신호, 적용, **관리 디바이스**(「관리되는 디바이스」는 받은 한국어판에 없다), 승인된 클라이언트 앱
+
+쓰일 곳: `azure-identity.conditional-access`, `ConditionalAccessDiagram`
+
+## (phase 105) Microsoft Entra — What is Conditional Access? 과 규정 준수 디바이스
+https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
+
+확인한 날 2026-11-01. 「Last updated on」 2026-04-27(규정 준수 정책 2026-03-24, Intune 준수 설정 2026-09-17). 사본: `docs-entra-conditional-access.md`, `docs-entra-conditional-compliant.md`, `docs-intune-device-compliance-windows.md`와 `ko-` 판.
+
+- 정책은 만약-그러면 문장이다 — 어떤 사용자가 어떤 리소스에 닿으려면 어떤 행동을 마쳐야 한다 — 「Overview」
+- **첫째 인증을 마친 뒤에** 적용된다. 그래서 서비스 거부 공격을 막는 맨 앞의 방어로 쓰는 도구가 아니다 — 같은 절 Important
+- 신호에는 사용자·그룹, IP 위치, 디바이스, 앱, 위험 감지가 있다. 결정은 차단이 가장 강하고, 허용에는 MFA·규정 준수 디바이스·승인된 클라이언트 앱 같은 조건을 달 수 있다 — 「Common signals」, 「Common decisions」
+- **NO.151의 처리**: 조건부 액세스가 디바이스의 패치 상태를 직접 재는 것이 아니다. Intune 규정 준수 정책이 Windows 최소 버전 같은 기준으로 디바이스를 판정하고(최소 버전보다 낮으면 규정 비준수), 조건부 액세스가 「규정 준수로 표시된 디바이스」를 허용 조건으로 건다. 정책은 Intune의 준수 정책 없이는 뜻대로 동작하지 않는다 — 「Require device compliance with Conditional Access」, Intune 「Operating system version」. 그래서 덤프의 답(조건부 액세스 정책)은 맞고, 본문은 Intune의 동작을 풀지 않고 「규정 준수 판정을 받은 디바이스만 허용한다」까지 쓴다
+- P1 라이선스는 **쓰지 않는다**(guide 「배경」)
+- 한국어 표기: 조건부 액세스, 규정 준수, 승인된 클라이언트 앱, 차단, 허용
+
+쓰일 곳: `azure-identity.conditional-access`, `ConditionalAccessDiagram`
+
+## (phase 105) Microsoft Entra — 디바이스 ID, 사용자, 그룹, 라이선스 (쓰지 않는 근거 포함)
+https://learn.microsoft.com/en-us/entra/identity/devices/overview
+
+확인한 날 2026-11-01. 사본: `docs-entra-device-identities.md`(2025-06-27), `docs-entra-device-join.md`(`concept-directory-join`, 2026-04-28), `docs-entra-device-registration.md`(`concept-device-registration`, 2025-06-27), `docs-entra-device-hybrid-join.md`(`concept-hybrid-join`, 2026-10-06), `docs-entra-create-users.md`(`how-to-create-delete-users`, 2026-05-08), `docs-entra-user-management.md`(`directory-overview-user-model`, 2025-01-31), `docs-entra-user-licenses.md`(`license-users-groups`, 2026-02-21)와 `ko-` 판.
+
+- 디바이스 ID를 얻는 길은 Entra 등록, Entra 가입, Entra 하이브리드 가입 셋이다. 디바이스 기반 조건부 액세스의 전제다 — 「What is a device identity?」
+- 가입: Windows 11·10(Home 제외), Azure의 일부 Windows VM, macOS 13 이상, 일부 Linux. 조직 계정으로 디바이스에 로그인한다. 등록: 개인 디바이스·휴대폰이 대상이고 iOS·Android가 든다. 디바이스 로그인에 조직 계정이 필요 없다. 하이브리드 가입: 온-프레미스 AD와 Entra ID 둘 다에 가입하고 조직 계정으로 로그인한다 — 각 쪽의 표. **iOS·Android는 가입이 아니라 등록이다.** OS 목록은 **쓰지 않는다**(자주 바뀐다)
+- 사용자는 Entra ID 테넌트에서 만들거나 초대한다 — 「How to create, invite, and delete users」
+- 사용자는 Entra 그룹으로 묶고 그룹에 라이선스·앱을 줄 수 있다. 동적 멤버 그룹은 있지만 P1이 필요하다 — 「Assign users to groups」. 동적 멤버 그룹은 **쓰지 않는다**
+- 사용자 하나에 라이선스를 더 줄 수 있다(기존 라이선스를 두고 더한다) — 「license-users-groups」. 라이선스 수는 **쓰지 않는다**(guide 「배경」). D76의 근거로만 적는다
+- 한국어 표기: 디바이스, 가입, 등록, 하이브리드 가입, 그룹
+
+쓰일 곳: D75, D76, D77, D78, `azure-identity.entra-id`(디바이스 관리 항목은 「등록·관리」까지)
+
+## (phase 105) 한국어 표기 정리 — `azure-identity`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 105 step 0). Microsoft 한국어 문서의 표기를 따르고, 문서가 이름을 옮기지 않으면 그대로 둔다. 영문이 다르면 처음 쓸 때 괄호에 둔다(guide 「예시 값」).
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `entra-id` | **Microsoft Entra ID** | 「What is Microsoft Entra?」 한국어판이 옮기지 않는다 |
+| `entra-connect` | **Microsoft Entra Connect** | 「Microsoft Entra Connect란?」 제목. 하는 일은 Connect Sync가 맡지만 Learn·제목의 이름을 쓴다 |
+| `domain-services` | **Microsoft Entra Domain Services** | 「Microsoft Entra Domain Services란?」 제목 |
+| `authentication-authorization` | **인증과 권한 부여** | 「인증과 권한 부여의 차이점」 제목 |
+| `single-sign-on` | **SSO(Single Sign-On)** | Learn 단원 3 한국어판 첫 문단의 표기. 제품 문서 제목은 Single Sign-On, 본문은 SSO다. 「통합 인증」·「싱글 사인온」은 쓰지 않는다 |
+| `multifactor-authentication` | **다단계 인증(MFA)** | 「작동 방식: Microsoft Entra 다단계 인증」 제목. Learn 한국어판의 괄호 순서 「MFA(다단계 인증)」은 앱의 다른 개념 이름처럼 한국어를 앞에 둔다 |
+| `passwordless` | **암호 없는 인증** | Learn 단원 3 절 제목 「암호 없는 인증이란?」 |
+| `external-identities` | **외부 ID** | Learn 단원 4와 개요 한국어판 |
+| `conditional-access` | **조건부 액세스** | 「조건부 액세스란?」 제목 |
+
+항목 이름:
+
+- **`entra-id`**: 인증(Authentication), SSO(Single sign-on), 애플리케이션 관리(Application management), 디바이스 관리(Device management)
+- **`passwordless`**: 비즈니스용 Windows Hello(Windows Hello for Business), Microsoft Authenticator 앱(Microsoft Authenticator app), FIDO2 보안 키(FIDO2 security key)
+- **`external-identities`**: B2B 협업(B2B collaboration), B2B 직접 연결(B2B direct connect), 외부 테넌트의 외부 ID(External ID in external tenants)
+
+낱말과 라벨:
+
+- 요소의 세 범주: **아는 것**, **가진 것**, **사용자의 속성**. 한국어판 「사용자가 알고 있는 것」·「사용자가 가지고 있는 것」·「사용자의 속성」을 줄였다. guide의 잠정 「본인의 특성」은 문서에 없어 쓰지 않는다
+- 도식·본문: **관리되는 도메인**(guide의 잠정 「관리형 도메인」 대신), **도메인 가입**(guide의 잠정 「도메인 조인」 대신), **관리 디바이스**(guide의 잠정 「관리되는 디바이스」 대신), **보안 질문**, **게스트 사용자**, **직원 테넌트**, **외부 테넌트**, 복제본 집합, 도메인 컨트롤러, 그룹 정책, 디렉터리, 자격 증명, ID 공급자, 동기화, 온-프레미스, 온-프레미스 Active Directory, 액세스 검토, 신호, 적용, 차단, 규정 준수, 승인된 클라이언트 앱, 소셜 ID, PIN, 디바이스(「장치」 대신)
+- 옛 앱: 한국어판은 「레거시 애플리케이션」이다. 처음 배우는 사람에게 낱말이 낯설어 본문은 「옛 앱」으로 쓰고, 한 번은 「최신 인증을 쓰지 못하는 앱」으로 뜻을 밝힌다
+
+**섞여 쓰인 표기**: 「관리되는 도메인」과 「관리형 도메인」, 「도메인 가입」과 「도메인 조인」, 「다단계 인증」과 「다중 요소 인증」, 「SSO」와 「통합 인증」·「싱글 사인온」, 「디바이스」와 「장치」 — 위에서 앞의 것을 쓴다. 비교 표의 「Group Policy」는 한국어판 「그룹 정책」으로 쓴다.
+
+**쓰지 않는 이름**: Azure AD·Azure Active Directory(`entra-id`의 「예전 이름」 한 번 말고), Azure AD Connect, Azure AD B2C, Azure Multi-Factor Authentication, Azure AD Identity Protection, Microsoft Entra ID Protection, Privileged Identity Management, Azure Advanced Threat Protection, Defender for Identity, Connect Health, Verified ID, OpenID Connect, OAuth, SAML, Entra ID Free·P1·P2, Dynamics CRM Online(「Microsoft 365·Azure 구독자」로 줄인다), 동기화된 패스키, 동적 멤버 그룹.
 
