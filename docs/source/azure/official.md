@@ -3359,7 +3359,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 
 쓰인 곳(phase 105 step 1): `azure-identity.entra-id`, `azure-identity.entra-connect`, `EntraConnectDiagram`
 
-쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, G47
+쓰인 곳(phase 105 step 2): `azure-identity.domain-services`, `DomainServicesDiagram`
+
+쓰일 곳: G47
 
 ## (phase 105) Windows Server — Active Directory Domain Services overview
 https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
@@ -3384,7 +3386,9 @@ https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concep
 
 쓰인 곳(phase 105 step 1): `azure-identity.entra-id`(**ID**를 푸는 한 줄)
 
-쓰일 곳: `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, `azure-identity.external-identities`(ID 공급자), D80
+쓰인 곳(phase 105 step 2): `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, D80
+
+쓰일 곳: `azure-identity.external-identities`(ID 공급자)
 
 ## (phase 105) Microsoft Entra — Authentication vs. authorization
 https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization
@@ -3397,7 +3401,7 @@ https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-auth
 - 프로토콜(OpenID Connect·OAuth·SAML)은 **쓰지 않는다**(guide 「배경」). NO.194의 「보안 토큰」도 이 주제에서 낱말로 세우지 않는다
 - 한국어 표기: 인증, 권한 부여 — 제목 「인증과 권한 부여의 차이점」
 
-쓰일 곳: `azure-identity.authentication-authorization`, `AuthVsAuthzDiagram`, D80
+쓰인 곳(phase 105 step 2): `azure-identity.authentication-authorization`, `AuthVsAuthzDiagram`, D80
 
 ## (phase 105) Microsoft Entra — What is Microsoft Entra Connect?
 https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect
@@ -3453,20 +3457,21 @@ https://learn.microsoft.com/en-us/entra/identity/domain-services/overview
 
 쓰인 곳(phase 105 step 1): `azure-identity.entra-id`
 
-쓰일 곳: `azure-identity.domain-services`, `DomainServicesDiagram`, D78
+쓰인 곳(phase 105 step 2): `azure-identity.domain-services`, `DomainServicesDiagram`, D78
 
 ## (phase 105) 낱말을 푸는 근거 — 도메인 가입, 그룹 정책, LDAP, Kerberos
 https://learn.microsoft.com/en-us/entra/identity/domain-services/join-windows-vm
 
 확인한 날 2026-11-01. 사본: `docs-entra-domain-join.md`(2025-02-05), `docs-windows-group-policy.md`(2026-04-16), `docs-windows-ldap.md`(2018-05-31), `docs-windows-kerberos.md`(2026-09-15)와 `ko-` 판. 나머지 URL은 `learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview`, `learn.microsoft.com/en-us/previous-versions/windows/desktop/ldap/lightweight-directory-access-protocol-ldap-api`, `learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview`.
 
+- 도메인: AD DS는 사용자·컴퓨터·디바이스 같은 네트워크 요소를 계층으로 묶고, 도메인은 그 안의 한 구획이다. 도메인 컨트롤러가 사용자 계정과 자격 증명을 담아 두고 인증을 맡으며, 사용자 ID를 한 번 만들면 가입한 컴퓨터에서 쓴다 — `learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model` 「Active Directory domain」(2026-11-02 확인, 사본 `docs-windows-adds-logical-model.md`와 `ko-` 판) (phase 105 step 2)
 - 도메인 가입: VM을 관리되는 도메인에 가입해 다시 시작하면 그 도메인의 정책이 VM에 적용되고, 도메인 자격 증명으로 그 VM에 로그인할 수 있다 — 「join-windows-vm」의 가입 절
 - 그룹 정책: Windows의 기능으로, 운영 체제·앱·사용자 설정을 중앙에서 관리한다. 컴퓨터와 사용자에게 적용된다. AD와 함께 쓰면 설정을 AD DS에 저장한다 — 「What is a Group Policy」
 - LDAP: 디렉터리에 연결해 찾고 고치게 하는 디렉터리 서비스 프로토콜이다 — 「Purpose」
 - Kerberos: 사용자나 호스트의 ID를 확인하는 인증 프로토콜이고, Windows Server에서는 도메인 컨트롤러가 그 일을 돕는다 — 머리글, 「How Kerberos authentication works」. NTLM은 낱말로만 쓰고 동작을 풀지 않는다
 - 한국어 표기: 도메인 가입, 그룹 정책, LDAP, Kerberos
 
-쓰일 곳: `azure-identity.domain-services`
+쓰인 곳(phase 105 step 2): `azure-identity.domain-services`
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 3 Describe Azure authentication methods
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/3-authentication-methods
@@ -3486,7 +3491,9 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 세 가지: 비즈니스용 Windows Hello(자기 전용 Windows PC가 있는 근로자에게 맞고 생체·PIN이 그 PC에 묶인다), Microsoft Authenticator 앱(iOS·Android 휴대폰에서 알림을 받아 화면의 숫자를 맞추고 생체나 PIN으로 확인한다), FIDO2 보안 키(USB·Bluetooth·NFC 하드웨어이고 로그인 화면에서 골라 쓰며 노출될 암호가 없다) — 같은 절. 공유 워크스테이션·높은 보안 환경에 맞는다는 것과 일선 근로자 얘기는 그림에만 있다
 - 한국어 표기: SSO(Single Sign-On), MFA(다단계 인증), 암호 없는 인증, 비즈니스용 Windows Hello, Microsoft Authenticator 앱, FIDO2 보안 키, 사용자가 알고 있는 것·사용자가 가지고 있는 것·사용자의 속성
 
-쓰일 곳: `azure-identity.authentication-authorization`, `azure-identity.single-sign-on`, `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `SingleSignOnDiagram`, `MfaFactorsDiagram`, `SignInMethodsTable`, D74, G48
+쓰인 곳(phase 105 step 2): `azure-identity.authentication-authorization`(인증 대상이 사람·서비스·디바이스라는 것과 자격 증명)
+
+쓰일 곳: `azure-identity.single-sign-on`, `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `SingleSignOnDiagram`, `MfaFactorsDiagram`, `SignInMethodsTable`, D74, G48
 
 ## (phase 105) Microsoft Entra — What is single sign-on in Microsoft Entra ID?
 https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on

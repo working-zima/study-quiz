@@ -42,6 +42,108 @@
       "sources": [
         "azure-identity.entra-connect"
       ]
+    },
+    "domain-services": {
+      "label": "관리되는 도메인의 도메인 컨트롤러 둘을 Azure가 맡고, Microsoft Entra ID에서 한 방향으로 동기화하며, 옛 앱이 닿는 모습",
+      "svgLabel": "관리되는 도메인 안에 도메인 컨트롤러 둘이 있고, 박스 밖에 온-프레미스 Active Directory, Microsoft Entra ID, 옛 앱이 있다",
+      "question": "도메인 컨트롤러를 직접 두지 않고 옛 앱을 옮기려면?",
+      "idleCaption": "회사 B가 옛 앱을 Azure로 옮길 때의 구성이다. 관리되는 도메인 안에 도메인 컨트롤러 둘이 있고, 밖에 온-프레미스 Active Directory와 Microsoft Entra ID, 옛 앱이 있다. 버튼을 고르면 누가 관리하는지, ID가 어느 쪽으로 가는지, 옛 앱이 어디에 닿는지 볼 수 있다.",
+      "legend": "큰 박스는 관리되는 도메인이다. 위쪽 화살표는 ID가 동기화되는 방향이고, 옛 앱에서 나가는 화살표는 인증을 맡기는 길이다.",
+      "nodes": {
+        "on-prem-ad": "온-프레미스 Active Directory",
+        "entra": "Microsoft Entra ID",
+        "dc-1": "도메인 컨트롤러 1",
+        "dc-2": "도메인 컨트롤러 2",
+        "legacy-app": "옛 앱"
+      },
+      "groups": {
+        "managed-domain": "관리되는 도메인"
+      },
+      "notes": {
+        "azure-note": "Azure가 관리",
+        "connect-note": "Microsoft Entra Connect",
+        "one-way-note": "한 방향으로 동기화",
+        "app-auth-note": "LDAP·Kerberos로 인증"
+      },
+      "scenarios": [
+        {
+          "id": "managed",
+          "label": "관리하는 쪽",
+          "caption": "도메인 컨트롤러 둘은 회사가 고른 지역에 놓이고, 구성과 업데이트, 백업은 Azure 플랫폼이 맡는다. 회사 B는 이 서버들을 직접 설치하거나 패치하지 않는다.",
+          "sources": [
+            "azure-identity.domain-services"
+          ]
+        },
+        {
+          "id": "sync",
+          "label": "ID 동기화",
+          "caption": "온-프레미스 Active Directory의 ID는 Microsoft Entra Connect로 Entra ID에 가고, Entra ID에서 관리되는 도메인으로 한 방향으로 동기화된다. 관리되는 도메인에서 직접 만든 것은 돌아가지 않는다.",
+          "sources": [
+            "azure-identity.domain-services",
+            "azure-identity.entra-connect"
+          ]
+        },
+        {
+          "id": "legacy",
+          "label": "옛 앱",
+          "caption": "옛 앱은 고쳐 쓰지 않고 그대로 옮겨 와, LDAP과 Kerberos로 관리되는 도메인의 도메인 컨트롤러에 사용자 확인을 맡긴다.",
+          "sources": [
+            "azure-identity.domain-services"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.domain-services"
+      ]
+    },
+    "auth-vs-authz": {
+      "label": "사용자가 인증과 권한 부여를 차례로 지나 리소스에 닿고, 각 단계에서 멈추는 경우를 보인 모습",
+      "svgLabel": "사용자, 인증, 권한 부여, 리소스가 차례로 놓여 있다. 인증은 누구인가를, 권한 부여는 무엇을 해도 되는가를 묻는다",
+      "question": "로그인했는데 왜 거부될까?",
+      "idleCaption": "사용자가 리소스에 닿으려면 인증과 권한 부여를 차례로 지나야 한다. 버튼을 고르면 어느 단계에서 멈추는지 볼 수 있다.",
+      "legend": "상자 곁의 물음은 그 단계가 확인하는 것이다. 화살표는 통과해 나아간 길이고, 화살표가 끊긴 곳에서 멈춘 것이다.",
+      "nodes": {
+        "user": "사용자",
+        "authn": "인증",
+        "authz": "권한 부여",
+        "resource": "리소스"
+      },
+      "notes": {
+        "authn-question": "누구인가?",
+        "authz-question": "무엇을 해도 되는가?",
+        "credential-note": "자격 증명이 맞지 않다",
+        "signed-in-note": "로그인은 되었다",
+        "denied-note": "이 리소스는 거부"
+      },
+      "scenarios": [
+        {
+          "id": "authn-fail",
+          "label": "인증 실패",
+          "caption": "자격 증명이 맞지 않으면 누구인지 증명하지 못한 것이다. 권한 부여는 인증이 성공한 뒤에 하므로 권한을 따져 보기 전에 멈춘다.",
+          "sources": [
+            "azure-identity.authentication-authorization"
+          ]
+        },
+        {
+          "id": "authz-deny",
+          "label": "권한 없음",
+          "caption": "직원 A는 인증을 통과해 로그인했지만, 이 리소스에서 그 일을 허용받지 않았다. 암호를 다시 입력해도 풀리지 않고, 허용을 받아야 한다.",
+          "sources": [
+            "azure-identity.authentication-authorization"
+          ]
+        },
+        {
+          "id": "allowed",
+          "label": "허용",
+          "caption": "누구인지 증명하고 그 일을 허용받았다. 두 단계를 차례로 통과해야 리소스에 닿는다.",
+          "sources": [
+            "azure-identity.authentication-authorization"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.authentication-authorization"
+      ]
     }
   },
   "tables": {},

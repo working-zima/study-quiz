@@ -10,6 +10,7 @@ import { ArpExchangeDiagram } from './ArpExchangeDiagram'
 import { ArpHopsDiagram } from './ArpHopsDiagram'
 import { ArpPurposeDiagram } from './ArpPurposeDiagram'
 import { AsPathDiagram } from './AsPathDiagram'
+import { AuthVsAuthzDiagram } from './AuthVsAuthzDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
@@ -38,6 +39,7 @@ import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
+import { DomainServicesDiagram } from './DomainServicesDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -413,6 +415,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-data-movement.azure-migrate': AzureMigrateDiagram,
   'azure-data-movement.data-box': [DataBoxDiagram, DataMoveOptionsTable],
   'azure-identity.entra-connect': EntraConnectDiagram,
+  'azure-identity.domain-services': DomainServicesDiagram,
+  'azure-identity.authentication-authorization': AuthVsAuthzDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
