@@ -1,0 +1,404 @@
+{
+  "diagrams": {
+    "access-tiers": {
+      "label": "Blob 액세스 계층 넷의 비용 방향과 최소 보관 기간, 계정 기본값으로 고를 수 있는 계층",
+      "svgLabel": "온라인 계층 안에 핫 계층·쿨 계층·콜드 계층이 있고, 오프라인 계층 안에 보관 계층이 있다",
+      "question": "읽는 빈도에 따라 어느 계층에 둘까?",
+      "idleCaption": "Blob을 둘 수 있는 네 계층이다. 버튼을 고르면 비용이 달라지는 방향, 최소 보관 기간, 계정 기본값으로 고를 수 있는 계층을 차례로 볼 수 있다.",
+      "legend": "큰 박스 둘은 Blob을 바로 읽을 수 있는 온라인 계층과, 먼저 옮겨야 읽을 수 있는 오프라인 계층이다. 화살표는 데이터가 옮겨 가는 길이 아니라 비용이 달라지는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 계층이다.",
+      "nodes": {
+        "hot": "핫 계층",
+        "cool": "쿨 계층",
+        "cold": "콜드 계층",
+        "archive": "보관 계층"
+      },
+      "groups": {
+        "online": "온라인 계층",
+        "offline": "오프라인 계층"
+      },
+      "notes": {
+        "cost-storage-note": "화살표 쪽일수록 저장 비용이 낮다",
+        "cost-read-note": "화살표 쪽일수록 읽는 비용이 높다",
+        "cool-note": "최소 30일",
+        "cold-note": "최소 90일",
+        "archive-note": "최소 180일",
+        "default-note": "계정 기본값으로 고를 수 없다"
+      },
+      "scenarios": [
+        {
+          "id": "cost",
+          "label": "비용의 방향",
+          "caption": "핫 계층에서 보관 계층 쪽으로 갈수록 저장 비용은 낮아지고 읽는 비용은 높아진다. 자주 읽는 데이터는 읽는 비용이 낮은 쪽에, 거의 읽지 않는 데이터는 저장 비용이 낮은 쪽에 둔다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        },
+        {
+          "id": "retention",
+          "label": "최소 보관 기간",
+          "caption": "쿨 계층은 30일, 콜드 계층은 90일, 보관 계층은 180일이 최소 보관 기간이다. 이보다 일찍 지우거나 덮어쓰거나 옮기면 남은 날만큼 조기 삭제 요금이 붙는다. 핫 계층에는 최소 보관 기간이 없다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        },
+        {
+          "id": "account-default",
+          "label": "계정 기본값",
+          "caption": "스토리지 계정의 기본 액세스 계층은 핫·쿨·콜드 가운데서 고른다. 보관 계층은 기본값이 될 수 없으므로, 데이터를 보관 계층에 두려면 Blob마다 올릴 때나 올린 뒤에 정한다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.access-tiers"
+      ]
+    },
+    "archive-rehydration": {
+      "label": "보관 계층의 Blob을 앱이 바로 읽을 때와 온라인 계층으로 옮긴 뒤 읽을 때",
+      "svgLabel": "앱이 보관 계층의 Blob과 온라인 계층의 Blob을 가리키고, 보관 계층의 Blob에서 온라인 계층의 Blob으로 옮겨 간다",
+      "question": "보관 계층의 Blob을 왜 바로 읽을 수 없을까?",
+      "idleCaption": "앱과 보관 계층의 Blob, 온라인 계층의 Blob이다. 버튼을 고르면 앱이 바로 읽으려 할 때와 온라인 계층으로 옮긴 뒤에 읽을 때를 견줄 수 있다.",
+      "legend": "화살표는 앱이 Blob을 읽으려는 방향과 Blob을 옮기는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 곳이다.",
+      "nodes": {
+        "app": "앱",
+        "archive-blob": "보관 계층의 Blob",
+        "online-blob": "온라인 계층의 Blob"
+      },
+      "notes": {
+        "offline-note": "오프라인 — 데이터를 읽을 수 없다",
+        "rehydrate-note": "리하이드레이션 — 몇 시간이 걸린다"
+      },
+      "scenarios": [
+        {
+          "id": "read-now",
+          "label": "바로 읽을 때",
+          "caption": "보관 계층은 오프라인 계층이라, Blob이 거기 있는 동안에는 앱이 그 내용을 읽거나 고칠 수 없다. Blob을 설명하는 메타데이터는 읽을 수 있어도 내용은 읽지 못한다.",
+          "sources": [
+            "azure-storage.archive-rehydration"
+          ]
+        },
+        {
+          "id": "rehydrate",
+          "label": "옮긴 뒤 읽을 때",
+          "caption": "Blob을 먼저 온라인 계층으로 옮겨야 앱이 읽을 수 있다. 옮기는 데 몇 시간이 걸릴 수 있으므로, 필요할 때 바로 꺼내야 하는 데이터는 보관 계층에 두지 않는다.",
+          "sources": [
+            "azure-storage.archive-rehydration"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.archive-rehydration"
+      ]
+    },
+    "file-share": {
+      "label": "온-프레미스의 컴퓨터와 Azure의 VM이 스토리지 계정 안의 파일 공유를 함께 탑재하는 모습",
+      "svgLabel": "온-프레미스 안에 컴퓨터 1과 컴퓨터 2가 있고, Azure 안에 VM 1과 스토리지 계정이 있으며, 스토리지 계정 안에 파일 공유가 있다",
+      "question": "여러 컴퓨터가 어떻게 같은 파일을 함께 쓸까?",
+      "idleCaption": "회사 C의 온-프레미스 컴퓨터 둘과 Azure의 VM 1, 스토리지 계정 안의 파일 공유다. 버튼을 고르면 누가 이 파일 공유를 탑재하는지 볼 수 있다.",
+      "legend": "큰 박스는 컴퓨터와 파일 공유가 있는 곳이고, 스토리지 계정은 Azure 안에 있다. 화살표는 컴퓨터가 파일 공유를 탑재하는 방향이다. 컴퓨터 둘과 VM 하나는 예시다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "pc-1": "컴퓨터 1",
+        "pc-2": "컴퓨터 2",
+        "vm-1": "VM 1",
+        "share": "파일 공유"
+      },
+      "groups": {
+        "on-premises": "온-프레미스",
+        "azure": "Azure",
+        "account": "스토리지 계정"
+      },
+      "notes": {
+        "share-note": "같은 파일 공유를 탑재",
+        "pc-note": "온-프레미스에서 탑재",
+        "vm-note": "클라우드에서 탑재"
+      },
+      "scenarios": [
+        {
+          "id": "office",
+          "label": "사무실에서",
+          "caption": "사무실 컴퓨터 두 대가 파일 공유 하나를 저마다 드라이브처럼 탑재해 같은 파일을 함께 쓴다. 파일은 컴퓨터마다 따로 두지 않고 Azure의 파일 공유에 둔다.",
+          "sources": [
+            "azure-storage.azure-files"
+          ]
+        },
+        {
+          "id": "hybrid",
+          "label": "사무실과 Azure에서",
+          "caption": "온-프레미스의 컴퓨터와 Azure의 VM이 같은 파일 공유를 동시에 탑재한다. 클라우드에 있는 컴퓨터만 이 파일 공유에 닿을 수 있는 것이 아니다.",
+          "sources": [
+            "azure-storage.azure-files"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.azure-files"
+      ]
+    },
+    "lrs-zrs": {
+      "label": "복사본 셋을 데이터 센터 한 곳에 둘 때와 가용성 영역 셋에 나눠 둘 때, 데이터 센터가 멈추면 무엇이 남는지 보는 도식",
+      "svgLabel": "LRS 박스의 데이터 센터 한 곳 안에 복사본 셋이 있고, ZRS 박스 안의 영역 1·영역 2·영역 3에 복사본이 하나씩 있다",
+      "question": "복사본 셋을 어디에 두면 무엇을 견딜까?",
+      "idleCaption": "회사 C가 같은 데이터를 LRS 계정과 ZRS 계정에 따로 둔 모습이다. 버튼을 고르면 복사본을 두는 곳의 차이와, 데이터 센터가 멈출 때 무엇이 남는지 볼 수 있다.",
+      "legend": "큰 박스 둘은 복사본을 두는 두 옵션이고, ZRS 안의 작은 박스 셋은 가용성 영역이다. 복사본 셋은 어느 쪽이든 같은 데이터다. 흐리게 그린 노드는 닿지 않는 복사본이다.",
+      "nodes": {
+        "lrs-1": "복사본 1",
+        "lrs-2": "복사본 2",
+        "lrs-3": "복사본 3",
+        "zrs-1": "복사본 1",
+        "zrs-2": "복사본 2",
+        "zrs-3": "복사본 3"
+      },
+      "groups": {
+        "lrs-datacenter": "LRS — 데이터 센터 한 곳",
+        "zrs-region": "ZRS — 가용성 영역 셋",
+        "zone-1": "영역 1",
+        "zone-2": "영역 2",
+        "zone-3": "영역 3"
+      },
+      "notes": {
+        "lrs-compare-note": "데이터 센터 한 곳에 셋",
+        "zrs-compare-note": "영역마다 하나",
+        "lrs-down-note": "데이터 센터가 멈추면 복사본 셋 모두 닿지 않는다",
+        "zone-1-note": "이 영역이 멈춤",
+        "zrs-left-note": "나머지 영역으로 읽고 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "compare",
+          "label": "복사본의 위치",
+          "caption": "어느 옵션이든 주 지역 안의 복사본은 셋이다. 다른 것은 그 셋을 두는 곳으로, LRS는 데이터 센터 한 곳 안에, ZRS는 가용성 영역 셋에 하나씩 둔다.",
+          "sources": [
+            "azure-storage.storage-redundancy"
+          ]
+        },
+        {
+          "id": "datacenter-down",
+          "label": "데이터 센터가 멈출 때",
+          "caption": "LRS는 데이터 센터가 통째로 멈추면 복사본 셋 모두 닿지 않고 잃을 수도 있다. ZRS는 영역 하나가 멈춰도 나머지 두 영역의 복사본으로 계속 읽고 쓴다.",
+          "sources": [
+            "azure-storage.storage-redundancy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.storage-redundancy"
+      ]
+    },
+    "geo-redundancy": {
+      "label": "주 지역에서 보조 지역으로 복제하는 GRS와 GZRS, 장애 조치 전에 보조 지역을 읽는 RA-GRS",
+      "svgLabel": "주 지역 안에 데이터 센터 한 곳에 셋 두는 방식과 영역 셋에 하나씩 두는 방식이 있고, 보조 지역 안에 데이터 센터 한 곳에 셋 두는 복사본이 있으며, 두 지역 밖에 읽는 앱이 있다",
+      "question": "지역 전체가 멈출 때를 어떻게 대비할까?",
+      "idleCaption": "주 지역에서 복사본을 두는 두 방식과 보조 지역의 복사본, 보조 지역을 읽는 앱이다. 버튼을 고르면 GRS와 GZRS가 어떻게 복제하는지, 장애 조치 전에 보조 지역을 어떻게 읽는지 볼 수 있다.",
+      "legend": "큰 박스 둘은 주 지역과 보조 지역이다. 주 지역 안의 두 노드는 복사본을 두는 두 방식이고 계정 하나는 그중 하나를 쓴다. 화살표는 데이터를 복제하는 방향과 앱이 읽는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "primary-lrs": "데이터 센터 한 곳에 셋",
+        "primary-zrs": "영역 셋에 하나씩",
+        "secondary-lrs": "데이터 센터 한 곳에 셋",
+        "report-app": "읽는 앱"
+      },
+      "groups": {
+        "primary": "주 지역",
+        "secondary": "보조 지역"
+      },
+      "notes": {
+        "grs-note": "비동기로 복제",
+        "gzrs-note": "비동기로 복제",
+        "stale-note": "최신이 아닐 수 있다"
+      },
+      "scenarios": [
+        {
+          "id": "grs",
+          "label": "GRS",
+          "caption": "GRS는 주 지역의 데이터 센터 한 곳에 둔 복사본 셋을 보조 지역의 복사본 셋으로 복제해 모두 여섯을 둔다. 보조 지역으로는 비동기로 복제하므로 주 지역을 되살리지 못하면 최근 데이터를 잃을 수 있다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        },
+        {
+          "id": "gzrs",
+          "label": "GZRS",
+          "caption": "GZRS는 주 지역에서는 가용성 영역 셋에 복사본을 하나씩 두고, 보조 지역에는 데이터 센터 한 곳에 셋을 둔다. 복사본은 모두 여섯이고, GRS와 다른 것은 주 지역 안에서 두는 방식이다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        },
+        {
+          "id": "read-access",
+          "label": "장애 조치 전에 읽기",
+          "caption": "RA-GRS는 장애 조치 전에도 앱이 보조 지역을 읽게 한다. 복제가 비동기라 앱이 읽는 값은 최신이 아닐 수 있다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.geo-redundancy"
+      ]
+    },
+    "storage-account": {
+      "label": "스토리지 계정이 담는 서비스와 서비스마다의 주소, 계정 밖의 관리 디스크를 보는 도식",
+      "svgLabel": "스토리지 계정 companycdata 안에 Blob·파일 공유·큐·테이블이 있고, 계정 밖에 관리 디스크가 있다",
+      "question": "스토리지 계정 안에는 무엇이 있을까?",
+      "idleCaption": "회사 C의 스토리지 계정 companycdata와 그 밖에 그린 관리 디스크다. 버튼을 고르면 계정이 무엇을 담는지, 계정 이름이 어떻게 주소가 되는지, 관리 디스크가 왜 계정 밖에 있는지 볼 수 있다.",
+      "legend": "박스는 스토리지 계정이고, companycdata는 설명을 위해 정한 이름이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "blob": "Blob",
+        "files": "파일 공유",
+        "queue": "큐",
+        "table": "테이블",
+        "managed-disk": "관리 디스크"
+      },
+      "groups": {
+        "account": "스토리지 계정"
+      },
+      "notes": {
+        "name-note": "companycdata",
+        "services-note": "이름은 Azure 전체에서 하나뿐",
+        "blob-endpoint-note": "https://companycdata.blob.core.windows.net",
+        "file-endpoint-note": "https://companycdata.file.core.windows.net",
+        "disk-note": "계정을 직접 만들지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "services",
+          "label": "계정 안의 서비스",
+          "caption": "스토리지 계정 하나가 Blob·파일 공유·큐·테이블을 담고, 그 데이터에 고유한 네임스페이스를 준다. 이름 companycdata는 구독이나 지역이 달라도 Azure 전체에서 다른 계정이 쓸 수 없다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        },
+        {
+          "id": "endpoint",
+          "label": "주소",
+          "caption": "계정 이름과 서비스 이름이 합쳐져 서비스마다 다른 주소가 된다. companycdata 계정의 Blob과 파일 공유는 같은 계정 이름에 blob과 file이 붙은 주소로 닿는다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        },
+        {
+          "id": "disk",
+          "label": "계정 밖",
+          "caption": "관리 디스크를 쓸 때는 쓰는 쪽이 스토리지 계정을 만들거나 관리하지 않는다. 그 일은 Azure가 뒤에서 대신하고, 쓰는 쪽은 디스크의 유형과 크기만 정한다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.storage-accounts"
+      ]
+    }
+  },
+  "tables": {
+    "redundancy-options": {
+      "label": "중복성 옵션 여섯 견주기",
+      "columns": [
+        "옵션",
+        "주 지역",
+        "보조 지역"
+      ],
+      "columnWidths": [
+        "28%",
+        "36%",
+        "36%"
+      ],
+      "sources": [
+        "azure-storage.storage-redundancy",
+        "azure-storage.geo-redundancy"
+      ],
+      "rows": [
+        {
+          "header": "LRS",
+          "cells": [
+            "데이터 센터 한 곳에 복사본 셋",
+            "복제하지 않음"
+          ]
+        },
+        {
+          "header": "ZRS",
+          "cells": [
+            "가용성 영역 셋에 하나씩",
+            "복제하지 않음"
+          ]
+        },
+        {
+          "header": "GRS",
+          "cells": [
+            "데이터 센터 한 곳에 복사본 셋",
+            "복사본 셋. 장애 조치 뒤에 읽음"
+          ]
+        },
+        {
+          "header": "GZRS",
+          "cells": [
+            "가용성 영역 셋에 하나씩",
+            "복사본 셋. 장애 조치 뒤에 읽음"
+          ]
+        },
+        {
+          "header": "RA-GRS",
+          "cells": [
+            "GRS와 같음",
+            "복사본 셋. 장애 조치 전에도 읽음"
+          ]
+        },
+        {
+          "header": "RA-GZRS",
+          "cells": [
+            "GZRS와 같음",
+            "복사본 셋. 장애 조치 전에도 읽음"
+          ]
+        }
+      ]
+    },
+    "account-types": {
+      "label": "스토리지 계정 유형 넷 견주기",
+      "columns": [
+        "유형",
+        "지원 서비스",
+        "중복성 옵션"
+      ],
+      "columnWidths": [
+        "32%",
+        "30%",
+        "38%"
+      ],
+      "sources": [
+        "azure-storage.storage-accounts",
+        "azure-storage.account-types"
+      ],
+      "rows": [
+        {
+          "header": "표준 범용 v2",
+          "cells": [
+            "Blob, 파일 공유, 큐, 테이블",
+            "LRS, ZRS, GRS, GZRS, RA-GRS, RA-GZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 블록 Blob",
+          "cells": [
+            "Blob",
+            "LRS, ZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 파일 공유",
+          "cells": [
+            "파일 공유",
+            "LRS, ZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 페이지 Blob",
+          "cells": [
+            "페이지 Blob만",
+            "LRS"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}

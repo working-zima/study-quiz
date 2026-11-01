@@ -938,3 +938,108 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: 규칙 종류는 NAT·네트워크·애플리케이션 셋이다(「Configure Azure Firewall rules」). FAQ는 둘을 함께 쓰는 관계로 두고, NSG는 구독마다 흩어져 네트워크 계층에서 거르며 Azure Firewall은 구독과 가상 네트워크를 가로질러 한곳에서 네트워크 수준과 앱 수준으로 지킨다고 한다. 「상위 레벨」이라는 위아래 관계는 말하지 않는다.
 - **처리**: 고쳐 쓴다. 규칙은 셋으로 쓰고, 차이는 거는 곳(흩어져 / 한곳에서)과 거르는 폭으로 쓴다. 「상위」는 쓰지 않는다.
 - **쓰인 곳**: `azure-network-protection.azure-firewall`
+
+## D65 — 보관 계층 데이터를 AzCopy로 언제든 읽는다는 답 (phase 104)
+
+- **덤프**: 같은 사실의 답이 갈린다. NO.354는 글자로 답 A(「azcopy.exe로 언제든 읽는다」를 고칠 것 없다), NO.148은 답 그림(`p090_00.png`, 해설 그림 `p090_02.png`)에서 같은 보기를 표시한다. NO.66(`p036_02.png`)과 NO.435(`p254_02.png`)는 리하이드레이션이 먼저라는 보기를 표시한다. NO.435의 해설은 계층을 핫·쿨·보관 셋으로만 든다 — [덤프 NO.354]·[덤프 NO.148]·[덤프 NO.66]·[덤프 NO.435]
+- **공식 문서**: 「Access tiers for blob data」와 「Blob rehydration from the archive tier」는 보관 계층의 Blob을 읽거나 고칠 수 없고, 읽거나 내려받으려면 먼저 핫·쿨·콜드로 리하이드레이션해야 한다고 한다. AzCopy로 바로 읽는다거나 Azure Backup으로만 읽는다는 말은 없다.
+- **처리**: 고쳐 쓴다. NO.66·435의 답을 따른다. 본문은 「먼저 온라인 계층으로 옮겨야 읽는다」로 쓰고 AzCopy·Azure Backup 쪽 주장을 쓰지 않는다. 계층은 넷(핫·쿨·콜드·보관)으로 쓴다.
+- **쓰인 곳**: `azure-storage.archive-rehydration`, `ArchiveRehydrationDiagram`
+
+## D66 — 보관 계층을 계정 수준에서 정한다는 답 (phase 104)
+
+- **덤프**: 같은 세 문장(보관 계층은 계정 수준에서 정한다, 핫은 자주 읽고 고치는 데이터에 권장한다, 쿨은 장기 백업에 권장한다)의 답이 갈린다. NO.190의 답 그림(`p115_02.png`)은 셋 다 「예」이고, 같은 문항의 해설 그림(`p115_04.png`)과 NO.50(`p026_04.png`)은 아니요·예·아니요다 — [덤프 NO.190]·[덤프 NO.50]
+- **공식 문서**: 「Access tiers for blob data」는 계정의 기본 액세스 계층을 핫·쿨·콜드 가운데서 고르고 보관은 기본값이 될 수 없다고 한다. 장기 백업은 보관 계층의 쓰임이고, 쿨·콜드에 드는 것은 단기 백업이다. Learn 단원 4도 같다.
+- **처리**: 고쳐 쓴다. NO.50과 NO.190의 해설 그림을 따른다. 「계정 수준」은 **기본값**이고 Blob마다는 네 계층 모두 정할 수 있다고 함께 쓴다.
+- **쓰인 곳**: `azure-storage.access-tiers`, `AccessTierDiagram`
+
+## D67 — 프리미엄 블록 Blob 계정은 LRS만 지원한다는 답 (phase 104)
+
+- **덤프**: 프리미엄 블록 Blob 계정이 하나만 지원하는 중복성을 고르게 하고 LRS를 표시한다(`p089_06.png`) — [덤프 NO.146]
+- **공식 문서**: Learn 단원 2, 「Storage account overview」, 「Azure Storage redundancy」, 「Create a storage account」 모두 프리미엄 블록 Blob이 LRS와 ZRS를 지원한다고 한다. ZRS는 지역에 따라 못 쓸 수 있다.
+- **처리**: 고쳐 쓴다. 프리미엄 블록 Blob은 LRS·ZRS로 쓴다. 「LRS만」으로 쓰지 않는다.
+- **쓰인 곳**: `azure-storage.account-types`, `StorageAccountTypesTable`
+
+## D68 — 구독이나 지역이 다르면 스토리지 계정 이름이 같아도 된다는 답 (phase 104)
+
+- **덤프**: 같은 이름의 계정을 둘 둘 수 있는가를 같은 구독·다른 지역·다른 구독으로 묻는다. 답 그림(`p097_04.png`)은 아니요·아니요·예이고, 해설 그림(`p097_06.png`)은 아니요·예·예다. 그림끼리도 갈린다 — [덤프 NO.158]
+- **공식 문서**: Learn 단원 2와 「Storage account overview」는 계정 이름이 Azure 안에서 하나뿐이라 같은 이름의 계정이 둘일 수 없다고 한다.
+- **처리**: 고쳐 쓴다. 셋 다 아니요다. 본문은 「구독이나 지역이 달라도 같은 이름을 쓸 수 없다」로 쓴다.
+- **쓰인 곳**: `azure-storage.storage-accounts`
+
+## D69 — 온-프레미스와의 동기화를 지원하는 스토리지가 Queue Storage라는 답 (phase 104)
+
+- **덤프**: 온-프레미스 저장소와 Azure Storage의 동기화를 지원하는 것을 고르게 하고 Azure Queue Storage를 표시한다(`p201_06.png`). 해설 그림(`p201_08.png`)도 같다 — [덤프 NO.352]
+- **공식 문서**: Queue Storage는 메시지를 쌓아 두는 서비스다(「What is Azure Queue Storage?」). 온-프레미스와 맞추는 것은 Azure File Sync이고 SMB 파일 공유를 Windows 서버에 캐시한다(Learn 단원 4, 「What is Azure Files?」).
+- **처리**: 고쳐 쓴다. 보기 가운데서는 Azure Files다. `azure-storage.azure-files`에 한 줄 풀이만 두고 자세한 것은 `azure-data-movement`의 `file-sync` 몫이다.
+- **쓰인 곳**: `azure-storage.azure-files`, `azure-storage.storage-services`(Queue의 일)
+
+## D70 — 스토리지 계정의 복사본·자동 백업·2TB (phase 104)
+
+- **덤프**: 세 문장(복사본이 저절로 셋 이상이다, 다른 데이터 센터로 저절로 백업된다, 계정은 2TB·파일 100만 개까지다)의 답은 다섯 문항 모두 예·아니요·아니요로 갈리지 않는다(`p172_04.png`·`p178_02.png`·`p288_00.png`, NO.477·506은 글자). 해설 쪽에 문제가 있다. NO.477 해설은 저장 한도를 미국·유럽 2PB, 다른 지역 500TB로 적고, 저절로 다른 데이터 센터로 갈 수 있는지를 복제 옵션에 달렸다고 적으며, LRS가 기본값이라고 적는다 — [덤프 NO.294]·[덤프 NO.307]·[덤프 NO.477]·[덤프 NO.495]·[덤프 NO.506]
+- **공식 문서**: 주 지역에서는 언제나 세 번 복제한다(Learn 단원 3). LRS의 복제본은 데이터 센터 한 곳에 머문다. 지우고 덮어쓴 것도 복사본 모두에 적용되어 복제는 백업이 아니다(「Azure Storage redundancy」, 「What are redundancy, replication, and backup?」). 계정의 기본 최대 용량은 페타바이트 단위이고 지역으로 나뉘지 않으며, 파일 수에 한도가 없다(「Scalability and performance targets」). 받은 문서에는 LRS가 계정의 기본값이라는 말이 없다.
+- **처리**: 쓰지 않는다 — 「2TB·파일 100만 개」, 해설의 2PB·500TB, 「LRS가 기본값」. **맞는 한도 값도 본문에 쓰지 않는다**(guide 「배경」). 복사본 셋은 답대로 쓰고, 「다른 데이터 센터로 저절로 백업」이 틀린 까닭은 위 공식 문서대로 쓴다.
+- **쓰인 곳**: `azure-storage.storage-redundancy`, `azure-storage.storage-accounts`(용량을 쓰지 않는 근거)
+
+## D71 — Azure 파일 공유는 스토리지 계정 키로만 닿는다는 해설 (phase 104)
+
+- **덤프**: 답(스토리지 계정의 Files)은 맞다. 해설이 Azure 파일 공유는 Active Directory·Azure AD의 Kerberos 인증을 지원하지 않아 스토리지 계정 키로 닿아야 한다고 적고, 옛 이름 Azure Active Directory를 쓴다 — [덤프 NO.199]
+- **공식 문서**: 「Mount SMB Azure file share on Windows」와 「Plan to deploy Azure Files」는 ID 기반 인증(온-프레미스 AD DS, Microsoft Entra Kerberos 등)을 지원하고 권한다. 계정 키로 탑재하는 길은 권하지 않는 쪽으로 남아 있다.
+- **처리**: 쓰지 않는다. 인증 방식은 이 주제에 쓰지 않는다. 답은 「Windows에서 드라이브로 연결하는 것은 Azure Files」로 쓴다.
+- **쓰인 곳**: `azure-storage.azure-files`(근거 기록)
+
+## D72 — VM의 데이터 디스크를 담는 서비스가 Blob이라는 답 (phase 104)
+
+- **덤프**: VM의 데이터 디스크를 담을 서비스를 고르게 하고 Blobs를 표시한다(`p177_04.png`). NO.487과 같은 주장이다. D57은 NO.487만 적었으므로 여기 더한다 — [덤프 NO.306]
+- **공식 문서**: 「Azure managed disks overview」는 관리 디스크가 Azure가 관리하는 블록 수준 저장 볼륨이고 쓰는 쪽은 유형과 크기만 정한다고 한다. 「Introduction to Azure Storage」는 관리 디스크가 내부에서 페이지 Blob으로 저장된다고 하지만, 쓰는 쪽이 Blob을 고른다는 말이 아니다.
+- **처리**: 쓰지 않는다(D57과 같다). 본문은 「VM에 붙이는 디스크는 Azure Disk Storage(관리 디스크)」로 쓴다. 저장 형식은 쓰지 않는다.
+- **쓰인 곳**: `azure-storage.storage-services`, `azure-storage.storage-accounts`
+
+## G41 — 액세스 계층을 Hot·Cool·Archive 셋으로 드는 것 (phase 104)
+
+- **용어집**: 자주 쓰면 Hot, 가끔 쓰면 Cool, 거의 안 쓰면 Archive로 고른다고 하고 Archive의 복원 시간이 길다고 한다 — [용어집 2-27]
+- **공식 문서**: 「Access tiers for blob data」와 Learn 단원 4는 콜드 계층을 함께 든다. 보관 계층에서 꺼내는 일은 리하이드레이션이다.
+- **처리**: 고쳐 쓴다. 핫·쿨·콜드·보관으로 쓰고, 「복원」 대신 리하이드레이션으로 쓴다.
+- **쓰인 곳**: `azure-storage.access-tiers`, `azure-storage.archive-rehydration`
+
+## G42 — Azure Storage의 서비스 목록과 Table의 뜻 (phase 104)
+
+- **용어집**: 항목 이름이 Blob·File·Queue·Table이고 설명도 넷을 들며, Table을 단순 키-값 저장으로 적는다 — [용어집 2-26]
+- **공식 문서**: Learn 단원 4와 「Introduction to Azure Storage」는 Disk(관리 디스크)를 핵심 서비스로 함께 든다. Table은 스키마 없는 키/특성 저장소이고 구조적이며 비관계형인 데이터를 담는다(「What is Azure Table storage?」).
+- **처리**: 고쳐 쓴다. 서비스는 다섯으로 쓰고, Table은 「키와 특성으로 담는 NoSQL 저장소」로 쓴다.
+- **쓰인 곳**: `azure-storage.storage-services`
+
+## G43 — LRS를 「지역 내 3중 복제」로 적는 것 (phase 104)
+
+- **용어집**: LRS를 지역 안의 세 겹 복제로, ZRS를 가용성 영역 간 복제로, GRS를 지역 간 복제로 나눈다 — [용어집 2-28]
+- **공식 문서**: LRS의 복제본 셋은 지역이 아니라 **데이터 센터 한 곳** 안에 있다. ZRS도 지역 안이고 복사본이 셋이다(Learn 단원 3, 「Azure Storage redundancy」).
+- **처리**: 고쳐 쓴다. 「지역 내」는 LRS만의 특징이 아니다 — 복사본 셋을 데이터 센터 하나에 두느냐, 가용성 영역 셋에 두느냐로 가른다.
+- **쓰인 곳**: `azure-storage.storage-redundancy`, `LrsZrsDiagram`
+
+## D73 — Storage Explorer가 클라우드의 이전 서비스이고 File Sync는 Windows 서버와 맞추지 않는다는 답 (phase 104)
+
+- **덤프**: 세 문장의 답을 예·예·아니요로 표시한다(`p142_06.png`, 해설 그림 `p142_08.png`도 같다). 둘째는 Storage Explorer가 클라우드에 있는 이전 서비스로 큰 데이터를 옮긴다는 문장이고, 셋째는 File Sync가 Azure Files와 Windows 파일 서버를 맞춘다는 문장이다 — [덤프 NO.240]
+- **공식 문서**: Storage Explorer는 Windows·macOS·Linux에 내려받아 설치하는 독립 실행형 앱이다(Learn 단원 7, 「Get started with Storage Explorer」). 큰 데이터를 네트워크 없이 옮기는 것은 Data Box다. File Sync는 등록한 Windows Server와 Azure 파일 공유를 맞춘다(Learn 단원 7, 「What is Azure File Sync?」). 첫째 문장(AzCopy가 명령줄 유틸리티다)은 맞다.
+- **처리**: 고쳐 쓴다. 맞는 답은 예·아니요·예다. 본문은 Storage Explorer를 「내 컴퓨터에 설치하는 앱」으로, File Sync를 「Windows 파일 서버와 Azure 파일 공유를 맞추는 것」으로 쓴다.
+- **쓰인 곳**: `azure-data-movement.storage-explorer`, `azure-data-movement.file-sync`
+
+## G44 — AzCopy와 Storage Explorer를 올리고 내려받는 도구로만 적는 것 (phase 104)
+
+- **용어집**: 둘을 로컬 파일을 Blob Storage 등에 올리고 내려받는 도구로 묶고, AzCopy가 대량 작업에 유리하다고 한다 — [용어집 2-30]
+- **공식 문서**: AzCopy는 계정 사이 복사와 한 방향 동기화도 하고, Azure Files도 다룬다(Learn 단원 7, 「Get started with AzCopy」). Storage Explorer도 계정 사이로 옮긴다(Learn 단원 7, Blob 관리 문서). 데이터 이전 개요는 AzCopy를 작거나 중간 규모의 전송과 스크립트 작업에 고르고, 큰 규모의 이전에는 다른 도구를 고른다(「Migrating your data to Azure - overview」). 「Get started with AzCopy」도 이전 계획에는 Azure Storage Mover를 먼저 권한다.
+- **처리**: 고쳐 쓴다. 하는 일을 넓혀 쓰고, 「대량 이전에 유리하다」로 쓰지 않는다. 명령과 스크립트로 다룬다는 것으로 Storage Explorer와 가른다. 크기 경계 값과 Storage Mover는 쓰지 않는다.
+- **쓰인 곳**: `azure-data-movement.azcopy`, `azure-data-movement.storage-explorer`, `DataMoveOptionsTable`
+
+## G45 — Azure Migrate를 평가하고 안내하는 도구로 적는 것 (phase 104)
+
+- **용어집**: 온-프레미스 VM과 DB를 평가해 크기와 비용을 산출하는 도구이고, 실제 이전에는 가이드를 준다고 한다 — [용어집 2-32]
+- **공식 문서**: 평가에 그치지 않고 이전을 실제로 수행하고, 서버·데이터베이스·웹 앱을 포함한다. 시작·진행·추적을 포털 하나에서 한다(「What is Azure Migrate?」, Learn 단원 6).
+- **처리**: 고쳐 쓴다. 「평가와 이전을 한곳에서 하는 허브」로 쓴다. 「다운타임을 최소화」와 「리프트 앤 시프트」는 쓰지 않는다.
+- **쓰인 곳**: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`
+
+## G46 — Azure Data Box를 Azure로 옮기는 방향으로만 적는 것 (phase 104)
+
+- **용어집**: 큰 데이터를 Azure로 옮기는 물리 디바이스이고, 로컬에서 암호화해 담아 Microsoft 데이터 센터로 보내 올린다고 한다 — [용어집 2-33]
+- **공식 문서**: Azure에서 내보내는 방향도 있다. 내보내기는 Microsoft가 데이터를 담아 보내고, 받는 쪽이 복사해 돌려보낸다(「What is Azure Data Box?」 「The workflow」, Learn 단원 6). 이 항목에는 낡은 장치 이름이나 용량 값 주장이 없다. 「수십 TB」는 Learn 단원 6과 맞지만 값은 쓰지 않는다.
+- **처리**: 고쳐 쓴다. 가져오기와 내보내기 두 방향으로 쓴다. 수치는 쓰지 않는다(guide 「배경」).
+- **쓰인 곳**: `azure-data-movement.data-box`, `DataBoxDiagram`
