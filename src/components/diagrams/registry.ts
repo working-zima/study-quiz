@@ -136,6 +136,8 @@ import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
+import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
+import { RbacScopeDiagram } from './RbacScopeDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -192,6 +194,7 @@ import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { SignInMethodsTable } from './azureIdentityTables'
+import { RbacRolesTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
@@ -427,6 +430,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-identity.passwordless': SignInMethodsTable,
   'azure-identity.external-identities': ExternalIdentitiesDiagram,
   'azure-identity.conditional-access': ConditionalAccessDiagram,
+  'azure-security-model.rbac': [RbacAssignmentDiagram, RbacRolesTable],
+  'azure-security-model.rbac-scope': RbacScopeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

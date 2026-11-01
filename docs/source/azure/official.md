@@ -1754,7 +1754,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 
 - 범위를 좁히면 대상이 침해되어도 위험에 놓이는 리소스가 준다. 역할은 네 층 어디에나 할당하고, 고른 층이 넓이를 정한다 (phase 105)
 
-쓰일 곳: `azure-security-model.rbac-scope`, `RbacScopeDiagram` (phase 105)
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac-scope`(범위 넷과 상속, 범위를 좁히면 위험해지는 리소스가 줄어든다), `RbacScopeDiagram`, az122 해설
 
 ## (phase 102) Azure RBAC — What is Azure role-based access control (Azure RBAC)? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
@@ -1772,7 +1772,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 - 역할 할당은 대상·역할 정의·범위 셋으로 이루어지고, 할당을 지우면 접근이 사라진다. 마케팅 그룹이 어느 리소스 그룹의 기여자면 그 밖의 리소스에는 다른 할당이 없는 한 닿지 못한다 — 「How Azure RBAC works」 (phase 105)
 - 그룹에 역할을 주면 그 그룹의 구성원이 권한을 받는다. 할당은 포털·CLI·PowerShell·SDK·REST API로 한다 — 「Groups」, 「Role assignments」 (phase 105)
 
-쓰일 곳: `azure-security-model.rbac`, `azure-security-model.rbac-scope`, `RbacAssignmentDiagram`, `RbacScopeDiagram`, D84 (phase 105)
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `azure-security-model.rbac-scope`(할당이 합쳐진다, 다른 할당이 없으면 닿지 못한다), `RbacAssignmentDiagram`, `RbacScopeDiagram`, D84, az123 해설
 
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
@@ -3698,7 +3698,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 허용 모델: 역할이 정한 작업을 그 범위에서 허용한다. 읽기를 주는 할당과 쓰기를 주는 할당이 같은 리소스 그룹에 있으면 둘 다 갖는다 — 같은 절
 - 한국어 표기: 최소 권한 원칙, 기본 제공 역할, 역할, 범위, 관리 그룹, 구독, 리소스 그룹, 소유자, 읽기 권한자, 상속, 허용 모델, Azure Resource Manager·Resource Manager(이름 그대로)
 
-쓰일 곳: `azure-security-model.rbac`, `azure-security-model.rbac-scope`, `RbacAssignmentDiagram`, `RbacScopeDiagram`
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `azure-security-model.rbac-scope`, `RbacAssignmentDiagram`, `RbacScopeDiagram`, az120·az122·az123 해설
 
 ## (phase 105) Azure RBAC — 기본 제공 역할 넷
 https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
@@ -3722,7 +3722,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
 | 읽기 권한자 | 보기만 한다 | 할 수 없다 |
 | 사용자 액세스 관리자 | 보기만 한다 | 할 수 있다 |
 
-쓰일 곳: `azure-security-model.rbac`, `RbacRolesTable`, D84, G50
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `RbacRolesTable`, D84, G50, az120 해설
 
 ## (phase 105) Azure RBAC — 역할을 할당하는 곳과 대상, 사용자 지정 역할
 https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal
@@ -3736,7 +3736,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignmen
 - 관리 그룹에서 접근과 정책을 함께 할당할 수 있고 리소스를 관리하지 않는 역할은 사용자 액세스 관리자다. 소유자도 할 수 있지만 범위가 더 넓고, 기여자·관리 그룹 기여자는 그 둘을 하지 못한다 — `management-groups/overview`의 역할 표. **NO.137의 답(사용자 액세스 관리자)은 맞다.**
 - 한국어 표기: Access control (IAM) → 액세스 제어(IAM), Add role assignment → 역할 할당 추가, custom role → 사용자 지정 역할, group → 그룹
 
-쓰일 곳: `azure-security-model.rbac`, D81, D84
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, D81, D84, az121 해설
 
 ## (phase 105) Azure RBAC — 역할의 작업과 데이터 작업, 거부 할당
 https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions
@@ -3751,7 +3751,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitio
 - **거부 할당**은 역할 할당이 허용해도 작업을 막는다. 정식 제공되는 범위에서는 Azure가 리소스를 보호하려고 만들고 관리한다 — `deny-assignments` 첫 부분. 그래서 본문은 **「허용 모델」을 「역할 할당끼리는 합쳐진다」로 쓰고 「막는 방법이 없다」로 단정하지 않는다.** 거부 할당은 필요하면 한 구절까지
 - 한국어 표기: data action → 데이터 작업, role assignment → 역할 할당, deny assignment → 거부 할당, Storage Blob Data Reader → Storage Blob 데이터 읽기 권한자
 
-쓰일 곳: `azure-security-model.rbac-scope`, `RbacScopeDiagram`
+쓰인 곳(phase 105 step 6): `azure-security-model.rbac-scope`(데이터 작업과 전용 역할, 앱 안의 권한, 할당이 합쳐진다), `RbacScopeDiagram`. 거부 할당은 쓰지 않았다 — 「합쳐진다」로만 쓰고 「막는 방법이 없다」로 단정하지 않았다
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 7 Describe Zero Trust model
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model
@@ -3890,7 +3890,7 @@ https://learn.microsoft.com/en-us/azure/sentinel/overview
   - Azure Key Vault — 비밀·키·인증서를 한곳에 두고 접근을 통제한다 / 앱의 암호를 코드에 적고 싶지 않을 때
   - Microsoft Sentinel — 여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다 / 흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때
 
-쓰일 곳: 위 도식과 표
+쓰인 곳(phase 105 step 6): `RbacAssignmentDiagram`, `RbacScopeDiagram`. 나머지 도식과 표는 쓰일 곳이다
 
 ## (phase 105) 한국어 표기 정리 — `azure-security-model`
 

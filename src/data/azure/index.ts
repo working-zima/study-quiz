@@ -9,6 +9,7 @@ import azureIdentityVisuals from './visuals/azure-identity.json'
 import azureNetworkProtectionVisuals from './visuals/azure-network-protection.json'
 import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
 import azureResourceHierarchyVisuals from './visuals/azure-resource-hierarchy.json'
+import azureSecurityModelVisuals from './visuals/azure-security-model.json'
 import azureServiceTypesVisuals from './visuals/azure-service-types.json'
 import azureSlaLifecycleVisuals from './visuals/azure-sla-lifecycle.json'
 import azureStorageVisuals from './visuals/azure-storage.json'
@@ -35,6 +36,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-storage': azureStorageVisuals,
   'azure-data-movement': azureDataMovementVisuals,
   'azure-identity': azureIdentityVisuals,
+  'azure-security-model': azureSecurityModelVisuals,
 }
 
 export const azureSubject: Subject = {
