@@ -353,8 +353,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - 한국어 표기: 이 단원 한국어판은 「Azure 블롭스」·「Azure 큐」·「Azure 테이블」·「Azure 디스크」·「리하일레이션」처럼 흔들린다. **제품 문서 한국어판의 이름을 쓴다** — 맨 아래 「한국어 표기 정리 — `azure-storage`」 (phase 104)
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
-쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, D66, G41, G42
-쓰일 곳(phase 104): `azure-storage.azure-files`, D65
+쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, `azure-storage.azure-files`, D65, D66, G41, G42
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -2922,8 +2921,7 @@ https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 - **쓰지 않는 것**: 수명 주기 관리, 일시 삭제, 암호화 범위, 작업 이름(Set Blob Tier 등), Storage Actions(guide 「배경」과 범위 밖)
 - 한국어 표기: 액세스 계층, 핫·쿨·콜드·보관 계층, 온라인 계층, 오프라인 계층, 기본 액세스 계층, 조기 삭제, 트랜잭션
 
-쓰인 곳: `azure-storage.access-tiers`, `AccessTierDiagram`, D66, G41
-쓰일 곳: `azure-storage.archive-rehydration`, D65
+쓰인 곳: `azure-storage.access-tiers`, `azure-storage.archive-rehydration`, `AccessTierDiagram`, D65, D66, G41
 
 ## (phase 104) Azure Blob Storage — Blob rehydration from the archive tier
 https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview
@@ -2939,7 +2937,7 @@ https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview
 - 문서 어디에도 AzCopy로 언제든 읽는다거나 Azure Backup으로만 읽는다는 말이 없다 — D65
 - 한국어 표기: **리하이드레이션**(이 문서 제목 「보관 계층에서 Blob 리하이드레이션」과 절 제목). 같은 한국어판 안의 「재수화」·「재하이드레이션」·「재충전」, Access tiers 한국어판의 「재활성화」, Learn 단원 4 한국어판의 「리하일레이션」은 쓰지 않는다. 표준 우선순위, 높은 우선순위
 
-쓰일 곳: `azure-storage.archive-rehydration`, `ArchiveRehydrationDiagram`, D65
+쓰인 곳: `azure-storage.archive-rehydration`, `ArchiveRehydrationDiagram`, D65
 
 ## (phase 104) Azure Files — What is Azure Files?
 https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
@@ -2952,7 +2950,7 @@ https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction
 - 관리할 하드웨어·패치할 운영 체제·바꿀 디스크가 없다 — 「Key benefits」
 - 한국어 표기: Azure Files, 파일 공유, 탑재, 클라이언트, 온-프레미스
 
-쓰일 곳: `azure-storage.azure-files`, `FileShareDiagram`, D69
+쓰인 곳: `azure-storage.azure-files`, `FileShareDiagram`, D69
 
 ## (phase 104) Azure Files — Plan to deploy Azure Files
 https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning
@@ -2964,8 +2962,7 @@ https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning
 - Azure Files의 미디어 계층은 SSD·HDD다. Blob의 핫·쿨·콜드와 다른 낱말이다 — 「Storage tiers」. NO.242의 「프리미엄 저장소의 파일 공유에 쿨 계층」은 그래서 해당하지 않는다(덤프 답 「아니요」가 맞다). **파일 공유의 계층은 본문에 쓰지 않는다**(guide 표)
 - 한국어 표기: 클래식 파일 공유, SMB(서버 메시지 블록), NFS(네트워크 파일 시스템), SSD, HDD
 
-쓰인 곳: `azure-storage.access-tiers`(근거 기록)
-쓰일 곳: `azure-storage.azure-files`
+쓰인 곳: `azure-storage.access-tiers`(근거 기록), `azure-storage.azure-files`
 
 ## (phase 104) Azure Files — Mount SMB Azure file share on Windows
 https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows
@@ -2978,7 +2975,7 @@ https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-w
 - **현행 문서는 ID 기반 인증을 권하고 스토리지 계정 키만 쓰라고 하지 않는다** — 「Use identity-based authentication」. D71
 - 한국어 표기: 탑재, 드라이브 문자, 탑재 지점
 
-쓰일 곳: `azure-storage.azure-files`, D71
+쓰인 곳: `azure-storage.azure-files`, D71
 
 ## (phase 104) Azure Queue Storage — What is Azure Queue Storage?
 https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction

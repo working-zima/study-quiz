@@ -4,6 +4,7 @@ import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
+import { ArchiveRehydrationDiagram } from './ArchiveRehydrationDiagram'
 import { ArpCacheDiagram } from './ArpCacheDiagram'
 import { ArpExchangeDiagram } from './ArpExchangeDiagram'
 import { ArpHopsDiagram } from './ArpHopsDiagram'
@@ -57,6 +58,7 @@ import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FileShareDiagram } from './FileShareDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
@@ -392,6 +394,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-network-protection.azure-firewall': FirewallHubDiagram,
   'azure-network-protection.ddos-protection': DdosProtectionDiagram,
   'azure-storage.access-tiers': AccessTierDiagram,
+  'azure-storage.archive-rehydration': ArchiveRehydrationDiagram,
+  'azure-storage.azure-files': FileShareDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

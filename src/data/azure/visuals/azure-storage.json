@@ -53,6 +53,87 @@
       "sources": [
         "azure-storage.access-tiers"
       ]
+    },
+    "archive-rehydration": {
+      "label": "보관 계층의 Blob을 앱이 바로 읽을 때와 온라인 계층으로 옮긴 뒤 읽을 때",
+      "svgLabel": "앱이 보관 계층의 Blob과 온라인 계층의 Blob을 가리키고, 보관 계층의 Blob에서 온라인 계층의 Blob으로 옮겨 간다",
+      "question": "보관 계층의 Blob을 왜 바로 읽을 수 없을까?",
+      "idleCaption": "앱과 보관 계층의 Blob, 온라인 계층의 Blob이다. 버튼을 고르면 앱이 바로 읽으려 할 때와 온라인 계층으로 옮긴 뒤에 읽을 때를 견줄 수 있다.",
+      "legend": "화살표는 앱이 Blob을 읽으려는 방향과 Blob을 옮기는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 곳이다.",
+      "nodes": {
+        "app": "앱",
+        "archive-blob": "보관 계층의 Blob",
+        "online-blob": "온라인 계층의 Blob"
+      },
+      "notes": {
+        "offline-note": "오프라인 — 데이터를 읽을 수 없다",
+        "rehydrate-note": "리하이드레이션 — 몇 시간이 걸린다"
+      },
+      "scenarios": [
+        {
+          "id": "read-now",
+          "label": "바로 읽을 때",
+          "caption": "보관 계층은 오프라인 계층이라, Blob이 거기 있는 동안에는 앱이 그 내용을 읽거나 고칠 수 없다. Blob을 설명하는 메타데이터는 읽을 수 있어도 내용은 읽지 못한다.",
+          "sources": [
+            "azure-storage.archive-rehydration"
+          ]
+        },
+        {
+          "id": "rehydrate",
+          "label": "옮긴 뒤 읽을 때",
+          "caption": "Blob을 먼저 온라인 계층으로 옮겨야 앱이 읽을 수 있다. 옮기는 데 몇 시간이 걸릴 수 있으므로, 필요할 때 바로 꺼내야 하는 데이터는 보관 계층에 두지 않는다.",
+          "sources": [
+            "azure-storage.archive-rehydration"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.archive-rehydration"
+      ]
+    },
+    "file-share": {
+      "label": "온-프레미스의 컴퓨터와 Azure의 VM이 스토리지 계정 안의 파일 공유를 함께 탑재하는 모습",
+      "svgLabel": "온-프레미스 안에 컴퓨터 1과 컴퓨터 2가 있고, Azure 안에 VM 1과 스토리지 계정이 있으며, 스토리지 계정 안에 파일 공유가 있다",
+      "question": "여러 컴퓨터가 어떻게 같은 파일을 함께 쓸까?",
+      "idleCaption": "회사 C의 온-프레미스 컴퓨터 둘과 Azure의 VM 1, 스토리지 계정 안의 파일 공유다. 버튼을 고르면 누가 이 파일 공유를 탑재하는지 볼 수 있다.",
+      "legend": "큰 박스는 컴퓨터와 파일 공유가 있는 곳이고, 스토리지 계정은 Azure 안에 있다. 화살표는 컴퓨터가 파일 공유를 탑재하는 방향이다. 컴퓨터 둘과 VM 하나는 예시다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "pc-1": "컴퓨터 1",
+        "pc-2": "컴퓨터 2",
+        "vm-1": "VM 1",
+        "share": "파일 공유"
+      },
+      "groups": {
+        "on-premises": "온-프레미스",
+        "azure": "Azure",
+        "account": "스토리지 계정"
+      },
+      "notes": {
+        "share-note": "같은 파일 공유를 탑재",
+        "pc-note": "온-프레미스에서 탑재",
+        "vm-note": "클라우드에서 탑재"
+      },
+      "scenarios": [
+        {
+          "id": "office",
+          "label": "사무실에서",
+          "caption": "사무실 컴퓨터 두 대가 파일 공유 하나를 저마다 드라이브처럼 탑재해 같은 파일을 함께 쓴다. 파일은 컴퓨터마다 따로 두지 않고 Azure의 파일 공유에 둔다.",
+          "sources": [
+            "azure-storage.azure-files"
+          ]
+        },
+        {
+          "id": "hybrid",
+          "label": "사무실과 Azure에서",
+          "caption": "온-프레미스의 컴퓨터와 Azure의 VM이 같은 파일 공유를 동시에 탑재한다. 클라우드에 있는 컴퓨터만 이 파일 공유에 닿을 수 있는 것이 아니다.",
+          "sources": [
+            "azure-storage.azure-files"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.azure-files"
+      ]
     }
   },
   "tables": {},
