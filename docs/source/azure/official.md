@@ -3493,7 +3493,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 
 쓰인 곳(phase 105 step 2): `azure-identity.authentication-authorization`(인증 대상이 사람·서비스·디바이스라는 것과 자격 증명)
 
-쓰일 곳: `azure-identity.single-sign-on`, `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `SingleSignOnDiagram`, `MfaFactorsDiagram`, `SignInMethodsTable`, D74, G48
+쓰인 곳(phase 105 step 3): `azure-identity.single-sign-on`, `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `SingleSignOnDiagram`, `MfaFactorsDiagram`, `SignInMethodsTable`, D74, G48
 
 ## (phase 105) Microsoft Entra — What is single sign-on in Microsoft Entra ID?
 https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on
@@ -3507,7 +3507,7 @@ https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-
 - 페더레이션·SAML·OpenID Connect 같은 방식은 **쓰지 않는다**(guide 「배경」)
 - 한국어 표기: SSO, Single Sign-On — 제목 「Microsoft Entra ID에서 Single Sign-On이란?」, 본문은 SSO 서른두 번. 「통합 인증」·「싱글 사인온」은 쓰지 않는다
 
-쓰일 곳: `azure-identity.single-sign-on`, `SingleSignOnDiagram`, G48
+쓰인 곳(phase 105 step 3): `azure-identity.single-sign-on`, `SingleSignOnDiagram`, G48
 
 ## (phase 105) Microsoft Entra — How it works: Microsoft Entra multifactor authentication
 https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks
@@ -3520,7 +3520,9 @@ https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howi
 - 조건부 액세스 정책으로 어떤 경우에 MFA를 요구할지 정한다. 회사 네트워크나 등록된 디바이스에서는 평소대로 두고, 원격이나 개인 디바이스에서만 추가 확인을 요구할 수 있다 — 「How to enable and use」
 - 한국어 표기: **다단계 인증**(「다중 요소 인증」은 받은 한국어판 어디에도 없다), Microsoft Entra 다단계 인증
 
-쓰일 곳: `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`, `azure-identity.conditional-access`, D74, G49
+쓰인 곳(phase 105 step 3): `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`, D74, G49
+
+쓰일 곳: `azure-identity.conditional-access`, G49
 
 ## (phase 105) Microsoft Entra — 인증 방법: 보안 질문, 표, 표준 용어
 https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-security-questions
@@ -3535,7 +3537,7 @@ https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authenti
 - **같은 범주의 조합**: 「같은 범주 둘은 MFA가 아니다」라고 바로 쓴 문장은 찾지 못했다. 쓸 수 있는 것은 위 사실들에서 나온다 — 암호와 보안 질문은 둘 다 아는 것(Learn 단원 3)이고 Entra 다단계 인증은 세 범주 가운데 둘 이상을 요구하므로 그 조합은 범주가 하나뿐이다. 그리고 보안 질문은 Entra 로그인의 인증 방법이 아니다
 - 한국어 표기: 보안 질문, 셀프 서비스 암호 재설정, 인증 요소
 
-쓰일 곳: `azure-identity.multifactor-authentication`, `azure-identity.passwordless`, `MfaFactorsDiagram`, D74
+쓰인 곳(phase 105 step 3): `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`, D74
 
 ## (phase 105) Microsoft Entra — 다단계 인증의 전제와 대상
 https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getstarted
@@ -3546,7 +3548,7 @@ https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-getsta
 - 관리자가 아닌 일반 사용자 계정에도 건다. 자습서가 일반 사용자와 그룹을 대상으로 정책을 만든다 — 「tutorial-enable-azure-mfa」 「Prerequisites」, 「Create a Conditional Access policy」(관리 역할 사용자에게 거는 예는 조건부 액세스 항목)
 - 한국어 표기: 클라우드 전용 ID, 하이브리드 ID
 
-쓰일 곳: `azure-identity.multifactor-authentication`
+쓰인 곳(phase 105 step 3): `azure-identity.multifactor-authentication`
 
 ## (phase 105) 암호 없는 인증 — 패스키, Authenticator, Windows Hello의 PIN
 https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless
@@ -3560,7 +3562,7 @@ https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authenti
 - 피싱에 강한 방법으로 비즈니스용 Windows Hello, FIDO2 보안 키 등을 권한다 — `overview-authentication` 「Phishing-resistant authentication methods」
 - 한국어 표기: 패스키(FIDO2), 디바이스, PIN, 비즈니스용 Windows Hello, FIDO2 보안 키
 
-쓰일 곳: `azure-identity.passwordless`, `SignInMethodsTable`
+쓰인 곳(phase 105 step 3): `azure-identity.passwordless`, `SignInMethodsTable`
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 4 Describe Azure external identities
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/4-external-identities

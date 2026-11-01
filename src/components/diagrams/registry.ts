@@ -103,6 +103,7 @@ import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
+import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -150,6 +151,7 @@ import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
+import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
@@ -187,6 +189,7 @@ import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
+import { SignInMethodsTable } from './azureIdentityTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
@@ -417,6 +420,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-identity.entra-connect': EntraConnectDiagram,
   'azure-identity.domain-services': DomainServicesDiagram,
   'azure-identity.authentication-authorization': AuthVsAuthzDiagram,
+  'azure-identity.single-sign-on': SingleSignOnDiagram,
+  'azure-identity.multifactor-authentication': MfaFactorsDiagram,
+  'azure-identity.passwordless': SignInMethodsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

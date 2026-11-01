@@ -144,8 +144,148 @@
       "sources": [
         "azure-identity.authentication-authorization"
       ]
+    },
+    "single-sign-on": {
+      "label": "직원이 Microsoft Entra ID에 한 번 로그인해 앱 셋에 닿는 길과, 처음 인증이 약할 때를 보인 모습",
+      "svgLabel": "직원에서 Microsoft Entra ID로, Microsoft Entra ID에서 앱 1, 앱 2, 앱 3으로 이어진다",
+      "question": "한 번 로그인으로 어떻게 여러 앱에 닿을까?",
+      "idleCaption": "회사 A의 직원과 Microsoft Entra ID, 예로 든 앱 셋이다. 버튼을 고르면 처음 로그인과 그다음 앱을 여는 길, 처음 인증이 약할 때를 볼 수 있다.",
+      "legend": "화살표는 직원의 로그인이 이어지는 길이다. 앱 셋은 예로 든 수다.",
+      "nodes": {
+        "user": "직원",
+        "entra": "Microsoft Entra ID",
+        "app-1": "앱 1",
+        "app-2": "앱 2",
+        "app-3": "앱 3"
+      },
+      "notes": {
+        "once-note": "한 번 로그인",
+        "again-note": "다시 로그인하지 않는다",
+        "weak-note": "처음 인증만큼만 안전"
+      },
+      "scenarios": [
+        {
+          "id": "first",
+          "label": "처음 로그인",
+          "caption": "직원이 Microsoft Entra ID에서 자격 증명을 확인받아 한 번 인증한다. 앱마다 암호를 따로 넣지 않는 SSO의 출발점이다.",
+          "sources": [
+            "azure-identity.single-sign-on"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "다른 앱",
+          "caption": "믿을 수 있는 앱은 Microsoft Entra ID의 확인을 바탕으로 접근을 허용한다. 직원은 앱 2와 앱 3을 열 때 암호를 다시 넣지 않는다.",
+          "sources": [
+            "azure-identity.single-sign-on"
+          ]
+        },
+        {
+          "id": "weak",
+          "label": "처음 인증이 약할 때",
+          "caption": "이어지는 앱은 모두 처음 인증에 기댄다. 처음 로그인이 암호 하나뿐인데 그 암호가 새면, 그 암호를 알아낸 쪽도 같은 길로 앱 셋에 닿을 수 있다.",
+          "sources": [
+            "azure-identity.single-sign-on"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.single-sign-on"
+      ]
+    },
+    "mfa-factors": {
+      "label": "요소의 세 범주인 아는 것, 가진 것, 사용자의 속성에서 두 요소를 고른 조합을 보인 모습",
+      "svgLabel": "아는 것 안에 암호와 보안 질문이, 가진 것 안에 휴대폰이, 사용자의 속성 안에 지문·얼굴이 있다",
+      "question": "무엇과 무엇을 합쳐야 다단계일까?",
+      "idleCaption": "로그인에 쓰는 요소를 세 범주로 나눈 그림이다. 버튼을 고르면 어떤 두 요소를 합쳤을 때 범주가 몇이 되는지 볼 수 있다.",
+      "legend": "큰 박스는 요소의 범주다. 선명한 상자 둘이 그 장면에서 함께 쓰는 요소다.",
+      "nodes": {
+        "password": "암호",
+        "question": "보안 질문",
+        "phone": "휴대폰",
+        "biometric": "지문·얼굴"
+      },
+      "groups": {
+        "know": "아는 것",
+        "have": "가진 것",
+        "are": "사용자의 속성"
+      },
+      "notes": {
+        "two-note": "범주 둘",
+        "same-note": "같은 범주의 둘"
+      },
+      "scenarios": [
+        {
+          "id": "different",
+          "label": "서로 다른 범주",
+          "caption": "암호는 아는 것이고 휴대폰은 가진 것이라 범주가 둘이다. 암호가 새어도 휴대폰이 없으면 로그인을 마치지 못한다.",
+          "sources": [
+            "azure-identity.multifactor-authentication"
+          ]
+        },
+        {
+          "id": "biometric",
+          "label": "생체를 더할 때",
+          "caption": "지문이나 얼굴은 사용자의 속성이라 암호와 범주가 다르다. 암호에 더하면 여기서도 범주가 둘이 된다.",
+          "sources": [
+            "azure-identity.multifactor-authentication"
+          ]
+        },
+        {
+          "id": "same",
+          "label": "같은 범주",
+          "caption": "암호와 보안 질문은 둘 다 아는 것이라 범주가 하나다. 둘을 모아도 세 범주 가운데 둘 이상이라는 요구를 채우지 못한다.",
+          "sources": [
+            "azure-identity.multifactor-authentication"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.multifactor-authentication"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "sign-in-methods": {
+      "label": "로그인 방식 셋 견주기",
+      "columns": [
+        "방법",
+        "로그인에 쓰는 것",
+        "보안과 편의"
+      ],
+      "columnWidths": [
+        "26%",
+        "37%",
+        "37%"
+      ],
+      "sources": [
+        "azure-identity.multifactor-authentication",
+        "azure-identity.passwordless"
+      ],
+      "rows": [
+        {
+          "header": "암호만",
+          "cells": [
+            "암호",
+            "보안은 가장 낮다. 편의는 다단계 인증보다 높다."
+          ]
+        },
+        {
+          "header": "다단계 인증",
+          "cells": [
+            "암호에 휴대폰이나 생체 신호를 더한다",
+            "보안은 중간이다. 단계가 늘어 편의는 가장 낮다."
+          ]
+        },
+        {
+          "header": "암호 없는 인증",
+          "cells": [
+            "디바이스에 생체 신호나 PIN을 더한다",
+            "보안과 편의 모두 가장 높다."
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }
