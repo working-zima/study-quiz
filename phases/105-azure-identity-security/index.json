@@ -1,0 +1,51 @@
+{
+  "project": "Study Quiz",
+  "phase": "105-azure-identity-security",
+  "steps": [
+    {
+      "step": 0,
+      "name": "identity-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "entra-id-connect",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "domain-services-auth",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "sso-mfa-passwordless",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "external-conditional",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "security-sources",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "rbac",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "zero-trust-defense",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "security-tools",
+      "status": "pending"
+    }
+  ]
+}
