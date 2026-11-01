@@ -28,6 +28,7 @@ import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
+import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
@@ -62,6 +63,7 @@ import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
+import { ExternalIdentitiesDiagram } from './ExternalIdentitiesDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FileShareDiagram } from './FileShareDiagram'
 import { FileSyncDiagram } from './FileSyncDiagram'
@@ -423,6 +425,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-identity.single-sign-on': SingleSignOnDiagram,
   'azure-identity.multifactor-authentication': MfaFactorsDiagram,
   'azure-identity.passwordless': SignInMethodsTable,
+  'azure-identity.external-identities': ExternalIdentitiesDiagram,
+  'azure-identity.conditional-access': ConditionalAccessDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

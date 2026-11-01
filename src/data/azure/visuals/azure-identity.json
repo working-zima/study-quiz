@@ -243,6 +243,109 @@
       "sources": [
         "azure-identity.multifactor-authentication"
       ]
+    },
+    "external-identities": {
+      "label": "회사 밖의 사용자가 직원 테넌트와 외부 테넌트의 앱에 닿는 세 길을 보인 모습",
+      "svgLabel": "직원 테넌트 안에 게스트 사용자와 앱과 리소스가, 외부 테넌트 안에 회사가 공개한 앱이 있고, 박스 밖에 협력사 직원, 다른 테넌트의 사용자, 고객이 있다",
+      "question": "회사 밖의 사람은 어떻게 들어올까?",
+      "idleCaption": "회사 A의 직원 테넌트와 외부 테넌트, 그 밖의 세 사용자다. 버튼을 고르면 협력사 직원과 다른 테넌트의 사용자, 고객이 앱에 닿는 길을 볼 수 있다.",
+      "legend": "큰 박스는 회사 A의 테넌트다. 박스 밖의 상자는 테넌트 밖의 사용자이고, 화살표는 그 사용자가 앱에 닿는 길이다.",
+      "nodes": {
+        "partner": "협력사 직원",
+        "other-tenant": "다른 테넌트의 사용자",
+        "customer": "고객",
+        "guest": "게스트 사용자",
+        "app": "앱과 리소스",
+        "customer-app": "회사가 공개한 앱"
+      },
+      "groups": {
+        "our-tenant": "직원 테넌트",
+        "external-tenant": "외부 테넌트"
+      },
+      "notes": {
+        "guest-note": "디렉터리에 게스트로 표시",
+        "trust-note": "상호 신뢰",
+        "hidden-note": "디렉터리에 표시되지 않음",
+        "social-note": "소셜 ID도 쓸 수 있다"
+      },
+      "scenarios": [
+        {
+          "id": "collaboration",
+          "label": "B2B 협업",
+          "caption": "협력사 직원은 자기 회사의 자격 증명으로 로그인하고, 회사 A의 디렉터리에 게스트로 표시된다. 회사 A는 이 게스트 사용자에게 앱과 리소스를 쓸 권한을 준다.",
+          "sources": [
+            "azure-identity.external-identities"
+          ]
+        },
+        {
+          "id": "direct-connect",
+          "label": "B2B 직접 연결",
+          "caption": "두 테넌트가 상호 신뢰 관계를 맺으면 다른 테넌트의 사용자가 Teams 공유 채널로 회사 A의 리소스에 닿는다. 이 사용자는 회사 A의 디렉터리에 표시되지 않는다.",
+          "sources": [
+            "azure-identity.external-identities"
+          ]
+        },
+        {
+          "id": "customers",
+          "label": "고객",
+          "caption": "고객의 계정은 직원 테넌트와 분리된 외부 테넌트에 있다. 고객은 이메일과 암호로 회사가 공개한 앱에 로그인하고, 소셜 ID도 쓸 수 있다.",
+          "sources": [
+            "azure-identity.external-identities"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.external-identities"
+      ]
+    },
+    "conditional-access": {
+      "label": "로그인 신호를 모아 결정하고 허용, 둘째 인증 요구, 차단 가운데 하나로 적용하는 흐름을 보인 모습",
+      "svgLabel": "신호에서 결정으로 이어지고, 결정에서 허용, 둘째 인증 요구, 차단으로 갈라진다",
+      "question": "같은 사람인데 왜 어떤 때는 더 물을까?",
+      "idleCaption": "로그인 중에 신호를 모아 결정하고, 그 결정을 허용이나 둘째 인증 요구, 차단으로 적용한다. 버튼을 고르면 회사 A의 정책에서 위치에 따라 결과가 어떻게 갈리는지 볼 수 있다.",
+      "legend": "신호 위의 글은 모으는 신호의 종류이고, 장면마다 달라지는 글은 이번 로그인의 위치다. 화살표는 결정이 어느 적용으로 이어지는지를 보인다.",
+      "nodes": {
+        "signals": "신호",
+        "decision": "결정",
+        "allow": "허용",
+        "mfa": "둘째 인증 요구",
+        "block": "차단"
+      },
+      "notes": {
+        "signals-note": "사용자·위치·디바이스·앱",
+        "usual-note": "평소 위치",
+        "unusual-note": "낯선 위치",
+        "risky-note": "위험으로 표시된 위치"
+      },
+      "scenarios": [
+        {
+          "id": "usual",
+          "label": "평소 위치",
+          "caption": "직원 A가 평소 위치에서 로그인하면 회사 A의 정책은 둘째 인증을 묻지 않고 허용한다.",
+          "sources": [
+            "azure-identity.conditional-access"
+          ]
+        },
+        {
+          "id": "unusual",
+          "label": "낯선 위치",
+          "caption": "같은 직원 A라도 낯선 위치에서 로그인하면 신호가 달라진다. 회사 A의 정책은 둘째 인증을 요구하고, 이를 통과해야 들어온다.",
+          "sources": [
+            "azure-identity.conditional-access"
+          ]
+        },
+        {
+          "id": "risky",
+          "label": "위험한 위치",
+          "caption": "위험으로 표시된 위치에서 오는 로그인은 회사 A의 정책이 차단한다. 둘째 인증으로 들어올 기회도 주지 않는다.",
+          "sources": [
+            "azure-identity.conditional-access"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-identity.conditional-access"
+      ]
     }
   },
   "tables": {

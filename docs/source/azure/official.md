@@ -1761,6 +1761,8 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(Azure RBAC와 역할 할당을 푸는 줄 — 누가 어떤 리소스에 접근해 무엇을 할 수 있는지 관리하는 서비스, 사용자나 사용자 그룹 같은 대상에게 어느 범위에서 무엇을 할 수 있는지 정해 붙이는 것, 만들면 접근이 생기고 지우면 사라진다), az054 해설. 역할 정의의 종류·보안 주체의 종류는 `azure-security-model`의 몫이라 적지 않았고 쓰지도 않았다
 
+쓰인 곳(phase 105 step 4): `az118` 해설(Azure RBAC를 푸는 한 줄)
+
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
 
@@ -3388,7 +3390,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concep
 
 쓰인 곳(phase 105 step 2): `azure-identity.authentication-authorization`(**자격 증명**, 순서), `AuthVsAuthzDiagram`, D80
 
-쓰일 곳: `azure-identity.external-identities`(ID 공급자)
+쓰인 곳(phase 105 step 4): `azure-identity.external-identities`(ID 공급자)
 
 ## (phase 105) Microsoft Entra — Authentication vs. authorization
 https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization
@@ -3522,7 +3524,7 @@ https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howi
 
 쓰인 곳(phase 105 step 3): `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`, D74, G49
 
-쓰일 곳: `azure-identity.conditional-access`, G49
+쓰인 곳(phase 105 step 4): `azure-identity.conditional-access`(언제 요구할지 정하는 일, 회사 네트워크와 원격의 예), G49
 
 ## (phase 105) Microsoft Entra — 인증 방법: 보안 질문, 표, 표준 용어
 https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-security-questions
@@ -3576,7 +3578,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - **Learn을 따르지 않는 곳**: 이 단원은 셋째를 「Microsoft Entra External ID for customers(formerly Azure AD B2C)」라 쓰고 권한 부여 주체에 「Azure AD B2C」를 넣지만, 제품 FAQ는 External ID가 Azure AD B2C의 새 이름이 아니라고 답한다. 다음 항목대로 쓴다
 - 한국어 표기: 외부 ID, B2B 협업, B2B 직접 연결, 게스트 사용자, 액세스 검토
 
-쓰일 곳: `azure-identity.external-identities`, `ExternalIdentitiesDiagram`
+쓰인 곳(phase 105 step 4): `azure-identity.external-identities`, `ExternalIdentitiesDiagram`
 
 ## (phase 105) Microsoft Entra External ID — 개요와 FAQ
 https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview
@@ -3592,7 +3594,7 @@ https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview
 - **도식의 자리**: 고객은 회사 A의 테넌트(직원 테넌트) 밖의 **별도 테넌트**에 계정을 둔다. 그룹 `external-tenant`(「외부 테넌트」)를 더해 그 안에 `customer-app`을 두고, `consumer` 경로는 그쪽으로 잇는다 — `app`(직원 테넌트의 앱)으로 잇지 않는다
 - 한국어 표기: **외부 ID**(Learn 열한 번, 개요 스물두 번. 제품 이름 「Microsoft Entra External ID」는 영문 그대로 괄호에), B2B 협업, B2B 직접 연결, **직원 테넌트**, **외부 테넌트**, **외부 테넌트의 외부 ID**, 소셜 ID 공급자, 게스트 사용자
 
-쓰일 곳: `azure-identity.external-identities`, `ExternalIdentitiesDiagram`, G47
+쓰인 곳(phase 105 step 4): `azure-identity.external-identities`, `azure-identity.conditional-access`(외부 사용자에게도 정책을 건다), `ExternalIdentitiesDiagram`, G47
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 5 Describe Azure conditional access
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/5-conditional-access
@@ -3606,7 +3608,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - **관리 디바이스**는 조직의 보안·규정 준수 기준을 충족하는 디바이스다 — 같은 절
 - 한국어 표기: 조건부 액세스, 신호, 적용, **관리 디바이스**(「관리되는 디바이스」는 받은 한국어판에 없다), 승인된 클라이언트 앱
 
-쓰일 곳: `azure-identity.conditional-access`, `ConditionalAccessDiagram`
+쓰인 곳(phase 105 step 4): `azure-identity.conditional-access`, `ConditionalAccessDiagram`
 
 ## (phase 105) Microsoft Entra — What is Conditional Access? 과 규정 준수 디바이스
 https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
@@ -3620,7 +3622,7 @@ https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
 - P1 라이선스는 **쓰지 않는다**(guide 「배경」)
 - 한국어 표기: 조건부 액세스, 규정 준수, 승인된 클라이언트 앱, 차단, 허용
 
-쓰일 곳: `azure-identity.conditional-access`, `ConditionalAccessDiagram`
+쓰인 곳(phase 105 step 4): `azure-identity.conditional-access`, `ConditionalAccessDiagram`
 
 ## (phase 105) Microsoft Entra — 디바이스 ID, 사용자, 그룹, 라이선스 (쓰지 않는 근거 포함)
 https://learn.microsoft.com/en-us/entra/identity/devices/overview
