@@ -2386,7 +2386,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
 - 한국어 표기: 스토리지 계정, 네임스페이스(이 한국어판과 Blob 소개 한국어판), 표준 범용 v2, 프리미엄 블록 Blob, 프리미엄 파일 공유, 프리미엄 페이지 Blob, 엔드포인트 (phase 104)
 
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`
-쓰일 곳(phase 104): `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`, D67, D68
+쓰인 곳(phase 104): `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`, D67, D68
 
 ## (phase 103) Azure VPN Gateway — What is Azure VPN Gateway?
 https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways
@@ -2852,7 +2852,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - **쓰지 않는 것**: Data Lake Storage 엔드포인트(guide 「배경」)
 - 한국어 표기: 표준 범용 v2, 프리미엄 블록 Blob, 프리미엄 파일 공유, 프리미엄 페이지 Blob, 네임스페이스, 엔드포인트
 
-쓰일 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountTypesTable`, D67
+쓰인 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountTypesTable`, D67
 
 ## (phase 104) Learn 「Describe Azure storage services」 — 3 Describe Azure storage redundancy
 https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-services/3-redundancy
@@ -2898,8 +2898,7 @@ https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
 - **쓰지 않는 것**: Data Lake Storage, 크기 한도, 이름 규칙의 세부(guide 「배경」)
 - 한국어 표기: Azure Blob Storage, 비정형 데이터, 컨테이너, 블록 Blob, 추가 Blob, 페이지 Blob, 네임스페이스
 
-쓰인 곳: `azure-storage.blob-storage`
-쓰일 곳: `azure-storage.account-types`, D69
+쓰인 곳: `azure-storage.blob-storage`, `azure-storage.account-types`, D69
 
 ## (phase 104) Azure Blob Storage — Access tiers for blob data
 https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
@@ -3011,8 +3010,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
 - **쓰지 않는 것**: 디스크 유형 다섯, 수치 한도(guide 「배경」)
 - 한국어 표기: Azure 관리 디스크, 블록 수준
 
-쓰인 곳: `azure-storage.storage-services`, D72
-쓰일 곳: `azure-storage.storage-accounts`, `StorageAccountDiagram`
+쓰인 곳: `azure-storage.storage-services`, D72, `azure-storage.storage-accounts`, `StorageAccountDiagram`
 
 ## (phase 104) Azure 클라우드 컴퓨팅 사전 — What is cloud storage?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-storage/
@@ -3046,8 +3044,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 - **쓰지 않는 것**: 내구성의 9 개수, RPO 값, 가용성 수치, 비관리 디스크, CRC(guide 「배경」)
 - 한국어 표기: 이 한국어판은 GRS를 「지리중복 저장소」·「지리적 중복 저장」, GZRS를 「지오존 중복 저장소」로도 적어 흔들린다. Learn 단원 3 한국어판과 이 문서의 RA 이름을 따라 **지역 중복 스토리지·지역 영역 중복 스토리지**로 쓴다. 「기본 지역」과 「주 지역」은 **주 지역**으로 쓴다
 
-쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43
-쓰일 곳: `azure-storage.account-types`, `StorageAccountTypesTable`, D67
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43, `azure-storage.account-types`, `StorageAccountTypesTable`, D67
 
 ## (phase 104) Azure reliability — What are redundancy, replication, and backup?
 https://learn.microsoft.com/en-us/azure/reliability/concept-redundancy-replication-backup
@@ -3083,7 +3080,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create
 - 포털에서 계정은 「스토리지 계정」으로 찾아 만든다 — 포털 절차 첫머리
 - 한국어 표기: 지역, 성능, 중복성
 
-쓰일 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`
+쓰인 곳: `azure-storage.storage-accounts`, `azure-storage.account-types`, `StorageAccountDiagram`, `StorageAccountTypesTable`
 
 ## (phase 104) Azure Blob Storage — 낱말을 푸는 근거: 페이지 Blob, 대기 시간, 트랜잭션
 - 페이지 Blob 개요 https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-pageblob-overview — 「Last updated on」 2023-05-11. 페이지 Blob은 임의의 범위를 읽고 쓸 수 있어 VM의 OS·데이터 디스크 같은 곳에 맞는다 — 첫 문단. 블록 Blob은 글자·이진 파일과 큰 파일 올리기에 맞다 — 같은 곳. 이 쪽의 「페이지 Blob은 핫 계층만」은 쓰지 않는다(2023년 글이고 쿨·보관만 들어 콜드가 없다)
@@ -3093,7 +3090,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create
 확인한 날 2026-11-01. 사본: `docs-storage-blobs-page-overview.md`, `docs-storage-blobs-latency.md`, `docs-storage-blobs-map-rest-apis-transaction-categories.md`와 `ko-` 판.
 한국어 표기: 페이지 Blob, 블록 Blob, 대기 시간, 트랜잭션
 
-쓰일 곳: `azure-storage.account-types`, `StorageAccountTypesTable`
+쓰인 곳: `azure-storage.account-types`, `StorageAccountTypesTable`
 
 ## (phase 104) Azure Storage — 쓰지 않는 근거: 용량 한도와 데이터 보호
 - 표준 스토리지 계정 확장 목표 https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account — 「Last updated on」 2025-11-02. 계정의 기본 최대 용량은 페타바이트 단위이고 Blob·파일 개수에는 한도가 없다. **덤프의 「2TB·파일 100만 개」가 틀렸음을 확인하는 데만 썼고, 값은 가르치지 않는다**(D70, guide 「배경」)

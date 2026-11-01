@@ -151,6 +151,7 @@ import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
+import { StorageAccountDiagram } from './StorageAccountDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
@@ -180,7 +181,7 @@ import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
-import { RedundancyOptionsTable } from './azureStorageTables'
+import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -401,6 +402,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-storage.azure-files': FileShareDiagram,
   'azure-storage.storage-redundancy': LrsZrsDiagram,
   'azure-storage.geo-redundancy': [GeoRedundancyDiagram, RedundancyOptionsTable],
+  'azure-storage.storage-accounts': StorageAccountDiagram,
+  'azure-storage.account-types': StorageAccountTypesTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

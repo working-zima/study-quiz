@@ -235,6 +235,59 @@
       "sources": [
         "azure-storage.geo-redundancy"
       ]
+    },
+    "storage-account": {
+      "label": "스토리지 계정이 담는 서비스와 서비스마다의 주소, 계정 밖의 관리 디스크를 보는 도식",
+      "svgLabel": "스토리지 계정 companycdata 안에 Blob·파일 공유·큐·테이블이 있고, 계정 밖에 관리 디스크가 있다",
+      "question": "스토리지 계정 안에는 무엇이 있을까?",
+      "idleCaption": "회사 C의 스토리지 계정 companycdata와 그 밖에 그린 관리 디스크다. 버튼을 고르면 계정이 무엇을 담는지, 계정 이름이 어떻게 주소가 되는지, 관리 디스크가 왜 계정 밖에 있는지 볼 수 있다.",
+      "legend": "박스는 스토리지 계정이고, companycdata는 설명을 위해 정한 이름이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "blob": "Blob",
+        "files": "파일 공유",
+        "queue": "큐",
+        "table": "테이블",
+        "managed-disk": "관리 디스크"
+      },
+      "groups": {
+        "account": "스토리지 계정"
+      },
+      "notes": {
+        "name-note": "companycdata",
+        "services-note": "이름은 Azure 전체에서 하나뿐",
+        "blob-endpoint-note": "https://companycdata.blob.core.windows.net",
+        "file-endpoint-note": "https://companycdata.file.core.windows.net",
+        "disk-note": "계정을 직접 만들지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "services",
+          "label": "계정 안의 서비스",
+          "caption": "스토리지 계정 하나가 Blob·파일 공유·큐·테이블을 담고, 그 데이터에 고유한 네임스페이스를 준다. 이름 companycdata는 구독이나 지역이 달라도 Azure 전체에서 다른 계정이 쓸 수 없다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        },
+        {
+          "id": "endpoint",
+          "label": "주소",
+          "caption": "계정 이름과 서비스 이름이 합쳐져 서비스마다 다른 주소가 된다. companycdata 계정의 Blob과 파일 공유는 같은 계정 이름에 blob과 file이 붙은 주소로 닿는다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        },
+        {
+          "id": "disk",
+          "label": "계정 밖",
+          "caption": "관리 디스크를 쓸 때는 쓰는 쪽이 스토리지 계정을 만들거나 관리하지 않는다. 그 일은 Azure가 뒤에서 대신하고, 쓰는 쪽은 디스크의 유형과 크기만 정한다.",
+          "sources": [
+            "azure-storage.storage-accounts"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.storage-accounts"
+      ]
     }
   },
   "tables": {
@@ -295,6 +348,53 @@
           "cells": [
             "GZRS와 같음",
             "복사본 셋. 장애 조치 전에도 읽음"
+          ]
+        }
+      ]
+    },
+    "account-types": {
+      "label": "스토리지 계정 유형 넷 견주기",
+      "columns": [
+        "유형",
+        "지원 서비스",
+        "중복성 옵션"
+      ],
+      "columnWidths": [
+        "32%",
+        "30%",
+        "38%"
+      ],
+      "sources": [
+        "azure-storage.storage-accounts",
+        "azure-storage.account-types"
+      ],
+      "rows": [
+        {
+          "header": "표준 범용 v2",
+          "cells": [
+            "Blob, 파일 공유, 큐, 테이블",
+            "LRS, ZRS, GRS, GZRS, RA-GRS, RA-GZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 블록 Blob",
+          "cells": [
+            "Blob",
+            "LRS, ZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 파일 공유",
+          "cells": [
+            "파일 공유",
+            "LRS, ZRS"
+          ]
+        },
+        {
+          "header": "프리미엄 페이지 Blob",
+          "cells": [
+            "페이지 Blob만",
+            "LRS"
           ]
         }
       ]
