@@ -36,6 +36,7 @@ import { DataBoxDiagram } from './DataBoxDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
+import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
@@ -186,6 +187,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
@@ -432,6 +434,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-identity.conditional-access': ConditionalAccessDiagram,
   'azure-security-model.rbac': [RbacAssignmentDiagram, RbacRolesTable],
   'azure-security-model.rbac-scope': RbacScopeDiagram,
+  'azure-security-model.zero-trust': ZeroTrustDiagram,
+  'azure-security-model.defense-in-depth': DefenseInDepthDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

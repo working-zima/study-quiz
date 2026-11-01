@@ -98,6 +98,108 @@
       "sources": [
         "azure-security-model.rbac-scope"
       ]
+    },
+    "zero-trust": {
+      "label": "회사 네트워크 안과 밖의 디바이스가 보낸 요청을 경계 기반과 제로 트러스트가 어떻게 다루는지 보인 모습",
+      "svgLabel": "회사 네트워크 박스 안에 사내 디바이스가 있고, 박스 밖에 공용 네트워크의 디바이스, 요청 확인, 앱이 있다",
+      "question": "회사 안에서 보낸 요청도 왜 확인할까?",
+      "idleCaption": "회사 네트워크 안의 사내 디바이스와 공용 네트워크의 디바이스, 요청을 확인하는 단계, 앱을 보인 그림이다. 버튼을 고르면 요청이 앱까지 어떤 길로 가는지 볼 수 있다.",
+      "legend": "박스는 회사 네트워크다. 화살표는 요청이 가는 길이고, 화살표가 끊긴 곳에서 요청이 멈춘다.",
+      "nodes": {
+        "inside-device": "사내 디바이스",
+        "outside-device": "공용 네트워크의 디바이스",
+        "verify": "요청 확인",
+        "app": "앱"
+      },
+      "groups": {
+        "corp-network": "회사 네트워크"
+      },
+      "notes": {
+        "perimeter-note": "안에 있으면 믿는다",
+        "zero-trust-note": "어디서 오든 확인",
+        "high-risk-note": "로그인 차단"
+      },
+      "scenarios": [
+        {
+          "id": "perimeter",
+          "label": "경계 기반",
+          "caption": "예전의 경계 기반은 회사 네트워크 안쪽을 안전하다고 여겼다. 그래서 사내 디바이스의 요청을 안에 있다는 이유로 믿었다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        },
+        {
+          "id": "zero-trust",
+          "label": "제로 트러스트",
+          "caption": "회사 네트워크 안이든 공용 네트워크든 요청은 모두 확인을 거친다. ID와 디바이스 상태, 위험을 살핀 뒤 앱에 들어갈지 정한다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        },
+        {
+          "id": "high-risk",
+          "label": "위험이 높을 때",
+          "caption": "공용 네트워크의 디바이스에서 온 요청의 위험이 너무 높으면 로그인을 막을 수 있다. 이 요청은 앱까지 가지 못한다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.zero-trust"
+      ]
+    },
+    "defense-in-depth": {
+      "label": "심층 방어의 계층 일곱을 바깥쪽부터 차례로 잇고, 계층마다 맡는 일과 한 계층이 뚫릴 때를 보인 모습",
+      "svgLabel": "물리적 보안, ID 및 액세스, 경계, 네트워크, 컴퓨팅, 애플리케이션, 데이터가 화살표로 차례로 이어진다",
+      "question": "한 겹이 뚫리면 그다음은 무엇이 막을까?",
+      "idleCaption": "데이터를 지키는 계층 일곱을 바깥쪽부터 이었다. 버튼을 고르면 어떤 일을 어느 계층이 맡는지, 한 계층이 뚫리면 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 바깥쪽 계층에서 안쪽 계층으로 이어지는 순서다. 선명한 상자가 그 장면에서 볼 계층이다.",
+      "nodes": {
+        "physical": "물리적 보안",
+        "identity": "ID 및 액세스",
+        "perimeter": "경계",
+        "network": "네트워크",
+        "compute": "컴퓨팅",
+        "application": "애플리케이션",
+        "data": "데이터"
+      },
+      "notes": {
+        "data-note": "지키려는 것",
+        "ddos-note": "DDoS 보호",
+        "identity-note": "SSO·다단계 인증",
+        "breached-note": "이 계층이 뚫림",
+        "next-layer-note": "다음 계층이 막는다"
+      },
+      "scenarios": [
+        {
+          "id": "ddos",
+          "label": "대규모 공격",
+          "caption": "트래픽을 한꺼번에 보내는 대규모 공격은 경계 계층의 DDoS 보호가 맡는다. 사용자에게 피해가 가기 전에 걸러 낸다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        },
+        {
+          "id": "identity",
+          "label": "로그인",
+          "caption": "ID 및 액세스 계층은 SSO와 다단계 인증을 쓰고, 필요한 것에만 접근을 주며, 로그인과 변경을 기록한다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        },
+        {
+          "id": "breach",
+          "label": "한 계층이 뚫릴 때",
+          "caption": "공격자가 네트워크 계층을 뚫어도 컴퓨팅 계층과 그 안쪽 계층이 남아 막는다. 그사이 공격은 늦어지고 보안 팀은 경고를 받는다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.defense-in-depth"
+      ]
     }
   },
   "tables": {

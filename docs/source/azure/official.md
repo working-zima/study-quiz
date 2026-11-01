@@ -3764,7 +3764,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 공용 네트워크의 관리되지 않는 디바이스에서 로그인하면 ID 신호·디바이스 상태·위험을 평가한다. 위험이 낮은 앱은 허용하고, 민감한 시스템은 다단계 인증을 요구하고, 위험이 너무 높으면 로그인을 막을 수 있다 — 「Example in practice」
 - 한국어 표기: 제로 트러스트, 명시적으로 확인, 최소 권한 액세스 사용, 침해 가정, JIT/JEA(Just-In-Time and Just-Enough-Access)
 
-쓰일 곳: `azure-security-model.zero-trust`, `ZeroTrustDiagram`
+쓰인 곳(phase 105 step 7): `azure-security-model.zero-trust`, `ZeroTrustDiagram`, `az124`
 
 ## (phase 105) Zero Trust — Zero Trust as the foundation for security
 https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
@@ -3776,7 +3776,7 @@ https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview
 - **JIT·JEA 풀이의 근거**: 권한은 필요할 때만 주고 쓸모없어지면 없앤다(Just-In-Time — 필요한 때에만), 필요한 최소한만 준다(Just-Enough-Access — 필요한 만큼만) — 「Zero Trust outcomes」. 문서가 JIT·JEA라는 낱말을 이 문장에 직접 붙이지는 않았으므로, 본문은 낱말의 글자 뜻으로 풀고 이 문장으로 뒷받침한다. 약어만 쓰지 않는다
 - **제로 트러스트와 심층 방어를 함께 쓴다는 문장은 받은 문서에서 찾지 못했다**(이 문서와 Learn 단원 7·8 모두). 그래서 본문은 **「둘을 함께 쓴다」로 단정하지 않고**, 각 정의로 차이만 말한다 — 제로 트러스트는 요청마다 믿지 않고 확인하는 태도이고, 심층 방어는 계층을 겹쳐 두는 구조다
 
-쓰일 곳: `azure-security-model.zero-trust`, `azure-security-model.defense-in-depth`
+쓰인 곳(phase 105 step 7): `azure-security-model.zero-trust`, `azure-security-model.defense-in-depth`
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 8 Describe defense-in-depth
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/8-describe-defense-depth
@@ -3795,7 +3795,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 데이터: 저장된 데이터와 이동 중인 데이터를 암호화하고, Azure Key Vault가 앱의 키와 비밀을 지키고 관리한다. 공격자가 노리는 곳은 데이터베이스, VM 디스크, SaaS, 클라우드 저장소다 — 「Data」
 - 한국어 표기: 심층 방어, 물리적 보안, ID 및 액세스, 경계, 네트워크, 컴퓨팅, 애플리케이션, 데이터, 첫 번째 방어선. 「계층」과 「레이어」가 섞여 있으면 **계층**을 쓴다
 
-쓰일 곳: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`, D82, D83, G52
+쓰인 곳(phase 105 step 7): `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`, `az125`, `az126`, D82, D83, G52
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 9 Describe Microsoft Defender for Cloud
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/9-describe-microsoft-defender-for-cloud
@@ -3890,7 +3890,7 @@ https://learn.microsoft.com/en-us/azure/sentinel/overview
   - Azure Key Vault — 비밀·키·인증서를 한곳에 두고 접근을 통제한다 / 앱의 암호를 코드에 적고 싶지 않을 때
   - Microsoft Sentinel — 여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다 / 흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때
 
-쓰인 곳(phase 105 step 6): `RbacAssignmentDiagram`, `RbacScopeDiagram`. 나머지 도식과 표는 쓰일 곳이다
+쓰인 곳(phase 105 step 6): `RbacAssignmentDiagram`, `RbacScopeDiagram`. 쓰인 곳(phase 105 step 7): `ZeroTrustDiagram`, `DefenseInDepthDiagram`. 나머지 도식과 표는 쓰일 곳이다
 
 ## (phase 105) 한국어 표기 정리 — `azure-security-model`
 
