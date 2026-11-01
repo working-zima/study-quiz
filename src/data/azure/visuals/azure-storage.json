@@ -1,0 +1,60 @@
+{
+  "diagrams": {
+    "access-tiers": {
+      "label": "Blob 액세스 계층 넷의 비용 방향과 최소 보관 기간, 계정 기본값으로 고를 수 있는 계층",
+      "svgLabel": "온라인 계층 안에 핫 계층·쿨 계층·콜드 계층이 있고, 오프라인 계층 안에 보관 계층이 있다",
+      "question": "읽는 빈도에 따라 어느 계층에 둘까?",
+      "idleCaption": "Blob을 둘 수 있는 네 계층이다. 버튼을 고르면 비용이 달라지는 방향, 최소 보관 기간, 계정 기본값으로 고를 수 있는 계층을 차례로 볼 수 있다.",
+      "legend": "큰 박스 둘은 Blob을 바로 읽을 수 있는 온라인 계층과, 먼저 옮겨야 읽을 수 있는 오프라인 계층이다. 화살표는 데이터가 옮겨 가는 길이 아니라 비용이 달라지는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 계층이다.",
+      "nodes": {
+        "hot": "핫 계층",
+        "cool": "쿨 계층",
+        "cold": "콜드 계층",
+        "archive": "보관 계층"
+      },
+      "groups": {
+        "online": "온라인 계층",
+        "offline": "오프라인 계층"
+      },
+      "notes": {
+        "cost-storage-note": "화살표 쪽일수록 저장 비용이 낮다",
+        "cost-read-note": "화살표 쪽일수록 읽는 비용이 높다",
+        "cool-note": "최소 30일",
+        "cold-note": "최소 90일",
+        "archive-note": "최소 180일",
+        "default-note": "계정 기본값으로 고를 수 없다"
+      },
+      "scenarios": [
+        {
+          "id": "cost",
+          "label": "비용의 방향",
+          "caption": "핫 계층에서 보관 계층 쪽으로 갈수록 저장 비용은 낮아지고 읽는 비용은 높아진다. 자주 읽는 데이터는 읽는 비용이 낮은 쪽에, 거의 읽지 않는 데이터는 저장 비용이 낮은 쪽에 둔다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        },
+        {
+          "id": "retention",
+          "label": "최소 보관 기간",
+          "caption": "쿨 계층은 30일, 콜드 계층은 90일, 보관 계층은 180일이 최소 보관 기간이다. 이보다 일찍 지우거나 덮어쓰거나 옮기면 남은 날만큼 조기 삭제 요금이 붙는다. 핫 계층에는 최소 보관 기간이 없다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        },
+        {
+          "id": "account-default",
+          "label": "계정 기본값",
+          "caption": "스토리지 계정의 기본 액세스 계층은 핫·쿨·콜드 가운데서 고른다. 보관 계층은 기본값이 될 수 없으므로, 데이터를 보관 계층에 두려면 Blob마다 올릴 때나 올린 뒤에 정한다.",
+          "sources": [
+            "azure-storage.access-tiers"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.access-tiers"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

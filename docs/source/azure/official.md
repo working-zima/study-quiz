@@ -353,7 +353,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - 한국어 표기: 이 단원 한국어판은 「Azure 블롭스」·「Azure 큐」·「Azure 테이블」·「Azure 디스크」·「리하일레이션」처럼 흔들린다. **제품 문서 한국어판의 이름을 쓴다** — 맨 아래 「한국어 표기 정리 — `azure-storage`」 (phase 104)
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
-쓰일 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, `azure-storage.azure-files`, D65, D66, G41, G42
+쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, D66, G41, G42
+쓰일 곳(phase 104): `azure-storage.azure-files`, D65
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -2882,7 +2883,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
 - 관리 디스크는 가상 하드 디스크이고, 온-프레미스 서버의 물리 디스크를 가상화한 것으로 생각할 수 있다 — 「Disk Storage」. **이 절의 「페이지 Blob으로 저장된다」는 쓰지 않는다**(D57·D72 — 쓰는 쪽이 고르는 것이 아니다)
 - 한국어 표기: Azure 관리 디스크, 비동기 메시지
 
-쓰일 곳: `azure-storage.storage-services`, D57, D72
+쓰인 곳: `azure-storage.storage-services`, D57, D72
 
 ## (phase 104) Azure Blob Storage — Introduction to Azure Blob Storage
 https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
@@ -2898,7 +2899,8 @@ https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction
 - **쓰지 않는 것**: Data Lake Storage, 크기 한도, 이름 규칙의 세부(guide 「배경」)
 - 한국어 표기: Azure Blob Storage, 비정형 데이터, 컨테이너, 블록 Blob, 추가 Blob, 페이지 Blob, 네임스페이스
 
-쓰일 곳: `azure-storage.blob-storage`, `azure-storage.account-types`, D69
+쓰인 곳: `azure-storage.blob-storage`
+쓰일 곳: `azure-storage.account-types`, D69
 
 ## (phase 104) Azure Blob Storage — Access tiers for blob data
 https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
@@ -2920,7 +2922,8 @@ https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview
 - **쓰지 않는 것**: 수명 주기 관리, 일시 삭제, 암호화 범위, 작업 이름(Set Blob Tier 등), Storage Actions(guide 「배경」과 범위 밖)
 - 한국어 표기: 액세스 계층, 핫·쿨·콜드·보관 계층, 온라인 계층, 오프라인 계층, 기본 액세스 계층, 조기 삭제, 트랜잭션
 
-쓰일 곳: `azure-storage.access-tiers`, `azure-storage.archive-rehydration`, `AccessTierDiagram`, D65, D66, G41
+쓰인 곳: `azure-storage.access-tiers`, `AccessTierDiagram`, D66, G41
+쓰일 곳: `azure-storage.archive-rehydration`, D65
 
 ## (phase 104) Azure Blob Storage — Blob rehydration from the archive tier
 https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview
@@ -2961,7 +2964,8 @@ https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning
 - Azure Files의 미디어 계층은 SSD·HDD다. Blob의 핫·쿨·콜드와 다른 낱말이다 — 「Storage tiers」. NO.242의 「프리미엄 저장소의 파일 공유에 쿨 계층」은 그래서 해당하지 않는다(덤프 답 「아니요」가 맞다). **파일 공유의 계층은 본문에 쓰지 않는다**(guide 표)
 - 한국어 표기: 클래식 파일 공유, SMB(서버 메시지 블록), NFS(네트워크 파일 시스템), SSD, HDD
 
-쓰일 곳: `azure-storage.azure-files`, `azure-storage.access-tiers`(근거 기록)
+쓰인 곳: `azure-storage.access-tiers`(근거 기록)
+쓰일 곳: `azure-storage.azure-files`
 
 ## (phase 104) Azure Files — Mount SMB Azure file share on Windows
 https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows
@@ -2985,7 +2989,7 @@ https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introducti
 - **쓰지 않는 것**: 메시지 크기, 수명(guide 「배경」)
 - 한국어 표기: Azure Queue Storage, 큐, 메시지
 
-쓰일 곳: `azure-storage.storage-services`
+쓰인 곳: `azure-storage.storage-services`
 
 ## (phase 104) Azure Table Storage — What is Azure Table storage?
 https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview
@@ -2998,7 +3002,7 @@ https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview
 - 머리 Tip에 더 새로운 Azure Cosmos DB for Table이 있지만 범위 밖이라 쓰지 않는다
 - 한국어 표기: Azure Table Storage, 구조화된 NoSQL 데이터, 키/특성 저장소
 
-쓰일 곳: `azure-storage.storage-services`, G42
+쓰인 곳: `azure-storage.storage-services`, G42
 
 ## (phase 104) Azure Virtual Machines — Azure managed disks overview
 https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
@@ -3010,7 +3014,8 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
 - **쓰지 않는 것**: 디스크 유형 다섯, 수치 한도(guide 「배경」)
 - 한국어 표기: Azure 관리 디스크, 블록 수준
 
-쓰일 곳: `azure-storage.storage-services`, `azure-storage.storage-accounts`, `StorageAccountDiagram`, D72
+쓰인 곳: `azure-storage.storage-services`, D72
+쓰일 곳: `azure-storage.storage-accounts`, `StorageAccountDiagram`
 
 ## (phase 104) Azure 클라우드 컴퓨팅 사전 — What is cloud storage?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-storage/
@@ -3021,7 +3026,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-c
 - 저장 유형: 객체 스토리지는 메타데이터를 가진 객체 단위로 묶어 사진·동영상·백업 같은 비정형 데이터에 맞고, 파일 스토리지는 폴더와 디렉터리 구조로 두어 공유 파일에 맞으며, **블록 스토리지는 데이터를 정해진 크기의 블록으로 나눠 저장해 빨리 꺼낼 수 있고** 데이터베이스와 성능이 중요한 앱에 맞는다 — 「Types of cloud storage」. **「블록 수준」의 풀이 근거다**
 - 한국어 표기: 객체 스토리지, 파일 스토리지, 블록 스토리지
 
-쓰일 곳: `azure-storage.storage-services`
+쓰인 곳: `azure-storage.storage-services`
 
 ## (phase 104) Azure Storage — Azure Storage redundancy
 https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy

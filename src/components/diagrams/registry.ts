@@ -1,4 +1,5 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
+import { AccessTierDiagram } from './AccessTierDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
@@ -390,6 +391,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-network-protection.security-rules': NsgRuleOrderDiagram,
   'azure-network-protection.azure-firewall': FirewallHubDiagram,
   'azure-network-protection.ddos-protection': DdosProtectionDiagram,
+  'azure-storage.access-tiers': AccessTierDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
