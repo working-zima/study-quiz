@@ -2870,7 +2870,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 - **쓰지 않는 것**: 내구성의 9 개수, RPO 값, SLA(guide 「배경」)
 - 한국어 표기: 로컬 중복 스토리지(LRS), 영역 중복 스토리지(ZRS), 지역 중복 스토리지(GRS), 지역 영역 중복 스토리지(GZRS), 읽기 액세스 지역 중복 스토리지(RA-GRS), 읽기 액세스 지역 영역 중복 스토리지(RA-GZRS), 주 지역, 보조 지역, 지역 쌍, 장애 조치(failover). 이 단원 한국어판의 「기본 지역」·「이차 지역」은 쓰지 않는다
 
-쓰일 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43
 
 ## (phase 104) Azure Storage — Introduction to Azure Storage
 https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction
@@ -3042,10 +3042,12 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy
 - 계정 유형 표: 표준 범용 v2는 여섯, 프리미엄 블록 Blob과 파일 공유(이 문서 이름은 SSD file shares)는 LRS·ZRS, 프리미엄 페이지 Blob은 LRS — 「Supported storage account types」. 지역에 따라 못 쓰는 옵션이 있다
 - 보관 계층은 LRS·GRS·RA-GRS에서만 된다 — 같은 절. 위 「Access tiers」 항목과 같다
 - GZRS는 지역이 가용성 영역을 지원하고 지역 쌍이 있어야 쓸 수 있다 — 「Geo-zone-redundant storage」
+- 규정(데이터 거버넌스) 때문에 복제를 한 지역 안으로 제한해야 하면 LRS를 고려하고, ZRS도 그런 경우에 권장한다 — 「Locally redundant storage」·「Zone-redundant storage」 (phase 104 step 3)
 - **쓰지 않는 것**: 내구성의 9 개수, RPO 값, 가용성 수치, 비관리 디스크, CRC(guide 「배경」)
 - 한국어 표기: 이 한국어판은 GRS를 「지리중복 저장소」·「지리적 중복 저장」, GZRS를 「지오존 중복 저장소」로도 적어 흔들린다. Learn 단원 3 한국어판과 이 문서의 RA 이름을 따라 **지역 중복 스토리지·지역 영역 중복 스토리지**로 쓴다. 「기본 지역」과 「주 지역」은 **주 지역**으로 쓴다
 
-쓰일 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `azure-storage.account-types`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, `StorageAccountTypesTable`, D67, D70, G43
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, `LrsZrsDiagram`, `GeoRedundancyDiagram`, `RedundancyOptionsTable`, D70, G43
+쓰일 곳: `azure-storage.account-types`, `StorageAccountTypesTable`, D67
 
 ## (phase 104) Azure reliability — What are redundancy, replication, and backup?
 https://learn.microsoft.com/en-us/azure/reliability/concept-redundancy-replication-backup
@@ -3057,7 +3059,7 @@ https://learn.microsoft.com/en-us/azure/reliability/concept-redundancy-replicati
 - 동기 복제는 모든 복제본에 다 반영해야 끝난 것으로 치고, 비동기는 먼저 끝낸 뒤 나중에 복제한다 — 「Synchronous and asynchronous replication」. **「동기」·「비동기」의 풀이 근거다**
 - 한국어 표기: 복제, 복제본, 백업, 동기, 비동기
 
-쓰일 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, D70
+쓰인 곳: `azure-storage.storage-redundancy`, `azure-storage.geo-redundancy`, D70
 
 ## (phase 104) Azure Storage — Disaster recovery and storage account failover
 https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance
@@ -3069,7 +3071,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery
 - 장애 조치의 종류는 고객이 하는 계획·비계획과 Microsoft가 할 수 있는 것이다. Microsoft 쪽에 기대지 말라고 한다 — 「Plan for failover」. **본문은 「장애 조치를 하면」까지 쓰고 종류는 쓰지 않는다.** 「Azure가 저절로 넘긴다」로 쓰지 않는다
 - 한국어 표기: 장애 조치(failover)
 
-쓰일 곳: `azure-storage.geo-redundancy`, `GeoRedundancyDiagram`
+쓰인 곳: `azure-storage.geo-redundancy`, `GeoRedundancyDiagram`
 
 ## (phase 104) Azure Storage — Create a storage account
 https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create

@@ -134,8 +134,171 @@
       "sources": [
         "azure-storage.azure-files"
       ]
+    },
+    "lrs-zrs": {
+      "label": "복사본 셋을 데이터 센터 한 곳에 둘 때와 가용성 영역 셋에 나눠 둘 때, 데이터 센터가 멈추면 무엇이 남는지 보는 도식",
+      "svgLabel": "LRS 박스의 데이터 센터 한 곳 안에 복사본 셋이 있고, ZRS 박스 안의 영역 1·영역 2·영역 3에 복사본이 하나씩 있다",
+      "question": "복사본 셋을 어디에 두면 무엇을 견딜까?",
+      "idleCaption": "회사 C가 같은 데이터를 LRS 계정과 ZRS 계정에 따로 둔 모습이다. 버튼을 고르면 복사본을 두는 곳의 차이와, 데이터 센터가 멈출 때 무엇이 남는지 볼 수 있다.",
+      "legend": "큰 박스 둘은 복사본을 두는 두 옵션이고, ZRS 안의 작은 박스 셋은 가용성 영역이다. 복사본 셋은 어느 쪽이든 같은 데이터다. 흐리게 그린 노드는 닿지 않는 복사본이다.",
+      "nodes": {
+        "lrs-1": "복사본 1",
+        "lrs-2": "복사본 2",
+        "lrs-3": "복사본 3",
+        "zrs-1": "복사본 1",
+        "zrs-2": "복사본 2",
+        "zrs-3": "복사본 3"
+      },
+      "groups": {
+        "lrs-datacenter": "LRS — 데이터 센터 한 곳",
+        "zrs-region": "ZRS — 가용성 영역 셋",
+        "zone-1": "영역 1",
+        "zone-2": "영역 2",
+        "zone-3": "영역 3"
+      },
+      "notes": {
+        "lrs-compare-note": "데이터 센터 한 곳에 셋",
+        "zrs-compare-note": "영역마다 하나",
+        "lrs-down-note": "데이터 센터가 멈추면 복사본 셋 모두 닿지 않는다",
+        "zone-1-note": "이 영역이 멈춤",
+        "zrs-left-note": "나머지 영역으로 읽고 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "compare",
+          "label": "복사본의 위치",
+          "caption": "어느 옵션이든 주 지역 안의 복사본은 셋이다. 다른 것은 그 셋을 두는 곳으로, LRS는 데이터 센터 한 곳 안에, ZRS는 가용성 영역 셋에 하나씩 둔다.",
+          "sources": [
+            "azure-storage.storage-redundancy"
+          ]
+        },
+        {
+          "id": "datacenter-down",
+          "label": "데이터 센터가 멈출 때",
+          "caption": "LRS는 데이터 센터가 통째로 멈추면 복사본 셋 모두 닿지 않고 잃을 수도 있다. ZRS는 영역 하나가 멈춰도 나머지 두 영역의 복사본으로 계속 읽고 쓴다.",
+          "sources": [
+            "azure-storage.storage-redundancy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.storage-redundancy"
+      ]
+    },
+    "geo-redundancy": {
+      "label": "주 지역에서 보조 지역으로 복제하는 GRS와 GZRS, 장애 조치 전에 보조 지역을 읽는 RA-GRS",
+      "svgLabel": "주 지역 안에 데이터 센터 한 곳에 셋 두는 방식과 영역 셋에 하나씩 두는 방식이 있고, 보조 지역 안에 데이터 센터 한 곳에 셋 두는 복사본이 있으며, 두 지역 밖에 읽는 앱이 있다",
+      "question": "지역 전체가 멈출 때를 어떻게 대비할까?",
+      "idleCaption": "주 지역에서 복사본을 두는 두 방식과 보조 지역의 복사본, 보조 지역을 읽는 앱이다. 버튼을 고르면 GRS와 GZRS가 어떻게 복제하는지, 장애 조치 전에 보조 지역을 어떻게 읽는지 볼 수 있다.",
+      "legend": "큰 박스 둘은 주 지역과 보조 지역이다. 주 지역 안의 두 노드는 복사본을 두는 두 방식이고 계정 하나는 그중 하나를 쓴다. 화살표는 데이터를 복제하는 방향과 앱이 읽는 방향이다. 흐리게 그린 노드는 그 버튼의 설명에 들지 않는 것이다.",
+      "nodes": {
+        "primary-lrs": "데이터 센터 한 곳에 셋",
+        "primary-zrs": "영역 셋에 하나씩",
+        "secondary-lrs": "데이터 센터 한 곳에 셋",
+        "report-app": "읽는 앱"
+      },
+      "groups": {
+        "primary": "주 지역",
+        "secondary": "보조 지역"
+      },
+      "notes": {
+        "grs-note": "비동기로 복제",
+        "gzrs-note": "비동기로 복제",
+        "stale-note": "최신이 아닐 수 있다"
+      },
+      "scenarios": [
+        {
+          "id": "grs",
+          "label": "GRS",
+          "caption": "GRS는 주 지역의 데이터 센터 한 곳에 둔 복사본 셋을 보조 지역의 복사본 셋으로 복제해 모두 여섯을 둔다. 보조 지역으로는 비동기로 복제하므로 주 지역을 되살리지 못하면 최근 데이터를 잃을 수 있다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        },
+        {
+          "id": "gzrs",
+          "label": "GZRS",
+          "caption": "GZRS는 주 지역에서는 가용성 영역 셋에 복사본을 하나씩 두고, 보조 지역에는 데이터 센터 한 곳에 셋을 둔다. 복사본은 모두 여섯이고, GRS와 다른 것은 주 지역 안에서 두는 방식이다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        },
+        {
+          "id": "read-access",
+          "label": "장애 조치 전에 읽기",
+          "caption": "RA-GRS는 장애 조치 전에도 앱이 보조 지역을 읽게 한다. 복제가 비동기라 앱이 읽는 값은 최신이 아닐 수 있다.",
+          "sources": [
+            "azure-storage.geo-redundancy"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-storage.geo-redundancy"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "redundancy-options": {
+      "label": "중복성 옵션 여섯 견주기",
+      "columns": [
+        "옵션",
+        "주 지역",
+        "보조 지역"
+      ],
+      "columnWidths": [
+        "28%",
+        "36%",
+        "36%"
+      ],
+      "sources": [
+        "azure-storage.storage-redundancy",
+        "azure-storage.geo-redundancy"
+      ],
+      "rows": [
+        {
+          "header": "LRS",
+          "cells": [
+            "데이터 센터 한 곳에 복사본 셋",
+            "복제하지 않음"
+          ]
+        },
+        {
+          "header": "ZRS",
+          "cells": [
+            "가용성 영역 셋에 하나씩",
+            "복제하지 않음"
+          ]
+        },
+        {
+          "header": "GRS",
+          "cells": [
+            "데이터 센터 한 곳에 복사본 셋",
+            "복사본 셋. 장애 조치 뒤에 읽음"
+          ]
+        },
+        {
+          "header": "GZRS",
+          "cells": [
+            "가용성 영역 셋에 하나씩",
+            "복사본 셋. 장애 조치 뒤에 읽음"
+          ]
+        },
+        {
+          "header": "RA-GRS",
+          "cells": [
+            "GRS와 같음",
+            "복사본 셋. 장애 조치 전에도 읽음"
+          ]
+        },
+        {
+          "header": "RA-GZRS",
+          "cells": [
+            "GZRS와 같음",
+            "복사본 셋. 장애 조치 전에도 읽음"
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }

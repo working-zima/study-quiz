@@ -63,6 +63,7 @@ import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
+import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
@@ -90,6 +91,7 @@ import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
+import { LrsZrsDiagram } from './LrsZrsDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
@@ -178,6 +180,7 @@ import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
+import { RedundancyOptionsTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
 import { ComputeChoiceTable, EksHybridTable, EksRoutingTable, OrchestrationComputeTable } from './containerTables'
 import { GovernanceToolTable } from './governanceTables'
@@ -396,6 +399,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-storage.access-tiers': AccessTierDiagram,
   'azure-storage.archive-rehydration': ArchiveRehydrationDiagram,
   'azure-storage.azure-files': FileShareDiagram,
+  'azure-storage.storage-redundancy': LrsZrsDiagram,
+  'azure-storage.geo-redundancy': [GeoRedundancyDiagram, RedundancyOptionsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
