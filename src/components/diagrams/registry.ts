@@ -81,6 +81,7 @@ import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
+import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
@@ -135,6 +136,7 @@ import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
@@ -200,6 +202,7 @@ import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
+import { CostSavingOptionsTable } from './azureCostFactorsTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { SignInMethodsTable } from './azureIdentityTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
@@ -448,6 +451,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-factors.data-transfer-costs': DataTransferCostsDiagram,
   'azure-cost-factors.vm-stop-deallocate': VmStopBillingDiagram,
   'azure-cost-factors.unused-resources': LeftoverResourcesDiagram,
+  'azure-cost-factors.hybrid-benefit': [HybridBenefitDiagram, CostSavingOptionsTable],
+  'azure-cost-factors.pricing-calculator': PricingCalculatorDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

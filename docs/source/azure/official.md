@@ -488,7 +488,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/sav
 
 쓰인 곳: `azure-cloud-computing.reservations`, `PricingModelsTable`(예약 행), D5, G3
 쓰인 곳(phase 106 step 2): az135 해설(예약은 실행 상태를 바꾸지 않고 청구 금액을 깎는 할인)
-쓰일 곳(phase 106): `azure-cost-factors.savings-plan`(예약을 다시 푸는 한 줄 — 1년이나 3년, 값을 깎는 할인), `azure-cost-factors.hybrid-benefit`(소프트웨어·Windows 라이선스는 덮지 않는다), `CostSavingOptionsTable`, D94, G57
+쓰인 곳(phase 106): `azure-cost-factors.savings-plan`(예약을 다시 푸는 한 줄 — 1년이나 3년, 값을 깎는 할인), `azure-cost-factors.hybrid-benefit`(소프트웨어·Windows 라이선스는 덮지 않는다), `CostSavingOptionsTable`, az139, az140, D94, G57
 
 ## (phase 100) Cost Management — How the Azure reservation discount is applied to virtual machines
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/understand-vm-reservation-charges
@@ -532,6 +532,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms
   (한국어판은 「할당 취소된 VM은 할당량에 계산되지 않는다」고 쓰지만 영문판은 계산된다고 쓴다 — 기계 번역의 오류이고, 이 주제에서는 쓰지 않는다)
 
 쓰인 곳: `azure-cloud-computing.spot-vm`, `PricingModelsTable`(스폿 행), G4
+쓰인 곳(phase 106): `azure-cost-factors.hybrid-benefit`(회수를 받아들이고 남는 용량을 쓴다), `CostSavingOptionsTable`(스폿 행), az140
 
 ## (phase 100) Azure 제품 — Azure Spot Virtual Machines
 https://azure.microsoft.com/en-us/products/virtual-machines/spot
@@ -3976,7 +3977,18 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - **총소유비용(TCO) 계산기는 지원이 끝났다**(retired). 끝난 날짜는 이 단원에 없다 — 「첫 문단」. 2026-11-02에 이 단원의 영문판과 한국어판 모두에서 확인했다. 그 계산기가 무엇을 입력받고 무엇을 보여 줬는지는 이 단원에 없고, 이 과목은 쓰지 않는다
 - 한국어 표기: pricing calculator → **가격 계산기**(본문 소제목에 「요금 계산기」가 한 번 섞인다), Total Cost of Ownership calculator → TCO(총 소유 비용) 계산기, retired → 사용 중지, access tier → 액세스 계층, redundancy → 중복성
 
-쓰일 곳(phase 106): `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`, D89, G56, G58
+쓰인 곳(phase 106): `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`, az141, az142, D89, G56, G58
+
+## (phase 106) Learn 「Describe cost management in Azure」 — 6 Describe the Microsoft Cost Management tool
+https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/6-describe-azure-tool
+
+확인한 날 2026-11-02. 사본: `learn-describe-cost-management-azure-6-describe-azure-tool.md`와 `ko-` 판. az142의 오답을 가르는 데 필요한 줄만 옮겼다(step 3). 주제 `azure-cost-management`가 쓸 사실은 step 4가 이 항목에 덧붙인다.
+
+- 비용 분석은 쓴 비용을 청구 주기·지역·리소스 같은 여러 기준으로 나눠 본다 — 「What is Cost Management?」
+- 비용 경고는 Cost Management에 나타나는 경고를 한곳에서 확인하는 곳이다 — 「Cost alerts」
+- 예산은 구독·리소스 그룹·서비스 유형 같은 범위에 지출 기준을 정하고, 기준에 닿으면 예산 경고가 난다 — 「Budgets」
+
+쓰인 곳(phase 106): az142
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「Estimate your cloud costs」
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -3987,7 +3999,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-c
 - 계약으로 정해진 가격을 어림값에 넣어 보고 싶은 고객을 위해 로그인해서 쓰는 판도 있다 — 같은 절. 그래서 「로그인이 필요 없다」는 맞지만 「로그인하는 판이 없다」는 틀린 말이다
 - Cost Management와 청구 쪽 도구는 실제로 청구된 Microsoft 클라우드 비용을 이해하고 보고하고 분석하는 데 쓴다 — 「Report on and analyze costs」. 그래서 가격 계산기(만들기 전 어림)와 다른 쪽이다. Cost Management의 기능은 step 4가 확인한다
 
-쓰일 곳(phase 106): `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`
+쓰인 곳(phase 106): `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`, az141, az142
 
 ## (phase 106) Azure 가격 — Bandwidth pricing
 https://azure.microsoft.com/en-us/pricing/details/bandwidth/
@@ -4044,7 +4056,7 @@ https://learn.microsoft.com/en-us/cli/azure/vm
 - 한국어 표기: `ko-docs-virtual-machines-states-billing.md`의 **중지됨**, **중지됨(할당 취소됨)**, **할당 취소됨**을 따른다
 
 쓰인 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`, az135, D93
-쓰일 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`
+쓰인 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`
 
 ## (phase 106) Azure Virtual Machines — Hibernation for Azure virtual machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/hibernate-resume
@@ -4124,7 +4136,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/sav
 - 한국어 표기: 제목은 **「저축 플랜이란?」**. 같은 쪽에 저축 플랜 26번·저축 계획 18번·Savings Plans 10번·절감 플랜 6번·절감 계획 3번·절약 계획 2번·세이빙 플랜 1번이 섞여 있다
 
 쓰인 곳(phase 106): `azure-cost-factors.cost-factors`(사용량 항목)
-쓰일 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`
+쓰인 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`, az139, az140
 
 ## (phase 106) Azure savings plans — Decide between a savings plan and a reservation
 https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/decide-between-savings-plan-reservation
@@ -4137,7 +4149,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/dec
 - 저축 플랜은 작업이 바뀌는 경우, 특히 여러 서비스를 쓰거나 여러 지역에서 실행하는 경우에 맞다 — 「Choose a savings plan」
 - 할인 앞에 쓰지 않는 리소스와 지나치게 큰 리소스를 먼저 치우라고 한다. 할인은 낭비를 줄이지 않고 값을 깎을 뿐이기 때문이다 — 「How to optimize cost savings…」
 
-쓰일 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`
+쓰인 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`, az139
 
 ## (phase 106) Azure 하이브리드 혜택 — Windows VM, SQL Server, Linux, 가격 쪽
 https://learn.microsoft.com/en-us/azure/virtual-machines/windows/hybrid-use-benefit-licensing
@@ -4156,7 +4168,7 @@ https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit/
 - 혜택을 쓰는 데 최소 코어 라이선스 수, 180일 이전 권리, 가상화 권리 같은 조건은 이 과목에서 쓰지 않는다
 - 한국어 표기: **Azure 하이브리드 혜택**(`ko-docs-cost-management-hybrid-benefit-scope.md`, `ko-docs-azure-sql-azure-hybrid-benefit.md`, `ko-docs-virtual-machines-hybrid-benefit-windows.md`의 제목), Software Assurance(이름 그대로), 라이선스
 
-쓰일 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`, `CostSavingOptionsTable`
+쓰인 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`, `CostSavingOptionsTable`, az140
 
 ## (phase 106) 도식·표의 사실 — `azure-cost-factors`
 
@@ -4173,7 +4185,7 @@ https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit/
 | `CostSavingOptionsTable` | 예약(특정 리소스·크기·지역에 1년이나 3년 / 쉬지 않고 실행되고 속성이 바뀌지 않는 작업), 저축 플랜(시간당 금액을 1년이나 3년 / 서비스·지역이 바뀌는 작업), 스폿(Azure가 언제든 회수할 수 있음을 받아들인다 / 멈춰도 되는 일괄 작업), 하이브리드 혜택(이미 가진 라이선스 / Windows Server·SQL Server를 Azure에서 실행하는 작업) | 없음 |
 
 쓰인 곳(phase 106): `CostFactorsDiagram`, `DataTransferCostsDiagram`, `VmStopBillingDiagram`, `LeftoverResourcesDiagram`
-쓰일 곳(phase 106): `HybridBenefitDiagram`, `PricingCalculatorDiagram`, `CostSavingOptionsTable`
+쓰인 곳(phase 106): `HybridBenefitDiagram`, `PricingCalculatorDiagram`, `CostSavingOptionsTable`
 
 ## (phase 106) 한국어 표기 정리 — `azure-cost-factors`
 
