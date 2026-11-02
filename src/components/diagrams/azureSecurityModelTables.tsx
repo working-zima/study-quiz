@@ -1,0 +1,12 @@
+import { visualsByTopicId } from '../../data/azure'
+import { ComparisonTableFigure } from './ComparisonTableFigure'
+
+const tables = visualsByTopicId['azure-security-model'].tables
+
+export function RbacRolesTable() {
+  return <ComparisonTableFigure table={tables['rbac-roles']} />
+}
+
+export function SecurityToolsTable() {
+  return <ComparisonTableFigure table={tables['security-tools']} />
+}

@@ -1043,3 +1043,164 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: Azure에서 내보내는 방향도 있다. 내보내기는 Microsoft가 데이터를 담아 보내고, 받는 쪽이 복사해 돌려보낸다(「What is Azure Data Box?」 「The workflow」, Learn 단원 6). 이 항목에는 낡은 장치 이름이나 용량 값 주장이 없다. 「수십 TB」는 Learn 단원 6과 맞지만 값은 쓰지 않는다.
 - **처리**: 고쳐 쓴다. 가져오기와 내보내기 두 방향으로 쓴다. 수치는 쓰지 않는다(guide 「배경」).
 - **쓰인 곳**: `azure-data-movement.data-box`, `DataBoxDiagram`
+
+## D74 — 암호와 보안 질문을 다단계 인증의 예로 든 답 (phase 105)
+
+- **덤프**: Azure AD에 로그인할 때 암호를 넣고 보안 질문에 답하는 것이 다단계 인증의 예라고 답한다 — [덤프 NO.142](글자), [덤프 NO.505](`p294_05.png`)
+- **공식 문서**: Learn 단원 3은 암호와 질문을 같은 범주(아는 것)로 적는다. 「How it works: Microsoft Entra multifactor authentication」은 세 범주 가운데 둘 이상을 요구한다고 한다. 「Authentication methods in Microsoft Entra ID - security questions」는 보안 질문이 로그인의 인증 방법이 아니고 암호 셀프 서비스 재설정에만 쓰이며 그마저 2027년 3월에 끝난다고 한다. 「같은 범주 둘은 다단계 인증이 아니다」라고 바로 쓴 문장은 찾지 못했다 — 처리는 위 사실에서 나온다.
+- **처리**: 고쳐 쓴다. 이 조합을 다단계 인증의 예로 들지 않는다. 본문은 「암호와 보안 질문은 둘 다 아는 것이라 범주가 하나다」와 「보안 질문은 Entra 로그인의 인증 방법이 아니다」를 쓴다. 다른 범주의 조합은 암호 + 휴대폰으로 든다.
+- **쓰인 곳**: `azure-identity.multifactor-authentication`, `MfaFactorsDiagram`
+
+## D75 — 구독에서 새 사용자를 만든다는 답 (phase 105)
+
+- **덤프**: 구독에 쓸 새 사용자를 만드는 곳으로 「구독」을 고르고, 해설은 구독의 액세스 제어에서 추가한다고 적는다 — [덤프 NO.26](`p014_04.png`)
+- **공식 문서**: 「How to create, invite, and delete users」는 사용자를 Entra ID 테넌트에서 만들거나 초대한다고 한다. 구독에 대한 접근은 역할 할당으로 다룬다(phase 102 「Azure RBAC」 항목).
+- **처리**: 고쳐 쓴다. 사용자는 Entra ID에서 만들고, 구독에서는 이미 있는 사용자에게 역할을 준다. 해설이 가리키는 메뉴 이름은 step 5가 확인한다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D76 — 사용자 계정에 라이선스를 하나만 줄 수 있다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「계정마다 라이선스는 하나다」에 [덤프 NO.207]은 예(`p126_00.png`·`p126_02.png`), 비슷한 문장에 [덤프 NO.296]은 아니요(`p173_06.png`·`p173_08.png`)를 표시한다. 같은 묶음의 「도메인 컨트롤러가 필요하다」는 둘 다 아니요, 「Azure와 Microsoft 365의 인증을 맡는다」는 둘 다 예로 맞다.
+- **공식 문서**: 「Assign or unassign licenses」는 기존 라이선스를 두고 더 주는 길을 적는다. Compare 문서는 Entra ID를 AD DS를 세우지 않고 쓰는 클라우드 서비스로 적는다.
+- **처리**: 쓰지 않는다 — 라이선스 수(guide 「배경」). NO.207의 답을 따르지 않는다. 「도메인 컨트롤러를 설치하지 않는다」와 「Azure·Microsoft 365의 인증」은 쓴다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D77 — 사용자를 리소스 그룹으로 묶는다는 답과 디바이스 가입, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「사용자는 리소스 그룹으로 묶는다」에 [덤프 NO.291]은 예(`p171_02.png`·`p171_04.png`), [덤프 NO.381]은 해설 그림에서 아니요(`p219_06.png`)다. NO.381의 답 그림(`p219_04.png`)은 셋 다 예로 표시해 자기 해설 그림과도 다르다. 「Entra 자격 증명으로 Windows 10 PC에 로그인하려면 PC를 가입해야 한다」에는 NO.291이 아니요, NO.381이 예다. 동적 멤버 규칙은 둘 다 예로 맞다.
+- **공식 문서**: 사용자는 Entra 그룹으로 묶는다(「What is enterprise user management?」). 리소스 그룹은 Azure 리소스를 담는다(Learn 단원 6, phase 102). 가입과 하이브리드 가입은 조직 계정으로 디바이스에 로그인하고, 등록은 그렇지 않다(디바이스 문서들).
+- **처리**: 고쳐 쓴다 — 사용자는 Entra 그룹으로 묶고 리소스 그룹은 리소스를 담는다. NO.291의 둘째 답을 따르지 않는다. 디바이스 로그인의 세부와 동적 멤버 규칙은 쓰지 않는다.
+- **쓰인 곳**: `azure-identity.entra-id`
+
+## D78 — Entra ID에서 그룹 정책을 만들고, 가입은 Windows 10만 된다는 답 (phase 105)
+
+- **덤프**: 「Entra ID에서 그룹 정책을 만든다」에 예, Windows 디바이스 가입에 예, Android 가입에 아니요를 표시하고(`p209_01.png`·`p209_03.png`, `p230_06.png`), NO.364 해설은 가입이 Windows 10에만 해당한다고 적는다 — [덤프 NO.364], [덤프 NO.399]
+- **공식 문서**: 「Compare … Microsoft Entra ID, and managed Microsoft Entra Domain Services」의 표는 Entra ID에 가입한 디바이스를 Intune 같은 모바일 디바이스 관리 소프트웨어로, Domain Services에 가입한 디바이스를 그룹 정책으로 관리한다고 한다. Learn 단원 2도 그룹 정책을 Domain Services의 기능으로 든다. 「Microsoft Entra joined devices」는 macOS·일부 Linux도 든다. Android는 등록 쪽이라 가입 답은 맞다.
+- **처리**: 고쳐 쓴다 — 그룹 정책은 Domain Services와 온-프레미스 AD의 기능으로 쓰고, Entra ID 쪽 디바이스 관리는 Intune 한 낱말로 쓴다. 「Windows 10만」은 따르지 않는다. OS 목록은 쓰지 않는다.
+- **쓰인 곳**: `azure-identity.domain-services`, `azure-identity.entra-id`
+
+## D79 — 온-프레미스 AD·제삼자 ID로 Azure 리소스에 닿는가, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「Entra ID·제삼자 클라우드 서비스·온-프레미스 AD에 저장된 ID로 Azure 리소스에 닿는다」에 [덤프 NO.212]와 [덤프 NO.362]는 예(`p129_04.png`, `p207_04.png`), [덤프 NO.351]은 아니요(`p201_02.png`)를 표시한다.
+- **공식 문서**: 온-프레미스 ID는 Connect가 Entra ID로 동기화한다(Learn 단원 2). 외부 ID는 회사 계정·소셜 ID를 쓰고, 조직은 그 사용자에게 권한을 준다(Learn 단원 4, External ID 개요).
+- **처리**: 한정해 쓴다 — 「예」 쪽을 따르되 경로를 밝힌다. 온-프레미스 ID는 동기화해서, 외부 ID는 게스트로 초대해서 Entra ID를 거쳐 닿는다. 온-프레미스 AD에 직접 묻는다고 쓰지 않는다. NO.351의 둘째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-identity.entra-connect`, `azure-identity.external-identities`
+
+## D80 — 인증이 접근 수준을 정한다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「인증은 인증된 사용자의 접근 수준을 정하는 과정이다」에 [덤프 NO.274]는 아니요(`p161_00.png`·`p161_02.png`), [덤프 NO.375]는 예(`p216_00.png`·`p216_02.png`)를 표시한다. 「SSO는 Authenticator 앱을 요구한다」의 아니요와 조건부 액세스 문장의 예는 둘 다 맞다.
+- **공식 문서**: 「Authentication vs. authorization」과 「Identity and access management fundamental concepts」는 접근 수준을 정하는 일을 권한 부여로 적는다.
+- **처리**: 고쳐 쓴다 — 접근 수준을 정하는 것은 권한 부여다. NO.375의 둘째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-identity.authentication-authorization`
+
+## G47 — Entra ID에서 「B2C 시나리오」가 가능하다는 것 (phase 105)
+
+- **용어집**: Entra ID의 예전 이름을 적고, 온-프레미스 AD와 동기화해 하이브리드 환경을 지원하며, 조건부 액세스·B2B·B2C 시나리오가 가능해진다고 한다 — [용어집 3-1]
+- **공식 문서**: 현행 이름은 Microsoft Entra External ID이고, Azure AD B2C는 옛 해법으로 2025-05-01부터 새 고객이 살 수 없으며 External ID의 옛 이름도 아니다(External ID 개요·FAQ). 동기화와 조건부 액세스는 맞다(Learn 단원 2·5).
+- **처리**: 고쳐 쓴다 — B2C를 외부 테넌트의 외부 ID로 쓴다. 옛 이름은 `entra-id`에서 Azure Active Directory를 한 번만 밝힌다.
+- **쓰인 곳**: `azure-identity.entra-id`, `azure-identity.external-identities`
+
+## G48 — SSO로 보안 수준이 올라간다는 것 (phase 105)
+
+- **용어집**: Azure AD로 SSO를 구현하면 편의와 보안 수준이 모두 올라간다고 한다 — [용어집 3-2]
+- **공식 문서**: 「What is single sign-on …」은 자격 증명 노출이 준다는 것을 이점으로 든다. Learn 단원 3은 SSO가 처음 인증만큼만 안전하다고 한다.
+- **처리**: 한정해 쓴다 — 외울 자격 증명과 노출이 줄지만 요소를 더하지는 않고, 처음 인증만큼만 안전하다. 「보안 수준이 올라간다」로 끝내지 않는다. 「보안을 더하지 않는다」로 단정하지도 않는다. 이름은 Microsoft Entra ID로 쓴다.
+- **쓰인 곳**: `azure-identity.single-sign-on`, `SingleSignOnDiagram`
+
+## G49 — MFA의 방법 목록과 위험 감지 뒤 자동 MFA (phase 105)
+
+- **용어집**: 암호 외에 OTP·문자·생체를 더 요구하고, Azure AD MFA를 설정하면 위험한 로그인을 감지했을 때 자동으로 MFA를 거치게 구성할 수 있다고 한다 — [용어집 3-3]
+- **공식 문서**: 「How it works: Microsoft Entra multifactor authentication」의 현행 방법은 Authenticator·패스키·SMS·음성 통화·OATH 토큰 등이다. 위험 기반 정책은 Microsoft Entra ID Protection의 기능이다(「What is Microsoft Entra?」, 「What is Conditional Access?」).
+- **처리**: 한정해 쓴다 — 방법은 전화·앱 알림을 예로 든다. 생체는 범주(사용자의 속성)로 쓰고, 방법 이름 표로 쓰지 않는다. 위험 감지 뒤 자동 MFA는 쓰지 않는다(Identity Protection은 guide 「배경」이 쓰지 않기로 했다). 상황에 따라 MFA를 요구하는 것은 조건부 액세스로 쓴다.
+- **쓰인 곳**: `azure-identity.multifactor-authentication`, `azure-identity.conditional-access`
+
+## D81 — 역할 할당을 「Policies」에서 한다는 답 (phase 105)
+
+- **덤프**: 리소스 그룹에 읽기 권한자 역할을 줄 포털 메뉴를 묻고 Policies에 표시한다 — [덤프 NO.81](`p047_00.png`). 그림의 보기는 Deployments·Security·Policies·Properties·Locks 등이고, 목록 맨 위는 잘려 있어 액세스 제어(IAM)가 보기에 있었는지는 알 수 없다.
+- **공식 문서**: 「Assign Azure roles using the Azure portal」은 역할을 할당하는 페이지가 액세스 제어(IAM)라고 적는다.
+- **처리**: 고쳐 쓴다 — 포털에서는 그 범위의 액세스 제어(IAM)에서 역할을 할당한다. Policies를 답으로 가르치지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`
+
+## D82 — DDoS 보호가 네트워크 계층이라는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: DDoS 보호를 어느 계층에서 구현하는가에 [덤프 NO.52]·[덤프 NO.116]은 networking layer, [덤프 NO.222]는 perimeter layer로 답한다.
+- **공식 문서**: Learn 단원 8은 경계 계층이 DDoS 보호로 대규모 공격을 걸러 낸다고 적는다.
+- **처리**: 고쳐 쓴다 — DDoS 보호는 경계 계층이다. NO.52·116의 답을 따르지 않는다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## D83 — 심층 방어 계층의 순서 (phase 105)
+
+- **덤프**: 빈칸을 채워 바깥부터 애플리케이션 → ID 및 액세스 → 물리적 보안 → 네트워크 → 컴퓨팅 → 경계 순으로 표시한다 — [덤프 NO.368](`p211_05.png`, 그림 아래가 잘려 데이터 칸은 보이지 않는다).
+- **공식 문서**: Learn 단원 8의 순서는 물리적 보안 → ID 및 액세스 → 경계 → 네트워크 → 컴퓨팅 → 애플리케이션 → 데이터다.
+- **처리**: 고쳐 쓴다 — Learn의 일곱 계층과 순서로 쓴다. 이 문항의 순서를 쓰지 않는다. [덤프 NO.203]의 짝(패치 — 컴퓨팅, MFA — ID 및 액세스, 감시 카메라 — 물리적 보안)은 맞지만 감시 카메라라는 예는 공식 문서에 없어 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## D84 — 리소스 그룹에 소유자를 여럿 둘 수 없다는 답, 덤프끼리 갈림 (phase 105)
+
+- **덤프**: 「리소스 그룹에 소유자 역할을 여러 사용자에게 줄 수 있다」에 [덤프 NO.386]의 답은 아니요(`p222_02.png`·`p222_04.png`), 같은 문장의 다른 그림은 예(`p221_00.png`)를 표시한다. 그림 p221_00은 쪽 위치로 [덤프 NO.383]의 설명이다. 다른 두 문장(사용자 지정 역할, 사용자에게 역할 여럿)의 예는 맞다.
+- **공식 문서**: 역할은 사용자·그룹 같은 대상마다 범위를 정해 할당한다. 「Best practices for Azure RBAC」는 구독 소유자 수를 제한하라고 권하는데 소유자가 여럿일 수 있음을 전제로 한다. 같은 역할을 그룹에 주면 구성원 모두가 받는다(「What is Azure RBAC?」).
+- **처리**: 고쳐 쓴다 — 한 역할을 여러 사용자에게 줄 수 있다. NO.386의 셋째 답을 따르지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`
+
+## D85 — Azure Security Center·Azure Sentinel이라는 이름 (phase 105)
+
+- **덤프**: 규정 준수 보고서, Just-In-Time VM 액세스, 보안 점수의 답을 Azure Security Center로, SIEM·보안 로그 분석·플레이북의 답을 Azure Sentinel로 쓴다 — [덤프 NO.153]·[덤프 NO.167]·[덤프 NO.170]·[덤프 NO.185]·[덤프 NO.219]·[덤프 NO.225]·[덤프 NO.422]·[덤프 NO.488]. NO.185의 표준 목록과 「블레이드」 설명은 예전 화면을 적은 것이다.
+- **공식 문서**: 「Release notes archive」는 Azure Security Center와 Azure Defender가 Microsoft Defender for Cloud가 되었다고 적는다. Sentinel의 현행 이름은 Microsoft Sentinel이다(「What is Microsoft Sentinel?」). 이름을 바꿨다고 말한 문장은 찾지 못했다.
+- **처리**: 고쳐 쓴다 — 답의 내용은 맞고 이름은 현행으로 쓴다. Azure Security Center는 `defender-for-cloud`의 「예전 이름」에서 한 번만 밝히고, Azure Sentinel은 본문에 쓰지 않는다. 표준 목록은 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`, `azure-security-model.sentinel`
+
+## D86 — 무료 기능이 두 가지뿐이라는 설명 (phase 105)
+
+- **덤프**: 「모든 기능이 무료인가」의 답은 아니요로 맞다 — [덤프 NO.401](`p232_04.png`)·[덤프 NO.422]·[덤프 NO.460]. 그런데 NO.422의 설명은 지속적 평가·보안 권장 사항과 보안 점수 두 기능만 무료라고 한다.
+- **공식 문서**: 무료는 기본 CSPM이고 보안 점수와 보안 권장 사항 외에 자산 인벤토리, 벤치마크 등이 든다(「Cloud security posture management」의 표). 보안 경고는 플랜을 하나 이상 켜야 나온다(지원 표).
+- **처리**: 한정해 쓴다 — 「모든 기능이 무료인 것은 아니다」로 쓰고, 기본 기능과 유료 플랜으로 가른다. 「두 가지뿐」으로 세지 않는다. 금액은 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`
+
+## D87 — Azure Disk Encryption에 Key Vault를 먼저 만든다는 답 (phase 105)
+
+- **덤프**: VM을 Azure Disk Encryption으로 암호화하려면 Key Vault를 먼저 만든다고 답한다 — [덤프 NO.74]
+- **공식 문서**: 그 사실은 맞다(「Azure Disk Encryption for Windows VMs」, 키 자격 증명 모음 만들기 문서). 그러나 이 기능은 2028-09-15에 지원이 끝난다고 예고되어 있고, 새 VM에는 호스트 암호화를 권한다.
+- **처리**: 한정해 쓴다 — 쓴다면 본문에 한 문장만 쓰고 종료 예고와 함께 쓴다. 문항으로 묻지 않고, 새 VM의 권장 방법처럼 쓰지 않는다. 호스트 암호화는 자세히 풀지 않는다.
+- **쓰인 곳**: `azure-security-model.key-vault`
+
+## G50 — 대표 역할을 Reader·Contributor·Owner 셋으로 적는 것 (phase 105)
+
+- **용어집**: 사전 정의 역할의 예로 Reader, Contributor, Owner를 들고, 사용자 지정 역할과 최소 권한을 함께 적는다 — [용어집 3-4]
+- **공식 문서**: 그 셋은 맞고 이름은 읽기 권한자·기여자·소유자, 묶음의 이름은 기본 제공 역할이다. 소유자와 기여자를 가르는 사용자 액세스 관리자가 문항에 나오고(NO.137), 기본 제공 역할은 이 밖에도 많다.
+- **처리**: 한정해 쓴다 — 넷을 자주 보는 역할로 표에 둔다. 「역할은 셋」이나 「넷」으로 세지 않는다.
+- **쓰인 곳**: `azure-security-model.rbac`, `RbacRolesTable`
+
+## G51 — 제로 트러스트의 구현 수단 (phase 105)
+
+- **용어집**: 내부망도 믿지 않고 모든 접근을 계속 검증하며 최소 권한을 적용한다고 하고, Azure에서는 조건부 액세스·MFA·세분화한 네트워크 정책으로 구현한다고 한다 — [용어집 3-5]
+- **공식 문서**: 앞부분은 맞다(Learn 단원 7, 「Zero Trust overview」). 받은 문서는 도구 셋을 구현 수단으로 묶어 말하지 않는다. MFA는 Learn 단원 7의 예에 있다.
+- **처리**: 한정해 쓴다 — 원칙과 예로 쓴다. 「이 셋으로 구현한다」고 쓰지 않는다.
+- **쓰인 곳**: `azure-security-model.zero-trust`
+
+## G52 — 심층 방어를 네 계층처럼 적는 것 (phase 105)
+
+- **용어집**: 네트워크·호스트·애플리케이션·데이터 계층을 겹쳐 지킨다고 하고, NSG·방화벽·암호화·RBAC·MFA를 예로 든다 — [용어집 3-6]
+- **공식 문서**: Learn 단원 8의 계층은 일곱이고 호스트가 아니라 컴퓨팅이라 부른다. 물리적 보안·ID 및 액세스·경계가 더 있다.
+- **처리**: 고쳐 쓴다 — 일곱 계층과 Learn의 이름으로 쓴다. 「단일 장애 지점」도 쓰지 않고 「한 계층에만 기대지 않는다」로 쓴다.
+- **쓰인 곳**: `azure-security-model.defense-in-depth`, `DefenseInDepthDiagram`
+
+## G53 — Defender for Cloud를 Azure와 하이브리드로 적는 것 (phase 105)
+
+- **용어집**: Azure와 하이브리드 워크로드 보안을 관리하는 솔루션이라 하고, 리소스에 방어 기능을 더 켤 수 있다고 한다 — [용어집 3-7]
+- **공식 문서**: Learn 단원 9는 AWS·GCP 같은 다른 클라우드도 대상으로 적는다. 방어 기능을 더 켜는 것은 유료 플랜이다.
+- **처리**: 한정해 쓴다 — 보는 곳을 Azure·온-프레미스·다른 클라우드 셋으로 쓴다. 더 켜는 기능은 유료 플랜이라고 밝힌다.
+- **쓰인 곳**: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`
+
+## G54 — Key Vault의 HSM 옵션 (phase 105)
+
+- **용어집**: 키·비밀·인증서를 저장하고 접근을 통제한다고 하고, 엄격한 규제 환경을 위한 HSM 옵션과 앱이 키를 드러내지 않고 호출한다는 것을 적는다 — [용어집 3-9]
+- **공식 문서**: 셋과 접근 통제는 맞다. HSM은 Premium 계층의 내용이다(「About Azure Key Vault」). 앱은 URI로 비밀을 받는다.
+- **처리**: 쓰지 않는다 — HSM과 요금제는 쓰지 않는다(guide 「배경」). 비밀을 코드에 적지 않는다는 쪽만 쓴다.
+- **쓰인 곳**: `azure-security-model.key-vault`
+
+## G55 — Sentinel을 SIEM·SOAR, AI 기반으로 적는 것 (phase 105)
+
+- **용어집**: 클라우드 기반 SIEM·SOAR이고 AI 기반으로 위협을 탐지하며 플레이북으로 대응한다고 한다 — [용어집 3-8]
+- **공식 문서**: SIEM과 플레이북은 맞다(「What is Microsoft Sentinel?」, 플레이북 문서). 현행 개요는 SOAR를 정의하지 않고 대응을 자동화하고 오케스트레이션한다고 적는다.
+- **처리**: 한정해 쓴다 — SIEM으로 소개하고 대응은 「플레이북으로 자동화한다」로 쓴다. SOAR와 「AI 기반」은 쓰지 않는다(guide 「배경」).
+- **쓰인 곳**: `azure-security-model.sentinel`, `SentinelFlowDiagram`

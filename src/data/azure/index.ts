@@ -5,9 +5,11 @@ import azureCloudComputingVisuals from './visuals/azure-cloud-computing.json'
 import azureCloudModelsVisuals from './visuals/azure-cloud-models.json'
 import azureComputeVisuals from './visuals/azure-compute.json'
 import azureDataMovementVisuals from './visuals/azure-data-movement.json'
+import azureIdentityVisuals from './visuals/azure-identity.json'
 import azureNetworkProtectionVisuals from './visuals/azure-network-protection.json'
 import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
 import azureResourceHierarchyVisuals from './visuals/azure-resource-hierarchy.json'
+import azureSecurityModelVisuals from './visuals/azure-security-model.json'
 import azureServiceTypesVisuals from './visuals/azure-service-types.json'
 import azureSlaLifecycleVisuals from './visuals/azure-sla-lifecycle.json'
 import azureStorageVisuals from './visuals/azure-storage.json'
@@ -33,6 +35,8 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-network-protection': azureNetworkProtectionVisuals,
   'azure-storage': azureStorageVisuals,
   'azure-data-movement': azureDataMovementVisuals,
+  'azure-identity': azureIdentityVisuals,
+  'azure-security-model': azureSecurityModelVisuals,
 }
 
 export const azureSubject: Subject = {
