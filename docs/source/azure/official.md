@@ -431,8 +431,19 @@ https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account
 
 - 종량제로 쓰면 미리 약속하는 것이 없고 언제든 그만둘 수 있다 — 「Pay as you go」
 - 종량제에서는 쓴 것에 대해서만 낸다 — 「Pay only for what you use」
+- 2026-11-03 다시 확인. 계정은 두 가지다 — 종량제와 Azure 무료 계정. **12개월 무료 서비스와 항상 무료 서비스는 두 계정에 함께 있고**, 12개월 무료는 새 고객만 받는다. 무료 계정에만 있는 것은 30일 안에 쓰는 크레딧과 요금이 청구되지 않게 막아 주는 장치다 — 「Choose the Azure account that's right for you」 (phase 106)
+- 무료 계정은 새 고객만 만들 수 있고, 새 고객마다 하나다. **그래서 NO.95·394의 「한 Microsoft 계정으로 열 개」는 아니요가 맞다** — 같은 절, FAQ 17 (phase 106)
+- 무료 계정이 쓸 수 있는 서비스는 전체 목록이다. 무료인 것은 일부 서비스의 정해진 양이고, 크레딧은 목록에 없는 서비스를 쓰거나 무료 양을 넘겨 쓰는 데 든다. **그래서 NO.95의 「서비스 일부만 본다」와 NO.394의 「VM과 스토리지 계정만 배포한다」는 아니요가 맞다** — FAQ 5·6 (phase 106)
+- 12개월 무료는 계정을 만든 때부터 12개월이다. 무료 계정으로 시작했으면 30일이나 크레딧이 끝나기 전에(먼저 오는 쪽) 종량제로 옮겨야 무료 서비스를 이어 받는다 — FAQ 3 (phase 106)
+- 종량제에서 무료 양을 넘기면 넘긴 만큼 종량제 요금을 내고, 12개월이 지나도 쓰던 서비스는 멈추지 않고 종량제 요금이 붙는다 — FAQ 4 (phase 106)
+- 종량제로 옮기지 않으면 계정과 서비스가 사용할 수 없게 되고, 다시 쓰려면 옮겨야 한다. 크레딧이 남은 채 옮기면 가입한 날부터 30일까지 그 크레딧을 쓴다 — FAQ 9·10 (phase 106)
+- 무료 계정 크레딧은 Azure Marketplace 제품, Azure 스폿 가상 머신에 쓸 수 없고, Azure 하이브리드 혜택과 함께 쓸 수 없다 — FAQ 16·18·19 (phase 106)
+- 크레딧이 얼마나 남았는지는 Azure 포털의 Microsoft Cost Management에서 본다. 항상 무료 목록에 Microsoft Cost Management가 「Free」로 있다 — FAQ 7과 「Management and governance」 탭 (phase 106)
+- 웹·API 앱 수의 숫자는 App Service의 **무료 양**이다. 계정 전체의 상한으로 쓰지 않는다(D102). 금액·제품 개수·무료 양의 숫자는 쓰지 않는다 — 「Take advantage of free products」 (phase 106)
+- 한국어 표기: 이 쪽의 한국어판은 「무료 계정」, 「종량제」, 「크레딧」 (phase 106)
 
 쓰인 곳: `azure-cloud-computing.pay-as-you-go`, `PricingModelsTable`(종량제 행의 「미리 약속하는 것」)
+쓰일 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, D102
 
 ## (phase 100) Learn 「Describe cost management in Azure」 — 2 Describe factors that can affect costs in Azure
 https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/2-describe-factors-affect-costs-azure
@@ -1720,8 +1731,15 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-re
 
 - 리소스는 리소스 그룹이나 구독에 붙인 태그를 물려받지 않는다. 물려받게 하려면 Azure Policy로 태그 규칙을 건다 — 「Inherit tags」
 - 한국어 표기: tag → 태그
+- 2026-11-03 다시 확인. 태그는 키와 값의 쌍으로 이루어진 메타데이터다. 예로 키 `Environment`에 값 `Production`을 둔다 — 첫 문단 (phase 106)
+- 태그는 리소스·리소스 그룹·구독에 붙일 수 있고 관리 그룹에는 붙일 수 없다 — 「Tag usage and recommendations」 (phase 106)
+- 태그는 평문으로 저장된다. 비용 보고서 같은 곳에 드러날 수 있으므로 민감한 값을 넣지 않는다 — 같은 절의 경고 (phase 106)
+- 태그에 영어가 아닌 말을 쓰면 VM이 인스턴스 메타데이터를 읽을 때 문제가 날 수 있다고 경고한다. **그래서 앱의 예시는 영어 태그로 쓴다**(G59) — 같은 절의 경고 (phase 106)
+- 태그로 청구 데이터를 묶는다. 예로 여러 조직의 VM을 비용 센터별로 묶고, 운영 환경의 VM 사용량을 따로 분류한다 — 「Tags and billing」 (phase 106)
+- 모든 리소스 유형이 태그를 지원하지는 않는다. 클래식 리소스는 지원하지 않는다. 개수·글자 수 제한은 쓰지 않는다 — 「Limitations」 (phase 106)
+- 한국어 표기: 「태그 상속」(절 제목), 「키-값 쌍」, 「메타데이터」 (phase 106)
 
-쓰일 곳: `azure-cost-management` 주제(이 phase는 쓰지 않는다). 덤프 NO.54·93·309·335의 태그 진술 「아니요」는 이 사실과 맞다 — D 항목 없음
+쓰일 곳: `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59(phase 106). 덤프 NO.54·93·309·335의 태그 진술 「아니요」는 이 사실과 맞다 — D 항목 없음
 
 ## (phase 102) Microsoft Entra — Associate or add an Azure subscription to your Microsoft Entra tenant
 https://learn.microsoft.com/en-us/entra/fundamentals/how-subscriptions-associated-directory
@@ -3982,13 +4000,25 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 ## (phase 106) Learn 「Describe cost management in Azure」 — 6 Describe the Microsoft Cost Management tool
 https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/6-describe-azure-tool
 
-확인한 날 2026-11-02. 사본: `learn-describe-cost-management-azure-6-describe-azure-tool.md`와 `ko-` 판. az142의 오답을 가르는 데 필요한 줄만 옮겼다(step 3). 주제 `azure-cost-management`가 쓸 사실은 step 4가 이 항목에 덧붙인다.
+확인한 날 2026-11-02, 뒤 줄은 2026-11-03. 사본: `learn-describe-cost-management-azure-6-describe-azure-tool.md`와 `ko-` 판. 앞 세 줄은 az142의 오답을 가르는 데 필요한 줄이다(step 3).
 
 - 비용 분석은 쓴 비용을 청구 주기·지역·리소스 같은 여러 기준으로 나눠 본다 — 「What is Cost Management?」
 - 비용 경고는 Cost Management에 나타나는 경고를 한곳에서 확인하는 곳이다 — 「Cost alerts」
 - 예산은 구독·리소스 그룹·서비스 유형 같은 범위에 지출 기준을 정하고, 기준에 닿으면 예산 경고가 난다 — 「Budgets」
+- 리소스는 빨리 만들 수 있어서 실수로 만들기도 하고, 그러면 청구서를 받을 때까지 모를 수 있다. Cost Management는 이런 일을 막으려고 비용을 분석·감시·관리하는 도구 묶음이다 — 머리말
+- Cost Management로 하는 일은 셋이다. 리소스 비용 확인, 지출에 따른 경고 만들기, 예산 만들기 — 「What is Cost Management?」
+- 비용 분석으로 비용을 구독·리소스 그룹·서비스별로 모아 어디서 쌓이는지 보고, 시간에 따라 쌓인 비용으로 달·분기·해의 추세를 예산과 견준다 — 같은 절
+- 흔한 쓰임으로 배포 뒤 갑자기 는 지출 찾기, 운영이 아닌 구독에서 쉬고 있는 리소스 찾기를 든다 — 같은 절
+- 이 단원이 드는 경고는 셋이다. 예산 경고, 크레딧 경고, 부서 지출 할당량 경고. 제품 문서에는 넷째로 변칙 경고가 있다(아래 「Use cost alerts」 항목) — 「Cost alerts」
+- 예산 경고는 지출이 정해 둔 기준에 닿거나 넘으면 난다. 비용 경고에 나타나고, 받는 사람 목록에 이메일이 간다 — 「Budget alerts」
+- 크레딧 경고의 크레딧은 **Azure 선불**이다. Enterprise Agreement 조직이 미리 낸 돈이 줄어들면 나고, 계정 소유자에게 이메일이 간다. **무료 계정의 크레딧과 다른 것이다** — 「Credit alerts」
+- 부서 지출 할당량 경고는 Enterprise Agreement 고객의 것이고, 부서 소유자에게 이메일이 간다 — 「Department spending quota alerts」
+- 예산이 기준에 닿았을 때 리소스를 멈추거나 바꾸는 자동화를 일으키도록 설정할 수 있다. 예로 운영이 아닌 리소스를 끈다 — 「Budgets」
+- 이 단원은 예산을 말하면서 영어로 「spending limit」이라는 낱말을 쓰지만, 이것은 일반 낱말이다. 제품 기능 「Azure 지출 한도」와 다르다(아래 「Azure spending limit」 항목) — 「Budgets」
+- 한국어 표기: 「비용 경고」, 「예산 경고」, 「부서 지출 할당량 경고」, 「신용 경고」와 「크레딧 알림」이 한 쪽에 섞임, 「Azure 선불」, 「기업계약」
 
 쓰인 곳(phase 106): az142
+쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `CostAnalysisDiagram`, `BudgetAlertDiagram`, `CostToolsTable`
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「Estimate your cloud costs」
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4221,3 +4251,278 @@ https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit/
 - 「리소스 유형」과 「리소스 종류」 — 한국어판 소제목이 「리소스 종류」라 그쪽을 쓴다.
 
 **쓰지 않는 이름**: TCO 계산기를 개념 이름으로, Server Assessment, Metered·Unlimited·Local 같은 ExpressRoute 요금제 이름, Basic·Standard 같은 공용 IP SKU 이름, Enterprise Agreement의 계약 조건, 최대 절전을 개념으로, 프로세서·코어 수별 라이선스 조건, Azure SQL Database의 중지.
+
+## (phase 106) Learn 「Describe cost management in Azure」 — 7 Describe the purpose of tags
+https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/7-describe-purpose-of-tags
+
+확인한 날 2026-11-03. 사본: `learn-describe-cost-management-azure-7-describe-purpose-of-tags.md`와 `ko-` 판.
+
+- 관련 리소스를 정리하는 길은 구독에 나눠 두기, 리소스 그룹에 묶기, 태그 달기다. 태그는 리소스에 덧붙이는 정보(메타데이터)다 — 둘째 문단
+- 쓰임 여섯: 리소스 관리(워크로드·환경·팀·소유자로 찾아 작업), 비용 관리 및 최적화(묶어서 비용 보고, 내부 비용 센터에 나눔, 예산 추적, 비용 예측), 운영 관리(운영에 얼마나 중요한지로 묶음), 보안(공개·기밀 같은 등급), 거버넌스 및 규정 준수(요구에 맞는 리소스 식별, 소유자나 부서 태그를 요구), 워크로드 최적화 및 자동화(복잡한 배포에 드는 리소스를 한눈에 보고 자동 작업의 대상으로 삼음) — 같은 절 목록
+- 처음 쓰기 좋은 태그로 `Environment`, `Owner`, `CostCenter`, `Workload`를 들고, 비용 걸러 보기와 소유자 찾기에 쓴다고 한다 — 목록 뒤
+- 태그는 포털·PowerShell·Azure CLI·Resource Manager 템플릿·REST API로 더하고 고치고 지운다 — 「How do I manage resource tags?」
+- Azure Policy로 새 리소스에 태그를 요구하거나 지워진 태그를 다시 붙일 수 있다 — 같은 절
+- 리소스는 구독·리소스 그룹의 태그를 물려받지 않는다. 그래서 한 층에 붙인 태그가 다른 층에 저절로 나타나지 않고, 층마다 다른 태그 체계를 둘 수 있다 — 같은 절. **문서가 말하는 것은 이 결과이고, 왜 그렇게 설계했는지는 말하지 않는다** — 까닭을 지어 쓰지 않는다
+- 태그 하나는 이름과 값이다. 리소스 하나에 태그를 여럿 붙일 수 있다 — 「An example tagging structure」
+- 특정 태그를 모든 리소스에 둘 필요는 없다. 예로 운영에 꼭 필요한 리소스에만 `Impact`를 붙이면, 붙지 않은 것은 그렇지 않은 리소스로 본다 — 표 뒤
+- 한국어 표기: 「태그」, 「리소스 태그」, 「이름과 값」, 「메타데이터」, 「리소스 관리」, 「비용 관리 및 최적화」, 「운영 관리」, 「거버넌스 및 규정 준수」, 「워크로드 최적화 및 자동화」. Security는 한국어판이 「안전」으로 옮겼으나 본문이 보안 수준을 말하므로 **「보안」** 으로 쓴다
+
+쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59
+
+## (phase 106) Cost Management — Overview of Cost Management 가운데 「누가 쓰는가」와 경고
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
+
+확인한 날 2026-11-03. 「Last updated on」 2025-06-27. 사본: `docs-cost-management-overview.md`와 `ko-` 판.
+
+- 청구 계정·구독·리소스 그룹·관리 그룹 가운데 하나에 접근할 수 있는 사람이면 Cost Management를 쓴다. **어떤 계약이 전제라고 하지 않는다** — 첫 문단. D99의 근거
+- 포털의 모든 구독·리소스 그룹·관리 그룹에서 연다. 자기가 맡은 비용을 보게 하려는 것이다 — 「How Cost Management and Billing relate」. D100의 근거
+- 예산 경고는 비용이나 예측 비용이 정해 둔 양을 넘으면 알린다. 구독과 리소스 그룹의 예산은 작업 그룹에 알려 자동으로 조치하게 할 수 있다 — 경고 목록
+- 변칙 경고는 하루 사용량에 예기치 않은 변화(갑자기 늘거나 줄어듦)가 보이면 알린다. 구독에만 있다 — 같은 목록
+- 일정 경고·청구서 경고도 이 목록에 있으나 **쓰지 않는다**(guide의 범위 밖)
+- Azure Advisor의 비용 권장 사항은 이미 있는 리소스를 줄일 길을 사용 패턴으로 제안한다 — 「Optimize costs」. 정한 금액을 넘을 때 메일을 보낸다는 말은 없다(D105). 권장 사항 자체는 `azure-monitoring`의 몫이라 쓰지 않는다
+- 한국어 표기: 「Microsoft Cost Management」, 본문은 「Cost Management」(옮기지 않음), 「변칙 경고」, 「작업 그룹」, 「청구 계정」
+
+쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-alerts`, D99, D100, az143
+
+## (phase 106) Cost Management — Understand Cost Management data
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data
+
+확인한 날 2026-11-03. 「Last updated on」 2025-06-27. 사본: `docs-cost-management-understand-data.md`.
+
+- 지원 표에 Enterprise Agreement뿐 아니라 **종량제(Pay-as-you-go)·Free Trial·Microsoft Customer Agreement** 가 있다. 그래서 종량제 구독도 쓴다(az143의 근거) — 「Supported Microsoft Azure offers」
+- 지원하지 않는 것으로 클래식 CSP와 스폰서 구독 같은 제품이 있다. 이 예외는 **쓰지 않는다** — 같은 절
+- 새 구독은 Cost Management 기능을 모두 쓰기까지 시간이 걸릴 수 있으나, 만들 때 예산은 바로 설정할 수 있다고 이 문서는 말한다. 「Create and manage budgets」는 새 구독에서 예산도 바로 못 만들 수 있다고 해서 **두 문서가 다르다** — 시간과 이 차이는 쓰지 않는다 — 머리말
+- 비용 분석의 요약 데이터는 지난 13개월 범위에 있다. **그래서 NO.209·316의 「지난 3개월의 VM 사용량」은 예가 맞다** — 「Supported Microsoft Azure offers」. 13이라는 수는 쓰지 않는다
+- Cost Management의 비용은 청구서가 나오기 전까지 추정값이고 크레딧을 반영하지 않는다 — 머리말
+- 태그는 사용 기록에 실려 들어온다. 리소스에 직접 붙여야 하고 부모 리소스 그룹에서 저절로 물려받지 않는다. 태그가 붙어 있는 동안의 사용량에만 실리므로, 지난 기록에는 적용되지 않고 지운 뒤의 기록에도 없다. 어떤 리소스는 태그를 지원하지 않거나 사용 기록에 싣지 않는다 — 「How tags are used in cost and usage data」
+
+쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, D99, D100, az143
+
+## (phase 106) Cost Management — Understand and work with scopes (관리 그룹 범위만)
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-work-scopes
+
+확인한 날 2026-11-03. 「Last updated on」 2025-07-25. 사본: `docs-cost-management-understand-work-scopes.md`.
+
+- 관리 그룹은 그 안의 구독에서 나온 사용량 기반 비용을 모아 보여 준다. 예약 같은 구매와 타사 Marketplace 제품은 포함하지 않는다 — 「Enterprise Agreement billing scopes」의 역할 설명 뒤
+- Microsoft Customer Agreement와 CSP의 구독은 Cost Management에서 관리 그룹 범위를 쓰지 못한다 — 「Azure RBAC scopes」, 「Roles used in Cost Management in Microsoft Customer Agreement」, 「Cloud Solution Provider (CSP) scopes」. **그래서 「관리 그룹 비용을 볼 수 있다」를 모든 계약에 단정하지 않는다** — 쓴다면 「계약 종류에 따라 관리 그룹 범위를 쓰지 못하는 경우가 있다」까지(D100)
+- 비용 관리 화면의 범위 선택으로 범위를 바꾼다 — 「Switch between scopes in Cost Management」
+
+쓰일 곳(phase 106): `azure-cost-management.cost-management`, D100
+
+## (phase 106) Cost Management — Quickstart: Start using Cost Analysis, Group and filter options
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/group-filter
+
+확인한 날 2026-11-03. 「Last updated on」 2025-07-01·2025-06-26. 사본: `docs-cost-management-quick-acm-cost-analysis.md`·`docs-cost-management-group-filter.md`와 `ko-` 판.
+
+- 비용 분석은 비용이 어디서 나왔는지 살펴보고 빠르게 답을 얻는 곳이다. 쓰려면 읽기 권한이 필요하다 — 「Prerequisites」, 「Get started」
+- 시간에 따른 비용 요약으로 추세를 보고, 비용을 나눠 어떻게 청구되는지 본다. 구독에서 리소스 그룹, 리소스로 내려가며 볼 수 있다 — 머리말, 「Analyze costs with smart views」
+- 비용을 나누는 기준에 위치(지역)·리소스·리소스 그룹·구독·서비스 이름·태그가 있다. **태그는 태그 이름 하나를 골라 값별로 비용을 나눈다** — 「Group and filter properties」 표. `CostAnalysisDiagram`·`TagCostReportDiagram`의 근거
+- 지난 사용 패턴으로 앞으로의 비용을 예측해 보여 주고, 예산을 고르면 예측이 예산을 넘는지도 본다 — 「Forecasting costs in Cost Analysis」
+- 누적 비용 보기가 있어 시간에 따라 비용이 어떻게 변하는지 본다 — 「Analyze costs with customizable views」
+- 이 화면에서 리소스의 관리 화면을 열어 멈추거나 지울 수 있으나, 분석 자체가 리소스를 바꾸지는 않는다 — 「Analyze costs with smart views」의 목록을 읽은 판단. `CostToolsTable`의 「없다」의 근거
+- 태그가 없는 리소스는 Untagged로, 태그를 지원하지 않거나 사용 기록에 싣지 않는 경우는 따로 표시된다 — 「Group and filter properties」의 Tag 행
+- 스마트 보기·KPI·미리 보기 기능·내보내기는 **쓰지 않는다**
+- 한국어 표기: 「비용 분석」, 「예측 비용」, 「누적 비용」, 「위치」(앱 글은 「지역」), 「서비스 이름」, 「리소스 그룹」, 「태그」
+
+쓰일 곳(phase 106): `azure-cost-management.cost-analysis`, `azure-cost-management.tags`, `CostAnalysisDiagram`, `TagCostReportDiagram`, `CostToolsTable`
+
+## (phase 106) Cost Management — Tutorial: Create and manage budgets
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets
+
+확인한 날 2026-11-03. 「Last updated on」 2025-06-26. 사본: `docs-cost-management-create-budgets.md`와 `ko-` 판.
+
+- 실제 비용이나 예측 비용을 기준으로 경고를 건다. 기준을 넘으면 알림이 간다. **리소스는 영향을 받지 않고 사용도 멈추지 않는다** — 머리말
+- 예산으로 지출을 견주고 따라간다 — 머리말. NO.464의 근거이고 그 답을 한정한다(D101)
+- 비용 데이터가 들어오는 데 시간이 걸리고 예산은 주기적으로 평가되므로, 알림은 기준에 닿은 순간에 오지 않는다 — 머리말. 시간 수는 쓰지 않는다
+- 기간은 달·분기·해이고, 끝나면 같은 금액으로 다시 시작한다. 정한 만료일이 지나면 예산이 사라진다 — 머리말, 「Create a budget in the Azure portal」
+- 범위는 관리 그룹·구독·리소스 그룹과 청구 범위다. 만들 때 필터로 구독 안의 특정 리소스 그룹이나 VM 같은 서비스로 좁힐 수 있다 — 「Prerequisites」, 「Create a budget in the Azure portal」
+- 예산에는 기준 하나 이상과 그에 맞는 이메일 주소가 있어야 한다. 실제 비용 경고와 예측 경고가 따로 있고, 예측 경고는 넘을 것 같을 때 미리 알린다 — 「Configure actual costs budget alerts」, 「Configure forecasted budget alerts」
+- 구독과 리소스 그룹 범위의 예산은 작업 그룹을 부르도록 설정할 수 있다. **다른 범위는 안 된다** — 「Trigger an action group」
+- 예산은 비용 분석에도 나타나 지출 추세와 견줘 본다 — 「Configure forecasted budget alerts」 뒤
+- 한국어 표기: 「예산」, 「예산 경고」, 「실제 비용」, 「예측 예산 경고」, 「작업 그룹」, 「기준」은 문서의 「임계값」을 앱이 쉽게 쓴 말. 머리말의 「조직 지출 한도」는 일반 낱말이므로 쓰지 않는다
+
+쓰일 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`, `CostToolsTable`, D101, D105, az145, az146
+
+## (phase 106) Cost Management — Manage costs with budgets
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-budget-scenario
+
+확인한 날 2026-11-03. 「Last updated on」 2025-06-26. 사본: `docs-cost-management-budget-scenario.md`.
+
+- 예산은 이메일 말고 Azure Monitor의 작업 그룹으로도 알린다. 작업 그룹은 예산 경고에 맞춰 정해 둔 동작을 묶어 실행한다 — 머리말
+- 예로 예산과 Azure Automation의 Runbook(미리 적어 둔 작업 절차)을 이어, 기준에 닿으면 리소스 그룹의 VM을 멈추게 한다. **예산이 스스로 멈추는 것이 아니라, 사람이 만든 자동화가 멈춘다** — 머리말, 「Create an Azure Automation account」 앞 설명
+- Runbook·웹훅·논리 앱의 구성은 **쓰지 않는다**
+- 한국어 표기: 영문판만 받았다. 「작업 그룹」은 위 항목의 표기를 쓴다
+
+쓰일 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`
+
+## (phase 106) Cost Management — Use cost alerts, Identify anomalies
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending
+https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/analyze-unexpected-charges
+
+확인한 날 2026-11-03. 「Last updated on」 둘 다 2025-06-26. 사본: `docs-cost-management-alerts.md`·`docs-cost-management-analyze-unexpected-charges.md`와 `ko-` 판.
+
+- 비용 경고는 활성 경고를 한곳에 모은다. 큰 종류는 예산·크레딧·부서 지출 할당량 경고 셋이고, 변칙 경고를 따로 만들 수 있다 — 머리말
+- 경고 종류마다 쓸 수 있는 계정이 다르다. 예산 경고는 Enterprise Agreement·Microsoft Customer Agreement·종량제에 있고, 크레딧 경고와 부서 지출 할당량 경고는 **Enterprise Agreement에만** 있다 — 「Supported alert features by offer categories」
+- 경고에는 활성·해제 상태가 있고, 비용 경고 화면에서 그 범위의 경고를 본다 — 「View cost alerts」
+- 변칙은 평소 사용 패턴과 다른 움직임이다. 구독마다 하루 사용량을 최근 패턴에 따른 예측값과 견줘 찾는다. **그래서 NO.373의 「구독의 비정상 지출 패턴」은 맞다** — 「Identify cost anomalies」, 「Drill into anomaly details」. 며칠치를 보는지는 쓰지 않는다
+- 변칙 경고는 변칙이 보이면 자동으로 알린다 — 머리말. 비용을 멈추지 않는다는 문장은 없지만, 하는 일로 적은 것이 알림뿐이다(판단)
+- Cost Management와 청구 기능을 쓰는 데 드는 요금은 없다 — 「Identify anomalies」 머리말
+- 표기는 아래 「한국어 표기 정리」
+
+쓰일 곳(phase 106): `azure-cost-management.cost-alerts`, `CostToolsTable`, az147
+
+## (phase 106) Azure Resource Manager — Tag support, Assign policy definitions for tag compliance
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-support
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-policies
+
+확인한 날 2026-11-03. 「Last updated on」 2026-04-03·2025-09-15. 사본: `docs-arm-tag-support.md`, `docs-arm-tag-policies.md`와 `ko-docs-arm-tag-policies.md`.
+
+- 리소스 유형마다 태그를 지원하는지와 비용 보고서에 싣는지가 표로 있다. 태그로 나눈 비용은 Cost Management의 비용 분석에서 본다 — 첫 문단
+- `disks`·`virtualMachines`는 둘 다 지원하고 싣는다. `resourceGroups`·`subscriptions`는 태그를 붙일 수 있으나 비용 보고서에 싣지 않는다. `managementGroups`는 태그를 붙일 수 없다 — `Microsoft.Compute`·`Microsoft.Resources`·`Microsoft.Management` 표. **`TagCostReportDiagram`의 VM·디스크가 맞다**
+- Azure Policy 정의로 리소스를 만들 때 태그를 붙이게 하거나, 태그 없는 리소스를 거부하게(`Require a tag`) 할 수 있다. 이미 있는 리소스에는 수정 작업을 따로 실행해야 붙는다 — 첫 문단, 정의 표
+- 리소스 그룹의 태그를 리소스에 물려주는 정의(`Inherit a tag from the resource group`)가 있고, 구독에서 물려주는 정의도 있다. 리소스를 만들거나 고칠 때 동작한다 — 정의 표. **이것이 `TagInheritanceDiagram`의 「정책을 걸면」의 근거다**
+- 정의의 이름 목록·효과의 이름은 **쓰지 않는다**. Azure Policy의 동작은 `azure-governance`의 몫이다 — 한 줄로 푼다
+- 한국어 표기: 「정책 정의」, 「수정 작업」
+
+쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, az149
+
+## (phase 106) Cost Management — Group and allocate costs using tag inheritance (「상속되지 않는다」의 한정)
+https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance
+
+확인한 날 2026-11-03. 「Last updated on」 2025-06-27. 사본: `docs-cost-management-enable-tag-inheritance.md`.
+
+- Cost Management에 「태그 상속」이라는 **설정**이 있다. 켜면 구독·리소스 그룹 태그가 아래 리소스의 **사용 기록**에 붙는다. **리소스 자체에는 붙지 않는다** — 머리말
+- 이 설정이 있는 계정은 Enterprise Agreement·Microsoft Customer Agreement·Microsoft Partner Agreement다 — 머리말
+- 그래서 「리소스는 태그를 물려받지 않는다」는 이 설정이 있어도 맞다. 주어를 **리소스**로 써서 말하고, 「태그는 어디에도 상속되지 않는다」처럼 넓게 쓰지 않는다. 이 설정은 `tag-inheritance`에 한 줄까지 쓸 수 있다(일부 계약에서 비용 기록에만 붙이는 설정이 있다). 켜는 법과 우선 규칙은 쓰지 않는다
+
+쓰일 곳(phase 106): `azure-cost-management.tag-inheritance`
+
+## (phase 106) Cost Management — Avoid charges with your Azure free account, Create services included with Azure free account
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/avoid-charges-free-account
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-free-services
+
+확인한 날 2026-11-03. 「Last updated on」 2026-03-03(둘 다). **무료 계정의 값(30일·12개월)은 바뀔 수 있으므로 이 날을 함께 본다.** 사본: `docs-cost-management-avoid-charges-free-account.md`·`docs-cost-management-create-free-services.md`와 `ko-` 판.
+
+- 자격을 갖춘 새 사용자가 처음 30일 동안 쓰는 크레딧과, 12개월 동안 쓰는 정해진 양의 무료 서비스를 받는다 — 첫 문단
+- 그 밖에 항상 무료인 서비스도 있다. 일부 서비스의 일부 계층만 정해진 양까지 무료다. 예로 VM은 정해진 크기 몇 가지만 무료다 — 「Create services」 셋째 문단
+- 크레딧은 처음 30일 안에 타사 Marketplace 구매를 뺀 어떤 서비스에도 쓰고, 무료가 아닌 것을 쓰면 크레딧에서 빠진다. 다 쓰지 못한 크레딧은 없어진다 — 「Create services」 첫째·둘째 문단
+- 크레딧이 다 떨어지거나 30일이 끝나면 구독과 서비스가 사용할 수 없게 된다. 계속 쓰려면 계정을 업그레이드한다 — 「Your credit runs out or is expired」
+- 무료 양은 달마다 주고 남아도 다음 달로 넘어가지 않는다. 업그레이드한 뒤 무료 양을 넘기면 넘긴 만큼 종량제 요금을 낸다 — 「Usage exceeds the limits of free services」
+- 12개월이 끝나면 쓰는 서비스에 종량제 요금이 붙는다. 포털에서 끝나는 날을 보고, 안 쓰는 리소스는 지우고, 쓸 일이 없으면 구독을 취소한다 — 「You reached the end of your free 12 months」
+- 포털의 Free services 쪽 밖에서 만들면 무료 계층이 기본으로 골라지지 않을 수 있다. 무료 양 안이면 어느 지역에서나 쓸 수 있다 — 「Create free services in the Azure portal」, 「Services can be created in any region」
+- 한국어 표기: 제품 문서 한국어판은 같은 것을 「Azure 체험 계정」과 「Azure 무료 계정」으로 섞어 쓴다(아래 「한국어 표기 정리」). 「크레딧」, 「무료 서비스」, 「종량제」, 「업그레이드」
+
+쓰일 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`, D102, az150
+
+## (phase 106) Azure 가격 — Explore free Azure services
+https://azure.microsoft.com/en-us/pricing/free-services/
+
+확인한 날 2026-11-03. 쪽에 고친 날이 없다. 사본: `azure-pricing-free-services.md`와 `ko-` 판.
+
+- 무료 서비스는 두 가지다. 계정을 만든 날부터 12개월 동안인 것과, 계정이 있는 동안 계속인 것이다. 둘 다 달마다 정해진 양까지다 — 「Take advantage of two types of free services」
+- 12개월 무료는 Azure 계정이 없었고 받은 적이 없는 새 고객의 것이다. 무료 계정으로 시작한 고객은 30일 안에 종량제로 옮겨야 이어 받는다 — 각주
+- 제품 개수는 쪽마다 다르다 — Learn 단원 2와 이 쪽의 수가 다르다. **쓰지 않는다**(guide)
+
+쓰일 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`
+
+## (phase 106) Cost Management — Upgrade your Azure free account, Azure subscription states, Reactivate a disabled Azure subscription
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/upgrade-azure-subscription
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/subscription-states
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/subscription-disabled
+
+확인한 날 2026-11-03. 「Last updated on」 2026-06-25·2026-06-07·2026-06-07. 사본: `docs-cost-management-upgrade-azure-subscription.md`(`ko-` 판도)·`docs-cost-management-subscription-states.md`·`docs-cost-management-subscription-disabled.md`.
+
+- 무료 계정은 포털에서 종량제 요금으로 업그레이드한다. **NO.134의 둘째 진술은 맞다.** 남은 크레딧은 가입한 날부터 30일까지 쓰고, 무료 서비스도 이어 쓴다 — 「Upgrade your Azure free account」
+- 이 문서는 무료 서비스를 「업그레이드한 뒤 12개월」이라 적고, 가격 쪽은 「계정을 만든 날부터 12개월」이라 적는다. **기산점을 말하지 않거나 가격 쪽대로 쓴다** — 위 문서와 대조
+- 크레딧이 떨어져 구독이 멈춘 뒤 업그레이드하면 멈췄던 리소스가 다시 켜지고, 그 사용량에 요금이 붙는다 — 머리말
+- 사용할 수 없게 된(Disabled) 구독은 리소스를 만들거나 관리할 수 없다. VM은 할당 취소되고 임시 IP 주소는 풀리며 스토리지는 읽기 전용이 되고 다른 서비스는 멈춘다 — 「Disabled」
+- 그 상태에서 만들기·고치기와 **시작 같은 동작 요청이 막히고, 읽기와 삭제는 된다.** 그래서 **NO.251·396의 「있던 VM을 시작하지 못한다」는 맞고** 저장한 데이터는 읽을 수 있다 — 「Disabled」. 까닭은 구독 상태다(D104)
+- 그 상태가 된 까닭으로 크레딧 만료, 지출 한도 도달, 연체, 카드 한도 등이 있고, 구독 유형에 따라 일정 기간 뒤 영구 삭제된다 — 「Disabled」. 기간의 수는 쓰지 않는다
+- Free Trial 구독에서 지출 한도를 없애면 평가판이 끝날 때 종량제 구독으로 바뀐다 — 「You reached your spending limit」의 참고
+- 한국어 표기: 「비활성화」(지출 한도·요금 방지 한국어판). 앱 글은 「구독이 멈춘다」로 풀고 처음에 「사용할 수 없게 된다」로 쓴다
+
+쓰일 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, `SpendingLimitDiagram`, D103, D104, az152
+
+## (phase 106) Cost Management — Azure spending limit
+https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit
+
+확인한 날 2026-11-03. 「Last updated on」 2026-04-29. 사본: `docs-cost-management-spending-limit.md`와 `ko-` 판.
+
+- 지출 한도는 크레딧보다 더 쓰지 못하게 막는다. 무료 계정과 여러 달에 걸쳐 크레딧이 들어 있는 구독에 기본으로 켜진다. 값은 크레딧과 같다 — 첫 문단
+- **금액을 바꿀 수 없고 사용자 지정 한도도 없다.** 없애는 것만 된다. 그래서 한도가 아예 없거나 크레딧과 같거나 둘 중 하나다 — 첫 문단, 「Custom spending limit」. NO.134 셋째 진술의 처리(D103)
+- **약정 플랜과 종량제 구독에는 없다.** 포털에 나오지 않고 켤 수도 없다 — 둘째 문단. `subscription-boundaries`의 문장과 어긋난다(아래 「앞 phase 문장과의 대조」)
+- 닿으면 그 청구 기간이 끝날 때까지 배포한 서비스가 사용할 수 없게 된다. 예로 무료 계정은 리소스가 운영에서 빠지고, VM은 중지되고 할당 취소되며, 스토리지 계정의 데이터는 읽기 전용이 된다 — 「Reaching a spending limit」
+- 여러 달에 걸친 크레딧이 있는 구독은 다음 청구 기간 처음에 저절로 다시 켜진다. 다시 배포하면 된다 — 같은 절
+- 닿으면 이메일이 가고 포털에서 알림을 본다 — 같은 절
+- 무료 계정은 종량제로 업그레이드하면 한도가 없어지고 구독이 다시 켜진다 — 같은 절
+- 유효한 결제 수단이 있으면 언제든 없앨 수 있다. Visual Studio 구독 같은 것은 영구히 또는 이번 청구 기간만 없앨 수 있다 — 「Remove the spending limit in Azure portal」
+- 멈추면 안 되는 서비스가 있거나, 가상 IP 주소 같은 설정을 잃으면 안 되거나, 타사 이미지처럼 금세 한도에 닿을 것을 쓰려면 없앤다 — 「Why you might want to remove the spending limit」
+- **모든 요금을 막지는 않는다.** Marketplace의 일부 외부 서비스는 크레딧으로 낼 수 없고 따로 청구될 수 있다 — 「A spending limit doesn't prevent all charges」
+- 예산과의 차이를 말하는 문장은 문서에 없다. 두 문서의 사실을 앱이 나란히 놓는다 — 예산은 리소스에 영향이 없고(「Create and manage budgets」) 지출 한도는 서비스를 멈춘다(이 문서)
+- 한국어 표기: 「Azure 지출 한도」, 「지출 한도」, 「크레딧」, 「중지되고 할당 취소」, 「읽기 전용」, 「비활성화」, 「약정 플랜」
+
+쓰일 곳(phase 106): `azure-cost-management.spending-limit`, `SpendingLimitDiagram`, `CostToolsTable`, D103, az151, az152
+
+## (phase 106) 앞 phase 문장과의 대조 — 지출 한도
+
+대조한 날 2026-11-03. **이 phase는 앞 phase 데이터를 고치지 않는다** — 메인 세션이 마무리에서 판단한다.
+
+- phase 102의 근거 줄(이 파일의 「액세스 제어 경계」)은 문서가 개발용·운영용 구독에 지출 한도와 액세스 규칙을 달리 둔다고 말하는 대로 적었다. 일반 낱말로 읽으면 근거가 있다.
+- 그러나 앱의 문장은 이 말을 **기능처럼** 세운다. `azure-resource-hierarchy.subscription-boundaries`는 「구독마다 서로 다른 액세스 규칙과 지출 한도를 둘 수 있다」, 「지출 한도는 그 구독에서 쓸 수 있는 금액에 정해 둔 상한이다」라고 쓴다. 「Azure spending limit」은 크레딧이 있는 구독에만 있고 금액을 바꿀 수 없으며 종량제에는 없으므로, **회사가 구독마다 상한을 정해 둔다는 말과 어긋난다.**
+- 어긋나는 곳은 넷이다 — `subscription-boundaries`의 항목 한 문장과 예시 문단 한 문장, `management-group`의 첫 문장, `visuals/azure-resource-hierarchy.json`의 캡션 하나. 문항에는 없다.
+- 구독마다 금액 기준을 달리 두고 싶으면 **예산**이 맞다(구독·리소스 그룹 범위, 「Create and manage budgets」). 다만 예산은 멈추지 않으므로 「상한」이라 쓰면 안 된다.
+
+## (phase 106) 도식·표의 사실 — `azure-cost-management`
+
+뒤 step의 설계에 적힌 라벨·곁말·캡션·칸을 위 항목들과 대조했다(2026-11-03).
+
+| 도식·표 | 쓸 수 있는 것 | 고칠 것 |
+|---|---|---|
+| `CostAnalysisDiagram` | 리소스 그룹별·서비스별·지역별(「Group and filter」의 리소스 그룹·서비스 이름·위치), 「지난달 비용」(날짜 범위를 고른다) | 없음. 금액을 쓰지 않는다 |
+| `BudgetAlertDiagram` | `alert` 경고가 생기고 이메일이 간다, 「리소스는 그대로 실행된다」(「Resources aren't affected」). `automation` 「설정해 둔 동작만 실행된다」, 멈출 수 있다 | 「자동화」는 구독·리소스 그룹 범위의 작업 그룹으로 이어진다고 본문에 쓴다. 기준에 닿은 **순간**이라고 쓰지 않는다 — 평가에 시차가 있다 |
+| `TagCostReportDiagram` | VM·디스크는 태그를 지원하고 비용 보고서에 싣는다, 비용 분석에서 태그 값별로 나눈다, 자리는 그대로 | 태그 곁말은 「부서=영업」 대신 **영어 예**(`Department=Sales`·`Department=Research`)로 쓴다(G59). 그룹 라벨·보고서 라벨 「영업부 비용」은 이름표라 그대로 쓴다. 본문에 태그를 붙인 뒤의 사용량에만 실린다고 쓴다 |
+| `TagInheritanceDiagram` | `default` 「VM에 내려오지 않는다」. `policy` 「정책이 VM에 태그를 붙인다」(만들거나 고칠 때. 이미 있는 리소스는 수정 작업) | 없음. 곁말의 주어는 VM(리소스)으로 둔다 |
+| `FreeAccountOffersDiagram` | 크레딧·12개월 무료 서비스·항상 무료 서비스, 「크레딧이 끝난다」 | **설계를 바꾼다.** `after-30`은 크레딧만 끝나는 그림이 아니다. 업그레이드하지 않으면 **구독과 서비스가 함께 멈춘다.** 12개월 무료와 항상 무료를 이어 쓰는 조건이 업그레이드다. `after-12`의 「항상 무료 서비스만 남는다」는 업그레이드한 계정의 이야기이고, 쓰던 12개월 서비스는 멈추지 않고 종량제 요금이 붙는다. 시나리오는 가입했을 때 / 업그레이드하지 않으면 / 업그레이드하면 / 12개월이 지나면이 사실에 맞는다 |
+| `SpendingLimitDiagram` | `reach` 「읽기 전용」, 배포한 서비스가 멈춘다. `upgrade` 「한도가 없어지고 다시 쓴다」(무료 계정) | 곁말 「중지되고 할당 해제」는 **「중지되고 할당 취소」** 로 쓴다(앞 표기). 다음 청구 기간에 다시 켜지는 구독은 본문에만 쓴다 |
+| `CostToolsTable` | 비용 분석 — 비용을 나눠 본다 / 영향 없다(판단: 문서가 적은 일이 살펴보기다). 예산 — 기준에 닿으면 알린다 / 영향 없다, 따로 설정한 자동화만 바꾼다. 비용 경고 — 경고를 한곳에 모은다 / 영향 없다. 지출 한도 — 크레딧보다 더 쓰지 못하게 막는다 / 서비스를 멈춘다 | 없음 |
+
+## (phase 106) 한국어 표기 정리 — `azure-cost-management`
+
+위 항목들의 한국어 표기 줄에서 이 주제가 쓸 이름을 정했다(phase 106 step 4). Microsoft 한국어 문서의 표기를 따른다. 기계 번역이 낱말을 어색하게 옮긴 곳만 까닭을 적고 다른 말을 고른다.
+
+| 개념 | 쓸 이름(`name`) | 근거 |
+|---|---|---|
+| `cost-management` | **Microsoft Cost Management** | 제품 문서 한국어판 제목 「Microsoft Cost Management란?」, Learn 단원 6 제목. 본문은 「Cost Management」(옮기지 않는다) |
+| `cost-analysis` | **비용 분석** | 「빠른 시작: 비용 분석 사용 시작」 |
+| `budgets` | **예산** | 「자습서: 예산 만들기 및 관리」 |
+| `cost-alerts` | **비용 경고** | 「비용 경고를 사용하여 사용량 및 지출 모니터링」 |
+| `tags` | **태그** | 「태그의 용도 설명」 |
+| `tag-inheritance` | **태그 상속** | Resource Manager 문서의 절 제목 「태그 상속」. 같은 말이 Cost Management 설정 이름이기도 하므로 본문이 리소스가 물려받지 않는다고 먼저 쓴다 |
+| `free-account` | **Azure 무료 계정** | 「Azure 무료 계정에 포함된 서비스 만들기」, 가격 쪽 |
+| `spending-limit` | **Azure 지출 한도** | 「Azure 지출 한도」 |
+
+항목 이름:
+
+- **`cost-management`**: 비용 분석(Cost analysis), 비용 경고(Cost alerts), 예산(Budgets)
+- **`cost-alerts`**: 예산 경고(Budget alerts), 크레딧 경고(Credit alerts), 부서 지출 할당량 경고(Department spending quota alerts), 변칙 경고(Anomaly alerts)
+- **`tags`**: 리소스 관리(Resource management), 비용 관리 및 최적화(Cost management and optimization), 운영 관리(Operations management), 보안(Security), 거버넌스 및 규정 준수(Governance and regulatory compliance), 워크로드 최적화 및 자동화(Workload optimization and automation)
+- **`free-account`** 세 가지: 크레딧, 12개월 무료 서비스, 항상 무료 서비스
+
+낱말과 라벨:
+
+- **실제 비용**, **예측 비용**(가격 계산기의 「예상 비용」과 섞이지 않게 나눈다), **기준**(문서의 임계값을 앱이 쉽게 쓴 말), **작업 그룹**, **자동화**
+- **Azure 선불**, **기업 계약**(Enterprise Agreement를 처음에 함께 적는다. 한국어판의 「기업계약」을 띄어 쓴다 — guide의 표기), **부서 소유자**, **계정 소유자**
+- **이름**과 **값**(Learn 한국어판. 문서의 「키-값 쌍」은 쓰지 않는다), **메타데이터**, **Azure Policy**(옮기지 않는다), **정책**
+- **크레딧**, **업그레이드**, **종량제**, **중지되고 할당 취소**, **읽기 전용**, **청구 기간**
+
+**섞여 쓰인 표기**:
+
+- 「Azure 체험 계정」과 「Azure 무료 계정」과 「평가판」 — 받아 둔 한국어판 안에서 앞의 둘이 27번·33번이고 한 쪽 안에도 섞인다. 가격 쪽이 「무료 계정」만 쓰고, 영문의 free account에 곧바로 대응하며, 「체험」은 곧 끝날 것으로만 읽혀 12개월·항상 무료 서비스와 어긋나므로 「무료 계정」을 쓴다. Learn 단원 2의 「평가판 구독」은 쓰지 않는다.
+- 「신용 경고」와 「크레딧 경고」 — 같은 한국어판 안에 섞인다. 「신용」은 신용 등급처럼 읽히고 앱의 「크레딧」과 이어지지 않으므로 「크레딧 경고」를 쓴다. **이 크레딧은 Azure 선불이고 무료 계정의 크레딧이 아니다** — 본문이 밝힌다.
+- 「이상 징후 경고」는 설계의 잠정 이름이고 한국어판에 없다. 받아 둔 쪽이 모두 「변칙」이라 「변칙 경고」를 쓰고 처음에 「평소와 다른 비용 변화」로 푼다.
+- 「비활성화」와 「사용 안 함」 — 앱 글은 「사용할 수 없게 된다」, 「구독이 멈춘다」로 풀어 쓴다. 처음 배우는 사람에게는 이쪽이 무엇이 일어나는지를 바로 말해 준다.
+- 「예상 비용」과 「예측 비용」 — 한국어판은 forecast를 두 말로 옮긴다. 앞 step의 가격 계산기가 「예상 비용」을 쓰므로 이 주제는 「예측 비용」으로 나눈다.
+- 일반 낱말 「지출 한도」 — Learn 단원 6과 예산 튜토리얼 한국어판은 예산을 말하며 이 말을 쓴다. 이 주제는 기능 「Azure 지출 한도」에만 쓰고, 예산에는 「기준」·「금액 기준」을 쓴다.
+
+**쓰지 않는 이름**: FinOps, 스마트 보기·KPI, 내보내기, Consumption API·REST API, Runbook·웹훅을 개념 이름으로, 일정 경고·청구서 경고, Enterprise Agreement의 등록 계정·부서 구조, 구독 소유권 이전, Microsoft Partner Agreement.
