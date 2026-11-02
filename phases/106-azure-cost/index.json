@@ -1,0 +1,51 @@
+{
+  "project": "Study Quiz",
+  "phase": "106-azure-cost",
+  "steps": [
+    {
+      "step": 0,
+      "name": "cost-factors-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "factors-data-transfer",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "vm-stop-unused",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "savings-calculator",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "cost-management-sources",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "cost-management-analysis",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "budgets-alerts",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "tags",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "free-account-limit",
+      "status": "pending"
+    }
+  ]
+}
