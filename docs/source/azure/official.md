@@ -299,6 +299,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-compute-networ
   vCPU → vCPU(가상 CPU), Virtual machine scale sets → 절 제목은 영문 그대로, 본문 「가상 머신 확장 집합」·「확장 집합」, Virtual machine availability sets → 가상 머신 가용성 집합·가용성 집합, update domain → 업데이트 도메인, fault domain → 장애 도메인, availability zones → 가용성 영역 (phase 103)
 
 쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(정의·맞는 경우 셋·이미지·쓰임 다섯·크기는 용도와 vCPU·메모리로, vCPU 풀이), `azure-compute.vm-resources`(고르는 설정의 목록), D51
+쓰인 곳(phase 106 step 2): az135 해설(VM 크기는 프로세서와 메모리의 설정이며, 크기를 바꾸고 실행하는 것과 할당 취소를 구별)
 
 쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(확장 집합이 없을 때의 일, 구성을 한곳에, 수요·일정에 따른 증감, 부하 분산), `azure-compute.availability-sets`(정의·두 도메인·영역이 더 넓게 격리·비용 없음), az058~az060 해설, G27·G28
 
@@ -329,7 +330,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/overview
 - 한국어 표기: virtual network → 가상 네트워크, virtual Network Interface Card (NIC) → 가상 네트워크 인터페이스 카드(NIC), private IP address → **개인 IP 주소**, public IP address → **공용 IP 주소**, Network security group (NSG) → NSG(네트워크 보안 그룹), OS disk → OS 디스크(「운영 체제 디스크」도 섞였다), data disk → 데이터 디스크, resource group → 리소스 그룹 (phase 103)
 
 쓰인 곳(phase 103 step 1): `azure-compute.virtual-machines`(더 많이 통제할 때), `azure-compute.vm-resources`(함께 만들어지는 리소스와 쓰임, 데이터 디스크를 따로 두는 까닭, 비용이 따로 붙을 수 있다, 같은 리소스 그룹), `VmResourcesDiagram`, D51·D57
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`(VM을 만들면 받쳐 주는 리소스가 함께 생기고, 네트워크 인터페이스에는 따로 비용이 없다), `LeftoverResourcesDiagram`, D96
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`(VM에 딸린 리소스, 네트워크 인터페이스와 NSG에 별도 비용이 없음), `LeftoverResourcesDiagram`, az137, D96
 
 쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(영역에 나눠 배포 — 여러 가용성 영역에 걸쳐 만드는 것만 썼다. 한 영역에만 두거나 영역을 정하지 않는 선택지는 쓰지 않았다)
 
@@ -460,7 +461,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - **Azure Marketplace**: 타사 업체의 해법과 서비스를 산다. Azure 서비스 값에 더해 업체의 서비스나 전문성 값도 낼 수 있고, **청구 구조는 업체가 정한다** — 「Azure Marketplace」(인증 정책은 쓰지 않는다, guide 「배경」) (phase 106)
 
 쓰인 곳(phase 106): `azure-cost-factors.cost-factors`, `azure-cost-factors.data-transfer-costs`, `CostFactorsDiagram`, `DataTransferCostsDiagram`, D88, D95
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`
 
 ## (phase 100) Cost Management — Review your individual Azure subscription bill
 https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/review-individual-bill
@@ -486,6 +487,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/sav
 - 한국어 표기: Azure Reservations → **Azure 예약**, pay-as-you-go prices → 종량제 가격, billing discount → 청구 할인, up front / monthly → 선결제·선불 / 매달·월별
 
 쓰인 곳: `azure-cloud-computing.reservations`, `PricingModelsTable`(예약 행), D5, G3
+쓰인 곳(phase 106 step 2): az135 해설(예약은 실행 상태를 바꾸지 않고 청구 금액을 깎는 할인)
 쓰일 곳(phase 106): `azure-cost-factors.savings-plan`(예약을 다시 푸는 한 줄 — 1년이나 3년, 값을 깎는 할인), `azure-cost-factors.hybrid-benefit`(소프트웨어·Windows 라이선스는 덮지 않는다), `CostSavingOptionsTable`, D94, G57
 
 ## (phase 100) Cost Management — How the Azure reservation discount is applied to virtual machines
@@ -648,7 +650,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing
 - 요금이 붙지 않는 상태에서도 디스크와 네트워킹 같은 일부 리소스 요금은 계속된다 — 같은 표 별표. 이 문서는 포털의 중지 단추를 말하지 않는다. 그것은 아래 「Virtual Machines 가격 쪽의 FAQ」가 말한다 (phase 106)
 - 한국어 표기: power state → 전원 상태, Stopped → **중지됨**, Stopped (Allocated) → 중지됨(할당됨), Deallocated → **할당 취소됨**, Stopped (Deallocated) → **중지됨(할당 취소됨)**, guest OS → 게스트 OS
 
-쓰일 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`, D93, D98
+쓰인 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`, D93, D98
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is serverless computing?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-serverless-computing
@@ -2339,7 +2341,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-ad
 
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
 쓰인 곳(phase 103 step 7): `azure-virtual-networking.endpoints`, `PrivateEndpointDiagram`
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`(현행 Standard SKU는 정적 할당만 받고 Basic SKU는 2025-09-30에 사용 중지되었다 — 「Public IP addresses」 Important와 SKU 표, 다시 확인한 날 2026-11-02)
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`(현행 Standard SKU는 정적 할당만 받고 Basic SKU는 2025-09-30에 사용 중지되었다 — 「Public IP addresses」 Important와 SKU 표, 다시 확인한 날 2026-11-02)
 
 ## (phase 103) Azure Virtual Network — Default outbound access in Azure (쓰지 않는 근거)
 https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access
@@ -4041,7 +4043,8 @@ https://learn.microsoft.com/en-us/cli/azure/vm
 - 가진 Windows Server 라이선스를 Azure 하이브리드 혜택으로 쓰면 그 라이선스 수만큼 운영 체제 값을 Azure가 빼 주고, **VM 컴퓨팅 값만** 낸다 — Windows 쪽 FAQ 「Can I use my existing Windows Server or Linux Server licenses on Azure?」
 - 한국어 표기: `ko-docs-virtual-machines-states-billing.md`의 **중지됨**, **중지됨(할당 취소됨)**, **할당 취소됨**을 따른다
 
-쓰일 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `azure-cost-factors.hybrid-benefit`, `VmStopBillingDiagram`, `HybridBenefitDiagram`, D93
+쓰인 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`, az135, D93
+쓰일 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`
 
 ## (phase 106) Azure Virtual Machines — Hibernation for Azure virtual machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/hibernate-resume
@@ -4053,7 +4056,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/hibernate-resume
 - **못 찾은 것**: 운영 체제의 **절전 모드(sleep)** 를 VM 요금과 잇는 문장과, **원격 데스크톱 연결을 끊는 일**을 VM 요금과 잇는 문장은 허용한 출처에서 찾지 못했다. 위 문장은 「운영 체제 안에서 하는 최대 절전」까지만 말한다. 그래서 두 조작에 관해서는 「요금이 멈추지 않는다」를 단정하지 않고, **요금이 멈추는 상태는 할당 취소됨이라는 것**과 **운영 체제 안에서 끄면 중지됨에 머문다는 것**만 쓴다
 - 이 기능 자체(최대 절전)는 개념으로 세우지 않는다
 
-쓰일 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`(근거로만), D93, D98
+쓰인 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`(근거로만), D93, D98
 
 ## (phase 106) Azure Virtual Machines — Delete a VM and attached resources
 https://learn.microsoft.com/en-us/azure/virtual-machines/delete
@@ -4064,7 +4067,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/delete
 - 포털에서 VM을 만들 때 VM과 함께 지울 것을 고를 수 있다. 새 OS 디스크는 기본으로 함께 지우게 되어 있고, 공용 IP와 네트워크 인터페이스는 「함께 삭제」를 골라야 한다 — 「Set delete options when creating a VM」. **그래서 「VM을 지워도 언제나 모두 남는다」로 쓰지 않고 「남을 수 있다」로 쓴다.**
 - 한국어 표기: 제목 「VM 및 연결된 리소스 삭제」, OS 디스크, 공용 IP, NIC
 
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
 
 ## (phase 106) Azure 가격 — IP Addresses pricing
 https://azure.microsoft.com/en-us/pricing/details/ip-addresses/
@@ -4077,7 +4080,7 @@ https://azure.microsoft.com/en-us/pricing/details/ip-addresses/
 - 2025-09-30에 Basic SKU 공용 IP가 사용 중지되었다. 현행 Standard는 정적만 받는다 — 「Public IP addresses」 문서의 Important와 SKU 표(앞 phase가 받은 사본 `docs-virtual-network-ip-services-public-ip-addresses.md`)
 - 한국어 표기: 공용 IP 주소
 
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
 
 ## (phase 106) Azure managed disks — Understand Azure Disk Storage billing
 https://learn.microsoft.com/en-us/azure/virtual-machines/disks-understand-billing
@@ -4087,7 +4090,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/disks-understand-billin
 - 관리 디스크는 만들어 둔 용량을 기준으로 청구된다(디스크 유형마다 항목이 조금씩 다르다) — 「Ultra Disk」·「Premium SSD v2」 절의 청구 예
 - 「VM이 지워진 뒤 남은 디스크에도 요금이 붙는다」를 그대로 말하는 문장은 이 문서에 없다. 판단 근거는 셋이다 — 만들어 둔 용량으로 청구한다(위), 할당 취소된 VM의 디스크에도 요금이 계속 붙는다(「States and billing」 별표), 쓰지 않는 딸린 리소스를 남겨 두지 않아야 비용을 다스린다(Learn 단원 2 「Maintenance」). 그래서 디스크에는 「요금이 붙는다」로 쓴다
 
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
 
 ## (phase 106) Microsoft Entra — Microsoft Entra licensing
 https://learn.microsoft.com/en-us/entra/fundamentals/licensing
@@ -4098,7 +4101,7 @@ https://learn.microsoft.com/en-us/entra/fundamentals/licensing
 - P1·P2는 따로 사거나 다른 제품에 든 라이선스이고, 몇몇 기능은 사용자마다 라이선스가 필요하다 — 같은 절과 기능별 줄
 - **못 찾은 것**: 「Free에서 사용자 계정·그룹을 지우면 Azure 요금이 줄어들지 않는다」를 그대로 말하는 문장은 허용한 출처에서 찾지 못했다. 그래서 「Entra ID의 Free는 Azure 구독에 들어 있어 사용자·그룹을 지운다고 줄어들 요금이 없다」까지 **Free로 한정해** 쓰고, 「Entra 사용자에는 어떤 요금도 없다」로 넓히지 않는다
 
-쓰일 곳(phase 106): `azure-cost-factors.unused-resources`, D96
+쓰인 곳(phase 106): `azure-cost-factors.unused-resources`, D96
 
 ## (phase 106) 리소스 그룹 자체의 요금 — 못 찾음
 확인한 날 2026-11-02.
@@ -4169,8 +4172,8 @@ https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit/
 | `PricingCalculatorDiagram` | `choices`(지역·계층·중복성), 「아무것도 만들어지지 않는다」, 「실제로 쓴 비용」 | 없음 |
 | `CostSavingOptionsTable` | 예약(특정 리소스·크기·지역에 1년이나 3년 / 쉬지 않고 실행되고 속성이 바뀌지 않는 작업), 저축 플랜(시간당 금액을 1년이나 3년 / 서비스·지역이 바뀌는 작업), 스폿(Azure가 언제든 회수할 수 있음을 받아들인다 / 멈춰도 되는 일괄 작업), 하이브리드 혜택(이미 가진 라이선스 / Windows Server·SQL Server를 Azure에서 실행하는 작업) | 없음 |
 
-쓰인 곳(phase 106): `CostFactorsDiagram`, `DataTransferCostsDiagram`
-쓰일 곳(phase 106): 위 표의 나머지 도식과 표
+쓰인 곳(phase 106): `CostFactorsDiagram`, `DataTransferCostsDiagram`, `VmStopBillingDiagram`, `LeftoverResourcesDiagram`
+쓰일 곳(phase 106): `HybridBenefitDiagram`, `PricingCalculatorDiagram`, `CostSavingOptionsTable`
 
 ## (phase 106) 한국어 표기 정리 — `azure-cost-factors`
 

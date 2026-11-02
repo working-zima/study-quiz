@@ -99,6 +99,7 @@ import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
 import { LayerMappingDiagram } from './LayerMappingDiagram'
+import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
@@ -186,6 +187,7 @@ import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
 import { VmContainerDiagram } from './VmContainerDiagram'
 import { VmResourcesDiagram } from './VmResourcesDiagram'
+import { VmStopBillingDiagram } from './VmStopBillingDiagram'
 import { VnetIsolationDiagram } from './VnetIsolationDiagram'
 import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
@@ -444,6 +446,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-security-model.sentinel': [SentinelFlowDiagram, SecurityToolsTable],
   'azure-cost-factors.cost-factors': CostFactorsDiagram,
   'azure-cost-factors.data-transfer-costs': DataTransferCostsDiagram,
+  'azure-cost-factors.vm-stop-deallocate': VmStopBillingDiagram,
+  'azure-cost-factors.unused-resources': LeftoverResourcesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
