@@ -4017,8 +4017,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 이 단원은 예산을 말하면서 영어로 「spending limit」이라는 낱말을 쓰지만, 이것은 일반 낱말이다. 제품 기능 「Azure 지출 한도」와 다르다(아래 「Azure spending limit」 항목) — 「Budgets」
 - 한국어 표기: 「비용 경고」, 「예산 경고」, 「부서 지출 할당량 경고」, 「신용 경고」와 「크레딧 알림」이 한 쪽에 섞임, 「Azure 선불」, 「기업계약」
 
-쓰인 곳(phase 106): az142, `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az143, az144
-쓰일 곳(phase 106): `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `BudgetAlertDiagram`, `CostToolsTable`
+쓰인 곳(phase 106): az142, `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az143, az144, `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `BudgetAlertDiagram`, az145, az147
+쓰일 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「Estimate your cloud costs」
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4282,8 +4282,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-c
 - Azure Advisor의 비용 권장 사항은 이미 있는 리소스를 줄일 길을 사용 패턴으로 제안한다 — 「Optimize costs」. 정한 금액을 넘을 때 메일을 보낸다는 말은 없다(D105). 권장 사항 자체는 `azure-monitoring`의 몫이라 쓰지 않는다
 - 한국어 표기: 「Microsoft Cost Management」, 본문은 「Cost Management」(옮기지 않음), 「변칙 경고」, 「작업 그룹」, 「청구 계정」
 
-쓰인 곳(phase 106): `azure-cost-management.cost-management`, D99, D100, az143
-쓰일 곳(phase 106): `azure-cost-management.cost-alerts`
+쓰인 곳(phase 106): `azure-cost-management.cost-management`, D99, D100, az143, `azure-cost-management.cost-alerts`, az147
 
 ## (phase 106) Cost Management — Understand Cost Management data
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data
@@ -4345,7 +4344,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-a
 - 예산은 비용 분석에도 나타나 지출 추세와 견줘 본다 — 「Configure forecasted budget alerts」 뒤
 - 한국어 표기: 「예산」, 「예산 경고」, 「실제 비용」, 「예측 예산 경고」, 「작업 그룹」, 「기준」은 문서의 「임계값」을 앱이 쉽게 쓴 말. 머리말의 「조직 지출 한도」는 일반 낱말이므로 쓰지 않는다
 
-쓰일 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`, `CostToolsTable`, D101, D105, az145, az146
+쓰인 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`, D101, D105, az145, az146
+쓰일 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Manage costs with budgets
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-budget-scenario
@@ -4357,7 +4357,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-mana
 - Runbook·웹훅·논리 앱의 구성은 **쓰지 않는다**
 - 한국어 표기: 영문판만 받았다. 「작업 그룹」은 위 항목의 표기를 쓴다
 
-쓰일 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`
+쓰인 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`, az145
 
 ## (phase 106) Cost Management — Use cost alerts, Identify anomalies
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending
@@ -4370,11 +4370,12 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/analy
 - 경고에는 활성·해제 상태가 있고, 비용 경고 화면에서 그 범위의 경고를 본다 — 「View cost alerts」
 - 변칙은 평소 사용 패턴과 다른 움직임이다. 구독마다 하루 사용량을 최근 패턴에 따른 예측값과 견줘 찾는다. **그래서 NO.373의 「구독의 비정상 지출 패턴」은 맞다** — 「Identify cost anomalies」, 「Drill into anomaly details」. 며칠치를 보는지는 쓰지 않는다
 - 변칙 경고는 변칙이 보이면 자동으로 알린다 — 머리말. 비용을 멈추지 않는다는 문장은 없지만, 하는 일로 적은 것이 알림뿐이다(판단)
+- 변칙 경고는 비용 경고 화면에서 경고 규칙을 따로 만들어 두어야 오고, 이메일로 온다 — 「Create an anomaly alert」, 「Automate responses to anomaly alerts」
 - Cost Management와 청구 기능을 쓰는 데 드는 요금은 없다 — 「Identify anomalies」 머리말
 - 표기는 아래 「한국어 표기 정리」
 
-쓰인 곳(phase 106): `azure-cost-management.cost-management`(쓰는 데 드는 요금이 없음), az143
-쓰일 곳(phase 106): `azure-cost-management.cost-alerts`, `CostToolsTable`, az147
+쓰인 곳(phase 106): `azure-cost-management.cost-management`(쓰는 데 드는 요금이 없음), az143, `azure-cost-management.cost-alerts`, az147
+쓰일 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Azure Resource Manager — Tag support, Assign policy definitions for tag compliance
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-support
@@ -4466,6 +4467,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-
 - 예산과의 차이를 말하는 문장은 문서에 없다. 두 문서의 사실을 앱이 나란히 놓는다 — 예산은 리소스에 영향이 없고(「Create and manage budgets」) 지출 한도는 서비스를 멈춘다(이 문서)
 - 한국어 표기: 「Azure 지출 한도」, 「지출 한도」, 「크레딧」, 「중지되고 할당 취소」, 「읽기 전용」, 「비활성화」, 「약정 플랜」
 
+쓰인 곳(phase 106): `azure-cost-management.budgets`(예산과 다른 기능임을 밝히는 한 문장), az145
 쓰일 곳(phase 106): `azure-cost-management.spending-limit`, `SpendingLimitDiagram`, `CostToolsTable`, D103, az151, az152
 
 ## (phase 106) 앞 phase 문장과의 대조 — 지출 한도

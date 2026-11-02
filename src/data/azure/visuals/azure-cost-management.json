@@ -46,6 +46,46 @@
       "sources": [
         "azure-cost-management.cost-analysis"
       ]
+    },
+    "budget-alert": {
+      "label": "쓴 비용이 예산의 기준에 닿은 뒤 비용 경고와 이메일로 이어지는 갈래와 자동화와 리소스로 이어지는 갈래",
+      "svgLabel": "쓴 비용에서 예산으로 화살표가 가고, 예산에서 비용 경고와 이메일로 가는 갈래와 자동화와 리소스로 가는 갈래가 나뉜다",
+      "question": "예산을 넘으면 리소스가 멈출까?",
+      "idleCaption": "쓴 비용이 예산의 기준에 닿은 뒤 이어지는 두 갈래를 그렸다. 버튼을 고르면 경고까지만 갈 때와 자동화를 더했을 때를 볼 수 있다.",
+      "legend": "화살표는 쓴 비용이 기준에 닿은 뒤 이어지는 일을 잇는다. 자동화는 구독이나 리소스 그룹 범위의 예산에 따로 설정했을 때만 이어진다.",
+      "nodes": {
+        "spending": "쓴 비용",
+        "budget": "예산",
+        "alert": "비용 경고",
+        "email": "이메일",
+        "automation": "자동화",
+        "resource": "리소스"
+      },
+      "notes": {
+        "alert-note": "리소스는 그대로 실행된다",
+        "automation-note": "설정해 둔 동작만 실행된다"
+      },
+      "scenarios": [
+        {
+          "id": "alert",
+          "label": "경고까지",
+          "caption": "쓴 비용이 기준에 닿으면 비용 경고가 생기고 담당자에게 이메일이 가지만, 리소스는 멈추지 않고 그대로 실행된다.",
+          "sources": [
+            "azure-cost-management.budgets"
+          ]
+        },
+        {
+          "id": "automation",
+          "label": "자동화를 더했을 때",
+          "caption": "담당자가 리소스를 멈추는 동작을 자동화로 따로 설정해 두면, 쓴 비용이 기준에 닿았을 때 그 동작이 리소스를 멈춘다. 예산이 스스로 멈추는 것은 아니다.",
+          "sources": [
+            "azure-cost-management.budgets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.budgets"
+      ]
     }
   },
   "tables": {},
