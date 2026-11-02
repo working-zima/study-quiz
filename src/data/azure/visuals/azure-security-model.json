@@ -1,0 +1,396 @@
+{
+  "diagrams": {
+    "rbac-assignment": {
+      "label": "엔지니어 그룹에 역할을 할당하면 새 사람과 새 리소스에 권한이 어떻게 미치는지 보인 모습",
+      "svgLabel": "엔지니어 그룹 안에 엔지니어 A와 새 엔지니어가, 역할을 건 범위 안에 리소스 A와 새 리소스가 있고 그 사이에 기여자 역할이 있다",
+      "question": "사람이 늘어나도 권한을 어떻게 한 번에 줄까?",
+      "idleCaption": "회사 A의 엔지니어 그룹과 기여자 역할, 역할을 건 범위를 보인 그림이다. 사람과 리소스 사이에 역할이 있다. 버튼을 고르면 사람이나 리소스가 늘 때 권한이 어떻게 이어지는지 볼 수 있다.",
+      "legend": "두 박스는 엔지니어 그룹과 역할을 건 범위다. 화살표는 사람이 역할을 받고, 그 역할이 리소스에 미치는 방향이다.",
+      "nodes": {
+        "member": "엔지니어 A",
+        "new-member": "새 엔지니어",
+        "role": "기여자 역할",
+        "resource": "리소스 A",
+        "new-resource": "새 리소스"
+      },
+      "groups": {
+        "engineers": "엔지니어 그룹",
+        "scope": "역할을 건 범위"
+      },
+      "notes": {
+        "assign-note": "그룹에 역할을 할당",
+        "new-person-note": "그룹에 넣으면 같은 권한",
+        "new-resource-note": "범위 안의 새 리소스에도"
+      },
+      "scenarios": [
+        {
+          "id": "assign",
+          "label": "역할 할당",
+          "caption": "엔지니어 그룹에 기여자 역할을 할당하면 구성원인 엔지니어 A가 그 역할의 권한을 받아, 역할을 건 범위의 리소스 A를 관리한다.",
+          "sources": [
+            "azure-security-model.rbac"
+          ]
+        },
+        {
+          "id": "new-person",
+          "label": "새 사람",
+          "caption": "새 엔지니어를 그룹에 넣으면 권한을 따로 적지 않아도 다른 구성원과 같은 권한을 받아 리소스 A를 관리한다.",
+          "sources": [
+            "azure-security-model.rbac"
+          ]
+        },
+        {
+          "id": "new-resource",
+          "label": "새 리소스",
+          "caption": "역할을 건 범위에 새 리소스가 생기면 이미 그룹에 있는 구성원에게도 같은 권한이 미친다. 역할을 새로 할당하지 않아도 된다.",
+          "sources": [
+            "azure-security-model.rbac"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.rbac"
+      ]
+    },
+    "rbac-scope": {
+      "label": "관리 그룹, 구독, 리소스 그룹, 리소스 가운데 역할을 건 범위와 그 아래로 상속되는 넓이를 보인 모습",
+      "svgLabel": "관리 그룹에서 구독, 리소스 그룹, 리소스로 화살표가 차례로 이어진다",
+      "question": "어디에 역할을 걸면 어디까지 미칠까?",
+      "idleCaption": "역할을 걸 수 있는 범위 넷을 넓은 쪽부터 이었다. 버튼을 고르면 어느 범위에 건 역할이 어디까지 미치는지 볼 수 있다.",
+      "legend": "화살표는 넓은 범위에 건 역할을 좁은 범위가 물려받는 방향이다. 선명한 상자가 그 역할이 미치는 곳이다.",
+      "nodes": {
+        "management-group": "관리 그룹",
+        "subscription": "구독",
+        "resource-group": "리소스 그룹",
+        "resource": "리소스"
+      },
+      "notes": {
+        "at-mg-note": "여기에 소유자",
+        "at-subscription-note": "여기에 읽기 권한자",
+        "at-resource-note": "이 리소스에만"
+      },
+      "scenarios": [
+        {
+          "id": "at-mg",
+          "label": "관리 그룹에 소유자",
+          "caption": "관리 그룹에 소유자 역할을 건 경우다. 이 역할을 받은 쪽은 그 아래 구독과 리소스 그룹, 리소스를 모두 관리한다.",
+          "sources": [
+            "azure-security-model.rbac-scope"
+          ]
+        },
+        {
+          "id": "at-subscription",
+          "label": "구독에 읽기 권한자",
+          "caption": "구독에 읽기 권한자 역할을 건 경우다. 그 구독의 리소스 그룹과 리소스를 모두 볼 수 있고, 구독 위의 관리 그룹에는 미치지 않는다.",
+          "sources": [
+            "azure-security-model.rbac-scope"
+          ]
+        },
+        {
+          "id": "at-resource",
+          "label": "리소스 하나에",
+          "caption": "리소스 하나에 건 역할은 위로 올라가지 않는다. 다른 할당이 없으면 같은 리소스 그룹의 다른 리소스에도 닿지 못한다.",
+          "sources": [
+            "azure-security-model.rbac-scope"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.rbac-scope"
+      ]
+    },
+    "zero-trust": {
+      "label": "회사 네트워크 안과 밖의 디바이스가 보낸 요청을 경계 기반과 제로 트러스트가 어떻게 다루는지 보인 모습",
+      "svgLabel": "회사 네트워크 박스 안에 사내 디바이스가 있고, 박스 밖에 공용 네트워크의 디바이스, 요청 확인, 앱이 있다",
+      "question": "회사 안에서 보낸 요청도 왜 확인할까?",
+      "idleCaption": "회사 네트워크 안의 사내 디바이스와 공용 네트워크의 디바이스, 요청을 확인하는 단계, 앱을 보인 그림이다. 버튼을 고르면 요청이 앱까지 어떤 길로 가는지 볼 수 있다.",
+      "legend": "박스는 회사 네트워크다. 화살표는 요청이 가는 길이고, 화살표가 끊긴 곳에서 요청이 멈춘다.",
+      "nodes": {
+        "inside-device": "사내 디바이스",
+        "outside-device": "공용 네트워크의 디바이스",
+        "verify": "요청 확인",
+        "app": "앱"
+      },
+      "groups": {
+        "corp-network": "회사 네트워크"
+      },
+      "notes": {
+        "perimeter-note": "안에 있으면 믿는다",
+        "zero-trust-note": "어디서 오든 확인",
+        "high-risk-note": "로그인 차단"
+      },
+      "scenarios": [
+        {
+          "id": "perimeter",
+          "label": "경계 기반",
+          "caption": "예전의 경계 기반은 회사 네트워크 안쪽을 안전하다고 여겼다. 그래서 사내 디바이스의 요청을 안에 있다는 이유로 믿었다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        },
+        {
+          "id": "zero-trust",
+          "label": "제로 트러스트",
+          "caption": "회사 네트워크 안이든 공용 네트워크든 요청은 모두 확인을 거친다. ID와 디바이스 상태, 위험을 살핀 뒤 앱에 들어갈지 정한다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        },
+        {
+          "id": "high-risk",
+          "label": "위험이 높을 때",
+          "caption": "공용 네트워크의 디바이스에서 온 요청의 위험이 너무 높으면 로그인을 막을 수 있다. 이 요청은 앱까지 가지 못한다.",
+          "sources": [
+            "azure-security-model.zero-trust"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.zero-trust"
+      ]
+    },
+    "defense-in-depth": {
+      "label": "심층 방어의 계층 일곱을 바깥쪽부터 차례로 잇고, 계층마다 맡는 일과 한 계층이 뚫릴 때를 보인 모습",
+      "svgLabel": "물리적 보안, ID 및 액세스, 경계, 네트워크, 컴퓨팅, 애플리케이션, 데이터가 화살표로 차례로 이어진다",
+      "question": "한 겹이 뚫리면 그다음은 무엇이 막을까?",
+      "idleCaption": "데이터를 지키는 계층 일곱을 바깥쪽부터 이었다. 버튼을 고르면 어떤 일을 어느 계층이 맡는지, 한 계층이 뚫리면 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 바깥쪽 계층에서 안쪽 계층으로 이어지는 순서다. 선명한 상자가 그 장면에서 볼 계층이다.",
+      "nodes": {
+        "physical": "물리적 보안",
+        "identity": "ID 및 액세스",
+        "perimeter": "경계",
+        "network": "네트워크",
+        "compute": "컴퓨팅",
+        "application": "애플리케이션",
+        "data": "데이터"
+      },
+      "notes": {
+        "data-note": "지키려는 것",
+        "ddos-note": "DDoS 보호",
+        "identity-note": "SSO·다단계 인증",
+        "breached-note": "이 계층이 뚫림",
+        "next-layer-note": "다음 계층이 막는다"
+      },
+      "scenarios": [
+        {
+          "id": "ddos",
+          "label": "대규모 공격",
+          "caption": "트래픽을 한꺼번에 보내는 대규모 공격은 경계 계층의 DDoS 보호가 맡는다. 사용자에게 피해가 가기 전에 걸러 낸다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        },
+        {
+          "id": "identity",
+          "label": "로그인",
+          "caption": "ID 및 액세스 계층은 SSO와 다단계 인증을 쓰고, 필요한 것에만 접근을 주며, 로그인과 변경을 기록한다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        },
+        {
+          "id": "breach",
+          "label": "한 계층이 뚫릴 때",
+          "caption": "공격자가 네트워크 계층을 뚫어도 컴퓨팅 계층과 그 안쪽 계층이 남아 막는다. 그사이 공격은 늦어지고 보안 팀은 경고를 받는다.",
+          "sources": [
+            "azure-security-model.defense-in-depth"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.defense-in-depth"
+      ]
+    },
+    "defender-for-cloud": {
+      "label": "Microsoft Defender for Cloud가 Azure와 온-프레미스, 다른 클라우드의 리소스를 살피는 모습",
+      "svgLabel": "Microsoft Defender for Cloud 아래에 Azure 박스의 Azure 리소스, 온-프레미스 박스의 사내 서버, 다른 클라우드 박스의 AWS와 GCP가 있다",
+      "question": "Azure 밖의 서버까지 어떻게 살필까?",
+      "idleCaption": "Microsoft Defender for Cloud가 살피는 세 곳을 보인 그림이다. 버튼을 고르면 곳마다 보호가 어떻게 닿는지 볼 수 있다.",
+      "legend": "세 박스는 리소스가 놓인 곳이다. 화살표는 Defender for Cloud가 살피는 방향이다.",
+      "nodes": {
+        "defender": "Microsoft Defender for Cloud",
+        "azure-resource": "Azure 리소스",
+        "server": "사내 서버",
+        "aws": "AWS",
+        "gcp": "GCP"
+      },
+      "groups": {
+        "azure": "Azure",
+        "on-premises": "온-프레미스",
+        "other-clouds": "다른 클라우드"
+      },
+      "notes": {
+        "azure-note": "많은 서비스는 추가 배포 없이",
+        "hybrid-note": "Azure Arc로 연결",
+        "multicloud-note": "환경을 연결"
+      },
+      "scenarios": [
+        {
+          "id": "azure",
+          "label": "Azure",
+          "caption": "Azure에서는 많은 서비스를 추가 배포 없이 바로 살핀다. 그래서 Azure 리소스의 보안 상태와 권장 사항을 곧바로 볼 수 있다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        },
+        {
+          "id": "hybrid",
+          "label": "온-프레미스",
+          "caption": "사내 서버는 Azure 밖에 있다. Azure Arc를 배포하고 강화된 보안 기능을 켜면 보호가 여기까지 넓어진다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        },
+        {
+          "id": "multicloud",
+          "label": "다른 클라우드",
+          "caption": "AWS와 GCP의 리소스도 지킨다. AWS 환경을 연결하면 권장 사항과 규정 준수 평가가 그 환경까지 넓어진다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.defender-for-cloud"
+      ]
+    },
+    "sentinel-flow": {
+      "label": "Microsoft Sentinel이 여러 데이터 원본의 보안 데이터를 수집, 탐지, 조사, 대응으로 다루는 차례를 보인 모습",
+      "svgLabel": "여러 데이터 원본, 수집, 탐지, 조사, 대응이 화살표로 차례로 이어진다",
+      "question": "흩어진 보안 로그로 공격을 어떻게 찾을까?",
+      "idleCaption": "Microsoft Sentinel이 보안 데이터를 다루는 차례를 이었다. 버튼을 고르면 단계마다 무슨 일을 하는지 볼 수 있다.",
+      "legend": "화살표는 데이터 원본에서 대응까지 일이 이어지는 차례다. 선명한 상자가 그 장면에서 볼 단계다.",
+      "nodes": {
+        "sources": "여러 데이터 원본",
+        "collect": "수집",
+        "detect": "탐지",
+        "investigate": "조사",
+        "respond": "대응"
+      },
+      "notes": {
+        "collect-note": "사용자·디바이스·앱·인프라",
+        "detect-note": "위협을 찾아 조사",
+        "respond-note": "플레이북으로 자동화"
+      },
+      "scenarios": [
+        {
+          "id": "collect",
+          "label": "모으기",
+          "caption": "온-프레미스와 여러 클라우드의 사용자와 디바이스, 앱, 인프라에서 보안 데이터를 한곳으로 모은다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        },
+        {
+          "id": "detect",
+          "label": "찾기",
+          "caption": "모은 데이터에서 분석 규칙으로 위협을 찾고, 경고를 인시던트로 묶는다. 그다음 위협이 어디까지 번졌는지와 근본 원인을 살핀다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        },
+        {
+          "id": "respond",
+          "label": "대응",
+          "caption": "정해 둔 조치는 플레이북으로 묶어 자동으로 실행한다. 침해된 컴퓨터를 네트워크에서 떼어 내고 계정을 막는 일이 그 예다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.sentinel"
+      ]
+    }
+  },
+  "tables": {
+    "rbac-roles": {
+      "label": "자주 보는 기본 제공 역할 넷 견주기",
+      "columns": [
+        "역할",
+        "리소스 관리",
+        "역할 할당"
+      ],
+      "columnWidths": [
+        "38%",
+        "36%",
+        "26%"
+      ],
+      "sources": [
+        "azure-security-model.rbac"
+      ],
+      "rows": [
+        {
+          "header": "소유자",
+          "cells": [
+            "모든 리소스를 관리한다",
+            "할 수 있다"
+          ]
+        },
+        {
+          "header": "기여자",
+          "cells": [
+            "모든 리소스를 관리한다",
+            "할 수 없다"
+          ]
+        },
+        {
+          "header": "읽기 권한자",
+          "cells": [
+            "보기만 한다",
+            "할 수 없다"
+          ]
+        },
+        {
+          "header": "사용자 액세스 관리자",
+          "cells": [
+            "보기만 한다",
+            "할 수 있다"
+          ]
+        }
+      ]
+    },
+    "security-tools": {
+      "label": "보안 도구 셋 견주기",
+      "columns": [
+        "도구",
+        "맡는 일",
+        "고르는 때"
+      ],
+      "columnWidths": [
+        "32%",
+        "34%",
+        "34%"
+      ],
+      "sources": [
+        "azure-security-model.defender-for-cloud",
+        "azure-security-model.key-vault",
+        "azure-security-model.sentinel"
+      ],
+      "rows": [
+        {
+          "header": "Microsoft Defender for Cloud",
+          "cells": [
+            "리소스의 보안 상태를 평가하고 권장 사항을 준다. 위협을 찾아 경고한다",
+            "내 리소스의 설정이 안전한지, 무엇을 고칠지 알고 싶을 때"
+          ]
+        },
+        {
+          "header": "Azure Key Vault",
+          "cells": [
+            "비밀과 키, 인증서를 한곳에 두고 접근을 통제한다",
+            "앱의 암호를 코드에 적고 싶지 않을 때"
+          ]
+        },
+        {
+          "header": "Microsoft Sentinel",
+          "cells": [
+            "여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다",
+            "흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}
