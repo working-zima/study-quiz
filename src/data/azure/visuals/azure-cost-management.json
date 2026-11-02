@@ -1,0 +1,53 @@
+{
+  "diagrams": {
+    "cost-analysis": {
+      "label": "지난달 비용 하나를 리소스 그룹별, 서비스별, 지역별로 나눠 보는 모습",
+      "svgLabel": "지난달 비용에서 리소스 그룹별, 서비스별, 지역별 세 기준으로 화살표가 갈라진다",
+      "question": "같은 비용을 어떤 기준으로 나눠 볼까?",
+      "idleCaption": "회사 A의 지난달 비용을 나눠 보는 세 기준을 그렸다. 버튼을 고르면 기준마다 무엇을 알 수 있는지 볼 수 있다.",
+      "legend": "화살표는 같은 지난달 비용을 어떤 기준으로 나누는지를 잇는다. 금액은 그리지 않았다.",
+      "nodes": {
+        "total": "지난달 비용",
+        "by-group": "리소스 그룹별",
+        "by-service": "서비스별",
+        "by-region": "지역별"
+      },
+      "notes": {
+        "group-note": "리소스 그룹 1, 리소스 그룹 2로 나뉜다",
+        "service-note": "VM, 스토리지로 나뉜다",
+        "region-note": "지역 A, 지역 B로 나뉜다"
+      },
+      "scenarios": [
+        {
+          "id": "group",
+          "label": "리소스 그룹별",
+          "caption": "지난달 비용을 리소스 그룹별로 나누면 리소스 그룹 1과 리소스 그룹 2 가운데 어느 묶음에서 비용이 늘었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        },
+        {
+          "id": "service",
+          "label": "서비스별",
+          "caption": "지난달 비용을 서비스별로 나누면 VM과 스토리지 가운데 어느 종류의 서비스에 돈이 들었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        },
+        {
+          "id": "region",
+          "label": "지역별",
+          "caption": "지난달 비용을 지역별로 나누면 지역 A와 지역 B 가운데 어느 곳에 돈이 들었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.cost-analysis"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

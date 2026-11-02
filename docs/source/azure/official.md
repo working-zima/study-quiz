@@ -4017,8 +4017,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 이 단원은 예산을 말하면서 영어로 「spending limit」이라는 낱말을 쓰지만, 이것은 일반 낱말이다. 제품 기능 「Azure 지출 한도」와 다르다(아래 「Azure spending limit」 항목) — 「Budgets」
 - 한국어 표기: 「비용 경고」, 「예산 경고」, 「부서 지출 할당량 경고」, 「신용 경고」와 「크레딧 알림」이 한 쪽에 섞임, 「Azure 선불」, 「기업계약」
 
-쓰인 곳(phase 106): az142
-쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `CostAnalysisDiagram`, `BudgetAlertDiagram`, `CostToolsTable`
+쓰인 곳(phase 106): az142, `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az143, az144
+쓰일 곳(phase 106): `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `BudgetAlertDiagram`, `CostToolsTable`
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「Estimate your cloud costs」
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4282,7 +4282,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-c
 - Azure Advisor의 비용 권장 사항은 이미 있는 리소스를 줄일 길을 사용 패턴으로 제안한다 — 「Optimize costs」. 정한 금액을 넘을 때 메일을 보낸다는 말은 없다(D105). 권장 사항 자체는 `azure-monitoring`의 몫이라 쓰지 않는다
 - 한국어 표기: 「Microsoft Cost Management」, 본문은 「Cost Management」(옮기지 않음), 「변칙 경고」, 「작업 그룹」, 「청구 계정」
 
-쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-alerts`, D99, D100, az143
+쓰인 곳(phase 106): `azure-cost-management.cost-management`, D99, D100, az143
+쓰일 곳(phase 106): `azure-cost-management.cost-alerts`
 
 ## (phase 106) Cost Management — Understand Cost Management data
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-cost-mgt-data
@@ -4296,7 +4297,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand
 - Cost Management의 비용은 청구서가 나오기 전까지 추정값이고 크레딧을 반영하지 않는다 — 머리말
 - 태그는 사용 기록에 실려 들어온다. 리소스에 직접 붙여야 하고 부모 리소스 그룹에서 저절로 물려받지 않는다. 태그가 붙어 있는 동안의 사용량에만 실리므로, 지난 기록에는 적용되지 않고 지운 뒤의 기록에도 없다. 어떤 리소스는 태그를 지원하지 않거나 사용 기록에 싣지 않는다 — 「How tags are used in cost and usage data」
 
-쓰일 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, D99, D100, az143
+쓰인 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, D99, D100, az143
+쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`
 
 ## (phase 106) Cost Management — Understand and work with scopes (관리 그룹 범위만)
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-work-scopes
@@ -4307,7 +4309,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand
 - Microsoft Customer Agreement와 CSP의 구독은 Cost Management에서 관리 그룹 범위를 쓰지 못한다 — 「Azure RBAC scopes」, 「Roles used in Cost Management in Microsoft Customer Agreement」, 「Cloud Solution Provider (CSP) scopes」. **그래서 「관리 그룹 비용을 볼 수 있다」를 모든 계약에 단정하지 않는다** — 쓴다면 「계약 종류에 따라 관리 그룹 범위를 쓰지 못하는 경우가 있다」까지(D100)
 - 비용 관리 화면의 범위 선택으로 범위를 바꾼다 — 「Switch between scopes in Cost Management」
 
-쓰일 곳(phase 106): `azure-cost-management.cost-management`, D100
+쓰인 곳(phase 106): `azure-cost-management.cost-management`, D100
 
 ## (phase 106) Cost Management — Quickstart: Start using Cost Analysis, Group and filter options
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-acm-cost-analysis
@@ -4325,7 +4327,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/group-filt
 - 스마트 보기·KPI·미리 보기 기능·내보내기는 **쓰지 않는다**
 - 한국어 표기: 「비용 분석」, 「예측 비용」, 「누적 비용」, 「위치」(앱 글은 「지역」), 「서비스 이름」, 「리소스 그룹」, 「태그」
 
-쓰일 곳(phase 106): `azure-cost-management.cost-analysis`, `azure-cost-management.tags`, `CostAnalysisDiagram`, `TagCostReportDiagram`, `CostToolsTable`
+쓰인 곳(phase 106): `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az144
+쓰일 곳(phase 106): `azure-cost-management.tags`, `TagCostReportDiagram`, `CostToolsTable`
 
 ## (phase 106) Cost Management — Tutorial: Create and manage budgets
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets
@@ -4370,6 +4373,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/analy
 - Cost Management와 청구 기능을 쓰는 데 드는 요금은 없다 — 「Identify anomalies」 머리말
 - 표기는 아래 「한국어 표기 정리」
 
+쓰인 곳(phase 106): `azure-cost-management.cost-management`(쓰는 데 드는 요금이 없음), az143
 쓰일 곳(phase 106): `azure-cost-management.cost-alerts`, `CostToolsTable`, az147
 
 ## (phase 106) Azure Resource Manager — Tag support, Assign policy definitions for tag compliance

@@ -31,6 +31,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
@@ -453,6 +454,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-factors.unused-resources': LeftoverResourcesDiagram,
   'azure-cost-factors.hybrid-benefit': [HybridBenefitDiagram, CostSavingOptionsTable],
   'azure-cost-factors.pricing-calculator': PricingCalculatorDiagram,
+  'azure-cost-management.cost-analysis': CostAnalysisDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
