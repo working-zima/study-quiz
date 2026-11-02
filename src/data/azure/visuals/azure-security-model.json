@@ -200,6 +200,107 @@
       "sources": [
         "azure-security-model.defense-in-depth"
       ]
+    },
+    "defender-for-cloud": {
+      "label": "Microsoft Defender for Cloud가 Azure와 온-프레미스, 다른 클라우드의 리소스를 살피는 모습",
+      "svgLabel": "Microsoft Defender for Cloud 아래에 Azure 박스의 Azure 리소스, 온-프레미스 박스의 사내 서버, 다른 클라우드 박스의 AWS와 GCP가 있다",
+      "question": "Azure 밖의 서버까지 어떻게 살필까?",
+      "idleCaption": "Microsoft Defender for Cloud가 살피는 세 곳을 보인 그림이다. 버튼을 고르면 곳마다 보호가 어떻게 닿는지 볼 수 있다.",
+      "legend": "세 박스는 리소스가 놓인 곳이다. 화살표는 Defender for Cloud가 살피는 방향이다.",
+      "nodes": {
+        "defender": "Microsoft Defender for Cloud",
+        "azure-resource": "Azure 리소스",
+        "server": "사내 서버",
+        "aws": "AWS",
+        "gcp": "GCP"
+      },
+      "groups": {
+        "azure": "Azure",
+        "on-premises": "온-프레미스",
+        "other-clouds": "다른 클라우드"
+      },
+      "notes": {
+        "azure-note": "많은 서비스는 추가 배포 없이",
+        "hybrid-note": "Azure Arc로 연결",
+        "multicloud-note": "환경을 연결"
+      },
+      "scenarios": [
+        {
+          "id": "azure",
+          "label": "Azure",
+          "caption": "Azure에서는 많은 서비스를 추가 배포 없이 바로 살핀다. 그래서 Azure 리소스의 보안 상태와 권장 사항을 곧바로 볼 수 있다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        },
+        {
+          "id": "hybrid",
+          "label": "온-프레미스",
+          "caption": "사내 서버는 Azure 밖에 있다. Azure Arc를 배포하고 강화된 보안 기능을 켜면 보호가 여기까지 넓어진다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        },
+        {
+          "id": "multicloud",
+          "label": "다른 클라우드",
+          "caption": "AWS와 GCP의 리소스도 지킨다. AWS 환경을 연결하면 권장 사항과 규정 준수 평가가 그 환경까지 넓어진다.",
+          "sources": [
+            "azure-security-model.defender-for-cloud"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.defender-for-cloud"
+      ]
+    },
+    "sentinel-flow": {
+      "label": "Microsoft Sentinel이 여러 데이터 원본의 보안 데이터를 수집, 탐지, 조사, 대응으로 다루는 차례를 보인 모습",
+      "svgLabel": "여러 데이터 원본, 수집, 탐지, 조사, 대응이 화살표로 차례로 이어진다",
+      "question": "흩어진 보안 로그로 공격을 어떻게 찾을까?",
+      "idleCaption": "Microsoft Sentinel이 보안 데이터를 다루는 차례를 이었다. 버튼을 고르면 단계마다 무슨 일을 하는지 볼 수 있다.",
+      "legend": "화살표는 데이터 원본에서 대응까지 일이 이어지는 차례다. 선명한 상자가 그 장면에서 볼 단계다.",
+      "nodes": {
+        "sources": "여러 데이터 원본",
+        "collect": "수집",
+        "detect": "탐지",
+        "investigate": "조사",
+        "respond": "대응"
+      },
+      "notes": {
+        "collect-note": "사용자·디바이스·앱·인프라",
+        "detect-note": "위협을 찾아 조사",
+        "respond-note": "플레이북으로 자동화"
+      },
+      "scenarios": [
+        {
+          "id": "collect",
+          "label": "모으기",
+          "caption": "온-프레미스와 여러 클라우드의 사용자와 디바이스, 앱, 인프라에서 보안 데이터를 한곳으로 모은다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        },
+        {
+          "id": "detect",
+          "label": "찾기",
+          "caption": "모은 데이터에서 분석 규칙으로 위협을 찾고, 경고를 인시던트로 묶는다. 그다음 위협이 어디까지 번졌는지와 근본 원인을 살핀다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        },
+        {
+          "id": "respond",
+          "label": "대응",
+          "caption": "정해 둔 조치는 플레이북으로 묶어 자동으로 실행한다. 침해된 컴퓨터를 네트워크에서 떼어 내고 계정을 막는 일이 그 예다.",
+          "sources": [
+            "azure-security-model.sentinel"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-security-model.sentinel"
+      ]
     }
   },
   "tables": {
@@ -245,6 +346,47 @@
           "cells": [
             "보기만 한다",
             "할 수 있다"
+          ]
+        }
+      ]
+    },
+    "security-tools": {
+      "label": "보안 도구 셋 견주기",
+      "columns": [
+        "도구",
+        "맡는 일",
+        "고르는 때"
+      ],
+      "columnWidths": [
+        "32%",
+        "34%",
+        "34%"
+      ],
+      "sources": [
+        "azure-security-model.defender-for-cloud",
+        "azure-security-model.key-vault",
+        "azure-security-model.sentinel"
+      ],
+      "rows": [
+        {
+          "header": "Microsoft Defender for Cloud",
+          "cells": [
+            "리소스의 보안 상태를 평가하고 권장 사항을 준다. 위협을 찾아 경고한다",
+            "내 리소스의 설정이 안전한지, 무엇을 고칠지 알고 싶을 때"
+          ]
+        },
+        {
+          "header": "Azure Key Vault",
+          "cells": [
+            "비밀과 키, 인증서를 한곳에 두고 접근을 통제한다",
+            "앱의 암호를 코드에 적고 싶지 않을 때"
+          ]
+        },
+        {
+          "header": "Microsoft Sentinel",
+          "cells": [
+            "여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다",
+            "흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때"
           ]
         }
       ]

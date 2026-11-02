@@ -757,7 +757,7 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 - 간접 연결 모드(indirectly connected mode)는 2025년 9월에 지원이 끝났다 — 「Indirectly connected mode」. 이 주제에서는 쓰지 않는다
 - 한국어 표기: Azure Arc → Azure Arc(이름 그대로), multicloud → 다중 클라우드, on-premises → 온-프레미스
 
-쓰일 곳: `azure-security-model.defender-for-cloud`(Azure Arc를 푸는 한 줄 — 온-프레미스와 다른 클라우드의 서버를 Azure에서 관리하게 해 주는 것) (phase 105)
+쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `az128` 해설(Azure Arc를 푸는 한 줄 — 온-프레미스와 다른 클라우드의 서버를 Azure에서 관리하게 해 주는 것)
 
 쓰인 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
 
@@ -3810,7 +3810,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 위협을 찾으면 보안 경고를 내고, 경고는 영향받는 리소스와 고치는 단계를 적는다. Just-In-Time VM 액세스가 방어 기능에 든다 — 「Defend」
 - 한국어 표기: Defender for Cloud, 보안 상태, 지속적인 평가, 보안, 방어, 권장 사항, 경고, 보안 점수, 온-프레미스, 다중 클라우드, Microsoft 클라우드 보안 벤치마크, Just-In-Time VM 액세스
 
-쓰일 곳: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`
+쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, `az127`, `az128`
 
 ## (phase 105) Microsoft Defender for Cloud — 옛 이름, 무료와 유료, 규정 준수
 https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction
@@ -3827,7 +3827,7 @@ https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-in
 - 쓰지 않음: CNAPP·CSPM·CWPP의 나열, Defender 포털 확장, 킬 체인 분석, AI 보안, 플랜 표
 - 한국어 표기: 제품 문서는 **클라우드용 Microsoft Defender**, Learn 단원 9는 **Microsoft Defender for Cloud**다. 아래 「한국어 표기 정리」
 
-쓰일 곳: `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, D85, D86, G53
+쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, `az127`, `SecurityToolsTable`, D85, D86, G53
 
 ## (phase 105) Azure Key Vault — 개요와 쓰임
 https://learn.microsoft.com/en-us/azure/key-vault/general/overview
@@ -3842,7 +3842,7 @@ https://learn.microsoft.com/en-us/azure/key-vault/general/overview
 - 쓰지 않음: Standard·Premium, HSM, FIPS 수준, 키 길이, 관리되는 HSM, 액세스 정책, Azure Functions 연동의 방법
 - 한국어 표기: Azure Key Vault(이름 그대로), 비밀, 키, 인증서, 키 자격 증명 모음(vault). 본문은 그릇을 **Key Vault**로 쓴다
 
-쓰일 곳: `azure-security-model.key-vault`, `SecurityToolsTable`, G54
+쓰인 곳(phase 105 step 8): `azure-security-model.key-vault`, `SecurityToolsTable`, `az129`, G54
 
 ## (phase 105) Azure Disk Encryption — Key Vault가 필요한가
 https://learn.microsoft.com/en-us/azure/virtual-machines/windows/disk-encryption-overview
@@ -3853,7 +3853,7 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/windows/disk-encryption
 - **지원 종료 예고: 2028-09-15.** 그날 뒤에는 VM을 다시 시작하면 암호화된 디스크가 풀리지 않는다. 새 VM에는 호스트 암호화(encryption at host)를 권한다 — `disk-encryption-overview`(Windows) 맨 위 안내
 - 그래서 **NO.74의 답은 맞지만** 본문은 D87대로 쓴다
 
-쓰일 곳: `azure-security-model.key-vault`, D87
+쓰인 곳(phase 105 step 8): `azure-security-model.key-vault`, D87
 
 ## (phase 105) Microsoft Sentinel — 개요와 플레이북
 https://learn.microsoft.com/en-us/azure/sentinel/overview
@@ -3873,7 +3873,19 @@ https://learn.microsoft.com/en-us/azure/sentinel/overview
 - 쓰지 않음: AI·위협 인텔리전스 소개, 데이터 레이크, 사냥(hunting), UEBA, 요금
 - 한국어 표기: Microsoft Sentinel(이름 그대로), SIEM(보안 정보 및 이벤트 관리), 커넥터, 인시던트, 플레이북, 조사, 대응. 절 제목 「위협 검색」은 첫 문단의 「위협 탐지」와 섞여 있어 **탐지**로 쓴다. 「수집」은 절 제목 그대로다
 
-쓰일 곳: `azure-security-model.sentinel`, `SentinelFlowDiagram`, `SecurityToolsTable`, D85, G55
+쓰인 곳(phase 105 step 8): `azure-security-model.sentinel`, `SentinelFlowDiagram`, `SecurityToolsTable`, `az130`, D85, G55
+
+## (phase 105) 낱말을 푸는 근거 — TLS와 인증서
+https://learn.microsoft.com/en-us/azure/app-service/overview-tls
+
+확인한 날 2026-11-02. 사본: `docs-appservice-overview-tls.md`, `docs-key-vault-about-certificates.md`(`azure/key-vault/certificates/about-certificates`)와 `ko-` 판.
+
+- TLS는 서버와 클라이언트 사이의 연결과 통신을 지키는 보안 규약이다. 이동 중인 데이터를 암호화하고, 믿을 수 있는 인증서로 웹 앱을 인증한다 — `overview-tls` 첫 부분. 다른 서비스도 같은 뜻으로 쓴다(`key-vault/general/basic-concepts` 「Encryption of data in transit」)
+- Key Vault는 X.509 인증서를 만들거나 가져와 보관하고 관리한다 — `about-certificates` 첫 목록. X.509는 **쓰지 않는다**. `인증서`는 「서버가 믿을 만한 상대인지 확인하는 데 쓰는 전자 문서」로 풀어 쓴다
+- 쓰지 않음: TLS 버전, 암호 그룹, App Service의 인증서 옵션
+- 한국어 표기: TLS(전송 계층 보안), 인증서
+
+쓰인 곳(phase 105 step 8): `azure-security-model.key-vault`(**인증서**와 **TLS**를 푸는 한 줄), `az129`
 
 ## (phase 105) 도식·표의 사실 — `azure-security-model`
 
@@ -3890,7 +3902,7 @@ https://learn.microsoft.com/en-us/azure/sentinel/overview
   - Azure Key Vault — 비밀·키·인증서를 한곳에 두고 접근을 통제한다 / 앱의 암호를 코드에 적고 싶지 않을 때
   - Microsoft Sentinel — 여러 곳의 보안 데이터를 모아 위협을 찾고 조사하고 대응한다 / 흩어진 로그를 한곳에서 분석하고 대응을 자동화하고 싶을 때
 
-쓰인 곳(phase 105 step 6): `RbacAssignmentDiagram`, `RbacScopeDiagram`. 쓰인 곳(phase 105 step 7): `ZeroTrustDiagram`, `DefenseInDepthDiagram`. 나머지 도식과 표는 쓰일 곳이다
+쓰인 곳(phase 105 step 6): `RbacAssignmentDiagram`, `RbacScopeDiagram`. 쓰인 곳(phase 105 step 7): `ZeroTrustDiagram`, `DefenseInDepthDiagram`. 쓰인 곳(phase 105 step 8): `DefenderForCloudDiagram`, `SentinelFlowDiagram`, `SecurityToolsTable`
 
 ## (phase 105) 한국어 표기 정리 — `azure-security-model`
 

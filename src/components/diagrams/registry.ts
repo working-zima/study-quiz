@@ -36,6 +36,7 @@ import { DataBoxDiagram } from './DataBoxDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
+import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
@@ -152,6 +153,7 @@ import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
+import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -196,7 +198,7 @@ import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { SignInMethodsTable } from './azureIdentityTables'
-import { RbacRolesTable } from './azureSecurityModelTables'
+import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
 import { BackupPolicyScopeTable, CopyDestinationTable, Ec2AssignmentTable } from './backupTables'
@@ -436,6 +438,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-security-model.rbac-scope': RbacScopeDiagram,
   'azure-security-model.zero-trust': ZeroTrustDiagram,
   'azure-security-model.defense-in-depth': DefenseInDepthDiagram,
+  'azure-security-model.defender-for-cloud': DefenderForCloudDiagram,
+  'azure-security-model.sentinel': [SentinelFlowDiagram, SecurityToolsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
