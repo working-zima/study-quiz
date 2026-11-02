@@ -31,8 +31,10 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
+import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
+import { DataTransferCostsDiagram } from './DataTransferCostsDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
 import { DefaultRouteDiagram } from './DefaultRouteDiagram'
@@ -440,6 +442,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-security-model.defense-in-depth': DefenseInDepthDiagram,
   'azure-security-model.defender-for-cloud': DefenderForCloudDiagram,
   'azure-security-model.sentinel': [SentinelFlowDiagram, SecurityToolsTable],
+  'azure-cost-factors.cost-factors': CostFactorsDiagram,
+  'azure-cost-factors.data-transfer-costs': DataTransferCostsDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

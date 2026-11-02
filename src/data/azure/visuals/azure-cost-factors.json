@@ -1,0 +1,104 @@
+{
+  "diagrams": {
+    "cost-factors": {
+      "label": "크기가 같은 VM 둘의 요금을 가르는 지역, 실행 시간, 소프트웨어 라이선스를 보인 모습",
+      "svgLabel": "VM 1과 VM 2가 나란히 있고, 지역과 실행 시간, 소프트웨어 라이선스에서 VM 2로 화살표가 이어진다",
+      "question": "크기가 같은 VM인데 왜 요금이 다를까?",
+      "idleCaption": "크기가 같은 VM 둘과 요금을 가를 수 있는 요인 셋을 그렸다. 버튼을 고르면 어느 요인이 VM 2의 요금을 어떻게 바꾸는지 볼 수 있다.",
+      "legend": "화살표는 그 요인이 VM 2의 요금을 바꾼다는 뜻이다. VM 1은 견줄 기준이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "region": "지역",
+        "hours": "실행 시간",
+        "license": "소프트웨어 라이선스"
+      },
+      "notes": {
+        "region-note": "지역마다 가격이 다르다",
+        "hours-note": "쓴 만큼 낸다",
+        "license-note": "라이선스 값이 더해진다"
+      },
+      "scenarios": [
+        {
+          "id": "region",
+          "label": "지역이 다를 때",
+          "caption": "VM 2를 VM 1과 다른 지역에 둔 경우다. 크기가 같아도 지역마다 가격이 다를 수 있어 두 VM의 요금이 갈릴 수 있다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        },
+        {
+          "id": "hours",
+          "label": "실행 시간이 다를 때",
+          "caption": "VM 2를 VM 1보다 오래 실행한 경우다. 종량제에서는 쓴 만큼 내므로 오래 실행한 VM 2의 요금이 더 나온다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        },
+        {
+          "id": "license",
+          "label": "라이선스가 다를 때",
+          "caption": "VM 2에만 운영 체제나 다른 소프트웨어의 라이선스 값이 더해진 경우다. 크기가 같아도 이 값만큼 요금이 달라진다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.cost-factors"
+      ]
+    },
+    "data-transfer-costs": {
+      "label": "Azure 밖과 지역 A, 지역 B 사이에서 데이터가 움직이는 방향과 전송 요금을 보인 모습",
+      "svgLabel": "Azure 밖과 지역 A의 VM 1이 두 화살표로 오가고, VM 1에서 지역 B의 VM 2로 화살표가 이어진다",
+      "question": "어느 방향으로 옮길 때 요금이 붙을까?",
+      "idleCaption": "Azure 밖과 두 지역의 VM을 그렸다. 버튼을 고르면 방향마다 전송 요금이 어떻게 갈리는지 볼 수 있다.",
+      "legend": "화살표는 데이터가 움직이는 방향이다. 요금은 대역폭 요금표 기준이고, 피어링처럼 가격을 따로 매기는 전송은 그리지 않았다.",
+      "groups": {
+        "region-a": "지역 A",
+        "region-b": "지역 B"
+      },
+      "nodes": {
+        "outside": "Azure 밖",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2"
+      },
+      "notes": {
+        "in-note": "들어오는 전송 요금 없음",
+        "out-note": "청구 영역에 따라 요금",
+        "between-note": "나가는 쪽에 요금"
+      },
+      "scenarios": [
+        {
+          "id": "in",
+          "label": "들어올 때",
+          "caption": "Azure 밖의 서버에서 VM 1로 올리는 들어오는 전송이다. 대역폭 요금표에서 들어오는 전송에는 요금이 없다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        },
+        {
+          "id": "out",
+          "label": "나갈 때",
+          "caption": "VM 1에서 Azure 밖의 서버로 내려받는 나가는 전송이다. 요금이 붙고, 그 가격은 청구 영역에 따라 정해진다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        },
+        {
+          "id": "between",
+          "label": "지역 사이",
+          "caption": "VM 1에서 VM 2로 옮기는 지역 사이 전송이다. 지역 A에서 나가는 쪽에 보통 요금이 붙고, 지역 B로 들어오는 쪽은 무료다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.data-transfer-costs"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

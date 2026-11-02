@@ -459,7 +459,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - **구독 유형**: 몇몇 구독 유형에는 무료 사용량이 들어 있어 비용에 영향을 준다. 무료 체험 구독이 그 예다(자세한 것은 step 4) — 「Subscription type」 (phase 106)
 - **Azure Marketplace**: 타사 업체의 해법과 서비스를 산다. Azure 서비스 값에 더해 업체의 서비스나 전문성 값도 낼 수 있고, **청구 구조는 업체가 정한다** — 「Azure Marketplace」(인증 정책은 쓰지 않는다, guide 「배경」) (phase 106)
 
-쓰일 곳(phase 106): `azure-cost-factors.cost-factors`, `azure-cost-factors.data-transfer-costs`, `azure-cost-factors.unused-resources`, `CostFactorsDiagram`, `DataTransferCostsDiagram`, D88, D95
+쓰인 곳(phase 106): `azure-cost-factors.cost-factors`, `azure-cost-factors.data-transfer-costs`, `CostFactorsDiagram`, `DataTransferCostsDiagram`, D88, D95
+쓰일 곳(phase 106): `azure-cost-factors.unused-resources`
 
 ## (phase 100) Cost Management — Review your individual Azure subscription bill
 https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/review-individual-bill
@@ -1508,7 +1509,7 @@ https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource-group`(리소스 그룹을 나눠도 데이터 센터 하나의 장애에 대비가 되지 않고, 그 대비는 여러 가용성 영역에 나눠 두는 것이다 — ARM 항목의 NO.87 판단), az049·az050 해설
 
 쓰인 곳(phase 103 step 2): `azure-compute.scale-sets`(가용성 영역을 푸는 한 줄 — 한 지역 안에서 전원·냉각·네트워크를 따로 갖춘 데이터 센터 묶음, 한 영역이 멈춰도 다른 영역은 영향을 받지 않음), `azure-compute.availability-sets`(같은 풀이를 되짚음), az058~az060 해설
-쓰일 곳(phase 106): `azure-cost-factors.data-transfer-costs`(같은 지역의 가용성 영역 사이 데이터 전송에는 요금을 매기지 않는다 — 위 「현행 문서와 다름」의 그 문장, 다시 확인한 날 2026-11-02)
+쓰인 곳(phase 106): `azure-cost-factors.data-transfer-costs`(같은 지역의 가용성 영역 사이 데이터 전송에는 요금을 매기지 않는다 — 위 「현행 문서와 다름」의 그 문장, 다시 확인한 날 2026-11-02)
 
 ## (phase 102) Azure reliability — Azure region pairs and nonpaired regions
 https://learn.microsoft.com/en-us/azure/reliability/regions-paired
@@ -4000,7 +4001,7 @@ https://azure.microsoft.com/en-us/pricing/details/bandwidth/
 - 청구서에는 대역폭 값이 영역이나 지역으로 표시될 수 있다 — FAQ 「Which continents and regions correspond to each billing zone?」. 어느 지역이 어느 영역인지는 이 과목에서 쓰지 않는다
 - 한국어 표기: 이 쪽의 한국어판은 받지 않았다. 대역폭·청구 영역은 Learn 단원 2의 한국어판 표기를 따른다
 
-쓰일 곳(phase 106): `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`, D90, D91, D97
+쓰인 곳(phase 106): `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`, D90, D91, D97
 
 ## (phase 106) Azure 가격 — VPN Gateway pricing, ExpressRoute pricing, Virtual Network pricing
 https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/
@@ -4015,7 +4016,7 @@ https://azure.microsoft.com/en-us/pricing/details/virtual-network/
 - **가상 네트워크**: 가상 네트워크 안의 데이터 전송에는 요금이 없다 — FAQ. 하지만 **같은 지역 안의 가상 네트워크 피어링도 들고 나는 양쪽에 요금이 붙는다** — 「VNET Peering within the same region」. 그래서 「같은 지역 안의 전송은 언제나 무료」로 쓰지 않는다
 - 한국어 표기: 이 쪽들의 한국어판은 받지 않았다. VPN 게이트웨이·ExpressRoute·피어링은 앞 주제의 표기를 따른다
 
-쓰일 곳(phase 106): `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`, D90, D91
+쓰인 곳(phase 106): `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`, D90, D91
 
 ## (phase 106) Azure Blob Storage — Plan and manage costs for Azure Blob Storage
 https://learn.microsoft.com/en-us/azure/storage/common/storage-plan-manage-costs
@@ -4025,7 +4026,7 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-plan-manage-costs
 - Blob Storage를 쓰면 저장한 데이터 양과 **작업(읽기·쓰기 같은 요청)** 과 데이터 전송이 저마다 다른 계량 항목으로 청구된다. 작업은 요청 건수로 센다 — 「Understand the full billing model」의 계량 항목 표. 그래서 「저장한 양만 내고 읽기·쓰기는 무료」는 틀린 말이다([덤프 NO.12·436] 둘째 진술의 「아니요」와 맞다)
 - 한국어 표기: 앞 주제의 `azure-storage`와 같다. 액세스 계층별 비용은 이 주제에서 다시 쓰지 않는다
 
-쓰일 곳(phase 106): `azure-cost-factors.data-transfer-costs`
+쓰인 곳(phase 106): `azure-cost-factors.data-transfer-costs`
 
 ## (phase 106) Azure 가격 — Virtual Machines 가격 쪽의 FAQ, Azure CLI의 `az vm`
 https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux/
@@ -4119,7 +4120,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/sav
 - 살 수 있는 쪽은 기업 계약(EA)·Microsoft 고객 계약(MCA)·파트너 계약(MPA) 조직이다 — 「Which customers can purchase savings plans?」. **계약 구조는 이 과목에서 쓰지 않는다**
 - 한국어 표기: 제목은 **「저축 플랜이란?」**. 같은 쪽에 저축 플랜 26번·저축 계획 18번·Savings Plans 10번·절감 플랜 6번·절감 계획 3번·절약 계획 2번·세이빙 플랜 1번이 섞여 있다
 
-쓰일 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`, `azure-cost-factors.cost-factors`(사용량 항목)
+쓰인 곳(phase 106): `azure-cost-factors.cost-factors`(사용량 항목)
+쓰일 곳(phase 106): `azure-cost-factors.savings-plan`, `CostSavingOptionsTable`
 
 ## (phase 106) Azure savings plans — Decide between a savings plan and a reservation
 https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/decide-between-savings-plan-reservation
@@ -4167,7 +4169,8 @@ https://azure.microsoft.com/en-us/pricing/offers/hybrid-benefit/
 | `PricingCalculatorDiagram` | `choices`(지역·계층·중복성), 「아무것도 만들어지지 않는다」, 「실제로 쓴 비용」 | 없음 |
 | `CostSavingOptionsTable` | 예약(특정 리소스·크기·지역에 1년이나 3년 / 쉬지 않고 실행되고 속성이 바뀌지 않는 작업), 저축 플랜(시간당 금액을 1년이나 3년 / 서비스·지역이 바뀌는 작업), 스폿(Azure가 언제든 회수할 수 있음을 받아들인다 / 멈춰도 되는 일괄 작업), 하이브리드 혜택(이미 가진 라이선스 / Windows Server·SQL Server를 Azure에서 실행하는 작업) | 없음 |
 
-쓰일 곳(phase 106): 위 도식과 표
+쓰인 곳(phase 106): `CostFactorsDiagram`, `DataTransferCostsDiagram`
+쓰일 곳(phase 106): 위 표의 나머지 도식과 표
 
 ## (phase 106) 한국어 표기 정리 — `azure-cost-factors`
 
