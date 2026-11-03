@@ -76,6 +76,7 @@ import { FileSyncDiagram } from './FileSyncDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
+import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
@@ -170,6 +171,7 @@ import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
+import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
@@ -207,6 +209,7 @@ import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
 import { CostSavingOptionsTable } from './azureCostFactorsTables'
+import { CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { SignInMethodsTable } from './azureIdentityTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
@@ -461,6 +464,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-management.budgets': BudgetAlertDiagram,
   'azure-cost-management.tags': TagCostReportDiagram,
   'azure-cost-management.tag-inheritance': TagInheritanceDiagram,
+  'azure-cost-management.free-account': FreeAccountOffersDiagram,
+  'azure-cost-management.spending-limit': [SpendingLimitDiagram, CostToolsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

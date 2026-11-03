@@ -443,7 +443,7 @@ https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account
 - 한국어 표기: 이 쪽의 한국어판은 「무료 계정」, 「종량제」, 「크레딧」 (phase 106)
 
 쓰인 곳: `azure-cloud-computing.pay-as-you-go`, `PricingModelsTable`(종량제 행의 「미리 약속하는 것」)
-쓰일 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, D102
+쓰인 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, D102
 
 ## (phase 100) Learn 「Describe cost management in Azure」 — 2 Describe factors that can affect costs in Azure
 https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azure/2-describe-factors-affect-costs-azure
@@ -4018,7 +4018,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 한국어 표기: 「비용 경고」, 「예산 경고」, 「부서 지출 할당량 경고」, 「신용 경고」와 「크레딧 알림」이 한 쪽에 섞임, 「Azure 선불」, 「기업계약」
 
 쓰인 곳(phase 106): az142, `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az143, az144, `azure-cost-management.budgets`, `azure-cost-management.cost-alerts`, `BudgetAlertDiagram`, az145, az147
-쓰일 곳(phase 106): `CostToolsTable`
+쓰인 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「Estimate your cloud costs」
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4328,7 +4328,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/group-filt
 
 쓰인 곳(phase 106): `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az144
 쓰인 곳(phase 106): `azure-cost-management.tags`, `TagCostReportDiagram`, az148
-쓰일 곳(phase 106): `CostToolsTable`
+쓰인 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Tutorial: Create and manage budgets
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets
@@ -4346,7 +4346,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-a
 - 한국어 표기: 「예산」, 「예산 경고」, 「실제 비용」, 「예측 예산 경고」, 「작업 그룹」, 「기준」은 문서의 「임계값」을 앱이 쉽게 쓴 말. 머리말의 「조직 지출 한도」는 일반 낱말이므로 쓰지 않는다
 
 쓰인 곳(phase 106): `azure-cost-management.budgets`, `BudgetAlertDiagram`, D101, D105, az145, az146
-쓰일 곳(phase 106): `CostToolsTable`
+쓰인 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Manage costs with budgets
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-budget-scenario
@@ -4376,7 +4376,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/analy
 - 표기는 아래 「한국어 표기 정리」
 
 쓰인 곳(phase 106): `azure-cost-management.cost-management`(쓰는 데 드는 요금이 없음), az143, `azure-cost-management.cost-alerts`, az147
-쓰일 곳(phase 106): `CostToolsTable`
+쓰인 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Azure Resource Manager — Tag support, Assign policy definitions for tag compliance
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-support
@@ -4419,7 +4419,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-fr
 - 포털의 Free services 쪽 밖에서 만들면 무료 계층이 기본으로 골라지지 않을 수 있다. 무료 양 안이면 어느 지역에서나 쓸 수 있다 — 「Create free services in the Azure portal」, 「Services can be created in any region」
 - 한국어 표기: 제품 문서 한국어판은 같은 것을 「Azure 체험 계정」과 「Azure 무료 계정」으로 섞어 쓴다(아래 「한국어 표기 정리」). 「크레딧」, 「무료 서비스」, 「종량제」, 「업그레이드」
 
-쓰일 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`, D102, az150
+쓰인 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`, D102, az150
 
 ## (phase 106) Azure 가격 — Explore free Azure services
 https://azure.microsoft.com/en-us/pricing/free-services/
@@ -4430,7 +4430,7 @@ https://azure.microsoft.com/en-us/pricing/free-services/
 - 12개월 무료는 Azure 계정이 없었고 받은 적이 없는 새 고객의 것이다. 무료 계정으로 시작한 고객은 30일 안에 종량제로 옮겨야 이어 받는다 — 각주
 - 제품 개수는 쪽마다 다르다 — Learn 단원 2와 이 쪽의 수가 다르다. **쓰지 않는다**(guide)
 
-쓰일 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`
+쓰인 곳(phase 106): `azure-cost-management.free-account`, `FreeAccountOffersDiagram`
 
 ## (phase 106) Cost Management — Upgrade your Azure free account, Azure subscription states, Reactivate a disabled Azure subscription
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/upgrade-azure-subscription
@@ -4448,7 +4448,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/subscript
 - Free Trial 구독에서 지출 한도를 없애면 평가판이 끝날 때 종량제 구독으로 바뀐다 — 「You reached your spending limit」의 참고
 - 한국어 표기: 「비활성화」(지출 한도·요금 방지 한국어판). 앱 글은 「구독이 멈춘다」로 풀고 처음에 「사용할 수 없게 된다」로 쓴다
 
-쓰일 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, `SpendingLimitDiagram`, D103, D104, az152
+쓰인 곳(phase 106): `azure-cost-management.free-account`, `azure-cost-management.spending-limit`, `FreeAccountOffersDiagram`, `SpendingLimitDiagram`, D103, D104, az152
 
 ## (phase 106) Cost Management — Azure spending limit
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit
@@ -4469,7 +4469,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-
 - 한국어 표기: 「Azure 지출 한도」, 「지출 한도」, 「크레딧」, 「중지되고 할당 취소」, 「읽기 전용」, 「비활성화」, 「약정 플랜」
 
 쓰인 곳(phase 106): `azure-cost-management.budgets`(예산과 다른 기능임을 밝히는 한 문장), az145
-쓰일 곳(phase 106): `azure-cost-management.spending-limit`, `SpendingLimitDiagram`, `CostToolsTable`, D103, az151, az152
+쓰인 곳(phase 106): `azure-cost-management.spending-limit`, `SpendingLimitDiagram`, `CostToolsTable`, D103, az151, az152
 
 ## (phase 106) 앞 phase 문장과의 대조 — 지출 한도
 

@@ -168,8 +168,157 @@
       "sources": [
         "azure-cost-management.tag-inheritance"
       ]
+    },
+    "free-account-offers": {
+      "label": "무료 계정에서 받는 크레딧, 12개월 무료 서비스, 항상 무료 서비스가 업그레이드 여부와 시간에 따라 어떻게 되는지 보여 주는 그림",
+      "svgLabel": "무료 계정 상자 안에 크레딧, 12개월 무료 서비스, 항상 무료 서비스가 있고, 밖에 업그레이드와 종량제 요금이 있다",
+      "question": "무료 계정에서 무엇이 언제 끝날까?",
+      "idleCaption": "무료 계정에서 받는 세 가지와, 계속 쓰려면 거치는 업그레이드를 그렸다. 버튼을 고르면 시간이 지나며 무엇이 끝나는지 볼 수 있다.",
+      "legend": "흐린 상자는 그 장면에서 쓰지 못하거나 끝난 것이다. 화살표는 업그레이드로 이어 받는 것과 무료 기간이 끝난 뒤 요금으로 넘어가는 것을 잇는다. 금액은 그리지 않았다.",
+      "nodes": {
+        "credit": "크레딧",
+        "free-12": "12개월 무료 서비스",
+        "always-free": "항상 무료 서비스",
+        "upgrade": "업그레이드",
+        "pay-as-you-go": "종량제 요금"
+      },
+      "groups": {
+        "free-account": "무료 계정"
+      },
+      "notes": {
+        "stopped-note": "구독과 서비스가 멈춘다",
+        "upgrade-note": "무료 서비스를 이어 받는다",
+        "after-12-note": "쓰던 서비스에 요금이 붙는다"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "가입했을 때",
+          "caption": "새 고객은 가입하면 세 가지를 함께 받는다. 크레딧은 처음 30일 안에 쓰고, 12개월 무료 서비스는 12개월 동안, 항상 무료 서비스는 계정이 있는 동안 정해진 양까지 무료다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "after-30",
+          "label": "업그레이드하지 않으면",
+          "caption": "크레딧을 다 쓰거나 30일이 지나면 구독과 서비스를 사용할 수 없게 된다. 크레딧만 끝나는 것이 아니라 무료 서비스도 함께 쓰지 못한다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "upgrade",
+          "label": "업그레이드하면",
+          "caption": "계정을 종량제로 업그레이드하면 구독과 서비스를 다시 쓰고, 12개월 무료 서비스와 항상 무료 서비스를 이어 받는다. 크레딧은 가입한 날부터 30일까지만 쓴다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "after-12",
+          "label": "12개월이 지나면",
+          "caption": "업그레이드한 계정은 12개월이 지나도 쓰던 서비스가 멈추지 않고 종량제 요금이 붙는다. 항상 무료 서비스는 정해진 양까지 계속 무료다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.free-account"
+      ]
+    },
+    "spending-limit": {
+      "label": "크레딧을 다 써 지출 한도에 닿으면 VM 1이 중지되고 스토리지 계정이 읽기 전용이 되며, 업그레이드하면 다시 쓰는 모습",
+      "svgLabel": "크레딧에서 지출 한도로 화살표가 가고, 지출 한도에서 VM 1과 스토리지 계정으로 갈라지며, 업그레이드에서 VM 1로 가는 화살표가 따로 있다",
+      "question": "크레딧을 다 쓰면 무엇이 멈출까?",
+      "idleCaption": "회사 D의 무료 계정 구독에 있는 VM 1과 스토리지 계정을 그렸다. 버튼을 고르면 지출 한도에 닿았을 때와 업그레이드했을 때를 볼 수 있다.",
+      "legend": "화살표는 크레딧을 다 쓴 뒤 이어지는 일과 업그레이드로 다시 쓰는 길을 잇는다. 예산은 서비스를 멈추지 않아 이 그림에 넣지 않았다.",
+      "nodes": {
+        "credit": "크레딧",
+        "limit": "지출 한도",
+        "vm": "VM 1",
+        "storage": "스토리지 계정",
+        "upgrade": "업그레이드"
+      },
+      "notes": {
+        "stop-note": "중지되고 할당 취소",
+        "read-only-note": "읽기 전용",
+        "resume-note": "한도가 없어지고 다시 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "reach",
+          "label": "한도에 닿으면",
+          "caption": "크레딧을 다 써 지출 한도에 닿으면 배포한 서비스를 쓸 수 없게 된다. VM 1은 중지되고 할당 취소되며, 스토리지 계정의 데이터는 읽을 수만 있다.",
+          "sources": [
+            "azure-cost-management.spending-limit"
+          ]
+        },
+        {
+          "id": "upgrade",
+          "label": "업그레이드하면",
+          "caption": "무료 계정을 종량제로 업그레이드하면 지출 한도가 없어지고 구독이 다시 켜진다. 그때부터 쓴 양에는 요금이 붙는다.",
+          "sources": [
+            "azure-cost-management.spending-limit"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.spending-limit"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "cost-tools": {
+      "label": "비용 도구 넷 견주기",
+      "columns": [
+        "도구",
+        "하는 일",
+        "리소스에 미치는 영향"
+      ],
+      "columnWidths": [
+        "26%",
+        "37%",
+        "37%"
+      ],
+      "sources": [
+        "azure-cost-management.cost-analysis",
+        "azure-cost-management.budgets",
+        "azure-cost-management.cost-alerts",
+        "azure-cost-management.spending-limit"
+      ],
+      "rows": [
+        {
+          "header": "비용 분석",
+          "cells": [
+            "쓴 비용을 여러 기준으로 나눠 본다",
+            "없다"
+          ]
+        },
+        {
+          "header": "예산",
+          "cells": [
+            "쓴 비용이 기준에 닿으면 경고를 낸다",
+            "자동화를 따로 설정해야 리소스를 멈춘다"
+          ]
+        },
+        {
+          "header": "비용 경고",
+          "cells": [
+            "경고를 한곳에 모아 보여 준다",
+            "없다"
+          ]
+        },
+        {
+          "header": "지출 한도",
+          "cells": [
+            "크레딧보다 더 쓰지 못하게 막는다",
+            "서비스를 실제로 멈춘다"
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }
