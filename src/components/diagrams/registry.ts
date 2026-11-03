@@ -180,6 +180,8 @@ import { SubnettingDiagram } from './SubnettingDiagram'
 import { SubscriptionBoundaryDiagram } from './SubscriptionBoundaryDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
+import { TagCostReportDiagram } from './TagCostReportDiagram'
+import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
@@ -457,6 +459,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-factors.pricing-calculator': PricingCalculatorDiagram,
   'azure-cost-management.cost-analysis': CostAnalysisDiagram,
   'azure-cost-management.budgets': BudgetAlertDiagram,
+  'azure-cost-management.tags': TagCostReportDiagram,
+  'azure-cost-management.tag-inheritance': TagInheritanceDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

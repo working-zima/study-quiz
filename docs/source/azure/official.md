@@ -1739,7 +1739,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-re
 - 모든 리소스 유형이 태그를 지원하지는 않는다. 클래식 리소스는 지원하지 않는다. 개수·글자 수 제한은 쓰지 않는다 — 「Limitations」 (phase 106)
 - 한국어 표기: 「태그 상속」(절 제목), 「키-값 쌍」, 「메타데이터」 (phase 106)
 
-쓰일 곳: `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59(phase 106). 덤프 NO.54·93·309·335의 태그 진술 「아니요」는 이 사실과 맞다 — D 항목 없음
+쓰인 곳: `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59, az148, az149(phase 106). 덤프 NO.54·93·309·335의 태그 진술 「아니요」는 이 사실과 맞다 — D 항목 없음
 
 ## (phase 102) Microsoft Entra — Associate or add an Azure subscription to your Microsoft Entra tenant
 https://learn.microsoft.com/en-us/entra/fundamentals/how-subscriptions-associated-directory
@@ -4267,7 +4267,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 특정 태그를 모든 리소스에 둘 필요는 없다. 예로 운영에 꼭 필요한 리소스에만 `Impact`를 붙이면, 붙지 않은 것은 그렇지 않은 리소스로 본다 — 표 뒤
 - 한국어 표기: 「태그」, 「리소스 태그」, 「이름과 값」, 「메타데이터」, 「리소스 관리」, 「비용 관리 및 최적화」, 「운영 관리」, 「거버넌스 및 규정 준수」, 「워크로드 최적화 및 자동화」. Security는 한국어판이 「안전」으로 옮겼으나 본문이 보안 수준을 말하므로 **「보안」** 으로 쓴다
 
-쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59
+쓰인 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59, az148, az149
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「누가 쓰는가」와 경고
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4297,7 +4297,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand
 - 태그는 사용 기록에 실려 들어온다. 리소스에 직접 붙여야 하고 부모 리소스 그룹에서 저절로 물려받지 않는다. 태그가 붙어 있는 동안의 사용량에만 실리므로, 지난 기록에는 적용되지 않고 지운 뒤의 기록에도 없다. 어떤 리소스는 태그를 지원하지 않거나 사용 기록에 싣지 않는다 — 「How tags are used in cost and usage data」
 
 쓰인 곳(phase 106): `azure-cost-management.cost-management`, `azure-cost-management.cost-analysis`, D99, D100, az143
-쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`
+쓰인 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, az148
 
 ## (phase 106) Cost Management — Understand and work with scopes (관리 그룹 범위만)
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-work-scopes
@@ -4327,7 +4327,8 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/group-filt
 - 한국어 표기: 「비용 분석」, 「예측 비용」, 「누적 비용」, 「위치」(앱 글은 「지역」), 「서비스 이름」, 「리소스 그룹」, 「태그」
 
 쓰인 곳(phase 106): `azure-cost-management.cost-analysis`, `CostAnalysisDiagram`, az144
-쓰일 곳(phase 106): `azure-cost-management.tags`, `TagCostReportDiagram`, `CostToolsTable`
+쓰인 곳(phase 106): `azure-cost-management.tags`, `TagCostReportDiagram`, az148
+쓰일 곳(phase 106): `CostToolsTable`
 
 ## (phase 106) Cost Management — Tutorial: Create and manage budgets
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets
@@ -4390,7 +4391,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-po
 - 정의의 이름 목록·효과의 이름은 **쓰지 않는다**. Azure Policy의 동작은 `azure-governance`의 몫이다 — 한 줄로 푼다
 - 한국어 표기: 「정책 정의」, 「수정 작업」
 
-쓰일 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, az149
+쓰인 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, az149
 
 ## (phase 106) Cost Management — Group and allocate costs using tag inheritance (「상속되지 않는다」의 한정)
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance
@@ -4401,7 +4402,7 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag
 - 이 설정이 있는 계정은 Enterprise Agreement·Microsoft Customer Agreement·Microsoft Partner Agreement다 — 머리말
 - 그래서 「리소스는 태그를 물려받지 않는다」는 이 설정이 있어도 맞다. 주어를 **리소스**로 써서 말하고, 「태그는 어디에도 상속되지 않는다」처럼 넓게 쓰지 않는다. 이 설정은 `tag-inheritance`에 한 줄까지 쓸 수 있다(일부 계약에서 비용 기록에만 붙이는 설정이 있다). 켜는 법과 우선 규칙은 쓰지 않는다
 
-쓰일 곳(phase 106): `azure-cost-management.tag-inheritance`
+쓰인 곳(phase 106): `azure-cost-management.tag-inheritance`
 
 ## (phase 106) Cost Management — Avoid charges with your Azure free account, Create services included with Azure free account
 https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/avoid-charges-free-account

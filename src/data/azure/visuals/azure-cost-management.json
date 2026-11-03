@@ -86,6 +86,88 @@
       "sources": [
         "azure-cost-management.budgets"
       ]
+    },
+    "tag-cost-report": {
+      "label": "구독 1 안의 VM 1, 디스크 1, VM 2의 비용이 태그 값에 따라 영업부 비용과 연구부 비용으로 나뉘는 모습",
+      "svgLabel": "구독 1 안의 VM 1과 디스크 1에서 영업부 비용으로, VM 2에서 연구부 비용으로 화살표가 간다",
+      "question": "한 구독의 비용을 부서별로 어떻게 나눠 볼까?",
+      "idleCaption": "구독 1 하나에 영업부와 연구부의 리소스가 함께 있다. 버튼을 고르면 태그 값으로 묶인 비용을 볼 수 있다.",
+      "legend": "화살표는 비용 분석에서 태그 값별로 묶이는 비용을 가리킨다. 리소스는 모두 구독 1 안에 그대로 있다.",
+      "nodes": {
+        "vm-sales": "VM 1",
+        "disk-sales": "디스크 1",
+        "vm-research": "VM 2",
+        "report-sales": "영업부 비용",
+        "report-research": "연구부 비용"
+      },
+      "groups": {
+        "subscription": "구독 1"
+      },
+      "notes": {
+        "sales-note": "Department=Sales",
+        "research-note": "Department=Research"
+      },
+      "scenarios": [
+        {
+          "id": "sales",
+          "label": "영업부",
+          "caption": "같은 태그 값이 붙은 VM 1과 디스크 1의 비용을 비용 분석에서 묶어 영업부 비용으로 본다.",
+          "sources": [
+            "azure-cost-management.tags"
+          ]
+        },
+        {
+          "id": "research",
+          "label": "연구부",
+          "caption": "VM 2는 같은 구독 1에 그대로 있고, 태그 값이 달라 연구부 비용으로 따로 나뉜다.",
+          "sources": [
+            "azure-cost-management.tags"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.tags"
+      ]
+    },
+    "tag-inheritance": {
+      "label": "리소스 그룹 1에 붙인 태그가 그 안의 VM 1에 내려오지 않고, Azure Policy를 걸면 규칙이 VM 1에 태그를 붙이는 모습",
+      "svgLabel": "리소스 그룹 1 안에 그룹의 태그와 VM 1이 있고, 리소스 그룹 밖의 Azure Policy에서 VM 1로 화살표가 간다",
+      "question": "리소스 그룹의 태그가 안의 리소스로 내려올까?",
+      "idleCaption": "리소스 그룹 1에 태그를 붙이고 그 안에 VM 1을 두었다. 버튼을 고르면 그대로 둘 때와 Azure Policy를 걸 때를 견줘 볼 수 있다.",
+      "legend": "화살표는 Azure Policy의 규칙이 VM에 태그를 붙이는 방향을 가리킨다. 리소스 그룹의 태그에서 VM으로 가는 화살표는 없다.",
+      "nodes": {
+        "group-tag": "그룹의 태그",
+        "vm": "VM 1",
+        "policy": "Azure Policy"
+      },
+      "groups": {
+        "resource-group": "리소스 그룹 1"
+      },
+      "notes": {
+        "default-note": "VM에 내려오지 않는다",
+        "policy-note": "정책이 VM에 태그를 붙인다"
+      },
+      "scenarios": [
+        {
+          "id": "default",
+          "label": "그대로 두면",
+          "caption": "리소스 그룹 1에 붙인 태그를 VM 1이 물려받지 않아, 그룹의 태그는 VM 1에 나타나지 않는다.",
+          "sources": [
+            "azure-cost-management.tag-inheritance"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "정책을 걸면",
+          "caption": "VM 1에도 태그를 두려면 Azure Policy로 규칙을 건다. 규칙은 리소스를 만들거나 고칠 때 동작해 VM에 태그를 붙인다.",
+          "sources": [
+            "azure-cost-management.tag-inheritance"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.tag-inheritance"
+      ]
     }
   },
   "tables": {},
