@@ -71,7 +71,7 @@ const expectedScenarios = [
     id: 'access', label: '액세스 제어 경계',
     nodes: ['access-dev', 'access-prod'],
     notes: ['dev-access-note', 'prod-access-note'],
-    caption: '액세스 규칙과 지출 한도는 구독마다 따로 둘 수 있다. 구독 「개발」과 구독 「운영」에 서로 다른 액세스 규칙과 지출 한도를 두어, 개발 환경과 운영 환경을 따로 관리한다.',
+    caption: '액세스 규칙은 구독마다 따로 둘 수 있다. 구독 「개발」과 구독 「운영」에 서로 다른 액세스 규칙을 두어, 개발 환경과 운영 환경을 따로 관리한다.',
     sources: ['azure-resource-hierarchy.subscription-boundaries'],
   },
 ]

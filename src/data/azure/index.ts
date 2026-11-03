@@ -4,6 +4,8 @@ import azureCloudBenefitsVisuals from './visuals/azure-cloud-benefits.json'
 import azureCloudComputingVisuals from './visuals/azure-cloud-computing.json'
 import azureCloudModelsVisuals from './visuals/azure-cloud-models.json'
 import azureComputeVisuals from './visuals/azure-compute.json'
+import azureCostFactorsVisuals from './visuals/azure-cost-factors.json'
+import azureCostManagementVisuals from './visuals/azure-cost-management.json'
 import azureDataMovementVisuals from './visuals/azure-data-movement.json'
 import azureIdentityVisuals from './visuals/azure-identity.json'
 import azureNetworkProtectionVisuals from './visuals/azure-network-protection.json'
@@ -37,6 +39,8 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-data-movement': azureDataMovementVisuals,
   'azure-identity': azureIdentityVisuals,
   'azure-security-model': azureSecurityModelVisuals,
+  'azure-cost-factors': azureCostFactorsVisuals,
+  'azure-cost-management': azureCostManagementVisuals,
 }
 
 export const azureSubject: Subject = {
