@@ -58,7 +58,7 @@ const expectedScenarios = [
     "nodes": ["spending", "budget", "automation", "resource"],
     "paths": ["to-budget", "to-automation", "to-resource"],
     "notes": ["automation-note"],
-    "caption": "담당자가 리소스를 멈추는 동작을 자동화로 따로 설정해 두면, 쓴 비용이 기준에 닿았을 때 그 동작이 리소스를 멈춘다. 예산이 스스로 멈추는 것은 아니다.",
+    "caption": "담당자가 리소스를 멈추는 동작을 자동화로 따로 설정해 두면, 쓴 비용이 기준에 닿았을 때 그 동작이 리소스를 멈춘다. 비용 경고와 이메일도 그대로 가며, 이 장면은 자동화 갈래만 밝혔다. 예산이 스스로 멈추는 것은 아니다.",
     "sources": [anchorConceptId]
   }
 ]

@@ -105,7 +105,7 @@ const expectedScenarios = [
     "notes": [
       "resume-note"
     ],
-    "caption": "무료 계정을 종량제로 업그레이드하면 지출 한도가 없어지고 구독이 다시 켜진다. 그때부터 쓴 양에는 요금이 붙는다.",
+    "caption": "무료 계정을 종량제로 업그레이드하면 지출 한도가 없어지고 구독이 다시 켜진다. 그때부터 쓴 양에는 요금이 붙는다. 이 장면은 VM 1을 예로 그렸다.",
     "sources": [
       anchorConceptId
     ]
