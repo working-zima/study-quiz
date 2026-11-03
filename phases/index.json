@@ -407,7 +407,8 @@
     },
     {
       "dir": "106-azure-cost",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-11-03T09:57:10+0900"
     }
   ]
 }
