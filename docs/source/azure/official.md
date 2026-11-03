@@ -1842,6 +1842,22 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(정책을 푸는 줄 — Azure Policy로 정하는 규칙, 조직의 기준을 리소스에 강제하고 여러 리소스가 지키는지 평가한다), az055 해설, D50(문항이 「규칙을 걸 자리」를 조건으로 주어 관리 그룹만 정답이 되게 했다 — az053). 정책 효과·정책 정의의 구조는 `azure-governance`의 몫이라 적지 않았고 쓰지도 않았다
 
+확인한 날 2026-11-03. 같은 URL의 영문판과 한국어판을 다시 받았다. 사본의 갱신일은 2026-07-08이다. (phase 107)
+
+- 정책 정의에는 판단 조건과 그 조건에 해당할 때의 효과가 들어간다. 정의를 할당하면 적용할 범위를 정하게 된다 — 「Overview」「Azure Policy objects」 (phase 107)
+- 할당 범위는 관리 그룹·구독·리소스 그룹·리소스 하나까지다. 자식 범위는 할당을 물려받으며 일부 범위를 제외할 수도 있다 — 「Overview」「Assignments」 (phase 107)
+- 정책 효과에 따라 요청 차단·감사 기록·설정 수정 등 결과가 달라진다. 모든 정책이 배포를 막는다는 뜻으로 쓰지 않는다 — 「Control the response to an evaluation」 (phase 107)
+- Azure RBAC는 대상에게 허용할 작업을 관리한다. 역할이 만들기나 변경을 허용하더라도, 그 요청의 결과가 거부 정책에 걸리면 실행되지 않는다 — 「Azure Policy and Azure RBAC」 (phase 107)
+- 현행 개요에는 요청 주체를 조건으로 삼는 정책도 있다. 비교 설명은 역할의 권한과 리소스 기준을 구별하는 데 쓰되, Policy가 신원이나 작업을 전혀 보지 않는다고 단정하지 않는다 — 「Manage identity-based actions and usage」「Azure Policy and Azure RBAC」 (phase 107)
+- 같은 목표의 정책 정의를 모은 것이 이니셔티브다. 묶음을 할당한 뒤 정의를 더해도 기존 할당의 평가 대상에 포함된다 — 「Recommendations for managing policies」「Initiative definition」 (phase 107)
+- 규정 준수 대시보드는 전체 상태에서 개별 정책·리소스의 결과로 들어가 볼 수 있다 — 「첫 문단」 (phase 107)
+- 관리 그룹에도 정책을 할당할 수 있지만, 실제로 평가되는 것은 그 아래 구독·리소스 그룹 수준의 리소스다 — 「Resources covered by Azure Policy」 (phase 107). **NO.41(답 Azure Policy)은 D50의 처리를 그대로 따른다** — 규칙을 정해 평가하는 것은 Azure Policy, 여러 구독에 한꺼번에 거는 자리는 관리 그룹
+- 기본 제공 정의의 예로 개요가 드는 것: 허용된 스토리지 계정 SKU, 허용된 리소스 종류, 허용된 위치, 허용되는 가상 머신 SKU, 리소스에 태그 추가(빠진 필수 태그와 기본값을 붙인다), 허용되지 않는 리소스 종류 — 「Policy definition」의 기본 제공 정책 목록(한국어판 이름). 괄호 안의 효과 이름(Deny·Modify)은 앱에 쓰지 않는다 (phase 107)
+- 정의는 포털·PowerShell·Azure CLI로 할당한다. 매개변수를 두면 한 정의를 할당마다 다른 값(예: 허용할 지역)으로 다시 쓴다 — 같은 절 (phase 107)
+- 한국어 표기: 정책 정의, 할당, 이니셔티브, 규정 준수, 비준수. 개념 이름은 「정책 이니셔티브」로 정한다 — 한국어판 「Azure Policy 개체」와 Learn 단원 3 (phase 107)
+
+쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `GovernanceToolsTable`; D50·D109·D110·G61. (phase 107)
+
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
 
@@ -2549,6 +2565,20 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-r
 - 한국어 표기: 잠금, 리소스 잠금
 
 쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
+
+확인한 날 2026-11-03. 같은 URL의 두 언어판을 다시 받았다. 사본의 갱신일은 2025-02-06이다. (phase 107)
+
+- 구독·리소스 그룹·리소스에 잠금을 건다. 삭제 잠금은 읽기와 변경을 허용하고 삭제를 막는다. 읽기 전용 잠금은 변경과 삭제를 막는다 — 「첫 문단」 (phase 107)
+- 위 범위의 잠금은 안에 있는 리소스와 나중에 추가한 리소스에도 미친다. 상속 경로에서 잠금이 겹치면 제한이 더 큰 것이 우선한다 — 「Lock inheritance」 (phase 107)
+- 안의 리소스 하나에 삭제 잠금이 있어도 리소스 그룹 전체 삭제가 실패한다. 잠기지 않은 리소스만 먼저 지우는 부분 삭제도 일어나지 않는다 — 「Lock inheritance」 (phase 107)
+- 잠금은 관리 작업에 적용된다. SQL 서버의 설정을 읽기 전용으로 잠가도 데이터베이스 안의 데이터를 바꾸는 작업까지 막지는 않는다 — 「Understand scope of locks」 (phase 107)
+- 읽기 전용으로 잠근 저장소 계정은 키 목록 조회도 막힌다. 이 조회가 관리 API의 POST 작업이기 때문이다. 단순히 화면에서 정보를 보는 일처럼 보여도 막힐 수 있는 예다 — 「Considerations before applying your locks」 (phase 107)
+- 잠금을 만들거나 지우려면 `Microsoft.Authorization/*`나 `Microsoft.Authorization/locks/*` 권한이 있어야 한다. 소유자와 사용자 액세스 관리자는 이 권한을 갖고, 필요한 권한을 넣은 사용자 지정 역할도 가능하다 — 「Who can create or delete locks」 (phase 107)
+- 잠금이 막는 작업은 소유자 권한으로도 바로 실행할 수 없다. 필요한 권한으로 잠금을 먼저 지운 뒤 작업한다 — 「첫 문단」(잠금은 모든 사용자 권한보다 우선한다) 및 Learn 단원 4 「How do I delete or change a locked resource?」 (phase 107)
+- 같은 종류의 잠금을 한 리소스에 여럿 직접 거는 것과, 읽기 전용 잠금이 있는 리소스에 삭제 잠금을 더하는 것을 말하는 문장은 이 문서와 Learn 단원 4에서 **찾지 못했다**. 상속 경로에서 잠금이 겹치는 일과 그때 가장 제한적인 것이 우선한다는 것만 확인했다(D111) (phase 107)
+- 한국어 표기: 「잠금 상속」은 한국어판 절 제목이다. 포털의 「삭제」「읽기 전용」에 잠금을 붙여 두 종류를 구별한다. 명령에서의 이름은 각각 `CanNotDelete`·`ReadOnly`다. 역할은 앞 phase와 같은 「소유자」「사용자 액세스 관리자」로 쓴다 (phase 107)
+
+쓰일 곳: `azure-governance.resource-locks`, `azure-governance.lock-inheritance`, `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62. (phase 107)
 
 ## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
@@ -4533,3 +4563,295 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-
 - 일반 낱말 「지출 한도」 — Learn 단원 6과 예산 튜토리얼 한국어판은 예산을 말하며 이 말을 쓴다. 이 주제는 기능 「Azure 지출 한도」에만 쓰고, 예산에는 「기준」·「금액 기준」을 쓴다.
 
 **쓰지 않는 이름**: FinOps, 스마트 보기·KPI, 내보내기, Consumption API·REST API, Runbook·웹훅을 개념 이름으로, 일정 경고·청구서 경고, Enterprise Agreement의 등록 계정·부서 구조, 구독 소유권 이전, Microsoft Partner Agreement.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 2: Describe the purpose of Microsoft Purview
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-2-describe-purpose-microsoft-purview.md`와 `ko-` 판.
+
+- 조직의 데이터가 여러 장소에 나뉘어 있어도 어디에 무엇이 있는지 파악하고 보호·관리를 돕는 제품군이다. 온-프레미스, 여러 클라우드, SaaS가 이 범위에 들어간다 — 「첫 문단」
+- 위험 및 규정 준수 솔루션은 중요한 데이터를 보호하고 데이터 위험과 규정상 요구를 관리하게 돕는다. Microsoft 365의 Teams·OneDrive·Exchange도 이 영역과 연결된다 — 「Microsoft Purview risk and compliance solutions」
+- 통합 데이터 거버넌스는 데이터 탐색·분류·계보를 통해 전체 데이터의 지도를 만든다. 민감한 데이터의 위치와 쓰임을 파악하고 필요한 데이터를 찾게 하며 데이터 접근 관리도 돕는다 — 「Unified data governance」
+- 두 갈래는 이 Learn 단원이 설명하는 구분이다. 제품 전체의 현재 메뉴가 정확히 두 개라고 주장하거나 Azure 리소스 배포를 제어하는 기능으로 설명하지 않는다 — 「Microsoft Purview risk and compliance solutions」「Unified data governance」
+- 한국어 표기: Microsoft Purview, 위험 및 규정 준수 솔루션, 통합 데이터 거버넌스, 데이터 검색, 데이터 분류, 데이터 계보. 「검색」은 본문에서 자동으로 찾아내는 일로 풀고 도식 버튼은 「데이터 찾기」로 쓴다.
+
+쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 3: Describe the purpose of Azure Policy
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/3-describe-purpose-azure-policy
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-3-describe-purpose-azure-policy.md`와 `ko-` 판.
+
+- 조직의 규칙을 정책으로 만들고 적용할 범위를 정해, 리소스를 감사하거나 규칙을 강제한다. 기본 제공 정책도 있다 — 「첫 문단」「How does Azure Policy define policies?」
+- VM 크기를 제한하는 정책은 VM을 만들 때뿐 아니라 크기를 바꾸는 요청에도 쓰인다. 정책보다 먼저 만들어 둔 VM도 평가한다 — 「How does Azure Policy define policies?」
+- 어떤 경우에는 비준수 리소스를 자동으로 고친다. 예로 `AppName` 태그를 요구하고 빠졌으면 붙인다. 리소스를 예외로 표시할 수 있어 통제권은 사용자에게 남는다 — 「How does Azure Policy define policies?」 넷째 문단. 「어떤 경우에는」이 범위다 — 고칠 수 있는 정책의 범위는 아래 「Remediate non-compliant resources」로 한정한다
+- 정책을 각 층(리소스·리소스 그룹·구독 등)에 걸고, 위 층에 건 정책은 아래로 상속된다 — 둘째 문단. 상속은 `azure-resource-hierarchy.hierarchy`가 이미 가르치므로 한 줄로만 쓴다
+- 관련 정책을 이니셔티브로 묶어 같은 목표에 대한 준수 상태를 함께 살핀다. 단원의 예 「Enable Monitoring in Azure Security Center」는 옛 이름이다 — 제품 개요는 같은 예를 「Enable Monitoring in Microsoft Defender for Cloud」로 적는다(`docs-policy-overview.md` 「Initiative definition」). 앱은 이 이름도 정책 개수도 쓰지 않고 「보안 권장 사항을 살피는 정책들을 묶은 것」처럼 하는 일로 쓴다 — 「What are Azure Policy initiatives?」
+- Azure DevOps 연동과 「Policy guardrails for AI-assisted changes」 절은 쓰지 않는다(guide 「쓰지 않는 것」)
+- 한국어 표기: Azure Policy, 정책 정의, 할당, 이니셔티브. 자동 수정과 예외의 구체적 범위는 아래 제품 문서로 한정한다.
+
+쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`; D109·D110·G61.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 4: Describe the purpose of resource locks
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-describe-purpose-resource-locks
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-4-describe-purpose-resource-locks.md`와 `ko-` 판.
+
+- 권한을 가진 사람이 실수로 리소스를 지우거나 바꾸는 일을 잠금으로 제한한다. 적용할 자리는 개별 리소스·리소스 그룹·구독이다 — 「첫 문단」
+- 포털의 잠금 항목에서 잠금을 관리할 수 있고 PowerShell·Azure CLI·ARM 템플릿도 지원한다. 여기서는 관리 수단의 이름만 쓴다 — 「How do I manage resource locks?」
+- 소유자도 잠금으로 막힌 작업을 하려면 먼저 잠금을 풀어야 한다. 수정 전에 늘 해제해야 한다는 단원 중간의 문장은 두 종류에 공통으로 적용하지 않는다. 삭제 잠금은 변경을 허용한다 — 「Types of resource locks」「How do I manage resource locks?」
+- 한국어 표기: 리소스 잠금, 삭제 잠금, 읽기 전용 잠금. Learn의 Delete는 제품 문서의 CanNotDelete와 같은 종류다.
+
+쓰일 곳: `azure-governance.resource-locks`, `azure-governance.lock-inheritance`; G62.
+
+## (phase 107) Microsoft Purview — Learn about Microsoft Purview
+https://learn.microsoft.com/en-us/purview/purview
+
+확인한 날 2026-11-03. 「Last updated on」 2026-05-15. 사본: `docs-purview-overview.md`와 `ko-` 판.
+
+- 데이터를 파악하고 보호하며 관리하는 여러 솔루션을 함께 제공한다. 데이터 보안·데이터 거버넌스·규정 준수 솔루션을 포함하므로 Azure Purview라는 옛 데이터 거버넌스 이름만으로 현재 제품군 전체를 정의하지 않는다 — 「첫 문단」「Unified data security, governance, and compliance solutions for the era of AI」
+- 한국어 표기: Microsoft Purview. 두 목록 항목의 한국어 이름은 Learn 단원 2를 기준으로 한다.
+
+쓰일 곳: `azure-governance.purview`; G60.
+
+## (phase 107) Microsoft Purview — Classic governance solutions
+https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview
+
+확인한 날 2026-11-03. 「Last updated on」 2025-01-28. 사본: `docs-purview-classic-governance-overview.md`(영문판).
+
+- 과거 Azure Purview에 해당했던 것은 현재 제품군 중 클래식 데이터 거버넌스 서비스(클래식 Data Catalog·Data Health Insights·Workflow) 쪽이다. 이 클래식 서비스들은 새 고객을 받지 않고 고객 지원 모드에 있다. 현행 제품군 전체가 그 이름 하나에서 단순히 바뀌었다고 설명하지 않는다 — 「첫 Note」
+- 데이터 원본을 등록할 때 원본 데이터는 있던 곳에 남고 위치 참조와 메타데이터가 지도에 들어간다. 도식에서 세 장소의 데이터를 Purview로 모두 옮겨 저장하는 것처럼 그리지 않는다 — 「Microsoft Purview advantages」
+- 한국어 표기: 과거 이름의 확인에만 영문판을 사용했다. 클래식 서비스의 화면·설치 방법은 쓰지 않는다.
+
+쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+
+## (phase 107) Microsoft Purview — Data lineage user guide for classic Data Catalog
+https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide
+
+확인한 날 2026-11-03. 「Last updated on」 2025-07-18. 사본: `docs-purview-data-lineage.md`와 `ko-` 판.
+
+- 데이터가 처리되는 과정에서 생긴 데이터 집합들의 관계를 계보로 연결해 볼 수 있다. 수집한 메타데이터를 연결하는 것이며 계보 수집 범위는 연동 시스템마다 다르다 — 「Background」「Lineage collection」
+- 온-프레미스에서 클라우드 처리와 분석으로 이어지는 경로는 클래식 거버넌스 개요의 예에도 있다. 그림에는 데이터 이동을 추적하는 예임을 밝히며 모든 원본의 경로를 저절로 완성한다는 뜻으로 쓰지 않는다 — 「Lineage collection」 및 클래식 개요 「Classic Data Catalog」
+- 한국어 표기: 한국어판 제목·본문의 「데이터 계보」를 채택한다. 짧은 도식 버튼은 「계보」, 본문 첫 등장은 「데이터 계보」다.
+
+쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+
+## (phase 107) Azure Information Protection — What is Azure Information Protection?
+https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection
+
+확인한 날 2026-11-03. 「Last updated on」 2024-05-13. 사본: `docs-information-protection-what-is.md`와 `ko-` 판.
+
+- AIP 추가 기능은 종료되어 Microsoft 365 앱·서비스의 내장 레이블로 대체됐다. 추가 기능이 빠진 정보 보호 클라이언트는 계속 내려받을 수 있다(제품: Microsoft Purview Information Protection) — 「Note」
+- AIP는 Purview의 민감도 레이블 등이 이용하는 Azure Rights Management 암호화 서비스를 제공한다. AIP 전체가 없어졌다거나 전체 서비스가 Purview로 이름만 바뀌었다고 쓰면 안 된다 — 「첫 문단」
+- 문서가 Purview Information Protection의 이전 이름으로 적은 것은 Microsoft Information Protection이다. 리소스 잠금을 복원하는 서비스를 설명하는 문서가 아니다 — 「Note」「첫 문단」
+- 한국어 표기: 이름 둘 — Azure Information Protection(AIP), Microsoft Purview Information Protection. 옛 추가 기능과 현재 레이블 경험을 구별한다.
+
+쓰일 곳: `azure-governance.sensitivity-labels`; D106·D108.
+
+## (phase 107) Microsoft Purview — Protect your sensitive data
+https://learn.microsoft.com/en-us/purview/information-protection
+
+확인한 날 2026-11-03. 「Last updated on」 2026-02-27. 사본: `docs-purview-information-protection.md`와 `ko-` 판.
+
+- Microsoft Purview Information Protection은 민감한 정보를 찾고 분류하며 보호하는 기능을 제공한다. 보호 방법에는 암호화·접근 제한·문서에 보이는 표시가 있다 — 「첫 문단」「Protect your data」
+- 한국어 표기: 제품 이름 Microsoft Purview Information Protection(옮기지 않는다), 민감도 레이블.
+
+쓰일 곳: `azure-governance.sensitivity-labels`; D106.
+
+## (phase 107) Microsoft Purview — Learn about sensitivity labels
+https://learn.microsoft.com/en-us/purview/sensitivity-labels
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-29. 사본: `docs-purview-sensitivity-labels.md`와 `ko-` 판.
+
+- 민감도 레이블은 문서·메일에 민감도를 나타내는 분류를 붙이고 설정해 둔 보호를 적용하게 한다. 이름은 조직이 정할 수 있으며 모든 레이블이 암호화하는 것은 아니다 — 「What a sensitivity label is」「What sensitivity labels can do」
+- 레이블에 암호화와 콘텐츠 표시를 설정할 수 있다. 표시는 워터마크·머리글·바닥글을 포함한다. 암호화는 허용한 사람이 콘텐츠에서 할 수 있는 작업도 제한할 수 있다 — 「What sensitivity labels can do」
+- 현재 문서는 기밀 같은 상위 이름과 하위 레이블을 구분한다. 상위 그룹 이름만으로 특정 암호화·표시 설정을 보장하지 않는다 — 「Sublabels that use parent labels or label groups」
+- 한국어 표기: 민감도 레이블, 워터마크, 머리글, 바닥글, 암호화. 예시 이름은 아래 기본 레이블 문서로 대조한다.
+
+쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`; D106.
+
+## (phase 107) Microsoft Purview — Automatically apply sensitivity labels
+https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-14. 사본: `docs-purview-apply-sensitivity-label-automatically.md`와 `ko-` 판.
+
+- Word·Excel·PowerPoint·Outlook에서 문서를 편집하거나 메일을 작성할 때 조건에 맞는 레이블을 권하거나 자동으로 붙일 수 있다. 두 경우 모두 사용자가 그 레이블을 받아들일지 거절할지 정한다 — 앱에서는 「자동으로 붙여도 사용자가 바꿀 수 있다」까지 쓴다. 지원하는 앱·버전이어야 하며 모든 클라이언트에 공통인 기능은 아니다 — 「첫 문단: two different methods」
+- 서비스 쪽 자동 레이블 정책은 이미 SharePoint·OneDrive에 저장된 파일과 Exchange Online이 주고받는 메일을 대상으로 한다. 관리자가 만드는 정책이고 사용자가 권고를 받아 누르는 과정은 없으며, 메일함에 이미 저장된 메일까지 이 경로로 처리한다고 쓰지 않는다 — 「첫 문단: Service-side labeling」
+- 내용에 민감한 정보가 있는지 등의 조건을 관리자가 구성한다. 신용카드 번호가 든 문서는 조건의 예로 쓸 수 있으나 실제 번호나 개수 기준은 앱에 넣지 않는다 — 「How to configure auto-labeling for Office apps」
+- 한국어 표기: 자동 레이블 지정. 본문에는 「조건에 맞으면 붙인다」와 「사용자에게 권한다」를 나누고 서비스 쪽에는 권고 방식을 붙이지 않는다.
+
+쓰일 곳: `azure-governance.sensitivity-labels`; D106.
+
+## (phase 107) Microsoft Purview — Restrict access to content by using sensitivity labels to apply encryption
+https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels
+
+확인한 날 2026-11-03. 「Last updated on」 2026-04-15. 사본: `docs-purview-encryption-sensitivity-labels.md`와 `ko-` 판.
+
+- 레이블로 암호화한 파일은 회사 밖으로 전달되거나 이름이 달라져도 암호화된 상태를 유지한다. 허용된 사람·사용 권한은 설정에 따른다 — 「첫 문단」
+- 레이블 이름만 붙였다고 모든 콘텐츠가 암호화되는 것은 아니다. 이 그림과 설명의 전제는 해당 레이블에 암호화를 설정했다는 것이다 — 「Configure encryption settings」
+- 한국어 표기: 민감도 레이블, 암호화. 「보호가 따라간다」를 사용할 때 암호화 설정이라는 전제를 함께 적는다.
+
+쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`; D106.
+
+## (phase 107) Microsoft Purview — Default sensitivity labels and policies
+https://learn.microsoft.com/en-us/purview/default-sensitivity-labels-policies
+
+확인한 날 2026-11-03. 「Last updated on」 2026-05-01. 사본: `docs-purview-default-sensitivity-labels-policies.md`와 `ko-` 판.
+
+- 기본 이름에는 Personal·Public·General·Confidential·Highly Confidential이 있다. 조직이 자신의 분류와 보호 설정에 맞게 바꿀 수 있는 출발점이다 — 「첫 문단」「Default sensitivity labels」
+- 영문판과 한국어판의 하위 레이블 목록·설정 설명은 서로 완전히 같지 않다. 한국어판에서는 이름만 취하고 실제 동작과 설정은 영문판을 따른다. 「기밀이면 기본적으로 워터마크와 암호화가 함께 붙는다」는 예를 만들지 않는다 — 「Default sensitivity labels」
+- 한국어 표기: 개인, 공용, 일반, 기밀, 극비. 개요 한국어판은 Highly Confidential까지 「기밀」로 번역한 자리가 있어 이 문서의 「극비」와 구별한다. 도식은 설정을 따로 밝힌 「레이블 1」로 확정한다.
+
+쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`.
+
+## (phase 107) Azure Policy — Assignment structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2026-08-07. 사본: `docs-policy-assignment-structure.md`와 `ko-` 판.
+
+- 할당은 어느 리소스를 정의나 이니셔티브로 평가할지 정한다. 같은 정의도 할당할 때 매개변수를 달리 줄 수 있다 — 「첫 문단」
+- 할당에서 집행을 끈 모드는 평가 결과와 실제 차단을 구별하게 한다. 입문 도식은 집행 중인 거부 정책을 전제로 하며 모든 할당의 성질로 넓히지 않는다 — 「Enforcement mode」
+- 한국어 표기: 정책 할당, 범위. 「정의」와 「할당」을 같은 말로 쓰지 않는다.
+
+쓰일 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; D109.
+
+## (phase 107) Azure Policy — Effect basics and layered policies
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-effect-basics.md`와 `ko-` 판.
+
+- 규칙에 해당했을 때 할 일은 효과가 정하고, 새 리소스·변경 요청·기존 리소스 평가에서 동작이 갈린다 — 「첫 문단」
+- 문서의 지역 제한 예에서 이미 있는 리소스는 비준수 여부를 기록하지만 새로운 요청은 deny로 거부한다. audit인 다른 정책에 어긋나더라도 새 리소스가 만들어지는 예도 있다 — 「Layering policy definitions」
+- 한국어 표기: 효과, 거부(deny), 감사(audit). **효과의 이름은 앱에 쓰지 않는다**(guide 「쓰지 않는 것」) — 「규칙에 어긋난 요청을 막는 정책」·「어긋나도 기록만 하는 정책」·「빠진 것을 고치는 정책」처럼 하는 일로 쓴다. 이 문서의 deny·audit·modify는 출처 기록에서만 쓴다
+
+쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`; D109·G61.
+
+## (phase 107) Azure Policy — Deny effect
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-deny.md`와 `ko-` 판.
+
+- deny는 조건에 걸린 생성·변경 요청을 리소스 공급자에게 넘기기 전에 거절한다 — 「Deny evaluation」
+- 이미 존재하는 리소스를 deny 정책으로 평가했을 때의 결과는 비준수 표시다. 지역 제한의 기존 리소스가 그대로 평가 대상으로 남는 effect-basics 예와 함께, 이 평가 자체는 삭제·이동·중지 작업이 아니라는 범위로 설명한다. 모든 정책이나 이후 변경 요청에까지 「영향이 없다」고 넓히지 않는다 — 「Deny evaluation」 및 effect-basics 「Layering policy definitions」
+- 한국어 표기: 거부, 비준수. 기존 리소스 곁말은 「비준수로 표시」가 핵심이며 「그대로 동작」에는 deny 평가만의 결과라는 조건을 단다.
+
+쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; D109.
+
+## (phase 107) Azure Policy — Built-in policy definitions
+https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-27. 사본: `docs-policy-built-in-policies.md`와 `ko-` 판.
+
+- 허용 지역, 허용 VM 크기, 허용하지 않을 리소스 종류를 정하는 기본 제공 정의가 있다 — 「General」「Compute」
+- 리소스에 특정 태그가 있어야 한다는 정의와 태그 값까지 요구하는 정의가 별도로 있다. 태그를 요구해 거부하는 것과 빠진 태그를 보태는 수정은 같은 효과가 아니다 — 「Tags」
+- 한국어 표기: 영문 표의 Allowed locations·Allowed virtual machine size SKUs·Not allowed resource types·Require a tag on resources를 확인했다. 한국어판 표도 영문 이름을 유지한다. 본문 예는 개요 한국어판의 「허용된 위치」「허용되는 가상 머신 SKU」「허용되지 않는 리소스 종류」와 설명형 「리소스의 태그 요구」로 쓴다. VM SKU는 크기 종류를 가리킨다고 풀고, 이를 포털에서 고정된 한국어 버튼 이름이라고 하지 않는다.
+
+쓰일 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; G61.
+
+## (phase 107) Azure Policy — Get compliance data
+https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data
+
+확인한 날 2026-11-03. 「Last updated on」 2025-02-11. 사본: `docs-policy-get-compliance-data.md`와 `ko-` 판.
+
+- 정책·이니셔티브 할당, 정의 갱신, 리소스 생성·변경, 예외 변경 등에 따라 평가가 실행된다. 일반 평가 주기는 24시간이지만 대상을 평가하는 시간이 따로 필요하므로 즉시 결과가 완성된다고 하지 않는다 — 「Evaluation triggers」
+- 포털의 Azure Policy 규정 준수 화면에서 할당별·리소스별 결과를 확인한다. 예외로 처리한 결과도 표시되는 상태 중 하나다 — 「Azure portal」「Evaluation triggers」
+- 한국어 표기: 규정 준수, 비준수. 개념 제목 「규정 준수 평가」는 두 낱말을 합쳐 이 개념이 설명하는 일을 이름으로 삼은 것이다.
+
+쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+
+## (phase 107) Azure Policy — Remediate non-compliant resources
+https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-remediate-resources.md`와 `ko-` 판.
+
+- 수정 작업은 modify 또는 deployIfNotExists 효과를 가진 정책으로 기존의 비준수 리소스에 정한 수정이나 배포를 수행하는 것이다. 모든 위반을 자동으로 고치는 만능 기능은 아니다 — 「첫 문단」
+- 기존 리소스에는 수정 작업을 만들어야 한다. 지원되는 경우 할당 마법사에서 작업도 함께 만들 수 있으므로 무조건 할당 후 별도 시점이라고 제한하지 않는다 — 「Create a remediation task」
+- 수정에는 할당에 연결한 관리 ID와 필요한 역할 권한이 쓰인다. 입문 설명은 필요한 수정 권한과 작업이 갖춰져야 한다는 범위까지만 쓴다 — 「How remediation access control works」
+- 한국어 표기: 수정 작업(remediation task), 수정(remediation). 한국어판 「수정 작업 만들기」를 기준으로 한다.
+
+쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; G61.
+
+## (phase 107) Azure Policy — Exemption structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2026-08-04. 사본: `docs-policy-exemption-structure.md`와 `ko-` 판.
+
+- 정책 예외는 특정 리소스 또는 그 아래 묶음을 지정한 할당의 정의·이니셔티브 평가에서 빼는 장치다. 전체 준수 집계에서는 예외 상태로 남는다 — 「첫 문단」
+- 예외 범주는 다른 방법으로 목적을 달성한 경우와 일시적으로 비준수를 받아들이는 경우를 구분한다. 만료를 지정할 수 있다. 모든 정책에 영구 면제되는 것으로 쓰지 않는다 — 「Exemption category」「Expiration」
+- Learn의 exceptions라는 일반 표현을 앱에서 구체화할 때 이 문서의 exemption을 쓴다. 두 표현이 API 이름으로 동의어라고 단정하거나 할당의 제외 범위와 섞지 않는다 — 「첫 문단」「Exemption creation and management」
+- 한국어 표기: 정책 예외(exemption). 한국어판 제목 「Azure Policy 예외 구조」를 따른다. 「면제」는 범주 waiver에 쓰이므로 기능 이름으로 섞지 않는다.
+
+쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+
+## (phase 107) Azure Policy — Initiative definition structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-initiative-definition-structure.md`와 `ko-` 판.
+
+- 함께 관리하려는 정책 정의를 묶어 하나의 항목으로 취급한다. 정의마다 따로 할당하지 않고 묶음을 할당할 수 있다 — 「첫 문단」
+- 관리 그룹은 구독을 묶는 계층이고 이니셔티브는 정책 정의를 묶는다. 정책 묶음을 관리 그룹에 할당하는 조합도 가능하므로 둘 중 하나만 쓸 수 있는 관계가 아니다 — 「첫 문단」 및 앞 phase 「What are Azure management groups?」의 「첫 문단」
+- 한국어 표기: 정책 이니셔티브. Learn은 「Azure Policy 이니셔티브」, 개요는 「이니셔티브」와 policySet을 함께 쓴다. 본문 첫 자리에서 정책 정의 묶음이라고 풀고 이후에는 「이니셔티브」로 줄일 수 있다.
+
+쓰일 곳: `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`; D110.
+
+## (phase 107) Azure Blueprints — Overview and retirement
+https://learn.microsoft.com/en-us/azure/governance/blueprints/overview
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-30. 사본: `blueprints-overview.md`와 `ko-` 판.
+
+- 단계적 종료 시작은 2026-07-31이고 서비스 종료는 2027-01-31이다. 종료 예정 서비스를 이 주제의 학습 대상으로 새로 넣지 않는다 — 「Important」
+- 정의에 ARM 템플릿과 역할 할당을 담을 수 있으며 완성한 묶음을 구독에 할당한다. 리소스 그룹을 담는 것과 그 그룹에 blueprint를 할당하는 것을 구별해야 한다 — 「첫 문단」「Blueprint definition」「Blueprint assignment」
+- 한국어 표기: Azure Blueprints. 용어집의 단수형 Azure Blueprint를 새 개념 이름으로 쓰지 않는다.
+
+쓰일 곳: 범위 제외의 기록 D107·D108·D112·G63. 앱에 Blueprints 개념·도식·문항은 만들지 않는다.
+
+## (phase 107) Azure Blueprints — Understand resource locking
+https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
+
+확인한 날 2026-11-03. 「Last updated on」 2023-12-05. 사본: `docs-blueprints-resource-locking.md`(영문판).
+
+- Blueprint의 잠금은 배포된 아티팩트에 deny assignment를 적용하는 방식이다. 그 할당의 관리 ID가 관여하며 Blueprint 밖에서 잠금 상태를 바꾸는 것을 막는다 — 「How blueprint locks work」
+- 이 설명은 삭제된 일반 리소스 잠금을 AIP가 다시 만든다는 근거가 아니다. NO.181을 Blueprints로 단순 정정해서 출제하지도 않는다 — 「How blueprint locks work」「Removing locking states」
+- 한국어 표기: 이 영문 문서는 오류 판정에만 쓴다. Blueprint 잠금의 세부 이름은 앱에서 쓰지 않는다.
+
+쓰일 곳: 범위 제외의 기록 D108.
+
+## (phase 107) 도식·표의 사실 — `azure-governance`
+
+확인한 날 2026-11-03. step 1·2·3의 설계에 대해 아래 원본의 해당 절을 대조했다. 이 항목은 새 사실을 만들지 않고 앞 항목의 적용 범위를 그림에 맞춰 정한다.
+
+| 도식·표 | 쓸 수 있는 이름·관계·조건 | 근거 |
+|---|---|---|
+| `PurviewDataMapDiagram` | 원본 위치는 「온-프레미스」「다른 클라우드」「SaaS」, 중앙은 「Microsoft Purview」다. 데이터 찾기·분류·계보를 보여 준다. 중앙으로 가는 선은 원본 데이터의 이사가 아니라 정보를 수집해 함께 보는 관계다. 온-프레미스에서 다른 클라우드로 향하는 선은 데이터가 이동한 경로를 추적하는 예이며 Purview가 데이터를 옮긴다는 뜻이 아니다. 자동 수집에는 지원하는 원본·연결의 전제가 있다. | [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview) 「Unified data governance」; [클래식 개요](https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview) 「Classic Data Catalog」「Microsoft Purview advantages」; [계보](https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide) 「Lineage collection」 |
+| `SensitivityLabelDiagram` | 예시 이름은 「레이블 1」, 대상은 「문서」, 보호는 「워터마크」「암호화」다. 표시 시나리오는 표시를, 암호화 시나리오는 암호화를 설정한 경우다. 「회사 밖의 받는 사람」으로 보내도 파일의 암호화는 남으며 열 수 있는 사람은 권한 설정에 따른다. 이름이 「기밀」이라는 이유만으로 두 보호가 함께 켜진다고 그리지 않는다. | [민감도 레이블](https://learn.microsoft.com/en-us/purview/sensitivity-labels) 「What sensitivity labels can do」; [암호화](https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels) 첫 문단 |
+| `PolicyCheckDiagram` | 「지역 A」「지역 B」「VM 1」「VM 2」는 수량·위치를 구별하는 예다. 정책의 이름은 「허용된 위치」, 값은 지역 A다. **deny 효과가 집행 중이고 해당 정책이 요청을 평가한다**는 전제를 적는다. 허용 시나리오도 다른 필요한 권한·조건이 충족된 예다. 권한이 있는 소유자의 요청도 지역 B라면 거부된다. RBAC와 Policy 노드 사이의 선은 두 판단을 설명하는 것이며 실제 내부 실행 순서를 단정하지 않는다. | [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Azure Policy and Azure RBAC」「Policy definition」; [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny) 「Deny evaluation」 |
+| `PolicyComplianceDiagram` | 세 장면은 서로 다른 효과·설정을 보여 주는 예다. 기존 가상 네트워크 1은 **리소스 종류를 금지한 deny 정책의 평가**에서 비준수로 표시되며, 그 평가가 네트워크를 삭제·이동·중지하는 작업은 아니다. 수정 장면은 **modify 정책의 수정 작업**을 만들어 VM 1의 빠진 태그를 보태는 예다. VM 2는 **지정한 할당에 정책 예외를 둔 경우**에 그 평가에서 빠지고 예외 상태로 집계에 남는다. 하나의 deny 정책이 세 일을 모두 한다고 그리지 않는다. | [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny) 「Deny evaluation」; [효과](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) 「Layering policy definitions」; [수정 작업](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources) 첫 문단; [예외](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure) 첫 문단 |
+| `PolicyInitiativeDiagram` | 「정책 정의 1」부터 「정책 정의 4」까지는 개수를 보이는 예다. 정의 묶음은 「정책 이니셔티브」, 할당 범위 예는 「구독 1」이다. 한 묶음으로 할당하고 상태를 함께 본다. 정의 4를 추가하면 기존 할당에도 반영되지만 즉시 모든 리소스의 평가가 끝난다는 뜻은 아니다. | [이니셔티브 구조](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure) 첫 문단; [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Recommendations for managing policies」 |
+| `LockTypesDiagram` | 「삭제 잠금」은 읽기·고치기 경로를 남기고 지우기 경로를 막는다. 「읽기 전용 잠금」은 읽기만 남긴다. 모두 **VM 리소스를 관리하는 작업**의 예다. 소유자도 잠금을 풀기 전에는 막힌 삭제를 실행하지 못한다. VM 안의 파일·DB 데이터를 읽기 전용으로 만든다는 뜻이 아니다. | [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 첫 문단, 「Understand scope of locks」; [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-describe-purpose-resource-locks) 「How do I manage resource locks?」 |
+| `LockInheritanceDiagram` | 리소스 그룹 1의 삭제 잠금을 VM 1·디스크 1이 물려받는다. VM에 읽기 전용 잠금도 있으면 제한이 더 강한 읽기 전용이 적용된다. 그림은 잠금의 적용 결과를 보여 주고 **읽기 전용인 자원에 새 잠금을 추가하는 절차**를 주장하지 않는다. 잠긴 자원이 든 그룹의 삭제 요청은 전체가 실패하고 일부만 삭제되지 않는다. 흐린 노드는 이미 지워진 자원이라는 뜻이 아님을 캡션에 적는다. | [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 「Lock inheritance」 |
+| `GovernanceToolsTable` | RBAC: 대상에게 허용할 작업과 범위를 정하며 권한 없는 요청은 허용하지 않는다. Policy: 리소스 기준과 평가 효과를 정하며 **거부 효과일 때** 어긋난 생성·변경을 막는다. 잠금: 리소스 관리 작업의 제한으로 실수에 의한 삭제 또는 변경을 막고, 역할이 허용해도 적용된다. 「리소스가 어떤 모양이어야 하는가」는 지역·크기·태그 같은 설정 기준으로 풀어 쓴다. | [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Azure Policy and Azure RBAC」; [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 첫 문단, 「Understand scope of locks」 |
+
+한국어 표기: 위 라벨은 아래 확정 표를 따른다. 정책 정의의 「허용된 위치」와 설명에 쓰는 「지역」은 이름과 뜻풀이의 차이다.
+
+쓰일 곳: `azure-governance`의 일곱 도식과 `GovernanceToolsTable`; D106·D109·D110·D111·G60·G61·G62.
+
+## (phase 107) 한국어 표기 정리 — `azure-governance`
+
+확인한 날 2026-11-03. 사실은 영문판으로, 표기는 아래 한국어판으로 확인했다. 조합해 만든 설명형 이름은 공식 화면 이름인 것처럼 쓰지 않는다.
+
+| 개념·항목 | 확정 표기 | 근거와 선택 이유 |
+|---|---|---|
+| `purview` | Microsoft Purview | [Learn 단원 2 한국어판](https://learn.microsoft.com/ko-kr/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview). 목록 둘은 「위험 및 규정 준수 솔루션」(Risk and compliance solutions), 「통합 데이터 거버넌스」(Unified data governance). 첫 항목에서 제품 이름은 중복하지 않는다. |
+| `sensitivity-labels` | 민감도 레이블 | [민감도 레이블 한국어판](https://learn.microsoft.com/ko-kr/purview/sensitivity-labels). 「민감성」「보안 등급」으로 섞지 않는다. 워터마크·머리글·바닥글도 같은 문서의 표기를 쓴다. |
+| `azure-policy` | Azure Policy | [개요 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/overview). 문서의 「정책 정의」「할당」을 쓰며 서비스 이름은 옮기지 않는다. |
+| `policy-compliance` | 규정 준수 평가 | [준수 데이터 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/how-to/get-compliance-data)의 규정 준수·평가라는 말을 합친 설명형 제목이다. 결과가 기준에 어긋나면 「비준수」로 쓴다. |
+| `policy-initiatives` | 정책 이니셔티브 | [정의 구조 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/concepts/initiative-definition-structure)과 [Learn 단원 3 한국어판](https://learn.microsoft.com/ko-kr/training/modules/describe-features-tools-azure-for-governance-compliance/3-describe-purpose-azure-policy). 「정책 집합」은 뜻풀이로만 쓰고 개념·도식 이름은 하나로 맞춘다. |
+| `resource-locks` | 리소스 잠금 | [잠금 한국어판](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/management/lock-resources)을 따른다. 항목은 「삭제 잠금」(Delete / CanNotDelete), 「읽기 전용 잠금」(ReadOnly). 포털의 짧은 이름은 각각 「삭제」「읽기 전용」이다. 「삭제 금지」「삭제할 수 없음」은 별도 종류 이름으로 섞지 않는다. |
+| `lock-inheritance` | 잠금 상속 | 같은 잠금 문서의 한국어 절 제목을 그대로 이름으로 쓴다. 본문에서는 위 범위의 잠금을 안의 리소스가 물려받는다고 푼다. |
+| 정책의 수정 | 수정 작업 | [수정 문서 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/how-to/remediate-resources)의 「수정 작업 만들기」. remediation은 수정, remediation task는 수정 작업이다. |
+| 정책의 exemption | 정책 예외 | [예외 구조 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/concepts/exemption-structure). 짧은 버튼은 「예외」로 가능하다. 「면제」와 「제외 범위」는 같은 기능 이름으로 섞지 않는다. |
+| 데이터의 이력 | 데이터 계보 | [계보 한국어판](https://learn.microsoft.com/ko-kr/purview/data-gov-classic-lineage-user-guide)과 Learn 단원 2. 그림 버튼의 「계보」는 이 이름을 줄인 것이다. |
+| 기본 레이블 이름 | 개인·공용·일반·기밀·극비 | [기본 레이블 한국어판](https://learn.microsoft.com/ko-kr/purview/default-sensitivity-labels-policies). 개요에 있는 중복 번역 「기밀」보다 구별되는 이 표기를 택한다. 설정이 다양한 이름을 도식의 고정 보호와 연결하지 않으려고 도식에는 「레이블 1」을 쓴다. |
+| 기본 제공 정책의 예 | 허용된 위치 / 허용되는 가상 머신 SKU / 허용되지 않는 리소스 종류 / 리소스의 태그 요구 | 앞 셋은 개요 한국어판의 이름, 마지막은 [기본 제공 목록](https://learn.microsoft.com/ko-kr/azure/governance/policy/samples/built-in-policies)의 Require a tag on resources를 풀어 쓴 말이다. 「허용 위치」「허용되는 가상 머신 크기 SKU」「리소스 유형」도 설계에 있었지만, 이름은 실제 확인한 표기로 맞추고 크기·지역이라는 쉬운 말은 설명에 쓴다. |
+
+쓰일 곳: `azure-governance`의 개념 7개, 목록 항목 4개, 도식 7개와 표 1개. D106~D112·G60~G63.

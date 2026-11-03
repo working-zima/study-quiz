@@ -1358,3 +1358,80 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: 키와 값의 쌍이 맞고(「Use tags」) Learn 단원 7은 이름과 값이라 부른다. 다만 태그에 영어가 아닌 말을 쓰면 VM이 메타데이터를 읽을 때 문제가 날 수 있다고 경고한다(같은 문서).
 - **처리**: 고쳐 쓴다. 「이름과 값」으로 쓰고 예는 영어로 쓴다(`Department`와 `Sales`, `CostCenter`). guide의 예시 「부서=영업」은 쓰지 않는다 — 이름표가 필요하면 「영업부 비용」처럼 태그 밖의 말로 쓴다.
 - **쓰인 곳**: (쓰일 곳) `azure-cost-management.tags`, `TagCostReportDiagram`
+
+## D106 — AIP의 옛 레이블 경험과 현재 민감도 레이블 (phase 107)
+
+- **덤프**: 민감한 내용을 포함한 Word 문서에 워터마크를 붙이는 대상으로 AIP를 고르고, 문서와 메일을 암호화한다고 한다 — [덤프 NO.111 p67·NO.408 p235–236·NO.427 p249]. NO.111은 `p067_09.png`의 답을 직접 봤다.
+- **공식 문서**: [AIP 개요](https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection)의 Note는 추가 기능이 종료되고 Microsoft 365 내장 레이블로 대체됐다고 한다. AIP의 Azure Rights Management는 현재도 Purview 정보 보호 기능의 암호화에 쓰인다. [민감도 레이블](https://learn.microsoft.com/en-us/purview/sensitivity-labels)은 문서·메일의 암호화와 표시를 지원한다. [자동 적용](https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically)은 Office 앱의 권고·자동 적용과 서비스 쪽 자동 정책을 구분한다.
+- **처리**: 고쳐 쓴다. 문서·메일을 레이블로 보호한다는 답의 방향은 맞다. 지금 그 일을 하는 것은 민감도 레이블이다(제품: Microsoft Purview Information Protection). 앱은 AIP를 「예전 이름」으로 한 번만 쓴다. AIP 전체의 지원이 끝났거나 단순히 이름만 바뀌었다고 하지 않는다. 자동으로 붙이는 조건과 지원 환경을 밝히고, 권고만 하는 설정을 자동 강제로 바꾸지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`
+
+## D107 — Blueprints 종료와 NO.77의 반대로 표시된 답 (phase 107)
+
+- **덤프**: NO.77의 정답 그림 `p043_02.png`는 템플릿 포함에 아니요, 리소스 그룹에 할당에 예, 권한 부여에 예를 표시한다 — [덤프 NO.77 p42–43]. 그림을 직접 확인했다.
+- **공식 문서**: [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)의 구성 설명에는 ARM 템플릿과 역할 할당이 있고 할당 대상은 구독이다. 따라서 이 세 진술은 예·아니요·예로 구별된다. 같은 문서는 2026-07-31부터 단계적으로 종료하며 2027-01-31에 끝난다고 안내한다(2026-11-03 확인).
+- **처리**: 쓰지 않는다. 앞의 두 답은 공식 문서와 반대지만 고친 문항으로 옮기지 않는다. 이 서비스는 이번 주제에서 제외한다. 날짜도 앱의 암기 문항으로 만들지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance`에 Blueprints 개념·문항을 추가하지 않는다.
+
+## D108 — 삭제한 리소스 잠금을 AIP가 복구한다는 답 (phase 107)
+
+- **덤프**: 없앤 리소스 잠금을 자동으로 되살릴 서비스를 AIP라고 답하고 Blueprints를 다른 보기로 둔다 — [덤프 NO.181 p110]
+- **공식 문서**: [AIP 개요](https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection)는 문서·메일 보호에 쓰이는 암호화를 설명한다. 관리 리소스 잠금을 복원한다는 근거는 없다. [Blueprints 잠금](https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking)의 「How blueprint locks work」는 관리 ID가 만든 deny assignment로 보호하며 Blueprints 밖에서 해제하지 못하게 하는 구조를 설명한다. 일반 잠금을 삭제한 뒤 다시 만든다는 주장과는 다르다.
+- **처리**: 쓰지 않는다. AIP의 역할을 리소스 잠금 복구로 가르치지 않는다. 다른 보기인 Blueprints가 대신 정답이라고 추측해 고치지도 않는다. Blueprints 자체는 D107의 종료 일정 때문에 범위 밖이다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance.sensitivity-labels`와 `resource-locks`의 기능을 혼동하지 않게 한다.
+
+## D109 — 정책을 할당하면 준수하는 리소스만 배포된다는 단정 (phase 107)
+
+- **덤프**: NO.239의 `p142_00.png`·`p142_02.png`는 VM에 정책 할당이 가능하다는 진술을 예, 기존 비준수 리소스가 그룹에서 제거된다는 진술을 아니요, 할당 후 준수 리소스만 배포된다는 진술을 예로 표시한다 — [덤프 NO.239 p141–142]
+- **공식 문서**: [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview)는 리소스 하나까지 할당 가능하다고 한다. [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny)는 기존 리소스의 비준수 표시와 생성·변경 거부를 구별한다. [효과별 동작](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics)의 지역 예에는 audit 정책에 어긋나도 배포되는 리소스가 있다.
+- **처리**: 한정해 쓴다. 첫째·둘째 판단은 맞다. 셋째는 deny가 집행되는 상황으로 조건을 붙인다. 정책 할당 하나만으로 모든 비준수 배포를 막는다고 쓰지 않는다. 기존 리소스의 평가 결과와 앞으로의 요청 결과도 분리한다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`
+
+## D110 — 관련 정책을 묶는 것을 관리 그룹으로 표시한 답 (phase 107)
+
+- **덤프**: NO.321의 답 그림 `p185_09.png`는 관리 그룹을 선택한다. 같은 주장을 묻는 NO.24는 이니셔티브, NO.36·442·498의 답 그림은 정책 정의 묶음을 선택한다 — [덤프 NO.24 p14·NO.36 p19·NO.321 p185·NO.442 p258–259·NO.498 p290–291]. `p019_05.png`·`p259_02.png`·`p291_02.png`도 직접 확인했다. NO.498의 파란 선택 막대는 정답의 녹색 표시와 다르다.
+- **공식 문서**: [이니셔티브 정의](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure)는 관련 정책 정의를 묶어 할당한다고 한다. [관리 그룹](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)은 구독을 묶는 관리 계층이다.
+- **처리**: 고쳐 쓴다. NO.321의 관리 그룹을 따르지 않는다. 개념 이름은 정책 이니셔티브로 정하고, 관리 그룹은 그 묶음을 걸 수 있는 범위로 구별한다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`
+
+## D111 — 같은 종류의 잠금 여러 개와 읽기 전용 위에 잠금 추가 (phase 107)
+
+- **덤프**: 한 리소스에 삭제 잠금을 여러 개 둘 수 있다는 진술, 그룹의 잠금을 물려받는다는 진술, 읽기 전용 잠금이 있는 리소스에 삭제 잠금을 더할 수 있다는 진술에 모두 예를 표시한다 — [덤프 NO.106 p63–64·NO.313 p181·NO.415 p240]. `p064_02.png`·`p064_04.png`·`p181_06.png`·`p240_04.png`·`p240_06.png`를 직접 봤고 셋의 답은 갈리지 않는다.
+- **공식 문서**: [잠금 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)의 「Lock inheritance」는 상속과 가장 제한적인 잠금의 우선을 명시한다. 같은 종류를 같은 리소스에 여러 개 직접 생성하는 동작과 이미 읽기 전용인 리소스에 다른 잠금을 추가하는 동작은 이 문서와 Learn 단원 4에서 직접 확인하지 못했다. 이름을 받는 REST 예만으로 그 두 진술의 성립을 판정하지 않는다.
+- **처리**: 한정해 쓴다. 둘째 진술과 상속 경로의 가장 제한적인 잠금만 쓴다. 첫째·셋째는 틀렸다고 확정하지도, 공식 사실로 가르치지도 않는다. 그림은 상속된 삭제 잠금과 직접 걸린 읽기 전용 잠금이 함께 작용하는 상태를 설명한다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.lock-inheritance`, `LockInheritanceDiagram`
+
+## D112 — 거버넌스 짝짓기 문항의 Blueprints 부분 (phase 107)
+
+- **덤프**: VM 종류 제한은 Policy, 비용 센터별 식별은 태그, 역할과 리소스 설정을 포함한 환경 배포는 Blueprints로 연결한다 — [덤프 NO.388 p223]. `p223_04.png`·`p223_06.png`·`p223_08.png`를 직접 확인했고 Purview에 관한 진술은 없다.
+- **공식 문서**: [Policy 개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview)의 기본 제공 정의는 VM 크기를 제한한다. [태그](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)는 비용을 나눠 보는 식별 정보를 지원한다(phase 106 확인 기록). [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)의 구성 설명에는 역할과 템플릿이 있으나 서비스는 종료 일정에 들어갔다.
+- **처리**: 한정해 쓴다. 앞의 두 연결은 맞다. Policy 연결은 이번 주제에, 태그는 앞 phase에 맡긴다. Blueprints의 옛 기능 연결이 맞아도 새 학습 내용으로 넣지 않는다. 이 문항을 Purview의 출처로 쓰지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.azure-policy`; Blueprints 부분은 범위 제외 기록.
+
+## G60 — Microsoft Purview의 과거 이름과 자동 계보 수집 (phase 107)
+
+- **용어집**: Microsoft Purview를 과거 Azure Purview라고 소개하고 여러 원본의 스키마·계보를 자동으로 모은다고 한다 — [용어집 4-5]
+- **공식 문서**: [클래식 거버넌스 개요](https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview)는 옛 Azure Purview와 클래식 거버넌스 서비스의 관계를 명시한다. [현재 제품군 개요](https://learn.microsoft.com/en-us/purview/purview)는 데이터 보안과 규정 준수도 포함한다. [계보 안내](https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide)는 시스템별 수집 범위가 다르다고 한다.
+- **처리**: 한정해 쓴다. 옛 이름은 데이터 거버넌스 쪽의 이력으로만 인정한다. 현재 제품군 전체의 단순한 이전 이름으로 쓰지 않는다. 지원하는 원본을 연결해 찾고 분류하며 계보를 본다고 쓰며, 모든 데이터의 계보를 설정 없이 자동 완성한다고 하지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.purview`, `PurviewDataMapDiagram`
+
+## G61 — Policy 위반은 배포 거부 또는 자동 수정이라는 설명 (phase 107)
+
+- **용어집**: 정책 위반 리소스가 거부되거나 자동 수정된다고 한다 — [용어집 4-6]
+- **공식 문서**: [효과별 동작](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics)은 감사와 거부를 구별한다. [수정 안내](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)는 modify·deployIfNotExists 효과의 기존 리소스를 수정 작업으로 처리한다. 작업에는 적절한 권한이 필요하며 지원되는 할당 마법사에서 함께 만들 수도 있다.
+- **처리**: 한정해 쓴다. 비준수 표시, 거부 효과의 요청 차단, 지원 효과의 수정 작업을 분리한다. 기존 리소스가 정책 할당만으로 전부 자동 수정된다는 뜻으로 쓰지 않는다. 모든 태그 요구 정책이 빠진 태그를 자동 생성한다고 하지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `PolicyComplianceDiagram`
+
+## G62 — 잠금을 해제해야만 수정할 수 있다는 일반화 (phase 107)
+
+- **용어집**: 두 잠금을 소개한 뒤 잠금을 풀어야만 수정할 수 있다고 한다 — [용어집 4-7]
+- **공식 문서**: [잠금 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)의 첫 부분에서 CanNotDelete는 변경을 허용하고 ReadOnly는 변경도 막는다. 「Understand scope of locks」는 데이터 작업과 관리 작업을 구분한다.
+- **처리**: 고쳐 쓴다. 삭제 잠금을 푸는 것은 삭제할 때이고 읽기 전용 잠금은 변경에도 해제가 필요하다. 관리 작업의 잠금을 DB 내용이나 파일 내용의 변경 금지로 넓히지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-governance.resource-locks`, `LockTypesDiagram`, `GovernanceToolsTable`
+
+## G63 — Azure Blueprint를 새 배포 도구로 소개하는 항목 (phase 107)
+
+- **용어집**: Azure Blueprint를 정책·역할·템플릿을 묶어 구독이나 리소스 그룹에 적용하는 도구로 소개한다 — [용어집 4-24]
+- **공식 문서**: [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)는 템플릿·역할·정책을 담되 묶음을 구독에 할당하는 것과 구성 안의 리소스 그룹을 구분한다. 2026-07-31부터 종료 절차를 시작했고 2027-01-31에 종료한다(2026-11-03 확인).
+- **처리**: 쓰지 않는다. 종료 예정 도구를 현재의 새 학습 대상으로 추가하지 않는다. 구독과 리소스 그룹 어디에나 같은 방식으로 할당한다는 표현도 가져오지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance`의 개념·도식·문항에는 넣지 않는다.
