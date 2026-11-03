@@ -1686,6 +1686,8 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 구독에 건 설정은 그 구독의 모든 리소스 그룹·리소스에, 리소스 그룹에 건 설정은 그 리소스 그룹과 안의 리소스에 적용되고 다른 리소스 그룹에는 걸리지 않음 — 「위로 올라가지 않는다」는 쓰지 않고 「건 층과 그 아래에만 미친다」로 썼다), az053·az054 해설, `HierarchyInheritanceDiagram`, G26
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 리소스·리소스 그룹 풀이, az159 해설.
+
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
 
@@ -1786,6 +1788,8 @@ https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹 — 표시 이름이 테넌트 루트 그룹이고 루트 관리 그룹이라고도 부른다, 그 자체가 관리 그룹이다, 옮기거나 지울 수 없다, 새 구독이 그 바로 아래에 놓인다, 거기에 건 접근 권한·규칙은 테넌트의 모든 리소스에 미친다 — ID가 테넌트 ID와 같다는 것은 쓰지 않았다), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예 — 리소스나 구독의 소유자가 정책을 바꿀 수 없다), az053·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 관리 그룹 풀이, `azure-governance.policy-initiatives`의 관리 그룹과 비교, az159 해설.
+
 ## (phase 102) Azure RBAC — Understand scope for Azure RBAC
 https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 
@@ -1821,6 +1825,8 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 - 그룹에 역할을 주면 그 그룹의 구성원이 권한을 받는다. 할당은 포털·CLI·PowerShell·SDK·REST API로 한다 — 「Groups」, 「Role assignments」 (phase 105)
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `azure-security-model.rbac-scope`(할당이 합쳐진다, 다른 할당이 없으면 닿지 못한다), `RbacAssignmentDiagram`, `RbacScopeDiagram`, D84, az123 해설
+
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 Azure RBAC 풀이, `PolicyCheckDiagram`, az155·az156 해설.
 
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
@@ -1858,7 +1864,8 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 - 한국어 표기: 정책 정의, 할당, 이니셔티브, 규정 준수, 비준수. 개념 이름은 「정책 이니셔티브」로 정한다 — 한국어판 「Azure Policy 개체」와 Learn 단원 3 (phase 107)
 
 쓰인 곳(phase 107 step 1): `azure-governance.purview`·`azure-governance.sensitivity-labels`의 Azure Policy와 견주는 줄(리소스가 지킬 규칙을 정한다, 리소스의 설정), az153 해설
-쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `GovernanceToolsTable`; D50·D109·D110·G61. (phase 107)
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D50·D109·D110·G61.
+쓰일 곳: `GovernanceToolsTable`. (phase 107)
 
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
@@ -1875,6 +1882,8 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간은 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다, 지점 및 사이트 간은 컴퓨터마다 설정하고 기존 네트워크를 거의 바꾸지 않는다, 지점 및 사이트 간 연결이 컴퓨터와 가상 네트워크 사이에 놓인다), `SiteToSiteVpnDiagram`, az075 해설
+
+쓰인 곳(phase 107 step 2): `azure-governance.policy-compliance`의 가상 네트워크 풀이.
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -2581,6 +2590,8 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-r
 - 한국어 표기: 「잠금 상속」은 한국어판 절 제목이다. 포털의 「삭제」「읽기 전용」에 잠금을 붙여 두 종류를 구별한다. 명령에서의 이름은 각각 `CanNotDelete`·`ReadOnly`다. 역할은 앞 phase와 같은 「소유자」「사용자 액세스 관리자」로 쓴다 (phase 107)
 
 쓰일 곳: `azure-governance.resource-locks`, `azure-governance.lock-inheritance`, `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62. (phase 107)
+
+쓰인 곳(phase 107 step 2): az155 해설의 리소스 잠금 풀이(관리 중인 자원의 변경·삭제를 제한한다).
 
 ## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
@@ -4302,6 +4313,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 
 쓰인 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59, az148, az149
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 태그 풀이, `azure-governance.policy-compliance`의 부서 태그 예, az155·az158 해설.
+
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「누가 쓰는가」와 경고
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
 
@@ -4593,7 +4606,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure
 - Azure DevOps 연동과 「Policy guardrails for AI-assisted changes」 절은 쓰지 않는다(guide 「쓰지 않는 것」)
 - 한국어 표기: Azure Policy, 정책 정의, 할당, 이니셔티브. 자동 수정과 예외의 구체적 범위는 아래 제품 문서로 한정한다.
 
-쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`; D109·D110·G61.
+쓰인 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`; D109·D110·G61.
 
 ## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 4: Describe the purpose of resource locks
 https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-describe-purpose-resource-locks
@@ -4717,7 +4730,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-st
 - 할당에서 집행을 끈 모드는 평가 결과와 실제 차단을 구별하게 한다. 입문 도식은 집행 중인 거부 정책을 전제로 하며 모든 할당의 성질로 넓히지 않는다 — 「Enforcement mode」
 - 한국어 표기: 정책 할당, 범위. 「정의」와 「할당」을 같은 말로 쓰지 않는다.
 
-쓰일 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; D109.
+쓰인 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; D109.
 
 ## (phase 107) Azure Policy — Effect basics and layered policies
 https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics
@@ -4728,7 +4741,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics
 - 문서의 지역 제한 예에서 이미 있는 리소스는 비준수 여부를 기록하지만 새로운 요청은 deny로 거부한다. audit인 다른 정책에 어긋나더라도 새 리소스가 만들어지는 예도 있다 — 「Layering policy definitions」
 - 한국어 표기: 효과, 거부(deny), 감사(audit). **효과의 이름은 앱에 쓰지 않는다**(guide 「쓰지 않는 것」) — 「규칙에 어긋난 요청을 막는 정책」·「어긋나도 기록만 하는 정책」·「빠진 것을 고치는 정책」처럼 하는 일로 쓴다. 이 문서의 deny·audit·modify는 출처 기록에서만 쓴다
 
-쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`; D109·G61.
+쓰인 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`; D109·G61.
 
 ## (phase 107) Azure Policy — Deny effect
 https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny
@@ -4739,7 +4752,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny
 - 이미 존재하는 리소스를 deny 정책으로 평가했을 때의 결과는 비준수 표시다. 지역 제한의 기존 리소스가 그대로 평가 대상으로 남는 effect-basics 예와 함께, 이 평가 자체는 삭제·이동·중지 작업이 아니라는 범위로 설명한다. 모든 정책이나 이후 변경 요청에까지 「영향이 없다」고 넓히지 않는다 — 「Deny evaluation」 및 effect-basics 「Layering policy definitions」
 - 한국어 표기: 거부, 비준수. 기존 리소스 곁말은 「비준수로 표시」가 핵심이며 「그대로 동작」에는 deny 평가만의 결과라는 조건을 단다.
 
-쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; D109.
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; D109.
 
 ## (phase 107) Azure Policy — Built-in policy definitions
 https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
@@ -4750,7 +4763,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-polic
 - 리소스에 특정 태그가 있어야 한다는 정의와 태그 값까지 요구하는 정의가 별도로 있다. 태그를 요구해 거부하는 것과 빠진 태그를 보태는 수정은 같은 효과가 아니다 — 「Tags」
 - 한국어 표기: 영문 표의 Allowed locations·Allowed virtual machine size SKUs·Not allowed resource types·Require a tag on resources를 확인했다. 한국어판 표도 영문 이름을 유지한다. 본문 예는 개요 한국어판의 「허용된 위치」「허용되는 가상 머신 SKU」「허용되지 않는 리소스 종류」와 설명형 「리소스의 태그 요구」로 쓴다. VM SKU는 크기 종류를 가리킨다고 풀고, 이를 포털에서 고정된 한국어 버튼 이름이라고 하지 않는다.
 
-쓰일 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; G61.
+쓰인 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; G61.
 
 ## (phase 107) Azure Policy — Get compliance data
 https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data
@@ -4761,7 +4774,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-
 - 포털의 Azure Policy 규정 준수 화면에서 할당별·리소스별 결과를 확인한다. 예외로 처리한 결과도 표시되는 상태 중 하나다 — 「Azure portal」「Evaluation triggers」
 - 한국어 표기: 규정 준수, 비준수. 개념 제목 「규정 준수 평가」는 두 낱말을 합쳐 이 개념이 설명하는 일을 이름으로 삼은 것이다.
 
-쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
 
 ## (phase 107) Azure Policy — Remediate non-compliant resources
 https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources
@@ -4773,7 +4786,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resou
 - 수정에는 할당에 연결한 관리 ID와 필요한 역할 권한이 쓰인다. 입문 설명은 필요한 수정 권한과 작업이 갖춰져야 한다는 범위까지만 쓴다 — 「How remediation access control works」
 - 한국어 표기: 수정 작업(remediation task), 수정(remediation). 한국어판 「수정 작업 만들기」를 기준으로 한다.
 
-쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; G61.
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; G61.
 
 ## (phase 107) Azure Policy — Exemption structure
 https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure
@@ -4785,7 +4798,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-str
 - Learn의 exceptions라는 일반 표현을 앱에서 구체화할 때 이 문서의 exemption을 쓴다. 두 표현이 API 이름으로 동의어라고 단정하거나 할당의 제외 범위와 섞지 않는다 — 「첫 문단」「Exemption creation and management」
 - 한국어 표기: 정책 예외(exemption). 한국어판 제목 「Azure Policy 예외 구조」를 따른다. 「면제」는 범주 waiver에 쓰이므로 기능 이름으로 섞지 않는다.
 
-쓰일 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
 
 ## (phase 107) Azure Policy — Initiative definition structure
 https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure
@@ -4796,7 +4809,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-de
 - 관리 그룹은 구독을 묶는 계층이고 이니셔티브는 정책 정의를 묶는다. 정책 묶음을 관리 그룹에 할당하는 조합도 가능하므로 둘 중 하나만 쓸 수 있는 관계가 아니다 — 「첫 문단」 및 앞 phase 「What are Azure management groups?」의 「첫 문단」
 - 한국어 표기: 정책 이니셔티브. Learn은 「Azure Policy 이니셔티브」, 개요는 「이니셔티브」와 policySet을 함께 쓴다. 본문 첫 자리에서 정책 정의 묶음이라고 풀고 이후에는 「이니셔티브」로 줄일 수 있다.
 
-쓰일 곳: `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`; D110.
+쓰인 곳: `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`; D110.
 
 ## (phase 107) Azure Blueprints — Overview and retirement
 https://learn.microsoft.com/en-us/azure/governance/blueprints/overview
@@ -4838,7 +4851,8 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 한국어 표기: 위 라벨은 아래 확정 표를 따른다. 정책 정의의 「허용된 위치」와 설명에 쓰는 「지역」은 이름과 뜻풀이의 차이다.
 
 쓰인 곳: `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
-쓰일 곳: `azure-governance`의 나머지 다섯 도식과 `GovernanceToolsTable`; D109·D110·D111·G61·G62.
+쓰인 곳(phase 107 step 2): `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`; D109·D110·G61.
+쓰일 곳: `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62.
 
 ## (phase 107) 한국어 표기 정리 — `azure-governance`
 
@@ -4860,4 +4874,5 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 | 기본 제공 정책의 예 | 허용된 위치 / 허용되는 가상 머신 SKU / 허용되지 않는 리소스 종류 / 리소스의 태그 요구 | 앞 셋은 개요 한국어판의 이름, 마지막은 [기본 제공 목록](https://learn.microsoft.com/ko-kr/azure/governance/policy/samples/built-in-policies)의 Require a tag on resources를 풀어 쓴 말이다. 「허용 위치」「허용되는 가상 머신 크기 SKU」「리소스 유형」도 설계에 있었지만, 이름은 실제 확인한 표기로 맞추고 크기·지역이라는 쉬운 말은 설명에 쓴다. |
 
 쓰인 곳: `azure-governance.purview`(목록 항목 둘), `azure-governance.sensitivity-labels`(기본 레이블 이름), `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
-쓰일 곳: `azure-governance`의 나머지 개념 5개, 목록 항목 2개, 도식 5개와 표 1개. D107~D112·G61~G63.
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D109·D110·G61.
+쓰일 곳: `azure-governance`의 나머지 개념 2개, 목록 항목 2개, 도식 2개와 표 1개. D107·D108·D111·D112·G62·G63.

@@ -100,6 +100,157 @@
       "sources": [
         "azure-governance.sensitivity-labels"
       ]
+    },
+    "policy-check": {
+      "label": "정책이 VM을 만드는 요청을 규칙과 비교해 처리하거나 거부하는 그림",
+      "svgLabel": "지역 A와 지역 B에 VM을 만드는 두 요청, Azure RBAC, 허용된 위치 규칙 안의 Azure Policy, 만들어진 VM 1",
+      "question": "규칙에 어긋난 리소스를 만들려 하면 어떻게 될까?",
+      "idleCaption": "회사 A는 「허용된 위치」 정책으로 지역 A만 허용하고, 어긋난 요청은 거부하게 했다. 버튼을 눌러 두 요청이 각각 어떻게 처리되는지 본다.",
+      "legend": "화살표는 요청이 어디서 확인되고 무엇이 만들어지는지를 잇는다. 흐린 상자는 그 장면에서 다루지 않는 요청이나 리소스다.",
+      "nodes": {
+        "request-a": "지역 A에 VM 1 만들기",
+        "request-b": "지역 B에 VM 2 만들기",
+        "rbac": "Azure RBAC",
+        "policy": "Azure Policy",
+        "vm-1": "VM 1"
+      },
+      "notes": {
+        "allowed-note": "만들어진다",
+        "denied-note": "거부된다",
+        "role-note": "역할은 허락한다",
+        "owner-note": "정책이 거부한다"
+      },
+      "sources": [
+        "azure-governance.azure-policy"
+      ],
+      "groups": {
+        "policy-rule": "허용된 위치: 지역 A"
+      },
+      "scenarios": [
+        {
+          "id": "allowed",
+          "label": "규칙에 맞을 때",
+          "caption": "지역 A에 VM 1을 만드는 요청은 「허용된 위치」 규칙에 맞아 그대로 처리되고, VM 1이 만들어진다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        },
+        {
+          "id": "denied",
+          "label": "규칙에 어긋날 때",
+          "caption": "지역 B에 VM 2를 만드는 요청은 규칙에 어긋나 거부된다. VM 2는 만들어지지 않는다. 흐린 VM 1은 앞의 지역 A 요청으로 만든 것이라 이 요청과 상관없다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        },
+        {
+          "id": "owner",
+          "label": "권한이 있어도",
+          "caption": "담당자가 소유자 역할을 받았으면 Azure RBAC는 VM을 만드는 작업을 허락한다. 그래도 지역 B에 VM 2를 만드는 요청은 정책이 거부한다. 역할은 누가 무엇을 할 수 있는지를, 정책은 만들어질 리소스가 규칙에 맞는지를 본다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        }
+      ]
+    },
+    "policy-compliance": {
+      "label": "정책을 나중에 할당했을 때 이미 있던 리소스의 비준수 표시, 수정 작업, 정책 예외를 보여 주는 그림",
+      "svgLabel": "정책 할당과 리소스 그룹 1 안의 가상 네트워크 1, VM 1, VM 2",
+      "question": "정책을 나중에 걸면, 이미 있던 리소스는 어떻게 될까?",
+      "idleCaption": "리소스 그룹 1에는 정책을 할당하기 전부터 가상 네트워크 1, VM 1, VM 2가 있었다. 버튼을 눌러 세 리소스가 각각 어떻게 다뤄지는지 본다.",
+      "legend": "세 장면의 정책은 서로 다르다. 첫째는 가상 네트워크를 거부하는 정책, 둘째는 태그를 붙이는 정책이고, 셋째는 VM 2를 어떤 할당의 정책 예외로 정한 장면이다. 흐린 리소스는 그 장면에서 다루지 않을 뿐 그대로 있다.",
+      "nodes": {
+        "assignment": "정책 할당",
+        "vnet-1": "가상 네트워크 1",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2"
+      },
+      "notes": {
+        "existing-note": "비준수로 표시 — 그대로 동작",
+        "remediate-note": "빠진 태그를 붙인다",
+        "exemption-note": "평가에서 뺀다"
+      },
+      "sources": [
+        "azure-governance.policy-compliance"
+      ],
+      "groups": {
+        "rg-1": "리소스 그룹 1"
+      },
+      "scenarios": [
+        {
+          "id": "existing",
+          "label": "이미 있던 리소스",
+          "caption": "가상 네트워크를 거부하는 정책을 나중에 할당하면, 이미 있던 가상 네트워크 1은 지워지거나 옮겨지지 않고 비준수로 표시된 채 그대로 동작한다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        },
+        {
+          "id": "remediate",
+          "label": "수정 작업",
+          "caption": "태그를 붙이는 정책이면 수정 작업을 만들어 실행해야, 태그 없이 이미 있던 VM 1에 빠진 태그가 붙는다. 할당만으로는 고쳐지지 않는다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        },
+        {
+          "id": "exemption",
+          "label": "정책 예외",
+          "caption": "VM 2를 그 할당의 정책 예외로 정하면 VM 2는 그 할당으로 평가되지 않고, 규정 준수 상태에는 예외로 표시된다. VM 2를 고치지는 않는다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        }
+      ]
+    },
+    "policy-initiative": {
+      "label": "정책 정의 여럿을 정책 이니셔티브로 묶어 구독 1에 한 번에 할당하는 그림",
+      "svgLabel": "정책 정의 1부터 4까지, 정책 이니셔티브, 구독 1",
+      "question": "정책 여럿을 어떻게 한 번에 걸까?",
+      "idleCaption": "회사 A는 정책 정의 셋을 정책 이니셔티브로 묶어 구독 1에 할당했다. 버튼을 눌러 묶기, 할당, 정의를 더하는 장면을 본다.",
+      "legend": "정책 정의에서 정책 이니셔티브로 가는 화살표는 묶음에 들어간다는 뜻이고, 정책 이니셔티브에서 구독 1로 가는 화살표는 할당이다.",
+      "nodes": {
+        "def-1": "정책 정의 1",
+        "def-2": "정책 정의 2",
+        "def-3": "정책 정의 3",
+        "def-4": "정책 정의 4",
+        "initiative": "정책 이니셔티브",
+        "scope": "구독 1"
+      },
+      "notes": {
+        "group-note": "관련 정의를 묶는다",
+        "assign-note": "할당 하나로",
+        "add-note": "이미 한 할당에도 들어간다"
+      },
+      "sources": [
+        "azure-governance.policy-initiatives"
+      ],
+      "scenarios": [
+        {
+          "id": "group",
+          "label": "묶기",
+          "caption": "보안 권장 사항처럼 같은 목표를 위한 정책 정의 1, 2, 3을 하나의 정책 이니셔티브로 묶는다. 정책 정의 4는 아직 묶음에 없고, 구독 1에도 아직 할당하지 않았다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        },
+        {
+          "id": "assign",
+          "label": "한 번에 할당",
+          "caption": "정책 이니셔티브를 구독 1에 한 번 할당하면 안의 정책 정의가 모두 구독 1에 걸리고, 규정 준수 상태도 목표 전체로 함께 본다. 흐린 정의들은 묶음 안에 그대로 있다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        },
+        {
+          "id": "add",
+          "label": "정의를 더하면",
+          "caption": "나중에 정책 정의 4를 정책 이니셔티브에 더하면, 구독 1에 이미 해 둔 할당에도 들어간다. 정책 정의 4를 구독 1에 따로 할당하지 않아도 된다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        }
+      ]
     }
   },
   "tables": {},

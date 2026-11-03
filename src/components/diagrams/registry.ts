@@ -138,7 +138,10 @@ import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
+import { PolicyCheckDiagram } from './PolicyCheckDiagram'
+import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -470,6 +473,9 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-management.spending-limit': [SpendingLimitDiagram, CostToolsTable],
   'azure-governance.purview': PurviewDataMapDiagram,
   'azure-governance.sensitivity-labels': SensitivityLabelDiagram,
+  'azure-governance.azure-policy': PolicyCheckDiagram,
+  'azure-governance.policy-compliance': PolicyComplianceDiagram,
+  'azure-governance.policy-initiatives': PolicyInitiativeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
