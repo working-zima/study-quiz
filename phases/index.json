@@ -404,6 +404,11 @@
       "dir": "105-azure-identity-security",
       "status": "completed",
       "completed_at": "2026-11-02T13:04:49+0900"
+    },
+    {
+      "dir": "106-azure-cost",
+      "status": "completed",
+      "completed_at": "2026-11-03T09:57:10+0900"
     }
   ]
 }

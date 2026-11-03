@@ -1,0 +1,324 @@
+{
+  "diagrams": {
+    "cost-analysis": {
+      "label": "지난달 비용 하나를 리소스 그룹별, 서비스별, 지역별로 나눠 보는 모습",
+      "svgLabel": "지난달 비용에서 리소스 그룹별, 서비스별, 지역별 세 기준으로 화살표가 갈라진다",
+      "question": "같은 비용을 어떤 기준으로 나눠 볼까?",
+      "idleCaption": "회사 A의 지난달 비용을 나눠 보는 세 기준을 그렸다. 버튼을 고르면 기준마다 무엇을 알 수 있는지 볼 수 있다.",
+      "legend": "화살표는 같은 지난달 비용을 어떤 기준으로 나누는지를 잇는다. 금액은 그리지 않았다.",
+      "nodes": {
+        "total": "지난달 비용",
+        "by-group": "리소스 그룹별",
+        "by-service": "서비스별",
+        "by-region": "지역별"
+      },
+      "notes": {
+        "group-note": "리소스 그룹 1, 리소스 그룹 2로 나뉜다",
+        "service-note": "VM, 스토리지로 나뉜다",
+        "region-note": "지역 A, 지역 B로 나뉜다"
+      },
+      "scenarios": [
+        {
+          "id": "group",
+          "label": "리소스 그룹별",
+          "caption": "지난달 비용을 리소스 그룹별로 나누면 리소스 그룹 1과 리소스 그룹 2 가운데 어느 묶음에서 비용이 늘었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        },
+        {
+          "id": "service",
+          "label": "서비스별",
+          "caption": "지난달 비용을 서비스별로 나누면 VM과 스토리지 가운데 어느 종류의 서비스에 돈이 들었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        },
+        {
+          "id": "region",
+          "label": "지역별",
+          "caption": "지난달 비용을 지역별로 나누면 지역 A와 지역 B 가운데 어느 곳에 돈이 들었는지 안다.",
+          "sources": [
+            "azure-cost-management.cost-analysis"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.cost-analysis"
+      ]
+    },
+    "budget-alert": {
+      "label": "쓴 비용이 예산의 기준에 닿은 뒤 비용 경고와 이메일로 이어지는 갈래와 자동화와 리소스로 이어지는 갈래",
+      "svgLabel": "쓴 비용에서 예산으로 화살표가 가고, 예산에서 비용 경고와 이메일로 가는 갈래와 자동화와 리소스로 가는 갈래가 나뉜다",
+      "question": "예산을 넘으면 리소스가 멈출까?",
+      "idleCaption": "쓴 비용이 예산의 기준에 닿은 뒤 이어지는 두 갈래를 그렸다. 버튼을 고르면 경고까지만 갈 때와 자동화를 더했을 때를 볼 수 있다.",
+      "legend": "화살표는 쓴 비용이 기준에 닿은 뒤 이어지는 일을 잇는다. 자동화는 구독이나 리소스 그룹 범위의 예산에 따로 설정했을 때만 이어진다.",
+      "nodes": {
+        "spending": "쓴 비용",
+        "budget": "예산",
+        "alert": "비용 경고",
+        "email": "이메일",
+        "automation": "자동화",
+        "resource": "리소스"
+      },
+      "notes": {
+        "alert-note": "리소스는 그대로 실행된다",
+        "automation-note": "설정해 둔 동작만 실행된다"
+      },
+      "scenarios": [
+        {
+          "id": "alert",
+          "label": "경고까지",
+          "caption": "쓴 비용이 기준에 닿으면 비용 경고가 생기고 담당자에게 이메일이 가지만, 리소스는 멈추지 않고 그대로 실행된다.",
+          "sources": [
+            "azure-cost-management.budgets"
+          ]
+        },
+        {
+          "id": "automation",
+          "label": "자동화를 더했을 때",
+          "caption": "담당자가 리소스를 멈추는 동작을 자동화로 따로 설정해 두면, 쓴 비용이 기준에 닿았을 때 그 동작이 리소스를 멈춘다. 비용 경고와 이메일도 그대로 가며, 이 장면은 자동화 갈래만 밝혔다. 예산이 스스로 멈추는 것은 아니다.",
+          "sources": [
+            "azure-cost-management.budgets"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.budgets"
+      ]
+    },
+    "tag-cost-report": {
+      "label": "구독 1 안의 VM 1, 디스크 1, VM 2의 비용이 태그 값에 따라 영업부 비용과 연구부 비용으로 나뉘는 모습",
+      "svgLabel": "구독 1 안의 VM 1과 디스크 1에서 영업부 비용으로, VM 2에서 연구부 비용으로 화살표가 간다",
+      "question": "한 구독의 비용을 부서별로 어떻게 나눠 볼까?",
+      "idleCaption": "구독 1 하나에 영업부와 연구부의 리소스가 함께 있다. 버튼을 고르면 태그 값으로 묶인 비용을 볼 수 있다.",
+      "legend": "화살표는 비용 분석에서 태그 값별로 묶이는 비용을 가리킨다. 리소스는 모두 구독 1 안에 그대로 있다.",
+      "nodes": {
+        "vm-sales": "VM 1",
+        "disk-sales": "디스크 1",
+        "vm-research": "VM 2",
+        "report-sales": "영업부 비용",
+        "report-research": "연구부 비용"
+      },
+      "groups": {
+        "subscription": "구독 1"
+      },
+      "notes": {
+        "sales-note": "Department=Sales",
+        "research-note": "Department=Research"
+      },
+      "scenarios": [
+        {
+          "id": "sales",
+          "label": "영업부",
+          "caption": "같은 태그 값이 붙은 VM 1과 디스크 1의 비용을 비용 분석에서 묶어 영업부 비용으로 본다.",
+          "sources": [
+            "azure-cost-management.tags"
+          ]
+        },
+        {
+          "id": "research",
+          "label": "연구부",
+          "caption": "VM 2는 같은 구독 1에 그대로 있고, 태그 값이 달라 연구부 비용으로 따로 나뉜다.",
+          "sources": [
+            "azure-cost-management.tags"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.tags"
+      ]
+    },
+    "tag-inheritance": {
+      "label": "리소스 그룹 1에 붙인 태그가 그 안의 VM 1에 내려오지 않고, Azure Policy를 걸면 규칙이 VM 1에 태그를 붙이는 모습",
+      "svgLabel": "리소스 그룹 1 안에 그룹의 태그와 VM 1이 있고, 리소스 그룹 밖의 Azure Policy에서 VM 1로 화살표가 간다",
+      "question": "리소스 그룹의 태그가 안의 리소스로 내려올까?",
+      "idleCaption": "리소스 그룹 1에 태그를 붙이고 그 안에 VM 1을 두었다. 버튼을 고르면 그대로 둘 때와 Azure Policy를 걸 때를 견줘 볼 수 있다.",
+      "legend": "화살표는 Azure Policy의 규칙이 VM에 태그를 붙이는 방향을 가리킨다. 리소스 그룹의 태그에서 VM으로 가는 화살표는 없다.",
+      "nodes": {
+        "group-tag": "그룹의 태그",
+        "vm": "VM 1",
+        "policy": "Azure Policy"
+      },
+      "groups": {
+        "resource-group": "리소스 그룹 1"
+      },
+      "notes": {
+        "default-note": "VM에 내려오지 않는다",
+        "policy-note": "정책이 VM에 태그를 붙인다"
+      },
+      "scenarios": [
+        {
+          "id": "default",
+          "label": "그대로 두면",
+          "caption": "리소스 그룹 1에 붙인 태그를 VM 1이 물려받지 않아, 그룹의 태그는 VM 1에 나타나지 않는다.",
+          "sources": [
+            "azure-cost-management.tag-inheritance"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "정책을 걸면",
+          "caption": "VM 1에도 태그를 두려면 Azure Policy로 규칙을 건다. 규칙은 리소스를 만들거나 고칠 때 동작해 VM에 태그를 붙인다.",
+          "sources": [
+            "azure-cost-management.tag-inheritance"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.tag-inheritance"
+      ]
+    },
+    "free-account-offers": {
+      "label": "무료 계정에서 받는 크레딧, 12개월 무료 서비스, 항상 무료 서비스가 업그레이드 여부와 시간에 따라 어떻게 되는지 보여 주는 그림",
+      "svgLabel": "무료 계정 상자 안에 크레딧, 12개월 무료 서비스, 항상 무료 서비스가 있고, 밖에 업그레이드와 종량제 요금이 있다",
+      "question": "무료 계정에서 무엇이 언제 끝날까?",
+      "idleCaption": "무료 계정에서 받는 세 가지와, 계속 쓰려면 거치는 업그레이드를 그렸다. 버튼을 고르면 시간이 지나며 무엇이 끝나는지 볼 수 있다.",
+      "legend": "흐린 상자는 그 장면에서 쓰지 못하거나 끝난 것이다. 화살표는 업그레이드로 이어 받는 것과 무료 기간이 끝난 뒤 요금으로 넘어가는 것을 잇는다. 금액은 그리지 않았다.",
+      "nodes": {
+        "credit": "크레딧",
+        "free-12": "12개월 무료 서비스",
+        "always-free": "항상 무료 서비스",
+        "upgrade": "업그레이드",
+        "pay-as-you-go": "종량제 요금"
+      },
+      "groups": {
+        "free-account": "무료 계정"
+      },
+      "notes": {
+        "stopped-note": "구독과 서비스가 멈춘다",
+        "upgrade-note": "무료 서비스를 이어 받는다",
+        "after-12-note": "쓰던 서비스에 요금이 붙는다"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "가입했을 때",
+          "caption": "새 고객은 가입하면 세 가지를 함께 받는다. 크레딧은 처음 30일 안에 쓰고, 12개월 무료 서비스는 12개월 동안, 항상 무료 서비스는 계정이 있는 동안 정해진 양까지 무료다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "after-30",
+          "label": "업그레이드하지 않으면",
+          "caption": "크레딧을 다 쓰거나 30일이 지나면 구독과 서비스를 사용할 수 없게 된다. 크레딧만 끝나는 것이 아니라 무료 서비스도 함께 쓰지 못한다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "upgrade",
+          "label": "업그레이드하면",
+          "caption": "계정을 종량제로 업그레이드하면 구독과 서비스를 다시 쓰고, 12개월 무료 서비스와 항상 무료 서비스를 이어 받는다. 크레딧은 가입한 날부터 30일까지만 쓴다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        },
+        {
+          "id": "after-12",
+          "label": "12개월이 지나면",
+          "caption": "업그레이드한 계정은 12개월이 지나도 쓰던 서비스가 멈추지 않고 종량제 요금이 붙는다. 항상 무료 서비스는 정해진 양까지 계속 무료다.",
+          "sources": [
+            "azure-cost-management.free-account"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.free-account"
+      ]
+    },
+    "spending-limit": {
+      "label": "크레딧을 다 써 지출 한도에 닿으면 VM 1이 중지되고 스토리지 계정이 읽기 전용이 되며, 업그레이드하면 다시 쓰는 모습",
+      "svgLabel": "크레딧에서 지출 한도로 화살표가 가고, 지출 한도에서 VM 1과 스토리지 계정으로 갈라지며, 업그레이드에서 VM 1로 가는 화살표가 따로 있다",
+      "question": "크레딧을 다 쓰면 무엇이 멈출까?",
+      "idleCaption": "회사 D의 무료 계정 구독에 있는 VM 1과 스토리지 계정을 그렸다. 버튼을 고르면 지출 한도에 닿았을 때와 업그레이드했을 때를 볼 수 있다.",
+      "legend": "화살표는 크레딧을 다 쓴 뒤 이어지는 일과 업그레이드로 다시 쓰는 길을 잇는다. 예산은 서비스를 멈추지 않아 이 그림에 넣지 않았다.",
+      "nodes": {
+        "credit": "크레딧",
+        "limit": "지출 한도",
+        "vm": "VM 1",
+        "storage": "스토리지 계정",
+        "upgrade": "업그레이드"
+      },
+      "notes": {
+        "stop-note": "중지되고 할당 취소",
+        "read-only-note": "읽기 전용",
+        "resume-note": "한도가 없어지고 다시 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "reach",
+          "label": "한도에 닿으면",
+          "caption": "크레딧을 다 써 지출 한도에 닿으면 배포한 서비스를 쓸 수 없게 된다. VM 1은 중지되고 할당 취소되며, 스토리지 계정의 데이터는 읽을 수만 있다.",
+          "sources": [
+            "azure-cost-management.spending-limit"
+          ]
+        },
+        {
+          "id": "upgrade",
+          "label": "업그레이드하면",
+          "caption": "무료 계정을 종량제로 업그레이드하면 지출 한도가 없어지고 구독이 다시 켜진다. 그때부터 쓴 양에는 요금이 붙는다. 이 장면은 VM 1을 예로 그렸다.",
+          "sources": [
+            "azure-cost-management.spending-limit"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-management.spending-limit"
+      ]
+    }
+  },
+  "tables": {
+    "cost-tools": {
+      "label": "비용 도구 넷 견주기",
+      "columns": [
+        "도구",
+        "하는 일",
+        "리소스에 미치는 영향"
+      ],
+      "columnWidths": [
+        "26%",
+        "37%",
+        "37%"
+      ],
+      "sources": [
+        "azure-cost-management.cost-analysis",
+        "azure-cost-management.budgets",
+        "azure-cost-management.cost-alerts",
+        "azure-cost-management.spending-limit"
+      ],
+      "rows": [
+        {
+          "header": "비용 분석",
+          "cells": [
+            "쓴 비용을 여러 기준으로 나눠 본다",
+            "없다"
+          ]
+        },
+        {
+          "header": "예산",
+          "cells": [
+            "쓴 비용이 기준에 닿으면 경고를 낸다",
+            "자동화를 따로 설정해야 리소스를 멈춘다"
+          ]
+        },
+        {
+          "header": "비용 경고",
+          "cells": [
+            "경고를 한곳에 모아 보여 준다",
+            "없다"
+          ]
+        },
+        {
+          "header": "지출 한도",
+          "cells": [
+            "크레딧보다 더 쓰지 못하게 막는다",
+            "서비스를 실제로 멈춘다"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}

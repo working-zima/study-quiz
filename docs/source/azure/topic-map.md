@@ -52,7 +52,7 @@ Azure AZ-900 과목에 둘 주제 20개의 지도다. 주제를 **앱의 주제 
 | 12 | `azure-data-movement` | 데이터 이동과 마이그레이션 | AzCopy·Storage Explorer·File Sync·Azure Migrate·Data Box | Describe Azure storage services | 3 | — | 104 |
 | 13 | `azure-identity` | ID와 인증 | Entra ID·Domain Services·SSO·MFA·암호 없는 인증·외부 ID·조건부 액세스 | Describe Azure identity, access, and security | 29 | ★★★ | 105 |
 | 14 | `azure-security-model` | 접근 제어와 보안 도구 | RBAC·제로 트러스트·심층 방어·Defender for Cloud·Key Vault*·Sentinel* | Describe Azure identity, access, and security | 25 | ★★★ | 105 |
-| 15 | `azure-cost-factors` | 비용 요인과 계산기 | 리소스·지역·대역폭·미사용 리소스·중지와 할당 해제·예약·Hybrid Benefit·가격/TCO 계산기 | Describe cost management in Azure | 28 | ★★★ | 106 |
+| 15 | `azure-cost-factors` | 비용 요인과 계산기 | 리소스·지역·대역폭·미사용 리소스·중지와 할당 해제·저축 플랜·하이브리드 혜택·가격 계산기(TCO 계산기는 지원이 끝나 빠졌다, phase 106) | Describe cost management in Azure | 28 | ★★★ | 106 |
 | 16 | `azure-cost-management` | 비용 관리와 태그 | Cost Management·예산·경고·태그·무료 계정·지출 한도 | Describe cost management in Azure | 16 | ★★☆ | 106 |
 | 17 | `azure-governance` | 거버넌스와 규정 준수 | Purview(정보 보호 포함)·Azure Policy·리소스 잠금 | Describe features and tools in Azure for governance and compliance | 29 | ★★★ | 107 |
 | 18 | `azure-management-tools` | 관리 도구 | 포털·Cloud Shell·Azure CLI·Azure PowerShell·모바일 앱·Azure Arc | Describe features and tools for managing and deploying Azure resources | 30 | ★★★ | 107 |
@@ -133,12 +133,20 @@ phase 번호는 100부터다 — 네트워크 과목이 75~85를 예약했다. �
 `azure-management-tools`(30)와 `azure-infrastructure-as-code`(9)로 간다. 28·16·30·9는 설계 때 센 수다.
 문항마다 어느 쪽인지는 그 주제를 만드는 phase(106·107)가 `dump-topics.tsv`의 메모를 보고 정해 이 표에 적고, 수가 바뀌어 별점이 달라지면 이 지도와 테스트를 함께 고친다.
 
+### `cost-management` 라벨의 배정 (phase 106 설계)
+
+`dump-topics.tsv`의 메모를 보고 나눴다. 28·16으로 어림과 같아 별점은 그대로다. `dup_of`가 있는 NO.436·439·465는 세지 않고 원본 문항의 주제를 따른다.
+
+- `azure-cost-factors` 28 — NO.12, 34, 42, 67, 91, 92, 94, 171, 183, 259, 278, 298, 299, 323, 331, 341, 345, 372, 382, 389, 409, 431, 459, 476, 482, 489, 490, 492
+- `azure-cost-management` 16 — NO.62, 95, 101, 134, 209, 251, 255, 286, 316, 334, 359, 373, 394, 396, 416, 464
+
 **숫자의 한계.** 분류는 한 사람이 한 번 읽고 정한 것이고 그림으로만 된 문항도 있어, 경계 문항을 옮기면 주제별 수가 ±1~3쯤 움직인다.
 문항 몇 개로 별점이 바뀔 수 있는 주제는 다음과 같다.
 
 - 25(★★★의 하한): `azure-resource-hierarchy`, `azure-security-model`
 - 24(★★★ 바로 아래): `azure-cloud-benefits`
-- 아직 나누지 않은 수: `azure-cost-management` 16(★★☆의 하한 13까지 3), `azure-infrastructure-as-code` 9(★★☆까지 4)
+- `azure-cost-management` 16(★★☆의 하한 13까지 3)
+- 아직 나누지 않은 수: `azure-infrastructure-as-code` 9(★★☆까지 4)
 
 ## 덤프 정답이 의심스러운 문항
 

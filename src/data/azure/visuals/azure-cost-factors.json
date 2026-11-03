@@ -1,0 +1,330 @@
+{
+  "diagrams": {
+    "cost-factors": {
+      "label": "크기가 같은 VM 둘의 요금을 가르는 지역, 실행 시간, 소프트웨어 라이선스를 보인 모습",
+      "svgLabel": "VM 1과 VM 2가 나란히 있고, 지역과 실행 시간, 소프트웨어 라이선스에서 VM 2로 화살표가 이어진다",
+      "question": "크기가 같은 VM인데 왜 요금이 다를까?",
+      "idleCaption": "크기가 같은 VM 둘과 요금을 가를 수 있는 요인 셋을 그렸다. 버튼을 고르면 어느 요인이 VM 2의 요금을 어떻게 바꾸는지 볼 수 있다.",
+      "legend": "화살표는 그 요인이 VM 2의 요금을 바꾼다는 뜻이다. VM 1은 견줄 기준이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "vm-2": "VM 2",
+        "region": "지역",
+        "hours": "실행 시간",
+        "license": "소프트웨어 라이선스"
+      },
+      "notes": {
+        "region-note": "지역마다 가격이 다르다",
+        "hours-note": "쓴 만큼 낸다",
+        "license-note": "라이선스 값이 더해진다"
+      },
+      "scenarios": [
+        {
+          "id": "region",
+          "label": "지역이 다를 때",
+          "caption": "VM 2를 VM 1과 다른 지역에 둔 경우다. 크기가 같아도 지역마다 가격이 다를 수 있어 두 VM의 요금이 갈릴 수 있다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        },
+        {
+          "id": "hours",
+          "label": "실행 시간이 다를 때",
+          "caption": "VM 2를 VM 1보다 오래 실행한 경우다. 종량제에서는 쓴 만큼 내므로 오래 실행한 VM 2의 요금이 더 나온다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        },
+        {
+          "id": "license",
+          "label": "라이선스가 다를 때",
+          "caption": "VM 2에만 운영 체제나 다른 소프트웨어의 라이선스 값이 더해진 경우다. 크기가 같아도 이 값만큼 요금이 달라진다.",
+          "sources": [
+            "azure-cost-factors.cost-factors"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.cost-factors"
+      ]
+    },
+    "data-transfer-costs": {
+      "label": "Azure 밖과 지역 A, 지역 B 사이에서 데이터가 움직이는 방향과 전송 요금을 보인 모습",
+      "svgLabel": "Azure 밖과 지역 A의 VM 1이 두 화살표로 오가고, VM 1에서 지역 B의 VM 2로 화살표가 이어진다",
+      "question": "어느 방향으로 옮길 때 요금이 붙을까?",
+      "idleCaption": "Azure 밖과 두 지역의 VM을 그렸다. 버튼을 고르면 방향마다 전송 요금이 어떻게 갈리는지 볼 수 있다.",
+      "legend": "화살표는 데이터가 움직이는 방향이다. 요금은 대역폭 요금표 기준이고, 피어링처럼 가격을 따로 매기는 전송은 그리지 않았다.",
+      "groups": {
+        "region-a": "지역 A",
+        "region-b": "지역 B"
+      },
+      "nodes": {
+        "outside": "Azure 밖",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2"
+      },
+      "notes": {
+        "in-note": "들어오는 전송 요금 없음",
+        "out-note": "청구 영역에 따라 요금",
+        "between-note": "나가는 쪽에 요금"
+      },
+      "scenarios": [
+        {
+          "id": "in",
+          "label": "들어올 때",
+          "caption": "Azure 밖의 서버에서 VM 1로 올리는 들어오는 전송이다. 대역폭 요금표에서 들어오는 전송에는 요금이 없다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        },
+        {
+          "id": "out",
+          "label": "나갈 때",
+          "caption": "VM 1에서 Azure 밖의 서버로 내려받는 나가는 전송이다. 요금이 붙고, 그 가격은 청구 영역에 따라 정해진다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        },
+        {
+          "id": "between",
+          "label": "지역 사이",
+          "caption": "VM 1에서 VM 2로 옮기는 지역 사이 전송이다. 지역 A에서 나가는 쪽에 보통 요금이 붙고, 지역 B로 들어오는 쪽은 무료다.",
+          "sources": [
+            "azure-cost-factors.data-transfer-costs"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.data-transfer-costs"
+      ]
+    },
+    "vm-stop-billing": {
+      "label": "VM 1의 상태에 따라 컴퓨팅과 디스크 요금이 달라지는 모습",
+      "svgLabel": "VM 1 안에 컴퓨팅과 디스크가 있고, 고른 상태에 따라 요금이 붙는 항목을 보인다",
+      "question": "VM을 껐는데 무엇에 요금이 붙을까?",
+      "idleCaption": "VM 1의 컴퓨팅과 디스크를 그렸다. 상태를 고르면 어느 항목에 요금이 붙는지 볼 수 있다.",
+      "legend": "흐린 컴퓨팅은 요금이 멈췄다는 뜻이다. 디스크 외에 남을 수 있는 네트워킹 요금은 이 그림에 표시하지 않았다.",
+      "groups": {
+        "vm": "VM 1"
+      },
+      "nodes": {
+        "compute": "컴퓨팅",
+        "disk": "디스크"
+      },
+      "notes": {
+        "running-note": "둘 다 요금",
+        "shutdown-note": "하드웨어를 잡고 있다",
+        "deallocated-note": "디스크 요금은 남는다"
+      },
+      "scenarios": [
+        {
+          "id": "running",
+          "label": "실행 중",
+          "caption": "회사 A의 VM 1이 실행 중인 상태다. 프로그램을 실행할 컴퓨팅과 파일을 보관할 디스크에 각각 요금이 붙는다.",
+          "sources": [
+            "azure-cost-factors.vm-stop-deallocate"
+          ]
+        },
+        {
+          "id": "shutdown",
+          "label": "운영 체제 안에서 종료",
+          "caption": "VM 1 안에서 운영 체제를 종료한 상태다. 프로그램은 멈췄지만 하드웨어를 잡고 있어 컴퓨팅 요금이 계속되고 디스크 요금도 붙는다.",
+          "sources": [
+            "azure-cost-factors.vm-stop-deallocate"
+          ]
+        },
+        {
+          "id": "deallocated",
+          "label": "할당 취소",
+          "caption": "VM 1의 상태가 「중지됨(할당 취소됨)」이면 배정받은 하드웨어를 놓아 컴퓨팅 요금이 멈춘다. 남겨 둔 디스크에는 요금이 붙고 네트워킹 요금도 남을 수 있다.",
+          "sources": [
+            "azure-cost-factors.vm-stop-deallocate"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.vm-stop-deallocate"
+      ]
+    },
+    "leftover-resources": {
+      "label": "VM 1을 지운 뒤 남을 수 있는 리소스와 요금이 붙는 항목을 보인 모습",
+      "svgLabel": "리소스 그룹 1 안에 VM 1과 디스크, 공용 IP 주소, 네트워크 인터페이스가 있다",
+      "question": "VM을 지운 뒤 무엇을 더 지워야 할까?",
+      "idleCaption": "회사 B가 만든 VM 1과 주변 리소스다. 버튼을 고르면 삭제 후 남은 항목과 그중 요금이 붙는 항목을 볼 수 있다.",
+      "legend": "「VM만 지운 뒤」에서는 삭제한 항목을, 「요금이 붙는 것」에서는 삭제했거나 자체 요금이 없는 항목을 흐리게 보인다. 공용 IP 주소는 정적 주소다.",
+      "groups": {
+        "resource-group": "리소스 그룹 1"
+      },
+      "nodes": {
+        "vm": "VM 1",
+        "disk": "디스크",
+        "public-ip": "공용 IP 주소",
+        "nic": "네트워크 인터페이스"
+      },
+      "notes": {
+        "after-note": "함께 지워지지 않을 수 있다",
+        "charged-note": "지우면 비용이 준다"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "VM이 있을 때",
+          "caption": "회사 B가 리소스 그룹 1에 VM 1과 디스크, 네트워크 인터페이스를 만들고 공용 IP 주소를 붙인 모습이다. 새로 만든 주변 리소스는 기본으로 같은 리소스 그룹에 놓인다.",
+          "sources": [
+            "azure-cost-factors.unused-resources"
+          ]
+        },
+        {
+          "id": "after",
+          "label": "VM만 지운 뒤",
+          "caption": "VM 1을 지우고 디스크와 공용 IP 주소, 네트워크 인터페이스가 남은 경우다. 주변 리소스를 함께 지울지는 삭제 설정에 따라 달라진다.",
+          "sources": [
+            "azure-cost-factors.unused-resources"
+          ]
+        },
+        {
+          "id": "charged",
+          "label": "요금이 붙는 것",
+          "caption": "남은 디스크와 정적 공용 IP 주소에는 요금이 붙으므로 더 필요 없다면 지워 비용을 줄인다. 네트워크 인터페이스 자체에는 별도 요금이 없다.",
+          "sources": [
+            "azure-cost-factors.unused-resources"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.unused-resources"
+      ]
+    },
+    "hybrid-benefit": {
+      "label": "Windows VM 요금에서 회사가 가진 라이선스로 무엇이 빠지고 무엇이 남는지 보인 모습",
+      "svgLabel": "회사가 가진 것 안에 Windows Server 라이선스가 있고, VM 요금 안에 컴퓨팅과 Windows 라이선스가 있다",
+      "question": "가진 라이선스를 Azure에서 쓰면 무엇이 줄어들까?",
+      "idleCaption": "회사 C가 가진 라이선스와 Windows VM의 요금을 그렸다. 버튼을 고르면 혜택을 쓰기 전과 쓸 때 VM 요금에서 무엇을 내는지 볼 수 있다.",
+      "legend": "흐린 상자는 그 장면에서 쓰지 않거나 내지 않는 것이다. VM 요금 가운데 컴퓨팅과 라이선스만 그렸다.",
+      "groups": {
+        "on-premises": "회사가 가진 것",
+        "vm-bill": "VM 요금"
+      },
+      "nodes": {
+        "license": "Windows Server 라이선스",
+        "compute": "컴퓨팅",
+        "os-license": "Windows 라이선스"
+      },
+      "notes": {
+        "without-note": "둘 다 낸다",
+        "with-note": "가진 라이선스로 대신한다"
+      },
+      "scenarios": [
+        {
+          "id": "without",
+          "label": "혜택 없이",
+          "caption": "혜택 없이 Windows VM을 실행한 경우다. VM 요금에 컴퓨팅 값과 Windows 라이선스 값이 함께 들어 있어 둘 다 낸다.",
+          "sources": [
+            "azure-cost-factors.hybrid-benefit"
+          ]
+        },
+        {
+          "id": "with",
+          "label": "혜택을 쓸 때",
+          "caption": "회사 C가 가진 라이선스로 혜택을 쓰는 경우다. 라이선스 수만큼 Windows 라이선스 값이 빠지고, VM 요금에는 컴퓨팅 값만 남는다.",
+          "sources": [
+            "azure-cost-factors.hybrid-benefit"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.hybrid-benefit"
+      ]
+    },
+    "pricing-calculator": {
+      "label": "가격 계산기로 어림하는 일과 실제 리소스의 비용을 보는 일이 이어지지 않음을 보인 모습",
+      "svgLabel": "지역·계층·중복성에서 가격 계산기를 거쳐 예상 비용으로 화살표가 이어지고, 따로 실제 리소스에서 Cost Management로 화살표가 이어진다",
+      "question": "계산기에 넣으면 실제로 무엇이 생길까?",
+      "idleCaption": "가격 계산기로 어림하는 줄과 실제 리소스의 비용을 보는 줄을 그렸다. 버튼을 고르면 리소스를 만들기 전과 만든 뒤를 볼 수 있다.",
+      "legend": "화살표는 무엇을 넣어 무엇이 나오는지, 어느 리소스의 비용을 어디서 보는지를 잇는다. 가격 계산기에서 실제 리소스로 가는 선은 없다.",
+      "nodes": {
+        "choices": "지역·계층·중복성",
+        "calculator": "가격 계산기",
+        "estimate": "예상 비용",
+        "resource": "실제 리소스",
+        "cost-management": "Cost Management"
+      },
+      "notes": {
+        "before-note": "아무것도 만들어지지 않는다",
+        "after-note": "실제로 쓴 비용"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "만들기 전",
+          "caption": "회사 A가 지역과 계층, 중복성을 골라 넣으면 가격 계산기가 예상 비용을 어림한다. 어림일 뿐이라 구독에 아무것도 만들어지지 않고 요금도 붙지 않는다.",
+          "sources": [
+            "azure-cost-factors.pricing-calculator"
+          ]
+        },
+        {
+          "id": "after",
+          "label": "만든 뒤",
+          "caption": "실제 리소스를 만들어 쓰면 요금이 붙고, 실제로 쓴 비용은 Cost Management에서 본다. 계산기에 넣은 내용이 리소스로 이어지지는 않는다.",
+          "sources": [
+            "azure-cost-factors.pricing-calculator"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-cost-factors.pricing-calculator"
+      ]
+    }
+  },
+  "tables": {
+    "cost-saving-options": {
+      "label": "할인 방식 넷 견주기",
+      "columns": [
+        "방식",
+        "내놓는 것",
+        "맞는 작업"
+      ],
+      "columnWidths": [
+        "30%",
+        "35%",
+        "35%"
+      ],
+      "sources": [
+        "azure-cost-factors.cost-factors",
+        "azure-cost-factors.savings-plan",
+        "azure-cost-factors.hybrid-benefit"
+      ],
+      "rows": [
+        {
+          "header": "예약",
+          "cells": [
+            "특정 리소스와 지역에 1년이나 3년 약정",
+            "쉬지 않고 실행되고 크기나 지역이 바뀌지 않는 작업"
+          ]
+        },
+        {
+          "header": "저축 플랜",
+          "cells": [
+            "시간당 쓸 금액을 1년이나 3년 약정",
+            "여러 서비스를 쓰거나 여러 지역에서 실행하는 작업"
+          ]
+        },
+        {
+          "header": "스폿 가상 머신",
+          "cells": [
+            "언제든 회수될 수 있음을 받아들인다",
+            "도중에 멈춰도 되는 작업"
+          ]
+        },
+        {
+          "header": "하이브리드 혜택",
+          "cells": [
+            "이미 가진 라이선스",
+            "Windows Server나 SQL Server를 Azure에서 실행하는 작업"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}
