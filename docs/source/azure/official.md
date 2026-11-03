@@ -356,6 +356,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
 쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, `azure-storage.azure-files`, D65, D66, G41, G42
+쓰인 곳(phase 107 step 3): `azure-governance.lock-inheritance`의 디스크 풀이(VM에 붙여 데이터를 저장하는 저장 장치)
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -1687,6 +1688,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 구독에 건 설정은 그 구독의 모든 리소스 그룹·리소스에, 리소스 그룹에 건 설정은 그 리소스 그룹과 안의 리소스에 적용되고 다른 리소스 그룹에는 걸리지 않음 — 「위로 올라가지 않는다」는 쓰지 않고 「건 층과 그 아래에만 미친다」로 썼다), az053·az054 해설, `HierarchyInheritanceDiagram`, G26
 
 쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 리소스·리소스 그룹 풀이, az159 해설.
+쓰인 곳(phase 107 step 3): `azure-governance.lock-inheritance`(리소스 그룹을 지우면 안의 리소스가 함께 지워진다), az163 해설
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
@@ -1865,7 +1867,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 
 쓰인 곳(phase 107 step 1): `azure-governance.purview`·`azure-governance.sensitivity-labels`의 Azure Policy와 견주는 줄(리소스가 지킬 규칙을 정한다, 리소스의 설정), az153 해설
 쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D50·D109·D110·G61.
-쓰일 곳: `GovernanceToolsTable`. (phase 107)
+쓰인 곳(phase 107 step 3): `GovernanceToolsTable`(Azure RBAC·Azure Policy 행), `azure-governance.lock-inheritance`의 세 도구를 가르는 문단, az161 해설(어긋난 요청을 거부하는 정책).
 
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
@@ -2584,12 +2586,14 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-r
 - 안의 리소스 하나에 삭제 잠금이 있어도 리소스 그룹 전체 삭제가 실패한다. 잠기지 않은 리소스만 먼저 지우는 부분 삭제도 일어나지 않는다 — 「Lock inheritance」 (phase 107)
 - 잠금은 관리 작업에 적용된다. SQL 서버의 설정을 읽기 전용으로 잠가도 데이터베이스 안의 데이터를 바꾸는 작업까지 막지는 않는다 — 「Understand scope of locks」 (phase 107)
 - 읽기 전용으로 잠근 저장소 계정은 키 목록 조회도 막힌다. 이 조회가 관리 API의 POST 작업이기 때문이다. 단순히 화면에서 정보를 보는 일처럼 보여도 막힐 수 있는 예다 — 「Considerations before applying your locks」 (phase 107)
+- 읽기 전용 잠금은 그 리소스를 다룰 권한이 있는 사용자 모두를 읽기 권한자(Reader) 역할이 주는 권한으로 묶는 것과 비슷하다 — 「첫 문단」 (phase 107 step 3)
+- 저장소 계정 키는 그 계정의 데이터에 대한 모든 접근을 준다. 키 목록 조회를 POST 요청으로 처리하는 것은 키에 대한 접근을 지키려는 것이다 — 「Considerations before applying your locks」 (phase 107 step 3)
 - 잠금을 만들거나 지우려면 `Microsoft.Authorization/*`나 `Microsoft.Authorization/locks/*` 권한이 있어야 한다. 소유자와 사용자 액세스 관리자는 이 권한을 갖고, 필요한 권한을 넣은 사용자 지정 역할도 가능하다 — 「Who can create or delete locks」 (phase 107)
 - 잠금이 막는 작업은 소유자 권한으로도 바로 실행할 수 없다. 필요한 권한으로 잠금을 먼저 지운 뒤 작업한다 — 「첫 문단」(잠금은 모든 사용자 권한보다 우선한다) 및 Learn 단원 4 「How do I delete or change a locked resource?」 (phase 107)
 - 같은 종류의 잠금을 한 리소스에 여럿 직접 거는 것과, 읽기 전용 잠금이 있는 리소스에 삭제 잠금을 더하는 것을 말하는 문장은 이 문서와 Learn 단원 4에서 **찾지 못했다**. 상속 경로에서 잠금이 겹치는 일과 그때 가장 제한적인 것이 우선한다는 것만 확인했다(D111) (phase 107)
 - 한국어 표기: 「잠금 상속」은 한국어판 절 제목이다. 포털의 「삭제」「읽기 전용」에 잠금을 붙여 두 종류를 구별한다. 명령에서의 이름은 각각 `CanNotDelete`·`ReadOnly`다. 역할은 앞 phase와 같은 「소유자」「사용자 액세스 관리자」로 쓴다 (phase 107)
 
-쓰일 곳: `azure-governance.resource-locks`, `azure-governance.lock-inheritance`, `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62. (phase 107)
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`, `azure-governance.lock-inheritance`, `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`, az160~az163; D111·G62.
 
 쓰인 곳(phase 107 step 2): az155 해설의 리소스 잠금 풀이(관리 중인 자원의 변경·삭제를 제한한다).
 
@@ -3814,6 +3818,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
 | 사용자 액세스 관리자 | 보기만 한다 | 할 수 있다 |
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `RbacRolesTable`, D84, G50, az120 해설
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(읽기 권한자·사용자 액세스 관리자 풀이), az161 보기와 해설(읽기 권한자)
 
 ## (phase 105) Azure RBAC — 역할을 할당하는 곳과 대상, 사용자 지정 역할
 https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal
@@ -3843,6 +3848,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitio
 - 한국어 표기: data action → 데이터 작업, role assignment → 역할 할당, deny assignment → 거부 할당, Storage Blob Data Reader → Storage Blob 데이터 읽기 권한자
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac-scope`(데이터 작업과 전용 역할, 앱 안의 권한, 할당이 합쳐진다), `RbacScopeDiagram`. 거부 할당은 쓰지 않았다 — 「합쳐진다」로만 쓰고 「막는 방법이 없다」로 단정하지 않았다
+쓰인 곳(phase 107 step 3): az161 해설(역할 할당은 더해지므로 읽기 권한자를 더해 줘도 지우는 권한이 남는다)
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 7 Describe Zero Trust model
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model
@@ -4618,7 +4624,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure
 - 소유자도 잠금으로 막힌 작업을 하려면 먼저 잠금을 풀어야 한다. 수정 전에 늘 해제해야 한다는 단원 중간의 문장은 두 종류에 공통으로 적용하지 않는다. 삭제 잠금은 변경을 허용한다 — 「Types of resource locks」「How do I manage resource locks?」
 - 한국어 표기: 리소스 잠금, 삭제 잠금, 읽기 전용 잠금. Learn의 Delete는 제품 문서의 CanNotDelete와 같은 종류다.
 
-쓰일 곳: `azure-governance.resource-locks`, `azure-governance.lock-inheritance`; G62.
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(거는 곳 — 포털의 잠금 항목, Azure PowerShell·Azure CLI·ARM 템플릿, 소유자도 먼저 잠금을 푼다), `azure-governance.lock-inheritance`; G62.
 
 ## (phase 107) Microsoft Purview — Learn about Microsoft Purview
 https://learn.microsoft.com/en-us/purview/purview
@@ -4852,7 +4858,7 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 
 쓰인 곳: `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
 쓰인 곳(phase 107 step 2): `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`; D109·D110·G61.
-쓰일 곳: `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62.
+쓰인 곳(phase 107 step 3): `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62.
 
 ## (phase 107) 한국어 표기 정리 — `azure-governance`
 
@@ -4875,4 +4881,4 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 
 쓰인 곳: `azure-governance.purview`(목록 항목 둘), `azure-governance.sensitivity-labels`(기본 레이블 이름), `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
 쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D109·D110·G61.
-쓰일 곳: `azure-governance`의 나머지 개념 2개, 목록 항목 2개, 도식 2개와 표 1개. D107·D108·D111·D112·G62·G63.
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(리소스 잠금, 삭제 잠금, 읽기 전용 잠금), `azure-governance.lock-inheritance`(잠금 상속), `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62. D107·D108·D112·G63은 범위 제외 기록이라 앱에 쓰지 않았다.

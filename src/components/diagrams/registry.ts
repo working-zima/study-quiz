@@ -106,6 +106,8 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LockInheritanceDiagram } from './LockInheritanceDiagram'
+import { LockTypesDiagram } from './LockTypesDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
 import { LrsZrsDiagram } from './LrsZrsDiagram'
@@ -216,6 +218,7 @@ import { HostingOptionsTable } from './azureComputeTables'
 import { CostSavingOptionsTable } from './azureCostFactorsTables'
 import { CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
+import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
@@ -476,6 +479,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-governance.azure-policy': PolicyCheckDiagram,
   'azure-governance.policy-compliance': PolicyComplianceDiagram,
   'azure-governance.policy-initiatives': PolicyInitiativeDiagram,
+  'azure-governance.resource-locks': LockTypesDiagram,
+  'azure-governance.lock-inheritance': [LockInheritanceDiagram, GovernanceToolsTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
