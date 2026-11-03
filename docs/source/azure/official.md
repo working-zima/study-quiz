@@ -799,6 +799,7 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `az128` 해설(Azure Arc를 푸는 한 줄 — 온-프레미스와 다른 클라우드의 서버를 Azure에서 관리하게 해 주는 것)
 
 쓰인 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
+쓰인 곳(phase 107 step 1): az153 해설(오답 Azure Arc를 푸는 한 줄 — Azure 밖의 서버를 Azure에서 함께 관리하게 해 준다)
 
 ---
 
@@ -1856,6 +1857,7 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 - 정의는 포털·PowerShell·Azure CLI로 할당한다. 매개변수를 두면 한 정의를 할당마다 다른 값(예: 허용할 지역)으로 다시 쓴다 — 같은 절 (phase 107)
 - 한국어 표기: 정책 정의, 할당, 이니셔티브, 규정 준수, 비준수. 개념 이름은 「정책 이니셔티브」로 정한다 — 한국어판 「Azure Policy 개체」와 Learn 단원 3 (phase 107)
 
+쓰인 곳(phase 107 step 1): `azure-governance.purview`·`azure-governance.sensitivity-labels`의 Azure Policy와 견주는 줄(리소스가 지킬 규칙을 정한다, 리소스의 설정), az153 해설
 쓰일 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `GovernanceToolsTable`; D50·D109·D110·G61. (phase 107)
 
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
@@ -3889,6 +3891,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 한국어 표기: Defender for Cloud, 보안 상태, 지속적인 평가, 보안, 방어, 권장 사항, 경고, 보안 점수, 온-프레미스, 다중 클라우드, Microsoft 클라우드 보안 벤치마크, Just-In-Time VM 액세스
 
 쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, `az127`, `az128`
+쓰인 곳(phase 107 step 1): az153 해설(오답 Defender for Cloud를 푸는 한 줄 — 리소스 설정의 안전을 살피고 공격 조짐을 경고한다)
 
 ## (phase 105) Microsoft Defender for Cloud — 옛 이름, 무료와 유료, 규정 준수
 https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction
@@ -4575,7 +4578,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure
 - 두 갈래는 이 Learn 단원이 설명하는 구분이다. 제품 전체의 현재 메뉴가 정확히 두 개라고 주장하거나 Azure 리소스 배포를 제어하는 기능으로 설명하지 않는다 — 「Microsoft Purview risk and compliance solutions」「Unified data governance」
 - 한국어 표기: Microsoft Purview, 위험 및 규정 준수 솔루션, 통합 데이터 거버넌스, 데이터 검색, 데이터 분류, 데이터 계보. 「검색」은 본문에서 자동으로 찾아내는 일로 풀고 도식 버튼은 「데이터 찾기」로 쓴다.
 
-쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
 
 ## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 3: Describe the purpose of Azure Policy
 https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/3-describe-purpose-azure-policy
@@ -4612,7 +4615,7 @@ https://learn.microsoft.com/en-us/purview/purview
 - 데이터를 파악하고 보호하며 관리하는 여러 솔루션을 함께 제공한다. 데이터 보안·데이터 거버넌스·규정 준수 솔루션을 포함하므로 Azure Purview라는 옛 데이터 거버넌스 이름만으로 현재 제품군 전체를 정의하지 않는다 — 「첫 문단」「Unified data security, governance, and compliance solutions for the era of AI」
 - 한국어 표기: Microsoft Purview. 두 목록 항목의 한국어 이름은 Learn 단원 2를 기준으로 한다.
 
-쓰일 곳: `azure-governance.purview`; G60.
+쓰인 곳: `azure-governance.purview`, az153; G60.
 
 ## (phase 107) Microsoft Purview — Classic governance solutions
 https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview
@@ -4623,7 +4626,7 @@ https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview
 - 데이터 원본을 등록할 때 원본 데이터는 있던 곳에 남고 위치 참조와 메타데이터가 지도에 들어간다. 도식에서 세 장소의 데이터를 Purview로 모두 옮겨 저장하는 것처럼 그리지 않는다 — 「Microsoft Purview advantages」
 - 한국어 표기: 과거 이름의 확인에만 영문판을 사용했다. 클래식 서비스의 화면·설치 방법은 쓰지 않는다.
 
-쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
 
 ## (phase 107) Microsoft Purview — Data lineage user guide for classic Data Catalog
 https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide
@@ -4634,7 +4637,7 @@ https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide
 - 온-프레미스에서 클라우드 처리와 분석으로 이어지는 경로는 클래식 거버넌스 개요의 예에도 있다. 그림에는 데이터 이동을 추적하는 예임을 밝히며 모든 원본의 경로를 저절로 완성한다는 뜻으로 쓰지 않는다 — 「Lineage collection」 및 클래식 개요 「Classic Data Catalog」
 - 한국어 표기: 한국어판 제목·본문의 「데이터 계보」를 채택한다. 짧은 도식 버튼은 「계보」, 본문 첫 등장은 「데이터 계보」다.
 
-쓰일 곳: `azure-governance.purview`, `PurviewDataMapDiagram`; G60.
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
 
 ## (phase 107) Azure Information Protection — What is Azure Information Protection?
 https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection
@@ -4646,7 +4649,7 @@ https://learn.microsoft.com/en-us/azure/information-protection/what-is-informati
 - 문서가 Purview Information Protection의 이전 이름으로 적은 것은 Microsoft Information Protection이다. 리소스 잠금을 복원하는 서비스를 설명하는 문서가 아니다 — 「Note」「첫 문단」
 - 한국어 표기: 이름 둘 — Azure Information Protection(AIP), Microsoft Purview Information Protection. 옛 추가 기능과 현재 레이블 경험을 구별한다.
 
-쓰일 곳: `azure-governance.sensitivity-labels`; D106·D108.
+쓰인 곳: `azure-governance.sensitivity-labels`(예전 이름 한 줄); D106·D108.
 
 ## (phase 107) Microsoft Purview — Protect your sensitive data
 https://learn.microsoft.com/en-us/purview/information-protection
@@ -4656,7 +4659,7 @@ https://learn.microsoft.com/en-us/purview/information-protection
 - Microsoft Purview Information Protection은 민감한 정보를 찾고 분류하며 보호하는 기능을 제공한다. 보호 방법에는 암호화·접근 제한·문서에 보이는 표시가 있다 — 「첫 문단」「Protect your data」
 - 한국어 표기: 제품 이름 Microsoft Purview Information Protection(옮기지 않는다), 민감도 레이블.
 
-쓰일 곳: `azure-governance.sensitivity-labels`; D106.
+쓰인 곳: `azure-governance.sensitivity-labels`; D106.
 
 ## (phase 107) Microsoft Purview — Learn about sensitivity labels
 https://learn.microsoft.com/en-us/purview/sensitivity-labels
@@ -4668,7 +4671,7 @@ https://learn.microsoft.com/en-us/purview/sensitivity-labels
 - 현재 문서는 기밀 같은 상위 이름과 하위 레이블을 구분한다. 상위 그룹 이름만으로 특정 암호화·표시 설정을 보장하지 않는다 — 「Sublabels that use parent labels or label groups」
 - 한국어 표기: 민감도 레이블, 워터마크, 머리글, 바닥글, 암호화. 예시 이름은 아래 기본 레이블 문서로 대조한다.
 
-쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`; D106.
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`, az154; D106.
 
 ## (phase 107) Microsoft Purview — Automatically apply sensitivity labels
 https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically
@@ -4680,7 +4683,7 @@ https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically
 - 내용에 민감한 정보가 있는지 등의 조건을 관리자가 구성한다. 신용카드 번호가 든 문서는 조건의 예로 쓸 수 있으나 실제 번호나 개수 기준은 앱에 넣지 않는다 — 「How to configure auto-labeling for Office apps」
 - 한국어 표기: 자동 레이블 지정. 본문에는 「조건에 맞으면 붙인다」와 「사용자에게 권한다」를 나누고 서비스 쪽에는 권고 방식을 붙이지 않는다.
 
-쓰일 곳: `azure-governance.sensitivity-labels`; D106.
+쓰인 곳: `azure-governance.sensitivity-labels`; D106.
 
 ## (phase 107) Microsoft Purview — Restrict access to content by using sensitivity labels to apply encryption
 https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels
@@ -4689,9 +4692,10 @@ https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels
 
 - 레이블로 암호화한 파일은 회사 밖으로 전달되거나 이름이 달라져도 암호화된 상태를 유지한다. 허용된 사람·사용 권한은 설정에 따른다 — 「첫 문단」
 - 레이블 이름만 붙였다고 모든 콘텐츠가 암호화되는 것은 아니다. 이 그림과 설명의 전제는 해당 레이블에 암호화를 설정했다는 것이다 — 「Configure encryption settings」
+- 암호화 설정의 예로 조직 안의 사용자만 문서·메일을 열게 하는 경우를 든다. 이렇게 설정한 레이블의 문서는 조직 밖의 받는 사람이 열지 못한다. 암호화한 콘텐츠를 풀 수 있는 것은 레이블의 암호화 설정이 허락한 사용자뿐이다 — 「첫 문단」 아래의 예 목록과 「When a document, email, or meeting invite is encrypted」 (phase 107 step 1)
 - 한국어 표기: 민감도 레이블, 암호화. 「보호가 따라간다」를 사용할 때 암호화 설정이라는 전제를 함께 적는다.
 
-쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`; D106.
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`, az154; D106.
 
 ## (phase 107) Microsoft Purview — Default sensitivity labels and policies
 https://learn.microsoft.com/en-us/purview/default-sensitivity-labels-policies
@@ -4702,7 +4706,7 @@ https://learn.microsoft.com/en-us/purview/default-sensitivity-labels-policies
 - 영문판과 한국어판의 하위 레이블 목록·설정 설명은 서로 완전히 같지 않다. 한국어판에서는 이름만 취하고 실제 동작과 설정은 영문판을 따른다. 「기밀이면 기본적으로 워터마크와 암호화가 함께 붙는다」는 예를 만들지 않는다 — 「Default sensitivity labels」
 - 한국어 표기: 개인, 공용, 일반, 기밀, 극비. 개요 한국어판은 Highly Confidential까지 「기밀」로 번역한 자리가 있어 이 문서의 「극비」와 구별한다. 도식은 설정을 따로 밝힌 「레이블 1」로 확정한다.
 
-쓰일 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`.
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`.
 
 ## (phase 107) Azure Policy — Assignment structure
 https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure
@@ -4833,7 +4837,8 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 
 한국어 표기: 위 라벨은 아래 확정 표를 따른다. 정책 정의의 「허용된 위치」와 설명에 쓰는 「지역」은 이름과 뜻풀이의 차이다.
 
-쓰일 곳: `azure-governance`의 일곱 도식과 `GovernanceToolsTable`; D106·D109·D110·D111·G60·G61·G62.
+쓰인 곳: `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
+쓰일 곳: `azure-governance`의 나머지 다섯 도식과 `GovernanceToolsTable`; D109·D110·D111·G61·G62.
 
 ## (phase 107) 한국어 표기 정리 — `azure-governance`
 
@@ -4854,4 +4859,5 @@ https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-
 | 기본 레이블 이름 | 개인·공용·일반·기밀·극비 | [기본 레이블 한국어판](https://learn.microsoft.com/ko-kr/purview/default-sensitivity-labels-policies). 개요에 있는 중복 번역 「기밀」보다 구별되는 이 표기를 택한다. 설정이 다양한 이름을 도식의 고정 보호와 연결하지 않으려고 도식에는 「레이블 1」을 쓴다. |
 | 기본 제공 정책의 예 | 허용된 위치 / 허용되는 가상 머신 SKU / 허용되지 않는 리소스 종류 / 리소스의 태그 요구 | 앞 셋은 개요 한국어판의 이름, 마지막은 [기본 제공 목록](https://learn.microsoft.com/ko-kr/azure/governance/policy/samples/built-in-policies)의 Require a tag on resources를 풀어 쓴 말이다. 「허용 위치」「허용되는 가상 머신 크기 SKU」「리소스 유형」도 설계에 있었지만, 이름은 실제 확인한 표기로 맞추고 크기·지역이라는 쉬운 말은 설명에 쓴다. |
 
-쓰일 곳: `azure-governance`의 개념 7개, 목록 항목 4개, 도식 7개와 표 1개. D106~D112·G60~G63.
+쓰인 곳: `azure-governance.purview`(목록 항목 둘), `azure-governance.sensitivity-labels`(기본 레이블 이름), `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
+쓰일 곳: `azure-governance`의 나머지 개념 5개, 목록 항목 2개, 도식 5개와 표 1개. D107~D112·G61~G63.

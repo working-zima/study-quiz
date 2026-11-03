@@ -145,6 +145,7 @@ import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
+import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
@@ -161,6 +162,7 @@ import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
+import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
@@ -466,6 +468,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-management.tag-inheritance': TagInheritanceDiagram,
   'azure-cost-management.free-account': FreeAccountOffersDiagram,
   'azure-cost-management.spending-limit': [SpendingLimitDiagram, CostToolsTable],
+  'azure-governance.purview': PurviewDataMapDiagram,
+  'azure-governance.sensitivity-labels': SensitivityLabelDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
