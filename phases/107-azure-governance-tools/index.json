@@ -1,0 +1,61 @@
+{
+  "project": "Study Quiz",
+  "phase": "107-azure-governance-tools",
+  "steps": [
+    {
+      "step": 0,
+      "name": "governance-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "purview-labels",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "azure-policy",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "resource-locks",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "management-tools-sources",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "tools-portal",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "shell-commands",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "azure-arc",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "iac-sources",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "resource-manager-iac",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "templates-bicep",
+      "status": "pending"
+    }
+  ]
+}
