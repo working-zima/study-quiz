@@ -21,7 +21,9 @@
     {
       "step": 2,
       "name": "azure-policy",
-      "status": "pending"
+      "status": "error",
+      "error_message": "[3회 시도 후 실패] Step did not update status",
+      "failed_at": "2026-11-04T04:08:09+0900"
     },
     {
       "step": 3,
