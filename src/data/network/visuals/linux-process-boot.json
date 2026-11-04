@@ -275,6 +275,97 @@
         }
       ],
       "sources": ["linux-process-boot.daemon"]
+    },
+    "systemctl-actions": {
+      "label": "systemctl start crond는 crond의 지금 상태만, systemctl enable crond는 부팅 때 설정만 바꾸고, systemctl status crond는 아무것도 바꾸지 않는다는 것을 보이는 도식",
+      "svgLabel": "테두리 입력하기 전 crond 안에 지금 멈춰 있음과 부팅 때 켜지지 않음이 있고, 명령 systemctl start crond, systemctl enable crond, systemctl status crond가 저마다 그 명령을 입력한 뒤의 두 상태와 함께 있다",
+      "question": "start와 enable은 무엇을 바꿀까?",
+      "idleCaption": "테두리 안은 명령을 입력하기 전 crond의 두 상태로, 지금 멈춰 있고 부팅 때도 켜지지 않는다. 그 밖에 명령 셋과, 각 명령을 입력한 뒤의 두 상태를 놓았다. 버튼을 고르면 명령마다 어느 상태가 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 명령에서 그 명령을 입력한 뒤의 상태로 간다. 테두리 안은 입력하기 전의 상태다.",
+      "nodes": {
+        "before-now": "지금 멈춰 있음",
+        "before-boot": "부팅 때 켜지지 않음",
+        "cmd-start": "systemctl start crond",
+        "start-now": "지금 실행 중",
+        "start-boot": "부팅 때 켜지지 않음",
+        "cmd-enable": "systemctl enable crond",
+        "enable-now": "지금 멈춰 있음",
+        "enable-boot": "부팅 때 켜짐",
+        "cmd-status": "systemctl status crond",
+        "status-now": "지금 멈춰 있음",
+        "status-boot": "부팅 때 켜지지 않음"
+      },
+      "groups": {
+        "before": "입력하기 전 crond"
+      },
+      "notes": {
+        "start": "지금 상태만 바뀜",
+        "enable": "부팅 때 설정만 바뀜",
+        "status": "바뀌는 것 없음"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "start",
+          "caption": "systemctl start crond를 입력하면 멈춰 있던 crond가 지금 실행된다. 부팅 때 설정은 그대로라, 컴퓨터를 다시 부팅하면 crond는 켜지지 않는다.",
+          "sources": ["linux-process-boot.systemctl"]
+        },
+        {
+          "id": "enable",
+          "label": "enable",
+          "caption": "systemctl enable crond를 입력하면 다음 부팅부터 부팅할 때마다 crond가 저절로 켜진다. 지금 멈춰 있는 crond를 실행하지는 않는다.",
+          "sources": ["linux-process-boot.systemctl"]
+        },
+        {
+          "id": "status",
+          "label": "status",
+          "caption": "systemctl status crond는 crond의 지금 상태와 부팅 때 설정을 화면에 보여 줄 뿐, 두 상태 가운데 아무것도 바꾸지 않는다.",
+          "sources": ["linux-process-boot.systemctl"]
+        }
+      ],
+      "sources": ["linux-process-boot.systemctl"]
+    },
+    "cron-schedule": {
+      "label": "user1이 자기 crontab에 한 줄을 적어 두면 데몬 crond가 매분 crontab을 살피고, 적어 둔 때가 되면 그 줄의 명령 backup.sh를 실행한다는 것을 보이는 도식",
+      "svgLabel": "user1, 테두리 user1의 crontab 안의 줄 30 2 * * 6 /home/user1/backup.sh, 데몬 crond, backup.sh가 있다",
+      "question": "예약해 둔 작업은 누가 실행할까?",
+      "idleCaption": "사용자 user1, user1의 crontab에 적힌 한 줄, 데몬 crond, 그 줄이 실행하는 backup.sh를 놓았다. 줄은 예로 든 것이다. 버튼을 고르면 예약을 적어 두고, crond가 살피고, 때가 되어 실행하는 차례를 볼 수 있다.",
+      "legend": "화살표는 적어 두기, 살피기, 실행하기가 가는 방향이다. 테두리 안은 user1의 crontab이다.",
+      "nodes": {
+        "user": "user1",
+        "line": "30 2 * * 6 /home/user1/backup.sh",
+        "crond": "crond",
+        "backup": "backup.sh"
+      },
+      "groups": {
+        "crontab": "user1의 crontab"
+      },
+      "notes": {
+        "register": "한 줄에 작업 하나",
+        "check": "매분 살핌",
+        "run": "매주 토요일 02:30에 실행"
+      },
+      "scenarios": [
+        {
+          "id": "register",
+          "label": "적어 두기",
+          "caption": "user1이 자기 crontab에 실행할 때를 정하는 칸 다섯과 실행할 명령을 한 줄로 적어 둔다. 앞의 다섯 칸 30 2 * * 6은 매주 토요일 02:30을 뜻한다.",
+          "sources": ["linux-process-boot.cron"]
+        },
+        {
+          "id": "check",
+          "label": "살피기",
+          "caption": "crond는 사용자들의 crontab을 읽어 두고 매분 모든 줄을 살펴, 적어 둔 때가 지금 시각과 맞는 줄이 있는지 본다. crontab을 고쳐도 crond를 다시 켤 필요는 없다.",
+          "sources": ["linux-process-boot.cron"]
+        },
+        {
+          "id": "run",
+          "label": "실행하기",
+          "caption": "토요일 02:30이 되면 crond가 그 줄의 명령 backup.sh를 user1로서 실행한다. 줄은 한 번 실행했다고 지워지지 않고 crontab에 남아 있어, 다음 주 토요일 02:30에 또 실행된다.",
+          "sources": ["linux-process-boot.cron"]
+        }
+      ],
+      "sources": ["linux-process-boot.cron"]
     }
   },
   "tables": {},
