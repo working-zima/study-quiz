@@ -1505,3 +1505,38 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)의 접속 경로에는 포털 외에 독립 주소와 모바일 앱도 있다. [임시 세션 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral)는 저장소 없이 시작할 수 있다고 한다. [기능 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 저장소를 붙여도 보존되는 파일 위치와 실행 중 컴퓨터의 상태를 구별한다.
 - **처리**: 한정해 쓴다. 포털은 진입 경로의 하나이고 영구 저장소는 선택이다. 다음에 쓸 파일은 연결한 저장소의 보존되는 위치에 두고 그 저장 요금이 붙는다. 임시 세션의 파일은 종료 뒤 남지 않는다. 포털에서만 쓰거나 모든 파일이 저절로 보존된다는 뜻으로 쓰지 않는다.
 - **쓰인 곳**: (쓰일 곳) `azure-management-tools.cloud-shell`, `CloudShellDiagram`
+
+## D122 — ARM 템플릿의 코드 정의와 여러 리소스 배포 — NO.326의 답이 갈림 (phase 107)
+
+- **덤프**: [덤프 NO.193 p116]의 답(`p116_05.png`)과 해설 그림(`p116_07.png`), [덤프 NO.228 p136–137]의 답(`p137_02.png`)과 해설 그림(`p137_04.png`)은 포털에서 배포할 수 있는가 / 코드로 인프라를 정의하는가 / 리소스마다 별도 템플릿이 필요한가에 예·예·아니요를 표시한다. 같은 세 진술을 묻는 [덤프 NO.326 p187–188]의 답(`p188_00.png`)과 해설 그림(`p188_02.png`)은 예·아니요·예다. 그림을 직접 보고 확인했다.
+- **공식 문서**: [ARM 템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 첫 부분은 코드로 리소스 구성을 정의한다고 하고, 「Template deployment process」는 포털을 배포 경로로 든다. 「Declarative syntax」·「Template design」은 하나의 템플릿으로 여러 리소스를 배포하는 예를 든다. 2026-11-04 확인.
+- **처리**: 고쳐 쓴다. 공식 문서와 맞는 것은 예·예·아니요다. NO.326의 둘째·셋째 그림 표시를 따르지 않는다. 템플릿을 나누어 재사용하는 것은 선택이지 리소스마다 하나씩 만들어야 한다는 요구가 아니다. NO.193·228끼리는 갈리지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-infrastructure-as-code.infrastructure-as-code`·`arm-templates`, `TemplateDeploymentDiagram`
+
+## G65 — IaC의 예와 DevOps의 필수 조건이라는 단정 (phase 107)
+
+- **용어집**: [용어집 4-13]은 코드형 인프라의 예로 ARM과 Terraform을 나란히 들고, DevOps 과정의 필수 요소라고 단정한다. 코드로 관리해 구성을 일관되게 유지하고 변경을 추적한다는 설명도 있다.
+- **공식 문서**: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)의 첫 부분은 DevOps의 중요한 실천이라고 설명한다. 「Deploy IaC on Azure」는 Azure의 관리 모델과 선언형 템플릿을 구별한다. [ARM 템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)는 배포할 구성을 코드로 적고 그 변경 이력을 관리한다고 한다. 2026-11-04 확인.
+- **처리**: 한정해 쓴다. 코드로 구성을 정하고 다시 배포하며 이력을 관리한다는 사실을 쓴다. 파일을 가리킬 때는 ARM이라는 서비스 약칭만 쓰지 말고 ARM 템플릿이라고 한다. 모든 DevOps 과정에 반드시 있어야 한다는 단정은 쓰지 않는다. 타사 예와 DevOps 연동은 이번 주제의 범위 밖이다(G67).
+- **쓰인 곳**: (쓰일 곳) `azure-infrastructure-as-code.infrastructure-as-code`, `IacEnvironmentsDiagram`, `DeploymentMethodsTable`
+
+## G66 — 템플릿이 보장하는 일관성의 범위 (phase 107)
+
+- **용어집**: [용어집 4-15]는 ARM 템플릿을 JSON 파일로 설명하고 매개변수로 환경별 값을 받으며 재현성과 일관성을 보장한다고 한다. 설정·입력·대상의 조건 없이 읽으면 어떤 재배포든 환경 전체가 같아진다는 뜻이 된다.
+- **공식 문서**: [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Repeatable results」는 같은 이름·설정의 기존 계정을 바꾸지 않는 예다. [배포 방식 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes)의 첫 부분은 기존 리소스와 설정이 같을 때 바꾸지 않는다고 하며, 뒤의 두 절은 템플릿에 없는 리소스의 처리가 달라짐을 보여 준다. [문법 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax)의 「Parameters」는 배포할 때 입력값을 받는다고 한다. 2026-11-04 확인.
+- **처리**: 한정해 쓴다. 같은 대상에 같은 이름과 설정으로 다시 배포하면 템플릿이 정의한 리소스를 그 설정으로 맞춘다고 쓴다. 매개변수를 바꿨는데 같은 결과라고 하지 않는다. 템플릿 밖의 리소스·저장된 데이터·실행 상태 전체의 동일성이나 모든 배포의 성공을 보장한다고 쓰지 않는다. JSON·매개변수 설명은 맞다. 배포 모드 이름과 세부 동작은 앱의 학습 내용으로 넣지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`의 반복 배포 장면
+
+## G67 — Terraform은 이번 주제에 넣지 않는다 (phase 107)
+
+- **용어집**: [용어집 4-26]은 타사 IaC 도구인 Terraform을 별도 항목으로 설명한다. [용어집 4-13]에도 IaC의 예로 들어 있다.
+- **공식 문서**: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)의 「Deploy IaC on Azure」도 타사 선택지로 이름을 든다. 공식 문서가 이름을 든다는 것과 이번 주제의 학습 범위는 다르다. `phases/107-azure-governance-tools/guide.md` 「배경」은 Terraform을 제외한다. 2026-11-04 확인.
+- **처리**: 쓰지 않는다. 타사 문서는 열지 않았고 용어집의 문법·공급자·다중 클라우드 세부 주장을 검증했다고 보지 않는다. 도구 비교 표·개념·문항·도식에도 넣지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-infrastructure-as-code`의 범위 제한 기록만
+
+## G68 — Bicep을 변환하는 주체 (phase 107)
+
+- **용어집**: [용어집 4-27]은 Bicep을 더 간단한 선언형 언어라고 하며 Azure가 이를 ARM 템플릿으로 변환한다고 설명한다. 모듈·반복문·변수도 든다.
+- **공식 문서**: [Bicep 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)의 「About the language」는 변환 주체를 Bicep CLI로 명시한다. 같은 문서의 「Simple syntax」·「Modularity」와 [JSON과 비교](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax)는 간결한 표현과 모듈 재사용을 뒷받침한다. [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Template deployment process」는 받은 템플릿을 Resource Manager가 처리한다고 한다. 2026-11-04 확인.
+- **처리**: 고쳐 쓴다. 배포할 때 Bicep CLI가 파일을 JSON으로 된 ARM 템플릿으로 바꾸고 Resource Manager가 그 결과를 처리한다고 쓴다. 변환이 Azure 서비스 내부에서 일어난다고 단정하지 않는다. 같은 구성을 더 짧게 적을 수 있고 모듈로 나누어 재사용한다는 것은 쓴다. 반복문·변수 같은 문법은 범위 밖이라 쓰지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`
