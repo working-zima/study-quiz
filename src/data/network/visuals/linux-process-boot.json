@@ -468,6 +468,89 @@
         }
       ],
       "sources": ["linux-process-boot.crontab-command"]
+    },
+    "boot-sequence": {
+      "label": "전원을 켠 뒤 펌웨어, 부트 로더, 커널, init, 서비스 시작이 차례로 이어지며 앞 단계가 다음 단계를 실행하는 부팅 과정을 보이는 도식",
+      "svgLabel": "펌웨어, 부트 로더, 커널, init, 서비스 시작 다섯 단계가 화살표로 차례대로 이어져 있다",
+      "question": "전원을 켜면 무엇이 차례로 실행될까?",
+      "idleCaption": "전원을 켠 뒤 실행되는 다섯 단계를 차례대로 놓았다. 버튼을 고르면 단계마다 무엇을 실행하고 넘겨주는지 볼 수 있다.",
+      "legend": "화살표는 앞 단계가 다음 단계를 실행하는 방향이다. 굵은 화살표는 고른 단계가 넘겨주는 곳이다.",
+      "nodes": {
+        "firmware": "펌웨어",
+        "loader": "부트 로더",
+        "kernel": "커널",
+        "init": "init",
+        "service": "서비스 시작"
+      },
+      "notes": {
+        "firmware": "부트 로더를 불러옴",
+        "loader": "커널을 메모리에 올림",
+        "kernel": "첫 프로세스 init을 만듦",
+        "init": "서비스를 켬"
+      },
+      "scenarios": [
+        {
+          "id": "firmware",
+          "label": "펌웨어",
+          "caption": "전원을 켜면 읽기 전용 메모리에 미리 들어 있는 펌웨어가 가장 먼저 실행되어 하드웨어를 점검하고, 부팅할 저장 장치에서 부트 로더를 불러와 실행을 넘긴다.",
+          "sources": ["linux-process-boot.boot-sequence"]
+        },
+        {
+          "id": "loader",
+          "label": "부트 로더",
+          "caption": "부트 로더가 디스크에서 커널 파일을 찾아 메모리에 올리고 실행을 넘긴다. Linux에서 흔히 쓰는 부트 로더는 GRUB이다.",
+          "sources": ["linux-process-boot.boot-sequence"]
+        },
+        {
+          "id": "kernel",
+          "label": "커널",
+          "caption": "커널이 드라이버로 장치를 준비하고 루트 파일 시스템을 마운트한 뒤, PID가 1인 첫 프로세스 init을 만든다.",
+          "sources": ["linux-process-boot.boot-sequence"]
+        },
+        {
+          "id": "init",
+          "label": "init",
+          "caption": "init이 시스템에 필요한 서비스들을 켠다. 여러 Linux 시스템에서는 systemd가 init 자리에서 실행되고, 이 단계가 끝나면 사용자가 시스템을 쓸 수 있다.",
+          "sources": ["linux-process-boot.boot-sequence"]
+        }
+      ],
+      "sources": ["linux-process-boot.boot-sequence"]
+    },
+    "grub-menu": {
+      "label": "GRUB 메뉴에서 Linux 항목을 고르면 GRUB이 Linux 커널을 직접 불러오고, Windows 항목을 고르면 Windows의 부트 로더를 거쳐 Windows가 시작되는 것을 보이는 도식",
+      "svgLabel": "테두리 GRUB 메뉴 안의 Linux 항목과 Windows 항목, Linux 커널, Windows의 부트 로더, Windows가 있다",
+      "question": "GRUB 메뉴에서 고르면 무엇이 부팅될까?",
+      "idleCaption": "Linux와 Windows가 함께 설치된 컴퓨터를 켰을 때 GRUB 메뉴에 나오는 두 항목과, 고른 뒤에 실행될 것들을 놓았다. 버튼을 고르면 항목마다 운영체제가 어떤 길로 시작되는지 볼 수 있다.",
+      "legend": "테두리 안은 GRUB 메뉴의 항목이다. 화살표는 실행을 넘기는 방향이다. 메뉴 항목에 실제로 나오는 글자는 설정 파일에 따라 다르다.",
+      "nodes": {
+        "linux-item": "Linux 항목",
+        "windows-item": "Windows 항목",
+        "kernel": "Linux 커널",
+        "win-loader": "Windows의 부트 로더",
+        "windows": "Windows"
+      },
+      "groups": {
+        "menu": "GRUB 메뉴"
+      },
+      "notes": {
+        "linux": "직접 불러옴",
+        "windows": "체인 로딩"
+      },
+      "scenarios": [
+        {
+          "id": "linux",
+          "label": "Linux 고르기",
+          "caption": "Linux 항목을 고르면 GRUB이 Linux 커널을 직접 메모리에 올려 실행을 넘긴다. 그 뒤로는 커널이 장치를 준비하고 첫 프로세스 init을 만든다.",
+          "sources": ["linux-process-boot.grub"]
+        },
+        {
+          "id": "windows",
+          "label": "Windows 고르기",
+          "caption": "GRUB은 Windows를 직접 불러오지 못한다. Windows 항목을 고르면 GRUB이 Windows의 부트 로더를 불러와 실행을 넘기고, 그 부트 로더가 Windows를 시작한다. 이렇게 잇는 것을 체인 로딩이라 한다.",
+          "sources": ["linux-process-boot.grub"]
+        }
+      ],
+      "sources": ["linux-process-boot.grub"]
     }
   },
   "tables": {},

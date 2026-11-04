@@ -18,6 +18,7 @@ import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
@@ -94,6 +95,7 @@ import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { GrubMenuDiagram } from './GrubMenuDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -477,6 +479,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.cron': CronScheduleDiagram,
   'linux-process-boot.crontab-fields': CrontabFieldsDiagram,
   'linux-process-boot.crontab-command': CrontabOptionsDiagram,
+  'linux-process-boot.boot-sequence': BootSequenceDiagram,
+  'linux-process-boot.grub': GrubMenuDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
