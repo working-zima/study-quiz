@@ -161,6 +161,7 @@ import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProcViewDiagram } from './ProcViewDiagram'
+import { ProcessControlDiagram } from './ProcessControlDiagram'
 import { ProcessTreeDiagram } from './ProcessTreeDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PsColumnsDiagram } from './PsColumnsDiagram'
@@ -213,6 +214,7 @@ import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
@@ -461,6 +463,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.vi-colon-commands': ViColonCommandsDiagram,
   'linux-process-boot.process': ProcessTreeDiagram,
   'linux-process-boot.ps-command': PsColumnsDiagram,
+  'linux-process-boot.top-command': TopScreenDiagram,
+  'linux-process-boot.process-commands': ProcessControlDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

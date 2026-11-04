@@ -3250,7 +3250,9 @@ https://man7.org/linux/man-pages/man1/last.1@@util-linux.html
   프로세스가 TERM을 받으면 정리를 한 뒤 차분히 끝낼 수 있으므로 KILL(9번)보다 TERM을 먼저 쓰라고 하고, **TERM을 보낸 뒤에도 끝나지 않으면 KILL을 쓸 수 있다 — KILL은 붙잡을 수 없어 정리할 기회를 주지 않는다** — DESCRIPTION.
   PID 자리의 양수 n은 PID가 n인 프로세스를 가리킨다 — ARGUMENTS. 대부분의 셸에 쓰임이 비슷한 내장 kill이 있다 — DESCRIPTION
 - **renice(1)**: 이름은 「실행 중인 프로세스의 우선순위를 바꾼다」이고, 실행 중인 프로세스 하나 이상의 스케줄링 우선순위(나이스 값)를 바꾼다. 인자는 기본으로 PID로 읽고, `-g`는 프로세스 그룹, `-u`는 사용자다 — NAME, DESCRIPTION.
-  슈퍼유저가 아니면 자기 프로세스만 바꿀 수 있고 나이스 값을 올리기만(덜 급하게) 할 수 있다(Linux 2.6.12부터 nice 자원 한도가 알맞으면 예외). 슈퍼유저는 어느 프로세스든 -20~19 안의 값으로 바꾼다 — NOTES
+  슈퍼유저가 아니면 자기 프로세스만 바꿀 수 있고 나이스 값을 올리기만(덜 급하게) 할 수 있다(Linux 2.6.12부터 nice 자원 한도가 알맞으면 예외). 슈퍼유저는 어느 프로세스든 -20~19 안의 값으로 바꾼다 — NOTES.
+  (phase 76 step 2, 2026-11-05에 다시 읽음) 첫 인자는 쓸 나이스 값이고 **기본으로 그 값 자체(절댓값)로 읽는다** — `--relative`를 주거나 환경 변수 POSIXLY_CORRECT가 있을 때 `-n`을 주면 지금 값에 더할 수로 읽는다 — SYNOPSIS, DESCRIPTION, OPTIONS.
+  그래서 `renice 10 2310`은 PID 2310의 나이스 값을 10으로 정한다(POSIX `renice`의 `-n`은 늘 더할 수다 — 아래 「(phase 76) POSIX.1-2024」 항목. 본문은 util-linux판을 따른다)
 - **dmesg(1)**: 이름은 「커널 링 버퍼를 출력하거나 다룬다」이고, 기본 동작은 커널 링 버퍼의 메시지를 모두 보여 주는 것이다 — NAME, DESCRIPTION. 커널 3.5.0부터는 기본으로 `/dev/kmsg`에서 읽는다 — `-S`.
   **`/var/log/dmesg`라는 파일은 이 페이지에 없다** — `exam-notes.md` E25
 - **last(1)·lastb(1)**(util-linux판): `lastb`는 `last`와 같되 기본으로 실패한 로그인 시도를 모두 담은 `/var/log/btmp`를 보여 준다 — DESCRIPTION, FILES. (로그인 기록의 나머지는 `linux-accounts`의 몫이라 step 9가 다시 읽는다)
