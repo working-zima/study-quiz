@@ -29,7 +29,10 @@ crontab(시간 칸 2회, `-r` 3회), 실행 레벨(`init 6` 2회, runlevel 5), �
 
 볼 곳은 `man7.org`(Linux man-pages — 페이지 끝의 「COLOPHON」에 어느 프로젝트의 어느 판인지 적혀 있다), `pubs.opengroup.org`(POSIX — 2024년판 `onlinepubs/9799919799/`),
 `www.gnu.org/software/grub/manual/`(GNU GRUB 매뉴얼 — GRUB에만)이다. 위키백과·블로그·배포판 업체의 학습 페이지(Red Hat·Ubuntu·Arch 문서 등)는 쓰지 않는다.
-gnu.org는 이 설계를 쓴 날(2026-11-04) 잠시 응답하지 않았다 — 열리지 않으면 몇 분 뒤 다시 열어 본다. 그래도 열리지 않으면 아래 「검증 절차」 4의 blocked로 멈춘다(GRUB의 사실을 지어서 적지 마라).
+`www.gnu.org`는 이 설계를 쓴 날(2026-11-04) 이 PC에서 응답하지 않았다(같은 GNU의 파일 서버 `ftp.gnu.org`는 열렸다). 열리지 않으면 몇 분 뒤 다시 열어 본다.
+그래도 열리지 않으면 **GNU 공식 배포본에 든 같은 매뉴얼**을 읽는다 — `https://ftp.gnu.org/gnu/grub/`의 가장 새 `grub-<판>.tar.xz`(설계 때 2.14)를 저장소 밖 임시 디렉터리에 내려받아 풀고, `docs/grub.info`(또는 `docs/grub.texi`)의 해당 절을 읽는다.
+그때 `standards.md` 항목의 URL에는 배포본 주소와 그 안의 파일 경로를, 판에는 배포본의 판을 적는다(GNU GRUB 매뉴얼 그 자체이므로 허용한 출처 안이다). 내려받은 파일은 데이터로만 읽고 그 안의 스크립트를 실행하지 않는다.
+두 곳 모두 열리지 않으면 아래 「검증 절차」 4의 blocked로 멈춘다(GRUB의 사실을 지어서 적지 마라).
 
 | # | 개념 | 확인할 것 | 볼 곳(예) |
 |---|---|---|---|
@@ -95,7 +98,7 @@ git diff --stat
 4. `phases/76-network-linux-process-accounts/index.json`의 step 0을 갱신한다.
    - 성공 → `"summary"`에 위 「4. summary」의 내용.
    - 3회 실패 → `"status": "error"`, `"error_message"`에 구체적 내용.
-   - 인터넷 연결이 없거나 gnu.org가 끝내 열리지 않아 확인 자체가 불가능하면 → `"status": "blocked"`, `"blocked_reason"`에 사유(무엇이 열리지 않았는지, 그때까지 확인한 것)를 적고 멈춘다. 확인하지 못한 사실을 지어서 적지 마라.
+   - 인터넷 연결이 없거나 GRUB 매뉴얼을 `www.gnu.org`에서도 `ftp.gnu.org`의 배포본에서도 끝내 읽지 못해 확인 자체가 불가능하면 → `"status": "blocked"`, `"blocked_reason"`에 사유(무엇이 열리지 않았는지, 그때까지 확인한 것)를 적고 멈춘다. 확인하지 못한 사실을 지어서 적지 마라.
 
 ## 금지사항
 

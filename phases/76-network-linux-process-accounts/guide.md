@@ -100,7 +100,7 @@ step 10 `n163`~`n165`, step 11 `n166`~`n167`, step 12 `n168`~`n170`.
 
 - 사실은 `docs/source/network/standards.md`(표준·공식 문서)에서만 가져온다. 이 두 주제는 강의 밖 주제라 강의·면접은 쓰지 않는다(`docs/source/network/CLAUDE.md` 「범위」).
 - **허용한 곳**: man7.org(Linux man-pages — man-pages 프로젝트 페이지와, 그것이 싣는 procps-ng(ps·top·free·kill·pgrep)·util-linux(dmesg·last·lastb·renice)·psmisc(pstree)·coreutils(nice·id)·systemd(systemctl·systemd·bootup·runlevel·telinit·shutdown·halt)·cronie(cron·crontab)·shadow-utils(useradd·usermod·userdel·chage·passwd·login.defs·shadow) 페이지와 POSIX 사본 `*p` 페이지),
-  pubs.opengroup.org(POSIX — The Open Group Base Specifications), gnu.org(**GNU GRUB 매뉴얼** — `www.gnu.org/software/grub/manual/`). 새로 더하는 출처는 없다 — 모두 `docs/source/network/CLAUDE.md` 「허용하는 출처」의 Linux 항목 안이다.
+  pubs.opengroup.org(POSIX — The Open Group Base Specifications), gnu.org(**GNU GRUB 매뉴얼** — `www.gnu.org/software/grub/manual/`, 그곳이 열리지 않으면 `ftp.gnu.org`의 GRUB 공식 배포본에 든 같은 매뉴얼 — step 0). 새로 더하는 출처는 없다 — 모두 `docs/source/network/CLAUDE.md` 「허용하는 출처」의 Linux 항목 안이다.
 - **판(버전)을 적는다** — 공식 문서는 판마다 다르다(ADR-059 「트레이드오프」). man7.org 페이지는 그 페이지 끝 COLOPHON이 밝힌 프로젝트·판·날짜를, POSIX는 판(2024년판 `9799919799`)을, GRUB 매뉴얼은 그 매뉴얼이 밝힌 판을 `standards.md` 항목에 적는다.
 - **같은 이름의 페이지가 둘이면 어느 것인지 적는다** — man7.org에는 `crontab(1)`(cronie)과 `crontab(1p)`(POSIX)처럼 같은 명령의 페이지가 여럿 있다. 둘이 다르게 말하면 둘 다 적고 summary에 어느 것을 따를지 적는다.
 - step 0·9가 그 주제에 필요한 사실을 확인해 `standards.md`의 「(phase 76)」 항목과 `exam-notes.md`에 남긴다. 그 summary가 개념마다 무엇을 쓰고 무엇을 쓰지 않는지 적는다.
