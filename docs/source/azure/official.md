@@ -1093,6 +1093,7 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 다시 확인한 날 2026-11-04. 영문 사본을 다시 받고 `ko-docs-rest-api-azure.md`도 받았다. (phase 107)
 - 프로그램이 Azure 서비스에 HTTP 요청을 보내 작업을 부탁하고 응답을 받는 창구라는 풀이로 쓴다. 리소스를 만들거나 조회하거나 바꾸거나 지우는 작업이 근거다. 주소 형식·인증 코드·메서드 목록은 쓰지 않는다 — 「첫 문단」, 「Components of a REST API request/response」 (phase 107)
 - 한국어 표기: REST API는 옮기지 않는다(한국어판 제목). (phase 107)
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(REST API를 푸는 한 구절 — 프로그램이 Azure에 요청을 보내 작업을 맡기는 창구), `ResourceManagerDiagram`의 프로그램에서 장면. (phase 107)
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`의 목록 항목 REST API(사람이 아니라 프로그램이 HTTP 요청으로 리소스를 만들고·읽고·고치고·지운다), az164(NO.235 판단 — 보기 이름은 제목의 「Azure REST API」). (phase 107)
 
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
@@ -1741,7 +1742,8 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 - 템플릿으로 리소스 여럿을 함께 배포·관리·모니터링하고, 의존 관계에 맞춰 순서를 정하며, 역할로 접근을 제어하고 태그로 리소스를 정리한다 — 「The benefits of using Resource Manager」 (phase 107)
 - 템플릿에는 리소스를 하나만 적어야 하는 것이 아니다. 배포 범위는 리소스 그룹뿐 아니라 구독·관리 그룹·테넌트도 있다 — 「Terminology」. 앱에서는 리소스 그룹의 예로 설명하되 거기서만 배포한다고 쓰지 않는다. 서비스는 Azure Resource Manager, 파일은 ARM 템플릿으로 구분한다 (phase 107)
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`·`arm-templates`, `ResourceManagerDiagram`. SDK 뜻풀이는 아래 SDK 항목, 관리 요청의 범위는 아래 관리 작업 항목과 함께 쓴다. NO.44·417의 Azure Resource Manager 답은 이 서비스 설명과 맞다. (phase 107)
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(요청이 오는 다섯 곳, 신원과 권한 확인 뒤 담당 서비스로, 같은 요청이면 도구가 달라도 결과가 같다, 리소스 여럿을 함께 배포·관리·살피기, 의존 관계에 맞춘 순서, 역할로 접근 제어, 태그, 서비스와 파일의 구분 — 리소스 그룹·구독은 이 주제 첫 개념의 풀이로 다시 썼다), `ResourceManagerDiagram`, az174 해설. NO.44·417의 Azure Resource Manager 답은 이 서비스 설명과 맞다. (phase 107)
+쓰일 곳: `azure-infrastructure-as-code.arm-templates`. (phase 107)
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
@@ -1887,7 +1889,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 
 - Resource Manager는 요청한 대상에 적용되는 역할을 확인한다. 그 범위에서 해당 작업을 허락하는 역할이 없으면 접근을 허용하지 않는다 — 「How Azure RBAC determines if a user has access to a resource」. VM을 만들 권한이 없는 요청이 생성 단계로 가지 않는 도식의 근거다 (phase 107)
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`, `ResourceManagerDiagram`의 권한 없는 요청 장면. 역할 평가 문법은 쓰지 않는다. (phase 107)
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(권한이 없는 요청은 리소스를 만드는 단계로 넘어가지 않는다, Azure RBAC를 푸는 한 줄), `ResourceManagerDiagram`의 권한이 없는 장면. 역할 평가 문법은 쓰지 않았다. (phase 107)
 
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
@@ -5289,7 +5291,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manag
 - 한국어 표기: 한국어 단원은 「코드로서의 인프라」와 「선언적」을 쓴다. 앱의 「코드형 인프라」는 ARM 템플릿·Bicep 제품 문서의 한국어판에서 고른다. 명령형·선언형은 아래 표기 정리에서 형태를 맞춘 말이다.
 - 쓰지 않는 것: 배포 스크립트를 호출하는 확장 기능. CLI·PowerShell로 작업 순서를 적는 일반 스크립트와 이 기능을 섞지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`·`infrastructure-as-code`·`arm-templates`·`bicep`, 도식 셋과 `DeploymentMethodsTable`.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(배포·관리 서비스, 신원과 권한 확인, 같은 관리 API, 이점 넷), `azure-infrastructure-as-code.infrastructure-as-code`(손으로 설정하는 대신 코드로, CLI·PowerShell 스크립트와 템플릿), `ResourceManagerDiagram`, `IacEnvironmentsDiagram`, az174·az175 해설.
+쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`.
 
 ## (phase 107) 코드형 인프라 — What is infrastructure as code (IaC)?
 https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code
@@ -5304,7 +5307,8 @@ https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code
 - 한국어 표기: 한국어판은 「선언적 정의」·「명령적 코드」를 쓴다. 앱에서는 두 방식을 비교할 때 「선언형」·「명령형」으로 맞춘다. 공식 문서의 고유 기능 이름이 아니라 의미를 옮긴 설명형 표기다.
 - 쓰지 않는 것: 타사 도구, 파이프라인·DevOps 연동 절차, 모든 초기 상태에서 환경 전체가 같아진다는 단정. Azure 템플릿의 반복 배포 범위는 아래 별도 항목을 따른다.
 
-쓰일 곳: `azure-infrastructure-as-code.infrastructure-as-code`, `IacEnvironmentsDiagram`, `DeploymentMethodsTable`, G65·G67.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(인프라의 풀이, 손으로 설정하면 곳마다 달라질 수 있다, 코드로 남겨 다시 만들고 고친 기록을 관리한다, 명령형과 선언형 — 선언형은 결과를, 명령형은 작업과 순서를 적는다, 개발·테스트·운영 환경의 예), `IacEnvironmentsDiagram`, az175; G65(DevOps의 필수 조건이라는 단정은 쓰지 않았다)·G67(타사 도구는 쓰지 않았다)의 한정.
+쓰일 곳: `DeploymentMethodsTable`.
 
 ## (phase 107) ARM 템플릿 — What are ARM templates?
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview
@@ -5318,10 +5322,12 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overvie
 - 템플릿을 작은 부분으로 나누어 다시 쓸 수 있고, 배포할 때 연결하거나 한 템플릿 안에 다른 템플릿을 넣을 수 있다 — 「Modular files」, 「Template design」. 앱에서는 「작게 나눈 템플릿을 이어 다시 쓴다」까지만 쓴다.
 - 매개변수는 같은 템플릿에서 환경에 따라 달라지는 값을 배포할 때 받게 한다 — 「Template file」. 구역 이름이나 작성 문법은 쓰지 않는다.
 - Resource Manager는 템플릿을 받아 서비스에 보낼 REST API 작업으로 처리한다. 포털에서도 템플릿을 배포할 수 있다 — 「Template deployment process」
+- 템플릿을 배포하는 길로 Azure 포털과 함께 Azure CLI, PowerShell, REST API, Cloud Shell도 든다. 그래서 명령 도구를 쓴다고 명령형이 되는 것이 아니고, 명령 도구로 선언형 템플릿을 배포할 수도 있다 — 「Template deployment process」의 마지막 목록. 확인한 날 2026-11-05. (phase 107 step 9)
 - Bicep도 ARM 템플릿이 할 수 있는 배포를 표현하며, 배포할 때 JSON으로 된 ARM 템플릿으로 바뀐다 — 첫 부분 Tip. 변환 주체는 Bicep 개요에서 확인했다.
 - 한국어 표기: 「ARM 템플릿」으로 통일한다. 첫 등장에서는 「Azure Resource Manager에 만들 리소스와 설정을 적어 주는 파일」로 풀고 ARM이 서비스 이름의 약칭임을 밝힌다. 「Resource Manager 템플릿」은 다른 종류가 아니라 같은 파일의 다른 표기다.
 - 쓰지 않는 것: 함수·표현식·템플릿 구역 목록, 배포 스크립트, 템플릿 사양·배포 스택·what-if, Blueprints, 도구 설치와 배포 명령.
 
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(선언형의 예가 ARM 템플릿이고 무엇을 먼저 만들지는 Resource Manager가 의존 관계를 보고 정한다 — 「Orchestration」, Azure CLI나 Azure PowerShell로 ARM 템플릿을 배포할 수도 있다 — 「Template deployment process」), `azure-infrastructure-as-code.resource-manager`(ARM 템플릿을 푸는 한 줄 — 만들 리소스와 설정을 적어 Resource Manager에 넘기는 파일), az175 해설.
 쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, D122, G66·G68. NO.193·228·449의 답과 반복 배포 문항의 사실 대조.
 
 ## (phase 107) ARM 템플릿 — Understand the structure and syntax of ARM templates
@@ -5409,7 +5415,8 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/contro
 - 새 리소스를 만드는 요청과 기존 리소스를 바꾸는 요청을 구분해서 처리한다 — 「Control plane」. 같은 설정의 반복 배포를 새 복제본 생성으로 그리지 않을 근거다.
 - 한국어 표기: 앱은 「관리 작업」·「관리 요청」으로 쓴다. 제어 평면·데이터 평면이나 엔드포인트 주소를 새 학습 항목으로 만들지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`, `ResourceManagerDiagram`, `TemplateDeploymentDiagram`. 기존 `rbac-scope`의 한정 대조.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(Resource Manager가 받는 것은 리소스를 관리하는 요청이고, VM 접속과 스토리지 계정 안의 데이터 읽기·쓰기는 그 리소스로 바로 간다 — 「제어 평면」이라는 말은 쓰지 않았다), `ResourceManagerDiagram`(legend의 「관리 요청」). 기존 `rbac-scope`의 한정과 어긋나지 않는다.
+쓰일 곳: `TemplateDeploymentDiagram`.
 
 ## (phase 107) Azure SDK — Use the Azure SDK for Java
 https://learn.microsoft.com/en-us/azure/developer/java/sdk/overview
@@ -5420,7 +5427,7 @@ https://learn.microsoft.com/en-us/azure/developer/java/sdk/overview
 - 관리 라이브러리를 사용하면 프로그램에서 리소스를 만들고 관리한다. 라이브러리는 Azure REST API를 바탕으로 동작한다. 이미 있는 리소스 안의 데이터를 사용하는 라이브러리는 별도로 구분한다 — 「Other details」, 「Provision and manage Azure resources with management libraries」
 - 한국어 표기: SDK는 이름을 유지한다. 라이브러리는 「프로그램에 가져다 쓰는 기능 묶음」으로 풀며, 이 주제의 SDK 요청은 리소스 관리 쪽이다. Java·패키지·코드 문법은 앱에 넣지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`의 SDK 뜻풀이와 요청 경로.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(SDK — 개발자가 자기 프로그램에서 Azure의 기능을 부르려고 가져다 쓰는 기능 묶음, 리소스를 만들고 관리하는 요청을 보낸다는 쪽으로만 썼다).
 
 ## (phase 107) Azure SDK — Azure Table storage support (약어만)
 https://learn.microsoft.com/en-us/azure/cosmos-db/table/support
@@ -5431,7 +5438,7 @@ https://learn.microsoft.com/en-us/azure/cosmos-db/table/support
 - 한국어 표기: SDK(Software Development Kit), 소프트웨어 개발 키트. 앱은 낯선 이름을 다시 나열하기보다 위 SDK 항목의 한 줄 풀이를 쓴다.
 - 쓰지 않는 것: Table 서비스의 비교·가격·SLA·지원 언어 목록.
 
-쓰일 곳: `azure-infrastructure-as-code.resource-manager`의 SDK 약어 풀이만.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 SDK(Software Development Kit) 약어 풀이.
 
 ## (phase 107) JSON — Glossary: Azure Operator Service Manager (용어만)
 https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
@@ -5454,7 +5461,8 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 - **DeploymentMethodsTable**: 열은 방식·적는 것·파일. 「스크립트(Azure CLI·Azure PowerShell) / 할 작업과 순서를 명령으로 적는다 / 명령들을 적은 스크립트 파일」, 「ARM 템플릿 / 만들 리소스와 설정을 적는다 / JSON 파일」, 「Bicep / 만들 리소스와 설정을 적는다 / Bicep 파일, 배포할 때 ARM 템플릿으로 변환」을 쓸 수 있다. 근거: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code) 「Use declarative definition files」, Learn 단원 4 「Infrastructure as code」, ARM·Bicep 개요. 스크립트가 ARM 템플릿을 배포할 수도 있으므로 「PowerShell은 선언형 배포를 못 한다」고 가르치지 않는다. Bicep의 변환 주체는 Bicep CLI라고 본문에 풀고 표에는 간단히 적는다.
 - 이 도식·표의 텍스트에는 코드 문법이나 백틱을 넣지 않는다. 「검사 통과면 무조건 성공」·「템플릿 밖의 모든 리소스도 같은 상태」·「파일 내용까지 복구」는 확인한 사실이 아니므로 쓰지 않는다.
 
-쓰일 곳: 위 도식 셋과 표, 네 개념의 예시 문단. D122, G65·G66·G68의 한정을 함께 따른다.
+쓰인 곳(phase 107 step 9): `ResourceManagerDiagram`(포털에서·Azure CLI에서·프로그램에서·권한이 없으면 — 프로그램에서 장면은 REST API 경로가 보이지 않는 장면이 없도록 더했다), `IacEnvironmentsDiagram`(손으로·코드로·다시 만들 때 — 데이터·리소스 이름까지 같다고 그리지 않았고, 다시 만들 때 캡션은 데이터를 되살리지 않는다고 적었다), `resource-manager`·`infrastructure-as-code`의 예시 문단, G65의 한정.
+쓰일 곳: `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, `arm-templates`·`bicep`의 예시 문단. D122, G66·G68의 한정을 함께 따른다.
 
 ## (phase 107) 한국어 표기 정리 — `azure-infrastructure-as-code`
 
@@ -5472,4 +5480,5 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 - 멱등성: 확인한 한국어판은 idempotent를 영어로 남긴다. 「같은 조건으로 다시 배포하면 정의한 리소스 구성이 같아진다」는 뜻을 옮긴 용어임을 구분한다. 앱이 처음부터 이 낱말만 내세우지 않는다.
 - Bicep 변환: 「변환」·「바꾼다」를 쓴다. 앱 문장에서는 Bicep CLI가 바꾸고 Resource Manager가 배포한다는 주체를 생략하지 않는다. 「트랜스파일」은 쓰지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code`의 네 개념 `name`·본문, 도식·표. G65·G66·G68.
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 `name`(Azure Resource Manager, 처음 ARM 약칭과 Resource Manager), `azure-infrastructure-as-code.infrastructure-as-code`의 `name`(코드형 인프라(IaC), 본문 첫 풀이에 Infrastructure as Code)과 명령형·선언형의 짧은 풀이, 두 도식의 라벨. 「멱등성」은 이 step의 글에 쓰지 않았다.
+쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`의 `name`·본문, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`. G65·G66·G68.

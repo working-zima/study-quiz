@@ -9,6 +9,7 @@ import azureCostManagementVisuals from './visuals/azure-cost-management.json'
 import azureDataMovementVisuals from './visuals/azure-data-movement.json'
 import azureGovernanceVisuals from './visuals/azure-governance.json'
 import azureIdentityVisuals from './visuals/azure-identity.json'
+import azureInfrastructureAsCodeVisuals from './visuals/azure-infrastructure-as-code.json'
 import azureManagementToolsVisuals from './visuals/azure-management-tools.json'
 import azureNetworkProtectionVisuals from './visuals/azure-network-protection.json'
 import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
@@ -45,6 +46,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-cost-management': azureCostManagementVisuals,
   'azure-governance': azureGovernanceVisuals,
   'azure-management-tools': azureManagementToolsVisuals,
+  'azure-infrastructure-as-code': azureInfrastructureAsCodeVisuals,
 }
 
 export const azureSubject: Subject = {

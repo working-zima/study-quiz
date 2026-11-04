@@ -89,6 +89,7 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
+import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
@@ -160,6 +161,7 @@ import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
+import { ResourceManagerDiagram } from './ResourceManagerDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -489,6 +491,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-management-tools.cloud-shell': CloudShellDiagram,
   'azure-management-tools.azure-cli': CommandToolsTable,
   'azure-management-tools.azure-arc': AzureArcDiagram,
+  'azure-infrastructure-as-code.resource-manager': ResourceManagerDiagram,
+  'azure-infrastructure-as-code.infrastructure-as-code': IacEnvironmentsDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
