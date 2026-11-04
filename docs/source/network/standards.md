@@ -3560,6 +3560,9 @@ https://man7.org/linux/man-pages/man1/newgrp.1.html
   곧 「일반 사용자의 UID가 몇부터인가」는 이 파일의 설정이 정하고, 1000은 설정하지 않았을 때 shadow-utils가 쓰는 기본값이다
 - **vipw(8)**: /etc/passwd·/etc/group을(`-s`면 /etc/shadow·/etc/gshadow를) 편집기로 고치되, **파일이 깨지지 않게 잠금을 걸고** 고친다 — DESCRIPTION.
   「이 파일들을 손으로 고치지 마라」는 문장은 이 항목의 페이지에서 찾지 못했다 — 쓸 수 있는 것은 「계정을 만들고 고치는 명령(useradd·usermod·userdel·passwd·chage)이 이 파일들을 고친다」와 「손으로 고칠 때는 잠금을 거는 vipw를 쓴다」다
+- (phase 76 step 11) **useradd(8)**·**usermod(8)** — 2026-11-05에 다시 읽음(shadow-utils 4.19.0): useradd(8) EXIT VALUES의 `6`은 「지정한 그룹이 없다」이고, `-g`는 그룹 **하나**의 이름이나 번호를 받으며 그 그룹이 이미 있어야 한다 —
+  곧 `-g dev,ops`처럼 쉼표로 둘을 주면 `dev,ops`라는 그룹을 찾게 되어 계정을 만들지 못한다. usermod(8)의 NAME은 「modify a user account」(사용자 계정을 고친다)이고 DESCRIPTION은 계정 파일을 고친다고만 한다 —
+  새 계정을 만드는 것은 useradd다. 쓰인 곳: `linux-accounts.useradd` 마지막 문단, n167 해설(오답 `useradd -g dev,ops user5`·`usermod -g dev -G ops user5`)
 - **newgrp(1)**: 로그인해 있는 동안 지금 그룹 ID를 바꾼다. 그룹을 주지 않으면 /etc/passwd에 적힌 기본 그룹으로 바꾼다 — DESCRIPTION. 쓸지는 그 step이 정한다
 
 쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(login.defs(5)·useradd(8) CONFIGURATION — UID 범위는 그 시스템의 설정, useradd(8) `-o` — 시스템은 UID로 사용자를 가린다),

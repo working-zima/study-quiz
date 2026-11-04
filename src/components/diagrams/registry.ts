@@ -200,6 +200,7 @@ import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
+import { ShadowFieldsDiagram } from './ShadowFieldsDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { ShellLayerDiagram } from './ShellLayerDiagram'
 import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
@@ -232,6 +233,7 @@ import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
+import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
 import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
@@ -491,6 +493,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.shutdown-commands': ShutdownCommandsDiagram,
   'linux-accounts.user-account': AccountIdsDiagram,
   'linux-accounts.etc-passwd': PasswdFieldsDiagram,
+  'linux-accounts.etc-shadow': ShadowFieldsDiagram,
+  'linux-accounts.useradd': UseraddOptionsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
