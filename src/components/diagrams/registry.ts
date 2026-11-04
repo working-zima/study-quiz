@@ -26,6 +26,7 @@ import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
+import { CloudShellDiagram } from './CloudShellDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
@@ -221,6 +222,7 @@ import { CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
+import { CommandToolsTable } from './azureManagementToolsTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
@@ -483,6 +485,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-governance.resource-locks': LockTypesDiagram,
   'azure-governance.lock-inheritance': [LockInheritanceDiagram, GovernanceToolsTable],
   'azure-management-tools.management-tools': ToolAccessDiagram,
+  'azure-management-tools.cloud-shell': CloudShellDiagram,
+  'azure-management-tools.azure-cli': CommandToolsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -1070,7 +1070,7 @@ https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
 - 컴퓨터에 설치할 수 있는 운영 체제는 Windows·Linux·macOS다. 브라우저에서는 Cloud Shell로 쓴다 — 「첫 부분」 (phase 107)
 - 명령은 `az` 다음에 다룰 대상의 이름과 할 작업을 적는 꼴이다(문서의 예가 모두 `az`로 시작한다). 앱에 보여 줄 예는 VM을 만드는 `az vm create` 하나다. 명령 옵션과 출력은 쓰지 않는다 — 「Command reference design」, 아래 기존 「Azure 가격 — Virtual Machines … `az vm`」 항목의 명령 참조 (phase 107)
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI 항목 — `az`로 시작하는 명령, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
-쓰일 곳: `azure-management-tools.azure-cli`, `CommandToolsTable`, D115·D116. (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(명령줄 도구, CLI의 뜻, `az` 다음에 대상과 작업, 셸을 연 다음 그 안에서 실행), `CommandToolsTable`(Azure CLI 행), az171; D115·D116. (phase 107)
 
 ## (phase 101) Azure REST API reference
 https://learn.microsoft.com/en-us/rest/api/azure/
@@ -1107,7 +1107,7 @@ https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
 - Azure 관리 명령은 REST 호출로 작업을 요청한다. 명령을 모아 스크립트로 쓰면 같은 작업을 되풀이하고 자동화할 수 있다 — 「첫 문단」, 「Module Design」, Learn 단원 2의 「What is Azure PowerShell?」 (phase 107)
 - 제품 개요와 설치 안내가 Windows PowerShell 호환 경로를 남겨 두었다. Windows PowerShell 전체가 지원 종료됐다고 쓰지 않는다. 옛 AzureRM 모듈의 지원 종료와도 구별한다. 버전 숫자·옛 모듈 명령은 앱에 쓰지 않는다 — 「The Az PowerShell module」, 「The AzureRM PowerShell module」 (phase 107)
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure PowerShell 항목 — PowerShell에서 Azure를 다루는 명령 묶음, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
-쓰일 곳: `azure-management-tools.azure-powershell`, `azure-management-tools.cloud-shell`, `CommandToolsTable`, D113·D114. (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(PowerShell과 Azure PowerShell의 차이, Az PowerShell 모듈, REST 호출, 스크립트로 되풀이·자동화, Windows·Linux·macOS, Windows PowerShell과도 함께), `azure-management-tools.cloud-shell`, `CommandToolsTable`, az169·az170; D113·D114. (phase 107)
 
 ## (phase 101) Azure portal — What is the Azure portal?
 https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
@@ -4184,7 +4184,7 @@ https://learn.microsoft.com/en-us/cli/azure/vm
 
 다시 확인한 날 2026-11-04. 이 항목의 명령 참조 `https://learn.microsoft.com/en-us/cli/azure/vm`을 열고 `docs-cli-az-vm.md`를 다시 받았다. (phase 107)
 - `az vm create`는 Azure VM을 만드는 명령이다. Azure PowerShell의 `New-AzVM`과 같은 작업을 서로 다른 꼴로 나타내는 예로만 쓴다. 실행 가능한 완성 명령을 가르치는 것이 아니므로 옵션·매개변수·출력은 옮기지 않는다 — 「az vm create」 (phase 107)
-쓰일 곳: `azure-management-tools.azure-cli`, `azure-management-tools.azure-powershell`, D115. (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(`az vm create`와 `New-AzVM`을 견주는 문단, vm이 대상이고 create가 작업), `azure-management-tools.azure-powershell`, az171 해설; D115. (phase 107)
 
 ## (phase 106) Azure Virtual Machines — Hibernation for Azure virtual machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/hibernate-resume
@@ -4948,7 +4948,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manag
 - 한국어 표기: Azure 포털(제품 한국어판), Azure Cloud Shell, Azure PowerShell, Azure CLI. Learn의 「Azure CLI(Bash)」라는 짝은 쓰지 않는다.
 
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI·Azure PowerShell을 셸과 섞지 않은 항목, Learn의 「Azure CLI(Bash)」 짝은 쓰지 않음), `azure-management-tools.azure-portal`(만들기·관리·지켜보기, 대시보드, 접근성 설정, 데이터 센터·유지 관리), `ToolAccessDiagram`; D119.
-쓰일 곳: `azure-management-tools.cloud-shell`·`azure-powershell`·`azure-cli`(모두 같은 주제), `CloudShellDiagram`, `CommandToolsTable`, D113~D116.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(위 「앱에 쓸 문장」대로 — 두 도구가 미리 설치, Azure CLI 명령은 두 셸 어느 쪽에서도, Azure PowerShell 명령은 PowerShell에서), `azure-management-tools.azure-powershell`·`azure-cli`(셸과 도구를 가름, 목적이 같고 명령의 꼴이 다름), `CloudShellDiagram`, `CommandToolsTable`; D113~D116. 「두 셸 모두에 두 도구」와 셸–도구 일대일 짝은 쓰지 않았다.
 
 ## (phase 107) Describe features and tools for managing and deploying Azure resources — 단원 3: Describe the purpose of Azure Arc
 https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/3-describe-purpose-of-azure-arc
@@ -5012,7 +5012,7 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/overview
 - 한국어 표기: Azure Cloud Shell(이름 그대로), Bash, PowerShell.
 
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure Cloud Shell 항목 — 브라우저 안의 명령 입력 창, 두 도구가 미리 설치), `azure-management-tools.azure-portal`(주소 `portal.azure.com`, NO.470), `ToolAccessDiagram`(브라우저 칸).
-쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, D114·D115, G64; NO.279·302·325.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(브라우저로 여는 셸, 여는 길 셋 — 「여는 길은 여럿이다」로 한정, Microsoft가 준비한 실행 환경과 로그인한 계정의 인증, 실행 환경 자체에는 요금이 없고 붙인 스토리지 계정에 일반 저장 요금), `CloudShellDiagram`(파일 장면 캡션), az167·az168; D114·D115, G64; NO.279·302·325.
 
 ## (phase 107) Azure Cloud Shell — Features & tools for Azure Cloud Shell
 https://learn.microsoft.com/en-us/azure/cloud-shell/features
@@ -5026,7 +5026,7 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/features
 - 앱에서는 경로 문자열 없이 「보존되는 위치에 저장한 파일」로 쓴다. 내부 운영 체제·설치된 다른 도구 목록·용량·세션 시간은 쓰지 않는다.
 - 한국어 표기: 셸, Bash, PowerShell, 스토리지 계정. 「임시 세션」은 아래 시작 안내 제목에서 확인했다.
 
-쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, `CommandToolsTable`, D114·D115, G64.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(셸 고르기, 미리 설치된 두 도구, 인증, 보존하는 위치의 파일만 남고 실행 중이던 작업의 상태는 남지 않음), `azure-management-tools.azure-powershell`(Cloud Shell에 미리 설치), `CloudShellDiagram`(안쪽 칸 「미리 설치된 도구」), `CommandToolsTable`(Cloud Shell 행); D114·D115, G64.
 
 ## (phase 107) Azure Cloud Shell — Get started with Azure Cloud Shell ephemeral sessions
 https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral
@@ -5038,7 +5038,7 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral
 - 리소스 공급자 등록 절차·명령은 이 개념에 넣지 않는다. 「아무 설정도 필요 없다」 대신 「사용자의 컴퓨터에 설치·설정하지 않는다」로 쓴다.
 - 한국어 표기: **임시 세션**(제목).
 
-쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, G64.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(임시 세션 — 창을 닫거나 다시 시작해 세션이 끝나면 저장한 파일이 지워진다, 포털 화면 위쪽에서 연다, 사용자의 컴퓨터에 설치·설정하지 않는다), `CloudShellDiagram`(파일 장면); G64.
 
 ## (phase 107) Azure Cloud Shell — Persist files in Azure Cloud Shell
 https://learn.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage
@@ -5049,7 +5049,7 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage
 - 앱은 저장 위치의 내부 경로·이미지 형식 없이 「연결한 저장소의 보존되는 위치에 파일을 둔다」로 쓴다. 호스트 자체를 계속 같은 컴퓨터로 유지하는 기능으로 설명하지 않는다 — 같은 절, 기능 문서의 「$HOME persistence across sessions」
 - 한국어 표기: 파일 유지, 스토리지, 파일 공유. 앱에서는 「파일을 남긴다」로 풀어 쓴다.
 
-쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, G64.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(스토리지 계정을 붙여 파일을 남긴다 — 내부 경로 없이 「Cloud Shell이 보존하는 위치」로 씀), `CloudShellDiagram`(곁말 「붙이면 파일이 남는다」); G64.
 
 ## (phase 107) Azure Cloud Shell — Get started with Azure Cloud Shell using persistent storage
 https://learn.microsoft.com/en-us/azure/cloud-shell/quickstart
@@ -5060,7 +5060,7 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/quickstart
 - 이 안내도 셸 선택을 Bash와 PowerShell로 제시한다. 설치 단계나 CLI·PowerShell의 다른 명령 예는 앱에 옮기지 않는다 — 「Start Cloud Shell」
 - 한국어 표기: 영구 스토리지(제목), 스토리지 계정. 「영구」를 삭제 불가능하다는 뜻으로 쓰지 않는다.
 
-쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, G64.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(처음 시작할 때 스토리지 계정을 붙일지 고른다), `CloudShellDiagram`; G64.
 
 ## (phase 107) PowerShell — What is PowerShell?
 https://learn.microsoft.com/en-us/powershell/scripting/overview
@@ -5071,7 +5071,7 @@ https://learn.microsoft.com/en-us/powershell/scripting/overview
 - 이 개념에서 셸은 「사람이 글자로 입력한 명령을 받아 실행하는 환경」으로 풀이한다. Cloud Shell의 웹 터미널과 Azure 관리 모듈을 같은 이름으로 섞지 않는다 — 위 두 절과 기존 Azure PowerShell 개요
 - 한국어 표기: PowerShell, **셸**. 한국어판의 「셸」을 쓰고 「쉘」과 섞지 않는다.
 
-쓰일 곳: `azure-management-tools.cloud-shell`, `azure-management-tools.azure-powershell`.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(셸의 풀이 — 글자로 입력한 명령을 받아 실행하고 결과를 보여 주는 프로그램), `azure-management-tools.azure-powershell`(PowerShell은 셸이자 스크립트를 적는 언어).
 
 ## (phase 107) Azure PowerShell — Install Azure PowerShell
 https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell
@@ -5083,7 +5083,7 @@ https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell
 - 앱에는 버전 숫자를 남기지 않는다. 「PowerShell 7」도 제품 이름처럼 고정하지 않고 「지원되는 PowerShell」로 쓴다. 옛 덤프의 PowerShell Core 버전을 현재 조건으로 가르치지 않는다. 운영 체제별 세부 조건은 아래 세 설치 문서로 확인했다.
 - 한국어 표기: Azure PowerShell, Az PowerShell 모듈.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `CommandToolsTable`, D113.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(지원되는 버전의 PowerShell을 먼저 두고 그 위에 Az PowerShell 모듈 — 버전 숫자 없이, Cloud Shell에는 이미 설치), `CommandToolsTable`, az169·az170; D113.
 
 ## (phase 107) Azure PowerShell — Install Azure PowerShell on Windows
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows
@@ -5094,7 +5094,7 @@ https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows
 - Windows에는 PowerShell 경로와 Windows PowerShell 경로가 모두 있다. 따라서 Windows PowerShell이라는 이름만으로 불가능하다고 판정하지 않는다. 구체적인 호환 버전·추가 구성 요소·설치 명령은 앱에 쓰지 않는다 — 「Prerequisites」
 - 한국어 표기: Windows(이름 그대로), Az PowerShell 모듈.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `CommandToolsTable`, D113; NO.9·176·224·308·445.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(Windows 설치 — 지원되는 PowerShell을 먼저, Windows PowerShell과도 함께), `CommandToolsTable`, az169; D113; NO.9·176·224·308·445.
 
 ## (phase 107) Azure PowerShell — Install Azure PowerShell on Linux
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux
@@ -5105,7 +5105,7 @@ https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux
 - 셸 호스트에서 PowerShell을 시작한 뒤 모듈을 설치하는 절차다. Linux·macOS에서 PowerShell 자체 없이 Azure CLI만 있으면 충분하다는 근거가 아니다. 설치 명령과 버전 숫자는 쓰지 않는다 — 「Installation」
 - 한국어 표기: Linux(이름 그대로), Az PowerShell 모듈.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `CommandToolsTable`, D113; NO.9·176·224·308·445.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(Linux 설치 — 지원되는 PowerShell을 먼저), `CommandToolsTable`; D113; NO.9·176·224·308·445.
 
 ## (phase 107) Azure PowerShell — Install Azure PowerShell on macOS
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos
@@ -5116,7 +5116,7 @@ https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos
 - 셸 호스트에서 PowerShell을 시작한 뒤 모듈을 설치하는 절차다. Linux·macOS에서 PowerShell 자체 없이 Azure CLI만 있으면 충분하다는 근거가 아니다. 설치 명령과 버전 숫자는 쓰지 않는다 — 「Installation」
 - 한국어 표기: macOS(이름 그대로), Az PowerShell 모듈.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `CommandToolsTable`, D113; NO.9·176·224·308·445.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(macOS 설치 — 지원되는 PowerShell을 먼저), `CommandToolsTable`, az170; D113; NO.9·176·224·308·445.
 
 ## (phase 107) Azure PowerShell — Get started with Azure PowerShell
 https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps
@@ -5128,7 +5128,7 @@ https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps
 - Cloud Shell의 PowerShell은 Linux 환경이므로 Windows에만 있는 기능을 쓰는 스크립트까지 모두 실행된다고 보장하지 않는다. 덤프의 Azure 리소스 관리 스크립트 범위로만 판단한다 — 「Install or run in Azure Cloud Shell」
 - 한국어 표기: cmdlet(한국어판도 영문 표기), 앱의 첫 자리에서는 「명령 하나」라고 푼다.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `CommandToolsTable`, D113·D114.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(cmdlet, 동사와 명사를 하이픈으로 잇는 꼴과 Az 접두사, Cloud Shell은 로그인되어 있음, Cloud Shell의 PowerShell은 Linux 위라 Windows에만 있는 기능은 그대로 실행되지 않을 수 있음), `CommandToolsTable`(명령의 꼴), az169 해설; D113·D114.
 
 ## (phase 107) Azure PowerShell — New-AzVM (Az.Compute)
 https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azvm
@@ -5138,7 +5138,7 @@ https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azvm
 - `New-AzVM`은 Az.Compute에 속한 VM 생성 명령이다. `New-AzVM`의 철자와 기능만 확인했다. 옵션·매개변수·출력·추가 예시는 쓰지 않는다 — 제목 아래 설명, 「Syntax」
 - 한국어 표기: 명령 이름은 번역하지 않는다.
 
-쓰일 곳: `azure-management-tools.azure-powershell`, `azure-management-tools.azure-cli`, `CommandToolsTable`.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(`New-AzVM` 예), `azure-management-tools.azure-cli`(두 꼴 견주기), az167·az169의 보기와 해설(백틱 없이). `CommandToolsTable`에는 명령 이름을 쓰지 않았다.
 
 ## (phase 107) Azure CLI — Choose the right Azure command-line tool
 https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool
@@ -5152,7 +5152,7 @@ https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-
 - Windows PowerShell은 대부분의 Windows에 미리 설치되어 있는 셸이고, PowerShell은 따로 설치하며 Windows·macOS·Linux에 설치할 수 있다 — 「Different shell environments」 아래 설명 (NO.308의 Windows 10 보기 판단에 쓴다)
 - 한국어 표기: 명령줄 도구, 명령 프롬프트, 셸, cmdlet.
 
-쓰일 곳: `azure-management-tools.azure-cli`, `azure-management-tools.azure-powershell`, `azure-management-tools.cloud-shell`, `CloudShellDiagram`, `CommandToolsTable`, D114·D115.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(명령 프롬프트·PowerShell·Bash, Azure PowerShell의 cmdlet은 PowerShell(Windows에서는 Windows PowerShell도)에서 실행하고 명령 프롬프트·Bash에서는 실행하지 않음, 익숙한 명령 꼴과 작업 환경으로 고른다), `azure-management-tools.azure-powershell`(Windows PowerShell이 대부분의 Windows에 미리 있음), `azure-management-tools.cloud-shell`, `CloudShellDiagram`, `CommandToolsTable`, az167·az171; D114·D115. 비교 문서 Cloud Shell 절의 셸–도구 짝은 쓰지 않았다.
 
 ## (phase 107) Azure CLI — How to install the Azure CLI
 https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
@@ -5165,7 +5165,7 @@ https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
 - 한국어 표기: Azure CLI, Windows, Linux, macOS.
 
 쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(설치 칸의 Windows·Linux·macOS, 「두 도구는 Azure Cloud Shell에도 미리 설치되어 있다」).
-쓰일 곳: `azure-management-tools.azure-cli`, `CommandToolsTable`, D116.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(Windows·Linux·macOS에 설치하거나 Cloud Shell에서 쓴다 — Windows 기본 포함 여부는 쓰지 않았고 그것을 묻는 문항도 만들지 않았다), `CommandToolsTable`; D116.
 
 ## (phase 107) Azure CLI — Install the Azure CLI on Windows
 https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows
@@ -5177,7 +5177,7 @@ https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows
 - 앱은 설치 수단이나 명령 옵션을 다루지 않는다.
 - 한국어 표기: Windows 명령 프롬프트, PowerShell.
 
-쓰일 곳: `azure-management-tools.azure-cli`, `CommandToolsTable`, D115·D116; NO.265 확인.
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(Windows에서는 명령 프롬프트나 PowerShell에서 실행), `CommandToolsTable`, az171; D115·D116; NO.265 확인.
 
 ## (phase 107) Azure Arc — What is Azure Arc-enabled servers?
 https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview
@@ -5229,7 +5229,8 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 - **CommandToolsTable**: Azure PowerShell 행은 「동사-명사 꼴의 cmdlet / PowerShell에서(Windows에서는 Windows PowerShell도), 로컬 설치 또는 Cloud Shell」, Azure CLI 행은 「az로 시작하는 명령 / 명령 프롬프트·PowerShell·Bash, 로컬 설치 또는 Cloud Shell」, Azure Cloud Shell 행은 「두 도구의 명령을 쓴다 / 브라우저로 여는 환경」을 쓴다. Cloud Shell은 세 번째 명령 언어가 아니다. VM 생성의 두 이름은 az vm create와 New-AzVM이며 표·도식에는 백틱을 넣지 않는다 — 두 도구 개요, 도구 비교, 명령 참조 두 곳
 
 쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(칸 셋과 곁말 셋 — 브라우저 곁말은 「설치 없이 연다」, 휴대폰 칸 이름은 「휴대폰 앱」, 화살표 다섯은 관리 요청), 개념 `azure-management-tools.management-tools`; D119·D120·D121.
-쓰일 곳: `CloudShellDiagram`, `AzureArcDiagram`, `CommandToolsTable`; 개념 `azure-management-tools.cloud-shell`·`azure-cli`·`azure-arc`; D113~D118, G64.
+쓰인 곳(phase 107 step 6): `CloudShellDiagram`(바깥 칸 Azure Cloud Shell 안에 셸 Bash·PowerShell과 안쪽 칸 「미리 설치된 도구」의 Azure CLI·Azure PowerShell 하나씩 — 셸마다 두 도구를 따로 그리지 않았다, Bash 장면은 Azure CLI만 밝히고 흐린 Azure PowerShell은 캡션으로 한정, Bash에서 Azure PowerShell로 가는 화살표 없음, 파일 장면은 스토리지 계정을 밝히고 곁말 「붙이면 파일이 남는다」), `CommandToolsTable`(세 행 — 칸에 백틱·명령 이름 없이 「동사-명사 꼴의 cmdlet」·「az로 시작하는 명령」·「따로 없고 두 도구의 명령을 쓴다」), 개념 `azure-management-tools.cloud-shell`·`azure-cli`; D113~D116, G64.
+쓰일 곳: `AzureArcDiagram`; 개념 `azure-management-tools.azure-arc`; D118.
 
 ## (phase 107) 한국어 표기 정리 — `azure-management-tools`
 
@@ -5249,4 +5250,5 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 - 리소스·구독·리소스 그룹·역할·온-프레미스·다중 클라우드·하이브리드·컨테이너는 이 주제에서 다시 풀어 쓴다. 이전 주제에서 읽었을 것이라고 가정하지 않는다. 셸·스크립트·모듈의 풀이도 같은 자리에서 한다.
 
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 관리 도구, 목록 이름 여섯 — Azure 포털·Azure 모바일 앱에 영문 이름을 괄호로), `azure-management-tools.azure-portal`(Azure 포털), `ToolAccessDiagram`; D119·D120·D121.
-쓰일 곳: `azure-management-tools`의 나머지 개념 넷과 도식 둘·표 하나. D113~D118, G64.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(Azure Cloud Shell, 셸, 임시 세션), `azure-management-tools.azure-powershell`(Azure PowerShell, Az PowerShell 모듈, cmdlet), `azure-management-tools.azure-cli`(Azure CLI, 명령줄 인터페이스, 명령 프롬프트), `CloudShellDiagram`, `CommandToolsTable`; D113~D116, G64.
+쓰일 곳: `azure-management-tools.azure-arc`와 `AzureArcDiagram`. D118.
