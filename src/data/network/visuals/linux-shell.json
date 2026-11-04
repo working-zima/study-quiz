@@ -1,0 +1,95 @@
+{
+  "diagrams": {
+    "shell-layer": {
+      "label": "사용자가 입력한 명령 줄 ls -l /home을 셸이 읽어 풀고, 셸이 ls 프로그램의 실행을 커널에 요청해 커널이 ls를 실행하는 차례를 보이는 도식",
+      "svgLabel": "사용자, 셸, 커널, 하드웨어가 차례로 놓여 있고 커널 옆에 ls 프로그램이 있다",
+      "question": "명령을 입력하면 누가 무엇을 할까?",
+      "idleCaption": "사용자가 입력한 명령은 먼저 셸이 받고, 프로그램을 실행하는 일은 셸이 커널에 요청한다. 커널은 하드웨어를 다루는 운영체제의 핵심이고, ls는 커널이 실행하는 프로그램이다. 버튼을 고르면 명령이 처리되는 차례를 볼 수 있다.",
+      "legend": "화살표는 입력한 명령 줄과 실행 요청이 넘어가는 쪽이다.",
+      "nodes": {
+        "user": "사용자",
+        "shell": "셸",
+        "kernel": "커널",
+        "hardware": "하드웨어",
+        "ls": "ls"
+      },
+      "notes": {
+        "line": "ls -l /home",
+        "parts": "명령 이름 ls · 옵션 -l · 인자 /home",
+        "request": "시스템 호출로 실행 요청"
+      },
+      "scenarios": [
+        {
+          "id": "read",
+          "label": "명령 읽기",
+          "caption": "사용자가 터미널에 ls -l /home을 입력하면 셸이 그 줄을 받아 낱말로 나눈다. 맨 앞의 ls는 명령 이름, -l은 옵션, /home은 인자로 읽어 무엇을 실행할지 정한다.",
+          "sources": [
+            "linux-shell.shell"
+          ]
+        },
+        {
+          "id": "run",
+          "label": "실행 요청",
+          "caption": "셸은 ls 프로그램의 실행을 시스템 호출로 커널에 요청하고, 커널이 ls를 실행한다. 커널에 넘어가는 것은 입력한 줄 그대로가 아니라 셸이 풀어낸 뒤의 실행 요청이다.",
+          "sources": [
+            "linux-shell.shell"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.shell"
+      ]
+    },
+    "working-directory": {
+      "label": "로그인 직후, cd docs 뒤, cd /var/log 뒤의 작업 디렉터리가 디렉터리 나무의 어디인지와 그때 pwd가 보이는 경로를 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래로 home·var 디렉터리, home 안의 user1, user1 안의 docs, var 안의 log가 나무 모양으로 이어져 있다",
+      "question": "지금 어느 디렉터리에 있을까?",
+      "idleCaption": "루트 디렉터리 / 안에 home과 var가 있고, home 안에 user1, 그 안에 docs가, var 안에 log가 있다. user1과 docs는 예로 붙인 이름이다. 버튼을 고르면 명령을 입력한 뒤의 작업 디렉터리와 pwd가 보이는 경로를 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 디렉터리를 잇고, 화살표는 cd가 따라가는 차례다. 선명한 디렉터리가 그때의 작업 디렉터리다.",
+      "nodes": {
+        "slash": "/",
+        "home": "home",
+        "var": "var",
+        "user1": "user1",
+        "docs": "docs",
+        "log": "log"
+      },
+      "notes": {
+        "login": "pwd → /home/user1",
+        "relative": "pwd → /home/user1/docs",
+        "absolute": "pwd → /var/log"
+      },
+      "scenarios": [
+        {
+          "id": "login",
+          "label": "로그인 직후",
+          "caption": "user1이 로그인하면 셸은 홈 디렉터리 /home/user1을 작업 디렉터리로 삼아 시작한다. 이때 pwd를 입력하면 이 경로가 나온다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        },
+        {
+          "id": "relative",
+          "label": "cd docs",
+          "caption": "홈 디렉터리에서 cd docs를 입력하면 지금 디렉터리 안의 docs를 찾아 그리로 옮겨 간다. pwd는 작업 디렉터리를 /부터 적은 경로로 보여 /home/user1/docs가 나온다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        },
+        {
+          "id": "absolute",
+          "label": "cd /var/log",
+          "caption": "cd /var/log처럼 /로 시작한 경로를 주면 지금 어디에 있든 루트 디렉터리에서부터 var, log를 따라가 그 디렉터리로 옮겨 간다. pwd는 /var/log를 보인다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.working-directory"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
