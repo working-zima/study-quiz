@@ -116,6 +116,7 @@ import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
 import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
+import { KernelMessagesDiagram } from './KernelMessagesDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -189,6 +190,7 @@ import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
+import { RunlevelTargetsDiagram } from './RunlevelTargetsDiagram'
 import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
@@ -481,6 +483,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.crontab-command': CrontabOptionsDiagram,
   'linux-process-boot.boot-sequence': BootSequenceDiagram,
   'linux-process-boot.grub': GrubMenuDiagram,
+  'linux-process-boot.dmesg': KernelMessagesDiagram,
+  'linux-process-boot.runlevel': RunlevelTargetsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

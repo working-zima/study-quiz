@@ -3204,6 +3204,9 @@ https://man7.org/linux/man-pages/man7/bootparam.7.html
 - **syslog(2)**: 커널은 printk()로 남기는 메시지를 로그 수준과 관계없이 크기가 LOG_BUF_LEN인 **순환 버퍼**(cyclic buffer)에 쌓는다. 크기는 옛 커널에서 4096·8192·16384바이트였고 Linux 2.4.23/2.6부터는 커널을 만들 때 정하는 설정 값이다 — 「The kernel log buffer」.
   이 버퍼를 「커널 메시지 링 버퍼」라 부르고, 「모두 읽기」 명령은 마지막으로 비운 뒤 쓰인 것까지만 읽는다 — NAME, 「Commands」(SYSLOG_ACTION_READ_ALL).
   **가득 차면 오래된 메시지가 새 메시지로 덮인다고 적은 문장은 찾지 못했다** — 「크기가 정해진 순환 버퍼」까지만 쓴다
+  (phase 76 step 7, 2026-11-05에 다시 읽음 — 6.19, 2026-02-08) printk() 메시지마다 로그 수준이 있고, 관례상 뜻은 0 시스템을 쓸 수 없음(KERN_EMERG)·1 곧바로 조치해야 함·2 심각한 상태·3 오류 상태(KERN_ERR)·4 경고 상태(KERN_WARNING)·
+  5 정상이지만 눈여겨볼 상태·6 안내(KERN_INFO)·7 디버그 메시지의 여덟 단계다 — 「The log level」. 커널은 수준이 console_loglevel보다 작은(더 급한) 메시지만 콘솔에 출력한다 — 같은 절.
+  메시지는 로그 수준과 관계없이 링 버퍼에 쌓이므로(위 「The kernel log buffer」), 콘솔에 나오지 않은 메시지도 링 버퍼에는 있다
 - **bootparam(7)**: 커널 인자 `init=`은 커널이 처음 실행할 명령을 정하고, 정하지 않았거나 찾지 못하면 커널은 `/sbin/init`·`/etc/init`·`/bin/init`·`/bin/sh`를 차례로 시도한다 — 「General non-device-specific boot arguments」.
   커널 메시지는 klogd(8) 같은 데몬에 넘겨져 디스크에 기록될 수 있다 — 「Boot arguments for use by kernel developers」(`debug`). **어느 파일에 기록되는지는 적혀 있지 않다** — `exam-notes.md` E25
 
@@ -3259,7 +3262,9 @@ https://man7.org/linux/man-pages/man1/last.1@@util-linux.html
   (phase 76 step 2, 2026-11-05에 다시 읽음) 첫 인자는 쓸 나이스 값이고 **기본으로 그 값 자체(절댓값)로 읽는다** — `--relative`를 주거나 환경 변수 POSIXLY_CORRECT가 있을 때 `-n`을 주면 지금 값에 더할 수로 읽는다 — SYNOPSIS, DESCRIPTION, OPTIONS.
   그래서 `renice 10 2310`은 PID 2310의 나이스 값을 10으로 정한다(POSIX `renice`의 `-n`은 늘 더할 수다 — 아래 「(phase 76) POSIX.1-2024」 항목. 본문은 util-linux판을 따른다)
 - **dmesg(1)**: 이름은 「커널 링 버퍼를 출력하거나 다룬다」이고, 기본 동작은 커널 링 버퍼의 메시지를 모두 보여 주는 것이다 — NAME, DESCRIPTION. 커널 3.5.0부터는 기본으로 `/dev/kmsg`에서 읽는다 — `-S`.
-  **`/var/log/dmesg`라는 파일은 이 페이지에 없다** — `exam-notes.md` E25
+  **`/var/log/dmesg`라는 파일은 이 페이지에 없다** — `exam-notes.md` E25.
+  (phase 76 step 7, 2026-11-05에 다시 읽음 — util-linux 2.43.devel-739-eee2e, 2026-05-24) `-l`(`--level`)은 출력을 쉼표로 늘어놓은 수준의 메시지로 좁히고, 예로 `dmesg --level=err,warn`을 든다(`err`는 오류, `warn`은 경고 — 수준 이름) — OPTIONS.
+  출력 줄의 꼴은 이 step에서 본문에 보이지 않는다(시각 표시 꼴은 `--time-format` 등 옵션에 따라 다르다 — OPTIONS)
 - **last(1)·lastb(1)**(util-linux판): `lastb`는 `last`와 같되 기본으로 실패한 로그인 시도를 모두 담은 `/var/log/btmp`를 보여 준다 — DESCRIPTION, FILES. (로그인 기록의 나머지는 `linux-accounts`의 몫이라 step 9가 다시 읽는다)
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.process-commands`(kill(1) — 기본 TERM, TERM 다음 KILL, KILL은 붙잡을 수 없다; renice(1) — 실행 중인 프로세스의 나이스 값), `linux-process-boot.dmesg`(dmesg(1) — 커널 링 버퍼를 보여 준다; last(1) — `/var/log/btmp`는 실패한 로그인 기록), `exam-notes.md` E25
