@@ -1069,7 +1069,8 @@ https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
 - 셸을 먼저 연 다음 그 안에서 CLI 명령을 실행한다. Windows의 명령 프롬프트, Linux·macOS의 Bash가 이 개요의 예다. 여러 명령을 모을 때는 실행할 셸의 문법으로 스크립트를 쓴다 — 「첫 부분」 (phase 107)
 - 컴퓨터에 설치할 수 있는 운영 체제는 Windows·Linux·macOS다. 브라우저에서는 Cloud Shell로 쓴다 — 「첫 부분」 (phase 107)
 - 명령은 `az` 다음에 다룰 대상의 이름과 할 작업을 적는 꼴이다(문서의 예가 모두 `az`로 시작한다). 앱에 보여 줄 예는 VM을 만드는 `az vm create` 하나다. 명령 옵션과 출력은 쓰지 않는다 — 「Command reference design」, 아래 기존 「Azure 가격 — Virtual Machines … `az vm`」 항목의 명령 참조 (phase 107)
-쓰일 곳: `azure-management-tools.management-tools`, `azure-management-tools.azure-cli`, `CommandToolsTable`, D115·D116. (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI 항목 — `az`로 시작하는 명령, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
+쓰일 곳: `azure-management-tools.azure-cli`, `CommandToolsTable`, D115·D116. (phase 107)
 
 ## (phase 101) Azure REST API reference
 https://learn.microsoft.com/en-us/rest/api/azure/
@@ -1087,7 +1088,7 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 다시 확인한 날 2026-11-04. 영문 사본을 다시 받고 `ko-docs-rest-api-azure.md`도 받았다. (phase 107)
 - 프로그램이 Azure 서비스에 HTTP 요청을 보내 작업을 부탁하고 응답을 받는 창구라는 풀이로 쓴다. 리소스를 만들거나 조회하거나 바꾸거나 지우는 작업이 근거다. 주소 형식·인증 코드·메서드 목록은 쓰지 않는다 — 「첫 문단」, 「Components of a REST API request/response」 (phase 107)
 - 한국어 표기: REST API는 옮기지 않는다(한국어판 제목). (phase 107)
-쓰일 곳: `azure-management-tools.management-tools`의 목록 항목 REST API, NO.235 판단. (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`의 목록 항목 REST API(사람이 아니라 프로그램이 HTTP 요청으로 리소스를 만들고·읽고·고치고·지운다), az164(NO.235 판단 — 보기 이름은 제목의 「Azure REST API」). (phase 107)
 
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
 https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
@@ -1105,7 +1106,8 @@ https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
 - 모듈은 Windows·Linux·macOS에서 쓸 수 있다. 로컬에서 Azure 관리 스크립트를 실행하려면 호환되는 PowerShell과 Az 모듈을 준비한다. CLI만 설치한 Linux를 Azure PowerShell 준비가 끝난 환경으로 보지 않는다 — 「The Az PowerShell module」 (phase 107)
 - Azure 관리 명령은 REST 호출로 작업을 요청한다. 명령을 모아 스크립트로 쓰면 같은 작업을 되풀이하고 자동화할 수 있다 — 「첫 문단」, 「Module Design」, Learn 단원 2의 「What is Azure PowerShell?」 (phase 107)
 - 제품 개요와 설치 안내가 Windows PowerShell 호환 경로를 남겨 두었다. Windows PowerShell 전체가 지원 종료됐다고 쓰지 않는다. 옛 AzureRM 모듈의 지원 종료와도 구별한다. 버전 숫자·옛 모듈 명령은 앱에 쓰지 않는다 — 「The Az PowerShell module」, 「The AzureRM PowerShell module」 (phase 107)
-쓰일 곳: `azure-management-tools.management-tools`, `azure-management-tools.azure-powershell`, `azure-management-tools.cloud-shell`, `CommandToolsTable`, D113·D114. (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure PowerShell 항목 — PowerShell에서 Azure를 다루는 명령 묶음, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
+쓰일 곳: `azure-management-tools.azure-powershell`, `azure-management-tools.cloud-shell`, `CommandToolsTable`, D113·D114. (phase 107)
 
 ## (phase 101) Azure portal — What is the Azure portal?
 https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
@@ -1122,7 +1124,8 @@ https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
 - 한 화면에서 리소스를 만들고 설정을 바꾸며 상태를 살핀다. 대시보드는 자주 볼 리소스의 정보를 골라 모아 보는 화면이다 — 「첫 문단」, 「Dashboard」 (phase 107)
 - 포털은 모든 Azure 데이터 센터에 배치되어 특정 센터의 장애에 견디고 사용자와 가까운 곳에서 제공된다. 유지 관리 때문에 서비스를 멈추는 시간 없이 계속 갱신한다. 이는 포털의 가용성 설명이며 사용자의 모든 리소스가 장애에 안전하다는 뜻은 아니다 — 「둘째 문단」 (phase 107)
 - 포털 머리 부분의 공용 조작 항목에 Cloud Shell이 있다 — 「Portal elements and controls」의 Global controls (phase 107)
-쓰일 곳: `azure-management-tools.management-tools`, `azure-management-tools.azure-portal`, `ToolAccessDiagram`, D119. (phase 107)
+- 포털에서 하는 일의 예로 문서는 새 데이터베이스를 만들기, VM의 처리 능력을 높이기, 한 달 비용을 살피기를 든다 — 「첫 문단」 (phase 107 step 5)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 포털 항목), `azure-management-tools.azure-portal`(그래픽 사용자 인터페이스, 하는 일의 예, 안내 화면, 대시보드, 모든 데이터 센터에 있어 한 곳의 장애에 견딤, 유지 관리로 멈추지 않음과 「포털 자체의 이야기」라는 한정), `ToolAccessDiagram`, az166; D119. 포털 머리의 Cloud Shell은 쓰지 않았다. (phase 107)
 
 ## (phase 101) Learn 「Describe cloud service types」 — 2·3·4 (이 주제가 쓰는 한 줄 풀이만)
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service
@@ -1724,7 +1727,8 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 
 다시 확인한 날 2026-11-04. `docs-arm-overview.md`를 다시 받았다. (phase 107)
 - 어떤 관리 도구를 고르든 리소스의 만들기·고치기·지우기 같은 **관리 요청**은 Azure Resource Manager가 받아 권한을 확인하고 담당 서비스로 보낸다 — 「Consistent management layer」. 앱의 표현도 「관리 요청」으로 한정한다. 도구가 보내는 데이터 읽기·쓰기까지 모든 통신이 이 길을 지난다고 넓히지 않는다(같은 문서 「Which location should I use for my resource group?」는 리소스에 직접 가는 데이터 요청과 구별한다). (phase 107)
-쓰일 곳: `azure-management-tools.management-tools`, `ToolAccessDiagram`. ARM 자체의 배포·템플릿 사실은 이 step에서 늘리지 않는다. (phase 107)
+- 모든 도구의 요청을 같은 API가 처리하므로 어느 도구로 해도 결과와 쓸 수 있는 기능이 일관된다. 포털에서 쓸 수 있는 기능은 PowerShell·Azure CLI·REST API로도 쓸 수 있다 — 「Consistent management layer」 (phase 107 step 5)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(관리 요청을 받아 누가 보냈는지와 권한을 확인한 뒤 담당 서비스로 넘긴다, 같은 작업은 어느 도구로 해도 결과가 같다 — 「관리 요청」으로 한정), `azure-management-tools.azure-portal`(포털의 관리 일은 Azure PowerShell·Azure CLI로도 할 수 있다), `ToolAccessDiagram`(화살표 다섯), az164 해설. ARM 자체의 배포·템플릿 사실은 이 step에서 늘리지 않는다. (phase 107)
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
@@ -4943,7 +4947,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manag
 - 단원의 AI 보조 기능은 이번 주제의 여섯 항목에 더하지 않는다. 모든 서비스의 모든 기능이 두 도구에 항상 동시에 생긴다는 보장으로 「기능이 같다」를 확대하지 않는다.
 - 한국어 표기: Azure 포털(제품 한국어판), Azure Cloud Shell, Azure PowerShell, Azure CLI. Learn의 「Azure CLI(Bash)」라는 짝은 쓰지 않는다.
 
-쓰일 곳: `azure-management-tools.management-tools`·`azure-portal`·`cloud-shell`·`azure-powershell`·`azure-cli`(모두 같은 주제), `ToolAccessDiagram`, `CloudShellDiagram`, `CommandToolsTable`, D113~D116·D119.
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI·Azure PowerShell을 셸과 섞지 않은 항목, Learn의 「Azure CLI(Bash)」 짝은 쓰지 않음), `azure-management-tools.azure-portal`(만들기·관리·지켜보기, 대시보드, 접근성 설정, 데이터 센터·유지 관리), `ToolAccessDiagram`; D119.
+쓰일 곳: `azure-management-tools.cloud-shell`·`azure-powershell`·`azure-cli`(모두 같은 주제), `CloudShellDiagram`, `CommandToolsTable`, D113~D116.
 
 ## (phase 107) Describe features and tools for managing and deploying Azure resources — 단원 3: Describe the purpose of Azure Arc
 https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/3-describe-purpose-of-azure-arc
@@ -4968,7 +4973,7 @@ https://learn.microsoft.com/en-us/azure/azure-portal/mobile-app/overview
 - 앱이 시작·중지하는 대상으로 문서는 VM·웹앱·데이터베이스를 든다. 앱 본문은 VM만 예로 든다 — 첫 문단
 - 한국어 표기: **Azure 모바일 앱**(제목).
 
-쓰일 곳: `azure-management-tools.management-tools`의 목록 항목 Azure 모바일 앱, `ToolAccessDiagram`, D120.
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`의 목록 항목 Azure 모바일 앱(iOS·Android, 상태와 경고 보기, VM 시작·중지, 앱 안에서 Cloud Shell 열기, 권한 있는 계정), `ToolAccessDiagram`(휴대폰 칸), az164·az165; D120.
 
 ## (phase 107) Azure 포털 — Supported devices
 https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices
@@ -4981,7 +4986,7 @@ https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-brow
 - 본문과 도식은 「지원되는 웹 브라우저로 연다」로 쓴다. 「요즘 브라우저면 무엇이든」으로 넓히지 않는다(D121). 옛 운영 체제 버전의 현재 지원 여부는 여기서 확인되지 않는다 — 「Recommended browsers」
 - 한국어 표기: Azure 포털, 지원되는 디바이스, 권장 브라우저. 앱에서는 「기기」·「웹 브라우저」로 푼다.
 
-쓰일 곳: `azure-management-tools.azure-portal`, `ToolAccessDiagram`, D119·D120·D121; NO.99·176·220·224·275·287의 지원 범위 판단.
+쓰인 곳(phase 107 step 5): `azure-management-tools.azure-portal`(데스크톱 컴퓨터나 태블릿의 지원되는 웹 브라우저, 브라우저 넷, JavaScript, Windows 전용이 아님), `ToolAccessDiagram`(브라우저 칸과 그 캡션 — 휴대폰을 브라우저 칸에 그리지 않음); D119·D120·D121. 휴대폰 브라우저로 포털을 연다는 말은 쓰지 않았다(D120).
 
 ## (phase 107) Azure 포털 — Create a dashboard in the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-dashboards
@@ -4992,7 +4997,7 @@ https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-dashboards
 - 기본 대시보드를 바꾸거나 새 대시보드를 더 만든다. 개수 상한·공유 권한·만드는 절차는 이 주제에 쓰지 않는다 — 둘째 문단
 - 한국어 표기: 대시보드(제목).
 
-쓰일 곳: `azure-management-tools.azure-portal`.
+쓰인 곳(phase 107 step 5): `azure-management-tools.azure-portal`(기본 대시보드를 고치거나 새 대시보드를 더 만든다).
 
 ## (phase 107) Azure Cloud Shell — What is Azure Cloud Shell?
 https://learn.microsoft.com/en-us/azure/cloud-shell/overview
@@ -5006,7 +5011,8 @@ https://learn.microsoft.com/en-us/azure/cloud-shell/overview
 - **다른 제품 문서로 한정**: 이 개요의 저장소 필수처럼 읽히는 문장은 임시 세션 안내와 함께 읽는다. 저장소 없이 시작하는 방법도 있다. 시간·용량 수치와 「모든 파일이 언제나 보존된다」는 말은 쓰지 않는다.
 - 한국어 표기: Azure Cloud Shell(이름 그대로), Bash, PowerShell.
 
-쓰일 곳: `azure-management-tools.management-tools`, `azure-management-tools.cloud-shell`, `ToolAccessDiagram`, `CloudShellDiagram`, D114·D115, G64; NO.279·302·325·470.
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure Cloud Shell 항목 — 브라우저 안의 명령 입력 창, 두 도구가 미리 설치), `azure-management-tools.azure-portal`(주소 `portal.azure.com`, NO.470), `ToolAccessDiagram`(브라우저 칸).
+쓰일 곳: `azure-management-tools.cloud-shell`, `CloudShellDiagram`, D114·D115, G64; NO.279·302·325.
 
 ## (phase 107) Azure Cloud Shell — Features & tools for Azure Cloud Shell
 https://learn.microsoft.com/en-us/azure/cloud-shell/features
@@ -5158,7 +5164,8 @@ https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
 - 버전·설치 경로·패키지 관리자·설치 명령은 앱에 쓰지 않는다.
 - 한국어 표기: Azure CLI, Windows, Linux, macOS.
 
-쓰일 곳: `azure-management-tools.azure-cli`, `ToolAccessDiagram`, `CommandToolsTable`, D116.
+쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(설치 칸의 Windows·Linux·macOS, 「두 도구는 Azure Cloud Shell에도 미리 설치되어 있다」).
+쓰일 곳: `azure-management-tools.azure-cli`, `CommandToolsTable`, D116.
 
 ## (phase 107) Azure CLI — Install the Azure CLI on Windows
 https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows
@@ -5221,7 +5228,8 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 - Arc 없이 장면은 「환경마다 다른 도구로 관리하는 회사」라는 예로 한정한다. Arc 이외에는 통합 관리가 불가능하다는 사실로 쓰지 않는다. 정책 선은 설정 준수를 살피는 관리 관계이며 모든 Azure Policy 정의가 외부 서버에도 똑같이 작동한다는 뜻이 아니다 — Arc 개요의 문제 상황, 서버 개요 「Supported cloud operations」
 - **CommandToolsTable**: Azure PowerShell 행은 「동사-명사 꼴의 cmdlet / PowerShell에서(Windows에서는 Windows PowerShell도), 로컬 설치 또는 Cloud Shell」, Azure CLI 행은 「az로 시작하는 명령 / 명령 프롬프트·PowerShell·Bash, 로컬 설치 또는 Cloud Shell」, Azure Cloud Shell 행은 「두 도구의 명령을 쓴다 / 브라우저로 여는 환경」을 쓴다. Cloud Shell은 세 번째 명령 언어가 아니다. VM 생성의 두 이름은 az vm create와 New-AzVM이며 표·도식에는 백틱을 넣지 않는다 — 두 도구 개요, 도구 비교, 명령 참조 두 곳
 
-쓰일 곳: `ToolAccessDiagram`, `CloudShellDiagram`, `AzureArcDiagram`, `CommandToolsTable`; 개념 `azure-management-tools.management-tools`·`cloud-shell`·`azure-cli`·`azure-arc`; D113~D121, G64.
+쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(칸 셋과 곁말 셋 — 브라우저 곁말은 「설치 없이 연다」, 휴대폰 칸 이름은 「휴대폰 앱」, 화살표 다섯은 관리 요청), 개념 `azure-management-tools.management-tools`; D119·D120·D121.
+쓰일 곳: `CloudShellDiagram`, `AzureArcDiagram`, `CommandToolsTable`; 개념 `azure-management-tools.cloud-shell`·`azure-cli`·`azure-arc`; D113~D118, G64.
 
 ## (phase 107) 한국어 표기 정리 — `azure-management-tools`
 
@@ -5240,4 +5248,5 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 - Windows·Linux·macOS는 운영 체제 이름이다. 설치 조건에는 버전을 붙이지 않고 「지원되는 PowerShell과 Az 모듈」로 쓴다. PowerShell Core의 옛 버전을 새 전제로 삼지 않는다.
 - 리소스·구독·리소스 그룹·역할·온-프레미스·다중 클라우드·하이브리드·컨테이너는 이 주제에서 다시 풀어 쓴다. 이전 주제에서 읽었을 것이라고 가정하지 않는다. 셸·스크립트·모듈의 풀이도 같은 자리에서 한다.
 
-쓰일 곳: `azure-management-tools`의 개념 여섯과 도식 셋·표 하나. D113~D121, G64.
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 관리 도구, 목록 이름 여섯 — Azure 포털·Azure 모바일 앱에 영문 이름을 괄호로), `azure-management-tools.azure-portal`(Azure 포털), `ToolAccessDiagram`; D119·D120·D121.
+쓰일 곳: `azure-management-tools`의 나머지 개념 넷과 도식 둘·표 하나. D113~D118, G64.

@@ -193,6 +193,7 @@ import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
@@ -481,6 +482,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-governance.policy-initiatives': PolicyInitiativeDiagram,
   'azure-governance.resource-locks': LockTypesDiagram,
   'azure-governance.lock-inheritance': [LockInheritanceDiagram, GovernanceToolsTable],
+  'azure-management-tools.management-tools': ToolAccessDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

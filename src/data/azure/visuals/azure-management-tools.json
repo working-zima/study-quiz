@@ -1,0 +1,61 @@
+{
+  "diagrams": {
+    "tool-access": {
+      "label": "웹 브라우저로 여는 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치하는 Azure PowerShell과 Azure CLI, 휴대폰 앱인 Azure 모바일 앱이 모두 Azure Resource Manager로 관리 요청을 보내는 모습",
+      "svgLabel": "웹 브라우저로 연다 안에 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치한다 안에 Azure PowerShell과 Azure CLI, 휴대폰 앱 안에 Azure 모바일 앱이 있고, 그 사이에 Azure Resource Manager가 있다",
+      "question": "어떤 기기에서 무엇으로 Azure를 다룰까?",
+      "idleCaption": "어느 도구로 보내든 리소스를 만들고 바꾸는 관리 요청은 Azure Resource Manager를 거친다. 버튼을 고르면 기기마다 무엇으로 Azure를 다루는지 볼 수 있다.",
+      "legend": "화살표는 리소스를 만들고 바꾸는 관리 요청이 가는 방향이다. 세 칸은 도구를 주로 여는 곳으로 나눈 것이라, Azure PowerShell과 Azure CLI는 Azure Cloud Shell 안에서도 쓴다.",
+      "nodes": {
+        "portal": "Azure 포털",
+        "cloud-shell": "Azure Cloud Shell",
+        "arm": "Azure Resource Manager",
+        "powershell": "Azure PowerShell",
+        "cli": "Azure CLI",
+        "mobile": "Azure 모바일 앱"
+      },
+      "groups": {
+        "g-browser": "웹 브라우저로 연다",
+        "g-install": "컴퓨터에 설치한다",
+        "g-phone": "휴대폰 앱"
+      },
+      "notes": {
+        "browser-note": "설치 없이 연다",
+        "install-note": "Windows·Linux·macOS",
+        "phone-note": "상태·경고를 본다"
+      },
+      "scenarios": [
+        {
+          "id": "browser",
+          "label": "브라우저로",
+          "caption": "데스크톱 컴퓨터나 태블릿에서 지원되는 웹 브라우저로 Azure 포털과 Azure Cloud Shell을 연다. 브라우저 안에서 열리므로 운영 체제와 상관없이 쓰고, 컴퓨터에 따로 설치할 것이 없다.",
+          "sources": [
+            "azure-management-tools.management-tools",
+            "azure-management-tools.azure-portal"
+          ]
+        },
+        {
+          "id": "install",
+          "label": "설치해서",
+          "caption": "Azure PowerShell과 Azure CLI는 Windows·Linux·macOS 컴퓨터에 설치해 명령으로 Azure를 다룬다. 두 도구는 Azure Cloud Shell에도 미리 설치되어 있어, 설치하지 않고 쓰는 길도 있다.",
+          "sources": [
+            "azure-management-tools.management-tools"
+          ]
+        },
+        {
+          "id": "phone",
+          "label": "휴대폰 앱으로",
+          "caption": "Azure 모바일 앱은 휴대폰 같은 iOS·Android 기기에 설치해, 리소스의 상태와 경고를 보고 VM을 시작하거나 중지하며 앱 안에서 Azure Cloud Shell을 연다.",
+          "sources": [
+            "azure-management-tools.management-tools"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-management-tools.management-tools"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
