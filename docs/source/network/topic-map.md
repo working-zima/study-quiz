@@ -68,7 +68,7 @@
 | 29 | `network-security` | 네트워크 보안과 VPN | 공식 문서: IETF RFC, NIST, IEEE 802.1X | 11 | 9/11 | ★★★ | 82 |
 | 30 | `cloud-sdn` | 클라우드·SDN·NFV | 공식 문서: NIST, IETF RFC, ETSI | 16 | 9/11 | ★★★ | 83 |
 | 31 | `diagnostic-commands` | 네트워크 진단 명령 | 공식 문서: learn.microsoft.com, man7.org, IETF RFC | 17 | 10/11 | ★★★ | 78 |
-| 32 | `linux-filesystem` | Linux 파일 시스템과 디스크 | 공식 문서: FHS, man7.org | 18 | 10/11 | ★★★ | 75 |
+| 32 | `linux-filesystem` | Linux 파일 시스템과 디스크 | 공식 문서: FHS, man7.org, GPT fdisk 문서 | 18 | 10/11 | ★★★ | 75 |
 | 33 | `linux-permissions` | Linux 파일 권한과 소유자 | 공식 문서: man7.org, POSIX, GNU coreutils | 16 | 11/11 | ★★★ | 75 |
 | 34 | `linux-shell` | Linux 셸과 기본 명령 | 공식 문서: GNU bash, POSIX, man7.org | 17 | 9/11 | ★★★ | 75 |
 | 35 | `linux-process-boot` | Linux 프로세스·작업 예약·부팅 | 공식 문서: man7.org, GNU GRUB | 24 | 11/11 | ★★★ | 76 |
@@ -116,6 +116,7 @@
 - **보안·VPN**: IETF RFC, NIST, IEEE 802.1X
 - **RAID·스토리지**: SNIA(snia.org)
 - **스위치 업체 기술**: Cisco 제품 문서(cisco.com의 Catalyst 설정 가이드·명령 참조 같은 제품 문서. 학습·마케팅 페이지는 아니다) — 시스코가 만든 VTP에만 쓴다. 강의 밖 주제가 아니라 강의 주제 `hub-switch-vlan`(phase 72)이 쓰는 곳이다
+- **`gdisk`**: GPT fdisk 문서(rodsbooks.com의 `gdisk/` 아래 — GPT fdisk를 만든 Rod Smith의 공식 문서) — `gdisk`가 무엇을 하는 도구인지에만 쓴다. GPT·MBR의 일반 사실은 man7.org(fdisk(8))에서 가져온다. 강의 밖 주제 `linux-filesystem`(phase 75)이 쓰는 곳이다
 
 `network-devices`(게이트웨이·리피터·L4/L7 스위치·로드 밸런서·PoE·PXE·프록시)는 위 영역 가운데 하나에 딱 들지 않아, 이미 목록에 있는
 IEEE 802(리피터·PoE)와 IETF RFC(게이트웨이·프록시)를 출처 열에 적었다. 이 둘로 댈 수 없는 사실은 그 phase를 설계할 때 같은 기준으로 판단한다.

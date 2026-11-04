@@ -1,0 +1,431 @@
+{
+  "diagrams": {
+    "permission-classes": {
+      "label": "파일 report.txt에 접근하는 user1·user2·user3가 각각 소유자 권한·그룹 권한·그 밖의 권한을 받는 것을, 소유자인지 먼저 보고 그다음 그룹에 드는지 보는 차례대로 보이는 도식",
+      "svgLabel": "파일 report.txt와 사용자 user1·user2·user3, 그리고 이 파일의 소유자 권한·그룹 권한·그 밖의 권한이 있다. user1과 user2는 dev 그룹 테두리 안에 있다",
+      "question": "이 사람에게는 어느 권한이 적용될까?",
+      "idleCaption": "예로 붙인 파일 report.txt의 소유자는 user1, 그룹은 dev이고, user1과 user2는 dev 그룹에 든다. 버튼을 고르면 세 사람에게 각각 어느 부류의 권한이 적용되는지 볼 수 있다.",
+      "legend": "dev 그룹 테두리 안의 사람은 그 그룹에 든 사용자다. 화살표는 그 사람이 report.txt에 접근할 때 적용되는 권한을 가리킨다.",
+      "nodes": {
+        "file": "report.txt",
+        "user1": "user1",
+        "user2": "user2",
+        "user3": "user3",
+        "owner": "소유자 권한",
+        "group": "그룹 권한",
+        "others": "그 밖의 권한"
+      },
+      "groups": {
+        "dev": "dev 그룹",
+        "perms": "report.txt의 권한"
+      },
+      "notes": {
+        "file-note": "소유자 user1 · 그룹 dev"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "user1",
+          "caption": "user1은 report.txt의 소유자라 소유자 권한을 받는다. user1은 파일의 그룹 dev에도 들어 있지만, 소유자인지를 먼저 가리므로 그룹 권한은 보지 않는다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "user2",
+          "caption": "user2는 report.txt의 소유자가 아니지만 파일의 그룹 dev에 들어 있어 그룹 권한을 받는다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "user3",
+          "caption": "user3는 report.txt의 소유자도 아니고 dev 그룹에도 들지 않아 그 밖의 권한을 받는다. 한 사람에게는 세 부류 가운데 한 부류의 권한만 적용된다.",
+          "sources": [
+            "linux-permissions.owner-group-others"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.owner-group-others"
+      ]
+    },
+    "rwx-meaning": {
+      "label": "권한 글자 r·w·x가 파일에서는 내용 읽기·내용 고치기·프로그램으로 실행을, 디렉터리에서는 목록 보기·파일 만들기와 지우기·안으로 들어가기를 허락하고, 파일을 지울 수 있는지는 그 파일이 든 디렉터리의 쓰기·실행 권한이 정하는 것을 보이는 도식",
+      "svgLabel": "권한 글자 r·w·x마다 파일에서의 뜻과 디렉터리에서의 뜻이 한 줄에 놓여 있다",
+      "question": "r·w·x는 파일과 디렉터리에서 무엇을 허락할까?",
+      "idleCaption": "권한 글자 r·w·x가 파일에서와 디렉터리에서 각각 무엇을 허락하는지 한 줄에 하나씩 놓았다. 버튼을 고르면 파일에서의 뜻, 디렉터리에서의 뜻, 파일을 지울 때 따지는 권한을 차례로 볼 수 있다.",
+      "legend": "한 줄이 권한 글자 하나다. 가운데 테두리는 그 글자가 파일에서, 오른쪽 테두리는 디렉터리에서 허락하는 일이다.",
+      "nodes": {
+        "r": "r",
+        "w": "w",
+        "x": "x",
+        "file-r": "내용 읽기",
+        "file-w": "내용 고치기",
+        "file-x": "프로그램으로 실행",
+        "dir-r": "목록 보기",
+        "dir-w": "만들기·지우기",
+        "dir-x": "안으로 들어가기"
+      },
+      "groups": {
+        "file": "파일",
+        "dir": "디렉터리"
+      },
+      "scenarios": [
+        {
+          "id": "file",
+          "label": "파일에서",
+          "caption": "파일에서 r은 내용을 읽게, w는 내용을 고치게, x는 그 파일을 프로그램으로 실행하게 한다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        },
+        {
+          "id": "directory",
+          "label": "디렉터리에서",
+          "caption": "디렉터리에서 r은 안의 목록을 보게, w는 안에 파일을 만들거나 안의 파일을 지우고 이름을 바꾸게, x는 안으로 들어가 안의 파일에 닿게 한다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        },
+        {
+          "id": "delete",
+          "label": "파일 지우기",
+          "caption": "파일을 지울 수 있는지는 그 파일이 든 디렉터리의 쓰기 권한과 실행 권한이 정한다. 지울 파일 자신의 쓰기 권한은 따지지 않는다 — 파일의 쓰기 권한은 내용을 고치는 일에만 걸린다.",
+          "sources": [
+            "linux-permissions.rwx-permissions"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.rwx-permissions"
+      ]
+    },
+    "permission-string": {
+      "label": "report.txt의 권한 문자열 -rw-r--r--를 -, rw-, r--, r-- 네 덩어리로 끊어, 덩어리마다 파일의 종류, 소유자의 권한, 그룹의 권한, 그 밖의 사용자의 권한을 뜻한다는 것을 보이는 도식",
+      "svgLabel": "권한 문자열 테두리 안에 -, rw-, r--, r--가 차례로 빈틈없이 이어져 -rw-r--r--를 이루고, 칸마다 위에 종류·소유자·그룹·그 밖이라는 자리 이름이 있다",
+      "question": "-rw-r--r--는 어떻게 읽을까?",
+      "idleCaption": "ls -l이 보여 준 report.txt의 권한 문자열 -rw-r--r--를 한 글자, 세 글자, 세 글자, 세 글자로 끊어 놓았다. 버튼을 고르면 덩어리마다 무엇을 뜻하는지 볼 수 있다.",
+      "legend": "네 칸을 왼쪽부터 이어 읽으면 권한 문자열 하나가 된다. 칸 위의 말은 그 칸이 무엇의 자리인지 알려 준다.",
+      "nodes": {
+        "type": "-",
+        "owner": "rw-",
+        "group": "r--",
+        "others": "r--"
+      },
+      "groups": {
+        "string": "권한 문자열"
+      },
+      "notes": {
+        "type-slot": "종류",
+        "owner-slot": "소유자",
+        "group-slot": "그룹",
+        "others-slot": "그 밖",
+        "type-note": "일반 파일",
+        "owner-note": "읽기와 쓰기",
+        "group-note": "읽기만",
+        "others-note": "읽기만"
+      },
+      "scenarios": [
+        {
+          "id": "type",
+          "label": "종류",
+          "caption": "첫 글자는 권한이 아니라 그 이름이 어떤 종류의 파일인지 알려 준다. report.txt의 첫 글자 -는 일반 파일이라는 뜻이고, 디렉터리라면 이 자리에 d가 온다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "owner",
+          "label": "소유자",
+          "caption": "첫 글자 다음의 세 글자 rw-는 소유자 user1의 권한이다. 읽기 자리에 r, 쓰기 자리에 w가 있고 실행 자리는 -라서, user1은 이 파일을 읽고 고칠 수 있지만 프로그램으로 실행할 수는 없다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "그룹",
+          "caption": "그다음 세 글자 r--는 이 파일의 그룹 dev에 든 사용자의 권한이다. 읽기 자리에만 r이 있고 쓰기·실행 자리는 -라서, dev 그룹의 user2는 이 파일을 읽을 수만 있다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "그 밖",
+          "caption": "마지막 세 글자 r--는 소유자도 아니고 dev 그룹에도 들지 않은 그 밖의 사용자의 권한이다. 그룹 몫과 같은 r--라서, 그 밖의 사용자 user3도 이 파일을 읽을 수만 있다.",
+          "sources": [
+            "linux-permissions.permission-string"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.permission-string"
+      ]
+    },
+    "file-type-char": {
+      "label": "ls -l로 본 줄 다섯의 첫 글자와 이름을 표로 놓고, 하드 링크 report2.txt는 원래 파일 report.txt와 같은 -로, 심볼릭 링크 latest는 l로, 디렉터리 docs는 d로, 디스크 장치 파일 /dev/sda는 b로 보인다는 것을 보이는 도식",
+      "svgLabel": "첫 글자 열과 이름 열이 있는 표에 - report.txt, - report2.txt, l latest, d docs, b /dev/sda 다섯 줄이 있다",
+      "question": "첫 글자만 보고 무엇인지 알 수 있을까?",
+      "idleCaption": "ls -l로 본 줄 다섯에서 첫 글자와 이름만 옮겨 놓았다. 버튼을 고르면 하드 링크, 심볼릭 링크, 디렉터리와 장치가 첫 글자에 어떻게 나타나는지 볼 수 있다.",
+      "legend": "한 줄이 ls -l의 줄 하나다. 왼쪽 열은 그 줄의 첫 글자, 오른쪽 열은 이름이다. 화살표는 심볼릭 링크가 가리키는 파일로 간다.",
+      "nodes": {
+        "type-report": "-",
+        "type-report2": "-",
+        "type-latest": "l",
+        "type-docs": "d",
+        "type-sda": "b",
+        "name-report": "report.txt",
+        "name-report2": "report2.txt",
+        "name-latest": "latest",
+        "name-docs": "docs",
+        "name-sda": "/dev/sda"
+      },
+      "groups": {
+        "chars": "첫 글자",
+        "names": "이름"
+      },
+      "notes": {
+        "hard-note": "같은 파일의",
+        "hard-note-2": "두 이름",
+        "sym-note": "가리킨다",
+        "dir-note": "디렉터리",
+        "dev-note": "블록 장치"
+      },
+      "scenarios": [
+        {
+          "id": "hard-link",
+          "label": "하드 링크",
+          "caption": "ln report.txt report2.txt로 만든 하드 링크 report2.txt는 report.txt와 같은 파일에 붙은 또 하나의 이름이다. 하드 링크는 따로 된 종류가 아니라서 두 줄 모두 일반 파일의 -로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        },
+        {
+          "id": "symlink",
+          "label": "심볼릭 링크",
+          "caption": "ln -s report.txt latest로 만든 심볼릭 링크 latest는 report.txt의 경로를 담아 그 파일을 가리키는 따로 된 파일이다. 그래서 latest의 줄은 심볼릭 링크를 뜻하는 l로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "디렉터리와 장치",
+          "caption": "디렉터리 docs의 줄은 d로 시작한다. 디스크를 가리키는 장치 파일 /dev/sda는 데이터를 한 덩어리씩 읽고 쓰는 블록 장치라 그 줄이 b로 시작한다.",
+          "sources": [
+            "linux-permissions.file-type-char"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.file-type-char"
+      ]
+    },
+    "octal-mode": {
+      "label": "권한 rwxr-xr-x를 소유자 rwx, 그룹 r-x, 그 밖의 사용자 r-x로 나누고, 읽기 4·쓰기 2·실행 1을 켜진 자리만 더해 각각 7, 5, 5가 되어 755가 되는 것을 보이는 도식",
+      "svgLabel": "소유자·그룹·그 밖의 사용자 세 열에 위에서부터 권한 세 글자, 더하는 식, 숫자 한 자리가 있다. 소유자 열은 rwx, 4 + 2 + 1, 7이고 그룹 열과 그 밖의 사용자 열은 r-x, 4 + 0 + 1, 5다",
+      "question": "rwxr-xr-x는 왜 755일까?",
+      "idleCaption": "예로 붙인 파일 backup.sh의 권한 rwxr-xr-x를 소유자·그룹·그 밖의 사용자 몫으로 세 글자씩 나눠 놓았다. 버튼을 고르면 부류마다 켜진 권한의 값을 더해 숫자 한 자리를 만드는 과정을 볼 수 있다.",
+      "legend": "한 열이 한 부류의 몫이다. 위에서 아래로 권한 세 글자, 읽기 4·쓰기 2·실행 1 가운데 켜진 것만 더하는 식, 그 결과인 숫자 한 자리다.",
+      "nodes": {
+        "chunk-owner": "rwx",
+        "sum-owner": "4 + 2 + 1",
+        "digit-owner": "7",
+        "chunk-group": "r-x",
+        "sum-group": "4 + 0 + 1",
+        "digit-group": "5",
+        "chunk-others": "r-x",
+        "sum-others": "4 + 0 + 1",
+        "digit-others": "5"
+      },
+      "groups": {
+        "owner": "소유자",
+        "group": "그룹",
+        "others": "그 밖의 사용자"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "소유자",
+          "caption": "소유자 몫 rwx는 읽기·쓰기·실행이 모두 켜져 있어, 읽기 4와 쓰기 2와 실행 1을 모두 더한 7이 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        },
+        {
+          "id": "group",
+          "label": "그룹",
+          "caption": "그룹 몫 r-x는 쓰기 자리가 -라서 쓰기의 값 2 대신 0을 더해, 4 + 0 + 1 = 5가 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        },
+        {
+          "id": "others",
+          "label": "그 밖",
+          "caption": "그 밖의 사용자 몫도 r-x라서 5다. 세 숫자를 소유자, 그룹, 그 밖의 차례로 이어 적으면 755가 된다.",
+          "sources": [
+            "linux-permissions.octal-mode"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.octal-mode"
+      ]
+    },
+    "chmod-change": {
+      "label": "chmod 640 report.txt가 report.txt의 권한을 -rw-r--r--에서 -rw-r-----로 바꾸고, chmod -R 750 project가 디렉터리 project와 그 안의 readme.txt·src까지 권한을 모두 rwxr-x---로 바꾸는 것을 보이는 도식",
+      "svgLabel": "위에 권한 -rw-r--r--, 명령 chmod 640 report.txt, 권한 -rw-r-----가 있고, 아래에 명령 chmod -R 750 project와, project와 그 안의 것 테두리 안에 project·readme.txt·src가 있다",
+      "question": "chmod를 입력하면 무엇이 바뀔까?",
+      "idleCaption": "위는 파일 report.txt의 권한을 숫자로 바꾸는 명령이고, 아래는 디렉터리 project와 그 안에 든 것의 권한을 한꺼번에 바꾸는 명령이다. 버튼을 고르면 명령을 입력해 무엇이 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 바꾸기 전의 권한에서 명령을 거쳐 바꾼 뒤의 권한으로 가거나, 명령에서 그 명령이 바꾸는 디렉터리로 간다. 테두리 안은 디렉터리 project와 그 안에 든 것이다.",
+      "nodes": {
+        "before": "-rw-r--r--",
+        "cmd-numeric": "chmod 640 report.txt",
+        "after": "-rw-r-----",
+        "cmd-recursive": "chmod -R 750 project",
+        "dir-project": "project",
+        "file-readme": "readme.txt",
+        "dir-src": "src"
+      },
+      "groups": {
+        "project": "project와 그 안의 것"
+      },
+      "notes": {
+        "before-note": "바꾸기 전 · 644",
+        "after-note": "바꾼 뒤 · 640",
+        "all-note": "셋 모두 rwxr-x---"
+      },
+      "scenarios": [
+        {
+          "id": "numeric",
+          "label": "숫자로 바꾸기",
+          "caption": "chmod 640 report.txt를 입력하면 report.txt의 권한이 -rw-r--r--에서 -rw-r-----로 바뀐다. 숫자로 준 권한은 아홉 자리를 새로 정해서, 그룹에는 읽기만 남기고 그 밖의 사용자의 권한은 모두 지운다.",
+          "sources": [
+            "linux-permissions.chmod"
+          ]
+        },
+        {
+          "id": "recursive",
+          "label": "-R",
+          "caption": "chmod -R 750 project를 입력하면 디렉터리 project 자신과 그 안의 readme.txt, 하위 디렉터리 src까지 모두 권한이 rwxr-x---가 된다. -R 없이 입력하면 project 하나만 바뀐다.",
+          "sources": [
+            "linux-permissions.chmod"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.chmod"
+      ]
+    },
+    "symbolic-mode": {
+      "label": "chmod g+w·g=w·o-r report.txt가 report.txt의 권한 -rw-r--r--를 각각 -rw-rw-r--, -rw--w-r--, -rw-r-----로 바꾸는 것을 보이는 도식",
+      "svgLabel": "바꾸기 전 권한 -rw-r--r--가 있고, 명령 chmod g+w report.txt와 그 뒤의 권한 -rw-rw-r--, 명령 chmod g=w report.txt와 그 뒤의 권한 -rw--w-r--, 명령 chmod o-r report.txt와 그 뒤의 권한 -rw-r-----가 한 줄씩 있다",
+      "question": "g+w와 g=w는 무엇이 다를까?",
+      "idleCaption": "-rw-r--r--는 바꾸기 전 report.txt의 권한이고, 나머지 세 줄은 저마다 다른 기호 모드의 명령과 그 명령을 입력한 뒤의 권한이다. 버튼을 고르면 그 명령이 권한의 어느 몫을 어떻게 바꾸는지 볼 수 있다.",
+      "legend": "화살표는 바꾸기 전의 권한에서 명령을 거쳐 그 명령을 입력한 뒤의 권한으로 간다. 세 명령은 모두 같은 -rw-r--r--에서 시작한다.",
+      "nodes": {
+        "before": "-rw-r--r--",
+        "cmd-plus": "chmod g+w report.txt",
+        "after-plus": "-rw-rw-r--",
+        "cmd-equals": "chmod g=w report.txt",
+        "after-equals": "-rw--w-r--",
+        "cmd-minus": "chmod o-r report.txt",
+        "after-minus": "-rw-r-----"
+      },
+      "notes": {
+        "before-note": "바꾸기 전",
+        "plus-note": "그룹에 쓰기가 더해짐",
+        "equals-note": "그룹의 읽기가 지워짐",
+        "minus-note": "그 밖의 읽기가 빠짐"
+      },
+      "scenarios": [
+        {
+          "id": "plus",
+          "label": "g+w",
+          "caption": "chmod g+w report.txt를 입력하면 그룹 몫 r--에 쓰기만 더해져 rw-가 되고, 권한은 -rw-rw-r--가 된다. +는 적은 권한을 더하기만 하므로 그룹에 있던 읽기와 소유자·그 밖의 사용자의 몫은 그대로다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        },
+        {
+          "id": "equals",
+          "label": "g=w",
+          "caption": "chmod g=w report.txt를 입력하면 그룹 몫을 쓰기 하나로 새로 정해 -w-가 되고, 권한은 -rw--w-r--가 된다. =는 그룹 몫에서 적지 않은 권한을 지우므로 그룹에 있던 읽기가 사라진다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        },
+        {
+          "id": "minus",
+          "label": "o-r",
+          "caption": "chmod o-r report.txt를 입력하면 그 밖의 사용자의 몫에서 읽기가 빠져 ---가 되고, 권한은 -rw-r-----가 된다. -는 적은 권한만 빼고 소유자와 그룹의 몫은 그대로 둔다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.symbolic-mode"
+      ]
+    },
+    "chown-change": {
+      "label": "root는 chown user2:dev report.txt로 report.txt의 소유자를 user2로 바꾸고, 소유자 user1은 chown user2 report.txt로 소유자를 넘기려 하면 거부되지만 chown :ops report.txt로 그룹을 ops로 바꿀 수 있는 것을 보이는 도식",
+      "svgLabel": "바꾸기 전 소유자 user1 · 그룹 dev가 있고, root가 입력하는 chown user2:dev report.txt와 그 뒤의 소유자 user2 · 그룹 dev, user1이 입력하는 chown user2 report.txt와 chown :ops report.txt, 그리고 그 뒤의 소유자 user1 · 그룹 ops가 있다",
+      "question": "누가 파일의 주인을 바꿀 수 있을까?",
+      "idleCaption": "소유자 user1 · 그룹 dev는 바꾸기 전 report.txt의 소유자와 그룹이고, root와 user1이 저마다 chown 명령을 입력한다. 버튼을 고르면 누가 무엇을 바꿀 수 있고 바꾼 뒤 report.txt가 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 명령을 입력하는 사람에서 명령으로, 명령에서 바꾼 뒤의 소유자와 그룹으로 간다. 명령 뒤로 화살표가 없으면 그 명령은 거부되어 아무것도 바뀌지 않는다.",
+      "nodes": {
+        "before": "소유자 user1 · 그룹 dev",
+        "root": "root",
+        "user1": "user1",
+        "cmd-root": "chown user2:dev report.txt",
+        "after-root": "소유자 user2 · 그룹 dev",
+        "cmd-deny": "chown user2 report.txt",
+        "cmd-group": "chown :ops report.txt",
+        "after-group": "소유자 user1 · 그룹 ops"
+      },
+      "notes": {
+        "before-note": "바꾸기 전",
+        "root-after-note": "바꾼 뒤",
+        "deny-note": "거부 — 소유자는 그대로",
+        "group-after-note": "바꾼 뒤"
+      },
+      "scenarios": [
+        {
+          "id": "root-owner",
+          "label": "root가 소유자 바꾸기",
+          "caption": "root가 chown user2:dev report.txt를 입력하면 report.txt의 소유자가 user2로 바뀌고 그룹은 적은 대로 dev다. 파일의 소유자를 다른 사용자로 바꾸는 일은 root만 할 수 있다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        },
+        {
+          "id": "owner-denied",
+          "label": "소유자가 넘기려 하면",
+          "caption": "파일의 소유자 user1이 chown user2 report.txt로 자기 파일을 user2에게 넘기려 하면 시스템이 그 요청을 거부한다. 소유자라도 소유자를 남에게 넘길 수는 없어서, report.txt의 소유자는 user1 그대로다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        },
+        {
+          "id": "owner-group",
+          "label": "소유자가 그룹 바꾸기",
+          "caption": "user1은 ops 그룹에도 들어서, chown :ops report.txt로 자기 파일의 그룹을 ops로 바꿀 수 있다. 소유자는 그룹을 자기가 속한 그룹으로만 바꿀 수 있고, 소유자는 user1 그대로다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.chown"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
