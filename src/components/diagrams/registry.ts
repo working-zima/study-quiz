@@ -161,7 +161,9 @@ import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProcViewDiagram } from './ProcViewDiagram'
+import { ProcessTreeDiagram } from './ProcessTreeDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
+import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
@@ -457,6 +459,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.vi': ViModesDiagram,
   'linux-shell.vi-edit-commands': ViEditCommandsDiagram,
   'linux-shell.vi-colon-commands': ViColonCommandsDiagram,
+  'linux-process-boot.process': ProcessTreeDiagram,
+  'linux-process-boot.ps-command': PsColumnsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

@@ -9,6 +9,7 @@ import ipAddressingVisuals from './visuals/ip-addressing.json'
 import ipProtocolVisuals from './visuals/ip-protocol.json'
 import linuxFilesystemVisuals from './visuals/linux-filesystem.json'
 import linuxPermissionsVisuals from './visuals/linux-permissions.json'
+import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
@@ -35,6 +36,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
   'linux-shell': linuxShellVisuals,
+  'linux-process-boot': linuxProcessBootVisuals,
 }
 
 export const networkSubject: Subject = {

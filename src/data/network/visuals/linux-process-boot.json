@@ -1,0 +1,93 @@
+{
+  "diagrams": {
+    "process-tree": {
+      "label": "PID 1 아래로 데몬 sshd와 셸 bash, bash가 실행한 backup.sh 프로세스 둘이 부모와 자식으로 이어진 나무에서, 같은 프로그램의 두 프로세스, 부모와 자식, PID 1이 어디인지 보이는 도식",
+      "svgLabel": "맨 위 PID 1 아래에 812 sshd가 이어지고, 점선으로 이어진 2045 bash 아래에 2310 backup.sh와 2311 backup.sh가 이어져 있다",
+      "question": "프로세스는 누가 만들까?",
+      "idleCaption": "프로세스마다 PID와 프로그램 이름을 적었다. 번호와 셸 bash, backup.sh는 예로 붙인 것이다. 버튼을 고르면 같은 프로그램의 두 프로세스, 부모와 자식, PID 1을 볼 수 있다.",
+      "legend": "가는 선은 부모 프로세스와 그것이 만든 자식 프로세스를 잇는다. 점선은 부모를 거슬러 올라가면 닿는다는 것만 보이고 그 사이는 그리지 않았다는 뜻이다. 화살표는 부모가 자식을 만든 방향이다.",
+      "nodes": {
+        "pid1": "PID 1",
+        "sshd": "812 sshd",
+        "bash": "2045 bash",
+        "run1": "2310 backup.sh",
+        "run2": "2311 backup.sh"
+      },
+      "notes": {
+        "first": "첫 프로세스",
+        "ppid": "PPID 2045",
+        "same": "같은 프로그램 파일"
+      },
+      "scenarios": [
+        {
+          "id": "program-process",
+          "label": "같은 프로그램",
+          "caption": "2310과 2311은 같은 프로그램 파일 backup.sh를 두 번 실행해 생긴 프로세스다. 파일은 디스크에 하나뿐이지만 실행할 때마다 프로세스가 따로 생기고, 커널은 저마다 다른 PID를 붙인다.",
+          "sources": ["linux-process-boot.process"]
+        },
+        {
+          "id": "parent",
+          "label": "부모와 자식",
+          "caption": "셸 bash가 backup.sh를 실행하려고 자식 프로세스 2310을 만들었다. 그래서 2310의 PPID는 부모인 bash의 PID 2045이고, 셸에서 실행한 명령의 부모는 그 셸이다.",
+          "sources": ["linux-process-boot.process"]
+        },
+        {
+          "id": "pid1",
+          "label": "PID 1",
+          "caption": "PID 1은 부팅할 때 커널이 장치를 준비한 뒤 직접 만든 첫 프로세스로, init이라 부른다. 데몬 sshd는 보통 PID 1의 자식으로 실행되고, 셸 bash도 부모를 거슬러 올라가면 PID 1에 닿는다.",
+          "sources": ["linux-process-boot.process"]
+        }
+      ],
+      "sources": ["linux-process-boot.process"]
+    },
+    "ps-columns": {
+      "label": "ps -ef의 목록에서 backup.sh 프로세스가 차지한 한 줄을 칸 이름과 값으로 나눠, 누가 무엇을 실행했는지, 어느 프로세스의 번호인지, 언제 시작해 CPU를 얼마나 썼는지 보이는 도식",
+      "svgLabel": "ps -ef가 보인 backup.sh의 줄 테두리 안에 UID user1, PID 2310, PPID 2045, C 0, STIME 09:15, TIME 00:00:01, CMD /home/user1/backup.sh가 칸 이름과 값의 짝으로 차례로 놓여 있다",
+      "question": "ps -ef의 한 줄은 무엇을 말할까?",
+      "idleCaption": "ps -ef의 목록에서 backup.sh 프로세스가 차지한 한 줄을 칸 이름과 값으로 나눠 놓았다. 값은 예로 붙인 것이고, 터미널을 나타내는 TTY 칸은 값을 예로 들지 않아 그리지 않았다. 버튼을 고르면 칸들이 무엇을 말하는지 볼 수 있다.",
+      "legend": "칸 이름과 그 값을 나란히 놓았고, 칸은 ps -ef가 보이는 차례대로 놓았다.",
+      "nodes": {
+        "uid-name": "UID",
+        "uid": "user1",
+        "pid-name": "PID",
+        "pid": "2310",
+        "ppid-name": "PPID",
+        "ppid": "2045",
+        "c-name": "C",
+        "c": "0",
+        "stime-name": "STIME",
+        "stime": "09:15",
+        "time-name": "TIME",
+        "time": "00:00:01",
+        "cmd-name": "CMD",
+        "cmd": "/home/user1/backup.sh"
+      },
+      "groups": {
+        "line": "ps -ef가 보인 backup.sh의 줄"
+      },
+      "scenarios": [
+        {
+          "id": "who",
+          "label": "누가 무엇을",
+          "caption": "UID 칸은 이 프로세스를 실행한 사용자 user1이고, CMD 칸은 실행한 명령 /home/user1/backup.sh다. -f를 붙였으므로 UID 칸에는 번호가 아니라 사용자 이름이 나온다.",
+          "sources": ["linux-process-boot.ps-command"]
+        },
+        {
+          "id": "ids",
+          "label": "번호",
+          "caption": "PID 칸의 2310은 이 프로세스 자신의 번호이고, PPID 칸의 2045는 이 프로세스를 만든 부모 프로세스, 곧 셸 bash의 번호다. 두 칸은 서로 다른 프로세스를 가리킨다.",
+          "sources": ["linux-process-boot.ps-command"]
+        },
+        {
+          "id": "time",
+          "label": "시각과 시간",
+          "caption": "STIME 칸의 09:15는 이 프로세스가 시작한 시각이고, TIME 칸의 00:00:01은 지금까지 CPU를 실제로 쓴 시간을 더한 값이다. 시작한 뒤 흐른 시간이 아니므로 두 값은 따로 읽는다.",
+          "sources": ["linux-process-boot.ps-command"]
+        }
+      ],
+      "sources": ["linux-process-boot.ps-command"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
