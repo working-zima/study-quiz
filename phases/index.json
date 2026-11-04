@@ -377,7 +377,8 @@
     },
     {
       "dir": "75-network-linux-basics",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-11-04T21:41:35+0900"
     }
   ]
 }
