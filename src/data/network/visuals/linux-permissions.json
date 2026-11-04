@@ -321,6 +321,109 @@
       "sources": [
         "linux-permissions.chmod"
       ]
+    },
+    "symbolic-mode": {
+      "label": "chmod g+w·g=w·o-r report.txt가 report.txt의 권한 -rw-r--r--를 각각 -rw-rw-r--, -rw--w-r--, -rw-r-----로 바꾸는 것을 보이는 도식",
+      "svgLabel": "바꾸기 전 권한 -rw-r--r--가 있고, 명령 chmod g+w report.txt와 그 뒤의 권한 -rw-rw-r--, 명령 chmod g=w report.txt와 그 뒤의 권한 -rw--w-r--, 명령 chmod o-r report.txt와 그 뒤의 권한 -rw-r-----가 한 줄씩 있다",
+      "question": "g+w와 g=w는 무엇이 다를까?",
+      "idleCaption": "-rw-r--r--는 바꾸기 전 report.txt의 권한이고, 나머지 세 줄은 저마다 다른 기호 모드의 명령과 그 명령을 입력한 뒤의 권한이다. 버튼을 고르면 그 명령이 권한의 어느 몫을 어떻게 바꾸는지 볼 수 있다.",
+      "legend": "화살표는 바꾸기 전의 권한에서 명령을 거쳐 그 명령을 입력한 뒤의 권한으로 간다. 세 명령은 모두 같은 -rw-r--r--에서 시작한다.",
+      "nodes": {
+        "before": "-rw-r--r--",
+        "cmd-plus": "chmod g+w report.txt",
+        "after-plus": "-rw-rw-r--",
+        "cmd-equals": "chmod g=w report.txt",
+        "after-equals": "-rw--w-r--",
+        "cmd-minus": "chmod o-r report.txt",
+        "after-minus": "-rw-r-----"
+      },
+      "notes": {
+        "before-note": "바꾸기 전",
+        "plus-note": "그룹에 쓰기가 더해짐",
+        "equals-note": "그룹의 읽기가 지워짐",
+        "minus-note": "그 밖의 읽기가 빠짐"
+      },
+      "scenarios": [
+        {
+          "id": "plus",
+          "label": "g+w",
+          "caption": "chmod g+w report.txt를 입력하면 그룹 몫 r--에 쓰기만 더해져 rw-가 되고, 권한은 -rw-rw-r--가 된다. +는 적은 권한을 더하기만 하므로 그룹에 있던 읽기와 소유자·그 밖의 사용자의 몫은 그대로다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        },
+        {
+          "id": "equals",
+          "label": "g=w",
+          "caption": "chmod g=w report.txt를 입력하면 그룹 몫을 쓰기 하나로 새로 정해 -w-가 되고, 권한은 -rw--w-r--가 된다. =는 그룹 몫에서 적지 않은 권한을 지우므로 그룹에 있던 읽기가 사라진다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        },
+        {
+          "id": "minus",
+          "label": "o-r",
+          "caption": "chmod o-r report.txt를 입력하면 그 밖의 사용자의 몫에서 읽기가 빠져 ---가 되고, 권한은 -rw-r-----가 된다. -는 적은 권한만 빼고 소유자와 그룹의 몫은 그대로 둔다.",
+          "sources": [
+            "linux-permissions.symbolic-mode"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.symbolic-mode"
+      ]
+    },
+    "chown-change": {
+      "label": "root는 chown user2:dev report.txt로 report.txt의 소유자를 user2로 바꾸고, 소유자 user1은 chown user2 report.txt로 소유자를 넘기려 하면 거부되지만 chown :ops report.txt로 그룹을 ops로 바꿀 수 있는 것을 보이는 도식",
+      "svgLabel": "바꾸기 전 소유자 user1 · 그룹 dev가 있고, root가 입력하는 chown user2:dev report.txt와 그 뒤의 소유자 user2 · 그룹 dev, user1이 입력하는 chown user2 report.txt와 chown :ops report.txt, 그리고 그 뒤의 소유자 user1 · 그룹 ops가 있다",
+      "question": "누가 파일의 주인을 바꿀 수 있을까?",
+      "idleCaption": "소유자 user1 · 그룹 dev는 바꾸기 전 report.txt의 소유자와 그룹이고, root와 user1이 저마다 chown 명령을 입력한다. 버튼을 고르면 누가 무엇을 바꿀 수 있고 바꾼 뒤 report.txt가 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 명령을 입력하는 사람에서 명령으로, 명령에서 바꾼 뒤의 소유자와 그룹으로 간다. 명령 뒤로 화살표가 없으면 그 명령은 거부되어 아무것도 바뀌지 않는다.",
+      "nodes": {
+        "before": "소유자 user1 · 그룹 dev",
+        "root": "root",
+        "user1": "user1",
+        "cmd-root": "chown user2:dev report.txt",
+        "after-root": "소유자 user2 · 그룹 dev",
+        "cmd-deny": "chown user2 report.txt",
+        "cmd-group": "chown :ops report.txt",
+        "after-group": "소유자 user1 · 그룹 ops"
+      },
+      "notes": {
+        "before-note": "바꾸기 전",
+        "root-after-note": "바꾼 뒤",
+        "deny-note": "거부 — 소유자는 그대로",
+        "group-after-note": "바꾼 뒤"
+      },
+      "scenarios": [
+        {
+          "id": "root-owner",
+          "label": "root가 소유자 바꾸기",
+          "caption": "root가 chown user2:dev report.txt를 입력하면 report.txt의 소유자가 user2로 바뀌고 그룹은 적은 대로 dev다. 파일의 소유자를 다른 사용자로 바꾸는 일은 root만 할 수 있다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        },
+        {
+          "id": "owner-denied",
+          "label": "소유자가 넘기려 하면",
+          "caption": "파일의 소유자 user1이 chown user2 report.txt로 자기 파일을 user2에게 넘기려 하면 시스템이 그 요청을 거부한다. 소유자라도 소유자를 남에게 넘길 수는 없어서, report.txt의 소유자는 user1 그대로다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        },
+        {
+          "id": "owner-group",
+          "label": "소유자가 그룹 바꾸기",
+          "caption": "user1은 ops 그룹에도 들어서, chown :ops report.txt로 자기 파일의 그룹을 ops로 바꿀 수 있다. 소유자는 그룹을 자기가 속한 그룹으로만 바꿀 수 있고, 소유자는 user1 그대로다.",
+          "sources": [
+            "linux-permissions.chown"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-permissions.chown"
+      ]
     }
   },
   "tables": {},

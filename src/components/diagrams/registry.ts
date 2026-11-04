@@ -15,6 +15,7 @@ import { BandwidthDiagram } from './BandwidthDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
+import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
@@ -147,6 +148,7 @@ import { SubnettingDiagram } from './SubnettingDiagram'
 import { SwapSpaceDiagram } from './SwapSpaceDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
+import { SymbolicModeDiagram } from './SymbolicModeDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
@@ -362,6 +364,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-permissions.file-type-char': FileTypeCharDiagram,
   'linux-permissions.octal-mode': OctalModeDiagram,
   'linux-permissions.chmod': ChmodChangeDiagram,
+  'linux-permissions.symbolic-mode': SymbolicModeDiagram,
+  'linux-permissions.chown': ChownChangeDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

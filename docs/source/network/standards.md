@@ -53,6 +53,7 @@ POSIX 2024년판(pubs.opengroup.org의 `onlinepubs/9799919799/`)은 HTML판을 �
 POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지를, man7.org는 페이지를 내려받아 읽었다. GNU Coreutils 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`coreutils.html`, 9.12)을 내려받아 절 번호로 적는다.
 특수 비트(setuid·setgid·sticky)·ACL·umask의 계산은 기출이 묻지 않아 사실로 가져오지 않았고, 그것이 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 「(phase 75 step 9)」가 붙은 줄은 step 9(`linux-permissions.permission-string`·`file-type-char`)가 본문에 쓰려고 같은 문서를 다시 읽어 더한 사실이다(확인한 날 2026-10-30) — `ls -l`의 크기·날짜 칸과 심볼릭 링크의 이름 칸, `ln`의 꼴, 이름을 지울 때의 동작.
+「(phase 75 step 11)」이 붙은 줄은 step 11(`linux-permissions.symbolic-mode`·`chown`)이 본문·도식에 쓰려고 chown(2)을 다시 읽어 더한 사실이다(확인한 날 2026-11-04) — 권한 없이 소유자를 바꾸려는 요청이 거부된다는 것.
 
 ---
 
@@ -2755,6 +2756,9 @@ https://man7.org/linux/man-pages/man2/chown.2.html
   `:그룹` 꼴은 GNU 문서가 적은 꼴이다 — POSIX의 operand는 `owner[:group]`이다(아래 「(phase 75 step 7) POSIX.1-2024」 항목)
 - (phase 75 step 7) **chown(2)**: 특권 프로세스(CAP_CHOWN)는 그룹도 아무 그룹으로나 바꿀 수 있다. 소유자나 그룹 자리에 -1을 주면 그 값은 바꾸지 않는다 — DESCRIPTION.
   정리하면 「소유자를 바꾸는 일은 특권 프로세스(root)만, 그룹을 바꾸는 일은 파일의 소유자도(자기가 속한 그룹으로만)」다 — `exam-notes.md` E22
+- (phase 75 step 11) **chown(2)** — ERRORS: 호출한 프로세스에 소유자나 그룹을 바꿀 권한(위 DESCRIPTION의 규칙)이 없으면 EPERM으로 실패한다. 파일에 immutable·append-only 속성이 붙어 있어도 EPERM이다.
+  그래서 본문·도식은 「소유자 `user1`이 `chown user2 report.txt`로 자기 파일을 넘기려 하면 시스템이 그 요청을 거부한다」고 쓴다. `chown`이 그때 무엇을 출력하는지는 chown(1)에 없어 보이지 않는다 —
+  Linux man-pages 6.19(2026-02-08), 2026-11-04에 man7.org에서 다시 읽음
 
 위 capabilities(7)(root는 커널의 권한 검사를 모두 건너뛴다)과 함께, 「모든 사용자의 쓰기 권한을 빼도, 소유자를 root로 바꿔도 root가 그 파일을 고치고 지우는 일은 막지 못한다」를 쓴다.
 `chmod`·`chown`의 자세한 쓰임(수 모드·기호 모드·`-R`)은 `linux-permissions`(step 7 이후)가 다시 확인한다
@@ -2763,6 +2767,8 @@ https://man7.org/linux/man-pages/man2/chown.2.html
 chown(1)·chown(2) — `chown root`, capabilities(7) — root는 권한 검사를 받지 않는다).
 (phase 75 step 7) `linux-permissions.octal-mode`(chmod(1) 수 모드 — 4·2·1, 자리 차례, 앞자리 0), `linux-permissions.chmod`(chmod(1) `-R`, chmod(2) — 바꿀 수 있는 사람), `linux-permissions.symbolic-mode`(chmod(1) `+`·`-`·`=`·쉼표·umask),
 `linux-permissions.chown`(chown(1) 꼴 셋과 `-R`, chown(2) — 소유자는 특권만·그룹은 소유자도), `exam-notes.md` E22
+(phase 75 step 11) `linux-permissions.symbolic-mode`(chmod(1) 기호 모드 — `+`·`-`·`=`, 쉼표), `linux-permissions.chown`(chown(1) — `chown user2`·`chown user2:dev`·`chown :ops`·`-R`, chown(2) — 소유자는 root만·그룹은 소유자가 자기 그룹으로, ERRORS EPERM — 거부),
+도식 `SymbolicModeDiagram`·`ChownChangeDiagram`(「거부」 곁말은 chown(2) ERRORS), 문항 n131(chmod(1) 기호 모드), n132(chown(1) 꼴, chown(2) — 실행하는 사람은 root)
 
 ## (phase 75 step 7) POSIX.1-2024 — Shell and Utilities: chmod, ls, chown, chgrp, rm, cd / System Interfaces: chown(), unlink(), open(), opendir(), chdir()
 https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chmod.html
@@ -2817,6 +2823,8 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 `cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
 (phase 75 step 9) `linux-permissions.permission-string`(ls STDOUT — 크기 칸, POSIX 로캘의 날짜 꼴), `linux-permissions.file-type-char`(ls STDOUT — 심볼릭 링크의 이름 칸 `latest -> report.txt`)
 (phase 75 step 10) `linux-permissions.chmod`(chmod EXTENDED DESCRIPTION — 수 모드는 절대값이라 `chmod 640`이 그 밖의 읽기 비트를 끈다, DESCRIPTION — 바꾸는 사람은 소유자나 특권이라 쓰기 권한이 있는 그룹 사용자는 못 바꾸고 소유자는 아홉 비트를 다 꺼도 다시 켠다, OPTIONS `-R` — 디렉터리와 그 아래 전체에 같은 모드), 문항 n128·n129(chmod 수 모드의 표 — 4·2·1), n130(chmod DESCRIPTION)
+(phase 75 step 11) `linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION — `u`·`g`·`o`·`a`, `a`는 `ugo`, `+`·`-`·`=`의 동작, 절은 적은 차례대로, 수 모드는 절대값이라 원래 권한에 따라 `664`와 `g+w`의 결과가 갈린다),
+`linux-permissions.chown`(chown OPERANDS — `owner[:group]`의 차례, chgrp DESCRIPTION, chown() 함수 — 소유자를 바꾸는 일은 특권만), 문항 n131·n132
 
 ## (phase 75 step 7) GNU Coreutils 매뉴얼 — 27 File permissions, 10.1.2 What information is listed, 12.2 ln, 12.5 mknod, 13.1 chown, 13.2 chgrp, 13.3 chmod
 https://www.gnu.org/software/coreutils/manual/coreutils.html
@@ -2854,6 +2862,7 @@ GNU Coreutils 9.12 매뉴얼(Texinfo 7.2로 만든 HTML, Copyright 1994–2026).
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(27.1 — 세 부류, 새 파일의 소유자), `linux-permissions.rwx-permissions`(27.1 — 파일·디렉터리에서 읽기·쓰기·실행의 뜻, 27.2.1 — 디렉터리 쓰기 권한이 있으면 남의 파일도 지운다),
 `linux-permissions.permission-string`(10.1.2 — `-l`의 칸, 모드 뒤 한 글자), `linux-permissions.file-type-char`(10.1.2 — 종류 글자, 12.2 — 하드 링크·심볼릭 링크, 12.5 — 블록·문자 장치), `linux-permissions.octal-mode`(27.3),
 `linux-permissions.chmod`(13.3), `linux-permissions.symbolic-mode`(27.2.1·27.2.5·27.2.6, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1·13.2)
+(phase 75 step 11) `linux-permissions.symbolic-mode`(27.2.1 — 누구·연산·권한, `=`는 적은 권한만 갖게, 27.2.5 — 쉼표로 여럿, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1 — `소유자`·`소유자:그룹`·`:그룹` 꼴, 이식성 있는 동작은 자기가 속한 그룹으로만, 13.2 — chgrp)
 
 ## (phase 75 step 7) Linux man-pages — path_resolution(7), inode(7), link(2), symlink(7), open(2), rename(2), rmdir(2), tty(4), null(4); GNU coreutils — ls(1), ln(1), chgrp(1)
 https://man7.org/linux/man-pages/man7/path_resolution.7.html
