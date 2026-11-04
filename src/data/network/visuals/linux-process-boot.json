@@ -181,6 +181,100 @@
         }
       ],
       "sources": ["linux-process-boot.process-commands"]
+    },
+    "free-memory": {
+      "label": "free 명령이 보인 메모리 쪽 여섯 칸과 스왑 쪽 세 칸을 칸 이름과 값으로 나눠, used를 구하는 셈, free와 available의 차이, 스왑의 양을 보이는 도식",
+      "svgLabel": "메모리 쪽 칸 테두리 안에 total 8000000, used 3000000, free 1200000, shared 100000, buff/cache 4000000, available 5000000이, 스왑 쪽 칸 테두리 안에 total 2000000, used 0, free 2000000이 칸 이름과 값의 짝으로 놓여 있다",
+      "question": "메모리는 얼마나 남았을까?",
+      "idleCaption": "free를 입력해 나온 칸을 메모리 쪽과 스왑 쪽으로 나눠 이름과 값으로 놓았다. 값은 예로 든 것이고 단위는 KiB다. 버튼을 고르면 used를 구하는 셈, free와 available의 차이, 스왑 쪽 칸을 볼 수 있다.",
+      "legend": "칸 이름과 그 값을 나란히 놓았고, 칸은 free가 보이는 차례대로 놓았다.",
+      "nodes": {
+        "mem-total-name": "total",
+        "mem-total": "8000000",
+        "mem-used-name": "used",
+        "mem-used": "3000000",
+        "mem-free-name": "free",
+        "mem-free": "1200000",
+        "mem-shared-name": "shared",
+        "mem-shared": "100000",
+        "mem-cache-name": "buff/cache",
+        "mem-cache": "4000000",
+        "mem-avail-name": "available",
+        "mem-avail": "5000000",
+        "swap-total-name": "total",
+        "swap-total": "2000000",
+        "swap-used-name": "used",
+        "swap-used": "0",
+        "swap-free-name": "free",
+        "swap-free": "2000000"
+      },
+      "groups": {
+        "mem": "메모리 쪽 칸",
+        "swap": "스왑 쪽 칸"
+      },
+      "notes": {
+        "calc": "8000000 − 5000000 = 3000000"
+      },
+      "scenarios": [
+        {
+          "id": "used",
+          "label": "used",
+          "caption": "used는 total에서 available을 빼서 구한다. total의 8000000에서 available의 5000000을 빼면 3000000이 되고, 이것이 used 칸의 값이다.",
+          "sources": ["linux-process-boot.free-command"]
+        },
+        {
+          "id": "available",
+          "label": "free와 available",
+          "caption": "free 칸의 1200000은 아무 데도 쓰이지 않은 메모리만 센 값이다. available 칸의 5000000은 buff/cache의 캐시처럼 비워서 내줄 수 있는 몫까지 넣어 어림한 값이라, 새 프로그램을 시작할 여유는 available로 본다.",
+          "sources": ["linux-process-boot.free-command"]
+        },
+        {
+          "id": "swap",
+          "label": "스왑",
+          "caption": "스왑 쪽 칸은 메모리가 모자랄 때 커널이 내용을 옮겨 두는 디스크의 공간을 보인다. total 2000000 가운데 used가 0이고 free가 2000000이라, 스왑 공간을 아직 조금도 쓰지 않았다.",
+          "sources": ["linux-process-boot.free-command"]
+        }
+      ],
+      "sources": ["linux-process-boot.free-command"]
+    },
+    "daemon-service": {
+      "label": "데몬 sshd가 부팅할 때 systemd에 의해 켜지고, 부팅 뒤에는 관리자의 요청을 받은 systemd가 켜며, 켜진 뒤에는 터미널 없이 다른 컴퓨터의 접속을 기다린다는 것을 보이는 도식",
+      "svgLabel": "왼쪽 위에 관리자, 그 아래에 PID 1 systemd가 있고, 오른쪽에 812 sshd와 다른 컴퓨터가 있다",
+      "question": "데몬은 언제 켜지고 무엇을 할까?",
+      "idleCaption": "관리자, PID 1로 실행된 systemd, 데몬 sshd, 원격으로 접속해 오는 다른 컴퓨터를 놓았다. 번호 812는 예로 붙인 것이다. 버튼을 고르면 sshd가 언제 누구에 의해 켜지고 켜진 뒤 무엇을 하는지 볼 수 있다.",
+      "legend": "화살표는 요청이나 실행이 가는 방향이다.",
+      "nodes": {
+        "admin": "관리자",
+        "pid1": "PID 1 systemd",
+        "sshd": "812 sshd",
+        "remote": "다른 컴퓨터"
+      },
+      "notes": {
+        "boot": "부팅할 때 실행",
+        "manual": "systemctl로 요청",
+        "waiting": "터미널 없이 접속을 기다림"
+      },
+      "scenarios": [
+        {
+          "id": "boot",
+          "label": "부팅 때",
+          "caption": "부팅하는 동안 PID 1로 실행된 systemd가 켜 두기로 정한 데몬들을 실행하고, 원격 접속을 받는 데몬 sshd도 대개 이때 시작된다.",
+          "sources": ["linux-process-boot.daemon"]
+        },
+        {
+          "id": "manual",
+          "label": "부팅 뒤",
+          "caption": "부팅이 끝난 뒤에도 관리자가 systemctl 명령으로 systemd에 요청하면, 요청을 받은 systemd가 멈춰 있던 sshd를 실행하거나 실행 중인 sshd를 멈춘다.",
+          "sources": ["linux-process-boot.daemon"]
+        },
+        {
+          "id": "waiting",
+          "label": "요청 기다리기",
+          "caption": "sshd는 어느 터미널에도 딸리지 않고 백그라운드에서 계속 실행되며, 다른 컴퓨터가 원격으로 접속해 오기를 기다린다. 접속이 들어오면 그 접속을 맡을 새 sshd 프로세스를 자식으로 만든다.",
+          "sources": ["linux-process-boot.daemon"]
+        }
+      ],
+      "sources": ["linux-process-boot.daemon"]
     }
   },
   "tables": {},

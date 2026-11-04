@@ -2758,6 +2758,11 @@ cal(1)은 util-linux 2.43 개발판(2026-05-24), file(1)은 file 프로젝트의
   **출력 예와 줄 이름(`Mem:`·`Swap:`)은 이 페이지에 없다** — 칸 이름과 「물리 메모리·스왑 메모리」 두 가지만 있다. 스왑 쪽 used를 어떻게 셈하는지도 이 페이지는 따로 적지 않는다
   (top(1)의 요약 영역은 물리 메모리 used를 MemTotal − MemAvailable, 스왑 used를 SwapTotal − SwapFree로 적는다 — 아래 「(phase 76) procps-ng」 항목). 「가상 메모리」라는 말은 이 페이지에 없다 — `exam-notes.md` E24
 - (phase 76) **du(1)**: 위 줄 그대로다(GNU coreutils 9.11, 2026-11-04에 다시 읽음). 파일 시스템의 남은 양을 보이는 df(1)은 아래 「(phase 76) GNU coreutils」 항목
+- (phase 76 step 3) **proc_meminfo(5)**·**tmpfs(5)** — 2026-11-05에 읽음(Linux man-pages 6.19, 2026-02-08): Buffers는 디스크 블록 원본을 비교적 잠시 담아 두는 저장 공간이고 아주 커지지는 않는다.
+  Cached는 디스크에서 읽은 파일을 메모리에 담아 둔 캐시(페이지 캐시)다. Shmem은 tmpfs 파일 시스템과 공유 메모리가 쓰는 메모리다 — proc_meminfo(5) 각 항목.
+  tmpfs는 내용이 가상 메모리에 놓이는 파일 시스템을 만들게 하고, 그 파일들은 대개 RAM에 있어 읽고 쓰기가 아주 빠르다 — tmpfs(5) DESCRIPTION.
+  https://man7.org/linux/man-pages/man5/proc_meminfo.5.html · https://man7.org/linux/man-pages/man5/tmpfs.5.html
+  (쓰인 곳: `linux-process-boot.free-command` 셋째 문단의 `buff/cache`·캐시·버퍼·`shared`·tmpfs의 풀이, n150 해설)
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.etc-directory`(shadow(5) — 암호 정보, 일반 사용자가 읽지 못한다), `linux-filesystem.proc-filesystem`(free(1)이 /proc/meminfo를 읽는다 — 쓸지는 그 step이 정한다),
 `exam-notes.md`의 「phase 75 step 0」 문단(du·cal·stat·file — 기출 보기의 판정)

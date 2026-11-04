@@ -37,6 +37,7 @@ import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
 import { DataTransferCostsDiagram } from './DataTransferCostsDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
@@ -85,6 +86,7 @@ import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
+import { FreeMemoryDiagram } from './FreeMemoryDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
@@ -465,6 +467,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.ps-command': PsColumnsDiagram,
   'linux-process-boot.top-command': TopScreenDiagram,
   'linux-process-boot.process-commands': ProcessControlDiagram,
+  'linux-process-boot.free-command': FreeMemoryDiagram,
+  'linux-process-boot.daemon': DaemonServiceDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
