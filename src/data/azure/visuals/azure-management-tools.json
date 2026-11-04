@@ -108,6 +108,59 @@
       "sources": [
         "azure-management-tools.cloud-shell"
       ]
+    },
+    "azure-arc": {
+      "label": "Azure 밖에서 실행되는 회사 A의 온-프레미스 서버와 다른 클라우드의 VM을 Azure Arc로 연결해, 서버는 그 자리에 둔 채 Azure Resource Manager에 리소스로 나타나게 하고 Azure Policy·역할·태그로 함께 관리하는 모습",
+      "svgLabel": "Azure 밖 칸에 온-프레미스 서버와 다른 클라우드의 VM이 있고, Azure 칸에 Azure Resource Manager와 Azure Policy가 있으며, 두 칸 사이에 Azure Arc가 있다",
+      "question": "Azure 밖에 있는 서버를 어떻게 Azure에서 함께 관리할까?",
+      "idleCaption": "회사 A의 온-프레미스 서버와 다른 클라우드의 VM은 Azure 밖에서 실행된다. 버튼을 고르면 Azure Arc 없이 관리할 때와, Azure Arc로 연결해 Azure에서 함께 관리할 때를 볼 수 있다.",
+      "legend": "화살표는 Azure에서 관리하려고 잇는 연결과 관리가 가는 방향이고, 서버가 옮겨 가는 길이 아니다. 두 칸은 Azure 밖과 Azure를 나눈 것이고, 서버는 어느 장면에서도 Azure 밖 칸에 있다.",
+      "nodes": {
+        "server-1": "온-프레미스 서버",
+        "other-vm": "다른 클라우드의 VM",
+        "arc": "Azure Arc",
+        "arm": "Azure Resource Manager",
+        "policy": "Azure Policy"
+      },
+      "groups": {
+        "g-outside": "Azure 밖",
+        "g-azure": "Azure"
+      },
+      "notes": {
+        "without-note": "환경마다 따로 관리한다",
+        "connect-note": "Azure 리소스처럼 나타난다",
+        "govern-note": "정책·역할·태그로 관리한다",
+        "stay-note": "서버는 옮겨지지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "without",
+          "label": "Arc 없이",
+          "caption": "Azure Arc를 쓰기 전 회사 A는 온-프레미스 서버를 회사가 쓰던 관리 도구로, 다른 클라우드의 VM을 그 클라우드의 관리 도구로 따로 다룬다. 흐리게 둔 Azure Arc와 Azure 칸의 서비스는 이 장면에서 아직 쓰지 않을 뿐이다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        },
+        {
+          "id": "connect",
+          "label": "Arc로 연결하면",
+          "caption": "Azure Arc로 두 서버를 연결하면 서버는 원래 자리에서 그대로 실행되고, Azure Resource Manager에 서버마다 그 서버를 가리키는 리소스가 생긴다. 이 리소스는 Azure의 VM과 같은 리소스 그룹에 넣고 Azure 포털에서 함께 본다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        },
+        {
+          "id": "govern",
+          "label": "함께 관리하기",
+          "caption": "Azure Resource Manager에 나타난 서버에 Azure 리소스처럼 관리 기능을 쓴다. Azure Policy로 설정이 규칙에 맞는지 살피고, 역할로 다룰 사람을 정하고, 태그를 붙인다. 서버는 회사 A의 데이터 센터에 그대로 있다. 이 장면은 온-프레미스 서버 하나를 예로 들었고, 흐리게 둔 다른 클라우드의 VM도 같은 방식으로 관리한다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-management-tools.azure-arc"
+      ]
     }
   },
   "tables": {

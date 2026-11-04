@@ -434,7 +434,7 @@ describe('CloudShellDiagram', () => {
     const slugs = ['cloud-shell', 'azure-powershell', 'azure-cli']
     const own = slugs.map((slug) => concepts.find(({ id }) => id === `${topicId}.${slug}`)!)
 
-    expect(concepts.slice(-3).map(({ id }) => id)).toEqual(slugs.map((slug) => `${topicId}.${slug}`))
+    expect(concepts.slice(2, 5).map(({ id }) => id)).toEqual(slugs.map((slug) => `${topicId}.${slug}`))
     for (const concept of own) {
       expect(concept.parentId).toBeUndefined()
       const text = [concept.summary, ...concept.paragraphs].join(' ')

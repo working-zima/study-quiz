@@ -14,6 +14,7 @@ import { AuthVsAuthzDiagram } from './AuthVsAuthzDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
+import { AzureArcDiagram } from './AzureArcDiagram'
 import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
@@ -487,6 +488,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-management-tools.management-tools': ToolAccessDiagram,
   'azure-management-tools.cloud-shell': CloudShellDiagram,
   'azure-management-tools.azure-cli': CommandToolsTable,
+  'azure-management-tools.azure-arc': AzureArcDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

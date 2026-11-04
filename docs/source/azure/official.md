@@ -711,6 +711,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-desc
 - 한국어 표기: on-premises datacenter → **온-프레미스 데이터 센터**, cloud provider → 클라우드 공급자, consumer → 소비자, shared responsibility model → 공유 책임 모델(학습 가이드 한국어판은 「공동 책임 모델」 — step 4 메모)
 
 쓰인 곳: `azure-cloud-models.hybrid-cloud`(온-프레미스를 푸는 한 줄), `azure-cloud-models.public-cloud`·`azure-cloud-models.private-cloud`(하드웨어와 데이터 센터를 누가 갖추고 관리하나), D11·D13
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(온-프레미스를 푸는 한 줄 — 회사가 자기 건물 안의 데이터 센터에서 직접 운영하는 환경)
 
 - 공유 책임 모델에서는 온-프레미스에서 조직이 지던 책임을 클라우드 공급자와 소비자가 나눠 진다 — 「How responsibilities shift in cloud」 둘째 문단 (phase 101)
 - 클라우드에 저장한 데이터와 정보는 소비자가 맡는다(공급자가 그 정보를 읽게 두고 싶지 않을 것이므로). 접근 보안 — 필요한 사람에게만 접근을 주는 것 — 도 소비자가 맡는다 — 같은 절 셋째 문단 (phase 101)
@@ -770,6 +771,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-h
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5·단원 4 한국어판을 따른다(온-프레미스)
 
 쓰인 곳: `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`, `CloudModelsTable`(하이브리드 행), D12·D13·D14, [덤프 NO.125·268·339](온-프레미스와 클라우드를 이은 것을 하이브리드로 보는 근거), [용어집 1-8] 확인
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(하이브리드를 푸는 한 줄 — 온-프레미스를 퍼블릭 클라우드와 이어 함께 쓰는 것)
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is multicloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-multi-cloud
@@ -785,6 +787,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-m
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5 한국어판을 따른다(다중 클라우드)
 
 쓰인 곳: `azure-cloud-models.multicloud`, `CloudModelsTable`(다중 클라우드 행), [용어집 1-28] 확인
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(다중 클라우드를 푸는 한 줄 — Azure와 다른 클라우드 공급자의 서비스를 함께 쓰는 것)
 
 ## (phase 100) Azure Arc — Azure Arc overview
 https://learn.microsoft.com/en-us/azure/azure-arc/overview
@@ -808,7 +811,8 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 - Azure 밖에서 실행 중인 대상을 Resource Manager에 리소스로 나타내 관리한다. 이 문서의 projecting은 서버를 Azure로 이전한다는 뜻이 아니다. 서버 개요가 외부 호스트와 Azure 안의 표현을 구별한다 — 첫 목록, 아래 「What is Azure Arc-enabled servers?」 항목 (phase 107)
 - Azure Policy로 설정의 준수를 살피고, 역할로 접근을 정하며, 태그로 대상을 묶어 보고, 모니터링 서비스를 연결할 수 있다. 기능과 지원 범위는 연결한 대상에 따라 다르다 — 「Key features and benefits」, 「Pricing > Azure Arc-enabled servers」, 아래 서버·Kubernetes 개요 (phase 107)
 - 한국어 표기: Kubernetes 클러스터, SQL Server, Azure 데이터 서비스(한국어판의 대상 이름). 「투영」은 본문에서 「Azure에서 관리할 리소스로 나타나게 한다」로 푼다. (phase 107)
-쓰일 곳: `azure-management-tools.azure-arc`, `AzureArcDiagram`, D118. (phase 107)
+- 연결한 리소스는 Azure 포털, Azure CLI, Azure PowerShell, REST API 가운데 무엇을 쓰든 같은 방식으로 보인다 — 「Key features and benefits」 마지막 항목 (phase 107 step 7)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(흩어진 환경마다 관리 도구가 따로 있다는 문제, Resource Manager에 리소스로 나타나게 한다, 지금 대상 네 묶음 — Windows·Linux 물리 서버와 VM, Kubernetes 클러스터, SQL Server, Azure 데이터 서비스, 옮기지 않는다, 정책·역할·태그·모니터링을 Azure 리소스처럼, 기능과 범위는 대상에 따라 다르다, 포털·CLI·PowerShell·REST API로 같은 방식으로 본다), `AzureArcDiagram`, az172·az173 해설, D118
 
 ---
 
@@ -1024,6 +1028,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 쓰인 곳(phase 103 step 3): `azure-compute.containers`(앱 코드와 필요한 라이브러리를 한 꾸러미로 묶어 어디서든 같게 실행, VM과 다른 점 — 호스트의 운영 체제를 함께 쓴다, 운영 체제를 새로 시작하지 않아 가볍다, 덜 격리된다, 마이크로 서비스는 서비스마다 자기 컨테이너에서 따로 고치고 늘리고 배포), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트의 운영 체제 하나를 함께 쓴다), az062 해설, D53·D55
 
 쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(컨테이너를 푸는 한 줄 — 앱 코드와 그 코드를 실행하는 데 필요한 것을 한 꾸러미로 묶은 것)
 
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
@@ -2185,6 +2190,7 @@ https://learn.microsoft.com/en-us/azure/aks/what-is-aks
 - 한국어 표기: 「AKS(Azure Kubernetes Service)」, managed Kubernetes service → 관리되는 Kubernetes 서비스
 
 쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목 — Kubernetes를 바탕으로 하고 Kubernetes를 운영하는 부담을 Azure가 덜어 준다. 모드와 고객이 맡는 노드는 쓰지 않았다), az063·az064 해설, G31
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(AKS를 푸는 한 줄 — Azure가 Kubernetes를 운영하는 일을 덜어 주는 서비스)
 
 ## (phase 103) Azure Architecture Center — Choose an Azure container service
 https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-container-service
@@ -2544,6 +2550,7 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateway
 - 한국어 표기: 제품 이름 Azure VPN Gateway, 리소스 VPN 게이트웨이, 가상 네트워크 게이트웨이, 사이트 간(이 문서 한국어판에 「사이트 및 사이트 간」도 섞인다), 지점 및 사이트 간, VNet 간, 온-프레미스 VPN 디바이스
 
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(연결을 여럿 만든다), `azure-virtual-networking.vpn-connection-types`(사이트 간·지점 및 사이트 간·VNet 간의 두 끝), `SiteToSiteVpnDiagram`
+쓰인 곳(phase 107 step 7): az172 해설(오답 Azure VPN Gateway를 푸는 한 줄 — 회사 네트워크와 Azure의 가상 네트워크 사이에 암호화된 연결을 만든다)
 
 ## (phase 103) Azure VPN Gateway — Tutorial: Create a site-to-site VPN connection in the Azure portal
 https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
@@ -3428,7 +3435,7 @@ https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
 
 다시 확인한 날 2026-11-04. 영문 사본을 다시 받았다. (phase 107)
 - Azure Migrate는 Azure로 이전할 대상을 평가하고 이전을 계획·실행하게 돕는다. Azure 밖의 서버를 그 위치에 두고 연결해 관리하는 Arc와 견주는 한 줄에 쓴다 — 「첫 문단」, 「Benefits of Azure Migrate」 (phase 107)
-쓰일 곳: `azure-management-tools.azure-arc`의 Azure Migrate 뜻풀이와 차이. (phase 107)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Azure Migrate를 푸는 한 줄 — 옮길 수 있는지 평가하고 이전을 계획하고 실행하게 돕는다, Arc는 옮기지 않는다는 차이), az172·az173 해설
 
 ## (phase 104) Azure Data Box — What is Azure Data Box?
 https://learn.microsoft.com/en-us/azure/databox/data-box-overview
@@ -3567,6 +3574,8 @@ https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-
 - 한국어 표기: Microsoft Entra Connect, 온-프레미스, 동기화 — 제목 「Microsoft Entra Connect란?」
 
 쓰인 곳(phase 105 step 1): `azure-identity.entra-connect`, `EntraConnectDiagram`
+
+쓰인 곳(phase 107 step 7): az172 해설(오답 Microsoft Entra Connect를 푸는 한 줄 — 회사 안 디렉터리의 사용자와 그룹 정보를 Microsoft Entra ID로 동기화하는 프로그램)
 
 ## (phase 105) Microsoft Entra — Microsoft Entra Connect Sync와 쓰기 저장
 https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis
@@ -4960,7 +4969,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manag
 - 어디에 있는지와 상관없이 관리 기능을 쓰는 것이 목적이며, 온-프레미스 서버가 Azure 데이터 센터로 이동한다는 뜻으로 쓰지 않는다 — 첫 목록과 서버 제품 개요
 - 한국어 표기: Azure Arc(그대로), 하이브리드, 다중 클라우드.
 
-쓰일 곳: `azure-management-tools.azure-arc`, `AzureArcDiagram`, D118.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(온-프레미스와 여러 클라우드를 함께 관리, 대상은 제품 개요의 현행 네 묶음, 서버가 Azure로 옮겨지지 않는다), `AzureArcDiagram`, az172·az173 해설, D118
 
 ## (phase 107) Azure 모바일 앱 — What is the Azure mobile app?
 https://learn.microsoft.com/en-us/azure/azure-portal/mobile-app/overview
@@ -5190,7 +5199,7 @@ https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview
 - 설정 준수 점검과 성능·로그 수집 같은 관리 서비스를 쓸 수 있다. 이 주제에서는 정책·역할·태그·모니터링의 이름과 역할만 쓰고 에이전트 설치 절차·상태 시간·미리 보기 기능은 쓰지 않는다 — 「Supported cloud operations」, Arc 개요의 기능·역할·태그 목록
 - 한국어 표기: Azure Arc 지원 서버, 에이전트, 리소스. 개념 이름은 **Azure Arc**로 둔다.
 
-쓰일 곳: `azure-management-tools.azure-arc`, `AzureArcDiagram`, D118; NO.83·254·481.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(회사 네트워크나 다른 클라우드의 Windows·Linux 서버와 VM, Azure에 그 서버를 가리키는 리소스가 생긴다, 리소스 ID를 받고 리소스 그룹에 넣는다, 서버는 원래 자리에서 실행 — 에이전트와 설치 절차는 쓰지 않았다), `AzureArcDiagram`, az172·az173 해설, D118; NO.83·254·481
 
 ## (phase 107) Azure Arc — What is Azure Arc-enabled Kubernetes?
 https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview
@@ -5202,7 +5211,7 @@ https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview
 - NO.232의 AKS 진술은 함께 목록을 보고 관리하는 이 범위로 해석한다. Arc로 AKS를 옮기거나 AKS의 모든 관리 기능을 대체한다고 하지 않는다 — 같은 절
 - 한국어 표기: Kubernetes 클러스터(한국어판).
 
-쓰일 곳: `azure-management-tools.azure-arc`, `AzureArcDiagram`, D118.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(연결한 클러스터마다 Resource Manager에 리소스가 생긴다, AKS 클러스터와 함께 목록에서 보고 Azure Policy와 역할로 관리한다), D118
 
 ## (phase 107) Azure Kubernetes Service — Core concepts for Azure Kubernetes Service (Kubernetes 풀이만)
 https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
@@ -5214,7 +5223,7 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 - AKS의 두 운영 모드·노드 구성·내부 구성 요소·지원 종료 이력은 이 주제에 쓰지 않는다. 모든 Kubernetes 노드가 반드시 VM이라는 뜻으로 넓히지 않는다.
 - 한국어 표기: Kubernetes, 클러스터. 「쿠버네티스」와 번갈아 쓰지 않는다.
 
-쓰일 곳: `azure-management-tools.azure-arc`의 Kubernetes 클러스터 풀이.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Kubernetes — 컨테이너로 만든 앱을 여러 컴퓨터에 배치하고 필요한 만큼 늘리고 관리하는 일을 자동으로 하는 도구, Kubernetes 클러스터 — 컨테이너 앱을 실행하는 컴퓨터들과 그 실행을 조정하는 부분을 묶은 환경)
 
 ## (phase 107) 도식·표의 사실 — `azure-management-tools`
 
@@ -5230,7 +5239,7 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 
 쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(칸 셋과 곁말 셋 — 브라우저 곁말은 「설치 없이 연다」, 휴대폰 칸 이름은 「휴대폰 앱」, 화살표 다섯은 관리 요청), 개념 `azure-management-tools.management-tools`; D119·D120·D121.
 쓰인 곳(phase 107 step 6): `CloudShellDiagram`(바깥 칸 Azure Cloud Shell 안에 셸 Bash·PowerShell과 안쪽 칸 「미리 설치된 도구」의 Azure CLI·Azure PowerShell 하나씩 — 셸마다 두 도구를 따로 그리지 않았다, Bash 장면은 Azure CLI만 밝히고 흐린 Azure PowerShell은 캡션으로 한정, Bash에서 Azure PowerShell로 가는 화살표 없음, 파일 장면은 스토리지 계정을 밝히고 곁말 「붙이면 파일이 남는다」), `CommandToolsTable`(세 행 — 칸에 백틱·명령 이름 없이 「동사-명사 꼴의 cmdlet」·「az로 시작하는 명령」·「따로 없고 두 도구의 명령을 쓴다」), 개념 `azure-management-tools.cloud-shell`·`azure-cli`; D113~D116, G64.
-쓰일 곳: `AzureArcDiagram`; 개념 `azure-management-tools.azure-arc`; D118.
+쓰인 곳(phase 107 step 7): `AzureArcDiagram`(「Azure 밖」 칸에 온-프레미스 서버·다른 클라우드의 VM, 「Azure」 칸에 Azure Resource Manager·Azure Policy, 두 칸 사이에 Azure Arc, 서버는 어느 장면에서도 Azure 밖 칸에 있다, 곁말 「환경마다 따로 관리한다」·「Azure 리소스처럼 나타난다」·「정책·역할·태그로 관리한다」·「서버는 옮겨지지 않는다」, Arc 없이 장면은 회사 A의 예로 한정), 개념 `azure-management-tools.azure-arc`; D118.
 
 ## (phase 107) 한국어 표기 정리 — `azure-management-tools`
 
@@ -5251,4 +5260,4 @@ https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
 
 쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 관리 도구, 목록 이름 여섯 — Azure 포털·Azure 모바일 앱에 영문 이름을 괄호로), `azure-management-tools.azure-portal`(Azure 포털), `ToolAccessDiagram`; D119·D120·D121.
 쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(Azure Cloud Shell, 셸, 임시 세션), `azure-management-tools.azure-powershell`(Azure PowerShell, Az PowerShell 모듈, cmdlet), `azure-management-tools.azure-cli`(Azure CLI, 명령줄 인터페이스, 명령 프롬프트), `CloudShellDiagram`, `CommandToolsTable`; D113~D116, G64.
-쓰일 곳: `azure-management-tools.azure-arc`와 `AzureArcDiagram`. D118.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Azure Arc, Kubernetes 클러스터, SQL Server, Azure 데이터 서비스, 온-프레미스·하이브리드·다중 클라우드·컨테이너를 이 주제에서 다시 풀었다, 「투영」 대신 「Azure Resource Manager에 나타나게 한다」), `AzureArcDiagram`. D118.
