@@ -366,6 +366,108 @@
         }
       ],
       "sources": ["linux-process-boot.cron"]
+    },
+    "crontab-fields": {
+      "label": "crontab의 예 줄 30 2 * * 6 /home/user1/backup.sh를 시간 칸 다섯과 명령으로 나눠, 칸마다 이름과 값을 보이는 도식",
+      "svgLabel": "테두리 시간 칸 다섯 안에 분 30, 시 2, 일 *, 월 *, 요일 6이 칸 이름과 값으로 차례로 놓여 있고, 테두리 밖에 명령 칸 /home/user1/backup.sh가 있다",
+      "question": "이 줄은 언제 실행될까?",
+      "idleCaption": "user1의 crontab에 예로 적은 줄 30 2 * * 6 /home/user1/backup.sh를 칸마다 이름과 값으로 나눠 놓았다. 버튼을 고르면 칸을 하나씩 읽어, 이 줄이 언제 무엇을 실행하는지 볼 수 있다.",
+      "legend": "칸마다 이름을 위에, 적은 값을 아래에 두었다. 테두리 안의 다섯 칸이 실행할 때를 정하는 시간 칸이고, 값을 왼쪽부터 빈칸으로 이으면 crontab의 한 줄이 된다.",
+      "nodes": {
+        "min-name": "분",
+        "min": "30",
+        "hour-name": "시",
+        "hour": "2",
+        "day-name": "일",
+        "day": "*",
+        "month-name": "월",
+        "month": "*",
+        "dow-name": "요일",
+        "dow": "6",
+        "cmd-name": "명령",
+        "command": "/home/user1/backup.sh"
+      },
+      "groups": {
+        "fields": "시간 칸 다섯"
+      },
+      "notes": {
+        "time": "02:30",
+        "every": "값을 가리지 않음",
+        "weekday": "토요일"
+      },
+      "scenarios": [
+        {
+          "id": "time",
+          "label": "시각",
+          "caption": "첫째 칸 30은 분이고 둘째 칸 2는 시라서, 이 줄의 시각은 2시 30분, 곧 02:30이다. 시각을 말할 때와 달리 분 칸이 시 칸보다 앞에 온다.",
+          "sources": ["linux-process-boot.crontab-fields"]
+        },
+        {
+          "id": "every",
+          "label": "*",
+          "caption": "셋째 칸 일과 넷째 칸 월에 적은 *는 그 칸의 값을 가리지 않는다는 뜻이다. 그래서 이 줄은 며칠인지와 몇 월인지에 상관없이 실행된다.",
+          "sources": ["linux-process-boot.crontab-fields"]
+        },
+        {
+          "id": "weekday",
+          "label": "요일",
+          "caption": "다섯째 칸 요일은 번호로 적고, 0이 일요일이고 1이 월요일이라 6은 토요일이다. 앞의 칸과 합치면 이 줄은 매주 토요일 02:30에 실행된다.",
+          "sources": ["linux-process-boot.crontab-fields"]
+        },
+        {
+          "id": "command",
+          "label": "명령",
+          "caption": "시간 칸 다섯 뒤의 여섯째 칸부터 줄 끝까지가 실행할 명령이다. 정한 때가 되면 crond가 /home/user1/backup.sh를 user1로서 실행한다.",
+          "sources": ["linux-process-boot.crontab-fields", "linux-process-boot.cron"]
+        }
+      ],
+      "sources": ["linux-process-boot.crontab-fields"]
+    },
+    "crontab-options": {
+      "label": "user1의 crontab에 줄이 둘 있을 때 crontab -l, crontab -e, crontab -r을 입력하면 crontab이 어떻게 되는지 보이는 도식",
+      "svgLabel": "테두리 입력하기 전 user1의 crontab 안에 줄 30 2 * * 6 /home/user1/backup.sh와 0 3 1 * * /home/user1/report.sh가 있고, 명령 crontab -l, crontab -e, crontab -r과 그 결과인 두 줄과 편집기가 있다",
+      "question": "crontab -r은 무엇을 지울까?",
+      "idleCaption": "user1의 crontab에 예로 적은 두 줄을 테두리 안에 두고, crontab 명령의 옵션 셋을 놓았다. 버튼을 고르면 옵션마다 명령을 입력한 뒤 crontab이 어떻게 되는지 볼 수 있다.",
+      "legend": "테두리 안은 명령을 입력하기 전 user1의 crontab이다. 화살표는 명령을 입력한 뒤의 결과로 간다.",
+      "nodes": {
+        "before-backup": "30 2 * * 6 /home/user1/backup.sh",
+        "before-report": "0 3 1 * * /home/user1/report.sh",
+        "cmd-list": "crontab -l",
+        "list-backup": "30 2 * * 6 /home/user1/backup.sh",
+        "list-report": "0 3 1 * * /home/user1/report.sh",
+        "cmd-edit": "crontab -e",
+        "editor": "편집기",
+        "cmd-remove": "crontab -r"
+      },
+      "groups": {
+        "before": "입력하기 전 user1의 crontab"
+      },
+      "notes": {
+        "list": "보여 주기만 함",
+        "edit": "줄 하나만 고치거나 지움",
+        "remove": "줄이 하나도 없음"
+      },
+      "scenarios": [
+        {
+          "id": "list",
+          "label": "-l",
+          "caption": "crontab -l은 user1의 crontab에 적힌 두 줄을 적힌 그대로 터미널에 보여 준다. 보여 주기만 하므로 입력한 뒤에도 crontab은 입력하기 전과 같다.",
+          "sources": ["linux-process-boot.crontab-command"]
+        },
+        {
+          "id": "edit",
+          "label": "-e",
+          "caption": "crontab -e는 편집기로 user1의 crontab을 연다. 예약 하나만 그만두려면 그 줄만 지우고 편집기를 닫는다. 그러면 고친 내용이 곧바로 crontab이 되고 나머지 줄은 남는다.",
+          "sources": ["linux-process-boot.crontab-command"]
+        },
+        {
+          "id": "remove",
+          "label": "-r",
+          "caption": "crontab -r은 줄 하나가 아니라 user1의 crontab 전체를 지운다. 다시 crontab -l로 보면 줄이 하나도 없고, 두 예약이 모두 사라져 crond는 어느 것도 실행하지 않는다.",
+          "sources": ["linux-process-boot.crontab-command"]
+        }
+      ],
+      "sources": ["linux-process-boot.crontab-command"]
     }
   },
   "tables": {},

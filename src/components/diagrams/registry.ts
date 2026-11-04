@@ -37,6 +37,8 @@ import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CronScheduleDiagram } from './CronScheduleDiagram'
+import { CrontabFieldsDiagram } from './CrontabFieldsDiagram'
+import { CrontabOptionsDiagram } from './CrontabOptionsDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
@@ -473,6 +475,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.daemon': DaemonServiceDiagram,
   'linux-process-boot.systemctl': SystemctlActionsDiagram,
   'linux-process-boot.cron': CronScheduleDiagram,
+  'linux-process-boot.crontab-fields': CrontabFieldsDiagram,
+  'linux-process-boot.crontab-command': CrontabOptionsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
