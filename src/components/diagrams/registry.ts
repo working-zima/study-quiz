@@ -161,6 +161,8 @@ import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
+import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
+import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
@@ -382,6 +384,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.pipe': PipeFlowDiagram,
   'linux-shell.find': FindSearchDiagram,
   'linux-shell.vi': ViModesDiagram,
+  'linux-shell.vi-edit-commands': ViEditCommandsDiagram,
+  'linux-shell.vi-colon-commands': ViColonCommandsDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

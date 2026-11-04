@@ -400,6 +400,124 @@
       "sources": [
         "linux-shell.vi"
       ]
+    },
+    "vi-edit-commands": {
+      "label": "줄 red green blue에서 커서가 green의 g에 있을 때 x, dw, D, dd를 누르면 줄이 어떻게 바뀌는지를 명령마다 보이는 도식",
+      "svgLabel": "지우기 전의 줄 red green blue 아래에 x, dw, D, dd 명령과 그 명령 뒤의 줄이 놓여 있다",
+      "question": "x·dw·D·dd는 각각 얼마나 지울까?",
+      "idleCaption": "예로 든 줄 red green blue에서 커서가 green의 첫 글자 g에 놓여 있다. 버튼을 고르면 명령 모드에서 x·dw·D·dd를 눌렀을 때 줄이 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 지우기 전의 줄에서 명령으로, 명령에서 그 명령 뒤의 줄로 간다.",
+      "nodes": {
+        "before": "red green blue",
+        "cmd-char": "x",
+        "after-char": "red reen blue",
+        "cmd-word": "dw",
+        "after-word": "red blue",
+        "cmd-end": "D",
+        "after-end": "red",
+        "cmd-line": "dd",
+        "after-line": "줄이 사라짐"
+      },
+      "notes": {
+        "cursor": "커서: green의 g",
+        "front": "커서 앞만 남음"
+      },
+      "scenarios": [
+        {
+          "id": "char",
+          "label": "x",
+          "caption": "x는 커서가 놓인 글자 g 하나만 지운다. 같은 줄의 다른 글자는 그대로라 줄이 red reen blue가 된다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "word",
+          "label": "dw",
+          "caption": "dw는 커서 자리부터 다음 낱말이 시작하기 바로 앞까지 지운다. green과 그 뒤의 빈칸이 지워져 줄이 red blue가 된다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "end",
+          "label": "D",
+          "caption": "D는 커서 자리부터 줄 끝까지 지운다. green blue가 지워지고 커서 앞의 red와 그 뒤 빈칸 하나만 남는다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "line",
+          "label": "dd",
+          "caption": "dd는 커서가 있는 줄을 통째로 지운다. 커서가 줄의 어느 글자에 있든 줄 전체가 사라진다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi-edit-commands"
+      ]
+    },
+    "vi-colon-commands": {
+      "label": "고친 내용을 아직 저장하지 않은 memo.txt에서 :w, :q, :q!, :wq를 입력하면 저장되는지, vi가 끝나는지를 명령마다 보이는 도식",
+      "svgLabel": "아직 저장하지 않은 memo.txt 아래에 :w, :q, :q!, :wq 명령과 그 명령의 결과가 놓여 있다",
+      "question": "저장하지 않고 끝내려면 무엇을 입력할까?",
+      "idleCaption": "vi로 연 memo.txt를 고쳤지만 아직 저장하지 않았다. 버튼을 고르면 명령 모드에서 :를 누르고 :w·:q·:q!·:wq를 입력했을 때 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 아직 저장하지 않은 파일에서 명령으로, 명령에서 그 명령의 결과로 간다.",
+      "nodes": {
+        "before": "memo.txt",
+        "cmd-write": ":w",
+        "after-write": "저장됨, vi는 그대로",
+        "cmd-quit": ":q",
+        "after-quit": "끝나지 않음",
+        "cmd-force-quit": ":q!",
+        "after-force-quit": "바뀜을 버리고 끝남",
+        "cmd-write-quit": ":wq",
+        "after-write-quit": "저장하고 끝남"
+      },
+      "notes": {
+        "unsaved": "고친 내용이 아직 저장되지 않음",
+        "error": "오류로 처리"
+      },
+      "scenarios": [
+        {
+          "id": "write",
+          "label": ":w",
+          "caption": ":w는 고친 내용을 memo.txt에 쓴다. 저장한 뒤에도 vi는 끝나지 않고 그대로 열려 있어 이어서 고칠 수 있다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "quit",
+          "label": ":q",
+          "caption": "마지막으로 저장한 뒤 바뀐 내용이 있으므로 :q를 오류로 처리해 끝내지 않는다. 고친 내용은 vi 안에 그대로 남는다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "force-quit",
+          "label": ":q!",
+          "caption": ":q!는 바뀐 내용이 있는지 따지지 않고 vi를 끝낸다. 고친 것은 파일에 쓰이지 않고 버려져, memo.txt는 마지막으로 저장한 때의 내용으로 남는다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "write-quit",
+          "label": ":wq",
+          "caption": ":wq는 고친 내용을 memo.txt에 쓴 다음 vi를 끝낸다. 고친 것을 남기고 끝내려면 이 명령을 쓴다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi-colon-commands"
+      ]
     }
   },
   "tables": {},
