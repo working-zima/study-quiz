@@ -65,6 +65,8 @@ POSIX 2024년판은 셸 언어 장(`utilities/V3_chap02.html`)·유틸리티·Ba
 **man7.org의 POSIX 사본(`ps(1p)`·`kill(1p)`·`nice(1p)`·`renice(1p)`·`crontab(1p)`)은 2017년판(IEEE Std 1003.1-2017)이라 쓰지 않고**, pubs.opengroup.org의 2024년판(`onlinepubs/9799919799/`)을 내려받아 읽었다.
 GNU GRUB 매뉴얼은 `www.gnu.org`가 이날 응답하지 않아(두 번 시도, 접속 시간 초과) `ftp.gnu.org`의 GRUB 2.14 공식 배포본(`grub-2.14.tar.xz`)에 든 같은 매뉴얼(`docs/grub.info`)을 저장소 밖에 풀어 읽었다.
 같은 명령의 페이지가 여럿이면(kill(1)의 util-linux판과 procps-ng판, last(1)의 GNU acct판과 util-linux판, cronie의 crontab(1)과 POSIX `crontab`) 항목에 어느 것인지 적는다.
+「(phase 76 step 9)」가 붙은 줄과 항목은 phase 76 step 9에서 `linux-accounts`(사용자 계정과 UID, /etc/passwd, /etc/shadow, useradd, chage, 로그인 기록) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-05).
+man7.org는 이날 IPv6로는 접속되지 않아 IPv4로 내려받아 읽었다. 이 주제에서도 같은 이름의 페이지가 둘인 것(passwd(5)의 Linux man-pages판과 shadow-utils판)은 항목에 어느 것인지 적는다.
 
 ---
 
@@ -2721,6 +2723,14 @@ man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased�
 - (phase 75 step 12) **passwd(5)** — 2026-11-04에 다시 읽음(6.19, 2025-09-21): 마지막 칸 `shell`은 그 사용자가 로그인할 때 실행할 프로그램이고(비어 있으면 `/bin/sh`), 이 값이 SHELL 환경 변수가 된다.
   없는 실행 파일을 적으면 그 사용자는 login(1)으로 로그인하지 못한다 — 각 칸(shell). 곧 로그인 셸은 계정마다 따로 적는다(바꾸는 명령 chsh(1)과 고를 수 있는 목록 shells(5)는 아래 「(phase 75 step 12) Linux man-pages」 항목).
   홈 디렉터리 칸(로그인한 사용자가 처음 놓이는 디렉터리, HOME의 값)은 위 줄 그대로다
+- (phase 76 step 9) **passwd(5)** — 2026-11-05에 다시 읽음(Linux man-pages 6.19, 2025-09-21): 한 줄이 사용자 하나이고, 콜론으로 나눈 칸 일곱이 `name:password:UID:GID:GECOS:directory:shell` 차례다 — DESCRIPTION.
+  `name`은 로그인 이름이다. `password`는 암호화된 암호, 별표(`*`), 글자 `x` 가운데 하나이고 `x`의 뜻은 pwconv(8)이 설명한다(아래 「(phase 76 step 9) shadow-utils」 항목 — 암호화된 암호가 /etc/shadow에 있다는 표시).
+  `UID`는 사용자 ID이고 특권을 가진 root 계정(슈퍼유저)은 0이다. `GID`는 그 사용자의 **기본 그룹**(primary group) 번호이고, 그 밖에 더 든 그룹은 그룹 파일 /etc/group에 정한다(group(5)).
+  `GECOS`는 정보를 적어 두기만 하는 선택 칸(설명 칸)이고 보통 사용자의 전체 이름을 적는다 — 각 칸.
+  이 파일을 모든 사용자가 읽을 수 있어야 하는 까닭은 `ls(1)` 같은 여러 도구가 이 파일로 **사용자 ID(번호)를 사용자 이름으로 바꿔** 보이기 때문이고, 쓰기는 슈퍼유저만 할 수 있어야 한다.
+  예전에는 암호화된 암호가 이 파일에 있어 누구나 읽을 수 있었고, 지금은 대개 암호 칸에 `x`를 두고 암호화된 암호는 슈퍼유저만 읽는 /etc/shadow에 둔다 — DESCRIPTION.
+  암호 칸에 `*`를 두면 그 사용자는 암호로 인증할 수 없다(login(1)으로는 들어오지 못하지만 다른 길은 남을 수 있다) — DESCRIPTION, NOTES.
+  같은 이름의 shadow-utils판 passwd(5)는 아래 「(phase 76 step 9) shadow-utils」 항목에 있고, 두 판이 다르게 말하는 곳은 찾지 못했다
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.proc-filesystem`(proc(5)·proc_pid(5)·proc_cpuinfo(5)·proc_meminfo(5)), `linux-filesystem.etc-directory`(passwd(5) — /etc/passwd는 계정 목록, /etc/shadow는 슈퍼유저만 읽는다),
 `linux-filesystem.swap`(mlock(2)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2) — 커널이 메모리 페이지를 스왑 영역으로 내보낸다, 페이징은 실행을 늦출 수 있다), `linux-filesystem.file-attributes`(capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) — root는 권한 검사를 건너뛰지만 `i`는 root에게도 걸린다),
@@ -2730,6 +2740,7 @@ man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased�
 (phase 75 step 9) `linux-permissions.file-type-char`(unlink(2) DESCRIPTION — 이름 하나를 지워도 다른 하드 링크로 남고, 마지막 이름까지 지워지고 연 프로세스도 없어야 파일이 지워진다)
 (phase 75 step 12) `linux-shell.shell`(passwd(5) shell 칸 — 로그인 셸은 계정마다 적는 프로그램이다), `linux-shell.working-directory`(passwd(5) directory 칸 — 로그인하면 홈 디렉터리에서 시작한다), `linux-shell.paths`(passwd(5) — HOME의 값)
 (phase 76에서 쓰일 곳) `linux-process-boot.free-command`(proc_meminfo(5) — MemAvailable이 free의 available, SwapTotal·SwapFree)
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.etc-passwd`(passwd(5) — 칸 일곱의 차례와 뜻, `x`, 누구나 읽는 까닭), `linux-accounts.user-account`(passwd(5) — root의 UID 0, GID 칸은 기본 그룹, `ls`가 번호를 이름으로 바꾼다), `exam-notes.md`의 「phase 76 step 9」 문단
 
 ## (phase 75) shadow(5), free(1), du(1), cal(1), stat(1), file(1)
 https://man7.org/linux/man-pages/man5/shadow.5.html
@@ -2763,10 +2774,25 @@ cal(1)은 util-linux 2.43 개발판(2026-05-24), file(1)은 file 프로젝트의
   tmpfs는 내용이 가상 메모리에 놓이는 파일 시스템을 만들게 하고, 그 파일들은 대개 RAM에 있어 읽고 쓰기가 아주 빠르다 — tmpfs(5) DESCRIPTION.
   https://man7.org/linux/man-pages/man5/proc_meminfo.5.html · https://man7.org/linux/man-pages/man5/tmpfs.5.html
   (쓰인 곳: `linux-process-boot.free-command` 셋째 문단의 `buff/cache`·캐시·버퍼·`shared`·tmpfs의 풀이, n150 해설)
+- (phase 76 step 9) **shadow(5)** — 2026-11-05에 다시 읽음(shadow-utils 4.19.0, 2026-08-04): 줄마다 콜론으로 나눈 칸 아홉이 이 차례다 — DESCRIPTION
+  1. 로그인 이름 — 시스템에 있는 계정 이름이어야 한다
+  2. 암호화된 암호 — 비어 있으면 암호 없이 로그인할 수 있다(그런 계정을 막는 프로그램도 있다). `!`로 시작하면 **암호가 잠긴 것**이고 뒤의 글자는 잠그기 전의 값이다.
+     crypt(3)의 결과가 될 수 없는 문자열(`!`·`*` 같은 것)이면 그 사용자는 UNIX 암호로 로그인하지 못한다(다른 방법으로는 들어올 수 있다)
+  3. 마지막으로 암호를 바꾼 날 — **1970-01-01 00:00:00 UTC부터 센 날 수**. 0이면 다음 로그인 때 암호를 바꿔야 한다. 비어 있으면 암호 기간 기능이 꺼진다
+  4. 최소 사용 기간 — 암호를 바꾼 뒤 다시 바꿀 수 있기까지 기다려야 하는 날 수. 비었거나 0이면 최소가 없다
+  5. 최대 사용 기간 — 이 날 수가 지나면 암호를 바꿔야 한다. 지난 뒤에도 그 암호는 아직 받아 주고, 다음 로그인 때 바꾸라고 요청한다.
+     비어 있으면 최대·경고·비활성 기간이 모두 없다. 최대가 최소보다 작으면 사용자는 암호를 바꿀 수 없다
+  6. 경고 기간 — 암호가 만료되기(최대 사용 기간이 다하기) 전 며칠 동안 사용자에게 알리는지. 비었거나 0이면 경고 기간이 없다
+  7. 비활성 기간 — 암호가 만료된 뒤에도 며칠 동안 그 암호를 받아 주고 다음 로그인 때 바꾸게 하는지. 만료 뒤 이 기간까지 지나면 로그인할 수 없어 관리자에게 연락해야 한다. 비어 있으면 강제하지 않는다
+  8. 계정 만료일 — 계정이 만료되는 날, 1970-01-01부터 센 날 수. **계정 만료는 로그인 자체를 막고, 암호 만료는 그 암호로 로그인하는 것만 막는다** — 둘은 다르다. 비어 있으면 만료되지 않고, 0은 (만료 없음으로도 1970-01-01로도 읽혀) 쓰지 말라고 한다
+  9. 예약 칸 — 나중에 쓰려고 남겨 둔 칸
+  일반 사용자가 읽을 수 없어야 한다는 것과 파일 이름 /etc/shadow는 위 줄 그대로다 — DESCRIPTION, FILES. 날 수를 날짜로 바꾸는 것은 이 정의에 따른 셈이다(예: 20454 = 2026-01-01).
+  https://man7.org/linux/man-pages/man5/shadow.5.html
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.etc-directory`(shadow(5) — 암호 정보, 일반 사용자가 읽지 못한다), `linux-filesystem.proc-filesystem`(free(1)이 /proc/meminfo를 읽는다 — 쓸지는 그 step이 정한다),
 `exam-notes.md`의 「phase 75 step 0」 문단(du·cal·stat·file — 기출 보기의 판정)
 (phase 76에서 쓰일 곳) `linux-process-boot.free-command`(free(1) — 칸 여섯과 used = total − available, `-h`, 줄 이름은 출처에 없다; du(1) — 디렉터리가 차지한 양), `exam-notes.md` E24
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.etc-shadow`(shadow(5) — 칸 아홉, 날 수, `!`·`*`, 일반 사용자는 읽지 못한다), `linux-accounts.chage`(shadow(5) — 기간 칸의 뜻, 계정 만료와 암호 만료의 차이)
 
 ## (phase 75) systemd — systemd-fstab-generator(8), systemd.mount(5), file-hierarchy(7)
 https://man7.org/linux/man-pages/man8/systemd-fstab-generator.8.html
@@ -2999,11 +3025,14 @@ ls(1)·ln(1)·chgrp(1)은 GNU coreutils 9.11(April 2026).
 - (phase 75 step 9) **ln(1)** — SYNOPSIS·DESCRIPTION: 첫 꼴은 `ln [OPTION]... [-T] TARGET LINK_NAME`이고 TARGET에 LINK_NAME이라는 이름의 링크를 만든다.
   그래서 `ln report.txt report2.txt`는 `report.txt`에 하드 링크 `report2.txt`를, `ln -s report.txt latest`는 `report.txt`를 가리키는 심볼릭 링크 `latest`를 만든다(2026-10-30에 다시 읽음)
 - (phase 75 step 9) **inode(7)** — 「File size」: 일반 파일과 심볼릭 링크의 크기는 바이트 단위다(심볼릭 링크의 크기는 그것이 담은 경로 이름의 길이)
+- (phase 76 step 9) **inode(7)** — 2026-11-05에 다시 읽음(Linux man-pages 6.19, 2026-02-08): 위 「User ID」·「Group ID」 줄 그대로다. 파일은 소유자와 그룹을 **번호**(사용자 ID·그룹 ID — credentials(7)대로 정수)로 담고,
+  그 번호를 이름으로 바꿔 보이는 것은 /etc/passwd를 읽는 `ls` 같은 도구다(passwd(5) — 위 「(phase 75) Linux man-pages」 항목의 「(phase 76 step 9)」 줄). 새 파일의 그룹이 보통 기본 그룹이 되는 까닭은 아래 「(phase 76 step 9) util-linux」 항목의 login(1) 줄
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(path_resolution(7) — 어느 묶음을 쓰나·root, inode(7)·open(2) — 새 파일의 소유자), `linux-permissions.rwx-permissions`(path_resolution(7) 검색 권한, open(2)·rename(2)·rmdir(2) — 디렉터리의 쓰기 권한),
 `linux-permissions.permission-string`(ls(1), inode(7) 링크 수), `linux-permissions.file-type-char`(inode(7) 파일 종류, link(2)·symlink(7)·ln(1) — 하드 링크와 심볼릭 링크, tty(4)·null(4) — 문자 장치의 예), `linux-permissions.octal-mode`(inode(7) 자리값),
 `linux-permissions.chown`(chgrp(1), inode(7) — 소유자와 그룹은 chown(2)으로 바꾼다).
 (phase 75 step 9) `linux-permissions.permission-string`(inode(7) — 크기는 바이트 단위), `linux-permissions.file-type-char`(ln(1) — `ln 대상 이름`과 `ln -s 대상 이름`의 꼴)
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(inode(7) — 파일은 소유자를 UID 번호로 담는다, 새 파일은 만든 프로세스의 실효 그룹 ID를 받는다)
 
 ## (phase 75 step 12) GNU Bash Reference Manual — 1.1 What is Bash?, 1.2 What is a shell?, 3.2.3 Pipelines, 3.6 Redirections, 3.7.2 Command Search and Execution, 3.7.3 Command Execution Environment, 3.7.5 Exit Status, 4.1 Bourne Shell Builtins, 5.1 Bourne Shell Variables, 6.9 Controlling the Prompt
 https://www.gnu.org/software/bash/manual/bash.html
@@ -3209,9 +3238,14 @@ https://man7.org/linux/man-pages/man7/bootparam.7.html
   메시지는 로그 수준과 관계없이 링 버퍼에 쌓이므로(위 「The kernel log buffer」), 콘솔에 나오지 않은 메시지도 링 버퍼에는 있다
 - **bootparam(7)**: 커널 인자 `init=`은 커널이 처음 실행할 명령을 정하고, 정하지 않았거나 찾지 못하면 커널은 `/sbin/init`·`/etc/init`·`/bin/init`·`/bin/sh`를 차례로 시도한다 — 「General non-device-specific boot arguments」.
   커널 메시지는 klogd(8) 같은 데몬에 넘겨져 디스크에 기록될 수 있다 — 「Boot arguments for use by kernel developers」(`debug`). **어느 파일에 기록되는지는 적혀 있지 않다** — `exam-notes.md` E25
+- (phase 76 step 9) **credentials(7)** — 「User and group identifiers」(2026-11-05에 다시 읽음, 6.19 2026-07-02): 프로세스마다 사용자 ID와 그룹 ID가 여럿 딸려 있고, 모두 **정수**다(uid_t·gid_t).
+  실제 사용자·그룹 ID는 그 프로세스를 누가 가졌는지를 정하고, 실효 ID(Linux에서 파일에는 실효 ID를 따라가는 파일 시스템 ID)와 **보조 그룹 ID**가 파일 등에 접근할 때의 권한을 가른다.
+  보조 그룹 ID는 권한 검사에 함께 쓰이는 추가 그룹 ID들의 집합이다(Linux 2.6.4부터 65536개까지). fork(2)로 만든 자식은 부모의 사용자·그룹 ID를 그대로 물려받고, execve(2) 뒤에도 실제 ID와 보조 그룹 ID는 남는다 — 같은 절.
+  POSIX 쪽 정의(사용자 ID §3.408, 그룹 ID §3.165, 보조 그룹 ID §3.361)는 위 「(phase 75) POSIX.1-2024」 항목의 「(phase 75 step 7)」 줄에 있다
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.process`(credentials(7) — PID·PPID, getpid(2) — 만든 쪽이 먼저 끝나면 init(1)으로 넘어간다), `linux-process-boot.process-commands`(signal(7) — TERM·KILL과 번호, nice(2)·sched(7) — 나이스 값의 범위와 특권),
 `linux-process-boot.dmesg`(syslog(2) — 커널 로그 버퍼, bootparam(7) — 데몬이 디스크에 기록할 수 있다), `linux-process-boot.boot-sequence`(bootparam(7) `init=` — 커널이 처음 실행할 프로그램), `exam-notes.md` E25
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(credentials(7) — UID·GID는 정수, 보조 그룹 ID, 자식 프로세스가 물려받는다)
 
 ## (phase 76) procps-ng — ps(1), top(1), kill(1)
 https://man7.org/linux/man-pages/man1/ps.1.html
@@ -3266,8 +3300,17 @@ https://man7.org/linux/man-pages/man1/last.1@@util-linux.html
   (phase 76 step 7, 2026-11-05에 다시 읽음 — util-linux 2.43.devel-739-eee2e, 2026-05-24) `-l`(`--level`)은 출력을 쉼표로 늘어놓은 수준의 메시지로 좁히고, 예로 `dmesg --level=err,warn`을 든다(`err`는 오류, `warn`은 경고 — 수준 이름) — OPTIONS.
   출력 줄의 꼴은 이 step에서 본문에 보이지 않는다(시각 표시 꼴은 `--time-format` 등 옵션에 따라 다르다 — OPTIONS)
 - **last(1)·lastb(1)**(util-linux판): `lastb`는 `last`와 같되 기본으로 실패한 로그인 시도를 모두 담은 `/var/log/btmp`를 보여 준다 — DESCRIPTION, FILES. (로그인 기록의 나머지는 `linux-accounts`의 몫이라 step 9가 다시 읽는다)
+- (phase 76 step 9) **last(1)·lastb(1)**(util-linux판) — 2026-11-05에 다시 읽음(2.43.devel-739-eee2e, 2026-05-24): 꼴은 `last [옵션] [사용자이름|tty]...`, `lastb [옵션] [사용자이름|tty]...` — SYNOPSIS.
+  `last`는 /var/log/wtmp(나 `-f`로 준 파일)를 **거슬러 훑어(searches back)** 그 파일이 생긴 뒤 로그인(과 로그아웃)한 사용자를 모두 늘어놓는다. 사용자 이름이나 터미널 이름을 주면 그에 맞는 기록만 보인다.
+  시스템이 다시 시작할 때마다 가짜 사용자 `reboot`가 로그인한 것으로 남으므로 `last reboot`는 다시 시작한 기록을 보인다 — DESCRIPTION.
+  `lastb`는 `last`와 같되 기본으로 **실패한 로그인 시도를 모두 담은 /var/log/btmp**를 보인다 — DESCRIPTION. `-n 수`는 보일 기록의 수를 정한다 — OPTIONS.
+  wtmp·btmp는 없을 수 있고, 시스템은 그 파일이 있을 때만 기록을 남긴다(지역 설정의 문제다) — NOTES.
+  **출력의 칸(꼴)은 이 페이지에 없다.** 차례도 「거슬러 훑는다」까지만 있고 「최근 기록부터 출력한다」고 적은 문장은 없다.
+  **btmp를 누가 읽을 수 있는지는 이 페이지에서도, utmp(5)·login(1)·su(1)에서도 찾지 못했다.** btmp에 누가 쓰는지는 util-linux su(1)이 실패한 로그인 시도를 늘 btmp에 남긴다는 것만 확인했다(아래 「(phase 76 step 9) util-linux」 항목).
+  man7.org의 `man1/lastb.1.html`과 `lastb.1@@util-linux.html`은 둘 다 GNU acct(psacct 6.6.4)의 `last(1)` 페이지를 보여 주고 그 페이지에는 `lastb`가 없다 — 그래서 `last.1@@util-linux`만 근거로 쓴다
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.process-commands`(kill(1) — 기본 TERM, TERM 다음 KILL, KILL은 붙잡을 수 없다; renice(1) — 실행 중인 프로세스의 나이스 값), `linux-process-boot.dmesg`(dmesg(1) — 커널 링 버퍼를 보여 준다; last(1) — `/var/log/btmp`는 실패한 로그인 기록), `exam-notes.md` E25
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.login-records`(last(1) — `last`는 wtmp, `lastb`는 btmp, `reboot` 기록, 파일이 있을 때만 기록), `exam-notes.md`의 「phase 76 step 9」 문단
 
 ## (phase 76) GNU coreutils — nice(1), df(1); psmisc — pstree(1)
 https://man7.org/linux/man-pages/man1/nice.1.html
@@ -3402,9 +3445,15 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
   칸은 `*`(모든 값), 수 하나, 하이픈으로 이은 범위(끝값 포함), 쉼표로 이은 목록이다. 일과 요일을 둘 다 적으면 둘 중 하나에 맞는 날이다. 여섯째 칸은 정한 때에 sh가 실행할 문자열이다 — INPUT FILES. `0 0 * * 1`은 월요일에만 실행한다 — EXAMPLES.
   cron.allow·cron.deny는 (XSI) 구현이 정한 디렉터리에 두고, 둘 다 없으면 적절한 특권이 있는 프로세스만 작업을 넣을 수 있다 — DESCRIPTION. **cron 데몬과 crontab 파일 자리는 일부러 다루지 않는다** — RATIONALE.
   `crontab`만 입력하면 표준 입력을 기다리고, 그때 파일 끝(보통 Ctrl-D)을 입력하면 crontab 항목이 빈 파일로 바뀐다 — APPLICATION USAGE
+- (phase 76 step 9) **id** — https://pubs.opengroup.org/onlinepubs/9799919799/utilities/id.html (같은 2024년판, 2026-11-05에 내려받아 읽음): 사용자를 주지 않으면 실행한 프로세스의 사용자·그룹 ID와 그 이름을 쓰고,
+  보조 그룹이 있으면 그것도 쓴다. 사용자(로그인 이름)를 주면, 권한이 있을 때 그 사용자의 ID들을 쓴다 — DESCRIPTION, OPERANDS.
+  POSIX 로캘의 기본 출력 꼴은 `uid=번호(이름) gid=번호(이름)`이고, 실효 ID가 실제 ID와 다르면 ` euid=번호(이름)`·` egid=번호(이름)`를, 보조 그룹이 있으면 ` groups=번호(이름),번호(이름)…`를 줄 끝에 붙인다.
+  번호를 이름으로 바꿀 수 없으면 괄호와 이름을 뺀다 — STDOUT. `-u`는 실효 사용자 ID만, `-g`는 실효 그룹 ID만, `-G`는 서로 다른 그룹 ID(실효·실제·보조) 모두, `-n`은 번호 대신 이름을, `-r`은 실효 대신 실제 ID를 쓴다 — OPTIONS.
+  `groups=` 목록에 기본 그룹(실효 그룹 ID)이 함께 나오는지는 정해져 있지 않다 — getgroups(2)(아래 「(phase 76 step 9) Linux man-pages」 항목)
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.ps-command`(ps — `-e`·`-f`와 칸 여덟), `linux-process-boot.process-commands`(kill — 기본 SIGTERM·9와 15; nice·renice), `linux-process-boot.crontab-fields`(crontab INPUT FILES — 요일 0~6과 cronie와의 차이),
 `linux-process-boot.crontab-command`(crontab `-e`·`-l`·`-r`), `linux-process-boot.cron`
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(id — 무엇을 어떤 꼴로 보이는가)
 
 ## (phase 76) OpenSSH — sshd(8); shadow-utils — lastlog(8)
 https://man7.org/linux/man-pages/man8/sshd.8.html
@@ -3414,8 +3463,13 @@ https://man7.org/linux/man-pages/man8/lastlog.8.html
 
 - **sshd(8)**: 이름은 「OpenSSH 데몬」이고, ssh(1)를 위한 데몬 프로그램이다. 믿을 수 없는 네트워크를 사이에 둔 두 호스트 사이에 암호화된 안전한 통신을 제공한다. 클라이언트의 연결을 기다리고, 보통 부팅 때 시작되며, 들어오는 연결마다 새 데몬을 fork해 그 연결을 맡긴다 — NAME, DESCRIPTION
 - **lastlog(8)**: 마지막 로그인 기록 파일 `/var/log/lastlog`의 내용을 보여 준다 — 사용자마다 로그인 이름·포트·마지막 로그인 시각 — NAME, DESCRIPTION. (`linux-accounts`에서 step 9가 다시 읽는다)
+- (phase 76 step 9) **lastlog(8)** — 2026-11-05에 다시 읽음(shadow-utils 4.19.0): 옵션 없이 실행하면 기록을 /etc/passwd에 적힌 차례로 보인다. 한 번도 로그인하지 않은 사용자는 포트·시각 대신 `**Never logged in**`이 나온다.
+  `-u`는 정한 사용자(이름·UID·범위)의 기록만 보인다. 지금 시스템에 있는 사용자의 기록만 보인다 — DESCRIPTION, OPTIONS.
+  /var/log/lastlog는 사용자마다 마지막 로그인을 담은 데이터베이스이고 sparse 파일이다 — NOTE, FILES. 곧 `last`(로그인·로그아웃이 일어날 때마다 쌓인 기록)와 달리 사용자마다 마지막 한 번만 남는다.
+  util-linux login(1)은 /var/log/lastlog가 있으면 지난 로그인 시각을 보여 주고 이번 로그인을 기록한다(아래 「(phase 76 step 9) util-linux」 항목)
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.daemon`(sshd(8) — 다른 컴퓨터의 접속을 기다리는 데몬, 보통 부팅 때 시작), `linux-process-boot.dmesg`(lastlog(8) — `/var/log/lastlog`는 마지막 로그인 기록), `exam-notes.md` E25
+(phase 76 step 9에서 쓰일 곳) `linux-accounts.login-records`(lastlog(8) — 사용자마다 마지막 로그인, 쓸지는 그 step이 정한다)
 
 ## (phase 76) GNU GRUB 매뉴얼 2.14 — 1.1 Overview, 1.4 GRUB features, 4.1 Installing GRUB using grub-install, 4.4 BIOS installation, 5.1 How to boot operating systems, 5.1.1, 5.1.3 Chain-loading an OS, 5.4.4 DOS/Windows, 11 GRUB image files
 https://www.gnu.org/software/grub/manual/grub/ (매뉴얼의 자리 — 2026-11-04에는 응답하지 않았다)
@@ -3437,3 +3491,141 @@ https://ftp.gnu.org/gnu/grub/grub-2.14.tar.xz (실제로 읽은 것 — 이 공�
   곧 MBR은 디스크 맨 앞의 512바이트 영역(과 그 파티션 테이블 형식)이고, GRUB은 그 자리에 첫 조각을 두기도 하는 부트 로더다 — boot(7) 「OS loader」(위 「(phase 75) Linux man-pages」 항목)와 같은 그림이다
 
 쓰인 곳: (phase 76에서 쓰일 곳) `linux-process-boot.grub`(1.1 — 부트 로더·메뉴·체인 로딩, 5.1·5.1.1·5.1.3·5.4.4 — Linux는 직접, Windows는 체인 로딩, 4.1·4.4·11 — MBR과 boot.img), `linux-process-boot.boot-sequence`(1.1 — 부트 로더가 커널을 불러와 넘긴다)
+
+## (phase 76 step 9) shadow-utils — useradd(8), groupadd(8), usermod(8), userdel(8), passwd(1), chage(1), passwd(5), login.defs(5), pwconv(8), vipw(8), newgrp(1)
+https://man7.org/linux/man-pages/man8/useradd.8.html
+https://man7.org/linux/man-pages/man8/groupadd.8.html
+https://man7.org/linux/man-pages/man8/usermod.8.html
+https://man7.org/linux/man-pages/man8/userdel.8.html
+https://man7.org/linux/man-pages/man1/passwd.1.html
+https://man7.org/linux/man-pages/man1/chage.1.html
+https://man7.org/linux/man-pages/man5/passwd.5@@shadow-utils.html
+https://man7.org/linux/man-pages/man5/login.defs.5.html
+https://man7.org/linux/man-pages/man8/pwconv.8.html
+https://man7.org/linux/man-pages/man8/vipw.8.html
+https://man7.org/linux/man-pages/man1/newgrp.1.html
+
+2026-11-05에 읽은 판: shadow-utils 4.19.0(바닥줄 08/04/2026 — man7.org가 2026-08-04에 shadow-4.19.0 타르볼에서 가져왔다). man7.org의 기본 `useradd(8)`·`passwd(1)` 주소는 `@@shadow-utils` 주소와 내용이 같다.
+**passwd(5)는 두 페이지다** — 기본 `passwd.5`는 Linux man-pages판(위 「(phase 75) Linux man-pages」 항목)이고, `passwd.5@@shadow-utils`가 이 판이다. 칸 일곱의 차례와 `x`·`!`·`*`·빈 셸 칸의 뜻에서 둘이 다르게 말하는 곳은 찾지 못했다.
+**`adduser`는 허용한 출처에 없다** — man7.org의 `man8/adduser.8.html`이 없고(404), 이 항목의 어느 페이지도 `adduser`를 말하지 않는다(2026-11-05).
+
+- **passwd(5)**(shadow-utils판): 한 줄에 계정 하나, 콜론으로 나눈 칸 일곱 — 로그인 이름, (없어도 되는) 암호화된 암호, 숫자 사용자 ID, 숫자 그룹 ID, 사용자 이름이나 설명 칸, 홈 디렉터리, (없어도 되는) 명령 해석기.
+  **암호 칸이 소문자 `x`이면 암호화된 암호는 실제로 shadow(5) 파일 쪽에 들어 있다**는 뜻이고, 그때 /etc/shadow에 같은 계정의 줄이 없으면 그 계정은 쓸 수 없다. 암호 칸이 `!`로 시작하면 잠긴 암호다.
+  홈 디렉터리 칸은 처음 작업 디렉터리이고 login 프로그램이 HOME을 정하는 데 쓴다. 명령 해석기 칸(로그인 셸)이 비면 `/bin/sh`다 — DESCRIPTION
+- **pwconv(8)**: `pwconv`는 passwd(와, 있으면 기존 shadow)로 shadow를 만든다. 하는 차례는 이렇다 — shadow에만 있고 passwd에 없는 줄을 지우고, passwd의 암호 칸이 `x`가 아닌 계정의 shadow 줄을 고쳐 쓰고, 빠진 shadow 줄을 더한 뒤,
+  **passwd의 암호 칸을 모두 `x`로 바꾼다**. 처음 바꿀 때뿐 아니라 passwd를 손으로 고친 뒤 shadow를 맞출 때도 쓴다. 새 shadow 줄의 기간 칸은 login.defs의 PASS_MIN_DAYS·PASS_MAX_DAYS·PASS_WARN_AGE로 채운다.
+  `pwunconv`는 거꾸로 암호를 passwd로 되돌리고 shadow를 지운다 — DESCRIPTION. 곧 passwd의 `x`는 「암호는 여기 없고 /etc/shadow에 있다」는 자리 표시다
+- **useradd(8)**: 꼴은 `useradd [옵션] LOGIN` — **옵션들 뒤, 맨 끝에 새 계정의 이름**이 온다 — SYNOPSIS. `-D` 없이 실행하면 명령줄의 값과 시스템의 기본값으로 새 사용자 계정을 만든다.
+  옵션에 따라 시스템 파일을 고치고, 새 사용자의 홈 디렉터리를 만들어 처음 파일을 복사할 수도 있다 — DESCRIPTION. 고치는 파일은 FILES에 적힌 /etc/passwd·/etc/shadow·/etc/group·/etc/gshadow다(기본값은 /etc/default/useradd, 처음 파일은 /etc/skel/에 둔다) — FILES.
+  - `-m`: 홈 디렉터리가 없으면 만들고 skel 디렉터리의 파일을 복사한다. 이 옵션이 없고 login.defs의 CREATE_HOME도 켜져 있지 않으면 홈 디렉터리를 만들지 않는다
+  - `-d 경로`: 새 사용자의 로그인 디렉터리(홈 디렉터리 칸)의 값. 주지 않으면 기준 디렉터리(기본 /home)에 계정 이름을 붙인 경로다. `-d`만으로는 그 디렉터리를 만들지 않는다
+  - `-s 셸`: 로그인 셸의 경로. 주지 않으면 /etc/default/useradd의 SHELL 값을 쓰고, 그것도 없으면 /etc/passwd의 셸 칸을 비워 둔다(passwd(5) — 빈 칸은 `/bin/sh`)
+  - `-g 그룹`: **기본 그룹**(primary group)의 이름이나 번호. **그 그룹이 이미 있어야 한다**. 주지 않으면 login.defs의 USERGROUPS_ENAB(나 `-U`·`-N`)에 따라 갈린다 —
+    켜져 있으면 계정 이름과 같은 이름의 그룹을 새로 만들어 그 계정을 넣고, 꺼져 있으면 /etc/default/useradd의 GROUP 값(없으면 1000)을 기본 그룹으로 삼는다
+  - `-G 그룹1,그룹2`: 새 사용자가 함께 드는 **보조 그룹**(supplementary groups)의 목록. 그룹 사이는 쉼표로 가르고 빈칸을 두지 않는다. `-g`의 그룹과 같은 제약(이미 있어야 한다)을 받는다.
+    주지 않으면 처음 그룹(기본 그룹)에만 든다
+  - `-u 번호`: 사용자 ID. 겹치면 안 되고(`-o`를 주지 않는 한) 0 이상이다. 주지 않으면 UID_MIN 이상이면서 다른 모든 사용자의 UID보다 큰 가장 작은 값을 쓴다
+  - `-r`: 시스템 계정을 만든다 — 번호를 UID_MIN~UID_MAX가 아니라 SYS_UID_MIN~SYS_UID_MAX에서 고르고, /etc/shadow에 기간 정보를 두지 않으며, `-m`이 없으면 홈 디렉터리를 만들지 않는다
+  - `-p`: 처음 암호(crypt(3)로 암호화한 값). **이 옵션 없이 만든 계정은 잠겨 있고 암호가 없다 — /etc/shadow의 그 칸에 `!` 하나만 있어, 그 계정으로 들어갈 수도, 사용자가 스스로 암호를 정할 수도 없다.**
+    명령줄에 이 옵션을 쓰면 프로세스 목록을 보는 사용자에게 그 값이 보이므로 피하라고 한다
+  - `-o`의 설명: 사용자 ID는 사용자를 권한·파일 소유 같은 시스템의 동작과 잇는 열쇠라, 같은 UID에 로그인 이름이 둘이면 둘 다 그 계정을 쓰게 된다 — 곧 시스템은 사용자를 이름이 아니라 UID로 가린다
+  - CONFIGURATION: login.defs의 UID_MIN·UID_MAX는 useradd가 **일반 사용자**를 만들 때 쓰는 UID 범위(정하지 않았을 때의 기본값 1000·60000), SYS_UID_MIN·SYS_UID_MAX는 **시스템 사용자**의 범위(기본값 101·UID_MIN−1)다.
+    그룹도 같다 — GID_MIN·GID_MAX(1000·60000), SYS_GID_MIN·SYS_GID_MAX(101·GID_MIN−1)
+  - CAVEATS: 사용자 이름에는 영문 대소문자·숫자·밑줄·대시만 쓰고(끝에 `$`는 된다), 대시로 시작하거나 숫자만으로 된 이름은 안 된다 — 쓸지는 그 step이 정한다
+- **groupadd(8)**: 꼴은 `groupadd [옵션] 새그룹`이고, 명령줄의 값과 시스템의 기본값으로 새 그룹 계정을 만들어 시스템 파일에 넣는다 — SYNOPSIS, DESCRIPTION
+- **usermod(8)**: 꼴은 `usermod [옵션] LOGIN`이고 계정 파일을 고친다 — SYNOPSIS, DESCRIPTION. `-g`는 새 기본 그룹(이미 있어야 한다)이다.
+  `-G`는 보조 그룹 목록인데, **목록에 없는 그룹에 지금 들어 있으면 그 그룹에서 빠진다** — `-a`를 `-G`와 함께 주면 빼지 않고 더하기만 한다. `-L`은 암호 앞에 `!`를 붙여 암호를 잠근다. `-l`은 로그인 이름을 바꾼다 — OPTIONS
+- **userdel(8)**: 꼴은 `userdel [옵션] LOGIN`이고 그 사용자 이름을 가리키는 항목을 계정 파일에서 모두 지운다(그 사용자가 있어야 한다). `-r`을 주면 홈 디렉터리와 그 안의 파일, 메일 스풀도 지운다 — DESCRIPTION, OPTIONS
+- **passwd(1)**: 꼴은 `passwd [옵션] [LOGIN]`이고 사용자 계정의 암호를 바꾼다. **일반 사용자는 자기 계정의 암호만, 슈퍼유저는 어느 계정의 암호든 바꿀 수 있다**. 계정이나 암호의 유효 기간도 바꿀 수 있다 — DESCRIPTION.
+  계정에 비어 있지 않은 암호가 있으면 먼저 지금 암호를 묻는데, 슈퍼유저는 이 단계를 건너뛰어 잊은 암호도 바꿀 수 있다. 기간 정보로 보아 지금 바꿀 수 없으면 거절한다. 새 암호는 두 번 입력해 같아야 하고 복잡도 검사를 받는다 — 「Password Changes」.
+  `-l`은 암호 앞에 `!`를 붙여 잠근다 — OPTIONS. 다루는 파일은 /etc/passwd·/etc/shadow — FILES.
+  위 useradd(8) `-p`(암호 없이 만든 계정은 `!`로 잠겨 있다)와 이으면, `useradd`로 만든 계정은 슈퍼유저가 `passwd 이름`으로 암호를 정해 준 뒤에야 그 암호로 들어올 수 있다
+- **chage(1)**: 꼴은 `chage [옵션] LOGIN`이고 사용자의 **암호 만료 정보**를 바꾼다 — 암호를 바꾸는 사이의 날 수와 마지막으로 바꾼 날을 정하고, 시스템은 이 정보로 사용자가 언제 암호를 바꿔야 하는지 정한다 — SYNOPSIS, DESCRIPTION.
+  **chage(1)은 옵션이 shadow(5)의 몇째 칸을 바꾸는지 적지 않는다** — 아래 칸 번호는 두 문서의 정의를 맞춘 것이다(chage는 shadow 파일의 정보만 보이고 다룬다 — NOTE).
+  - `-d 날`(`--lastday`): 마지막으로 바꾼 날(셋째 칸). YYYY-MM-DD 꼴이나 1970-01-01부터 센 날 수이고 UTC로 읽는다. 0이면 다음 로그인 때 바꿔야 한다
+  - `-m 날 수`(`--mindays`): 암호를 바꾸는 사이의 최소 날 수(넷째 칸 최소 사용 기간). 0이면 언제든 바꿀 수 있다
+  - `-M 날 수`(`--maxdays`): 암호가 유효한 최대 날 수(다섯째 칸). **마지막으로 바꾼 날 + 최대 날 수가 오늘보다 작으면**, 그 사용자는 계정을 쓰기 전에 암호를 바꿔야 한다. 이때를 미리 알리는 것이 `-W`다. -1이면 유효 기간을 확인하지 않는다
+  - `-W 날 수`(`--warndays`): 암호를 바꿔야 하기 전 며칠 동안 경고하는지(여섯째 칸 경고 기간) — 암호가 만료되기 그 날 수 전부터 곧 만료된다고 알린다
+  - `-I 날 수`(`--inactive`, 대문자 I): 암호가 만료된 뒤 계정이 잠기기까지의 비활성 날 수(일곱째 칸). 잠긴 사용자는 관리자에게 연락해야 다시 쓸 수 있다. -1이면 없앤다
+  - `-E 날`(`--expiredate`): 계정 만료일(여덟째 칸). YYYY-MM-DD 꼴이나 1970-01-01부터 센 날 수. 만료되면 관리자에게 연락해야 다시 들어올 수 있다. -1이나 빈 값이면 없앤다
+  - `-l`(`--list`, 소문자 L): 계정의 기간 정보를 보여 주기만 한다. **그 출력 꼴은 이 페이지에 없다**
+  - `-i`(`--iso8601`, 소문자 i): 날짜를 보일 때 YYYY-MM-DD 꼴로 보인다 — 기간을 정하는 옵션이 아니다
+  - **대문자 `-L`은 chage(1)의 옵션 목록에 없다**(암호를 잠그는 `-L`은 usermod(8)의 옵션이다)
+  - 옵션을 하나도 주지 않으면 칸마다 지금 값을 `[ ]` 안에 보여 주며 새 값을 묻는다(빈 줄을 넣으면 그대로 둔다) — OPTIONS 끝
+  - **chage는 root만 쓸 수 있고, 예외로 `-l`은 일반 사용자도 써서 자기 암호나 계정이 언제 만료되는지 볼 수 있다** — NOTE
+  - 경계일: `-M`은 「마지막으로 바꾼 날 + 최대 날 수 < 오늘」, `-W`는 「만료되기 그 날 수 전부터」라고만 적는다. 만료일 당일이나 경고가 시작되는 날을 그 기간에 넣는지(하루 차이)는 따로 적혀 있지 않다
+- **login.defs(5)**: /etc/login.defs는 shadow 암호 묶음의 **사이트별(그 시스템의) 설정**이고, 줄마다 설정 이름과 값이 빈칸으로 갈려 있다 — DESCRIPTION.
+  UID_MIN·UID_MAX(일반 사용자), SYS_UID_MIN·SYS_UID_MAX(시스템 사용자)와 그 기본값은 위 useradd(8) 줄 그대로다. USERGROUPS_ENAB가 yes면 useradd가 기본으로 사용자 이름과 같은 이름의 그룹을 만든다.
+  PASS_MAX_DAYS·PASS_MIN_DAYS·PASS_WARN_AGE는 계정을 만들 때만 쓰이고, 바꿔도 이미 있는 계정에는 영향이 없다 — 각 항목.
+  곧 「일반 사용자의 UID가 몇부터인가」는 이 파일의 설정이 정하고, 1000은 설정하지 않았을 때 shadow-utils가 쓰는 기본값이다
+- **vipw(8)**: /etc/passwd·/etc/group을(`-s`면 /etc/shadow·/etc/gshadow를) 편집기로 고치되, **파일이 깨지지 않게 잠금을 걸고** 고친다 — DESCRIPTION.
+  「이 파일들을 손으로 고치지 마라」는 문장은 이 항목의 페이지에서 찾지 못했다 — 쓸 수 있는 것은 「계정을 만들고 고치는 명령(useradd·usermod·userdel·passwd·chage)이 이 파일들을 고친다」와 「손으로 고칠 때는 잠금을 거는 vipw를 쓴다」다
+- **newgrp(1)**: 로그인해 있는 동안 지금 그룹 ID를 바꾼다. 그룹을 주지 않으면 /etc/passwd에 적힌 기본 그룹으로 바꾼다 — DESCRIPTION. 쓸지는 그 step이 정한다
+
+쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(login.defs(5)·useradd(8) CONFIGURATION — UID 범위는 그 시스템의 설정, useradd(8) `-o` — 시스템은 UID로 사용자를 가린다),
+`linux-accounts.etc-passwd`(passwd(5) shadow-utils판·pwconv(8) — `x`의 뜻, vipw(8)), `linux-accounts.etc-shadow`(useradd(8) `-p` — 새 계정의 `!`, usermod(8) `-L`·passwd(1) `-l` — 잠그면 앞에 `!`),
+`linux-accounts.useradd`(useradd(8)·groupadd(8)·usermod(8)·userdel(8)·passwd(1)), `linux-accounts.chage`(chage(1)·login.defs(5)), `exam-notes.md`의 「phase 76 step 9」 문단
+
+## (phase 76 step 9) Linux man-pages — group(5), utmp(5), getgroups(2), initgroups(3)
+https://man7.org/linux/man-pages/man5/group.5.html
+https://man7.org/linux/man-pages/man5/utmp.5.html
+https://man7.org/linux/man-pages/man2/getgroups.2.html
+https://man7.org/linux/man-pages/man3/initgroups.3.html
+
+2026-11-05에 읽은 판: Linux man-pages 6.19 — group(5) 2025-05-17, utmp(5) 2025-09-21, getgroups(2)·initgroups(3) 2026-02-08.
+
+- **group(5)**: /etc/group은 시스템의 그룹을 정하는 텍스트 파일이고, 한 줄에 그룹 하나가 `group_name:password:GID:user_list` 꼴로 있다 — 그룹 이름, (암호화된) 그룹 암호(비어 있으면 암호가 필요 없다),
+  숫자 그룹 ID, 그 그룹에 든 사용자 이름을 쉼표로 늘어놓은 목록 — DESCRIPTION. passwd(5)는 사용자의 기본 그룹 말고 더 든 그룹을 이 파일에 정한다고 한다(위 「(phase 76 step 9)」 passwd(5) 줄).
+  **사용자가 자기 기본 그룹 줄의 목록에도 적히는지는 이 페이지에 없다** — 예를 쓸 때 `dev` 줄의 목록에 `user4`가 있다고 단정하지 않는다
+- **utmp(5)**: utmp 파일은 지금 누가 시스템을 쓰고 있는지 알게 해 주고, **wtmp 파일은 모든 로그인과 로그아웃을 기록한다**. wtmp는 utmp와 꼴이 같고(utmp 구조체를 이어 놓은 것 — 텍스트가 아니다),
+  사용자 이름이 빈 기록은 그 터미널의 로그아웃, 터미널 이름 `~`에 사용자 이름 `shutdown`·`reboot`는 시스템 종료·다시 시작을 뜻한다.
+  wtmp는 login(1)·init(1)·일부 getty(8)가 남기는데 이 프로그램들은 파일을 만들지 않아서, 파일을 지우면 기록이 멈춘다 — DESCRIPTION. 파일 자리는 /var/run/utmp와 /var/log/wtmp — FILES.
+  파일 꼴은 기계(아키텍처)에 따라 달라 만든 기계에서 처리하라고 한다 — NOTES. **btmp는 이 페이지에 없다**(btmp는 util-linux last(1) — 위 「(phase 76) util-linux」 항목)
+- **getgroups(2)**: 부른 프로세스의 보조 그룹 ID를 돌려준다. **실효 그룹 ID가 그 목록에 들어 있는지는 정해져 있지 않다** — DESCRIPTION
+- **initgroups(3)**: 그룹 데이터베이스 /etc/group을 읽어 그 사용자가 든 모든 그룹으로 그룹 접근 목록을 채우고, 따로 받은 그룹 하나도 그 목록에 더한다 — DESCRIPTION.
+  login(1)이 이 함수를 부른다는 문장은 이 step이 본 페이지에 없다
+
+쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(group(5) — /etc/group은 그룹 목록, 보조 그룹은 그 줄의 사용자 목록; getgroups(2) — `id`의 `groups=`에 기본 그룹이 함께 나오는지는 정해져 있지 않다),
+`linux-accounts.login-records`(utmp(5) — wtmp는 로그인·로그아웃·다시 시작의 기록이고 텍스트가 아니어서 `last`로 본다)
+
+## (phase 76 step 9) util-linux — login(1), su(1); systemd — sysusers.d(5), systemd-sysusers(8)
+https://man7.org/linux/man-pages/man1/login.1.html
+https://man7.org/linux/man-pages/man1/su.1.html
+https://man7.org/linux/man-pages/man5/sysusers.d.5.html
+https://man7.org/linux/man-pages/man8/systemd-sysusers.8.html
+
+2026-11-05에 읽은 판: login(1)·su(1)은 util-linux 2.43 개발판(2.43.devel-739-eee2e, 2026-05-24), sysusers.d(5)·systemd-sysusers(8)은 systemd 262~devel. man7.org의 `man8/login.8.html`은 없다(404).
+
+- **login(1)**: 시스템에 들어올 때 쓰는 프로그램이다. 사용자 이름과 (필요하면) 암호를 묻고, 암호 기간 기능이 켜진 계정이면 이어 가기 전에 새 암호를 정하게 할 수 있다.
+  **프로세스의 사용자 ID와 그룹 ID는 /etc/passwd에 적힌 값으로 정한다**(UID가 0인 계정은 기본 그룹 ID만 정하는 예외가 있다). HOME·USER·SHELL 같은 환경 변수도 그 줄의 칸으로 정하고, 그다음 그 사용자의 셸을 시작한다(셸이 정해져 있지 않으면 `/bin/sh`) — DESCRIPTION.
+  /var/log/lastlog가 있으면 지난 로그인 시각을 보여 주고 이번 로그인을 기록한다 — DESCRIPTION. 다루는 파일에 /var/run/utmp·/var/log/wtmp·/var/log/lastlog가 있다 — FILES.
+  **이어 읽기(세 문서를 이은 것)**: 로그인한 셸의 그룹 ID는 /etc/passwd의 기본 그룹이고(login(1)), 그 셸이 실행한 프로그램은 이 ID를 물려받으며(credentials(7)),
+  set-group-ID 비트가 없는 디렉터리에 새로 만든 파일은 만든 프로세스의 실효 그룹 ID를 받는다(inode(7)) — 그래서 그 사용자가 만든 새 파일의 그룹은 보통 기본 그룹이다(newgrp(1)로 그룹 ID를 바꾸면 달라진다)
+- **su(1)**: 보안을 위해 실패한 로그인 시도를 늘 btmp 파일에 남긴다(lastlog 파일에는 쓰지 않는다) — SECURITY NOTES
+- **sysusers.d(5)**: systemd-sysusers는 이 설정 파일들로 **시스템 사용자와 그룹**을 패키지를 설치할 때나 부팅 때 만든다. 시스템이 아닌 사용자, 곧 일반(「사람」) 사용자를 만드는 데는 쓰지 않는다 — DESCRIPTION.
+  `u` 줄로 만든 계정은 로그인할 수 없게 만들어지고, 시스템 사용자는 보통 로그인을 허용하지 않아야 한다 — 「u」 줄
+- **systemd-sysusers(8)**: 예로, 패키지 설치 스크립트가 데몬 `radvd`를 위한 사용자 `radvd`(설명 「radvd daemon」)를 만든다 — OPTIONS의 Example 1.
+  위 둘을 이으면 「시스템 계정은 사람이 아니라 프로그램(데몬 같은 것)을 위해 패키지를 설치할 때 만들고, 보통 로그인을 막아 둔다」를 쓸 수 있다. 번호의 범위는 login.defs의 SYS_UID_MIN~SYS_UID_MAX다(위 shadow-utils 항목)
+
+쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(login(1) — 로그인 때 UID·GID가 /etc/passwd의 값으로 정해진다, 새 파일의 그룹; sysusers.d(5)·systemd-sysusers(8) — 시스템 계정과 일반 계정),
+`linux-accounts.etc-passwd`(login(1) — 셸 칸의 프로그램을 시작한다), `linux-accounts.login-records`(login(1) — wtmp·lastlog에 남긴다; su(1) — 실패한 시도를 btmp에 남긴다)
+
+## (phase 76 step 9) GNU coreutils — id(1), GNU Coreutils 매뉴얼 20.1; GNU Bash — bash(1) HISTORY; procps-ng — pgrep(1)
+https://man7.org/linux/man-pages/man1/id.1.html
+https://www.gnu.org/software/coreutils/manual/html_node/id-invocation.html
+https://man7.org/linux/man-pages/man1/bash.1.html
+https://man7.org/linux/man-pages/man1/pgrep.1.html
+
+2026-11-05에 읽은 판: id(1)은 GNU coreutils 9.11(April 2026), 매뉴얼 20.1은 gnu.org의 GNU Coreutils 9.12판(이날 www.gnu.org가 응답했다), bash(1)은 GNU Bash 5.3(2025 April 7 — man7.org가 2026-08-03에 bash 저장소에서 가져옴),
+pgrep(1)은 procps-ng(2025-12-29). FTP 전송 기록 `xferlog`는 man7.org에 페이지가 없다(`man5/xferlog.5.html` 404) — 허용한 출처에서 찾지 못했다.
+
+- **id(1)**: 사용자를 주면 그 사용자의, 주지 않으면 지금 프로세스의 사용자·그룹 정보를 보인다. `-u`는 실효 사용자 ID만, `-g`는 실효 그룹 ID만, `-G`는 모든 그룹 ID, `-n`은 (`-u`·`-g`·`-G`와 함께) 번호 대신 이름 — DESCRIPTION.
+  옵션 없이 쓰면 「쓸모 있는 정보 묶음」을 보인다고만 하고 꼴은 적지 않는다(꼴은 위 「(phase 76) POSIX.1-2024」 항목의 `id` 줄)
+- **GNU Coreutils 매뉴얼 20.1**: 기본으로 실제 사용자 ID, 실제 그룹 ID, (다르면) 실효 사용자·그룹 ID, 보조 그룹 ID를 보이고, 숫자마다 앞에는 무엇인지 알리는 글자를, 뒤에는 괄호 안에 이름을 붙인다.
+  프로세스의 기본·보조 그룹은 보통 부모에게서 물려받아 로그인한 뒤로 바뀌지 않으므로, **로그인한 뒤 그룹 데이터베이스를 고쳐도 지금 세션의 `id`에는 나타나지 않는다**. 사용자 이름을 주어 실행하면 데이터베이스를 새로 읽으므로 다른 결과가 나올 수 있다 — 20.1
+- **bash(1)** — HISTORY: 셸의 history(명령 기록)는 **그 셸에서 앞서 입력한 명령의 목록**이다. bash는 시작할 때 HISTFILE(기본 `~/.bash_history`)에서 목록을 읽고, 끝날 때 목록을 그 파일에 쓴다. 남기는 수는 HISTSIZE(기본 500) — HISTORY.
+  내장 명령 `history`는 옵션 없이 쓰면 그 목록을 번호와 함께 보인다 — SHELL BUILTIN COMMANDS(`history`). 곧 `history`는 로그인 시도의 기록이 아니다
+- **pgrep(1)**: `pkill`은 이름 같은 조건에 맞는 프로세스마다 시그널(기본 SIGTERM)을 보낸다 — NAME, DESCRIPTION. 로그인 기록과 관계가 없다
+
+쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(id(1)·매뉴얼 20.1 — `id`가 보이는 것, 로그인한 뒤 바꾼 그룹은 지금 세션에 바로 나타나지 않는다), `linux-accounts.login-records`(bash(1) — `history`는 셸 명령의 목록),
+`exam-notes.md`의 「phase 76 step 9」 문단(bash(1)·pgrep(1) — 기출 오답 `history`·`pkill`, `xferlog`는 출처에 없다)
