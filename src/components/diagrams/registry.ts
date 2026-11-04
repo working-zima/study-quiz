@@ -117,6 +117,7 @@ import { PermissionClassesDiagram } from './PermissionClassesDiagram'
 import { PermissionStringDiagram } from './PermissionStringDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
+import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -124,6 +125,7 @@ import { ProcViewDiagram } from './ProcViewDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
+import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
@@ -374,6 +376,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.working-directory': WorkingDirectoryDiagram,
   'linux-shell.paths': PathResolveDiagram,
   'linux-shell.file-commands': FileCommandsDiagram,
+  'linux-shell.redirection': RedirectionFlowDiagram,
+  'linux-shell.pipe': PipeFlowDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

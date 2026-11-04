@@ -58,6 +58,7 @@ POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지�
 POSIX 2024년판은 셸 언어 장(`utilities/V3_chap02.html`)·유틸리티·Base Definitions 페이지를, GNU Bash 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`bash.html`, 5.3)을, man7.org는 페이지를 내려받아 읽었다.
 **vi는 POSIX `vi`·`ex` 명세로만 쓴다** — 허용한 출처에 vim 문서는 없고, 지금 배포판의 `vi`가 실제로 어떤 프로그램인지는 확인하지 않았다. 셸 스크립트·변수·제어문, vi의 이동 명령, 정규 표현식 문법은 기출이 묻지 않아 가져오지 않았다.
 「(phase 75 step 14)」가 붙은 줄은 phase 75 step 14에서 `linux-shell.paths`·`linux-shell.file-commands`와 문항 n136·n137을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04).
+「(phase 75 step 15)」가 붙은 줄은 phase 75 step 15에서 `linux-shell.redirection`·`linux-shell.pipe`와 문항 n138~n140을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04) — `sort`가 표준 입력을 읽어 줄을 늘어놓고 표준 출력에 쓴다는 것.
 
 ---
 
@@ -3034,6 +3035,9 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
   화면에서 `<space>`(스페이스)는 기본으로 한 화면을 앞으로 넘기고 — Scroll Forward One Line, `q`는 끝낸다 — Quit(EXTENDED DESCRIPTION). [UP]
 - **grep**: 입력 파일에서 하나 이상의 패턴에 맞는 줄을 골라 낸다 — DESCRIPTION. 고른 줄은 표준 출력에 쓴다 — STDOUT. 파일을 주지 않으면 표준 입력을 읽는다 — OPERANDS.
   패턴은 꼭 있어야 한다 — 세 꼴의 SYNOPSIS 모두 `pattern_list`나 `-e`·`-f`를 요구한다(패턴 문법인 정규 표현식은 다루지 않는다)
+- (phase 75 step 15) **sort**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/sort.html, 2026-11-04에 내려받아 읽음): 이름 붙은 파일들의 줄을 늘어놓아(sort) 결과를 출력에 쓴다 — DESCRIPTION.
+  비교는 줄 전체(키를 주지 않으면)를 지금 로캘의 글자 차례(collating sequence)로 한다 — DESCRIPTION. 파일 피연산자를 하나도 주지 않으면 표준 입력을 쓴다 — OPERANDS·STDIN.
+  `-o`·`-c`가 없으면 늘어놓은 입력은 표준 출력에 쓴다 — STDOUT. 본문은 차례를 「정해진 글자 차례」로만 쓰고 로캘·키·옵션은 다루지 않는다
 - **find**: `find [-H|-L] 경로... [식]` — 경로마다 그 아래 디렉터리 계층을 **끝까지 내려가며** 만나는 파일마다 식(primary를 이은 참·거짓 식)을 평가한다 — SYNOPSIS, DESCRIPTION
   - `-name 패턴`: 지금 경로의 **마지막 이름**(basename)이 셸의 패턴 맞추기 꼴(`*` 같은 — 2.14)에 맞으면 참 — OPERANDS
   - `-type c`: 파일 종류가 `c`면 참 — `b`·`c`·`d`·`l`·`p`·`f`·`s`가 차례로 블록 특수 파일·문자 특수 파일·디렉터리·심볼릭 링크·FIFO·일반 파일·소켓 — OPERANDS
@@ -3047,6 +3051,7 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.working-directory`(pwd DESCRIPTION·STDOUT), `linux-shell.file-commands`(cat·cp·mv·mkdir·man DESCRIPTION, cp·mv OPTIONS `-i`, mv DESCRIPTION — `-i` 없이 묻는 때와 이름 바꾸기),
 `linux-shell.pipe`(more DESCRIPTION·OPERANDS·EXTENDED DESCRIPTION, grep DESCRIPTION·STDOUT·OPERANDS), `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — `-name`·`-type`·`-perm`·`-user`·`-exec`·`-print`), `exam-notes.md`의 「phase 75 step 12」 문단
 (phase 75 step 14) `linux-shell.file-commands`(cp DESCRIPTION 3단계 — `-i` 없이 덮어쓴다, ls DESCRIPTION — 피연산자 없으면 작업 디렉터리), 문항 n137(cp DESCRIPTION·OPTIONS `-i`, mv `-i`, rm `-i`)
+(phase 75 step 15) `linux-shell.redirection`(sort DESCRIPTION·OPERANDS·STDIN·STDOUT — `sort < notes.txt`·`sort << END`, cat DESCRIPTION — `cat list.txt`), `linux-shell.pipe`(more·grep·cat — 위 줄 그대로), 문항 n139(sort OPERANDS·STDOUT), n140(more·grep)
 
 ## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: vi, ex
 https://pubs.opengroup.org/onlinepubs/9799919799/utilities/vi.html
