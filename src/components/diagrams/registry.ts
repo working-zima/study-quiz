@@ -54,6 +54,7 @@ import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FileCommandsDiagram } from './FileCommandsDiagram'
 import { FileTypeCharDiagram } from './FileTypeCharDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
@@ -109,6 +110,7 @@ import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
+import { PathResolveDiagram } from './PathResolveDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
@@ -370,6 +372,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-permissions.chown': ChownChangeDiagram,
   'linux-shell.shell': ShellLayerDiagram,
   'linux-shell.working-directory': WorkingDirectoryDiagram,
+  'linux-shell.paths': PathResolveDiagram,
+  'linux-shell.file-commands': FileCommandsDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

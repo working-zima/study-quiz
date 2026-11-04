@@ -57,6 +57,7 @@ POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지�
 「(phase 75 step 12)」가 붙은 줄과 항목은 phase 75 step 12에서 `linux-shell`(셸, 작업 디렉터리, 절대 경로와 상대 경로, 파일을 다루는 기본 명령, 리다이렉션, 파이프, find 명령, vi 편집기, vi의 편집 명령, vi의 콜론 명령) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-04).
 POSIX 2024년판은 셸 언어 장(`utilities/V3_chap02.html`)·유틸리티·Base Definitions 페이지를, GNU Bash 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`bash.html`, 5.3)을, man7.org는 페이지를 내려받아 읽었다.
 **vi는 POSIX `vi`·`ex` 명세로만 쓴다** — 허용한 출처에 vim 문서는 없고, 지금 배포판의 `vi`가 실제로 어떤 프로그램인지는 확인하지 않았다. 셸 스크립트·변수·제어문, vi의 이동 명령, 정규 표현식 문법은 기출이 묻지 않아 가져오지 않았다.
+「(phase 75 step 14)」가 붙은 줄은 phase 75 step 14에서 `linux-shell.paths`·`linux-shell.file-commands`와 문항 n136·n137을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04).
 
 ---
 
@@ -2897,6 +2898,7 @@ GNU Coreutils 9.12 매뉴얼(Texinfo 7.2로 만든 HTML, Copyright 1994–2026).
 - (phase 75 step 12) **10.1.1 Which files are listed**: ls는 기본으로 명령 줄의 파일과 디렉터리 안의 목록을 적되, 디렉터리 안에서 이름이 `.`으로 시작하는 파일은 빼고 적는다. `-a`(`--all`)를 주면 그 파일들도 적는다 — 10.1.1.
   이름이 `.`으로 시작하는 파일을 **숨은 파일**(hidden files)이라 부르는 것은 같은 매뉴얼 30.3.2(버전 정렬의 우선순위 — 「files starting with a dot」)와 bash 매뉴얼 8.3.1(`match-hidden-files`)이다
 - (phase 75 step 12) **11.1 cp**: 복사본은 원본과 완전히 따로다. 파일 하나를 다른 파일로, 또는 여러 파일을 한 디렉터리 안으로 복사한다 — 11.1. `-i`(`--interactive`): 디렉터리가 아닌 파일을 복사할 때 이미 있는 대상 파일을 덮어쓸지 묻고, 긍정하지 않으면 그 복사는 실패로 친다 — 11.1 `-i`
+- (phase 75 step 14) **11.1 cp — `-r`**(https://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html, 9.12, 2026-11-04에 내려받아 읽음): `-r`·`-R`·`--recursive`는 디렉터리를 그 안까지 재귀적으로 복사한다 — 11.1 `-R`. `-i`가 아니므로 이미 있는 대상에 묻지 않는다
 - (phase 75 step 12) **11.4 mv**: mv는 파일(이나 디렉터리)을 옮기거나 이름을 바꾼다 — 이름 둘을 주면 첫째를 둘째로 옮긴다. 옮기는 일은 보통 이름을 바꾸는 것이고, 대상의 파일 시스템이 달라 이름 바꾸기가 안 되면 복사한 뒤 원본을 지운다.
   대상 파일이 이미 있고 보통은 쓸 수 없는 파일이며 표준 입력이 터미널이고 `-f`가 없으면, `-i`가 없어도 바꿀지 묻는다 — 11.4. `-i`는 권한과 관계없이 이미 있는 대상마다 덮어쓸지 묻는다 — 11.4 `-i`
 - (phase 75 step 12) **11.5 rm**: 기본으로 디렉터리는 지우지 않는다. 쓸 수 없는 파일이고 표준 입력이 터미널이며 `-f`가 없거나, `-i`가 있으면 지울지 묻고, 긍정하지 않으면 그 파일은 두고 넘어간다.
@@ -2907,6 +2909,7 @@ GNU Coreutils 9.12 매뉴얼(Texinfo 7.2로 만든 HTML, Copyright 1994–2026).
 `linux-permissions.chmod`(13.3), `linux-permissions.symbolic-mode`(27.2.1·27.2.5·27.2.6, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1·13.2)
 (phase 75 step 11) `linux-permissions.symbolic-mode`(27.2.1 — 누구·연산·권한, `=`는 적은 권한만 갖게, 27.2.5 — 쉼표로 여럿, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1 — `소유자`·`소유자:그룹`·`:그룹` 꼴, 이식성 있는 동작은 자기가 속한 그룹으로만, 13.2 — chgrp)
 (phase 75 step 12) `linux-shell.file-commands`(10.1.1 — `-a`와 숨은 파일, 11.1 — cp와 `-i`, 11.4 — mv는 옮기기와 이름 바꾸기가 같은 명령·`-i` 없이 묻는 때, 11.5 — rm은 기본으로 디렉터리를 지우지 않는다·묻는 때), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 14) 문항 n137(11.1 `-R` — `cp -r`은 재귀 복사이고 묻지 않는다, 11.1 `-i`)
 
 ## (phase 75 step 7) Linux man-pages — path_resolution(7), inode(7), link(2), symlink(7), open(2), rename(2), rmdir(2), tty(4), null(4); GNU coreutils — ls(1), ln(1), chgrp(1)
 https://man7.org/linux/man-pages/man7/path_resolution.7.html
@@ -3019,6 +3022,9 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 - **cat**: 파일들을 차례로 읽어 그 내용을 같은 차례로 표준 출력에 쓴다 — DESCRIPTION
 - **cp**: 원본 파일의 내용을 대상 경로로 복사한다. 마지막 피연산자가 있는 디렉터리면 그 안에 원본의 마지막 이름으로 복사하고, `-R`이면 원본 아래 파일 계층 전체를 복사한다 — DESCRIPTION.
   `-i`는 이미 있는 대상 파일(디렉터리가 아닌 것)에 복사하기 전에 표준 오류에 물음을 쓰고, 표준 입력의 대답이 긍정이면 복사하고 아니면 하지 않는다 — OPTIONS
+- (phase 75 step 14) **cp — 이미 있는 대상**(2026-11-04에 다시 읽음): 대상 파일이 이미 있으면 `-i`일 때만 표준 오류에 물음을 쓰고 대답이 긍정이 아니면 그 원본은 두고 넘어간다. 그 밖에는 대상 파일을 O_WRONLY|O_TRUNC로 열어(길이를 0으로 잘라) 원본의 내용을 쓴다 — DESCRIPTION 3단계.
+  곧 `-i` 없이는 묻지 않고 덮어쓴다
+- (phase 75 step 14) **ls — 피연산자 없음**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/ls.html, 2026-11-04에 내려받아 읽음): 피연산자를 하나도 주지 않으면 `.` 하나를 준 것처럼 동작한다 — DESCRIPTION. 곧 디렉터리를 적지 않으면 작업 디렉터리의 목록을 보인다
 - **mv**: 원본을 대상으로 옮긴다 — 마지막 피연산자가 있는 디렉터리면 그 안으로 같은 이름으로, 아니면 그 경로 이름으로(같은 디렉터리 안이면 곧 이름 바꾸기) 옮긴다. 하는 일은 rename() 함수와 같다 — DESCRIPTION.
   대상이 이미 있고 `-f`가 없을 때, ①대상에 쓰기 권한이 없고 표준 입력이 터미널이거나 ②`-i`가 있으면, 표준 오류에 물음을 쓰고 한 줄을 읽어 긍정이 아니면 그 원본은 그대로 두고 넘어간다 — DESCRIPTION 1단계.
   `-i`는 대상이 있으면 확인을 묻고 `-f`는 묻지 않으며, 둘 다 주면 마지막 것을 따른다 — OPTIONS
@@ -3040,6 +3046,7 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.working-directory`(pwd DESCRIPTION·STDOUT), `linux-shell.file-commands`(cat·cp·mv·mkdir·man DESCRIPTION, cp·mv OPTIONS `-i`, mv DESCRIPTION — `-i` 없이 묻는 때와 이름 바꾸기),
 `linux-shell.pipe`(more DESCRIPTION·OPERANDS·EXTENDED DESCRIPTION, grep DESCRIPTION·STDOUT·OPERANDS), `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — `-name`·`-type`·`-perm`·`-user`·`-exec`·`-print`), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 14) `linux-shell.file-commands`(cp DESCRIPTION 3단계 — `-i` 없이 덮어쓴다, ls DESCRIPTION — 피연산자 없으면 작업 디렉터리), 문항 n137(cp DESCRIPTION·OPTIONS `-i`, mv `-i`, rm `-i`)
 
 ## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: vi, ex
 https://pubs.opengroup.org/onlinepubs/9799919799/utilities/vi.html

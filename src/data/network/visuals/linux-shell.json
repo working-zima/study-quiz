@@ -88,6 +88,113 @@
       "sources": [
         "linux-shell.working-directory"
       ]
+    },
+    "path-resolve": {
+      "label": "작업 디렉터리가 docs일 때 같은 파일 report.txt를 절대 경로 /home/user1/report.txt와 상대 경로 ../report.txt로 가리키는 길, 그리고 ~가 바뀌는 홈 디렉터리 경로를 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래로 home, 그 안의 user1이 이어지고, user1 안에 docs 디렉터리와 report.txt 파일이 나무 모양으로 놓여 있다",
+      "question": "같은 파일을 두 가지로 가리킬 수 있을까?",
+      "idleCaption": "루트 디렉터리 / 안의 home, 그 안의 user1 디렉터리에 docs 디렉터리와 report.txt 파일이 있고, 작업 디렉터리는 docs다. user1·docs·report.txt는 예로 붙인 이름이다. 버튼을 고르면 같은 report.txt를 가리키는 두 경로와 ~가 바뀌는 경로를 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 것을 잇고, 화살표는 경로를 따라가는 차례다.",
+      "nodes": {
+        "slash": "/",
+        "home": "home",
+        "user1": "user1",
+        "docs": "docs",
+        "report": "report.txt"
+      },
+      "notes": {
+        "cwd": "작업 디렉터리",
+        "absolute": "/home/user1/report.txt",
+        "relative": "../report.txt",
+        "home": "~ = /home/user1"
+      },
+      "scenarios": [
+        {
+          "id": "absolute",
+          "label": "절대 경로",
+          "caption": "절대 경로 /home/user1/report.txt는 /로 시작해 루트 디렉터리에서부터 home, user1을 차례로 따라가 report.txt에 닿는다. 루트 디렉터리는 하나뿐이라 작업 디렉터리가 어디든 같은 파일을 가리킨다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        },
+        {
+          "id": "relative",
+          "label": "상대 경로",
+          "caption": "작업 디렉터리가 docs일 때 상대 경로 ../report.txt는 작업 디렉터리에서부터 찾는다. ..은 한 단계 위인 user1을 가리키고, 그 안의 report.txt에 닿아 절대 경로와 같은 파일이 된다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        },
+        {
+          "id": "home",
+          "label": "~",
+          "caption": "경로 맨 앞에 혼자 쓴 ~는 셸이 홈 디렉터리의 경로로 바꿔 준다. user1이 입력한 ~는 /home/user1이 되므로, ~/report.txt도 어디서 입력하든 같은 report.txt를 가리킨다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.paths"
+      ]
+    },
+    "file-commands": {
+      "label": "파일 notes.txt에 cp, mv, rm, mv -i를 입력했을 때 명령 뒤에 어떤 파일이 남는지를 명령마다 보이는 도식",
+      "svgLabel": "바꾸기 전의 notes.txt와 이미 있는 memo.txt 옆에, cp·mv·rm·mv -i 명령과 그 명령 뒤에 남는 파일이 놓여 있다",
+      "question": "cp·mv·rm 뒤에 무엇이 남을까?",
+      "idleCaption": "작업 디렉터리에 예로 붙인 파일 notes.txt가 있다. 따로 놓인 memo.txt는 mv -i의 예에서만 이미 있는 파일이다. 버튼을 고르면 cp·mv·rm·mv -i를 입력한 뒤에 무엇이 남는지 볼 수 있다.",
+      "legend": "화살표는 명령에 준 파일에서 명령으로, 명령에서 그 명령 뒤에 남는 파일로 간다.",
+      "nodes": {
+        "notes": "notes.txt",
+        "memo-old": "memo.txt",
+        "cmd-copy": "cp notes.txt memo.txt",
+        "after-copy": "notes.txt · memo.txt",
+        "cmd-move": "mv notes.txt memo.txt",
+        "after-move": "memo.txt",
+        "cmd-remove": "rm notes.txt",
+        "cmd-interactive": "mv -i notes.txt memo.txt"
+      },
+      "notes": {
+        "removed": "지워짐",
+        "ask": "덮어쓸지 묻는다"
+      },
+      "scenarios": [
+        {
+          "id": "copy",
+          "label": "cp",
+          "caption": "cp notes.txt memo.txt는 notes.txt와 내용이 같은 새 파일 memo.txt를 만든다. 원본 notes.txt는 그대로 남아, 명령 뒤에는 두 파일이 함께 있다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "move",
+          "label": "mv",
+          "caption": "mv notes.txt memo.txt는 같은 디렉터리 안에서 notes.txt의 이름을 memo.txt로 바꾼다. 옮기기와 이름 바꾸기는 같은 일이라 원래 이름 notes.txt는 남지 않는다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "remove",
+          "label": "rm",
+          "caption": "rm notes.txt는 notes.txt를 지운다. 지운 파일은 디렉터리 목록에서 사라지고, 명령 뒤에 남는 파일이 없다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "interactive",
+          "label": "mv -i",
+          "caption": "memo.txt가 이미 있을 때 mv -i notes.txt memo.txt는 바로 옮기지 않고 memo.txt를 덮어쓸지 먼저 묻는다. 그렇다고 답하면 이름을 바꾸고, 아니라고 답하면 아무것도 바꾸지 않는다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.file-commands"
+      ]
     }
   },
   "tables": {},
