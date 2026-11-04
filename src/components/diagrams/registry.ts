@@ -1,5 +1,6 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
+import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
@@ -155,6 +156,7 @@ import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
+import { PasswdFieldsDiagram } from './PasswdFieldsDiagram'
 import { PathResolveDiagram } from './PathResolveDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
@@ -487,6 +489,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.dmesg': KernelMessagesDiagram,
   'linux-process-boot.runlevel': RunlevelTargetsDiagram,
   'linux-process-boot.shutdown-commands': ShutdownCommandsDiagram,
+  'linux-accounts.user-account': AccountIdsDiagram,
+  'linux-accounts.etc-passwd': PasswdFieldsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
