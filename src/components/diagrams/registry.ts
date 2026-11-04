@@ -200,6 +200,7 @@ import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { ShellLayerDiagram } from './ShellLayerDiagram'
+import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
@@ -485,6 +486,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-process-boot.grub': GrubMenuDiagram,
   'linux-process-boot.dmesg': KernelMessagesDiagram,
   'linux-process-boot.runlevel': RunlevelTargetsDiagram,
+  'linux-process-boot.shutdown-commands': ShutdownCommandsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
