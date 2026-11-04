@@ -381,6 +381,10 @@
       "completed_at": "2026-11-04T21:41:35+0900"
     },
     {
+      "dir": "76-network-linux-process-accounts",
+      "status": "pending"
+    },
+    {
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"
