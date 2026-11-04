@@ -1,0 +1,274 @@
+{
+  "diagrams": {
+    "account-ids": {
+      "label": "사용자 이름과 UID, 그룹 이름과 GID를 짝으로 놓고, user1이 기본 그룹 dev와 보조 그룹 ops에 들어 있으며 관리자 root의 UID가 0이라는 것을 보이는 도식",
+      "svgLabel": "테두리 사용자 이름과 UID 안에 root와 0, user1과 1001이 짝으로 놓이고, 테두리 그룹 이름과 GID 안에 dev와 2001, ops와 2002가 짝으로 놓여 있다",
+      "question": "커널은 사용자를 무엇으로 알아볼까?",
+      "idleCaption": "사용자 이름과 UID, 그룹 이름과 GID를 짝으로 놓았다. root의 UID 0 말고는 예로 붙인 이름과 번호다. 버튼을 고르면 커널이 쓰는 번호와 user1이 든 그룹을 볼 수 있다.",
+      "legend": "테두리 안에서 이름과 번호를 나란히 붙여 짝을 보였다. 화살표는 user1이 든 그룹을 가리킨다.",
+      "nodes": {
+        "root": "root",
+        "root-uid": "0",
+        "user1": "user1",
+        "user1-uid": "1001",
+        "dev": "dev",
+        "dev-gid": "2001",
+        "ops": "ops",
+        "ops-gid": "2002"
+      },
+      "groups": {
+        "users": "사용자 이름과 UID",
+        "groups": "그룹 이름과 GID"
+      },
+      "notes": {
+        "primary": "기본",
+        "secondary": "보조"
+      },
+      "scenarios": [
+        {
+          "id": "uid",
+          "label": "UID",
+          "caption": "사용자 이름 user1은 사람이 읽기 좋게 붙인 이름이고, 커널은 이 계정을 UID 1001이라는 번호로 가린다. 파일도 자기 주인을 이름이 아니라 이 번호로 기억한다.",
+          "sources": ["linux-accounts.user-account"]
+        },
+        {
+          "id": "groups",
+          "label": "그룹",
+          "caption": "user1의 기본 그룹은 dev(GID 2001) 하나이고, 보조 그룹으로 ops(GID 2002)에도 들어 있다. user1이 새로 만든 파일에는 보통 기본 그룹 dev가 붙고, 보조 그룹 ops는 권한을 따질 때 함께 쓰인다.",
+          "sources": ["linux-accounts.user-account"]
+        },
+        {
+          "id": "root",
+          "label": "root",
+          "caption": "시스템 전체를 관리하는 관리자 계정 root는 UID가 0이다. 이 번호는 정해진 것이고, 일반 사용자의 번호는 그 컴퓨터의 설정이 정한 범위에서 고른다.",
+          "sources": ["linux-accounts.user-account"]
+        }
+      ],
+      "sources": ["linux-accounts.user-account"]
+    },
+    "passwd-fields": {
+      "label": "/etc/passwd에 적힌 user4의 한 줄을 칸 이름과 값으로 나눠, 이름과 번호, 암호 칸의 x가 가리키는 곳, 로그인할 때 쓰이는 칸을 보이는 도식",
+      "svgLabel": "테두리 user4의 /etc/passwd 한 줄 안에 사용자 이름 user4, 암호 칸 x, UID 1004, GID 2001, 설명 칸 (비어 있음), 홈 디렉터리 /home/user4, 로그인 셸 /bin/bash가 칸 이름과 값의 짝으로 차례로 놓이고, 테두리 밖에 /etc/shadow가 있다",
+      "question": "/etc/passwd의 한 줄은 무엇을 말할까?",
+      "idleCaption": "/etc/passwd에 적힌 user4의 줄을 콜론으로 나눈 칸 일곱을 칸 이름과 값으로 나눠 놓았다. user4와 번호들은 예로 붙인 것이다. 버튼을 고르면 칸들이 무엇을 말하는지 볼 수 있다.",
+      "legend": "칸 이름과 그 값을 나란히 놓았고, 칸은 줄에 적힌 차례대로 놓았다. 화살표는 암호 칸의 x가 가리키는 파일로 간다.",
+      "nodes": {
+        "name-name": "사용자 이름",
+        "name": "user4",
+        "password-name": "암호 칸",
+        "password": "x",
+        "uid-name": "UID",
+        "uid": "1004",
+        "gid-name": "GID",
+        "gid": "2001",
+        "gecos-name": "설명 칸",
+        "gecos": "(비어 있음)",
+        "home-name": "홈 디렉터리",
+        "home": "/home/user4",
+        "shell-name": "로그인 셸",
+        "shell": "/bin/bash",
+        "shadow": "/etc/shadow"
+      },
+      "groups": {
+        "line": "user4의 /etc/passwd 한 줄"
+      },
+      "notes": {
+        "shadow": "암호화한 암호"
+      },
+      "scenarios": [
+        {
+          "id": "ids",
+          "label": "번호",
+          "caption": "첫째 칸은 사용자 이름 user4이고, 숫자 두 칸 가운데 앞의 1004가 이 계정의 UID, 뒤의 2001이 기본 그룹 dev의 GID다. 보조 그룹은 이 줄에 적지 않고 /etc/group에 적는다.",
+          "sources": ["linux-accounts.etc-passwd"]
+        },
+        {
+          "id": "password",
+          "label": "x",
+          "caption": "암호 칸의 x는 암호가 글자 x라는 뜻이 아니라, 암호화한 암호가 /etc/shadow에 있다는 표시다. /etc/passwd는 모든 사용자가 읽을 수 있어서 암호를 여기 두지 않는다.",
+          "sources": ["linux-accounts.etc-passwd"]
+        },
+        {
+          "id": "login",
+          "label": "로그인",
+          "caption": "user4가 로그인하면 홈 디렉터리 /home/user4에서 로그인 셸 /bin/bash가 실행된다. 셸 칸이 비어 있으면 /bin/sh가 실행된다.",
+          "sources": ["linux-accounts.etc-passwd"]
+        }
+      ],
+      "sources": ["linux-accounts.etc-passwd"]
+    },
+    "shadow-fields": {
+      "label": "/etc/shadow에 적힌 user4의 한 줄을 칸 이름과 값으로 나눠, 암호화된 암호와 암호의 기간 칸, 만료 칸을 보이는 도식",
+      "svgLabel": "테두리 user4의 /etc/shadow 한 줄 안에 사용자 이름 user4, 암호화된 암호 (줄임), 마지막으로 바꾼 날 20454, 최소 사용 기간 0, 최대 사용 기간 60, 경고 기간 7, 비활성 기간 (비어 있음), 계정 만료일 (비어 있음), 예약 칸 (비어 있음)이 칸 이름과 값의 짝으로 차례로 놓여 있다",
+      "question": "/etc/shadow의 한 줄에는 무엇이 들어 있을까?",
+      "idleCaption": "/etc/shadow에 적힌 user4의 줄을 콜론으로 나눈 칸 아홉을 칸 이름과 값으로 나눠 놓았다. 암호화된 암호는 (줄임)으로 줄였고, user4와 날 수는 예로 붙인 것이다. 버튼을 고르면 칸들이 무엇을 말하는지 볼 수 있다.",
+      "legend": "칸 이름과 그 값을 나란히 놓았고, 칸은 줄에 적힌 차례대로 놓았다. (비어 있음)은 그 칸에 아무것도 적혀 있지 않다는 뜻이다.",
+      "nodes": {
+        "name-name": "사용자 이름",
+        "name": "user4",
+        "password-name": "암호화된 암호",
+        "password": "(줄임)",
+        "lastchange-name": "마지막으로 바꾼 날",
+        "lastchange": "20454",
+        "min-name": "최소 사용 기간",
+        "min": "0",
+        "max-name": "최대 사용 기간",
+        "max": "60",
+        "warn-name": "경고 기간",
+        "warn": "7",
+        "inactive-name": "비활성 기간",
+        "inactive": "(비어 있음)",
+        "expire-name": "계정 만료일",
+        "expire": "(비어 있음)",
+        "reserved-name": "예약 칸",
+        "reserved": "(비어 있음)"
+      },
+      "groups": {
+        "line": "user4의 /etc/shadow 한 줄"
+      },
+      "scenarios": [
+        {
+          "id": "password",
+          "label": "암호",
+          "caption": "user4의 암호는 원래 글자 그대로가 아니라 알아볼 수 없게 바꾼 값으로 둘째 칸에 적혀 있다. 이 파일은 root만 읽을 수 있어서, 모든 사용자가 읽는 /etc/passwd 대신 여기에 둔다.",
+          "sources": ["linux-accounts.etc-shadow"]
+        },
+        {
+          "id": "aging",
+          "label": "기간",
+          "caption": "20454는 1970년 1월 1일부터 센 날 수로 2026년 1월 1일이다. 그날부터 60일이 지나면 암호가 만료되고, 만료되기 7일 전부터 알린다. 최소 사용 기간이 0이라 언제든 다시 바꿀 수 있다.",
+          "sources": ["linux-accounts.etc-shadow"]
+        },
+        {
+          "id": "expire",
+          "label": "만료",
+          "caption": "두 칸이 비어 있어, user4는 암호가 만료된 뒤에도 새 암호로 바꾸면 다시 들어올 수 있고 계정도 만료되지 않는다. 계정 만료일을 적어 두면 그날 계정이 만료되어 로그인 자체가 막힌다.",
+          "sources": ["linux-accounts.etc-shadow"]
+        }
+      ],
+      "sources": ["linux-accounts.etc-shadow"]
+    },
+    "useradd-options": {
+      "label": "useradd -m -g dev -G ops -s /bin/bash user4의 옵션마다, 그 결과가 /etc/passwd의 줄과 /etc/group의 ops 줄, 새 홈 디렉터리 가운데 어디에 남는지 보이는 도식",
+      "svgLabel": "테두리 입력한 명령 안에 useradd, -m, -g dev, -G ops, -s /bin/bash, user4가 차례로 놓이고, 테두리 /etc/passwd에 생긴 줄 안에 사용자 이름 user4, GID 2001, 로그인 셸 /bin/bash가, 테두리 /etc/group 안에 ops 줄에 user4가 있으며, 따로 /home/user4가 있다",
+      "question": "useradd의 옵션은 어디에 무엇을 남길까?",
+      "idleCaption": "useradd -m -g dev -G ops -s /bin/bash user4를 옵션과 그 값끼리 묶어 놓고, 그 결과로 /etc/passwd와 /etc/group에 적히는 것과 새로 만들어지는 홈 디렉터리를 놓았다. 버튼을 고르면 옵션마다 무엇을 남기는지 볼 수 있다.",
+      "legend": "입력한 명령을 옵션과 그 값끼리 묶은 덩어리로 나눠 차례대로 놓았다. 화살표는 그 덩어리가 남기는 곳으로 간다.",
+      "nodes": {
+        "useradd": "useradd",
+        "opt-m": "-m",
+        "opt-g": "-g dev",
+        "opt-supp": "-G ops",
+        "opt-s": "-s /bin/bash",
+        "name": "user4",
+        "passwd-name": "사용자 이름 user4",
+        "passwd-gid": "GID 2001",
+        "passwd-shell": "로그인 셸 /bin/bash",
+        "home": "/home/user4",
+        "group-ops": "ops 줄에 user4"
+      },
+      "groups": {
+        "command": "입력한 명령",
+        "passwd": "/etc/passwd에 생긴 줄",
+        "group-file": "/etc/group"
+      },
+      "scenarios": [
+        {
+          "id": "name",
+          "label": "이름",
+          "caption": "맨 뒤에 적은 user4가 새 계정의 이름이다. 이 이름으로 /etc/passwd에 user4의 줄이 더해지고, 그 첫째 칸인 사용자 이름 칸에 user4가 적힌다.",
+          "sources": ["linux-accounts.useradd"]
+        },
+        {
+          "id": "primary",
+          "label": "-g",
+          "caption": "-g dev는 기본 그룹을 dev 하나로 정한다. dev의 GID 2001이 /etc/passwd에 생긴 user4 줄의 GID 칸에 적힌다.",
+          "sources": ["linux-accounts.useradd"]
+        },
+        {
+          "id": "supplementary",
+          "label": "-G",
+          "caption": "-G ops는 ops를 보조 그룹으로 정한다. /etc/passwd의 GID 칸에는 적히지 않고, /etc/group의 ops 줄에 user4가 더해진다.",
+          "sources": ["linux-accounts.useradd"]
+        },
+        {
+          "id": "home-shell",
+          "label": "-m·-s",
+          "caption": "-m은 홈 디렉터리 /home/user4를 새로 만들고, -s /bin/bash는 로그인 셸을 정해 /etc/passwd의 로그인 셸 칸에 /bin/bash를 적는다.",
+          "sources": ["linux-accounts.useradd"]
+        }
+      ],
+      "sources": ["linux-accounts.useradd"]
+    },
+    "password-aging": {
+      "label": "chage -M 90 -W 7 user4를 입력한 뒤, 암호를 마지막으로 바꾼 날부터 암호가 만료되는 날과 알림이 시작되는 날을 날짜 차례로 놓아 보이는 도식",
+      "svgLabel": "0일째 마지막으로 바꾼 날, 83일째 알림 시작, 90일째 만료가 날짜 차례대로 화살표로 이어져 있다",
+      "question": "암호는 언제 만료되고, 언제부터 알려 줄까?",
+      "idleCaption": "chage -M 90 -W 7 user4를 입력한 뒤 user4의 암호 기한을 날짜 차례로 놓았다. 암호를 마지막으로 바꾼 날을 0일째로 셌다. 버튼을 고르면 옵션마다 어느 날을 정하는지 볼 수 있다.",
+      "legend": "노드는 날이 지나는 차례대로 놓았다. 굵은 화살표는 옵션의 날 수를 세는 방향이다.",
+      "nodes": {
+        "lastchange": "0일째 마지막으로 바꾼 날",
+        "warn": "83일째 알림 시작",
+        "expire": "90일째 만료"
+      },
+      "notes": {
+        "max": "-M 90",
+        "warn": "-W 7"
+      },
+      "scenarios": [
+        {
+          "id": "max",
+          "label": "-M",
+          "caption": "-M 90은 최대 사용 기간을 90일로 정한다. 마지막으로 바꾼 날을 0일째로 세면 암호가 만료되는 때는 90일째이고, 이날이 지나면 암호를 새로 바꿔야 한다.",
+          "sources": ["linux-accounts.chage"]
+        },
+        {
+          "id": "warn",
+          "label": "-W",
+          "caption": "-W 7은 경고 기간을 7일로 정한다. 암호가 만료되는 90일째에서 거꾸로 7일을 세면 90 − 7 = 83이라, 83일째부터 곧 만료된다는 알림이 시작된다.",
+          "sources": ["linux-accounts.chage"]
+        },
+        {
+          "id": "list",
+          "label": "-l",
+          "caption": "chage -l user4는 이렇게 정한 기한을 화면에 보여 주기만 하고 /etc/shadow의 칸은 하나도 바꾸지 않는다. 이 옵션만은 일반 사용자도 자기 계정에 쓸 수 있다.",
+          "sources": ["linux-accounts.chage"]
+        }
+      ],
+      "sources": ["linux-accounts.chage"]
+    },
+    "login-records": {
+      "label": "로그인 시도가 성공하면 /var/log/wtmp에 남아 last로 보고, 실패하면 /var/log/btmp에 남아 lastb로 본다는 것을 두 갈래로 보이는 도식",
+      "svgLabel": "로그인 시도에서 두 갈래가 나뉘어, 한쪽은 성공에서 /var/log/wtmp를 거쳐 last로, 다른 쪽은 실패에서 /var/log/btmp를 거쳐 lastb로 이어진다",
+      "question": "실패한 로그인 시도는 어디에 남고, 무엇으로 볼까?",
+      "idleCaption": "로그인 시도가 성공했을 때와 실패했을 때, 기록이 남는 파일과 그 파일을 읽어 보여 주는 명령을 두 갈래로 놓았다. 버튼을 고르면 갈래를 하나씩 따라가 볼 수 있다.",
+      "legend": "가는 화살표는 로그인 시도에서 기록 파일을 거쳐 그 파일을 읽는 명령까지 잇는다. 굵은 화살표는 고른 갈래다.",
+      "nodes": {
+        "attempt": "로그인 시도",
+        "success": "성공",
+        "failure": "실패",
+        "wtmp": "/var/log/wtmp",
+        "btmp": "/var/log/btmp",
+        "last": "last",
+        "lastb": "lastb"
+      },
+      "scenarios": [
+        {
+          "id": "success",
+          "label": "last",
+          "caption": "로그인에 성공하면 그 로그인과 뒤의 로그아웃이 /var/log/wtmp에 쌓이고, last가 이 파일을 읽어 기록을 늘어놓는다. 시스템을 다시 시작한 일도 이 파일에 남는다.",
+          "sources": ["linux-accounts.login-records"]
+        },
+        {
+          "id": "failure",
+          "label": "lastb",
+          "caption": "로그인하려다 실패한 시도는 /var/log/btmp에 쌓이고, lastb가 이 파일을 읽어 보인다. 허락받지 않은 사람이 남의 계정으로 들어오려 했는지 살필 때 쓴다.",
+          "sources": ["linux-accounts.login-records"]
+        }
+      ],
+      "sources": ["linux-accounts.login-records"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
