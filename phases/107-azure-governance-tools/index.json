@@ -61,7 +61,9 @@
     {
       "step": 7,
       "name": "azure-arc",
-      "status": "pending"
+      "status": "error",
+      "error_message": "[3회 시도 후 실패] Step did not update status",
+      "failed_at": "2026-11-04T18:11:21+0900"
     },
     {
       "step": 8,
