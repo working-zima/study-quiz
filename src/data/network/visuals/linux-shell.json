@@ -1,0 +1,525 @@
+{
+  "diagrams": {
+    "shell-layer": {
+      "label": "사용자가 입력한 명령 줄 ls -l /home을 셸이 읽어 풀고, 셸이 ls 프로그램의 실행을 커널에 요청해 커널이 ls를 실행하는 차례를 보이는 도식",
+      "svgLabel": "사용자, 셸, 커널, 하드웨어가 차례로 놓여 있고 커널 옆에 ls 프로그램이 있다",
+      "question": "명령을 입력하면 누가 무엇을 할까?",
+      "idleCaption": "사용자가 입력한 명령은 먼저 셸이 받고, 프로그램을 실행하는 일은 셸이 커널에 요청한다. 커널은 하드웨어를 다루는 운영체제의 핵심이고, ls는 커널이 실행하는 프로그램이다. 버튼을 고르면 명령이 처리되는 차례를 볼 수 있다.",
+      "legend": "화살표는 입력한 명령 줄과 실행 요청이 넘어가는 쪽이다.",
+      "nodes": {
+        "user": "사용자",
+        "shell": "셸",
+        "kernel": "커널",
+        "hardware": "하드웨어",
+        "ls": "ls"
+      },
+      "notes": {
+        "line": "ls -l /home",
+        "parts": "명령 이름 ls · 옵션 -l · 인자 /home",
+        "request": "시스템 호출로 실행 요청"
+      },
+      "scenarios": [
+        {
+          "id": "read",
+          "label": "명령 읽기",
+          "caption": "사용자가 터미널에 ls -l /home을 입력하면 셸이 그 줄을 받아 낱말로 나눈다. 맨 앞의 ls는 명령 이름, -l은 옵션, /home은 인자로 읽어 무엇을 실행할지 정한다.",
+          "sources": [
+            "linux-shell.shell"
+          ]
+        },
+        {
+          "id": "run",
+          "label": "실행 요청",
+          "caption": "셸은 ls 프로그램의 실행을 시스템 호출로 커널에 요청하고, 커널이 ls를 실행한다. 커널에 넘어가는 것은 입력한 줄 그대로가 아니라 셸이 풀어낸 뒤의 실행 요청이다.",
+          "sources": [
+            "linux-shell.shell"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.shell"
+      ]
+    },
+    "working-directory": {
+      "label": "로그인 직후, cd docs 뒤, cd /var/log 뒤의 작업 디렉터리가 디렉터리 나무의 어디인지와 그때 pwd가 보이는 경로를 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래로 home·var 디렉터리, home 안의 user1, user1 안의 docs, var 안의 log가 나무 모양으로 이어져 있다",
+      "question": "지금 어느 디렉터리에 있을까?",
+      "idleCaption": "루트 디렉터리 / 안에 home과 var가 있고, home 안에 user1, 그 안에 docs가, var 안에 log가 있다. user1과 docs는 예로 붙인 이름이다. 버튼을 고르면 명령을 입력한 뒤의 작업 디렉터리와 pwd가 보이는 경로를 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 디렉터리를 잇고, 화살표는 cd가 따라가는 차례다. 선명한 디렉터리가 그때의 작업 디렉터리다.",
+      "nodes": {
+        "slash": "/",
+        "home": "home",
+        "var": "var",
+        "user1": "user1",
+        "docs": "docs",
+        "log": "log"
+      },
+      "notes": {
+        "login": "pwd → /home/user1",
+        "relative": "pwd → /home/user1/docs",
+        "absolute": "pwd → /var/log"
+      },
+      "scenarios": [
+        {
+          "id": "login",
+          "label": "로그인 직후",
+          "caption": "user1이 로그인하면 셸은 홈 디렉터리 /home/user1을 작업 디렉터리로 삼아 시작한다. 이때 pwd를 입력하면 이 경로가 나온다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        },
+        {
+          "id": "relative",
+          "label": "cd docs",
+          "caption": "홈 디렉터리에서 cd docs를 입력하면 지금 디렉터리 안의 docs를 찾아 그리로 옮겨 간다. pwd는 작업 디렉터리를 /부터 적은 경로로 보여 /home/user1/docs가 나온다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        },
+        {
+          "id": "absolute",
+          "label": "cd /var/log",
+          "caption": "cd /var/log처럼 /로 시작한 경로를 주면 지금 어디에 있든 루트 디렉터리에서부터 var, log를 따라가 그 디렉터리로 옮겨 간다. pwd는 /var/log를 보인다.",
+          "sources": [
+            "linux-shell.working-directory"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.working-directory"
+      ]
+    },
+    "path-resolve": {
+      "label": "작업 디렉터리가 docs일 때 같은 파일 report.txt를 절대 경로 /home/user1/report.txt와 상대 경로 ../report.txt로 가리키는 길, 그리고 ~가 바뀌는 홈 디렉터리 경로를 보이는 도식",
+      "svgLabel": "루트 디렉터리 / 아래로 home, 그 안의 user1이 이어지고, user1 안에 docs 디렉터리와 report.txt 파일이 나무 모양으로 놓여 있다",
+      "question": "같은 파일을 두 가지로 가리킬 수 있을까?",
+      "idleCaption": "루트 디렉터리 / 안의 home, 그 안의 user1 디렉터리에 docs 디렉터리와 report.txt 파일이 있고, 작업 디렉터리는 docs다. user1·docs·report.txt는 예로 붙인 이름이다. 버튼을 고르면 같은 report.txt를 가리키는 두 경로와 ~가 바뀌는 경로를 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 것을 잇고, 화살표는 경로를 따라가는 차례다.",
+      "nodes": {
+        "slash": "/",
+        "home": "home",
+        "user1": "user1",
+        "docs": "docs",
+        "report": "report.txt"
+      },
+      "notes": {
+        "cwd": "작업 디렉터리",
+        "absolute": "/home/user1/report.txt",
+        "relative": "../report.txt",
+        "home": "~ = /home/user1"
+      },
+      "scenarios": [
+        {
+          "id": "absolute",
+          "label": "절대 경로",
+          "caption": "절대 경로 /home/user1/report.txt는 /로 시작해 루트 디렉터리에서부터 home, user1을 차례로 따라가 report.txt에 닿는다. 루트 디렉터리는 하나뿐이라 작업 디렉터리가 어디든 같은 파일을 가리킨다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        },
+        {
+          "id": "relative",
+          "label": "상대 경로",
+          "caption": "작업 디렉터리가 docs일 때 상대 경로 ../report.txt는 작업 디렉터리에서부터 찾는다. ..은 한 단계 위인 user1을 가리키고, 그 안의 report.txt에 닿아 절대 경로와 같은 파일이 된다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        },
+        {
+          "id": "home",
+          "label": "~",
+          "caption": "경로 맨 앞에 혼자 쓴 ~는 셸이 홈 디렉터리의 경로로 바꿔 준다. user1이 입력한 ~는 /home/user1이 되므로, ~/report.txt도 어디서 입력하든 같은 report.txt를 가리킨다.",
+          "sources": [
+            "linux-shell.paths"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.paths"
+      ]
+    },
+    "file-commands": {
+      "label": "파일 notes.txt에 cp, mv, rm, mv -i를 입력했을 때 명령 뒤에 어떤 파일이 남는지를 명령마다 보이는 도식",
+      "svgLabel": "바꾸기 전의 notes.txt와 이미 있는 memo.txt 옆에, cp·mv·rm·mv -i 명령과 그 명령 뒤에 남는 파일이 놓여 있다",
+      "question": "cp·mv·rm 뒤에 무엇이 남을까?",
+      "idleCaption": "작업 디렉터리에 예로 붙인 파일 notes.txt가 있다. 따로 놓인 memo.txt는 mv -i의 예에서만 이미 있는 파일이다. 버튼을 고르면 cp·mv·rm·mv -i를 입력한 뒤에 무엇이 남는지 볼 수 있다.",
+      "legend": "화살표는 명령에 준 파일에서 명령으로, 명령에서 그 명령 뒤에 남는 파일로 간다.",
+      "nodes": {
+        "notes": "notes.txt",
+        "memo-old": "memo.txt",
+        "cmd-copy": "cp notes.txt memo.txt",
+        "after-copy": "notes.txt · memo.txt",
+        "cmd-move": "mv notes.txt memo.txt",
+        "after-move": "memo.txt",
+        "cmd-remove": "rm notes.txt",
+        "cmd-interactive": "mv -i notes.txt memo.txt"
+      },
+      "notes": {
+        "removed": "지워짐",
+        "ask": "덮어쓸지 묻는다"
+      },
+      "scenarios": [
+        {
+          "id": "copy",
+          "label": "cp",
+          "caption": "cp notes.txt memo.txt는 notes.txt와 내용이 같은 새 파일 memo.txt를 만든다. 원본 notes.txt는 그대로 남아, 명령 뒤에는 두 파일이 함께 있다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "move",
+          "label": "mv",
+          "caption": "mv notes.txt memo.txt는 같은 디렉터리 안에서 notes.txt의 이름을 memo.txt로 바꾼다. 옮기기와 이름 바꾸기는 같은 일이라 원래 이름 notes.txt는 남지 않는다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "remove",
+          "label": "rm",
+          "caption": "rm notes.txt는 notes.txt를 지운다. 지운 파일은 디렉터리 목록에서 사라지고, 명령 뒤에 남는 파일이 없다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        },
+        {
+          "id": "interactive",
+          "label": "mv -i",
+          "caption": "memo.txt가 이미 있을 때 mv -i notes.txt memo.txt는 바로 옮기지 않고 memo.txt를 덮어쓸지 먼저 묻는다. 그렇다고 답하면 이름을 바꾸고, 아니라고 답하면 아무것도 바꾸지 않는다.",
+          "sources": [
+            "linux-shell.file-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.file-commands"
+      ]
+    },
+    "redirection-flow": {
+      "label": "명령 ls -l과 sort에 리다이렉션 >, >>, <를 붙였을 때 입력이 들어오는 곳과 결과가 나가는 곳이 키보드·화면 대신 파일로 바뀌는 것을 보이는 도식",
+      "svgLabel": "입력이 들어오는 키보드와 notes.txt, 명령 ls -l과 sort, 결과가 나가는 화면과 list.txt가 놓여 있다",
+      "question": ">·>>·<를 붙이면 입력과 결과는 어디로 오갈까?",
+      "idleCaption": "명령은 보통 입력을 키보드에서 받고 결과를 화면에 보인다. 버튼을 고르면 >·>>·<가 그 입력과 결과를 파일 쪽으로 어떻게 바꾸는지 볼 수 있다.",
+      "legend": "화살표는 입력이 들어오는 곳에서 명령으로, 명령에서 결과가 나가는 곳으로 간다.",
+      "nodes": {
+        "keyboard": "키보드",
+        "notes-in": "notes.txt",
+        "ls": "ls -l",
+        "sort": "sort",
+        "list": "list.txt",
+        "screen": "화면"
+      },
+      "notes": {
+        "overwrite": "원래 내용을 지우고 새로 씀",
+        "append": "끝에 이어 씀",
+        "unchanged": "notes.txt는 그대로"
+      },
+      "scenarios": [
+        {
+          "id": "default",
+          "label": "기본",
+          "caption": "리다이렉션이 없으면 ls -l의 결과는 표준 출력, 곧 터미널 화면에 나온다. 표준 입력과 표준 출력은 보통 터미널의 키보드와 화면에 이어져 있다.",
+          "sources": [
+            "linux-shell.redirection"
+          ]
+        },
+        {
+          "id": "overwrite",
+          "label": ">",
+          "caption": "ls -l > list.txt는 결과를 화면 대신 list.txt에 적는다. list.txt가 이미 있으면 원래 내용을 모두 지운 뒤 처음부터 새로 쓰고, 없으면 새로 만든다.",
+          "sources": [
+            "linux-shell.redirection"
+          ]
+        },
+        {
+          "id": "append",
+          "label": ">>",
+          "caption": "ls -l >> list.txt도 결과를 list.txt에 적지만, 원래 내용은 그대로 두고 그 끝에 이어 쓴다. > 다음에 >>로 한 번 더 입력하면 list.txt에 목록이 두 벌 들어 있다.",
+          "sources": [
+            "linux-shell.redirection"
+          ]
+        },
+        {
+          "id": "input",
+          "label": "<",
+          "caption": "sort < notes.txt는 sort가 키보드 대신 notes.txt의 내용을 표준 입력으로 읽게 한다. sort가 줄을 차례대로 늘어놓은 결과는 화면에 나오고, notes.txt는 읽히기만 할 뿐 바뀌지 않는다.",
+          "sources": [
+            "linux-shell.redirection"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.redirection"
+      ]
+    },
+    "pipe-flow": {
+      "label": "명령 줄 cat notes.txt | more, ls -l | grep report, cat notes.txt > more에서 앞 명령의 결과가 다른 명령으로 가는지 파일로 가는지를 보이는 도식",
+      "svgLabel": "명령 cat notes.txt와 ls -l, 명령 more와 grep report, 파일 more, 화면이 놓여 있다",
+      "question": "세로 막대와 >는 무엇이 다를까?",
+      "idleCaption": "두 명령 사이의 세로 막대는 앞 명령의 결과를 뒤 명령의 입력으로, 리다이렉션 >는 결과를 파일로 보낸다. 버튼을 고르면 결과가 어디로 가는지 볼 수 있다.",
+      "legend": "화살표는 앞 명령의 결과가 가는 곳을 가리킨다.",
+      "nodes": {
+        "cat": "cat notes.txt",
+        "ls": "ls -l",
+        "more-file": "파일 more",
+        "more": "명령 more",
+        "grep": "grep report",
+        "screen": "화면"
+      },
+      "notes": {
+        "page-op": "파이프 |",
+        "filter-op": "파이프 |",
+        "file-op": "리다이렉션 >",
+        "no-screen": "화면에 나오지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "page",
+          "label": "파이프로 more",
+          "caption": "cat notes.txt | more에서 세로 막대는 cat이 표준 출력에 쓰는 notes.txt의 내용을 화면 대신 more의 표준 입력으로 넘긴다. more는 그 내용을 터미널에 한 화면씩 보이고, 스페이스 키를 누르면 다음 화면을 보인다.",
+          "sources": [
+            "linux-shell.pipe"
+          ]
+        },
+        {
+          "id": "filter",
+          "label": "파이프로 grep",
+          "caption": "ls -l | grep report에서는 ls -l이 만든 목록이 화면 대신 grep에 넘어간다. grep은 그 가운데 report라는 글자가 든 줄만 골라 화면에 보인다.",
+          "sources": [
+            "linux-shell.pipe"
+          ]
+        },
+        {
+          "id": "file",
+          "label": "> more",
+          "caption": "cat notes.txt > more의 >는 리다이렉션이라 뒤의 more를 명령이 아니라 파일 이름으로 읽는다. 그래서 more를 실행하지 않고 이름이 more인 파일을 만들어 notes.txt의 내용을 적을 뿐, 화면에는 아무것도 나오지 않는다.",
+          "sources": [
+            "linux-shell.pipe",
+            "linux-shell.redirection"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.pipe"
+      ]
+    },
+    "find-search": {
+      "label": "find /home/user1에 -name, -type, -exec를 주었을 때 디렉터리 나무에서 무엇을 고르는지와, 찾은 파일마다 ls -l을 실행하는 것을 보이는 도식",
+      "svgLabel": "user1 디렉터리 안에 app.log, report.txt, docs가 있고 docs 안에 old.log가 있는 나무와, 그 곁의 명령 ls -l",
+      "question": "find는 어디까지 내려가 무엇을 찾을까?",
+      "idleCaption": "/home/user1 안에 파일 app.log·report.txt와 디렉터리 docs가 있고, docs 안에 old.log가 있다. app.log·old.log는 예로 붙인 이름이다. 버튼을 고르면 조건마다 find가 무엇을 고르는지 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 것을 잇고, 화살표는 찾은 파일의 경로가 ls -l에 넘어가는 것을 가리킨다.",
+      "nodes": {
+        "user1": "user1",
+        "app": "app.log",
+        "report": "report.txt",
+        "docs": "docs",
+        "old": "old.log",
+        "ls": "ls -l"
+      },
+      "notes": {
+        "start": "/home/user1",
+        "descend": "docs 안까지 내려간다",
+        "each": "찾은 것마다 실행"
+      },
+      "scenarios": [
+        {
+          "id": "name",
+          "label": "-name \"*.log\"",
+          "caption": "find /home/user1 -name \"*.log\"는 /home/user1에서 출발해 docs 안까지 끝까지 내려가며 이름을 견준다. 이름이 .log로 끝나는 app.log와 old.log만 골라 /home/user1/app.log와 /home/user1/docs/old.log 두 경로를 출력한다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        },
+        {
+          "id": "type",
+          "label": "-type d",
+          "caption": "find /home/user1 -type d는 디렉터리만 고른다. 시작할 디렉터리 /home/user1도 디렉터리라 docs와 함께 나와, /home/user1과 /home/user1/docs를 출력한다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        },
+        {
+          "id": "exec",
+          "label": "-name \"*.log\" -exec ls -l {} \\;",
+          "caption": "-exec ls -l {} \\;를 붙이면 이름이 .log로 끝나는 것을 찾을 때마다 {} 자리에 그 경로를 넣어 ls -l을 한 번씩 실행한다. 그래서 경로 대신 두 파일의 자세한 정보가 ls -l이 보이는 꼴로 나온다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.find"
+      ]
+    },
+    "vi-modes": {
+      "label": "vi memo.txt로 연 vi가 명령 모드로 시작해 i·a·o로 입력 모드에 들어가고 Esc로 돌아오며, :로 화면의 마지막 줄에 명령을 입력하고 Enter로 돌아오는 것을 보이는 도식",
+      "svgLabel": "vi memo.txt, 명령 모드, 입력 모드, 화면의 마지막 줄을 나타내는 상자 넷",
+      "question": "vi에서 글자를 입력하려면 어디로 가야 할까?",
+      "idleCaption": "vi memo.txt로 연 vi의 명령 모드와 입력 모드, 그리고 명령 모드에서 :를 누르면 명령을 입력받는 화면의 마지막 줄이다. 버튼을 고르면 어느 키로 어디를 오가는지 볼 수 있다.",
+      "legend": "화살표는 키를 눌러 옮겨 가는 쪽이고, 화살표 곁의 글자가 누르는 키다.",
+      "nodes": {
+        "open": "vi memo.txt",
+        "command": "명령 모드",
+        "input": "입력 모드",
+        "last": "마지막 줄"
+      },
+      "notes": {
+        "insert": "i · a · o",
+        "esc": "Esc",
+        "colon": ":",
+        "enter": "Enter"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "처음 열 때",
+          "caption": "vi memo.txt로 파일을 열면 vi는 명령 모드로 시작한다. 명령 모드에서는 누르는 글자가 문서에 들어가지 않고 vi에 내리는 명령으로 받아들여진다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        },
+        {
+          "id": "insert",
+          "label": "입력하기",
+          "caption": "명령 모드에서 i·a·o 가운데 하나를 누르면 입력 모드로 들어가, 누르는 글자가 그대로 문서에 들어간다. 다 넣었으면 Esc를 눌러 명령 모드로 돌아온다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        },
+        {
+          "id": "colon",
+          "label": "콜론 명령",
+          "caption": "명령 모드에서 :를 누르면 화면의 마지막 줄에서 저장·끝내기·바꾸기 같은 명령을 입력받는다. Enter로 실행하면 vi를 끝내는 명령이 아닌 한 다시 명령 모드로 돌아온다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi"
+      ]
+    },
+    "vi-edit-commands": {
+      "label": "줄 red green blue에서 커서가 green의 g에 있을 때 x, dw, D, dd를 누르면 줄이 어떻게 바뀌는지를 명령마다 보이는 도식",
+      "svgLabel": "지우기 전의 줄 red green blue 아래에 x, dw, D, dd 명령과 그 명령 뒤의 줄이 놓여 있다",
+      "question": "x·dw·D·dd는 각각 얼마나 지울까?",
+      "idleCaption": "예로 든 줄 red green blue에서 커서가 green의 첫 글자 g에 놓여 있다. 버튼을 고르면 명령 모드에서 x·dw·D·dd를 눌렀을 때 줄이 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 지우기 전의 줄에서 명령으로, 명령에서 그 명령 뒤의 줄로 간다.",
+      "nodes": {
+        "before": "red green blue",
+        "cmd-char": "x",
+        "after-char": "red reen blue",
+        "cmd-word": "dw",
+        "after-word": "red blue",
+        "cmd-end": "D",
+        "after-end": "red",
+        "cmd-line": "dd",
+        "after-line": "줄이 사라짐"
+      },
+      "notes": {
+        "cursor": "커서: green의 g",
+        "front": "커서 앞만 남음"
+      },
+      "scenarios": [
+        {
+          "id": "char",
+          "label": "x",
+          "caption": "x는 커서가 놓인 글자 g 하나만 지운다. 같은 줄의 다른 글자는 그대로라 줄이 red reen blue가 된다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "word",
+          "label": "dw",
+          "caption": "dw는 커서 자리부터 다음 낱말이 시작하기 바로 앞까지 지운다. green과 그 뒤의 빈칸이 지워져 줄이 red blue가 된다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "end",
+          "label": "D",
+          "caption": "D는 커서 자리부터 줄 끝까지 지운다. green blue가 지워지고 커서 앞의 red와 그 뒤 빈칸 하나만 남는다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        },
+        {
+          "id": "line",
+          "label": "dd",
+          "caption": "dd는 커서가 있는 줄을 통째로 지운다. 커서가 줄의 어느 글자에 있든 줄 전체가 사라진다.",
+          "sources": [
+            "linux-shell.vi-edit-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi-edit-commands"
+      ]
+    },
+    "vi-colon-commands": {
+      "label": "고친 내용을 아직 저장하지 않은 memo.txt에서 :w, :q, :q!, :wq를 입력하면 저장되는지, vi가 끝나는지를 명령마다 보이는 도식",
+      "svgLabel": "아직 저장하지 않은 memo.txt 아래에 :w, :q, :q!, :wq 명령과 그 명령의 결과가 놓여 있다",
+      "question": "저장하지 않고 끝내려면 무엇을 입력할까?",
+      "idleCaption": "vi로 연 memo.txt를 고쳤지만 아직 저장하지 않았다. 버튼을 고르면 명령 모드에서 :를 누르고 :w·:q·:q!·:wq를 입력했을 때 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 아직 저장하지 않은 파일에서 명령으로, 명령에서 그 명령의 결과로 간다.",
+      "nodes": {
+        "before": "memo.txt",
+        "cmd-write": ":w",
+        "after-write": "저장됨, vi는 그대로",
+        "cmd-quit": ":q",
+        "after-quit": "끝나지 않음",
+        "cmd-force-quit": ":q!",
+        "after-force-quit": "바뀜을 버리고 끝남",
+        "cmd-write-quit": ":wq",
+        "after-write-quit": "저장하고 끝남"
+      },
+      "notes": {
+        "unsaved": "고친 내용이 아직 저장되지 않음",
+        "error": "오류로 처리"
+      },
+      "scenarios": [
+        {
+          "id": "write",
+          "label": ":w",
+          "caption": ":w는 고친 내용을 memo.txt에 쓴다. 저장한 뒤에도 vi는 끝나지 않고 그대로 열려 있어 이어서 고칠 수 있다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "quit",
+          "label": ":q",
+          "caption": "마지막으로 저장한 뒤 바뀐 내용이 있으므로 :q를 오류로 처리해 끝내지 않는다. 고친 내용은 vi 안에 그대로 남는다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "force-quit",
+          "label": ":q!",
+          "caption": ":q!는 바뀐 내용이 있는지 따지지 않고 vi를 끝낸다. 고친 것은 파일에 쓰이지 않고 버려져, memo.txt는 마지막으로 저장한 때의 내용으로 남는다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        },
+        {
+          "id": "write-quit",
+          "label": ":wq",
+          "caption": ":wq는 고친 내용을 memo.txt에 쓴 다음 vi를 끝낸다. 고친 것을 남기고 끝내려면 이 명령을 쓴다.",
+          "sources": [
+            "linux-shell.vi-colon-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi-colon-commands"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

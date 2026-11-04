@@ -45,6 +45,21 @@ RFC는 phase 73과 같은 방법(텍스트판을 내려받아 절을 직접 읽�
 RFC·IANA는 step 0과 같은 방법으로 읽었고, learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 페이지의 고친 날(`updated_at`)과 적용 판을 적는다.
 「(phase 74 step 11)」이 붙은 줄과 항목은 step 11(`routing` — 라우팅, 라우팅 테이블, 롱기스트 프리픽스 매치, 디폴트 라우트, 정적·동적 라우팅, AS, RIP, OSPF, BGP)이 쓸 사실을 확인하며 더했다(확인한 날 2026-10-29).
 RFC·IANA는 step 0과 같은 방법으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. 라우팅 테이블을 보는 명령은 **이름과 무엇을 보여 주는지만** 적었다 — 옵션과 출력 읽기는 `diagnostic-commands` 주제의 몫이다.
+「(phase 75)」가 붙은 항목은 phase 75 step 0에서 `linux-filesystem`(디렉터리 계층 구조, 표준 디렉터리, /etc, /proc, 파티션, MBR과 GPT, 디스크 장치 이름, 파일 시스템과 마운트, /etc/fstab, 스왑, 파일 속성) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 내려받아 읽었고, 항목마다 페이지 끝 COLOPHON과 바닥줄이 밝힌 프로젝트·판·날짜를 적는다. FHS 3.0(refspecs.linuxfoundation.org)과
+POSIX 2024년판(pubs.opengroup.org의 `onlinepubs/9799919799/`)은 HTML판을 내려받아 절을 읽었다. `gdisk`의 사실만 GPT fdisk 문서(rodsbooks.com)에서 가져왔고(`docs/source/network/CLAUDE.md` 「허용하는 출처」),
+「섹터」와 「휘발성 메모리」의 뜻은 NIST 용어집(csrc.nist.gov)에서 가져왔다. 명령은 **무엇을 하는지와 기출이 묻는 꼴만** 적었다 — 옵션 목록을 옮기지 않는다.
+「(phase 75 step 7)」이 붙은 줄과 항목은 phase 75 step 7에서 `linux-permissions`(소유자·그룹·그 밖의 사용자, 읽기·쓰기·실행 권한, 권한 문자열, 파일 종류 문자, 8진수 권한 표기, chmod 명령, chmod의 기호 모드, chown 명령) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-10-30).
+POSIX 2024년판은 유틸리티(`utilities/`)·함수(`functions/`) 페이지를, man7.org는 페이지를 내려받아 읽었다. GNU Coreutils 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`coreutils.html`, 9.12)을 내려받아 절 번호로 적는다.
+특수 비트(setuid·setgid·sticky)·ACL·umask의 계산은 기출이 묻지 않아 사실로 가져오지 않았고, 그것이 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 75 step 9)」가 붙은 줄은 step 9(`linux-permissions.permission-string`·`file-type-char`)가 본문에 쓰려고 같은 문서를 다시 읽어 더한 사실이다(확인한 날 2026-10-30) — `ls -l`의 크기·날짜 칸과 심볼릭 링크의 이름 칸, `ln`의 꼴, 이름을 지울 때의 동작.
+「(phase 75 step 11)」이 붙은 줄은 step 11(`linux-permissions.symbolic-mode`·`chown`)이 본문·도식에 쓰려고 chown(2)을 다시 읽어 더한 사실이다(확인한 날 2026-11-04) — 권한 없이 소유자를 바꾸려는 요청이 거부된다는 것.
+「(phase 75 step 12)」가 붙은 줄과 항목은 phase 75 step 12에서 `linux-shell`(셸, 작업 디렉터리, 절대 경로와 상대 경로, 파일을 다루는 기본 명령, 리다이렉션, 파이프, find 명령, vi 편집기, vi의 편집 명령, vi의 콜론 명령) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-04).
+POSIX 2024년판은 셸 언어 장(`utilities/V3_chap02.html`)·유틸리티·Base Definitions 페이지를, GNU Bash 매뉴얼은 gnu.org의 한 쪽짜리 HTML판(`bash.html`, 5.3)을, man7.org는 페이지를 내려받아 읽었다.
+**vi는 POSIX `vi`·`ex` 명세로만 쓴다** — 허용한 출처에 vim 문서는 없고, 지금 배포판의 `vi`가 실제로 어떤 프로그램인지는 확인하지 않았다. 셸 스크립트·변수·제어문, vi의 이동 명령, 정규 표현식 문법은 기출이 묻지 않아 가져오지 않았다.
+「(phase 75 step 14)」가 붙은 줄은 phase 75 step 14에서 `linux-shell.paths`·`linux-shell.file-commands`와 문항 n136·n137을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04).
+「(phase 75 step 15)」가 붙은 줄은 phase 75 step 15에서 `linux-shell.redirection`·`linux-shell.pipe`와 문항 n138~n140을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04) — `sort`가 표준 입력을 읽어 줄을 늘어놓고 표준 출력에 쓴다는 것.
+「(phase 75 step 16)」이 붙은 줄은 phase 75 step 16에서 `linux-shell.find`·`linux-shell.vi`와 문항 n141·n142를 쓰며 더 확인한 사실이다(확인한 날 2026-11-04) — `find`가 시작 디렉터리 자신도 검사한다는 것, 패턴의 `*`, 패턴을 따옴표로 감싸는 까닭, vi의 마지막 줄 명령이 끝난 뒤 명령 모드로 돌아온다는 것.
 
 ---
 
@@ -2422,3 +2437,696 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
 - Windows: `netstat -r`은 IP 라우팅 테이블의 내용을 보여 주고, `route print`와 같다 — netstat 문서 Parameters
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
+
+## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
+https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
+
+Version 3.0, 2015-03-19 발행. The Linux Foundation의 LSB Workgroup이 낸 판이고, hier(7)도 이 판을 근거 표준으로 든다(아래 hier(7) 항목). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- **무엇인가**: 유닉스 계열 운영체제에서 파일과 디렉터리를 어디에 둘지 정한 요구와 지침이다. 소프트웨어와 사용자가 설치된 파일·디렉터리가 어디 있을지 미리 알 수 있게 하는 것이 목적이다 — Abstract, §1.1
+- 파일을 두 기준으로 가른다 — 여러 컴퓨터가 함께 쓸 수 있는가(shareable·unshareable), 관리자가 손대지 않으면 바뀌지 않는가(static·variable). 성질이 다른 파일은 다른 디렉터리에 둔다.
+  바뀌는 파일을 /usr에서 /var로 옮겨서 /usr를 읽기 전용으로 마운트할 수 있게 됐다 — ch.2
+- 루트 파일 시스템에는 시스템을 부팅하고 복구하는 데 필요한 것이 있어야 한다. /usr·/opt·/var는 다른 파티션이나 파일 시스템에 둘 수 있게 설계했다 — §3.1
+- 루트 디렉터리 바로 아래 있어야 하는 것(디렉터리나, 디렉터리를 가리키는 심볼릭 링크): bin, boot, dev, etc, lib, media, mnt, opt, run, sbin, srv, tmp, usr, var — §3.2. 그 하위 시스템이 있으면 home, lib<qual>, root도 — §3.3.
+  /proc은 이 목록에 없고 Linux 부록(§6.1.5)에 있다
+- **/bin**: 관리자와 사용자가 함께 쓰는 명령 가운데, 다른 파일 시스템이 하나도 마운트되지 않았을 때(예: 단일 사용자 모드)에도 있어야 하는 것 — §3.4.1. 그만큼 필수적이지 않은 명령은 /usr/bin에 둔다 — §3.4 각주 1.
+  /bin에 있어야 하는 명령의 예: cat, chmod, chown, cp — §3.4.2
+- **/boot**: 부트 로더가 쓰는 정적 파일 — 커널이 사용자 모드 프로그램을 실행하기 전에 쓰는 데이터 — §3.5.1. 운영체제 커널은 / 나 /boot에 있어야 한다 — §3.5.2
+- **/dev**: 특수 파일, 곧 장치 파일을 두는 곳 — §3.6.1
+- **/etc**: 설정 파일을 둔다. 설정 파일은 프로그램의 동작을 정하는 정적인 로컬 파일이고 실행 가능한 바이너리일 수 없다. /etc 아래에는 바이너리를 두지 않는다 — §3.7.1, §3.7.2.
+  시작·종료 때 쓰는 명령 스크립트처럼 사람이 읽을 수 있는 실행 스크립트는 둘 수 있다 — §3.7 각주 2.
+  그 하위 시스템이 있으면 있어야 할 파일로 fstab(파일 시스템의 정적 정보), passwd(암호 파일), group, hosts, resolv.conf 등을 든다 — §3.7.3. shadow 암호 묶음을 쓰는 시스템은 /etc/shadow 같은 설정 파일을 /etc에 더 둔다 — §3.7.3 각주 3
+- **/home**: 사용자 홈 디렉터리(선택). 사이트마다 다르므로 프로그램은 홈 디렉터리 위치를 가정하지 말고 물어야 한다 — §3.8.1. 사용자 계정을 어디 둘지는 사람마다 다르지만 FHS는 /home을 기본 자리로 권하고,
+  작은 시스템에서는 사용자마다 /home 바로 아래 디렉터리를 둔다(문서의 예는 /home/smith) — §3.8 각주 6. 애플리케이션의 사용자별 설정 파일은 홈 디렉터리에 점(.)으로 시작하는 이름으로 둔다 — §3.8.2
+- **/lib**: 시스템을 부팅하고 루트 파일 시스템의 명령(/bin·/sbin의 것)을 실행하는 데 필요한 공유 라이브러리 — §3.9.1. 커널 모듈은 /lib/modules — §3.9.3
+- **/mnt**: 관리자가 파일 시스템을 잠깐 마운트하는 자리 — §3.12.1. **/media**: 이동식 매체의 마운트 지점 — §3.11.1
+- **/root**: root 계정 홈 디렉터리의 권장 기본 위치(선택) — §3.14.1
+- **/sbin**: 시스템 관리에 쓰는 명령(root만 쓰는 명령 포함)은 /sbin·/usr/sbin·/usr/local/sbin에 두고, /sbin에는 그 가운데 부팅·복구에 꼭 필요한 것을 둔다 — §3.16.1.
+  있으면 /sbin에 둘 것으로 `fsck.*`(파일 시스템별 점검·복구)와 `mkfs.*`(파일 시스템별 만들기)를 든다 — §3.16.3. Linux는 파일 시스템 유지보수와 부트 로더 관리 명령을 /sbin에 둔다 — §6.1.6
+- **/tmp**: 임시 파일이 필요한 프로그램을 위한 곳이고, 프로그램은 실행과 실행 사이에 /tmp의 파일이 남아 있다고 가정하면 안 된다. 부팅할 때 지우기를 권한다(요구는 아니다) — §3.18.1
+- **/usr**: 파일 시스템의 두 번째 큰 부분으로, 여러 호스트가 함께 쓸 수 있는 **읽기 전용 데이터**다. 운영 중에 쓰면 안 되고, 호스트마다 다르거나 시간에 따라 바뀌는 것은 다른 곳에 둔다 — §4.1.
+  있어야 하는 하위 디렉터리: bin(대부분의 사용자 명령), lib, local, sbin, share — §4.2
+- **/var**: 바뀌는 데이터 파일 — 스풀, 관리·로그 데이터, 일시·임시 파일. /usr를 읽기 전용으로 마운트할 수 있게 하려고 정한 곳이다 — §5.1.
+  **/var/log**는 여러 로그 파일을 두는 곳이고 로그 대부분을 여기에 쓴다 — §5.10.1. **/var/mail**은 사용자 메일함 파일을 둔다 — §5.11.1
+- **/proc**(Linux 부록): proc 파일 시스템은 Linux에서 프로세스와 시스템 정보를 다루는 사실상 표준 방법이다 — §6.1.5
+- FHS는 /bin을 /usr/bin과 합쳐 두는 배치(이른바 /usr 병합)를 말하지 않는다. 루트 바로 아래 항목을 「디렉터리 또는 디렉터리를 가리키는 심볼릭 링크」로 허용할 뿐이다 — §3.2.
+  그 배치를 다룰 법한 systemd의 file-hierarchy(7)는 이제 UAPI 그룹의 문서(허용한 출처가 아니다)를 가리키기만 한다(아래 systemd 항목). **그러니 /usr 병합은 쓰지 않는다**
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(Abstract·§1.1 — FHS가 무엇인가, §3.1 — /usr·/var를 다른 파티션에 둘 수 있다), `linux-filesystem.standard-directories`(항목마다의 절),
+`linux-filesystem.etc-directory`(§3.7.1·§3.7.2·§3.7.3, 각주 3), `linux-filesystem.proc-filesystem`(§6.1.5), `exam-notes.md`의 「phase 75 step 0」 문단
+
+## (phase 75) POSIX.1-2024 — Base Definitions §3 Definitions, §4 General Concepts
+https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html
+https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap04.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- 시스템의 파일은 나무 꼴로 짜여 있고, 끝이 아닌 마디는 모두 디렉터리, 끝 마디는 디렉터리가 아닌 파일이다(한 파일을 여러 디렉터리 항목이 가리킬 수 있어 엄밀히는 방향 그래프다) — §4.8 File Hierarchy
+- **디렉터리**는 디렉터리 항목들을 담은 파일이고, 한 디렉터리 안의 항목 이름은 서로 겹치지 않는다. **디렉터리 항목**(하드 링크)은 파일 이름 하나를 파일 하나와 잇는다 — §3.103, §3.104
+- **파일**은 읽거나 쓸 수 있는 대상이고, 접근 권한과 종류 같은 속성을 가진다. 종류에는 일반 파일·문자 특수 파일·블록 특수 파일·FIFO·심볼릭 링크·소켓·디렉터리가 있다 — §3.139
+- **경로**(pathname)는 파일을 가리키는 문자열이고, 앞에 `/`가 올 수 있으며 파일 이름들을 `/`로 이어 적는다 — §3.254. `/`로 시작하는 경로가 **절대 경로**다 — §3.2.
+  경로를 풀 때는 앞 이름이 가리키는 디렉터리에서 다음 이름을 찾는다. `/`로 시작하면 첫 이름을 그 프로세스의 루트 디렉터리에서 찾고, 그렇지 않으면 현재 작업 디렉터리에서 찾는다(상대 경로) — §4.16 Pathname Resolution
+- **루트 디렉터리**는 `/`로 시작하는 경로를 풀 때 쓰는 디렉터리다 — §3.316
+- **홈 디렉터리**는 HOME 환경 변수가 가리키는 디렉터리다 — §3.170
+- **마운트 지점**은 시스템의 루트 디렉터리이거나, 부모 디렉터리와 다른 장치에 속한 디렉터리다 — §3.210. **파일 시스템**은 파일들과 그 속성 일부를 모은 것이다 — §3.153
+- **블록 특수 파일**은 장치를 가리키는 파일이고, 장치의 하드웨어 특성을 드러내지 않고 장치에 접근하게 한다 — §3.50. **장치**는 컴퓨터 주변 장치나 응용 프로그램에 그렇게 보이는 대상이다 — §3.101
+- **프로세스**: 주소 공간 하나와 그 안에서 실행되는 스레드, 그 스레드가 쓰는 시스템 자원 — §3.189(Live Process), §3.279. **프로세스 ID**는 프로세스가 살아 있는 동안 그것을 가리키는 양의 정수다 — §3.284
+- (phase 75 step 7) **사용자 ID**는 시스템 사용자 한 사람을 가리키는 0 이상의 정수다 — §3.408. **그룹 ID**는 시스템 사용자 여럿을 묶은 그룹을 가리키는 정수이고, 사용자는 누구나 그룹 하나 이상에 든다 — §3.165.
+  프로세스는 실효 그룹 ID 말고도 **보조 그룹 ID**를 여럿 가질 수 있고, 이것도 파일 접근 권한을 가를 때 쓴다 — §3.361, §3.117(실효 사용자 ID도 권한을 가를 때 쓰는 프로세스의 속성이다)
+- (phase 75 step 7) **세 부류**: 프로세스의 실효 사용자 ID가 파일의 사용자 ID와 같으면 그 프로세스는 그 파일의 **소유자 부류**(file owner class)다 — §3.150.
+  소유자 부류가 **아니면서** 실효 그룹 ID나 보조 그룹 ID 가운데 하나가 파일의 그룹 ID와 같으면 **그룹 부류**(file group class)다 — §3.142. 둘 다 아니면 **그 밖의 부류**(file other class)다 — §3.149.
+  그러니 소유자는 그 파일의 그룹에 들어 있어도 그룹 부류로 세지 않는다. **파일 권한 비트**는 소유자·그룹·그 밖의 세 몫으로 나뉘고, 몫마다 같은 이름의 부류에 쓰인다 — §3.151
+- (phase 75 step 7) **파일 접근 권한**: 프로세스가 읽기·쓰기·실행(디렉터리는 검색)을 요청하면, 특권이 없는 프로세스는 자기가 속한 부류의 그 비트가 켜져 있을 때만 허락받는다.
+  적절한 특권(appropriate privileges)을 가진 프로세스는 읽기·쓰기·디렉터리 검색을 늘 허락받지만, **실행은 권한 비트가 적어도 한 부류에게 실행을 주고 있을 때만** 허락받는다 — §4.7 File Access Permissions.
+  무엇이 「적절한 특권」인지는 구현이 정한다 — §3.21(Linux는 아래 path_resolution(7)·capabilities(7))
+- (phase 75 step 7) **문자 특수 파일**은 장치(터미널 장치 파일 같은 것)를 가리키거나 `/dev/null`처럼 특별한 성질을 가진 파일이다 — §3.62. **일반 파일**은 시스템이 아무 짜임도 덧씌우지 않은, 아무 자리나 골라 읽을 수 있는 바이트의 나열이다 — §3.310.
+  **심볼릭 링크**는 경로를 풀다 만나면 그 안에 담긴 문자열로 경로 풀이를 바꾸게 하는 종류의 파일이다 — §3.364. **하드 링크**는 디렉터리 항목의 다른 이름이고, `ln`(`-s` 없이)이나 link()로 한 파일에 여럿을 만들 수 있다. 심볼릭 링크와 대비되는 말이다 — §3.168, §3.104
+- (phase 75 step 12) **셸**은 글로 입력된 것을 명령으로 해석하는 프로그램이고, 입력을 흐름으로 받아 읽기도 하고 터미널에서 사용자에게 입력을 청해 읽기도 한다 — §3.333.
+  같은 일을 하는 창구를 **명령 언어 해석기**(command language interpreter)라 부르고, 그 가장 뚜렷한 예가 `sh` 유틸리티다 — §3.77, §3.334
+- (phase 75 step 12) **명령**은 셸에게 어떤 일을 하라는 지시다 — §3.76. **인자**는 명령 이름 뒤에 오는 옵션·옵션 인자·피연산자를 함께 이르는 말이고, 실행되는 프로그램에는 하나씩 문자열로 넘어간다 — §3.22.
+  **옵션**은 대개 그 유틸리티의 기본 동작을 바꾸는 인자이고 — §3.244, **피연산자**(operand)는 대개 옵션 뒤에 와서 유틸리티가 일을 마치는 데 필요한 대상을 주는 인자다 — §3.242.
+  예: `ls -l /home`에서 `ls`가 명령 이름, `-l`이 옵션, `/home`이 피연산자다(POSIX `ls`의 SYNOPSIS `ls [-l…] [file...]`가 이 꼴이다)
+- (phase 75 step 12) **유틸리티**는 셸에서 이름으로 불러 정해진 일을 시키는 프로그램이다(특수 내장 유틸리티는 빼고) — §3.410. **내장 유틸리티**(built-in)는 셸 안에 구현된 유틸리티다 — §3.54
+- (phase 75 step 12) **작업 디렉터리**(현재 작업 디렉터리)는 프로세스마다 하나씩 딸린 디렉터리이고, `/`로 시작하지 않는 경로를 풀 때 쓰인다 — §3.421, §3.94. **상대 경로**는 `/`로 시작하지 않는 경로다 — §3.311(절대 경로 §3.2와 경로 풀이 §4.16은 위)
+- (phase 75 step 12) **`.`과 `..`**: `.`은 마침표 하나로 된 파일 이름이고 — §3.110, `..`은 마침표 둘로 된 파일 이름이다 — §3.111. 경로를 풀 때 `.`은 바로 앞 이름이 가리키는 그 디렉터리를, `..`은 바로 앞 디렉터리의 부모 디렉터리를 가리킨다.
+  루트 디렉터리에서는 `..`이 루트 자신을 가리킬 수 있다 — §4.16
+- (phase 75 step 12) **파일 디스크립터**는 프로세스가 연 파일을 가리키는 0 이상의 정수다. 0·1·2는 차례로 **표준 입력·표준 출력·표준 오류**라 부르고, 프로그램은 보통 표준 입력에서 읽어 표준 출력에 쓰며, 진단 메시지(오류 알림 등)는 표준 오류에 쓴다 — §3.141, §3.353, §3.354, §3.355
+- (phase 75 step 12) **파이프**는 파일 계층에 이름(링크)이 없는 FIFO다 — §3.261. **터미널**은 일반 터미널 인터페이스 규격을 따르는 문자 특수 파일이다 — §3.384. **텍스트 파일**은 글자를 0개 이상의 줄로 짜 담은 파일이다 — §3.387
+- (phase 75 step 12) **HOME 환경 변수** — §8.3 Other Environment Variables(https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap08.html, 2026-11-04에 내려받아 읽음): 시스템이 로그인 때 이 변수를 그 사용자의 홈 디렉터리 경로로 정한다.
+  홈 디렉터리는 HOME이 가리키는 디렉터리다(§3.170 — 위). passwd(5)의 홈 디렉터리 칸은 로그인한 사용자가 처음 놓이는 디렉터리이고 HOME의 값이 된다(아래 Linux man-pages 항목) — 그래서 로그인하면 처음 작업 디렉터리가 홈 디렉터리다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(§4.8, §3.103, §3.2·§3.254·§4.16, §3.316), `linux-filesystem.filesystem-mount`(§3.210, §3.153), `linux-filesystem.disk-device-names`(§3.50, §3.101),
+`linux-filesystem.proc-filesystem`(§3.279·§3.284). 경로·작업 디렉터리·홈 디렉터리는 `linux-shell` 주제도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 7) `linux-permissions.owner-group-others`(§3.408·§3.165·§3.361, §3.150·§3.142·§3.149·§3.151, §4.7·§3.21), `linux-permissions.rwx-permissions`(§4.7), `linux-permissions.file-type-char`(§3.139·§3.310·§3.50·§3.62·§3.364·§3.168·§3.104)
+(phase 75 step 12) `linux-shell.shell`(§3.333·§3.77·§3.334 — 셸은 명령 언어 해석기, §3.76·§3.22·§3.244·§3.242 — 명령 줄의 짜임, §3.410·§3.54 — 유틸리티와 내장, §3.384 — 터미널), `linux-shell.working-directory`(§3.421·§3.94, §3.170·§8.3 HOME),
+`linux-shell.paths`(§3.2·§3.311·§4.16, §3.110·§3.111 — `.`·`..`, §8.3 HOME), `linux-shell.redirection`(§3.141·§3.353~§3.355 — 디스크립터 0·1·2), `linux-shell.pipe`(§3.261), `linux-shell.vi`(§3.387 — 텍스트 파일, §3.384 — 터미널), `exam-notes.md` E23
+
+## (phase 75) Linux man-pages — hier(7), boot(7), intro(2), intro(4), sd(4)
+https://man7.org/linux/man-pages/man7/hier.7.html
+https://man7.org/linux/man-pages/man7/boot.7.html
+https://man7.org/linux/man-pages/man2/intro.2.html
+https://man7.org/linux/man-pages/man4/intro.4.html
+https://man7.org/linux/man-pages/man4/sd.4.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — hier(7)·intro(2)·sd(4) 2026-02-08, boot(7) 2025-09-21, intro(4) 2025-05-17. man7.org가 2026-09-09에 man-pages-6.19 타르볼에서 가져온 것이다.
+
+- **hier(7)**: Linux 시스템에 흔히 있는 디렉터리를 설명한다 — `/`는 루트 디렉터리이고 나무 전체가 여기서 시작한다. /bin은 단일 사용자 모드와 시스템을 띄우거나 고치는 데 필요한 실행 프로그램,
+  /sbin은 /bin처럼 부팅에 필요한 명령이지만 보통 일반 사용자는 실행하지 않는 것, /boot는 부트 로더의 정적 파일(운영체제 커널은 / 나 /boot에 있어야 한다), /dev는 물리 장치를 가리키는 특수 파일(장치 파일),
+  /etc는 그 컴퓨터에 딸린 설정 파일, /home은 사용자 홈 디렉터리가 보통 그 아래 있는 곳, /lib는 부팅과 루트 파일 시스템의 명령에 필요한 공유 라이브러리,
+  /proc은 실행 중인 프로세스와 커널의 정보를 주는 proc 파일 시스템(pseudo-filesystem)의 마운트 지점, /root는 보통 root 사용자의 홈 디렉터리, /tmp는 정기 작업이나 부팅 때 예고 없이 지워질 수 있는 임시 파일,
+  /usr는 흔히 따로 된 파티션에서 마운트되고 공유할 수 있는 읽기 전용 데이터만 두는 곳, /usr/bin은 일반 사용자가 실행하는 대부분 프로그램의 주 디렉터리, /var는 스풀·로그처럼 크기가 바뀌는 파일,
+  /var/log는 여러 로그 파일, /var/mail은 사용자 메일함 — DESCRIPTION. 근거 표준은 FHS 3.0이다 — STANDARDS. 이 목록은 다 적은 것이 아니고 배포판·시스템마다 다를 수 있다 — BUGS
+- **boot(7)**: 부팅은 대략 하드웨어 → 운영체제 로더 → 커널 → 첫 사용자 공간 프로세스 → 부팅 스크립트의 차례로 나뉜다. 운영체제 로더의 일은 커널을 장치에서 찾아 불러와 실행하는 것이다.
+  전통적인 PC에서 로더는 부팅 장치의 첫 512바이트 블록에 있고 이 블록을 **MBR**(Master Boot Record)이라 부르며, 그 512바이트에는 파티션 테이블도 들어 있다. 2단계 로더는 디스크 파티션 같은 영구 저장 장치에 둘 수 있다 — DESCRIPTION 「OS loader」.
+  **커널**은 불려 오면 컴퓨터와 운영체제의 여러 구성 요소를 초기화하는데, 그 일을 맡는 소프트웨어 부분을 그 구성 요소의 **드라이버**라 부른다. 커널은 가상 메모리 스와퍼(커널 프로세스 kswapd)를 시작하고,
+  루트 경로 `/`에 파일 시스템을 마운트한 뒤, 첫 사용자 공간 프로세스(PID 1)를 만든다 — 「Kernel」
+- **intro(2)**: 시스템 호출은 Linux 커널로 들어가는 입구다 — DESCRIPTION
+- **intro(4)**: 매뉴얼 4절은 특수 파일(장치)을 설명하고, 장치 파일은 /dev 아래 있다 — DESCRIPTION, FILES
+- **sd(4)**: **SCSI 디스크 드라이브의 드라이버**다 — NAME. 블록 장치 이름은 `sd` + 물리 드라이브를 가리키는 글자 + 그 드라이브의 파티션 번호이고, 드라이브 전체를 가리킬 때는 번호를 뺀다.
+  `/dev/sda`는 첫째 SCSI 드라이브 전체, `/dev/sdb3`는 둘째 드라이브의 셋째 주 파티션이다. 드라이브 번호는 감지한 차례다. 파티션 1~4는 DOS의 주 파티션, 5부터는 확장(논리) 파티션이다 — CONFIGURATION.
+  (CONFIGURATION·FILES의 「5~8」·`sd[a-h]` 같은 상한은 옛 장치 번호 체계의 이야기라 쓰지 않는다 — 논리 파티션 번호는 fdisk(8)대로 「5부터」로 쓴다)
+- **SATA**: 허용한 출처에서 SATA 디스크를 `sd` 이름과 잇는 문장은 찾지 못했다(man-pages·util-linux·FHS, 2026-10-30). 가까운 것은 fdisk(8) DEVICES(아래 util-linux 항목 — libata가 없는 옛 시스템만 IDE `hd*`와 SCSI `sd*`를 가른다)와
+  lsblk(8)이 디스크의 연결 방식(TRAN) 값으로 `sata`를 거르는 예뿐이다 — `exam-notes.md` E20
+- (phase 75 step 7) **sd(4)**: `sd` 이름의 꼴을 **블록 장치 이름**이라 부르고, 지금은 블록 장치만 제공한다고 적는다 — CONFIGURATION. 그래서 `/dev/sda` 같은 디스크 장치 파일은 블록 장치다.
+  다만 `ls -l /dev/sda`가 실제로 어떻게 찍히는지(장치 번호 칸 등)는 이 페이지에 없다 — 출력 줄을 그대로 보이지 않는다
+- (phase 75 step 12) **intro(2)** — 2026-11-04에 다시 읽음(6.19, 2026-02-08): 매뉴얼 2절은 Linux의 시스템 호출을 설명하고, **시스템 호출은 Linux 커널로 들어가는 입구**다.
+  보통은 시스템 호출을 바로 부르지 않고 C 라이브러리의 감싼 함수(wrapper)를 거쳐 부르므로, 겉으로는 보통 라이브러리 함수를 부르는 것과 같아 보인다 — DESCRIPTION.
+  셸이 프로그램을 실행할 때 이 입구를 거친다는 것은 아래 「(phase 75 step 12) Linux man-pages」 항목(exec(3)·execve(2))과 「(phase 75 step 12) POSIX.1-2024 — 2 Shell Command Language」 항목(2.9.1.6)
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(hier(7) `/`·/root), `linux-filesystem.standard-directories`(hier(7) 항목마다), `linux-filesystem.proc-filesystem`(hier(7) /proc, boot(7) 커널),
+`linux-filesystem.mbr-gpt`(boot(7) MBR이 첫 512바이트 블록이고 파티션 테이블을 담는다), `linux-filesystem.disk-device-names`(sd(4) 이름의 꼴·1~4·5부터, boot(7) 드라이버, intro(4) 장치 파일), `exam-notes.md` E20.
+(phase 75 step 7) `linux-permissions.file-type-char`(sd(4) — 디스크는 블록 장치, intro(4) — 장치 파일은 /dev 아래)
+(phase 75 step 12) `linux-shell.shell`(intro(2) — 시스템 호출은 커널로 들어가는 입구, boot(7) — 커널), `exam-notes.md` E23
+
+## (phase 75) util-linux — fdisk(8), fsck(8), mkfs(8), blockdev(8), lsblk(8)
+https://man7.org/linux/man-pages/man8/fdisk.8.html
+https://man7.org/linux/man-pages/man8/fsck.8.html
+https://man7.org/linux/man-pages/man8/mkfs.8.html
+https://man7.org/linux/man-pages/man8/blockdev.8.html
+https://man7.org/linux/man-pages/man8/lsblk.8.html
+
+2026-10-30에 읽은 판: util-linux 2.43 개발판 — fdisk(8) 2026-08-04, fsck(8)·mkfs(8)·blockdev(8)·lsblk(8) 2026-05-24. man7.org가 2026-08-04에 util-linux 저장소에서 가져온 것이다.
+
+- **fdisk(8)**: 파티션 테이블을 만들고 고치는 대화형 프로그램이고, GPT·MBR(과 Sun·SGI·BSD) 파티션 테이블을 다룬다 — DESCRIPTION
+- 블록 장치는 **파티션**이라 부르는 논리적인 디스크 하나 이상으로 나눌 수 있고, 그 나눔은 **파티션 테이블**에 적힌다. 파티션 테이블은 보통 디스크의 섹터 0에 있다 — DESCRIPTION
+- **MBR(DOS 형식)**: 섹터 0에 파티션 넷을 적을 자리가 있고 이것을 주(primary) 파티션이라 한다. 그 하나를 확장 파티션으로 둘 수 있고, 확장 파티션은 논리 파티션을 담는 상자다.
+  주 파티션 넷은 있든 없든 번호 1~4를 받고, 논리 파티션은 5부터 번호가 붙는다 — DISK LABELS 「DOS-type (MBR)」.
+  파티션의 시작 위치와 크기는 섹터 수로 적는데 32비트이므로, 512바이트 섹터면 2TB까지 된다(문서의 표기는 「2 TB」) — 같은 절.
+  계산: 2^32 × 512 = 2^32 × 2^9 = 2^41 = 2,199,023,255,552바이트 — 2^40바이트를 1TB(TiB)로 세면 2, 10^12바이트를 1TB로 세면 약 2.2다
+- **GPT(GUID Partition Table)**: 지금의 표준 배치로, 64비트 논리 블록 주소를 쓰고, 파티션마다 UUID와 이름을 두며, 파티션 수에 제한이 없다(여러 파티션 도구가 보통 128개로 묶어 둔다).
+  첫 섹터는 여전히 **보호용 MBR**에 비워 두는데, MBR만 아는 도구가 GPT 디스크를 잘못 알아보고 덮어쓰지 않게 하려는 것이다. 특히 UEFI 부트 로더를 쓰는 요즘 하드웨어에서는 GPT가 MBR보다 늘 나은 선택이라고 적는다 — DISK LABELS 「GPT」
+- 파티션 테이블이 없는 장치를 받으면 fdisk가 하나를 만든다. util-linux 2.43부터는 대화형 터미널이면서 EFI 시스템이면 GPT, 아니면 DOS(MBR)가 기본이다 — DISK LABELS 「Default label on empty devices」
+- 장치는 보통 `/dev/sda`, `/dev/sdb`이고 장치 이름은 디스크 전체를 가리킨다. 파티션은 장치 이름 뒤에 파티션 번호를 붙인 것이고, `/dev/sda1`은 시스템의 첫째 하드 디스크의 첫째 파티션이다.
+  **libata**(커널 안에서 ATA 호스트 컨트롤러와 장치를 지원하는 라이브러리)가 없는 옛 시스템만 IDE 디스크(`/dev/hd*`)와 SCSI 디스크(`/dev/sd*`)를 다르게 부른다 — DEVICES
+- 섹터 크기로 512·1024·2048·4096바이트를 받고, 논리 섹터 크기와 물리 섹터 크기를 가른다 — OPTIONS `-b`. 파티션 크기는 섹터 수나 `+크기{K,M,G…}`로 준다 — SIZES
+- **fsck(8)**: 하나 이상의 Linux 파일 시스템을 **점검하고, 고르면 고친다**. 파일 시스템별 점검 프로그램(`fsck.형식`)의 앞단이다. 대상을 주지 않으면 /etc/fstab의 파일 시스템을 차례로 점검한다 — NAME, DESCRIPTION
+- **mkfs(8)**: 장치(보통 하드 디스크 파티션)나 파일에 **Linux 파일 시스템을 만든다**. 실제로는 파일 시스템별 만들기 프로그램(`mkfs.형식`)의 앞단일 뿐이고,
+  이 앞단 자체는 파일 시스템별 `mkfs.<형식>` 도구에 자리를 내주어 **권장하지 않는다(deprecated)** — NAME, DESCRIPTION
+- **blockdev(8)**: `--getss`는 논리 섹터 크기를 바이트로 보이며 보통 512다. `--getpbsz`는 물리 블록(섹터) 크기를 보인다 — OPTIONS
+- **lsblk(8)**: 블록 장치를 나열한다 — NAME. 디스크의 연결 방식(TRAN) 값이 `sata`인 디스크를 세는 예가 있다 — `--ct-filter` 설명
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.partition`(fdisk(8) DESCRIPTION — 파티션·파티션 테이블·섹터 0, fsck(8) — 점검·복구), `linux-filesystem.mbr-gpt`(DISK LABELS — MBR 넷·확장·논리 5부터·32비트·2TB, GPT 64비트·128·보호용 MBR, 지금의 fdisk가 GPT를 다룬다),
+`linux-filesystem.disk-device-names`(DEVICES), `linux-filesystem.filesystem-mount`(mkfs(8) — 만들기, 앞단), `exam-notes.md` E19·E20
+
+## (phase 75) util-linux — mount(8), umount(8), fstab(5), mkswap(8), swapon(8)
+https://man7.org/linux/man-pages/man8/mount.8.html
+https://man7.org/linux/man-pages/man8/umount.8.html
+https://man7.org/linux/man-pages/man5/fstab.5.html
+https://man7.org/linux/man-pages/man8/mkswap.8.html
+https://man7.org/linux/man-pages/man8/swapon.8.html
+
+2026-10-30에 읽은 판: util-linux 2.43 개발판 — mount(8)·umount(8) 2026-08-03, fstab(5)·mkswap(8)·swapon(8) 2026-05-24. man7.org가 2026-08-04에 util-linux 저장소에서 가져온 것이다.
+
+- **mount(8)**: 유닉스 시스템에서 접근할 수 있는 파일은 모두 `/`를 뿌리로 한 큰 나무 하나(파일 계층)에 놓이고, 그 파일들은 여러 장치에 흩어져 있을 수 있다. `mount`는 어떤 장치에 있는 파일 시스템을 이 나무에 붙이고, umount(8)는 다시 뗀다.
+  파일 시스템은 데이터를 장치에 어떻게 저장할지(또는 네트워크 같은 것으로 가상으로 제공할지)를 정한다 — DESCRIPTION
+- 기본 꼴은 `mount -t 형식 장치 디렉터리`이고, 커널에게 그 장치의 파일 시스템을 그 디렉터리에 붙이라고 한다. `-t`는 생략할 수 있다(대개 형식을 알아낸다). 기본으로는 root 권한이 있어야 마운트한다.
+  붙어 있는 동안 그 디렉터리의 원래 내용과 소유자·모드는 보이지 않고, 그 경로는 장치에 있는 파일 시스템의 루트를 가리킨다 — DESCRIPTION
+- 디렉터리나 장치 하나만 주면 /etc/fstab에서 짝을 찾는다 — DESCRIPTION. 장치는 대개 블록 특수 파일 이름(`/dev/sda1`)으로 가리키지만, 디스크 파티션의 장치 이름은 하드웨어 구성이 바뀌거나 장치를 더하고 빼면 바뀔 수 있어
+  UUID·LABEL 같은 식별자를 쓰기를 강하게 권한다 — 「Indicating the device and filesystem」
+- `mount -a`는 fstab에 적힌 파일 시스템을 모두(`noauto`가 붙은 줄은 빼고) 마운트하고, 보통 부팅 스크립트에서 쓴다. 다만 요즘 systemd 기반 배포판의 다수는 부팅 때 `mount -a` 대신 systemd 유닛으로 마운트한다 — 「The files /etc/fstab, /etc/mtab and /proc/mounts」, OPTIONS `-a`
+- `-m`·`--mkdir`(그리고 fstab 옵션 `X-mount.mkdir`)은 마운트 지점이 아직 없으면 만들게 **허용하는** 옵션이다 — OPTIONS. 그래서 이 옵션 없이는 마운트 지점이 미리 있는 디렉터리여야 한다(phase 75 step 4에서 확인, 2026-10-30).
+  비어 있어야 한다는 요구는 없다 — 원래 내용이 있으면 붙어 있는 동안 가려질 뿐이다(위 DESCRIPTION)
+- `defaults`는 기본 옵션(rw·suid·dev·exec·auto·nouser·async)으로 마운트하라는 옵션이고, 실제 기본 옵션의 묶음은 커널과 파일 시스템 형식에 따라 다르다 — 「FILESYSTEM-INDEPENDENT MOUNT OPTIONS」 `defaults`(phase 75 step 5에서 확인, 2026-10-30). 본문은 옵션의 목록을 쓰지 않고 「기본 옵션, 무엇이 기본인지는 커널과 형식에 따라 다르다」까지만 쓴다
+- **umount(8)**: 지정한 파일 시스템을 파일 계층에서 뗀다. 마운트한 디렉터리로 가리키는 것이 기본이다. 열린 파일이 있거나 어떤 프로세스의 작업 디렉터리가 그 안에 있으면(사용 중이면) 뗄 수 없다 — DESCRIPTION
+- **fstab(5)**: 시스템이 마운트할 수 있는 파일 시스템을 적은 파일이다. 프로그램은 읽기만 하고, 만들고 고치는 것은 관리자의 몫이다. fsck(8)·mount(8)·umount(8)가 위에서부터 차례로 읽으므로 줄의 차례가 중요하다.
+  systemd 기반 시스템에서는 고친 뒤 `systemctl daemon-reload`를 권한다 — DESCRIPTION. 파일 시스템 하나를 한 줄에 적고 칸은 탭이나 공백으로 나누며, `#`로 시작하는 줄은 주석이다 — DESCRIPTION. 칸 여섯 —
+  (1) **fs_spec**: 마운트할 블록 장치(또는 원격 파일 시스템), 스왑으로 켤 파일이나 장치. 장치 이름 대신 `LABEL=`·`UUID=`를 쓸 수 있고, 장치 이름은 하드웨어를 감지한 차례에 따라 바뀔 수 있어 이쪽을 권한다.
+  (2) **fs_file**: 마운트 지점. 스왑이면 `none`. (3) **fs_vfstype**: 파일 시스템 형식(ext4·xfs·vfat 등). `swap`은 스왑으로 쓸 파일이나 파티션.
+  (4) **fs_mntops**: 쉼표로 이은 마운트 옵션. 보통 적어도 `defaults`를 쓴다. `noauto`는 `mount -a`가 주어질 때(예: 부팅할 때) 마운트하지 않는다는 뜻이다.
+  (5) **fs_freq**: dump(8)가 백업할 파일 시스템을 정할 때 쓴다. 없으면 0(백업하지 않음). (6) **fs_passno**: fsck(8)가 부팅할 때 점검할 차례. 루트 파일 시스템은 1, 다른 것은 2, 없으면 0(점검하지 않음) — 각 칸의 절
+- 스왑 영역을 fstab에 적는 자세한 방법은 swapon(8)에 미룬다 — fstab(5) DESCRIPTION
+- **mkswap(8)**: 장치나 파일에 Linux **스왑 영역**을 만든다. 장치는 보통 디스크 파티션이지만 파일이어도 된다. 만든 뒤 쓰기 시작하려면 swapon(8)이 필요하고,
+  스왑 영역은 보통 /etc/fstab에 적어 부팅 때 `swapon -a`로 쓰게 한다 — DESCRIPTION. 커널은 파티션 종류 번호를 보지 않지만 설치 스크립트는 종류 82(LINUX_SWAP) 파티션을 스왑으로 여기는 경우가 많다 — DESCRIPTION.
+  권하는 구성은 스왑을 위한 파티션을 따로 두는 것이다 — WARNING
+- `mkswap --file`은 알맞은 권한으로 스왑 파일을 만든다. 파일을 미리 만들어 둔 뒤 mkswap으로 초기화할 수도 있다(문서의 예는 dd로 8GiB 파일을 만든다). 지금 Linux는 스왑 영역을 32개까지 쓸 수 있고, 쓰고 있는 영역은 /proc/swaps에 보인다.
+  스왑 영역의 쓸모 있는 최대 크기는 아키텍처와 커널 판에 달렸다 — OPTIONS `-F`, NOTES. **알맞은 크기(메모리의 몇 배 같은 권고)는 적지 않는다** — `exam-notes.md` E21
+- **swapon(8)**: 페이징과 스와핑이 일어날 장치(나 파일)를 정한다. `swapoff`는 끈다. swapon은 보통 부팅 스크립트에서 불린다 — DESCRIPTION. `-a`는 /etc/fstab에 `swap`으로 적힌 장치를 모두(`noauto`는 빼고) 쓰게 한다 — OPTIONS `-a`.
+  구멍이 있는 파일은 스왑 파일로 받지 않으므로, 가장 이식성 좋은 스왑 파일 만들기는 dd와 /dev/zero다 — NOTES 「Files with holes」
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(mount(8) — 한 나무, 여러 장치), `linux-filesystem.filesystem-mount`(mount(8) 꼴·root 권한·원래 내용이 가려진다·`--mkdir`로 본 「마운트 지점은 미리 있어야 한다」, umount(8)), `linux-filesystem.fstab`(fstab(5) 칸 여섯·UUID·noauto, mount(8) `-a`),
+`linux-filesystem.swap`(mkswap(8)·swapon(8) — 파티션이나 파일, 만든 뒤 켜기, fstab에 적기, 스왑 파일을 더하는 절차, 32개), `exam-notes.md` E21
+
+## (phase 75) e2fsprogs — mke2fs(8), ext4(5), chattr(1), lsattr(1)
+https://man7.org/linux/man-pages/man8/mke2fs.8.html
+https://man7.org/linux/man-pages/man5/ext4.5.html
+https://man7.org/linux/man-pages/man1/chattr.1.html
+https://man7.org/linux/man-pages/man1/lsattr.1.html
+
+2026-10-30에 읽은 판: E2fsprogs 1.47.4(March 2025). man7.org가 2026-08-03에 e2fsprogs 저장소에서 가져온 것이다. (man7.org에 `mkfs.ext4(8)` 페이지는 따로 없다 — mke2fs(8)이 그 이름을 설명한다)
+
+- **mke2fs(8)**: ext2·ext3·ext4 파일 시스템을 (보통 디스크 파티션에) 만든다. `mkfs.ext4`처럼 `mkfs.형식` 이름으로 실행하면 `-t 형식`을 준 것과 같아서, `mkfs.ext4`는 ext4 파일 시스템을 만든다 — DESCRIPTION
+- **ext4(5)**: ext2·ext3·ext4는 많은 Linux 배포판의 기본 파일 시스템이었던 Linux 파일 시스템이고, 확장성과 이전 판 호환을 염두에 둔 범용 파일 시스템이다 — DESCRIPTION
+- **chattr(1)**: Linux 파일 시스템에서 파일 속성을 바꾼다. `+`는 속성을 더하고, `-`는 빼고, `=`는 적은 속성만 남긴다. 모든 파일 시스템이 모든 속성을 지원하지는 않는다 — DESCRIPTION
+- **a**(append only): 쓰기는 덧붙이기 모드로만 열 수 있다. 슈퍼유저나 CAP_LINUX_IMMUTABLE 능력을 가진 프로세스만 붙이고 뗄 수 있다 — chattr(1) ATTRIBUTES
+- **i**(immutable): 파일을 고칠 수 없다 — 지울 수도 이름을 바꿀 수도 없고, 이 파일로 링크를 만들 수 없고, 메타데이터 대부분을 바꿀 수 없고, 쓰기 모드로 열 수 없다.
+  슈퍼유저나 CAP_LINUX_IMMUTABLE 능력을 가진 프로세스만 붙이고 뗄 수 있다 — chattr(1) ATTRIBUTES. 슈퍼유저에게도 걸린다는 것은 아래 FS_IOC_SETFLAGS(2const)
+- **lsattr(1)**: ext2·ext3·ext4 파일 시스템의 파일 속성을 나열한다. 속성의 뜻은 chattr(1)을 보라고 한다. `-l`은 한 글자 대신 긴 이름으로 보인다 — NAME, DESCRIPTION, OPTIONS.
+  **출력 줄의 꼴(속성 글자를 늘어놓는 칸의 모양)은 문서에 없다** — 본문·도식에 lsattr 출력 줄을 그대로 그리지 않는다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.filesystem-mount`(mke2fs(8) — `mkfs.ext4`, ext4(5) — ext4가 무엇인가), `linux-filesystem.file-attributes`(chattr(1)·lsattr(1) — `+`·`-`·`=`, `a`, `i`, 붙이고 떼는 사람)
+
+## (phase 75) Linux man-pages — proc(5), proc_pid(5), proc_cpuinfo(5), proc_meminfo(5), proc_sys_vm(5), swapon(2), mlock(2), passwd(5), capabilities(7), FS_IOC_SETFLAGS(2const), unlink(2)
+https://man7.org/linux/man-pages/man5/proc.5.html
+https://man7.org/linux/man-pages/man5/proc_pid.5.html
+https://man7.org/linux/man-pages/man5/proc_cpuinfo.5.html
+https://man7.org/linux/man-pages/man5/proc_meminfo.5.html
+https://man7.org/linux/man-pages/man5/proc_sys_vm.5.html
+https://man7.org/linux/man-pages/man2/swapon.2.html
+https://man7.org/linux/man-pages/man2/mlock.2.html
+https://man7.org/linux/man-pages/man5/passwd.5.html
+https://man7.org/linux/man-pages/man7/capabilities.7.html
+https://man7.org/linux/man-pages/man2/FS_IOC_SETFLAGS.2const.html
+https://man7.org/linux/man-pages/man2/unlink.2.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — proc(5)·proc_cpuinfo(5)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2)·capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) 2026-02-08, proc_pid(5) 2026-03-18, mlock(2) 2026-02-11, passwd(5) 2025-09-21.
+man7.org에 같은 내용의 ioctl_iflags(2)도 있지만 판이 「unreleased」로 남은 옛 페이지라 쓰지 않고 FS_IOC_SETFLAGS(2const)를 쓴다.
+
+- **proc(5)**: proc 파일 시스템은 **커널의 자료 구조를 들여다보는 창구 노릇을 하는 가상(pseudo) 파일 시스템**이고 보통 /proc에 마운트된다. 대개 시스템이 자동으로 마운트한다.
+  그 안의 파일은 대부분 읽기 전용이지만 일부는 써서 커널 변수를 바꿀 수 있다 — DESCRIPTION. /proc 아래에는 프로세스마다의 /proc/pid 디렉터리와, 시스템 전체 정보를 보여 주는 여러 파일이 있다 — 「Overview」
+- **proc_pid(5)**: 실행 중인 프로세스마다 숫자 이름의 하위 디렉터리가 있고, 그 이름이 프로세스 ID다 — DESCRIPTION
+- **proc_cpuinfo(5)**: /proc/cpuinfo는 CPU와 시스템 아키텍처에 따른 항목을 모은 것이다(흔한 항목: CPU 번호 processor). lscpu(1)가 이 파일에서 정보를 모은다 — DESCRIPTION
+- **proc_meminfo(5)**: /proc/meminfo는 시스템의 메모리 사용 통계를 보인다. free(1)가 이 파일로 쓰고 남은 메모리(물리 메모리와 스왑 모두)를 보여 준다 — DESCRIPTION.
+  MemTotal은 쓸 수 있는 RAM 전체, MemAvailable은 스와핑 없이 새 애플리케이션을 시작하는 데 쓸 수 있는 메모리의 추정치다. SwapCached는 스왑으로 나갔다가 다시 들어왔지만 스왑 파일에도 남아 있는 메모리로,
+  메모리 압박이 커지면 이 페이지는 다시 내보낼 필요가 없어 입출력을 아낀다 — 각 항목
+  **Active**는 최근에 쓴 메모리라 꼭 필요하지 않으면 되찾지 않고, **Inactive**는 최근에 덜 쓴 메모리라 다른 데 쓰도록 되찾을 대상으로 더 알맞다. SwapTotal은 쓸 수 있는 스왑 공간 전체, SwapFree는 아직 쓰지 않은 스왑 공간이다 — 각 항목(phase 75 step 5에서 확인, 2026-10-30).
+  위 mlock(2)(묶지 않은 메모리는 커널의 메모리 관리자가 필요할 때 스왑 영역으로 내보낸다)과 함께 「메모리가 모자라면 스왑으로 옮겨 가는 것은 주로 최근에 덜 쓴 내용이다」를 쓴다. 되찾는 일이 곧 스왑으로 내보내는 일이라고 적은 문장은 없어서 「주로」로 한정한다
+- **proc_sys_vm(5)**: /proc/sys/vm/swappiness는 커널이 메모리 페이지를 얼마나 적극적으로 스왑할지 정한다(기본값 60) — DESCRIPTION
+- **swapon(2)**: 지정한 파일이나 블록 장치를 스왑 영역으로 정하고, swapoff()는 그 영역으로의 스와핑을 멈춘다 — DESCRIPTION
+- **mlock(2)**: 프로세스의 가상 주소 공간 일부나 전체를 RAM에 묶어 **그 메모리가 스왑 영역으로 내보내지지 않게** 한다. 풀면 커널의 메모리 관리자가 필요할 때 다시 내보낼 수 있다 — DESCRIPTION.
+  페이징은 프로그램 실행이 예상 밖으로 늦어지는 주된 원인의 하나이고, 페이징 때문에 비밀 정보가 영구적인 스왑 저장 매체로 옮겨져 RAM에서 지운 뒤에도 남을 수 있다 — NOTES
+- **passwd(5)**: /etc/passwd는 시스템의 사용자 로그인 계정을 적은 텍스트 파일이고, 모든 사용자가 읽을 수 있되 쓰기는 슈퍼유저만 할 수 있어야 한다. 요즘은 대개 shadow 암호 묶음을 써서 /etc/passwd의 암호 칸에는 `x`를 두고,
+  암호화된 암호는 **슈퍼유저만 읽을 수 있는 /etc/shadow**에 둔다 — DESCRIPTION. 루트 로그인 계정(슈퍼유저)의 사용자 ID는 0이다. 홈 디렉터리 칸은 로그인한 사용자가 처음 놓이는 디렉터리이고 HOME 환경 변수가 이 값이 된다 — 각 칸(UID, directory).
+  칸 일곱의 해석은 `linux-accounts`(phase 76)의 몫이다
+- **capabilities(7)**: 전통적인 유닉스는 권한 검사를 할 때 실효 사용자 ID가 0인 **특권 프로세스(슈퍼유저, root)**와 그렇지 않은 프로세스를 가르고, **특권 프로세스는 커널의 권한 검사를 모두 건너뛴다**.
+  Linux 2.2부터 슈퍼유저의 특권을 능력(capability)이라는 단위로 나눠 따로 켜고 끌 수 있게 했다 — DESCRIPTION. CAP_DAC_OVERRIDE는 파일의 읽기·쓰기·실행 권한 검사를 건너뛴다. CAP_LINUX_IMMUTABLE은 append-only·immutable 플래그를 붙일 수 있게 한다 — 「Capabilities list」
+- **FS_IOC_SETFLAGS(2const)**: 여러 Linux 파일 시스템이 지원하는 inode 플래그(파일의 동작을 바꾸는 속성)를 읽고 바꾸는 ioctl이고, lsattr(1)과 chattr(1)이 그 명령 창구다 — DESCRIPTION.
+  FS_IMMUTABLE_FL(`i`): 파일 내용도 메타데이터(권한·시각·소유자·링크 수 등)도 바꿀 수 없고, **이 제한은 슈퍼유저에게도 걸린다**. CAP_LINUX_IMMUTABLE을 가진 프로세스만 붙이고 뗀다.
+  FS_APPEND_FL(`a`): O_APPEND로만 열 수 있고, 디렉터리에 붙이면 그 안의 파일을 지울 수 없다 — 이것도 슈퍼유저에게 걸린다 — 각 플래그
+- **unlink(2)**: 지우려는 파일이 immutable이나 append-only로 표시되어 있으면 EPERM으로 실패한다 — ERRORS
+- (phase 75 step 7) **capabilities(7)**: CAP_CHOWN은 파일의 사용자 ID와 그룹 ID를 마음대로 바꾸게 한다. CAP_FOWNER는 chmod(2)처럼 원래 파일 소유자만 할 수 있는 일의 검사를 건너뛰게 한다 — 「Capabilities list」.
+  CAP_DAC_OVERRIDE가 실행 권한에는 조건을 단다는 것은 아래 「(phase 75 step 7) Linux man-pages」 항목의 path_resolution(7)
+- (phase 75 step 7) **unlink(2)**: 지우려는 파일이 든 디렉터리에 프로세스의 쓰기 권한이 없거나, 경로의 디렉터리 가운데 하나에 검색 권한이 없으면 EACCES로 실패한다 — ERRORS.
+  이 조건에 지울 파일 자신의 권한은 들어 있지 않다. sticky 비트가 켜진 디렉터리에서는 파일이나 디렉터리의 소유자·특권 프로세스만 지울 수 있다는 조건이 더 붙는다 — 같은 ERRORS(특수 비트는 다루지 않는다)
+- (phase 75 step 9) **unlink(2)** — DESCRIPTION: 파일 시스템에서 이름 하나를 지운다. 그 이름이 그 파일의 마지막 링크이고 그 파일을 연 프로세스가 없으면 파일이 지워지고, 연 프로세스가 있으면 마지막으로 닫힐 때까지 남는다.
+  이름이 심볼릭 링크를 가리키면 링크가 지워진다. 그래서 하드 링크가 둘인 파일은 이름 하나를 지워도 다른 이름으로 남는다(2026-10-30에 다시 읽음)
+- (phase 75 step 12) **passwd(5)** — 2026-11-04에 다시 읽음(6.19, 2025-09-21): 마지막 칸 `shell`은 그 사용자가 로그인할 때 실행할 프로그램이고(비어 있으면 `/bin/sh`), 이 값이 SHELL 환경 변수가 된다.
+  없는 실행 파일을 적으면 그 사용자는 login(1)으로 로그인하지 못한다 — 각 칸(shell). 곧 로그인 셸은 계정마다 따로 적는다(바꾸는 명령 chsh(1)과 고를 수 있는 목록 shells(5)는 아래 「(phase 75 step 12) Linux man-pages」 항목).
+  홈 디렉터리 칸(로그인한 사용자가 처음 놓이는 디렉터리, HOME의 값)은 위 줄 그대로다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.proc-filesystem`(proc(5)·proc_pid(5)·proc_cpuinfo(5)·proc_meminfo(5)), `linux-filesystem.etc-directory`(passwd(5) — /etc/passwd는 계정 목록, /etc/shadow는 슈퍼유저만 읽는다),
+`linux-filesystem.swap`(mlock(2)·proc_meminfo(5)·proc_sys_vm(5)·swapon(2) — 커널이 메모리 페이지를 스왑 영역으로 내보낸다, 페이징은 실행을 늦출 수 있다), `linux-filesystem.file-attributes`(capabilities(7)·FS_IOC_SETFLAGS(2const)·unlink(2) — root는 권한 검사를 건너뛰지만 `i`는 root에게도 걸린다),
+`linux-filesystem.directory-hierarchy`(passwd(5) — root는 UID 0인 슈퍼유저). 권한 검사는 `linux-permissions` 주제도 쓴다(step 7이 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 7) `linux-permissions.owner-group-others`(capabilities(7)·passwd(5) — root는 UID 0이고 권한 검사를 건너뛴다, 실행의 조건은 path_resolution(7)), `linux-permissions.rwx-permissions`(unlink(2) EACCES — 지우기는 디렉터리의 쓰기·검색 권한),
+`linux-permissions.chmod`(capabilities(7) CAP_FOWNER), `linux-permissions.chown`(capabilities(7) CAP_CHOWN), `exam-notes.md` E22.
+(phase 75 step 9) `linux-permissions.file-type-char`(unlink(2) DESCRIPTION — 이름 하나를 지워도 다른 하드 링크로 남고, 마지막 이름까지 지워지고 연 프로세스도 없어야 파일이 지워진다)
+(phase 75 step 12) `linux-shell.shell`(passwd(5) shell 칸 — 로그인 셸은 계정마다 적는 프로그램이다), `linux-shell.working-directory`(passwd(5) directory 칸 — 로그인하면 홈 디렉터리에서 시작한다), `linux-shell.paths`(passwd(5) — HOME의 값)
+
+## (phase 75) shadow(5), free(1), du(1), cal(1), stat(1), file(1)
+https://man7.org/linux/man-pages/man5/shadow.5.html
+https://man7.org/linux/man-pages/man1/free.1.html
+https://man7.org/linux/man-pages/man1/du.1.html
+https://man7.org/linux/man-pages/man1/cal.1.html
+https://man7.org/linux/man-pages/man1/stat.1.html
+https://man7.org/linux/man-pages/man1/file.1.html
+
+2026-10-30에 읽은 판: shadow(5)는 shadow-utils 4.19.0(2026-08-04), free(1)는 procps-ng(2023-05-02판, man7.org가 2026-08-04에 저장소에서 가져옴), du(1)·stat(1)는 GNU coreutils 9.11(April 2026),
+cal(1)은 util-linux 2.43 개발판(2026-05-24), file(1)은 file 프로젝트의 2025-06-17판. 뒤의 넷은 기출의 보기를 판정하려고 **이름과 하는 일만** 확인했다.
+
+- **shadow(5)**: 시스템 계정의 암호 정보와 암호 만료 정보를 담은 파일이고, 암호를 지키려면 일반 사용자가 읽을 수 없어야 한다 — DESCRIPTION. 파일 이름은 /etc/shadow다 — FILES. 칸 아홉의 해석은 `linux-accounts`(phase 76)의 몫이다
+- **free(1)**: 시스템의 물리 메모리와 스왑 메모리의 전체·사용·남은 양을 보여 주고, /proc/meminfo를 읽어 얻는다 — DESCRIPTION
+- **du(1)**: 파일들이 차지한 공간을 어림해 보이고, 디렉터리는 그 안까지 더한다 — NAME, DESCRIPTION
+- **cal(1)**: 달력을 보인다. **stat(1)**: 파일이나 파일 시스템의 상태를 보인다. **file(1)**: 파일의 종류를 알아낸다 — 각 NAME
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.etc-directory`(shadow(5) — 암호 정보, 일반 사용자가 읽지 못한다), `linux-filesystem.proc-filesystem`(free(1)이 /proc/meminfo를 읽는다 — 쓸지는 그 step이 정한다),
+`exam-notes.md`의 「phase 75 step 0」 문단(du·cal·stat·file — 기출 보기의 판정)
+
+## (phase 75) systemd — systemd-fstab-generator(8), systemd.mount(5), file-hierarchy(7)
+https://man7.org/linux/man-pages/man8/systemd-fstab-generator.8.html
+https://man7.org/linux/man-pages/man5/systemd.mount.5.html
+https://man7.org/linux/man-pages/man7/file-hierarchy.7.html
+
+2026-10-30에 읽은 판: systemd 262 개발판. man7.org가 2026-08-04에 systemd 저장소에서 가져온 것이다.
+
+- **systemd-fstab-generator(8)**: 부팅 초기에(그리고 시스템 관리자의 설정을 다시 읽을 때) /etc/fstab을 systemd의 마운트·스왑 유닛으로 바꾼다 — DESCRIPTION
+- **systemd.mount(5)**: /etc/fstab에 적힌 마운트는 부팅 때 유닛으로 바뀌고, 사람이 마운트를 관리할 때는 /etc/fstab이 권하는 방법이다 — FSTAB.
+  `noauto`이면 그 마운트 유닛이 local-fs.target·remote-fs.target의 의존 대상이 되지 않아 **부팅 때 자동으로 마운트되지 않고**, 그 반대인 `auto`가 기본값이다 — 「noauto, auto」
+- **file-hierarchy(7)**: systemd를 쓰는 운영체제의 파일 계층은 UAPI.9 문서(uapi-group.org)를 따른다고 적고 그 문서를 가리키기만 한다 — DESCRIPTION, NOTES. **그 문서는 허용한 출처가 아니므로 쓰지 않는다**
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.fstab`(부팅 때 fstab의 항목이 자동으로 마운트된다는 근거 — mount(8) `-a`와 함께, `noauto`), `linux-filesystem.swap`(fstab의 스왑 항목도 부팅 때 스왑 유닛이 된다)
+
+## (phase 75) GPT fdisk 문서(Rod Smith) — GPT fdisk Tutorial, Why Use GPT fdisk?, gdisk(8)
+https://www.rodsbooks.com/gdisk/
+https://www.rodsbooks.com/gdisk/whygdisk.html
+https://www.rodsbooks.com/gdisk/gdisk.html
+
+2026-10-30에 읽은 판: GPT fdisk 1.0.9를 다룬 판 — 「GPT fdisk Tutorial」 2022-04-18, 「Why Use GPT fdisk?」 2022-04-24에 고침. gdisk(8)은 같은 곳에 올린 매뉴얼 페이지다.
+`docs/source/network/CLAUDE.md` 「허용하는 출처」대로 **`gdisk`의 사실에만** 쓴다. GPT·MBR 자체의 사실은 fdisk(8)에서 가져온다(위 util-linux 항목).
+
+- GPT fdisk는 `gdisk`·`cgdisk`·`sgdisk`·`fixparts`로 이뤄진 텍스트 모드 파티션 도구 묶음이고, 그 가운데 `gdisk`·`cgdisk`·`sgdisk`는 옛 MBR 파티션 테이블이 아니라 **GPT 디스크**를 다룬다 — GPT fdisk Tutorial 첫머리
+- `gdisk`는 GPT 파티션 테이블을 만들고 고치는 대화형 프로그램이다. 화면은 Linux `fdisk`와 비슷하지만 GPT 파티션을 고친다. MBR 파티션 테이블을 받으면 GPT로 바꿔 읽고, 필요하면 보호용 MBR을 새로 만든다 — gdisk(8) NAME, DESCRIPTION
+- 2009년 `gdisk`를 처음 만들 때는 Linux `fdisk`가 GPT를 지원하지 않았고, 그 뒤 util-linux의 `fdisk`도 GPT 기능을 갖췄다. `gdisk`의 화면은 util-linux `fdisk`를 본떴지만 코드는 전혀 다르다 — Why Use GPT fdisk?
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.mbr-gpt`(`gdisk`는 GPT 디스크용으로 따로 만든 도구, 지금의 `fdisk`도 GPT를 다룬다), `exam-notes.md` E19
+
+## (phase 75) NIST 용어집 — sector, volatile memory
+https://csrc.nist.gov/glossary/term/sector
+https://csrc.nist.gov/glossary/term/volatile_memory
+
+2026-10-30에 읽었다. 용어집은 정의마다 출처 문서를 밝힌다.
+
+- **섹터**(sector): 매체에서 접근할 수 있는 가장 작은 단위 — 출처 NIST SP 800-86
+- **휘발성 메모리**(volatile memory): 전원이 꺼지거나 끊기면 내용을 잃는 메모리 — 출처 NIST SP 800-101 Rev. 1, NIST SP 800-72.
+  RAM이 휘발성 메모리라는 문장은 허용한 출처에서 직접 찾지 못했다(NIST 용어집의 「random access memory」 항목은 약어만 싣는다)
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.mbr-gpt`(섹터의 한 줄 풀이), `linux-filesystem.swap`(메모리의 한 줄 풀이 — 쓸지는 그 step이 정한다)
+
+## (phase 75) GNU coreutils — rm(1), chmod(1), chown(1); Linux man-pages — chmod(2), chown(2)
+https://man7.org/linux/man-pages/man1/rm.1.html
+https://man7.org/linux/man-pages/man1/chmod.1.html
+https://man7.org/linux/man-pages/man1/chown.1.html
+https://man7.org/linux/man-pages/man2/chmod.2.html
+https://man7.org/linux/man-pages/man2/chown.2.html
+
+2026-10-30에 읽은 판(phase 75 step 6): rm(1)·chmod(1)·chown(1)은 GNU coreutils 9.11(April 2026, man7.org가 2026-08-03에 tarball에서 가져옴), chmod(2)·chown(2)는 Linux man-pages 6.19(2026-02-08).
+
+- **rm(1)**: 지정한 파일을 지운다(unlink). 기본으로는 디렉터리를 지우지 않는다 — NAME, DESCRIPTION, OPTIONS. 지우지 못한 경우에 무엇을 출력하는지는 이 페이지에 없다 —
+  본문·도식에 `rm`의 오류 출력을 그대로 보이지 않는다. `i`가 붙은 파일을 지우지 못하는 근거는 위 unlink(2)(EPERM)와 FS_IOC_SETFLAGS(2const)(슈퍼유저에게도 걸린다)다
+- **chmod(1)**: 파일의 모드 비트(권한)를 바꾼다 — NAME, DESCRIPTION. 기호 모드의 누구는 `u`(소유자)·`g`(파일의 그룹에 든 다른 사용자)·`o`(그룹에 들지 않은 다른 사용자)·`a`(모든 사용자),
+  `+`는 고른 비트를 더하고 `-`는 뺀다 — 「SETUID AND SETGID BITS」 앞의 모드 설명. 그래서 `chmod a-w 파일`은 모든 사용자의 쓰기 비트를 뺀다. 누가 모드를 바꿀 수 있는지는 이 페이지에 없다
+- **chmod(2)**: 모드를 바꾸려면 호출한 프로세스의 실효 UID가 파일의 소유자와 같거나, 프로세스가 특권을 가져야 한다(Linux: CAP_FOWNER) — DESCRIPTION
+- **chown(1)**: 파일의 소유자와 그룹을 바꾼다. `chown 소유자 파일`은 소유자만 바꾸고 그룹은 그대로 둔다 — NAME, DESCRIPTION. 누가 바꿀 수 있는지는 이 페이지에 없다
+- **chown(2)**: 파일의 소유자는 특권 프로세스(Linux: CAP_CHOWN)만 바꿀 수 있고, 파일의 소유자는 그룹을 자기가 속한 그룹으로 바꿀 수 있다 — DESCRIPTION
+- (phase 75 step 7) **chmod(1)** — 수로 적는 모드: 8진 숫자(0~7) 한 자리에서 네 자리까지이고, 자리마다 4·2·1을 더해 만든다. 네 자리일 때 첫 자리는 특수 비트(set-user-ID 4·set-group-ID 2·sticky 1)이고,
+  이어지는 세 자리가 차례로 **파일 소유자**, **그 파일의 그룹에 든 다른 사용자**, **그룹에 들지 않은 다른 사용자**의 읽기(4)·쓰기(2)·실행(1)이다. 적지 않은 앞자리는 0으로 본다 — 그래서 세 자리 `755`는 특수 비트가 0인 `0755`다 — DESCRIPTION
+- (phase 75 step 7) **chmod(1)** — 기호 모드: 꼴은 `[ugoa...][[-+=][perms...]...]`이고 여럿을 쉼표로 잇는다. `+`는 고른 비트를 지금의 모드 비트에 더하고, `-`는 빼고, `=`는 고른 비트를 더하면서 **적지 않은 비트를 지운다**(디렉터리의 setuid·setgid 비트만 예외).
+  누구(`ugoa`)를 하나도 적지 않으면 `a`를 적은 것처럼 되지만 umask에 켜진 비트는 건드리지 않는다 — DESCRIPTION. `-R`(`--recursive`)은 파일과 디렉터리를 재귀로 바꾼다 — OPTIONS
+- (phase 75 step 7) **chown(1)**: 소유자 뒤에 콜론과 그룹을 붙여 적으면(사이에 공백 없이) 그룹도 바꾼다. 소유자를 빼고 콜론과 그룹만 적으면(`:그룹`) 그룹만 바꾸어 chgrp와 같은 일을 한다.
+  콜론만 붙이고 그룹을 빼면(`소유자:`) 그룹을 그 사용자의 로그인 그룹으로 바꾼다 — DESCRIPTION. `-R`은 파일과 디렉터리를 재귀로 바꾼다 — OPTIONS. 예: `chown root /u`, `chown root:staff /u` — EXAMPLES.
+  `:그룹` 꼴은 GNU 문서가 적은 꼴이다 — POSIX의 operand는 `owner[:group]`이다(아래 「(phase 75 step 7) POSIX.1-2024」 항목)
+- (phase 75 step 7) **chown(2)**: 특권 프로세스(CAP_CHOWN)는 그룹도 아무 그룹으로나 바꿀 수 있다. 소유자나 그룹 자리에 -1을 주면 그 값은 바꾸지 않는다 — DESCRIPTION.
+  정리하면 「소유자를 바꾸는 일은 특권 프로세스(root)만, 그룹을 바꾸는 일은 파일의 소유자도(자기가 속한 그룹으로만)」다 — `exam-notes.md` E22
+- (phase 75 step 11) **chown(2)** — ERRORS: 호출한 프로세스에 소유자나 그룹을 바꿀 권한(위 DESCRIPTION의 규칙)이 없으면 EPERM으로 실패한다. 파일에 immutable·append-only 속성이 붙어 있어도 EPERM이다.
+  그래서 본문·도식은 「소유자 `user1`이 `chown user2 report.txt`로 자기 파일을 넘기려 하면 시스템이 그 요청을 거부한다」고 쓴다. `chown`이 그때 무엇을 출력하는지는 chown(1)에 없어 보이지 않는다 —
+  Linux man-pages 6.19(2026-02-08), 2026-11-04에 man7.org에서 다시 읽음
+
+위 capabilities(7)(root는 커널의 권한 검사를 모두 건너뛴다)과 함께, 「모든 사용자의 쓰기 권한을 빼도, 소유자를 root로 바꿔도 root가 그 파일을 고치고 지우는 일은 막지 못한다」를 쓴다.
+`chmod`·`chown`의 자세한 쓰임(수 모드·기호 모드·`-R`)은 `linux-permissions`(step 7 이후)가 다시 확인한다
+
+쓰인 곳: `linux-filesystem.file-attributes`(rm(1) — `rm`은 파일을 지우는 명령, 「root도 `rm`으로 지우지 못한다」는 unlink(2)·FS_IOC_SETFLAGS(2const)), 문항 n123의 보기·해설(chmod(1)·chmod(2) — `chmod a-w`,
+chown(1)·chown(2) — `chown root`, capabilities(7) — root는 권한 검사를 받지 않는다).
+(phase 75 step 7) `linux-permissions.octal-mode`(chmod(1) 수 모드 — 4·2·1, 자리 차례, 앞자리 0), `linux-permissions.chmod`(chmod(1) `-R`, chmod(2) — 바꿀 수 있는 사람), `linux-permissions.symbolic-mode`(chmod(1) `+`·`-`·`=`·쉼표·umask),
+`linux-permissions.chown`(chown(1) 꼴 셋과 `-R`, chown(2) — 소유자는 특권만·그룹은 소유자도), `exam-notes.md` E22
+(phase 75 step 11) `linux-permissions.symbolic-mode`(chmod(1) 기호 모드 — `+`·`-`·`=`, 쉼표), `linux-permissions.chown`(chown(1) — `chown user2`·`chown user2:dev`·`chown :ops`·`-R`, chown(2) — 소유자는 root만·그룹은 소유자가 자기 그룹으로, ERRORS EPERM — 거부),
+도식 `SymbolicModeDiagram`·`ChownChangeDiagram`(「거부」 곁말은 chown(2) ERRORS), 문항 n131(chmod(1) 기호 모드), n132(chown(1) 꼴, chown(2) — 실행하는 사람은 root)
+
+## (phase 75 step 7) POSIX.1-2024 — Shell and Utilities: chmod, ls, chown, chgrp, rm, cd / System Interfaces: chown(), unlink(), open(), opendir(), chdir()
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chmod.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/ls.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chown.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/chgrp.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/rm.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cd.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/chown.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/unlink.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/open.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/opendir.html
+https://pubs.opengroup.org/onlinepubs/9799919799/functions/chdir.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-10-30에 HTML판을 내려받아 읽었다.
+
+- **chmod — 누가 바꾸나**: 파일의 사용자 ID와 실효 사용자 ID가 같은 프로세스, 또는 적절한 특권을 가진 프로세스만 그 파일의 모드 비트를 바꿀 수 있다 — DESCRIPTION.
+  `-R`을 주면 operand가 디렉터리일 때 그 디렉터리와 그 아래 파일 계층 전체의 모드 비트를 바꾼다 — OPTIONS
+- **chmod — 기호 모드**: 「누구 + 연산 + 권한」으로 된 절(clause)을 쉼표로 이은 것이고, 절은 적은 차례대로 적용된다 — EXTENDED DESCRIPTION, 「Grammar for chmod」.
+  누구 `u`·`g`·`o`는 모드 비트의 사용자(소유자)·그룹·그 밖의 몫이고, `a`는 `ugo`와 같다. 권한 `r`·`w`·`x`는 읽기·쓰기·실행(디렉터리는 검색) 몫이다.
+  `+`는 적은 누구·권한의 비트를 켜고, `-`는 끈다. `=`는 **적은 누구의 비트를 먼저 모두 지운 뒤** 적은 권한의 비트를 켠다 — 권한을 적지 않으면 지우기만 한다.
+  누구를 적지 않으면 프로세스의 파일 모드 생성 마스크(umask)에 켜진 비트는 켜거나 끄지 않는다 — EXTENDED DESCRIPTION
+- **chmod — 예**: `go+-w`는 그룹과 그 밖의 쓰기 비트를 끄고, `g-r+w`는 그룹의 읽기를 끄고 쓰기를 켠다 — EXAMPLES. `chmod a-w 파일`은 모든 쓰기 권한을 없애지만,
+  누구를 뺀 `-w`는 umask에 따라 남는 쓰기 권한이 있을 수 있다 — APPLICATION USAGE
+- **chmod — 수 모드**: mode가 8진 정수이면 모드 비트를 **절대값으로** 정한다 — 수에서 켜진 비트에 해당하는 권한 비트는 켜고, **나머지 권한 비트는 모두 끈다**.
+  자리값은 소유자 읽기 0400·쓰기 0200·실행 0100, 그룹 0040·0020·0010, 그 밖 0004·0002·0001이고, 특수 비트는 4000(set-user-ID)·2000(set-group-ID)·1000(sticky)이다 — EXTENDED DESCRIPTION의 표
+- **ls -l 한 줄**: 파일마다 한 줄에 `파일 모드`, `링크 수`, `소유자 이름`, `그룹 이름`, `크기`, `날짜와 시각`, `경로 이름`을 이 차례로 공백을 두고 적는다. 문자 특수 파일과 블록 특수 파일은 크기 자리에 장치 정보를 적는다.
+  날짜와 시각은 마지막으로 고친 때이고, POSIX 로캘에서는 고친 지 여섯 달이 안 됐으면 `월 일 시:분`, 그보다 오래됐으면 `월 일 연도` 꼴이다(로캘이 다르면 꼴과 차례가 달라질 수 있다).
+  이름을 알 수 없거나 `-n`을 주면 소유자·그룹 자리에 수(ID)를 적는다. 디렉터리 안의 파일 목록 앞에는 `total`로 시작하는 줄이 하나 붙는다 — STDOUT
+- **ls -l의 파일 모드**: 종류 글자 하나 + 소유자 권한 세 글자 + 그룹 권한 세 글자 + 그 밖 권한 세 글자이고, 그 파일에 다른 접근 제어 방법이 붙어 있으면 끝에 공백이 아닌 글자 하나가 더 붙는다(없으면 아무것도 붙지 않는다).
+  세 글자의 첫 자리는 읽을 수 있으면 `r`, 아니면 `-`이고, 둘째 자리는 쓸 수 있으면 `w`, 아니면 `-`이며, 셋째 자리는 실행할 수 있거나(디렉터리면 검색할 수 있거나) `x`, 아니면 `-`다(특수 비트가 켜지면 `s`·`S`·`t`·`T`) — STDOUT
+- **ls -l의 종류 글자**: `d` 디렉터리, `b` 블록 특수 파일, `c` 문자 특수 파일, `l` 심볼릭 링크, `p` FIFO, `s` 소켓, `-` 일반 파일. 구현이 다른 종류의 글자를 더할 수 있다 — STDOUT.
+  `-a`는 이름이 마침표(`.`)로 시작하는 항목까지 모두 적고, `-l`은 긴 형식으로 적는다 — OPTIONS
+- (phase 75 step 9) **ls -l의 크기·날짜·심볼릭 링크**: 크기 칸은 그 파일의 st_size 값이다(일반 파일이면 바이트 수 — 아래 「(phase 75 step 7) Linux man-pages」 항목의 inode(7)).
+  날짜와 시각 칸은 POSIX 로캘에서 고친 지 여섯 달이 안 됐으면 `date "+%b %e %H:%M"`의 출력과 같은 꼴, 곧 영어 달 이름 약자·날·시:분(예 `Oct 30 09:15`)이다.
+  심볼릭 링크를 `-L` 없이 적으면 그 줄의 정보는 링크 자신의 것이고, 이름 칸은 `링크 이름 -> 링크 내용` 꼴이다(`->` 앞뒤에 공백 하나) — STDOUT(2026-10-30에 다시 읽음)
+- **chown**: operand `owner[:group]`의 owner로 파일의 사용자 ID를 정하고, 그룹 부분을 적었으면 그룹 ID도 정하며, 적지 않았으면 그룹은 바꾸지 않는다. owner는 사용자 이름이나 사용자 ID, group은 그룹 이름이나 그룹 ID다.
+  `-R`은 디렉터리와 그 아래 파일 계층 전체를 바꾼다 — DESCRIPTION, OPTIONS, OPERANDS
+- **chgrp**: 파일의 그룹 ID를 operand의 그룹으로 바꾼다. 하는 일은 파일의 사용자 ID는 그대로 둔 채 chown() 함수를 부르는 것과 같아서, 누가 바꿀 수 있는지도 chown()의 규칙을 따른다. `-R`도 있다 — DESCRIPTION, OPTIONS
+- **chown() 함수**: 파일의 사용자 ID와 같은 실효 사용자 ID를 가진 프로세스나 특권 프로세스만 소유권을 바꿀 수 있다. `_POSIX_CHOWN_RESTRICTED`가 걸려 있으면 **사용자 ID를 바꾸는 일은 특권 프로세스만** 하고,
+  특권이 없는 파일 소유자는 사용자 ID를 그대로 둔 채 그룹을 자기 실효 그룹 ID나 보조 그룹 ID 가운데 하나로 바꾸는 일만 할 수 있다 — DESCRIPTION. Linux가 이 제한을 따른다는 것은 chown(2)
+- **rm**: 지울 파일에 쓰기 권한이 없고 표준 입력이 터미널이면(`-f`가 없을 때) 지우기 전에 물어보고, 긍정하지 않으면 그 파일을 두고 넘어간다. `-i`를 주면 늘 물어본다 — DESCRIPTION.
+  곧 파일 자신의 쓰기 권한은 지울 수 있는지가 아니라 **물어볼지**를 가른다
+- **unlink() 함수**: 경로의 디렉터리 가운데 하나에 검색 권한이 없거나, 지울 항목이 든 디렉터리에 쓰기 권한이 없으면 EACCES로 실패한다 — ERRORS
+- **open() 함수**: O_CREAT로 새 파일을 만들면 그 파일의 사용자 ID는 프로세스의 실효 사용자 ID가 되고, 그룹 ID는 부모 디렉터리의 그룹 ID나 프로세스의 실효 그룹 ID가 된다 — DESCRIPTION
+- **opendir() 함수**: 디렉터리에 읽기 권한이 없거나 경로에 검색 권한이 없으면 EACCES로 실패한다 — ERRORS. **chdir() 함수**: 경로의 어느 디렉터리에든 검색 권한이 없으면 EACCES로 실패한다 — ERRORS.
+  `cd` 유틸리티는 마지막에 chdir()과 같은 일을 해서 작업 디렉터리를 바꾼다 — cd DESCRIPTION
+- (phase 75 step 12) **cd** — 2026-11-04에 다시 읽음: cd는 지금 셸 실행 환경의 작업 디렉터리를 바꾼다. 피연산자 없이 부르면 HOME 환경 변수가 가리키는 디렉터리를 피연산자로 준 것처럼 동작한다(HOME이 비었거나 없으면 구현이 정한다).
+  피연산자가 `/`로 시작하면 그 경로를 그대로 쓰고, 첫 이름이 `.`이나 `..`이면 지금 디렉터리를 기준으로 풀며, 그 밖이면 CDPATH 변수의 디렉터리들(CDPATH가 없으면 `./`, 곧 지금 디렉터리)에서 그 이름의 디렉터리를 찾는다 — DESCRIPTION 1~6단계.
+  피연산자는 새 작업 디렉터리가 될 디렉터리의 절대 경로나 상대 경로다 — OPERANDS. 그래서 `cd HOME`은 HOME 변수의 값이 아니라 **이름이 `HOME`인 디렉터리**를 찾고(CDPATH가 없으면 지금 디렉터리 안에서), `cd ../HOME`은 부모 디렉터리 안의 `HOME`을 찾는다.
+  홈 디렉터리로 가는 꼴은 피연산자 없는 `cd`와, 셸이 값으로 바꿔 주는 `cd ~`·`cd $HOME`이다(아래 「(phase 75 step 12) POSIX.1-2024 — 2 Shell Command Language」 항목 2.6·2.6.1·2.6.2). `cd /`는 루트 디렉터리로 간다(§3.316·§4.16)
+- (phase 75 step 12) **ls**: 표준 입력은 쓰지 않는다 — STDIN. `-a`·`-l`은 위 줄 그대로다
+- (phase 75 step 12) **rm -r·-R**: `-R`은 파일 계층을 지우고 `-r`은 `-R`과 같다 — OPTIONS. 디렉터리를 `-r`·`-R`(·`-d`) 없이 주면 진단 메시지를 쓰고 그 디렉터리는 두고 넘어가며,
+  `-R`이 있으면 그 안의 항목마다 같은 단계를 밟아 지운 뒤 디렉터리를 지운다(심볼릭 링크를 따라 다른 곳으로 내려가지 않고 링크 자체를 지운다) — DESCRIPTION 2단계. 피연산자의 마지막 이름이 `.`·`..`이거나 루트 디렉터리로 풀리면 지우지 않는다 — DESCRIPTION
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.rwx-permissions`(unlink()·open()·opendir()·chdir()·rm — 디렉터리의 읽기·쓰기·검색, 지우기는 디렉터리의 쓰기·검색 권한), `linux-permissions.owner-group-others`(open() — 새 파일의 소유자),
+`linux-permissions.permission-string`(ls STDOUT — 칸의 차례, 파일 모드의 짜임), `linux-permissions.file-type-char`(ls STDOUT — 종류 글자), `linux-permissions.octal-mode`(chmod 수 모드의 표), `linux-permissions.chmod`(chmod DESCRIPTION·`-R`),
+`linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION·EXAMPLES·APPLICATION USAGE), `linux-permissions.chown`(chown·chgrp·chown()), `exam-notes.md`의 「phase 75 step 7」 문단과 E22.
+`cd`·`ls -a`·`rm`의 물어보기는 `linux-shell`도 쓴다(step 12가 그 주제의 쓰임으로 다시 확인한다).
+(phase 75 step 9) `linux-permissions.permission-string`(ls STDOUT — 크기 칸, POSIX 로캘의 날짜 꼴), `linux-permissions.file-type-char`(ls STDOUT — 심볼릭 링크의 이름 칸 `latest -> report.txt`)
+(phase 75 step 10) `linux-permissions.chmod`(chmod EXTENDED DESCRIPTION — 수 모드는 절대값이라 `chmod 640`이 그 밖의 읽기 비트를 끈다, DESCRIPTION — 바꾸는 사람은 소유자나 특권이라 쓰기 권한이 있는 그룹 사용자는 못 바꾸고 소유자는 아홉 비트를 다 꺼도 다시 켠다, OPTIONS `-R` — 디렉터리와 그 아래 전체에 같은 모드), 문항 n128·n129(chmod 수 모드의 표 — 4·2·1), n130(chmod DESCRIPTION)
+(phase 75 step 11) `linux-permissions.symbolic-mode`(chmod EXTENDED DESCRIPTION — `u`·`g`·`o`·`a`, `a`는 `ugo`, `+`·`-`·`=`의 동작, 절은 적은 차례대로, 수 모드는 절대값이라 원래 권한에 따라 `664`와 `g+w`의 결과가 갈린다),
+`linux-permissions.chown`(chown OPERANDS — `owner[:group]`의 차례, chgrp DESCRIPTION, chown() 함수 — 소유자를 바꾸는 일은 특권만), 문항 n131·n132
+(phase 75 step 12) `linux-shell.working-directory`(cd DESCRIPTION — 피연산자 없으면 HOME, 작업 디렉터리를 바꾼다), `linux-shell.paths`(cd DESCRIPTION·OPERANDS — `/`로 시작·`.`·`..`·그 밖의 이름을 푸는 차례, `cd HOME`·`cd /`),
+`linux-shell.file-commands`(ls OPTIONS `-a`·`-l`, rm OPTIONS·DESCRIPTION — `-r`·`-i`·쓰기 금지 파일에서 묻기), `linux-shell.redirection`(ls STDIN — 표준 입력을 쓰지 않는다), `exam-notes.md`의 「phase 75 step 12」 문단
+
+## (phase 75 step 7) GNU Coreutils 매뉴얼 — 27 File permissions, 10.1.2 What information is listed, 12.2 ln, 12.5 mknod, 13.1 chown, 13.2 chgrp, 13.3 chmod
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html
+
+GNU Coreutils 9.12 매뉴얼(Texinfo 7.2로 만든 HTML, Copyright 1994–2026). 2026-10-30에 한 쪽짜리 HTML판을 내려받아 절을 읽었다. man7.org의 coreutils 페이지(chmod(1)·chown(1)·chgrp(1)·ls(1)·ln(1))는 9.11이고,
+아래 사실은 그 페이지들과 어긋나지 않는다(나란히 놓고 대조했다).
+
+- **27.1 Structure of File Mode Bits**: 파일 모드 비트는 보통의 접근을 가르는 **권한 비트**와, 일부 파일에만 뜻이 있는 **특수 비트**(setuid·setgid·제한 삭제 플래그 곧 sticky)로 나뉜다. 권한은 세 가지다 —
+  **읽기**: 파일을 읽는 것, 디렉터리에서는 그 안의 목록을 보는 것. **쓰기**: 파일을 바꾸는 것, 디렉터리에서는 그 안에 파일을 만들고 지우는 것. **실행**: 파일을 프로그램으로 실행하는 것, 디렉터리에서는 그 안의 파일에 접근하는 것.
+  사용자는 **파일의 소유자**, **그 파일의 그룹에 든 다른 사용자**, **그 밖의 모두** 세 부류로 나뉘고, 부류마다 권한이 다를 수 있다 — 27.1
+- **27.1 — 소유자와 그룹이 정해지는 때**: 파일을 만들 때 소유자와 그룹이 정해진다. 보통 소유자는 지금 사용자이고 그룹은 그 파일이 든 디렉터리의 그룹이라고 적되, 운영체제·파일 시스템·만드는 방법에 따라 다르다고 단서를 단다. 둘은 chown·chgrp로 바꾼다 — 27.1.
+  (Linux에서 새 파일의 그룹이 정해지는 규칙은 아래 「(phase 75 step 7) Linux man-pages」 항목의 inode(7)·open(2))
+- **27.1 — 권한 밖의 제한**: 모드 비트가 허락해도 파일 시스템의 속성(예: immutable)이 막거나 파일 시스템이 읽기 전용으로 마운트되어 있으면 그 작업은 실패한다 — `chmod a+w`를 했더라도 immutable 파일은 고칠 수 없다 — 27.1
+- **27.2.1 Setting Permissions**: 기호 모드는 「누구 연산 권한」을 공백 없이 붙여 적는다. 누구는 `u`(파일 소유자), `g`(그 파일의 그룹에 든 다른 사용자), `o`(그 밖의 모든 사용자), `a`(모든 사용자 — `ugo`와 같다).
+  연산은 `+`(이미 가진 권한에 더하기), `-`(이미 가진 권한에서 빼기), `=`(적은 권한**만** 갖게 하기). 권한은 `r`·`w`·`x`(디렉터리면 검색). `=` 뒤의 권한을 비우면(`go=`) 그 부류는 아무 권한도 갖지 않는다.
+  `go-w`는 소유자의 권한도, 다른 사용자의 읽기·실행도 건드리지 않는다. 그리고 `go=`로 다른 사용자의 권한을 모두 없앤 파일이라도, **그 파일이 든 디렉터리에 쓰기 권한이 있는 다른 사용자는 그 파일을 지울 수 있다** — 27.2.1
+- **27.2.5 Making Multiple Changes**: 기호 모드 여럿을 쉼표로 잇는다 — 예 `a+r,go-w`(모두에게 읽기를 주고 소유자가 아닌 사람의 쓰기를 뺀다), `u=rwx,g=rx,o=`(아홉 비트를 모두 드러내 정한다) — 27.2.5
+- **27.2.6 The Umask and Protection**: 누구를 빼면 `a`처럼 되지만 umask에 켜진 권한은 건드리지 않는다. 반면 `a+w`는 umask와 상관없이 모두에게 쓰기를 준다 — 27.2.6
+- **27.3 Numeric Modes**: 모드를 8진수(base 8)로 적을 수 있다. 부류마다 읽기·쓰기·실행에 한 비트씩, 세 비트를 쓰고 그 세 비트를 **8진 숫자 한 자리**로 적는다 — 세 비트가 모두 켜진 2진수 `111`은 8진수 `7`이다.
+  특수 비트 셋도 한 자리를 차지하고 맨 앞에 온다. 자리값: 소유자 400·200·100, 그 파일의 그룹에 든 다른 사용자 40·20·10, 그룹에 들지 않은 다른 사용자 4·2·1. 예: `664`는 기호 모드 `ug=rw,o=r`과 같고, `0`은 `a=`와 같다.
+  수 모드는 보통 이전 모드 비트를 고려하지 못하고 **절대값으로만** 정한다(디렉터리의 setuid·setgid 비트는 예외). 수 모드는 늘 8진수로 읽으므로 앞에 0을 붙이지 않아도 된다 — 27.3
+- **10.1.2 What information is listed** — `-l`: 이름에 더해 파일 종류, 파일 모드 비트, 하드 링크 수, 소유자 이름, 그룹 이름, 크기, 시각(보통 마지막으로 고친 시각)을 적는다. 블록·문자 특수 파일은 크기 자리에 장치 번호 둘을 적는다.
+  종류 글자는 `-` 일반 파일, `b` 블록 특수 파일, `c` 문자 특수 파일, `d` 디렉터리, `l` 심볼릭 링크, `p` FIFO(이름 있는 파이프), `s` 소켓이고, 다른 시스템의 글자들과 알 수 없는 종류의 `?`도 있다.
+  모드 비트 뒤에는 ACL 같은 다른 접근 방법이 있는지 가리키는 글자 하나가 오는데, 없으면 공백이고 있으면 `.`(보안 문맥만)이나 `+`(그 밖)다 — 10.1.2
+- **12.2 ln**: **하드 링크**는 이미 있는 파일의 또 다른 이름이라 원래 이름과 구별되지 않는다(같은 inode를 함께 쓴다). 대부분의 시스템은 디렉터리에 하드 링크를 만들지 못하게 하고, 하드 링크는 파일 시스템의 경계를 넘지 못한다.
+  **심볼릭 링크**는 다른 파일을 이름으로 가리키는 특수한 종류의 파일이고, 열기·읽기·쓰기 같은 대부분의 일은 커널이 가리키는 파일에 하지만 지우기 같은 몇몇은 링크 파일 자체에 한다. `ln`은 기본으로 하드 링크를, `-s`로 심볼릭 링크를 만든다 — 12.2
+- **12.5 mknod**: 특수 파일은 데이터를 내거나 받는 무언가이고 보통 프린터·플래시 드라이브 같은 물리 하드웨어에 해당한다. 이런 장치는 **한 번에 한 글자씩** 읽거나 **여러 글자를 한 덩어리(블록)로** 읽어서,
+  문자 특수 파일과 블록 특수 파일로 나눈다 — 12.5
+- **13.1 chown**: `[소유자][:[그룹]]` — 소유자만 적으면 그룹은 그대로, `소유자:그룹`은 둘 다, `소유자:`는 그룹을 그 사용자의 로그인 그룹으로, `:그룹`은 그룹만 바꾸어 chgrp와 같다. 콜론만 적으면 아무것도 바꾸지 않는다.
+  사용자가 그룹을 아무것으로나 바꿀 수 있는지는 시스템마다 다르고, 이식성 있는 동작은 자기가 속한 그룹으로만 바꾸는 것이다 — 13.1
+- **13.2 chgrp**: 파일의 그룹을 그룹 이름이나 그룹 ID로 바꾼다 — 13.2
+- **13.3 chmod**: 파일의 사용자 ID와 실효 사용자 ID가 같은 프로세스나 적절한 특권을 가진 프로세스만 모드 비트를 바꿀 수 있다. chmod는 심볼릭 링크 자체의 권한은 바꾸지 않는다(명령 줄에 적은 링크는 그것이 가리키는 파일을 바꾼다) — 13.3
+- (phase 75 step 12) 2026-11-04에 같은 9.12 매뉴얼을 다시 내려받아 아래 절을 읽었다.
+- (phase 75 step 12) **10.1.1 Which files are listed**: ls는 기본으로 명령 줄의 파일과 디렉터리 안의 목록을 적되, 디렉터리 안에서 이름이 `.`으로 시작하는 파일은 빼고 적는다. `-a`(`--all`)를 주면 그 파일들도 적는다 — 10.1.1.
+  이름이 `.`으로 시작하는 파일을 **숨은 파일**(hidden files)이라 부르는 것은 같은 매뉴얼 30.3.2(버전 정렬의 우선순위 — 「files starting with a dot」)와 bash 매뉴얼 8.3.1(`match-hidden-files`)이다
+- (phase 75 step 12) **11.1 cp**: 복사본은 원본과 완전히 따로다. 파일 하나를 다른 파일로, 또는 여러 파일을 한 디렉터리 안으로 복사한다 — 11.1. `-i`(`--interactive`): 디렉터리가 아닌 파일을 복사할 때 이미 있는 대상 파일을 덮어쓸지 묻고, 긍정하지 않으면 그 복사는 실패로 친다 — 11.1 `-i`
+- (phase 75 step 14) **11.1 cp — `-r`**(https://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html, 9.12, 2026-11-04에 내려받아 읽음): `-r`·`-R`·`--recursive`는 디렉터리를 그 안까지 재귀적으로 복사한다 — 11.1 `-R`. `-i`가 아니므로 이미 있는 대상에 묻지 않는다
+- (phase 75 step 12) **11.4 mv**: mv는 파일(이나 디렉터리)을 옮기거나 이름을 바꾼다 — 이름 둘을 주면 첫째를 둘째로 옮긴다. 옮기는 일은 보통 이름을 바꾸는 것이고, 대상의 파일 시스템이 달라 이름 바꾸기가 안 되면 복사한 뒤 원본을 지운다.
+  대상 파일이 이미 있고 보통은 쓸 수 없는 파일이며 표준 입력이 터미널이고 `-f`가 없으면, `-i`가 없어도 바꿀지 묻는다 — 11.4. `-i`는 권한과 관계없이 이미 있는 대상마다 덮어쓸지 묻는다 — 11.4 `-i`
+- (phase 75 step 12) **11.5 rm**: 기본으로 디렉터리는 지우지 않는다. 쓸 수 없는 파일이고 표준 입력이 터미널이며 `-f`가 없거나, `-i`가 있으면 지울지 묻고, 긍정하지 않으면 그 파일은 두고 넘어간다.
+  마지막 이름이 `.`·`..`인 것은 묻지 않고 거부한다 — 11.5
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(27.1 — 세 부류, 새 파일의 소유자), `linux-permissions.rwx-permissions`(27.1 — 파일·디렉터리에서 읽기·쓰기·실행의 뜻, 27.2.1 — 디렉터리 쓰기 권한이 있으면 남의 파일도 지운다),
+`linux-permissions.permission-string`(10.1.2 — `-l`의 칸, 모드 뒤 한 글자), `linux-permissions.file-type-char`(10.1.2 — 종류 글자, 12.2 — 하드 링크·심볼릭 링크, 12.5 — 블록·문자 장치), `linux-permissions.octal-mode`(27.3),
+`linux-permissions.chmod`(13.3), `linux-permissions.symbolic-mode`(27.2.1·27.2.5·27.2.6, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1·13.2)
+(phase 75 step 11) `linux-permissions.symbolic-mode`(27.2.1 — 누구·연산·권한, `=`는 적은 권한만 갖게, 27.2.5 — 쉼표로 여럿, 27.3 — 수 모드는 절대값), `linux-permissions.chown`(13.1 — `소유자`·`소유자:그룹`·`:그룹` 꼴, 이식성 있는 동작은 자기가 속한 그룹으로만, 13.2 — chgrp)
+(phase 75 step 12) `linux-shell.file-commands`(10.1.1 — `-a`와 숨은 파일, 11.1 — cp와 `-i`, 11.4 — mv는 옮기기와 이름 바꾸기가 같은 명령·`-i` 없이 묻는 때, 11.5 — rm은 기본으로 디렉터리를 지우지 않는다·묻는 때), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 14) 문항 n137(11.1 `-R` — `cp -r`은 재귀 복사이고 묻지 않는다, 11.1 `-i`)
+
+## (phase 75 step 7) Linux man-pages — path_resolution(7), inode(7), link(2), symlink(7), open(2), rename(2), rmdir(2), tty(4), null(4); GNU coreutils — ls(1), ln(1), chgrp(1)
+https://man7.org/linux/man-pages/man7/path_resolution.7.html
+https://man7.org/linux/man-pages/man7/inode.7.html
+https://man7.org/linux/man-pages/man2/link.2.html
+https://man7.org/linux/man-pages/man7/symlink.7.html
+https://man7.org/linux/man-pages/man2/open.2.html
+https://man7.org/linux/man-pages/man2/rename.2.html
+https://man7.org/linux/man-pages/man2/rmdir.2.html
+https://man7.org/linux/man-pages/man4/tty.4.html
+https://man7.org/linux/man-pages/man4/null.4.html
+https://man7.org/linux/man-pages/man1/ls.1.html
+https://man7.org/linux/man-pages/man1/ln.1.html
+https://man7.org/linux/man-pages/man1/chgrp.1.html
+
+2026-10-30에 읽은 판: Linux man-pages 6.19 — path_resolution(7)·inode(7)·symlink(7)·open(2)·rename(2)·rmdir(2) 2026-02-08, link(2) 2026-02-11, tty(4) 2026-07-02, null(4) 2025-05-17(man7.org가 2026-09-09에 man-pages-6.19 타르볼에서 가져온 것).
+ls(1)·ln(1)·chgrp(1)은 GNU coreutils 9.11(April 2026).
+
+- **path_resolution(7)** — 「Permissions」: 파일 권한 비트는 셋씩 세 묶음이다. 호출한 프로세스의 실효 사용자 ID가 파일 소유자 ID와 같으면 **첫 묶음**을 쓰고, 그렇지 않고 파일의 그룹 ID가 프로세스의 실효 그룹 ID나 보조 그룹 ID 가운데 하나와 같으면 **둘째 묶음**을, 둘 다 아니면 **셋째 묶음**을 쓴다.
+  묶음 안의 세 비트는 차례로 읽기·쓰기, 그리고 일반 파일이면 실행·디렉터리면 검색이다. (Linux는 실효 ID 대신 파일 시스템 ID(fsuid·fsgid)를 쓰지만 보통 둘은 같다)
+- **path_resolution(7)** — 「Step 2: walk along the path」: 경로를 따라가다 지금 찾아 들어가는 디렉터리에 검색 권한이 없으면 EACCES(「Permission denied」)다
+- **path_resolution(7)** — 「Bypassing permission checks: superuser and capabilities」: 전통적인 유닉스에서 슈퍼유저(root, 사용자 ID 0)는 파일에 접근할 때 권한 제한을 모두 건너뛴다. Linux에서 파일 권한 검사와 얽힌 능력은 CAP_DAC_OVERRIDE와 CAP_DAC_READ_SEARCH이고,
+  fsuid가 0인 프로세스는 이 능력을 갖는다. CAP_DAC_OVERRIDE는 권한 검사를 모두 넘어서지만 **실행 권한은 세 실행 비트 가운데 적어도 하나가 켜져 있을 때만** 준다.
+  그러니 「root는 권한 검사를 받지 않는다」는 읽기·쓰기에서는 그대로 맞고, 실행에서는 「누구에게도 `x`가 없는 파일은 root도 실행하지 못한다」는 단서가 붙는다 — POSIX §4.7과 같은 규칙이다
+- **inode(7)**: 사용자 ID 칸은 파일 소유자의 사용자 ID이고, **새로 만든 파일은 만든 프로세스의 실효 사용자 ID를 받는다**. 그룹 ID 칸은 파일 그룹의 ID이고, 새 파일은 부모 디렉터리에 set-group-ID 비트가 켜져 있으면 그 디렉터리의 그룹을, 아니면 만든 프로세스의 실효 그룹 ID를 받는다.
+  둘 다 chown(2)으로 바꾼다. 링크 수 칸은 그 파일의 하드 링크 수다 — 「User ID」·「Group ID」·「Link count」.
+  파일 종류는 소켓·심볼릭 링크·일반 파일·블록 장치·디렉터리·문자 장치·FIFO다. st_mode의 아래 아홉 비트(0777)가 파일 권한 비트이고, 소유자 00400 읽기·00200 쓰기·00100 실행, 그룹 00040·00020·00010, 그 밖(그룹에 들지 않은 사람) 00004·00002·00001이다 — 「The file type and mode」
+- **link(2)**: 이미 있는 파일에 새 링크(하드 링크라고도 한다)를 만든다. 새 이름은 옛 이름과 똑같이 쓰이고, 두 이름이 같은 파일을 가리켜 권한과 소유자도 같으며, 어느 쪽이 「원래」 이름인지 가릴 수 없다 — DESCRIPTION
+- **symlink(7)**: 심볼릭 링크는 다른 파일의 경로 이름을 내용으로 담은 특수한 종류의 파일이다. 밑에 있는 객체가 아니라 다른 이름을 가리키므로 디렉터리도 가리킬 수 있고 파일 시스템의 경계도 넘으며, 가리키는 경로가 없어도 된다(dangling link).
+  하드 링크는 원래 파일과 구별되지 않고, 디렉터리를 가리키지 못하며 파일 시스템의 경계를 넘지 못한다 — DESCRIPTION. Linux에서 보통 심볼릭 링크의 권한은 어떤 동작에도 쓰이지 않고 늘 0777이다 — 「Symbolic link ownership, permissions, and timestamps」
+- **open(2)**: O_CREAT로 새 파일을 만들면 그 파일의 소유자(사용자 ID)는 프로세스의 실효 사용자 ID가 된다 — DESCRIPTION. 파일이 아직 없는데 부모 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS
+- **rename(2)**: oldpath나 newpath가 든 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS. **rmdir(2)**: 지울 디렉터리가 든 디렉터리에 쓰기 권한이 없으면 EACCES다 — ERRORS
+- **tty(4)**: `/dev/tty`는 문자 파일(문자 장치)이고 프로세스의 제어 터미널을 가리킨다 — DESCRIPTION. **null(4)**: `/dev/null`에 쓴 데이터는 버려지고 읽으면 늘 파일 끝이다. 보통 `mknod -m 666 /dev/null c 1 3`처럼 문자 장치(`c`)로 만든다 — DESCRIPTION
+- **ls(1)**: `-l`은 긴 목록 형식, `-a`(`--all`)는 `.`으로 시작하는 항목도 숨기지 않는다 — DESCRIPTION
+- **ln(1)**: 기본으로 하드 링크를 만들고, `-s`(`--symbolic`)를 주면 심볼릭 링크를 만든다. 하드 링크를 만들 때는 대상이 있어야 한다 — DESCRIPTION, OPTIONS
+- **chgrp(1)**: 각 파일의 그룹을 GROUP으로 바꾼다. `-R`은 파일과 디렉터리를 재귀로 바꾼다 — DESCRIPTION, OPTIONS
+- (phase 75 step 9) **ln(1)** — SYNOPSIS·DESCRIPTION: 첫 꼴은 `ln [OPTION]... [-T] TARGET LINK_NAME`이고 TARGET에 LINK_NAME이라는 이름의 링크를 만든다.
+  그래서 `ln report.txt report2.txt`는 `report.txt`에 하드 링크 `report2.txt`를, `ln -s report.txt latest`는 `report.txt`를 가리키는 심볼릭 링크 `latest`를 만든다(2026-10-30에 다시 읽음)
+- (phase 75 step 9) **inode(7)** — 「File size」: 일반 파일과 심볼릭 링크의 크기는 바이트 단위다(심볼릭 링크의 크기는 그것이 담은 경로 이름의 길이)
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-permissions.owner-group-others`(path_resolution(7) — 어느 묶음을 쓰나·root, inode(7)·open(2) — 새 파일의 소유자), `linux-permissions.rwx-permissions`(path_resolution(7) 검색 권한, open(2)·rename(2)·rmdir(2) — 디렉터리의 쓰기 권한),
+`linux-permissions.permission-string`(ls(1), inode(7) 링크 수), `linux-permissions.file-type-char`(inode(7) 파일 종류, link(2)·symlink(7)·ln(1) — 하드 링크와 심볼릭 링크, tty(4)·null(4) — 문자 장치의 예), `linux-permissions.octal-mode`(inode(7) 자리값),
+`linux-permissions.chown`(chgrp(1), inode(7) — 소유자와 그룹은 chown(2)으로 바꾼다).
+(phase 75 step 9) `linux-permissions.permission-string`(inode(7) — 크기는 바이트 단위), `linux-permissions.file-type-char`(ln(1) — `ln 대상 이름`과 `ln -s 대상 이름`의 꼴)
+
+## (phase 75 step 12) GNU Bash Reference Manual — 1.1 What is Bash?, 1.2 What is a shell?, 3.2.3 Pipelines, 3.6 Redirections, 3.7.2 Command Search and Execution, 3.7.3 Command Execution Environment, 3.7.5 Exit Status, 4.1 Bourne Shell Builtins, 5.1 Bourne Shell Variables, 6.9 Controlling the Prompt
+https://www.gnu.org/software/bash/manual/bash.html
+
+GNU Bash Reference Manual Edition 5.3(2025-05-18 고침, Bash 5.3). 2026-11-04에 한 쪽짜리 HTML판을 내려받아 절을 읽었다.
+
+- **1.1**: Bash는 GNU 운영체제의 셸, 곧 명령 언어 해석기이고, 이름은 Bourne-Again SHell을 줄인 것이다. IEEE POSIX의 셸과 도구 부분을 따르는 구현을 목표로 하고, GNU 운영체제의 기본 셸이다 — 1.1
+- **1.2**: 유닉스 셸은 명령 해석기이면서 프로그래밍 언어다. 대화형으로 쓰면 키보드로 입력한 것을 받아들이고, 비대화형이면 파일이나 문자열에서 명령을 읽는다. 동기 명령은 끝날 때까지 기다린 뒤 다음 입력을 받는다.
+  셸에는 내장 명령(builtin)도 있다 — `cd`처럼 셸 자체를 바꾸는 명령은 셸 밖의 따로 된 프로그램으로 만들 수 없고, `pwd` 같은 것은 따로 만들 수도 있지만 편해서 내장으로 둔다 — 1.2
+- **3.7.2**: 명령 이름에 `/`가 없으면 셸 함수 → 내장 명령 → PATH 변수의 디렉터리에서 그 이름의 실행 파일 차례로 찾는다. 찾지 못하면 오류 메시지를 내고 종료 상태 127로 끝난다.
+  찾았거나 이름에 `/`가 있으면 그 프로그램을 **따로 된 실행 환경**에서 실행하고, 비동기로 시작하지 않았으면 끝나기를 기다려 종료 상태를 받는다 — 3.7.2
+- **3.7.3·3.7.5·4.1**: 내장도 함수도 아닌 명령은 셸과 따로 된 실행 환경에서 실행되고, 그 명령은 셸의 실행 환경(작업 디렉터리 등)을 바꿀 수 없다 — 3.7.3.
+  명령을 실행하려고 만든 프로세스를 **자식 프로세스**라 부른다(명령을 찾지 못하면 그 자식 프로세스가 127을 돌려준다) — 3.7.5. 내장 `exec`는 새 프로세스를 만들지 않고 셸 자신을 그 명령으로 바꾼다 — 4.1 `exec`.
+  셸이 자식 프로세스를 어느 시스템 호출로 만드는지는 이 매뉴얼에 없다
+- **3.2.3**: 파이프라인은 `|`로 이은 명령들이고, 각 명령의 출력이 파이프로 다음 명령의 입력에 이어진다 — 다음 명령이 앞 명령의 출력을 읽는다. 이 연결은 앞 명령에 붙은 리다이렉션보다 먼저 이뤄진다 — 3.2.3(`|&`는 다루지 않는다)
+- **3.6**: 명령을 실행하기 전에 셸이 그 명령의 입력과 출력을 다른 파일로 돌릴 수 있다. 디스크립터 번호를 빼면 `<`로 시작하는 연산자는 표준 입력(0)을, `>`로 시작하는 연산자는 표준 출력(1)을 가리킨다.
+  리다이렉션은 적은 차례로 왼쪽부터 처리한다 — 3.6(연산자마다의 동작은 POSIX 2.7과 같다 — 아래 항목)
+- **4.1 cd**: 작업 디렉터리를 바꾼다. 디렉터리를 주지 않으면 HOME 셸 변수의 값을 디렉터리로 쓴다. `/`로 시작하지 않는 디렉터리를 주고 CDPATH가 있으면 CDPATH의 디렉터리들에서 찾는다 — 4.1 `cd`(POSIX cd와 같다)
+- **5.1·6.9 프롬프트**: 주 프롬프트 변수 PS1의 기본값은 `\s-\v\$ `다 — 5.1 PS1. 프롬프트 안의 `\$`는 실효 사용자 ID가 0(root)이면 `#`, 아니면 `$`로 바뀐다 — 6.9.
+  그래서 bash의 기본 프롬프트는 root이면 `#`로, 일반 사용자면 `$`로 끝난다(`\s-\v`는 셸 이름과 판 번호). 배포판이 PS1을 어떻게 바꿔 두는지는 확인하지 않았다 — 본문은 「보통」으로 한정한다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.shell`(1.1·1.2 — bash는 GNU의 셸이자 명령 해석기·대화형으로 키보드 입력을 받는다·내장 명령, 3.7.2·3.7.3·3.7.5 — 내장이 아닌 명령은 자식 프로세스로 실행하고 끝나기를 기다린다, 5.1·6.9 — 프롬프트 `$`·`#`),
+`linux-shell.working-directory`(1.2 — `cd`·`pwd`는 내장, 4.1 `cd`), `linux-shell.redirection`(3.6), `linux-shell.pipe`(3.2.3), `linux-shell.file-commands`(8.3.1 `match-hidden-files` — 숨은 파일이라는 말), `exam-notes.md` E23
+
+## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: 2 Shell Command Language (2.1, 2.5.3, 2.6, 2.6.1, 2.6.2, 2.7, 2.9.1.6, 2.9.2)
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-11-04에 HTML판을 내려받아 읽었다.
+
+- **2.1 Shell Introduction**: 셸은 명령 언어 해석기다. 셸은 입력을 읽어 낱말과 연산자로 나누고, 단순 명령·복합 명령으로 짜 맞춘 뒤, 낱말을 확장하고 리다이렉션을 처리해 인자 목록에서 뺀다.
+  그다음 함수·내장 유틸리티·실행 파일·스크립트를 실행하고, 필요하면 끝나기를 기다려 종료 상태를 받는다 — 2.1(개요의 차례)
+- **2.9.1.6 Non-built-in Utility Execution**: 셸은 내장이 아닌 유틸리티를 따로 된 유틸리티 환경에서 실행한다. 명령 이름에 `/`가 없으면 PATH로 찾고, 찾으면 **execl() 함수를 부른 것과 같은 동작**으로 그 경로의 프로그램을 실행한다(인자 0은 명령 이름, 나머지는 명령의 인자) — 2.9.1.6.
+  exec 계열 함수는 Linux에서 execve(2) 시스템 호출 위에 얹혀 있다(아래 「(phase 75 step 12) Linux man-pages」 항목 exec(3))
+- **2.5.3 PS1**: 대화형 셸은 명령을 읽을 준비가 될 때마다 PS1의 값을 확장해 표준 오류에 쓴다(프롬프트). 기본값은 `$ `(달러와 공백)이고, 구현이 정한 추가 특권을 가진 사용자에게는 다른 값을 기본으로 둘 수 있다 — 2.5.3 PS1. POSIX는 그 값을 `#`로 정하지 않는다 — root의 `#`는 bash 6.9(위 항목)
+- **2.6 Word Expansions**: 낱말의 확장은 틸드 확장·변수(매개변수) 확장·명령 대체·산술 확장 → 필드 나누기 → 경로 이름 확장 → 따옴표 없애기의 차례로 한다. `$` 글자가 변수 확장·명령 대체·산술 확장을 연다 — 2.6
+- **2.6.1 Tilde Expansion**: 낱말 맨 앞의 따옴표 없는 `~`가 혼자이면(뒤가 `/`이거나 낱말 끝) HOME 변수의 값으로 바뀐다. `~` 뒤에 로그인 이름이 오면 그 사용자의 처음 작업 디렉터리(홈 디렉터리) 경로로 바뀐다 — 2.6.1
+- **2.6.2 Parameter Expansion**: `${이름}`(이름 다음 글자가 헷갈리지 않으면 `$이름`)은 그 변수의 값으로 바뀐다 — 2.6.2. 그래서 `$HOME`은 홈 디렉터리의 경로로 바뀌지만, `$`도 `~`도 없는 낱말 `HOME`은 변수 값으로 바뀌지 않고 글자 그대로 명령에 넘어간다
+- **2.7 Redirection**: 꼴은 `[n]연산자 낱말`이고 `n`은 파일 디스크립터 번호다(셸은 적어도 0~9를 받는다). 리다이렉션 연산자와 그 낱말은 명령에 넘기는 인자에 들지 않는다.
+  여러 개면 앞에서부터 차례로 처리하고, 파일을 열거나 만들지 못하면 그 리다이렉션은 실패한다 — 2.7
+  - `<`: 그 파일을 읽기로 연다. 번호를 빼면 표준 입력(0)이다 — 2.7.1
+  - `>`: 그 파일을 출력으로 연다. 파일이 없으면 빈 파일로 만들고, **있으면 길이를 0으로 잘라(O_TRUNC) 연다** — 곧 원래 내용이 지워지고 새로 쓰인다. 번호를 빼면 표준 출력(1)이다.
+    noclobber 옵션(`set -C`)이 켜져 있으면 이미 있는 일반 파일에 대한 `>`는 실패한다(`>|`는 그래도 연다) — 2.7.2. noclobber는 있다는 것만 적고 다루지 않는다
+  - `>>`: 파일 끝에 덧붙이도록(O_APPEND) 연다. 파일이 없으면 만든다. 번호를 빼면 표준 출력이다 — 2.7.3
+  - `<<`: **here-document** — 명령 줄 다음 줄부터, 정한 낱말(구분자)만 있는 줄이 나올 때까지의 줄들을 그 명령의 입력으로 넘긴다. 번호를 빼면 표준 입력이다 — 2.7.4
+  - 번호를 붙이면 그 디스크립터를 돌린다 — `2>파일`은 표준 오류(2)를 그 파일로 보낸다 — 2.7·2.7.2, Base Definitions §3.353
+- **2.9.2 Pipelines**: 파이프라인은 제어 연산자 `|`로 나눈 명령들이다. 셸은 마지막을 뺀 각 명령의 표준 출력을 다음 명령의 표준 입력에 잇는다 — 파이프를 만들어 쓰는 끝을 앞 명령의 표준 출력으로, 읽는 끝을 뒤 명령의 표준 입력으로 준다.
+  파이프라인이 잇는 입출력은 그 명령에 붙은 리다이렉션보다 먼저 정해진다. 백그라운드가 아니면 셸은 마지막 명령이 끝나기를 기다린다 — 2.9.2
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.shell`(2.1 — 셸이 명령 줄을 해석하는 차례, 2.9.1.6 — 프로그램을 execl()과 같은 동작으로 실행, 2.5.3 — 프롬프트 기본값 `$ `), `linux-shell.paths`(2.6·2.6.1·2.6.2 — `~`와 `$HOME`, `HOME`은 바뀌지 않는다),
+`linux-shell.redirection`(2.7·2.7.1~2.7.4 — `<`·`>`·`>>`·`<<`·`2>`), `linux-shell.pipe`(2.9.2), `exam-notes.md`의 「phase 75 step 12」 문단과 E23
+
+## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: pwd, cat, cp, mv, mkdir, man, more, grep, find
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/pwd.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cat.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/cp.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/mv.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/mkdir.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/man.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/more.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/grep.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/find.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-11-04에 HTML판을 내려받아 읽었다.
+
+- **pwd**: 현재 작업 디렉터리의 **절대 경로**를 표준 출력에 한 줄로 쓰고, 그 경로에는 `.`·`..`이 들지 않는다 — DESCRIPTION, STDOUT
+- **cat**: 파일들을 차례로 읽어 그 내용을 같은 차례로 표준 출력에 쓴다 — DESCRIPTION
+- **cp**: 원본 파일의 내용을 대상 경로로 복사한다. 마지막 피연산자가 있는 디렉터리면 그 안에 원본의 마지막 이름으로 복사하고, `-R`이면 원본 아래 파일 계층 전체를 복사한다 — DESCRIPTION.
+  `-i`는 이미 있는 대상 파일(디렉터리가 아닌 것)에 복사하기 전에 표준 오류에 물음을 쓰고, 표준 입력의 대답이 긍정이면 복사하고 아니면 하지 않는다 — OPTIONS
+- (phase 75 step 14) **cp — 이미 있는 대상**(2026-11-04에 다시 읽음): 대상 파일이 이미 있으면 `-i`일 때만 표준 오류에 물음을 쓰고 대답이 긍정이 아니면 그 원본은 두고 넘어간다. 그 밖에는 대상 파일을 O_WRONLY|O_TRUNC로 열어(길이를 0으로 잘라) 원본의 내용을 쓴다 — DESCRIPTION 3단계.
+  곧 `-i` 없이는 묻지 않고 덮어쓴다
+- (phase 75 step 14) **ls — 피연산자 없음**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/ls.html, 2026-11-04에 내려받아 읽음): 피연산자를 하나도 주지 않으면 `.` 하나를 준 것처럼 동작한다 — DESCRIPTION. 곧 디렉터리를 적지 않으면 작업 디렉터리의 목록을 보인다
+- **mv**: 원본을 대상으로 옮긴다 — 마지막 피연산자가 있는 디렉터리면 그 안으로 같은 이름으로, 아니면 그 경로 이름으로(같은 디렉터리 안이면 곧 이름 바꾸기) 옮긴다. 하는 일은 rename() 함수와 같다 — DESCRIPTION.
+  대상이 이미 있고 `-f`가 없을 때, ①대상에 쓰기 권한이 없고 표준 입력이 터미널이거나 ②`-i`가 있으면, 표준 오류에 물음을 쓰고 한 줄을 읽어 긍정이 아니면 그 원본은 그대로 두고 넘어간다 — DESCRIPTION 1단계.
+  `-i`는 대상이 있으면 확인을 묻고 `-f`는 묻지 않으며, 둘 다 주면 마지막 것을 따른다 — OPTIONS
+- **mkdir**: 피연산자로 준 디렉터리들을 그 차례로 만든다 — DESCRIPTION(`-p`·`-m`은 다루지 않는다)
+- **man**: 이름 피연산자마다 그것에 관한 정보를 쓴다 — 표준 유틸리티면 적어도 그 문법·옵션·피연산자·영향을 주는 환경 변수·종료 상태를 쓴다 — DESCRIPTION. User Portability Utilities 선택 사항([UP])이다
+- **more**: 파일을 읽어, 표준 출력이 터미널이면 **한 화면씩**(정한 줄 수만큼) 사용자 명령에 따라 쓰고, 터미널이 아니면 그대로 표준 출력에 복사한다 — DESCRIPTION. 파일을 주지 않으면 표준 입력을 읽는다 — OPERANDS.
+  화면에서 `<space>`(스페이스)는 기본으로 한 화면을 앞으로 넘기고 — Scroll Forward One Line, `q`는 끝낸다 — Quit(EXTENDED DESCRIPTION). [UP]
+- **grep**: 입력 파일에서 하나 이상의 패턴에 맞는 줄을 골라 낸다 — DESCRIPTION. 고른 줄은 표준 출력에 쓴다 — STDOUT. 파일을 주지 않으면 표준 입력을 읽는다 — OPERANDS.
+  패턴은 꼭 있어야 한다 — 세 꼴의 SYNOPSIS 모두 `pattern_list`나 `-e`·`-f`를 요구한다(패턴 문법인 정규 표현식은 다루지 않는다)
+- (phase 75 step 15) **sort**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/sort.html, 2026-11-04에 내려받아 읽음): 이름 붙은 파일들의 줄을 늘어놓아(sort) 결과를 출력에 쓴다 — DESCRIPTION.
+  비교는 줄 전체(키를 주지 않으면)를 지금 로캘의 글자 차례(collating sequence)로 한다 — DESCRIPTION. 파일 피연산자를 하나도 주지 않으면 표준 입력을 쓴다 — OPERANDS·STDIN.
+  `-o`·`-c`가 없으면 늘어놓은 입력은 표준 출력에 쓴다 — STDOUT. 본문은 차례를 「정해진 글자 차례」로만 쓰고 로캘·키·옵션은 다루지 않는다
+- **find**: `find [-H|-L] 경로... [식]` — 경로마다 그 아래 디렉터리 계층을 **끝까지 내려가며** 만나는 파일마다 식(primary를 이은 참·거짓 식)을 평가한다 — SYNOPSIS, DESCRIPTION
+  - `-name 패턴`: 지금 경로의 **마지막 이름**(basename)이 셸의 패턴 맞추기 꼴(`*` 같은 — 2.14)에 맞으면 참 — OPERANDS
+  - `-type c`: 파일 종류가 `c`면 참 — `b`·`c`·`d`·`l`·`p`·`f`·`s`가 차례로 블록 특수 파일·문자 특수 파일·디렉터리·심볼릭 링크·FIFO·일반 파일·소켓 — OPERANDS
+  - `-perm [-]mode`·`-perm [-]onum`: 파일의 권한 비트로 고른다. `-` 없이 쓰면 권한 비트가 **정확히** 같을 때, `-`를 붙이면 적은 비트가 **적어도 모두** 켜져 있을 때 참이다.
+    mode는 chmod의 기호 모드처럼(모든 비트가 꺼진 틀에 적용해서) 쓰거나 8진수로 쓴다 — OPERANDS. 하나라도 켜져 있으면 참인 `/mode`는 GNU의 꼴이다(아래 find(1))
+  - `-user 이름`: 그 사용자가 소유한 파일이면 참(이름 대신 수를 주면 사용자 ID로 읽을 수 있다) — OPERANDS
+  - `-exec 유틸리티 [인자…] ;`: 경로마다 한 번씩 그 유틸리티를 실행하고 종료 상태가 0이면 참이다. 인자 가운데 `{}` 두 글자뿐인 것은 지금 경로로 바뀐다. 유틸리티는 find를 시작한 디렉터리에서 실행된다.
+    `{} +`로 끝내면 경로를 모아 한 번에 넘긴다(다루지 않는다) — OPERANDS
+  - `-print`: 지금 경로를 표준 출력에 쓰고 줄을 바꾼다. **식이 없으면 `-print`가 식이고**, 식에 `-exec`·`-ok`·`-print`가 없으면 `( 식 ) -print`로 다룬다 — 곧 기본 동작은 찾은 경로를 출력하는 것이다 — OPERANDS
+- (phase 75 step 16) **find — 시작 경로 자신**(2026-11-04에 다시 내려받아 읽음): 경로 피연산자는 준 그대로 평가되고, 그 아래에서 만난 파일의 경로 이름은 그 경로 피연산자 뒤에 `/`(피연산자가 `/`로 끝나지 않으면)와 그 아래의 상대 이름을 이은 것이다 — DESCRIPTION.
+  곧 시작 디렉터리 자신도 식으로 평가되어 `-type d`면 함께 출력되고, `find /home/user1 -name "*.log"`가 내는 경로는 `/home/user1/app.log`·`/home/user1/docs/old.log` 꼴이다. 출력의 차례는 본문에 쓰지 않는다
+- (phase 75 step 16) **패턴의 `*`**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html, 2026-11-04에 다시 내려받아 읽음): 별표 `*`는 아무 문자열(빈 문자열도)에나 맞는 패턴이다 — 2.14.2 Patterns Matching Multiple Characters. `-name`이 쓰는 셸의 패턴 맞추기가 이것이다
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.working-directory`(pwd DESCRIPTION·STDOUT), `linux-shell.file-commands`(cat·cp·mv·mkdir·man DESCRIPTION, cp·mv OPTIONS `-i`, mv DESCRIPTION — `-i` 없이 묻는 때와 이름 바꾸기),
+`linux-shell.pipe`(more DESCRIPTION·OPERANDS·EXTENDED DESCRIPTION, grep DESCRIPTION·STDOUT·OPERANDS), `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — `-name`·`-type`·`-perm`·`-user`·`-exec`·`-print`), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 14) `linux-shell.file-commands`(cp DESCRIPTION 3단계 — `-i` 없이 덮어쓴다, ls DESCRIPTION — 피연산자 없으면 작업 디렉터리), 문항 n137(cp DESCRIPTION·OPTIONS `-i`, mv `-i`, rm `-i`)
+(phase 75 step 15) `linux-shell.redirection`(sort DESCRIPTION·OPERANDS·STDIN·STDOUT — `sort < notes.txt`·`sort << END`, cat DESCRIPTION — `cat list.txt`), `linux-shell.pipe`(more·grep·cat — 위 줄 그대로), 문항 n139(sort OPERANDS·STDOUT), n140(more·grep)
+(phase 75 step 16) `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — 끝까지 내려감·시작 경로 자신·출력 경로의 꼴·`-name`·`-type f`·`-type d`·`-perm`의 정확히·`-`·`-user`·`-exec`의 `{}`·`-exec`가 있으면 `-print`를 덧붙이지 않음, 2.14.2 — `*`), 문항 n141(find `-name`·`-user`·`-type`·`-perm`·`-exec`)
+
+## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: vi, ex
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/vi.html
+https://pubs.opengroup.org/onlinepubs/9799919799/utilities/ex.html
+
+The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 2026-11-04에 HTML판을 내려받아 읽었다. 둘 다 User Portability Utilities 선택 사항([UP])이다.
+**vi의 사실은 이 두 페이지로만 쓴다** — 허용한 출처에 vim 문서가 없다. 지금 배포판의 `vi` 명령이 vim 같은 다른 프로그램인지는 확인하지 않았다.
+
+- **vi**: 화면을 쓰는(screen-oriented) 텍스트 편집기다. POSIX는 vi의 open·visual 모드만 적고, 나머지 편집 기능은 줄 편집기 `ex`에서 정한다. vi와 ex를 오갈 수 있고 vi 안에서 ex 명령을 실행할 수 있다 — vi DESCRIPTION
+- **모드**: 터미널이 받쳐 주면 vi는 시작한 뒤 **명령 모드**에 있다. 글을 넣거나 바꾸는 명령 몇 가지로 **텍스트 입력 모드**에 들어가고, 입력 모드에서 `<ESC>`를 누르면 입력 모드를 끝내고 명령 모드로 돌아온다 — vi EXTENDED DESCRIPTION 머리, Input Mode Commands in vi(`<ESC>`)
+  - `i`는 커서 **앞**에서 — Insert Before Cursor, `a`는 커서 **뒤**에서 — Append, `o`는 지금 줄 **아래**에 새 줄을 열고 — Insert Empty Line Below 입력 모드에 들어간다(`O`는 위에)
+- **`:`**: ex 명령을 실행한다 — Execute an ex Command. `/`·`?`·`:`·`!` 같은 줄 명령은 화면 맨 아래 줄에서 그 글자를 프롬프트로 보이며 입력을 받고, 줄바꿈(Enter)으로 끝낸다 — vi EXTENDED DESCRIPTION(화면의 마지막 줄)
+- (phase 75 step 16) **`:` 뒤**(2026-11-04에 다시 내려받아 읽음): `:`는 ex 명령을 하나 이상 실행한다. 명령이 마지막 줄 밖의 화면을 덮어썼으면 vi는 사용자의 글자 하나를 기다리고, 그 글자가 `:`가 아니면 화면을 다시 그린 뒤 **명령 모드로 돌아간다** — Execute an ex Command.
+  본문은 「Enter로 실행하면, vi를 끝내는 명령이 아니면 다시 명령 모드로 돌아온다」까지만 쓴다(덮어쓴 경우의 기다림은 쓰지 않는다)
+- (phase 75 step 16) **입력 모드의 글자**: 텍스트 입력 모드에서 입력한 글자는 지금 줄의 입력 지점에 들어간다 — Input Mode Commands in vi. 그래서 같은 `x`가 명령 모드에서는 지우기 명령, 입력 모드에서는 넣는 글자다
+- **count**: 대부분의 명령 앞에 붙이는 양의 정수로, 되풀이 횟수나 크기를 주며 주지 않으면 1이다. `D`·`u` 같은 몇 명령은 count를 받지 않고 무시한다 — Command Descriptions in vi(count)
+- **x**: 커서의 글자부터 count개의 글자를 지운다(주지 않으면 하나) — Delete Character at Cursor
+- **d·dd·dw**: `d` 뒤에 동작(motion) 명령을 붙여 그 범위를 지운다. `d`를 되풀이한 `dd`는 지금 줄부터 count개의 **줄**을 지운다 — Delete. `w`는 다음 낱말의 시작으로 옮기는 명령이라,
+  `dw`는 커서부터 다음 낱말 앞까지(낱말 뒤의 공백까지)를 지운다 — Delete, Move to Beginning of Word·Move to Beginning of Bigword(d·y의 범위)
+- **D**: 커서부터 그 줄 끝까지 지운다 — `d$`와 같다 — Delete to End-of-Line
+- **u**: ex의 undo와 같다 — 편집 버퍼를 바꾼 마지막 명령을 되돌린다. 되돌리기 자신도 그 「마지막 명령」에 든다 — vi Undo, ex Undo
+- **ex의 주소**: 줄 주소는 1부터 세는 줄 번호다. `.`은 지금 줄, `$`는 마지막 줄, 수 n은 n번째 줄이고, 주소 둘은 쉼표로 잇는다(`2,6`). `%`는 `1,$`(모든 줄)와 같다 — Addressing in ex.
+  주소 둘(2addr)을 받는 명령에 주소를 주지 않으면 지금 줄만이다 — Command Descriptions in ex(2addr)
+- **q**: `q[uit][!]` — `!` 없이 쓰면, 마지막으로 다 쓴(저장한) 뒤 편집 버퍼가 바뀌었을 때 **오류가 되어 끝나지 않는다**. 그렇지 않으면 편집을 끝낸다. `!`를 붙이면 그 검사 없이 끝낸다 — Quit
+- **w**: 줄을 주지 않으면 버퍼 전체를 쓴다. 파일 이름을 주지 않으면 지금 경로 이름(편집하고 있는 파일)에 쓴다. 쓴 줄 수와 바이트 수를 알린다 — Write
+- **wq**: 쓰기 다음에 끝내기와 같고, 쓰기가 실패하면 끝내지 않는다. `wq!`는 `write!` 다음 끝내기다 — Write. (`x`·`ZZ`도 있지만 다루지 않는다)
+- **s**: `[2addr] s/패턴/바꿀 말/[옵션]` — 지정한 줄마다 패턴에 맞는 **첫 하나**를 바꿀 말로 바꾼다. 옵션에 `g`(global)가 있으면 그 줄에서 겹치지 않게 맞는 것을 **모두** 바꾼다. 지정한 모든 줄에서 하나도 바꾸지 못하면 오류다 — Substitute.
+  그래서 `:2,6s/red/blue/g`는 2~6번째 줄의 `red`를 모두 `blue`로 바꾸고, `g`가 없으면 줄마다 첫 `red`만 바꾼다. 패턴은 정규 표현식이지만 그 문법은 다루지 않는다
+- **r**: `[1addr] r[ead] 파일` — 그 파일의 사본을 지정한 줄 뒤에 붙여 넣는다 — Read. 바꾸기 명령이 아니다(기출 보기의 판정에만 쓴다)
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.vi`(vi DESCRIPTION, 모드와 `i`·`a`·`o`·`<ESC>`, `:`과 마지막 줄), `linux-shell.vi-edit-commands`(`x`·`dd`·`dw`·`D`·`u`, count),
+`linux-shell.vi-colon-commands`(ex Quit·Write·Substitute·Addressing — `:q`·`:q!`·`:w`·`:wq`·`:s`·줄 범위·`g`·`%`), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 16) `linux-shell.vi`(vi DESCRIPTION — 화면 텍스트 편집기, EXTENDED DESCRIPTION — 시작하면 명령 모드·`i`·`a`·`o`·`<ESC>`·마지막 줄의 `:`, Execute an ex Command — 명령 모드로 돌아감, Input Mode Commands in vi, Delete Character at Cursor — `x` 한 줄), 문항 n142
+
+## (phase 75 step 12) Linux man-pages — fork(2), execve(2), exec(3), stdin(3), shells(5); util-linux — chsh(1), more(1); GNU findutils — find(1); man-db — man(1); GNU grep — grep(1)
+https://man7.org/linux/man-pages/man2/fork.2.html
+https://man7.org/linux/man-pages/man2/execve.2.html
+https://man7.org/linux/man-pages/man3/exec.3.html
+https://man7.org/linux/man-pages/man3/stdin.3.html
+https://man7.org/linux/man-pages/man5/shells.5.html
+https://man7.org/linux/man-pages/man1/chsh.1.html
+https://man7.org/linux/man-pages/man1/more.1.html
+https://man7.org/linux/man-pages/man1/find.1.html
+https://man7.org/linux/man-pages/man1/man.1.html
+https://man7.org/linux/man-pages/man1/grep.1.html
+
+2026-11-04에 읽은 판: Linux man-pages 6.19 — fork(2) 2026-06-05, execve(2) 2026-02-08, exec(3) 2025-05-17, stdin(3) 2026-07-02, shells(5) 2025-05-17.
+chsh(1)·more(1)은 util-linux 2.43.devel(2026-05-24), find(1)은 GNU findutils(2025-10-12, man7.org가 2026-08-03에 git에서 가져옴), man(1)은 man-db 2.13.1(2025-05-02), grep(1)은 GNU grep 3.12(2025-03-21)이다.
+
+- **fork(2)**: 부른 프로세스를 그대로 본떠 새 프로세스를 만든다 — 새 것을 자식 프로세스, 부른 쪽을 부모 프로세스라 부르고, 자식은 자기만의 프로세스 ID를 갖는다 — DESCRIPTION
+- **execve(2)**: 경로가 가리키는 프로그램을 실행한다 — 부른 프로세스가 실행하던 프로그램이 새 프로그램으로 바뀐다. 새 프로그램에는 명령 줄 인자의 배열(관례로 첫째는 그 파일 이름)과 환경이 넘어간다 — DESCRIPTION
+- **exec(3)**: exec 계열 함수(execl() 등)는 지금 프로세스의 이미지를 새 것으로 바꾸고, **execve(2) 위에 얹혀 있다** — DESCRIPTION
+- 위 셋과 intro(2)(시스템 호출은 커널로 들어가는 입구), bash 매뉴얼 3.7.5(명령을 실행하려고 자식 프로세스를 만든다), POSIX 2.9.1.6(execl()과 같은 동작으로 실행한다)을 이으면
+  「셸은 명령 줄을 스스로 해석한 뒤, 프로그램을 실행해야 하면 그 실행을 시스템 호출로 커널에 요청한다」를 쓸 수 있다. 다만 **셸이 자식 프로세스를 어느 시스템 호출(fork(2) 등)로 만드는지 적은 문장은 허용한 출처에서 찾지 못했다** — 본문에 「fork로 만든다」고 쓰지 않는다
+- **stdin(3)**: 유닉스 프로그램은 시작할 때 입력용·출력용·진단(오류) 메시지용 흐름 셋을 열어 받는다. 이것을 표준 입력·표준 출력·표준 오류라 부른다. 보통 사용자의 터미널에 이어져 있지만,
+  부모 프로세스가 정한 대로 파일이나 다른 장치일 수도 있다. 시작할 때 셋의 파일 디스크립터는 0·1·2다 — DESCRIPTION
+- **shells(5)**: `/etc/shells`는 쓸 수 있는 로그인 셸의 전체 경로를 적은 텍스트 파일이고 chsh(1)가 이 파일을 본다. 예로 `/bin/sh`·`/bin/bash`·`/bin/csh`를 든다 — DESCRIPTION, EXAMPLES
+- **chsh(1)**: 로그인 셸을 바꾸는 명령이다. 특권 없는 사용자는 기본으로 `/etc/shells`에 있는 셸만 고를 수 있다 — DESCRIPTION, VALID SHELLS.
+  「셸은 커널의 일부가 아닌 보통 프로그램이다」를 그 말 그대로 적은 곳은 찾지 못했다. 쓸 수 있는 것은 셸이 프로그램이라는 것(POSIX §3.333), 셸이 `/bin/bash` 같은 경로의 파일이고
+  계정마다 로그인 셸을 passwd의 칸에 적어 두며 사용자가 chsh로 바꿀 수 있다는 것(shells(5)·passwd(5)·chsh(1))까지다
+- **more(1)**(util-linux): 글을 한 화면씩 넘겨 보는 필터다 — DESCRIPTION
+- **find(1)**(GNU findutils): `-name 패턴`은 앞 디렉터리를 뗀 파일 이름이 셸 패턴에 맞는지 본다 — `-name`. `-type`의 `f`는 일반 파일, `d`는 디렉터리다 — `-type`. `-user 이름`은 그 사용자가 소유한 파일(수로 된 사용자 ID도 된다) — `-user`.
+  `-perm mode`는 권한 비트가 정확히 mode, `-perm -mode`는 mode의 비트가 모두 켜짐, `-perm /mode`는 mode의 비트 가운데 하나라도 켜짐이다(`/` 꼴은 POSIX에 없다) — `-perm`.
+  `-exec 명령 ;`은 `;`가 나올 때까지의 인자를 명령의 인자로 받고, `{}`를 지금 처리하는 파일 이름으로 바꾸며, 찾은 파일마다 한 번씩 시작 디렉터리에서 명령을 실행한다.
+  셸이 `;`·`{}`를 먼저 해석하지 않도록 역슬래시로 막거나(`\;`) 따옴표로 감싸야 할 수 있다 — `-exec`
+- (phase 75 step 16) **find(1)의 시작 경로와 따옴표**(2026-11-04에 다시 읽음): `-mindepth 1`은 시작 경로를 뺀 모든 파일을 처리한다는 뜻이다 — 곧 기본으로는 시작 경로도 처리한다 — `-mindepth`.
+  `-name`의 패턴은 셸이 먼저 펼치지 않게 따옴표로 감싸라고 한다 — `-name`. 따옴표 없이 `*.c`를 쓰면 셸이 지금 디렉터리에서 맞는 파일 이름들로 펼쳐 `find`에 넘긴다 — 「paths must precede expression」 절
+- **man(1)**(man-db): man은 시스템의 매뉴얼 페이저다. 인자로 준 이름(보통 프로그램·유틸리티·함수의 이름)마다 그 매뉴얼 페이지를 찾아 보여 준다 — DESCRIPTION
+- **grep(1)**(GNU grep): 파일마다 패턴을 찾아, 패턴에 맞는 줄을 출력한다. 파일을 주지 않으면(재귀 검색이 아니면) 표준 입력을 읽는다 — DESCRIPTION
+
+쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.shell`(fork(2)·execve(2)·exec(3) — 프로그램 실행은 시스템 호출을 거친다, shells(5)·chsh(1) — 로그인 셸은 고를 수 있는 프로그램), `linux-shell.redirection`(stdin(3) — 표준 입력·출력·오류와 0·1·2),
+`linux-shell.pipe`(more(1)·grep(1)), `linux-shell.find`(find(1) — `-perm`의 세 꼴, `-exec`의 `{}`와 `\;`), `linux-shell.file-commands`(man(1)), `exam-notes.md` E23
+(phase 75 step 16) `linux-shell.find`(find(1) — `-type f`·`-type d`·`-user`·`-perm`의 `/`, `-exec`의 `\;`, `-mindepth` — 시작 경로도 처리, `-name` — 패턴을 따옴표로 감싸는 까닭), 문항 n141
