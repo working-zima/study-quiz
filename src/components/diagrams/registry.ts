@@ -56,6 +56,7 @@ import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
 import { FileCommandsDiagram } from './FileCommandsDiagram'
 import { FileTypeCharDiagram } from './FileTypeCharDiagram'
+import { FindSearchDiagram } from './FindSearchDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
@@ -160,6 +161,7 @@ import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
+import { ViModesDiagram } from './ViModesDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -378,6 +380,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.file-commands': FileCommandsDiagram,
   'linux-shell.redirection': RedirectionFlowDiagram,
   'linux-shell.pipe': PipeFlowDiagram,
+  'linux-shell.find': FindSearchDiagram,
+  'linux-shell.vi': ViModesDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

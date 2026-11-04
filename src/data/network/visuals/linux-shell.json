@@ -303,6 +303,103 @@
       "sources": [
         "linux-shell.pipe"
       ]
+    },
+    "find-search": {
+      "label": "find /home/user1에 -name, -type, -exec를 주었을 때 디렉터리 나무에서 무엇을 고르는지와, 찾은 파일마다 ls -l을 실행하는 것을 보이는 도식",
+      "svgLabel": "user1 디렉터리 안에 app.log, report.txt, docs가 있고 docs 안에 old.log가 있는 나무와, 그 곁의 명령 ls -l",
+      "question": "find는 어디까지 내려가 무엇을 찾을까?",
+      "idleCaption": "/home/user1 안에 파일 app.log·report.txt와 디렉터리 docs가 있고, docs 안에 old.log가 있다. app.log·old.log는 예로 붙인 이름이다. 버튼을 고르면 조건마다 find가 무엇을 고르는지 볼 수 있다.",
+      "legend": "가는 선은 디렉터리와 그 안의 것을 잇고, 화살표는 찾은 파일의 경로가 ls -l에 넘어가는 것을 가리킨다.",
+      "nodes": {
+        "user1": "user1",
+        "app": "app.log",
+        "report": "report.txt",
+        "docs": "docs",
+        "old": "old.log",
+        "ls": "ls -l"
+      },
+      "notes": {
+        "start": "/home/user1",
+        "descend": "docs 안까지 내려간다",
+        "each": "찾은 것마다 실행"
+      },
+      "scenarios": [
+        {
+          "id": "name",
+          "label": "-name \"*.log\"",
+          "caption": "find /home/user1 -name \"*.log\"는 /home/user1에서 출발해 docs 안까지 끝까지 내려가며 이름을 견준다. 이름이 .log로 끝나는 app.log와 old.log만 골라 /home/user1/app.log와 /home/user1/docs/old.log 두 경로를 출력한다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        },
+        {
+          "id": "type",
+          "label": "-type d",
+          "caption": "find /home/user1 -type d는 디렉터리만 고른다. 시작할 디렉터리 /home/user1도 디렉터리라 docs와 함께 나와, /home/user1과 /home/user1/docs를 출력한다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        },
+        {
+          "id": "exec",
+          "label": "-name \"*.log\" -exec ls -l {} \\;",
+          "caption": "-exec ls -l {} \\;를 붙이면 이름이 .log로 끝나는 것을 찾을 때마다 {} 자리에 그 경로를 넣어 ls -l을 한 번씩 실행한다. 그래서 경로 대신 두 파일의 자세한 정보가 ls -l이 보이는 꼴로 나온다.",
+          "sources": [
+            "linux-shell.find"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.find"
+      ]
+    },
+    "vi-modes": {
+      "label": "vi memo.txt로 연 vi가 명령 모드로 시작해 i·a·o로 입력 모드에 들어가고 Esc로 돌아오며, :로 화면의 마지막 줄에 명령을 입력하고 Enter로 돌아오는 것을 보이는 도식",
+      "svgLabel": "vi memo.txt, 명령 모드, 입력 모드, 화면의 마지막 줄을 나타내는 상자 넷",
+      "question": "vi에서 글자를 입력하려면 어디로 가야 할까?",
+      "idleCaption": "vi memo.txt로 연 vi의 명령 모드와 입력 모드, 그리고 명령 모드에서 :를 누르면 명령을 입력받는 화면의 마지막 줄이다. 버튼을 고르면 어느 키로 어디를 오가는지 볼 수 있다.",
+      "legend": "화살표는 키를 눌러 옮겨 가는 쪽이고, 화살표 곁의 글자가 누르는 키다.",
+      "nodes": {
+        "open": "vi memo.txt",
+        "command": "명령 모드",
+        "input": "입력 모드",
+        "last": "마지막 줄"
+      },
+      "notes": {
+        "insert": "i · a · o",
+        "esc": "Esc",
+        "colon": ":",
+        "enter": "Enter"
+      },
+      "scenarios": [
+        {
+          "id": "start",
+          "label": "처음 열 때",
+          "caption": "vi memo.txt로 파일을 열면 vi는 명령 모드로 시작한다. 명령 모드에서는 누르는 글자가 문서에 들어가지 않고 vi에 내리는 명령으로 받아들여진다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        },
+        {
+          "id": "insert",
+          "label": "입력하기",
+          "caption": "명령 모드에서 i·a·o 가운데 하나를 누르면 입력 모드로 들어가, 누르는 글자가 그대로 문서에 들어간다. 다 넣었으면 Esc를 눌러 명령 모드로 돌아온다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        },
+        {
+          "id": "colon",
+          "label": "콜론 명령",
+          "caption": "명령 모드에서 :를 누르면 화면의 마지막 줄에서 저장·끝내기·바꾸기 같은 명령을 입력받는다. Enter로 실행하면 vi를 끝내는 명령이 아닌 한 다시 명령 모드로 돌아온다.",
+          "sources": [
+            "linux-shell.vi"
+          ]
+        }
+      ],
+      "sources": [
+        "linux-shell.vi"
+      ]
     }
   },
   "tables": {},

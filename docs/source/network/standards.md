@@ -59,6 +59,7 @@ POSIX 2024년판은 셸 언어 장(`utilities/V3_chap02.html`)·유틸리티·Ba
 **vi는 POSIX `vi`·`ex` 명세로만 쓴다** — 허용한 출처에 vim 문서는 없고, 지금 배포판의 `vi`가 실제로 어떤 프로그램인지는 확인하지 않았다. 셸 스크립트·변수·제어문, vi의 이동 명령, 정규 표현식 문법은 기출이 묻지 않아 가져오지 않았다.
 「(phase 75 step 14)」가 붙은 줄은 phase 75 step 14에서 `linux-shell.paths`·`linux-shell.file-commands`와 문항 n136·n137을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04).
 「(phase 75 step 15)」가 붙은 줄은 phase 75 step 15에서 `linux-shell.redirection`·`linux-shell.pipe`와 문항 n138~n140을 쓰며 더 확인한 사실이다(확인한 날 2026-11-04) — `sort`가 표준 입력을 읽어 줄을 늘어놓고 표준 출력에 쓴다는 것.
+「(phase 75 step 16)」이 붙은 줄은 phase 75 step 16에서 `linux-shell.find`·`linux-shell.vi`와 문항 n141·n142를 쓰며 더 확인한 사실이다(확인한 날 2026-11-04) — `find`가 시작 디렉터리 자신도 검사한다는 것, 패턴의 `*`, 패턴을 따옴표로 감싸는 까닭, vi의 마지막 줄 명령이 끝난 뒤 명령 모드로 돌아온다는 것.
 
 ---
 
@@ -3047,11 +3048,15 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
   - `-exec 유틸리티 [인자…] ;`: 경로마다 한 번씩 그 유틸리티를 실행하고 종료 상태가 0이면 참이다. 인자 가운데 `{}` 두 글자뿐인 것은 지금 경로로 바뀐다. 유틸리티는 find를 시작한 디렉터리에서 실행된다.
     `{} +`로 끝내면 경로를 모아 한 번에 넘긴다(다루지 않는다) — OPERANDS
   - `-print`: 지금 경로를 표준 출력에 쓰고 줄을 바꾼다. **식이 없으면 `-print`가 식이고**, 식에 `-exec`·`-ok`·`-print`가 없으면 `( 식 ) -print`로 다룬다 — 곧 기본 동작은 찾은 경로를 출력하는 것이다 — OPERANDS
+- (phase 75 step 16) **find — 시작 경로 자신**(2026-11-04에 다시 내려받아 읽음): 경로 피연산자는 준 그대로 평가되고, 그 아래에서 만난 파일의 경로 이름은 그 경로 피연산자 뒤에 `/`(피연산자가 `/`로 끝나지 않으면)와 그 아래의 상대 이름을 이은 것이다 — DESCRIPTION.
+  곧 시작 디렉터리 자신도 식으로 평가되어 `-type d`면 함께 출력되고, `find /home/user1 -name "*.log"`가 내는 경로는 `/home/user1/app.log`·`/home/user1/docs/old.log` 꼴이다. 출력의 차례는 본문에 쓰지 않는다
+- (phase 75 step 16) **패턴의 `*`**(https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html, 2026-11-04에 다시 내려받아 읽음): 별표 `*`는 아무 문자열(빈 문자열도)에나 맞는 패턴이다 — 2.14.2 Patterns Matching Multiple Characters. `-name`이 쓰는 셸의 패턴 맞추기가 이것이다
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.working-directory`(pwd DESCRIPTION·STDOUT), `linux-shell.file-commands`(cat·cp·mv·mkdir·man DESCRIPTION, cp·mv OPTIONS `-i`, mv DESCRIPTION — `-i` 없이 묻는 때와 이름 바꾸기),
 `linux-shell.pipe`(more DESCRIPTION·OPERANDS·EXTENDED DESCRIPTION, grep DESCRIPTION·STDOUT·OPERANDS), `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — `-name`·`-type`·`-perm`·`-user`·`-exec`·`-print`), `exam-notes.md`의 「phase 75 step 12」 문단
 (phase 75 step 14) `linux-shell.file-commands`(cp DESCRIPTION 3단계 — `-i` 없이 덮어쓴다, ls DESCRIPTION — 피연산자 없으면 작업 디렉터리), 문항 n137(cp DESCRIPTION·OPTIONS `-i`, mv `-i`, rm `-i`)
 (phase 75 step 15) `linux-shell.redirection`(sort DESCRIPTION·OPERANDS·STDIN·STDOUT — `sort < notes.txt`·`sort << END`, cat DESCRIPTION — `cat list.txt`), `linux-shell.pipe`(more·grep·cat — 위 줄 그대로), 문항 n139(sort OPERANDS·STDOUT), n140(more·grep)
+(phase 75 step 16) `linux-shell.find`(find SYNOPSIS·DESCRIPTION·OPERANDS — 끝까지 내려감·시작 경로 자신·출력 경로의 꼴·`-name`·`-type f`·`-type d`·`-perm`의 정확히·`-`·`-user`·`-exec`의 `{}`·`-exec`가 있으면 `-print`를 덧붙이지 않음, 2.14.2 — `*`), 문항 n141(find `-name`·`-user`·`-type`·`-perm`·`-exec`)
 
 ## (phase 75 step 12) POSIX.1-2024 — Shell and Utilities: vi, ex
 https://pubs.opengroup.org/onlinepubs/9799919799/utilities/vi.html
@@ -3064,6 +3069,9 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 - **모드**: 터미널이 받쳐 주면 vi는 시작한 뒤 **명령 모드**에 있다. 글을 넣거나 바꾸는 명령 몇 가지로 **텍스트 입력 모드**에 들어가고, 입력 모드에서 `<ESC>`를 누르면 입력 모드를 끝내고 명령 모드로 돌아온다 — vi EXTENDED DESCRIPTION 머리, Input Mode Commands in vi(`<ESC>`)
   - `i`는 커서 **앞**에서 — Insert Before Cursor, `a`는 커서 **뒤**에서 — Append, `o`는 지금 줄 **아래**에 새 줄을 열고 — Insert Empty Line Below 입력 모드에 들어간다(`O`는 위에)
 - **`:`**: ex 명령을 실행한다 — Execute an ex Command. `/`·`?`·`:`·`!` 같은 줄 명령은 화면 맨 아래 줄에서 그 글자를 프롬프트로 보이며 입력을 받고, 줄바꿈(Enter)으로 끝낸다 — vi EXTENDED DESCRIPTION(화면의 마지막 줄)
+- (phase 75 step 16) **`:` 뒤**(2026-11-04에 다시 내려받아 읽음): `:`는 ex 명령을 하나 이상 실행한다. 명령이 마지막 줄 밖의 화면을 덮어썼으면 vi는 사용자의 글자 하나를 기다리고, 그 글자가 `:`가 아니면 화면을 다시 그린 뒤 **명령 모드로 돌아간다** — Execute an ex Command.
+  본문은 「Enter로 실행하면, vi를 끝내는 명령이 아니면 다시 명령 모드로 돌아온다」까지만 쓴다(덮어쓴 경우의 기다림은 쓰지 않는다)
+- (phase 75 step 16) **입력 모드의 글자**: 텍스트 입력 모드에서 입력한 글자는 지금 줄의 입력 지점에 들어간다 — Input Mode Commands in vi. 그래서 같은 `x`가 명령 모드에서는 지우기 명령, 입력 모드에서는 넣는 글자다
 - **count**: 대부분의 명령 앞에 붙이는 양의 정수로, 되풀이 횟수나 크기를 주며 주지 않으면 1이다. `D`·`u` 같은 몇 명령은 count를 받지 않고 무시한다 — Command Descriptions in vi(count)
 - **x**: 커서의 글자부터 count개의 글자를 지운다(주지 않으면 하나) — Delete Character at Cursor
 - **d·dd·dw**: `d` 뒤에 동작(motion) 명령을 붙여 그 범위를 지운다. `d`를 되풀이한 `dd`는 지금 줄부터 count개의 **줄**을 지운다 — Delete. `w`는 다음 낱말의 시작으로 옮기는 명령이라,
@@ -3081,6 +3089,7 @@ The Open Group Base Specifications Issue 8, IEEE Std 1003.1-2024(2024년판). 20
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.vi`(vi DESCRIPTION, 모드와 `i`·`a`·`o`·`<ESC>`, `:`과 마지막 줄), `linux-shell.vi-edit-commands`(`x`·`dd`·`dw`·`D`·`u`, count),
 `linux-shell.vi-colon-commands`(ex Quit·Write·Substitute·Addressing — `:q`·`:q!`·`:w`·`:wq`·`:s`·줄 범위·`g`·`%`), `exam-notes.md`의 「phase 75 step 12」 문단
+(phase 75 step 16) `linux-shell.vi`(vi DESCRIPTION — 화면 텍스트 편집기, EXTENDED DESCRIPTION — 시작하면 명령 모드·`i`·`a`·`o`·`<ESC>`·마지막 줄의 `:`, Execute an ex Command — 명령 모드로 돌아감, Input Mode Commands in vi, Delete Character at Cursor — `x` 한 줄), 문항 n142
 
 ## (phase 75 step 12) Linux man-pages — fork(2), execve(2), exec(3), stdin(3), shells(5); util-linux — chsh(1), more(1); GNU findutils — find(1); man-db — man(1); GNU grep — grep(1)
 https://man7.org/linux/man-pages/man2/fork.2.html
@@ -3113,8 +3122,11 @@ chsh(1)·more(1)은 util-linux 2.43.devel(2026-05-24), find(1)은 GNU findutils(
   `-perm mode`는 권한 비트가 정확히 mode, `-perm -mode`는 mode의 비트가 모두 켜짐, `-perm /mode`는 mode의 비트 가운데 하나라도 켜짐이다(`/` 꼴은 POSIX에 없다) — `-perm`.
   `-exec 명령 ;`은 `;`가 나올 때까지의 인자를 명령의 인자로 받고, `{}`를 지금 처리하는 파일 이름으로 바꾸며, 찾은 파일마다 한 번씩 시작 디렉터리에서 명령을 실행한다.
   셸이 `;`·`{}`를 먼저 해석하지 않도록 역슬래시로 막거나(`\;`) 따옴표로 감싸야 할 수 있다 — `-exec`
+- (phase 75 step 16) **find(1)의 시작 경로와 따옴표**(2026-11-04에 다시 읽음): `-mindepth 1`은 시작 경로를 뺀 모든 파일을 처리한다는 뜻이다 — 곧 기본으로는 시작 경로도 처리한다 — `-mindepth`.
+  `-name`의 패턴은 셸이 먼저 펼치지 않게 따옴표로 감싸라고 한다 — `-name`. 따옴표 없이 `*.c`를 쓰면 셸이 지금 디렉터리에서 맞는 파일 이름들로 펼쳐 `find`에 넘긴다 — 「paths must precede expression」 절
 - **man(1)**(man-db): man은 시스템의 매뉴얼 페이저다. 인자로 준 이름(보통 프로그램·유틸리티·함수의 이름)마다 그 매뉴얼 페이지를 찾아 보여 준다 — DESCRIPTION
 - **grep(1)**(GNU grep): 파일마다 패턴을 찾아, 패턴에 맞는 줄을 출력한다. 파일을 주지 않으면(재귀 검색이 아니면) 표준 입력을 읽는다 — DESCRIPTION
 
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-shell.shell`(fork(2)·execve(2)·exec(3) — 프로그램 실행은 시스템 호출을 거친다, shells(5)·chsh(1) — 로그인 셸은 고를 수 있는 프로그램), `linux-shell.redirection`(stdin(3) — 표준 입력·출력·오류와 0·1·2),
 `linux-shell.pipe`(more(1)·grep(1)), `linux-shell.find`(find(1) — `-perm`의 세 꼴, `-exec`의 `{}`와 `\;`), `linux-shell.file-commands`(man(1)), `exam-notes.md` E23
+(phase 75 step 16) `linux-shell.find`(find(1) — `-type f`·`-type d`·`-user`·`-perm`의 `/`, `-exec`의 `\;`, `-mindepth` — 시작 경로도 처리, `-name` — 패턴을 따옴표로 감싸는 까닭), 문항 n141
