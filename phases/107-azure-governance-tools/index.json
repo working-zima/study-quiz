@@ -85,9 +85,7 @@
     {
       "step": 10,
       "name": "templates-bicep",
-      "status": "error",
-      "error_message": "[3회 시도 후 실패] Step did not update status",
-      "failed_at": "2026-11-05T03:56:47+0900"
+      "status": "pending"
     }
   ],
   "created_at": "2026-11-03T23:31:32+0900"
