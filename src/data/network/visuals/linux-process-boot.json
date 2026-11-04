@@ -86,6 +86,101 @@
         }
       ],
       "sources": ["linux-process-boot.ps-command"]
+    },
+    "top-screen": {
+      "label": "top 화면을 위쪽 요약 영역과 아래쪽 작업 영역으로 나누고, 작업 영역의 줄이 무엇의 차례로 놓이는지와 ps와 무엇이 다른지 보이는 도식",
+      "svgLabel": "요약 영역 테두리 안에 가동 시간, 작업 수, CPU 사용, 메모리 사용이 놓이고, 작업 영역 테두리 안에 2310 backup.sh %CPU 25.0, 812 sshd %CPU 0.3, 2045 bash %CPU 0.0 줄이 차례로 놓이며, 테두리 밖에 ps: 그 순간 한 번과 top: 계속 다시 그림이 놓여 있다",
+      "question": "top 화면은 무엇을 보여 줄까?",
+      "idleCaption": "top 화면을 요약 영역과 작업 영역으로 나눠 그렸다. 프로세스의 이름과 번호, %CPU 값은 예로 든 것이다. 버튼을 고르면 두 영역이 무엇을 보이는지와 ps와 무엇이 다른지 볼 수 있다.",
+      "legend": "두 테두리는 top 화면의 두 영역이고, 작업 영역의 줄은 %CPU가 큰 것부터 놓았다. 테두리 밖의 두 칸은 ps와 top이 목록을 보이는 방식을 견준 것이다.",
+      "nodes": {
+        "uptime": "가동 시간",
+        "task-count": "작업 수",
+        "cpu": "CPU 사용",
+        "memory": "메모리 사용",
+        "row1": "2310 backup.sh",
+        "row1-cpu": "%CPU 25.0",
+        "row2": "812 sshd",
+        "row2-cpu": "%CPU 0.3",
+        "row3": "2045 bash",
+        "row3-cpu": "%CPU 0.0",
+        "ps": "ps: 그 순간 한 번",
+        "top": "top: 계속 다시 그림"
+      },
+      "groups": {
+        "summary": "요약 영역",
+        "tasks": "작업 영역"
+      },
+      "scenarios": [
+        {
+          "id": "summary",
+          "label": "요약 영역",
+          "caption": "요약 영역은 시스템 전체를 보인다. 마지막으로 부팅한 뒤 흐른 가동 시간과 상태별로 나눈 작업 수, CPU가 시간을 어떤 일에 나눠 썼는지, 메모리를 얼마나 쓰고 얼마나 남겼는지가 나온다.",
+          "sources": ["linux-process-boot.top-command"]
+        },
+        {
+          "id": "tasks",
+          "label": "작업 영역",
+          "caption": "작업 영역에는 프로세스가 한 줄에 하나씩 놓인다. 여기서는 %CPU를 정렬 칸으로 골라 CPU를 많이 쓴 것부터 늘어세웠다. 이 차례는 실제로 쓴 몫의 차례이고, 우선순위는 PR·NI 칸에 따로 나온다.",
+          "sources": ["linux-process-boot.top-command"]
+        },
+        {
+          "id": "refresh",
+          "label": "다시 그리기",
+          "caption": "ps는 입력한 그 순간의 목록을 한 번 보이고 끝난다. top은 q를 눌러 끝낼 때까지 일정한 간격으로 화면을 다시 그려, 그사이 바뀐 프로세스와 사용량을 보인다.",
+          "sources": ["linux-process-boot.top-command"]
+        }
+      ],
+      "sources": ["linux-process-boot.top-command"]
+    },
+    "process-control": {
+      "label": "kill 2310, kill -9 2310, renice 10 2310, pstree 네 명령이 PID 1 아래 셸 bash가 실행한 backup.sh 프로세스에 저마다 무엇을 하는지 보이는 도식",
+      "svgLabel": "왼쪽에 kill 2310, kill -9 2310, renice 10 2310, pstree 명령이 차례로 놓이고, 오른쪽에 PID 1 아래로 점선으로 2045 bash, 그 아래로 2310 backup.sh가 이어져 있다",
+      "question": "실행 중인 프로세스에 무엇을 할 수 있을까?",
+      "idleCaption": "왼쪽은 입력한 명령이고, 오른쪽은 PID 1부터 셸 bash, bash가 실행한 backup.sh로 이어진 프로세스다. 번호는 예로 붙인 것이다. 버튼을 고르면 명령마다 어느 프로세스를 가리키고 무엇이 달라지는지 볼 수 있다.",
+      "legend": "화살표는 명령이 가리키는 프로세스로 간다. 가는 선은 부모 프로세스와 자식 프로세스를 잇고, 점선은 그 사이의 프로세스를 그리지 않았다는 뜻이다.",
+      "nodes": {
+        "c-term": "kill 2310",
+        "c-kill9": "kill -9 2310",
+        "c-renice": "renice 10 2310",
+        "c-pstree": "pstree",
+        "pid1": "PID 1",
+        "bash": "2045 bash",
+        "run": "2310 backup.sh"
+      },
+      "notes": {
+        "term": "TERM: 끝내라는 요청",
+        "kill9": "KILL: 막을 수 없어 끝남",
+        "nice": "나이스 값 10: 계속 실행",
+        "tree": "부모·자식 관계를 나무로"
+      },
+      "scenarios": [
+        {
+          "id": "term",
+          "label": "kill",
+          "caption": "kill 2310은 PID 2310인 backup.sh에 기본 시그널 TERM을 보낸다. TERM은 끝내라는 요청이라 프로세스가 하던 일을 정리한 뒤 끝날 수 있고, 끝나면 ps -ef의 목록에서 그 줄이 사라진다.",
+          "sources": ["linux-process-boot.process-commands"]
+        },
+        {
+          "id": "kill9",
+          "label": "kill -9",
+          "caption": "TERM을 보내도 끝나지 않으면 kill -9 2310으로 KILL을 보낸다. KILL은 프로세스가 붙잡거나 무시할 수 없어서, backup.sh는 정리할 기회 없이 끝난다.",
+          "sources": ["linux-process-boot.process-commands"]
+        },
+        {
+          "id": "nice",
+          "label": "nice·renice",
+          "caption": "nice는 나이스 값을 정해 명령을 새로 실행하고, 이미 실행 중인 2310의 값은 renice 10 2310처럼 renice로 바꾼다. 값이 클수록 CPU를 다른 프로세스에 양보하고, 프로세스는 끝나지 않고 계속 실행된다.",
+          "sources": ["linux-process-boot.process-commands"]
+        },
+        {
+          "id": "pstree",
+          "label": "pstree",
+          "caption": "pstree는 실행 중인 프로세스들을 부모와 자식의 관계대로 나무 모양으로 보여 준다. PID를 주지 않으면 PID 1을 맨 위에 두고, 그 아래로 bash와 bash가 실행한 backup.sh가 이어진다.",
+          "sources": ["linux-process-boot.process-commands"]
+        }
+      ],
+      "sources": ["linux-process-boot.process-commands"]
     }
   },
   "tables": {},
