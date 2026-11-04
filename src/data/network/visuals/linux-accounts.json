@@ -199,6 +199,74 @@
         }
       ],
       "sources": ["linux-accounts.useradd"]
+    },
+    "password-aging": {
+      "label": "chage -M 90 -W 7 user4를 입력한 뒤, 암호를 마지막으로 바꾼 날부터 암호가 만료되는 날과 알림이 시작되는 날을 날짜 차례로 놓아 보이는 도식",
+      "svgLabel": "0일째 마지막으로 바꾼 날, 83일째 알림 시작, 90일째 만료가 날짜 차례대로 화살표로 이어져 있다",
+      "question": "암호는 언제 만료되고, 언제부터 알려 줄까?",
+      "idleCaption": "chage -M 90 -W 7 user4를 입력한 뒤 user4의 암호 기한을 날짜 차례로 놓았다. 암호를 마지막으로 바꾼 날을 0일째로 셌다. 버튼을 고르면 옵션마다 어느 날을 정하는지 볼 수 있다.",
+      "legend": "노드는 날이 지나는 차례대로 놓았다. 굵은 화살표는 옵션의 날 수를 세는 방향이다.",
+      "nodes": {
+        "lastchange": "0일째 마지막으로 바꾼 날",
+        "warn": "83일째 알림 시작",
+        "expire": "90일째 만료"
+      },
+      "notes": {
+        "max": "-M 90",
+        "warn": "-W 7"
+      },
+      "scenarios": [
+        {
+          "id": "max",
+          "label": "-M",
+          "caption": "-M 90은 최대 사용 기간을 90일로 정한다. 마지막으로 바꾼 날을 0일째로 세면 암호가 만료되는 때는 90일째이고, 이날이 지나면 암호를 새로 바꿔야 한다.",
+          "sources": ["linux-accounts.chage"]
+        },
+        {
+          "id": "warn",
+          "label": "-W",
+          "caption": "-W 7은 경고 기간을 7일로 정한다. 암호가 만료되는 90일째에서 거꾸로 7일을 세면 90 − 7 = 83이라, 83일째부터 곧 만료된다는 알림이 시작된다.",
+          "sources": ["linux-accounts.chage"]
+        },
+        {
+          "id": "list",
+          "label": "-l",
+          "caption": "chage -l user4는 이렇게 정한 기한을 화면에 보여 주기만 하고 /etc/shadow의 칸은 하나도 바꾸지 않는다. 이 옵션만은 일반 사용자도 자기 계정에 쓸 수 있다.",
+          "sources": ["linux-accounts.chage"]
+        }
+      ],
+      "sources": ["linux-accounts.chage"]
+    },
+    "login-records": {
+      "label": "로그인 시도가 성공하면 /var/log/wtmp에 남아 last로 보고, 실패하면 /var/log/btmp에 남아 lastb로 본다는 것을 두 갈래로 보이는 도식",
+      "svgLabel": "로그인 시도에서 두 갈래가 나뉘어, 한쪽은 성공에서 /var/log/wtmp를 거쳐 last로, 다른 쪽은 실패에서 /var/log/btmp를 거쳐 lastb로 이어진다",
+      "question": "실패한 로그인 시도는 어디에 남고, 무엇으로 볼까?",
+      "idleCaption": "로그인 시도가 성공했을 때와 실패했을 때, 기록이 남는 파일과 그 파일을 읽어 보여 주는 명령을 두 갈래로 놓았다. 버튼을 고르면 갈래를 하나씩 따라가 볼 수 있다.",
+      "legend": "가는 화살표는 로그인 시도에서 기록 파일을 거쳐 그 파일을 읽는 명령까지 잇는다. 굵은 화살표는 고른 갈래다.",
+      "nodes": {
+        "attempt": "로그인 시도",
+        "success": "성공",
+        "failure": "실패",
+        "wtmp": "/var/log/wtmp",
+        "btmp": "/var/log/btmp",
+        "last": "last",
+        "lastb": "lastb"
+      },
+      "scenarios": [
+        {
+          "id": "success",
+          "label": "last",
+          "caption": "로그인에 성공하면 그 로그인과 뒤의 로그아웃이 /var/log/wtmp에 쌓이고, last가 이 파일을 읽어 기록을 늘어놓는다. 시스템을 다시 시작한 일도 이 파일에 남는다.",
+          "sources": ["linux-accounts.login-records"]
+        },
+        {
+          "id": "failure",
+          "label": "lastb",
+          "caption": "로그인하려다 실패한 시도는 /var/log/btmp에 쌓이고, lastb가 이 파일을 읽어 보인다. 허락받지 않은 사람이 남의 계정으로 들어오려 했는지 살필 때 쓴다.",
+          "sources": ["linux-accounts.login-records"]
+        }
+      ],
+      "sources": ["linux-accounts.login-records"]
     }
   },
   "tables": {},

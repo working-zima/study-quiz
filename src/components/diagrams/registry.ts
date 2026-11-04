@@ -125,6 +125,7 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LoginRecordsDiagram } from './LoginRecordsDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
 import { LrsZrsDiagram } from './LrsZrsDiagram'
@@ -157,6 +158,7 @@ import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PasswdFieldsDiagram } from './PasswdFieldsDiagram'
+import { PasswordAgingDiagram } from './PasswordAgingDiagram'
 import { PathResolveDiagram } from './PathResolveDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
@@ -495,6 +497,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-accounts.etc-passwd': PasswdFieldsDiagram,
   'linux-accounts.etc-shadow': ShadowFieldsDiagram,
   'linux-accounts.useradd': UseraddOptionsDiagram,
+  'linux-accounts.chage': PasswordAgingDiagram,
+  'linux-accounts.login-records': LoginRecordsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
