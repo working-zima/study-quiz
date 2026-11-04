@@ -1435,3 +1435,73 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)는 템플릿·역할·정책을 담되 묶음을 구독에 할당하는 것과 구성 안의 리소스 그룹을 구분한다. 2026-07-31부터 종료 절차를 시작했고 2027-01-31에 종료한다(2026-11-03 확인).
 - **처리**: 쓰지 않는다. 종료 예정 도구를 현재의 새 학습 대상으로 추가하지 않는다. 구독과 리소스 그룹 어디에나 같은 방식으로 할당한다는 표현도 가져오지 않는다.
 - **쓰인 곳**: 범위 제외 기록. `azure-governance`의 개념·도식·문항에는 넣지 않는다.
+
+## D113 — PowerShell 스크립트를 실행할 컴퓨터의 옛 조건 (phase 107)
+
+- **덤프**: [덤프 NO.2]와 [덤프 NO.308]의 보기 A는 「PowerShell Core 6.0을 설치한 macOS 컴퓨터」를 Azure 리소스를 만드는 PowerShell 스크립트를 실행할 곳으로 고른다(답 예). NO.308은 「Azure PowerShell 모듈을 설치한 Windows 10」(B)과 「Azure Cloud Shell을 쓰는 Chrome OS」(C)도 고르고, 「Azure CLI 도구만 설치한 Linux」(D)는 고르지 않는다. [덤프 NO.9]도 Linux + Azure CLI에 아니요다.
+- **공식 문서**: [Azure PowerShell 개요](https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell)는 Azure PowerShell이 PowerShell 위의 모듈이라 PowerShell이 있어야 하고, 권하는 것은 PowerShell 7 이상이며 Windows PowerShell 5.1과도 호환된다고 한다. [macOS 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos)·[Linux 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux)의 준비 조건은 「지원되는 PowerShell 7 이상」이다. [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)는 Windows PowerShell이 대부분의 Windows에 미리 설치되어 있다고 한다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. 「macOS에서 Azure PowerShell을 쓸 수 있다」는 맞지만 「PowerShell Core 6.0이 있으면 된다」는 현행 조건이 아니다 — 앱은 「지원되는 버전의 PowerShell과 Az PowerShell 모듈」로 쓰고 버전 숫자는 쓰지 않는다. NO.308 B는 맞다(Windows의 Windows PowerShell도 호환된다). NO.9와 NO.308 D의 「아니요」는 맞다 — Azure CLI만으로는 PowerShell 스크립트를 실행할 수 없고, 원인은 Linux라는 운영 체제가 아니라 PowerShell과 Az 모듈이 없다는 데 있다(Linux에도 설치할 수 있다).
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.azure-powershell`, `CommandToolsTable`
+
+## D114 — Android·Chrome OS 기기에서 Cloud Shell을 쓸 수 있는가 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: Android 노트북에서 VM을 만드는 연작에서 [덤프 NO.43]은 「Cloud Shell의 Bash」에 아니요, [덤프 NO.84]는 「Cloud Shell의 PowerShell」에 예라고 한다. [덤프 NO.260]은 Android 태블릿에서 Cloud Shell의 Bash·PowerShell과 Azure 포털 셋을 모두 고른다. Chrome OS에서 Cloud Shell로 PowerShell 스크립트를 실행하는 것을 [덤프 NO.308] C는 고르지만 [덤프 NO.420]은 아니요라고 한다.
+- **공식 문서**: [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)는 브라우저로 여는 터미널이고 Bash나 PowerShell을 고른다고 한다. [기능 문서](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 Azure CLI와 Azure PowerShell이 미리 설치되어 있다고 한다. [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)의 셸 표는 Azure CLI를 Bash에서 실행한다고 한다. [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 데스크톱·태블릿의 최신 Chrome 등을 지원 브라우저로 든다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. NO.84·260·308 C의 「예」를 따르고 NO.43·420의 「아니요」는 가르치지 않는다 — 지원 브라우저로 Cloud Shell을 열면 그 기기에 두 도구를 설치하지 않아도 된다. VM을 만드는 Azure CLI 명령은 Bash에서도 실행된다(D115). 다만 Cloud Shell의 PowerShell은 Linux 위에서 돌아 Windows에만 있는 기능은 쓸 수 없으므로([Azure PowerShell 시작](https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps) 「Install or run in Azure Cloud Shell」), 「어떤 PowerShell 스크립트든 Cloud Shell에서 된다」로 넓히지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.cloud-shell`, `azure-management-tools.azure-powershell`, `CloudShellDiagram`
+
+## D115 — az 명령을 실행하는 셸 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: 같은 `az vm create` 명령을 두고 [덤프 NO.169]는 「포털에서 Cloud Shell을 열고 PowerShell을 골라 실행한다」에 예, [덤프 NO.256]은 「Bash를 골라 실행한다」에 아니요, [덤프 NO.448]은 「Windows 10에 Azure CLI를 설치하고 명령 프롬프트에서 로그인해 실행한다」에 아니요라고 한다. 한편 [덤프 NO.265]는 컴퓨터에 설치한 Azure CLI를 실행할 도구로 명령 프롬프트와 Windows PowerShell을 고른다.
+- **공식 문서**: [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)의 셸 표는 Azure CLI가 명령 프롬프트(Cmd)·Bash·Windows PowerShell·PowerShell 넷 모두에서 실행된다고 한다. [Windows 설치](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows)는 설치한 Azure CLI를 PowerShell이나 명령 프롬프트에서 쓴다고 한다. [Cloud Shell 기능 문서](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 Azure CLI가 미리 설치되어 있다고 한다. [명령 참조](https://learn.microsoft.com/en-us/cli/azure/vm)의 `az vm create`는 VM을 만든다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. NO.169·265는 맞고 NO.256·448의 「아니요」는 가르치지 않는다. 같은 명령으로 갈리는 연작이라, 명령의 옵션(이미지 이름 같은 것)이 답을 가른 것으로 보지 않는다 — 옵션은 앱에 쓰지 않는다. 앱은 「명령을 실행하는 셸」과 「그 명령이 어느 도구의 것인가」를 나눠 쓴다 — PowerShell에서 az 명령을 실행해도 Azure CLI 명령이다. 명령 이름은 `az vm create`와 `New-AzVM`만 쓴다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.cloud-shell`, `azure-management-tools.azure-cli`, `CloudShellDiagram`, `CommandToolsTable`
+
+## D116 — Windows의 CLI 기본 포함 여부 — 그림과 해설이 다름 (phase 107)
+
+- **덤프**: [덤프 NO.122]의 답 그림(`p074_04.png`)은 Cloud Shell을 컴퓨터에 설치한다 / Windows에 CLI가 처음부터 있다 / PowerShell을 여러 OS에서 쓴다의 순서로 아니요·아니요·예다. 텍스트 해설은 둘째를 예로 적어 그림과 어긋난다.
+- **공식 문서**: [CLI 설치 안내](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)와 [Windows 설치 안내](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows)는 로컬 설치 방법을 설명한다. Windows에 기본으로 제공된다는 명시는 Windows 설치 안내의 WinGet에 관한 문장이다. CLI 개요·도구 비교까지 대조했지만 **Azure CLI의 Windows 기본 포함 또는 미포함을 직접 명시한 문장은 못 찾았다**.
+- **처리**: 한정해 쓴다. 그림과 해설의 충돌을 남기되 기본 포함 여부를 새 문항의 정답 근거로 쓰지 않는다. 「로컬에 설치해 쓰거나 Cloud Shell에서 미리 준비된 CLI를 쓴다」까지만 쓴다. 설치 문서가 있다는 이유로 「기본으로 없다」를 확인했다고 하지 않는다. 첫째·셋째 진술은 각각 Cloud Shell 개요·PowerShell 설치 문서와 맞는다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.azure-cli`의 설치 문장. 기본 포함 여부 문항은 만들지 않는다.
+
+## D117 — 운영 체제 문제에 Advisor 답 영역이 붙음 (phase 107)
+
+- **덤프**: [덤프 NO.100]의 문제와 표(`p059_06.png`)는 운영 체제 세 가지를 제시한다. 뒤의 질문 영역(`p060_00.png`)과 답 그림(`p060_02.png`)은 Azure Advisor의 서로 다른 진술 세 가지다. 문제와 답을 연결할 수 없다.
+- **공식 문서**: 이 오류는 제품 사실이 아니라 자료 결합 오류다. [포털 개요](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview), [CLI 개요](https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli), [PowerShell 개요](https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell)는 각 도구의 사용 환경을 독립적으로 확인하는 데만 쓴다.
+- **처리**: 쓰지 않는다. NO.100의 답을 추측하거나 NO.176의 답으로 보수하지 않는다. 운영 체제와 도구의 관계는 공식 문서로 새로 설명한다. Advisor 사실도 이 문항에서 가져오지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-management-tools`의 문항·본문에는 NO.100을 근거로 쓰지 않는다.
+
+## D118 — Azure Arc의 데이터베이스 대상 일반화 (phase 107)
+
+- **덤프**: [덤프 NO.232]의 두 답 그림(`p138_05.png`, `p139_00.png`)은 Linux 물리 서버 / AKS 클러스터를 함께 관리 / Azure 밖의 타사 데이터베이스를 관리한다는 진술에 모두 예를 표시한다.
+- **공식 문서**: [Arc 개요](https://learn.microsoft.com/en-us/azure/azure-arc/overview)의 현행 목록은 서버와 VM, Kubernetes 클러스터, SQL Server, 그리고 Azure 데이터 서비스다. 데이터 서비스의 예는 SQL Managed Instance다. [Kubernetes 개요](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview)는 연결한 클러스터를 AKS와 함께 목록에서 보고 관리한다고 한다. 외부의 임의 타사 DB를 Arc 데이터 서비스로 관리한다는 근거는 찾지 못했다.
+- **처리**: 한정해 쓴다. 서버 진술은 맞고 AKS 진술은 함께 목록을 보고 관리한다는 범위로 쓴다. DB가 실행되는 서버의 관리와 DB 서비스 자체의 관리를 구분한다. 모든 타사 DB를 지원한다고도, 모든 타사 DB를 지원하지 않는다고도 단정하지 않는다. 앱에는 현행 목록의 지원 대상만 쓴다. Learn의 VM 미리 보기라는 옛 별도 항목도 가져오지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.azure-arc`, `AzureArcDiagram`
+
+## D119 — Azure 포털은 Windows에서만 열린다는 답 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: [덤프 NO.224]의 답 그림(`p134_04.png`)은 macOS의 PowerShell 설치 / Linux 브라우저의 Cloud Shell / Windows에서만 여는 포털에 예·예·아니요를 표시한다. 같은 진술의 NO.445 답 그림(`p260_02.png`)은 예·예·예다. NO.445 텍스트 해설은 다시 마지막을 아니요라고 해 자기 그림과도 다르다.
+- **공식 문서**: [포털 지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 여러 운영 체제의 브라우저를 지원한다. [macOS PowerShell 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos)와 [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)가 앞의 두 진술을 뒷받침한다.
+- **처리**: 고쳐 쓴다. 예·예·아니요가 공식 문서와 맞다. 포털은 지원 브라우저로 여는 서비스이며 Windows 전용이 아니다. NO.445의 마지막 그림 표시를 따르지 않는다. 어떤 기기의 어떤 브라우저든 된다는 주장으로도 넓히지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.azure-portal`, `azure-management-tools.cloud-shell`, `ToolAccessDiagram`
+
+## D120 — iPhone에서 쓰는 관리 도구 — 휴대폰 브라우저의 포털 (phase 107)
+
+- **덤프**: [덤프 NO.220]은 iPhone에서 웹앱 설정을 관리할 도구로 Azure 포털과 Azure Cloud Shell을 고른다. 보기에 Azure 모바일 앱은 없다.
+- **공식 문서**: [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 포털이 데스크톱과 태블릿의 브라우저에서 돈다고 하고, 휴대폰에서 Azure를 관리하려면 Azure 모바일 앱을 쓰라고 안내한다. [Azure 모바일 앱](https://learn.microsoft.com/en-us/azure/azure-portal/mobile-app/overview)은 iOS·Android에서 리소스의 상태를 보고 VM 같은 것을 시작·중지하며 앱 안에서 Cloud Shell을 연다고 한다. [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)도 모바일 앱을 진입 경로로 든다(2026-11-04 확인).
+- **처리**: 한정해 쓴다. 휴대폰에서 Cloud Shell을 쓸 수 있다는 것은 맞다 — 모바일 앱 안에서 연다. 휴대폰 브라우저로 포털을 여는 것은 지원 기기 문서에 없다(못 찾음). 앱은 「휴대폰에서는 Azure 모바일 앱으로 상태를 보고 VM을 시작·중지하고 Cloud Shell을 연다」로 쓰고, 「휴대폰 브라우저로 포털을 연다」를 쓰거나 그리지 않는다. 태블릿(NO.260)과 노트북(NO.287)의 브라우저로 포털을 여는 것은 지원 기기의 범위 안이다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.management-tools`(Azure 모바일 앱), `azure-management-tools.azure-portal`, `ToolAccessDiagram`
+
+## D121 — 클라우드를 관리하려면 인터넷이 꼭 있어야 하고 요즘 브라우저면 무엇이든 된다 (phase 107)
+
+- **덤프**: [덤프 NO.275]의 답 그림(`p161_06.png`)은 「클라우드 서비스를 관리하려면 인터넷 연결이 있어야 한다」 예, 「관리 앱을 설치해야 한다」 아니요, 「요즘 쓰는 웹 브라우저면 어느 것으로든 관리할 수 있다」 예다.
+- **공식 문서**: [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 지원 브라우저를 최신 Edge·Chrome·Firefox와 Mac의 Safari로 들고, JavaScript가 켜져 있어야 한다고 한다. 인터넷 연결이 관리에 꼭 있어야 한다고 적은 문장은 받아 둔 관리 도구 문서에서 찾지 못했다(2026-11-04 확인).
+- **처리**: 둘째 진술(설치 없이 관리)은 맞다 — 포털과 Cloud Shell은 브라우저로 연다. 셋째 진술은 한정해 쓴다 — 「지원되는 웹 브라우저」로 쓰고 「무엇이든」으로 넓히지 않는다. 첫째 진술은 쓰지 않는다(못 찾음).
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.azure-portal`, `ToolAccessDiagram`
+
+## G64 — Cloud Shell의 진입 경로와 파일 보존 조건 (phase 107)
+
+- **용어집**: [용어집 4-9]는 포털 안에서 사용하는 셸 환경으로 설명하고 영구 저장소가 연결되어 파일을 유지한다고 한다.
+- **공식 문서**: [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)의 접속 경로에는 포털 외에 독립 주소와 모바일 앱도 있다. [임시 세션 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral)는 저장소 없이 시작할 수 있다고 한다. [기능 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 저장소를 붙여도 보존되는 파일 위치와 실행 중 컴퓨터의 상태를 구별한다.
+- **처리**: 한정해 쓴다. 포털은 진입 경로의 하나이고 영구 저장소는 선택이다. 다음에 쓸 파일은 연결한 저장소의 보존되는 위치에 두고 그 저장 요금이 붙는다. 임시 세션의 파일은 종료 뒤 남지 않는다. 포털에서만 쓰거나 모든 파일이 저절로 보존된다는 뜻으로 쓰지 않는다.
+- **쓰인 곳**: (쓰일 곳) `azure-management-tools.cloud-shell`, `CloudShellDiagram`
