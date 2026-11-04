@@ -1,5 +1,6 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
+import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
@@ -18,6 +19,7 @@ import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
@@ -36,7 +38,11 @@ import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
+import { CronScheduleDiagram } from './CronScheduleDiagram'
+import { CrontabFieldsDiagram } from './CrontabFieldsDiagram'
+import { CrontabOptionsDiagram } from './CrontabOptionsDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
+import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
 import { DataTransferCostsDiagram } from './DataTransferCostsDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
@@ -85,10 +91,12 @@ import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
+import { FreeMemoryDiagram } from './FreeMemoryDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { GrubMenuDiagram } from './GrubMenuDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
@@ -109,6 +117,7 @@ import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
 import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
+import { KernelMessagesDiagram } from './KernelMessagesDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -116,6 +125,7 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LoginRecordsDiagram } from './LoginRecordsDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
 import { LrsZrsDiagram } from './LrsZrsDiagram'
@@ -147,6 +157,8 @@ import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
 import { PacketSwitchingDiagram } from './PacketSwitchingDiagram'
 import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
+import { PasswdFieldsDiagram } from './PasswdFieldsDiagram'
+import { PasswordAgingDiagram } from './PasswordAgingDiagram'
 import { PathResolveDiagram } from './PathResolveDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
@@ -161,7 +173,10 @@ import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
 import { ProcViewDiagram } from './ProcViewDiagram'
+import { ProcessControlDiagram } from './ProcessControlDiagram'
+import { ProcessTreeDiagram } from './ProcessTreeDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
+import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
@@ -179,6 +194,7 @@ import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
+import { RunlevelTargetsDiagram } from './RunlevelTargetsDiagram'
 import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
@@ -186,8 +202,10 @@ import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
+import { ShadowFieldsDiagram } from './ShadowFieldsDiagram'
 import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { ShellLayerDiagram } from './ShellLayerDiagram'
+import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
@@ -207,14 +225,17 @@ import { SwapSpaceDiagram } from './SwapSpaceDiagram'
 import { SwitchDecisionDiagram } from './SwitchDecisionDiagram'
 import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { SymbolicModeDiagram } from './SymbolicModeDiagram'
+import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
+import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
 import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
@@ -457,6 +478,27 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-shell.vi': ViModesDiagram,
   'linux-shell.vi-edit-commands': ViEditCommandsDiagram,
   'linux-shell.vi-colon-commands': ViColonCommandsDiagram,
+  'linux-process-boot.process': ProcessTreeDiagram,
+  'linux-process-boot.ps-command': PsColumnsDiagram,
+  'linux-process-boot.top-command': TopScreenDiagram,
+  'linux-process-boot.process-commands': ProcessControlDiagram,
+  'linux-process-boot.free-command': FreeMemoryDiagram,
+  'linux-process-boot.daemon': DaemonServiceDiagram,
+  'linux-process-boot.systemctl': SystemctlActionsDiagram,
+  'linux-process-boot.cron': CronScheduleDiagram,
+  'linux-process-boot.crontab-fields': CrontabFieldsDiagram,
+  'linux-process-boot.crontab-command': CrontabOptionsDiagram,
+  'linux-process-boot.boot-sequence': BootSequenceDiagram,
+  'linux-process-boot.grub': GrubMenuDiagram,
+  'linux-process-boot.dmesg': KernelMessagesDiagram,
+  'linux-process-boot.runlevel': RunlevelTargetsDiagram,
+  'linux-process-boot.shutdown-commands': ShutdownCommandsDiagram,
+  'linux-accounts.user-account': AccountIdsDiagram,
+  'linux-accounts.etc-passwd': PasswdFieldsDiagram,
+  'linux-accounts.etc-shadow': ShadowFieldsDiagram,
+  'linux-accounts.useradd': UseraddOptionsDiagram,
+  'linux-accounts.chage': PasswordAgingDiagram,
+  'linux-accounts.login-records': LoginRecordsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
