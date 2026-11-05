@@ -140,13 +140,23 @@ phase 번호는 100부터다 — 네트워크 과목이 75~85를 예약했다. �
 - `azure-cost-factors` 28 — NO.12, 34, 42, 67, 91, 92, 94, 171, 183, 259, 278, 298, 299, 323, 331, 341, 345, 372, 382, 389, 409, 431, 459, 476, 482, 489, 490, 492
 - `azure-cost-management` 16 — NO.62, 95, 101, 134, 209, 251, 255, 286, 316, 334, 359, 373, 394, 396, 416, 464
 
+### `management-tools` 라벨의 배정 (phase 107 설계)
+
+`dump-topics.tsv`의 메모를 보고 나눴다. 30·9로 어림과 같아 별점은 그대로다. `dup_of`가 있는 NO.228(NO.193과 같은 문항)은 세지 않는다.
+Resource Manager·ARM 템플릿·코드형 인프라를 묻는 문항이 `azure-infrastructure-as-code`이고, 나머지(포털·Cloud Shell·명령 도구·Azure Arc·도구를 쓰는 기기와 운영 체제, 프로그램이 쓰는 API)가 `azure-management-tools`다.
+
+- `azure-management-tools` 30 — NO.2, 9, 43, 55, 83, 84, 99, 100, 122, 169, 176, 220, 224, 232, 235, 254, 256, 260, 265, 275, 279, 287, 302, 308, 325, 420, 445, 448, 470, 481
+- `azure-infrastructure-as-code` 9 — NO.44, 56, 193, 202, 326, 333, 417, 449, 454
+
+`governance` 라벨 29문항은 모두 `azure-governance`다(나누지 않는다).
+
 **숫자의 한계.** 분류는 한 사람이 한 번 읽고 정한 것이고 그림으로만 된 문항도 있어, 경계 문항을 옮기면 주제별 수가 ±1~3쯤 움직인다.
 문항 몇 개로 별점이 바뀔 수 있는 주제는 다음과 같다.
 
 - 25(★★★의 하한): `azure-resource-hierarchy`, `azure-security-model`
 - 24(★★★ 바로 아래): `azure-cloud-benefits`
 - `azure-cost-management` 16(★★☆의 하한 13까지 3)
-- 아직 나누지 않은 수: `azure-infrastructure-as-code` 9(★★☆까지 4)
+- `azure-infrastructure-as-code` 9(★★☆까지 4)
 
 ## 덤프 정답이 의심스러운 문항
 

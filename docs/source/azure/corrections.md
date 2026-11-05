@@ -47,7 +47,7 @@
 - **공식 문서**: Learn 「Describe Azure Functions」는 Azure Functions를 이벤트에 따라 실행되는 서버리스 컴퓨팅 방식이라고 하고, VM이나 컨테이너로 만든 앱은 리소스가 계속 실행 중이어야 한다고 대비한다.
   Learn 「Describe Azure virtual machines」는 VM을 IaaS로 두고, VM 안의 패치·업데이트·구성은 쓰는 쪽이 계속 관리한다고 한다. Azure Functions 문서도 Functions를 서버리스 솔루션이라고 한다.
 - **처리**: 고쳐 쓴다. 서버리스의 예는 Azure Functions이고, VM은 쓰는 쪽이 운영 체제를 관리하며 실행되는 동안 요금이 붙는 방식이라 서버리스의 예가 아니다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.serverless`
+- **쓰인 곳**: `azure-cloud-computing.serverless`
 
 ## D2 — 클라우드 공급자에게 내는 돈의 분류 (phase 100)
 
@@ -56,7 +56,7 @@
 - **공식 문서**: Learn 「Describe the consumption-based model」은 클라우드 서비스를 쓰는 대로 내므로 클라우드 컴퓨팅이 운영 지출로 분류된다고 한다.
   Cloud Adoption Framework 「Cost efficiency」는 Azure 같은 서비스에 주기적으로 내는 돈을 운영 지출의 예로 든다.
 - **처리**: 고쳐 쓴다. 클라우드 공급자에게 쓰는 만큼 내는 돈은 운영 지출이고, 사용량 기반 모델로 받는 서비스의 비용도 운영 지출이다. NO.124의 표시는 따르지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`
 
 ## D3 — 퍼블릭 클라우드로 자본 지출을 줄일 수 있나 (phase 100)
 
@@ -66,7 +66,7 @@
   Learn 「Define cloud models」의 비교표는 퍼블릭 클라우드에서 규모를 키우는 데 자본 지출이 들지 않는다고 적는다.
 - **처리**: 고쳐 쓴다. 클라우드(퍼블릭 클라우드 포함)를 쓰면 하드웨어·데이터 센터에 미리 쓰는 돈, 곧 자본 지출이 줄어든다. NO.61 둘째 진술의 표시는 따르지 않는다.
   퍼블릭 클라우드의 내용은 `azure-cloud-models` 주제가 쓴다 — 이 주제에서는 자본 지출 쪽 사실만 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`
 
 ## D4 — 전기료·직원 월급·소프트웨어 임대의 분류 (phase 100)
 
@@ -77,7 +77,7 @@
   Azure 클라우드 컴퓨팅 사전 「What is cloud computing?」은 서버 랙·상시 전기·인프라를 관리하는 IT 전문가를 한데 묶어 클라우드가 없애 주는 「capital expense」라고 부른다 — 덤프와 반대 방향이고, 분류의 정의가 아니라 소개 글이다.
 - **처리**: 쓰지 않는다. 전기료·월급·소프트웨어 임대를 자본 지출이나 운영 지출의 예로 개념·문항·도식에 쓰지 않는다. 공식 문서가 직접 드는 예(서버·네트워크 하드웨어·데이터 센터 공간, Azure 같은 서비스에 주기적으로 내는 돈)만 쓴다.
   「데이터 센터를 짓는 데 드는 돈은 자본 지출이다」([덤프 NO.6] 첫 진술, [덤프 NO.350]·[덤프 NO.400] 셋째 진술)는 위 정의와 맞으므로 써도 된다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`, G6
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`, G6
 
 ## D5 — 예약 VM 인스턴스는 운영 지출인가 (phase 100)
 
@@ -85,14 +85,14 @@
 - **공식 문서**: 「What are Azure Reservations?」는 예약을 1년이나 3년 약정으로 받는 청구 할인이라고 하고, 미리 한꺼번에 내거나 달마다 낼 수 있으며 총액이 같다고 한다.
   자본 지출·운영 지출 가운데 어느 쪽인지는 어느 공식 문서도 말하지 않는다.
 - **처리**: 쓰지 않는다. 예약을 자본 지출이나 운영 지출로 분류하지 않는다. 예약은 약정·할인·결제 방식으로만 설명한다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.reservations`, `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.reservations`, `azure-cloud-computing.capex-opex`
 
 ## D6 — Azure는 자본 지출과 운영 지출 사이의 유연성을 주는가 (phase 100)
 
 - **덤프**: 「Azure는 자본 지출과 운영 지출 사이에서 유연성을 준다」를 맞다고 표시한다 — [덤프 NO.92] 첫 진술
 - **공식 문서**: 그런 말을 하는 문서를 찾지 못했다. Learn은 클라우드가 IT 지출을 자본 지출에서 운영 지출로 옮긴다고만 한다(「Describe cloud computing」 요약 단원, 단원 6).
 - **처리**: 쓰지 않는다. (NO.92의 둘째·셋째 진술 — 같은 크기의 VM 둘이 늘 같은 달 비용을 내지는 않는다, 멈춘 VM에도 스토리지 요금이 붙는다 — 은 공식 문서와 맞고, 비용 관리 주제가 볼 문항이다.)
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`
 
 ## D7 — 클라우드를 쓰려면 인터넷 연결이 꼭 있어야 하나 (phase 100)
 
@@ -100,7 +100,7 @@
 - **공식 문서**: Learn 「What is cloud computing」은 클라우드 컴퓨팅을 컴퓨팅 서비스를 인터넷으로 내주는 것이라고 정의한다. 「반드시 있어야 한다」고는 말하지 않는다.
   「What is Azure ExpressRoute?」는 회사 네트워크를 공용 인터넷을 지나지 않는 사설 연결로 Microsoft 클라우드에 잇는 방법을 설명한다.
 - **처리**: 한정해 쓴다. 정의대로 「클라우드 컴퓨팅은 컴퓨팅 서비스를 인터넷으로 내준다」를 쓰고, 「인터넷 연결이 없으면 클라우드를 쓸 수 없다」 같은 단정은 쓰지 않는다. ExpressRoute는 이 주제에서 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.cloud-computing`
+- **쓰인 곳**: `azure-cloud-computing.cloud-computing`
 
 ## D8 — 클라우드 용량을 늘리는 비용이 더 적은가 (phase 100)
 
@@ -108,7 +108,7 @@
 - **공식 문서**: 두 비용을 견주는 문장은 찾지 못했다. 공식 문서가 말하는 것은 차이의 내용이다 — 데이터 센터를 새로 지을 때까지 기다리지 않고 클라우드로 늘린다(Learn 단원 3),
   기존 데이터 센터에서 모자란 용량을 채우려면 하드웨어·전원·냉각을 주문하고 설치해야 하지만 클라우드에서는 가상 머신을 더한다(Learn 단원 6).
 - **처리**: 한정해 쓴다. 「더 싸다」는 비교를 쓰지 않고, 늘리는 방법과 기다림이 어떻게 다른지만 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.cloud-computing`, `azure-cloud-computing.consumption-based-model`
+- **쓰인 곳**: `azure-cloud-computing.cloud-computing`, `azure-cloud-computing.consumption-based-model`
 
 ## D9 — 클라우드의 구성 옵션은 온-프레미스와 같은가 (phase 100)
 
@@ -123,7 +123,7 @@
 - **공식 문서**: Learn 「Describe factors that can affect costs in Azure」는 종량제를 한 청구 주기 동안 쓴 리소스에 대해 내는 모델이라고 한다. 「Review your individual Azure subscription bill」은 청구 기간마다 청구서를 받는다고 한다.
   청구 주기가 한 달이라고 말하는 문장은 찾지 못했다.
 - **처리**: 한정해 쓴다. 「쓴 만큼 청구 주기마다 낸다」는 쓰고, 그 주기를 「한 달」로 못 박지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.pay-as-you-go`
+- **쓰인 곳**: `azure-cloud-computing.pay-as-you-go`
 
 ## D11 — 어느 모델에 인프라를 두면 자기 데이터 센터가 필요 없나 (phase 100)
 
@@ -143,7 +143,7 @@
   - 본문은 「하드웨어와 그것을 둔 데이터 센터를 누가 갖추고 관리하나」로 쓴다. 퍼블릭은 공급자가 짓고 관리하므로 조직이 그 인프라를 위한 자기 하드웨어를 사서 둘 필요가 없고, 프라이빗은 조직 전용 하드웨어를 조직이 사서 유지 관리한다.
     NO.30·238의 답(퍼블릭)은 이 방향과 맞지만, 「데이터 센터를 없앤다」는 결과 문장으로는 쓰지 않는다.
   - 문항은 「자기 데이터 센터가 필요 없다」나 「제3자가 운영한다」를 퍼블릭과 프라이빗을 가르는 단서로 쓰지 않는다 — 사업장 밖 제3자에게 맡긴 프라이빗과 퍼블릭이 둘 다 맞게 읽힌다. 가르는 단서는 「한 조직 전용인가, 사려는 누구나 쓰는가」다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`
+- **쓰인 곳**: `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`, `CloudModelsTable`
 
 ## D12 — 프라이빗의 통제권·하이브리드의 실행 위치·퍼블릭에서 늘릴 때의 자본 지출 (phase 100)
 
@@ -155,7 +155,7 @@
   하이브리드를 온-프레미스 인프라와 퍼블릭의 결합으로 보는 근거는 사전 「What is a hybrid cloud?」다.
 - **처리**: 고쳐 쓴다. 진술 1은 맞고, 진술 2도 맞고, 진술 3은 틀리다. NO.283의 진술 2·3 표시와 NO.370의 진술 1·3 표시는 따르지 않는다.
   진술 3은 D3과 같은 방향이다 — 퍼블릭 클라우드에서 VM을 키우면 하드웨어를 미리 사지 않고 쓴 만큼 낸다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `CloudModelsTable`
+- **쓰인 곳**: `azure-cloud-models.public-cloud`, `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `CloudModelsTable`
 
 ## D13 — 물리 서버를 둘 수 있는 모델 (phase 100)
 
@@ -165,7 +165,7 @@
   하이브리드는 퍼블릭과 프라이빗(또는 온-프레미스 인프라)을 이은 것이다(사전 「What is a hybrid cloud?」). 그러나 모델을 「물리 서버를 배포할 수 있는가」로 나누는 문장은 어느 공식 문서에도 없다.
 - **처리**: 한정해 쓴다. 「조직이 사서 관리하는 하드웨어는 프라이빗 쪽에 있다(하이브리드라면 그 프라이빗 쪽), 퍼블릭의 하드웨어는 공급자가 짓고 관리한다」까지 쓴다.
   「물리 서버를 둘 수 있는 모델」이라는 분류 문장과 「퍼블릭 클라우드에는 물리 서버를 둘 수 없다」 같은 단정은 쓰지 않는다. NO.317의 답과 NO.98 첫 진술의 표시는 이 방향과 어긋나지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `CloudModelsTable`(하드웨어를 갖추고 관리하는 쪽)
+- **쓰인 곳**: `azure-cloud-models.private-cloud`, `azure-cloud-models.hybrid-cloud`, `CloudModelsTable`(하드웨어를 갖추고 관리하는 쪽)
 
 ## D14 — 하이브리드가 자본 지출과 운영 지출을 가장 줄이는가 (phase 100)
 
@@ -175,7 +175,7 @@
   하이브리드와 퍼블릭으로의 완전한 이전 가운데 어느 쪽이 운영 지출까지 더 적은지 견주는 문장은 찾지 못했다.
 - **처리**: 한정해 쓴다. 「이미 있는 서버를 그대로 쓰면서 늘어난 수요만 퍼블릭 리소스로 받아 내면, 그만큼 하드웨어를 새로 사지 않는다」까지 쓴다(하이브리드의 쓰임).
   「하이브리드가 자본 지출과 운영 지출을 가장 적게 한다」, 「퍼블릭으로 다 옮기는 것보다 싸다」는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`
+- **쓰인 곳**: `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`
 
 ## D15 — 퍼블릭 클라우드의 「셀프서비스 관리」 (phase 100)
 
@@ -184,7 +184,7 @@
   가장 가까운 것은 사전 「What is a public cloud?」의 필요할 때 쓰는 접근(웹 화면·API·명령줄 도구로 서비스에 접근하고 리소스를 빨리 늘리고 줄인다)과, Learn 「Define cloud models」의 앱을 빨리 갖추고 없앨 수 있다는 칸이다.
   밑바탕 하드웨어가 공급자 몫이라는 것은 Learn 「Describe the shared responsibility model」(물리 호스트는 늘 공급자 몫)에 있다.
 - **처리**: 한정해 쓴다. 「쓴 만큼 낸다」는 쓴다. 「셀프서비스 관리」라는 이름은 쓰지 않고, 같은 내용이 필요하면 「쓰는 쪽이 웹 화면이나 명령으로 필요할 때 리소스를 만들고 늘리고 줄이며, 밑바탕 하드웨어는 공급자가 관리한다」로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.public-cloud`, `CloudModelsTable`(퍼블릭 행)
+- **쓰인 곳**: `azure-cloud-models.public-cloud`, `CloudModelsTable`(퍼블릭 행)
 
 ## D16 — Azure Site Recovery가 가상 머신에 주는 것 (phase 101)
 
@@ -384,14 +384,14 @@
 - **덤프**: Cosmos DB를 PaaS로 답하는 문항 셋([덤프 NO.65]은 문제문 글자로, [덤프 NO.70]·[덤프 NO.104]는 OCR 글자로)과 SaaS가 아니라고 답하는 [덤프 NO.118] 셋째 진술(답 그림)이 있다.
 - **공식 문서**: Cosmos DB 소개 문서는 Cosmos DB를 완전 관리형 NoSQL·벡터 데이터베이스라고만 하고 IaaS·PaaS·SaaS 어느 것이라고도 하지 않는다. 「Shared responsibility in the cloud」의 유형별 예에도 없다.
 - **처리**: 쓰지 않는다. 「완전 관리형」이라는 말만으로 PaaS라고 옮겨 적지 않는다. Cosmos DB를 서비스 유형의 예로 들지 않는다. NO.118의 나머지 두 진술(VM에 설치한 SQL Server는 PaaS가 아니다, Azure SQL Database는 PaaS다)은 공식 문서와 맞다.
-- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+- **쓰인 곳**: 개념 글에 쓰지 않는다 — 근거 기록
 
 ## D37 — 공식 문서가 유형을 말하지 않는 서비스 — Azure Backup·Azure Files·Microsoft Intune·Site Recovery (phase 101)
 
 - **덤프**: [덤프 NO.16] 셋째 진술 「Azure Backup은 PaaS의 예다」에 예(답 그림). [덤프 NO.262] 「Azure Files는 IaaS의 예다」에 예, 「Microsoft Intune은 SaaS의 예다」에 예(답 그림). [덤프 NO.188] 둘째 칸은 Site Recovery를 「재해 복구 서비스(DRaaS)」의 예로 고른다(답 그림, 첫 칸은 D16).
 - **공식 문서**: 받은 문서 가운데 Azure Backup·Azure Files·Intune·Site Recovery의 서비스 유형을 직접 말하는 곳이 없다. 「Shared responsibility in the cloud」는 Azure Storage를 PaaS의 예로, Azure Disk Storage를 IaaS의 예로 들 뿐이다 — Azure Files가 IaaS라는 덤프의 답과 맞는지 공식 문서로 가를 수 없다. DRaaS는 이 과목이 다루는 세 유형이 아니다.
 - **처리**: 쓰지 않는다. 이 넷을 서비스 유형의 예로 들지 않는다. NO.16의 앞 두 진술(SaaS는 고객이 소프트웨어 업데이트를 적용하지 않는다 — 아니요, IaaS는 쓸 소프트웨어를 고객이 설치한다 — 예)과 NO.262 둘째 진술(VM에서 실행하는 DNS 서버는 PaaS가 아니다)은 공식 문서와 맞다.
-- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+- **쓰인 곳**: 개념 글에 쓰지 않는다 — 근거 기록
 
 ## D38 — 모든 지역에 데이터 센터가 여럿인가 (phase 102)
 
@@ -440,14 +440,14 @@
 - **덤프**: [덤프 NO.468]은 Azure Germany를 쓸 수 있는 쪽으로 「데이터를 독일 안에 두어야 하는 모든 사용자·기업」을 답한다.
 - **공식 문서**: 이전 버전 문서 「Welcome to Azure Germany」는 Microsoft Cloud Germany가 2018년 8월부터 새 고객을 받지 않았고 2021년 10월 29일에 문을 닫는다고 2020년 9월 30일에 알렸다고 한다. 문서는 `learn.microsoft.com/previous-versions/` 아래로 옮겨져 있다.
 - **처리**: 쓰지 않는다. 지원이 끝난 서비스라 소버린 지역의 예로 들지 않고 문항에도 쓰지 않는다(사용자 결정 2026-10-30 「지원이 끝난 서비스는 뺀다」).
-- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+- **쓰인 곳**: 개념 글에 쓰지 않는다 — 근거 기록
 
 ## D45 — 99.99%를 위한 최소 VM·영역 수 (phase 102)
 
 - **덤프**: [덤프 NO.493]은 VM 하나에서 도는 업무 앱에 99.99% 가용성을 보장하려면 VM과 가용성 영역이 최소 몇이어야 하는지를 묻고, VM 둘·영역 둘을 답한다(답 그림).
 - **공식 문서**: 서비스마다의 SLA 수치는 SLA 약관(`microsoft.com/licensing`)에 있고 이 과목은 그 쪽을 받을 수 없어 쓰지 않는다 — D22와 같다. 받은 `learn.microsoft.com` 문서 어디에도 VM 배치마다의 SLA 수치는 없다.
 - **처리**: 쓰지 않는다(D22와 같은 처리, guide 「배경」 — 서비스마다의 SLA 수치는 쓰지 않는다). 「영역 하나의 중단을 견디려면 리소스를 영역 둘 이상에 둔다」는 「What are availability zones?」(영역을 둘 이상 쓰면 영역 장애를 견딘다)대로 쓸 수 있다.
-- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+- **쓰인 곳**: 개념 글에 쓰지 않는다 — 근거 기록
 
 ## D46 — 구독의 「계정 관리자」·「Microsoft 계정으로만 관리」·「리소스 그룹이 구독을 담는다」 — 덤프끼리 갈림 (phase 102)
 
@@ -476,7 +476,7 @@
 - **덤프**: [덤프 NO.113]은 「지원 요청을 내면 구독 둘을 하나로 합칠 수 있다」에, [덤프 NO.318]은 「구독 둘을 하나로 합칠 수 있다」에 아니요를 표시한다(둘 다 답 그림, [덤프 NO.173]은 NO.113과 같은 문항). 같은 문항의 「Microsoft 계정 하나로 구독 여럿을 관리할 수 있다」·「회사가 리소스를 여러 구독에 둘 수 있다(쓸 수 있다)」는 예다.
 - **공식 문서**: 받은 문서 가운데 구독을 합치는 기능을 말하는 곳이 없다 — 있다고도 없다고도 하지 않는다. 「Move Azure resources to a new resource group or subscription」은 리소스를 다른 구독으로 옮기는 방법만 말한다. Learn 단원 6은 계정 하나에 구독이 여럿일 수 있다고 한다.
 - **처리**: 쓰지 않는다 — 「구독을 합칠 수 없다」도 「합칠 수 있다」도. 계정 하나에 구독 여럿, 리소스를 다른 구독으로 옮길 수 있다(D47)는 공식 문서대로 쓴다. 덤프의 첫째·셋째 답은 공식 문서와 어긋나지 않지만, 「Microsoft 계정」이라는 말은 쓰지 않고 「Azure 계정」으로 쓴다(D46).
-- **쓰인 곳**: (쓰일 곳) 개념 글에 쓰지 않는다 — 근거 기록
+- **쓰인 곳**: 개념 글에 쓰지 않는다 — 근거 기록
 
 ## D50 — 여러 구독의 규정 준수를 다루는 것 — Azure Policy와 관리 그룹 (phase 102)
 
@@ -568,7 +568,7 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
 - **공식 문서**: Learn 「Describe Azure virtual machines」는 Azure VM을 쓰면 물리 하드웨어는 사지 않지만 VM 안의 패치·업데이트·구성은 쓰는 쪽이 계속 관리한다고 한다. 「Virtual machines in Azure」도 같다.
   Learn 단원 6이 공급자가 맡는다고 하는 것은 전원·냉각·하드웨어·네트워킹 같은 밑바탕 인프라다.
 - **처리**: 쓰지 않는다. 클라우드 컴퓨팅을 정의하면서 「보안 패치까지 공급자가 맡는다」고 쓰지 않는다. 공급자가 맡는 것은 공식 문서가 드는 밑바탕 인프라로만 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.cloud-computing`, `azure-cloud-computing.pay-as-you-go`
+- **쓰인 곳**: `azure-cloud-computing.cloud-computing`, `azure-cloud-computing.pay-as-you-go`
 
 ## G2 — 종량제의 요금 단위 (phase 100)
 
@@ -576,7 +576,7 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
 - **공식 문서**: Learn 「Describe factors that can affect costs in Azure」는 종량제를 청구 주기 동안 쓴 리소스에 대해 내는 모델이라고 하고, Azure가 리소스마다 쓴 양을 잰다고 한다.
   VM은 실행 중이거나 할당된 동안 요금이 붙는다(「States and billing status of Azure Virtual Machines」). 스토리지 GB·API 호출 수 같은 단위는 이 주제에서 확인하지 않았고, VM을 초 단위로 매기는지도 확인하지 못했다.
 - **처리**: 한정해 쓴다. 「리소스마다 쓴 양을 재고 청구 주기 동안 쓴 만큼 낸다」까지 쓴다. 요금 단위(초·시간·GB·호출 수)는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.pay-as-you-go`
+- **쓰인 곳**: `azure-cloud-computing.pay-as-you-go`
 
 ## G3 — 「예약 인스턴스」라는 이름과 약정 기간 (phase 100)
 
@@ -584,7 +584,7 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
 - **공식 문서**: 「What are Azure Reservations?」는 이 방식을 Azure 예약(Azure Reservations)이라 부르고 약정 기간을 1년과 3년 둘로만 든다. 할인은 종량제 가격과 견준다.
   VM 상품의 이름은 「Azure 예약 VM 인스턴스(Azure Reserved VM Instances)」다.
 - **처리**: 고쳐 쓴다. 개념 이름은 「Azure 예약」, 기간은 1년·3년, 견주는 대상은 종량제로 쓴다. 「온디맨드」라는 말은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.reservations`, `PricingModelsTable`
+- **쓰인 곳**: `azure-cloud-computing.reservations`, `PricingModelsTable`
 
 ## G4 — 「스팟 인스턴스」라는 이름과 SLA (phase 100)
 
@@ -592,28 +592,28 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
 - **공식 문서**: 「Azure Spot Virtual Machines」는 이름을 Azure 스폿 가상 머신이라 하고, 스폿 VM에는 SLA가 **없고** 고가용성도 보장하지 않는다고 한다.
   (용어집이 드는 할인 폭의 수치는 Azure 제품 페이지와 맞지만, 이 과목은 할인 폭의 수치를 쓰지 않는다 — phase 100 guide 「예시 값」.)
 - **처리**: 고쳐 쓴다. 개념 이름은 「Azure 스폿 가상 머신」이고, SLA는 「어렵다」가 아니라 「없다」로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.spot-vm`, `PricingModelsTable`
+- **쓰인 곳**: `azure-cloud-computing.spot-vm`, `PricingModelsTable`
 
 ## G5 — 서버리스는 오래 실행하면 비싸지는가 (phase 100)
 
 - **용어집**: 서버리스는 장시간 실행하면 비용이 커질 수 있다고 한다 — [용어집 1-13]
 - **공식 문서**: Learn 「Describe Azure Functions」는 몇 초 안에 끝나는 일에 주로 쓴다고 하고, 함수가 실행되는 동안 쓴 CPU 시간에만 요금을 매긴다고 한다. 오래 실행하면 비싸진다는 비교는 찾지 못했다.
 - **처리**: 쓰지 않는다. 서버리스가 맞는 일은 공식 문서가 드는 것(이벤트에 반응해 짧게 끝나는 일, 수요가 들쭉날쭉한 일)으로만 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.serverless`
+- **쓰인 곳**: `azure-cloud-computing.serverless`
 
 ## G6 — 전력·인건비를 운영 지출의 예로 드는 것 (phase 100)
 
 - **용어집**: 운영 지출의 예로 클라우드 사용료·유지 보수와 함께 전력·인건비를 든다 — [용어집 1-33]
 - **공식 문서**: D4와 같다 — Learn과 Cloud Adoption Framework는 전력·인건비를 어느 쪽에도 넣지 않고, Azure 클라우드 컴퓨팅 사전은 오히려 이 둘을 클라우드가 없애 주는 「capital expense」에 묶는다.
 - **처리**: 쓰지 않는다(D4). 클라우드 사용료가 운영 지출이라는 것은 공식 문서와 맞아 쓴다(D2).
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`
 
 ## G7 — 자본 지출의 「가치가 시간이 지나며 줄어든다」 (phase 100)
 
 - **용어집**: 자본 지출로 산 장비는 투자 가치가 시간이 지나며 줄어든다고 한다 — [용어집 1-49]
 - **공식 문서**: Cloud Adoption Framework 「Cost efficiency」는 운영 지출로 옮길 때 감가상각 대신 바로 받는 세금 공제를 검토하라고 권할 뿐, 이것을 자본 지출의 정의로 설명하지 않는다. Learn 단원 6에는 없다.
 - **처리**: 쓰지 않는다. 감가상각·세금 같은 회계 세부는 이 주제에서 쓰지 않는다 — 자본 지출과 운영 지출은 언제·어떻게 내는가(미리 한꺼번에 대 시간에 걸쳐 계속)로만 가른다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`
 
 ## G8 — 운영 지출에는 「종량제 사용이 없다」 (phase 100)
 
@@ -621,7 +621,7 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
 - **공식 문서**: Learn 단원 6은 클라우드 서비스를 쓰는 대로 내므로 운영 지출이라 하고, 클라우드 공급자의 가격 모델을 종량제라고 한다. 곧 종량제로 내는 돈이 운영 지출의 대표 예다.
   한국어판은 이것을 「운영 지출(OpEx)」이라 쓴다. 세금 공제는 Cloud Adoption Framework가 검토 사항으로만 언급한다(G7).
 - **처리**: 고쳐 쓴다. 운영 지출에는 종량제로 쓰는 만큼 내는 돈이 들어간다. 이름은 「운영 지출」로 쓴다. 세금 공제는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-computing.capex-opex`, `azure-cloud-computing.pay-as-you-go`
+- **쓰인 곳**: `azure-cloud-computing.capex-opex`, `azure-cloud-computing.pay-as-you-go`
 
 ---
 
@@ -637,7 +637,7 @@ FaaS(1-14)는 이 주제의 개념이 쓰지 않는 낱말이라 대조하지 �
   사전 「What is a private cloud?」도 사업장 안이나 제3자 공급자가 호스트한다고 한다. 비용이 더 든다는 것은 Learn 단원과 맞는다.
 - **처리**: 한정해 쓴다. 「조직 전용 하드웨어를 조직이 사서 유지 관리한다」와 「비용이 더 든다」는 쓰고, 「데이터 센터를 반드시 직접 짓고 운영한다」는 쓰지 않는다 — 데이터 센터는 사업장 밖 제3자가 운영할 수도 있다(D11과 같은 이유).
   「물리적으로 분리」는 Learn 비교표의 「데이터가 다른 테넌트의 데이터와 같은 곳에 놓이지 않는다」와 사전의 「리소스를 다른 사용자와 나눠 쓰지 않는다」로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`
+- **쓰인 곳**: `azure-cloud-models.private-cloud`, `PublicPrivateCloudDiagram`
 
 ---
 
@@ -1210,151 +1210,333 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **덤프**: 리소스 값에 영향을 주는 요인 셋으로 처리한 데이터의 종류·나가는 데이터의 양·서비스 계층을 답하고, 지역은 답에서 뺀다 — [덤프 NO.298]
 - **공식 문서**: Learn 단원 2 「Resource type」·「Geography」는 지역을 요인으로 적는다 — 같은 리소스도 지역에 따라 값이 다르다. 나가는 데이터의 양과 계층(스토리지 옵션·서비스 계층)은 맞다. 들어오는 데이터의 양을 답에서 뺀 것도 맞다. 「처리한 데이터의 종류」라는 요인은 없다 — 단원의 예는 스토리지 계정에 **저장하는** 데이터 유형이다.
 - **처리**: 고쳐 쓴다. 지역을 요인으로 쓴다. 「처리한 데이터의 종류」는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.cost-factors`, `CostFactorsDiagram`
+- **쓰인 곳**: `azure-cost-factors.cost-factors`, `CostFactorsDiagram`
 
 ## D89 — 지원이 끝난 TCO 계산기를 묻는 문항들 (phase 106)
 
 - **덤프**: TCO 계산기를 누구나 쓸 수 있다고 답하고 — [덤프 NO.299], 온-프레미스 SQL 서버를 옮겨 줄어드는 전기 값을 계산한다고 답하고(보기에 옛 이름 Azure Migrate: Server Assessment가 있다) — [덤프 NO.341], Azure에서 실행하는 값을 보여 주고 그래픽 보고서를 만든다고 답한다 — [덤프 NO.482]
 - **공식 문서**: Learn 단원 3은 TCO 계산기의 지원이 끝났다고 적는다(2026-11-02 확인). Azure Migrate의 현행 도구 이름은 Discovery and Assessment다(`official.md` phase 104).
 - **처리**: 쓰지 않는다 — 계산기의 입력·출력, 전기 값 같은 사실을 쓰지 않고 문항으로 묻지 않는다. `pricing-calculator` 본문에 「예전에 있던 총소유비용(TCO) 계산기는 지원이 끝났다」 한 줄만 쓴다(guide 「배경」).
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.pricing-calculator`
+- **쓰인 곳**: `azure-cost-factors.pricing-calculator`
 
 ## D90 — 「항상 무료」로 단정한 전송 요금 (phase 106)
 
 - **덤프**: ExpressRoute로 들어오는 전송은 항상 무료, 나가는 전송이 항상 무료인 것은 아니다, 같은 지역의 서비스 사이 전송은 항상 무료라고 답한다 — [덤프 NO.389]
 - **공식 문서**: 들어오는 전송은 ExpressRoute 두 요금제에서 모두 무료다. 나가는 전송은 요금제에 따라 다르다(사용량 요금제는 유료, 무제한 요금제는 고정 포트 요금에 포함, Local 회선은 나가는 전송 요금 없음). 같은 지역의 **서비스 사이** 전송은 대역폭 쪽 FAQ대로 추가 요금이 없지만, 같은 지역의 **가상 네트워크 피어링**에는 양쪽에 요금이 붙는다. ExpressRoute는 전송과 별개로 포트 요금이 있다.
 - **처리**: 한정해 쓴다. 「항상」을 쓰지 않는다. 대역폭 쪽을 기준으로 들어오는 전송과 같은 지역 안 서비스 사이 전송에 요금이 없다고 쓰고, 피어링처럼 따로 값을 매기는 경우가 있음을 함께 쓴다. ExpressRoute 요금제 이름은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`
+- **쓰인 곳**: `azure-cost-factors.data-transfer-costs`, `DataTransferCostsDiagram`
 
 ## D91 — VPN으로 오가는 전송의 방향이 뒤바뀐 답, 덤프끼리 갈림 (phase 106)
 
 - **덤프**: 온-프레미스에서 Azure로 VPN으로 올리는 전송에 요금이 붙고, Azure에서 온-프레미스로 내리는 전송에는 안 붙는다고 답한다 — [덤프 NO.259·439 답·해설 그림], [덤프 NO.91 답 그림]. 그런데 [덤프 NO.91 해설 그림]은 반대로 표시한다.
 - **공식 문서**: VPN 연결로 온-프레미스와 오가는 데이터는 보통 데이터 전송 요금을 따른다(VPN 가격 쪽 FAQ). 보통 요금은 들어오는 전송이 무료, 나가는 전송이 유료다(대역폭 쪽). VPN 게이트웨이 자체에는 만들어 둔 시간만큼 요금이 붙는다.
 - **처리**: 고쳐 쓴다. 들어오는 쪽은 전송 요금이 없고 나가는 쪽에 전송 요금이 붙는다. NO.91의 해설 그림 쪽이 맞다. VPN 게이트웨이 요금은 전송 요금과 다른 값이라고 함께 쓸 수 있다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.data-transfer-costs`
+- **쓰인 곳**: `azure-cost-factors.data-transfer-costs`
 
 ## D92 — 리소스 그룹을 더 만들어도 요금이 없다는 답 (phase 106)
 
 - **덤프**: 리소스 그룹을 더 만들어도 비용이 늘지 않는다고 답한다 — [덤프 NO.91·259·439] 첫 진술
 - **공식 문서**: 그렇게 말하는 문장을 허용한 출처에서 찾지 못했다(`official.md` 「리소스 그룹 자체의 요금 — 못 찾음」). 틀렸다는 근거도 없다.
 - **처리**: 쓰지 않는다. `unused-resources`의 「별도 요금이 없는 것」에 리소스 그룹을 넣지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.unused-resources`
+- **쓰인 곳**: `azure-cost-factors.unused-resources`
 
 ## D93 — 쓰지 않는 VM을 원격 세션 안에서 끈다는 답, 덤프끼리 갈림 (phase 106)
 
 - **덤프**: 쓰지 않는 VM의 비용을 줄이려면 원격 데스크톱 세션 안에서 VM을 종료한다고 답한다 — [덤프 NO.67 답 그림]. 같은 뜻의 문항에서 포털에서 중지를 고른다고 답한다 — [덤프 NO.490]
 - **공식 문서**: 운영 체제 안에서 종료하면 VM은 호스트에 할당된 채 중지됨 상태이고 요금이 붙는다(「States and billing」). 요금을 멈추려면 포털에서 중지해 상태가 중지됨(할당 취소됨)인지 본다(VM 가격 쪽 FAQ).
 - **처리**: 고쳐 쓴다. NO.490 쪽을 쓴다. 원격 연결 끊기와 절전 모드는 그 조작을 요금과 잇는 문장을 찾지 못해 단정하지 않는다(`official.md` 최대 절전 항목). 본문은 「요금을 멈추는 것은 할당 취소됨 상태」로 가르친다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`
+- **쓰인 곳**: `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`
 
 ## D94 — 예약이 특정 데이터 센터의 서버 용량을 잡아 둔다는 답 (phase 106)
 
 - **덤프**: Azure 예약은 특정 데이터 센터의 서버 용량을 잡아 두는 데 쓴다고 답한다 — [덤프 NO.431·476·489] 둘째 진술
 - **공식 문서**: 예약 VM 인스턴스는 청구 할인만 주고 컴퓨팅 용량을 잡아 두거나 보장하지 않는다(`official.md` 「Save costs with Azure Reserved VM Instances」, phase 100). 예약은 리소스의 실행 상태에도 영향을 주지 않는다(「What are Azure Reservations?」). 지역이 다르면 값이 다르다는 첫째 진술은 맞다. 셋째 진술(Azure SQL Database의 중지)은 guide 「배경」이 쓰지 않기로 했다.
 - **처리**: 고쳐 쓴다. 예약은 값을 깎는 약정이고 용량을 잡아 두지 않는다고 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.savings-plan`
+- **쓰인 곳**: `azure-cost-factors.savings-plan`
 
 ## D95 — Marketplace의 값을 Microsoft가 정한다는 답 (phase 106)
 
 - **덤프**: Azure Marketplace에서 파는 모든 타사 서비스의 가격 구조를 Microsoft가 정한다고 답한다 — [덤프 NO.331] 셋째 진술. 둘째 진술은 기업 계약에 미리 정한 금액의 약정이 필요하다고 답한다.
 - **공식 문서**: Learn 단원 2 「Azure Marketplace」는 청구 구조를 판매 업체가 정하고, 쓰는 쪽이 Azure 서비스 값에 더해 업체의 서비스나 전문성 값도 낼 수 있다고 한다. 첫째 진술(나가는 전송 값이 모든 지역에서 같다 — 아니요)은 맞다.
 - **처리**: 고쳐 쓴다. 청구 구조는 판매 업체가 정한다고 쓴다. 기업 계약의 조건은 쓰지 않는다(guide 「배경」).
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.cost-factors`
+- **쓰인 곳**: `azure-cost-factors.cost-factors`
 
 ## D96 — 사용자 계정·그룹에 요금이 없다는 설명 (phase 106)
 
 - **덤프**: 쓰지 않는 사용자 계정과 그룹을 지워도 비용이 줄지 않고 공용 IP 주소를 지워야 줄어든다고 답하며, 사용자 계정·그룹에는 요금이 없다고 적는다 — [덤프 NO.183·345], 같은 상황의 [덤프 NO.42·278·382·459]
 - **공식 문서**: 답의 방향은 맞다. 네트워크 인터페이스에는 별도 비용이 없고(「Virtual machines in Azure」), 정적 공용 IP 주소에는 요금이 붙는다(IP 가격 쪽). Microsoft Entra ID Free는 Azure 구독에 들어 있다(「Microsoft Entra licensing」). 하지만 P1·P2와 몇몇 기능은 사용자마다 라이선스가 필요하고, 「사용자에게 요금이 없다」를 그대로 말하는 문장은 찾지 못했다.
 - **처리**: 한정해 쓴다. 「Entra ID Free 안에서는 지워도 줄어들 Azure 요금이 없다」까지 쓰고, 어떤 경우에도 요금이 없다고 쓰지 않는다. 공용 IP 주소도 「모두」가 아니라 정적 주소를 근거로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
+- **쓰인 곳**: `azure-cost-factors.unused-resources`, `LeftoverResourcesDiagram`
 
 ## D97 — 나가는 전송의 무료 양 5GB (phase 106)
 
 - **덤프**: 공용 웹사이트를 옮길 때 달마다 드는 사용 값을 낸다는 답은 맞다면서, 해설에 나가는 전송이 달마다 5GB까지 무료라고 적는다 — [덤프 NO.323]
 - **공식 문서**: 현행 대역폭 쪽의 무료 구간은 그 값이 아니다. 이 과목은 무료 양을 쓰지 않는다(guide 금지). 들어오는 전송이 무료라 옮기는 전송 값을 내야 한다는 보기가 틀렸다는 판단은 대역폭 쪽과 맞다. 청구가 달마다인지는 앞 phase 대로 단정하지 않는다(`official.md` 「Review your individual Azure subscription bill」).
 - **처리**: 쓰지 않는다 — 5GB를 쓰지 않는다. 「쓰는 만큼 청구 주기마다 낸다」로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.data-transfer-costs`
+- **쓰인 곳**: `azure-cost-factors.data-transfer-costs`
 
 ## D98 — 할당 취소된 VM에 남는 것이 스토리지뿐인 듯한 답 (phase 106)
 
 - **덤프**: 할당 취소된 VM에 계속 내는 값을 스토리지라고 답한다 — [덤프 NO.372]. 멈춘 VM에 스토리지 값이 붙는다는 진술도 같다 — [덤프 NO.92·94] 셋째 진술
 - **공식 문서**: 디스크 요금이 남는 것은 맞다. 다만 「States and billing」 별표는 디스크와 **네트워킹** 같은 일부 리소스를 적고, 최대 절전 FAQ는 정적 IP도 적는다.
 - **처리**: 한정해 쓴다. 「디스크 요금은 남는다」로 쓰고 「디스크 요금만 남는다」로 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`
+- **쓰인 곳**: `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`
 
 ## D99 — Cost Management를 쓰려면 Enterprise Agreement가 필요하다는 답 (phase 106)
 
 - **덤프**: Cost Management를 쓰는 데 필요한 것으로 Enterprise Agreement를 답하고, 해설은 EA·MCA·MPA 고객이 쓴다고 적는다 — [덤프 NO.359]
 - **공식 문서**: 청구 계정·구독·리소스 그룹·관리 그룹에 접근할 수 있는 사람이면 쓴다(「Overview of Cost Management」). 지원 표에 종량제와 Free Trial도 있다(「Understand Cost Management data」). 기능을 쓰는 데 드는 요금도 없다(「Identify anomalies」).
 - **처리**: 고쳐 쓴다. 「특별한 계약이 전제가 아니다. 종량제 구독도 쓴다」로 쓴다. 지원되지 않는 클래식 CSP·스폰서 구독은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.cost-management`, az143
+- **쓰인 곳**: `azure-cost-management.cost-management`, az143
 
 ## D100 — Cost Management로 관리 그룹의 비용을 보는가 — 덤프끼리 갈림 (phase 106)
 
 - **덤프**: 관리 그룹의 비용을 볼 수 있다는 진술에 [덤프 NO.209]는 그림으로 아니요를, [덤프 NO.316]은 그림으로 예를 표시한다. 리소스 그룹과 지난 3개월의 VM 사용량은 둘 다 예다.
 - **공식 문서**: 포털의 모든 구독·리소스 그룹·관리 그룹에서 Cost Management를 연다(「Overview of Cost Management」). 관리 그룹은 그 안 구독의 사용량 기반 비용을 모아 보여 준다. 다만 Microsoft Customer Agreement와 CSP의 구독은 관리 그룹 범위를 쓰지 못한다(「Understand and work with scopes」).
 - **처리**: 한정해 쓴다. NO.316 쪽을 따른다. 관리 그룹에서도 볼 수 있다고 쓰되 모든 계약에 단정하지 않는다. 계약별 표는 쓰지 않고, 문항으로 묻는다면 리소스 그룹처럼 예외 없는 범위를 묻는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.cost-management`, az143
+- **쓰인 곳**: `azure-cost-management.cost-management`, az143
 
 ## D101 — 비용을 추적하는 도구를 예산으로만 답한 것 (phase 106)
 
 - **덤프**: Azure 리소스의 비용을 추적하는 데 쓸 것을 예산이라고 답한다. 보기에 태그가 함께 있다 — [덤프 NO.464]
 - **공식 문서**: 예산으로 지출을 견주고 따라갈 수 있다(「Create and manage budgets」). 그러나 쓴 비용을 나눠 보는 곳은 비용 분석이고(Learn 단원 6), 태그도 묶어서 비용을 보고하고 예산을 추적하는 쓰임이 있다(Learn 단원 7). 예산 하나로 답이 정해지지 않는다.
 - **처리**: 한정해 쓴다. 예산은 정한 기준과 쓴 비용을 견주는 도구, 비용 분석은 쓴 비용을 나눠 보는 도구, 태그는 나눠 볼 꼬리표로 나눠 쓰고, 이 문항의 꼴로 묻지 않는다. 묻는다면 기준이 있는가, 부서별로 나눠 보려는가 같은 조건을 준다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.budgets`, `azure-cost-management.cost-analysis`
+- **쓰인 곳**: `azure-cost-management.budgets`, `azure-cost-management.cost-analysis`
 
 ## D102 — 무료 계정의 업로드 한도와 웹앱 수 (phase 106)
 
 - **덤프**: 무료 계정에 데이터 업로드 한도가 있다는 진술과 웹앱을 제한 없이 둔다는 진술을 그림으로 모두 아니요라 표시한다. 해설은 앞 진술을 아니요라 하면서 스토리지의 무료 양을 까닭으로 적고, 뒤 진술에는 앱 수를 든다. 지출 한도가 있다는 첫 진술은 예이고 그 금액을 적는다 — [덤프 NO.286]
 - **공식 문서**: 지출 한도가 있다는 것은 맞다(「Azure spending limit」). 저장 양과 앱 수의 숫자는 그 서비스의 **달마다 무료인 양**이다(가격 쪽, 「Avoid charges」). 무료 양을 넘기면 크레딧에서 빠지거나, 업그레이드한 뒤에는 종량제 요금을 낸다. 업로드 양이나 앱 수의 계정 상한을 말하는 문장은 찾지 못했다.
 - **처리**: 고쳐 쓴다. 「무료 양을 넘기면 어떻게 되는가」로 쓰고, 계정의 업로드 한도·앱 수 한도로 쓰지 않는다. 금액과 무료 양의 숫자는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.free-account`, `azure-cost-management.spending-limit`
+- **쓰인 곳**: `azure-cost-management.free-account`, `azure-cost-management.spending-limit`
 
 ## D103 — 지출 한도가 고정되어 바꿀 수 없다는 진술, 소유권 이전 (phase 106)
 
 - **덤프**: 지출 한도가 고정되어 올리거나 내릴 수 없다는 진술을 그림으로 예라 표시한다. Owner 역할이 구독 소유권을 옮길 수 있다는 진술도 예다. 평가판을 종량제로 바꿀 수 있다는 둘째 진술도 예다 — [덤프 NO.134]
 - **공식 문서**: 금액은 바꿀 수 없고 사용자 지정 한도도 없다. 그러나 **없앨 수는 있다**(「Azure spending limit」). 종량제로 바꾸는 것은 맞다(「Upgrade your Azure free account」). 소유권 이전은 이 phase가 쓰지 않아 확인하지 않았다(guide).
 - **처리**: 한정해 쓴다. 「금액을 바꿀 수 없지만 없앨 수 있다」로 쓰고 「고정되어 있다」로 끝내지 않는다. 소유권 이전은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.spending-limit`
+- **쓰인 곳**: `azure-cost-management.spending-limit`
 
 ## D104 — 평가판이 끝난 뒤 VM을 시작하지 못하는 까닭 (phase 106)
 
 - **덤프**: 평가판이 끝나면 있던 VM을 시작하지 못한다고 답한다 — [덤프 NO.251·396]. [덤프 NO.396] 해설은 그 까닭을 VM이 호스트에 올라가는 순간 요금이 붙기 때문이라고 적는다.
 - **공식 문서**: 답은 맞다. 사용할 수 없게 된 구독에서는 만들기·고치기와 동작 요청이 막히고 읽기와 삭제만 된다. 스토리지는 읽기 전용이다(「Azure subscription states」). 해설의 까닭을 말하는 문장은 찾지 못했다.
 - **처리**: 고쳐 쓴다. 까닭은 구독이 사용할 수 없게 된 상태라는 것으로 쓴다. 저장한 데이터는 읽을 수 있고 포털에 들어갈 수 있다는 판단은 읽기 요청이 된다는 범위까지 쓴다. Entra 사용자 계정 만들기는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.free-account`, `azure-cost-management.spending-limit`
+- **쓰인 곳**: `azure-cost-management.free-account`, `azure-cost-management.spending-limit`
 
 ## D105 — 비용이 기준을 넘을 때 메일을 보내는 도구 — 덤프끼리 갈림 (phase 106)
 
 - **덤프**: 같은 문장에 [덤프 NO.62]는 예산 경고를 답하고, [덤프 NO.255·416]은 그림에서 Advisor 권장 사항에 표시한다.
 - **공식 문서**: 지출이 정한 양에 닿거나 넘으면 예산 경고가 나고 받는 사람 목록에 이메일이 간다(「Use cost alerts」, Learn 단원 6). Advisor는 비용을 줄일 길을 제안하는 도구이고(「Overview of Cost Management」의 「Optimize costs」), 정한 금액을 넘을 때 메일을 보낸다는 문장은 찾지 못했다.
 - **처리**: 고쳐 쓴다. NO.62 쪽을 따른다. 답은 예산 경고이고, Advisor는 이 phase에서 개념으로 세우지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.budgets`
+- **쓰인 곳**: `azure-cost-management.budgets`
 
 ## G56 — TCO 계산기 (phase 106)
 
 - **용어집**: 온-프레미스와 견줘 클라우드로 옮길 때의 총소유비용을 어림하는 도구이고, 서버 대수·스토리지·전력과 냉각·인건비를 넣어 손익분기점을 본다고 한다 — [용어집 4-3]
 - **공식 문서**: Learn 단원 3은 TCO 계산기의 지원이 끝났다고 적는다(2026-11-02 확인).
 - **처리**: 쓰지 않는다 — 입력·출력·손익분기점을 쓰지 않는다. D89의 한 줄만 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.pricing-calculator`
+- **쓰인 곳**: `azure-cost-factors.pricing-calculator`
 
 ## G57 — 예약의 중도 해지 (phase 106)
 
 - **용어집**: 예약 인스턴스는 중도 해지나 환불에 제약이 있을 수 있다고 한다 — [용어집 1-11]. 이름과 약정 기간은 G3이 다뤘다.
 - **공식 문서**: 필요 없어진 예약은 같은 종류의 예약으로 바꾸거나 정해진 한도 안에서 환불받을 수 있다(「What are Azure Reservations?」). 저축 플랜은 취소·환불이 안 되고, 조건에 맞는 예약을 저축 플랜으로 바꿀 수 있다(「What are savings plans?」).
 - **처리**: 한정해 쓴다. 쓴다면 위 공식 문서의 말로 쓴다. 한도 금액은 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.savings-plan`
+- **쓰인 곳**: `azure-cost-factors.savings-plan`
 
 ## G58 — 가격 계산기의 「연간」·「견적서」 (phase 106)
 
 - **용어집**: 달마다 또는 해마다 드는 값을 미리 산출하고 견적서를 작성한다고 하고, 리전·SKU·수량을 조정한다고 한다 — [용어집 4-2]
 - **공식 문서**: Learn 단원 3은 달마다 드는 어림값을 지역·서비스 계층·중복성별로 견준다고 한다. 나오는 값은 참고용 추정값이다. 「연간」과 「견적서」라는 말은 없다.
 - **처리**: 고쳐 쓴다. 「어림값」으로 쓰고 「연간 비용」·「견적서」는 쓰지 않는다(guide 표의 「견적」도 「예상 비용」·「어림값」으로 쓴다). 「리전」은 「지역」, SKU는 쓰지 않는다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`
+- **쓰인 곳**: `azure-cost-factors.pricing-calculator`, `PricingCalculatorDiagram`
 
 ## G59 — 태그의 「키=값」과 한국어 태그 예 (phase 106)
 
 - **용어집**: 태그를 `키=값` 꼴의 메타데이터라 하고 `부서=마케팅`을 예로 든다 — [용어집 4-4]
 - **공식 문서**: 키와 값의 쌍이 맞고(「Use tags」) Learn 단원 7은 이름과 값이라 부른다. 다만 태그에 영어가 아닌 말을 쓰면 VM이 메타데이터를 읽을 때 문제가 날 수 있다고 경고한다(같은 문서).
 - **처리**: 고쳐 쓴다. 「이름과 값」으로 쓰고 예는 영어로 쓴다(`Department`와 `Sales`, `CostCenter`). guide의 예시 「부서=영업」은 쓰지 않는다 — 이름표가 필요하면 「영업부 비용」처럼 태그 밖의 말로 쓴다.
-- **쓰인 곳**: (쓰일 곳) `azure-cost-management.tags`, `TagCostReportDiagram`
+- **쓰인 곳**: `azure-cost-management.tags`, `TagCostReportDiagram`
+
+## D106 — AIP의 옛 레이블 경험과 현재 민감도 레이블 (phase 107)
+
+- **덤프**: 민감한 내용을 포함한 Word 문서에 워터마크를 붙이는 대상으로 AIP를 고르고, 문서와 메일을 암호화한다고 한다 — [덤프 NO.111 p67·NO.408 p235–236·NO.427 p249]. NO.111은 `p067_09.png`의 답을 직접 봤다.
+- **공식 문서**: [AIP 개요](https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection)의 Note는 추가 기능이 종료되고 Microsoft 365 내장 레이블로 대체됐다고 한다. AIP의 Azure Rights Management는 현재도 Purview 정보 보호 기능의 암호화에 쓰인다. [민감도 레이블](https://learn.microsoft.com/en-us/purview/sensitivity-labels)은 문서·메일의 암호화와 표시를 지원한다. [자동 적용](https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically)은 Office 앱의 권고·자동 적용과 서비스 쪽 자동 정책을 구분한다.
+- **처리**: 고쳐 쓴다. 문서·메일을 레이블로 보호한다는 답의 방향은 맞다. 지금 그 일을 하는 것은 민감도 레이블이다(제품: Microsoft Purview Information Protection). 앱은 AIP를 「예전 이름」으로 한 번만 쓴다. AIP 전체의 지원이 끝났거나 단순히 이름만 바뀌었다고 하지 않는다. 자동으로 붙이는 조건과 지원 환경을 밝히고, 권고만 하는 설정을 자동 강제로 바꾸지 않는다.
+- **쓰인 곳**: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`
+
+## D107 — Blueprints 종료와 NO.77의 반대로 표시된 답 (phase 107)
+
+- **덤프**: NO.77의 정답 그림 `p043_02.png`는 템플릿 포함에 아니요, 리소스 그룹에 할당에 예, 권한 부여에 예를 표시한다 — [덤프 NO.77 p42–43]. 그림을 직접 확인했다.
+- **공식 문서**: [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)의 구성 설명에는 ARM 템플릿과 역할 할당이 있고 할당 대상은 구독이다. 따라서 이 세 진술은 예·아니요·예로 구별된다. 같은 문서는 2026-07-31부터 단계적으로 종료하며 2027-01-31에 끝난다고 안내한다(2026-11-03 확인).
+- **처리**: 쓰지 않는다. 앞의 두 답은 공식 문서와 반대지만 고친 문항으로 옮기지 않는다. 이 서비스는 이번 주제에서 제외한다. 날짜도 앱의 암기 문항으로 만들지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance`에 Blueprints 개념·문항을 추가하지 않는다.
+
+## D108 — 삭제한 리소스 잠금을 AIP가 복구한다는 답 (phase 107)
+
+- **덤프**: 없앤 리소스 잠금을 자동으로 되살릴 서비스를 AIP라고 답하고 Blueprints를 다른 보기로 둔다 — [덤프 NO.181 p110]
+- **공식 문서**: [AIP 개요](https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection)는 문서·메일 보호에 쓰이는 암호화를 설명한다. 관리 리소스 잠금을 복원한다는 근거는 없다. [Blueprints 잠금](https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking)의 「How blueprint locks work」는 관리 ID가 만든 deny assignment로 보호하며 Blueprints 밖에서 해제하지 못하게 하는 구조를 설명한다. 일반 잠금을 삭제한 뒤 다시 만든다는 주장과는 다르다.
+- **처리**: 쓰지 않는다. AIP의 역할을 리소스 잠금 복구로 가르치지 않는다. 다른 보기인 Blueprints가 대신 정답이라고 추측해 고치지도 않는다. Blueprints 자체는 D107의 종료 일정 때문에 범위 밖이다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance.sensitivity-labels`와 `resource-locks`의 기능을 혼동하지 않게 한다.
+
+## D109 — 정책을 할당하면 준수하는 리소스만 배포된다는 단정 (phase 107)
+
+- **덤프**: NO.239의 `p142_00.png`·`p142_02.png`는 VM에 정책 할당이 가능하다는 진술을 예, 기존 비준수 리소스가 그룹에서 제거된다는 진술을 아니요, 할당 후 준수 리소스만 배포된다는 진술을 예로 표시한다 — [덤프 NO.239 p141–142]
+- **공식 문서**: [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview)는 리소스 하나까지 할당 가능하다고 한다. [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny)는 기존 리소스의 비준수 표시와 생성·변경 거부를 구별한다. [효과별 동작](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics)의 지역 예에는 audit 정책에 어긋나도 배포되는 리소스가 있다.
+- **처리**: 한정해 쓴다. 첫째·둘째 판단은 맞다. 셋째는 deny가 집행되는 상황으로 조건을 붙인다. 정책 할당 하나만으로 모든 비준수 배포를 막는다고 쓰지 않는다. 기존 리소스의 평가 결과와 앞으로의 요청 결과도 분리한다.
+- **쓰인 곳**: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`
+
+## D110 — 관련 정책을 묶는 것을 관리 그룹으로 표시한 답 (phase 107)
+
+- **덤프**: NO.321의 답 그림 `p185_09.png`는 관리 그룹을 선택한다. 같은 주장을 묻는 NO.24는 이니셔티브, NO.36·442·498의 답 그림은 정책 정의 묶음을 선택한다 — [덤프 NO.24 p14·NO.36 p19·NO.321 p185·NO.442 p258–259·NO.498 p290–291]. `p019_05.png`·`p259_02.png`·`p291_02.png`도 직접 확인했다. NO.498의 파란 선택 막대는 정답의 녹색 표시와 다르다.
+- **공식 문서**: [이니셔티브 정의](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure)는 관련 정책 정의를 묶어 할당한다고 한다. [관리 그룹](https://learn.microsoft.com/en-us/azure/governance/management-groups/overview)은 구독을 묶는 관리 계층이다.
+- **처리**: 고쳐 쓴다. NO.321의 관리 그룹을 따르지 않는다. 개념 이름은 정책 이니셔티브로 정하고, 관리 그룹은 그 묶음을 걸 수 있는 범위로 구별한다.
+- **쓰인 곳**: `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`
+
+## D111 — 같은 종류의 잠금 여러 개와 읽기 전용 위에 잠금 추가 (phase 107)
+
+- **덤프**: 한 리소스에 삭제 잠금을 여러 개 둘 수 있다는 진술, 그룹의 잠금을 물려받는다는 진술, 읽기 전용 잠금이 있는 리소스에 삭제 잠금을 더할 수 있다는 진술에 모두 예를 표시한다 — [덤프 NO.106 p63–64·NO.313 p181·NO.415 p240]. `p064_02.png`·`p064_04.png`·`p181_06.png`·`p240_04.png`·`p240_06.png`를 직접 봤고 셋의 답은 갈리지 않는다.
+- **공식 문서**: [잠금 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)의 「Lock inheritance」는 상속과 가장 제한적인 잠금의 우선을 명시한다. 같은 종류를 같은 리소스에 여러 개 직접 생성하는 동작과 이미 읽기 전용인 리소스에 다른 잠금을 추가하는 동작은 이 문서와 Learn 단원 4에서 직접 확인하지 못했다. 이름을 받는 REST 예만으로 그 두 진술의 성립을 판정하지 않는다.
+- **처리**: 한정해 쓴다. 둘째 진술과 상속 경로의 가장 제한적인 잠금만 쓴다. 첫째·셋째는 틀렸다고 확정하지도, 공식 사실로 가르치지도 않는다. 그림은 상속된 삭제 잠금과 직접 걸린 읽기 전용 잠금이 함께 작용하는 상태를 설명한다.
+- **쓰인 곳**: `azure-governance.lock-inheritance`, `LockInheritanceDiagram`
+
+## D112 — 거버넌스 짝짓기 문항의 Blueprints 부분 (phase 107)
+
+- **덤프**: VM 종류 제한은 Policy, 비용 센터별 식별은 태그, 역할과 리소스 설정을 포함한 환경 배포는 Blueprints로 연결한다 — [덤프 NO.388 p223]. `p223_04.png`·`p223_06.png`·`p223_08.png`를 직접 확인했고 Purview에 관한 진술은 없다.
+- **공식 문서**: [Policy 개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview)의 기본 제공 정의는 VM 크기를 제한한다. [태그](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)는 비용을 나눠 보는 식별 정보를 지원한다(phase 106 확인 기록). [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)의 구성 설명에는 역할과 템플릿이 있으나 서비스는 종료 일정에 들어갔다.
+- **처리**: 한정해 쓴다. 앞의 두 연결은 맞다. Policy 연결은 이번 주제에, 태그는 앞 phase에 맡긴다. Blueprints의 옛 기능 연결이 맞아도 새 학습 내용으로 넣지 않는다. 이 문항을 Purview의 출처로 쓰지 않는다.
+- **쓰인 곳**: `azure-governance.azure-policy`; Blueprints 부분은 범위 제외 기록.
+
+## G60 — Microsoft Purview의 과거 이름과 자동 계보 수집 (phase 107)
+
+- **용어집**: Microsoft Purview를 과거 Azure Purview라고 소개하고 여러 원본의 스키마·계보를 자동으로 모은다고 한다 — [용어집 4-5]
+- **공식 문서**: [클래식 거버넌스 개요](https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview)는 옛 Azure Purview와 클래식 거버넌스 서비스의 관계를 명시한다. [현재 제품군 개요](https://learn.microsoft.com/en-us/purview/purview)는 데이터 보안과 규정 준수도 포함한다. [계보 안내](https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide)는 시스템별 수집 범위가 다르다고 한다.
+- **처리**: 한정해 쓴다. 옛 이름은 데이터 거버넌스 쪽의 이력으로만 인정한다. 현재 제품군 전체의 단순한 이전 이름으로 쓰지 않는다. 지원하는 원본을 연결해 찾고 분류하며 계보를 본다고 쓰며, 모든 데이터의 계보를 설정 없이 자동 완성한다고 하지 않는다.
+- **쓰인 곳**: `azure-governance.purview`, `PurviewDataMapDiagram`
+
+## G61 — Policy 위반은 배포 거부 또는 자동 수정이라는 설명 (phase 107)
+
+- **용어집**: 정책 위반 리소스가 거부되거나 자동 수정된다고 한다 — [용어집 4-6]
+- **공식 문서**: [효과별 동작](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics)은 감사와 거부를 구별한다. [수정 안내](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources)는 modify·deployIfNotExists 효과의 기존 리소스를 수정 작업으로 처리한다. 작업에는 적절한 권한이 필요하며 지원되는 할당 마법사에서 함께 만들 수도 있다.
+- **처리**: 한정해 쓴다. 비준수 표시, 거부 효과의 요청 차단, 지원 효과의 수정 작업을 분리한다. 기존 리소스가 정책 할당만으로 전부 자동 수정된다는 뜻으로 쓰지 않는다. 모든 태그 요구 정책이 빠진 태그를 자동 생성한다고 하지 않는다.
+- **쓰인 곳**: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `PolicyComplianceDiagram`
+
+## G62 — 잠금을 해제해야만 수정할 수 있다는 일반화 (phase 107)
+
+- **용어집**: 두 잠금을 소개한 뒤 잠금을 풀어야만 수정할 수 있다고 한다 — [용어집 4-7]
+- **공식 문서**: [잠금 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)의 첫 부분에서 CanNotDelete는 변경을 허용하고 ReadOnly는 변경도 막는다. 「Understand scope of locks」는 데이터 작업과 관리 작업을 구분한다.
+- **처리**: 고쳐 쓴다. 삭제 잠금을 푸는 것은 삭제할 때이고 읽기 전용 잠금은 변경에도 해제가 필요하다. 관리 작업의 잠금을 DB 내용이나 파일 내용의 변경 금지로 넓히지 않는다.
+- **쓰인 곳**: `azure-governance.resource-locks`, `LockTypesDiagram`, `GovernanceToolsTable`
+
+## G63 — Azure Blueprint를 새 배포 도구로 소개하는 항목 (phase 107)
+
+- **용어집**: Azure Blueprint를 정책·역할·템플릿을 묶어 구독이나 리소스 그룹에 적용하는 도구로 소개한다 — [용어집 4-24]
+- **공식 문서**: [Blueprints 개요](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview)는 템플릿·역할·정책을 담되 묶음을 구독에 할당하는 것과 구성 안의 리소스 그룹을 구분한다. 2026-07-31부터 종료 절차를 시작했고 2027-01-31에 종료한다(2026-11-03 확인).
+- **처리**: 쓰지 않는다. 종료 예정 도구를 현재의 새 학습 대상으로 추가하지 않는다. 구독과 리소스 그룹 어디에나 같은 방식으로 할당한다는 표현도 가져오지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-governance`의 개념·도식·문항에는 넣지 않는다.
+
+## D113 — PowerShell 스크립트를 실행할 컴퓨터의 옛 조건 (phase 107)
+
+- **덤프**: [덤프 NO.2]와 [덤프 NO.308]의 보기 A는 「PowerShell Core 6.0을 설치한 macOS 컴퓨터」를 Azure 리소스를 만드는 PowerShell 스크립트를 실행할 곳으로 고른다(답 예). NO.308은 「Azure PowerShell 모듈을 설치한 Windows 10」(B)과 「Azure Cloud Shell을 쓰는 Chrome OS」(C)도 고르고, 「Azure CLI 도구만 설치한 Linux」(D)는 고르지 않는다. [덤프 NO.9]도 Linux + Azure CLI에 아니요다.
+- **공식 문서**: [Azure PowerShell 개요](https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell)는 Azure PowerShell이 PowerShell 위의 모듈이라 PowerShell이 있어야 하고, 권하는 것은 PowerShell 7 이상이며 Windows PowerShell 5.1과도 호환된다고 한다. [macOS 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos)·[Linux 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux)의 준비 조건은 「지원되는 PowerShell 7 이상」이다. [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)는 Windows PowerShell이 대부분의 Windows에 미리 설치되어 있다고 한다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. 「macOS에서 Azure PowerShell을 쓸 수 있다」는 맞지만 「PowerShell Core 6.0이 있으면 된다」는 현행 조건이 아니다 — 앱은 「지원되는 버전의 PowerShell과 Az PowerShell 모듈」로 쓰고 버전 숫자는 쓰지 않는다. NO.308 B는 맞다(Windows의 Windows PowerShell도 호환된다). NO.9와 NO.308 D의 「아니요」는 맞다 — Azure CLI만으로는 PowerShell 스크립트를 실행할 수 없고, 원인은 Linux라는 운영 체제가 아니라 PowerShell과 Az 모듈이 없다는 데 있다(Linux에도 설치할 수 있다).
+- **쓰인 곳**: `azure-management-tools.azure-powershell`, `CommandToolsTable`
+
+## D114 — Android·Chrome OS 기기에서 Cloud Shell을 쓸 수 있는가 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: Android 노트북에서 VM을 만드는 연작에서 [덤프 NO.43]은 「Cloud Shell의 Bash」에 아니요, [덤프 NO.84]는 「Cloud Shell의 PowerShell」에 예라고 한다. [덤프 NO.260]은 Android 태블릿에서 Cloud Shell의 Bash·PowerShell과 Azure 포털 셋을 모두 고른다. Chrome OS에서 Cloud Shell로 PowerShell 스크립트를 실행하는 것을 [덤프 NO.308] C는 고르지만 [덤프 NO.420]은 아니요라고 한다.
+- **공식 문서**: [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)는 브라우저로 여는 터미널이고 Bash나 PowerShell을 고른다고 한다. [기능 문서](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 Azure CLI와 Azure PowerShell이 미리 설치되어 있다고 한다. [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)의 셸 표는 Azure CLI를 Bash에서 실행한다고 한다. [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 데스크톱·태블릿의 최신 Chrome 등을 지원 브라우저로 든다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. NO.84·260·308 C의 「예」를 따르고 NO.43·420의 「아니요」는 가르치지 않는다 — 지원 브라우저로 Cloud Shell을 열면 그 기기에 두 도구를 설치하지 않아도 된다. VM을 만드는 Azure CLI 명령은 Bash에서도 실행된다(D115). 다만 Cloud Shell의 PowerShell은 Linux 위에서 돌아 Windows에만 있는 기능은 쓸 수 없으므로([Azure PowerShell 시작](https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps) 「Install or run in Azure Cloud Shell」), 「어떤 PowerShell 스크립트든 Cloud Shell에서 된다」로 넓히지 않는다.
+- **쓰인 곳**: `azure-management-tools.cloud-shell`, `azure-management-tools.azure-powershell`, `CloudShellDiagram`
+
+## D115 — az 명령을 실행하는 셸 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: 같은 `az vm create` 명령을 두고 [덤프 NO.169]는 「포털에서 Cloud Shell을 열고 PowerShell을 골라 실행한다」에 예, [덤프 NO.256]은 「Bash를 골라 실행한다」에 아니요, [덤프 NO.448]은 「Windows 10에 Azure CLI를 설치하고 명령 프롬프트에서 로그인해 실행한다」에 아니요라고 한다. 한편 [덤프 NO.265]는 컴퓨터에 설치한 Azure CLI를 실행할 도구로 명령 프롬프트와 Windows PowerShell을 고른다.
+- **공식 문서**: [도구 비교](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool)의 셸 표는 Azure CLI가 명령 프롬프트(Cmd)·Bash·Windows PowerShell·PowerShell 넷 모두에서 실행된다고 한다. [Windows 설치](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows)는 설치한 Azure CLI를 PowerShell이나 명령 프롬프트에서 쓴다고 한다. [Cloud Shell 기능 문서](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 Azure CLI가 미리 설치되어 있다고 한다. [명령 참조](https://learn.microsoft.com/en-us/cli/azure/vm)의 `az vm create`는 VM을 만든다(2026-11-04 확인).
+- **처리**: 고쳐 쓴다. NO.169·265는 맞고 NO.256·448의 「아니요」는 가르치지 않는다. 같은 명령으로 갈리는 연작이라, 명령의 옵션(이미지 이름 같은 것)이 답을 가른 것으로 보지 않는다 — 옵션은 앱에 쓰지 않는다. 앱은 「명령을 실행하는 셸」과 「그 명령이 어느 도구의 것인가」를 나눠 쓴다 — PowerShell에서 az 명령을 실행해도 Azure CLI 명령이다. 명령 이름은 `az vm create`와 `New-AzVM`만 쓴다.
+- **쓰인 곳**: `azure-management-tools.cloud-shell`, `azure-management-tools.azure-cli`, `CloudShellDiagram`, `CommandToolsTable`
+
+## D116 — Windows의 CLI 기본 포함 여부 — 그림과 해설이 다름 (phase 107)
+
+- **덤프**: [덤프 NO.122]의 답 그림(`p074_04.png`)은 Cloud Shell을 컴퓨터에 설치한다 / Windows에 CLI가 처음부터 있다 / PowerShell을 여러 OS에서 쓴다의 순서로 아니요·아니요·예다. 텍스트 해설은 둘째를 예로 적어 그림과 어긋난다.
+- **공식 문서**: [CLI 설치 안내](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)와 [Windows 설치 안내](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows)는 로컬 설치 방법을 설명한다. Windows에 기본으로 제공된다는 명시는 Windows 설치 안내의 WinGet에 관한 문장이다. CLI 개요·도구 비교까지 대조했지만 **Azure CLI의 Windows 기본 포함 또는 미포함을 직접 명시한 문장은 못 찾았다**.
+- **처리**: 한정해 쓴다. 그림과 해설의 충돌을 남기되 기본 포함 여부를 새 문항의 정답 근거로 쓰지 않는다. 「로컬에 설치해 쓰거나 Cloud Shell에서 미리 준비된 CLI를 쓴다」까지만 쓴다. 설치 문서가 있다는 이유로 「기본으로 없다」를 확인했다고 하지 않는다. 첫째·셋째 진술은 각각 Cloud Shell 개요·PowerShell 설치 문서와 맞는다.
+- **쓰인 곳**: `azure-management-tools.azure-cli`의 설치 문장. 기본 포함 여부 문항은 만들지 않는다.
+
+## D117 — 운영 체제 문제에 Advisor 답 영역이 붙음 (phase 107)
+
+- **덤프**: [덤프 NO.100]의 문제와 표(`p059_06.png`)는 운영 체제 세 가지를 제시한다. 뒤의 질문 영역(`p060_00.png`)과 답 그림(`p060_02.png`)은 Azure Advisor의 서로 다른 진술 세 가지다. 문제와 답을 연결할 수 없다.
+- **공식 문서**: 이 오류는 제품 사실이 아니라 자료 결합 오류다. [포털 개요](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview), [CLI 개요](https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli), [PowerShell 개요](https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell)는 각 도구의 사용 환경을 독립적으로 확인하는 데만 쓴다.
+- **처리**: 쓰지 않는다. NO.100의 답을 추측하거나 NO.176의 답으로 보수하지 않는다. 운영 체제와 도구의 관계는 공식 문서로 새로 설명한다. Advisor 사실도 이 문항에서 가져오지 않는다.
+- **쓰인 곳**: 범위 제외 기록. `azure-management-tools`의 문항·본문에는 NO.100을 근거로 쓰지 않는다.
+
+## D118 — Azure Arc의 데이터베이스 대상 일반화 (phase 107)
+
+- **덤프**: [덤프 NO.232]의 두 답 그림(`p138_05.png`, `p139_00.png`)은 Linux 물리 서버 / AKS 클러스터를 함께 관리 / Azure 밖의 타사 데이터베이스를 관리한다는 진술에 모두 예를 표시한다.
+- **공식 문서**: [Arc 개요](https://learn.microsoft.com/en-us/azure/azure-arc/overview)의 현행 목록은 서버와 VM, Kubernetes 클러스터, SQL Server, 그리고 Azure 데이터 서비스다. 데이터 서비스의 예는 SQL Managed Instance다. [Kubernetes 개요](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview)는 연결한 클러스터를 AKS와 함께 목록에서 보고 관리한다고 한다. 외부의 임의 타사 DB를 Arc 데이터 서비스로 관리한다는 근거는 찾지 못했다.
+- **처리**: 한정해 쓴다. 서버 진술은 맞고 AKS 진술은 함께 목록을 보고 관리한다는 범위로 쓴다. DB가 실행되는 서버의 관리와 DB 서비스 자체의 관리를 구분한다. 모든 타사 DB를 지원한다고도, 모든 타사 DB를 지원하지 않는다고도 단정하지 않는다. 앱에는 현행 목록의 지원 대상만 쓴다. Learn의 VM 미리 보기라는 옛 별도 항목도 가져오지 않는다.
+- **쓰인 곳**: `azure-management-tools.azure-arc`, `AzureArcDiagram`
+
+## D119 — Azure 포털은 Windows에서만 열린다는 답 — 덤프끼리 갈림 (phase 107)
+
+- **덤프**: [덤프 NO.224]의 답 그림(`p134_04.png`)은 macOS의 PowerShell 설치 / Linux 브라우저의 Cloud Shell / Windows에서만 여는 포털에 예·예·아니요를 표시한다. 같은 진술의 NO.445 답 그림(`p260_02.png`)은 예·예·예다. NO.445 텍스트 해설은 다시 마지막을 아니요라고 해 자기 그림과도 다르다.
+- **공식 문서**: [포털 지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 여러 운영 체제의 브라우저를 지원한다. [macOS PowerShell 설치](https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos)와 [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)가 앞의 두 진술을 뒷받침한다.
+- **처리**: 고쳐 쓴다. 예·예·아니요가 공식 문서와 맞다. 포털은 지원 브라우저로 여는 서비스이며 Windows 전용이 아니다. NO.445의 마지막 그림 표시를 따르지 않는다. 어떤 기기의 어떤 브라우저든 된다는 주장으로도 넓히지 않는다.
+- **쓰인 곳**: `azure-management-tools.azure-portal`, `azure-management-tools.cloud-shell`, `ToolAccessDiagram`
+
+## D120 — iPhone에서 쓰는 관리 도구 — 휴대폰 브라우저의 포털 (phase 107)
+
+- **덤프**: [덤프 NO.220]은 iPhone에서 웹앱 설정을 관리할 도구로 Azure 포털과 Azure Cloud Shell을 고른다. 보기에 Azure 모바일 앱은 없다.
+- **공식 문서**: [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 포털이 데스크톱과 태블릿의 브라우저에서 돈다고 하고, 휴대폰에서 Azure를 관리하려면 Azure 모바일 앱을 쓰라고 안내한다. [Azure 모바일 앱](https://learn.microsoft.com/en-us/azure/azure-portal/mobile-app/overview)은 iOS·Android에서 리소스의 상태를 보고 VM 같은 것을 시작·중지하며 앱 안에서 Cloud Shell을 연다고 한다. [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)도 모바일 앱을 진입 경로로 든다(2026-11-04 확인).
+- **처리**: 한정해 쓴다. 휴대폰에서 Cloud Shell을 쓸 수 있다는 것은 맞다 — 모바일 앱 안에서 연다. 휴대폰 브라우저로 포털을 여는 것은 지원 기기 문서에 없다(못 찾음). 앱은 「휴대폰에서는 Azure 모바일 앱으로 상태를 보고 VM을 시작·중지하고 Cloud Shell을 연다」로 쓰고, 「휴대폰 브라우저로 포털을 연다」를 쓰거나 그리지 않는다. 태블릿(NO.260)과 노트북(NO.287)의 브라우저로 포털을 여는 것은 지원 기기의 범위 안이다.
+- **쓰인 곳**: `azure-management-tools.management-tools`(Azure 모바일 앱), `azure-management-tools.azure-portal`, `ToolAccessDiagram`
+
+## D121 — 클라우드를 관리하려면 인터넷이 꼭 있어야 하고 요즘 브라우저면 무엇이든 된다 (phase 107)
+
+- **덤프**: [덤프 NO.275]의 답 그림(`p161_06.png`)은 「클라우드 서비스를 관리하려면 인터넷 연결이 있어야 한다」 예, 「관리 앱을 설치해야 한다」 아니요, 「요즘 쓰는 웹 브라우저면 어느 것으로든 관리할 수 있다」 예다.
+- **공식 문서**: [지원 기기](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)는 지원 브라우저를 최신 Edge·Chrome·Firefox와 Mac의 Safari로 들고, JavaScript가 켜져 있어야 한다고 한다. 인터넷 연결이 관리에 꼭 있어야 한다고 적은 문장은 받아 둔 관리 도구 문서에서 찾지 못했다(2026-11-04 확인).
+- **처리**: 둘째 진술(설치 없이 관리)은 맞다 — 포털과 Cloud Shell은 브라우저로 연다. 셋째 진술은 한정해 쓴다 — 「지원되는 웹 브라우저」로 쓰고 「무엇이든」으로 넓히지 않는다. 첫째 진술은 쓰지 않는다(못 찾음).
+- **쓰인 곳**: `azure-management-tools.azure-portal`, `ToolAccessDiagram`
+
+## G64 — Cloud Shell의 진입 경로와 파일 보존 조건 (phase 107)
+
+- **용어집**: [용어집 4-9]는 포털 안에서 사용하는 셸 환경으로 설명하고 영구 저장소가 연결되어 파일을 유지한다고 한다.
+- **공식 문서**: [Cloud Shell 개요](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)의 접속 경로에는 포털 외에 독립 주소와 모바일 앱도 있다. [임시 세션 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral)는 저장소 없이 시작할 수 있다고 한다. [기능 안내](https://learn.microsoft.com/en-us/azure/cloud-shell/features)는 저장소를 붙여도 보존되는 파일 위치와 실행 중 컴퓨터의 상태를 구별한다.
+- **처리**: 한정해 쓴다. 포털은 진입 경로의 하나이고 영구 저장소는 선택이다. 다음에 쓸 파일은 연결한 저장소의 보존되는 위치에 두고 그 저장 요금이 붙는다. 임시 세션의 파일은 종료 뒤 남지 않는다. 포털에서만 쓰거나 모든 파일이 저절로 보존된다는 뜻으로 쓰지 않는다.
+- **쓰인 곳**: `azure-management-tools.cloud-shell`, `CloudShellDiagram`
+
+## D122 — ARM 템플릿의 코드 정의와 여러 리소스 배포 — NO.326의 답이 갈림 (phase 107)
+
+- **덤프**: [덤프 NO.193 p116]의 답(`p116_05.png`)과 해설 그림(`p116_07.png`), [덤프 NO.228 p136–137]의 답(`p137_02.png`)과 해설 그림(`p137_04.png`)은 포털에서 배포할 수 있는가 / 코드로 인프라를 정의하는가 / 리소스마다 별도 템플릿이 필요한가에 예·예·아니요를 표시한다. 같은 세 진술을 묻는 [덤프 NO.326 p187–188]의 답(`p188_00.png`)과 해설 그림(`p188_02.png`)은 예·아니요·예다. 그림을 직접 보고 확인했다.
+- **공식 문서**: [ARM 템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 첫 부분은 코드로 리소스 구성을 정의한다고 하고, 「Template deployment process」는 포털을 배포 경로로 든다. 「Declarative syntax」·「Template design」은 하나의 템플릿으로 여러 리소스를 배포하는 예를 든다. 2026-11-04 확인.
+- **처리**: 고쳐 쓴다. 공식 문서와 맞는 것은 예·예·아니요다. NO.326의 둘째·셋째 그림 표시를 따르지 않는다. 템플릿을 나누어 재사용하는 것은 선택이지 리소스마다 하나씩 만들어야 한다는 요구가 아니다. NO.193·228끼리는 갈리지 않는다.
+- **쓰인 곳**: `azure-infrastructure-as-code.infrastructure-as-code`·`arm-templates`, `TemplateDeploymentDiagram`
+
+## G65 — IaC의 예와 DevOps의 필수 조건이라는 단정 (phase 107)
+
+- **용어집**: [용어집 4-13]은 코드형 인프라의 예로 ARM과 Terraform을 나란히 들고, DevOps 과정의 필수 요소라고 단정한다. 코드로 관리해 구성을 일관되게 유지하고 변경을 추적한다는 설명도 있다.
+- **공식 문서**: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)의 첫 부분은 DevOps의 중요한 실천이라고 설명한다. 「Deploy IaC on Azure」는 Azure의 관리 모델과 선언형 템플릿을 구별한다. [ARM 템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)는 배포할 구성을 코드로 적고 그 변경 이력을 관리한다고 한다. 2026-11-04 확인.
+- **처리**: 한정해 쓴다. 코드로 구성을 정하고 다시 배포하며 이력을 관리한다는 사실을 쓴다. 파일을 가리킬 때는 ARM이라는 서비스 약칭만 쓰지 말고 ARM 템플릿이라고 한다. 모든 DevOps 과정에 반드시 있어야 한다는 단정은 쓰지 않는다. 타사 예와 DevOps 연동은 이번 주제의 범위 밖이다(G67).
+- **쓰인 곳**: `azure-infrastructure-as-code.infrastructure-as-code`, `IacEnvironmentsDiagram`, `DeploymentMethodsTable`
+
+## G66 — 템플릿이 보장하는 일관성의 범위 (phase 107)
+
+- **용어집**: [용어집 4-15]는 ARM 템플릿을 JSON 파일로 설명하고 매개변수로 환경별 값을 받으며 재현성과 일관성을 보장한다고 한다. 설정·입력·대상의 조건 없이 읽으면 어떤 재배포든 환경 전체가 같아진다는 뜻이 된다.
+- **공식 문서**: [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Repeatable results」는 같은 이름·설정의 기존 계정을 바꾸지 않는 예다. [배포 방식 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes)의 첫 부분은 기존 리소스와 설정이 같을 때 바꾸지 않는다고 하며, 뒤의 두 절은 템플릿에 없는 리소스의 처리가 달라짐을 보여 준다. [문법 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax)의 「Parameters」는 배포할 때 입력값을 받는다고 한다. 2026-11-04 확인.
+- **처리**: 한정해 쓴다. 같은 대상에 같은 이름과 설정으로 다시 배포하면 템플릿이 정의한 리소스를 그 설정으로 맞춘다고 쓴다. 매개변수를 바꿨는데 같은 결과라고 하지 않는다. 템플릿 밖의 리소스·저장된 데이터·실행 상태 전체의 동일성이나 모든 배포의 성공을 보장한다고 쓰지 않는다. JSON·매개변수 설명은 맞다. 배포 모드 이름과 세부 동작은 앱의 학습 내용으로 넣지 않는다.
+- **쓰인 곳**: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`의 반복 배포 장면
+
+## G67 — Terraform은 이번 주제에 넣지 않는다 (phase 107)
+
+- **용어집**: [용어집 4-26]은 타사 IaC 도구인 Terraform을 별도 항목으로 설명한다. [용어집 4-13]에도 IaC의 예로 들어 있다.
+- **공식 문서**: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code)의 「Deploy IaC on Azure」도 타사 선택지로 이름을 든다. 공식 문서가 이름을 든다는 것과 이번 주제의 학습 범위는 다르다. `phases/107-azure-governance-tools/guide.md` 「배경」은 Terraform을 제외한다. 2026-11-04 확인.
+- **처리**: 쓰지 않는다. 타사 문서는 열지 않았고 용어집의 문법·공급자·다중 클라우드 세부 주장을 검증했다고 보지 않는다. 도구 비교 표·개념·문항·도식에도 넣지 않는다.
+- **쓰인 곳**: `azure-infrastructure-as-code`의 범위 제한 기록만
+
+## G68 — Bicep을 변환하는 주체 (phase 107)
+
+- **용어집**: [용어집 4-27]은 Bicep을 더 간단한 선언형 언어라고 하며 Azure가 이를 ARM 템플릿으로 변환한다고 설명한다. 모듈·반복문·변수도 든다.
+- **공식 문서**: [Bicep 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)의 「About the language」는 변환 주체를 Bicep CLI로 명시한다. 같은 문서의 「Simple syntax」·「Modularity」와 [JSON과 비교](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax)는 간결한 표현과 모듈 재사용을 뒷받침한다. [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Template deployment process」는 받은 템플릿을 Resource Manager가 처리한다고 한다. 2026-11-04 확인.
+- **처리**: 고쳐 쓴다. 배포할 때 Bicep CLI가 파일을 JSON으로 된 ARM 템플릿으로 바꾸고 Resource Manager가 그 결과를 처리한다고 쓴다. 변환이 Azure 서비스 내부에서 일어난다고 단정하지 않는다. 같은 구성을 더 짧게 적을 수 있고 모듈로 나누어 재사용한다는 것은 쓴다. 반복문·변수 같은 문법은 범위 밖이라 쓰지 않는다.
+- **쓰인 곳**: `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`
