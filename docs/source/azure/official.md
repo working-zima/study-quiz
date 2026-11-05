@@ -5490,3 +5490,279 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 `name`(Azure Resource Manager, 처음 ARM 약칭과 Resource Manager), `azure-infrastructure-as-code.infrastructure-as-code`의 `name`(코드형 인프라(IaC), 본문 첫 풀이에 Infrastructure as Code)과 명령형·선언형의 짧은 풀이, 두 도식의 라벨. 「멱등성」은 이 step의 글에 쓰지 않았다.
 쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 `name`(ARM 템플릿, 첫 문단에 Azure Resource Manager 템플릿·ARM 약칭·Resource Manager 템플릿)·`bicep`의 `name`(Bicep), JSON·매개변수의 풀이, 「바꾼다」(트랜스파일은 쓰지 않았다), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`. 「멱등성」은 쓰지 않았다 — 풀이(같은 상태)만 썼다.
+
+## (phase 108) Learn 「Describe monitoring tools in Azure」 — 1 Introduction
+https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/1-introduction
+
+확인한 날 2026-11-06. 사본: `learn-describe-monitoring-tools-azure-1-introduction.md`와 `ko-` 판.
+
+- 이 모듈은 Azure 안의 환경과 앱, 그리고 온-프레미스·다중 클라우드 환경을 지켜보는(모니터링) 도구를 다룬다 — 첫 문단
+- 학습 목표는 셋이다. Azure Advisor의 목적, Azure Service Health, 그리고 Log Analytics·Azure Monitor 경고·Application Insights를 품은 Azure Monitor — 「Learning objectives」
+- 한국어 표기: 「모니터링」, 「온-프레미스」, 「다중 클라우드」, 「Azure Advisor」, 「Azure Service Health」, 「Azure Monitor」
+
+쓰일 곳: `azure-monitoring.monitoring-tools`(세 도구를 세우는 소개 문단, 모니터링의 풀이)
+
+## (phase 108) Learn 「Describe monitoring tools in Azure」 — 2 Describe the purpose of Azure Advisor
+https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor
+
+확인한 날 2026-11-06. 사본: `learn-describe-monitoring-tools-azure-2-describe-purpose-of-azure-advisor.md`와 `ko-` 판.
+
+- Advisor는 Azure 리소스를 살펴 안정성·보안·성능·비용 효율을 나아지게 할 권장 사항을 낸다. Azure 포털 안에 들어 있다 — 첫 문단
+- 권장 사항마다 제안된 작업이 붙어 있고, 그 작업은 바로 하거나 미루거나(연기) 해제할 수 있다 — 첫 문단
+- 새 권장 사항이 생기면 알려 주도록 알림을 설정할 수 있다 — 둘째 문단
+- Advisor 대시보드는 모든 구독의 권장 사항을 보여 주고, 구독·리소스 그룹·서비스로 거를 수 있다 — 셋째 문단
+- 권장 사항은 다섯 범주다. 안정성은 구성의 위험을 짚어 앱이 계속 돌아가게 돕고, 보안은 침해로 이어질 위협과 취약점을 찾고, 성능은 앱을 빠르게 할 변경을 찾고, 운영 우수성은 작업 흐름과 배포를 나아지게 할 것을 제안하고, 비용은 Azure 지출을 줄일 길을 찾는다 — 범주 목록
+- **쓰지 않는 말**: 「개인 맞춤형 모범 사례 가이드」(마케팅 어조 — guide 「글」)
+- 한국어 표기: 「안정성」, 「보안」, 「성능」, 「운영 우수성」, 「비용」, 「권장 사항」, 「연기」, 「해제」, 「Advisor 대시보드」, 「Azure 포털」(한국어판은 「Azure Portal」 — 앱은 앞 phase의 「Azure 포털」을 따른다)
+
+쓰일 곳: `azure-monitoring.monitoring-tools`의 Azure Advisor 항목, `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`, D125
+
+## (phase 108) Learn 「Describe monitoring tools in Azure」 — 3 Describe Azure Service Health
+https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health
+
+확인한 날 2026-11-06. 사본: `learn-describe-monitoring-tools-azure-3-describe-azure-service-health.md`와 `ko-` 판.
+
+- Azure Service Health는 Azure 자체의 상태와 내가 운영하는 리소스의 상태를 알려 준다. 범위가 전체에서 리소스 하나로 좁아지는 세 보기를 합친 것이다 — 첫 문단
+- **Azure 상태**: 모든 서비스·모든 지역에 걸친 Azure의 상태를 보여 준다. 넓게 퍼진 장애 소식을 듣고 Azure가 영향을 받는지 알고 싶을 때 본다 — 「Three health views」
+- **Service Health**: 내가 실제로 쓰는 Azure 서비스와 지역에 집중한다. 로그인해 있으므로 나에게 중요한 서비스를 알고, 내 환경과 관련된 장애(중단)·계획된 유지 관리·상태 권고를 보여 준다. 경고를 설정하면 자동으로 알림을 받는다 — 같은 목록
+- **Resource Health**: 특정 가상 머신 같은 리소스 하나를 본다. 그 리소스가 정상으로 실행되는지 문제가 있는지, 문제가 Azure 쪽인지 사용자 쪽인지 알려 준다 — 같은 목록
+- 세 보기를 함께 쓰면 넓은 서비스 이벤트부터 리소스 하나까지 본다. 지난 경고 기록이 남아 되풀이되는 흐름을 찾을 수 있다 — 목록 뒤 문단(보존 기간은 쓰지 않는다)
+- 이벤트가 내 워크로드에 영향을 주면 Azure Service Health가 지원으로 가는 링크를 준다 — 「Operational value」
+- 한국어 표기: 한국어판 제목은 「Azure 서비스 상태 설명」이지만 본문 「운영 가치」 절은 「Azure Service Health」, 세 보기는 「Azure 상태」·「Service Health」·「Resource Health」로 쓴다. 절 제목 「세 가지 건강 보기」는 기계 번역이라 쓰지 않는다. 앱의 표기는 아래 「한국어 표기 정리 — `azure-monitoring`(개념 1~4)」
+
+쓰일 곳: `azure-monitoring.monitoring-tools`의 Azure Service Health 항목, `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `HealthViewsDiagram`, D127
+
+## (phase 108) Learn 「Describe monitoring tools in Azure」 — 4 Describe Azure Monitor (개념 1의 한 줄만 — 나머지는 step 3)
+https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor
+
+확인한 날 2026-11-06. 사본: `learn-describe-monitoring-tools-azure-4-describe-azure-monitor.md`와 `ko-` 판.
+
+- Azure Monitor는 Azure 리소스와 앱에서 데이터를 모으고, 분석하고, 그 결과에 따라 대응하는 플랫폼이다. Azure·온-프레미스·다중 클라우드 환경에서 쓴다 — 첫 문단
+- 모은 데이터는 한곳에 두고 대시보드·쿼리·경고로 쓴다 — 둘째 문단
+- 작업 그룹은 Azure Monitor·Service Health·Azure Advisor가 함께 다시 쓴다 — 「Azure Monitor Alerts」. Service Health 경고와 Advisor 알림을 받는 길의 근거로만 이 step이 적는다
+- 한국어 표기: 「Azure Monitor」, 「작업 그룹」
+
+쓰일 곳: `azure-monitoring.monitoring-tools`의 Azure Monitor 항목(한 줄), `MonitoringToolsDiagram`. 그 밖의 사실은 step 3이 이 항목에 덧붙인다
+
+## (phase 108) Azure Advisor — Introduction to Azure Advisor
+https://learn.microsoft.com/en-us/azure/advisor/advisor-overview
+
+확인한 날 2026-11-06. 「Last updated on」 2026-05-18. 사본: `docs-advisor-overview.md`와 `ko-` 판.
+
+- Advisor는 리소스의 구성과 사용 원격 분석(사용 기록)을 분석해 비용 효율·성능·안정성·보안을 나아지게 할 해결책을 권한다 — 「What is Advisor?」
+- Azure 포털에 로그인해 탐색 창이나 「모든 서비스」에서 Advisor를 연다 — 같은 절, 「How do I access Advisor?」
+- Advisor 대시보드는 모든 구독의 권장 사항을 다섯 범주(안정성·보안·성능·비용·운영 우수성)로 나눠 보여 준다. 특정 구독과 리소스 종류로 거를 수 있다 — 같은 절
+- 범주를 고르면 그 범주의 권장 사항 목록이, 권장 사항을 고르면 자세한 내용과 할 수 있는 작업이 나온다. **권장 작업을 고르면 그 권장 사항을 적용할 수 있는 간단한 화면이 열린다**(적용을 돕는 문서로 안내하기도 한다) — 같은 절. **Advisor가 리소스를 스스로 바꾼다/바꾸지 않는다고 단정하는 문장은 찾지 못했다**(못 찾음 — 이 쪽, Learn 단원 2, 「Azure Advisor portal basics」). 쓸 수 있는 말은 「권장 작업을 고르면 적용 화면이 열린다」까지다
+- 적용한 뒤 Advisor가 그것을 알아차리기까지 시간이 걸린다 — 같은 절(시간 수치는 쓰지 않는다)
+- 구독·리소스 그룹·리소스의 소유자·기여자·읽기 권한자로 권장 사항을 볼 수 있다 — 「What permissions do I need to access Advisor?」. 쓸지는 step 1이 판단한다(쓴다면 한 줄)
+- Advisor는 Microsoft Defender for Cloud의 권장 사항도 함께 보여 준다 — 「What resources does Advisor provide recommendations for?」 끝. 서비스 목록 자체는 **쓰지 않는다**(guide 「배경」)
+- 권장 사항이 활성일 때 담당자가 상태를 직접 바꾼다 — 연기(잠시 숨기고 나중에 본다), 해제(관련 없다고 표시), 완료(권장 작업을 했다고 표시). 다시 활성으로 돌릴 수도 있다 — 「Can I change recommendation status?」
+- 한국어 표기: 제목 「Azure Advisor 소개」. 범주는 「안정성」·「보안」·「성능」·「비용」이고 Operational excellence는 이 쪽 한국어판이 「뛰어난 운영」, Learn 한국어판이 「운영 우수성」이다(아래 표기 정리). 상태는 「연기됨」·「해제됨」·「완료됨」, 권한은 「소유자」·「기여자」·「읽기 권한자」
+- **쓰지 않는 말**: 「디지털 클라우드 도우미」, 「사전 대응이 가능하고 … 맞춤형」(마케팅 어조), Advisor 점수, REST API
+
+쓰일 곳: `azure-monitoring.monitoring-tools`, `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`, D123, D124, D125
+
+## (phase 108) Azure Advisor — Azure Advisor portal basics
+https://learn.microsoft.com/en-us/azure/advisor/advisor-get-started
+
+확인한 날 2026-11-06. 사본: `docs-advisor-get-started.md`(영문판만).
+
+- Azure 포털의 Advisor 아이콘·검색 창·왼쪽 창으로 Advisor를 연다. 개요 쪽이 먼저 열린다 — 「Open Advisor」
+- 개요 쪽은 기본으로 접근할 수 있는 모든 구독의 권장 사항을 범주별 타일로 보여 준다. 위쪽 단추로 구독·권장 사항 상태(활성·연기·완료·해제)·리소스 그룹·종류로 거른다 — 「Filter and access recommendations」. **관리 단위(administrative unit)로 거른다는 말은 없다**(D125)
+- 권장 사항의 설명과 영향을 받는 리소스를 보고, 「권장 작업」 링크를 고르면 작업할 수 있는 Azure 쪽이 열린다. 영향을 받는 리소스의 쪽에서 작업해도 된다 — 「Get recommendation details and solution options」
+- 시험 리소스처럼 권장 사항에서 뺄 구독·리소스를 고르고, 특정 구독·리소스 그룹에만 권장 사항을 내게 설정할 수 있다 — 「Configure recommendations」. 쓸지는 step 1이 판단한다
+- 새로 만든 리소스는 Advisor가 바탕에서 찾아 나중에 권장 사항을 낸다 — 머리 Note(시간 수치는 쓰지 않는다)
+- **쓰지 않는 것**: 범주 점수, Well-Architected Framework, 내려받기(CSV·PDF), VM 크기 조정 규칙의 CPU 값
+
+쓰일 곳: `azure-monitoring.azure-advisor`(대시보드에서 거르기, 권장 작업이 적용 화면을 연다), `AdvisorRecommendationDiagram`, D125
+
+## (phase 108) Azure Advisor — Create Azure Advisor alerts on new recommendations by using the Azure portal
+https://learn.microsoft.com/en-us/azure/advisor/advisor-alerts-portal
+
+확인한 날 2026-11-06. 사본: `docs-advisor-alerts-portal.md`와 `ko-` 판.
+
+- Advisor가 리소스에서 새 권장 사항을 찾으면 그 이벤트가 Azure 활동 로그에 남고, 그 이벤트에 경고를 걸 수 있다. 구독(과 원하면 리소스 그룹)을 고르고, 범주·영향 수준·권장 사항 종류로 받을 것을 좁힌다 — 첫 부분
+- 경고가 나면 할 일은 기존 작업 그룹을 고르거나 새로 만들어 정한다 — 같은 부분
+- 이 알림은 이메일이나 문자 메시지로 받을 수 있고, 웹후크로 기존 시스템에 이을 수도 있다 — 「Configure recommendation alerts to use a webhook」(웹후크는 쓰지 않는다 — guide 「배경」)
+- **Advisor 경고는 지금 고가용성(High Availability)·성능·비용 권장 사항에만 있고 보안 권장 사항은 지원하지 않는다** — Note. 「High Availability」는 안정성 범주의 옛 이름으로 보인다(이 쪽은 그렇게 적는다). 앱은 「새 권장 사항이 생기면 알림을 받는다」까지만 쓰고 범주별 지원은 쓰지 않는다
+- 한국어 표기: 「작업 그룹」(한국어판 「기존 작업 그룹 선택」·「새 작업 그룹 생성」), 「활동 로그」
+- **쓰지 않는 것**: 페이로드(JSON), 공통 경고 스키마, 웹후크
+
+쓰일 곳: `azure-monitoring.azure-advisor`(새 권장 사항 알림 — 작업 그룹을 한 줄로 푼다), `AdvisorRecommendationDiagram`
+
+## (phase 108) Azure Advisor — Reduce service costs by using Azure Advisor (VM 크기 조정·종료 권장만)
+https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations
+
+확인한 날 2026-11-06. 사본: `docs-advisor-cost-recommendations.md`(phase 106이 받음, 영문판만). 앞 phase에는 이 쪽의 항목이 없어(phase 106 「리소스 그룹 요금」 항목이 살펴본 곳으로만 들었다) 새 항목으로 둔다.
+
+- Advisor는 가상 머신·가상 머신 확장 집합의 사용률이 낮은 것을 찾아, 끄거나(종료) 더 작은 크기로 바꾸라(크기 조정)고 권한다 — 제목과 첫 절
+- 두 권장 작업에 대해 줄어들 것으로 어림한 비용을 보여 준다 — 같은 절. **이것은 이미 있는 리소스에서 아낄 금액의 어림이지, 새로 만들 솔루션의 비용을 미리 어림하는 일(가격 계산기)이 아니다**(D123)
+- 예약 인스턴스·절약 플랜 구매를 반영하지 않으므로 보이는 절감액이 실제보다 클 수 있다 — 같은 절. **쓰지 않는다**(학습 가이드 밖)
+- **쓰지 않는 것**: 기계 학습으로 판단한다는 설명, CPU 사용률 기준 값, 판단에 쓰는 기간
+
+쓰일 곳: `azure-monitoring.azure-advisor`의 비용 범주 예(사용률이 낮은 VM을 끄거나 줄이라고 권한다), `AdvisorRecommendationDiagram`, D123, G69
+
+## (phase 108) Azure Advisor — Review security recommendations (Defender for Cloud로 옮겨진 쪽)
+https://learn.microsoft.com/en-us/azure/advisor/advisor-security-recommendations
+
+확인한 날 2026-11-06. 사본: `docs-advisor-security-recommendations.md`(영문판만). 이 주소는 Defender for Cloud의 「Review security recommendations」 쪽을 보여 준다.
+
+- 보안 권장 사항은 Defender for Cloud가 보안 정책·규정 준수 기준으로 리소스를 평가해 내는 것이고, 보안 문제를 고칠 단계를 알려 준다 — 첫 문단. Advisor 개요의 「Advisor는 Defender for Cloud의 권장 사항을 함께 보여 준다」와 함께, **Advisor 보안 범주의 출처가 Defender for Cloud**라는 한 줄의 근거다
+- 보안 점수가 높을수록 찾아낸 위험이 낮다 — 앞 phase 105 항목(`secure-score-security-controls`)의 사실. **보안 권장 사항을 적용하면 점수가 내려간다는 말은 없다**(D126)
+- **쓰지 않는 것**: 권장 사항 화면의 거르기·위험 우선순위·미리 보기 표시(Defender for Cloud의 세부 — guide 「배경」)
+
+쓰일 곳: `azure-monitoring.azure-advisor`의 보안 범주 한 줄(Defender for Cloud를 다시 가르치지 않는다), D124, D126
+
+## (phase 108) Azure Service Health — What is Azure Service Health?
+https://learn.microsoft.com/en-us/azure/service-health/overview
+
+확인한 날 2026-11-06. 「Last updated on」 2025-10-31. 사본: `docs-service-health-overview.md`와 `ko-` 판. `service-health/service-health-overview`도 같은 내용이라 따로 두지 않는다.
+
+- Azure Service Health는 서로 다른 셋을 합친 것이다 — 「Key components of Service Health」
+- **Azure 상태**는 Azure 상태 페이지에서 서비스 중단을 알린다. 모든 Azure 지역의 모든 Azure 서비스 상태를 한눈에 보는 곳이고, 넓게 영향을 주는 사건을 보기에 좋다. 이미 Azure를 쓰는 사람에게는 Service Health를 쓰라고 권한다 — 같은 절
+- **Service Health**는 내가 쓰는 Azure 서비스와 지역의 상태를 나에게 맞춰 보여 주고, 장애(중단)·계획된 유지 관리·상태 권고를 알린다. 경고를 걸어 두면 내 리소스에 영향을 줄 만한 문제·변경 소식이 내가 고른 연락 수단으로 온다(Service Health 경고) — 같은 절
+- **Resource Health**는 특정 가상 머신 같은 클라우드 리소스 하나하나의 상태를 알려 준다 — 같은 절
+- Azure Monitor로 리소스의 가용성 변화를 알리는 경고를 구성한다 — 「Using Azure Service Health」 첫 문단. 경고의 종류는 step 3 몫
+- 한국어 표기: 제목 「Azure Service Health란?」, 묶음은 「Azure Service Health」. 본문은 보기를 「Azure 상태」·「서비스 상태」·「리소스 상태」로 옮기면서 같은 쪽 뒷부분은 「Service Health」·「Resource Health」로 쓰고, 묶음까지 「Azure 서비스 상태」라 옮긴 곳이 있다 — 섞여 있다(아래 표기 정리)
+- **쓰지 않는 것**: Azure Lighthouse, 「분별 업데이트」(분 단위 갱신)
+
+쓰일 곳: `azure-monitoring.monitoring-tools`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `HealthViewsDiagram`, D127, D128, G70
+
+## (phase 108) Azure Service Health — Azure status overview
+https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview
+
+확인한 날 2026-11-06. 「Last updated on」 2026-06-02. 사본: `docs-service-health-azure-status-overview.md`와 `ko-` 판.
+
+- Azure 상태 페이지는 Azure 서비스와 지역의 상태를 전체로 보여 준다 — 첫 문단
+- **누구나** Azure 상태 페이지를 방문해 넓게 영향을 주는 사건을 볼 수 있다. 모든 중단·예정된 유지 관리·서비스 권고가 담긴 것은 Azure Service Health의 맞춤 화면이므로 그쪽을 권한다 — 둘째 문단. 「로그인하지 않아도」라는 낱말은 이 쪽에 없다 — 앱은 「누구나 볼 수 있다」로 쓰고, Service Health는 「로그인했으므로 내가 쓰는 서비스를 안다」(Learn 단원 3)로 가른다
+- 「현재 영향」 탭은 Azure 전체에 영향을 주는 활성 이벤트를 보여 주고, 그 밖의 문제는 Service Health로 보라고 한다 — 「Current Impact tab」
+- 서비스 문제 소식은 대부분 영향을 받는 고객에게 Service Health로 따로 보낸다. 공개 상태 페이지는 몇 가지 경우에만 쓴다 — 「Publishing communications to the Azure status page」. **경우마다의 이름(시나리오 1~3)·사후 검토(PIR)·RSS는 쓰지 않는다**(guide 「배경」)
+- 한국어 표기: 「Azure 상태」, 「Azure 상태 페이지」
+
+쓰일 곳: `azure-monitoring.service-health`의 Azure 상태 항목, `HealthViewsDiagram`, D127
+
+## (phase 108) Azure Service Health — Azure Service Health portal
+https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update
+
+확인한 날 2026-11-06. 사본: `docs-service-health-portal-update.md`와 `ko-` 판.
+
+- Service Health 포털은 내가 Azure 서비스를 쓰는 지역에서 그 서비스의 상태를 따라가는 대시보드다 — 첫 문단
+- 이 포털이 따라가는 이벤트는 다섯 종류다. 서비스 문제(지금 나에게 영향을 주는 Azure 서비스의 문제), 계획된 유지 관리(앞으로 가용성에 영향을 줄 수 있는 유지 관리), 상태 권고(기능 사용 중단이나 업그레이드 요구처럼 주의가 필요한 변경), 보안 권고, 청구 업데이트 — 「Service Health events」. Learn 단원 3은 앞의 셋(장애·계획된 유지 관리·상태 권고)만 든다 — **앱은 셋을 쓰고**, 보안 권고·청구 업데이트는 쓰지 않는다(학습 가이드 밖)
+- 해결되거나 끝난 이벤트는 「상태 기록」에 모여 종류·날짜로 다시 볼 수 있다 — 「The retention of Service Health events」(보존 기간 수치는 쓰지 않는다)
+- 왼쪽 메뉴의 「계획된 유지 관리」에서 계획된 유지 관리 이벤트 목록을 본다 — 「See Planned maintenance events」. D129의 근거
+- 왼쪽 메뉴의 「Resource health」로 리소스가 기대대로 실행되는지 본다. Resource Health 이벤트는 Service Health 이벤트에 들지 않고 포털의 다른 곳에서 본다 — 「See and manage your Resource health」, 보존 절의 Resource Health 줄
+- 한국어 표기: 「서비스 문제」, 「계획된 유지 관리」(한국어판 머리말은 「예정된 유지 관리」도 쓴다), 「상태 권고」(이 한국어판의 「보장 권고」는 오역 — Learn 단원 3 한국어판·Service Health 개요 한국어판의 「상태 권고」를 쓴다), 「보안 권고」, 「청구 업데이트」, 「상태 기록」
+
+쓰일 곳: `azure-monitoring.service-health`의 Service Health 항목(알려 주는 일 셋, 지난 기록), `HealthViewsDiagram`, D129
+
+## (phase 108) Azure Service Health — Create Service Health alerts
+https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal
+
+확인한 날 2026-11-06. 사본: `docs-service-health-alerts-portal.md`(영문판만).
+
+- Service Health 알림은 Azure 활동 로그에 다른 이벤트와 함께 저장된다. Service Health 화면은 그 알림을 쉽게 보고 경고를 설정하게 해 준다 — 첫 문단
+- 경고는 알림의 종류(서비스 문제·계획된 유지 관리·상태 권고·보안 권고), 영향을 받는 구독·서비스·지역으로 정한다 — 「Service Health alerts overview」
+- **Service Health 알림은 Resource Health 이벤트에 대해 경고를 보내지 않는다** — 같은 절 Note. Resource Health는 따로 경고를 만든다
+- Azure 포털에서 Service Health를 열고 경고를 만든다. 받는 길은 이메일 주소, Azure Resource Manager 역할에 이메일, Azure 모바일 앱 알림 — 「How to create a Service Health alert」
+- 고급 설정의 「작업」 탭에서 기존 작업 그룹을 고르거나 새로 만든다. 작업에는 이메일 받는 사람, 문자 메시지(SMS), Azure 앱 푸시 알림, 웹후크·Logic Apps 같은 연동이 있다 — 「Actions」. 앱은 「이메일·문자 메시지 같은 알림」까지 쓰고 연동 목록은 쓰지 않는다(guide 「배경」)
+- Service Health는 내 서비스가 실행되는 지역에 영향을 주는 이벤트에만 경고를 낸다 — 「How to create …」 Tip
+- 한국어 표기: 영문판만 받았다. 「Service Health 경고」(Service Health 개요 한국어판), 「작업 그룹」, 「활동 로그」
+
+쓰일 곳: `azure-monitoring.service-health`(경고 — 작업 그룹을 한 줄로 푼다), `HealthViewsDiagram`
+
+## (phase 108) Resource Health — Resource Health overview
+https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview
+
+확인한 날 2026-11-06. 「Last updated on」 2025-11-10. 사본: `docs-service-health-resource-health-overview.md`와 `ko-` 판.
+
+- Resource Health는 내 Azure 리소스에 영향을 주는 서비스 문제를 진단하고 지원을 받게 돕는다. 리소스의 지금 상태와 지난 상태를 알려 준다 — 첫 문단
+- Azure 상태는 많은 고객에게 영향을 주는 문제를 알리고, Resource Health는 내 리소스의 상태를 나에게 맞춰 보여 주며 Azure 서비스 문제로 리소스를 쓸 수 없었던 때를 모두 보여 준다 — 둘째 문단. 「SLA를 어겼는지 보기 쉽다」는 줄도 여기 있다 — **쓰지 않는다**(guide 「배경」 — SLA를 다시 가르치지 않는다. 쓴다면 수치 없이 한 줄)
+- 리소스는 가상 머신·웹 앱·SQL Database 같은 Azure 서비스의 인스턴스 하나다. Resource Health는 여러 Azure 서비스의 신호로 리소스가 정상인지 판단한다 — 「Resource definition」
+- 리소스가 정상이 아니면 문제의 원인을 더 살피고, **Microsoft가 고치려고 하는 조치와 사용자가 할 수 있는 조치**를 알려 준다 — 같은 절
+- 상태 값은 넷이다 — 「Health status」
+  - **사용 가능**(Available): 리소스 상태에 영향을 주는 이벤트가 없다
+  - **사용할 수 없음**(Unavailable): 리소스 상태에 영향을 주는 플랫폼 이벤트나 비플랫폼 이벤트가 진행 중이다
+  - **알 수 없음**(Unknown): 한동안 리소스의 정보를 받지 못했다. 가상 머신의 할당을 해제했을 때 흔하다. 리소스 상태를 단정하는 값은 아니다(시간 수치는 쓰지 않는다)
+  - **저하됨**(Degraded): 리소스를 아직 쓸 수 있지만 성능이 떨어졌다
+- **플랫폼 이벤트**는 Azure 인프라가 일으킨다. 계획된 유지 관리 같은 예정된 작업과, 계획되지 않은 호스트 재부팅 같은 예상하지 못한 사건이 다 든다. 이때 Resource Health는 이벤트와 복구 과정을 자세히 알려 주고, **지원 계약이 없어도** Microsoft 지원에 연락하게 해 준다 — 「Platform events」
+- **비플랫폼 이벤트**는 사용자의 작업이 일으킨다. 예: 가상 머신을 중지함 — 「Non-platform events」
+- 지원되지 않는 리소스가 있다(「Health not supported」) — 쓸지는 step 2가 판단한다(쓴다면 한 줄)
+- 포털에서 리소스를 열고 왼쪽 메뉴의 「Resource health」를 고르면 그 리소스의 상태 기록이 보인다 — 「Get started」
+- **쓰지 않는 것**: 활동 로그에 남는 전환 조건, 기록·근본 원인의 시간 수치, REST API, 가상 머신 확장 집합의 저하됨 기준
+- 한국어 표기: 제목 「Resource Health 개요」. 상태 값 「사용 가능」·「사용할 수 없음」·「알 수 없음」·「저하됨」(절 제목은 「성능 저하됨」, 본문은 「저하됨」), 「플랫폼 이벤트」·「비플랫폼 이벤트」(한국어판은 「비-플랫폼」·「비 플랫폼」을 섞는다), 「계획된 유지 관리」, 「계획되지 않은 호스트 다시 부팅」, 「지원 계약」
+
+쓰일 곳: `azure-monitoring.service-health`의 Resource Health 항목(한 줄), `azure-monitoring.resource-health`, `ResourceHealthDiagram`, D128
+
+## (phase 108) Resource Health — Azure Resource Health FAQ
+https://learn.microsoft.com/en-us/azure/service-health/resource-health-faq
+
+확인한 날 2026-11-06. 사본: `docs-service-health-resource-health-faq.md`와 `ko-` 판.
+
+- 리소스를 쓸 수 없을 때 Resource Health는 근본 원인을 **사용자가 시작한 작업 / 계획된 이벤트 / 계획되지 않은 이벤트** 가운데 하나로 가른다 — 「Does Resource Health differentiate …?」. 그래서 「원인이 Azure 쪽인가 사용자 쪽인가」를 가른다고 쓸 수 있다(Learn 단원 3과 같다). 포털 아이콘의 색은 **쓰지 않는다**
+- 점검 대상은 계획되지 않은 이벤트(예상하지 못한 호스트 재부팅), 계획된 이벤트(예약된 호스트 OS 업데이트), 사용자 작업으로 생긴 이벤트(사용자가 가상 머신을 다시 시작함)다 — 「What health checks …?」
+- 플랫폼 이벤트로 리소스를 쓸 수 없으면 Resource Health 창에서 지원 요청을 낼 수 있고, Microsoft와 지원 계약이 없어도 된다 — 「How can I get help …?」
+- Resource Health는 활동 로그 기반 경고를 지원하고, 그 경고는 작업 그룹으로 이메일·SMS 같은 길로 알린다 — 「Can I integrate …?」
+- 리소스의 왼쪽 메뉴나 Azure Service Health 창의 「Resource health」로 연다 — 「Where do I find Resource Health?」
+- Azure 상태와 Service Health 대시보드는 한 지역 전체처럼 많은 고객에게 영향을 주는 문제를 알리고, Resource Health는 내 리소스에만 영향을 주는 문제를 자세히 알린다. 예: 호스트가 갑자기 재부팅되면 그 호스트에서 실행되던 VM의 고객에게만 알린다 — 「How is Resource Health different …?」. **Service Health와 Resource Health를 가르는 근거**다
+- 이 FAQ의 상태 값은 셋(사용 가능·사용할 수 없음·알 수 없음)이다. 개요와 경고 쪽이 넷(저하됨 포함)을 들므로 **넷을 쓴다**
+- 한국어 표기: 「사용자가 시작한 작업」, 「계획된 이벤트」, 「계획되지 않은 이벤트」, 「지원 계약」
+
+쓰일 곳: `azure-monitoring.resource-health`(원인 가르기, 지원, 경고, Service Health와의 차이), `ResourceHealthDiagram`, D128
+
+## (phase 108) Resource Health — Resource Health alerts
+https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-monitor-guide
+
+확인한 날 2026-11-06. 사본: `docs-service-health-resource-health-alert.md`(영문판만).
+
+- Resource Health 경고는 가상 머신·스토리지 계정·웹 앱 같은 리소스 하나의 상태가 바뀌면 알린다. 넓은 플랫폼 문제를 알리는 Service Health 경고와 다르고, Azure 전체 사건이 없어도 리소스의 문제를 잡는다 — 첫 부분, 「Resource Health alert notifications」
+- 경고 조건에 원인 종류(플랫폼이 시작함 — Azure의 유지 관리나 사건 / 사용자가 시작함 — 사용자가 리소스를 멈추거나 할당 해제함)를 쓸 수 있다 — 같은 절의 조건 표. 앱은 조건 표를 옮기지 않는다
+- Resource Health 알림은 활동 로그에 저장된다 — 「Resource Health alerts in the Azure portal」
+- 한국어 표기: 영문판만 받았다. 「Resource Health 경고」(FAQ 한국어판의 「Resource Health」 표기를 따른다)
+
+쓰일 곳: `azure-monitoring.resource-health`(상태가 바뀌면 경고를 받는다 — 한 줄), `ResourceHealthDiagram`
+
+## (phase 108) 작업 그룹 — Action groups (Service Health·Advisor가 함께 쓰는 줄만)
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
+
+확인한 날 2026-11-06. 사본: `docs-azure-monitor-action-groups.md`와 `ko-` 판(설계 때 받음). step 3이 이 항목에 덧붙인다.
+
+- 작업 그룹은 경고가 나면 누구에게 알리고 무엇을 실행할지 정한다. 알림에는 음성 통화·SMS·푸시 알림·이메일이 있다. Azure Monitor·Azure Service Health·Azure Advisor 같은 서비스가 작업 그룹을 쓴다 — 첫 부분
+- Service Health 경고가 작업 그룹을 쓰려면 작업 그룹의 지역이 전역이어야 한다 — 같은 쪽 Note. **쓰지 않는다**(설정 세부)
+- 한국어 표기: 제목 「작업 그룹」, 「전자 메일」(앱은 앞 phase처럼 「이메일」), 「SMS」(앱은 「문자 메시지」)
+
+쓰일 곳: `azure-monitoring.azure-advisor`·`service-health`·`resource-health`의 알림 줄(작업 그룹을 한 줄로 푼다 — 앞 phase `azure-cost-management.budgets`와 같은 표기)
+
+## (phase 108) 도식·표의 사실 — `azure-monitoring`
+
+확인한 날 2026-11-06. step 1·2 문서의 도식 설계를 위 phase 108 항목과 대조했다. 이 항목은 위 출처의 사실을 묶은 것이며 별도 출처가 아니다. step 3이 개념 5~9의 도식·표 몫을 덧붙인다.
+
+- **MonitoringToolsDiagram**: 그룹 「Azure 쪽」 안의 「Azure 서비스와 지역」에서 Azure Service Health로, 그룹 「내 구독」 안의 VM 1에서 Azure Advisor로, VM 1·웹 앱 1에서 Azure Monitor로 가는 선을 그릴 수 있다. 곁말 「장애·계획된 유지 관리」(Learn 단원 3), 「권장 사항」(단원 2), Azure Monitor 쪽은 「데이터를 모아 분석」(단원 4의 수집·분석) — 「수치와 기록」은 단원 4의 「로그와 메트릭」을 쉽게 쓴 말이라 step 3의 메트릭·로그 풀이와 맞춘다. 세 도구는 모두 Azure 포털에서 연다(Advisor 개요, Service Health 경고 문서의 「In the Azure portal, select Service Health」, 단원 4는 Log Analytics를 포털의 도구라고 한다 — Azure Monitor 자체를 「포털에서 연다」고 그린 문장은 단원 4에 없고 개요는 모니터링 데이터가 포털 화면에 들어 있다고 한다). `azure-side` 캡션은 Azure Service Health가 내 리소스를 보지 않는다고 쓰지 않는다 — Learn 단원 3은 「Azure 자체와 내가 운영하는 리소스」라고 한다
+- **AdvisorRecommendationDiagram**: VM 1 → Azure Advisor → 비용 권장 사항(곁말 「사용률이 낮은 VM」 — 끄거나 크기를 줄이라고 권한다, 비용 권장 쪽), Defender for Cloud → Azure Advisor → 보안 권장 사항(곁말 「Defender for Cloud의 권장 사항」 — Advisor 개요), 권장 사항 → 담당자(곁말 「실행·연기·해제」 — Learn 단원 2 「take right away, postpone, or dismiss」, 개요의 상태 바꾸기). `act` 캡션은 「권장 사항마다 할 일이 붙어 있고, 따를지·미룰지·해제할지는 담당자가 고른다」까지 쓸 수 있다. **「Advisor가 리소스를 스스로 바꾸지 않는다」는 근거를 찾지 못했다** — 캡션에 쓰지 않고, 「권장 작업을 고르면 적용 화면이 열린다」(개요)까지만 쓴다. 범주 이름은 아래 표기 정리대로
+- **HealthViewsDiagram**: 바깥 그룹 「모든 지역의 모든 서비스」 안에 안쪽 그룹 「내 구독이 쓰는 서비스」(Service Health — 내가 쓰는 서비스·지역), 그 안의 VM 1(Resource Health — 리소스 하나). 곁말: Azure 상태 「누구나 본다」(azure-status-overview 「Anyone can visit」, 공개 페이지), Service Health 「장애·계획된 유지 관리·상태 권고」(Learn 단원 3), Resource Health 「이 리소스는 지금 쓸 수 있는가」(Resource Health 개요의 상태 값). 「로그인하지 않아도」는 문서 낱말이 아니다 — 곁말은 「누구나 본다」로 쓰고, 본문에서 「공개 페이지라 누구나 본다」와 「Service Health는 로그인한 사람이 쓰는 서비스를 안다」(단원 3)로 가른다. Azure 상태는 **넓게 퍼진 장애만** 올리고 나머지는 Service Health로 보낸다(azure-status-overview 「Current Impact tab」·「Publishing communications」). 흐린 서비스 노드는 장애가 아니라 그 보기가 보지 않는 범위다 — 캡션이 밝힌다
+- **ResourceHealthDiagram**: Azure 쪽의 일(예: 계획된 유지 관리, 계획되지 않은 호스트 재부팅 — 「Platform events」) 또는 담당자의 작업(예: VM 중지 — 「Non-platform events」) → VM 1 → Resource Health. `platform` 곁말 「사용할 수 없음 — Azure 쪽」, `user` 곁말 「사용할 수 없음 — 사용자 작업」을 쓸 수 있다(개요는 두 이벤트 모두 「사용할 수 없음」의 원인이라 하고, FAQ는 원인을 사용자 작업/계획된 이벤트/계획되지 않은 이벤트로 가른다). 지원 노드는 **근거가 있다** — 플랫폼 이벤트면 지원 계약이 없어도 Microsoft 지원에 연락할 수 있다(개요 「Platform events」, FAQ). 지원 노드와 그 경로는 `platform`에서만 보이게 한다 — 사용자 작업일 때 지원으로 가는 길을 준다는 문장은 없다. Microsoft가 하는 조치와 사용자가 할 수 있는 조치를 알린다는 것은 「Resource definition」. 셋째 시나리오 「저하됨」(쓸 수 있지만 성능이 떨어짐)은 개요에 근거가 있다 — 원인 노드를 가르지 않으므로 그릴지는 step 2가 판단한다. 「알 수 없음」은 그리지 않는다(시간 수치에 기대는 상태다)
+- 도식 넷 모두 서비스마다의 SLA 수치, 보존 기간, 알림이 나타나기까지의 시간을 쓰지 않는다
+
+쓰일 곳: `MonitoringToolsDiagram`, `AdvisorRecommendationDiagram`, `HealthViewsDiagram`, `ResourceHealthDiagram`
+
+## (phase 108) 한국어 표기 정리 — `azure-monitoring`(개념 1~4)
+
+확인한 날 2026-11-06. 사실은 위 영문판으로, 아래 이름은 각 한국어판으로 확인했다.
+
+| 개념 id 끝부분 | 확정한 name | 근거와 선택 |
+|---|---|---|
+| `monitoring-tools` | **Azure 모니터링 도구** | 세 도구를 묶는 설명형 제목이다. Learn 모듈 「Describe monitoring tools in Azure」와 단원 1 한국어판의 「모니터링」·「도구」를 따른다. 목록 이름은 **Azure Advisor**, **Azure Service Health**, **Azure Monitor** — 세 제품 개요 한국어판의 제목 표기(영문 그대로) |
+| `azure-advisor` | **Azure Advisor** | 제품 개요 한국어판 제목 「Azure Advisor 소개」, Learn 단원 2 한국어판 「Azure Advisor의 용도 설명」. 목록 항목(범주) 이름은 **안정성**(Reliability)·**보안**(Security)·**성능**(Performance)·**운영 우수성**(Operational Excellence)·**비용**(Cost). 담당자의 선택은 **실행**·**연기**·**해제**, 표시는 **완료** |
+| `service-health` | **Azure Service Health** | 묶음의 이름. 제품 개요 한국어판 제목 「Azure Service Health란?」, Learn 단원 1 한국어판 학습 목표, 단원 3 한국어판 「운영 가치」 절. 목록 항목(보기) 이름은 **Azure 상태**(Azure status)·**Service Health**·**Resource Health** |
+| `resource-health` | **Resource Health** | Resource Health 개요·FAQ 한국어판 제목과 Learn 단원 3 한국어판. 상태 값은 **사용 가능**(Available)·**사용할 수 없음**(Unavailable)·**알 수 없음**(Unknown)·**저하됨**(Degraded). 원인은 **플랫폼 이벤트**(Azure 쪽)·**비플랫폼 이벤트**(사용자 작업) — 앱은 「Azure 쪽의 일」·「사용자(담당자)의 작업」으로 풀고 원어 이름을 한 번 붙인다 |
+
+- **묶음과 가운데 보기의 이름**: Learn 영문판은 묶음을 Azure Service Health, 가운데 보기를 Service Health라 부른다. 앱은 **묶음을 늘 「Azure Service Health」(Azure를 붙여)**, **가운데 보기를 「Service Health」(Azure 없이)** 로 쓰고, `service-health` 본문에서 둘이 이름이 같아 헷갈린다는 것과 무엇을 가리키는지를 한 번 밝힌다. 영문판도 Service Health 경고·Service Health 포털처럼 보기 쪽을 Azure 없이 쓴다.
+- **「서비스 상태」·「리소스 상태」로 옮기지 않는다.** 제품 개요 한국어판은 보기를 「서비스 상태」·「리소스 상태」로, Learn 단원 3 한국어판은 제목에서 묶음을 「Azure 서비스 상태」로 옮겼지만, 같은 문서 뒷부분과 다른 한국어판은 「Service Health」·「Resource Health」를 쓴다. 한국어 「상태」가 status(Azure 상태)와 health를 둘 다 옮겨 세 이름이 섞이고, 「리소스 상태」는 Resource Health가 보여 주는 값(사용 가능 같은 health status)과도 같은 말이 된다. 그래서 health 쪽은 영문 이름을 그대로 쓰고, 「상태」는 Azure 상태(status)와 리소스의 상태 값에만 쓴다.
+- **운영 우수성**: Learn 단원 2 한국어판은 「운영 우수성」, 제품 개요 한국어판은 「뛰어난 운영」이다. 범주 다섯이 모두 명사이므로 명사인 「운영 우수성」을 고른다. 「안전성」(개요 한국어판의 링크 제목 「Advisor 안전성 권장 사항」)은 오기로 보고 「안정성」을 쓴다.
+- **상태 권고**: Service Health 포털 한국어판의 「보장 권고」는 오역이다. Learn 단원 3·Service Health 개요 한국어판의 「상태 권고」를 쓴다. 「계획된 유지 관리」는 Learn·개요·포털 한국어판이 함께 쓴다(머리말의 「예정된 유지 관리」는 쓰지 않는다). 장애는 Learn 한국어판의 「중단」 대신 앱이 써 온 「장애」를 쓰고, 영문 outage를 처음에 밝힌다.
+- **저하됨**: Resource Health 개요 한국어판은 절 제목을 「성능 저하됨」, 본문을 「저하됨」으로 쓴다. 상태 값 이름은 「저하됨」, 풀이에 「성능이 떨어졌다」를 쓴다.
+- **비플랫폼 이벤트**: 한국어판이 「비-플랫폼」·「비 플랫폼」을 섞는다. 붙여 쓴 「비플랫폼 이벤트」를 고른다.
+- **작업 그룹**: Advisor 경고·작업 그룹 한국어판의 「작업 그룹」. 앞 phase(`azure-cost-management.budgets`)와 같은 표기다.
+- **Defender for Cloud**: phase 105의 표기(「Microsoft Defender for Cloud」, 본문은 「Defender for Cloud」)를 따른다.
+- 리소스·구독·리소스 그룹·VM·지역·Azure 포털·대시보드·작업 그룹·Defender for Cloud는 이 주제에서 다시 풀어 쓴다. 앞 주제에서 읽었을 것이라고 가정하지 않는다.
+
+쓰일 곳: `azure-monitoring.monitoring-tools`, `azure-monitoring.azure-advisor`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`의 `name`과 목록 항목, 도식 넷의 라벨

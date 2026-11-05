@@ -1540,3 +1540,66 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: [Bicep 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)의 「About the language」는 변환 주체를 Bicep CLI로 명시한다. 같은 문서의 「Simple syntax」·「Modularity」와 [JSON과 비교](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax)는 간결한 표현과 모듈 재사용을 뒷받침한다. [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Template deployment process」는 받은 템플릿을 Resource Manager가 처리한다고 한다. 2026-11-04 확인.
 - **처리**: 고쳐 쓴다. 배포할 때 Bicep CLI가 파일을 JSON으로 된 ARM 템플릿으로 바꾸고 Resource Manager가 그 결과를 처리한다고 쓴다. 변환이 Azure 서비스 내부에서 일어난다고 단정하지 않는다. 같은 구성을 더 짧게 적을 수 있고 모듈로 나누어 재사용한다는 것은 쓴다. 반복문·변수 같은 문법은 범위 밖이라 쓰지 않는다.
 - **쓰인 곳**: `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`
+
+## D123 — Advisor로 솔루션 비용을 추정한다 (phase 108)
+
+- **덤프**: [덤프 NO.501 p292]는 Advisor로 할 수 있는 일로 「Azure 솔루션의 비용 추정」(B)을 답한다. 보기에는 「Azure 구독의 보안이 모범 사례를 따르는지 확인」(C)도 있다. 해설은 블로그 주소 하나뿐이다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)는 Advisor가 이미 있는 리소스의 구성과 사용 기록을 분석해 비용·성능·안정성·보안을 나아지게 할 권장 사항을 낸다고 하고, 보안 범주(Defender for Cloud의 권장 사항 포함)를 든다. [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)이 보여 주는 「어림한 절감액」은 사용률이 낮은 VM을 끄거나 줄일 때 아낄 금액이다. 새로 만들 솔루션의 비용을 미리 어림하는 것은 가격 계산기의 일이다(phase 106 `azure-cost-factors.pricing-calculator`). 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 보기 가운데 공식 문서와 맞는 것은 C(보안이 모범 사례를 따르는지 확인 — 보안 범주)다. 앱은 「Advisor가 솔루션 비용을 추정한다」를 쓰지 않고, 비용 범주는 「이미 쓰는 리소스에서 비용을 줄일 방법을 권한다」로 쓴다. 가격 계산기와 가르는 줄이 필요하면 「미리 어림하는 것은 가격 계산기, 쓰고 있는 것을 줄일 방법은 Advisor」로 쓴다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`
+
+## D124 — Advisor가 Entra ID 보안·VM 네트워크 설정을 권하는가 — NO.107과 NO.322의 답이 갈림 (phase 108)
+
+- **덤프**: 같은 세 진술(Azure AD 환경의 보안을 나아지게 할 권장 / Azure VM 비용을 줄일 권장 / Azure VM의 네트워크 설정을 구성할 권장)에 [덤프 NO.107 p64–66]의 답 그림(`p066_00.png`)은 예·예·아니요, [덤프 NO.322 p186]의 답 그림(`p186_03.png`)은 아니요·예·아니요를 표시한다. 그림을 직접 보고 확인했다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)는 권장 사항을 내는 서비스 목록과 Defender for Cloud의 권장 사항을 함께 보여 준다는 것을 들 뿐, Microsoft Entra ID 환경의 보안을 권한다는 문장은 없다. VM 비용 권장은 [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)에 있다. VM의 네트워크 설정을 권한다/권하지 않는다는 문장은 받아 둔 Advisor 문서에서 찾지 못했다(범주별 권장 사항 목록은 guide 「배경」에 따라 열지 않았다). 2026-11-06 확인.
+- **처리**: 둘째 진술(VM 비용을 줄일 권장)만 쓴다 — 두 덤프가 같고 공식 문서와 맞다. 첫째 진술은 덤프끼리 갈리고 공식 문서로 정할 수 없어 쓰지 않는다. 셋째 진술도 근거를 찾지 못해 쓰지 않는다(「네트워크 설정은 권하지 않는다」로도 쓰지 않는다). 앱의 보안 범주는 「Defender for Cloud가 낸 권장 사항을 함께 보여 준다」 한 줄로 쓰고 대상 서비스를 늘어놓지 않는다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D125 — Advisor 권장 사항을 관리 단위로 거른다 (phase 108)
+
+- **덤프**: [덤프 NO.120 p73]의 답 그림(`p073_03.png`·`p073_05.png`)은 「Advisor는 경고를 지원한다」 예, 「Advisor 권장 사항은 관리 단위(Administrative unit)로 거를 수 있다」 예, 「Advisor는 리소스 성능을 나아지게 할 권장을 낸다」 예를 표시한다.
+- **공식 문서**: [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor)는 구독·리소스 그룹·서비스로 거른다고 하고, [Advisor 포털 기본](https://learn.microsoft.com/en-us/azure/advisor/advisor-get-started)의 거르기 단추는 구독·권장 사항 상태·리소스 그룹·종류다. 관리 단위는 Microsoft Entra ID에서 사용자·그룹을 묶는 단위이고 Advisor의 거르기에 나오지 않는다. 새 권장 사항 알림은 [Advisor 경고](https://learn.microsoft.com/en-us/azure/advisor/advisor-alerts-portal)에, 성능 범주는 단원 2에 있다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 첫째·셋째는 맞다. 둘째는 공식 문서에 없으므로 쓰지 않고, 앱은 「구독·리소스 그룹·서비스(리소스 종류)로 거른다」로 쓴다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D126 — Advisor의 Backup 보호 VM 목록, 보안 점수가 내려간다, 30일 안에 적용해야 지원이 유지된다 (phase 108)
+
+- **덤프**: 같은 세 진술에 [덤프 NO.245 p144–146]의 답 그림(`p145_02.png`)과 해설 그림(`p146_00.png`)은 아니요·아니요·아니요를 표시한다. [덤프 NO.425 p247–248]의 답 그림(`p247_05.png`)은 예·아니요·아니요이고, 같은 문항의 해설 그림(`p247_07.png`)은 다시 아니요·아니요·아니요다. 그림을 직접 보고 확인했다. 첫째 진술(Backup으로 보호된 VM 목록)에서 덤프끼리, 그리고 NO.425 안에서 답이 갈린다.
+- **공식 문서**: 보안 점수는 높을수록 찾아낸 위험이 낮다([Defender for Cloud 보안 점수](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls), phase 105 항목). 권장 사항을 적용하면 점수가 내려간다는 문장은 없다 — 둘째 진술의 아니요와 맞다. 「Azure Backup으로 보호된 VM 목록을 만든다」와 「지원을 유지하려면 기한 안에 보안 권장을 적용해야 한다」를 말하거나 부정하는 문장은 받아 둔 Advisor·Defender for Cloud 문서에서 찾지 못했다. Advisor 개요의 권장 사항 상태는 담당자가 연기·해제할 수 있다고 한다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 둘째·셋째 진술의 아니요는 덤프끼리 같고 둘째는 공식 문서와 맞는다. 첫째는 덤프끼리 갈리고 공식 문서로 정할 수 없다. 보안 점수는 앱이 다시 가르치지 않는다(phase 105 `azure-security-model.defender-for-cloud`의 몫). 권장 사항은 담당자가 따르거나 미루거나 해제한다고 쓰고, 기한·지원 조건은 쓰지 않는다. Backup으로 보호된 VM 목록은 쓰지 않는다(못 찾음).
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D127 — Azure 상태와 Azure Service Health — 「모든 서비스의 상태」를 어디서 보나 (phase 108)
+
+- **덤프**: [덤프 NO.129 p80]의 답 그림(`p080_04.png`)은 「Azure 서비스와 지역의 상태 개요를 주는 것」으로 Azure status를 고른다. 보기에 Azure Service Health도 있다. [덤프 NO.374 p215]의 답 그림(`p215_04.png`)은 「Azure 서비스·지역·특정 리소스의 상태를 전체로 보여 주는 것」으로 Azure Service Health를 고른다(보기에 Azure status는 없다). [덤프 NO.168 p102]·[덤프 NO.223 p133–134]의 답 그림(`p102_04.png`·`p133_10.png`)은 「Azure Service Health에서 배포한 서비스와 Azure의 다른 모든 서비스의 상태를 본다」 예, 「서비스가 실패하면 경고받는 규칙을 만든다」 예, 「서비스 실패가 VM에 영향을 주지 않게 막는다」 아니요를 표시한다.
+- **공식 문서**: [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)와 [Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health)은 Azure Service Health를 Azure 상태·Service Health·Resource Health 셋의 묶음이라 한다. 모든 지역의 모든 서비스를 보는 것은 Azure 상태이고, Service Health는 내가 쓰는 서비스와 지역만 보여 준다. 경고는 Service Health에서 만든다([Service Health 경고](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)). 장애를 막는 기능은 어느 문서에도 없다 — 알리고 지원으로 이어 줄 뿐이다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 묶음(Azure Service Health)이 전체부터 리소스 하나까지를 다룬다는 뜻으로는 NO.374·168·223의 답이 맞고, 보기로 둘이 함께 나오면 전체 개요는 Azure 상태라는 NO.129도 맞다 — 덤프끼리 어긋난 것이 아니라 묶음과 보기의 이름이 같아 생긴 차이다. 앱은 「모든 지역의 모든 서비스 = Azure 상태, 내가 쓰는 서비스·지역 = Service Health, 리소스 하나 = Resource Health, 셋의 묶음 = Azure Service Health」로 쓰고, Service Health(보기)가 Azure의 모든 서비스를 보여 준다고 쓰지 않는다. 장애를 막는다고 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## D128 — Azure 서비스의 상태·장애 알림을 Monitor 블레이드에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.80 p44–46]의 답 그림(`p045_00.png`)은 「Azure 서비스의 상태를 지켜본다」에 Monitor, 「보안 권장 사항을 본다」에 Advisor, 「VM 이미지를 찾아본다」에 Marketplace를 고른다(보기에 Service Health는 없다). [덤프 NO.346 p197]은 VM 1의 가용성에 영향을 줄 수 있는 서비스 장애 알림을 포털에서 볼 서비스로 Azure Monitor(B)를 답한다(보기에 Service Health·Resource Health는 없고, 「Azure virtual machines」가 있다).
+- **공식 문서**: Azure 자체의 장애·유지 관리를 알리는 것은 Azure Service Health다([Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health), [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)). Service Health 경고와 Resource Health 경고는 Azure Monitor의 활동 로그 경고다([Azure Monitor 경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) 「Activity log alerts」). Resource Health는 리소스(VM)의 왼쪽 메뉴에서도 연다([Resource Health FAQ](https://learn.microsoft.com/en-us/azure/service-health/resource-health-faq)). 「Monitor 블레이드에서 Azure 서비스의 상태를 본다」는 문장은 받아 둔 문서에서 찾지 못했다. 보안 권장 사항을 Advisor에서 보는 것은 맞다(Advisor 개요 — Defender for Cloud의 권장 사항 포함). 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 앱은 Azure 서비스의 장애와 유지 관리를 보는 도구를 Azure Service Health로, VM 한 대가 쓸 수 있는지를 보는 것을 Resource Health로 쓴다. 두 경고가 Azure Monitor 경고의 한 종류라는 연결은 step 3·5가 쓸지 판단한다(Azure Monitor 쪽 범위). NO.80의 보안 권장 사항 → Advisor는 맞다.
+- **쓰인 곳**: `azure-monitoring.monitoring-tools`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `MonitoringToolsDiagram`
+
+## D129 — 계획된 유지 관리 목록을 「Help + support」 블레이드에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.491 p282–284]의 답 그림(`p283_00.png`)은 구독의 가용성에 영향을 줄 수 있는 계획된 유지 관리 이벤트 목록을 볼 블레이드로 옛 포털 메뉴의 「Help + support」를 표시한다. 같은 사실을 묻는 [덤프 NO.218 p131–132]는 Azure Service Health(B)를 답한다.
+- **공식 문서**: [Service Health 포털](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)의 왼쪽 메뉴 「계획된 유지 관리」에서 계획된 유지 관리 이벤트 목록을 본다. [Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health)도 Service Health가 계획된 유지 관리를 보여 준다고 한다. 「Help + support」에서 이 목록을 본다는 문장은 찾지 못했다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. NO.218 쪽을 따른다 — 계획된 유지 관리는 Azure Service Health의 Service Health 보기에서 보고, 경고를 걸어 미리 알림을 받는다. 옛 포털 메뉴 이름은 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## G69 — Advisor의 범주를 넷으로, 「가용성」으로 적고 NSG 예를 든다 (phase 108)
+
+- **용어집**: [용어집 4-16]은 Advisor가 비용·보안·성능·가용성 측면에서 리소스 구성을 분석해 최적화 권장을 낸다고 하고, 예로 CPU 사용률이 낮은 VM 줄이기와 NSG를 설정하지 않은 자원의 경고를 든다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)와 [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor)의 범주는 다섯이다 — 안정성(Reliability)·보안·성능·운영 우수성·비용. 「가용성」은 안정성 범주의 옛 이름(High Availability)으로 보인다([Advisor 경고](https://learn.microsoft.com/en-us/azure/advisor/advisor-alerts-portal)가 그 이름을 쓴다). 사용률이 낮은 VM을 끄거나 줄이라는 권장은 [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)에 있다. NSG를 설정하지 않은 자원을 알린다는 권장은 받아 둔 문서에서 찾지 못했다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 범주는 다섯으로 쓰고 이름은 「안정성」이다(official.md 표기 정리). VM 예는 쓴다. NSG 예는 쓰지 않는다(못 찾음). 「경고」라는 말로 보안 권장 사항을 알린다고 쓰지 않는다 — Advisor 경고는 보안 권장 사항을 지원하지 않는다(Advisor 경고 Note).
+- **쓰인 곳**: `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`
+
+## G70 — Service Health가 Azure 서비스 전반의 상태를 보여 주는 포털이다 (phase 108)
+
+- **용어집**: [용어집 4-17]은 Azure Service Health를 Azure 서비스 전반의 상태·장애·정기 점검 일정을 지켜보는 포털이라 하고, 특정 지역에 장애가 나면 구독이 영향을 받는지 알려 주고 해결 과정을 따라가게 돕는다고 한다.
+- **공식 문서**: [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)는 Azure Service Health를 세 보기의 묶음이라 한다. 전반(모든 지역의 모든 서비스)을 보는 것은 공개 페이지인 Azure 상태이고, 포털의 Service Health는 내가 쓰는 서비스와 지역의 장애·계획된 유지 관리·상태 권고를 보여 준다([Service Health 포털](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)). 내 서비스가 실행되는 지역에 영향을 줄 때 경고를 낸다는 것은 [Service Health 경고](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)에 있다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「정기 점검」은 「계획된 유지 관리」로 쓴다(정기적이라는 말은 문서에 없다). 지역 장애가 내 구독에 영향을 주는지 알리고 지난 기록을 남긴다는 것은 맞다. 「전반의 상태를 보는 포털」은 묶음 전체로만 맞고, 포털의 Service Health 보기는 내가 쓰는 서비스·지역만 보여 준다고 쓴다(D127).
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
