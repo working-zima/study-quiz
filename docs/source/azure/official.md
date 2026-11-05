@@ -356,6 +356,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-storage-servic
 
 쓰인 곳: `azure-cloud-computing.cloud-computing`(스토리지를 푸는 한 줄)
 쓰인 곳(phase 104): `azure-storage.storage-services`, `azure-storage.blob-storage`, `azure-storage.access-tiers`, `azure-storage.azure-files`, D65, D66, G41, G42
+쓰인 곳(phase 107 step 3): `azure-governance.lock-inheritance`의 디스크 풀이(VM에 붙여 데이터를 저장하는 저장 장치)
 
 ## (phase 100) Azure security — Isolation in the Azure public cloud
 https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices
@@ -710,6 +711,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-cloud-compute/4-desc
 - 한국어 표기: on-premises datacenter → **온-프레미스 데이터 센터**, cloud provider → 클라우드 공급자, consumer → 소비자, shared responsibility model → 공유 책임 모델(학습 가이드 한국어판은 「공동 책임 모델」 — step 4 메모)
 
 쓰인 곳: `azure-cloud-models.hybrid-cloud`(온-프레미스를 푸는 한 줄), `azure-cloud-models.public-cloud`·`azure-cloud-models.private-cloud`(하드웨어와 데이터 센터를 누가 갖추고 관리하나), D11·D13
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(온-프레미스를 푸는 한 줄 — 회사가 자기 건물 안의 데이터 센터에서 직접 운영하는 환경)
 
 - 공유 책임 모델에서는 온-프레미스에서 조직이 지던 책임을 클라우드 공급자와 소비자가 나눠 진다 — 「How responsibilities shift in cloud」 둘째 문단 (phase 101)
 - 클라우드에 저장한 데이터와 정보는 소비자가 맡는다(공급자가 그 정보를 읽게 두고 싶지 않을 것이므로). 접근 보안 — 필요한 사람에게만 접근을 주는 것 — 도 소비자가 맡는다 — 같은 절 셋째 문단 (phase 101)
@@ -769,6 +771,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-h
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5·단원 4 한국어판을 따른다(온-프레미스)
 
 쓰인 곳: `azure-cloud-models.hybrid-cloud`, `HybridCloudDiagram`, `CloudModelsTable`(하이브리드 행), D12·D13·D14, [덤프 NO.125·268·339](온-프레미스와 클라우드를 이은 것을 하이브리드로 보는 근거), [용어집 1-8] 확인
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(하이브리드를 푸는 한 줄 — 온-프레미스를 퍼블릭 클라우드와 이어 함께 쓰는 것)
 
 ## (phase 100) Azure 클라우드 컴퓨팅 사전 — What is multicloud?
 https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-multi-cloud
@@ -784,6 +787,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-m
 - 한국어 표기: 한국어판은 받지 않았다. 용어는 Learn 단원 5 한국어판을 따른다(다중 클라우드)
 
 쓰인 곳: `azure-cloud-models.multicloud`, `CloudModelsTable`(다중 클라우드 행), [용어집 1-28] 확인
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(다중 클라우드를 푸는 한 줄 — Azure와 다른 클라우드 공급자의 서비스를 함께 쓰는 것)
 
 ## (phase 100) Azure Arc — Azure Arc overview
 https://learn.microsoft.com/en-us/azure/azure-arc/overview
@@ -799,6 +803,16 @@ https://learn.microsoft.com/en-us/azure/azure-arc/overview
 쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `az128` 해설(Azure Arc를 푸는 한 줄 — 온-프레미스와 다른 클라우드의 서버를 Azure에서 관리하게 해 주는 것)
 
 쓰인 곳: `azure-cloud-models.multicloud`(Azure Arc를 푸는 한 줄)
+쓰인 곳(phase 107 step 1): az153 해설(오답 Azure Arc를 푸는 한 줄 — Azure 밖의 서버를 Azure에서 함께 관리하게 해 준다)
+
+다시 확인한 날 2026-11-04. 영문·한국어 사본을 다시 받았다. (phase 107)
+- 현행 대상은 **서버와 가상 머신**, **Kubernetes 클러스터**, **SQL Server**, 그리고 SQL Managed Instance를 돌리는 **Azure 데이터 서비스**의 네 묶음이다. 서버에는 Azure 밖의 Windows·Linux 물리 서버와 VM이 포함된다. 데이터 서비스의 구체적인 예는 SQL Managed Instance다 — 첫 부분의 「Currently」 목록 (phase 107)
+- Learn 단원 3의 다섯 항목 가운데 따로 적힌 「Virtual machines (preview)」를 현행 목록으로 옮기지 않는다. 제품 개요는 서버와 VM을 합쳐 적고, VM의 생성·크기 변경 같은 관리는 지원하는 기반 환경을 명시한다. 임의의 외부 VM에 Azure VM의 모든 작업을 할 수 있다고 일반화하지 않는다 — 같은 목록, 「Key features and benefits」 (phase 107)
+- Azure 밖에서 실행 중인 대상을 Resource Manager에 리소스로 나타내 관리한다. 이 문서의 projecting은 서버를 Azure로 이전한다는 뜻이 아니다. 서버 개요가 외부 호스트와 Azure 안의 표현을 구별한다 — 첫 목록, 아래 「What is Azure Arc-enabled servers?」 항목 (phase 107)
+- Azure Policy로 설정의 준수를 살피고, 역할로 접근을 정하며, 태그로 대상을 묶어 보고, 모니터링 서비스를 연결할 수 있다. 기능과 지원 범위는 연결한 대상에 따라 다르다 — 「Key features and benefits」, 「Pricing > Azure Arc-enabled servers」, 아래 서버·Kubernetes 개요 (phase 107)
+- 한국어 표기: Kubernetes 클러스터, SQL Server, Azure 데이터 서비스(한국어판의 대상 이름). 「투영」은 본문에서 「Azure에서 관리할 리소스로 나타나게 한다」로 푼다. (phase 107)
+- 연결한 리소스는 Azure 포털, Azure CLI, Azure PowerShell, REST API 가운데 무엇을 쓰든 같은 방식으로 보인다 — 「Key features and benefits」 마지막 항목 (phase 107 step 7)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(흩어진 환경마다 관리 도구가 따로 있다는 문제, Resource Manager에 리소스로 나타나게 한다, 지금 대상 네 묶음 — Windows·Linux 물리 서버와 VM, Kubernetes 클러스터, SQL Server, Azure 데이터 서비스, 옮기지 않는다, 정책·역할·태그·모니터링을 Azure 리소스처럼, 기능과 범위는 대상에 따라 다르다, 포털·CLI·PowerShell·REST API로 같은 방식으로 본다), `AzureArcDiagram`, az172·az173 해설, D118
 
 ---
 
@@ -853,6 +867,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 - 한국어 표기: security and governance → 보안 및 거버넌스(단원 제목), governance → 거버넌스, compliance → 규정 준수, DDoS → **DDoS(분산 서비스 거부)**, IaaS/PaaS/SaaS → 약어 그대로(첫 문단만 「인프라를 서비스로」·「서비스로서의 소프트웨어」로 풀어 썼다)
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(템플릿·감사·쓰는 방식에 따른 패치 자동 적용, 보안을 가장 많이 통제하려면 IaaS·패치를 맡기려면 PaaS나 SaaS, 공급자가 DDoS 공격에 대비하기 알맞다는 것), az022, G12, G13
+
+(phase 107 마무리) 템플릿 줄의 앱 문장에 「기술 표준과 규정 요구에 맞는 설정을 템플릿에 담아 두고」라는 조건을 넣었다. Learn은 미리 정해 둔(set) 템플릿을 말하는데, 앱 문장은 템플릿으로 배포하기만 하면 저절로 기준에 맞는 것처럼 읽혔다. phase 107의 ARM 템플릿 출처(「What are ARM templates?」)도 템플릿이 규정 준수를 보장한다고 하지 않는다.
 
 ## (phase 101) Learn 「Describe the benefits of using cloud services」 — 5 Describe the benefits of manageability in the cloud
 https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/5-manageability-cloud
@@ -1014,6 +1030,7 @@ https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-a
 쓰인 곳(phase 103 step 3): `azure-compute.containers`(앱 코드와 필요한 라이브러리를 한 꾸러미로 묶어 어디서든 같게 실행, VM과 다른 점 — 호스트의 운영 체제를 함께 쓴다, 운영 체제를 새로 시작하지 않아 가볍다, 덜 격리된다, 마이크로 서비스는 서비스마다 자기 컨테이너에서 따로 고치고 늘리고 배포), `VmContainerDiagram`(VM마다 운영 체제, 컨테이너는 호스트의 운영 체제 하나를 함께 쓴다), az062 해설, D53·D55
 
 쓰인 곳(phase 103 step 4): `HostingOptionsTable`(컨테이너 행)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(컨테이너를 푸는 한 줄 — 앱 코드와 그 코드를 실행하는 데 필요한 것을 한 꾸러미로 묶은 것)
 
 ## (phase 101) Azure DDoS Protection — Azure DDoS Protection overview
 https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview
@@ -1055,6 +1072,13 @@ https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli
 
 쓰인 곳: `azure-cloud-benefits.manageability`(명령줄 인터페이스를 푸는 한 줄, 명령을 하나씩 입력하거나 스크립트로 실행한다는 것), az023
 
+다시 확인한 날 2026-11-04. 영문·한국어 사본을 다시 받았다. (phase 107)
+- 셸을 먼저 연 다음 그 안에서 CLI 명령을 실행한다. Windows의 명령 프롬프트, Linux·macOS의 Bash가 이 개요의 예다. 여러 명령을 모을 때는 실행할 셸의 문법으로 스크립트를 쓴다 — 「첫 부분」 (phase 107)
+- 컴퓨터에 설치할 수 있는 운영 체제는 Windows·Linux·macOS다. 브라우저에서는 Cloud Shell로 쓴다 — 「첫 부분」 (phase 107)
+- 명령은 `az` 다음에 다룰 대상의 이름과 할 작업을 적는 꼴이다(문서의 예가 모두 `az`로 시작한다). 앱에 보여 줄 예는 VM을 만드는 `az vm create` 하나다. 명령 옵션과 출력은 쓰지 않는다 — 「Command reference design」, 아래 기존 「Azure 가격 — Virtual Machines … `az vm`」 항목의 명령 참조 (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI 항목 — `az`로 시작하는 명령, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(명령줄 도구, CLI의 뜻, `az` 다음에 대상과 작업, 셸을 연 다음 그 안에서 실행), `CommandToolsTable`(Azure CLI 행), az171; D115·D116. (phase 107)
+
 ## (phase 101) Azure REST API reference
 https://learn.microsoft.com/en-us/rest/api/azure/
 
@@ -1068,6 +1092,12 @@ https://learn.microsoft.com/en-us/rest/api/azure/
 
 쓰인 곳(phase 103 step 4): `azure-compute.functions`(REST 요청을 푸는 한 줄 — 프로그램이 HTTP로 서비스에 보내는 요청), `azure-compute.app-service`(REST API)
 
+다시 확인한 날 2026-11-04. 영문 사본을 다시 받고 `ko-docs-rest-api-azure.md`도 받았다. (phase 107)
+- 프로그램이 Azure 서비스에 HTTP 요청을 보내 작업을 부탁하고 응답을 받는 창구라는 풀이로 쓴다. 리소스를 만들거나 조회하거나 바꾸거나 지우는 작업이 근거다. 주소 형식·인증 코드·메서드 목록은 쓰지 않는다 — 「첫 문단」, 「Components of a REST API request/response」 (phase 107)
+- 한국어 표기: REST API는 옮기지 않는다(한국어판 제목). (phase 107)
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(REST API를 푸는 한 구절 — 프로그램이 Azure에 요청을 보내 작업을 맡기는 창구), `ResourceManagerDiagram`의 프로그램에서 장면. (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`의 목록 항목 REST API(사람이 아니라 프로그램이 HTTP 요청으로 리소스를 만들고·읽고·고치고·지운다), az164(NO.235 판단 — 보기 이름은 제목의 「Azure REST API」). (phase 107)
+
 ## (phase 101) Azure PowerShell — What is Azure PowerShell?
 https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
 
@@ -1079,6 +1109,16 @@ https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
 
 쓰인 곳(phase 101 step 2): `azure-cloud-benefits.manageability`(PowerShell을 푸는 한 줄), az023
 
+(phase 107 마무리) `manageability`의 PowerShell 풀이 끝에 「Azure를 다룰 때는 그 위에 Azure PowerShell을 설치해 쓴다」를 더했다. 풀이가 셸만 설명해, phase 107이 PowerShell(셸)과 Azure PowerShell(Az PowerShell 모듈)을 가른 뒤로는 셸만 있으면 Azure를 관리하는 것처럼 읽혔다. 근거는 이 항목 첫 줄(쓰려면 PowerShell이 있어야 하는 모듈)이다.
+
+다시 확인한 날 2026-11-04. 영문·한국어 사본을 다시 받았다. (phase 107)
+- 개념 이름은 제품 이름 **Azure PowerShell**로 정한다. 현재 쓰는 모듈 묶음의 이름은 **Az PowerShell 모듈**이다. PowerShell은 명령을 실행하는 셸이고 Azure PowerShell은 그 위에 Azure 관리 명령을 더한다. Learn 단원 2가 이를 셸 하나로 부르는 표현은 따르지 않는다 — 「첫 문단」, 「The Az PowerShell module」 (phase 107)
+- 모듈은 Windows·Linux·macOS에서 쓸 수 있다. 로컬에서 Azure 관리 스크립트를 실행하려면 호환되는 PowerShell과 Az 모듈을 준비한다. CLI만 설치한 Linux를 Azure PowerShell 준비가 끝난 환경으로 보지 않는다 — 「The Az PowerShell module」 (phase 107)
+- Azure 관리 명령은 REST 호출로 작업을 요청한다. 명령을 모아 스크립트로 쓰면 같은 작업을 되풀이하고 자동화할 수 있다 — 「첫 문단」, 「Module Design」, Learn 단원 2의 「What is Azure PowerShell?」 (phase 107)
+- 제품 개요와 설치 안내가 Windows PowerShell 호환 경로를 남겨 두었다. Windows PowerShell 전체가 지원 종료됐다고 쓰지 않는다. 옛 AzureRM 모듈의 지원 종료와도 구별한다. 버전 숫자·옛 모듈 명령은 앱에 쓰지 않는다 — 「The Az PowerShell module」, 「The AzureRM PowerShell module」 (phase 107)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure PowerShell 항목 — PowerShell에서 Azure를 다루는 명령 묶음, Windows·Linux·macOS에 설치), `ToolAccessDiagram`(설치 칸). (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(PowerShell과 Azure PowerShell의 차이, Az PowerShell 모듈, REST 호출, 스크립트로 되풀이·자동화, Windows·Linux·macOS, Windows PowerShell과도 함께), `azure-management-tools.cloud-shell`, `CommandToolsTable`, az169·az170; D113·D114. (phase 107)
+
 ## (phase 101) Azure portal — What is the Azure portal?
 https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
 
@@ -1089,6 +1129,13 @@ https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview
 - 한국어 표기: Azure portal → Azure 포털(이 문서 한국어판), web portal → 웹 포털(Learn 단원 5 한국어판)
 
 쓰인 곳(phase 101 step 2): `azure-cloud-benefits.manageability`(웹 포털을 푸는 한 줄 — 웹 브라우저로 여는 관리 화면, 메뉴와 버튼으로 리소스를 만들고 관리한다), az023
+
+다시 확인한 날 2026-11-04. 영문·한국어 사본을 다시 받았다. (phase 107)
+- 한 화면에서 리소스를 만들고 설정을 바꾸며 상태를 살핀다. 대시보드는 자주 볼 리소스의 정보를 골라 모아 보는 화면이다 — 「첫 문단」, 「Dashboard」 (phase 107)
+- 포털은 모든 Azure 데이터 센터에 배치되어 특정 센터의 장애에 견디고 사용자와 가까운 곳에서 제공된다. 유지 관리 때문에 서비스를 멈추는 시간 없이 계속 갱신한다. 이는 포털의 가용성 설명이며 사용자의 모든 리소스가 장애에 안전하다는 뜻은 아니다 — 「둘째 문단」 (phase 107)
+- 포털 머리 부분의 공용 조작 항목에 Cloud Shell이 있다 — 「Portal elements and controls」의 Global controls (phase 107)
+- 포털에서 하는 일의 예로 문서는 새 데이터베이스를 만들기, VM의 처리 능력을 높이기, 한 달 비용을 살피기를 든다 — 「첫 문단」 (phase 107 step 5)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 포털 항목), `azure-management-tools.azure-portal`(그래픽 사용자 인터페이스, 하는 일의 예, 안내 화면, 대시보드, 모든 데이터 센터에 있어 한 곳의 장애에 견딤, 유지 관리로 멈추지 않음과 「포털 자체의 이야기」라는 한정), `ToolAccessDiagram`, az166; D119. 포털 머리의 Cloud Shell은 쓰지 않았다. (phase 107)
 
 ## (phase 101) Learn 「Describe cloud service types」 — 2·3·4 (이 주제가 쓰는 한 줄 풀이만)
 https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/2-describe-infrastructure-service
@@ -1685,6 +1732,23 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(범위 네 층과 상속, 구독에 건 설정은 그 구독의 모든 리소스 그룹·리소스에, 리소스 그룹에 건 설정은 그 리소스 그룹과 안의 리소스에 적용되고 다른 리소스 그룹에는 걸리지 않음 — 「위로 올라가지 않는다」는 쓰지 않고 「건 층과 그 아래에만 미친다」로 썼다), az053·az054 해설, `HierarchyInheritanceDiagram`, G26
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 리소스·리소스 그룹 풀이, az159 해설.
+쓰인 곳(phase 107 step 3): `azure-governance.lock-inheritance`(리소스 그룹을 지우면 안의 리소스가 함께 지워진다), az163 해설
+
+다시 확인한 날 2026-11-04. `docs-arm-overview.md`를 다시 받았다. (phase 107)
+- 어떤 관리 도구를 고르든 리소스의 만들기·고치기·지우기 같은 **관리 요청**은 Azure Resource Manager가 받아 권한을 확인하고 담당 서비스로 보낸다 — 「Consistent management layer」. 앱의 표현도 「관리 요청」으로 한정한다. 도구가 보내는 데이터 읽기·쓰기까지 모든 통신이 이 길을 지난다고 넓히지 않는다(같은 문서 「Which location should I use for my resource group?」는 리소스에 직접 가는 데이터 요청과 구별한다). (phase 107)
+- 모든 도구의 요청을 같은 API가 처리하므로 어느 도구로 해도 결과와 쓸 수 있는 기능이 일관된다. 포털에서 쓸 수 있는 기능은 PowerShell·Azure CLI·REST API로도 쓸 수 있다 — 「Consistent management layer」 (phase 107 step 5)
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(관리 요청을 받아 누가 보냈는지와 권한을 확인한 뒤 담당 서비스로 넘긴다, 같은 작업은 어느 도구로 해도 결과가 같다 — 「관리 요청」으로 한정), `azure-management-tools.azure-portal`(포털의 관리 일은 Azure PowerShell·Azure CLI로도 할 수 있다), `ToolAccessDiagram`(화살표 다섯), az164 해설. ARM 자체의 배포·템플릿 사실은 이 step에서 늘리지 않는다. (phase 107)
+
+다시 확인한 날 2026-11-04(step 8). 영문·한국어 사본을 다시 받았다. (phase 107)
+
+- 요청이 오는 곳은 Azure 포털·Azure PowerShell·Azure CLI·REST API와 관리용 SDK다. 신원을 확인하고 작업 권한을 확인한 뒤 담당 서비스로 넘긴다. 같은 관리 API를 거치므로 같은 요청의 결과가 도구 때문에 달라지지 않는다 — 「Consistent management layer」 (phase 107)
+- 템플릿으로 리소스 여럿을 함께 배포·관리·모니터링하고, 의존 관계에 맞춰 순서를 정하며, 역할로 접근을 제어하고 태그로 리소스를 정리한다 — 「The benefits of using Resource Manager」 (phase 107)
+- 템플릿에는 리소스를 하나만 적어야 하는 것이 아니다. 배포 범위는 리소스 그룹뿐 아니라 구독·관리 그룹·테넌트도 있다 — 「Terminology」. 앱에서는 리소스 그룹의 예로 설명하되 거기서만 배포한다고 쓰지 않는다. 서비스는 Azure Resource Manager, 파일은 ARM 템플릿으로 구분한다 (phase 107)
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(요청이 오는 다섯 곳, 신원과 권한 확인 뒤 담당 서비스로, 같은 요청이면 도구가 달라도 결과가 같다, 리소스 여럿을 함께 배포·관리·살피기, 의존 관계에 맞춘 순서, 역할로 접근 제어, 태그, 서비스와 파일의 구분 — 리소스 그룹·구독은 이 주제 첫 개념의 풀이로 다시 썼다), `ResourceManagerDiagram`, az174 해설. NO.44·417의 Azure Resource Manager 답은 이 서비스 설명과 맞다. (phase 107)
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(템플릿 하나에 리소스를 여럿 적는다, 리소스 그룹은 배포할 곳의 예로만 든다). (phase 107)
+
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
 
@@ -1785,6 +1849,8 @@ https://learn.microsoft.com/en-us/azure/governance/management-groups/overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.management-group`(구독 위의 거버넌스 범위, 상속, 같은 테넌트, 10,000개·여섯 단계·부모 하나, 테넌트 루트 그룹 — 표시 이름이 테넌트 루트 그룹이고 루트 관리 그룹이라고도 부른다, 그 자체가 관리 그룹이다, 옮기거나 지울 수 없다, 새 구독이 그 바로 아래에 놓인다, 거기에 건 접근 권한·규칙은 테넌트의 모든 리소스에 미친다 — ID가 테넌트 ID와 같다는 것은 쓰지 않았다), `azure-resource-hierarchy.hierarchy`(정책·역할 할당의 예 — 리소스나 구독의 소유자가 정책을 바꿀 수 없다), az053·az055 해설, `HierarchyInheritanceDiagram`, D50·G26
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 관리 그룹 풀이, `azure-governance.policy-initiatives`의 관리 그룹과 비교, az159 해설.
+
 ## (phase 102) Azure RBAC — Understand scope for Azure RBAC
 https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview
 
@@ -1821,6 +1887,14 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/overview
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `azure-security-model.rbac-scope`(할당이 합쳐진다, 다른 할당이 없으면 닿지 못한다), `RbacAssignmentDiagram`, `RbacScopeDiagram`, D84, az123 해설
 
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 Azure RBAC 풀이, `PolicyCheckDiagram`, az155·az156 해설.
+
+다시 확인한 날 2026-11-04(step 8). 영문·한국어 사본을 다시 받았다. (phase 107)
+
+- Resource Manager는 요청한 대상에 적용되는 역할을 확인한다. 그 범위에서 해당 작업을 허락하는 역할이 없으면 접근을 허용하지 않는다 — 「How Azure RBAC determines if a user has access to a resource」. VM을 만들 권한이 없는 요청이 생성 단계로 가지 않는 도식의 근거다 (phase 107)
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(권한이 없는 요청은 리소스를 만드는 단계로 넘어가지 않는다, Azure RBAC를 푸는 한 줄), `ResourceManagerDiagram`의 권한이 없는 장면. 역할 평가 문법은 쓰지 않았다. (phase 107)
+
 ## (phase 102) Azure RBAC — Azure classic subscription administrators
 https://learn.microsoft.com/en-us/azure/role-based-access-control/classic-administrators
 
@@ -1842,6 +1916,24 @@ https://learn.microsoft.com/en-us/azure/governance/policy/overview
 
 쓰인 곳(phase 102 step 7): `azure-resource-hierarchy.hierarchy`(정책을 푸는 줄 — Azure Policy로 정하는 규칙, 조직의 기준을 리소스에 강제하고 여러 리소스가 지키는지 평가한다), az055 해설, D50(문항이 「규칙을 걸 자리」를 조건으로 주어 관리 그룹만 정답이 되게 했다 — az053). 정책 효과·정책 정의의 구조는 `azure-governance`의 몫이라 적지 않았고 쓰지도 않았다
 
+확인한 날 2026-11-03. 같은 URL의 영문판과 한국어판을 다시 받았다. 사본의 갱신일은 2026-07-08이다. (phase 107)
+
+- 정책 정의에는 판단 조건과 그 조건에 해당할 때의 효과가 들어간다. 정의를 할당하면 적용할 범위를 정하게 된다 — 「Overview」「Azure Policy objects」 (phase 107)
+- 할당 범위는 관리 그룹·구독·리소스 그룹·리소스 하나까지다. 자식 범위는 할당을 물려받으며 일부 범위를 제외할 수도 있다 — 「Overview」「Assignments」 (phase 107)
+- 정책 효과에 따라 요청 차단·감사 기록·설정 수정 등 결과가 달라진다. 모든 정책이 배포를 막는다는 뜻으로 쓰지 않는다 — 「Control the response to an evaluation」 (phase 107)
+- Azure RBAC는 대상에게 허용할 작업을 관리한다. 역할이 만들기나 변경을 허용하더라도, 그 요청의 결과가 거부 정책에 걸리면 실행되지 않는다 — 「Azure Policy and Azure RBAC」 (phase 107)
+- 현행 개요에는 요청 주체를 조건으로 삼는 정책도 있다. 비교 설명은 역할의 권한과 리소스 기준을 구별하는 데 쓰되, Policy가 신원이나 작업을 전혀 보지 않는다고 단정하지 않는다 — 「Manage identity-based actions and usage」「Azure Policy and Azure RBAC」 (phase 107)
+- 같은 목표의 정책 정의를 모은 것이 이니셔티브다. 묶음을 할당한 뒤 정의를 더해도 기존 할당의 평가 대상에 포함된다 — 「Recommendations for managing policies」「Initiative definition」 (phase 107)
+- 규정 준수 대시보드는 전체 상태에서 개별 정책·리소스의 결과로 들어가 볼 수 있다 — 「첫 문단」 (phase 107)
+- 관리 그룹에도 정책을 할당할 수 있지만, 실제로 평가되는 것은 그 아래 구독·리소스 그룹 수준의 리소스다 — 「Resources covered by Azure Policy」 (phase 107). **NO.41(답 Azure Policy)은 D50의 처리를 그대로 따른다** — 규칙을 정해 평가하는 것은 Azure Policy, 여러 구독에 한꺼번에 거는 자리는 관리 그룹
+- 기본 제공 정의의 예로 개요가 드는 것: 허용된 스토리지 계정 SKU, 허용된 리소스 종류, 허용된 위치, 허용되는 가상 머신 SKU, 리소스에 태그 추가(빠진 필수 태그와 기본값을 붙인다), 허용되지 않는 리소스 종류 — 「Policy definition」의 기본 제공 정책 목록(한국어판 이름). 괄호 안의 효과 이름(Deny·Modify)은 앱에 쓰지 않는다 (phase 107)
+- 정의는 포털·PowerShell·Azure CLI로 할당한다. 매개변수를 두면 한 정의를 할당마다 다른 값(예: 허용할 지역)으로 다시 쓴다 — 같은 절 (phase 107)
+- 한국어 표기: 정책 정의, 할당, 이니셔티브, 규정 준수, 비준수. 개념 이름은 「정책 이니셔티브」로 정한다 — 한국어판 「Azure Policy 개체」와 Learn 단원 3 (phase 107)
+
+쓰인 곳(phase 107 step 1): `azure-governance.purview`·`azure-governance.sensitivity-labels`의 Azure Policy와 견주는 줄(리소스가 지킬 규칙을 정한다, 리소스의 설정), az153 해설
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D50·D109·D110·G61.
+쓰인 곳(phase 107 step 3): `GovernanceToolsTable`(Azure RBAC·Azure Policy 행), `azure-governance.lock-inheritance`의 세 도구를 가르는 문단, az161 해설(어긋난 요청을 거부하는 정책).
+
 ## (phase 102) Azure Virtual Network — What is Azure Virtual Network? (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
 
@@ -1857,6 +1949,9 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 쓰인 곳(phase 102 step 5): `azure-resource-hierarchy.resource`(가상 네트워크를 푸는 한 줄 — VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 사설 네트워크. 온-프레미스 네트워크와의 통신은 쓰지 않았다), az048 해설
 쓰인 곳(phase 103 step 6): `azure-virtual-networking.virtual-network`
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간은 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다, 지점 및 사이트 간은 컴퓨터마다 설정하고 기존 네트워크를 거의 바꾸지 않는다, 지점 및 사이트 간 연결이 컴퓨터와 가상 네트워크 사이에 놓인다), `SiteToSiteVpnDiagram`, az075 해설
+
+쓰인 곳(phase 107 step 2): `azure-governance.policy-compliance`의 가상 네트워크 풀이.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 가상 네트워크 풀이(VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 네트워크), az176 해설.
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -1895,6 +1990,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
 - 한국어 표기: network interface → 네트워크 인터페이스, optional resources → 선택적 리소스, private/public IP address → **개인 IP 주소 / 공용 IP 주소**, network security group → 네트워크 보안 그룹, load balancer → 부하 분산 장치
 
 쓰인 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(VM은 가상 네트워크에 이어져야 통신한다, VM을 가상 네트워크에 잇는 네트워크 인터페이스 — 예에서는 줄였다), `TemplateDeploymentDiagram`의 legend, az176 해설.
 
 ## (phase 103) Azure Managed Disks — Azure managed disks overview
 https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
@@ -2116,6 +2212,7 @@ https://learn.microsoft.com/en-us/azure/aks/what-is-aks
 - 한국어 표기: 「AKS(Azure Kubernetes Service)」, managed Kubernetes service → 관리되는 Kubernetes 서비스
 
 쓰인 곳(phase 103 step 3): `azure-compute.container-services`(AKS 항목 — Kubernetes를 바탕으로 하고 Kubernetes를 운영하는 부담을 Azure가 덜어 준다. 모드와 고객이 맡는 노드는 쓰지 않았다), az063·az064 해설, G31
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(AKS를 푸는 한 줄 — Azure가 Kubernetes를 운영하는 일을 덜어 주는 서비스)
 
 ## (phase 103) Azure Architecture Center — Choose an Azure container service
 https://learn.microsoft.com/en-us/azure/architecture/guide/choose-azure-container-service
@@ -2475,6 +2572,7 @@ https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateway
 - 한국어 표기: 제품 이름 Azure VPN Gateway, 리소스 VPN 게이트웨이, 가상 네트워크 게이트웨이, 사이트 간(이 문서 한국어판에 「사이트 및 사이트 간」도 섞인다), 지점 및 사이트 간, VNet 간, 온-프레미스 VPN 디바이스
 
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-gateway`(연결을 여럿 만든다), `azure-virtual-networking.vpn-connection-types`(사이트 간·지점 및 사이트 간·VNet 간의 두 끝), `SiteToSiteVpnDiagram`
+쓰인 곳(phase 107 step 7): az172 해설(오답 Azure VPN Gateway를 푸는 한 줄 — 회사 네트워크와 Azure의 가상 네트워크 사이에 암호화된 연결을 만든다)
 
 ## (phase 103) Azure VPN Gateway — Tutorial: Create a site-to-site VPN connection in the Azure portal
 https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal
@@ -2549,6 +2647,24 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-r
 - 한국어 표기: 잠금, 리소스 잠금
 
 쓰인 곳(phase 103 step 9): `azure-virtual-networking.azure-dns`
+
+확인한 날 2026-11-03. 같은 URL의 두 언어판을 다시 받았다. 사본의 갱신일은 2025-02-06이다. (phase 107)
+
+- 구독·리소스 그룹·리소스에 잠금을 건다. 삭제 잠금은 읽기와 변경을 허용하고 삭제를 막는다. 읽기 전용 잠금은 변경과 삭제를 막는다 — 「첫 문단」 (phase 107)
+- 위 범위의 잠금은 안에 있는 리소스와 나중에 추가한 리소스에도 미친다. 상속 경로에서 잠금이 겹치면 제한이 더 큰 것이 우선한다 — 「Lock inheritance」 (phase 107)
+- 안의 리소스 하나에 삭제 잠금이 있어도 리소스 그룹 전체 삭제가 실패한다. 잠기지 않은 리소스만 먼저 지우는 부분 삭제도 일어나지 않는다 — 「Lock inheritance」 (phase 107)
+- 잠금은 관리 작업에 적용된다. SQL 서버의 설정을 읽기 전용으로 잠가도 데이터베이스 안의 데이터를 바꾸는 작업까지 막지는 않는다 — 「Understand scope of locks」 (phase 107)
+- 읽기 전용으로 잠근 저장소 계정은 키 목록 조회도 막힌다. 이 조회가 관리 API의 POST 작업이기 때문이다. 단순히 화면에서 정보를 보는 일처럼 보여도 막힐 수 있는 예다 — 「Considerations before applying your locks」 (phase 107)
+- 읽기 전용 잠금은 그 리소스를 다룰 권한이 있는 사용자 모두를 읽기 권한자(Reader) 역할이 주는 권한으로 묶는 것과 비슷하다 — 「첫 문단」 (phase 107 step 3)
+- 저장소 계정 키는 그 계정의 데이터에 대한 모든 접근을 준다. 키 목록 조회를 POST 요청으로 처리하는 것은 키에 대한 접근을 지키려는 것이다 — 「Considerations before applying your locks」 (phase 107 step 3)
+- 잠금을 만들거나 지우려면 `Microsoft.Authorization/*`나 `Microsoft.Authorization/locks/*` 권한이 있어야 한다. 소유자와 사용자 액세스 관리자는 이 권한을 갖고, 필요한 권한을 넣은 사용자 지정 역할도 가능하다 — 「Who can create or delete locks」 (phase 107)
+- 잠금이 막는 작업은 소유자 권한으로도 바로 실행할 수 없다. 필요한 권한으로 잠금을 먼저 지운 뒤 작업한다 — 「첫 문단」(잠금은 모든 사용자 권한보다 우선한다) 및 Learn 단원 4 「How do I delete or change a locked resource?」 (phase 107)
+- 같은 종류의 잠금을 한 리소스에 여럿 직접 거는 것과, 읽기 전용 잠금이 있는 리소스에 삭제 잠금을 더하는 것을 말하는 문장은 이 문서와 Learn 단원 4에서 **찾지 못했다**. 상속 경로에서 잠금이 겹치는 일과 그때 가장 제한적인 것이 우선한다는 것만 확인했다(D111) (phase 107)
+- 한국어 표기: 「잠금 상속」은 한국어판 절 제목이다. 포털의 「삭제」「읽기 전용」에 잠금을 붙여 두 종류를 구별한다. 명령에서의 이름은 각각 `CanNotDelete`·`ReadOnly`다. 역할은 앞 phase와 같은 「소유자」「사용자 액세스 관리자」로 쓴다 (phase 107)
+
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`, `azure-governance.lock-inheritance`, `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`, az160~az163; D111·G62.
+
+쓰인 곳(phase 107 step 2): az155 해설의 리소스 잠금 풀이(관리 중인 자원의 변경·삭제를 제한한다).
 
 ## (phase 103) Azure Monitor — Activity log in Azure Monitor (한 줄 풀이만)
 https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
@@ -3339,6 +3455,10 @@ https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview
 
 쓰인 곳: `azure-data-movement.azure-migrate`, `AzureMigrateDiagram`, `DataMoveOptionsTable`, G45
 
+다시 확인한 날 2026-11-04. 영문 사본을 다시 받았다. (phase 107)
+- Azure Migrate는 Azure로 이전할 대상을 평가하고 이전을 계획·실행하게 돕는다. Azure 밖의 서버를 그 위치에 두고 연결해 관리하는 Arc와 견주는 한 줄에 쓴다 — 「첫 문단」, 「Benefits of Azure Migrate」 (phase 107)
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Azure Migrate를 푸는 한 줄 — 옮길 수 있는지 평가하고 이전을 계획하고 실행하게 돕는다, Arc는 옮기지 않는다는 차이), az172·az173 해설
+
 ## (phase 104) Azure Data Box — What is Azure Data Box?
 https://learn.microsoft.com/en-us/azure/databox/data-box-overview
 
@@ -3476,6 +3596,8 @@ https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-
 - 한국어 표기: Microsoft Entra Connect, 온-프레미스, 동기화 — 제목 「Microsoft Entra Connect란?」
 
 쓰인 곳(phase 105 step 1): `azure-identity.entra-connect`, `EntraConnectDiagram`
+
+쓰인 곳(phase 107 step 7): az172 해설(오답 Microsoft Entra Connect를 푸는 한 줄 — 회사 안 디렉터리의 사용자와 그룹 정보를 Microsoft Entra ID로 동기화하는 프로그램)
 
 ## (phase 105) Microsoft Entra — Microsoft Entra Connect Sync와 쓰기 저장
 https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis
@@ -3771,6 +3893,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
 | 사용자 액세스 관리자 | 보기만 한다 | 할 수 있다 |
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac`, `RbacRolesTable`, D84, G50, az120 해설
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(읽기 권한자·사용자 액세스 관리자 풀이), az161 보기와 해설(읽기 권한자)
 
 ## (phase 105) Azure RBAC — 역할을 할당하는 곳과 대상, 사용자 지정 역할
 https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal
@@ -3800,6 +3923,7 @@ https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitio
 - 한국어 표기: data action → 데이터 작업, role assignment → 역할 할당, deny assignment → 거부 할당, Storage Blob Data Reader → Storage Blob 데이터 읽기 권한자
 
 쓰인 곳(phase 105 step 6): `azure-security-model.rbac-scope`(데이터 작업과 전용 역할, 앱 안의 권한, 할당이 합쳐진다), `RbacScopeDiagram`. 거부 할당은 쓰지 않았다 — 「합쳐진다」로만 쓰고 「막는 방법이 없다」로 단정하지 않았다
+쓰인 곳(phase 107 step 3): az161 해설(역할 할당은 더해지므로 읽기 권한자를 더해 줘도 지우는 권한이 남는다)
 
 ## (phase 105) Learn 「Describe Azure identity, access, and security」 — 7 Describe Zero Trust model
 https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/7-describe-zero-trust-model
@@ -3859,6 +3983,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-acces
 - 한국어 표기: Defender for Cloud, 보안 상태, 지속적인 평가, 보안, 방어, 권장 사항, 경고, 보안 점수, 온-프레미스, 다중 클라우드, Microsoft 클라우드 보안 벤치마크, Just-In-Time VM 액세스
 
 쓰인 곳(phase 105 step 8): `azure-security-model.defender-for-cloud`, `DefenderForCloudDiagram`, `az127`, `az128`
+쓰인 곳(phase 107 step 1): az153 해설(오답 Defender for Cloud를 푸는 한 줄 — 리소스 설정의 안전을 살피고 공격 조짐을 경고한다)
 
 ## (phase 105) Microsoft Defender for Cloud — 옛 이름, 무료와 유료, 규정 준수
 https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction
@@ -4088,6 +4213,10 @@ https://learn.microsoft.com/en-us/cli/azure/vm
 쓰인 곳(phase 106): `azure-cost-factors.vm-stop-deallocate`, `VmStopBillingDiagram`, az135, D93
 쓰인 곳(phase 106): `azure-cost-factors.hybrid-benefit`, `HybridBenefitDiagram`
 
+다시 확인한 날 2026-11-04. 이 항목의 명령 참조 `https://learn.microsoft.com/en-us/cli/azure/vm`을 열고 `docs-cli-az-vm.md`를 다시 받았다. (phase 107)
+- `az vm create`는 Azure VM을 만드는 명령이다. Azure PowerShell의 `New-AzVM`과 같은 작업을 서로 다른 꼴로 나타내는 예로만 쓴다. 실행 가능한 완성 명령을 가르치는 것이 아니므로 옵션·매개변수·출력은 옮기지 않는다 — 「az vm create」 (phase 107)
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(`az vm create`와 `New-AzVM`을 견주는 문단, vm이 대상이고 create가 작업), `azure-management-tools.azure-powershell`, az171 해설; D115. (phase 107)
+
 ## (phase 106) Azure Virtual Machines — Hibernation for Azure virtual machines
 https://learn.microsoft.com/en-us/azure/virtual-machines/hibernate-resume
 
@@ -4268,6 +4397,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-cost-management-azur
 - 한국어 표기: 「태그」, 「리소스 태그」, 「이름과 값」, 「메타데이터」, 「리소스 관리」, 「비용 관리 및 최적화」, 「운영 관리」, 「거버넌스 및 규정 준수」, 「워크로드 최적화 및 자동화」. Security는 한국어판이 「안전」으로 옮겼으나 본문이 보안 수준을 말하므로 **「보안」** 으로 쓴다
 
 쓰인 곳(phase 106): `azure-cost-management.tags`, `azure-cost-management.tag-inheritance`, `TagCostReportDiagram`, `TagInheritanceDiagram`, G59, az148, az149
+
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`의 태그 풀이, `azure-governance.policy-compliance`의 부서 태그 예, az155·az158 해설.
 
 ## (phase 106) Cost Management — Overview of Cost Management 가운데 「누가 쓰는가」와 경고
 https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management
@@ -4533,3 +4664,829 @@ https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-
 - 일반 낱말 「지출 한도」 — Learn 단원 6과 예산 튜토리얼 한국어판은 예산을 말하며 이 말을 쓴다. 이 주제는 기능 「Azure 지출 한도」에만 쓰고, 예산에는 「기준」·「금액 기준」을 쓴다.
 
 **쓰지 않는 이름**: FinOps, 스마트 보기·KPI, 내보내기, Consumption API·REST API, Runbook·웹훅을 개념 이름으로, 일정 경고·청구서 경고, Enterprise Agreement의 등록 계정·부서 구조, 구독 소유권 이전, Microsoft Partner Agreement.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 2: Describe the purpose of Microsoft Purview
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-2-describe-purpose-microsoft-purview.md`와 `ko-` 판.
+
+- 조직의 데이터가 여러 장소에 나뉘어 있어도 어디에 무엇이 있는지 파악하고 보호·관리를 돕는 제품군이다. 온-프레미스, 여러 클라우드, SaaS가 이 범위에 들어간다 — 「첫 문단」
+- 위험 및 규정 준수 솔루션은 중요한 데이터를 보호하고 데이터 위험과 규정상 요구를 관리하게 돕는다. Microsoft 365의 Teams·OneDrive·Exchange도 이 영역과 연결된다 — 「Microsoft Purview risk and compliance solutions」
+- 통합 데이터 거버넌스는 데이터 탐색·분류·계보를 통해 전체 데이터의 지도를 만든다. 민감한 데이터의 위치와 쓰임을 파악하고 필요한 데이터를 찾게 하며 데이터 접근 관리도 돕는다 — 「Unified data governance」
+- 두 갈래는 이 Learn 단원이 설명하는 구분이다. 제품 전체의 현재 메뉴가 정확히 두 개라고 주장하거나 Azure 리소스 배포를 제어하는 기능으로 설명하지 않는다 — 「Microsoft Purview risk and compliance solutions」「Unified data governance」
+- 한국어 표기: Microsoft Purview, 위험 및 규정 준수 솔루션, 통합 데이터 거버넌스, 데이터 검색, 데이터 분류, 데이터 계보. 「검색」은 본문에서 자동으로 찾아내는 일로 풀고 도식 버튼은 「데이터 찾기」로 쓴다.
+
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 3: Describe the purpose of Azure Policy
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/3-describe-purpose-azure-policy
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-3-describe-purpose-azure-policy.md`와 `ko-` 판.
+
+- 조직의 규칙을 정책으로 만들고 적용할 범위를 정해, 리소스를 감사하거나 규칙을 강제한다. 기본 제공 정책도 있다 — 「첫 문단」「How does Azure Policy define policies?」
+- VM 크기를 제한하는 정책은 VM을 만들 때뿐 아니라 크기를 바꾸는 요청에도 쓰인다. 정책보다 먼저 만들어 둔 VM도 평가한다 — 「How does Azure Policy define policies?」
+- 어떤 경우에는 비준수 리소스를 자동으로 고친다. 예로 `AppName` 태그를 요구하고 빠졌으면 붙인다. 리소스를 예외로 표시할 수 있어 통제권은 사용자에게 남는다 — 「How does Azure Policy define policies?」 넷째 문단. 「어떤 경우에는」이 범위다 — 고칠 수 있는 정책의 범위는 아래 「Remediate non-compliant resources」로 한정한다
+- 정책을 각 층(리소스·리소스 그룹·구독 등)에 걸고, 위 층에 건 정책은 아래로 상속된다 — 둘째 문단. 상속은 `azure-resource-hierarchy.hierarchy`가 이미 가르치므로 한 줄로만 쓴다
+- 관련 정책을 이니셔티브로 묶어 같은 목표에 대한 준수 상태를 함께 살핀다. 단원의 예 「Enable Monitoring in Azure Security Center」는 옛 이름이다 — 제품 개요는 같은 예를 「Enable Monitoring in Microsoft Defender for Cloud」로 적는다(`docs-policy-overview.md` 「Initiative definition」). 앱은 이 이름도 정책 개수도 쓰지 않고 「보안 권장 사항을 살피는 정책들을 묶은 것」처럼 하는 일로 쓴다 — 「What are Azure Policy initiatives?」
+- Azure DevOps 연동과 「Policy guardrails for AI-assisted changes」 절은 쓰지 않는다(guide 「쓰지 않는 것」)
+- 한국어 표기: Azure Policy, 정책 정의, 할당, 이니셔티브. 자동 수정과 예외의 구체적 범위는 아래 제품 문서로 한정한다.
+
+쓰인 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`; D109·D110·G61.
+
+## (phase 107) Describe features and tools in Azure for governance and compliance — 단원 4: Describe the purpose of resource locks
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-describe-purpose-resource-locks
+
+확인한 날 2026-11-03. 사본에 갱신일 표시는 없다. 사본: `learn-describe-features-tools-azure-for-governance-compliance-4-describe-purpose-resource-locks.md`와 `ko-` 판.
+
+- 권한을 가진 사람이 실수로 리소스를 지우거나 바꾸는 일을 잠금으로 제한한다. 적용할 자리는 개별 리소스·리소스 그룹·구독이다 — 「첫 문단」
+- 포털의 잠금 항목에서 잠금을 관리할 수 있고 PowerShell·Azure CLI·ARM 템플릿도 지원한다. 여기서는 관리 수단의 이름만 쓴다 — 「How do I manage resource locks?」
+- 소유자도 잠금으로 막힌 작업을 하려면 먼저 잠금을 풀어야 한다. 수정 전에 늘 해제해야 한다는 단원 중간의 문장은 두 종류에 공통으로 적용하지 않는다. 삭제 잠금은 변경을 허용한다 — 「Types of resource locks」「How do I manage resource locks?」
+- 한국어 표기: 리소스 잠금, 삭제 잠금, 읽기 전용 잠금. Learn의 Delete는 제품 문서의 CanNotDelete와 같은 종류다.
+
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(거는 곳 — 포털의 잠금 항목, Azure PowerShell·Azure CLI·ARM 템플릿, 소유자도 먼저 잠금을 푼다), `azure-governance.lock-inheritance`; G62.
+
+## (phase 107) Microsoft Purview — Learn about Microsoft Purview
+https://learn.microsoft.com/en-us/purview/purview
+
+확인한 날 2026-11-03. 「Last updated on」 2026-05-15. 사본: `docs-purview-overview.md`와 `ko-` 판.
+
+- 데이터를 파악하고 보호하며 관리하는 여러 솔루션을 함께 제공한다. 데이터 보안·데이터 거버넌스·규정 준수 솔루션을 포함하므로 Azure Purview라는 옛 데이터 거버넌스 이름만으로 현재 제품군 전체를 정의하지 않는다 — 「첫 문단」「Unified data security, governance, and compliance solutions for the era of AI」
+- 한국어 표기: Microsoft Purview. 두 목록 항목의 한국어 이름은 Learn 단원 2를 기준으로 한다.
+
+쓰인 곳: `azure-governance.purview`, az153; G60.
+
+## (phase 107) Microsoft Purview — Classic governance solutions
+https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview
+
+확인한 날 2026-11-03. 「Last updated on」 2025-01-28. 사본: `docs-purview-classic-governance-overview.md`(영문판).
+
+- 과거 Azure Purview에 해당했던 것은 현재 제품군 중 클래식 데이터 거버넌스 서비스(클래식 Data Catalog·Data Health Insights·Workflow) 쪽이다. 이 클래식 서비스들은 새 고객을 받지 않고 고객 지원 모드에 있다. 현행 제품군 전체가 그 이름 하나에서 단순히 바뀌었다고 설명하지 않는다 — 「첫 Note」
+- 데이터 원본을 등록할 때 원본 데이터는 있던 곳에 남고 위치 참조와 메타데이터가 지도에 들어간다. 도식에서 세 장소의 데이터를 Purview로 모두 옮겨 저장하는 것처럼 그리지 않는다 — 「Microsoft Purview advantages」
+- 한국어 표기: 과거 이름의 확인에만 영문판을 사용했다. 클래식 서비스의 화면·설치 방법은 쓰지 않는다.
+
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
+
+## (phase 107) Microsoft Purview — Data lineage user guide for classic Data Catalog
+https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide
+
+확인한 날 2026-11-03. 「Last updated on」 2025-07-18. 사본: `docs-purview-data-lineage.md`와 `ko-` 판.
+
+- 데이터가 처리되는 과정에서 생긴 데이터 집합들의 관계를 계보로 연결해 볼 수 있다. 수집한 메타데이터를 연결하는 것이며 계보 수집 범위는 연동 시스템마다 다르다 — 「Background」「Lineage collection」
+- 온-프레미스에서 클라우드 처리와 분석으로 이어지는 경로는 클래식 거버넌스 개요의 예에도 있다. 그림에는 데이터 이동을 추적하는 예임을 밝히며 모든 원본의 경로를 저절로 완성한다는 뜻으로 쓰지 않는다 — 「Lineage collection」 및 클래식 개요 「Classic Data Catalog」
+- 한국어 표기: 한국어판 제목·본문의 「데이터 계보」를 채택한다. 짧은 도식 버튼은 「계보」, 본문 첫 등장은 「데이터 계보」다.
+
+쓰인 곳: `azure-governance.purview`, `PurviewDataMapDiagram`, az153; G60.
+
+## (phase 107) Azure Information Protection — What is Azure Information Protection?
+https://learn.microsoft.com/en-us/azure/information-protection/what-is-information-protection
+
+확인한 날 2026-11-03. 「Last updated on」 2024-05-13. 사본: `docs-information-protection-what-is.md`와 `ko-` 판.
+
+- AIP 추가 기능은 종료되어 Microsoft 365 앱·서비스의 내장 레이블로 대체됐다. 추가 기능이 빠진 정보 보호 클라이언트는 계속 내려받을 수 있다(제품: Microsoft Purview Information Protection) — 「Note」
+- AIP는 Purview의 민감도 레이블 등이 이용하는 Azure Rights Management 암호화 서비스를 제공한다. AIP 전체가 없어졌다거나 전체 서비스가 Purview로 이름만 바뀌었다고 쓰면 안 된다 — 「첫 문단」
+- 문서가 Purview Information Protection의 이전 이름으로 적은 것은 Microsoft Information Protection이다. 리소스 잠금을 복원하는 서비스를 설명하는 문서가 아니다 — 「Note」「첫 문단」
+- 한국어 표기: 이름 둘 — Azure Information Protection(AIP), Microsoft Purview Information Protection. 옛 추가 기능과 현재 레이블 경험을 구별한다.
+
+쓰인 곳: `azure-governance.sensitivity-labels`(예전 이름 한 줄); D106·D108.
+
+## (phase 107) Microsoft Purview — Protect your sensitive data
+https://learn.microsoft.com/en-us/purview/information-protection
+
+확인한 날 2026-11-03. 「Last updated on」 2026-02-27. 사본: `docs-purview-information-protection.md`와 `ko-` 판.
+
+- Microsoft Purview Information Protection은 민감한 정보를 찾고 분류하며 보호하는 기능을 제공한다. 보호 방법에는 암호화·접근 제한·문서에 보이는 표시가 있다 — 「첫 문단」「Protect your data」
+- 한국어 표기: 제품 이름 Microsoft Purview Information Protection(옮기지 않는다), 민감도 레이블.
+
+쓰인 곳: `azure-governance.sensitivity-labels`; D106.
+
+## (phase 107) Microsoft Purview — Learn about sensitivity labels
+https://learn.microsoft.com/en-us/purview/sensitivity-labels
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-29. 사본: `docs-purview-sensitivity-labels.md`와 `ko-` 판.
+
+- 민감도 레이블은 문서·메일에 민감도를 나타내는 분류를 붙이고 설정해 둔 보호를 적용하게 한다. 이름은 조직이 정할 수 있으며 모든 레이블이 암호화하는 것은 아니다 — 「What a sensitivity label is」「What sensitivity labels can do」
+- 레이블에 암호화와 콘텐츠 표시를 설정할 수 있다. 표시는 워터마크·머리글·바닥글을 포함한다. 암호화는 허용한 사람이 콘텐츠에서 할 수 있는 작업도 제한할 수 있다 — 「What sensitivity labels can do」
+- 현재 문서는 기밀 같은 상위 이름과 하위 레이블을 구분한다. 상위 그룹 이름만으로 특정 암호화·표시 설정을 보장하지 않는다 — 「Sublabels that use parent labels or label groups」
+- 한국어 표기: 민감도 레이블, 워터마크, 머리글, 바닥글, 암호화. 예시 이름은 아래 기본 레이블 문서로 대조한다.
+
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`, az154; D106.
+
+## (phase 107) Microsoft Purview — Automatically apply sensitivity labels
+https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-14. 사본: `docs-purview-apply-sensitivity-label-automatically.md`와 `ko-` 판.
+
+- Word·Excel·PowerPoint·Outlook에서 문서를 편집하거나 메일을 작성할 때 조건에 맞는 레이블을 권하거나 자동으로 붙일 수 있다. 두 경우 모두 사용자가 그 레이블을 받아들일지 거절할지 정한다 — 앱에서는 「자동으로 붙여도 사용자가 바꿀 수 있다」까지 쓴다. 지원하는 앱·버전이어야 하며 모든 클라이언트에 공통인 기능은 아니다 — 「첫 문단: two different methods」
+- 서비스 쪽 자동 레이블 정책은 이미 SharePoint·OneDrive에 저장된 파일과 Exchange Online이 주고받는 메일을 대상으로 한다. 관리자가 만드는 정책이고 사용자가 권고를 받아 누르는 과정은 없으며, 메일함에 이미 저장된 메일까지 이 경로로 처리한다고 쓰지 않는다 — 「첫 문단: Service-side labeling」
+- 내용에 민감한 정보가 있는지 등의 조건을 관리자가 구성한다. 신용카드 번호가 든 문서는 조건의 예로 쓸 수 있으나 실제 번호나 개수 기준은 앱에 넣지 않는다 — 「How to configure auto-labeling for Office apps」
+- 한국어 표기: 자동 레이블 지정. 본문에는 「조건에 맞으면 붙인다」와 「사용자에게 권한다」를 나누고 서비스 쪽에는 권고 방식을 붙이지 않는다.
+
+쓰인 곳: `azure-governance.sensitivity-labels`; D106.
+
+## (phase 107) Microsoft Purview — Restrict access to content by using sensitivity labels to apply encryption
+https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels
+
+확인한 날 2026-11-03. 「Last updated on」 2026-04-15. 사본: `docs-purview-encryption-sensitivity-labels.md`와 `ko-` 판.
+
+- 레이블로 암호화한 파일은 회사 밖으로 전달되거나 이름이 달라져도 암호화된 상태를 유지한다. 허용된 사람·사용 권한은 설정에 따른다 — 「첫 문단」
+- 레이블 이름만 붙였다고 모든 콘텐츠가 암호화되는 것은 아니다. 이 그림과 설명의 전제는 해당 레이블에 암호화를 설정했다는 것이다 — 「Configure encryption settings」
+- 암호화 설정의 예로 조직 안의 사용자만 문서·메일을 열게 하는 경우를 든다. 이렇게 설정한 레이블의 문서는 조직 밖의 받는 사람이 열지 못한다. 암호화한 콘텐츠를 풀 수 있는 것은 레이블의 암호화 설정이 허락한 사용자뿐이다 — 「첫 문단」 아래의 예 목록과 「When a document, email, or meeting invite is encrypted」 (phase 107 step 1)
+- 한국어 표기: 민감도 레이블, 암호화. 「보호가 따라간다」를 사용할 때 암호화 설정이라는 전제를 함께 적는다.
+
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`, az154; D106.
+
+## (phase 107) Microsoft Purview — Default sensitivity labels and policies
+https://learn.microsoft.com/en-us/purview/default-sensitivity-labels-policies
+
+확인한 날 2026-11-03. 「Last updated on」 2026-05-01. 사본: `docs-purview-default-sensitivity-labels-policies.md`와 `ko-` 판.
+
+- 기본 이름에는 Personal·Public·General·Confidential·Highly Confidential이 있다. 조직이 자신의 분류와 보호 설정에 맞게 바꿀 수 있는 출발점이다 — 「첫 문단」「Default sensitivity labels」
+- 영문판과 한국어판의 하위 레이블 목록·설정 설명은 서로 완전히 같지 않다. 한국어판에서는 이름만 취하고 실제 동작과 설정은 영문판을 따른다. 「기밀이면 기본적으로 워터마크와 암호화가 함께 붙는다」는 예를 만들지 않는다 — 「Default sensitivity labels」
+- 한국어 표기: 개인, 공용, 일반, 기밀, 극비. 개요 한국어판은 Highly Confidential까지 「기밀」로 번역한 자리가 있어 이 문서의 「극비」와 구별한다. 도식은 설정을 따로 밝힌 「레이블 1」로 확정한다.
+
+쓰인 곳: `azure-governance.sensitivity-labels`, `SensitivityLabelDiagram`.
+
+## (phase 107) Azure Policy — Assignment structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2026-08-07. 사본: `docs-policy-assignment-structure.md`와 `ko-` 판.
+
+- 할당은 어느 리소스를 정의나 이니셔티브로 평가할지 정한다. 같은 정의도 할당할 때 매개변수를 달리 줄 수 있다 — 「첫 문단」
+- 할당에서 집행을 끈 모드는 평가 결과와 실제 차단을 구별하게 한다. 입문 도식은 집행 중인 거부 정책을 전제로 하며 모든 할당의 성질로 넓히지 않는다 — 「Enforcement mode」
+- 한국어 표기: 정책 할당, 범위. 「정의」와 「할당」을 같은 말로 쓰지 않는다.
+
+쓰인 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; D109.
+
+## (phase 107) Azure Policy — Effect basics and layered policies
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-effect-basics.md`와 `ko-` 판.
+
+- 규칙에 해당했을 때 할 일은 효과가 정하고, 새 리소스·변경 요청·기존 리소스 평가에서 동작이 갈린다 — 「첫 문단」
+- 문서의 지역 제한 예에서 이미 있는 리소스는 비준수 여부를 기록하지만 새로운 요청은 deny로 거부한다. audit인 다른 정책에 어긋나더라도 새 리소스가 만들어지는 예도 있다 — 「Layering policy definitions」
+- 한국어 표기: 효과, 거부(deny), 감사(audit). **효과의 이름은 앱에 쓰지 않는다**(guide 「쓰지 않는 것」) — 「규칙에 어긋난 요청을 막는 정책」·「어긋나도 기록만 하는 정책」·「빠진 것을 고치는 정책」처럼 하는 일로 쓴다. 이 문서의 deny·audit·modify는 출처 기록에서만 쓴다
+
+쓰인 곳: `azure-governance.azure-policy`, `azure-governance.policy-compliance`; D109·G61.
+
+## (phase 107) Azure Policy — Deny effect
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-deny.md`와 `ko-` 판.
+
+- deny는 조건에 걸린 생성·변경 요청을 리소스 공급자에게 넘기기 전에 거절한다 — 「Deny evaluation」
+- 이미 존재하는 리소스를 deny 정책으로 평가했을 때의 결과는 비준수 표시다. 지역 제한의 기존 리소스가 그대로 평가 대상으로 남는 effect-basics 예와 함께, 이 평가 자체는 삭제·이동·중지 작업이 아니라는 범위로 설명한다. 모든 정책이나 이후 변경 요청에까지 「영향이 없다」고 넓히지 않는다 — 「Deny evaluation」 및 effect-basics 「Layering policy definitions」
+- 한국어 표기: 거부, 비준수. 기존 리소스 곁말은 「비준수로 표시」가 핵심이며 「그대로 동작」에는 deny 평가만의 결과라는 조건을 단다.
+
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; D109.
+
+## (phase 107) Azure Policy — Built-in policy definitions
+https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-27. 사본: `docs-policy-built-in-policies.md`와 `ko-` 판.
+
+- 허용 지역, 허용 VM 크기, 허용하지 않을 리소스 종류를 정하는 기본 제공 정의가 있다 — 「General」「Compute」
+- 리소스에 특정 태그가 있어야 한다는 정의와 태그 값까지 요구하는 정의가 별도로 있다. 태그를 요구해 거부하는 것과 빠진 태그를 보태는 수정은 같은 효과가 아니다 — 「Tags」
+- 한국어 표기: 영문 표의 Allowed locations·Allowed virtual machine size SKUs·Not allowed resource types·Require a tag on resources를 확인했다. 한국어판 표도 영문 이름을 유지한다. 본문 예는 개요 한국어판의 「허용된 위치」「허용되는 가상 머신 SKU」「허용되지 않는 리소스 종류」와 설명형 「리소스의 태그 요구」로 쓴다. VM SKU는 크기 종류를 가리킨다고 풀고, 이를 포털에서 고정된 한국어 버튼 이름이라고 하지 않는다.
+
+쓰인 곳: `azure-governance.azure-policy`, `PolicyCheckDiagram`; G61.
+
+## (phase 107) Azure Policy — Get compliance data
+https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data
+
+확인한 날 2026-11-03. 「Last updated on」 2025-02-11. 사본: `docs-policy-get-compliance-data.md`와 `ko-` 판.
+
+- 정책·이니셔티브 할당, 정의 갱신, 리소스 생성·변경, 예외 변경 등에 따라 평가가 실행된다. 일반 평가 주기는 24시간이지만 대상을 평가하는 시간이 따로 필요하므로 즉시 결과가 완성된다고 하지 않는다 — 「Evaluation triggers」
+- 포털의 Azure Policy 규정 준수 화면에서 할당별·리소스별 결과를 확인한다. 예외로 처리한 결과도 표시되는 상태 중 하나다 — 「Azure portal」「Evaluation triggers」
+- 한국어 표기: 규정 준수, 비준수. 개념 제목 「규정 준수 평가」는 두 낱말을 합쳐 이 개념이 설명하는 일을 이름으로 삼은 것이다.
+
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+
+## (phase 107) Azure Policy — Remediate non-compliant resources
+https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-remediate-resources.md`와 `ko-` 판.
+
+- 수정 작업은 modify 또는 deployIfNotExists 효과를 가진 정책으로 기존의 비준수 리소스에 정한 수정이나 배포를 수행하는 것이다. 모든 위반을 자동으로 고치는 만능 기능은 아니다 — 「첫 문단」
+- 기존 리소스에는 수정 작업을 만들어야 한다. 지원되는 경우 할당 마법사에서 작업도 함께 만들 수 있으므로 무조건 할당 후 별도 시점이라고 제한하지 않는다 — 「Create a remediation task」
+- 수정에는 할당에 연결한 관리 ID와 필요한 역할 권한이 쓰인다. 입문 설명은 필요한 수정 권한과 작업이 갖춰져야 한다는 범위까지만 쓴다 — 「How remediation access control works」
+- 한국어 표기: 수정 작업(remediation task), 수정(remediation). 한국어판 「수정 작업 만들기」를 기준으로 한다.
+
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`; G61.
+
+## (phase 107) Azure Policy — Exemption structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2026-08-04. 사본: `docs-policy-exemption-structure.md`와 `ko-` 판.
+
+- 정책 예외는 특정 리소스 또는 그 아래 묶음을 지정한 할당의 정의·이니셔티브 평가에서 빼는 장치다. 전체 준수 집계에서는 예외 상태로 남는다 — 「첫 문단」
+- 예외 범주는 다른 방법으로 목적을 달성한 경우와 일시적으로 비준수를 받아들이는 경우를 구분한다. 만료를 지정할 수 있다. 모든 정책에 영구 면제되는 것으로 쓰지 않는다 — 「Exemption category」「Expiration」
+- Learn의 exceptions라는 일반 표현을 앱에서 구체화할 때 이 문서의 exemption을 쓴다. 두 표현이 API 이름으로 동의어라고 단정하거나 할당의 제외 범위와 섞지 않는다 — 「첫 문단」「Exemption creation and management」
+- 한국어 표기: 정책 예외(exemption). 한국어판 제목 「Azure Policy 예외 구조」를 따른다. 「면제」는 범주 waiver에 쓰이므로 기능 이름으로 섞지 않는다.
+
+쓰인 곳: `azure-governance.policy-compliance`, `PolicyComplianceDiagram`.
+
+## (phase 107) Azure Policy — Initiative definition structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure
+
+확인한 날 2026-11-03. 「Last updated on」 2025-03-04. 사본: `docs-policy-initiative-definition-structure.md`와 `ko-` 판.
+
+- 함께 관리하려는 정책 정의를 묶어 하나의 항목으로 취급한다. 정의마다 따로 할당하지 않고 묶음을 할당할 수 있다 — 「첫 문단」
+- 관리 그룹은 구독을 묶는 계층이고 이니셔티브는 정책 정의를 묶는다. 정책 묶음을 관리 그룹에 할당하는 조합도 가능하므로 둘 중 하나만 쓸 수 있는 관계가 아니다 — 「첫 문단」 및 앞 phase 「What are Azure management groups?」의 「첫 문단」
+- 한국어 표기: 정책 이니셔티브. Learn은 「Azure Policy 이니셔티브」, 개요는 「이니셔티브」와 policySet을 함께 쓴다. 본문 첫 자리에서 정책 정의 묶음이라고 풀고 이후에는 「이니셔티브」로 줄일 수 있다.
+
+쓰인 곳: `azure-governance.policy-initiatives`, `PolicyInitiativeDiagram`; D110.
+
+## (phase 107) Azure Blueprints — Overview and retirement
+https://learn.microsoft.com/en-us/azure/governance/blueprints/overview
+
+확인한 날 2026-11-03. 「Last updated on」 2026-10-30. 사본: `blueprints-overview.md`와 `ko-` 판.
+
+- 단계적 종료 시작은 2026-07-31이고 서비스 종료는 2027-01-31이다. 종료 예정 서비스를 이 주제의 학습 대상으로 새로 넣지 않는다 — 「Important」
+- 정의에 ARM 템플릿과 역할 할당을 담을 수 있으며 완성한 묶음을 구독에 할당한다. 리소스 그룹을 담는 것과 그 그룹에 blueprint를 할당하는 것을 구별해야 한다 — 「첫 문단」「Blueprint definition」「Blueprint assignment」
+- 한국어 표기: Azure Blueprints. 용어집의 단수형 Azure Blueprint를 새 개념 이름으로 쓰지 않는다.
+
+쓰일 곳: 범위 제외의 기록 D107·D108·D112·G63. 앱에 Blueprints 개념·도식·문항은 만들지 않는다.
+
+## (phase 107) Azure Blueprints — Understand resource locking
+https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
+
+확인한 날 2026-11-03. 「Last updated on」 2023-12-05. 사본: `docs-blueprints-resource-locking.md`(영문판).
+
+- Blueprint의 잠금은 배포된 아티팩트에 deny assignment를 적용하는 방식이다. 그 할당의 관리 ID가 관여하며 Blueprint 밖에서 잠금 상태를 바꾸는 것을 막는다 — 「How blueprint locks work」
+- 이 설명은 삭제된 일반 리소스 잠금을 AIP가 다시 만든다는 근거가 아니다. NO.181을 Blueprints로 단순 정정해서 출제하지도 않는다 — 「How blueprint locks work」「Removing locking states」
+- 한국어 표기: 이 영문 문서는 오류 판정에만 쓴다. Blueprint 잠금의 세부 이름은 앱에서 쓰지 않는다.
+
+쓰일 곳: 범위 제외의 기록 D108.
+
+## (phase 107) 도식·표의 사실 — `azure-governance`
+
+확인한 날 2026-11-03. step 1·2·3의 설계에 대해 아래 원본의 해당 절을 대조했다. 이 항목은 새 사실을 만들지 않고 앞 항목의 적용 범위를 그림에 맞춰 정한다.
+
+| 도식·표 | 쓸 수 있는 이름·관계·조건 | 근거 |
+|---|---|---|
+| `PurviewDataMapDiagram` | 원본 위치는 「온-프레미스」「다른 클라우드」「SaaS」, 중앙은 「Microsoft Purview」다. 데이터 찾기·분류·계보를 보여 준다. 중앙으로 가는 선은 원본 데이터의 이사가 아니라 정보를 수집해 함께 보는 관계다. 온-프레미스에서 다른 클라우드로 향하는 선은 데이터가 이동한 경로를 추적하는 예이며 Purview가 데이터를 옮긴다는 뜻이 아니다. 자동 수집에는 지원하는 원본·연결의 전제가 있다. | [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview) 「Unified data governance」; [클래식 개요](https://learn.microsoft.com/en-us/purview/legacy/governance-solutions-overview) 「Classic Data Catalog」「Microsoft Purview advantages」; [계보](https://learn.microsoft.com/en-us/purview/data-gov-classic-lineage-user-guide) 「Lineage collection」 |
+| `SensitivityLabelDiagram` | 예시 이름은 「레이블 1」, 대상은 「문서」, 보호는 「워터마크」「암호화」다. 표시 시나리오는 표시를, 암호화 시나리오는 암호화를 설정한 경우다. 「회사 밖의 받는 사람」으로 보내도 파일의 암호화는 남으며 열 수 있는 사람은 권한 설정에 따른다. 이름이 「기밀」이라는 이유만으로 두 보호가 함께 켜진다고 그리지 않는다. | [민감도 레이블](https://learn.microsoft.com/en-us/purview/sensitivity-labels) 「What sensitivity labels can do」; [암호화](https://learn.microsoft.com/en-us/purview/encryption-sensitivity-labels) 첫 문단 |
+| `PolicyCheckDiagram` | 「지역 A」「지역 B」「VM 1」「VM 2」는 수량·위치를 구별하는 예다. 정책의 이름은 「허용된 위치」, 값은 지역 A다. **deny 효과가 집행 중이고 해당 정책이 요청을 평가한다**는 전제를 적는다. 허용 시나리오도 다른 필요한 권한·조건이 충족된 예다. 권한이 있는 소유자의 요청도 지역 B라면 거부된다. RBAC와 Policy 노드 사이의 선은 두 판단을 설명하는 것이며 실제 내부 실행 순서를 단정하지 않는다. | [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Azure Policy and Azure RBAC」「Policy definition」; [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny) 「Deny evaluation」 |
+| `PolicyComplianceDiagram` | 세 장면은 서로 다른 효과·설정을 보여 주는 예다. 기존 가상 네트워크 1은 **리소스 종류를 금지한 deny 정책의 평가**에서 비준수로 표시되며, 그 평가가 네트워크를 삭제·이동·중지하는 작업은 아니다. 수정 장면은 **modify 정책의 수정 작업**을 만들어 VM 1의 빠진 태그를 보태는 예다. VM 2는 **지정한 할당에 정책 예외를 둔 경우**에 그 평가에서 빠지고 예외 상태로 집계에 남는다. 하나의 deny 정책이 세 일을 모두 한다고 그리지 않는다. | [deny](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deny) 「Deny evaluation」; [효과](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) 「Layering policy definitions」; [수정 작업](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources) 첫 문단; [예외](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure) 첫 문단 |
+| `PolicyInitiativeDiagram` | 「정책 정의 1」부터 「정책 정의 4」까지는 개수를 보이는 예다. 정의 묶음은 「정책 이니셔티브」, 할당 범위 예는 「구독 1」이다. 한 묶음으로 할당하고 상태를 함께 본다. 정의 4를 추가하면 기존 할당에도 반영되지만 즉시 모든 리소스의 평가가 끝난다는 뜻은 아니다. | [이니셔티브 구조](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure) 첫 문단; [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Recommendations for managing policies」 |
+| `LockTypesDiagram` | 「삭제 잠금」은 읽기·고치기 경로를 남기고 지우기 경로를 막는다. 「읽기 전용 잠금」은 읽기만 남긴다. 모두 **VM 리소스를 관리하는 작업**의 예다. 소유자도 잠금을 풀기 전에는 막힌 삭제를 실행하지 못한다. VM 안의 파일·DB 데이터를 읽기 전용으로 만든다는 뜻이 아니다. | [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 첫 문단, 「Understand scope of locks」; [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-features-tools-azure-for-governance-compliance/4-describe-purpose-resource-locks) 「How do I manage resource locks?」 |
+| `LockInheritanceDiagram` | 리소스 그룹 1의 삭제 잠금을 VM 1·디스크 1이 물려받는다. VM에 읽기 전용 잠금도 있으면 제한이 더 강한 읽기 전용이 적용된다. 그림은 잠금의 적용 결과를 보여 주고 **읽기 전용인 자원에 새 잠금을 추가하는 절차**를 주장하지 않는다. 잠긴 자원이 든 그룹의 삭제 요청은 전체가 실패하고 일부만 삭제되지 않는다. 흐린 노드는 이미 지워진 자원이라는 뜻이 아님을 캡션에 적는다. | [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 「Lock inheritance」 |
+| `GovernanceToolsTable` | RBAC: 대상에게 허용할 작업과 범위를 정하며 권한 없는 요청은 허용하지 않는다. Policy: 리소스 기준과 평가 효과를 정하며 **거부 효과일 때** 어긋난 생성·변경을 막는다. 잠금: 리소스 관리 작업의 제한으로 실수에 의한 삭제 또는 변경을 막고, 역할이 허용해도 적용된다. 「리소스가 어떤 모양이어야 하는가」는 지역·크기·태그 같은 설정 기준으로 풀어 쓴다. | [개요](https://learn.microsoft.com/en-us/azure/governance/policy/overview) 「Azure Policy and Azure RBAC」; [리소스 잠금](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) 첫 문단, 「Understand scope of locks」 |
+
+한국어 표기: 위 라벨은 아래 확정 표를 따른다. 정책 정의의 「허용된 위치」와 설명에 쓰는 「지역」은 이름과 뜻풀이의 차이다.
+
+쓰인 곳: `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
+쓰인 곳(phase 107 step 2): `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`; D109·D110·G61.
+쓰인 곳(phase 107 step 3): `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62.
+
+## (phase 107) 한국어 표기 정리 — `azure-governance`
+
+확인한 날 2026-11-03. 사실은 영문판으로, 표기는 아래 한국어판으로 확인했다. 조합해 만든 설명형 이름은 공식 화면 이름인 것처럼 쓰지 않는다.
+
+| 개념·항목 | 확정 표기 | 근거와 선택 이유 |
+|---|---|---|
+| `purview` | Microsoft Purview | [Learn 단원 2 한국어판](https://learn.microsoft.com/ko-kr/training/modules/describe-features-tools-azure-for-governance-compliance/2-describe-purpose-microsoft-purview). 목록 둘은 「위험 및 규정 준수 솔루션」(Risk and compliance solutions), 「통합 데이터 거버넌스」(Unified data governance). 첫 항목에서 제품 이름은 중복하지 않는다. |
+| `sensitivity-labels` | 민감도 레이블 | [민감도 레이블 한국어판](https://learn.microsoft.com/ko-kr/purview/sensitivity-labels). 「민감성」「보안 등급」으로 섞지 않는다. 워터마크·머리글·바닥글도 같은 문서의 표기를 쓴다. |
+| `azure-policy` | Azure Policy | [개요 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/overview). 문서의 「정책 정의」「할당」을 쓰며 서비스 이름은 옮기지 않는다. |
+| `policy-compliance` | 규정 준수 평가 | [준수 데이터 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/how-to/get-compliance-data)의 규정 준수·평가라는 말을 합친 설명형 제목이다. 결과가 기준에 어긋나면 「비준수」로 쓴다. |
+| `policy-initiatives` | 정책 이니셔티브 | [정의 구조 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/concepts/initiative-definition-structure)과 [Learn 단원 3 한국어판](https://learn.microsoft.com/ko-kr/training/modules/describe-features-tools-azure-for-governance-compliance/3-describe-purpose-azure-policy). 「정책 집합」은 뜻풀이로만 쓰고 개념·도식 이름은 하나로 맞춘다. |
+| `resource-locks` | 리소스 잠금 | [잠금 한국어판](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/management/lock-resources)을 따른다. 항목은 「삭제 잠금」(Delete / CanNotDelete), 「읽기 전용 잠금」(ReadOnly). 포털의 짧은 이름은 각각 「삭제」「읽기 전용」이다. 「삭제 금지」「삭제할 수 없음」은 별도 종류 이름으로 섞지 않는다. |
+| `lock-inheritance` | 잠금 상속 | 같은 잠금 문서의 한국어 절 제목을 그대로 이름으로 쓴다. 본문에서는 위 범위의 잠금을 안의 리소스가 물려받는다고 푼다. |
+| 정책의 수정 | 수정 작업 | [수정 문서 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/how-to/remediate-resources)의 「수정 작업 만들기」. remediation은 수정, remediation task는 수정 작업이다. |
+| 정책의 exemption | 정책 예외 | [예외 구조 한국어판](https://learn.microsoft.com/ko-kr/azure/governance/policy/concepts/exemption-structure). 짧은 버튼은 「예외」로 가능하다. 「면제」와 「제외 범위」는 같은 기능 이름으로 섞지 않는다. |
+| 데이터의 이력 | 데이터 계보 | [계보 한국어판](https://learn.microsoft.com/ko-kr/purview/data-gov-classic-lineage-user-guide)과 Learn 단원 2. 그림 버튼의 「계보」는 이 이름을 줄인 것이다. |
+| 기본 레이블 이름 | 개인·공용·일반·기밀·극비 | [기본 레이블 한국어판](https://learn.microsoft.com/ko-kr/purview/default-sensitivity-labels-policies). 개요에 있는 중복 번역 「기밀」보다 구별되는 이 표기를 택한다. 설정이 다양한 이름을 도식의 고정 보호와 연결하지 않으려고 도식에는 「레이블 1」을 쓴다. |
+| 기본 제공 정책의 예 | 허용된 위치 / 허용되는 가상 머신 SKU / 허용되지 않는 리소스 종류 / 리소스의 태그 요구 | 앞 셋은 개요 한국어판의 이름, 마지막은 [기본 제공 목록](https://learn.microsoft.com/ko-kr/azure/governance/policy/samples/built-in-policies)의 Require a tag on resources를 풀어 쓴 말이다. 「허용 위치」「허용되는 가상 머신 크기 SKU」「리소스 유형」도 설계에 있었지만, 이름은 실제 확인한 표기로 맞추고 크기·지역이라는 쉬운 말은 설명에 쓴다. |
+
+쓰인 곳: `azure-governance.purview`(목록 항목 둘), `azure-governance.sensitivity-labels`(기본 레이블 이름), `PurviewDataMapDiagram`, `SensitivityLabelDiagram`; D106·G60.
+쓰인 곳(phase 107 step 2): `azure-governance.azure-policy`, `azure-governance.policy-compliance`, `azure-governance.policy-initiatives`, `PolicyCheckDiagram`, `PolicyComplianceDiagram`, `PolicyInitiativeDiagram`, az155~az159; D109·D110·G61.
+쓰인 곳(phase 107 step 3): `azure-governance.resource-locks`(리소스 잠금, 삭제 잠금, 읽기 전용 잠금), `azure-governance.lock-inheritance`(잠금 상속), `LockTypesDiagram`, `LockInheritanceDiagram`, `GovernanceToolsTable`; D111·G62. D107·D108·D112·G63은 범위 제외 기록이라 앱에 쓰지 않았다.
+
+---
+
+## (phase 107) Describe features and tools for managing and deploying Azure resources — 단원 2: Describe tools for interacting with Azure
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/2-describe-interacting-azure
+
+확인한 날 2026-11-04. 사본: `learn-describe-features-tools-manage-deploy-azure-resources-2-describe-interacting-azure.md`와 `ko-` 판.
+
+- 포털에서는 리소스를 만들고 관리하고 관찰하며 대시보드와 접근성 설정을 쓴다. 데이터 센터 하나에만 의존하지 않고 유지 관리로 중단하지 않는다는 설명도 있다 — 「What is the Azure portal?」
+- Cloud Shell은 사용자의 컴퓨터에 도구를 설치하거나 설정하지 않고 브라우저로 연다. 로그인한 계정을 알고 그 권한으로 작업한다 — 「Azure Cloud Shell」
+- Azure 관리 명령을 스크립트로 모으면 같은 절차를 반복·자동화한다. 두 명령 도구는 Azure 관리라는 목적이 같으며 명령 문법이 다르다 — 「What is Azure PowerShell?」, 「What is the Azure CLI?」
+- **제품 문서로 바로잡는 부분**: 이 단원은 CLI를 Bash 셸 또는 Bash 명령으로, Azure PowerShell을 셸로 부른다. 앱에서는 「PowerShell과 Bash는 셸, Azure PowerShell과 Azure CLI는 그 환경에서 Azure를 관리하는 도구」로 구분한다. CLI는 명령 프롬프트·PowerShell·Bash에서 쓸 수 있다. 아래 도구 비교 문서와 기존 두 제품 개요가 근거다.
+- **앱에 쓸 문장**: 「Cloud Shell에서는 Bash와 PowerShell 가운데 셸을 고른다. Cloud Shell에는 Azure CLI와 Azure PowerShell이 미리 설치되어 있다. Azure CLI 명령은 두 셸 어느 쪽에서도 실행하고, Azure PowerShell 명령은 PowerShell에서 실행한다.」 두 도구가 설치된 것과 지금 고른 셸이 cmdlet을 직접 실행하는 것은 다른 일이다 — Cloud Shell 기능 문서 「Preinstalled tools > Azure tools」, 도구 비교 문서 「Different shell environments」
+- **「두 셸 모두에 두 도구가 들어 있다」는 쓰지 않는다**(못 찾음). 기능 문서는 설치 목록을 Cloud Shell 전체에 대해 하나로 적을 뿐 셸마다 나눠 말하지 않는다. 반대로 도구 비교 문서의 Cloud Shell 절은 「Bash에 Azure CLI, PowerShell에 Azure PowerShell」로 짝지어 적지만, 같은 절이 실행 환경을 Ubuntu 컨테이너라 적어 Azure Linux라고 하는 기능 문서(2025-12-03)보다 낡았고, 같은 문서의 셸 표가 Azure CLI를 PowerShell에서도 실행한다고 하므로 이 짝은 「그 셸에서만」이라는 뜻이 아니다. 앱은 위 「앱에 쓸 문장」만 쓰고, Learn과 비교 문서의 셸–도구 일대일 짝은 쓰지 않는다
+- 단원의 AI 보조 기능은 이번 주제의 여섯 항목에 더하지 않는다. 모든 서비스의 모든 기능이 두 도구에 항상 동시에 생긴다는 보장으로 「기능이 같다」를 확대하지 않는다.
+- 한국어 표기: Azure 포털(제품 한국어판), Azure Cloud Shell, Azure PowerShell, Azure CLI. Learn의 「Azure CLI(Bash)」라는 짝은 쓰지 않는다.
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure CLI·Azure PowerShell을 셸과 섞지 않은 항목, Learn의 「Azure CLI(Bash)」 짝은 쓰지 않음), `azure-management-tools.azure-portal`(만들기·관리·지켜보기, 대시보드, 접근성 설정, 데이터 센터·유지 관리), `ToolAccessDiagram`; D119.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(위 「앱에 쓸 문장」대로 — 두 도구가 미리 설치, Azure CLI 명령은 두 셸 어느 쪽에서도, Azure PowerShell 명령은 PowerShell에서), `azure-management-tools.azure-powershell`·`azure-cli`(셸과 도구를 가름, 목적이 같고 명령의 꼴이 다름), `CloudShellDiagram`, `CommandToolsTable`; D113~D116. 「두 셸 모두에 두 도구」와 셸–도구 일대일 짝은 쓰지 않았다.
+
+## (phase 107) Describe features and tools for managing and deploying Azure resources — 단원 3: Describe the purpose of Azure Arc
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/3-describe-purpose-of-azure-arc
+
+확인한 날 2026-11-04. 사본: `learn-describe-features-tools-manage-deploy-azure-resources-3-describe-purpose-of-azure-arc.md`와 `ko-` 판.
+
+- Azure 밖의 기존 리소스를 Resource Manager에서 다룰 대상으로 나타내면, 온-프레미스와 여러 클라우드를 함께 관리하고 준수 상태와 모니터링을 살필 수 있다 — 첫 부분, 「Practical scenario」
+- 단원의 다섯 대상 목록을 그대로 고정하지 않는다. VM만 미리 보기로 따로 둔 옛 구분 대신 위 「Azure Arc overview」의 현행 네 묶음을 쓴다 — 「What can Azure Arc do outside of Azure?」와 제품 개요의 대상 목록
+- 어디에 있는지와 상관없이 관리 기능을 쓰는 것이 목적이며, 온-프레미스 서버가 Azure 데이터 센터로 이동한다는 뜻으로 쓰지 않는다 — 첫 목록과 서버 제품 개요
+- 한국어 표기: Azure Arc(그대로), 하이브리드, 다중 클라우드.
+
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(온-프레미스와 여러 클라우드를 함께 관리, 대상은 제품 개요의 현행 네 묶음, 서버가 Azure로 옮겨지지 않는다), `AzureArcDiagram`, az172·az173 해설, D118
+
+## (phase 107) Azure 모바일 앱 — What is the Azure mobile app?
+https://learn.microsoft.com/en-us/azure/azure-portal/mobile-app/overview
+
+확인한 날 2026-11-04. 사본: `docs-azure-portal-mobile-app-overview.md`와 `ko-` 판.
+
+- iOS·Android에서 앱으로 리소스의 상태와 성능·정상 여부를 보고 알림과 경고를 받는다. VM을 시작하거나 멈추는 일도 하고 앱 안에서 Cloud Shell을 열 수 있다 — 첫 두 문단
+- 관리할 리소스에 맞는 권한을 가진 Azure 계정이 필요하다. 모바일 앱이라고 권한 검사를 건너뛰지 않는다 — 둘째 문단
+- 목록 개념에는 상태·경고 보기, VM 시작·중지, Cloud Shell 열기까지만 쓴다. 휴대폰에서는 앱만 가능하다거나, 앱이 포털의 모든 조작을 그대로 제공한다고 쓰지 않는다. 덤프 NO.220에 앱이 보기로 없다는 것은 앱을 못 쓴다는 근거가 아니다 — D120.
+- 앱이 시작·중지하는 대상으로 문서는 VM·웹앱·데이터베이스를 든다. 앱 본문은 VM만 예로 든다 — 첫 문단
+- 한국어 표기: **Azure 모바일 앱**(제목).
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`의 목록 항목 Azure 모바일 앱(iOS·Android, 상태와 경고 보기, VM 시작·중지, 앱 안에서 Cloud Shell 열기, 권한 있는 계정), `ToolAccessDiagram`(휴대폰 칸), az164·az165; D120.
+
+## (phase 107) Azure 포털 — Supported devices
+https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices
+
+확인한 날 2026-11-04. 사본: `docs-azure-portal-supported-browsers-devices.md`와 `ko-` 판.
+
+- 포털은 데스크톱·태블릿의 브라우저에서 사용하는 웹 콘솔이다. Windows 전용 프로그램으로 설치하는 방식이 아니다 — 첫 문단
+- 지원 브라우저는 Edge·Chrome·Firefox와 Mac의 Safari이며, 운영 체제에 맞는 최신 브라우저 사용을 권한다. JavaScript를 켜야 한다 — 첫 문단, 「Recommended browsers」
+- 포털이 도는 곳으로 문서가 드는 것은 데스크톱과 태블릿의 브라우저다. 휴대폰에서 Azure를 관리하려면 Azure 모바일 앱을 쓰라고 안내한다. **휴대폰 브라우저로 포털을 여는 것은 지원 기기로 적혀 있지 않다(못 찾음)** — 앱은 「휴대폰에서는 Azure 모바일 앱」으로 쓰고 휴대폰 브라우저의 포털을 그리거나 쓰지 않는다 — 첫 문단, 「Mobile app」, D120
+- 본문과 도식은 「지원되는 웹 브라우저로 연다」로 쓴다. 「요즘 브라우저면 무엇이든」으로 넓히지 않는다(D121). 옛 운영 체제 버전의 현재 지원 여부는 여기서 확인되지 않는다 — 「Recommended browsers」
+- 한국어 표기: Azure 포털, 지원되는 디바이스, 권장 브라우저. 앱에서는 「기기」·「웹 브라우저」로 푼다.
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.azure-portal`(데스크톱 컴퓨터나 태블릿의 지원되는 웹 브라우저, 브라우저 넷, JavaScript, Windows 전용이 아님), `ToolAccessDiagram`(브라우저 칸과 그 캡션 — 휴대폰을 브라우저 칸에 그리지 않음); D119·D120·D121. 휴대폰 브라우저로 포털을 연다는 말은 쓰지 않았다(D120).
+
+## (phase 107) Azure 포털 — Create a dashboard in the Azure portal
+https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-dashboards
+
+확인한 날 2026-11-04. 사본: `docs-azure-portal-dashboards.md`와 `ko-` 판.
+
+- 프로젝트나 업무에 맞게 필요한 리소스 정보를 모아 보는 화면을 만들 수 있다. 그 화면에서 상태를 살피고 자주 하는 작업을 연다 — 첫 문단
+- 기본 대시보드를 바꾸거나 새 대시보드를 더 만든다. 개수 상한·공유 권한·만드는 절차는 이 주제에 쓰지 않는다 — 둘째 문단
+- 한국어 표기: 대시보드(제목).
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.azure-portal`(기본 대시보드를 고치거나 새 대시보드를 더 만든다).
+
+## (phase 107) Azure Cloud Shell — What is Azure Cloud Shell?
+https://learn.microsoft.com/en-us/azure/cloud-shell/overview
+
+확인한 날 2026-11-04. 사본: `docs-cloud-shell-overview.md`와 `ko-` 판.
+
+- 브라우저로 여는 명령 입력 환경이며 Bash와 PowerShell 중 하나를 고른다 — 첫 문단
+- 포털 `portal.azure.com`, 독립 주소 `shell.azure.com`, Azure 모바일 앱에서 열 수 있다. 도식은 대표 진입 경로를 그릴 뿐 이 셋 중 하나만 가능한 것으로 쓰지 않는다 — 「Multiple access points」
+- Microsoft가 실행 환경을 관리하고 Azure CLI와 Azure PowerShell을 준비해 두며 로그인한 Azure 계정으로 인증한다 — 「Authenticated and configured Azure workstation」
+- 명령을 실행하는 Cloud Shell 호스트 이용료는 없다. 파일을 보존하려고 붙인 저장소에는 일반 저장 요금이 적용된다 — 「Pricing」
+- **다른 제품 문서로 한정**: 이 개요의 저장소 필수처럼 읽히는 문장은 임시 세션 안내와 함께 읽는다. 저장소 없이 시작하는 방법도 있다. 시간·용량 수치와 「모든 파일이 언제나 보존된다」는 말은 쓰지 않는다.
+- 한국어 표기: Azure Cloud Shell(이름 그대로), Bash, PowerShell.
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure Cloud Shell 항목 — 브라우저 안의 명령 입력 창, 두 도구가 미리 설치), `azure-management-tools.azure-portal`(주소 `portal.azure.com`, NO.470), `ToolAccessDiagram`(브라우저 칸).
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(브라우저로 여는 셸, 여는 길 셋 — 「여는 길은 여럿이다」로 한정, Microsoft가 준비한 실행 환경과 로그인한 계정의 인증, 실행 환경 자체에는 요금이 없고 붙인 스토리지 계정에 일반 저장 요금), `CloudShellDiagram`(파일 장면 캡션), az167·az168; D114·D115, G64; NO.279·302·325.
+
+## (phase 107) Azure Cloud Shell — Features & tools for Azure Cloud Shell
+https://learn.microsoft.com/en-us/azure/cloud-shell/features
+
+확인한 날 2026-11-04. 사본: `docs-cloud-shell-features.md`와 `ko-` 판.
+
+- Bash나 PowerShell 가운데 기본 셸을 고르고, Cloud Shell에는 Azure CLI와 Azure PowerShell이 미리 설치되어 있다. 설치 목록은 Cloud Shell 전체에 대해 하나이고 셸마다 나눠 적지 않는다 — 그래서 「두 셸 모두에」라고 단정하지 않는다(위 Learn 단원 2 항목) — 첫 부분, 「Preinstalled tools > Azure tools」
+- 두 셸에서 두 도구를 준비할 필요가 없다는 뜻으로 쓴다. Bash 문법과 PowerShell cmdlet 문법이 같다는 뜻은 아니다. Azure PowerShell 명령을 실행할 때는 PowerShell을 쓴다는 한정은 아래 도구 비교 문서와 기존 PowerShell 개요를 함께 근거로 한다 — 「Preinstalled tools」, 「Azure drive (Azure:)」
+- 로그인한 계정을 CLI·Azure PowerShell에서 사용할 수 있게 인증한다 — 「Secure environment」
+- 저장소를 붙이지 않는 임시 세션을 고를 수 있다. 저장소를 붙이면 사용자의 홈 위치와 연결한 파일 공유에 둔 파일을 다음 세션에서도 사용한다. 실행 중이던 컴퓨터 상태나 그 위치 밖의 파일은 보존되지 않는다 — 「$HOME persistence across sessions」
+- 앱에서는 경로 문자열 없이 「보존되는 위치에 저장한 파일」로 쓴다. 내부 운영 체제·설치된 다른 도구 목록·용량·세션 시간은 쓰지 않는다.
+- 한국어 표기: 셸, Bash, PowerShell, 스토리지 계정. 「임시 세션」은 아래 시작 안내 제목에서 확인했다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(셸 고르기, 미리 설치된 두 도구, 인증, 보존하는 위치의 파일만 남고 실행 중이던 작업의 상태는 남지 않음), `azure-management-tools.azure-powershell`(Cloud Shell에 미리 설치), `CloudShellDiagram`(안쪽 칸 「미리 설치된 도구」), `CommandToolsTable`(Cloud Shell 행); D114·D115, G64.
+
+## (phase 107) Azure Cloud Shell — Get started with Azure Cloud Shell ephemeral sessions
+https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/ephemeral
+
+확인한 날 2026-11-04. 사본: `docs-cloud-shell-get-started.md`와 `ko-` 판.
+
+- 저장소 계정을 붙이지 않고 시작할 수 있다. 창을 닫거나 환경을 다시 시작해 세션이 끝나면 그 세션에 저장한 파일은 남지 않는다 — 첫 문단
+- 포털 상단에서 열고 처음에 Bash·PowerShell을 고른다. 로컬 컴퓨터에 설치할 필요가 없다는 말과 Azure 계정·구독 쪽 준비가 전혀 없다는 말은 다르다 — 「Start Cloud Shell」, 「Prerequisites」
+- 리소스 공급자 등록 절차·명령은 이 개념에 넣지 않는다. 「아무 설정도 필요 없다」 대신 「사용자의 컴퓨터에 설치·설정하지 않는다」로 쓴다.
+- 한국어 표기: **임시 세션**(제목).
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(임시 세션 — 창을 닫거나 다시 시작해 세션이 끝나면 저장한 파일이 지워진다, 포털 화면 위쪽에서 연다, 사용자의 컴퓨터에 설치·설정하지 않는다), `CloudShellDiagram`(파일 장면); G64.
+
+## (phase 107) Azure Cloud Shell — Persist files in Azure Cloud Shell
+https://learn.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage
+
+확인한 날 2026-11-04. 사본: `docs-cloud-shell-persisting-shell-storage.md`와 `ko-` 판.
+
+- 다음에 열 때도 쓸 파일이 있으면 새 저장소를 만들거나 기존 저장소를 골라 연결한다. 파일 공유와 사용자 홈 내용을 저장한 이미지로 파일을 보존한다 — 첫 부분, 「How Cloud Shell storage works」
+- 앱은 저장 위치의 내부 경로·이미지 형식 없이 「연결한 저장소의 보존되는 위치에 파일을 둔다」로 쓴다. 호스트 자체를 계속 같은 컴퓨터로 유지하는 기능으로 설명하지 않는다 — 같은 절, 기능 문서의 「$HOME persistence across sessions」
+- 한국어 표기: 파일 유지, 스토리지, 파일 공유. 앱에서는 「파일을 남긴다」로 풀어 쓴다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(스토리지 계정을 붙여 파일을 남긴다 — 내부 경로 없이 「Cloud Shell이 보존하는 위치」로 씀), `CloudShellDiagram`(곁말 「붙이면 파일이 남는다」); G64.
+
+## (phase 107) Azure Cloud Shell — Get started with Azure Cloud Shell using persistent storage
+https://learn.microsoft.com/en-us/azure/cloud-shell/quickstart
+
+확인한 날 2026-11-04. 사본: `docs-cloud-shell-quickstart.md`와 `ko-` 판.
+
+- 처음 시작할 때 저장소를 연결할지 고른다. 저장소를 연결하면 다음 세션에서도 파일을 쓸 수 있다 — 첫 문단
+- 이 안내도 셸 선택을 Bash와 PowerShell로 제시한다. 설치 단계나 CLI·PowerShell의 다른 명령 예는 앱에 옮기지 않는다 — 「Start Cloud Shell」
+- 한국어 표기: 영구 스토리지(제목), 스토리지 계정. 「영구」를 삭제 불가능하다는 뜻으로 쓰지 않는다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(처음 시작할 때 스토리지 계정을 붙일지 고른다), `CloudShellDiagram`; G64.
+
+## (phase 107) PowerShell — What is PowerShell?
+https://learn.microsoft.com/en-us/powershell/scripting/overview
+
+확인한 날 2026-11-04. 사본: `docs-powershell-overview.md`와 `ko-` 판.
+
+- PowerShell에는 명령을 받아 실행하는 셸과 스크립트를 적는 언어가 함께 있다. 여러 명령을 묶어 관리 작업을 자동화한다 — 첫 문단, 「Command-line Shell」, 「Scripting language」
+- 이 개념에서 셸은 「사람이 글자로 입력한 명령을 받아 실행하는 환경」으로 풀이한다. Cloud Shell의 웹 터미널과 Azure 관리 모듈을 같은 이름으로 섞지 않는다 — 위 두 절과 기존 Azure PowerShell 개요
+- 한국어 표기: PowerShell, **셸**. 한국어판의 「셸」을 쓰고 「쉘」과 섞지 않는다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(셸의 풀이 — 글자로 입력한 명령을 받아 실행하고 결과를 보여 주는 프로그램), `azure-management-tools.azure-powershell`(PowerShell은 셸이자 스크립트를 적는 언어).
+
+## (phase 107) Azure PowerShell — Install Azure PowerShell
+https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell
+
+확인한 날 2026-11-04. 사본: `docs-powershell-install-azure-powershell.md`와 `ko-` 판.
+
+- 로컬에서는 지원되는 PowerShell과 Az 모듈을 준비한다. 모든 운영 체제에서 권하는 것은 지원되는 PowerShell 7 이상이고, Windows에서는 Windows PowerShell 5.1과도 호환된다(개요 문서의 Note). Cloud Shell에는 Az 모듈이 이미 설치되어 있다 — 「Install」 아래 설명, 개요 「The Az PowerShell module」의 Note
+- **덤프의 「PowerShell Core 6.0」**: 현행 요구(7 이상의 지원 버전, Windows에서는 Windows PowerShell 5.1도)에 들지 않는다. 6이 지원되지 않는다고 따로 적은 문장은 찾지 않았고, 요구 사항이 7 이상으로 적혀 있다는 데서 판단한다. 앱에는 버전 숫자를 쓰지 않는다 — D113
+- 앱에는 버전 숫자를 남기지 않는다. 「PowerShell 7」도 제품 이름처럼 고정하지 않고 「지원되는 PowerShell」로 쓴다. 옛 덤프의 PowerShell Core 버전을 현재 조건으로 가르치지 않는다. 운영 체제별 세부 조건은 아래 세 설치 문서로 확인했다.
+- 한국어 표기: Azure PowerShell, Az PowerShell 모듈.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(지원되는 버전의 PowerShell을 먼저 두고 그 위에 Az PowerShell 모듈 — 버전 숫자 없이, Cloud Shell에는 이미 설치), `CommandToolsTable`, az169·az170; D113.
+
+## (phase 107) Azure PowerShell — Install Azure PowerShell on Windows
+https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows
+
+확인한 날 2026-11-04. 사본: `docs-powershell-install-azps-windows.md`와 `ko-` 판.
+
+- Windows에 Az 모듈을 설치해 Azure PowerShell을 쓸 수 있다. 먼저 지원되는 PowerShell이 필요하다 — 「Prerequisites」, 「Installation」
+- Windows에는 PowerShell 경로와 Windows PowerShell 경로가 모두 있다. 따라서 Windows PowerShell이라는 이름만으로 불가능하다고 판정하지 않는다. 구체적인 호환 버전·추가 구성 요소·설치 명령은 앱에 쓰지 않는다 — 「Prerequisites」
+- 한국어 표기: Windows(이름 그대로), Az PowerShell 모듈.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(Windows 설치 — 지원되는 PowerShell을 먼저, Windows PowerShell과도 함께), `CommandToolsTable`, az169; D113; NO.9·176·224·308·445.
+
+## (phase 107) Azure PowerShell — Install Azure PowerShell on Linux
+https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux
+
+확인한 날 2026-11-04. 사본: `docs-powershell-install-azps-linux.md`와 `ko-` 판.
+
+- Linux에 Az 모듈을 설치해 Azure PowerShell을 쓸 수 있다. 먼저 지원되는 PowerShell이 필요하다 — 「Prerequisites」, 「Installation」
+- 셸 호스트에서 PowerShell을 시작한 뒤 모듈을 설치하는 절차다. Linux·macOS에서 PowerShell 자체 없이 Azure CLI만 있으면 충분하다는 근거가 아니다. 설치 명령과 버전 숫자는 쓰지 않는다 — 「Installation」
+- 한국어 표기: Linux(이름 그대로), Az PowerShell 모듈.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(Linux 설치 — 지원되는 PowerShell을 먼저), `CommandToolsTable`; D113; NO.9·176·224·308·445.
+
+## (phase 107) Azure PowerShell — Install Azure PowerShell on macOS
+https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos
+
+확인한 날 2026-11-04. 사본: `docs-powershell-install-azps-macos.md`와 `ko-` 판.
+
+- macOS에 Az 모듈을 설치해 Azure PowerShell을 쓸 수 있다. 먼저 지원되는 PowerShell이 필요하다 — 「Prerequisites」, 「Installation」
+- 셸 호스트에서 PowerShell을 시작한 뒤 모듈을 설치하는 절차다. Linux·macOS에서 PowerShell 자체 없이 Azure CLI만 있으면 충분하다는 근거가 아니다. 설치 명령과 버전 숫자는 쓰지 않는다 — 「Installation」
+- 한국어 표기: macOS(이름 그대로), Az PowerShell 모듈.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(macOS 설치 — 지원되는 PowerShell을 먼저), `CommandToolsTable`, az170; D113; NO.9·176·224·308·445.
+
+## (phase 107) Azure PowerShell — Get started with Azure PowerShell
+https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps
+
+확인한 날 2026-11-04. 사본: `docs-powershell-get-started-azureps.md`와 `ko-` 판.
+
+- Azure PowerShell 명령은 동사와 명사를 하이픈으로 잇는 꼴이다. 동사는 할 일을, 명사는 대상을 나타내며 이 모듈의 명사에는 Az 접두사가 붙는다 — 「Find commands」
+- 명령 하나를 cmdlet이라고 부른다. Cloud Shell에서는 이미 계정 인증이 되어 있어 로컬 로그인 단계가 필요하지 않다 — 「Sign in to Azure」
+- Cloud Shell의 PowerShell은 Linux 환경이므로 Windows에만 있는 기능을 쓰는 스크립트까지 모두 실행된다고 보장하지 않는다. 덤프의 Azure 리소스 관리 스크립트 범위로만 판단한다 — 「Install or run in Azure Cloud Shell」
+- 한국어 표기: cmdlet(한국어판도 영문 표기), 앱의 첫 자리에서는 「명령 하나」라고 푼다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(cmdlet, 동사와 명사를 하이픈으로 잇는 꼴과 Az 접두사, Cloud Shell은 로그인되어 있음, Cloud Shell의 PowerShell은 Linux 위라 Windows에만 있는 기능은 그대로 실행되지 않을 수 있음), `CommandToolsTable`(명령의 꼴), az169 해설; D113·D114.
+
+## (phase 107) Azure PowerShell — New-AzVM (Az.Compute)
+https://learn.microsoft.com/en-us/powershell/module/az.compute/new-azvm
+
+확인한 날 2026-11-04. 사본: `docs-powershell-new-azvm.md` (영문판).
+
+- `New-AzVM`은 Az.Compute에 속한 VM 생성 명령이다. `New-AzVM`의 철자와 기능만 확인했다. 옵션·매개변수·출력·추가 예시는 쓰지 않는다 — 제목 아래 설명, 「Syntax」
+- 한국어 표기: 명령 이름은 번역하지 않는다.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-powershell`(`New-AzVM` 예), `azure-management-tools.azure-cli`(두 꼴 견주기), az167·az169의 보기와 해설(백틱 없이). `CommandToolsTable`에는 명령 이름을 쓰지 않았다.
+
+## (phase 107) Azure CLI — Choose the right Azure command-line tool
+https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool
+
+확인한 날 2026-11-04. 사본: `docs-cli-choose-the-right-azure-command-line-tool.md`와 `ko-` 판.
+
+- 두 도구 모두 리소스를 만들고 관리하며 Windows·Linux·macOS에서 쓸 수 있다. 익숙한 명령 문법과 작업 환경을 기준으로 고른다 — 「Prerequisites」, 「Different shell environments」
+- CLI는 Windows의 명령 프롬프트와 PowerShell, Bash 같은 셸에서 실행한다. Azure PowerShell은 PowerShell 또는 호환되는 Windows PowerShell에서 실행할 cmdlet 묶음이다 — 「Different shell environments」의 설명과 표
+- 표에서 명령 프롬프트·Bash 행의 Azure PowerShell 칸은 비어 있고, PowerShell 행에는 CLI와 Azure PowerShell 모두 표시되어 있다. Cloud Shell에 설치되어 있다는 이유로 Bash가 cmdlet 문법을 그대로 이해한다고 쓰지 않는다 — 같은 표
+- 이 비교 문서의 Cloud Shell 절은 Bash에 Azure CLI, PowerShell에 Azure PowerShell이 설치되어 있다고 짝지어 적고 실행 환경을 Ubuntu 컨테이너라 한다. Cloud Shell 기능 문서는 Azure Linux 위에서 돌고 두 도구가 설치되어 있다고 한다. 설치된 도구는 기능 문서로 정하고, 짝은 「그 셸에서만」의 근거로 쓰지 않는다. 내부 Linux 배포판 이름은 앱에 쓰지 않는다 — 「What about Azure Cloud Shell?」과 기능 문서 비교
+- Windows PowerShell은 대부분의 Windows에 미리 설치되어 있는 셸이고, PowerShell은 따로 설치하며 Windows·macOS·Linux에 설치할 수 있다 — 「Different shell environments」 아래 설명 (NO.308의 Windows 10 보기 판단에 쓴다)
+- 한국어 표기: 명령줄 도구, 명령 프롬프트, 셸, cmdlet.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(명령 프롬프트·PowerShell·Bash, Azure PowerShell의 cmdlet은 PowerShell(Windows에서는 Windows PowerShell도)에서 실행하고 명령 프롬프트·Bash에서는 실행하지 않음, 익숙한 명령 꼴과 작업 환경으로 고른다), `azure-management-tools.azure-powershell`(Windows PowerShell이 대부분의 Windows에 미리 있음), `azure-management-tools.cloud-shell`, `CloudShellDiagram`, `CommandToolsTable`, az167·az171; D114·D115. 비교 문서 Cloud Shell 절의 셸–도구 짝은 쓰지 않았다.
+
+## (phase 107) Azure CLI — How to install the Azure CLI
+https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
+
+확인한 날 2026-11-04. 사본: `docs-cli-install-azure-cli.md`와 `ko-` 판.
+
+- Windows·Linux·macOS에 로컬로 설치할 수 있고 Cloud Shell에서도 사용할 수 있다 — 첫 문단, 「Install」
+- **못 찾음**: 이 문서·Windows 설치 안내·CLI 개요·명령 도구 비교 문서에서 「Windows에 Azure CLI가 기본 포함되지 않는다」고 직접 명시한 문장은 찾지 못했다. 설치 안내가 있다는 사실만으로 부재를 단정하지 않는다. 본문은 「컴퓨터에 설치해 쓰거나 이미 준비된 Cloud Shell에서 쓴다」로 하고 기본 포함 여부를 묻는 문항은 만들지 않는다 — D116
+- 버전·설치 경로·패키지 관리자·설치 명령은 앱에 쓰지 않는다.
+- 한국어 표기: Azure CLI, Windows, Linux, macOS.
+
+쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(설치 칸의 Windows·Linux·macOS, 「두 도구는 Azure Cloud Shell에도 미리 설치되어 있다」).
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(Windows·Linux·macOS에 설치하거나 Cloud Shell에서 쓴다 — Windows 기본 포함 여부는 쓰지 않았고 그것을 묻는 문항도 만들지 않았다), `CommandToolsTable`; D116.
+
+## (phase 107) Azure CLI — Install the Azure CLI on Windows
+https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows
+
+확인한 날 2026-11-04. 사본: `docs-cli-install-windows.md`와 `ko-` 판.
+
+- Windows에 설치한 CLI는 PowerShell이나 명령 프롬프트에서 실행한다 — 첫 두 문단
+- Windows에 기본 제공된다고 명시된 것은 이 문서의 WinGet 설명이다. 그 말을 Azure CLI의 기본 포함 여부로 바꾸지 않는다. 이 항목도 CLI의 기본 포함 여부를 직접 판정하는 근거로 삼지 않는다 — 「Install or update > WinGet」
+- 앱은 설치 수단이나 명령 옵션을 다루지 않는다.
+- 한국어 표기: Windows 명령 프롬프트, PowerShell.
+
+쓰인 곳(phase 107 step 6): `azure-management-tools.azure-cli`(Windows에서는 명령 프롬프트나 PowerShell에서 실행), `CommandToolsTable`, az171; D115·D116; NO.265 확인.
+
+## (phase 107) Azure Arc — What is Azure Arc-enabled servers?
+https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview
+
+확인한 날 2026-11-04. 사본: `docs-azure-arc-servers-overview.md`와 `ko-` 판.
+
+- 회사 네트워크나 다른 클라우드에서 호스팅하는 Windows·Linux 서버와 VM을 Azure에서 관리한다. Azure 안에는 각 외부 컴퓨터를 나타내는 리소스가 생긴다 — 첫 문단
+- 연결한 컴퓨터는 Azure 리소스 ID를 받고 리소스 그룹에 넣을 수 있다. 연결하려면 해당 컴퓨터에 에이전트를 설치한다 — 둘째·셋째 문단
+- **「그 자리에 둔 채」의 근거**: 원문은 컴퓨터가 외부에서 호스팅되고 Azure에는 그 표현이 생긴다고 구별한다. 그러므로 연결은 서버 이전이 아니라 관리 대상 등록이라는 풀이를 쓸 수 있다. 「옮기지 않는다」라는 동일한 문장을 찾았다는 뜻은 아니다 — 첫 세 문단에서 도출
+- 설정 준수 점검과 성능·로그 수집 같은 관리 서비스를 쓸 수 있다. 이 주제에서는 정책·역할·태그·모니터링의 이름과 역할만 쓰고 에이전트 설치 절차·상태 시간·미리 보기 기능은 쓰지 않는다 — 「Supported cloud operations」, Arc 개요의 기능·역할·태그 목록
+- 한국어 표기: Azure Arc 지원 서버, 에이전트, 리소스. 개념 이름은 **Azure Arc**로 둔다.
+
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(회사 네트워크나 다른 클라우드의 Windows·Linux 서버와 VM, Azure에 그 서버를 가리키는 리소스가 생긴다, 리소스 ID를 받고 리소스 그룹에 넣는다, 서버는 원래 자리에서 실행 — 에이전트와 설치 절차는 쓰지 않았다), `AzureArcDiagram`, az172·az173 해설, D118; NO.83·254·481
+
+## (phase 107) Azure Arc — What is Azure Arc-enabled Kubernetes?
+https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview
+
+확인한 날 2026-11-04. 사본: `docs-azure-arc-kubernetes-overview.md`와 `ko-` 판.
+
+- 밖에서 실행하는 지원 Kubernetes 클러스터를 연결하면 각 클러스터가 Resource Manager에 독립된 리소스로 나타난다. 리소스 그룹과 태그로 정리한다 — 첫 부분
+- 대상은 지원 조건에 맞는 클러스터다. 연결한 클러스터를 AKS 클러스터와 함께 목록에서 보고, 모니터링·Azure Policy 준수 관리·Azure RBAC 접근 관리를 할 수 있다 — 「Supported Kubernetes distributions」, 「Arc-enabled Kubernetes scenarios and enhanced functionality」
+- NO.232의 AKS 진술은 함께 목록을 보고 관리하는 이 범위로 해석한다. Arc로 AKS를 옮기거나 AKS의 모든 관리 기능을 대체한다고 하지 않는다 — 같은 절
+- 한국어 표기: Kubernetes 클러스터(한국어판).
+
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(연결한 클러스터마다 Resource Manager에 리소스가 생긴다, AKS 클러스터와 함께 목록에서 보고 Azure Policy와 역할로 관리한다), D118
+
+## (phase 107) Azure Kubernetes Service — Core concepts for Azure Kubernetes Service (Kubernetes 풀이만)
+https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+
+확인한 날 2026-11-04. 사본: `docs-aks-core-concepts.md`와 `ko-` 판.
+
+- Kubernetes는 컨테이너 앱을 배치하고 필요한 만큼 늘리며 관리하는 일을 자동화한다 — 「What is Kubernetes?」
+- 클러스터에는 앱을 실행하는 노드들과 그 실행을 조정하는 관리 부분이 있다. 이 문서는 AKS의 노드를 VM으로 설명한다. 앱에서는 「컨테이너 앱을 실행할 컴퓨터들과 그 실행을 조정하는 부분을 Kubernetes로 묶은 환경」으로만 푼다 — 「Cluster components」
+- AKS의 두 운영 모드·노드 구성·내부 구성 요소·지원 종료 이력은 이 주제에 쓰지 않는다. 모든 Kubernetes 노드가 반드시 VM이라는 뜻으로 넓히지 않는다.
+- 한국어 표기: Kubernetes, 클러스터. 「쿠버네티스」와 번갈아 쓰지 않는다.
+
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Kubernetes — 컨테이너로 만든 앱을 여러 컴퓨터에 배치하고 필요한 만큼 늘리고 관리하는 일을 자동으로 하는 도구, Kubernetes 클러스터 — 컨테이너 앱을 실행하는 컴퓨터들과 그 실행을 조정하는 부분을 묶은 환경)
+
+## (phase 107) 도식·표의 사실 — `azure-management-tools`
+
+확인한 날 2026-11-04. step 5·6·7의 도식 설계를 위 공식 문서와 대조했다. 이 항목은 위 출처의 사실을 묶은 것이며 별도 출처가 아니다.
+
+- **ToolAccessDiagram**: 「웹 브라우저로 연다」 안에 Azure 포털·Azure Cloud Shell, 「컴퓨터에 설치한다」 안에 Azure PowerShell·Azure CLI, 「휴대폰 앱」 안에 Azure 모바일 앱을 둔다. 이 배치는 대표 사용 경로이며 도구의 유일한 실행 장소를 뜻하지 않는다. 브라우저 곁말 「로컬 설치 없이」, 설치 곁말 「Windows·Linux·macOS」, 휴대폰 곁말 「상태·경고를 본다」를 쓸 수 있다. 휴대폰 캡션은 VM 시작·중지와 Cloud Shell 열기도 말할 수 있다. 「웹 브라우저로 연다」의 기기는 데스크톱·태블릿이다 — 휴대폰을 브라우저 쪽에 그리지 않는다(D120) — 포털 개요·지원 기기, Cloud Shell 개요, CLI·PowerShell 개요, 모바일 앱 개요
+- 위 도식의 도구 다섯에서 Resource Manager로 가는 화살표는 **리소스를 관리하는 요청**이다. 파일 내용 읽기·쓰기 같은 모든 API 호출이 거친다고 하지 않는다. Azure 계정과 해당 권한, 지원되는 브라우저를 전제로 한다 — 기존 Resource Manager 항목 「Consistent management layer」
+- **CloudShellDiagram**: 바깥 Azure Cloud Shell, 안의 선택 Bash·PowerShell, 각 선택에서 준비된 Azure CLI·Azure PowerShell, 바깥의 웹 브라우저·스토리지 계정을 쓸 수 있다. 곁말 「두 도구가 준비되어 있다」는 설치 상태를 말한다. **Bash 장면의 캡션은 「Bash를 골라도 두 도구는 준비되어 있다. Azure CLI 명령은 여기서 실행하며 Azure PowerShell 명령을 쓰려면 PowerShell을 연다」로 한정한다.** PowerShell 장면은 두 도구의 명령을 모두 실행한다고 쓴다. Bash에서 cmdlet을 직접 실행하는 화살표는 만들지 않는다 — 기능 문서의 공통 설치 목록과 도구 비교 문서의 셸별 실행 표를 함께 적용한 설계
+- 파일 장면은 「보존되는 위치에 파일을 둔다」·「저장 요금이 붙는다」로 설명한다. 저장소를 안 붙인 임시 세션은 종료 뒤 파일을 남기지 않는다. 저장소는 필수 노드처럼 항상 선명하게 두지 않는다 — 임시 세션·영구 저장소 시작 안내, 기능 문서, 개요 「Pricing」
+- **AzureArcDiagram**: Azure 밖 그룹에 「온-프레미스 서버」·「다른 클라우드의 VM」을 두고, Azure 안에 Azure Resource Manager·Azure Policy를 둔다. Arc로 잇는 선은 관리 연결이며 서버의 이동 경로가 아니다. 곁말 「Azure에서 리소스로 보인다」·「서버는 원래 위치에 있다」·「정책·역할·태그로 관리한다」를 쓴다 — Arc·서버·Kubernetes 개요
+- Arc 없이 장면은 「환경마다 다른 도구로 관리하는 회사」라는 예로 한정한다. Arc 이외에는 통합 관리가 불가능하다는 사실로 쓰지 않는다. 정책 선은 설정 준수를 살피는 관리 관계이며 모든 Azure Policy 정의가 외부 서버에도 똑같이 작동한다는 뜻이 아니다 — Arc 개요의 문제 상황, 서버 개요 「Supported cloud operations」
+- **CommandToolsTable**: Azure PowerShell 행은 「동사-명사 꼴의 cmdlet / PowerShell에서(Windows에서는 Windows PowerShell도), 로컬 설치 또는 Cloud Shell」, Azure CLI 행은 「az로 시작하는 명령 / 명령 프롬프트·PowerShell·Bash, 로컬 설치 또는 Cloud Shell」, Azure Cloud Shell 행은 「두 도구의 명령을 쓴다 / 브라우저로 여는 환경」을 쓴다. Cloud Shell은 세 번째 명령 언어가 아니다. VM 생성의 두 이름은 az vm create와 New-AzVM이며 표·도식에는 백틱을 넣지 않는다 — 두 도구 개요, 도구 비교, 명령 참조 두 곳
+
+쓰인 곳(phase 107 step 5): `ToolAccessDiagram`(칸 셋과 곁말 셋 — 브라우저 곁말은 「설치 없이 연다」, 휴대폰 칸 이름은 「휴대폰 앱」, 화살표 다섯은 관리 요청), 개념 `azure-management-tools.management-tools`; D119·D120·D121.
+쓰인 곳(phase 107 step 6): `CloudShellDiagram`(바깥 칸 Azure Cloud Shell 안에 셸 Bash·PowerShell과 안쪽 칸 「미리 설치된 도구」의 Azure CLI·Azure PowerShell 하나씩 — 셸마다 두 도구를 따로 그리지 않았다, Bash 장면은 Azure CLI만 밝히고 흐린 Azure PowerShell은 캡션으로 한정, Bash에서 Azure PowerShell로 가는 화살표 없음, 파일 장면은 스토리지 계정을 밝히고 곁말 「붙이면 파일이 남는다」), `CommandToolsTable`(세 행 — 칸에 백틱·명령 이름 없이 「동사-명사 꼴의 cmdlet」·「az로 시작하는 명령」·「따로 없고 두 도구의 명령을 쓴다」), 개념 `azure-management-tools.cloud-shell`·`azure-cli`; D113~D116, G64.
+쓰인 곳(phase 107 step 7): `AzureArcDiagram`(「Azure 밖」 칸에 온-프레미스 서버·다른 클라우드의 VM, 「Azure」 칸에 Azure Resource Manager·Azure Policy, 두 칸 사이에 Azure Arc, 서버는 어느 장면에서도 Azure 밖 칸에 있다, 곁말 「환경마다 따로 관리한다」·「Azure 리소스처럼 나타난다」·「정책·역할·태그로 관리한다」·「서버는 옮겨지지 않는다」, Arc 없이 장면은 회사 A의 예로 한정), 개념 `azure-management-tools.azure-arc`; D118.
+
+## (phase 107) 한국어 표기 정리 — `azure-management-tools`
+
+확인한 날 2026-11-04. 사실은 위 영문판으로, 아래 이름은 각 한국어판으로 확인했다.
+
+| 개념 id 끝부분 | 확정한 name | 근거와 선택 |
+|---|---|---|
+| `management-tools` | **Azure 관리 도구** | 여섯 수단을 묶는 설명형 제목이다. Learn 단원 2의 도구 소개와 각 제품 이름을 따른다. 목록 이름은 **Azure 포털**, **Azure Cloud Shell**, **Azure PowerShell**, **Azure CLI**, **Azure 모바일 앱**, **REST API**다. 한국어 이름인 Azure 포털은 Azure portal, Azure 모바일 앱은 Azure mobile app을 처음에 괄호로 붙일 수 있다 |
+| `azure-portal` | **Azure 포털** | 제품 개요 한국어판 제목. 용어집의 Azure Portal과 달리 포털을 한국어로 쓴다 |
+| `cloud-shell` | **Azure Cloud Shell** | 제품 개요·기능 안내 제목. 셸은 「셸」로 통일하고 Bash와 PowerShell을 고른다. 임시 세션은 시작 안내 한국어판 제목에 있는 표기다 |
+| `azure-powershell` | **Azure PowerShell** | 제품 개요 제목. 설치할 모듈을 가리킬 때는 **Az PowerShell 모듈**을 쓴다. 셸 PowerShell과 제품 Azure PowerShell을 구분한다. 명령 하나는 **cmdlet**으로 적고 뜻을 푼다 |
+| `azure-cli` | **Azure CLI** | 제품 개요 제목. CLI는 명령줄 인터페이스라는 뜻이고 제품은 명령줄 도구다. Bash의 다른 이름처럼 쓰지 않는다 |
+| `azure-arc` | **Azure Arc** | 제품 개요 제목. 대상의 이름은 서버와 가상 머신(한국어판은 「서버 및 가상 머신」), Kubernetes 클러스터, SQL Server, 그리고 Azure 데이터 서비스다. 「투영」 대신 Azure에서 관리할 리소스로 나타낸다고 설명한다 |
+
+- 「셸」은 PowerShell 한국어판, 「명령 프롬프트」는 CLI의 Windows 설치 한국어판에서 확인했다. 명령 이름 두 개는 번역하지 않는다.
+- Windows·Linux·macOS는 운영 체제 이름이다. 설치 조건에는 버전을 붙이지 않고 「지원되는 PowerShell과 Az 모듈」로 쓴다. PowerShell Core의 옛 버전을 새 전제로 삼지 않는다.
+- 리소스·구독·리소스 그룹·역할·온-프레미스·다중 클라우드·하이브리드·컨테이너는 이 주제에서 다시 풀어 쓴다. 이전 주제에서 읽었을 것이라고 가정하지 않는다. 셸·스크립트·모듈의 풀이도 같은 자리에서 한다.
+
+쓰인 곳(phase 107 step 5): `azure-management-tools.management-tools`(Azure 관리 도구, 목록 이름 여섯 — Azure 포털·Azure 모바일 앱에 영문 이름을 괄호로), `azure-management-tools.azure-portal`(Azure 포털), `ToolAccessDiagram`; D119·D120·D121.
+쓰인 곳(phase 107 step 6): `azure-management-tools.cloud-shell`(Azure Cloud Shell, 셸, 임시 세션), `azure-management-tools.azure-powershell`(Azure PowerShell, Az PowerShell 모듈, cmdlet), `azure-management-tools.azure-cli`(Azure CLI, 명령줄 인터페이스, 명령 프롬프트), `CloudShellDiagram`, `CommandToolsTable`; D113~D116, G64.
+쓰인 곳(phase 107 step 7): `azure-management-tools.azure-arc`(Azure Arc, Kubernetes 클러스터, SQL Server, Azure 데이터 서비스, 온-프레미스·하이브리드·다중 클라우드·컨테이너를 이 주제에서 다시 풀었다, 「투영」 대신 「Azure Resource Manager에 나타나게 한다」), `AzureArcDiagram`. D118.
+
+## (phase 107) Azure 관리·배포 Learn 단원 4 — Describe Azure Resource Manager and Azure ARM templates
+https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manage-deploy-azure-resources/4-describe-azure-resource-manager-azure-arm-templates
+
+확인한 날 2026-11-04. 사본: `learn-describe-features-tools-manage-deploy-azure-resources-4-describe-azure-resource-manager-azure-arm-templates.md`와 `ko-` 판을 다시 받았다.
+
+- Azure Resource Manager는 Azure 리소스를 배포하고 관리하는 서비스다. 도구·API·SDK에서 온 요청의 신원과 권한을 확인하고, 그 작업을 맡은 서비스에 넘긴다. 도구가 달라도 같은 관리 API를 이용한다 — 첫 부분. 관리 요청이라는 한정은 아래 관리 작업 문서와 기존 phase 102 항목을 따른다.
+- 리소스 여럿을 한 묶음으로 배포하고 관리하며 살필 수 있다. 의존 관계에 맞춰 생성 순서를 정하고, 접근 권한을 적용하며, 태그로 리소스를 정리한다 — 「Azure Resource Manager benefits」
+- 인프라를 손으로 설정하는 대신 코드나 템플릿으로 관리할 수 있다. CLI·PowerShell 명령으로 시작해, 환경을 되풀이해서 만들 때 ARM 템플릿이나 Bicep을 쓰는 흐름을 제시한다 — 「Infrastructure as code」
+- ARM 템플릿에는 만들 리소스와 원하는 설정을 적는다. 배포 전 검사를 하고, 생성 순서를 조정하며, 함께 처리할 수 있는 것은 병렬로 배포한다. 작은 템플릿으로 나누어 다시 쓸 수도 있다 — 「Azure Resource Manager templates」, 「Benefits of using Azure Resource Manager templates」
+- **설계와 달라진 원문**: 이번에 받은 영문 단원에는 Azure PowerShell을 직접 imperative code라고 부르는 문장이 없다. 명령형과 선언형을 가르는 근거는 아래 IaC 문서의 「Use declarative definition files」와 ARM 템플릿 개요의 「Orchestration」에서 확인했다. 옛 단원 문장을 현행 인용처럼 기록하지 않는다.
+- 한국어 표기: 한국어 단원은 「코드로서의 인프라」와 「선언적」을 쓴다. 앱의 「코드형 인프라」는 ARM 템플릿·Bicep 제품 문서의 한국어판에서 고른다. 명령형·선언형은 아래 표기 정리에서 형태를 맞춘 말이다.
+- 쓰지 않는 것: 배포 스크립트를 호출하는 확장 기능. CLI·PowerShell로 작업 순서를 적는 일반 스크립트와 이 기능을 섞지 않는다.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(배포·관리 서비스, 신원과 권한 확인, 같은 관리 API, 이점 넷), `azure-infrastructure-as-code.infrastructure-as-code`(손으로 설정하는 대신 코드로, CLI·PowerShell 스크립트와 템플릿), `ResourceManagerDiagram`, `IacEnvironmentsDiagram`, az174·az175 해설.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(만들 리소스와 설정을 적는다, 배포 전 검사, 의존 관계의 순서와 동시에 만들기, 작게 나누어 다시 쓰기)·`bicep`(ARM 템플릿이나 Bicep으로 되풀이해 만든다), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`(스크립트 행 — CLI·PowerShell 명령), az176 해설.
+
+## (phase 107) 코드형 인프라 — What is infrastructure as code (IaC)?
+https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code
+
+확인한 날 2026-11-04. 사본: `docs-devops-infrastructure-as-code.md`와 `ko-` 판.
+
+- 네트워크·VM·부하 분산 장치와 연결 구성을 코드로 정의하고 배포한다. 앱에서 인프라는 「앱을 실행하려고 준비하는 서버·네트워크·저장소 같은 바탕」으로 푼다. 저장소의 예는 ARM 템플릿 개요 「Declarative syntax」에서도 확인했다 — 첫 부분
+- 환경마다 손으로 설정을 관리하면 시간이 지나면서 구성이 달라질 수 있다. 원하는 구성을 코드에 남기고 그 코드로 환경을 만들면, 같은 구성을 다시 만들고 변경 이력을 관리할 수 있다 — 「Avoid manual configuration to enforce consistency」. 수작업이면 반드시 틀린다는 뜻으로 쓰지 않는다.
+- 실제 운영 환경과 비슷한 테스트 환경을 필요할 때 마련할 수 있다. 개발·테스트·운영은 이 설명을 위한 예시 이름이며, 이름만으로 세 환경의 규모나 데이터가 같아지는 것은 아니다 — 「Deliver stable test environments rapidly at scale」
+- 선언형은 필요한 구성 요소와 설정을 적되 그 상태를 만드는 절차를 일일이 적지 않는 방식이다. 명령형과의 대비는 서버의 버전·설정을 적는 것과 설치·설정 과정을 적는 것의 차이다 — 「Use declarative definition files」. 앱의 짧은 풀이: 「명령형은 해야 할 작업과 순서를 명령으로 적는다. 선언형은 만들어질 리소스와 그 설정을 적는다.」
+- 코드와 그 변경 이력을 함께 관리한다는 것까지 쓴다. DevOps의 중요한 실천이라는 원문을 모든 조직의 필수 조건으로 바꾸지 않는다 — 첫 부분, G65.
+- 한국어 표기: 한국어판은 「선언적 정의」·「명령적 코드」를 쓴다. 앱에서는 두 방식을 비교할 때 「선언형」·「명령형」으로 맞춘다. 공식 문서의 고유 기능 이름이 아니라 의미를 옮긴 설명형 표기다.
+- 쓰지 않는 것: 타사 도구, 파이프라인·DevOps 연동 절차, 모든 초기 상태에서 환경 전체가 같아진다는 단정. Azure 템플릿의 반복 배포 범위는 아래 별도 항목을 따른다.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(인프라의 풀이, 손으로 설정하면 곳마다 달라질 수 있다, 코드로 남겨 다시 만들고 고친 기록을 관리한다, 명령형과 선언형 — 선언형은 결과를, 명령형은 작업과 순서를 적는다, 개발·테스트·운영 환경의 예), `IacEnvironmentsDiagram`, az175; G65(DevOps의 필수 조건이라는 단정은 쓰지 않았다)·G67(타사 도구는 쓰지 않았다)의 한정.
+쓰인 곳(phase 107 step 10): `DeploymentMethodsTable`(명령형·선언형 — 「적는 것」 열, 개념 15의 말과 같게).
+
+## (phase 107) ARM 템플릿 — What are ARM templates?
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview
+
+확인한 날 2026-11-04. 사본: `docs-arm-templates-overview.md`를 다시 받고 `ko-docs-arm-templates-overview.md`를 더했다.
+
+- ARM 템플릿은 Azure Resource Manager에 배포할 리소스와 설정을 적어 전달하는 JSON 파일이다. 명령을 실행할 순서 대신 원하는 구성을 선언한다. 하나에 VM·네트워크·저장소 등 여러 리소스를 담을 수 있다 — 첫 부분, 「Why choose ARM templates? / Declarative syntax」
+- 같은 템플릿을 되풀이해 배포할 수 있다. 문서의 스토리지 계정 예는 같은 이름의 계정이 이미 있고 설정도 같으면 바꾸지 않는다. 멱등성의 범위는 아래 배포 모드 확인 항목의 조건과 함께 쓴다 — 「Repeatable results」
+- Resource Manager가 리소스 사이의 의존 관계를 보고 먼저 필요한 것을 먼저 만든다. 서로 기다릴 필요가 없는 것은 함께 배포할 수 있다 — 「Orchestration」
+- 배포를 시작하기 전에 템플릿을 검사하며, 검사를 통과해야 배포한다. 검사 덕분에 중간 실패 가능성이 줄어든다는 뜻이지 모든 배포의 성공을 보장한다는 뜻은 아니다 — 「Built-in validation」
+- 템플릿을 작은 부분으로 나누어 다시 쓸 수 있고, 배포할 때 연결하거나 한 템플릿 안에 다른 템플릿을 넣을 수 있다 — 「Modular files」, 「Template design」. 앱에서는 「작게 나눈 템플릿을 이어 다시 쓴다」까지만 쓴다.
+- 매개변수는 같은 템플릿에서 환경에 따라 달라지는 값을 배포할 때 받게 한다 — 「Template file」. 구역 이름이나 작성 문법은 쓰지 않는다.
+- Resource Manager는 템플릿을 받아 서비스에 보낼 REST API 작업으로 처리한다. 포털에서도 템플릿을 배포할 수 있다 — 「Template deployment process」
+- 템플릿을 배포하는 길로 Azure 포털과 함께 Azure CLI, PowerShell, REST API, Cloud Shell도 든다. 그래서 명령 도구를 쓴다고 명령형이 되는 것이 아니고, 명령 도구로 선언형 템플릿을 배포할 수도 있다 — 「Template deployment process」의 마지막 목록. 확인한 날 2026-11-05. (phase 107 step 9)
+- Bicep도 ARM 템플릿이 할 수 있는 배포를 표현하며, 배포할 때 JSON으로 된 ARM 템플릿으로 바뀐다 — 첫 부분 Tip. 변환 주체는 Bicep 개요에서 확인했다.
+- 템플릿에는 리소스와 그 속성을 적고, 그 리소스를 배포할 리소스 그룹도 정할 수 있다 — 첫 부분. 확인한 날 2026-11-05. (phase 107 step 10)
+- 한국어 표기: 「ARM 템플릿」으로 통일한다. 첫 등장에서는 「Azure Resource Manager에 만들 리소스와 설정을 적어 주는 파일」로 풀고 ARM이 서비스 이름의 약칭임을 밝힌다. 「Resource Manager 템플릿」은 다른 종류가 아니라 같은 파일의 다른 표기다.
+- 쓰지 않는 것: 함수·표현식·템플릿 구역 목록, 배포 스크립트, 템플릿 사양·배포 스택·what-if, Blueprints, 도구 설치와 배포 명령.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(선언형의 예가 ARM 템플릿이고 무엇을 먼저 만들지는 Resource Manager가 의존 관계를 보고 정한다 — 「Orchestration」, Azure CLI나 Azure PowerShell로 ARM 템플릿을 배포할 수도 있다 — 「Template deployment process」), `azure-infrastructure-as-code.resource-manager`(ARM 템플릿을 푸는 한 줄 — 만들 리소스와 설정을 적어 Resource Manager에 넘기는 파일), az175 해설.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(JSON 파일, 선언형, 한 템플릿에 여러 리소스 — D122, 배포할 리소스 그룹, 포털·Azure CLI·Azure PowerShell로 배포, 배포 전 검사와 그 한계, 의존 관계의 순서와 동시에 만들기, 같은 상태 — G66, 매개변수, 작게 나누어 이어 붙여 다시 쓰기)·`bicep`(배포할 때 JSON으로 된 ARM 템플릿으로 바뀐다 — G68), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, az176~az178 해설. NO.193·228·449의 답과 대조했다(반복 배포 문항은 덤프 꼴을 쓰지 않았다).
+
+## (phase 107) ARM 템플릿 — Understand the structure and syntax of ARM templates
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax
+
+확인한 날 2026-11-04. 사본: `docs-arm-templates-syntax.md`와 `ko-` 판.
+
+- 템플릿을 실행할 때 외부에서 받을 값을 정할 수 있다. 같은 파일을 두고 환경에 필요한 값을 바꿔 넣는 근거다 — 「Parameters」, 첫 표. 같은 파일이라는 것만으로 결과가 같다는 뜻은 아니며 입력값도 확인해야 한다.
+- 한국어판은 「매개 변수」로 띄어 쓴다. 앱은 기존 글과 맞춰 「매개변수」로 쓰고 「배포할 때 받아 넣는 값」으로 푼다.
+- 쓰지 않는 것: 구역 이름, 함수·표현식·문법, 개수 한도. 이 문서는 매개변수의 역할을 확인하는 데만 쓴다.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(매개변수 — 배포할 때 받아 넣는 값, 넣은 값이 다르면 결과도 다르다 — G66), az177 해설.
+
+## (phase 107) ARM 템플릿 — Deployment modes (반복 배포의 범위만)
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes
+
+확인한 날 2026-11-04. 사본: `docs-arm-templates-deployment-modes.md`와 `ko-` 판.
+
+- 같은 리소스 그룹의 기존 리소스가 템플릿에 적힌 대상과 같고 설정도 같으면 그 리소스를 바꾸지 않는다. 설정값을 바꾸면 갱신하며, 바꿀 수 없는 종류나 위치를 바꾸려는 배포는 실패할 수 있다 — 첫 부분. 뒤 두 사실은 반복 배포를 무조건적인 성공으로 쓰지 않기 위한 확인 근거이며 앱에 세부 제약을 늘리지 않는다.
+- 템플릿에 적히지 않은 리소스를 유지하는지 지우는지는 배포 방식에 따라 다르다. 기존 리소스의 일부 속성을 적지 않으면 기존 값이 모두 유지된다고도 말할 수 없다 — 배포 모드를 비교하는 두 절. 모드 이름과 동작별 세부는 앱에 쓰지 않는다.
+- **앱에 쓸 말**: 「같은 배포 대상에 같은 이름과 설정으로 다시 배포하면, 템플릿에 적힌 리소스를 그 설정으로 맞춘다. 이미 그 설정이면 같은 리소스를 하나 더 만들지 않는다.」 같은 템플릿뿐 아니라 매개변수 등 실제 입력값도 같다는 조건이다. 대상은 템플릿으로 정의한 리소스의 구성이다. 템플릿 밖의 리소스·저장된 파일이나 DB 내용·실행 중 상태 전체가 같아진다는 근거로 쓰지 않는다 — 이 문서 첫 부분과 개요 「Repeatable results」의 예를 함께 한정한 표현.
+- 한국어 표기: 개요 한국어판은 idempotent를 영어로 남긴다. 「멱등」은 이 성질의 뜻을 옮긴 말이며 한국어판의 직접 표기로 인용하지 않는다. 초보자 본문에는 위 풀이를 먼저 쓰고, 용어가 필요하면 「멱등성」을 한 번 덧붙인다.
+- 쓰지 않는 것: 배포 모드 이름·차이 표, 삭제 방식, 배포 스택·what-if·명령 문법.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`·`bicep`(같은 리소스 그룹에 같은 이름과 설정으로 다시 배포하면 적힌 리소스를 그 설정으로 맞추고 하나 더 만들지 않는다, 같아지는 것은 적힌 리소스의 구성이고 저장된 데이터가 아니다 — 모드 이름과 템플릿 밖 리소스의 처리는 쓰지 않았다), `TemplateDeploymentDiagram`의 redeploy, az177; G66.
+
+## (phase 107) ARM 템플릿 — Define the order for deploying resources in ARM templates
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-dependency
+
+확인한 날 2026-11-04. 사본: `docs-arm-templates-resource-dependency.md`와 `ko-` 판.
+
+- Resource Manager는 선언된 의존 관계를 보고 생성 순서를 정한다. 서로 의존하지 않는 리소스들은 병렬로 배포한다 — 첫 부분
+- 문서의 네트워크 인터페이스 예는 가상 네트워크를 먼저 필요로 하고, VM 예는 네트워크 인터페이스를 먼저 필요로 한다 — 「dependsOn」의 예, 「Depend on resources in a loop」의 VM 예. 도식의 「가상 네트워크 1 → VM 1」은 그 사이의 네트워크 인터페이스를 생략한 생성 순서다. 직접 연결 관계나 VM의 유일한 의존성이 네트워크 하나라는 뜻으로 그리지 않는다.
+- 스토리지 계정이 VM에 앞서도록 정한 다른 예도 있다. 따라서 도식의 「스토리지 계정 1은 동시에」는 VM의 디스크용 계정이 아니라 **다른 두 리소스와 의존 관계를 두지 않은 별도 계정**이라는 조건을 붙인다 — 같은 절의 다음 예와 첫 부분
+- 의존 관계는 같은 템플릿으로 배포하는 리소스끼리만 정하면 된다. 정할 필요 없는 의존 관계를 더하면 병렬로 배포하지 못해 배포가 느려진다 — 첫 부분, 「dependsOn」 절. 앱에서는 「쓰는 사람은 어떤 리소스가 무엇을 먼저 필요로 하는지만 적는다」까지 쓴다. 확인한 날 2026-11-05. (phase 107 step 10)
+- 한국어 표기: 종속성·의존 관계. 앱은 먼저 있어야 할 리소스를 기다린다는 말로 풀고, 문법 이름은 쓰지 않는다.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(적힌 의존 관계를 보고 먼저 필요한 것부터, 의존 관계가 없으면 동시에, 쓰는 사람은 무엇을 먼저 필요로 하는지만 적는다, 네트워크 인터페이스를 줄인 예와 별도 스토리지 계정), `TemplateDeploymentDiagram`의 order·legend, az176.
+
+## (phase 107) ARM 템플릿 — Use Azure portal to export a template
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal
+
+확인한 날 2026-11-04. 사본: `docs-arm-templates-export-template-portal.md`와 `ko-` 판.
+
+- 포털에서 기존 리소스의 템플릿을 내보내 새 배포를 작성하는 출발점으로 쓸 수 있다. 필요한 리소스만 골라 내보내고, 다른 환경에 쓰기 전에 설정과 매개변수를 손본다 — 첫 부분, 「Choose the right export option」
+- 내보내기 자체가 반드시 성공하는 것은 아니며, 받은 파일을 운영에 그대로 쓸 수 있다고 보장하지 않는다. 필요한 속성과 값을 확인해야 한다 — 「Limitations」
+- NO.202의 내보내기 → 수정 → 배포라는 흐름은 같은 **리소스 구성**을 되풀이하는 범위에서 맞다. VM 안의 파일이나 실행 상태까지 복사한다는 주장은 이 문서에서 확인하지 못했고 쓰지 않는다. 포털에서 배포한다는 근거는 ARM 템플릿 개요 「Template deployment process」에도 있다.
+- 한국어 표기: 내보내기. 상세 화면 조작과 내보내기 한도는 쓰지 않는다.
+
+쓰인 곳(phase 107 step 10): 없음 — 내보내기는 본문·문항에 쓰지 않았다. NO.202를 대조하는 데만 썼다.
+
+## (phase 107) Bicep — What is Bicep?
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview
+
+확인한 날 2026-11-04. 사본: `docs-bicep-overview.md`를 다시 받고 `ko-docs-bicep-overview.md`를 더했다.
+
+- Bicep은 Azure에 만들 리소스와 설정을 선언하는 언어다. 앱의 실행 코드를 쓰는 범용 언어가 아니다 — 첫 부분, 「About the language」
+- 같은 구성을 표현한 JSON 템플릿과 비교하면 대체로 적을 글이 줄고 읽기 수월하다. 어느 파일이든 정해진 비율로 줄어든다고 쓰지 않는다 — 「Benefits of Bicep / Simple syntax」
+- 배포 과정에서 **Bicep CLI가** Bicep 파일을 JSON으로 된 ARM 템플릿으로 변환한다. 그 템플릿을 Resource Manager가 처리한다. 「Azure가 Bicep을 직접 읽는다」나 「Azure 서비스가 변환한다」로 주체를 바꾸지 않는다 — 「About the language」, ARM 템플릿 개요 「Template deployment process」
+- **앱에 쓸 말**: 「Bicep으로 적은 파일은 배포할 때 Bicep CLI라는 도구가 ARM 템플릿(JSON)으로 바꾸고, Azure Resource Manager가 그 템플릿을 받아 리소스를 만든다.」 변환은 배포 흐름의 일부이며, 사용자가 JSON을 따로 손으로 작성해야 한다는 뜻이 아니다.
+- ARM 템플릿으로 표현하는 리소스 종류·API 버전·속성을 Bicep에서도 쓴다. 새 리소스 종류와 API 버전이 제공되면 Bicep에서도 바로 쓸 수 있다 — 「Support for all resource types and API versions」, 「About the language」. 모든 미래 기능을 무조건 지원한다는 말 대신 이 범위로 쓴다.
+- 파일을 여러 모듈로 나눌 수 있다. 모듈은 관련 리소스를 함께 배포하는 재사용 단위이며 다른 Bicep 파일에서 다시 쓴다 — 「Modularity」
+- 같은 파일을 되풀이해서 배포한다. 같은 이름과 설정의 계정이 이미 있으면 바꾸지 않는 예가 있다 — 「Repeatable results」. ARM 템플릿과 같은 입력·대상 한정을 적용한다.
+- 한국어 표기: Bicep은 옮기지 않는다. 한국어판의 변환 문장은 「변환」을 쓴다. 앱도 변환 또는 「바꾼다」로 쓰고 트랜스파일은 쓰지 않는다. 모듈은 「작게 나누어 다시 쓰는 부분」으로 푼다.
+- 쓰지 않는 것: 문법·반복문·변수·함수, 편집기 확장, 실험 기능, 상태 파일, 타사 비교, 배포 스크립트·사양·스택·what-if·Blueprints.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.bicep`(선언형 언어, 앱 실행 코드의 언어가 아니다, Bicep CLI가 ARM 템플릿으로 바꾸고 Resource Manager가 처리 — G68, 리소스 종류와 설정·새 리소스 종류, 모듈, 같은 상태), `DeploymentMethodsTable`(Bicep 행), az178.
+
+## (phase 107) Bicep — Comparing JSON and Bicep for templates
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax
+
+확인한 날 2026-11-04. 사본: `docs-bicep-compare-template-syntax.md`와 `ko-` 판.
+
+- 같은 인프라를 두 형식으로 적은 예에서 Bicep 쪽 표현이 대체로 짧다 — 첫 부분, 「Compare complete files」. 예 하나의 길이 비율은 일반적인 보장이 아니므로 앱에 수치로 쓰지 않는다.
+- 한국어 표기: JSON·Bicep은 이름을 유지한다. 비교 문법은 앱에 옮기지 않는다.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.bicep`(JSON 템플릿보다 대체로 적을 글이 적고 읽기 쉽다, 정해진 비율은 없다), `DeploymentMethodsTable`.
+
+## (phase 107) Azure 관리 요청 — Azure control plane and data plane
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane
+
+확인한 날 2026-11-04. 사본: `docs-arm-control-plane-and-data-plane.md`와 `ko-` 판.
+
+- 리소스를 만드는 것과 그 리소스의 기능을 사용하는 것은 다르다. VM 만들기는 관리 작업이고, 만들어진 VM에 접속하는 것은 데이터 쪽 작업이다. 스토리지 계정을 만드는 것과 안의 데이터를 읽고 쓰는 것도 구별한다 — 첫 부분
+- 관리 작업의 요청은 Resource Manager가 받고 RBAC·정책·잠금 같은 관리 기능을 적용한다. 데이터 작업은 해당 리소스의 접속 주소로 간다 — 「Control plane」, 「Data plane」
+- 새 리소스를 만드는 요청과 기존 리소스를 바꾸는 요청을 구분해서 처리한다 — 「Control plane」. 같은 설정의 반복 배포를 새 복제본 생성으로 그리지 않을 근거다.
+- 한국어 표기: 앱은 「관리 작업」·「관리 요청」으로 쓴다. 제어 평면·데이터 평면이나 엔드포인트 주소를 새 학습 항목으로 만들지 않는다.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(Resource Manager가 받는 것은 리소스를 관리하는 요청이고, VM 접속과 스토리지 계정 안의 데이터 읽기·쓰기는 그 리소스로 바로 간다 — 「제어 평면」이라는 말은 쓰지 않았다), `ResourceManagerDiagram`(legend의 「관리 요청」). 기존 `rbac-scope`의 한정과 어긋나지 않는다.
+쓰인 곳(phase 107 step 10): `TemplateDeploymentDiagram`의 redeploy(같은 설정의 반복 배포를 새 복제본으로 그리지 않았다 — 리소스 노드는 하나씩이다).
+
+## (phase 107) Azure SDK — Use the Azure SDK for Java
+https://learn.microsoft.com/en-us/azure/developer/java/sdk/overview
+
+확인한 날 2026-11-04. 사본: `docs-azure-java-sdk-overview.md`와 `ko-` 판.
+
+- SDK는 프로그램에서 Azure 기능을 호출할 때 쓰는 라이브러리 묶음으로 풀 수 있다. 이 Java SDK는 라이브러리들로 이루어져 있으며 별도 도구가 포함된다는 설명은 하지 않는다 — 「Important details」
+- 관리 라이브러리를 사용하면 프로그램에서 리소스를 만들고 관리한다. 라이브러리는 Azure REST API를 바탕으로 동작한다. 이미 있는 리소스 안의 데이터를 사용하는 라이브러리는 별도로 구분한다 — 「Other details」, 「Provision and manage Azure resources with management libraries」
+- 한국어 표기: SDK는 이름을 유지한다. 라이브러리는 「프로그램에 가져다 쓰는 기능 묶음」으로 풀며, 이 주제의 SDK 요청은 리소스 관리 쪽이다. Java·패키지·코드 문법은 앱에 넣지 않는다.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(SDK — 개발자가 자기 프로그램에서 Azure의 기능을 부르려고 가져다 쓰는 기능 묶음, 리소스를 만들고 관리하는 요청을 보낸다는 쪽으로만 썼다).
+
+## (phase 107) Azure SDK — Azure Table storage support (약어만)
+https://learn.microsoft.com/en-us/azure/cosmos-db/table/support
+
+확인한 날 2026-11-04. 사본: `docs-cosmos-table-support.md`와 `ko-` 판.
+
+- SDK는 Software Development Kit의 약칭이다. 여러 언어에서 서비스를 이용할 라이브러리를 제공한다 — 「Azure SDKs」. 이 문서의 데이터 작업을 Resource Manager의 관리 요청으로 바꾸어 인용하지 않는다.
+- 한국어 표기: SDK(Software Development Kit), 소프트웨어 개발 키트. 앱은 낯선 이름을 다시 나열하기보다 위 SDK 항목의 한 줄 풀이를 쓴다.
+- 쓰지 않는 것: Table 서비스의 비교·가격·SLA·지원 언어 목록.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 SDK(Software Development Kit) 약어 풀이.
+
+## (phase 107) JSON — Glossary: Azure Operator Service Manager (용어만)
+https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
+
+확인한 날 2026-11-04. 사본: `docs-operator-service-manager-glossary.md`와 `ko-` 판.
+
+- JSON은 구조가 있는 데이터를 저장하거나 시스템 사이에서 주고받을 때 쓰는 표기 형식이며 설정 파일에도 쓰인다 — 「JSON」. 앱에서는 「설정 같은 정보를 정해진 글자 형식으로 적어 두고 프로그램이 읽게 하는 방식」으로 푼다.
+- 한국어 표기: JSON은 유지하고 JavaScript Object Notation이라는 풀네임은 ARM 템플릿 개요에서도 확인했다. 앱을 실행하는 JavaScript 코드와 같은 것처럼 설명하지 않는다.
+- 쓰지 않는 것: 이 제품 자체와 다른 용어 항목.
+
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 JSON(JavaScript Object Notation) 풀이, `DeploymentMethodsTable`의 「JSON 파일」.
+
+## (phase 107) 도식·표의 사실 — `azure-infrastructure-as-code`
+
+확인한 날 2026-11-04. `step9.md`·`step10.md`의 설계를 위 원문과 대조했다. 아래 예시 이름은 문서의 실제 회사·리소스가 아니라 확인한 관계를 설명하기 위한 값이다.
+
+- **ResourceManagerDiagram**: Azure 포털·Azure PowerShell·Azure CLI·REST API에서 Azure Resource Manager로 관리 요청이 모이고, 인증·권한 확인 뒤 담당 서비스가 VM 1을 만든다. SDK도 본문 목록에 넣을 수 있다. 「같은 요청이면 같은 결과」는 같은 대상·설정·권한 조건에서 도구만 달리한 예다. 권한 없는 요청은 VM을 만드는 단계로 가지 않는다. 근거: [ARM 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview) 「Consistent management layer」, [RBAC 개요](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) 「How Azure RBAC determines if a user has access to a resource」. 도식의 ARM → VM 1은 물리 연결이 아니라 서비스에 관리 작업을 넘겨 생성하는 흐름을 줄인 것이다. 「권한이 없으면 막힌다」 장면을 쓸 근거를 확인했다.
+- **IacEnvironmentsDiagram**: 개발·테스트·운영 환경을 각각 수작업으로 관리하면 설정이 달라질 수 있다. 「인프라 코드」를 공통 기준으로 삼아 「코드에 적은 구성으로 만든다」·「같은 코드로 다시 만든다」고 쓴다. 근거: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code) 「Avoid manual configuration to enforce consistency」, 「Deliver stable test environments rapidly at scale」와 [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) 첫 부분. 세 환경의 데이터·리소스 이름까지 같다고 그리지 않는다. 환경별 이름·크기 등의 차이는 매개변수로 줄 수 있다. rebuild 장면은 저장한 정의로 다시 배포한다는 뜻이며 백업 복원을 뜻하지 않는다.
+- **TemplateDeploymentDiagram**: 「ARM 템플릿 → Azure Resource Manager」 뒤 「가상 네트워크 1 → VM 1」은 먼저 필요한 것의 생성 순서이며 네트워크 인터페이스를 생략했다. 「스토리지 계정 1」은 다른 두 리소스와 의존 관계가 없는 예로 둔다. 곁말은 「먼저 필요한 것을 먼저 만든다」·「기다릴 필요가 없으면 함께 만든다」. 근거: [의존 순서 문서](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-dependency) 첫 부분과 네트워크 인터페이스·VM 예. 템플릿 검사 → 배포라는 구분은 [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) 「Built-in validation」. 「다시 배포해도 같은 상태」 장면은 같은 대상·이름·설정이며 이미 있는 리소스를 늘려 그리지 않는다. 캡션은 템플릿에 적힌 리소스에 한정한다 — 개요 「Repeatable results」와 [배포 방식의 범위 확인](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes). VM 1에서 스토리지 계정 1로 의존 선을 추가하면 이 병렬 예의 전제가 바뀐다.
+- **DeploymentMethodsTable**: 열은 방식·적는 것·파일. 「스크립트(Azure CLI·Azure PowerShell) / 할 작업과 순서를 명령으로 적는다 / 명령들을 적은 스크립트 파일」, 「ARM 템플릿 / 만들 리소스와 설정을 적는다 / JSON 파일」, 「Bicep / 만들 리소스와 설정을 적는다 / Bicep 파일, 배포할 때 ARM 템플릿으로 변환」을 쓸 수 있다. 근거: [IaC 개요](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code) 「Use declarative definition files」, Learn 단원 4 「Infrastructure as code」, ARM·Bicep 개요. 스크립트가 ARM 템플릿을 배포할 수도 있으므로 「PowerShell은 선언형 배포를 못 한다」고 가르치지 않는다. Bicep의 변환 주체는 Bicep CLI라고 본문에 풀고 표에는 간단히 적는다.
+- 이 도식·표의 텍스트에는 코드 문법이나 백틱을 넣지 않는다. 「검사 통과면 무조건 성공」·「템플릿 밖의 모든 리소스도 같은 상태」·「파일 내용까지 복구」는 확인한 사실이 아니므로 쓰지 않는다.
+
+쓰인 곳(phase 107 step 9): `ResourceManagerDiagram`(포털에서·Azure CLI에서·프로그램에서·권한이 없으면 — 프로그램에서 장면은 REST API 경로가 보이지 않는 장면이 없도록 더했다), `IacEnvironmentsDiagram`(손으로·코드로·다시 만들 때 — 데이터·리소스 이름까지 같다고 그리지 않았고, 다시 만들 때 캡션은 데이터를 되살리지 않는다고 적었다), `resource-manager`·`infrastructure-as-code`의 예시 문단, G65의 한정.
+쓰인 곳(phase 107 step 10): `TemplateDeploymentDiagram`(배포하기 전에·만드는 순서·다시 배포하면 — 곁말은 step 문서대로 「가상 네트워크가 먼저」·「기대지 않는 것은 동시에」로 쓰고 본문의 「서로 기대지 않는 리소스, 곧 의존 관계가 없는 리소스」와 맞췄다, 다시 배포하면 곁말은 「하나 더 만들지 않는다」, 네트워크 인터페이스는 legend가 밝힌다, 리소스를 두 번 그리지 않았다), `DeploymentMethodsTable`(스크립트 / 해야 할 작업과 그 순서를 적는 명령형 / Azure CLI나 Azure PowerShell 명령을 차례로 적은 파일, ARM 템플릿 / 선언형 / JSON 파일, Bicep / 선언형 / Bicep 파일. 배포할 때 ARM 템플릿으로 바뀐다), `arm-templates`·`bicep`의 예시 문단. D122, G66·G68의 한정을 따랐다.
+
+## (phase 107) 한국어 표기 정리 — `azure-infrastructure-as-code`
+
+확인한 날 2026-11-04. 위 항목에 적힌 URL의 한국어판을 확인했다. 영문판으로 사실을 판단하고 한국어판은 이름 선택에만 썼다.
+
+| 개념 id 끝 | 확정한 name | 표기 근거와 쓸 말 |
+| --- | --- | --- |
+| `resource-manager` | Azure Resource Manager | [관리 개요](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/management/overview)의 제품 이름. 번역하지 않는다. 처음 풀네임 뒤 ARM 약칭을 밝히고 이후 Resource Manager로 줄여도 같은 서비스다. |
+| `infrastructure-as-code` | 코드형 인프라(IaC) | [템플릿 개요](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/templates/overview)·[Bicep 개요](https://learn.microsoft.com/ko-kr/azure/azure-resource-manager/bicep/overview)의 「코드형 인프라」를 고른다. Learn의 「코드로서의 인프라」와 뜻은 같고, 첫 풀이에 Infrastructure as Code를 붙일 수 있다. |
+| `arm-templates` | ARM 템플릿 | 템플릿 개요가 붙인 짧은 이름. 처음 「Azure Resource Manager에 만들 리소스와 설정을 적어 주는 파일」로 풀고, 서비스와 파일을 구분한다. |
+| `bicep` | Bicep | Bicep 개요의 제품 이름 그대로. 언어를 가리키며 배포를 처리하는 서비스 이름이 아니다. |
+
+- 명령형·선언형: [IaC 한국어판](https://learn.microsoft.com/ko-kr/devops/deliver/what-is-infrastructure-as-code)의 「명령적」·「선언적」을 두 방식의 이름으로 맞춘 설명형 표기다. 짧은 풀이: 「할 작업과 순서를 명령으로 적는다」 / 「만들어질 리소스와 그 설정을 적는다」.
+- JSON: 형식 이름은 그대로. 약어의 풀이는 JavaScript Object Notation. 매개변수: 한국어판의 「매개 변수」를 기존 앱과 맞춰 붙여 쓰고 「배포할 때 받아 넣는 값」으로 푼다.
+- 멱등성: 확인한 한국어판은 idempotent를 영어로 남긴다. 「같은 조건으로 다시 배포하면 정의한 리소스 구성이 같아진다」는 뜻을 옮긴 용어임을 구분한다. 앱이 처음부터 이 낱말만 내세우지 않는다.
+- Bicep 변환: 「변환」·「바꾼다」를 쓴다. 앱 문장에서는 Bicep CLI가 바꾸고 Resource Manager가 배포한다는 주체를 생략하지 않는다. 「트랜스파일」은 쓰지 않는다.
+
+쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 `name`(Azure Resource Manager, 처음 ARM 약칭과 Resource Manager), `azure-infrastructure-as-code.infrastructure-as-code`의 `name`(코드형 인프라(IaC), 본문 첫 풀이에 Infrastructure as Code)과 명령형·선언형의 짧은 풀이, 두 도식의 라벨. 「멱등성」은 이 step의 글에 쓰지 않았다.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 `name`(ARM 템플릿, 첫 문단에 Azure Resource Manager 템플릿·ARM 약칭·Resource Manager 템플릿)·`bicep`의 `name`(Bicep), JSON·매개변수의 풀이, 「바꾼다」(트랜스파일은 쓰지 않았다), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`. 「멱등성」은 쓰지 않았다 — 풀이(같은 상태)만 썼다.

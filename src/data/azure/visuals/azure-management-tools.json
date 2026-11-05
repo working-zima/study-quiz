@@ -1,0 +1,210 @@
+{
+  "diagrams": {
+    "tool-access": {
+      "label": "웹 브라우저로 여는 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치하는 Azure PowerShell과 Azure CLI, 휴대폰 앱인 Azure 모바일 앱이 모두 Azure Resource Manager로 관리 요청을 보내는 모습",
+      "svgLabel": "웹 브라우저로 연다 안에 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치한다 안에 Azure PowerShell과 Azure CLI, 휴대폰 앱 안에 Azure 모바일 앱이 있고, 그 사이에 Azure Resource Manager가 있다",
+      "question": "어떤 기기에서 무엇으로 Azure를 다룰까?",
+      "idleCaption": "어느 도구로 보내든 리소스를 만들고 바꾸는 관리 요청은 Azure Resource Manager를 거친다. 버튼을 고르면 기기마다 무엇으로 Azure를 다루는지 볼 수 있다.",
+      "legend": "화살표는 리소스를 만들고 바꾸는 관리 요청이 가는 방향이다. 세 칸은 도구를 주로 여는 곳으로 나눈 것이라, Azure PowerShell과 Azure CLI는 Azure Cloud Shell 안에서도 쓴다.",
+      "nodes": {
+        "portal": "Azure 포털",
+        "cloud-shell": "Azure Cloud Shell",
+        "arm": "Azure Resource Manager",
+        "powershell": "Azure PowerShell",
+        "cli": "Azure CLI",
+        "mobile": "Azure 모바일 앱"
+      },
+      "groups": {
+        "g-browser": "웹 브라우저로 연다",
+        "g-install": "컴퓨터에 설치한다",
+        "g-phone": "휴대폰 앱"
+      },
+      "notes": {
+        "browser-note": "설치 없이 연다",
+        "install-note": "Windows·Linux·macOS",
+        "phone-note": "상태·경고를 본다"
+      },
+      "scenarios": [
+        {
+          "id": "browser",
+          "label": "브라우저로",
+          "caption": "데스크톱 컴퓨터나 태블릿에서 지원되는 웹 브라우저로 Azure 포털과 Azure Cloud Shell을 연다. 브라우저 안에서 열리므로 운영 체제와 상관없이 쓰고, 컴퓨터에 따로 설치할 것이 없다.",
+          "sources": [
+            "azure-management-tools.management-tools",
+            "azure-management-tools.azure-portal"
+          ]
+        },
+        {
+          "id": "install",
+          "label": "설치해서",
+          "caption": "Azure PowerShell과 Azure CLI는 Windows·Linux·macOS 컴퓨터에 설치해 명령으로 Azure를 다룬다. 두 도구는 Azure Cloud Shell에도 미리 설치되어 있어, 설치하지 않고 쓰는 길도 있다.",
+          "sources": [
+            "azure-management-tools.management-tools"
+          ]
+        },
+        {
+          "id": "phone",
+          "label": "휴대폰 앱으로",
+          "caption": "Azure 모바일 앱은 휴대폰 같은 iOS·Android 기기에 설치해, 리소스의 상태와 경고를 보고 VM을 시작하거나 중지하며 앱 안에서 Azure Cloud Shell을 연다.",
+          "sources": [
+            "azure-management-tools.management-tools"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-management-tools.management-tools"
+      ]
+    },
+    "cloud-shell": {
+      "label": "웹 브라우저로 연 Azure Cloud Shell에서 셸로 Bash나 PowerShell을 고르고, 미리 설치된 Azure CLI와 Azure PowerShell의 명령을 실행하며, 파일을 남기려면 스토리지 계정을 붙이는 모습",
+      "svgLabel": "Azure Cloud Shell 밖에 웹 브라우저와 스토리지 계정이 있고, Azure Cloud Shell 안에 셸 Bash와 PowerShell, 미리 설치된 도구 칸 안에 Azure CLI와 Azure PowerShell이 있다",
+      "question": "브라우저에서 연 Cloud Shell 안에는 무엇이 들어 있을까?",
+      "idleCaption": "Azure Cloud Shell은 웹 브라우저 안에서 열리고, Azure CLI와 Azure PowerShell이 미리 설치되어 있다. 버튼을 고르면 고른 셸에서 어느 도구의 명령을 실행하는지, 파일은 어떻게 남기는지 볼 수 있다.",
+      "legend": "화살표는 고른 셸에서 그 도구의 명령을 실행한다는 뜻이다. 안쪽 칸은 Cloud Shell에 미리 설치된 명령 도구다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "bash": "Bash",
+        "pwsh": "PowerShell",
+        "cli": "Azure CLI",
+        "azps": "Azure PowerShell",
+        "storage": "스토리지 계정"
+      },
+      "groups": {
+        "g-cloud-shell": "Azure Cloud Shell",
+        "g-tools": "미리 설치된 도구"
+      },
+      "notes": {
+        "bash-note": "Azure CLI 명령을 실행한다",
+        "pwsh-note": "두 도구의 명령을 실행한다",
+        "storage-note": "붙이면 파일이 남는다"
+      },
+      "scenarios": [
+        {
+          "id": "bash",
+          "label": "Bash를 고르면",
+          "caption": "셸로 Bash를 고르면 미리 설치된 Azure CLI의 az 명령을 실행한다. 흐리게 둔 Azure PowerShell도 Cloud Shell에 설치되어 있지만, 그 명령을 실행하려면 셸로 PowerShell을 고른다.",
+          "sources": [
+            "azure-management-tools.cloud-shell"
+          ]
+        },
+        {
+          "id": "pwsh",
+          "label": "PowerShell을 고르면",
+          "caption": "셸로 PowerShell을 고르면 Azure PowerShell의 명령과 Azure CLI의 az 명령을 모두 실행한다. PowerShell에서 입력해도 az로 시작하는 명령은 Azure CLI의 명령이다.",
+          "sources": [
+            "azure-management-tools.cloud-shell",
+            "azure-management-tools.azure-cli"
+          ]
+        },
+        {
+          "id": "files",
+          "label": "파일을 남기려면",
+          "caption": "처음 시작할 때 스토리지 계정을 붙이면 Cloud Shell이 보존하는 위치에 저장한 파일이 다음 세션에도 남고, 그 스토리지 계정에 일반 저장 요금이 붙는다. 붙이지 않은 임시 세션은 세션이 끝나면 저장한 파일이 지워진다. 흐리게 둔 셸과 도구는 이 장면에서 다루지 않을 뿐이다.",
+          "sources": [
+            "azure-management-tools.cloud-shell"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-management-tools.cloud-shell"
+      ]
+    },
+    "azure-arc": {
+      "label": "Azure 밖에서 실행되는 회사 A의 온-프레미스 서버와 다른 클라우드의 VM을 Azure Arc로 연결해, 서버는 그 자리에 둔 채 Azure Resource Manager에 리소스로 나타나게 하고 Azure Policy·역할·태그로 함께 관리하는 모습",
+      "svgLabel": "Azure 밖 칸에 온-프레미스 서버와 다른 클라우드의 VM이 있고, Azure 칸에 Azure Resource Manager와 Azure Policy가 있으며, 두 칸 사이에 Azure Arc가 있다",
+      "question": "Azure 밖에 있는 서버를 어떻게 Azure에서 함께 관리할까?",
+      "idleCaption": "회사 A의 온-프레미스 서버와 다른 클라우드의 VM은 Azure 밖에서 실행된다. 버튼을 고르면 Azure Arc 없이 관리할 때와, Azure Arc로 연결해 Azure에서 함께 관리할 때를 볼 수 있다.",
+      "legend": "화살표는 Azure에서 관리하려고 잇는 연결과 관리가 가는 방향이고, 서버가 옮겨 가는 길이 아니다. 두 칸은 Azure 밖과 Azure를 나눈 것이고, 서버는 어느 장면에서도 Azure 밖 칸에 있다.",
+      "nodes": {
+        "server-1": "온-프레미스 서버",
+        "other-vm": "다른 클라우드의 VM",
+        "arc": "Azure Arc",
+        "arm": "Azure Resource Manager",
+        "policy": "Azure Policy"
+      },
+      "groups": {
+        "g-outside": "Azure 밖",
+        "g-azure": "Azure"
+      },
+      "notes": {
+        "without-note": "환경마다 따로 관리한다",
+        "connect-note": "Azure 리소스처럼 나타난다",
+        "govern-note": "정책·역할·태그로 관리한다",
+        "stay-note": "서버는 옮겨지지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "without",
+          "label": "Arc 없이",
+          "caption": "Azure Arc를 쓰기 전 회사 A는 온-프레미스 서버를 회사가 쓰던 관리 도구로, 다른 클라우드의 VM을 그 클라우드의 관리 도구로 따로 다룬다. 흐리게 둔 Azure Arc와 Azure 칸의 서비스는 이 장면에서 아직 쓰지 않을 뿐이다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        },
+        {
+          "id": "connect",
+          "label": "Arc로 연결하면",
+          "caption": "Azure Arc로 두 서버를 연결하면 서버는 원래 자리에서 그대로 실행되고, Azure Resource Manager에 서버마다 그 서버를 가리키는 리소스가 생긴다. 이 리소스는 Azure의 VM과 같은 리소스 그룹에 넣고 Azure 포털에서 함께 본다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        },
+        {
+          "id": "govern",
+          "label": "함께 관리하기",
+          "caption": "Azure Resource Manager에 나타난 서버에 Azure 리소스처럼 관리 기능을 쓴다. Azure Policy로 설정이 규칙에 맞는지 살피고, 역할로 다룰 사람을 정하고, 태그를 붙인다. 서버는 회사 A의 데이터 센터에 그대로 있다. 이 장면은 온-프레미스 서버 하나를 예로 들었고, 흐리게 둔 다른 클라우드의 VM도 같은 방식으로 관리한다.",
+          "sources": [
+            "azure-management-tools.azure-arc"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-management-tools.azure-arc"
+      ]
+    }
+  },
+  "tables": {
+    "command-tools": {
+      "label": "Azure 명령 도구와 Cloud Shell 견주기",
+      "columns": [
+        "도구",
+        "명령의 꼴",
+        "실행하는 곳"
+      ],
+      "columnWidths": [
+        "32%",
+        "30%",
+        "38%"
+      ],
+      "sources": [
+        "azure-management-tools.cloud-shell",
+        "azure-management-tools.azure-powershell",
+        "azure-management-tools.azure-cli"
+      ],
+      "rows": [
+        {
+          "header": "Azure PowerShell",
+          "cells": [
+            "동사-명사 꼴의 cmdlet",
+            "PowerShell 셸에서 실행한다. 컴퓨터에 설치하거나 Cloud Shell에서 쓴다"
+          ]
+        },
+        {
+          "header": "Azure CLI",
+          "cells": [
+            "az로 시작하는 명령",
+            "명령 프롬프트, PowerShell, Bash 같은 여러 셸에서 실행한다. 컴퓨터에 설치하거나 Cloud Shell에서 쓴다"
+          ]
+        },
+        {
+          "header": "Azure Cloud Shell",
+          "cells": [
+            "따로 없고 두 도구의 명령을 쓴다",
+            "웹 브라우저로 열고 셸로 Bash나 PowerShell을 고른다"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}

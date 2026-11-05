@@ -15,6 +15,7 @@ import { AuthVsAuthzDiagram } from './AuthVsAuthzDiagram'
 import { AutonomousSystemsDiagram } from './AutonomousSystemsDiagram'
 import { AvailabilitySetDiagram } from './AvailabilitySetDiagram'
 import { AwsvpcPathDiagram } from './AwsvpcPathDiagram'
+import { AzureArcDiagram } from './AzureArcDiagram'
 import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
@@ -30,6 +31,7 @@ import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
+import { CloudShellDiagram } from './CloudShellDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
@@ -104,6 +106,7 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
+import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
@@ -125,6 +128,8 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { LockInheritanceDiagram } from './LockInheritanceDiagram'
+import { LockTypesDiagram } from './LockTypesDiagram'
 import { LoginRecordsDiagram } from './LoginRecordsDiagram'
 import { LongestPrefixDiagram } from './LongestPrefixDiagram'
 import { LoopbackDiagram } from './LoopbackDiagram'
@@ -168,7 +173,10 @@ import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
+import { PolicyCheckDiagram } from './PolicyCheckDiagram'
+import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
+import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -179,6 +187,7 @@ import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
 import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
+import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
@@ -187,6 +196,7 @@ import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
+import { ResourceManagerDiagram } from './ResourceManagerDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -198,6 +208,7 @@ import { RunlevelTargetsDiagram } from './RunlevelTargetsDiagram'
 import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
+import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
@@ -229,7 +240,9 @@ import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
@@ -261,7 +274,10 @@ import { HostingOptionsTable } from './azureComputeTables'
 import { CostSavingOptionsTable } from './azureCostFactorsTables'
 import { CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
+import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
+import { DeploymentMethodsTable } from './azureInfrastructureAsCodeTables'
+import { CommandToolsTable } from './azureManagementToolsTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
@@ -566,6 +582,21 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-cost-management.tag-inheritance': TagInheritanceDiagram,
   'azure-cost-management.free-account': FreeAccountOffersDiagram,
   'azure-cost-management.spending-limit': [SpendingLimitDiagram, CostToolsTable],
+  'azure-governance.purview': PurviewDataMapDiagram,
+  'azure-governance.sensitivity-labels': SensitivityLabelDiagram,
+  'azure-governance.azure-policy': PolicyCheckDiagram,
+  'azure-governance.policy-compliance': PolicyComplianceDiagram,
+  'azure-governance.policy-initiatives': PolicyInitiativeDiagram,
+  'azure-governance.resource-locks': LockTypesDiagram,
+  'azure-governance.lock-inheritance': [LockInheritanceDiagram, GovernanceToolsTable],
+  'azure-management-tools.management-tools': ToolAccessDiagram,
+  'azure-management-tools.cloud-shell': CloudShellDiagram,
+  'azure-management-tools.azure-cli': CommandToolsTable,
+  'azure-management-tools.azure-arc': AzureArcDiagram,
+  'azure-infrastructure-as-code.resource-manager': ResourceManagerDiagram,
+  'azure-infrastructure-as-code.infrastructure-as-code': IacEnvironmentsDiagram,
+  'azure-infrastructure-as-code.arm-templates': TemplateDeploymentDiagram,
+  'azure-infrastructure-as-code.bicep': DeploymentMethodsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

@@ -1,0 +1,399 @@
+{
+  "diagrams": {
+    "purview-data-map": {
+      "label": "회사 A의 데이터가 있는 세 곳에서 Microsoft Purview로 정보가 모이고, 온-프레미스에서 다른 클라우드로 데이터가 옮겨 간 길을 계보로 보는 모습",
+      "svgLabel": "회사 A의 데이터 안에 온-프레미스, 다른 클라우드, SaaS가 있고, 그 아래에 Microsoft Purview가 있다",
+      "question": "여러 곳에 흩어진 데이터를 어떻게 한곳에서 볼까?",
+      "idleCaption": "회사 A의 데이터가 온-프레미스, 다른 클라우드, SaaS 세 곳에 흩어져 있다. 버튼을 고르면 Microsoft Purview가 이 데이터로 하는 일을 하나씩 볼 수 있다.",
+      "legend": "Microsoft Purview로 가는 화살표는 데이터를 옮기는 것이 아니라, 어떤 데이터가 어디 있는지 알려 주는 정보가 모이는 방향이다. 온-프레미스에서 다른 클라우드로 가는 화살표는 회사 A가 데이터를 옮긴 길이다.",
+      "nodes": {
+        "on-prem": "온-프레미스",
+        "other-cloud": "다른 클라우드",
+        "saas": "SaaS",
+        "purview": "Microsoft Purview"
+      },
+      "groups": {
+        "company-data": "회사 A의 데이터"
+      },
+      "notes": {
+        "discover-note": "자동으로 찾는다",
+        "classify-note": "민감한 데이터를 표시한다",
+        "lineage-note": "어디서 와서 어디로 갔는지"
+      },
+      "scenarios": [
+        {
+          "id": "discover",
+          "label": "데이터 찾기",
+          "caption": "회사 A가 세 곳을 Purview에 연결하면 Purview가 각 곳의 데이터를 자동으로 찾는다. 데이터는 원래 있던 곳에 그대로 있고, 어떤 데이터가 어디 있는지 알려 주는 정보만 Purview에 모인다.",
+          "sources": [
+            "azure-governance.purview"
+          ]
+        },
+        {
+          "id": "classify",
+          "label": "분류",
+          "caption": "찾은 데이터 가운데 신용카드 번호가 든 것처럼 민감한 데이터를 분류해 표시하므로, 민감한 데이터가 어디 있는지 알 수 있다. 이 장면은 온-프레미스 한 곳을 예로 그렸다.",
+          "sources": [
+            "azure-governance.purview"
+          ]
+        },
+        {
+          "id": "lineage",
+          "label": "계보",
+          "caption": "회사 A가 온-프레미스의 데이터를 다른 클라우드로 옮겨 처리했다면, 그 데이터가 어디서 와서 어디로 갔는지를 Purview에서 데이터 계보로 따라간다. 데이터를 옮긴 것은 회사 A다.",
+          "sources": [
+            "azure-governance.purview"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-governance.purview"
+      ]
+    },
+    "sensitivity-label": {
+      "label": "레이블 1을 문서에 붙이면 레이블 1에 설정한 워터마크와 암호화가 문서에 적용되고, 문서를 회사 밖의 받는 사람에게 보내도 암호화가 남는 모습",
+      "svgLabel": "레이블 1에서 문서로, 문서에서 회사 밖의 받는 사람으로 화살표가 가고, 레이블 1에 설정한 보호로 워터마크와 암호화가 있다",
+      "question": "문서에 레이블을 붙이면 무엇이 따라갈까?",
+      "idleCaption": "회사 A가 레이블 1에 워터마크와 암호화를 설정해 두었다. 버튼을 고르면 레이블 1을 문서에 붙였을 때와 그 문서를 회사 밖으로 보낼 때를 볼 수 있다.",
+      "legend": "화살표는 레이블을 문서에 붙이는 방향과 문서를 보내는 방향을 가리킨다. 워터마크와 암호화는 레이블 1에 설정해 둔 보호다.",
+      "nodes": {
+        "label": "레이블 1",
+        "doc": "문서",
+        "mark": "워터마크",
+        "encrypt": "암호화",
+        "outside": "회사 밖의 받는 사람"
+      },
+      "groups": {
+        "protections": "레이블 1에 설정한 보호"
+      },
+      "notes": {
+        "mark-note": "문서에 표시가 붙는다",
+        "encrypt-note": "허락한 사람만 연다",
+        "send-note": "암호화가 그대로 남는다"
+      },
+      "scenarios": [
+        {
+          "id": "mark",
+          "label": "표시",
+          "caption": "레이블 1을 문서에 붙이면 레이블 1에 설정한 워터마크가 문서에 들어가, 보는 사람이 민감한 문서라는 것을 알게 된다.",
+          "sources": [
+            "azure-governance.sensitivity-labels"
+          ]
+        },
+        {
+          "id": "encrypt",
+          "label": "암호화",
+          "caption": "레이블 1을 문서에 붙이면 레이블 1에 설정한 암호화가 문서에 걸려, 레이블 설정이 허락한 사람만 문서를 연다. 표시와 암호화는 레이블마다 따로 켠다.",
+          "sources": [
+            "azure-governance.sensitivity-labels"
+          ]
+        },
+        {
+          "id": "send",
+          "label": "밖으로 보낼 때",
+          "caption": "레이블 1로 암호화한 문서를 회사 밖의 받는 사람에게 보내도 암호화는 그대로 남는다. 받는 사람이 문서를 열 수 있는지는 레이블 1의 암호화 설정이 그 사람을 허락했는지에 달렸다.",
+          "sources": [
+            "azure-governance.sensitivity-labels"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-governance.sensitivity-labels"
+      ]
+    },
+    "policy-check": {
+      "label": "정책이 VM을 만드는 요청을 규칙과 비교해 처리하거나 거부하는 그림",
+      "svgLabel": "지역 A와 지역 B에 VM을 만드는 두 요청, Azure RBAC, 허용된 위치 규칙 안의 Azure Policy, 만들어진 VM 1",
+      "question": "규칙에 어긋난 리소스를 만들려 하면 어떻게 될까?",
+      "idleCaption": "회사 A는 「허용된 위치」 정책으로 지역 A만 허용하고, 어긋난 요청은 거부하게 했다. 버튼을 눌러 두 요청이 각각 어떻게 처리되는지 본다.",
+      "legend": "화살표는 요청이 어디서 확인되고 무엇이 만들어지는지를 잇는다. 흐린 상자는 그 장면에서 다루지 않는 요청이나 리소스다.",
+      "nodes": {
+        "request-a": "지역 A에 VM 1 만들기",
+        "request-b": "지역 B에 VM 2 만들기",
+        "rbac": "Azure RBAC",
+        "policy": "Azure Policy",
+        "vm-1": "VM 1"
+      },
+      "notes": {
+        "allowed-note": "만들어진다",
+        "denied-note": "거부된다",
+        "role-note": "역할은 허락한다",
+        "owner-note": "정책이 거부한다"
+      },
+      "sources": [
+        "azure-governance.azure-policy"
+      ],
+      "groups": {
+        "policy-rule": "허용된 위치: 지역 A"
+      },
+      "scenarios": [
+        {
+          "id": "allowed",
+          "label": "규칙에 맞을 때",
+          "caption": "지역 A에 VM 1을 만드는 요청은 「허용된 위치」 규칙에 맞아 그대로 처리되고, VM 1이 만들어진다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        },
+        {
+          "id": "denied",
+          "label": "규칙에 어긋날 때",
+          "caption": "지역 B에 VM 2를 만드는 요청은 규칙에 어긋나 거부된다. VM 2는 만들어지지 않는다. 흐린 VM 1은 앞의 지역 A 요청으로 만든 것이라 이 요청과 상관없다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        },
+        {
+          "id": "owner",
+          "label": "권한이 있어도",
+          "caption": "담당자가 소유자 역할을 받았으면 Azure RBAC는 VM을 만드는 작업을 허락한다. 그래도 지역 B에 VM 2를 만드는 요청은 정책이 거부한다. 역할은 누가 무엇을 할 수 있는지를, 정책은 만들어질 리소스가 규칙에 맞는지를 본다.",
+          "sources": [
+            "azure-governance.azure-policy"
+          ]
+        }
+      ]
+    },
+    "policy-compliance": {
+      "label": "정책을 나중에 할당했을 때 이미 있던 리소스의 비준수 표시, 수정 작업, 정책 예외를 보여 주는 그림",
+      "svgLabel": "정책 할당과 리소스 그룹 1 안의 가상 네트워크 1, VM 1, VM 2",
+      "question": "정책을 나중에 걸면, 이미 있던 리소스는 어떻게 될까?",
+      "idleCaption": "리소스 그룹 1에는 정책을 할당하기 전부터 가상 네트워크 1, VM 1, VM 2가 있었다. 버튼을 눌러 세 리소스가 각각 어떻게 다뤄지는지 본다.",
+      "legend": "세 장면의 정책은 서로 다르다. 첫째는 가상 네트워크를 거부하는 정책, 둘째는 태그를 붙이는 정책이고, 셋째는 VM 2를 어떤 할당의 정책 예외로 정한 장면이다. 흐린 리소스는 그 장면에서 다루지 않을 뿐 그대로 있다.",
+      "nodes": {
+        "assignment": "정책 할당",
+        "vnet-1": "가상 네트워크 1",
+        "vm-1": "VM 1",
+        "vm-2": "VM 2"
+      },
+      "notes": {
+        "existing-note": "비준수로 표시 — 그대로 동작",
+        "remediate-note": "빠진 태그를 붙인다",
+        "exemption-note": "평가에서 뺀다"
+      },
+      "sources": [
+        "azure-governance.policy-compliance"
+      ],
+      "groups": {
+        "rg-1": "리소스 그룹 1"
+      },
+      "scenarios": [
+        {
+          "id": "existing",
+          "label": "이미 있던 리소스",
+          "caption": "가상 네트워크를 거부하는 정책을 나중에 할당하면, 이미 있던 가상 네트워크 1은 지워지거나 옮겨지지 않고 비준수로 표시된 채 그대로 동작한다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        },
+        {
+          "id": "remediate",
+          "label": "수정 작업",
+          "caption": "태그를 붙이는 정책이면 수정 작업을 만들어 실행해야, 태그 없이 이미 있던 VM 1에 빠진 태그가 붙는다. 할당만으로는 고쳐지지 않는다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        },
+        {
+          "id": "exemption",
+          "label": "정책 예외",
+          "caption": "VM 2를 그 할당의 정책 예외로 정하면 VM 2는 그 할당으로 평가되지 않고, 규정 준수 상태에는 예외로 표시된다. VM 2를 고치지는 않는다.",
+          "sources": [
+            "azure-governance.policy-compliance"
+          ]
+        }
+      ]
+    },
+    "policy-initiative": {
+      "label": "정책 정의 여럿을 정책 이니셔티브로 묶어 구독 1에 한 번에 할당하는 그림",
+      "svgLabel": "정책 정의 1부터 4까지, 정책 이니셔티브, 구독 1",
+      "question": "정책 여럿을 어떻게 한 번에 걸까?",
+      "idleCaption": "회사 A는 정책 정의 셋을 정책 이니셔티브로 묶어 구독 1에 할당했다. 버튼을 눌러 묶기, 할당, 정의를 더하는 장면을 본다.",
+      "legend": "정책 정의에서 정책 이니셔티브로 가는 화살표는 묶음에 들어간다는 뜻이고, 정책 이니셔티브에서 구독 1로 가는 화살표는 할당이다.",
+      "nodes": {
+        "def-1": "정책 정의 1",
+        "def-2": "정책 정의 2",
+        "def-3": "정책 정의 3",
+        "def-4": "정책 정의 4",
+        "initiative": "정책 이니셔티브",
+        "scope": "구독 1"
+      },
+      "notes": {
+        "group-note": "관련 정의를 묶는다",
+        "assign-note": "할당 하나로",
+        "add-note": "이미 한 할당에도 들어간다"
+      },
+      "sources": [
+        "azure-governance.policy-initiatives"
+      ],
+      "scenarios": [
+        {
+          "id": "group",
+          "label": "묶기",
+          "caption": "보안 권장 사항처럼 같은 목표를 위한 정책 정의 1, 2, 3을 하나의 정책 이니셔티브로 묶는다. 정책 정의 4는 아직 묶음에 없고, 구독 1에도 아직 할당하지 않았다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        },
+        {
+          "id": "assign",
+          "label": "한 번에 할당",
+          "caption": "정책 이니셔티브를 구독 1에 한 번 할당하면 안의 정책 정의가 모두 구독 1에 걸리고, 규정 준수 상태도 목표 전체로 함께 본다. 흐린 정의들은 묶음 안에 그대로 있다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        },
+        {
+          "id": "add",
+          "label": "정의를 더하면",
+          "caption": "나중에 정책 정의 4를 정책 이니셔티브에 더하면, 구독 1에 이미 해 둔 할당에도 들어간다. 정책 정의 4를 구독 1에 따로 할당하지 않아도 된다.",
+          "sources": [
+            "azure-governance.policy-initiatives"
+          ]
+        }
+      ]
+    },
+    "lock-types": {
+      "label": "VM 1에 건 삭제 잠금과 읽기 전용 잠금이 각각 어떤 작업을 남기고 막는지, 소유자도 잠금을 먼저 풀어야 하는지 보여 주는 그림",
+      "svgLabel": "위에 소유자, 가운데에 VM 1, 아래에 VM 1에 하는 작업 셋인 읽기, 고치기, 지우기",
+      "question": "두 잠금은 각각 무엇을 막을까?",
+      "idleCaption": "회사 A의 VM 1에 잠금을 거는 장면이다. 버튼을 눌러 두 잠금이 각각 어떤 작업을 남기는지, 소유자 역할을 받은 사람은 어떻게 되는지 본다.",
+      "legend": "VM 1에서 작업으로 가는 화살표는 그 장면에서 할 수 있는 작업을 잇는다. 흐린 상자는 그 장면에서 잠금이 막는 작업이거나 다루지 않는 상자다.",
+      "nodes": {
+        "owner": "소유자",
+        "vm-1": "VM 1",
+        "read": "읽기",
+        "update": "고치기",
+        "delete": "지우기"
+      },
+      "notes": {
+        "delete-lock-note": "지우기는 막힌다",
+        "read-only-note": "고치기·지우기가 막힌다",
+        "owner-note": "먼저 잠금을 푼다"
+      },
+      "sources": [
+        "azure-governance.resource-locks"
+      ],
+      "scenarios": [
+        {
+          "id": "delete-lock",
+          "label": "삭제 잠금",
+          "caption": "VM 1에 삭제 잠금을 걸면 VM 1의 정보를 읽고 설정을 고칠 수는 있지만, VM 1을 지우는 작업은 막힌다.",
+          "sources": [
+            "azure-governance.resource-locks"
+          ]
+        },
+        {
+          "id": "read-only",
+          "label": "읽기 전용 잠금",
+          "caption": "VM 1에 읽기 전용 잠금을 걸면 읽기만 남는다. 설정을 고치는 작업과 지우는 작업이 모두 막힌다.",
+          "sources": [
+            "azure-governance.resource-locks"
+          ]
+        },
+        {
+          "id": "owner",
+          "label": "소유자라도",
+          "caption": "VM 1에 삭제 잠금이 걸려 있으면 소유자 역할을 받은 사람도 VM 1을 바로 지울 수 없다. 먼저 잠금을 풀고 그다음에 지운다. 잠금은 역할과 상관없이 적용된다. 흐린 작업 셋은 이 장면에서 다루지 않을 뿐이다.",
+          "sources": [
+            "azure-governance.resource-locks"
+          ]
+        }
+      ]
+    },
+    "lock-inheritance": {
+      "label": "리소스 그룹 1에 건 삭제 잠금을 안의 VM 1과 디스크 1이 물려받고, 잠금이 겹칠 때와 리소스 그룹을 지우려 할 때 어떻게 되는지 보여 주는 그림",
+      "svgLabel": "리소스 그룹 1 안의 삭제 잠금, 읽기 전용 잠금, VM 1, 디스크 1과 그룹 밖의 담당자",
+      "question": "리소스 그룹에 건 잠금은 안의 리소스에 어떻게 미칠까?",
+      "idleCaption": "회사 A의 리소스 그룹 1에는 삭제 잠금이 걸려 있고, VM 1에는 읽기 전용 잠금도 직접 걸려 있다. 버튼을 눌러 잠금이 안의 리소스에 어떻게 미치는지 본다.",
+      "legend": "화살표는 잠금이 어느 리소스에 미치는지와, 리소스 그룹을 지우는 요청이 어디서 막히는지를 잇는다. 흐린 상자는 그 장면에서 다루지 않을 뿐 그대로 있다.",
+      "nodes": {
+        "admin": "담당자",
+        "rg-lock": "삭제 잠금",
+        "vm-lock": "읽기 전용 잠금",
+        "vm-1": "VM 1",
+        "disk-1": "디스크 1"
+      },
+      "notes": {
+        "inherit-note": "안의 리소스도 지울 수 없다",
+        "stack-note": "더 제한적인 쪽 — 읽기만 된다",
+        "delete-group-note": "요청 전체가 실패한다"
+      },
+      "sources": [
+        "azure-governance.lock-inheritance"
+      ],
+      "groups": {
+        "rg-1": "리소스 그룹 1"
+      },
+      "scenarios": [
+        {
+          "id": "inherit",
+          "label": "물려받을 때",
+          "caption": "리소스 그룹 1에 건 삭제 잠금을 안의 VM 1과 디스크 1이 물려받는다. 둘에 잠금을 따로 걸지 않아도 둘 다 지울 수 없다.",
+          "sources": [
+            "azure-governance.lock-inheritance"
+          ]
+        },
+        {
+          "id": "stack",
+          "label": "잠금이 겹칠 때",
+          "caption": "VM 1에는 물려받은 삭제 잠금과 직접 건 읽기 전용 잠금이 함께 미친다. 한 리소스에 잠금이 여럿이면 가장 제한적인 것이 적용되어 VM 1은 읽기만 된다.",
+          "sources": [
+            "azure-governance.lock-inheritance"
+          ]
+        },
+        {
+          "id": "delete-group",
+          "label": "리소스 그룹을 지울 때",
+          "caption": "담당자가 리소스 그룹 1을 지우는 요청을 보내면 잠금 때문에 요청 전체가 실패한다. 안에 잠긴 리소스가 하나라도 있으면 리소스 그룹째 지울 수 없고, 일부만 지워지지도 않는다. 흐린 VM 1과 디스크 1은 지워진 것이 아니라 그대로 남아 있다.",
+          "sources": [
+            "azure-governance.lock-inheritance"
+          ]
+        }
+      ]
+    }
+  },
+  "tables": {
+    "governance-tools": {
+      "label": "리소스를 지키는 세 도구 견주기",
+      "columns": [
+        "도구",
+        "정하는 것",
+        "막는 일"
+      ],
+      "columnWidths": [
+        "26%",
+        "37%",
+        "37%"
+      ],
+      "sources": [
+        "azure-governance.azure-policy",
+        "azure-governance.resource-locks",
+        "azure-governance.lock-inheritance"
+      ],
+      "rows": [
+        {
+          "header": "Azure RBAC",
+          "cells": [
+            "누가 어느 범위에서 어떤 작업을 할 수 있는가",
+            "역할이 허락하지 않은 작업"
+          ]
+        },
+        {
+          "header": "Azure Policy",
+          "cells": [
+            "리소스가 따라야 할 지역, 크기, 태그 같은 규칙",
+            "거부하도록 만든 정책이면 규칙에 어긋난 리소스를 만들거나 바꾸는 요청"
+          ]
+        },
+        {
+          "header": "리소스 잠금",
+          "cells": [
+            "리소스를 지울 수 있는가, 바꿀 수 있는가",
+            "역할이 허락해도 실수로 지우거나 바꾸는 일"
+          ]
+        }
+      ]
+    }
+  },
+  "glossary": []
+}
