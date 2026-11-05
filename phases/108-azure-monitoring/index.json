@@ -1,0 +1,36 @@
+{
+  "project": "Study Quiz",
+  "phase": "108-azure-monitoring",
+  "steps": [
+    {
+      "step": 0,
+      "name": "advisor-health-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "monitoring-tools-advisor",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "service-health",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "monitor-sources",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "azure-monitor-activity-log",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "analytics-alerts-insights",
+      "status": "pending"
+    }
+  ]
+}
