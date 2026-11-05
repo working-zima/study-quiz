@@ -868,6 +868,8 @@ https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-s
 
 쓰인 곳: `azure-cloud-benefits.security-governance`(템플릿·감사·쓰는 방식에 따른 패치 자동 적용, 보안을 가장 많이 통제하려면 IaaS·패치를 맡기려면 PaaS나 SaaS, 공급자가 DDoS 공격에 대비하기 알맞다는 것), az022, G12, G13
 
+(phase 107 마무리) 템플릿 줄의 앱 문장에 「기술 표준과 규정 요구에 맞는 설정을 템플릿에 담아 두고」라는 조건을 넣었다. Learn은 미리 정해 둔(set) 템플릿을 말하는데, 앱 문장은 템플릿으로 배포하기만 하면 저절로 기준에 맞는 것처럼 읽혔다. phase 107의 ARM 템플릿 출처(「What are ARM templates?」)도 템플릿이 규정 준수를 보장한다고 하지 않는다.
+
 ## (phase 101) Learn 「Describe the benefits of using cloud services」 — 5 Describe the benefits of manageability in the cloud
 https://learn.microsoft.com/en-us/training/modules/describe-benefits-use-cloud-services/5-manageability-cloud
 
@@ -1106,6 +1108,8 @@ https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell
 - 한국어 표기: PowerShell → 이름 그대로(Learn 「Describe the benefits of using cloud services」 단원 5 한국어판도 같다), scripting language → 스크립팅 언어(이 문서 한국어판. 앱에서는 「스크립트를 쓰는 언어」로 풀어 쓴다)
 
 쓰인 곳(phase 101 step 2): `azure-cloud-benefits.manageability`(PowerShell을 푸는 한 줄), az023
+
+(phase 107 마무리) `manageability`의 PowerShell 풀이 끝에 「Azure를 다룰 때는 그 위에 Azure PowerShell을 설치해 쓴다」를 더했다. 풀이가 셸만 설명해, phase 107이 PowerShell(셸)과 Azure PowerShell(Az PowerShell 모듈)을 가른 뒤로는 셸만 있으면 Azure를 관리하는 것처럼 읽혔다. 근거는 이 항목 첫 줄(쓰려면 PowerShell이 있어야 하는 모듈)이다.
 
 다시 확인한 날 2026-11-04. 영문·한국어 사본을 다시 받았다. (phase 107)
 - 개념 이름은 제품 이름 **Azure PowerShell**로 정한다. 현재 쓰는 모듈 묶음의 이름은 **Az PowerShell 모듈**이다. PowerShell은 명령을 실행하는 셸이고 Azure PowerShell은 그 위에 Azure 관리 명령을 더한다. Learn 단원 2가 이를 셸 하나로 부르는 표현은 따르지 않는다 — 「첫 문단」, 「The Az PowerShell module」 (phase 107)
