@@ -1747,7 +1747,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overvi
 - 템플릿에는 리소스를 하나만 적어야 하는 것이 아니다. 배포 범위는 리소스 그룹뿐 아니라 구독·관리 그룹·테넌트도 있다 — 「Terminology」. 앱에서는 리소스 그룹의 예로 설명하되 거기서만 배포한다고 쓰지 않는다. 서비스는 Azure Resource Manager, 파일은 ARM 템플릿으로 구분한다 (phase 107)
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(요청이 오는 다섯 곳, 신원과 권한 확인 뒤 담당 서비스로, 같은 요청이면 도구가 달라도 결과가 같다, 리소스 여럿을 함께 배포·관리·살피기, 의존 관계에 맞춘 순서, 역할로 접근 제어, 태그, 서비스와 파일의 구분 — 리소스 그룹·구독은 이 주제 첫 개념의 풀이로 다시 썼다), `ResourceManagerDiagram`, az174 해설. NO.44·417의 Azure Resource Manager 답은 이 서비스 설명과 맞다. (phase 107)
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`. (phase 107)
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(템플릿 하나에 리소스를 여럿 적는다, 리소스 그룹은 배포할 곳의 예로만 든다). (phase 107)
 
 ## (phase 102) Azure Resource Manager — Manage Azure resource groups by using the Azure portal
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal
