@@ -1947,6 +1947,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overvie
 쓰인 곳(phase 103 step 8): `azure-virtual-networking.vpn-connection-types`(사이트 간은 허가한 온-프레미스 리소스가 가상 네트워크에 닿게 한다, 지점 및 사이트 간은 컴퓨터마다 설정하고 기존 네트워크를 거의 바꾸지 않는다, 지점 및 사이트 간 연결이 컴퓨터와 가상 네트워크 사이에 놓인다), `SiteToSiteVpnDiagram`, az075 해설
 
 쓰인 곳(phase 107 step 2): `azure-governance.policy-compliance`의 가상 네트워크 풀이.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 가상 네트워크 풀이(VM 같은 리소스가 서로, 그리고 인터넷과 통신하게 해 주는 Azure 안의 네트워크), az176 해설.
 
 ## (phase 102) 한국어 표기 정리 — `azure-resource-hierarchy`
 
@@ -1985,6 +1986,7 @@ https://learn.microsoft.com/en-us/azure/virtual-network/network-overview
 - 한국어 표기: network interface → 네트워크 인터페이스, optional resources → 선택적 리소스, private/public IP address → **개인 IP 주소 / 공용 IP 주소**, network security group → 네트워크 보안 그룹, load balancer → 부하 분산 장치
 
 쓰인 곳: `azure-compute.vm-resources`(꼭 있는 것 — 가상 네트워크와 서브넷·NIC·개인 IP 주소 / 필요할 때 붙이는 것 — 공용 IP 주소·네트워크 보안 그룹. 새로 만들거나 있는 것을 쓴다), `VmResourcesDiagram`(늘 있는 것과 필요할 때 붙이는 것), D51
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(VM은 가상 네트워크에 이어져야 통신한다, VM을 가상 네트워크에 잇는 네트워크 인터페이스 — 예에서는 줄였다), `TemplateDeploymentDiagram`의 legend, az176 해설.
 
 ## (phase 103) Azure Managed Disks — Azure managed disks overview
 https://learn.microsoft.com/en-us/azure/virtual-machines/managed-disks-overview
@@ -5292,7 +5294,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-features-tools-manag
 - 쓰지 않는 것: 배포 스크립트를 호출하는 확장 기능. CLI·PowerShell로 작업 순서를 적는 일반 스크립트와 이 기능을 섞지 않는다.
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(배포·관리 서비스, 신원과 권한 확인, 같은 관리 API, 이점 넷), `azure-infrastructure-as-code.infrastructure-as-code`(손으로 설정하는 대신 코드로, CLI·PowerShell 스크립트와 템플릿), `ResourceManagerDiagram`, `IacEnvironmentsDiagram`, az174·az175 해설.
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(만들 리소스와 설정을 적는다, 배포 전 검사, 의존 관계의 순서와 동시에 만들기, 작게 나누어 다시 쓰기)·`bicep`(ARM 템플릿이나 Bicep으로 되풀이해 만든다), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`(스크립트 행 — CLI·PowerShell 명령), az176 해설.
 
 ## (phase 107) 코드형 인프라 — What is infrastructure as code (IaC)?
 https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code
@@ -5308,7 +5310,7 @@ https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code
 - 쓰지 않는 것: 타사 도구, 파이프라인·DevOps 연동 절차, 모든 초기 상태에서 환경 전체가 같아진다는 단정. Azure 템플릿의 반복 배포 범위는 아래 별도 항목을 따른다.
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(인프라의 풀이, 손으로 설정하면 곳마다 달라질 수 있다, 코드로 남겨 다시 만들고 고친 기록을 관리한다, 명령형과 선언형 — 선언형은 결과를, 명령형은 작업과 순서를 적는다, 개발·테스트·운영 환경의 예), `IacEnvironmentsDiagram`, az175; G65(DevOps의 필수 조건이라는 단정은 쓰지 않았다)·G67(타사 도구는 쓰지 않았다)의 한정.
-쓰일 곳: `DeploymentMethodsTable`.
+쓰인 곳(phase 107 step 10): `DeploymentMethodsTable`(명령형·선언형 — 「적는 것」 열, 개념 15의 말과 같게).
 
 ## (phase 107) ARM 템플릿 — What are ARM templates?
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview
@@ -5324,11 +5326,12 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overvie
 - Resource Manager는 템플릿을 받아 서비스에 보낼 REST API 작업으로 처리한다. 포털에서도 템플릿을 배포할 수 있다 — 「Template deployment process」
 - 템플릿을 배포하는 길로 Azure 포털과 함께 Azure CLI, PowerShell, REST API, Cloud Shell도 든다. 그래서 명령 도구를 쓴다고 명령형이 되는 것이 아니고, 명령 도구로 선언형 템플릿을 배포할 수도 있다 — 「Template deployment process」의 마지막 목록. 확인한 날 2026-11-05. (phase 107 step 9)
 - Bicep도 ARM 템플릿이 할 수 있는 배포를 표현하며, 배포할 때 JSON으로 된 ARM 템플릿으로 바뀐다 — 첫 부분 Tip. 변환 주체는 Bicep 개요에서 확인했다.
+- 템플릿에는 리소스와 그 속성을 적고, 그 리소스를 배포할 리소스 그룹도 정할 수 있다 — 첫 부분. 확인한 날 2026-11-05. (phase 107 step 10)
 - 한국어 표기: 「ARM 템플릿」으로 통일한다. 첫 등장에서는 「Azure Resource Manager에 만들 리소스와 설정을 적어 주는 파일」로 풀고 ARM이 서비스 이름의 약칭임을 밝힌다. 「Resource Manager 템플릿」은 다른 종류가 아니라 같은 파일의 다른 표기다.
 - 쓰지 않는 것: 함수·표현식·템플릿 구역 목록, 배포 스크립트, 템플릿 사양·배포 스택·what-if, Blueprints, 도구 설치와 배포 명령.
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.infrastructure-as-code`(선언형의 예가 ARM 템플릿이고 무엇을 먼저 만들지는 Resource Manager가 의존 관계를 보고 정한다 — 「Orchestration」, Azure CLI나 Azure PowerShell로 ARM 템플릿을 배포할 수도 있다 — 「Template deployment process」), `azure-infrastructure-as-code.resource-manager`(ARM 템플릿을 푸는 한 줄 — 만들 리소스와 설정을 적어 Resource Manager에 넘기는 파일), az175 해설.
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, D122, G66·G68. NO.193·228·449의 답과 반복 배포 문항의 사실 대조.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(JSON 파일, 선언형, 한 템플릿에 여러 리소스 — D122, 배포할 리소스 그룹, 포털·Azure CLI·Azure PowerShell로 배포, 배포 전 검사와 그 한계, 의존 관계의 순서와 동시에 만들기, 같은 상태 — G66, 매개변수, 작게 나누어 이어 붙여 다시 쓰기)·`bicep`(배포할 때 JSON으로 된 ARM 템플릿으로 바뀐다 — G68), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, az176~az178 해설. NO.193·228·449의 답과 대조했다(반복 배포 문항은 덤프 꼴을 쓰지 않았다).
 
 ## (phase 107) ARM 템플릿 — Understand the structure and syntax of ARM templates
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax
@@ -5339,7 +5342,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax
 - 한국어판은 「매개 변수」로 띄어 쓴다. 앱은 기존 글과 맞춰 「매개변수」로 쓰고 「배포할 때 받아 넣는 값」으로 푼다.
 - 쓰지 않는 것: 구역 이름, 함수·표현식·문법, 개수 한도. 이 문서는 매개변수의 역할을 확인하는 데만 쓴다.
 
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`, G66.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(매개변수 — 배포할 때 받아 넣는 값, 넣은 값이 다르면 결과도 다르다 — G66), az177 해설.
 
 ## (phase 107) ARM 템플릿 — Deployment modes (반복 배포의 범위만)
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes
@@ -5352,7 +5355,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploym
 - 한국어 표기: 개요 한국어판은 idempotent를 영어로 남긴다. 「멱등」은 이 성질의 뜻을 옮긴 말이며 한국어판의 직접 표기로 인용하지 않는다. 초보자 본문에는 위 풀이를 먼저 쓰고, 용어가 필요하면 「멱등성」을 한 번 덧붙인다.
 - 쓰지 않는 것: 배포 모드 이름·차이 표, 삭제 방식, 배포 스택·what-if·명령 문법.
 
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`, `TemplateDeploymentDiagram`의 redeploy, G66.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`·`bicep`(같은 리소스 그룹에 같은 이름과 설정으로 다시 배포하면 적힌 리소스를 그 설정으로 맞추고 하나 더 만들지 않는다, 같아지는 것은 적힌 리소스의 구성이고 저장된 데이터가 아니다 — 모드 이름과 템플릿 밖 리소스의 처리는 쓰지 않았다), `TemplateDeploymentDiagram`의 redeploy, az177; G66.
 
 ## (phase 107) ARM 템플릿 — Define the order for deploying resources in ARM templates
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resource-dependency
@@ -5362,9 +5365,10 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/resourc
 - Resource Manager는 선언된 의존 관계를 보고 생성 순서를 정한다. 서로 의존하지 않는 리소스들은 병렬로 배포한다 — 첫 부분
 - 문서의 네트워크 인터페이스 예는 가상 네트워크를 먼저 필요로 하고, VM 예는 네트워크 인터페이스를 먼저 필요로 한다 — 「dependsOn」의 예, 「Depend on resources in a loop」의 VM 예. 도식의 「가상 네트워크 1 → VM 1」은 그 사이의 네트워크 인터페이스를 생략한 생성 순서다. 직접 연결 관계나 VM의 유일한 의존성이 네트워크 하나라는 뜻으로 그리지 않는다.
 - 스토리지 계정이 VM에 앞서도록 정한 다른 예도 있다. 따라서 도식의 「스토리지 계정 1은 동시에」는 VM의 디스크용 계정이 아니라 **다른 두 리소스와 의존 관계를 두지 않은 별도 계정**이라는 조건을 붙인다 — 같은 절의 다음 예와 첫 부분
+- 의존 관계는 같은 템플릿으로 배포하는 리소스끼리만 정하면 된다. 정할 필요 없는 의존 관계를 더하면 병렬로 배포하지 못해 배포가 느려진다 — 첫 부분, 「dependsOn」 절. 앱에서는 「쓰는 사람은 어떤 리소스가 무엇을 먼저 필요로 하는지만 적는다」까지 쓴다. 확인한 날 2026-11-05. (phase 107 step 10)
 - 한국어 표기: 종속성·의존 관계. 앱은 먼저 있어야 할 리소스를 기다린다는 말로 풀고, 문법 이름은 쓰지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`, `TemplateDeploymentDiagram`의 생성 순서·병렬 장면.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`(적힌 의존 관계를 보고 먼저 필요한 것부터, 의존 관계가 없으면 동시에, 쓰는 사람은 무엇을 먼저 필요로 하는지만 적는다, 네트워크 인터페이스를 줄인 예와 별도 스토리지 계정), `TemplateDeploymentDiagram`의 order·legend, az176.
 
 ## (phase 107) ARM 템플릿 — Use Azure portal to export a template
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal
@@ -5376,7 +5380,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/export-
 - NO.202의 내보내기 → 수정 → 배포라는 흐름은 같은 **리소스 구성**을 되풀이하는 범위에서 맞다. VM 안의 파일이나 실행 상태까지 복사한다는 주장은 이 문서에서 확인하지 못했고 쓰지 않는다. 포털에서 배포한다는 근거는 ARM 템플릿 개요 「Template deployment process」에도 있다.
 - 한국어 표기: 내보내기. 상세 화면 조작과 내보내기 한도는 쓰지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`의 반복 사용 설명, NO.202 대조. 내보내기 절차를 앱의 새 학습 항목으로 추가하지 않는다.
+쓰인 곳(phase 107 step 10): 없음 — 내보내기는 본문·문항에 쓰지 않았다. NO.202를 대조하는 데만 썼다.
 
 ## (phase 107) Bicep — What is Bicep?
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview
@@ -5393,7 +5397,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview
 - 한국어 표기: Bicep은 옮기지 않는다. 한국어판의 변환 문장은 「변환」을 쓴다. 앱도 변환 또는 「바꾼다」로 쓰고 트랜스파일은 쓰지 않는다. 모듈은 「작게 나누어 다시 쓰는 부분」으로 푼다.
 - 쓰지 않는 것: 문법·반복문·변수·함수, 편집기 확장, 실험 기능, 상태 파일, 타사 비교, 배포 스크립트·사양·스택·what-if·Blueprints.
 
-쓰일 곳: `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`, G68.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.bicep`(선언형 언어, 앱 실행 코드의 언어가 아니다, Bicep CLI가 ARM 템플릿으로 바꾸고 Resource Manager가 처리 — G68, 리소스 종류와 설정·새 리소스 종류, 모듈, 같은 상태), `DeploymentMethodsTable`(Bicep 행), az178.
 
 ## (phase 107) Bicep — Comparing JSON and Bicep for templates
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax
@@ -5403,7 +5407,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-tem
 - 같은 인프라를 두 형식으로 적은 예에서 Bicep 쪽 표현이 대체로 짧다 — 첫 부분, 「Compare complete files」. 예 하나의 길이 비율은 일반적인 보장이 아니므로 앱에 수치로 쓰지 않는다.
 - 한국어 표기: JSON·Bicep은 이름을 유지한다. 비교 문법은 앱에 옮기지 않는다.
 
-쓰일 곳: `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`, G68.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.bicep`(JSON 템플릿보다 대체로 적을 글이 적고 읽기 쉽다, 정해진 비율은 없다), `DeploymentMethodsTable`.
 
 ## (phase 107) Azure 관리 요청 — Azure control plane and data plane
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/control-plane-and-data-plane
@@ -5416,7 +5420,7 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/contro
 - 한국어 표기: 앱은 「관리 작업」·「관리 요청」으로 쓴다. 제어 평면·데이터 평면이나 엔드포인트 주소를 새 학습 항목으로 만들지 않는다.
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`(Resource Manager가 받는 것은 리소스를 관리하는 요청이고, VM 접속과 스토리지 계정 안의 데이터 읽기·쓰기는 그 리소스로 바로 간다 — 「제어 평면」이라는 말은 쓰지 않았다), `ResourceManagerDiagram`(legend의 「관리 요청」). 기존 `rbac-scope`의 한정과 어긋나지 않는다.
-쓰일 곳: `TemplateDeploymentDiagram`.
+쓰인 곳(phase 107 step 10): `TemplateDeploymentDiagram`의 redeploy(같은 설정의 반복 배포를 새 복제본으로 그리지 않았다 — 리소스 노드는 하나씩이다).
 
 ## (phase 107) Azure SDK — Use the Azure SDK for Java
 https://learn.microsoft.com/en-us/azure/developer/java/sdk/overview
@@ -5449,7 +5453,7 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 - 한국어 표기: JSON은 유지하고 JavaScript Object Notation이라는 풀네임은 ARM 템플릿 개요에서도 확인했다. 앱을 실행하는 JavaScript 코드와 같은 것처럼 설명하지 않는다.
 - 쓰지 않는 것: 이 제품 자체와 다른 용어 항목.
 
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`의 JSON 한 줄 풀이, `DeploymentMethodsTable`의 파일 형식.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 JSON(JavaScript Object Notation) 풀이, `DeploymentMethodsTable`의 「JSON 파일」.
 
 ## (phase 107) 도식·표의 사실 — `azure-infrastructure-as-code`
 
@@ -5462,7 +5466,7 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 - 이 도식·표의 텍스트에는 코드 문법이나 백틱을 넣지 않는다. 「검사 통과면 무조건 성공」·「템플릿 밖의 모든 리소스도 같은 상태」·「파일 내용까지 복구」는 확인한 사실이 아니므로 쓰지 않는다.
 
 쓰인 곳(phase 107 step 9): `ResourceManagerDiagram`(포털에서·Azure CLI에서·프로그램에서·권한이 없으면 — 프로그램에서 장면은 REST API 경로가 보이지 않는 장면이 없도록 더했다), `IacEnvironmentsDiagram`(손으로·코드로·다시 만들 때 — 데이터·리소스 이름까지 같다고 그리지 않았고, 다시 만들 때 캡션은 데이터를 되살리지 않는다고 적었다), `resource-manager`·`infrastructure-as-code`의 예시 문단, G65의 한정.
-쓰일 곳: `TemplateDeploymentDiagram`, `DeploymentMethodsTable`, `arm-templates`·`bicep`의 예시 문단. D122, G66·G68의 한정을 함께 따른다.
+쓰인 곳(phase 107 step 10): `TemplateDeploymentDiagram`(배포하기 전에·만드는 순서·다시 배포하면 — 곁말은 step 문서대로 「가상 네트워크가 먼저」·「기대지 않는 것은 동시에」로 쓰고 본문의 「서로 기대지 않는 리소스, 곧 의존 관계가 없는 리소스」와 맞췄다, 다시 배포하면 곁말은 「하나 더 만들지 않는다」, 네트워크 인터페이스는 legend가 밝힌다, 리소스를 두 번 그리지 않았다), `DeploymentMethodsTable`(스크립트 / 해야 할 작업과 그 순서를 적는 명령형 / Azure CLI나 Azure PowerShell 명령을 차례로 적은 파일, ARM 템플릿 / 선언형 / JSON 파일, Bicep / 선언형 / Bicep 파일. 배포할 때 ARM 템플릿으로 바뀐다), `arm-templates`·`bicep`의 예시 문단. D122, G66·G68의 한정을 따랐다.
 
 ## (phase 107) 한국어 표기 정리 — `azure-infrastructure-as-code`
 
@@ -5481,4 +5485,4 @@ https://learn.microsoft.com/en-us/azure/operator-service-manager/glossary
 - Bicep 변환: 「변환」·「바꾼다」를 쓴다. 앱 문장에서는 Bicep CLI가 바꾸고 Resource Manager가 배포한다는 주체를 생략하지 않는다. 「트랜스파일」은 쓰지 않는다.
 
 쓰인 곳(phase 107 step 9): `azure-infrastructure-as-code.resource-manager`의 `name`(Azure Resource Manager, 처음 ARM 약칭과 Resource Manager), `azure-infrastructure-as-code.infrastructure-as-code`의 `name`(코드형 인프라(IaC), 본문 첫 풀이에 Infrastructure as Code)과 명령형·선언형의 짧은 풀이, 두 도식의 라벨. 「멱등성」은 이 step의 글에 쓰지 않았다.
-쓰일 곳: `azure-infrastructure-as-code.arm-templates`·`bicep`의 `name`·본문, `TemplateDeploymentDiagram`, `DeploymentMethodsTable`. G65·G66·G68.
+쓰인 곳(phase 107 step 10): `azure-infrastructure-as-code.arm-templates`의 `name`(ARM 템플릿, 첫 문단에 Azure Resource Manager 템플릿·ARM 약칭·Resource Manager 템플릿)·`bicep`의 `name`(Bicep), JSON·매개변수의 풀이, 「바꾼다」(트랜스파일은 쓰지 않았다), `TemplateDeploymentDiagram`, `DeploymentMethodsTable`. 「멱등성」은 쓰지 않았다 — 풀이(같은 상태)만 썼다.

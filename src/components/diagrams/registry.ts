@@ -196,6 +196,7 @@ import { SwitchForwardDiagram } from './SwitchForwardDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
@@ -225,6 +226,7 @@ import { CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
+import { DeploymentMethodsTable } from './azureInfrastructureAsCodeTables'
 import { CommandToolsTable } from './azureManagementToolsTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
@@ -493,6 +495,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-management-tools.azure-arc': AzureArcDiagram,
   'azure-infrastructure-as-code.resource-manager': ResourceManagerDiagram,
   'azure-infrastructure-as-code.infrastructure-as-code': IacEnvironmentsDiagram,
+  'azure-infrastructure-as-code.arm-templates': TemplateDeploymentDiagram,
+  'azure-infrastructure-as-code.bicep': DeploymentMethodsTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

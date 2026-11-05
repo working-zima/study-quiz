@@ -437,7 +437,7 @@ describe('IacEnvironmentsDiagram', () => {
     const concept = concepts.find(({ id }) => id === anchorConceptId)!
     const body = concept.paragraphs.join(' ')
 
-    expect(concepts.map(({ id }) => id)).toEqual([`${topicId}.resource-manager`, anchorConceptId])
+    expect(concepts.slice(0, 2).map(({ id }) => id)).toEqual([`${topicId}.resource-manager`, anchorConceptId])
     expect(concept.name).toBe('코드형 인프라(IaC)')
     expect(concept.parentId).toBeUndefined()
     for (const fact of ['명령형은 해야 할 작업과 그 순서를', '순서는 적는 사람이 정한다', '선언형은 배포가 끝났을 때 있어야 할 리소스와 그 설정만', 'Resource Manager가 리소스 사이의 의존 관계를 보고 정한다']) {

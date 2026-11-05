@@ -110,8 +110,99 @@
       "sources": [
         "azure-infrastructure-as-code.infrastructure-as-code"
       ]
+    },
+    "template-deployment": {
+      "label": "ARM 템플릿 하나를 Azure Resource Manager에 넘기면 검사를 거쳐 가상 네트워크 1, VM 1, 스토리지 계정 1을 의존 관계에 맞춰 만들고, 다시 배포해도 같은 리소스를 하나 더 만들지 않는 모습",
+      "svgLabel": "ARM 템플릿과 Azure Resource Manager, 그리고 템플릿에 적힌 가상 네트워크 1, VM 1, 스토리지 계정 1이 있다",
+      "question": "템플릿 하나를 배포하면 Resource Manager는 무엇을 할까?",
+      "idleCaption": "회사 A의 ARM 템플릿 하나에 가상 네트워크 1, VM 1, 스토리지 계정 1이 적혀 있다. 버튼을 고르면 Azure Resource Manager가 이 템플릿으로 하는 일을 하나씩 볼 수 있다.",
+      "legend": "화살표는 템플릿을 넘기고 리소스를 만드는 방향이다. 가상 네트워크 1에서 VM 1로 가는 화살표는 만드는 순서를 뜻하며, 그 사이에서 VM을 가상 네트워크에 잇는 네트워크 인터페이스는 그림에서 뺐다.",
+      "nodes": {
+        "template": "ARM 템플릿",
+        "arm": "Azure Resource Manager",
+        "vnet-1": "가상 네트워크 1",
+        "vm-1": "VM 1",
+        "storage-1": "스토리지 계정 1"
+      },
+      "notes": {
+        "validate-note": "먼저 검사한다",
+        "vnet-note": "가상 네트워크가 먼저",
+        "storage-note": "기대지 않는 것은 동시에",
+        "redeploy-note": "하나 더 만들지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "validate",
+          "label": "배포하기 전에",
+          "caption": "Azure Resource Manager는 ARM 템플릿을 받으면 배포를 시작하기 전에 먼저 템플릿을 검사하고, 검사를 통과한 템플릿만 배포한다. 흐린 세 리소스는 아직 만들어지기 전이다.",
+          "sources": [
+            "azure-infrastructure-as-code.arm-templates"
+          ]
+        },
+        {
+          "id": "order",
+          "label": "만드는 순서",
+          "caption": "VM 1은 가상 네트워크 1을 먼저 필요로 하므로 Azure Resource Manager는 가상 네트워크 1을 만든 뒤 VM 1을 만든다. 스토리지 계정 1은 다른 두 리소스와 의존 관계가 없어 기다리지 않고 함께 만든다.",
+          "sources": [
+            "azure-infrastructure-as-code.arm-templates"
+          ]
+        },
+        {
+          "id": "redeploy",
+          "label": "다시 배포하면",
+          "caption": "같은 템플릿을 같은 리소스 그룹에 같은 값으로 다시 배포하면, Azure Resource Manager는 적힌 리소스를 그 설정으로 맞춘다. 세 리소스가 이미 그 설정이면 바꾸지 않고, 같은 리소스를 하나 더 만들지도 않는다.",
+          "sources": [
+            "azure-infrastructure-as-code.arm-templates"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-infrastructure-as-code.arm-templates"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "deployment-methods": {
+      "label": "스크립트, ARM 템플릿, Bicep 견주기",
+      "columns": [
+        "방식",
+        "적는 것",
+        "파일"
+      ],
+      "columnWidths": [
+        "26%",
+        "36%",
+        "38%"
+      ],
+      "sources": [
+        "azure-infrastructure-as-code.infrastructure-as-code",
+        "azure-infrastructure-as-code.arm-templates",
+        "azure-infrastructure-as-code.bicep"
+      ],
+      "rows": [
+        {
+          "header": "스크립트",
+          "cells": [
+            "해야 할 작업과 그 순서를 적는 명령형",
+            "Azure CLI나 Azure PowerShell 명령을 차례로 적은 파일"
+          ]
+        },
+        {
+          "header": "ARM 템플릿",
+          "cells": [
+            "배포가 끝났을 때 있어야 할 리소스와 그 설정을 적는 선언형",
+            "JSON 파일"
+          ]
+        },
+        {
+          "header": "Bicep",
+          "cells": [
+            "배포가 끝났을 때 있어야 할 리소스와 그 설정을 적는 선언형",
+            "Bicep 파일. 배포할 때 ARM 템플릿으로 바뀐다"
+          ]
+        }
+      ]
+    }
+  },
   "glossary": []
 }
