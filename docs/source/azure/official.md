@@ -5530,7 +5530,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azu
 - 이벤트가 내 워크로드에 영향을 주면 Azure Service Health가 지원으로 가는 링크를 준다 — 「Operational value」
 - 한국어 표기: 한국어판 제목은 「Azure 서비스 상태 설명」이지만 본문 「운영 가치」 절은 「Azure Service Health」, 세 보기는 「Azure 상태」·「Service Health」·「Resource Health」로 쓴다. 절 제목 「세 가지 건강 보기」는 기계 번역이라 쓰지 않는다. 앱의 표기는 아래 「한국어 표기 정리 — `azure-monitoring`(개념 1~4)」
 
-쓰인 곳: `azure-monitoring.monitoring-tools`의 Azure Service Health 항목, `MonitoringToolsDiagram`. 쓰일 곳: `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `HealthViewsDiagram`, D127
+쓰인 곳: `azure-monitoring.monitoring-tools`의 Azure Service Health 항목, `MonitoringToolsDiagram`, `azure-monitoring.service-health`(세 보기, 지원으로 이어 주는 줄), `azure-monitoring.resource-health`, `HealthViewsDiagram`, `az183`, D127
 
 ## (phase 108) Learn 「Describe monitoring tools in Azure」 — 4 Describe Azure Monitor (개념 1의 한 줄만 — 나머지는 step 3)
 https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor
@@ -5630,7 +5630,7 @@ https://learn.microsoft.com/en-us/azure/service-health/overview
 - 한국어 표기: 제목 「Azure Service Health란?」, 묶음은 「Azure Service Health」. 본문은 보기를 「Azure 상태」·「서비스 상태」·「리소스 상태」로 옮기면서 같은 쪽 뒷부분은 「Service Health」·「Resource Health」로 쓰고, 묶음까지 「Azure 서비스 상태」라 옮긴 곳이 있다 — 섞여 있다(아래 표기 정리)
 - **쓰지 않는 것**: Azure Lighthouse, 「분별 업데이트」(분 단위 갱신)
 
-쓰인 곳: `azure-monitoring.monitoring-tools`, `MonitoringToolsDiagram`, `az179`. 쓰일 곳: `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `HealthViewsDiagram`, D127, D128, G70
+쓰인 곳: `azure-monitoring.monitoring-tools`, `MonitoringToolsDiagram`, `az179`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `HealthViewsDiagram`, `az182`, D127, D128, G70
 
 ## (phase 108) Azure Service Health — Azure status overview
 https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview
@@ -5643,7 +5643,7 @@ https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview
 - 서비스 문제 소식은 대부분 영향을 받는 고객에게 Service Health로 따로 보낸다. 공개 상태 페이지는 몇 가지 경우에만 쓴다 — 「Publishing communications to the Azure status page」. **경우마다의 이름(시나리오 1~3)·사후 검토(PIR)·RSS는 쓰지 않는다**(guide 「배경」)
 - 한국어 표기: 「Azure 상태」, 「Azure 상태 페이지」
 
-쓰일 곳: `azure-monitoring.service-health`의 Azure 상태 항목, `HealthViewsDiagram`, D127
+쓰인 곳: `azure-monitoring.service-health`의 Azure 상태 항목, `HealthViewsDiagram`(곁말 「누구나 본다」, `status` 캡션), `az182`·`az183`, D127
 
 ## (phase 108) Azure Service Health — Azure Service Health portal
 https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update
@@ -5657,7 +5657,7 @@ https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-upd
 - 왼쪽 메뉴의 「Resource health」로 리소스가 기대대로 실행되는지 본다. Resource Health 이벤트는 Service Health 이벤트에 들지 않고 포털의 다른 곳에서 본다 — 「See and manage your Resource health」, 보존 절의 Resource Health 줄
 - 한국어 표기: 「서비스 문제」, 「계획된 유지 관리」(한국어판 머리말은 「예정된 유지 관리」도 쓴다), 「상태 권고」(이 한국어판의 「보장 권고」는 오역 — Learn 단원 3 한국어판·Service Health 개요 한국어판의 「상태 권고」를 쓴다), 「보안 권고」, 「청구 업데이트」, 「상태 기록」
 
-쓰일 곳: `azure-monitoring.service-health`의 Service Health 항목(알려 주는 일 셋, 지난 기록), `HealthViewsDiagram`, D129
+쓰인 곳: `azure-monitoring.service-health`의 Service Health 항목(알려 주는 일 셋)과 경고·상태 기록 문단, `HealthViewsDiagram`, `az182`, D129
 
 ## (phase 108) Azure Service Health — Create Service Health alerts
 https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal
@@ -5672,7 +5672,7 @@ https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-servi
 - Service Health는 내 서비스가 실행되는 지역에 영향을 주는 이벤트에만 경고를 낸다 — 「How to create …」 Tip
 - 한국어 표기: 영문판만 받았다. 「Service Health 경고」(Service Health 개요 한국어판), 「작업 그룹」, 「활동 로그」
 
-쓰일 곳: `azure-monitoring.service-health`(경고 — 작업 그룹을 한 줄로 푼다), `HealthViewsDiagram`
+쓰인 곳: `azure-monitoring.service-health`(경고 문단 — 작업 그룹은 같은 주제의 `azure-advisor`가 이미 풀어 다시 풀지 않는다), `azure-monitoring.resource-health`(Service Health 경고가 Resource Health의 일을 알리지 않는다), `az182`
 
 ## (phase 108) Resource Health — Resource Health overview
 https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview
@@ -5695,7 +5695,7 @@ https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview
 - **쓰지 않는 것**: 활동 로그에 남는 전환 조건, 기록·근본 원인의 시간 수치, REST API, 가상 머신 확장 집합의 저하됨 기준
 - 한국어 표기: 제목 「Resource Health 개요」. 상태 값 「사용 가능」·「사용할 수 없음」·「알 수 없음」·「저하됨」(절 제목은 「성능 저하됨」, 본문은 「저하됨」), 「플랫폼 이벤트」·「비플랫폼 이벤트」(한국어판은 「비-플랫폼」·「비 플랫폼」을 섞는다), 「계획된 유지 관리」, 「계획되지 않은 호스트 다시 부팅」, 「지원 계약」
 
-쓰일 곳: `azure-monitoring.service-health`의 Resource Health 항목(한 줄), `azure-monitoring.resource-health`, `ResourceHealthDiagram`, D128
+쓰인 곳: `azure-monitoring.service-health`의 Resource Health 항목(한 줄), `azure-monitoring.resource-health`(상태 값 넷, 원인 가르기, 조치·지원), `ResourceHealthDiagram`, `az184`, D128. 「Health not supported」는 쓰지 않았다(step 2 판단 — 이 개념의 판단에 쓰이지 않는다)
 
 ## (phase 108) Resource Health — Azure Resource Health FAQ
 https://learn.microsoft.com/en-us/azure/service-health/resource-health-faq
@@ -5711,7 +5711,7 @@ https://learn.microsoft.com/en-us/azure/service-health/resource-health-faq
 - 이 FAQ의 상태 값은 셋(사용 가능·사용할 수 없음·알 수 없음)이다. 개요와 경고 쪽이 넷(저하됨 포함)을 들므로 **넷을 쓴다**
 - 한국어 표기: 「사용자가 시작한 작업」, 「계획된 이벤트」, 「계획되지 않은 이벤트」, 「지원 계약」
 
-쓰일 곳: `azure-monitoring.resource-health`(원인 가르기, 지원, 경고, Service Health와의 차이), `ResourceHealthDiagram`, D128
+쓰인 곳: `azure-monitoring.resource-health`(원인 가르기, 지원, 경고, 여는 곳, Service Health와의 차이), `ResourceHealthDiagram`, `az184`, D128
 
 ## (phase 108) Resource Health — Resource Health alerts
 https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-monitor-guide
@@ -5723,7 +5723,7 @@ https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-mon
 - Resource Health 알림은 활동 로그에 저장된다 — 「Resource Health alerts in the Azure portal」
 - 한국어 표기: 영문판만 받았다. 「Resource Health 경고」(FAQ 한국어판의 「Resource Health」 표기를 따른다)
 
-쓰일 곳: `azure-monitoring.resource-health`(상태가 바뀌면 경고를 받는다 — 한 줄), `ResourceHealthDiagram`
+쓰인 곳: `azure-monitoring.resource-health`(상태가 바뀌면 Resource Health 경고를 받는다 — 한 줄). `ResourceHealthDiagram`은 경고를 그리지 않았다
 
 ## (phase 108) 작업 그룹 — Action groups (Service Health·Advisor가 함께 쓰는 줄만)
 https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
@@ -5734,7 +5734,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
 - Service Health 경고가 작업 그룹을 쓰려면 작업 그룹의 지역이 전역이어야 한다 — 같은 쪽 Note. **쓰지 않는다**(설정 세부)
 - 한국어 표기: 제목 「작업 그룹」, 「전자 메일」(앱은 앞 phase처럼 「이메일」), 「SMS」(앱은 「문자 메시지」)
 
-쓰인 곳: `azure-monitoring.azure-advisor`의 알림 줄(작업 그룹을 한 줄로 푼다 — 앞 phase `azure-cost-management.budgets`와 같은 표기). 쓰일 곳: `service-health`·`resource-health`의 알림 줄
+쓰인 곳: `azure-monitoring.azure-advisor`의 알림 줄(작업 그룹을 한 줄로 푼다 — 앞 phase `azure-cost-management.budgets`와 같은 표기), `service-health`·`resource-health`의 알림 줄(풀이 없이 이름만 — 같은 주제에서 이미 풀었다)
 
 ## (phase 108) 도식·표의 사실 — `azure-monitoring`
 
@@ -5745,8 +5745,9 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
 - **HealthViewsDiagram**: 바깥 그룹 「모든 지역의 모든 서비스」 안에 안쪽 그룹 「내 구독이 쓰는 서비스」(Service Health — 내가 쓰는 서비스·지역), 그 안의 VM 1(Resource Health — 리소스 하나). 곁말: Azure 상태 「누구나 본다」(azure-status-overview 「Anyone can visit」, 공개 페이지), Service Health 「장애·계획된 유지 관리·상태 권고」(Learn 단원 3), Resource Health 「이 리소스는 지금 쓸 수 있는가」(Resource Health 개요의 상태 값). 「로그인하지 않아도」는 문서 낱말이 아니다 — 곁말은 「누구나 본다」로 쓰고, 본문에서 「공개 페이지라 누구나 본다」와 「Service Health는 로그인한 사람이 쓰는 서비스를 안다」(단원 3)로 가른다. Azure 상태는 **넓게 퍼진 장애만** 올리고 나머지는 Service Health로 보낸다(azure-status-overview 「Current Impact tab」·「Publishing communications」). 흐린 서비스 노드는 장애가 아니라 그 보기가 보지 않는 범위다 — 캡션이 밝힌다
 - **ResourceHealthDiagram**: Azure 쪽의 일(예: 계획된 유지 관리, 계획되지 않은 호스트 재부팅 — 「Platform events」) 또는 담당자의 작업(예: VM 중지 — 「Non-platform events」) → VM 1 → Resource Health. `platform` 곁말 「사용할 수 없음 — Azure 쪽」, `user` 곁말 「사용할 수 없음 — 사용자 작업」을 쓸 수 있다(개요는 두 이벤트 모두 「사용할 수 없음」의 원인이라 하고, FAQ는 원인을 사용자 작업/계획된 이벤트/계획되지 않은 이벤트로 가른다). 지원 노드는 **근거가 있다** — 플랫폼 이벤트면 지원 계약이 없어도 Microsoft 지원에 연락할 수 있다(개요 「Platform events」, FAQ). 지원 노드와 그 경로는 `platform`에서만 보이게 한다 — 사용자 작업일 때 지원으로 가는 길을 준다는 문장은 없다. Microsoft가 하는 조치와 사용자가 할 수 있는 조치를 알린다는 것은 「Resource definition」. 셋째 시나리오 「저하됨」(쓸 수 있지만 성능이 떨어짐)은 개요에 근거가 있다 — 원인 노드를 가르지 않으므로 그릴지는 step 2가 판단한다. 「알 수 없음」은 그리지 않는다(시간 수치에 기대는 상태다)
 - 도식 넷 모두 서비스마다의 SLA 수치, 보존 기간, 알림이 나타나기까지의 시간을 쓰지 않는다
+- **step 2가 그린 것**: `HealthViewsDiagram`은 경로 없이 선명한 노드로 범위를 보인다(보기 노드에서 범위 노드로 선을 그으면 그룹 박스를 가로지른다). 안쪽 그룹 라벨은 「내가 쓰는 서비스와 지역」(Learn 단원 3 「the Azure services and regions you actually use」), 곁말은 「누구나 본다」·「장애·계획된 유지 관리」·「지금 쓸 수 있는가」 — 세로형 폭 280에 들게 「상태 권고」와 「이 리소스는」을 곁말에서 빼고 캡션이 말한다. `ResourceHealthDiagram`은 `platform`·`user` 두 장면만 둔다 — 「저하됨」 장면은 원인 노드를 가르지 않아 뺐다(본문의 상태 값 목록이 말한다)
 
-쓰인 곳: `MonitoringToolsDiagram`, `AdvisorRecommendationDiagram`. 쓰일 곳: `HealthViewsDiagram`, `ResourceHealthDiagram`
+쓰인 곳: `MonitoringToolsDiagram`, `AdvisorRecommendationDiagram`, `HealthViewsDiagram`, `ResourceHealthDiagram`
 
 ## (phase 108) 한국어 표기 정리 — `azure-monitoring`(개념 1~4)
 
@@ -5769,4 +5770,4 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
 - **Defender for Cloud**: phase 105의 표기(「Microsoft Defender for Cloud」, 본문은 「Defender for Cloud」)를 따른다.
 - 리소스·구독·리소스 그룹·VM·지역·Azure 포털·대시보드·작업 그룹·Defender for Cloud는 이 주제에서 다시 풀어 쓴다. 앞 주제에서 읽었을 것이라고 가정하지 않는다.
 
-쓰인 곳: `azure-monitoring.monitoring-tools`, `azure-monitoring.azure-advisor`의 `name`과 목록 항목, `MonitoringToolsDiagram`·`AdvisorRecommendationDiagram`의 라벨. 쓰일 곳: `azure-monitoring.service-health`, `azure-monitoring.resource-health`의 `name`과 목록 항목, 나머지 도식 둘의 라벨
+쓰인 곳: `azure-monitoring.monitoring-tools`, `azure-monitoring.azure-advisor`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`의 `name`과 목록 항목, `MonitoringToolsDiagram`·`AdvisorRecommendationDiagram`·`HealthViewsDiagram`·`ResourceHealthDiagram`의 라벨
