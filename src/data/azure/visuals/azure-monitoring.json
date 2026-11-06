@@ -289,8 +289,155 @@
       "sources": [
         "azure-monitoring.activity-log"
       ]
+    },
+    "alert-rule": {
+      "label": "VM 1의 메트릭이나 Service Health 이벤트가 경고 규칙의 조건에 맞으면 작업 그룹이 이메일을 보내거나 자동화를 시작하는 모습",
+      "svgLabel": "VM 1과 Service Health 이벤트가 경고 규칙을 거쳐 작업 그룹으로 이어지고, 작업 그룹에서 이메일과 자동화로 갈라진다",
+      "question": "경고는 언제 나고 누구에게 알릴까?",
+      "idleCaption": "경고 규칙은 언제 경고할지를 정하고, 작업 그룹은 경고 뒤 누구에게 알리고 무엇을 실행할지를 정한다. 버튼을 고르면 신호에서 알림이나 자동화까지 이어지는 길을 볼 수 있다.",
+      "legend": "화살표는 신호가 경고 규칙의 조건을 거쳐 작업 그룹으로 가고, 작업 그룹이 알림을 보내거나 자동화를 시작하는 방향이다.",
+      "nodes": {
+        "vm-1": "VM 1",
+        "sh-event": "Service Health 이벤트",
+        "rule": "경고 규칙",
+        "action-group": "작업 그룹",
+        "email": "이메일",
+        "automation": "자동화"
+      },
+      "notes": {
+        "metric-note": "CPU 사용률이 80%를 넘음",
+        "service-note": "같은 작업 그룹",
+        "automate-note": "자동화를 시작"
+      },
+      "scenarios": [
+        {
+          "id": "metric",
+          "label": "메트릭 경고",
+          "caption": "VM 1의 CPU 사용률이 담당자가 경고 규칙에 정한 80%를 넘으면 경고가 나고, 작업 그룹이 운영 팀에 이메일을 보낸다.",
+          "sources": [
+            "azure-monitoring.monitor-alerts"
+          ]
+        },
+        {
+          "id": "service",
+          "label": "Service Health 경고",
+          "caption": "Service Health의 경고도 경고 규칙으로 만들며, 메트릭 경고에 연결한 것과 같은 작업 그룹으로 운영 팀에 알릴 수 있다.",
+          "sources": [
+            "azure-monitoring.monitor-alerts"
+          ]
+        },
+        {
+          "id": "automate",
+          "label": "자동화",
+          "caption": "작업 그룹은 이메일이나 문자 메시지를 보내는 알림뿐 아니라, 정해 둔 자동화를 시작하게 할 수도 있다.",
+          "sources": [
+            "azure-monitoring.monitor-alerts"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-monitoring.monitor-alerts"
+      ]
+    },
+    "app-insights": {
+      "label": "사용자와 가용성 테스트가 웹 앱 1에 요청을 보내고, 웹 앱 1이 데이터베이스를 부르며 Application Insights가 앱의 요청과 성능을 살피는 모습",
+      "svgLabel": "사용자와 가용성 테스트가 웹 앱 1로 이어지고, 웹 앱 1에서 데이터베이스와 Application Insights로 이어진다",
+      "question": "Application Insights는 웹 앱에서 무엇을 볼까?",
+      "idleCaption": "Application Insights는 실제 사용자의 요청, 앱이 부르는 다른 서비스, 가용성 테스트의 요청을 서로 다른 관점에서 살핀다. 버튼을 고르면 각 요청이 앱을 지나는 길을 볼 수 있다.",
+      "legend": "화살표는 요청이 웹 앱 1로 들어가거나 웹 앱 1이 다른 서비스를 부르고, 앱의 정보가 Application Insights로 가는 방향이다.",
+      "nodes": {
+        "user": "사용자",
+        "test": "가용성 테스트",
+        "web-app": "웹 앱 1",
+        "database": "데이터베이스",
+        "app-insights": "Application Insights"
+      },
+      "notes": {
+        "requests-note": "응답 시간·실패율·페이지 로드 시간",
+        "dependency-note": "호출과 성능",
+        "availability-note": "사용자가 적을 때도"
+      },
+      "scenarios": [
+        {
+          "id": "requests",
+          "label": "사용자 요청",
+          "caption": "Application Insights는 사용자가 웹 앱 1에 보낸 요청이 얼마나 빨리 처리되고 얼마나 실패하는지와 페이지가 열리는 데 걸린 시간을 보여 준다.",
+          "sources": [
+            "azure-monitoring.application-insights"
+          ]
+        },
+        {
+          "id": "dependency",
+          "label": "다른 서비스 호출",
+          "caption": "웹 앱 1이 주문을 저장하려고 데이터베이스 같은 종속성을 부르면, Application Insights는 그 호출에 얼마나 걸렸고 얼마나 실패했는지 보여 준다.",
+          "sources": [
+            "azure-monitoring.application-insights"
+          ]
+        },
+        {
+          "id": "availability",
+          "label": "가용성 테스트",
+          "caption": "실제 사용자가 적을 때도 가용성 테스트가 웹 앱 1에 일부러 요청을 보내 앱이 응답하는지 확인한다. 흐린 사용자는 접속할 수 없다는 뜻이 아니라, 이 장면이 테스트가 만든 요청만 밝힌 것이다.",
+          "sources": [
+            "azure-monitoring.application-insights"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-monitoring.application-insights"
+      ]
     }
   },
-  "tables": {},
+  "tables": {
+    "monitor-features": {
+      "label": "Azure Monitor의 네 기능 견주기",
+      "columns": [
+        "기능",
+        "보는 것",
+        "이럴 때 연다"
+      ],
+      "columnWidths": [
+        "34%",
+        "33%",
+        "33%"
+      ],
+      "rows": [
+        {
+          "header": "활동 로그",
+          "cells": [
+            "리소스에 한 관리 작업에서 누가 언제 무엇을 했는지",
+            "누가 VM 1을 중지했는지 알고 싶을 때"
+          ]
+        },
+        {
+          "header": "Log Analytics",
+          "cells": [
+            "작업 영역에 모인 로그를 쿼리로 골라 분석",
+            "여러 VM의 오류 기록을 골라 견주고 싶을 때"
+          ]
+        },
+        {
+          "header": "Azure Monitor 경고",
+          "cells": [
+            "정해 둔 조건이 맞을 때 담당자에게 알림",
+            "CPU 사용률이 기준을 넘으면 알고 싶을 때"
+          ]
+        },
+        {
+          "header": "Application Insights",
+          "cells": [
+            "웹 앱 안의 요청과 응답 시간, 실패",
+            "사용자가 겪는 앱의 느림과 오류를 찾고 싶을 때"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-monitoring.activity-log",
+        "azure-monitoring.log-analytics",
+        "azure-monitoring.monitor-alerts",
+        "azure-monitoring.application-insights"
+      ]
+    }
+  },
   "glossary": []
 }

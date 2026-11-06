@@ -5,8 +5,10 @@ import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ActivityLogDiagram } from './ActivityLogDiagram'
 import { AdvisorRecommendationDiagram } from './AdvisorRecommendationDiagram'
+import { AlertRuleDiagram } from './AlertRuleDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
+import { AppInsightsDiagram } from './AppInsightsDiagram'
 import { ArchiveRehydrationDiagram } from './ArchiveRehydrationDiagram'
 import { ArpCacheDiagram } from './ArpCacheDiagram'
 import { ArpExchangeDiagram } from './ArpExchangeDiagram'
@@ -284,6 +286,7 @@ import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
 import { DeploymentMethodsTable } from './azureInfrastructureAsCodeTables'
 import { CommandToolsTable } from './azureManagementToolsTables'
+import { MonitorFeaturesTable } from './azureMonitoringTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
 import { RedundancyOptionsTable, StorageAccountTypesTable } from './azureStorageTables'
@@ -609,6 +612,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-monitoring.resource-health': ResourceHealthDiagram,
   'azure-monitoring.azure-monitor': MonitorDataDiagram,
   'azure-monitoring.activity-log': ActivityLogDiagram,
+  'azure-monitoring.monitor-alerts': AlertRuleDiagram,
+  'azure-monitoring.application-insights': [AppInsightsDiagram, MonitorFeaturesTable],
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).

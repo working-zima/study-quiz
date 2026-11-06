@@ -2688,7 +2688,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log
 - 리소스 로그와의 차이: 리소스 로그는 리소스 안에서 하는 데이터 플레인 작업(키 자격 증명 모음에서 비밀 가져오기, 데이터베이스에 요청 보내기)을 남기고, 기본으로 모이지 않아 진단 설정으로 구성해야 한다 — 둘째 문단 (phase 108). 앱은 「데이터 플레인」을 쓰지 않고 「리소스 안에서 일어난 일」로 쓴다
 - 한국어 표기(phase 108): 「활동 로그」, 「관리 작업」, 「리소스 로그」, 「진단 설정」, 「키 자격 증명 모음」. 한국어판의 「컨트롤 플레 인 작업」·「데이타 평면」은 쓰지 않는다
 
-쓰인 곳(phase 108 step 4): `azure-monitoring.activity-log`, `ActivityLogDiagram`, D131; NO.60·114·452. 쓰일 곳: `MonitorFeaturesTable`(활동 로그 행)
+쓰인 곳(phase 108 step 4): `azure-monitoring.activity-log`, `ActivityLogDiagram`, D131; NO.60·114·452. 쓰인 곳(phase 108 step 5): `MonitorFeaturesTable`(활동 로그 행)
 
 ## (phase 103) Azure DNS — Overview of DNS zones and records
 https://learn.microsoft.com/en-us/azure/dns/dns-zones-records
@@ -5577,7 +5577,7 @@ https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azu
 - 가용성 테스트는 앱에 일부러 만든 요청을 보내, 찾아오는 사람이 적은 때에도 앱이 응답하는지 알게 한다 — 같은 절 (phase 108)
 - 한국어 표기(phase 108 step 3): 「Log Analytics」(한국어판 제목의 「Azure 로그 분석 서비스」 괄호는 쓰지 않는다), 「경고 규칙」, 「작업 그룹」, 「메트릭」, 「로그」, 「Application Insights」, 「종속성」, 「가용성 테스트」 — 아래 「한국어 표기 정리 — `azure-monitoring`(개념 5~9)」
 
-쓰인 곳(phase 108 step 4): `azure-monitoring.azure-monitor`, `MonitorDataDiagram`; NO.246·312. 쓰일 곳: `azure-monitoring.log-analytics`, `azure-monitoring.monitor-alerts`, `azure-monitoring.application-insights`, `AlertRuleDiagram`, `AppInsightsDiagram`, `MonitorFeaturesTable`; NO.25
+쓰인 곳(phase 108 step 4): `azure-monitoring.azure-monitor`, `MonitorDataDiagram`; NO.246·312. 쓰인 곳(phase 108 step 5): `azure-monitoring.log-analytics`, `azure-monitoring.monitor-alerts`, `azure-monitoring.application-insights`, `AlertRuleDiagram`, `AppInsightsDiagram`, `MonitorFeaturesTable`; NO.25
 
 ## (phase 108) Azure Advisor — Introduction to Azure Advisor
 https://learn.microsoft.com/en-us/azure/advisor/advisor-overview
@@ -5775,7 +5775,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
 - 예산이 부르는 작업 그룹도 Azure Monitor의 작업 그룹이다 — 위 「(phase 106) Cost Management — Manage costs with budgets」 항목의 머리말 줄 (phase 108). 그러므로 작업 그룹은 Azure Monitor 경고·Service Health·Advisor·예산이 함께 쓴다
 - 앞 phase `azure-cost-management.budgets`의 풀이 「경고에 맞춰 실행할 동작을 묶어 둔 것」은 이 문서의 「누구에게 알리고 무엇을 할지」에서 동작 쪽만 말한다. 틀리지 않지만, 이 주제 `azure-advisor`의 풀이 「경고가 나면 누구에게 어떻게 알리고 무엇을 실행할지 정해 둔 묶음」이 문서에 더 가깝다 (phase 108) — 고치지 않는다(메인 세션 판단)
 
-쓰일 곳(phase 108 step 3): `azure-monitoring.monitor-alerts`(작업 그룹 — 같은 주제의 `azure-advisor`가 이미 풀었다), `AlertRuleDiagram`
+쓰인 곳(phase 108 step 5): `azure-monitoring.monitor-alerts`(작업 그룹 — 같은 주제의 `azure-advisor`가 이미 풀었다), `AlertRuleDiagram`
 
 ## (phase 108) 도식·표의 사실 — `azure-monitoring`
 
@@ -5794,7 +5794,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
 - **MonitorFeaturesTable**(step 3 확인): 행 넷의 칸을 쓸 수 있다 — 활동 로그 「리소스에 한 관리 작업 — 누가·언제·무엇을」(활동 로그 문서), Log Analytics 「작업 영역에 모인 로그를 쿼리로」(Log Analytics 개요, 작업 영역 개요), Azure Monitor 경고 「정해 둔 조건이 맞을 때 알린다」(경고 개요, Learn 단원 4), Application Insights 「웹 앱 안의 요청·응답·실패」(Learn 단원 4, 개요). 「이럴 때 연다」 칸은 학습자의 물음으로 쓴다. 활동 로그 행에 「설정 없이 남는다」를 쓸 수 있고, Log Analytics 행에 「활동 로그를 보려면 작업 영역으로 보내 둔다」를 쓰려면 본문에 먼저 쓴다. 표 칸에 「단순 모드」·「KQL」을 쓰면 본문에 먼저 둔다
 - 도식 넷과 표 모두 보존 기간, 기록이 나타나기까지의 시간, 가격, 테스트 개수 상한을 쓰지 않는다 (step 3)
 
-쓰인 곳: `MonitoringToolsDiagram`, `AdvisorRecommendationDiagram`, `HealthViewsDiagram`, `ResourceHealthDiagram`, `MonitorDataDiagram`, `ActivityLogDiagram` / 쓰일 곳(step 3): `AlertRuleDiagram`, `AppInsightsDiagram`, `MonitorFeaturesTable`
+쓰인 곳: `MonitoringToolsDiagram`, `AdvisorRecommendationDiagram`, `HealthViewsDiagram`, `ResourceHealthDiagram`, `MonitorDataDiagram`, `ActivityLogDiagram` / 쓰인 곳(step 5): `AlertRuleDiagram`, `AppInsightsDiagram`, `MonitorFeaturesTable`
 
 ## (phase 108) 한국어 표기 정리 — `azure-monitoring`(개념 1~4)
 
@@ -5834,7 +5834,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview
 - 쓰지 않는다(guide 「배경」): AI 에이전트 모니터링, Azure Copilot Observability Agent·Azure Monitor issues, AIOps·동적 임계값·스마트 검색, 자동 크기 조정(이 문서는 Azure Monitor의 기능으로 든다), Azure Monitor 작업 영역·Prometheus·PromQL·Grafana·통합 문서, Azure Monitor 에이전트·데이터 수집 규칙·pipeline, Network Watcher, Microsoft Sentinel·Defender for Cloud가 같은 데이터 플랫폼을 쓴다는 줄
 - 한국어 표기: 「Azure Monitor」, 「하이브리드」, 「Azure Arc」, 「APM(애플리케이션 성능 모니터링)」
 
-쓰인 곳(step 4): `azure-monitoring.azure-monitor`, `MonitorDataDiagram`, D130·D132; NO.246·312·319. 쓰일 곳: `azure-monitoring.application-insights`(Azure Monitor의 기능), D133; NO.273·384·404
+쓰인 곳(step 4): `azure-monitoring.azure-monitor`, `MonitorDataDiagram`, D130·D132; NO.246·312·319. 쓰인 곳(step 5): `azure-monitoring.application-insights`(Azure Monitor의 기능), D133; NO.273·384·404
 
 ## (phase 108) Azure Monitor — Azure Monitor data platform, Metrics overview, Logs overview
 https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform
@@ -5857,7 +5857,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs
 - 쓰지 않는다: 추적(분산 추적), Change Analysis·Azure Resource Graph, 고급 플랫폼 메트릭·네이티브 사용자 지정 메트릭, Azure Monitor 작업 영역, 표 플랜(분석·기본·보조), 보존·수집 비용, Azure Data Explorer, 데이터 변환
 - 한국어 표기: 「메트릭」, 「로그」, 「시계열 데이터베이스」, 「Azure Monitor 메트릭 데이터베이스」(앱은 「메트릭 데이터베이스」로 줄여도 된다), 「Log Analytics 작업 영역」, 「플랫폼 메트릭」, 「단순 모드」. 한국어판 비교 표 머리의 「지표」와 경고 개요 한국어판 표의 「측정치」는 쓰지 않는다 — 같은 문서 본문과 다른 한국어판이 「메트릭」을 쓴다
 
-쓰인 곳(step 4): `azure-monitoring.azure-monitor`(메트릭과 로그, 모이는 곳), `MonitorDataDiagram`, D130·D131·D134; NO.1·332. 쓰일 곳: `azure-monitoring.log-analytics`
+쓰인 곳(step 4): `azure-monitoring.azure-monitor`(메트릭과 로그, 모이는 곳), `MonitorDataDiagram`, D130·D131·D134; NO.1·332. 쓰인 곳(step 5): `azure-monitoring.log-analytics`
 
 ## (phase 108) Azure Monitor — Resource logs in Azure Monitor, Diagnostic settings in Azure Monitor
 https://learn.microsoft.com/en-us/azure/azure-monitor/platform/resource-logs
@@ -5895,7 +5895,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspa
 - 쓰지 않는다: 화면 구성(위쪽 막대·왼쪽 막대·결과 창), 예제 쿼리와 쿼리 허브, 쿼리 기록, 표 플랜, 작업 영역 설계·네트워크 격리·지역 간 복제, 로그 수집 API
 - 한국어 표기: 「Log Analytics」, 「Log Analytics 작업 영역」, 「로그 쿼리」, 「단순 모드」(guide의 잠정 「간단 모드」 대신 한국어판의 말), 「KQL 모드」, 「KQL(Kusto 쿼리 언어)」
 
-쓰일 곳: `azure-monitoring.log-analytics`, `MonitorFeaturesTable`(Log Analytics 행), G72; NO.85·437
+쓰인 곳(step 5): `azure-monitoring.log-analytics`, `MonitorFeaturesTable`(Log Analytics 행), G72; NO.85·437
 
 ## (phase 108) Azure Monitor 경고 — What are Azure Monitor alerts?, Types of Azure Monitor alerts
 https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview
@@ -5918,7 +5918,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types
 - 쓰지 않는다(guide 「배경」): 단순 로그 검색 경고, 스마트 검색 경고, Prometheus 경고, 쿼리 기반 메트릭 경고, 동적 임계값, 상태 저장·비저장, 경고 조건(발생·해결)·사용자 응답, 경고 처리 규칙, 차원으로 나누기, 경고 보존 기간, 가격, Azure Copilot Observability Agent
 - 한국어 표기: 「경고」, 「경고 규칙」, 「신호」, 「조건」, 「작업 그룹」, 「메트릭 경고」, 「로그 검색 경고」, 「활동 로그 경고」, 「Service Health 경고」, 「Resource Health 경고」. 한국어판 표의 「측정치 경고」는 쓰지 않는다(같은 문서 본문이 「메트릭 경고」)
 
-쓰일 곳: `azure-monitoring.monitor-alerts`, `AlertRuleDiagram`, `MonitorFeaturesTable`(Azure Monitor 경고 행), D132; NO.200·246·312·319
+쓰인 곳(step 5): `azure-monitoring.monitor-alerts`, `AlertRuleDiagram`, `MonitorFeaturesTable`(Azure Monitor 경고 행), D132; NO.200·246·312·319
 
 ## (phase 108) Application Insights — Introduction, Autoinstrumentation, Availability tests
 https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
@@ -5938,7 +5938,7 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability
 - NO.25(사용자 브라우저에서 웹 페이지가 로드되는 시간) — Learn 단원 4 「Page load times」. **덤프가 맞다**
 - 한국어 표기: 「Application Insights」, 「APM(애플리케이션 성능 모니터링)」(앱은 「애플리케이션 성능 모니터링(APM)」 순서로 써도 된다), 「자동 계측」, 「가용성 테스트」, 「종속성」(Learn 단원 4 한국어판 — guide의 잠정 「의존성」 대신)
 
-쓰일 곳: `azure-monitoring.application-insights`, `AppInsightsDiagram`, `MonitorFeaturesTable`(Application Insights 행), G73; NO.25·384
+쓰인 곳(step 5): `azure-monitoring.application-insights`, `AppInsightsDiagram`, `MonitorFeaturesTable`(Application Insights 행), G73; NO.25·384
 
 ## (phase 108) Microsoft Entra ID — Integrate Microsoft Entra logs with Azure Monitor logs (NO.319 판정만)
 https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs
@@ -5973,4 +5973,4 @@ https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-integra
 - **Azure 밖**: 「온-프레미스」, 「다중 클라우드」(Learn 단원 4 한국어판), 「하이브리드」, 「Azure Arc」.
 - 리소스·구독·리소스 그룹·VM·웹 앱·지역·Azure 포털·CPU 사용률·작업 그룹은 이 주제의 앞 개념(1·2)이 이미 풀었다(2026-11-06 확인). 대시보드는 「Advisor 대시보드」로만 풀렸다. 쿼리·온-프레미스·다중 클라우드·Azure Arc·SDK·키 자격 증명 모음·데이터베이스는 이 주제에서 아직 풀리지 않았다 — 처음 쓰는 개념에서 푼다.
 
-쓰인 곳(step 4): `azure-monitoring.azure-monitor`, `azure-monitoring.activity-log`의 `name`과 본문 표기, `MonitorDataDiagram`·`ActivityLogDiagram`의 라벨. 쓰일 곳: `azure-monitoring.log-analytics`, `azure-monitoring.monitor-alerts`, `azure-monitoring.application-insights`의 `name`과 본문 표기, `AlertRuleDiagram`·`AppInsightsDiagram`·`MonitorFeaturesTable`의 라벨
+쓰인 곳(step 4): `azure-monitoring.azure-monitor`, `azure-monitoring.activity-log`의 `name`과 본문 표기, `MonitorDataDiagram`·`ActivityLogDiagram`의 라벨. 쓰인 곳(step 5): `azure-monitoring.log-analytics`, `azure-monitoring.monitor-alerts`, `azure-monitoring.application-insights`의 `name`과 본문 표기, `AlertRuleDiagram`·`AppInsightsDiagram`·`MonitorFeaturesTable`의 라벨
