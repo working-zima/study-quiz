@@ -3,6 +3,7 @@ import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
+import { ActivityLogDiagram } from './ActivityLogDiagram'
 import { AdvisorRecommendationDiagram } from './AdvisorRecommendationDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
@@ -143,6 +144,7 @@ import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
+import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
@@ -605,6 +607,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-monitoring.azure-advisor': AdvisorRecommendationDiagram,
   'azure-monitoring.service-health': HealthViewsDiagram,
   'azure-monitoring.resource-health': ResourceHealthDiagram,
+  'azure-monitoring.azure-monitor': MonitorDataDiagram,
+  'azure-monitoring.activity-log': ActivityLogDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
