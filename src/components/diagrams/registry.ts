@@ -3,6 +3,7 @@ import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
+import { AdvisorRecommendationDiagram } from './AdvisorRecommendationDiagram'
 import { ApiEndpointPathDiagram } from './ApiEndpointPathDiagram'
 import { ApiIntegrationDiagram } from './ApiIntegrationDiagram'
 import { ArchiveRehydrationDiagram } from './ArchiveRehydrationDiagram'
@@ -141,6 +142,7 @@ import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
+import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
@@ -597,6 +599,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'azure-infrastructure-as-code.infrastructure-as-code': IacEnvironmentsDiagram,
   'azure-infrastructure-as-code.arm-templates': TemplateDeploymentDiagram,
   'azure-infrastructure-as-code.bicep': DeploymentMethodsTable,
+  'azure-monitoring.monitoring-tools': MonitoringToolsDiagram,
+  'azure-monitoring.azure-advisor': AdvisorRecommendationDiagram,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
