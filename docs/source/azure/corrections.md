@@ -1603,3 +1603,66 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)는 Azure Service Health를 세 보기의 묶음이라 한다. 전반(모든 지역의 모든 서비스)을 보는 것은 공개 페이지인 Azure 상태이고, 포털의 Service Health는 내가 쓰는 서비스와 지역의 장애·계획된 유지 관리·상태 권고를 보여 준다([Service Health 포털](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)). 내 서비스가 실행되는 지역에 영향을 줄 때 경고를 낸다는 것은 [Service Health 경고](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)에 있다. 2026-11-06 확인.
 - **처리**: 한정해 쓴다. 「정기 점검」은 「계획된 유지 관리」로 쓴다(정기적이라는 말은 문서에 없다). 지역 장애가 내 구독에 영향을 주는지 알리고 지난 기록을 남긴다는 것은 맞다. 「전반의 상태를 보는 포털」은 묶음 전체로만 맞고, 포털의 Service Health 보기는 내가 쓰는 서비스·지역만 보여 준다고 쓴다(D127).
 - **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## D130 — 여러 리소스의 이벤트를 한곳에 모아 엮는 서비스를 Event Hubs로 답한다 (phase 108)
+
+- **덤프**: [덤프 NO.1 p2]는 여러 리소스의 이벤트를 한곳에 모아 서로 엮어 볼 서비스로 Azure Event Hubs(A)를 답한다. 보기에는 Azure Monitor(C)와 Azure Log Analytics(D)가 있다. 해설은 Event Hubs를 대량의 이벤트를 받아들이는 스트리밍 서비스로 설명할 뿐, 엮어 보는 일은 말하지 않는다. 주제 지도 「덤프 정답이 의심스러운 문항」의 하나다.
+- **공식 문서**: [Azure Monitor 데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform) — Azure Monitor 로그는 활동 로그·리소스 로그를 다른 모니터링 데이터와 함께 모아 리소스 전체에 걸쳐 깊이 분석하게 하고(「Logs in Azure Monitor」), Event Hubs는 모니터링 데이터를 외부 도구로 넘길 때 거치는 길이다(「Stream data to external systems」). [활동 로그](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)를 Log Analytics 작업 영역에 보내면 다른 로그 데이터와 로그 쿼리로 엮어 본다(「Log Analytics workspace」). 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 여러 리소스의 기록을 한곳(Log Analytics 작업 영역)에 모아 쿼리로 엮어 보는 것은 Azure Monitor와 Log Analytics의 일로 쓴다. Event Hubs는 앱에 쓰지 않는다(범위 밖 — 주제 지도 「넣지 않는 것」 `x-data-ai-iot`).
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.log-analytics`(쓰일 곳 — step 4·5)
+
+## D131 — 누가 VM을 껐는지는 Azure Monitor가 아니라 활동 로그에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.60 p33]은 밑줄 친 「Azure Monitor」를 「Azure Activity Log」(C)로 바꾸라고 답하고, 해설은 「Azure Monitor가 아니라 활동 로그」로 지난 14일 동안 특정 VM을 끈 사용자를 본다고 쓴다. 같은 사실을 묻는 [덤프 NO.114 p70–71]과 [덤프 NO.452 p263]의 답 그림도 Azure Activity Log다.
+- **공식 문서**: [활동 로그](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)는 Azure Monitor가 관리 작업을 기록하는 기능이다(첫 문단). [데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform)은 구독 단위의 이벤트가 쓰이는 활동 로그를 Azure Monitor 메뉴에서 연다고 한다(「Logs in Azure Monitor」의 Note). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 답(활동 로그)은 맞다. 「Azure Monitor가 아니다」는 쓰지 않는다 — 활동 로그는 Azure Monitor의 기능이고 Azure Monitor 메뉴에서도 연다. 문항이 「Azure Monitor」와 「활동 로그」를 서로 다른 답으로 세우지 않는다. 기간(14일·90일)은 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.activity-log`(쓰일 곳 — step 4)
+
+## D132 — Azure Monitor와 통합되는 것에서 Service Health·Advisor를 뺀다 — NO.273·404 (phase 108)
+
+- **덤프**: [덤프 NO.273 p160]과 [덤프 NO.404 p233]은 Azure Monitor와 통합되는 둘로 Application Insights와 Log Analytics를 답하고, Azure Service Health·Azure Advisor·Azure 상태는 답에서 뺀다.
+- **공식 문서**: [Azure Monitor 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview)는 Application Insights를 Azure Monitor의 기능으로, Log Analytics를 로그를 분석하는 도구로 든다 — 덤프의 두 답은 맞다. 그런데 [Azure Monitor 경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)는 Service Health 경고와 Resource Health 경고를 Azure Monitor의 활동 로그 경고로 두고, [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 작업 그룹을 Azure Monitor·Service Health·Azure Advisor가 함께 쓴다고 한다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. Application Insights와 Log Analytics는 Azure Monitor의 기능·도구로 쓴다. Service Health와 Advisor는 Azure Monitor와 따로 있는 서비스로 쓰되, 그 경고·알림이 Azure Monitor의 경고 규칙·작업 그룹을 쓴다는 연결을 지우지 않는다. 문항에서 Service Health를 「Azure Monitor와 아무 관계가 없는 것」으로 세우지 않는다. Azure 상태(공개 페이지)는 이 연결이 없다.
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.monitor-alerts`(쓰일 곳 — step 4·5)
+
+## D133 — Entra ID 활동 로그를 Azure Monitor에 나타나게 설정할 수 없다 (phase 108)
+
+- **덤프**: [덤프 NO.319 p184]의 답 그림(`p184_06.png`)은 「Azure AD 활동 로그가 Azure Monitor에 나타나게 설정할 수 있다」에 아니요, 「Azure Monitor에서 경고를 만든다」·「Azure Monitor로 여러 구독의 리소스를 지켜본다」에 예를 표시한다.
+- **공식 문서**: [Microsoft Entra 로그를 Azure Monitor 로그와 통합](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs)은 Entra ID의 진단 설정으로 로그인 활동과 테넌트 안의 변경 감사 기록을 Azure Monitor에 넣어 함께 분석한다고 한다(첫 문단). [Azure Monitor 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview)도 Entra ID의 감사 로그를 모은다고 한다(「Monitor your cloud resources」). 둘째·셋째 진술의 「예」는 맞다 — 경고는 Azure Monitor의 기능이고, [진단 설정](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)은 다른 구독의 작업 영역으로도 로그를 보낸다(「Destinations」). 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 첫 진술의 덤프 답은 공식 문서와 어긋나지만, Entra ID 로그를 Azure Monitor로 보내는 일은 학습 가이드의 줄에 없어 앱에 쓰지 않는다. 둘째·셋째 진술은 맞으므로 쓸 수 있다.
+- **쓰인 곳**: 없음(판정만). 둘째·셋째 진술은 `azure-monitoring.monitor-alerts`·`azure-monitor`가 쓸 수 있다
+
+## D134 — Azure Monitor는 성능 데이터를 Log Analytics 작업 영역에 저장한다 (phase 108)
+
+- **덤프**: [덤프 NO.332 p190]은 Azure Monitor가 성능 데이터를 저장하는 곳으로 Log Analytics 작업 영역(A)을 답한다. 다른 보기는 스토리지 계정·Event Hubs·이벤트 구독이다.
+- **공식 문서**: [Azure Monitor 메트릭](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/data-platform-metrics)은 Azure Monitor 로그가 로그와 성능 데이터를 모은다고 한다(첫 Note) — 보기 넷 가운데 A는 맞다. 그러나 [데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform)은 메트릭(정해진 간격으로 잰 숫자 값 — VM의 CPU 사용률 같은 것)을 Log Analytics 작업 영역이 아니라 시계열 데이터베이스(Azure Monitor 메트릭 데이터베이스)에 두고, 데이터 원본은 작업 영역이나 메트릭 데이터베이스 또는 둘 다에 쓴다고 한다(비교 표, 「Collect monitoring data」). Azure 리소스의 플랫폼 메트릭은 설정 없이 메트릭 쪽에 모인다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「성능 데이터는 모두 Log Analytics 작업 영역에 저장된다」로 쓰지 않는다. 앱은 메트릭은 메트릭 데이터베이스에, 로그는 Log Analytics 작업 영역에 모인다고 가른다. 문항에서 「성능 수치가 어디에 모이나」를 물을 때 정답이 둘로 읽히지 않게 메트릭인지 로그인지를 문제문에 준다.
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `MonitorDataDiagram`(쓰일 곳 — step 4)
+
+## D135 — Log Analytics 경고의 쿼리·기간·빈도 문항 — 보기가 잘려 있다 (phase 108)
+
+- **덤프**: [덤프 NO.85 p48–49]는 Azure Cosmos DB의 요청 비용이 10분 동안 10번 넘게 40단위를 넘으면 Log Analytics에서 경고를 내는 설정 둘을 고르게 하고, 답을 B(기간 10·빈도 10)와 C로 둔다. 그런데 보기 C의 글은 「requestCharge_s가 … 를 넘는 때를 찾는 검색 쿼리를 만든다」에서 숫자가 빠진 채 끝난다.
+- **공식 문서**: [경고 종류](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types)는 로그 검색 경고가 Log Analytics 쿼리로 로그를 정해 둔 빈도로 평가한다고 한다(「Log search alerts」). 쿼리의 열 이름과 기간·빈도 값이 맞는지는 덤프 글이 잘려 확인할 수 없다. 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 로그 검색 경고가 쿼리를 정해 둔 빈도로 평가한다는 것까지만 쓰고, 쿼리 문법·열 이름·기간과 빈도 값은 쓰지 않는다(guide 「배경」 — KQL 문법). Azure Cosmos DB는 이 주제의 범위 밖이다.
+- **쓰인 곳**: `azure-monitoring.monitor-alerts`(로그 검색 경고 한 줄 — 쓰일 곳, step 5)
+
+## G71 — Azure Monitor가 Application Insights·Log Analytics에 「연동」되고, DevOps 파이프라인의 확장 작업을 부른다 (phase 108)
+
+- **용어집**: [용어집 4-18]은 Azure Monitor를 지표·로그 수집, 알림, 시각화를 함께 주는 모니터링 플랫폼이라 하고, Application Insights와 Log Analytics에 「연동」해 깊이 진단한다고 한다. [용어집 4-21](항목 이름은 다시 Azure Monitor)은 모은 지표나 로그 쿼리 결과가 임계치를 넘으면 알림을 보내거나 자동 스크립트를 실행한다고 하고, 예로 CPU 80% 이상이 이어질 때의 알림을 들며, DevOps 파이프라인에서 확장 작업을 부를 수도 있다고 한다.
+- **공식 문서**: [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 Log Analytics를 Azure Monitor가 모은 데이터에 쿼리하는 포털의 도구로, Application Insights를 Azure Monitor의 기능으로 든다. 경고는 메트릭이나 로그에 기반하고, VM의 CPU가 80%를 넘는 상태로 이어지면 이메일을 보내는 예를 든다. [경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)는 작업 그룹이 알림을 보내거나 자동화된 작업 흐름을 시작한다고 한다. DevOps 파이프라인에서 확장 작업을 부른다는 문장은 받아 둔 문서에서 찾지 못했다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「연동」 대신 Application Insights와 Log Analytics를 Azure Monitor의 도구·기능으로 쓴다. 4-21의 내용은 Azure Monitor 경고의 것으로 쓰고, 「자동 스크립트」는 「작업 그룹이 자동화를 시작한다」로 쓴다. CPU 80%는 담당자가 정하는 예시 값으로 쓴다. DevOps 파이프라인 확장 작업은 쓰지 않는다(못 찾음). 「지표」 대신 「메트릭」을 쓴다(official.md 표기 정리).
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.monitor-alerts`(쓰일 곳 — step 4·5)
+
+## G72 — Log Analytics를 KQL로 분석하는 「서비스」라 한다 (phase 108)
+
+- **용어집**: [용어집 4-19]는 Log Analytics를 Azure Monitor가 모은 로그 데이터를 Kusto 쿼리(KQL)로 분석하고 차트로 그리는 서비스라 하고, 큰 로그를 빨리 찾고 모아 원인 찾기·사용 추이·보안 이벤트 추적에 쓴다고 한다.
+- **공식 문서**: [Log Analytics 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview)는 Log Analytics를 Azure 포털 안의 도구라 하고, KQL을 모두 쓰는 KQL 모드 말고 눌러서 거르는 단순 모드가 있다고 한다(첫 문단). 결과를 표나 차트로 본다(「Chart view」). 로그는 Log Analytics 작업 영역에 모인다([작업 영역 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview)). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. Log Analytics는 「서비스」가 아니라 포털의 도구로 쓰고, 로그를 모아 두는 곳(Log Analytics 작업 영역)과 가른다. KQL만 쓰는 것처럼 쓰지 않는다 — 단순 모드가 있다. 보안 이벤트 추적은 쓰지 않는다(Microsoft Sentinel·Defender for Cloud의 몫).
+- **쓰인 곳**: `azure-monitoring.log-analytics`(쓰일 곳 — step 5)
+
+## G73 — Application Insights가 서버·클라이언트 로그를 자동으로 모으는 서비스다 (phase 108)
+
+- **용어집**: [용어집 4-20]은 Application Insights를 애플리케이션 성능(APM)·예외·트랜잭션 흐름을 지켜보는 서비스라 하고, 서버·클라이언트 로그를 자동으로 모아 병목을 찾고 알림으로 장애·오류를 바로 알아챈다고 한다.
+- **공식 문서**: [Application Insights 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)는 Application Insights를 Azure Monitor의 APM 기능이라 한다. [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 앱 코드에 SDK를 넣거나 코드를 바꾸지 않고 에이전트를 켜서 쓴다고 하고, [자동 계측](https://learn.microsoft.com/en-us/azure/azure-monitor/app/codeless-overview)은 코드를 바꾸지 않는 길을 지원 표의 Azure 호스팅 환경에서 쓰고 표에 없는 환경이면 코드에 넣는 길을 쓰라고 한다(「Supported environments, languages, and resource providers」). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「서비스」 대신 Azure Monitor의 기능으로 쓴다. 「자동으로 모은다」는 어디서나 저절로 되는 것처럼 쓰지 않고, 코드를 바꾸지 않는 길은 지원하는 환경에서만이라고 쓴다. 보는 것은 Learn 단원 4의 목록(요청·응답 시간·실패율, 종속성, 페이지 로드 시간·사용자·세션, 서버 성능)으로 쓴다.
+- **쓰인 곳**: `azure-monitoring.application-insights`(쓰일 곳 — step 5)
