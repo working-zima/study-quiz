@@ -37,7 +37,9 @@
     {
       "step": 4,
       "name": "azure-monitor-activity-log",
-      "status": "pending"
+      "status": "error",
+      "error_message": "[3회 시도 후 실패] Step did not update status",
+      "failed_at": "2026-11-06T17:26:26+0900"
     },
     {
       "step": 5,
