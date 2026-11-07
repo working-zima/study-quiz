@@ -11,6 +11,7 @@ import azureGovernanceVisuals from './visuals/azure-governance.json'
 import azureIdentityVisuals from './visuals/azure-identity.json'
 import azureInfrastructureAsCodeVisuals from './visuals/azure-infrastructure-as-code.json'
 import azureManagementToolsVisuals from './visuals/azure-management-tools.json'
+import azureMonitoringVisuals from './visuals/azure-monitoring.json'
 import azureNetworkProtectionVisuals from './visuals/azure-network-protection.json'
 import azureRegionsZonesVisuals from './visuals/azure-regions-zones.json'
 import azureResourceHierarchyVisuals from './visuals/azure-resource-hierarchy.json'
@@ -47,6 +48,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'azure-governance': azureGovernanceVisuals,
   'azure-management-tools': azureManagementToolsVisuals,
   'azure-infrastructure-as-code': azureInfrastructureAsCodeVisuals,
+  'azure-monitoring': azureMonitoringVisuals,
 }
 
 export const azureSubject: Subject = {
