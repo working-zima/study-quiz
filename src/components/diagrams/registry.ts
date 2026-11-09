@@ -184,6 +184,8 @@ import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
+import { PortDemuxDiagram } from './PortDemuxDiagram'
+import { PortRangesDiagram } from './PortRangesDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -474,6 +476,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
+  'ports.port-number': PortDemuxDiagram,
+  'ports.port-ranges': PortRangesDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
