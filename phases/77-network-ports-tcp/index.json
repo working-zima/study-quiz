@@ -1,0 +1,71 @@
+{
+  "project": "Study Quiz",
+  "phase": "77-network-ports-tcp",
+  "steps": [
+    {
+      "step": 0,
+      "name": "ports-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "port-number-ranges",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "well-known-client-server",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "tcp-udp-sources",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "tcp-mss",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "tcp-header-sequence",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "ack-control-bits",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "udp-header",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "transport-choice",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "connection-sources",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "handshake-termination",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "states-opening",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "closing-time-wait",
+      "status": "pending"
+    }
+  ]
+}
