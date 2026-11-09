@@ -150,6 +150,7 @@ import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
+import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -251,6 +252,7 @@ import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
@@ -482,6 +484,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ports.port-ranges': PortRangesDiagram,
   'ports.well-known-ports': WellKnownPortsDiagram,
   'ports.client-server-ports': ClientServerPortsDiagram,
+  'tcp-udp.tcp': TcpReliabilityDiagram,
+  'tcp-udp.mss': MssSizeDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

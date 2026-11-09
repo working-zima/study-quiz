@@ -16,6 +16,7 @@ import networkBasicsVisuals from './visuals/network-basics.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import routingVisuals from './visuals/routing.json'
+import tcpUdpVisuals from './visuals/tcp-udp.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -36,6 +37,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'ip-address-types': ipAddressTypesVisuals,
   'routing': routingVisuals,
   'ports': portsVisuals,
+  'tcp-udp': tcpUdpVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
   'linux-shell': linuxShellVisuals,
