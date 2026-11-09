@@ -1,6 +1,7 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
+import { AckNumbersDiagram } from './AckNumbersDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ActivityLogDiagram } from './ActivityLogDiagram'
@@ -253,6 +254,7 @@ import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TcpControlBitsDiagram } from './TcpControlBitsDiagram'
 import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
@@ -490,6 +492,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-udp.mss': MssSizeDiagram,
   'tcp-udp.tcp-header': TcpHeaderDiagram,
   'tcp-udp.sequence-number': SequenceNumbersDiagram,
+  'tcp-udp.ack-number': AckNumbersDiagram,
+  'tcp-udp.tcp-control-bits': TcpControlBitsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

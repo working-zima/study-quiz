@@ -497,6 +497,9 @@ https://www.rfc-editor.org/rfc/rfc9293
   PSH — push 기능: 응용이 데이터를 받는 쪽에 바로 보내 달라고 하면 그 데이터로 만든 마지막 세그먼트에 켠다(§3.9.1.2). 이 세그먼트의 데이터를 받는 사용자(응용)에게 밀어 올려야 한다는 표시다(§4 「PUSH」). 받는 쪽이 응용에 PSH를 알려 주는 것은 선택이다(MAY-17, §3.9.1.3).
   RST — 연결을 재설정한다: 받은 쪽은 더 주고받지 않고 연결을 지운다(§4 「RST」). 지금 연결 앞으로 온 것이 아닌 세그먼트에 RST로 답하고, 없는 연결로 온 SYN도 RST로 거절하며, 사용자(응용)가 언제든 RST를 낼 수 있다 — §3.5.2.
   SYN — 연결을 시작할 때 순서 번호가 어디서 시작하는지 알린다(§4 「SYN」). FIN — 보낸 쪽이 더 보낼 데이터가 없다(§3.1, §4 「FIN」) — 위 「연결형·양방향」 줄대로 한 방향을 닫는 것이다
+- (phase 77 step 6) **제어 비트 이름의 영문**(2026-11-09 rfc-editor.org 텍스트판 원문): §3.1은 비트마다 URG — Urgent pointer field is significant, ACK — Acknowledgment field is significant, PSH — Push function, RST — Reset the connection, SYN — Synchronize sequence numbers, FIN — No more data from sender로 적고,
+  §4 용어집은 ACK를 「control bit (acknowledge)」, FIN을 「control bit (finis)」, RST를 「control bit (reset)」, URG를 「control bit (urgent)」로, PSH를 「PUSH」 항목으로 적는다. 그래서 목록 항목의 괄호에는 Urgent·Acknowledgment·Push·Reset·Synchronize·Finis를 쓴다.
+  같은 §3.1은 확인 응답 번호 칸이 ACK가 켜졌을 때만 값을 담는다고 적는다(위 「확인 응답 번호」 줄). §3.10.7은 ACK가 꺼진 세그먼트를 상태마다 다르게 다룬다(동기화된 상태에서는 그 세그먼트를 버린다 — §3.10.7.4 「fifth, check the ACK field」) — 그래서 문항은 「ACK가 꺼진 세그먼트의 칸을 읽지 않는다」 대신 「연결이 맺어진 뒤 데이터 세그먼트도 ACK를 켠다」를 묻는다
 - (phase 77 step 3) **흐름 제어와 혼잡 제어(이름만)**: 윈도우로 받는 쪽이 받을 양을 알린다 — §3.1·§3.8.6. TCP 끝점은 혼잡이 무너지는 상황을 막으려고 기본 혼잡 제어(slow start·congestion avoidance)와 재전송 시간의 지수 증가를 반드시 구현한다(MUST-19), ECN은 구현하는 것이 좋다(SHLD-8) — §3.8.2.
   방식은 phase 84의 몫이다
 - (phase 77 step 3) **MSS 옵션**: 종류(kind) 2, 길이 4옥텟, 값 16비트이고, 그 세그먼트를 보낸 끝점이 **받을 수 있는** 가장 큰 세그먼트 크기를 알린다. **SYN이 켜진 세그먼트(연결 요청)에만** 실을 수 있고 다른 세그먼트에 실으면 안 된다(MUST-65).
@@ -519,6 +522,7 @@ https://www.rfc-editor.org/rfc/rfc9293
 `tcp-udp.sequence-number`(§3.1·§3.4 — 바이트마다 번호, 첫 데이터 바이트, SYN이면 ISN이고 데이터는 ISN + 1, SYN·FIN이 번호 하나씩, 2^32에서 0으로, §3.4.1 — ISN은 연결마다 예측할 수 없게), `tcp-udp.ack-number`(§3.1·§3.4·§3.8·§4 — ACK가 켜졌을 때만, 늘 보낸다, 순서 번호 + 길이),
 `tcp-udp.tcp-control-bits`(§3.1·§3.5.2·§3.6·§3.9.1.2·§4 — 여덟 비트의 뜻, 할당은 IANA 레지스트리), 강의 수정 이력 L44·L45·L46·L47, `exam-notes.md` E29
 (phase 77 step 5) `tcp-udp.tcp-header`(§3.8.5 — 긴급 데이터는 보내는 쪽 응용이 받는 쪽 응용에게 받아 가도록 재촉하는 데이터, 새 응용은 쓰지 않는 것이 좋다), 문항 n178·n179(§3.1 — 체크섬, 데이터 오프셋), `tcp-udp.sequence-number`·문항 n180(§3.1·§3.4·§3.4.1)
+(phase 77 step 6) `tcp-udp.ack-number`(§3.1·§3.4·§3.8·§3.10.7.4·§4 — 다음에 받을 번호, ACK가 켜졌을 때만, 누적, 먼저 온 세그먼트를 가지고 있는다, 순서 번호 + 데이터 바이트 수, 두 방향), `tcp-udp.tcp-control-bits`(§3.1·§4 — 비트 이름과 뜻, §3.5.2 — RST로 거절, §3.6 — FIN은 한 방향, §3.9.1.2 — PSH), 문항 n181·n182·n183
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
