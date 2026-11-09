@@ -388,6 +388,7 @@ https://www.rfc-editor.org/rfc/rfc8200
 (phase 73 step 2) `ip-protocol.fragmentation`(§2 — 링크의 뜻과 링크 MTU, §4.5 — IPv6는 출발지만 나눈다), 문항 n050 해설
 (phase 73 step 6) `ip-protocol.ipv6-header`(§3 — 칸 여덟과 크기, 버전 값 6, 페이로드 길이에 확장 헤더가 든다, 다음 헤더는 IPv4 프로토콜 칸과 같은 번호, 홉 제한; §6 — 흐름 레이블; §7 — 트래픽 클래스; §8.1 — 헤더 체크섬 없음; §4.5 — 단편화 칸 없음, 출발지가 단편화 헤더를 붙인다; 40옥텟), 도식 `ipv6-header`, 문항 n060 해설
 (phase 73 step 7) `ip-protocol.extension-headers`(§4 — 기본 헤더와 상위 계층 헤더 사이의 별도 헤더, 없거나 하나거나 여럿, 앞 헤더의 다음 헤더 칸이 가리키는 사슬, 번호는 IPv4 프로토콜 칸과 같은 목록, 홉별 옵션을 빼면 경로가 처리하지 않음, 목적지가 차례대로 처리, 8옥텟 배수; §4.5 — 출발지가 경로 MTU보다 큰 패킷을 나눠 조각마다 붙인다, 앞 헤더의 값 44, 칸 여섯과 크기, 예약 칸은 0, M 플래그, 식별자 32비트와 겹치지 않게 정하기, 출발지·목적지·식별자가 같은 조각끼리 합침, 상위 계층 헤더는 첫 조각에만), 도식 `extension-chain`, 문항 n061 해설; `ip-protocol.slaac`(§2 — 인터페이스는 노드가 링크에 붙은 지점)
+(phase 77 step 7) `tcp-udp.udp-header`(§8.1 — IPv6로 보내는 UDP는 따로 정한 경우(터널 캡슐화)를 빼고 체크섬을 생략할 수 없다)
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -551,6 +552,7 @@ https://www.rfc-editor.org/rfc/rfc768
 (phase 77에서 쓰일 곳) `ports.port-number`(Format — UDP 헤더의 두 포트 칸도 16비트, Fields — 목적지 포트로 받을 프로그램을 가린다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(Introduction — 데이터그램 방식, 전달·중복 방지를 보장하지 않는다, Protocol Application — DNS·TFTP), `tcp-udp.udp-header`(Format·Fields — 8옥텟, 칸 넷 16비트, 출발지 포트 0, 길이 최소 8, 체크섬),
 `tcp-udp.transport-choice`(Introduction — 순서 있고 믿을 수 있는 전달은 TCP, Protocol Application), 강의 수정 이력 L47, 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — UDP 헤더에 없는 칸, 패리티가 아니다)
+(phase 77 step 7) `tcp-udp.udp`(Introduction — 비연결형, 전달·중복 방지를 보장하지 않는다; Format — 순서 번호 칸이 없다; Fields — 체크섬; User Interface — 사용자 데이터그램), `tcp-udp.udp-header`(Format·Fields — 칸 넷 16비트, 8옥텟, 출발지 포트는 쓰지 않으면 0, 길이는 헤더+데이터로 최소 8, 체크섬은 TCP와 같은 절차·0은 만들지 않았다는 뜻), 도식 `udp-delivery`·`udp-header-fields`, 문항 n184·n185 해설
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -659,6 +661,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§3.2.1.3 — 네트워크 번호는 세계에서 하나뿐), `ip-address-types.reserved-addresses`(§3.2.1.3 (a)(b) — 0.0.0.0은 초기화의 출발지로만, (c) — 제한 브로드캐스트는 넘겨지지 않는다), `ip-address-types.loopback`(§3.2.1.3 (g) — 호스트 밖에 나타나지 않는다), `ip-address-types.dhcp-messages`((a) — 주소가 없는 클라이언트의 출발지 0.0.0.0, (c) — 목적지 255.255.255.255)
 (phase 74 step 11에서 쓰일 곳) `routing.routing`(§3.3.1 — 호스트도 데이터그램마다 다음 홉을 고른다), `routing.routing-table`(§3.3.1.3 — 호스트에도 라우팅 테이블이 있다), `routing.default-route`(§3.3.1.2 — 경로 정보가 없는 목적지는 기본 게이트웨이로),
 `routing.static-dynamic-routing`(§3.3.1.2 DISCUSSION — 정적 경로는 관리자가 넣고, 구성이 바뀌거나 장비가 고장 나면 장애의 원인이 된다), `exam-notes.md` E17
+(phase 77 step 7) `tcp-udp.udp`·`tcp-udp.udp-header`(§4.1.3.4 — UDP 체크섬은 만들고 검사하는 것이 기본, 맞지 않는 데이터그램은 알리지 않고 버린다), 문항 n184 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -690,6 +693,7 @@ BCP 145다(RFC 5405를 대체).
 쓰인 곳: 면접 수정 이력 I4
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(§1 — 연결을 맺지 않아 부담이 적다, 혼잡 제어 없음, §5 — 흐름 제어 없음, §3.3 — 재전송·순서 없음, 필요하면 응용이), `tcp-udp.transport-choice`(§3.3·§5 — 믿을 수 있는 순서 전달·흐름 제어가 필요하면 TCP, UDP 위에서 응용이 재전송을 더하면 그 혼잡 제어도 응용 몫),
 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — [기출 2026-02-01 #17]의 「메시지를 나누고 재조립하는 서비스는 없다」)
+(phase 77 step 7) `tcp-udp.udp`(§1 — 연결을 맺고 끊는 부담이 없고 지닐 상태가 적다, 혼잡 제어는 응용 몫; §3.2 — 데이터그램 하나가 IP 패킷 하나에 실리고 나누기는 응용이 한다; §3.3 — 재전송·순서 맞춤 없음, 중복 가능; §5 — 흐름 제어 없음)
 
 ## RFC 7766 — DNS Transport over TCP - Implementation Requirements
 https://www.rfc-editor.org/rfc/rfc7766
@@ -701,6 +705,7 @@ https://www.rfc-editor.org/rfc/rfc7766
 
 쓰인 곳: 강의 수정 이력 L11
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(DNS는 주로 UDP, TCP도 — L11)
+(phase 77 step 7) `tcp-udp.udp`(§1 — DNS는 주로 UDP, 큰 메시지 등에는 TCP도 — L11)
 
 ## RFC 1034 — Domain Names - Concepts and Facilities
 https://www.rfc-editor.org/rfc/rfc1034
@@ -712,6 +717,7 @@ https://www.rfc-editor.org/rfc/rfc1034
 
 쓰인 곳: 면접 수정 이력 I11
 (phase 77 step 2) `ports.well-known-ports`(DNS 항목 — 풀어 쓴 이름 Domain Name System, 도메인 이름으로 호스트의 IP 주소를 찾아 준다)
+(phase 77 step 7) `tcp-udp.udp`(§2.2 — DNS는 이름으로 호스트 주소를 찾는다)
 
 ## RFC 1035 — Domain Names - Implementation and Specification
 https://www.rfc-editor.org/rfc/rfc1035
@@ -2124,6 +2130,7 @@ https://www.rfc-editor.org/rfc/rfc2131
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.rarp`(BOOTP가 같은 일을 IP 위에서 하려고 나왔고, DHCP는 BOOTP를 바탕으로 한다 — [기출 2024-02-25 #13]의 맞는 보기와 어긋나지 않는다)
 (phase 73 step 10) `arp.rarp`(RFC 951 §6 — RARP가 먼저 나왔고 링크 수준이라 커널·드라이버를 고쳐야 했으며, BOOTP가 같은 일을 IP·UDP 위에서 다른 기능과 함께 한다; RFC 2131 Abstract — DHCP는 BOOTP를 바탕으로 다시 쓸 수 있는 주소를 자동으로 나눠 준다; RFC 1122 §3.2.2.7 — RARP와 BOOTP). 「RARP는 지금 쓰이지 않는다」는 쓰지 않았다
+(phase 77 step 7) `tcp-udp.udp`(RFC 2131 Abstract·§4.1 — DHCP는 호스트에 설정을 나눠 주고 UDP를 쓴다)
 
 위 머리의 「RARP와의 관계만 가져온다」는 phase 73의 기록이다. 아래 「(phase 74 step 5)」 줄은 `ip-address-types`의 DHCP 개념이 쓸 **DHCP의 동작**을 더한다(RFC 2131 원문을 다시 내려받아 읽었다, 2026-10-29).
 RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·5494·6842가 고쳤다(rfc-editor 상태).
@@ -4014,6 +4021,7 @@ DCCP라는 프로토콜 자체는 가져오지 않는다 — 기출이 묻지 �
 - TCP는 이런 응용에 잘 맞지 않는다 — 믿을 수 있는 순서 전달과 혼잡 제어가 지연을 얼마든지 길게 만들 수 있기 때문이다. UDP는 긴 지연을 피하지만, 혼잡 제어를 하려면 응용이 스스로 해야 한다 — RFC 4340 §1
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(늦게 온 데이터가 쓸모없는 응용, 짧은 요청-응답에 UDP), `tcp-udp.udp`(연결 단계가 없어 지연이 짧다 — 면접 Q38과 같은 사실), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신·손실을 견디는 프로그램용이 아니다)
+(phase 77 step 7) `tcp-udp.udp`(RFC 4336 §1 — DNS 같은 짧은 요청-응답에 UDP, §2.1 — 3-way handshake의 시작 지연을 피한다; RFC 4340 §1 — 믿을 수 있는 순서 전달이 지연을 늘린다), 문항 n184 해설
 
 ## (phase 77 step 3) RFC 9000 — QUIC: A UDP-Based Multiplexed and Secure Transport
 https://www.rfc-editor.org/rfc/rfc9000

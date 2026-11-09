@@ -264,6 +264,8 @@ import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
+import { UdpHeaderDiagram } from './UdpHeaderDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
 import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
@@ -494,6 +496,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-udp.sequence-number': SequenceNumbersDiagram,
   'tcp-udp.ack-number': AckNumbersDiagram,
   'tcp-udp.tcp-control-bits': TcpControlBitsDiagram,
+  'tcp-udp.udp': UdpDeliveryDiagram,
+  'tcp-udp.udp-header': UdpHeaderDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
