@@ -263,6 +263,7 @@ import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
 import { UdpHeaderDiagram } from './UdpHeaderDiagram'
@@ -498,6 +499,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-udp.tcp-control-bits': TcpControlBitsDiagram,
   'tcp-udp.udp': UdpDeliveryDiagram,
   'tcp-udp.udp-header': UdpHeaderDiagram,
+  'tcp-udp.transport-choice': TransportChoiceDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

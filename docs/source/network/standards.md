@@ -553,6 +553,7 @@ https://www.rfc-editor.org/rfc/rfc768
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(Introduction — 데이터그램 방식, 전달·중복 방지를 보장하지 않는다, Protocol Application — DNS·TFTP), `tcp-udp.udp-header`(Format·Fields — 8옥텟, 칸 넷 16비트, 출발지 포트 0, 길이 최소 8, 체크섬),
 `tcp-udp.transport-choice`(Introduction — 순서 있고 믿을 수 있는 전달은 TCP, Protocol Application), 강의 수정 이력 L47, 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — UDP 헤더에 없는 칸, 패리티가 아니다)
 (phase 77 step 7) `tcp-udp.udp`(Introduction — 비연결형, 전달·중복 방지를 보장하지 않는다; Format — 순서 번호 칸이 없다; Fields — 체크섬; User Interface — 사용자 데이터그램), `tcp-udp.udp-header`(Format·Fields — 칸 넷 16비트, 8옥텟, 출발지 포트는 쓰지 않으면 0, 길이는 헤더+데이터로 최소 8, 체크섬은 TCP와 같은 절차·0은 만들지 않았다는 뜻), 도식 `udp-delivery`·`udp-header-fields`, 문항 n184·n185 해설
+(phase 77 step 8) `tcp-udp.transport-choice`(Introduction — 순서 있고 믿을 수 있는 흐름 전달이 필요한 응용은 TCP), 도식 `transport-choice`
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -694,6 +695,7 @@ BCP 145다(RFC 5405를 대체).
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(§1 — 연결을 맺지 않아 부담이 적다, 혼잡 제어 없음, §5 — 흐름 제어 없음, §3.3 — 재전송·순서 없음, 필요하면 응용이), `tcp-udp.transport-choice`(§3.3·§5 — 믿을 수 있는 순서 전달·흐름 제어가 필요하면 TCP, UDP 위에서 응용이 재전송을 더하면 그 혼잡 제어도 응용 몫),
 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — [기출 2026-02-01 #17]의 「메시지를 나누고 재조립하는 서비스는 없다」)
 (phase 77 step 7) `tcp-udp.udp`(§1 — 연결을 맺고 끊는 부담이 없고 지닐 상태가 적다, 혼잡 제어는 응용 몫; §3.2 — 데이터그램 하나가 IP 패킷 하나에 실리고 나누기는 응용이 한다; §3.3 — 재전송·순서 맞춤 없음, 중복 가능; §5 — 흐름 제어 없음)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.3 — 신뢰성·순서가 필요하면 응용이 스스로 갖추거나 그것을 주는 전송 프로토콜을 고른다, 재전송하는 응용은 그 혼잡 제어도 책임진다), 문항 n187 해설
 
 ## RFC 7766 — DNS Transport over TCP - Implementation Requirements
 https://www.rfc-editor.org/rfc/rfc7766
@@ -706,6 +708,7 @@ https://www.rfc-editor.org/rfc/rfc7766
 쓰인 곳: 강의 수정 이력 L11
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(DNS는 주로 UDP, TCP도 — L11)
 (phase 77 step 7) `tcp-udp.udp`(§1 — DNS는 주로 UDP, 큰 메시지 등에는 TCP도 — L11)
+(phase 77 step 8) `tcp-udp.transport-choice`(DNS는 응답이 클 때 등에는 TCP도 — L11), 도식 `transport-choice` 「짧은 질의」 캡션
 
 ## RFC 1034 — Domain Names - Concepts and Facilities
 https://www.rfc-editor.org/rfc/rfc1034
@@ -803,6 +806,7 @@ https://www.rfc-editor.org/rfc/rfc9112
 
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
+(phase 77 step 8) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP), 도식 `transport-choice`
 
 ## MDN — An overview of HTTP
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview
@@ -840,6 +844,7 @@ https://www.rfc-editor.org/rfc/rfc9114
 쓰인 곳: 강의 수정 이력 L18
 (phase 77에서 쓰일 곳) `exam-notes.md` E28(HTTPS와 UDP 443), (쓴다면) `ports.well-known-ports`의 HTTPS 항목
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(Abstract — HTTP/3는 QUIC 위의 HTTP, §3.1 — UDP 포트로 닿고 UDP가 막히면 TCP 위의 HTTP로 돌아간다. QUIC이 UDP 위에서 스스로 신뢰성을 갖춘다는 것은 아래 RFC 9000 항목), `exam-notes.md` E28
+(phase 77 step 8) `tcp-udp.transport-choice`(Abstract — HTTP/3는 QUIC 위의 HTTP; 「자격시험은」 줄은 `exam-notes.md` E28 처리대로)
 
 ## RFC 9110 — HTTP Semantics
 https://www.rfc-editor.org/rfc/rfc9110
@@ -1069,6 +1074,7 @@ https://www.rfc-editor.org/rfc/rfc1350
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — UDP 위의 간단한 파일 전송, §2 — 512바이트 블록마다 확인 응답, 블록을 잃으면 받을 쪽이 시간 초과 뒤 마지막 확인 응답을 다시 보내 보내는 쪽이 잃은 블록을 다시 보낸다), 도식 `transport-choice`, 문항 n187
 
 ## (2026-10-28) RFC 4949 — Internet Security Glossary, Version 2
 https://www.rfc-editor.org/rfc/rfc4949
@@ -2160,6 +2166,7 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(RFC 2131 §4.1 — DHCP는 UDP를 쓴다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.1·§4.1 — 메시지 몇 개를 주고받고 UDP를 쓴다), 도식 `transport-choice`
 
 ## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
 https://www.rfc-editor.org/rfc/rfc5227
@@ -2533,6 +2540,7 @@ STD 56, Internet Standard이고 폐기되지 않았다. RFC 4822가 고쳤다(rf
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(§3.1·§3.4 — 거리 벡터, 벨먼-포드, 이웃끼리만, §3.5 — 메트릭은 보통 홉 수, §3.2·§3.6 — 15홉, 16은 닿을 수 없음, §3.6 — UDP 520, §3.8 — 30초, §1·§3.2 — 작은·중간 크기 네트워크, §2·§4.3 — RIPv1과 RIPv2),
 `routing.routing-table`(§3.4 — 항목의 칸, 작은 메트릭을 고른다), `routing.routing`(§3.1 — 라우팅 프로토콜의 목적), 강의 수정 이력 L42(§3.4 — 홉), `exam-notes.md` E18
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§3.6 — RIP 메시지는 UDP 520으로 주고받는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.6 — UDP, §3.8 — 30초마다 경로 정보 전체를 이웃에게)
 
 ## (phase 74 step 11) RFC 1058 — Routing Information Protocol [Historic — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1058
@@ -3873,6 +3881,7 @@ Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등�
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(§2.2 — 제어 연결과 데이터 연결, §8 — TCP 21은 제어, §3.2 — 기본 데이터 포트 20)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§8 — 제어 연결은 TCP, §3.5 — 데이터의 오류 제어를 TCP에 맡긴다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — FTP는 UDP를 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§8 — TCP 연결, §3.5 — 데이터를 잃거나 뒤섞지 않았는지 살피는 일을 TCP에 맡긴다), 도식 `transport-choice`, 문항 n187 해설
 
 ## (phase 77) RFC 854 — Telnet Protocol Specification
 https://www.rfc-editor.org/rfc/rfc854
@@ -3912,6 +3921,7 @@ https://www.rfc-editor.org/rfc/rfc4253
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 22, 암호화한 원격 접속, Telnet보다 안전하다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(RFC 4251 §1·RFC 4253 §4.1 — SSH는 보통 TCP 위에서 돈다)
+(phase 77 step 8) `tcp-udp.transport-choice`(RFC 4251 §1 — 원격 로그인, §1·RFC 4253 §4.1 — 보통 TCP 위에서), 도식 `transport-choice`
 
 ## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
 https://www.rfc-editor.org/rfc/rfc5321
@@ -3924,6 +3934,7 @@ Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고�
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하고, 이 문서는 TCP 위의 전송을 다룬다. 부록 A의 제목도 「TCP Transport Service」다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — SMTP는 TCP를 쓴다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하다, TCP 위), 도식 `transport-choice`
 
 ## (phase 77 step 2) RFC 9846 — The Transport Layer Security (TLS) Protocol Version 1.3
 https://www.rfc-editor.org/rfc/rfc9846
@@ -4005,6 +4016,7 @@ Internet Standard이고 폐기되지 않았다(RFC 1889를 대체, RFC 5506 등 
   (곧 잃은 조각을 기다리지 않고 재생을 이어 간다)
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(실시간 음성·영상은 보통 UDP 위에서), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신에 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — 실시간 음성·영상은 보통 UDP 위, §2.1 — 받는 쪽은 조각을 정해진 간격으로 이어 재생한다), 도식 `transport-choice`, 문항 n186
 
 ## (phase 77 step 3) RFC 4336 — Problem Statement for the Datagram Congestion Control Protocol (DCCP), RFC 4340 — Datagram Congestion Control Protocol (DCCP)
 https://www.rfc-editor.org/rfc/rfc4336
@@ -4022,6 +4034,7 @@ DCCP라는 프로토콜 자체는 가져오지 않는다 — 기출이 묻지 �
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(늦게 온 데이터가 쓸모없는 응용, 짧은 요청-응답에 UDP), `tcp-udp.udp`(연결 단계가 없어 지연이 짧다 — 면접 Q38과 같은 사실), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신·손실을 견디는 프로그램용이 아니다)
 (phase 77 step 7) `tcp-udp.udp`(RFC 4336 §1 — DNS 같은 짧은 요청-응답에 UDP, §2.1 — 3-way handshake의 시작 지연을 피한다; RFC 4340 §1 — 믿을 수 있는 순서 전달이 지연을 늘린다), 문항 n184 해설
+(phase 77 step 8) `tcp-udp.transport-choice`(RFC 4336 §1 — 짧은 요청-응답은 3-way handshake·연결 상태를 피해 UDP, 실시간 응용은 제때 도착을 중시; §2.1 — 재생할 때가 지나 닿은 조각은 쓸모없다, 잃은 패킷의 영향을 어느 정도 가린다; RFC 4340 §1 — 믿을 수 있는 순서 전달이 지연을 얼마든지 늘린다), 도식 `transport-choice`, 문항 n186
 
 ## (phase 77 step 3) RFC 9000 — QUIC: A UDP-Based Multiplexed and Secure Transport
 https://www.rfc-editor.org/rfc/rfc9000
@@ -4034,6 +4047,7 @@ Proposed Standard이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). **
 - HTTP/3는 HTTP를 QUIC 위에 옮긴 것이다 — RFC 9114 Abstract(위 항목)
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(UDP 위에서 프로그램 쪽이 신뢰성을 더하는 예 — HTTP/3가 쓰는 QUIC), `exam-notes.md` E28
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — QUIC 패킷은 UDP 데이터그램에 실리고 믿을 수 있는 전달과 혼잡 제어를 갖춘다)
 
 ## (phase 77 step 3) RFC 5905 — Network Time Protocol Version 4: Protocol and Algorithms Specification
 https://www.rfc-editor.org/rfc/rfc5905
@@ -4042,5 +4056,8 @@ Proposed Standard이고 폐기되지 않았다(RFC 1305·4330을 대체, RFC 782
 
 - NTP 패킷은 **UDP 데이터그램**이다 — §7.3. NTP 포트 번호는 IANA가 정한 123이다 — §7.2 표 「Global Parameters」(PORT)
 - NTP가 시각 값을 주고받는 방식은 패킷을 잃거나 같은 패킷이 두 번 와도 본래 잘 견딘다. 데이터 무결성은 IP·UDP 체크섬이 맡고, **흐름 제어나 재전송 장치는 두지 않으며 필요하지도 않다** — §8
+- (phase 77 step 8, 2026-11-09 rfc-editor.org 원문) NTP는 인터넷에서 **컴퓨터의 시계를 맞추는 데** 널리 쓰인다 — Abstract
+- (phase 77 step 8) 클라이언트·서버 방식에서 클라이언트가 서버에 메시지를 보내면 **서버는 바로 답한다** — §5
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(짧은 질의·응답 한 번이면 되고 재전송이 필요 없는 응용 — NTP는 UDP)
+(phase 77 step 8) `tcp-udp.transport-choice`(Abstract — 컴퓨터 시계를 맞춘다, §5 — 클라이언트·서버 방식에서 서버는 바로 답한다, §7.3 — UDP, §8 — 재전송 장치를 두지 않는다)
