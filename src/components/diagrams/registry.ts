@@ -222,6 +222,7 @@ import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
+import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -252,6 +253,7 @@ import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
@@ -486,6 +488,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'ports.client-server-ports': ClientServerPortsDiagram,
   'tcp-udp.tcp': TcpReliabilityDiagram,
   'tcp-udp.mss': MssSizeDiagram,
+  'tcp-udp.tcp-header': TcpHeaderDiagram,
+  'tcp-udp.sequence-number': SequenceNumbersDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
