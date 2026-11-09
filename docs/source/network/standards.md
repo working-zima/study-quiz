@@ -67,6 +67,10 @@ GNU GRUB 매뉴얼은 `www.gnu.org`가 이날 응답하지 않아(두 번 시도
 같은 명령의 페이지가 여럿이면(kill(1)의 util-linux판과 procps-ng판, last(1)의 GNU acct판과 util-linux판, cronie의 crontab(1)과 POSIX `crontab`) 항목에 어느 것인지 적는다.
 「(phase 76 step 9)」가 붙은 줄과 항목은 phase 76 step 9에서 `linux-accounts`(사용자 계정과 UID, /etc/passwd, /etc/shadow, useradd, chage, 로그인 기록) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-05).
 man7.org는 이날 IPv6로는 접속되지 않아 IPv4로 내려받아 읽었다. 이 주제에서도 같은 이름의 페이지가 둘인 것(passwd(5)의 Linux man-pages판과 shadow-utils판)은 항목에 어느 것인지 적는다.
+「(phase 77)」이 붙은 줄과 항목은 phase 77 step 0에서 `ports`(포트 번호, 포트 번호의 범위, 잘 알려진 포트, 서버 포트와 클라이언트 포트) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-09).
+이 phase의 `tcp-udp`(TCP·UDP 헤더와 고르는 기준)·`tcp-connection`(연결과 상태) 사실은 같은 「(phase 77)」 표시로 뒤 step(3·9)이 더한다.
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IANA 포트 레지스트리는 XML판을, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다.
+**서비스마다의 포트 번호는 그 프로토콜의 RFC와 IANA 레지스트리가 함께 맞는 것만** 적었다. 응용 프로토콜 주제(phase 78)의 포트(POP3·IMAP·SNMP·NTP·TFTP 등)는 이 step에서 적지 않았다.
 
 ---
 
@@ -446,11 +450,18 @@ https://www.rfc-editor.org/rfc/rfc9293
 - 기대하는 순서 번호보다 뒤의 세그먼트(순서가 어긋나 먼저 온 세그먼트)는 버리지 말고 나중에 처리하도록 가지고 있어야 한다(SHOULD) — §3.10.7.4
 - TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
 - (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) TCP는 포트 번호로 응용 서비스를 가리키고, 호스트 사이의 서로 다른 흐름을 가른다 — §2.2
+- (phase 77) 지금 유효한 Internet Standard다(STD 7, RFC 793을 대체 — rfc-editor 상태 2026-11-09). 헤더의 출발지 포트 칸과 목적지 포트 칸은 각각 16비트다 — §3.1.
+  16비트로 적을 수 있는 수는 2^16 = 65,536개라 포트 번호는 0~65535다(계산)
+- (phase 77) 용어(§4 Glossary): **포트**는 끝점에서 연결들을 가려내는 데 쓰는, 연결 식별자의 한 부분이다. **소켓**은 포트 식별자를 포함한 주소, 곧 인터넷 주소(IP 주소)와 TCP 포트를 이어 붙인 것이고
+  소켓 번호·소켓 주소라고도 부른다. **연결**은 소켓 한 쌍이 가리키는 논리적인 통신 경로다 — §4. 같은 말을 본문에서도 쓴다 — 연결은 소켓 한 쌍으로 정해진다 — §3.4.1
+- (phase 77) 응용 프로그램이 OPEN을 부를 때 능동(active)인지 수동(passive)인지 정한다. 수동 OPEN은 들어오는 연결 요청을 받겠다는 것이고 그 연결 기록은 LISTEN 상태가 된다. 상대 소켓을 정하지 않은 수동 OPEN은 어느 쪽에서 오는 연결이든 기다린다 — §3.3.2, §3.9.1.1.
+  여러 연결을 함께 다루는 구현은, 같은 로컬 포트를 쓰는 다른 연결이 열리는 중이어도 그 포트에서 계속 연결을 기다릴 수 있게 해야 한다(MUST-42) — §3.9.1.1(그러니 서버 포트 하나에 연결 여럿이 함께 걸린다)
 
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
 (phase 73 step 12) `icmp.destination-unreachable`(§2.2 — 포트 번호는 한 호스트 안에서 데이터를 받을 응용 프로그램을 가리킨다)
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(§2.2 — 포트는 한 호스트 안의 어느 응용 프로그램의 통신인지 가리키는 번호: NAPT가 바꾸는 포트를 한 줄로 풀 때)
+(phase 77에서 쓰일 곳) `ports.port-number`(§2.2 — TCP는 포트 번호로 응용 서비스를 가리킨다, §3.1 — 포트 칸 16비트라 0~65535), `ports.client-server-ports`(§4 — 소켓은 IP 주소와 포트를 이은 것, 연결은 소켓 한 쌍이 가리킨다, §3.4.1, §3.3.2·§3.9.1.1 — 서버는 수동 OPEN으로 LISTEN, 한 로컬 포트에 연결 여럿)
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -461,11 +472,14 @@ https://www.rfc-editor.org/rfc/rfc768
 - 체크섬은 의사 헤더·UDP 헤더·데이터에 대한 16비트 1의 보수 합이다. 0으로 보내면 보낸 쪽이 체크섬을 만들지 않았다는 뜻이다 — Fields
 - UDP가 주고받는 단위를 사용자 데이터그램(user datagram)이라 부르고, 그냥 데이터그램이라고도 쓴다. 헤더 그림의 제목은 「User Datagram Header Format」이다 — Format, Fields, User Interface
 - (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) 출발지 포트는 보내는 프로세스(실행 중인 프로그램)의 포트를 가리키고, 목적지 포트는 특정 목적지 IP 주소 안에서 뜻을 갖는다 — Fields
+- (phase 77) 지금 유효한 Internet Standard다. 2025년에 RFC 9868(Transport Options for UDP)이 이 문서를 고쳤다(updates — rfc-editor 상태 2026-11-09. 9868의 내용은 읽지 않았다).
+  헤더 그림에서 출발지 포트와 목적지 포트는 32비트 한 줄을 반씩 나눠 각각 16비트다 — Format
 
 쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(Introduction — 순서 있고 신뢰할 수 있는 전달이 필요한 응용은 TCP를 쓴다)
 (phase 73 step 12) `icmp.destination-unreachable`(Fields — 포트는 호스트 안의 프로그램을 가리킨다, UDP는 TCP와 같은 전송 계층 프로토콜)
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(Fields — 출발지 포트는 보내는 프로그램의 포트), `ip-address-types.dhcp`(DHCP는 UDP 위에서 동작한다 — RFC 2131 §4.1)
+(phase 77에서 쓰일 곳) `ports.port-number`(Format — UDP 헤더의 두 포트 칸도 16비트, Fields — 목적지 포트로 받을 프로그램을 가린다)
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -625,6 +639,7 @@ https://www.rfc-editor.org/rfc/rfc1035
 - DNS는 UDP 53번과 TCP 53번을 모두 쓴다. 일반 질의에는 UDP를 권하고, 영역 전송은 TCP로 한다 — §4.2.1, §4.2.2
 
 쓰인 곳: 강의 수정 이력 L11, L15
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1·§4.2.2 — DNS는 53번을 UDP와 TCP 둘 다 쓴다. IANA 레지스트리의 53 `domain` — 아래 IANA 항목)
 
 ## RFC 5681 — TCP Congestion Control
 https://www.rfc-editor.org/rfc/rfc5681
@@ -669,8 +684,12 @@ https://www.rfc-editor.org/rfc/rfc3986
 - 쿼리는 흔히 `key=value` 짝으로 식별 정보를 나르는 데 쓰인다 — 표준이 그 꼴을 강제하지는 않는다 — §3.4
 - 프래그먼트는 `#`로 시작해 URI 끝까지다 — §3.5
 - (phase 73) IPv4 주소를 글자로 적을 때는 점으로 구분한 십진 표기(dotted-decimal)를 쓴다 — 0~255 범위의 십진수 넷을 `.`으로 이은 꼴이다. 이 문서는 그 넷이 4옥텟이라고 밝힌다 — §3.2.2 「Host」
+- (phase 77) authority는 `[사용자 정보 "@"] 호스트 [":" 포트]` 꼴이다 — 호스트(이름이나 IP 주소) 뒤에 쌍점(`:`) 하나를 두고 십진수 포트 번호를 붙일 수 있다 — §3.2, §3.2.3
+- (phase 77) 스킴(scheme)은 기본 포트를 정할 수 있다. 예로 `http` 스킴은 기본 포트를 80(그 스킴에 남겨 둔 TCP 포트 번호)으로 정한다. 포트 번호가 TCP·UDP 가운데 어느 것의 포트인지는 스킴이 정한다.
+  포트가 비었거나 기본 포트와 같으면 주소를 만드는 쪽은 포트와 그 앞의 `:`를 빼는 것이 좋다 — §3.2.3
 
 쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
+(phase 77에서 쓰일 곳) `ports.port-number`(§3.2·§3.2.3 — 주소 뒤에 `:포트`를 붙여 적는 꼴), `ports.well-known-ports`(§3.2.3 — 기본 포트는 스킴이 정하고, 다른 포트는 주소에 적는다)
 
 ## MDN — What is a URL?
 https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL
@@ -721,8 +740,12 @@ https://www.rfc-editor.org/rfc/rfc9114
 
 - 프로토콜 이름은 `HTTP/3`이고, HTTP의 의미를 QUIC 위에 옮긴 것이다 — Abstract
 - 서버는 어떤 UDP 포트로든 HTTP/3를 제공할 수 있다 — §3.1
+- (phase 77) 클라이언트는 `https` 주소의 자원에 닿을 때, 호스트 이름을 IP 주소로 바꾼 뒤 그 주소의 「주소에 적힌 포트」로 QUIC 연결을 맺고 그 위로 HTTP/3 요청을 보낼 수 있다(MAY).
+  주소에는 포트가 적혀 있거나, 적혀 있지 않으면 그 스킴의 기본 포트(`https`는 443 — RFC 9110 §4.2.2)가 쓰인다. UDP가 막혀 QUIC 연결을 맺지 못하면 TCP 위의 HTTP로 돌아가는 것이 좋다(SHOULD) — §3.1.
+  곧 HTTP/3로 가는 `https` 요청은 기본으로 **UDP 443**에 닿는다(IANA 레지스트리도 443을 TCP·UDP 둘 다 `https`로 둔다 — 아래 IANA 항목). `exam-notes.md` E28
 
 쓰인 곳: 강의 수정 이력 L18
+(phase 77에서 쓰일 곳) `exam-notes.md` E28(HTTPS와 UDP 443), (쓴다면) `ports.well-known-ports`의 HTTPS 항목
 
 ## RFC 9110 — HTTP Semantics
 https://www.rfc-editor.org/rfc/rfc9110
@@ -755,9 +778,16 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 5xx는 서버가 스스로 잘못했거나 요청한 메서드를 수행할 능력이 없음을 아는 경우다 — §15.6
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
+- (phase 77) `http` 주소는 주어진 포트에서 TCP 연결을 기다리는 서버를 가리킨다. 주소에 포트가 없거나 비어 있으면 **TCP 80**(WWW 서비스에 남겨 둔 포트)이 기본이다 — §4.2.1.
+  주소는 호스트 뒤에 포트 번호를 적을 수 있다(RFC 3986 §3.2.3) — 그러니 서버가 80이 아닌 포트에서 기다리면 클라이언트가 그 번호를 주소에 적어야 한다
+- (phase 77) `https` 주소는 주어진 포트에서 TCP 연결을 기다리고, HTTP 통신을 위해 보호된 **TLS 연결**을 맺을 수 있는 서버를 가리킨다. 「보호된」은 서버가 그 이름의 주인을 대신한다는 것이 인증되고,
+  그 서버와 주고받는 HTTP 통신 모두가 기밀성(남이 읽지 못함)과 무결성(바뀌지 않음) 보호를 받는다는 뜻이다. 포트가 없거나 비어 있으면 **TCP 443**(TLS 위의 HTTP에 남겨 둔 포트)이 기본이다.
+  클라이언트는 `https` 자원에 보내는 요청을 보내기 전에 보호해야 한다(MUST). `http`와 `https`는 서로 다른 출처(origin)다 — §4.2.2
+  (HTTP/3는 같은 `https` 주소에 UDP로 닿는다 — 위 RFC 9114 항목의 「(phase 77)」 줄)
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -1687,9 +1717,13 @@ Proposed Standard(Standards Track)이고 RFC 4291을 고친다.
   - 0 묶음이 이어진 곳이 여럿이면 **가장 긴 곳**을 줄이고, 길이가 같으면 **앞쪽**을 줄인다 — §4.2.3
   - 16진수 글자 a~f는 **소문자**로 적는다 — §4.3
 - 끝 32비트에 IPv4 주소를 품은 특별한 주소는 십진수를 섞은 꼴로 적기를 권한다(예: `::ffff:192.0.2.1`) — §5. 이름만 쓴다
+- (phase 77) 주소와 포트 번호를 글자로 함께 적는 꼴은 여러 가지다(`[2001:db8::1]:80`, `2001:db8::1 port 80` 등). IPv4도 사정이 크게 다르지 않다고 적는다. IPv6에서는 `::` 때문에 `2001:db8::1:80`처럼 쌍점으로만 이으면
+  어디까지가 주소인지 모호하므로, RFC 3986의 꼴대로 주소를 대괄호로 감싸고 `:포트`를 붙이는 `[주소]:포트`를 기본으로 쓴다(SHOULD) — §6.
+  (IPv4 주소는 쌍점을 쓰지 않으므로 `192.0.2.10:80`처럼 주소 뒤에 바로 `:포트`를 붙여도 모호하지 않다 — RFC 3986 §3.2·§3.2.2·§3.2.3의 꼴)
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-address-notation`(권고 표기 — §4)
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(§2 — 같은 주소가 여러 꼴로 적힌다; §4 — 앞쪽 0은 뺀다·`::`는 최대로·가장 긴 곳·같으면 앞쪽·0 묶음 하나는 줄이지 않는다·소문자, 받는 쪽은 RFC 4291이 허락하는 꼴을 모두 받는다), 문항 n058 해설(가장 긴 0 묶음을 줄이고 0 묶음 하나는 줄이지 않기를 권한다)
+(phase 77에서 쓰일 곳) `ports.port-number`·`ports.client-server-ports`(§6 — 주소와 포트를 `주소:포트`로 붙여 적는 꼴. 이 phase의 예는 IPv4 문서용 주소라 `192.0.2.10:50001`처럼 쓴다)
 
 ## (phase 73) RFC 1883 — Internet Protocol, Version 6 (IPv6) Specification [폐기, RFC 2460으로 대체(RFC 2460은 다시 RFC 8200으로 대체) — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1883
@@ -2018,6 +2052,7 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
   T1 전에 늘려 달라고 해도 된다(MAY). ACK 없이 임대가 끝나면 그 주소로 하던 네트워크 처리를 곧 멈추고 처음부터 주소를 다시 받는다 — RFC 2131 §4.4.5. 필요 없어진 주소는 DHCPRELEASE로 돌려준다 — §4.4.6
 
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
 
 ## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
 https://www.rfc-editor.org/rfc/rfc5227
@@ -2233,7 +2268,30 @@ XML판(`…/service-names-port-numbers.xml`, 2026-10-27판)을 읽었다.
 - 67은 `bootps`(Bootstrap Protocol Server), 68은 `bootpc`(Bootstrap Protocol Client)이고 TCP·UDP 둘 다 등록돼 있다. 53은 `domain`(Domain Name Server)이다 — 레지스트리의 각 행
 - DHCP가 이 두 BOOTP 포트를 쓴다는 것은 RFC 2131 §4.1(서버 포트 67, 클라이언트 포트 68)과 §1(DHCP 메시지 형식이 BOOTP를 바탕으로 한다)이다 — 위 RFC 951·RFC 2131 항목
 
+phase 77 step 0에서 XML판(레지스트리 머리의 Last Updated 2026-11-06판)을 2026-11-09에 다시 내려받아 읽었다. 이 레지스트리는 항목 하나로 두므로 아래 「(phase 77)」 줄을 이 항목에 더한다.
+
+- (phase 77) **레지스트리 머리 설명**: 서비스 이름과 포트 번호는 TCP·UDP·DCCP·SCTP 같은 전송 프로토콜 위에서 도는 서로 다른 서비스를 가리는 데 쓴다. 포트 번호는 세 범위로 나뉜다 —
+  System Ports(0~1023, IETF 검토나 IESG 승인으로 정해 준다), User Ports(1024~49151, IETF 검토·IESG 승인·전문가 검토로 정해 준다), Dynamic and/or Private Ports(49152~65535, 정해 주지 않는다).
+  범위의 쓰임과 절차는 RFC 6335 §8.1.2가 정한다 — 레지스트리 머리의 note
+- (phase 77) **레지스트리는 전송 프로토콜마다 따로 적는다** — 행마다 번호·전송 프로토콜(`tcp`·`udp`·`sctp`·`dccp`)·서비스 이름이 있고, 같은 번호라도 전송 프로토콜마다 다른 행이다.
+  같은 번호가 TCP와 UDP에서 서로 다른 서비스인 예: 514는 TCP가 `shell`, UDP가 `syslog`다. 같은 번호를 TCP에만 정해 주고 UDP는 남겨 둔 예: 6379는 TCP가 `redis`, UDP는 Reserved다 — 레지스트리의 각 행
+- (phase 77) **0번**은 TCP·UDP 모두 Reserved(RFC 6335)다 — 어떤 서비스에도 정해 주지 않았다. 1023·1024도 Reserved다(범위의 경계) — 레지스트리의 각 행, RFC 6335 §6
+- (phase 77) **이 phase가 쓰는 서비스의 행**(번호·서비스 이름·설명):
+  - 20 `ftp-data` — File Transfer [Default Data], 21 `ftp` — File Transfer Protocol [Control](참조 RFC 959)
+  - 22 `ssh` — The Secure Shell (SSH) Protocol(참조 RFC 4251)
+  - 23 `telnet` — Telnet(참조 RFC 854)
+  - 25 `smtp` — Simple Mail Transfer
+  - 53 `domain` — Domain Name Server, 67 `bootps`·68 `bootpc`(위 줄)
+  - 80 `http`(별칭 `www`·`www-http`) — World Wide Web HTTP(참조 RFC 9110)
+  - 443 `https` — http protocol over TLS/SSL(참조 RFC 9110)
+  - 위 여덟 서비스의 번호는 모두 TCP·UDP 두 행이 같은 서비스로 있다(20·21·22·80·443은 SCTP 행도 있다). 2011년 전까지 IANA가 한 전송 프로토콜만 청해도 TCP·UDP 둘 다 정해 주던 관행이 있었고(RFC 6335 §7.2), 그래서 TCP만 쓰는 서비스도 두 행을 갖는다(services(5) — 아래 「(phase 77) Linux man-pages」 항목).
+    **그러니 레지스트리에 UDP 행이 있다고 그 서비스가 UDP를 쓰는 것은 아니다** — 어느 전송 프로토콜을 쓰는지는 그 프로토콜의 RFC가 정한다: FTP·SSH·Telnet·SMTP·HTTP는 TCP(RFC 959 §8, RFC 4253 §4.1, RFC 854, RFC 5321 §4.5.4.2, RFC 9110 §4.2.1),
+    DHCP는 UDP(RFC 2131 §4.1), DNS는 UDP와 TCP 둘 다(RFC 1035 §4.2), HTTPS는 TCP(RFC 9110 §4.2.2)이고 HTTP/3는 UDP(RFC 9114 §3.1)
+- (phase 77) **강의 p225의 등록된 포트(User Ports) 예 다섯은 모두 레지스트리에 있다**: 1194 `openvpn` — OpenVPN(TCP·UDP), 1433 `ms-sql-s` — Microsoft-SQL-Server(TCP·UDP), 3306 `mysql` — MySQL(TCP·UDP),
+  6379 `redis` — An advanced key-value cache and store(TCP만. UDP 6379는 Reserved), 8080 `http-alt` — HTTP Alternate (see port 80)(TCP·UDP) — 레지스트리의 각 행. 다섯 번호 모두 User Ports 범위(1024~49151) 안이다
+
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
+(phase 77에서 쓰일 곳) `ports.port-number`(전송 프로토콜마다 따로 적는다 — 514·6379의 예), `ports.port-ranges`(머리의 세 범위, 0번 Reserved, 등록된 포트 예 다섯), `ports.well-known-ports`(여덟 서비스의 행, UDP 행이 있어도 UDP를 쓰는 것은 아니다), `exam-notes.md` E27·E28
 
 ## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
 https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
@@ -3632,3 +3690,161 @@ pgrep(1)은 procps-ng(2025-12-29). FTP 전송 기록 `xferlog`는 man7.org에 �
 
 쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(id(1)·매뉴얼 20.1 — `id`가 보이는 것, 로그인한 뒤 바꾼 그룹은 지금 세션에 바로 나타나지 않는다), `linux-accounts.login-records`(bash(1) — `history`는 셸 명령의 목록),
 `exam-notes.md`의 「phase 76 step 9」 문단(bash(1)·pgrep(1) — 기출 오답 `history`·`pkill`, `xferlog`는 출처에 없다)
+
+## (phase 77) RFC 6335 — Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry
+https://www.rfc-editor.org/rfc/rfc6335
+
+BCP 165(Best Current Practice)이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). IANA가 포트 번호 레지스트리를 어떻게 다루는지 정한 문서다.
+
+- 포트는 두 가지 일을 한다 — 같은 두 끝점 사이의 서로 다른 전송 세션을 가려내는 식별자이고, 프로세스가 이어 붙는 응용 프로토콜과 서비스를 가리키기도 한다. 포트 번호는 16비트다.
+  출발지 포트·목적지 포트와 통신하는 두 끝 시스템의 IP 주소를 함께 보면 한 전송 프로토콜의 세션 하나가 하나로 정해진다 — §3
+- 많은 서비스는 서버가 보통 기다리는 **기본(default) 포트**를 갖고, IANA가 그 포트를 레지스트리에 적어 둔다. 다만 어느 포트가 어느 서비스인지는 결국 연결의 두 끝 사이에서만 뜻이 있는 그 쪽의 결정이다.
+  예로 서비스 이름 `telnet`은 23번, `http`(`www`·`www-http`)는 80번이다. 같은 호스트에서 같은 서비스를 여러 개 띄우면 대개 같은 포트에서 함께 기다릴 수 없다 — §3
+- **세 범위**(TCP·UDP·UDP-Lite·SCTP·DCCP가 모두 16비트 포트 번호 공간을 이렇게 나눈다) — §6:
+  - System Ports — **Well Known Ports**라고도 한다. 0~1023. IANA가 정해 준다
+  - User Ports — **Registered Ports**라고도 한다. 1024~49151. IANA가 정해 준다
+  - Dynamic Ports — **Private Ports** 또는 **Ephemeral Ports**라고도 한다. 49152~65535. 누구에게도 정해 주지 않는다
+- 정해 줄 수 있는 범위(0~49151)의 번호는 Assigned(정해 줌)·Unassigned(비어 있음)·Reserved(남겨 둠) 가운데 하나다. Reserved는 보통의 신청으로는 받을 수 없는 번호이고,
+  범위의 경계에 있는 값(0, 1023, 1024 등)이 여기에 든다 — 나중에 범위를 늘리는 데 쓸 수 있게 남겨 둔 것이다 — §6. **그러니 0번은 어떤 서비스의 포트로도 정해 주지 않는다**
+- **범위마다 다른 절차** — §8.1.2:
+  - Dynamic Ports는 그 호스트에서 그때그때 쓰라고 떼어 둔 범위라 IANA를 거쳐 정해 받을 수 없다. 응용 프로그램은 등록 없이 비어 있는 동적 포트 아무것이나 쓸 수 있다.
+    그러나 특정 번호가 늘 비어 있다고 가정하면 안 되고(MUST NOT), 그래서 이 범위의 번호를 **서비스를 가리키는 번호로 쓰면 안 된다**(MUST NOT)
+  - User Ports는 IANA가 정해 줄 수 있고, 정해 받은 뒤에는 서비스를 가리키는 번호로 써도 된다(MAY). 신청할 때 동적 포트로는 왜 안 되는지 밝혀야 한다
+  - System Ports도 IANA가 정해 주지만 가장 작고 가장 빽빽한 범위라 조건이 더 엄격하다(IETF 검토나 IESG 승인으로만). 동적 포트로도, User Ports로도 왜 안 되는지 둘 다 밝혀야 한다
+- **전송 프로토콜마다 따로 정해 준다** — 이 문서(2011)부터 IANA는 신청서에 적은 전송 프로토콜(TCP·UDP·SCTP·DCCP)에만 번호를 정해 주고, 나머지 전송 프로토콜의 같은 번호는 Reserved로 둔다.
+  그 전에는 한 프로토콜만 청해도 TCP와 UDP 둘 다 정해 주던 관행이 오래 있었다. 응용 프로그램은 한 전송 프로토콜로 받은 번호를 다른 전송 프로토콜에서도 쓸 수 있다고 가정하면 안 된다(MUST NOT) — §7.2
+- 포트의 쓰임은 끝점 프로세스를 가리키는 것, 응용 프로토콜을 가리키는 것, 방화벽이 걸러 내는 기준이 되는 것이다. 포트 번호는 연결의 두 끝점에게만 뜻이 있어서, 지나가는 흐름의 포트 번호만 보고 무슨 서비스인지 판단하는 것은 늘 믿을 만하지 않다 — §7.2
+- FTP처럼 정해 받은 포트 하나로 시작하고, 그다음 주고받기에는 동적 포트를 쓰도록 맞추는 방식도 든다 — §7.2
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(§3 — 포트는 16비트, 주소와 포트 넷으로 세션이 정해진다, §7.2 — 전송 프로토콜마다 따로), `ports.port-ranges`(§6 — 세 범위와 다른 이름, 0번 Reserved, §8.1.2 — 범위마다 다른 절차, 동적 포트는 서비스 번호로 쓰지 않는다),
+`ports.well-known-ports`(§3 — 기본 포트, 결국 두 끝의 결정), `ports.client-server-ports`(§3 — 출발지·목적지 포트와 두 IP 주소), 강의 수정 이력 L43, `exam-notes.md` E27
+
+## (phase 77) RFC 7605 — Recommendations on Using Assigned Transport Port Numbers
+https://www.rfc-editor.org/rfc/rfc7605
+
+BCP 165(RFC 6335와 같은 BCP)이고 폐기되지 않았다(rfc-editor 상태 2026-11-09).
+
+- 역사: 처음 정해 주던 포트는 0~255였고, RFC 1340(1992)이 범위를 0~1023으로 늘렸다(RFC 1340은 지금 역사적 문서다). 그때는 한 번 정해 준 번호가 모든 전송 프로토콜에 그대로 적용된다고 여겼다 — §3
+- 세 범위의 이름: System(Well-Known이라고도) 0~1023, User(Registered라고도) 1024~49151, Dynamic(Private라고도) 49152~65535. System과 User 둘 다 IANA를 거쳐 정해 주므로 둘을 합쳐 「registered」라 부르는 일도 있어
+  「registered」라는 말은 0~49151 전체를 가리키기도 하고 User 범위만 가리키기도 한다 — §4
+- System 범위를 「System」이라 부르는 까닭: 몇몇 시스템에서는 이 범위의 포트를 쓰려면 특권(예: root로 실행)이 필요하기 때문이다. User 범위는 특권 없이 쓰는 범위다. 다만 System 포트가 늘 특권을 요구하지는 않는다 — §4, §7.3.
+  시스템을 만드는 쪽은 System 포트에서 기다리려는 프로세스에 특권을 요구하는 것이 좋다(SHOULD) — §7.3
+- 포트 번호는 16비트이고 쓰임이 둘이다 — 한 호스트 안에서 전송 끝점의 짝(TCP 연결이나 UDP 주고받기 짝)을 가려내는 것과 서비스를 가리키는 것. 앞의 쓰임 때문에, 주어진 두 IP 주소 사이에서 같은 전송 프로토콜을 쓰는 짝은
+  저마다 다른 포트 번호 쌍을 써야 한다. 등록이 필요한 것은 뒤의 쓰임 때문이다 — §5
+- 웹 서버는 어느 포트에서든 돌 수 있다 — 클라이언트가 그 번호를 알기만 하면 된다. 번호를 알리는 방법의 예로 주소에 포트를 적는 것(`http://www.example.com:51509/`)을 든다. 서비스와 포트 번호의 짝은 결국 두 끝점 사이의 약속이다.
+  IANA가 번호를 정해 주는 까닭은 모든 끝점이 그 번호의 기본 뜻에 미리 합의해 두려는 것, 곧 프로토콜이나 서비스마다 **기본 포트 번호**를 주려는 것이다 — §5
+- 한 전송 프로토콜에서 어떤 서비스에 정해 준 번호가, 다른 전송 프로토콜에서는 다른 서비스에 정해질 수 있다 — §7.3
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(§5 — 포트는 16비트, 같은 두 주소 사이의 짝은 다른 포트 쌍, §7.3 — 같은 번호가 전송 프로토콜마다 다른 서비스), `ports.port-ranges`(§4 — 세 범위의 이름, 「registered」의 두 뜻),
+`ports.well-known-ports`(§5 — 웹 서버는 어느 포트에서든 돌 수 있고 주소에 포트를 적어 알린다, 기본 포트, §4·§7.3 — System 포트와 특권), `exam-notes.md` E27
+
+## (phase 77) RFC 6056 — Recommendations for Transport-Protocol Port Randomization
+https://www.rfc-editor.org/rfc/rfc6056
+
+BCP 156이고 폐기되지 않았다(rfc-editor 상태 2026-11-09).
+
+- 서비스는 보통 서비스를 주는 호스트(서버)의 정해진 잘 알려진 포트에 있다. 클라이언트 응용 프로그램은 서버의 IP 주소와 서비스 포트 번호를 정해 서버에 닿는다.
+  클라이언트 쪽의 IP 주소와 포트 번호는 보통 응용 프로그램이 정하지 않고 **클라이언트의 네트워크 스택(운영체제)이 자동으로 고른다**. 이렇게 자동으로 고른 포트를 **임시 포트**(ephemeral port)라 부른다 — §1
+- IANA는 TCP·UDP의 16비트 포트 범위를 Well-Known Ports(0~1023), Registered Ports(1024~49151), Dynamic and/or Private Ports(49152~65535)로 나눠 두었고, 동적 포트 범위는 임시 포트를 고르는 데 쓰라는 범위다 — §2.1
+- 통신 하나는 다섯 값 {프로토콜, 로컬 IP 주소, 로컬 포트, 원격 IP 주소, 원격 포트}로 가려지므로, 임시 포트는 이 다섯 값 묶음이 겹치지 않게 골라야 한다 — §2.2
+- 그러나 임시 포트를 고르는 방법은 49152~65535만이 아니라 **1024~65535 전체**를 쓰는 것이 좋다고 권한다(그 호스트가 서비스에 쓸 등록된 포트는 빼고) — §3.2.
+  곧 클라이언트의 임시 포트가 IANA의 동적 포트 범위 안에서만 나온다는 보장은 없고, 실제 범위는 운영체제와 그 설정이 정한다(Linux·Windows의 예는 아래 두 항목)
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.client-server-ports`(§1 — 서버는 잘 알려진 포트, 클라이언트 포트는 운영체제가 자동으로 고르는 임시 포트, §2.2 — 다섯 값으로 통신을 가린다, §3.2 — 1024~65535 전체를 권한다), `ports.port-ranges`(§2.1 — 동적 포트는 임시 포트용), 강의 수정 이력 L43
+
+## (phase 77) RFC 959 — File Transfer Protocol (FTP)
+https://www.rfc-editor.org/rfc/rfc959
+
+Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등이 고쳤다 — rfc-editor 상태 2026-11-09). **포트와 두 연결만** 가져온다. FTP의 명령과 전송 방식은 응용 프로토콜 주제(phase 78)의 몫이다.
+
+- FTP는 연결 두 종류를 쓴다 — **제어 연결**(control connection)은 사용자 쪽과 서버 쪽이 명령과 응답을 주고받는 통로이고, **데이터 연결**(data connection)은 파일 같은 데이터를 실제로 옮기는 전이중 연결이다 — §2.2
+- 제어 연결은 사용자 프로세스의 포트 U와 서버 프로세스의 포트 L 사이에 **TCP**로 맺고, FTP의 서버 포트는 **21**이다(L = 21) — §8
+- 서버의 기본 데이터 포트는 제어 연결 포트 바로 아래 번호(L − 1), 곧 **20**이다. 사용자 쪽의 기본 데이터 포트는 자기 제어 연결 포트와 같다. 전송 요청을 받으면 서버가 데이터 연결을 연다 — §3.2.
+  PASV 명령을 쓰면 서버는 기본 데이터 포트가 아닌 다른 데이터 포트에서 연결을 기다린다 — §4.1.2
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(§2.2 — 제어 연결과 데이터 연결, §8 — TCP 21은 제어, §3.2 — 기본 데이터 포트 20)
+
+## (phase 77) RFC 854 — Telnet Protocol Specification
+https://www.rfc-editor.org/rfc/rfc854
+
+Internet Standard이고 폐기되지 않았다(RFC 764를 대체, RFC 5198이 고쳤다 — rfc-editor 상태 2026-11-09).
+
+- Telnet은 단말(터미널)과 단말을 다루는 프로세스를 표준 방법으로 서로 잇게 하는, 양방향의 범용 통신 수단이다 — INTRODUCTION. Telnet 연결은 **TCP** 연결이다 — GENERAL CONSIDERATIONS
+- Telnet의 TCP 연결은 사용자의 포트 U와 서버의 포트 L 사이에 맺는다. 서버는 자기의 잘 알려진 포트 L에서 연결을 기다린다. TCP 연결은 전이중이고 **포트 쌍으로 가려지므로**,
+  서버는 같은 포트 L로 서로 다른 사용자 포트 U들과 **여러 연결을 동시에** 맺을 수 있다. 원격 단말 접속에 쓸 때 서버 포트는 **23**이다(L = 23) — CONNECTION ESTABLISHMENT
+- 이 문서 전문에 암호화·기밀성에 관한 말이 없다(전문 검색 2026-11-09 — 「encrypt」·「confidential」 없음). 암호화는 나중에 선택 확장으로 정했다 — 아래 RFC 2946 항목
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 23, 원격 단말 접속), `ports.client-server-ports`(CONNECTION ESTABLISHMENT — 서버 포트 하나로 서로 다른 사용자 포트와 여러 연결을 동시에)
+
+## (phase 77) RFC 2946 — Telnet Data Encryption Option, RFC 2941 — Telnet Authentication Option
+https://www.rfc-editor.org/rfc/rfc2946
+https://www.rfc-editor.org/rfc/rfc2941
+
+둘 다 Proposed Standard이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). **「Telnet은 기본으로 암호화하지 않는다」의 근거로만** 쓴다. 암호화 옵션의 명령과 알고리즘은 가져오지 않는다.
+
+- 암호화 옵션의 기본값은 쓰지 않는 것이다 — 따로 협상하지 않으면 Telnet 데이터 흐름은 암호화되지 않는다 — RFC 2946 §3
+- 이 옵션을 만든 까닭: Telnet 프로토콜에는 네트워크를 지나는 IP 패킷을 중간의 게이트웨이가 들여다보는 것을 막는 보호가 없고, 비밀번호도 평문(암호화하지 않은 글자)으로 네트워크를 지나 특히 위험하다 — RFC 2946 §4
+- Telnet의 약점 하나는 원격 시스템에 로그인할 때 사용자가 친 비밀번호가 평문으로 네트워크를 지난다는 것이다 — RFC 2941 §4
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(Telnet은 기본으로 주고받는 내용과 비밀번호를 암호화하지 않는다 — SSH와 가르는 점)
+
+## (phase 77) RFC 4251 — The Secure Shell (SSH) Protocol Architecture, RFC 4253 — The Secure Shell (SSH) Transport Layer Protocol
+https://www.rfc-editor.org/rfc/rfc4251
+https://www.rfc-editor.org/rfc/rfc4253
+
+둘 다 Proposed Standard이고 폐기되지 않았다(여러 RFC가 고쳤다 — rfc-editor 상태 2026-11-09). **포트와 「암호화한 원격 접속」만** 가져온다. 키 교환·인증 방식은 가져오지 않는다.
+
+- SSH는 안전하지 않은 네트워크 위에서 안전하게 원격 로그인하고 그 밖의 네트워크 서비스를 쓰게 하는 프로토콜이다. 그 전송 계층 프로토콜이 서버 인증, 기밀성(암호화), 무결성을 주고 보통 TCP/IP 연결 위에서 돈다 — RFC 4251 §1
+- SSH는 Telnet·rlogin 같은 옛 방식보다 훨씬 높은 보안을 준다 — RFC 4251 §4.1
+- SSH 전송 계층은 안전하지 않은 네트워크 위에 **암호화한 안전한 통로**를 만든다 — 서버 호스트 인증, 키 교환, 암호화, 무결성 보호를 한다 — RFC 4253 §14
+- TCP/IP 위에서 쓸 때 서버는 보통 포트 **22**에서 연결을 기다리고, 이 번호는 IANA에 SSH용으로 등록돼 있다 — RFC 4253 §4.1
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 22, 암호화한 원격 접속, Telnet보다 안전하다)
+
+## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
+https://www.rfc-editor.org/rfc/rfc5321
+
+Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고쳤다 — rfc-editor 상태 2026-11-09). IANA 레지스트리의 25번 행은 이 문서를 고쳐 쓰는 진행 중 초안(`rfc5321bis`)을 참조로 단다 — 아직 RFC가 아니므로 이 문서를 쓴다. **포트와 「메일을 보낸다」만** 가져온다.
+
+- SMTP의 목적은 메일을 믿을 수 있고 효율적으로 옮기는 것이다. 순서가 지켜지는 믿을 수 있는 데이터 흐름만 있으면 되고, 이 문서는 TCP 위의 전송을 다룬다 — §1.1
+- 보낼 메시지가 있는 SMTP 클라이언트는 SMTP 서버로 양방향 통로를 열고, 메일 메시지를 하나 이상의 SMTP 서버에 옮긴다 — §2.1
+- SMTP 서버는 SMTP 포트(IANA가 **25**번으로 정했다)에서 늘 연결을 기다리는 것이 좋다(SHOULD). 그러려면 들어오는 TCP 연결 여럿을 함께 받을 수 있어야 한다 — §4.5.4.2
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
+
+## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
+https://man7.org/linux/man-pages/man7/ip.7.html
+https://man7.org/linux/man-pages/man5/proc_sys_net_ipv4.5.html
+https://man7.org/linux/man-pages/man7/capabilities.7.html
+https://man7.org/linux/man-pages/man7/tcp.7.html
+https://man7.org/linux/man-pages/man7/udp.7.html
+https://man7.org/linux/man-pages/man5/services.5.html
+
+2026-11-09에 IPv4로 내려받아 읽은 판: Linux man-pages 6.19 — ip(7)·capabilities(7)·services(5) 2026-02-08, proc_sys_net_ipv4(5) 2025-12-25, tcp(7) 2026-04-19(udp(7)도 같은 man-pages 6.19 묶음). HTML은 2026-09-09에 만든 것이다.
+capabilities(7)의 다른 사실은 위 「(phase 75) Linux man-pages …」 항목에 있다.
+
+- **ip(7)** — Address format: IP 소켓 주소는 IP 인터페이스 주소와 **16비트 포트 번호**를 합친 것이다. 기본 IP 프로토콜은 포트 번호를 주지 않고, 포트는 그 위의 udp(7)·tcp(7) 같은 프로토콜이 구현한다.
+  **1024보다 작은 포트 번호는 특권 포트**(privileged port, 예약 포트라고도)라 부르고, 특권 프로세스(Linux에서는 CAP_NET_BIND_SERVICE 능력을 가진 프로세스)만 그 포트에 소켓을 묶을(bind) 수 있다
+- **ip(7)** — DESCRIPTION: 들어오는 연결을 받으려는 프로세스는 소켓을 로컬 주소에 묶는다. 한 로컬 (주소, 포트) 쌍에는 IP 소켓 하나만 묶일 수 있다. 묶지 않은 소켓으로 connect(2)를 부르면 그 소켓은 **비어 있는 포트 하나에 저절로 묶인다**
+- **proc_sys_net_ipv4(5)** — `/proc/sys/net/ipv4/ip_local_port_range`: 포트를 정하지 않은 소켓에 줄 **임시 포트의 범위**를 정하는 두 정수가 든 파일이다. 묶지 않은 소켓으로 connect(2)나 sendto(2)를 부르거나, bind(2)에 포트 0을 주면
+  첫 수부터 둘째 수까지에서 임시 포트를 준다. 범위가 다 차면 그 시스템 호출이 오류를 낸다. 첫 수는 잘 알려진 포트와 부딪치지 않게 1024보다, 되도록 4096보다 크게 두라고 권한다.
+  **이 파일의 기본값은 man-pages에 적혀 있지 않다**(ip(7)·proc_sys_net_ipv4(5)·tcp(7)·udp(7) 전문 검색 2026-11-09) — 기본값을 적은 커널 문서(`Documentation/networking/ip-sysctl.rst`)는 허용한 출처 밖이라 읽지 않았다
+- **capabilities(7)**: CAP_NET_BIND_SERVICE는 인터넷 도메인의 특권 포트(1024보다 작은 번호)에 소켓을 묶게 하는 능력이다 — Capabilities list
+- **tcp(7)**: 밖으로 TCP 연결을 만들려면 connect(2)로 다른 TCP 소켓에 연결한다. 들어오는 연결을 받으려면 소켓을 로컬 주소와 포트에 묶고(bind) listen(2)으로 기다리는 상태로 둔 뒤, 들어오는 연결마다 accept(2)로 새 소켓을 받는다 — DESCRIPTION
+- **udp(7)**: 묶지 않은 UDP 소켓으로 보내면 소켓 계층이 `ip_local_port_range`가 정한 범위에서 비어 있는 로컬 포트를 골라 묶는다 — DESCRIPTION
+- **services(5)**: `/etc/services`는 사람이 읽는 서비스 이름과 그 포트 번호·프로토콜을 짝지은 글 파일이다. 1024보다 작은 번호(「낮은 번호」 포트)에는 root만 소켓을 묶을 수 있어서, 그 포트에 붙는 클라이언트는
+  그 포트의 서비스가 그 기계의 일반 사용자가 띄운 가짜가 아니라고 믿을 수 있다. IANA가 정한 잘 알려진 포트는 보통 이 범위에 있다 — DESCRIPTION.
+  같은 쪽은 IANA가 지금도 TCP·UDP를 함께 정해 준다고 적지만, 그 관행은 RFC 6335 §7.2(2011)가 끝냈다 — 정책은 RFC 6335를 따른다. 「TCP만 쓰는 서비스도 두 행이 있다」는 레지스트리의 옛 행을 설명하는 데만 쓴다
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(ip(7) — 소켓 주소는 IP 주소와 16비트 포트, 포트는 전송 계층이 구현한다), `ports.well-known-ports`(ip(7)·capabilities(7)·services(5) — Linux에서 1024보다 작은 포트에서 기다리려면 특권이 필요하다),
+`ports.client-server-ports`(ip(7)·udp(7)·proc_sys_net_ipv4(5) — 클라이언트가 묶지 않고 보내면 운영체제가 비어 있는 임시 포트를 고른다, 범위는 `ip_local_port_range`, tcp(7) — 서버는 bind·listen·accept), 강의 수정 이력 L43, `exam-notes.md` E27
+
+## (phase 77) Microsoft Learn — The default dynamic port range for TCP/IP has changed since Windows Vista and in Windows Server 2008
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang
+
+적용 판: 지원 중인 Windows Server(페이지의 「Applies to」). 페이지 날짜 ms.date 2026-02-12, updated_at 2026-02-19 — 2026-11-09에 내려받아 읽었다.
+
+- IANA 권고에 맞추려고 Windows Vista·Windows Server 2008부터 **밖으로 나가는 연결에 쓰는 동적 클라이언트 포트 범위**의 기본값을 시작 49152, 끝 65535로 바꿨다. 그 전 판의 기본값은 1025~5000이었다
+- 범위는 TCP와 UDP에 따로 정하고, `netsh int ipv4 show dynamicport tcp`처럼 보며 `netsh … set dynamicport`로 바꿀 수 있다(바꿀 수 있는 가장 작은 시작 번호는 1025)
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.client-server-ports`(클라이언트 포트의 범위는 운영체제가 정한다 — Windows는 기본 49152~65535, 예전 판은 1025~5000), 강의 수정 이력 L43
