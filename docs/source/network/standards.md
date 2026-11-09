@@ -626,8 +626,10 @@ https://www.rfc-editor.org/rfc/rfc1034
 - 반복적(iterative) 질의에서는 질의를 받은 서버가 다른 서버를 알려 주고(referral), 그 서버에 다시 묻는 일은 묻는 쪽이 한다 — §4.3.1
 - 재귀적(recursive) 질의는 네임 서버가 해 줄지 고를 수 있는 선택 기능이다. 묻는 쪽이 질의의 RD(recursion desired) 비트로 청하고, 서버는 RD로 청하지 않은 질의에 재귀를 하지 않는다 — §4.3.1
 - 리졸버는 먼저 자기 정보(캐시 포함)에서 답을 찾고, 없으면 아는 네임 서버 가운데 가장 가까운 것부터 차례로 묻고, 받은 답은 캐시에 넣은 뒤 클라이언트에 돌려준다 — §5.3.3
+- (phase 77 step 2, 2026-11-09 rfc-editor.org 원문) 이 문서는 Domain Name System(DNS)을 소개하는 문서다 — §1 STATUS OF THIS MEMO. 설계 목표의 하나는 이름으로 호스트 주소를 찾아 쓰는 것이다 — §2.2
 
 쓰인 곳: 면접 수정 이력 I11
+(phase 77 step 2) `ports.well-known-ports`(DNS 항목 — 풀어 쓴 이름 Domain Name System, 도메인 이름으로 호스트의 IP 주소를 찾아 준다)
 
 ## RFC 1035 — Domain Names - Implementation and Specification
 https://www.rfc-editor.org/rfc/rfc1035
@@ -1864,6 +1866,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 (phase 73 step 8) `arp.arp`·`arp.arp-request-reply`(RFC 5737 §3 — 호스트 A~D의 `192.0.2.1`~`192.0.2.4`, 본문 예와 도식 `arp-purpose`·`arp-exchange`)
 (phase 74) 세 블록의 첫 옥텟은 192·198·203이라 셋 다 옛 C 클래스 범위(192~223, RFC 791 §2.3으로 계산)에 든다 — 문서용 IPv4 주소 가운데 A·B 클래스 범위의 것은 없다.
 `ip-addressing`의 예는 모두 이 안에서 만든다 — 서브네팅 예 `192.0.2.0/24`를 `/26` 넷으로(`192.0.2.0`·`.64`·`.128`·`.192`, 서브넷마다 주소 64개·호스트 62개), AND 예 `192.0.2.130` AND `255.255.255.192` = `192.0.2.128`(마지막 옥텟 `10000010` AND `11000000` = `10000000`) — 계산으로 확인(2026-10-29)
+(phase 77 step 2) `ports.well-known-ports`(RFC 2606 §3 — DNS 항목의 예 `www.example.com`과 웹 주소의 예 `http://www.example.com:8080/`), `ports.client-server-ports`(RFC 5737 §3 — 클라이언트 `192.0.2.10`·`192.0.2.11`, 서버 `198.51.100.10`), 문항 n174(`www.example.com`)·n175(`192.0.2.20`·`198.51.100.20`)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
@@ -3811,6 +3814,17 @@ Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고�
 - SMTP 서버는 SMTP 포트(IANA가 **25**번으로 정했다)에서 늘 연결을 기다리는 것이 좋다(SHOULD). 그러려면 들어오는 TCP 연결 여럿을 함께 받을 수 있어야 한다 — §4.5.4.2
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
+
+## (phase 77 step 2) RFC 9846 — The Transport Layer Security (TLS) Protocol Version 1.3
+https://www.rfc-editor.org/rfc/rfc9846
+
+Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명세)을 폐기하고 대신한다(rfc-editor 상태 2026-11-09 — RFC 8446 정보 쪽에 「now obsolete, see RFC 9846」).
+**이름과 「무엇을 막는가」만** 가져온다. 핸드셰이크·키 교환·암호 방식은 가져오지 않는다.
+
+- 프로토콜 이름은 Transport Layer Security(TLS)다. TLS는 클라이언트·서버 응용 프로그램이 인터넷으로 통신할 때 엿듣기(eavesdropping), 바꿔치기(tampering), 메시지 위조를 막도록 설계됐다 — Abstract
+- HTTPS가 TLS로 무엇을 얻는지(서버 인증, 기밀성, 무결성)는 위 RFC 9110 §4.2.2 「(phase 77)」 줄이다
+
+쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
 
 ## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
 https://man7.org/linux/man-pages/man7/ip.7.html

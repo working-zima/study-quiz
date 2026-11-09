@@ -34,6 +34,7 @@ import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
+import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
@@ -273,6 +274,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
@@ -478,6 +480,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.bgp': AsPathDiagram,
   'ports.port-number': PortDemuxDiagram,
   'ports.port-ranges': PortRangesDiagram,
+  'ports.well-known-ports': WellKnownPortsDiagram,
+  'ports.client-server-ports': ClientServerPortsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
