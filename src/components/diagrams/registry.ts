@@ -36,6 +36,7 @@ import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
 import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
+import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
@@ -263,6 +264,7 @@ import { TcpStatesDiagram } from './TcpStatesDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { TimeWaitDiagram } from './TimeWaitDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
@@ -508,6 +510,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.connection-termination': ConnectionCloseDiagram,
   'tcp-connection.tcp-states': TcpStatesDiagram,
   'tcp-connection.opening-states': OpeningStatesDiagram,
+  'tcp-connection.closing-states': ClosingStatesDiagram,
+  'tcp-connection.time-wait': TimeWaitDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
