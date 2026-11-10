@@ -13,8 +13,11 @@ import linuxPermissionsVisuals from './visuals/linux-permissions.json'
 import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
+import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import routingVisuals from './visuals/routing.json'
+import tcpConnectionVisuals from './visuals/tcp-connection.json'
+import tcpUdpVisuals from './visuals/tcp-udp.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -34,6 +37,9 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'ip-addressing': ipAddressingVisuals,
   'ip-address-types': ipAddressTypesVisuals,
   'routing': routingVisuals,
+  'ports': portsVisuals,
+  'tcp-udp': tcpUdpVisuals,
+  'tcp-connection': tcpConnectionVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
   'linux-shell': linuxShellVisuals,

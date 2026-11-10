@@ -386,6 +386,11 @@
       "completed_at": "2026-11-05T04:10:03+0900"
     },
     {
+      "dir": "77-network-ports-tcp",
+      "status": "completed",
+      "completed_at": "2026-11-10T10:56:16+0900"
+    },
+    {
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"

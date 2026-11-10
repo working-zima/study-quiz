@@ -1,6 +1,7 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
+import { AckNumbersDiagram } from './AckNumbersDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ActivityLogDiagram } from './ActivityLogDiagram'
@@ -34,12 +35,15 @@ import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
 import { CircuitSwitchingDiagram } from './CircuitSwitchingDiagram'
 import { ClientServerDiagram } from './ClientServerDiagram'
+import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
+import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
+import { ConnectionCloseDiagram } from './ConnectionCloseDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
@@ -149,6 +153,7 @@ import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
+import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -163,6 +168,7 @@ import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { NsgAssociationDiagram } from './NsgAssociationDiagram'
 import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
 import { OctalModeDiagram } from './OctalModeDiagram'
+import { OpeningStatesDiagram } from './OpeningStatesDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
@@ -184,6 +190,8 @@ import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
+import { PortDemuxDiagram } from './PortDemuxDiagram'
+import { PortRangesDiagram } from './PortRangesDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -218,6 +226,7 @@ import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
+import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -248,13 +257,22 @@ import { SystemctlActionsDiagram } from './SystemctlActionsDiagram'
 import { TagCostReportDiagram } from './TagCostReportDiagram'
 import { TagInheritanceDiagram } from './TagInheritanceDiagram'
 import { TaskPlacementDiagram } from './TaskPlacementDiagram'
+import { TcpControlBitsDiagram } from './TcpControlBitsDiagram'
+import { TcpHeaderDiagram } from './TcpHeaderDiagram'
+import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
+import { TcpStatesDiagram } from './TcpStatesDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
+import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
+import { TimeWaitDiagram } from './TimeWaitDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
+import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
+import { UdpHeaderDiagram } from './UdpHeaderDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
 import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
@@ -271,6 +289,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
@@ -474,6 +493,25 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'routing.rip': DistanceVectorDiagram,
   'routing.ospf': LinkStateDiagram,
   'routing.bgp': AsPathDiagram,
+  'ports.port-number': PortDemuxDiagram,
+  'ports.port-ranges': PortRangesDiagram,
+  'ports.well-known-ports': WellKnownPortsDiagram,
+  'ports.client-server-ports': ClientServerPortsDiagram,
+  'tcp-udp.tcp': TcpReliabilityDiagram,
+  'tcp-udp.mss': MssSizeDiagram,
+  'tcp-udp.tcp-header': TcpHeaderDiagram,
+  'tcp-udp.sequence-number': SequenceNumbersDiagram,
+  'tcp-udp.ack-number': AckNumbersDiagram,
+  'tcp-udp.tcp-control-bits': TcpControlBitsDiagram,
+  'tcp-udp.udp': UdpDeliveryDiagram,
+  'tcp-udp.udp-header': UdpHeaderDiagram,
+  'tcp-udp.transport-choice': TransportChoiceDiagram,
+  'tcp-connection.three-way-handshake': ThreeWayHandshakeDiagram,
+  'tcp-connection.connection-termination': ConnectionCloseDiagram,
+  'tcp-connection.tcp-states': TcpStatesDiagram,
+  'tcp-connection.opening-states': OpeningStatesDiagram,
+  'tcp-connection.closing-states': ClosingStatesDiagram,
+  'tcp-connection.time-wait': TimeWaitDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
