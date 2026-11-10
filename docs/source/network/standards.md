@@ -75,6 +75,9 @@ RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽�
 RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, IANA의 TCP 매개변수 레지스트리는 XML판(Last Updated 2026-10-22)으로 읽었다.
 **제어 비트의 수는 문서와 때에 따라 다르다** — 아래 「(phase 77 step 3) RFC 3540 …, RFC 8311 …, RFC 9768 …, IANA — TCP Header Flags」 항목. 재전송 방식·흐름 제어·혼잡 제어의 방식과 연결 수립·종료는 이 step에서 적지 않았다(phase 84와 step 9의 몫).
 응용별 전송 프로토콜은 **그 응용의 RFC가 TCP나 UDP 위에서 돈다고 적은 것만** 적었다.
+「(phase 77 step 9)」가 붙은 줄과 항목은 phase 77 step 9에서 `tcp-connection`(3-way handshake, TCP 연결 종료, TCP 상태, 연결을 맺는 동안의 상태, 연결을 끊는 동안의 상태, TIME-WAIT 상태) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-10).
+RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. **상태 전이는 RFC 9293의 상태 그림(그림 5)과 세그먼트 처리 절(§3.10)을 하나씩 맞춰 본 것만** 적었다.
+재전송 시간·연결 유지(keep-alive)·SYN 플러딩 같은 공격과 동시 열기의 차례는 이 step에서 적지 않았다(phase 84와 보안 주제의 몫이거나 기출이 묻지 않는다).
 
 ---
 
@@ -512,6 +515,49 @@ https://www.rfc-editor.org/rfc/rfc9293
 - (phase 77 step 3) **MSS와 단편화**: 경로에서 가장 작은 MTU보다 큰 IP 데이터그램이 되는 세그먼트를 보내면 패킷을 잃거나 단편화가 일어나므로, 세그먼트를 그보다 작게 보내려 한다 — §3.7. TCP는 바로 이어진 링크의 MTU는 알아도 경로 전체의 MTU는 잘 모르므로,
   경로 MTU 탐색(PMTUD·PLPMTUD)으로 단편화를 피하는 세그먼트 크기를 고르는 것을 강하게 권한다 — §3.7.2. MSS 옵션은 상대가 **받을 수 있는** 패킷 크기의 상한을 알리는 것이다 — §3.7.2.
   그러니 「MSS를 지키면 단편화를 피한다」는 **양 끝 링크의 MTU에 대해서만** 맞고, 경로 중간의 더 작은 MTU는 경로 MTU 탐색이 맡는다
+- (phase 77 step 9, 2026-11-10 rfc-editor.org 텍스트판 원문) **이름**: 연결을 맺는 절차의 이름 three-way handshake(줄여 3WHS)는 표준에 있다 — §3.4.1, §3.5. 연결을 끝내는 절차는 「정상 종료 순서(normal close sequence)」(그림 12)나 「FIN을 주고받는 handshake(FIN handshake)」로 부른다 — §3.6.
+  **「four-way handshake」·「4-way handshake」라는 말은 RFC 9293 전문에 없다**(전문 검색, 2026-11-10)
+- (phase 77 step 9) **세 번 주고받는 까닭**: 연결을 맺는다는 것은 두 끝이 서로의 ISN을 맞추는(synchronize) 일이다. 각 끝은 자기 ISN을 보내 상대의 확인을 받아야 하고, 상대의 ISN을 받아 확인을 돌려줘야 한다.
+  그러면 「A의 SYN → B의 확인 → B의 SYN → A의 확인」 넷이 필요한데, 가운데 둘(B의 확인과 B의 SYN)을 세그먼트 하나에 함께 실을 수 있어 셋이 되고, 그래서 three-way(three message) handshake라 부른다 — §3.4.1.
+  첫 SYN을 받은 쪽은 그것이 지금의 요청인지 네트워크에 남아 있던 옛 요청인지 스스로 알 길이 없으므로(순서 번호는 공통의 시계에 묶여 있지 않고 ISN을 고르는 방법도 구현마다 다르다) 보낸 쪽에게 확인받아야 한다 — §3.4.1.
+  표준은 이 절차의 주된 까닭을 옛 연결 요청이 중복으로 닿아 생기는 혼란을 막는 것이라 적는다 — §3.5
+- (phase 77 step 9) **세그먼트 셋의 차례**(§3.5 그림 6 — 그림의 상태는 그 세그먼트를 보내거나 받은 **뒤**의 상태다): ① CLOSED이던 A가 SYN만 켠 세그먼트(순서 번호 = A의 ISN)를 보내고 SYN-SENT가 된다. LISTEN이던 B는 이것을 받고 SYN-RECEIVED가 된다
+  ② B가 SYN과 ACK를 함께 켠 세그먼트(순서 번호 = B의 ISN, 확인 응답 번호 = A의 ISN + 1)를 보낸다. A는 이것을 받고 ESTABLISHED가 된다 ③ A가 ACK만 켠 빈 세그먼트(순서 번호 = A의 ISN + 1, 확인 응답 번호 = B의 ISN + 1)를 보내고, B는 이것을 받고 ESTABLISHED가 된다.
+  확인 응답 번호가 ISN + 1인 것은 SYN이 순서 번호 하나를 차지하기 때문이고, ACK는 번호를 차지하지 않으므로 A가 셋째 세그먼트 뒤에 처음 보내는 데이터 세그먼트도 순서 번호가 ISN + 1이다 — §3.5(그림 6의 예는 A의 ISN 100, B의 ISN 300, 확인 응답 번호 101·301).
+  그러니 **먼저 SYN을 보낸 A가 B보다 먼저 ESTABLISHED가 된다**(그림 6 셋째 줄 — 그때 B는 아직 SYN-RECEIVED다). 계산 예(guide 「예시 값」): 클라이언트 ISN 1000, 서버 ISN 7000이면 둘째 세그먼트의 확인 응답 번호는 1001, 셋째 세그먼트는 순서 번호 1001·확인 응답 번호 7001이다(계산)
+- (phase 77 step 9) **능동 열기와 수동 열기**: 응용의 OPEN 호출이 능동(active)이면 TCP가 곧바로 연결을 맺기 시작해 SYN을 보내고 SYN-SENT가 되고, 수동(passive)이면 TCB를 만들어 LISTEN에서 요청을 기다린다 — §3.3.2 그림 5, §3.9.1.1(위 「(phase 77)」 줄).
+  두 끝이 동시에 SYN을 보내는 동시 열기도 표준이 정해 두었지만(§3.5 그림 7, MUST-10) 이 과목은 쓰지 않는다
+- (phase 77 step 9) **닫기는 한 방향씩**: 응용이 CLOSE를 부르는 것은 「이쪽은 더 보낼 데이터가 없다」는 뜻이지 「더 받지 않겠다」는 뜻이 아니다. 닫은 쪽도 상대가 닫았다는 알림을 받을 때까지 계속 받는다 — §3.6, §3.9.1.4.
+  두 방향은 따로 닫히므로 한 방향만 닫힌 연결(half closed)이 생길 수 있고, 아직 열린 방향으로는 데이터를 계속 보낼 수 있다 — §3.6.1. FIN을 받은 쪽은 그 FIN에 ACK는 바로 보내지만, 자기 FIN은 자기 응용이 CLOSE를 부를 때까지 보내지 않는다 — §3.6 경우 1·2
+- (phase 77 step 9) **정상 종료의 차례**(§3.6 그림 12): ① 응용이 닫은 A가 FIN을 보내고 FIN-WAIT-1 ② 받은 B가 ACK를 보내고 응용에게 상대가 닫는다고 알린 뒤 CLOSE-WAIT ③ ACK를 받은 A는 FIN-WAIT-2 ④ B의 응용이 CLOSE를 부르면 B가 남은 데이터 뒤에 FIN을 보내고 LAST-ACK
+  ⑤ 받은 A가 ACK를 보내고 TIME-WAIT ⑥ 그 ACK를 받은 B는 CLOSED, A는 2×MSL을 기다린 뒤 CLOSED. 그림 12의 FIN 세그먼트에도 ACK 비트가 켜져 있다(`CTL=FIN,ACK`) — 연결이 맺어진 뒤에는 모든 세그먼트가 ACK를 켠다(위 「(phase 77 step 3) 확인 응답 번호」 줄)
+- (phase 77 step 9) **상대의 ACK와 FIN이 한 세그먼트로 올 수 있다**: FIN-WAIT-1에서 FIN을 받았을 때 내 FIN도 이미 확인되었으면(그 확인이 같은 FIN 세그먼트에 실려 와도 된다) FIN-WAIT-2를 거치지 않고 곧바로 TIME-WAIT로 간다 — §3.10.7.4 「eighth, check the FIN bit」, 그림 5 주 2.
+  그 경우 종료에 오가는 세그먼트는 셋이다(계산)
+- (phase 77 step 9) **정상 종료와 중단**: 연결이 끝나는 길은 FIN을 주고받는 정상 종료와, RST를 보내 연결 상태를 곧바로 버리는 중단(abort) 둘이다. 상대 쪽 때문에 연결이 닫히면 응용에 정상 종료인지 중단인지 알려야 한다(MUST-12) — §3.6.
+  응용의 ABORT 호출은 보내고 받으려던 것을 모두 버리고 TCB를 지운 뒤 RST를 보낸다 — §3.9.1.6. 올바른 RST를 받은 쪽은 연결을 중단하고 CLOSED로 간다(LISTEN이면 무시하고, 수동 열기로 SYN-RECEIVED가 된 것이면 LISTEN으로 돌아간다) — §3.5.3
+- (phase 77 step 9) **상태 열하나와 CLOSED**: 상태는 LISTEN, SYN-SENT, SYN-RECEIVED, ESTABLISHED, FIN-WAIT-1, FIN-WAIT-2, CLOSE-WAIT, CLOSING, LAST-ACK, TIME-WAIT와 CLOSED다. CLOSED는 TCB가 없는 때, 곧 연결이 없는 때를 나타내므로 표준은 이것을 실제로 있지 않은(fictional) 상태라 부른다 — §3.3.2.
+  TCB(Transmission Control Block)는 연결 하나의 상태를 적어 두는 자료 구조이고, 양 끝의 IP 주소·포트 번호와 순서 번호 변수 등을 담는다 — §3.3.1, §4 「TCB」. 상태를 바꾸는 사건은 응용의 호출(OPEN·SEND·RECEIVE·CLOSE·ABORT·STATUS), 들어온 세그먼트(특히 SYN·ACK·RST·FIN을 켠 것), 시간 초과다 — §3.3.2
+- (phase 77 step 9) **상태마다 기다리는 것**(§3.3.2 — 직접 쓴 말): LISTEN — 어느 상대에게서든 올 연결 요청. SYN-SENT — 연결 요청을 보낸 뒤 그에 맞는 상대의 연결 요청. SYN-RECEIVED — 요청을 받고 자기 요청도 보낸 뒤, 자기 요청에 대한 확인.
+  ESTABLISHED — 기다리는 것이 아니라 연결이 열린 상태다. 받은 데이터를 응용에 넘길 수 있고, 데이터를 주고받는 동안 머무는 보통의 상태다.
+  FIN-WAIT-1 — 상대의 종료 요청이나, 앞서 보낸 내 종료 요청에 대한 확인. FIN-WAIT-2 — 상대의 종료 요청. CLOSE-WAIT — 자기 응용의 종료 요청. CLOSING — 내 종료 요청에 대한 상대의 확인. LAST-ACK — 앞서 상대에게 보낸 종료 요청(상대의 종료 요청에 대한 확인도 함께 실은 것)에 대한 확인.
+  TIME-WAIT — 상대가 마지막 확인을 받았다고 믿을 만큼, 그리고 옛 연결의 늦은 세그먼트가 새 연결에 끼어들지 않을 만큼 시간이 지나기. CLOSED — 연결 상태가 전혀 없음
+- (phase 77 step 9) **상태 이름의 표기**: 본문과 상태 목록은 하이픈으로 잇는다(SYN-RECEIVED, FIN-WAIT-1). 상태 그림(그림 5)에서는 몇 이름을 줄이거나 달리 이어 쓴다고 표준 스스로 밝힌다 — 그림에는 SYN RCVD, ESTAB, FINWAIT-2로 적힌다 — §3.3.2.
+  밑줄 표기(SYN_RECEIVED 등)는 운영체제 명령이 보이는 표기다 — 아래 「(phase 74 step 11) … netstat」 항목의 「(phase 77 step 9)」 줄. **CLOSE는 상태가 아니라 응용이 연결을 닫을 때 부르는 호출의 이름**이고 상태 이름은 CLOSED다 — §3.3.2, §3.9.1.4
+- (phase 77 step 9) **연결을 맺는 동안의 전이**(§3.3.2 그림 5와 §3.10의 처리 절): CLOSED → 수동 열기(TCB를 만든다) → LISTEN. CLOSED → 능동 열기(SYN을 보낸다) → SYN-SENT. LISTEN → SYN을 받아 SYN·ACK를 보낸다 → SYN-RECEIVED(§3.10.7.2).
+  SYN-SENT → 내 SYN을 확인하는 SYN·ACK를 받아 ACK를 보낸다 → ESTABLISHED(§3.10.7.3). SYN-RECEIVED → 내 SYN에 대한 받아들일 만한 ACK를 받는다(보내는 것 없음) → ESTABLISHED(§3.10.7.4 「fifth, check the ACK field」).
+  LISTEN → 응용이 CLOSE를 부른다 → TCB를 지우고 CLOSED(§3.10.4)
+- (phase 77 step 9) **연결을 끊는 동안의 전이**(§3.3.2 그림 5와 §3.10의 처리 절): ESTABLISHED → 응용이 CLOSE를 부른다(앞서 맡긴 데이터를 다 세그먼트로 만든 뒤 FIN을 보낸다) → FIN-WAIT-1(§3.10.4). FIN-WAIT-1 → 내 FIN의 ACK를 받는다 → FIN-WAIT-2(§3.10.7.4 fifth).
+  FIN-WAIT-1 → FIN을 받아 ACK를 보낸다, 내 FIN은 아직 확인되지 않았다 → CLOSING. FIN-WAIT-1 → FIN을 받아 ACK를 보낸다, 내 FIN도 확인되었다 → TIME-WAIT. FIN-WAIT-2 → FIN을 받아 ACK를 보낸다 → TIME-WAIT(이 셋은 §3.10.7.4 eighth).
+  CLOSING → 내 FIN의 ACK를 받는다 → TIME-WAIT(fifth). ESTABLISHED → FIN을 받아 ACK를 보내고 응용에 알린다 → CLOSE-WAIT(eighth). CLOSE-WAIT → 응용이 CLOSE를 부른다(앞서 맡긴 데이터 뒤에 FIN을 보낸다) → LAST-ACK(§3.10.4).
+  LAST-ACK → 내 FIN의 ACK를 받는다 → TCB를 지우고 CLOSED(fifth). TIME-WAIT → 2×MSL이 다 된다 → TCB를 지우고 CLOSED(§3.10.8). CLOSE-WAIT는 자기 응용이 CLOSE를 부를 때까지 머무는 상태다 — §3.3.2, §3.6 경우 2
+- (phase 77 step 9) **동시 종료**(§3.6 그림 13, 경우 3): 두 응용이 거의 함께 닫으면 양쪽이 FIN을 보내 FIN-WAIT-1 → 상대의 FIN을 받아 ACK를 보내고 CLOSING → 내 FIN의 ACK를 받아 TIME-WAIT → 2×MSL 뒤 CLOSED. **이때는 두 쪽 모두 TIME-WAIT를 거친다.**
+  한쪽이 먼저 닫는 정상 종료(그림 12)에서는 먼저 닫은 쪽만 TIME-WAIT를 거치고, 나중에 닫은 쪽은 LAST-ACK에서 바로 CLOSED로 간다. RST를 보낸 쪽도 TIME-WAIT에 드는 것이 좋다는 규정(§3.5.2, 그림 5 주 3)은 이 과목이 쓰지 않는다
+- (phase 77 step 9) **TIME-WAIT의 두 까닭**: TIME-WAIT는 상대가 내 마지막 ACK(상대 FIN에 대한 확인)를 받았다고 믿을 만큼, 그리고 옛 연결에서 늦게 온 세그먼트가 새 연결에 영향을 주지 않을 만큼 시간이 지나기를 기다리는 상태다 — §3.3.2.
+  TIME-WAIT에 들어오는 것은 상대 FIN의 재전송뿐이고, 받으면 ACK를 다시 보내고 2×MSL을 처음부터 다시 잰다 — §3.10.7.4 fifth·eighth(마지막 ACK가 사라졌을 때의 처리다).
+  연결은 소켓 한 쌍으로 정해지고 같은 소켓 쌍으로 연결을 다시 맺을 수 있으므로, 옛 연결의 중복 세그먼트를 새 연결과 가려내야 하는 문제가 생긴다. TIME-WAIT는 같은 연결을 다시 쓰는 빈도를 제한해 이를 막고, ISN을 고르는 방법이 거기에 보호를 더한다 — §3.4.1.
+  능동적으로 닫은 쪽이 2×MSL 동안 머무는 것은 의무다(MUST-13) — §3.6.1(위 줄)
+- (phase 77 step 9) **MSL**(Maximum Segment Lifetime): 세그먼트 하나가 인터넷 안에 머물 수 있는 가장 긴 시간이고, 표준은 이것을 2분으로 정해 두었다 — §4 「MSL」, §3.4.2. 2분은 설계상 고른 값이라 겪어 보고 바꿀 수 있다고 적고, 링크가 빨라지면서 인터넷의 실제 MSL은 줄었다고 적는다 — §3.4.2.
+  표준의 값대로면 2×MSL은 4분이다(계산). 운영체제가 실제로 쓰는 TIME-WAIT의 길이는 허용한 출처에서 찾지 못했다 — tcp(7)은 TIME_WAIT 소켓 수의 상한 같은 것은 적지만 길이는 적지 않고, tcp_fin_timeout(기본 60초)은 마지막 FIN을 기다리는 시간이다(2026-11-10)
 
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
@@ -524,6 +570,9 @@ https://www.rfc-editor.org/rfc/rfc9293
 `tcp-udp.tcp-control-bits`(§3.1·§3.5.2·§3.6·§3.9.1.2·§4 — 여덟 비트의 뜻, 할당은 IANA 레지스트리), 강의 수정 이력 L44·L45·L46·L47, `exam-notes.md` E29
 (phase 77 step 5) `tcp-udp.tcp-header`(§3.8.5 — 긴급 데이터는 보내는 쪽 응용이 받는 쪽 응용에게 받아 가도록 재촉하는 데이터, 새 응용은 쓰지 않는 것이 좋다), 문항 n178·n179(§3.1 — 체크섬, 데이터 오프셋), `tcp-udp.sequence-number`·문항 n180(§3.1·§3.4·§3.4.1)
 (phase 77 step 6) `tcp-udp.ack-number`(§3.1·§3.4·§3.8·§3.10.7.4·§4 — 다음에 받을 번호, ACK가 켜졌을 때만, 누적, 먼저 온 세그먼트를 가지고 있는다, 순서 번호 + 데이터 바이트 수, 두 방향), `tcp-udp.tcp-control-bits`(§3.1·§4 — 비트 이름과 뜻, §3.5.2 — RST로 거절, §3.6 — FIN은 한 방향, §3.9.1.2 — PSH), 문항 n181·n182·n183
+(phase 77 step 9에서 쓰일 곳) `tcp-connection.three-way-handshake`(§3.4.1·§3.5 — 이름, 세 번인 까닭, 세그먼트 셋과 번호, 능동·수동 열기), `tcp-connection.connection-termination`(§3.6·§3.6.1·§3.9.1.4 — 한 방향씩 닫기, 정상 종료 차례, 이름(4-way handshake는 없다), §3.10.7.4·그림 5 주 2 — ACK와 FIN이 한 세그먼트로, §3.5.3·§3.9.1.6 — RST로 중단),
+`tcp-connection.tcp-states`(§3.3.1·§3.3.2·§4 「TCB」 — 상태 열하나, CLOSED는 실제로 있지 않은 상태, 상태마다 기다리는 것, 표기), `tcp-connection.opening-states`(§3.3.2 그림 5·§3.5 그림 6·§3.10.7.2·§3.10.7.3·§3.10.7.4 — 맺는 동안의 전이, 클라이언트가 먼저 ESTABLISHED),
+`tcp-connection.closing-states`(§3.6 그림 12·13·§3.10.4·§3.10.7.4·§3.10.8 — 끊는 동안의 전이, CLOSE-WAIT, 동시 종료의 CLOSING), `tcp-connection.time-wait`(§3.3.2·§3.4.1·§3.4.2·§3.6.1·§3.10.7.4·§4 「MSL」 — 두 까닭, 2×MSL, MSL 2분), `exam-notes.md`의 「phase 77 step 9」 문단, 강의 수정 이력 머리의 「phase 77 step 9」 문단
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -2616,8 +2665,14 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
   게이트웨이는 그 목적지에 닿으려고 넘길 **다음 홉 IP 주소**다 — 바로 붙은 서브넷이면 그 서브넷에 붙은 인터페이스의 주소, 라우터를 거쳐야 하면 바로 닿는 이웃 라우터의 주소다.
   메트릭은 목적지에 가장 잘 맞는 경로가 여럿일 때 고르는 데 쓰는 정수 비용이다. 문서의 예 하나가 기본 게이트웨이 주소로 가는 디폴트 라우트를 목적지 `0.0.0.0`·마스크 `0.0.0.0`으로 넣는다 — route 문서의 설명·Parameters·Examples
 - Windows: `netstat -r`은 IP 라우팅 테이블의 내용을 보여 주고, `route print`와 같다 — netstat 문서 Parameters
+- (phase 77 step 9, 2026-11-10에 다시 읽음 — man7.org netstat(8)은 net-tools 2026-05-10판(upstream에서 2026-08-04에 가져옴), Microsoft Learn netstat은 `updated_at` 2026-09-08) **TCP 상태의 표기**:
+  Linux netstat(8)의 State 칸은 ESTABLISHED, SYN_SENT, SYN_RECV, FIN_WAIT1, FIN_WAIT2, TIME_WAIT, CLOSE(쓰이지 않는 소켓), CLOSE_WAIT, LAST_ACK, LISTEN, CLOSING 같은 값을 보인다 — 밑줄로 잇고 몇 이름을 줄여 적는다(SYN_RECV, FIN_WAIT1) — netstat(8) 「State」.
+  같은 페이지는 netstat이 대부분 낡았고 대신 쓰는 것이 ss라고 적는다 — NOTES.
+  Windows netstat 문서는 TCP 연결의 상태로 CLOSE_WAIT, CLOSED, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, LAST_ACK, LISTEN, **SYN_RECEIVED**, SYN_SEND, TIMED_WAIT를 든다 — Remarks의 State. 곧 RFC의 SYN-RECEIVED를 밑줄로 이은 SYN_RECEIVED가 이 문서의 표기다.
+  이 문서는 SYN-SENT를 SYN_SEND로, TIME-WAIT를 TIMED_WAIT로 적고 CLOSING은 들지 않는다 — RFC 9293 §3.3.2와 이름이 다른 곳이라 본문에 옮기지 않는다
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
+(phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(상태 이름을 밑줄로 잇는 표기 — Windows netstat의 SYN_RECEIVED, Linux netstat의 SYN_RECV), `exam-notes.md`의 「phase 77 step 9」 문단(기출의 SYN_RECEIVED 표기, 오답 보기 CLOSE)
 
 ## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
@@ -4061,3 +4116,28 @@ Proposed Standard이고 폐기되지 않았다(RFC 1305·4330을 대체, RFC 782
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(짧은 질의·응답 한 번이면 되고 재전송이 필요 없는 응용 — NTP는 UDP)
 (phase 77 step 8) `tcp-udp.transport-choice`(Abstract — 컴퓨터 시계를 맞춘다, §5 — 클라이언트·서버 방식에서 서버는 바로 답한다, §7.3 — UDP, §8 — 재전송 장치를 두지 않는다)
+
+## (phase 77 step 9) Linux man-pages — ss(8)
+https://man7.org/linux/man-pages/man8/ss.8.html
+
+2026-11-10에 읽은 판: iproute2 프로젝트의 페이지이고, upstream Git 저장소에서 2026-08-04에 가져온 것이다(그때 가장 최근 커밋 2026-07-28, HTML 2026-09-09 — COLOPHON).
+**옵션의 뜻과 상태를 부르는 이름만** 적는다. 다른 옵션과 출력 읽기는 `diagnostic-commands` 주제의 몫이다.
+
+- `ss`는 소켓의 통계를 보여 주는 도구다. netstat과 비슷한 정보를 보이되 TCP와 상태 정보를 더 많이 보인다 — DESCRIPTION. 옵션 없이 부르면 연결이 맺어진, 요청을 기다리지 않는(non-listening) 소켓만 보인다 — OPTIONS
+- `-t`(`--tcp`)는 TCP 소켓을 보인다. `-a`(`--all`)는 요청을 기다리는(listening) 소켓과 기다리지 않는 소켓을 모두 보인다 — 그래서 LISTEN 상태의 소켓은 `-a`(또는 기다리는 소켓만 보이는 `-l`)를 줘야 나온다.
+  `-n`(`--numeric`)은 포트를 서비스 이름으로 풀지 않는다(주소·포트를 이름으로 풀려고 하는 것은 `-r`이다) — OPTIONS. 그러니 `ss -tan`은 「TCP 소켓을, 기다리는 것까지 모두, 서비스 이름 대신 번호로」 보인다(옵션 셋을 합친 것)
+- 상태 필터에 쓰는 이름은 established, syn-sent, syn-recv, fin-wait-1, fin-wait-2, time-wait, closed, close-wait, last-ack, listening, closing이다 — STATE-FILTER. 소문자에 하이픈으로 잇고, SYN-RECEIVED를 **syn-recv**로, LISTEN을 listening으로 부른다
+- 출력에는 기본으로 머리줄이 있다(`-H`가 그것을 없앤다 — OPTIONS). 그러나 **머리줄의 내용과, 상태 칸에 무엇이 찍히는지(예: ESTAB)는 이 페이지가 보이지 않는다**. 출력의 꼴은 강의 p271 화면에만 있다(그 화면은 `| head -5`인데 머리줄 없이 다섯 줄이 나와 있어 그대로 옮길 근거가 되지 못한다)
+- SEE ALSO는 TCP 상태의 근거로 RFC 793을 가리킨다 — 지금은 RFC 9293이 대체했다(위 RFC 9293 항목)
+
+쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(`ss -tan`의 옵션 뜻, 상태를 syn-recv처럼 줄여 부르는 이름), 강의 수정 이력 머리의 「phase 77 step 9」 문단(p270–p271의 `ss -tan`)
+
+## (phase 77 step 9) RFC 1337 — TIME-WAIT Assassination Hazards in TCP [Informational]
+https://www.rfc-editor.org/rfc/rfc1337
+
+Informational(1992-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-10). 표준을 정하는 문서가 아니므로 **보조로만** 쓴다 — TIME-WAIT의 사실은 RFC 9293 §3.3.2·§3.4.1·§3.6.1이 근거다(위 RFC 9293 항목).
+
+- TIME-WAIT 동안 기다리는 것은, 연결을 다시 열기 전에 옛 중복 세그먼트가 인터넷에서 사라질 시간을 주려는 것이다 — 서론 (4). 옛 중복 세그먼트가 사라질 시간을 주는 것은 TIME-WAIT의 기능 가운데 하나다 — (F1)
+- 이 문서는 TIME-WAIT가 옛 세그먼트나 RST 때문에 일찍 끝나 버리는 위험과 그 대책을 다룬다 — 이 과목은 쓰지 않는다
+
+쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.time-wait`(보조 — 옛 중복 세그먼트가 사라질 시간)
