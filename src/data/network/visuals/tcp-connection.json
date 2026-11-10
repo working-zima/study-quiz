@@ -105,6 +105,136 @@
       "sources": [
         "tcp-connection.connection-termination"
       ]
+    },
+    "tcp-states": {
+      "label": "TCP 연결이 거치는 상태 열하나를 연결 전·맺는 중·연결됨·끊는 중 네 단계로 묶어 보이는 도식",
+      "svgLabel": "연결 전 박스에 CLOSED와 LISTEN, 맺는 중 박스에 SYN-SENT와 SYN-RECEIVED, 연결됨 박스에 ESTABLISHED, 끊는 중 박스에 먼저 끊는 쪽의 FIN-WAIT-1·FIN-WAIT-2·CLOSING·TIME-WAIT와 나중에 끊는 쪽의 CLOSE-WAIT·LAST-ACK를 놓은 그림",
+      "question": "TCP 연결은 어떤 상태들을 거칠까?",
+      "idleCaption": "TCP 연결이 거치는 상태 열하나를 연결이 어느 단계에 있는지로 묶어 놓았다. 버튼을 고르면 단계마다 그 상태들이 무엇을 기다리는지 볼 수 있다.",
+      "legend": "얇은 선 박스 하나가 연결의 한 단계이고, 박스 안의 노드가 그 단계의 상태다. 끊는 중 박스 안의 곁말은 그 줄의 상태를 먼저 끊는 쪽과 나중에 끊는 쪽 가운데 어느 쪽이 거치는지 알린다.",
+      "nodes": {
+        "closed": "CLOSED",
+        "listen": "LISTEN",
+        "syn-sent": "SYN-SENT",
+        "syn-received": "SYN-RECEIVED",
+        "established": "ESTABLISHED",
+        "fin-wait-1": "FIN-WAIT-1",
+        "fin-wait-2": "FIN-WAIT-2",
+        "close-wait": "CLOSE-WAIT",
+        "closing": "CLOSING",
+        "last-ack": "LAST-ACK",
+        "time-wait": "TIME-WAIT"
+      },
+      "groups": {
+        "before": "연결 전",
+        "opening": "맺는 중",
+        "established": "연결됨",
+        "closing": "끊는 중"
+      },
+      "notes": {
+        "active-note": "먼저 끊는 쪽",
+        "passive-note": "나중에 끊는 쪽"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "연결 전",
+          "caption": "CLOSED는 연결이 없는 때다. LISTEN은 서버가 포트를 열어 두고 어느 클라이언트에게서든 연결을 청하는 SYN이 오기를 기다리는 상태다. 둘 다 아직 연결이 맺어지지 않은 상태다.",
+          "sources": [
+            "tcp-connection.tcp-states"
+          ]
+        },
+        {
+          "id": "opening",
+          "label": "맺는 중",
+          "caption": "3-way handshake가 오가는 동안이다. SYN을 보낸 클라이언트는 SYN-SENT에서 서버의 SYN+ACK를 기다리고, SYN+ACK로 답한 서버는 SYN-RECEIVED에서 클라이언트의 ACK를 기다린다.",
+          "sources": [
+            "tcp-connection.tcp-states"
+          ]
+        },
+        {
+          "id": "established",
+          "label": "연결됨",
+          "caption": "ESTABLISHED는 연결이 맺어진 상태다. 무엇이 오기를 기다리는 상태가 아니라, 두 쪽이 데이터를 주고받는 동안 머무는 보통의 상태다.",
+          "sources": [
+            "tcp-connection.tcp-states"
+          ]
+        },
+        {
+          "id": "closing",
+          "label": "끊는 중",
+          "caption": "FIN과 ACK를 주고받으며 연결을 끊는 동안이다. 먼저 끊는 쪽은 FIN-WAIT-1·FIN-WAIT-2·CLOSING·TIME-WAIT를, 나중에 끊는 쪽은 CLOSE-WAIT·LAST-ACK를 거친다. CLOSING은 두 쪽이 거의 함께 FIN을 보냈을 때 거친다.",
+          "sources": [
+            "tcp-connection.tcp-states"
+          ]
+        }
+      ],
+      "sources": [
+        "tcp-connection.tcp-states"
+      ]
+    },
+    "opening-states": {
+      "label": "3-way handshake로 연결을 맺는 동안 세그먼트가 오갈 때마다 클라이언트와 서버의 상태가 어떻게 바뀌는지 보이는 도식",
+      "svgLabel": "왼쪽 줄에 클라이언트의 CLOSED, SYN-SENT, ESTABLISHED, 오른쪽 줄에 서버의 LISTEN, SYN-RECEIVED, ESTABLISHED를 놓고, 그 사이에 SYN, SYN+ACK, ACK 세그먼트를 오가는 차례대로 위에서 아래로 놓은 그림",
+      "question": "연결을 맺는 동안 두 쪽의 상태는 어떻게 바뀔까?",
+      "idleCaption": "연결을 맺기 전 클라이언트는 CLOSED, 서버는 LISTEN이다. 버튼을 고르면 세그먼트가 오갈 때마다 두 쪽의 상태가 어떻게 바뀌고, 그 상태에서 무엇을 기다리는지 볼 수 있다.",
+      "legend": "왼쪽 줄이 클라이언트, 오른쪽 줄이 서버의 상태이고, 아래로 갈수록 나중이다. 가운데 노드는 오가는 세그먼트이고, 화살표는 세그먼트를 보낸 쪽의 상태에서 나와 그 세그먼트를 받은 쪽이 옮겨 간 상태로 들어간다.",
+      "nodes": {
+        "client-closed": "CLOSED",
+        "client-syn-sent": "SYN-SENT",
+        "client-established": "ESTABLISHED",
+        "server-listen": "LISTEN",
+        "server-syn-received": "SYN-RECEIVED",
+        "server-established": "ESTABLISHED",
+        "seg-syn": "SYN",
+        "seg-synack": "SYN+ACK",
+        "seg-ack": "ACK"
+      },
+      "notes": {
+        "head-client": "클라이언트",
+        "head-server": "서버",
+        "wait-synack": "SYN-SENT는 SYN+ACK를 기다린다",
+        "wait-ack": "SYN-RECEIVED는 ACK를 기다린다",
+        "client-first": "클라이언트가 먼저 ESTABLISHED",
+        "server-last": "서버는 ACK를 받아 ESTABLISHED"
+      },
+      "scenarios": [
+        {
+          "id": "syn-sent",
+          "label": "SYN을 보낸 뒤",
+          "caption": "클라이언트가 SYN을 켠 세그먼트를 보내고 CLOSED에서 SYN-SENT가 된다. 클라이언트는 이제 서버의 SYN+ACK를 기다린다. 서버는 이 SYN이 닿기 전까지 LISTEN에서 기다린다.",
+          "sources": [
+            "tcp-connection.opening-states"
+          ]
+        },
+        {
+          "id": "syn-received",
+          "label": "SYN을 받은 뒤",
+          "caption": "LISTEN이던 서버가 SYN을 받아 SYN+ACK로 답하고 SYN-RECEIVED가 된다. 서버는 이제 자기 SYN에 대한 확인, 곧 클라이언트의 ACK를 기다린다.",
+          "sources": [
+            "tcp-connection.opening-states"
+          ]
+        },
+        {
+          "id": "client-established",
+          "label": "클라이언트 연결됨",
+          "caption": "SYN+ACK를 받은 클라이언트가 ACK를 보내고 ESTABLISHED가 된다. 이 ACK가 서버에 닿을 때까지 서버는 아직 SYN-RECEIVED라서, 클라이언트가 서버보다 먼저 ESTABLISHED가 된다.",
+          "sources": [
+            "tcp-connection.opening-states"
+          ]
+        },
+        {
+          "id": "server-established",
+          "label": "서버 연결됨",
+          "caption": "클라이언트의 ACK를 받은 서버도 ESTABLISHED가 된다. 서버는 이 ACK를 받기만 하고 따로 보내는 세그먼트는 없다. 이로써 두 쪽 모두 ESTABLISHED다.",
+          "sources": [
+            "tcp-connection.opening-states"
+          ]
+        }
+      ],
+      "sources": [
+        "tcp-connection.opening-states"
+      ]
     }
   },
   "tables": {},

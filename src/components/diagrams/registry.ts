@@ -167,6 +167,7 @@ import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { NsgAssociationDiagram } from './NsgAssociationDiagram'
 import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
 import { OctalModeDiagram } from './OctalModeDiagram'
+import { OpeningStatesDiagram } from './OpeningStatesDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
@@ -258,6 +259,7 @@ import { TaskPlacementDiagram } from './TaskPlacementDiagram'
 import { TcpControlBitsDiagram } from './TcpControlBitsDiagram'
 import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
+import { TcpStatesDiagram } from './TcpStatesDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
@@ -504,6 +506,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-udp.transport-choice': TransportChoiceDiagram,
   'tcp-connection.three-way-handshake': ThreeWayHandshakeDiagram,
   'tcp-connection.connection-termination': ConnectionCloseDiagram,
+  'tcp-connection.tcp-states': TcpStatesDiagram,
+  'tcp-connection.opening-states': OpeningStatesDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
