@@ -1540,3 +1540,129 @@ phase 103 step 10은 `dump-topics.tsv`의 대표나 보조 주제가 `network-pr
 - **공식 문서**: [Bicep 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)의 「About the language」는 변환 주체를 Bicep CLI로 명시한다. 같은 문서의 「Simple syntax」·「Modularity」와 [JSON과 비교](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax)는 간결한 표현과 모듈 재사용을 뒷받침한다. [템플릿 개요](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)의 「Template deployment process」는 받은 템플릿을 Resource Manager가 처리한다고 한다. 2026-11-04 확인.
 - **처리**: 고쳐 쓴다. 배포할 때 Bicep CLI가 파일을 JSON으로 된 ARM 템플릿으로 바꾸고 Resource Manager가 그 결과를 처리한다고 쓴다. 변환이 Azure 서비스 내부에서 일어난다고 단정하지 않는다. 같은 구성을 더 짧게 적을 수 있고 모듈로 나누어 재사용한다는 것은 쓴다. 반복문·변수 같은 문법은 범위 밖이라 쓰지 않는다.
 - **쓰인 곳**: `azure-infrastructure-as-code.bicep`, `DeploymentMethodsTable`
+
+## D123 — Advisor로 솔루션 비용을 추정한다 (phase 108)
+
+- **덤프**: [덤프 NO.501 p292]는 Advisor로 할 수 있는 일로 「Azure 솔루션의 비용 추정」(B)을 답한다. 보기에는 「Azure 구독의 보안이 모범 사례를 따르는지 확인」(C)도 있다. 해설은 블로그 주소 하나뿐이다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)는 Advisor가 이미 있는 리소스의 구성과 사용 기록을 분석해 비용·성능·안정성·보안을 나아지게 할 권장 사항을 낸다고 하고, 보안 범주(Defender for Cloud의 권장 사항 포함)를 든다. [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)이 보여 주는 「어림한 절감액」은 사용률이 낮은 VM을 끄거나 줄일 때 아낄 금액이다. 새로 만들 솔루션의 비용을 미리 어림하는 것은 가격 계산기의 일이다(phase 106 `azure-cost-factors.pricing-calculator`). 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 보기 가운데 공식 문서와 맞는 것은 C(보안이 모범 사례를 따르는지 확인 — 보안 범주)다. 앱은 「Advisor가 솔루션 비용을 추정한다」를 쓰지 않고, 비용 범주는 「이미 쓰는 리소스에서 비용을 줄일 방법을 권한다」로 쓴다. 가격 계산기와 가르는 줄이 필요하면 「미리 어림하는 것은 가격 계산기, 쓰고 있는 것을 줄일 방법은 Advisor」로 쓴다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`
+
+## D124 — Advisor가 Entra ID 보안·VM 네트워크 설정을 권하는가 — NO.107과 NO.322의 답이 갈림 (phase 108)
+
+- **덤프**: 같은 세 진술(Azure AD 환경의 보안을 나아지게 할 권장 / Azure VM 비용을 줄일 권장 / Azure VM의 네트워크 설정을 구성할 권장)에 [덤프 NO.107 p64–66]의 답 그림(`p066_00.png`)은 예·예·아니요, [덤프 NO.322 p186]의 답 그림(`p186_03.png`)은 아니요·예·아니요를 표시한다. 그림을 직접 보고 확인했다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)는 권장 사항을 내는 서비스 목록과 Defender for Cloud의 권장 사항을 함께 보여 준다는 것을 들 뿐, Microsoft Entra ID 환경의 보안을 권한다는 문장은 없다. VM 비용 권장은 [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)에 있다. VM의 네트워크 설정을 권한다/권하지 않는다는 문장은 받아 둔 Advisor 문서에서 찾지 못했다(범주별 권장 사항 목록은 guide 「배경」에 따라 열지 않았다). 2026-11-06 확인.
+- **처리**: 둘째 진술(VM 비용을 줄일 권장)만 쓴다 — 두 덤프가 같고 공식 문서와 맞다. 첫째 진술은 덤프끼리 갈리고 공식 문서로 정할 수 없어 쓰지 않는다. 셋째 진술도 근거를 찾지 못해 쓰지 않는다(「네트워크 설정은 권하지 않는다」로도 쓰지 않는다). 앱의 보안 범주는 「Defender for Cloud가 낸 권장 사항을 함께 보여 준다」 한 줄로 쓰고 대상 서비스를 늘어놓지 않는다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D125 — Advisor 권장 사항을 관리 단위로 거른다 (phase 108)
+
+- **덤프**: [덤프 NO.120 p73]의 답 그림(`p073_03.png`·`p073_05.png`)은 「Advisor는 경고를 지원한다」 예, 「Advisor 권장 사항은 관리 단위(Administrative unit)로 거를 수 있다」 예, 「Advisor는 리소스 성능을 나아지게 할 권장을 낸다」 예를 표시한다.
+- **공식 문서**: [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor)는 구독·리소스 그룹·서비스로 거른다고 하고, [Advisor 포털 기본](https://learn.microsoft.com/en-us/azure/advisor/advisor-get-started)의 거르기 단추는 구독·권장 사항 상태·리소스 그룹·종류다. 관리 단위는 Microsoft Entra ID에서 사용자·그룹을 묶는 단위이고 Advisor의 거르기에 나오지 않는다. 새 권장 사항 알림은 [Advisor 경고](https://learn.microsoft.com/en-us/azure/advisor/advisor-alerts-portal)에, 성능 범주는 단원 2에 있다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 첫째·셋째는 맞다. 둘째는 공식 문서에 없으므로 쓰지 않고, 앱은 「구독·리소스 그룹·서비스(리소스 종류)로 거른다」로 쓴다.
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D126 — Advisor의 Backup 보호 VM 목록, 보안 점수가 내려간다, 30일 안에 적용해야 지원이 유지된다 (phase 108)
+
+- **덤프**: 같은 세 진술에 [덤프 NO.245 p144–146]의 답 그림(`p145_02.png`)과 해설 그림(`p146_00.png`)은 아니요·아니요·아니요를 표시한다. [덤프 NO.425 p247–248]의 답 그림(`p247_05.png`)은 예·아니요·아니요이고, 같은 문항의 해설 그림(`p247_07.png`)은 다시 아니요·아니요·아니요다. 그림을 직접 보고 확인했다. 첫째 진술(Backup으로 보호된 VM 목록)에서 덤프끼리, 그리고 NO.425 안에서 답이 갈린다.
+- **공식 문서**: 보안 점수는 높을수록 찾아낸 위험이 낮다([Defender for Cloud 보안 점수](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls), phase 105 항목). 권장 사항을 적용하면 점수가 내려간다는 문장은 없다 — 둘째 진술의 아니요와 맞다. 「Azure Backup으로 보호된 VM 목록을 만든다」와 「지원을 유지하려면 기한 안에 보안 권장을 적용해야 한다」를 말하거나 부정하는 문장은 받아 둔 Advisor·Defender for Cloud 문서에서 찾지 못했다. Advisor 개요의 권장 사항 상태는 담당자가 연기·해제할 수 있다고 한다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 둘째·셋째 진술의 아니요는 덤프끼리 같고 둘째는 공식 문서와 맞는다. 첫째는 덤프끼리 갈리고 공식 문서로 정할 수 없다. 보안 점수는 앱이 다시 가르치지 않는다(phase 105 `azure-security-model.defender-for-cloud`의 몫). 권장 사항은 담당자가 따르거나 미루거나 해제한다고 쓰고, 기한·지원 조건은 쓰지 않는다. Backup으로 보호된 VM 목록은 쓰지 않는다(못 찾음).
+- **쓰인 곳**: `azure-monitoring.azure-advisor`
+
+## D127 — Azure 상태와 Azure Service Health — 「모든 서비스의 상태」를 어디서 보나 (phase 108)
+
+- **덤프**: [덤프 NO.129 p80]의 답 그림(`p080_04.png`)은 「Azure 서비스와 지역의 상태 개요를 주는 것」으로 Azure status를 고른다. 보기에 Azure Service Health도 있다. [덤프 NO.374 p215]의 답 그림(`p215_04.png`)은 「Azure 서비스·지역·특정 리소스의 상태를 전체로 보여 주는 것」으로 Azure Service Health를 고른다(보기에 Azure status는 없다). [덤프 NO.168 p102]·[덤프 NO.223 p133–134]의 답 그림(`p102_04.png`·`p133_10.png`)은 「Azure Service Health에서 배포한 서비스와 Azure의 다른 모든 서비스의 상태를 본다」 예, 「서비스가 실패하면 경고받는 규칙을 만든다」 예, 「서비스 실패가 VM에 영향을 주지 않게 막는다」 아니요를 표시한다.
+- **공식 문서**: [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)와 [Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health)은 Azure Service Health를 Azure 상태·Service Health·Resource Health 셋의 묶음이라 한다. 모든 지역의 모든 서비스를 보는 것은 Azure 상태이고, Service Health는 내가 쓰는 서비스와 지역만 보여 준다. 경고는 Service Health에서 만든다([Service Health 경고](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)). 장애를 막는 기능은 어느 문서에도 없다 — 알리고 지원으로 이어 줄 뿐이다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 묶음(Azure Service Health)이 전체부터 리소스 하나까지를 다룬다는 뜻으로는 NO.374·168·223의 답이 맞고, 보기로 둘이 함께 나오면 전체 개요는 Azure 상태라는 NO.129도 맞다 — 덤프끼리 어긋난 것이 아니라 묶음과 보기의 이름이 같아 생긴 차이다. 앱은 「모든 지역의 모든 서비스 = Azure 상태, 내가 쓰는 서비스·지역 = Service Health, 리소스 하나 = Resource Health, 셋의 묶음 = Azure Service Health」로 쓰고, Service Health(보기)가 Azure의 모든 서비스를 보여 준다고 쓰지 않는다. 장애를 막는다고 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## D128 — Azure 서비스의 상태·장애 알림을 Monitor 블레이드에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.80 p44–46]의 답 그림(`p045_00.png`)은 「Azure 서비스의 상태를 지켜본다」에 Monitor, 「보안 권장 사항을 본다」에 Advisor, 「VM 이미지를 찾아본다」에 Marketplace를 고른다(보기에 Service Health는 없다). [덤프 NO.346 p197]은 VM 1의 가용성에 영향을 줄 수 있는 서비스 장애 알림을 포털에서 볼 서비스로 Azure Monitor(B)를 답한다(보기에 Service Health·Resource Health는 없고, 「Azure virtual machines」가 있다).
+- **공식 문서**: Azure 자체의 장애·유지 관리를 알리는 것은 Azure Service Health다([Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health), [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)). Service Health 경고와 Resource Health 경고는 Azure Monitor의 활동 로그 경고다([Azure Monitor 경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview) 「Activity log alerts」). Resource Health는 리소스(VM)의 왼쪽 메뉴에서도 연다([Resource Health FAQ](https://learn.microsoft.com/en-us/azure/service-health/resource-health-faq)). 「Monitor 블레이드에서 Azure 서비스의 상태를 본다」는 문장은 받아 둔 문서에서 찾지 못했다. 보안 권장 사항을 Advisor에서 보는 것은 맞다(Advisor 개요 — Defender for Cloud의 권장 사항 포함). 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 앱은 Azure 서비스의 장애와 유지 관리를 보는 도구를 Azure Service Health로, VM 한 대가 쓸 수 있는지를 보는 것을 Resource Health로 쓴다. 두 경고가 Azure Monitor 경고의 한 종류라는 연결은 step 3·5가 쓸지 판단한다(Azure Monitor 쪽 범위). NO.80의 보안 권장 사항 → Advisor는 맞다.
+- **쓰인 곳**: `azure-monitoring.monitoring-tools`, `azure-monitoring.service-health`, `azure-monitoring.resource-health`, `MonitoringToolsDiagram`
+
+## D129 — 계획된 유지 관리 목록을 「Help + support」 블레이드에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.491 p282–284]의 답 그림(`p283_00.png`)은 구독의 가용성에 영향을 줄 수 있는 계획된 유지 관리 이벤트 목록을 볼 블레이드로 옛 포털 메뉴의 「Help + support」를 표시한다. 같은 사실을 묻는 [덤프 NO.218 p131–132]는 Azure Service Health(B)를 답한다.
+- **공식 문서**: [Service Health 포털](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)의 왼쪽 메뉴 「계획된 유지 관리」에서 계획된 유지 관리 이벤트 목록을 본다. [Learn 단원 3](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/3-describe-azure-service-health)도 Service Health가 계획된 유지 관리를 보여 준다고 한다. 「Help + support」에서 이 목록을 본다는 문장은 찾지 못했다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. NO.218 쪽을 따른다 — 계획된 유지 관리는 Azure Service Health의 Service Health 보기에서 보고, 경고를 걸어 미리 알림을 받는다. 옛 포털 메뉴 이름은 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## G69 — Advisor의 범주를 넷으로, 「가용성」으로 적고 NSG 예를 든다 (phase 108)
+
+- **용어집**: [용어집 4-16]은 Advisor가 비용·보안·성능·가용성 측면에서 리소스 구성을 분석해 최적화 권장을 낸다고 하고, 예로 CPU 사용률이 낮은 VM 줄이기와 NSG를 설정하지 않은 자원의 경고를 든다.
+- **공식 문서**: [Advisor 개요](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview)와 [Learn 단원 2](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/2-describe-purpose-of-azure-advisor)의 범주는 다섯이다 — 안정성(Reliability)·보안·성능·운영 우수성·비용. 「가용성」은 안정성 범주의 옛 이름(High Availability)으로 보인다([Advisor 경고](https://learn.microsoft.com/en-us/azure/advisor/advisor-alerts-portal)가 그 이름을 쓴다). 사용률이 낮은 VM을 끄거나 줄이라는 권장은 [비용 권장 사항](https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)에 있다. NSG를 설정하지 않은 자원을 알린다는 권장은 받아 둔 문서에서 찾지 못했다. 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 범주는 다섯으로 쓰고 이름은 「안정성」이다(official.md 표기 정리). VM 예는 쓴다. NSG 예는 쓰지 않는다(못 찾음). 「경고」라는 말로 보안 권장 사항을 알린다고 쓰지 않는다 — Advisor 경고는 보안 권장 사항을 지원하지 않는다(Advisor 경고 Note).
+- **쓰인 곳**: `azure-monitoring.azure-advisor`, `AdvisorRecommendationDiagram`
+
+## G70 — Service Health가 Azure 서비스 전반의 상태를 보여 주는 포털이다 (phase 108)
+
+- **용어집**: [용어집 4-17]은 Azure Service Health를 Azure 서비스 전반의 상태·장애·정기 점검 일정을 지켜보는 포털이라 하고, 특정 지역에 장애가 나면 구독이 영향을 받는지 알려 주고 해결 과정을 따라가게 돕는다고 한다.
+- **공식 문서**: [Service Health 개요](https://learn.microsoft.com/en-us/azure/service-health/overview)는 Azure Service Health를 세 보기의 묶음이라 한다. 전반(모든 지역의 모든 서비스)을 보는 것은 공개 페이지인 Azure 상태이고, 포털의 Service Health는 내가 쓰는 서비스와 지역의 장애·계획된 유지 관리·상태 권고를 보여 준다([Service Health 포털](https://learn.microsoft.com/en-us/azure/service-health/service-health-portal-update)). 내 서비스가 실행되는 지역에 영향을 줄 때 경고를 낸다는 것은 [Service Health 경고](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)에 있다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「정기 점검」은 「계획된 유지 관리」로 쓴다(정기적이라는 말은 문서에 없다). 지역 장애가 내 구독에 영향을 주는지 알리고 지난 기록을 남긴다는 것은 맞다. 「전반의 상태를 보는 포털」은 묶음 전체로만 맞고, 포털의 Service Health 보기는 내가 쓰는 서비스·지역만 보여 준다고 쓴다(D127).
+- **쓰인 곳**: `azure-monitoring.service-health`, `HealthViewsDiagram`
+
+## D130 — 여러 리소스의 이벤트를 한곳에 모아 엮는 서비스를 Event Hubs로 답한다 (phase 108)
+
+- **덤프**: [덤프 NO.1 p2]는 여러 리소스의 이벤트를 한곳에 모아 서로 엮어 볼 서비스로 Azure Event Hubs(A)를 답한다. 보기에는 Azure Monitor(C)와 Azure Log Analytics(D)가 있다. 해설은 Event Hubs를 대량의 이벤트를 받아들이는 스트리밍 서비스로 설명할 뿐, 엮어 보는 일은 말하지 않는다. 주제 지도 「덤프 정답이 의심스러운 문항」의 하나다.
+- **공식 문서**: [Azure Monitor 데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform) — Azure Monitor 로그는 활동 로그·리소스 로그를 다른 모니터링 데이터와 함께 모아 리소스 전체에 걸쳐 깊이 분석하게 하고(「Logs in Azure Monitor」), Event Hubs는 모니터링 데이터를 외부 도구로 넘길 때 거치는 길이다(「Stream data to external systems」). [활동 로그](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)를 Log Analytics 작업 영역에 보내면 다른 로그 데이터와 로그 쿼리로 엮어 본다(「Log Analytics workspace」). 2026-11-06 확인.
+- **처리**: 고쳐 쓴다. 여러 리소스의 기록을 한곳(Log Analytics 작업 영역)에 모아 쿼리로 엮어 보는 것은 Azure Monitor와 Log Analytics의 일로 쓴다. Event Hubs는 앱에 쓰지 않는다(범위 밖 — 주제 지도 「넣지 않는 것」 `x-data-ai-iot`).
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.log-analytics`
+
+## D131 — 누가 VM을 껐는지는 Azure Monitor가 아니라 활동 로그에서 본다 (phase 108)
+
+- **덤프**: [덤프 NO.60 p33]은 밑줄 친 「Azure Monitor」를 「Azure Activity Log」(C)로 바꾸라고 답하고, 해설은 「Azure Monitor가 아니라 활동 로그」로 지난 14일 동안 특정 VM을 끈 사용자를 본다고 쓴다. 같은 사실을 묻는 [덤프 NO.114 p70–71]과 [덤프 NO.452 p263]의 답 그림도 Azure Activity Log다.
+- **공식 문서**: [활동 로그](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)는 Azure Monitor가 관리 작업을 기록하는 기능이다(첫 문단). [데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform)은 구독 단위의 이벤트가 쓰이는 활동 로그를 Azure Monitor 메뉴에서 연다고 한다(「Logs in Azure Monitor」의 Note). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 답(활동 로그)은 맞다. 「Azure Monitor가 아니다」는 쓰지 않는다 — 활동 로그는 Azure Monitor의 기능이고 Azure Monitor 메뉴에서도 연다. 문항이 「Azure Monitor」와 「활동 로그」를 서로 다른 답으로 세우지 않는다. 기간(14일·90일)은 쓰지 않는다.
+- **쓰인 곳**: `azure-monitoring.activity-log`
+
+## D132 — Azure Monitor와 통합되는 것에서 Service Health·Advisor를 뺀다 — NO.273·404 (phase 108)
+
+- **덤프**: [덤프 NO.273 p160]과 [덤프 NO.404 p233]은 Azure Monitor와 통합되는 둘로 Application Insights와 Log Analytics를 답하고, Azure Service Health·Azure Advisor·Azure 상태는 답에서 뺀다.
+- **공식 문서**: [Azure Monitor 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview)는 Application Insights를 Azure Monitor의 기능으로, Log Analytics를 로그를 분석하는 도구로 든다 — 덤프의 두 답은 맞다. 그런데 [Azure Monitor 경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)는 Service Health 경고와 Resource Health 경고를 Azure Monitor의 활동 로그 경고로 두고, [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 작업 그룹을 Azure Monitor·Service Health·Azure Advisor가 함께 쓴다고 한다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. Application Insights와 Log Analytics는 Azure Monitor의 기능·도구로 쓴다. Service Health와 Advisor는 Azure Monitor와 따로 있는 서비스로 쓰되, 그 경고·알림이 Azure Monitor의 경고 규칙·작업 그룹을 쓴다는 연결을 지우지 않는다. 문항에서 Service Health를 「Azure Monitor와 아무 관계가 없는 것」으로 세우지 않는다. Azure 상태(공개 페이지)는 이 연결이 없다.
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.monitor-alerts`
+
+## D133 — Entra ID 활동 로그를 Azure Monitor에 나타나게 설정할 수 없다 (phase 108)
+
+- **덤프**: [덤프 NO.319 p184]의 답 그림(`p184_06.png`)은 「Azure AD 활동 로그가 Azure Monitor에 나타나게 설정할 수 있다」에 아니요, 「Azure Monitor에서 경고를 만든다」·「Azure Monitor로 여러 구독의 리소스를 지켜본다」에 예를 표시한다.
+- **공식 문서**: [Microsoft Entra 로그를 Azure Monitor 로그와 통합](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs)은 Entra ID의 진단 설정으로 로그인 활동과 테넌트 안의 변경 감사 기록을 Azure Monitor에 넣어 함께 분석한다고 한다(첫 문단). [Azure Monitor 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview)도 Entra ID의 감사 로그를 모은다고 한다(「Monitor your cloud resources」). 둘째·셋째 진술의 「예」는 맞다 — 경고는 Azure Monitor의 기능이고, [진단 설정](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings)은 다른 구독의 작업 영역으로도 로그를 보낸다(「Destinations」). 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 첫 진술의 덤프 답은 공식 문서와 어긋나지만, Entra ID 로그를 Azure Monitor로 보내는 일은 학습 가이드의 줄에 없어 앱에 쓰지 않는다. 둘째·셋째 진술은 맞으므로 쓸 수 있다.
+- **쓰인 곳**: 없음(판정만). 둘째·셋째 진술은 `azure-monitoring.monitor-alerts`·`azure-monitor`가 쓸 수 있다
+
+## D134 — Azure Monitor는 성능 데이터를 Log Analytics 작업 영역에 저장한다 (phase 108)
+
+- **덤프**: [덤프 NO.332 p190]은 Azure Monitor가 성능 데이터를 저장하는 곳으로 Log Analytics 작업 영역(A)을 답한다. 다른 보기는 스토리지 계정·Event Hubs·이벤트 구독이다.
+- **공식 문서**: [Azure Monitor 메트릭](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/data-platform-metrics)은 Azure Monitor 로그가 로그와 성능 데이터를 모은다고 한다(첫 Note) — 보기 넷 가운데 A는 맞다. 그러나 [데이터 플랫폼](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/data-platform)은 메트릭(정해진 간격으로 잰 숫자 값 — VM의 CPU 사용률 같은 것)을 Log Analytics 작업 영역이 아니라 시계열 데이터베이스(Azure Monitor 메트릭 데이터베이스)에 두고, 데이터 원본은 작업 영역이나 메트릭 데이터베이스 또는 둘 다에 쓴다고 한다(비교 표, 「Collect monitoring data」). Azure 리소스의 플랫폼 메트릭은 설정 없이 메트릭 쪽에 모인다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「성능 데이터는 모두 Log Analytics 작업 영역에 저장된다」로 쓰지 않는다. 앱은 메트릭은 메트릭 데이터베이스에, 로그는 Log Analytics 작업 영역에 모인다고 가른다. 문항에서 「성능 수치가 어디에 모이나」를 물을 때 정답이 둘로 읽히지 않게 메트릭인지 로그인지를 문제문에 준다.
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `MonitorDataDiagram`
+
+## D135 — Log Analytics 경고의 쿼리·기간·빈도 문항 — 보기가 잘려 있다 (phase 108)
+
+- **덤프**: [덤프 NO.85 p48–49]는 Azure Cosmos DB의 요청 비용이 10분 동안 10번 넘게 40단위를 넘으면 Log Analytics에서 경고를 내는 설정 둘을 고르게 하고, 답을 B(기간 10·빈도 10)와 C로 둔다. 그런데 보기 C의 글은 「requestCharge_s가 … 를 넘는 때를 찾는 검색 쿼리를 만든다」에서 숫자가 빠진 채 끝난다.
+- **공식 문서**: [경고 종류](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types)는 로그 검색 경고가 Log Analytics 쿼리로 로그를 정해 둔 빈도로 평가한다고 한다(「Log search alerts」). 쿼리의 열 이름과 기간·빈도 값이 맞는지는 덤프 글이 잘려 확인할 수 없다. 2026-11-06 확인.
+- **처리**: 쓰지 않는다. 로그 검색 경고가 쿼리를 정해 둔 빈도로 평가한다는 것까지만 쓰고, 쿼리 문법·열 이름·기간과 빈도 값은 쓰지 않는다(guide 「배경」 — KQL 문법). Azure Cosmos DB는 이 주제의 범위 밖이다.
+- **쓰인 곳**: `azure-monitoring.monitor-alerts`(로그 검색 경고 한 줄)
+
+## G71 — Azure Monitor가 Application Insights·Log Analytics에 「연동」되고, DevOps 파이프라인의 확장 작업을 부른다 (phase 108)
+
+- **용어집**: [용어집 4-18]은 Azure Monitor를 지표·로그 수집, 알림, 시각화를 함께 주는 모니터링 플랫폼이라 하고, Application Insights와 Log Analytics에 「연동」해 깊이 진단한다고 한다. [용어집 4-21](항목 이름은 다시 Azure Monitor)은 모은 지표나 로그 쿼리 결과가 임계치를 넘으면 알림을 보내거나 자동 스크립트를 실행한다고 하고, 예로 CPU 80% 이상이 이어질 때의 알림을 들며, DevOps 파이프라인에서 확장 작업을 부를 수도 있다고 한다.
+- **공식 문서**: [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 Log Analytics를 Azure Monitor가 모은 데이터에 쿼리하는 포털의 도구로, Application Insights를 Azure Monitor의 기능으로 든다. 경고는 메트릭이나 로그에 기반하고, VM의 CPU가 80%를 넘는 상태로 이어지면 이메일을 보내는 예를 든다. [경고 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)는 작업 그룹이 알림을 보내거나 자동화된 작업 흐름을 시작한다고 한다. DevOps 파이프라인에서 확장 작업을 부른다는 문장은 받아 둔 문서에서 찾지 못했다. 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「연동」 대신 Application Insights와 Log Analytics를 Azure Monitor의 도구·기능으로 쓴다. 4-21의 내용은 Azure Monitor 경고의 것으로 쓰고, 「자동 스크립트」는 「작업 그룹이 자동화를 시작한다」로 쓴다. CPU 80%는 담당자가 정하는 예시 값으로 쓴다. DevOps 파이프라인 확장 작업은 쓰지 않는다(못 찾음). 「지표」 대신 「메트릭」을 쓴다(official.md 표기 정리).
+- **쓰인 곳**: `azure-monitoring.azure-monitor`, `azure-monitoring.monitor-alerts`
+
+## G72 — Log Analytics를 KQL로 분석하는 「서비스」라 한다 (phase 108)
+
+- **용어집**: [용어집 4-19]는 Log Analytics를 Azure Monitor가 모은 로그 데이터를 Kusto 쿼리(KQL)로 분석하고 차트로 그리는 서비스라 하고, 큰 로그를 빨리 찾고 모아 원인 찾기·사용 추이·보안 이벤트 추적에 쓴다고 한다.
+- **공식 문서**: [Log Analytics 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview)는 Log Analytics를 Azure 포털 안의 도구라 하고, KQL을 모두 쓰는 KQL 모드 말고 눌러서 거르는 단순 모드가 있다고 한다(첫 문단). 결과를 표나 차트로 본다(「Chart view」). 로그는 Log Analytics 작업 영역에 모인다([작업 영역 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview)). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. Log Analytics는 「서비스」가 아니라 포털의 도구로 쓰고, 로그를 모아 두는 곳(Log Analytics 작업 영역)과 가른다. KQL만 쓰는 것처럼 쓰지 않는다 — 단순 모드가 있다. 보안 이벤트 추적은 쓰지 않는다(Microsoft Sentinel·Defender for Cloud의 몫).
+- **쓰인 곳**: `azure-monitoring.log-analytics`
+
+## G73 — Application Insights가 서버·클라이언트 로그를 자동으로 모으는 서비스다 (phase 108)
+
+- **용어집**: [용어집 4-20]은 Application Insights를 애플리케이션 성능(APM)·예외·트랜잭션 흐름을 지켜보는 서비스라 하고, 서버·클라이언트 로그를 자동으로 모아 병목을 찾고 알림으로 장애·오류를 바로 알아챈다고 한다.
+- **공식 문서**: [Application Insights 개요](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)는 Application Insights를 Azure Monitor의 APM 기능이라 한다. [Learn 단원 4](https://learn.microsoft.com/en-us/training/modules/describe-monitoring-tools-azure/4-describe-azure-monitor)는 앱 코드에 SDK를 넣거나 코드를 바꾸지 않고 에이전트를 켜서 쓴다고 하고, [자동 계측](https://learn.microsoft.com/en-us/azure/azure-monitor/app/codeless-overview)은 코드를 바꾸지 않는 길을 지원 표의 Azure 호스팅 환경에서 쓰고 표에 없는 환경이면 코드에 넣는 길을 쓰라고 한다(「Supported environments, languages, and resource providers」). 2026-11-06 확인.
+- **처리**: 한정해 쓴다. 「서비스」 대신 Azure Monitor의 기능으로 쓴다. 「자동으로 모은다」는 어디서나 저절로 되는 것처럼 쓰지 않고, 코드를 바꾸지 않는 길은 지원하는 환경에서만이라고 쓴다. 보는 것은 Learn 단원 4의 목록(요청·응답 시간·실패율, 종속성, 페이지 로드 시간·사용자·세션, 서버 성능)으로 쓴다.
+- **쓰인 곳**: `azure-monitoring.application-insights`

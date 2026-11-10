@@ -1,0 +1,230 @@
+{
+  "diagrams": {
+    "port-demux": {
+      "label": "호스트에 도착한 데이터를 전송 계층이 목적지 포트로 받을 프로그램에게 나눠 주는 도식",
+      "svgLabel": "목적지가 192.0.2.10:50001과 192.0.2.10:50002인 데이터 둘, 그리고 호스트 192.0.2.10 안의 전송 계층과 포트 50001을 쓰는 웹 브라우저, 포트 50002를 쓰는 메일 프로그램",
+      "question": "도착한 데이터는 어느 프로그램으로 갈까?",
+      "idleCaption": "호스트 192.0.2.10에 도착한 데이터 둘과, 그 호스트 안에서 동시에 통신하는 웹 브라우저(포트 50001)와 메일 프로그램(포트 50002)을 놓았다. 버튼을 고르면 데이터가 어디까지 가는지 볼 수 있다.",
+      "legend": "얇은 선 박스가 도착한 데이터와 호스트이고, 화살표는 데이터가 가는 방향이다. 데이터 노드는 목적지 IP 주소와 목적지 포트를 주소:포트로 적었고, 프로그램 곁의 곁말은 그 프로그램이 쓰는 포트다.",
+      "nodes": {
+        "data-1": "192.0.2.10:50001",
+        "data-2": "192.0.2.10:50002",
+        "transport": "전송 계층",
+        "browser": "웹 브라우저",
+        "mail": "메일 프로그램"
+      },
+      "groups": {
+        "arrivals": "도착한 데이터의 목적지",
+        "host": "호스트 192.0.2.10"
+      },
+      "notes": {
+        "browser-port": "포트 50001",
+        "mail-port": "포트 50002"
+      },
+      "scenarios": [
+        {
+          "id": "ip-only",
+          "label": "IP 주소까지",
+          "caption": "두 데이터는 목적지 IP 주소가 192.0.2.10으로 같아서, IP 주소로는 이 호스트까지만 온다. 그 안의 웹 브라우저와 메일 프로그램 가운데 누구에게 줄지는 IP 주소로 가리지 못한다.",
+          "sources": [
+            "ports.port-number"
+          ]
+        },
+        {
+          "id": "to-browser",
+          "label": "포트 50001",
+          "caption": "목적지 포트가 50001인 데이터는 전송 계층이 50001번을 쓰는 웹 브라우저에게 넘긴다. 목적지 IP 주소는 다른 데이터와 같아도, 목적지 포트가 받을 프로그램을 정한다.",
+          "sources": [
+            "ports.port-number"
+          ]
+        },
+        {
+          "id": "to-mail",
+          "label": "포트 50002",
+          "caption": "목적지 포트가 50002인 데이터는 전송 계층이 50002번을 쓰는 메일 프로그램에게 넘긴다. 같은 호스트에 온 데이터라도 목적지 포트가 다르면 다른 프로그램에게 간다.",
+          "sources": [
+            "ports.port-number"
+          ]
+        }
+      ],
+      "sources": [
+        "ports.port-number"
+      ]
+    },
+    "port-ranges": {
+      "label": "포트 번호 0~65535를 잘 알려진 포트·등록된 포트·동적 포트의 세 범위로 나누고 범위마다 예를 보이는 도식",
+      "svgLabel": "잘 알려진 포트 0 ~ 1023과 그 예 80 · HTTP, 등록된 포트 1024 ~ 49151과 그 예 8080 · HTTP 대체 번호, 동적 포트 49152 ~ 65535와 그 예 50001 · 웹 브라우저",
+      "question": "포트 번호 0~65535는 어떻게 나뉠까?",
+      "idleCaption": "포트 번호 0부터 65535까지를 IANA가 나눈 세 범위와, 범위마다 이 주제의 글에 나온 번호 하나씩을 놓았다. 버튼을 고르면 그 범위의 번호를 누가 어떻게 쓰는지 볼 수 있다.",
+      "legend": "얇은 선 박스 하나가 범위 하나다. 왼쪽 노드는 그 범위의 번호, 오른쪽 노드는 그 범위에 드는 예이고, 박스 오른쪽 위 곁말은 번호를 IANA가 어떻게 정해 주는지다.",
+      "nodes": {
+        "range-1": "0 ~ 1023",
+        "example-1": "80 · HTTP",
+        "range-2": "1024 ~ 49151",
+        "example-2": "8080 · HTTP 대체 번호",
+        "range-3": "49152 ~ 65535",
+        "example-3": "50001 · 웹 브라우저"
+      },
+      "groups": {
+        "well-known": "잘 알려진 포트",
+        "registered": "등록된 포트",
+        "dynamic": "동적 포트"
+      },
+      "notes": {
+        "assign-1": "IANA가 정해 준다",
+        "assign-2": "IANA에 신청해 정해 받는다",
+        "assign-3": "IANA가 정해 주지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "well-known",
+          "label": "잘 알려진 포트",
+          "caption": "0번부터 1023번까지는 잘 알려진 포트다. 널리 쓰는 서비스에 IANA가 정해 준 번호로, 웹 페이지를 주고받는 HTTP가 80번을 기본으로 쓴다. 0번은 남겨 둔 번호라 어떤 서비스에도 정해 주지 않는다.",
+          "sources": [
+            "ports.port-ranges"
+          ]
+        },
+        {
+          "id": "registered",
+          "label": "등록된 포트",
+          "caption": "1024번부터 49151번까지는 등록된 포트다. 응용 프로그램을 만든 쪽이 IANA에 신청해 정해 받아 쓰는 번호로, 8080번은 HTTP 대체 번호라는 이름으로 정해져 있다.",
+          "sources": [
+            "ports.port-ranges"
+          ]
+        },
+        {
+          "id": "dynamic",
+          "label": "동적 포트",
+          "caption": "49152번부터 65535번까지는 동적 포트다. IANA가 누구에게도 정해 주지 않아 등록 없이 비어 있는 번호를 골라 잠깐 쓰고, 운영체제가 웹 브라우저에게 정해 준 50001도 이 범위에 든다. 서비스의 고정 번호로는 쓰지 않는다.",
+          "sources": [
+            "ports.port-ranges"
+          ]
+        }
+      ],
+      "sources": [
+        "ports.port-ranges"
+      ]
+    },
+    "well-known-ports": {
+      "label": "널리 쓰는 서비스 여덟이 기본으로 쓰는 포트 번호와 전송 계층 프로토콜을 서비스마다 한 줄씩 놓은 표 모양의 도식",
+      "svgLabel": "FTP 20 · 21 TCP, SSH 22 TCP, Telnet 23 TCP, SMTP 25 TCP, DNS 53 UDP · TCP, DHCP 67 · 68 UDP, HTTP 80 TCP, HTTPS 443 TCP",
+      "question": "어떤 서비스가 몇 번 포트에서 기다릴까?",
+      "idleCaption": "널리 쓰는 서비스 여덟과, 그 서버 프로그램이 기본으로 기다리는 포트 번호, 쓰는 전송 계층 프로토콜을 한 줄씩 놓았다. 버튼을 고르면 하는 일이 비슷한 서비스끼리 묶어 볼 수 있다.",
+      "legend": "한 줄이 서비스 하나다. 왼쪽부터 서비스 이름, 기본 포트 번호, 전송 계층 프로토콜이고, 번호가 둘인 칸은 한 서비스가 두 번호를 쓴다는 뜻이다. 표 위의 곁말은 열 이름이다.",
+      "nodes": {
+        "ftp-name": "FTP",
+        "ftp-port": "20 · 21",
+        "ftp-transport": "TCP",
+        "ssh-name": "SSH",
+        "ssh-port": "22",
+        "ssh-transport": "TCP",
+        "telnet-name": "Telnet",
+        "telnet-port": "23",
+        "telnet-transport": "TCP",
+        "smtp-name": "SMTP",
+        "smtp-port": "25",
+        "smtp-transport": "TCP",
+        "dns-name": "DNS",
+        "dns-port": "53",
+        "dns-transport": "UDP · TCP",
+        "dhcp-name": "DHCP",
+        "dhcp-port": "67 · 68",
+        "dhcp-transport": "UDP",
+        "http-name": "HTTP",
+        "http-port": "80",
+        "http-transport": "TCP",
+        "https-name": "HTTPS",
+        "https-port": "443",
+        "https-transport": "TCP"
+      },
+      "notes": {
+        "col-name": "서비스",
+        "col-port": "포트 번호",
+        "col-transport": "전송 계층 프로토콜"
+      },
+      "scenarios": [
+        {
+          "id": "web",
+          "label": "웹",
+          "caption": "웹 페이지를 주고받는 HTTP는 TCP 80번을, 그 통신을 TLS로 보호한 HTTPS는 TCP 443번을 기본으로 쓴다. 하는 일은 같아도 서로 다른 프로토콜이라 쓰는 번호가 다르다.",
+          "sources": [
+            "ports.well-known-ports"
+          ]
+        },
+        {
+          "id": "remote-file",
+          "label": "원격 접속·파일",
+          "caption": "원격 접속에는 내용을 암호화하는 SSH가 TCP 22번을, 암호화하지 않는 Telnet이 TCP 23번을 쓴다. 파일을 주고받는 FTP는 명령이 오가는 제어 연결에 21번을, 파일 내용이 오가는 데이터 연결에 20번을 쓴다.",
+          "sources": [
+            "ports.well-known-ports"
+          ]
+        },
+        {
+          "id": "mail-name-address",
+          "label": "메일·이름·주소",
+          "caption": "메일을 보내는 SMTP는 TCP 25번을 쓰고, 이름으로 IP 주소를 찾는 DNS는 53번을 주로 UDP로, TCP로도 쓴다. IP 주소 같은 설정을 나눠 주는 DHCP는 UDP를 쓰고, 서버가 67번에서 요청을 받으며 답은 클라이언트의 68번으로 간다.",
+          "sources": [
+            "ports.well-known-ports"
+          ]
+        }
+      ],
+      "sources": [
+        "ports.well-known-ports"
+      ]
+    },
+    "client-server-ports": {
+      "label": "클라이언트의 웹 브라우저가 서버의 웹 서버 프로그램에 보낸 요청과 돌아온 응답의 포트 번호, 그리고 같은 서버 포트에 이어진 두 번째 클라이언트를 보이는 도식",
+      "svgLabel": "웹 브라우저 192.0.2.10:50001과 192.0.2.11:50001, 웹 서버 프로그램 198.51.100.10:80, 요청의 출발지 포트 50001과 목적지 포트 80, 응답의 출발지 포트 80과 목적지 포트 50001",
+      "question": "응답은 어느 포트로 돌아올까?",
+      "idleCaption": "두 클라이언트의 웹 브라우저와 서버의 웹 서버 프로그램, 그리고 요청과 응답에 적히는 포트 번호를 놓았다. 버튼을 고르면 요청과 응답이 오가는 차례와, 같은 서버 포트에 클라이언트 둘이 이어진 모습을 볼 수 있다.",
+      "legend": "얇은 선 박스는 프로그램과 그 프로그램이 주고받는 데이터다. 프로그램 박스 안 노드는 그 프로그램이 쓰는 IP 주소:포트이고, 요청·응답 박스 안 노드는 그 데이터에 적힌 출발지 포트와 목적지 포트다. 화살표는 데이터가 가는 방향이다.",
+      "nodes": {
+        "client-1": "192.0.2.10:50001",
+        "client-2": "192.0.2.11:50001",
+        "server": "198.51.100.10:80",
+        "req-src": "출발지 포트 50001",
+        "req-dst": "목적지 포트 80",
+        "res-src": "출발지 포트 80",
+        "res-dst": "목적지 포트 50001"
+      },
+      "groups": {
+        "client-1-host": "웹 브라우저",
+        "client-2-host": "웹 브라우저",
+        "server-host": "웹 서버 프로그램",
+        "request": "요청",
+        "response": "응답"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "요청",
+          "caption": "웹 브라우저는 운영체제가 골라 준 50001을 출발지 포트로, 웹 서버 프로그램이 기다리는 80을 목적지 포트로 적어 요청을 보낸다. 서버의 전송 계층은 목적지 포트 80을 보고 요청을 웹 서버 프로그램에게 넘긴다.",
+          "sources": [
+            "ports.client-server-ports"
+          ]
+        },
+        {
+          "id": "response",
+          "label": "응답",
+          "caption": "웹 서버 프로그램은 요청의 두 번호를 맞바꿔 출발지 포트 80, 목적지 포트 50001로 응답을 보낸다. 클라이언트의 전송 계층은 목적지 포트 50001을 보고 응답을 웹 브라우저에게 넘긴다.",
+          "sources": [
+            "ports.client-server-ports"
+          ]
+        },
+        {
+          "id": "two-clients",
+          "label": "두 클라이언트",
+          "caption": "두 클라이언트의 운영체제가 같은 50001을 골라도 IP 주소가 192.0.2.10과 192.0.2.11로 달라서, 서버는 둘을 다른 상대로 본다. 연결은 양쪽의 IP 주소와 포트 번호 넷으로 정해진다.",
+          "sources": [
+            "ports.client-server-ports"
+          ]
+        }
+      ],
+      "sources": [
+        "ports.client-server-ports"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

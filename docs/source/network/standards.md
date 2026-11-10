@@ -67,6 +67,17 @@ GNU GRUB 매뉴얼은 `www.gnu.org`가 이날 응답하지 않아(두 번 시도
 같은 명령의 페이지가 여럿이면(kill(1)의 util-linux판과 procps-ng판, last(1)의 GNU acct판과 util-linux판, cronie의 crontab(1)과 POSIX `crontab`) 항목에 어느 것인지 적는다.
 「(phase 76 step 9)」가 붙은 줄과 항목은 phase 76 step 9에서 `linux-accounts`(사용자 계정과 UID, /etc/passwd, /etc/shadow, useradd, chage, 로그인 기록) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-05).
 man7.org는 이날 IPv6로는 접속되지 않아 IPv4로 내려받아 읽었다. 이 주제에서도 같은 이름의 페이지가 둘인 것(passwd(5)의 Linux man-pages판과 shadow-utils판)은 항목에 어느 것인지 적는다.
+「(phase 77)」이 붙은 줄과 항목은 phase 77 step 0에서 `ports`(포트 번호, 포트 번호의 범위, 잘 알려진 포트, 서버 포트와 클라이언트 포트) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-09).
+이 phase의 `tcp-udp`(TCP·UDP 헤더와 고르는 기준)·`tcp-connection`(연결과 상태) 사실은 같은 「(phase 77)」 표시로 뒤 step(3·9)이 더한다.
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IANA 포트 레지스트리는 XML판을, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다.
+**서비스마다의 포트 번호는 그 프로토콜의 RFC와 IANA 레지스트리가 함께 맞는 것만** 적었다. 응용 프로토콜 주제(phase 78)의 포트(POP3·IMAP·SNMP·NTP·TFTP 등)는 이 step에서 적지 않았다.
+「(phase 77 step 3)」이 붙은 줄과 항목은 phase 77 step 3에서 `tcp-udp`(TCP, MSS, TCP 헤더, 순서 번호, 확인 응답 번호, 제어 비트, UDP, UDP 헤더, TCP와 UDP를 고르는 기준) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-09).
+RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, IANA의 TCP 매개변수 레지스트리는 XML판(Last Updated 2026-10-22)으로 읽었다.
+**제어 비트의 수는 문서와 때에 따라 다르다** — 아래 「(phase 77 step 3) RFC 3540 …, RFC 8311 …, RFC 9768 …, IANA — TCP Header Flags」 항목. 재전송 방식·흐름 제어·혼잡 제어의 방식과 연결 수립·종료는 이 step에서 적지 않았다(phase 84와 step 9의 몫).
+응용별 전송 프로토콜은 **그 응용의 RFC가 TCP나 UDP 위에서 돈다고 적은 것만** 적었다.
+「(phase 77 step 9)」가 붙은 줄과 항목은 phase 77 step 9에서 `tcp-connection`(3-way handshake, TCP 연결 종료, TCP 상태, 연결을 맺는 동안의 상태, 연결을 끊는 동안의 상태, TIME-WAIT 상태) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-10).
+RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. **상태 전이는 RFC 9293의 상태 그림(그림 5)과 세그먼트 처리 절(§3.10)을 하나씩 맞춰 본 것만** 적었다.
+재전송 시간·연결 유지(keep-alive)·SYN 플러딩 같은 공격과 동시 열기의 차례는 이 step에서 적지 않았다(phase 84와 보안 주제의 몫이거나 기출이 묻지 않는다).
 
 ---
 
@@ -380,6 +391,7 @@ https://www.rfc-editor.org/rfc/rfc8200
 (phase 73 step 2) `ip-protocol.fragmentation`(§2 — 링크의 뜻과 링크 MTU, §4.5 — IPv6는 출발지만 나눈다), 문항 n050 해설
 (phase 73 step 6) `ip-protocol.ipv6-header`(§3 — 칸 여덟과 크기, 버전 값 6, 페이로드 길이에 확장 헤더가 든다, 다음 헤더는 IPv4 프로토콜 칸과 같은 번호, 홉 제한; §6 — 흐름 레이블; §7 — 트래픽 클래스; §8.1 — 헤더 체크섬 없음; §4.5 — 단편화 칸 없음, 출발지가 단편화 헤더를 붙인다; 40옥텟), 도식 `ipv6-header`, 문항 n060 해설
 (phase 73 step 7) `ip-protocol.extension-headers`(§4 — 기본 헤더와 상위 계층 헤더 사이의 별도 헤더, 없거나 하나거나 여럿, 앞 헤더의 다음 헤더 칸이 가리키는 사슬, 번호는 IPv4 프로토콜 칸과 같은 목록, 홉별 옵션을 빼면 경로가 처리하지 않음, 목적지가 차례대로 처리, 8옥텟 배수; §4.5 — 출발지가 경로 MTU보다 큰 패킷을 나눠 조각마다 붙인다, 앞 헤더의 값 44, 칸 여섯과 크기, 예약 칸은 0, M 플래그, 식별자 32비트와 겹치지 않게 정하기, 출발지·목적지·식별자가 같은 조각끼리 합침, 상위 계층 헤더는 첫 조각에만), 도식 `extension-chain`, 문항 n061 해설; `ip-protocol.slaac`(§2 — 인터페이스는 노드가 링크에 붙은 지점)
+(phase 77 step 7) `tcp-udp.udp-header`(§8.1 — IPv6로 보내는 UDP는 따로 정한 경우(터널 캡슐화)를 빼고 체크섬을 생략할 수 없다)
 
 ## RFC 3022 — Traditional IP Network Address Translator (Traditional NAT)
 https://www.rfc-editor.org/rfc/rfc3022
@@ -446,11 +458,121 @@ https://www.rfc-editor.org/rfc/rfc9293
 - 기대하는 순서 번호보다 뒤의 세그먼트(순서가 어긋나 먼저 온 세그먼트)는 버리지 말고 나중에 처리하도록 가지고 있어야 한다(SHOULD) — §3.10.7.4
 - TCP 세그먼트는 하나하나 IP 데이터그램(인터넷 데이터그램)에 담겨 보내진다 — §2.2, §3.1
 - (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) TCP는 포트 번호로 응용 서비스를 가리키고, 호스트 사이의 서로 다른 흐름을 가른다 — §2.2
+- (phase 77) 지금 유효한 Internet Standard다(STD 7, RFC 793을 대체 — rfc-editor 상태 2026-11-09). 헤더의 출발지 포트 칸과 목적지 포트 칸은 각각 16비트다 — §3.1.
+  16비트로 적을 수 있는 수는 2^16 = 65,536개라 포트 번호는 0~65535다(계산)
+- (phase 77) 용어(§4 Glossary): **포트**는 끝점에서 연결들을 가려내는 데 쓰는, 연결 식별자의 한 부분이다. **소켓**은 포트 식별자를 포함한 주소, 곧 인터넷 주소(IP 주소)와 TCP 포트를 이어 붙인 것이고
+  소켓 번호·소켓 주소라고도 부른다. **연결**은 소켓 한 쌍이 가리키는 논리적인 통신 경로다 — §4. 같은 말을 본문에서도 쓴다 — 연결은 소켓 한 쌍으로 정해진다 — §3.4.1
+- (phase 77) 응용 프로그램이 OPEN을 부를 때 능동(active)인지 수동(passive)인지 정한다. 수동 OPEN은 들어오는 연결 요청을 받겠다는 것이고 그 연결 기록은 LISTEN 상태가 된다. 상대 소켓을 정하지 않은 수동 OPEN은 어느 쪽에서 오는 연결이든 기다린다 — §3.3.2, §3.9.1.1.
+  여러 연결을 함께 다루는 구현은, 같은 로컬 포트를 쓰는 다른 연결이 열리는 중이어도 그 포트에서 계속 연결을 기다릴 수 있게 해야 한다(MUST-42) — §3.9.1.1(그러니 서버 포트 하나에 연결 여럿이 함께 걸린다)
+- (phase 77 step 3) **바이트 흐름과 세그먼트**: TCP는 응용 프로그램에 믿을 수 있고 순서가 맞는 **바이트 흐름(byte-stream)** 서비스를 준다. 응용이 넘긴 바이트 흐름은 TCP 세그먼트에 나뉘어 실려 가고, 세그먼트 하나가 IP 데이터그램 하나로 보내진다 — §2.2.
+  응용의 바이트 흐름을 받아 세그먼트로 꾸리는 일을 segmentation이라 하고, 세그먼트의 경계는 응용이 한 번에 넘긴(쓴) 단위와 맞는다는 보장이 없다 — §3.7. 세그먼트는 TCP 모듈 둘 사이에 오가는 데이터 단위다 — §4 「segment」
+- (phase 77 step 3) **연결형·양방향**: TCP는 연결 지향이다. 데이터는 한 연결에서 **두 방향으로** 흐를 수 있다(응용이 한 방향만 써도 된다) — §2.2. 이 문서는 연결을 「전이중(full-duplex) 연결」이라 부르고, 닫기(CLOSE)는 「더 보낼 데이터가 없다」는 뜻이라 **한 방향씩** 다룬다 —
+  닫은 쪽도 상대가 닫을 때까지 계속 받는다 — §3.6
+- (phase 77 step 3) **헤더의 칸과 길이**(§3.1 그림 1): 출발지 포트 16비트, 목적지 포트 16비트, 순서 번호(Sequence Number) 32비트, 확인 응답 번호(Acknowledgment Number) 32비트, 데이터 오프셋(Data Offset) 4비트, 예약(Reserved) 4비트,
+  제어 비트(control bits, 「flags」라고도 부른다) 8개 — 1비트씩, 윈도우(Window) 16비트, 체크섬(Checksum) 16비트, 긴급 포인터(Urgent Pointer) 16비트, 옵션(길이가 바뀐다), 그 뒤에 데이터 — §3.1.
+  **TCP 헤더에는 길이 칸이 없다** — 체크섬 계산의 「TCP 길이」(헤더 + 데이터의 옥텟 수)는 보내는 칸이 아니라 계산한 값이다 — §3.1 「TCP Length」
+- (phase 77 step 3) **데이터 오프셋과 헤더 길이**: 데이터 오프셋은 TCP 헤더 길이를 **32비트 워드 수**로 적어 데이터가 어디서 시작하는지 가리키고, 헤더는 옵션이 있어도 32비트의 정수배다. 옵션은 데이터 오프셋이 5보다 클 때만 있고 그 크기는 (데이터 오프셋 − 5) × 32비트다 — §3.1.
+  옵션이 없는 헤더는 **20옥텟**이다(§3.7.1 「TCPhdrsize」 — 옵션이 없으면 20. 같은 절은 옵션이 없는 경우가 드물다고 적는다). 4비트로 적을 수 있는 가장 큰 값은 15이므로 가장 긴 헤더는 15 × 4 = **60옥텟**, 옵션은 많아야 40옥텟이다(계산)
+- (phase 77 step 3) **예약**: 앞으로 쓰려고 남겨 둔 제어 비트이고, 보낼 때는 0으로 두며 받을 때 그 기능을 구현하지 않았으면 무시한다 — §3.1 「Reserved」. **제어 비트의 할당은 IANA의 「TCP Header Flags」 레지스트리가 맡고**, 이 문서(2022)가 「지금 할당된」 것으로 드는 것은 CWR·ECE·URG·ACK·PSH·RST·SYN·FIN 여덟이다 — §3.1.
+  레지스트리는 2026-04-24에 비트 7을 AE로 할당했다 — 아래 「(phase 77 step 3) RFC 3540 …」 항목
+- (phase 77 step 3) **윈도우**: 확인 응답 번호가 가리키는 옥텟부터 시작해, 이 세그먼트를 보낸 쪽(데이터를 받는 쪽)이 **더 받을 준비가 된 데이터 옥텟 수**다. 부호 없는 수로 다룬다 — §3.1. 이 값은 그 연결에 지금 쓸 수 있는 버퍼 공간과 관련된다 — §3.8.6
+- (phase 77 step 3) **체크섬**: 헤더와 데이터의 16비트 단어를 1의 보수로 더한 합의 1의 보수이고, 계산할 때 체크섬 칸 자신은 0으로 둔다. 헤더 앞에 있다고 치는 **의사 헤더**도 덮는다 — IPv4는 96비트(출발지 주소, 목적지 주소, 0, IP 헤더의 프로토콜 번호, TCP 길이), IPv6는 320비트(RFC 8200 §8.1).
+  의사 헤더를 넣는 까닭은 엉뚱한 곳으로 간 세그먼트를 걸러 내기 위해서다. TCP 체크섬은 **선택이 아니다** — 보내는 쪽이 반드시 만들고 받는 쪽이 반드시 검사한다 — §3.1 「Checksum」
+- (phase 77 step 3) **긴급 포인터**: 이 세그먼트의 순서 번호로부터의 오프셋으로, 긴급 데이터 **바로 다음** 옥텟의 순서 번호를 가리킨다. **URG 비트가 켜진 세그먼트에서만** 해석한다 — §3.1 「Urgent Pointer」, §4 「urgent pointer」.
+  새 응용은 긴급 기능을 쓰지 않는 것이 좋다(SHLD-13, 구현마다 해석이 달라서) — §3.8.5
+- (phase 77 step 5, 2026-11-09 rfc-editor.org 원문) **긴급 데이터**: 긴급 기능은 보내는 쪽 사용자(응용)가 받는 쪽 사용자에게 어떤 긴급 데이터를 받아 가도록 재촉하고, 받는 쪽 TCP가 지금까지 알려진 긴급 데이터를 사용자가 다 받았을 때 알리게 하려는 것이다.
+  데이터 흐름의 한 지점을 긴급 정보의 끝으로 지정하고, URG가 켜져 있으면 긴급 칸 값을 세그먼트의 순서 번호에 더해 긴급 포인터를 얻는다. URG가 없으면 아직 남은 긴급 데이터가 없다는 뜻이다 — §3.8.5
+- (phase 77 step 3) **순서 번호**: 연결로 보내는 데이터의 **옥텟(바이트)마다** 순서 번호가 있고, 세그먼트 안에서는 헤더 바로 뒤 첫 데이터 옥텟이 가장 작은 번호이고 뒤로 하나씩 늘어난다 — §3.4. 헤더의 순서 번호 칸은 **그 세그먼트의 첫 데이터 옥텟의 번호**다.
+  **SYN이 켜져 있으면 예외** — 그때 칸의 값은 초기 순서 번호(ISN)이고 첫 데이터 옥텟은 ISN + 1이다 — §3.1 「Sequence Number」
+- (phase 77 step 3) **SYN·FIN도 번호를 쓴다**: 제어 정보 가운데 순서 번호 공간을 차지하는 것은 SYN과 FIN 둘뿐이다. SYN은 그 세그먼트의 첫 데이터 옥텟 **앞**에, FIN은 마지막 데이터 옥텟 **뒤**에 있다고 친다. 세그먼트 길이(SEG.LEN)는 데이터와 SYN·FIN을 함께 센다 — §3.4, §4 「SYN」·「FIN」·「segment length」.
+  ACK·RST·PSH·URG는 순서 번호를 차지하지 않는다 — §4 「ACK」·「RST」·「PUSH」·「URG」
+- (phase 77 step 3) **순서 번호 공간**: 0부터 2^32 − 1까지이고 산술은 2^32를 법으로 한다. 그래서 번호는 2^32 − 1 다음에 **다시 0으로 돌아간다** — §3.4
+- (phase 77 step 3) **ISN**: 연결을 새로 만들 때마다 ISN 생성기가 새 32비트 ISN을 고르고, 경로 밖의 공격자가 맞히지 못하게 고른다 — §3.4.1, §4 「ISN」. 그러니 본문의 ISN 값(예: 5000)은 사실이 아니라 예시 값이다.
+  계산 예: ISN이 5000이면 SYN 세그먼트의 순서 번호는 5000이고 첫 데이터 바이트는 5001이다. 데이터 3,000바이트를 1,000바이트씩 세 세그먼트로 보내면 순서 번호는 5001·6001·7001이다(§3.1·§3.4로 계산 — 연결을 맺는 세그먼트에 데이터를 싣지 않은 경우)
+- (phase 77 step 3) **확인 응답 번호**: ACK 비트가 켜져 있을 때만 뜻이 있고, 연결이 맺어진 뒤에는 **늘** 보낸다 — §3.1 「Acknowledgment Number」, §3.8(ESTABLISHED 상태부터는 모든 세그먼트가 지금의 확인 정보를 싣는다).
+  ACK는 「이 세그먼트를 보낸 쪽이 다음에 받기를 기대하는 번호」를 확인 응답 칸이 담고 있다는 뜻이고, 그래서 그 앞 번호를 모두 받았다는 확인이 된다 — §4 「ACK」.
+  재전송 큐의 세그먼트는 **순서 번호 + 길이**가 들어온 확인 값 이하이면 모두 확인된 것이다 — §3.4. 그러니 데이터만 실은 세그먼트를 다 받았을 때의 확인 응답 번호는 **받은 순서 번호 + 데이터 바이트 수**다(SYN·FIN이 있으면 하나씩 더한다).
+  계산 예: 순서 번호 5001인 세그먼트의 데이터 1,000바이트를 받으면 6001, 위 세 세그먼트를 차례로 받으면 6001·7001·8001
+- (phase 77 step 3) **확인을 기다리지 않고 여러 세그먼트를 보낸다**: 윈도우는 데이터를 받는 쪽이 지금 받을 준비가 된 순서 번호의 범위이고, 보내는 쪽은 보낼 데이터를 **지금 윈도우에 맞는 세그먼트들**로 꾸린다 — §3.8.6.
+  새로 보낼 수 있는 순서 번호는 SND.NXT부터 SND.UNA + SND.WND − 1까지다(SND.UNA는 아직 확인받지 못한 가장 오래된 번호) — §4 「send window」. 곧 확인받지 못한 데이터가 있어도 윈도우 안이면 더 보낼 수 있다.
+  윈도우를 작게 알리면 새 세그먼트마다 왕복 시간을 기다리게 될 수 있다 — §3.8.6. 확인을 기다리지 않고 보낼 수 있는 양에는 혼잡 윈도우도 상한을 건다 — RFC 5681 §2·§3.1(위 항목)
+- (phase 77 step 3) **세그먼트마다 확인하지 않아도 된다**: 데이터 세그먼트를 받는 쪽은 받은 세그먼트 수보다 적은 수의 ACK를 보낼 수 있고(지연 ACK, 구현하는 것이 좋다 — SHLD-18), 다만 0.5초보다 늦추면 안 되고(MUST-40) 최대 크기 세그먼트 둘마다는 ACK를 하나 보내는 것이 좋다(SHLD-19) — §3.8.6.3
+- (phase 77 step 3) **제어 비트의 뜻**(§3.1, §4): CWR(Congestion Window Reduced)·ECE(ECN-Echo)는 RFC 3168을 따른다(아래 항목). URG — 긴급 포인터 칸이 유효하다. ACK — 확인 응답 칸이 유효하다.
+  PSH — push 기능: 응용이 데이터를 받는 쪽에 바로 보내 달라고 하면 그 데이터로 만든 마지막 세그먼트에 켠다(§3.9.1.2). 이 세그먼트의 데이터를 받는 사용자(응용)에게 밀어 올려야 한다는 표시다(§4 「PUSH」). 받는 쪽이 응용에 PSH를 알려 주는 것은 선택이다(MAY-17, §3.9.1.3).
+  RST — 연결을 재설정한다: 받은 쪽은 더 주고받지 않고 연결을 지운다(§4 「RST」). 지금 연결 앞으로 온 것이 아닌 세그먼트에 RST로 답하고, 없는 연결로 온 SYN도 RST로 거절하며, 사용자(응용)가 언제든 RST를 낼 수 있다 — §3.5.2.
+  SYN — 연결을 시작할 때 순서 번호가 어디서 시작하는지 알린다(§4 「SYN」). FIN — 보낸 쪽이 더 보낼 데이터가 없다(§3.1, §4 「FIN」) — 위 「연결형·양방향」 줄대로 한 방향을 닫는 것이다
+- (phase 77 step 6) **제어 비트 이름의 영문**(2026-11-09 rfc-editor.org 텍스트판 원문): §3.1은 비트마다 URG — Urgent pointer field is significant, ACK — Acknowledgment field is significant, PSH — Push function, RST — Reset the connection, SYN — Synchronize sequence numbers, FIN — No more data from sender로 적고,
+  §4 용어집은 ACK를 「control bit (acknowledge)」, FIN을 「control bit (finis)」, RST를 「control bit (reset)」, URG를 「control bit (urgent)」로, PSH를 「PUSH」 항목으로 적는다. 그래서 목록 항목의 괄호에는 Urgent·Acknowledgment·Push·Reset·Synchronize·Finis를 쓴다.
+  같은 §3.1은 확인 응답 번호 칸이 ACK가 켜졌을 때만 값을 담는다고 적는다(위 「확인 응답 번호」 줄). §3.10.7은 ACK가 꺼진 세그먼트를 상태마다 다르게 다룬다(동기화된 상태에서는 그 세그먼트를 버린다 — §3.10.7.4 「fifth, check the ACK field」) — 그래서 문항은 「ACK가 꺼진 세그먼트의 칸을 읽지 않는다」 대신 「연결이 맺어진 뒤 데이터 세그먼트도 ACK를 켠다」를 묻는다
+- (phase 77 step 3) **흐름 제어와 혼잡 제어(이름만)**: 윈도우로 받는 쪽이 받을 양을 알린다 — §3.1·§3.8.6. TCP 끝점은 혼잡이 무너지는 상황을 막으려고 기본 혼잡 제어(slow start·congestion avoidance)와 재전송 시간의 지수 증가를 반드시 구현한다(MUST-19), ECN은 구현하는 것이 좋다(SHLD-8) — §3.8.2.
+  방식은 phase 84의 몫이다
+- (phase 77 step 3) **MSS 옵션**: 종류(kind) 2, 길이 4옥텟, 값 16비트이고, 그 세그먼트를 보낸 끝점이 **받을 수 있는** 가장 큰 세그먼트 크기를 알린다. **SYN이 켜진 세그먼트(연결 요청)에만** 실을 수 있고 다른 세그먼트에 실으면 안 된다(MUST-65).
+  이 옵션을 쓰지 않으면 어떤 세그먼트 크기든 허용된다 — §3.2. 끝점은 MSS 옵션을 보내고 받는 것을 모두 구현해야 한다(MUST-14) — §3.7.1. EOL·NOP·MSS 세 옵션은 반드시 지원한다(MUST-4) — §3.1
+- (phase 77 step 3) **MSS 기본값**: 연결을 맺을 때 MSS 옵션을 받지 못하면 보내는 MSS를 IPv4는 **536**(576 − 40), IPv6는 **1220**(1280 − 60)으로 본다(MUST-15). 받는 MSS가 이 기본값과 다르면 모든 SYN에 MSS 옵션을 싣는 것이 좋다(SHLD-5) — §3.7.1.
+  576은 IPv4 호스트가 재조합할 수 있어야 하는 최소 크기(RFC 1122 §3.3.2 — 위 항목), 1280은 IPv6의 최소 링크 MTU(RFC 8200 §5 — 위 항목)이고, 40과 60은 옵션 없는 IP 헤더(IPv4 20 또는 IPv6 40)에 TCP 헤더 20을 더한 값이다(계산)
+- (phase 77 step 3) **MSS 계산 예**: MSS 옵션으로 알릴 값은 실효 MTU에서 고정 IP 헤더와 TCP 헤더를 뺀 값이다(§3.7.1 — 위 줄). 이더넷의 MTU 1500옥텟(RFC 1191 §7 표 7-1, IEEE 802.3 그림 3–1 — 위 항목),
+  옵션 없는 IPv4 헤더 20옥텟(RFC 791 §3.1 — 위 항목), 옵션 없는 TCP 헤더 20옥텟(§3.7.1)이면 1500 − 20 − 20 = **1460**옥텟이다(계산)
+- (phase 77 step 3) **MSS와 단편화**: 경로에서 가장 작은 MTU보다 큰 IP 데이터그램이 되는 세그먼트를 보내면 패킷을 잃거나 단편화가 일어나므로, 세그먼트를 그보다 작게 보내려 한다 — §3.7. TCP는 바로 이어진 링크의 MTU는 알아도 경로 전체의 MTU는 잘 모르므로,
+  경로 MTU 탐색(PMTUD·PLPMTUD)으로 단편화를 피하는 세그먼트 크기를 고르는 것을 강하게 권한다 — §3.7.2. MSS 옵션은 상대가 **받을 수 있는** 패킷 크기의 상한을 알리는 것이다 — §3.7.2.
+  그러니 「MSS를 지키면 단편화를 피한다」는 **양 끝 링크의 MTU에 대해서만** 맞고, 경로 중간의 더 작은 MTU는 경로 MTU 탐색이 맡는다
+- (phase 77 step 9, 2026-11-10 rfc-editor.org 텍스트판 원문) **이름**: 연결을 맺는 절차의 이름 three-way handshake(줄여 3WHS)는 표준에 있다 — §3.4.1, §3.5. 연결을 끝내는 절차는 「정상 종료 순서(normal close sequence)」(그림 12)나 「FIN을 주고받는 handshake(FIN handshake)」로 부른다 — §3.6.
+  **「four-way handshake」·「4-way handshake」라는 말은 RFC 9293 전문에 없다**(전문 검색, 2026-11-10)
+- (phase 77 step 9) **세 번 주고받는 까닭**: 연결을 맺는다는 것은 두 끝이 서로의 ISN을 맞추는(synchronize) 일이다. 각 끝은 자기 ISN을 보내 상대의 확인을 받아야 하고, 상대의 ISN을 받아 확인을 돌려줘야 한다.
+  그러면 「A의 SYN → B의 확인 → B의 SYN → A의 확인」 넷이 필요한데, 가운데 둘(B의 확인과 B의 SYN)을 세그먼트 하나에 함께 실을 수 있어 셋이 되고, 그래서 three-way(three message) handshake라 부른다 — §3.4.1.
+  첫 SYN을 받은 쪽은 그것이 지금의 요청인지 네트워크에 남아 있던 옛 요청인지 스스로 알 길이 없으므로(순서 번호는 공통의 시계에 묶여 있지 않고 ISN을 고르는 방법도 구현마다 다르다) 보낸 쪽에게 확인받아야 한다 — §3.4.1.
+  표준은 이 절차의 주된 까닭을 옛 연결 요청이 중복으로 닿아 생기는 혼란을 막는 것이라 적는다 — §3.5
+- (phase 77 step 9) **세그먼트 셋의 차례**(§3.5 그림 6 — 그림의 상태는 그 세그먼트를 보내거나 받은 **뒤**의 상태다): ① CLOSED이던 A가 SYN만 켠 세그먼트(순서 번호 = A의 ISN)를 보내고 SYN-SENT가 된다. LISTEN이던 B는 이것을 받고 SYN-RECEIVED가 된다
+  ② B가 SYN과 ACK를 함께 켠 세그먼트(순서 번호 = B의 ISN, 확인 응답 번호 = A의 ISN + 1)를 보낸다. A는 이것을 받고 ESTABLISHED가 된다 ③ A가 ACK만 켠 빈 세그먼트(순서 번호 = A의 ISN + 1, 확인 응답 번호 = B의 ISN + 1)를 보내고, B는 이것을 받고 ESTABLISHED가 된다.
+  확인 응답 번호가 ISN + 1인 것은 SYN이 순서 번호 하나를 차지하기 때문이고, ACK는 번호를 차지하지 않으므로 A가 셋째 세그먼트 뒤에 처음 보내는 데이터 세그먼트도 순서 번호가 ISN + 1이다 — §3.5(그림 6의 예는 A의 ISN 100, B의 ISN 300, 확인 응답 번호 101·301).
+  그러니 **먼저 SYN을 보낸 A가 B보다 먼저 ESTABLISHED가 된다**(그림 6 셋째 줄 — 그때 B는 아직 SYN-RECEIVED다). 계산 예(guide 「예시 값」): 클라이언트 ISN 1000, 서버 ISN 7000이면 둘째 세그먼트의 확인 응답 번호는 1001, 셋째 세그먼트는 순서 번호 1001·확인 응답 번호 7001이다(계산)
+- (phase 77 step 9) **능동 열기와 수동 열기**: 응용의 OPEN 호출이 능동(active)이면 TCP가 곧바로 연결을 맺기 시작해 SYN을 보내고 SYN-SENT가 되고, 수동(passive)이면 TCB를 만들어 LISTEN에서 요청을 기다린다 — §3.3.2 그림 5, §3.9.1.1(위 「(phase 77)」 줄).
+  두 끝이 동시에 SYN을 보내는 동시 열기도 표준이 정해 두었지만(§3.5 그림 7, MUST-10) 이 과목은 쓰지 않는다
+- (phase 77 step 9) **닫기는 한 방향씩**: 응용이 CLOSE를 부르는 것은 「이쪽은 더 보낼 데이터가 없다」는 뜻이지 「더 받지 않겠다」는 뜻이 아니다. 닫은 쪽도 상대가 닫았다는 알림을 받을 때까지 계속 받는다 — §3.6, §3.9.1.4.
+  두 방향은 따로 닫히므로 한 방향만 닫힌 연결(half closed)이 생길 수 있고, 아직 열린 방향으로는 데이터를 계속 보낼 수 있다 — §3.6.1. FIN을 받은 쪽은 그 FIN에 ACK는 바로 보내지만, 자기 FIN은 자기 응용이 CLOSE를 부를 때까지 보내지 않는다 — §3.6 경우 1·2
+- (phase 77 step 9) **정상 종료의 차례**(§3.6 그림 12): ① 응용이 닫은 A가 FIN을 보내고 FIN-WAIT-1 ② 받은 B가 ACK를 보내고 응용에게 상대가 닫는다고 알린 뒤 CLOSE-WAIT ③ ACK를 받은 A는 FIN-WAIT-2 ④ B의 응용이 CLOSE를 부르면 B가 남은 데이터 뒤에 FIN을 보내고 LAST-ACK
+  ⑤ 받은 A가 ACK를 보내고 TIME-WAIT ⑥ 그 ACK를 받은 B는 CLOSED, A는 2×MSL을 기다린 뒤 CLOSED. 그림 12의 FIN 세그먼트에도 ACK 비트가 켜져 있다(`CTL=FIN,ACK`) — 연결이 맺어진 뒤에는 모든 세그먼트가 ACK를 켠다(위 「(phase 77 step 3) 확인 응답 번호」 줄)
+- (phase 77 step 9) **상대의 ACK와 FIN이 한 세그먼트로 올 수 있다**: FIN-WAIT-1에서 FIN을 받았을 때 내 FIN도 이미 확인되었으면(그 확인이 같은 FIN 세그먼트에 실려 와도 된다) FIN-WAIT-2를 거치지 않고 곧바로 TIME-WAIT로 간다 — §3.10.7.4 「eighth, check the FIN bit」, 그림 5 주 2.
+  그 경우 종료에 오가는 세그먼트는 셋이다(계산)
+- (phase 77 step 9) **정상 종료와 중단**: 연결이 끝나는 길은 FIN을 주고받는 정상 종료와, RST를 보내 연결 상태를 곧바로 버리는 중단(abort) 둘이다. 상대 쪽 때문에 연결이 닫히면 응용에 정상 종료인지 중단인지 알려야 한다(MUST-12) — §3.6.
+  응용의 ABORT 호출은 보내고 받으려던 것을 모두 버리고 TCB를 지운 뒤 RST를 보낸다 — §3.9.1.6. 올바른 RST를 받은 쪽은 연결을 중단하고 CLOSED로 간다(LISTEN이면 무시하고, 수동 열기로 SYN-RECEIVED가 된 것이면 LISTEN으로 돌아간다) — §3.5.3
+- (phase 77 step 9) **상태 열하나와 CLOSED**: 상태는 LISTEN, SYN-SENT, SYN-RECEIVED, ESTABLISHED, FIN-WAIT-1, FIN-WAIT-2, CLOSE-WAIT, CLOSING, LAST-ACK, TIME-WAIT와 CLOSED다. CLOSED는 TCB가 없는 때, 곧 연결이 없는 때를 나타내므로 표준은 이것을 실제로 있지 않은(fictional) 상태라 부른다 — §3.3.2.
+  TCB(Transmission Control Block)는 연결 하나의 상태를 적어 두는 자료 구조이고, 양 끝의 IP 주소·포트 번호와 순서 번호 변수 등을 담는다 — §3.3.1, §4 「TCB」. 상태를 바꾸는 사건은 응용의 호출(OPEN·SEND·RECEIVE·CLOSE·ABORT·STATUS), 들어온 세그먼트(특히 SYN·ACK·RST·FIN을 켠 것), 시간 초과다 — §3.3.2
+- (phase 77 step 9) **상태마다 기다리는 것**(§3.3.2 — 직접 쓴 말): LISTEN — 어느 상대에게서든 올 연결 요청. SYN-SENT — 연결 요청을 보낸 뒤 그에 맞는 상대의 연결 요청. SYN-RECEIVED — 요청을 받고 자기 요청도 보낸 뒤, 자기 요청에 대한 확인.
+  ESTABLISHED — 기다리는 것이 아니라 연결이 열린 상태다. 받은 데이터를 응용에 넘길 수 있고, 데이터를 주고받는 동안 머무는 보통의 상태다.
+  FIN-WAIT-1 — 상대의 종료 요청이나, 앞서 보낸 내 종료 요청에 대한 확인. FIN-WAIT-2 — 상대의 종료 요청. CLOSE-WAIT — 자기 응용의 종료 요청. CLOSING — 내 종료 요청에 대한 상대의 확인. LAST-ACK — 앞서 상대에게 보낸 종료 요청(상대의 종료 요청에 대한 확인도 함께 실은 것)에 대한 확인.
+  TIME-WAIT — 상대가 마지막 확인을 받았다고 믿을 만큼, 그리고 옛 연결의 늦은 세그먼트가 새 연결에 끼어들지 않을 만큼 시간이 지나기. CLOSED — 연결 상태가 전혀 없음
+- (phase 77 step 9) **상태 이름의 표기**: 본문과 상태 목록은 하이픈으로 잇는다(SYN-RECEIVED, FIN-WAIT-1). 상태 그림(그림 5)에서는 몇 이름을 줄이거나 달리 이어 쓴다고 표준 스스로 밝힌다 — 그림에는 SYN RCVD, ESTAB, FINWAIT-2로 적힌다 — §3.3.2.
+  밑줄 표기(SYN_RECEIVED 등)는 운영체제 명령이 보이는 표기다 — 아래 「(phase 74 step 11) … netstat」 항목의 「(phase 77 step 9)」 줄. **CLOSE는 상태가 아니라 응용이 연결을 닫을 때 부르는 호출의 이름**이고 상태 이름은 CLOSED다 — §3.3.2, §3.9.1.4
+- (phase 77 step 9) **연결을 맺는 동안의 전이**(§3.3.2 그림 5와 §3.10의 처리 절): CLOSED → 수동 열기(TCB를 만든다) → LISTEN. CLOSED → 능동 열기(SYN을 보낸다) → SYN-SENT. LISTEN → SYN을 받아 SYN·ACK를 보낸다 → SYN-RECEIVED(§3.10.7.2).
+  SYN-SENT → 내 SYN을 확인하는 SYN·ACK를 받아 ACK를 보낸다 → ESTABLISHED(§3.10.7.3). SYN-RECEIVED → 내 SYN에 대한 받아들일 만한 ACK를 받는다(보내는 것 없음) → ESTABLISHED(§3.10.7.4 「fifth, check the ACK field」).
+  LISTEN → 응용이 CLOSE를 부른다 → TCB를 지우고 CLOSED(§3.10.4)
+- (phase 77 step 9) **연결을 끊는 동안의 전이**(§3.3.2 그림 5와 §3.10의 처리 절): ESTABLISHED → 응용이 CLOSE를 부른다(앞서 맡긴 데이터를 다 세그먼트로 만든 뒤 FIN을 보낸다) → FIN-WAIT-1(§3.10.4). FIN-WAIT-1 → 내 FIN의 ACK를 받는다 → FIN-WAIT-2(§3.10.7.4 fifth).
+  FIN-WAIT-1 → FIN을 받아 ACK를 보낸다, 내 FIN은 아직 확인되지 않았다 → CLOSING. FIN-WAIT-1 → FIN을 받아 ACK를 보낸다, 내 FIN도 확인되었다 → TIME-WAIT. FIN-WAIT-2 → FIN을 받아 ACK를 보낸다 → TIME-WAIT(이 셋은 §3.10.7.4 eighth).
+  CLOSING → 내 FIN의 ACK를 받는다 → TIME-WAIT(fifth). ESTABLISHED → FIN을 받아 ACK를 보내고 응용에 알린다 → CLOSE-WAIT(eighth). CLOSE-WAIT → 응용이 CLOSE를 부른다(앞서 맡긴 데이터 뒤에 FIN을 보낸다) → LAST-ACK(§3.10.4).
+  LAST-ACK → 내 FIN의 ACK를 받는다 → TCB를 지우고 CLOSED(fifth). TIME-WAIT → 2×MSL이 다 된다 → TCB를 지우고 CLOSED(§3.10.8). CLOSE-WAIT는 자기 응용이 CLOSE를 부를 때까지 머무는 상태다 — §3.3.2, §3.6 경우 2
+- (phase 77 step 9) **동시 종료**(§3.6 그림 13, 경우 3): 두 응용이 거의 함께 닫으면 양쪽이 FIN을 보내 FIN-WAIT-1 → 상대의 FIN을 받아 ACK를 보내고 CLOSING → 내 FIN의 ACK를 받아 TIME-WAIT → 2×MSL 뒤 CLOSED. **이때는 두 쪽 모두 TIME-WAIT를 거친다.**
+  한쪽이 먼저 닫는 정상 종료(그림 12)에서는 먼저 닫은 쪽만 TIME-WAIT를 거치고, 나중에 닫은 쪽은 LAST-ACK에서 바로 CLOSED로 간다. RST를 보낸 쪽도 TIME-WAIT에 드는 것이 좋다는 규정(§3.5.2, 그림 5 주 3)은 이 과목이 쓰지 않는다
+- (phase 77 step 9) **TIME-WAIT의 두 까닭**: TIME-WAIT는 상대가 내 마지막 ACK(상대 FIN에 대한 확인)를 받았다고 믿을 만큼, 그리고 옛 연결에서 늦게 온 세그먼트가 새 연결에 영향을 주지 않을 만큼 시간이 지나기를 기다리는 상태다 — §3.3.2.
+  TIME-WAIT에 들어오는 것은 상대 FIN의 재전송뿐이고, 받으면 ACK를 다시 보내고 2×MSL을 처음부터 다시 잰다 — §3.10.7.4 fifth·eighth(마지막 ACK가 사라졌을 때의 처리다).
+  연결은 소켓 한 쌍으로 정해지고 같은 소켓 쌍으로 연결을 다시 맺을 수 있으므로, 옛 연결의 중복 세그먼트를 새 연결과 가려내야 하는 문제가 생긴다. TIME-WAIT는 같은 연결을 다시 쓰는 빈도를 제한해 이를 막고, ISN을 고르는 방법이 거기에 보호를 더한다 — §3.4.1.
+  능동적으로 닫은 쪽이 2×MSL 동안 머무는 것은 의무다(MUST-13) — §3.6.1(위 줄)
+- (phase 77 step 9) **MSL**(Maximum Segment Lifetime): 세그먼트 하나가 인터넷 안에 머물 수 있는 가장 긴 시간이고, 표준은 이것을 2분으로 정해 두었다 — §4 「MSL」, §3.4.2. 2분은 설계상 고른 값이라 겪어 보고 바꿀 수 있다고 적고, 링크가 빨라지면서 인터넷의 실제 MSL은 줄었다고 적는다 — §3.4.2.
+  표준의 값대로면 2×MSL은 4분이다(계산). 운영체제가 실제로 쓰는 TIME-WAIT의 길이는 허용한 출처에서 찾지 못했다 — tcp(7)은 TIME_WAIT 소켓 수의 상한 같은 것은 적지만 길이는 적지 않고, tcp_fin_timeout(기본 60초)은 마지막 FIN을 기다리는 시간이다(2026-11-10)
 
 쓰인 곳: 강의 수정 이력 L9, L12, L13, 면접 수정 이력 I2, `protocols-encapsulation.osi-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(§2.2 — 사라진 데이터를 알아채 재전송한다, §3.10.7.4 — 순서가 어긋나 먼저 온 세그먼트를 가지고 있다가 차례대로 처리한다), `icmp.icmp`(신뢰성은 전송 계층의 TCP 같은 프로토콜이 맡는다), 문항 n070·n071 해설
 (phase 73 step 12) `icmp.destination-unreachable`(§2.2 — 포트 번호는 한 호스트 안에서 데이터를 받을 응용 프로그램을 가리킨다)
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(§2.2 — 포트는 한 호스트 안의 어느 응용 프로그램의 통신인지 가리키는 번호: NAPT가 바꾸는 포트를 한 줄로 풀 때)
+(phase 77에서 쓰일 곳) `ports.port-number`(§2.2 — TCP는 포트 번호로 응용 서비스를 가리킨다, §3.1 — 포트 칸 16비트라 0~65535), `ports.client-server-ports`(§4 — 소켓은 IP 주소와 포트를 이은 것, 연결은 소켓 한 쌍이 가리킨다, §3.4.1, §3.3.2·§3.9.1.1 — 서버는 수동 OPEN으로 LISTEN, 한 로컬 포트에 연결 여럿)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.tcp`(§2.2 — 바이트 흐름·세그먼트·연결형·양방향·신뢰성, §3.7 — 세그먼트로 꾸리기, §3.6 — 전이중, §3.8.6 — 윈도우 안에서 여러 세그먼트, §3.8.6.3 — 지연 ACK, §3.8.2 — 혼잡 제어 이름만),
+`tcp-udp.mss`(§3.2 — SYN에만 싣는다, §3.7.1 — 기본값 536·1220, 1500 − 20 − 20 = 1460, §3.7·§3.7.2 — 단편화와 경로 MTU 탐색), `tcp-udp.tcp-header`(§3.1 — 칸과 길이, 데이터 오프셋, 20·60옥텟, 예약, 윈도우, 체크섬과 의사 헤더, 긴급 포인터, 옵션, 길이 칸 없음),
+`tcp-udp.sequence-number`(§3.1·§3.4 — 바이트마다 번호, 첫 데이터 바이트, SYN이면 ISN이고 데이터는 ISN + 1, SYN·FIN이 번호 하나씩, 2^32에서 0으로, §3.4.1 — ISN은 연결마다 예측할 수 없게), `tcp-udp.ack-number`(§3.1·§3.4·§3.8·§4 — ACK가 켜졌을 때만, 늘 보낸다, 순서 번호 + 길이),
+`tcp-udp.tcp-control-bits`(§3.1·§3.5.2·§3.6·§3.9.1.2·§4 — 여덟 비트의 뜻, 할당은 IANA 레지스트리), 강의 수정 이력 L44·L45·L46·L47, `exam-notes.md` E29
+(phase 77 step 5) `tcp-udp.tcp-header`(§3.8.5 — 긴급 데이터는 보내는 쪽 응용이 받는 쪽 응용에게 받아 가도록 재촉하는 데이터, 새 응용은 쓰지 않는 것이 좋다), 문항 n178·n179(§3.1 — 체크섬, 데이터 오프셋), `tcp-udp.sequence-number`·문항 n180(§3.1·§3.4·§3.4.1)
+(phase 77 step 6) `tcp-udp.ack-number`(§3.1·§3.4·§3.8·§3.10.7.4·§4 — 다음에 받을 번호, ACK가 켜졌을 때만, 누적, 먼저 온 세그먼트를 가지고 있는다, 순서 번호 + 데이터 바이트 수, 두 방향), `tcp-udp.tcp-control-bits`(§3.1·§4 — 비트 이름과 뜻, §3.5.2 — RST로 거절, §3.6 — FIN은 한 방향, §3.9.1.2 — PSH), 문항 n181·n182·n183
+(phase 77 step 9에서 쓰일 곳) `tcp-connection.three-way-handshake`(§3.4.1·§3.5 — 이름, 세 번인 까닭, 세그먼트 셋과 번호, 능동·수동 열기), `tcp-connection.connection-termination`(§3.6·§3.6.1·§3.9.1.4 — 한 방향씩 닫기, 정상 종료 차례, 이름(4-way handshake는 없다), §3.10.7.4·그림 5 주 2 — ACK와 FIN이 한 세그먼트로, §3.5.3·§3.9.1.6 — RST로 중단),
+`tcp-connection.tcp-states`(§3.3.1·§3.3.2·§4 「TCB」 — 상태 열하나, CLOSED는 실제로 있지 않은 상태, 상태마다 기다리는 것, 표기), `tcp-connection.opening-states`(§3.3.2 그림 5·§3.5 그림 6·§3.10.7.2·§3.10.7.3·§3.10.7.4 — 맺는 동안의 전이, 클라이언트가 먼저 ESTABLISHED),
+`tcp-connection.closing-states`(§3.6 그림 12·13·§3.10.4·§3.10.7.4·§3.10.8 — 끊는 동안의 전이, CLOSE-WAIT, 동시 종료의 CLOSING), `tcp-connection.time-wait`(§3.3.2·§3.4.1·§3.4.2·§3.6.1·§3.10.7.4·§4 「MSL」 — 두 까닭, 2×MSL, MSL 2분), `exam-notes.md`의 「phase 77 step 9」 문단, 강의 수정 이력 머리의 「phase 77 step 9」 문단
 
 ## RFC 768 — User Datagram Protocol
 https://www.rfc-editor.org/rfc/rfc768
@@ -461,11 +583,26 @@ https://www.rfc-editor.org/rfc/rfc768
 - 체크섬은 의사 헤더·UDP 헤더·데이터에 대한 16비트 1의 보수 합이다. 0으로 보내면 보낸 쪽이 체크섬을 만들지 않았다는 뜻이다 — Fields
 - UDP가 주고받는 단위를 사용자 데이터그램(user datagram)이라 부르고, 그냥 데이터그램이라고도 쓴다. 헤더 그림의 제목은 「User Datagram Header Format」이다 — Format, Fields, User Interface
 - (phase 73 step 12, 2026-10-29 rfc-editor.org 원문) 출발지 포트는 보내는 프로세스(실행 중인 프로그램)의 포트를 가리키고, 목적지 포트는 특정 목적지 IP 주소 안에서 뜻을 갖는다 — Fields
+- (phase 77) 지금 유효한 Internet Standard다. 2025년에 RFC 9868(Transport Options for UDP)이 이 문서를 고쳤다(updates — rfc-editor 상태 2026-11-09. 9868의 내용은 읽지 않았다).
+  헤더 그림에서 출발지 포트와 목적지 포트는 32비트 한 줄을 반씩 나눠 각각 16비트다 — Format
+- (phase 77 step 3) **헤더는 8옥텟, 칸 넷이 모두 16비트**: 그림은 32비트 줄 둘이고, 칸은 출발지 포트·목적지 포트·길이·체크섬 넷이다. 그 뒤에 데이터 옥텟이 온다 — Format.
+  순서 번호·확인 응답 번호·윈도우·제어 비트에 해당하는 칸은 **없다** — Format(칸이 넷뿐이다). 그러니 헤더 크기는 늘 8옥텟이다(옵션 칸이 없다 — Format. RFC 9868(2025-10, Proposed Standard)은 UDP 옵션을 정했지만 헤더 안이 아니라 UDP 데이터가 끝난 뒤, IP 데이터그램 끝까지의 남는 자리(surplus area)에 둔다 — RFC 9868 Abstract.
+  이 과목은 UDP 옵션을 쓰지 않는다 — 기출이 묻지 않는다)
+- (phase 77 step 3) **출발지 포트는 선택**: 뜻이 있을 때 보내는 프로세스의 포트를 적고, 다른 정보가 없으면 답을 보낼 포트로 볼 수 있다. **쓰지 않으면 0을 넣는다** — Fields
+- (phase 77 step 3) **길이의 가장 작은 값은 8**이다 — 길이는 헤더와 데이터를 합친 옥텟 수라 헤더만 있어도 8이다 — Fields. 계산 예: 길이 칸이 1008이면 데이터는 1008 − 8 = 1000옥텟이다(계산)
+- (phase 77 step 3) **체크섬**: 의사 헤더(IP 헤더에서 가져온 출발지 주소·목적지 주소·프로토콜·UDP 길이)·UDP 헤더·데이터를 덮고, 계산 절차는 TCP와 같다. 의사 헤더는 엉뚱한 곳으로 간 데이터그램을 걸러 낸다.
+  계산 결과가 0이면 모두 1로 보낸다(1의 보수에서 같은 값). 모두 0으로 온 체크섬은 보낸 쪽이 체크섬을 만들지 않았다는 뜻이다 — Fields. 곧 오류 검사는 **16비트 체크섬**이고 패리티 비트가 아니다(Fields — 칸과 계산 방법)
+- (phase 77 step 3) **주된 쓰임**: 이 문서는 UDP의 주된 쓰임으로 인터넷 이름 서버(지금의 DNS)와 TFTP를 든다 — Protocol Application
 
 쓰인 곳: 강의 수정 이력 L10, 면접 수정 이력 I3, I4, I10, `protocols-encapsulation.pdu-names`
 (phase 73 step 11) `icmp.ip-limits`(Introduction — 순서 있고 신뢰할 수 있는 전달이 필요한 응용은 TCP를 쓴다)
 (phase 73 step 12) `icmp.destination-unreachable`(Fields — 포트는 호스트 안의 프로그램을 가리킨다, UDP는 TCP와 같은 전송 계층 프로토콜)
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.napt`(Fields — 출발지 포트는 보내는 프로그램의 포트), `ip-address-types.dhcp`(DHCP는 UDP 위에서 동작한다 — RFC 2131 §4.1)
+(phase 77에서 쓰일 곳) `ports.port-number`(Format — UDP 헤더의 두 포트 칸도 16비트, Fields — 목적지 포트로 받을 프로그램을 가린다)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(Introduction — 데이터그램 방식, 전달·중복 방지를 보장하지 않는다, Protocol Application — DNS·TFTP), `tcp-udp.udp-header`(Format·Fields — 8옥텟, 칸 넷 16비트, 출발지 포트 0, 길이 최소 8, 체크섬),
+`tcp-udp.transport-choice`(Introduction — 순서 있고 믿을 수 있는 전달은 TCP, Protocol Application), 강의 수정 이력 L47, 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — UDP 헤더에 없는 칸, 패리티가 아니다)
+(phase 77 step 7) `tcp-udp.udp`(Introduction — 비연결형, 전달·중복 방지를 보장하지 않는다; Format — 순서 번호 칸이 없다; Fields — 체크섬; User Interface — 사용자 데이터그램), `tcp-udp.udp-header`(Format·Fields — 칸 넷 16비트, 8옥텟, 출발지 포트는 쓰지 않으면 0, 길이는 헤더+데이터로 최소 8, 체크섬은 TCP와 같은 절차·0은 만들지 않았다는 뜻), 도식 `udp-delivery`·`udp-header-fields`, 문항 n184·n185 해설
+(phase 77 step 8) `tcp-udp.transport-choice`(Introduction — 순서 있고 믿을 수 있는 흐름 전달이 필요한 응용은 TCP), 도식 `transport-choice`
 
 ## RFC 1122 — Requirements for Internet Hosts — Communication Layers
 https://www.rfc-editor.org/rfc/rfc1122
@@ -574,6 +711,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 74 step 5에서 쓰일 곳) `ip-address-types.public-address`(§3.2.1.3 — 네트워크 번호는 세계에서 하나뿐), `ip-address-types.reserved-addresses`(§3.2.1.3 (a)(b) — 0.0.0.0은 초기화의 출발지로만, (c) — 제한 브로드캐스트는 넘겨지지 않는다), `ip-address-types.loopback`(§3.2.1.3 (g) — 호스트 밖에 나타나지 않는다), `ip-address-types.dhcp-messages`((a) — 주소가 없는 클라이언트의 출발지 0.0.0.0, (c) — 목적지 255.255.255.255)
 (phase 74 step 11에서 쓰일 곳) `routing.routing`(§3.3.1 — 호스트도 데이터그램마다 다음 홉을 고른다), `routing.routing-table`(§3.3.1.3 — 호스트에도 라우팅 테이블이 있다), `routing.default-route`(§3.3.1.2 — 경로 정보가 없는 목적지는 기본 게이트웨이로),
 `routing.static-dynamic-routing`(§3.3.1.2 DISCUSSION — 정적 경로는 관리자가 넣고, 구성이 바뀌거나 장비가 고장 나면 장애의 원인이 된다), `exam-notes.md` E17
+(phase 77 step 7) `tcp-udp.udp`·`tcp-udp.udp-header`(§4.1.3.4 — UDP 체크섬은 만들고 검사하는 것이 기본, 맞지 않는 데이터그램은 알리지 않고 버린다), 문항 n184 해설
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -593,8 +731,20 @@ BCP 145다(RFC 5405를 대체).
 - UDP를 쓰려는 응용에 권하는 대안은 TCP 같은 IETF 전송 프로토콜이다(SCTP, DCCP도 든다) — §3
 - UDP로 대량 데이터를 보내는 응용은 TFRC나 TCP 같은 윈도 기반 혼잡 제어를 갖추거나, 그에 맞먹는 혼잡 제어로 TCP와 공정하게 나눠 쓰도록 해야 한다(SHOULD) — §3.1.2
 - 이 지침 어디에도 UDP가 대량 전송에 TCP보다 맞는다는 말은 없다 — §3, §3.1.2
+- (phase 77 step 3) RFC 8899가 고쳤다(rfc-editor 상태 2026-11-09 — 8899의 내용은 읽지 않았다).
+  UDP는 IP 위에서 최소한의, 믿을 수 없는, 최선형(best-effort) 메시지 전달을 준다. 끝과 끝 사이에 **연결을 맺지 않으므로** 연결을 세우고 끊는 부담이 없고 끝 시스템이 지닐 상태도 적어, 어떤 응용에는 아주 효율적이다 — §1
+- (phase 77 step 3) UDP는 **스스로 혼잡 제어를 하지 않는다**. 그래서 혼잡이 무너지는 일을 막고 경로를 공정하게 나눠 쓰게 하는 일은 UDP를 쓰는 **응용의 몫**이다 — §1, §3.1
+- (phase 77 step 3) UDP는 **흐름 제어도 하지 않는다** — 보내는 쪽은 받는 쪽이 감당할 수 있는지 모른다. 이것이 필요한 응용은 TCP 같은 전송 프로토콜을 쓰는 것이 좋다 — §5
+- (phase 77 step 3) UDP는 신뢰성을 주지 않는다 — 잃은 패킷을 다시 보내지 않고, 같은 데이터그램이 여러 번 올 수 있으며, 순서가 바뀌어 올 수 있다. 신뢰성·순서가 필요한 응용은 그 장치를 **스스로** 갖추거나, 되도록 그것을 주는 IETF 전송 프로토콜을 고른다 — §3.3.
+  재전송을 하는 응용은 그 재전송의 혼잡 제어도 책임진다 — §3.3
+- (phase 77 step 3) UDP 데이터그램 하나는 **IP 패킷 하나**에 실린다(데이터는 IPv4에서 최대 65,507바이트, IPv6에서 65,527바이트). 큰 IP 패킷은 대개 단편화를 부르고 단편화는 신뢰성과 효율을 떨어뜨린다 — §1, §3.2.
+  응용의 메시지를 여러 UDP 데이터그램으로 나누는 것은 **응용이** 하고, 그때는 데이터그램 하나하나를 따로 받을 수 있게 나눈다 — §3.2
 
 쓰인 곳: 면접 수정 이력 I4
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`(§1 — 연결을 맺지 않아 부담이 적다, 혼잡 제어 없음, §5 — 흐름 제어 없음, §3.3 — 재전송·순서 없음, 필요하면 응용이), `tcp-udp.transport-choice`(§3.3·§5 — 믿을 수 있는 순서 전달·흐름 제어가 필요하면 TCP, UDP 위에서 응용이 재전송을 더하면 그 혼잡 제어도 응용 몫),
+기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — [기출 2026-02-01 #17]의 「메시지를 나누고 재조립하는 서비스는 없다」)
+(phase 77 step 7) `tcp-udp.udp`(§1 — 연결을 맺고 끊는 부담이 없고 지닐 상태가 적다, 혼잡 제어는 응용 몫; §3.2 — 데이터그램 하나가 IP 패킷 하나에 실리고 나누기는 응용이 한다; §3.3 — 재전송·순서 맞춤 없음, 중복 가능; §5 — 흐름 제어 없음)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.3 — 신뢰성·순서가 필요하면 응용이 스스로 갖추거나 그것을 주는 전송 프로토콜을 고른다, 재전송하는 응용은 그 혼잡 제어도 책임진다), 문항 n187 해설
 
 ## RFC 7766 — DNS Transport over TCP - Implementation Requirements
 https://www.rfc-editor.org/rfc/rfc7766
@@ -605,6 +755,9 @@ https://www.rfc-editor.org/rfc/rfc7766
 - 범용 DNS 구현은 UDP와 TCP를 모두 지원해야 하고, TCP는 단지 재시도 수단이 아니라 UDP의 대안이다 — §5
 
 쓰인 곳: 강의 수정 이력 L11
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(DNS는 주로 UDP, TCP도 — L11)
+(phase 77 step 7) `tcp-udp.udp`(§1 — DNS는 주로 UDP, 큰 메시지 등에는 TCP도 — L11)
+(phase 77 step 8) `tcp-udp.transport-choice`(DNS는 응답이 클 때 등에는 TCP도 — L11), 도식 `transport-choice` 「짧은 질의」 캡션
 
 ## RFC 1034 — Domain Names - Concepts and Facilities
 https://www.rfc-editor.org/rfc/rfc1034
@@ -612,8 +765,11 @@ https://www.rfc-editor.org/rfc/rfc1034
 - 반복적(iterative) 질의에서는 질의를 받은 서버가 다른 서버를 알려 주고(referral), 그 서버에 다시 묻는 일은 묻는 쪽이 한다 — §4.3.1
 - 재귀적(recursive) 질의는 네임 서버가 해 줄지 고를 수 있는 선택 기능이다. 묻는 쪽이 질의의 RD(recursion desired) 비트로 청하고, 서버는 RD로 청하지 않은 질의에 재귀를 하지 않는다 — §4.3.1
 - 리졸버는 먼저 자기 정보(캐시 포함)에서 답을 찾고, 없으면 아는 네임 서버 가운데 가장 가까운 것부터 차례로 묻고, 받은 답은 캐시에 넣은 뒤 클라이언트에 돌려준다 — §5.3.3
+- (phase 77 step 2, 2026-11-09 rfc-editor.org 원문) 이 문서는 Domain Name System(DNS)을 소개하는 문서다 — §1 STATUS OF THIS MEMO. 설계 목표의 하나는 이름으로 호스트 주소를 찾아 쓰는 것이다 — §2.2
 
 쓰인 곳: 면접 수정 이력 I11
+(phase 77 step 2) `ports.well-known-ports`(DNS 항목 — 풀어 쓴 이름 Domain Name System, 도메인 이름으로 호스트의 IP 주소를 찾아 준다)
+(phase 77 step 7) `tcp-udp.udp`(§2.2 — DNS는 이름으로 호스트 주소를 찾는다)
 
 ## RFC 1035 — Domain Names - Implementation and Specification
 https://www.rfc-editor.org/rfc/rfc1035
@@ -625,6 +781,7 @@ https://www.rfc-editor.org/rfc/rfc1035
 - DNS는 UDP 53번과 TCP 53번을 모두 쓴다. 일반 질의에는 UDP를 권하고, 영역 전송은 TCP로 한다 — §4.2.1, §4.2.2
 
 쓰인 곳: 강의 수정 이력 L11, L15
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1·§4.2.2 — DNS는 53번을 UDP와 TCP 둘 다 쓴다. IANA 레지스트리의 53 `domain` — 아래 IANA 항목)
 
 ## RFC 5681 — TCP Congestion Control
 https://www.rfc-editor.org/rfc/rfc5681
@@ -641,6 +798,7 @@ https://www.rfc-editor.org/rfc/rfc5681
   새 데이터를 확인하는 ACK가 오면 cwnd를 ssthresh로 줄이고 혼잡 회피로 이어 간다 — §3.2
 
 쓰인 곳: 강의 수정 이력 L12, L14, 면접 수정 이력 I13
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.tcp`(§2·§3.1 — 확인받지 않고 보낼 수 있는 양의 상한은 rwnd와 cwnd 가운데 작은 값: 받는 쪽과 네트워크가 함께 보내는 양을 묶는다는 한 줄. 방식은 phase 84), 강의 수정 이력 L46
 
 ## RFC 2018 — TCP Selective Acknowledgment Options
 https://www.rfc-editor.org/rfc/rfc2018
@@ -669,8 +827,12 @@ https://www.rfc-editor.org/rfc/rfc3986
 - 쿼리는 흔히 `key=value` 짝으로 식별 정보를 나르는 데 쓰인다 — 표준이 그 꼴을 강제하지는 않는다 — §3.4
 - 프래그먼트는 `#`로 시작해 URI 끝까지다 — §3.5
 - (phase 73) IPv4 주소를 글자로 적을 때는 점으로 구분한 십진 표기(dotted-decimal)를 쓴다 — 0~255 범위의 십진수 넷을 `.`으로 이은 꼴이다. 이 문서는 그 넷이 4옥텟이라고 밝힌다 — §3.2.2 「Host」
+- (phase 77) authority는 `[사용자 정보 "@"] 호스트 [":" 포트]` 꼴이다 — 호스트(이름이나 IP 주소) 뒤에 쌍점(`:`) 하나를 두고 십진수 포트 번호를 붙일 수 있다 — §3.2, §3.2.3
+- (phase 77) 스킴(scheme)은 기본 포트를 정할 수 있다. 예로 `http` 스킴은 기본 포트를 80(그 스킴에 남겨 둔 TCP 포트 번호)으로 정한다. 포트 번호가 TCP·UDP 가운데 어느 것의 포트인지는 스킴이 정한다.
+  포트가 비었거나 기본 포트와 같으면 주소를 만드는 쪽은 포트와 그 앞의 `:`를 빼는 것이 좋다 — §3.2.3
 
 쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
+(phase 77에서 쓰일 곳) `ports.port-number`(§3.2·§3.2.3 — 주소 뒤에 `:포트`를 붙여 적는 꼴), `ports.well-known-ports`(§3.2.3 — 기본 포트는 스킴이 정하고, 다른 포트는 주소에 적는다)
 
 ## MDN — What is a URL?
 https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL
@@ -689,8 +851,11 @@ https://www.rfc-editor.org/rfc/rfc9112
 - 필드 줄은 `필드 이름 ":" 선택 공백 필드 값 선택 공백`이다 — §5
 - HTTP/1.1은 기본으로 지속 연결을 써서 한 연결에 여러 요청·응답을 싣는다. `close` 연결 옵션이 있으면 그 응답 뒤에 닫는다.
   HTTP/1.0은 `keep-alive` 연결 옵션이 있고 받는 쪽이 받아들일 때만 연결을 유지한다 — §9.3
+- (phase 77 step 3, 2026-11-09 rfc-editor.org 원문 — RFC 9931이 고쳤다) 어떤 연결 프로토콜을 쓸지는 클라이언트 설정과 대상 주소가 정하고, `http` 주소는 기본으로 **IP 위의 TCP**, 기본 TCP 포트 80을 쓴다 — §9
 
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
+(phase 77 step 8) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP), 도식 `transport-choice`
 
 ## MDN — An overview of HTTP
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview
@@ -721,8 +886,14 @@ https://www.rfc-editor.org/rfc/rfc9114
 
 - 프로토콜 이름은 `HTTP/3`이고, HTTP의 의미를 QUIC 위에 옮긴 것이다 — Abstract
 - 서버는 어떤 UDP 포트로든 HTTP/3를 제공할 수 있다 — §3.1
+- (phase 77) 클라이언트는 `https` 주소의 자원에 닿을 때, 호스트 이름을 IP 주소로 바꾼 뒤 그 주소의 「주소에 적힌 포트」로 QUIC 연결을 맺고 그 위로 HTTP/3 요청을 보낼 수 있다(MAY).
+  주소에는 포트가 적혀 있거나, 적혀 있지 않으면 그 스킴의 기본 포트(`https`는 443 — RFC 9110 §4.2.2)가 쓰인다. UDP가 막혀 QUIC 연결을 맺지 못하면 TCP 위의 HTTP로 돌아가는 것이 좋다(SHOULD) — §3.1.
+  곧 HTTP/3로 가는 `https` 요청은 기본으로 **UDP 443**에 닿는다(IANA 레지스트리도 443을 TCP·UDP 둘 다 `https`로 둔다 — 아래 IANA 항목). `exam-notes.md` E28
 
 쓰인 곳: 강의 수정 이력 L18
+(phase 77에서 쓰일 곳) `exam-notes.md` E28(HTTPS와 UDP 443), (쓴다면) `ports.well-known-ports`의 HTTPS 항목
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(Abstract — HTTP/3는 QUIC 위의 HTTP, §3.1 — UDP 포트로 닿고 UDP가 막히면 TCP 위의 HTTP로 돌아간다. QUIC이 UDP 위에서 스스로 신뢰성을 갖춘다는 것은 아래 RFC 9000 항목), `exam-notes.md` E28
+(phase 77 step 8) `tcp-udp.transport-choice`(Abstract — HTTP/3는 QUIC 위의 HTTP; 「자격시험은」 줄은 `exam-notes.md` E28 처리대로)
 
 ## RFC 9110 — HTTP Semantics
 https://www.rfc-editor.org/rfc/rfc9110
@@ -755,9 +926,16 @@ https://www.rfc-editor.org/rfc/rfc9110
 - 5xx는 서버가 스스로 잘못했거나 요청한 메서드를 수행할 능력이 없음을 아는 경우다 — §15.6
 - 501(구현되지 않음)은 서버가 요청을 처리하는 데 필요한 기능을 지원하지 않는다는 뜻이다 — §15.6.2
 - 503(서비스 이용 불가)은 일시적 과부하나 예정된 점검 때문에 지금은 요청을 처리할 수 없다는 뜻이다. Retry-After로 다시 시도할 때를 알릴 수 있다 — §15.6.4
+- (phase 77) `http` 주소는 주어진 포트에서 TCP 연결을 기다리는 서버를 가리킨다. 주소에 포트가 없거나 비어 있으면 **TCP 80**(WWW 서비스에 남겨 둔 포트)이 기본이다 — §4.2.1.
+  주소는 호스트 뒤에 포트 번호를 적을 수 있다(RFC 3986 §3.2.3) — 그러니 서버가 80이 아닌 포트에서 기다리면 클라이언트가 그 번호를 주소에 적어야 한다
+- (phase 77) `https` 주소는 주어진 포트에서 TCP 연결을 기다리고, HTTP 통신을 위해 보호된 **TLS 연결**을 맺을 수 있는 서버를 가리킨다. 「보호된」은 서버가 그 이름의 주인을 대신한다는 것이 인증되고,
+  그 서버와 주고받는 HTTP 통신 모두가 기밀성(남이 읽지 못함)과 무결성(바뀌지 않음) 보호를 받는다는 뜻이다. 포트가 없거나 비어 있으면 **TCP 443**(TLS 위의 HTTP에 남겨 둔 포트)이 기본이다.
+  클라이언트는 `https` 자원에 보내는 요청을 보내기 전에 보호해야 한다(MUST). `http`와 `https`는 서로 다른 출처(origin)다 — §4.2.2
+  (HTTP/3는 같은 `https` 주소에 UDP로 닿는다 — 위 RFC 9114 항목의 「(phase 77)」 줄)
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -938,8 +1116,14 @@ https://www.rfc-editor.org/rfc/rfc1350
 인터넷 표준(STD 33)이다.
 
 - TFTP(Trivial File Transfer Protocol)는 파일을 주고받는 아주 단순한 프로토콜이고, UDP 위에 구현되어 있다 — Summary, §1
+- (phase 77 step 3, 2026-11-09 rfc-editor.org 원문 — RFC 1782~1785·2347~2349가 고쳤다) 작고 구현하기 쉽게 만들어 일반 FTP의 기능 대부분이 없다 — 원격 서버의 파일을 읽고 쓰는 것뿐이고, 디렉터리 목록도 사용자 인증도 없다 — §1
+- (phase 77 step 3) **UDP 위에서 스스로 확인하고 다시 보낸다**: 파일을 512바이트 고정 블록으로 보내고, 데이터 패킷마다 확인 응답 패킷을 받아야 다음 패킷을 보낸다(lock step). 패킷을 잃으면 받을 쪽이 시간 초과 뒤 마지막 패킷을 다시 보내,
+  잃은 패킷을 보낸 쪽이 그것을 다시 보내게 한다. 512바이트보다 짧은 데이터 패킷이 전송의 끝을 알린다 — §2
+- (phase 77 step 3) 이 문서는 TFTP가 FTP보다 **빠르다**고 하지 않는다 — 작고 구현하기 쉽다고만 한다(§1). 확인 응답을 받아야 다음 블록을 보내는 방식(§2)이다
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — UDP 위의 간단한 파일 전송, §2 — 512바이트 블록마다 확인 응답, 블록을 잃으면 받을 쪽이 시간 초과 뒤 마지막 확인 응답을 다시 보내 보내는 쪽이 잃은 블록을 다시 보낸다), 도식 `transport-choice`, 문항 n187
 
 ## (2026-10-28) RFC 4949 — Internet Security Glossary, Version 2
 https://www.rfc-editor.org/rfc/rfc4949
@@ -1619,9 +1803,14 @@ https://www.rfc-editor.org/rfc/rfc3168
 
 - DS 필드는 IPv4의 서비스 유형 칸(RFC 791)과 IPv6의 트래픽 클래스 칸의 옛 정의를 대신하는 칸이다. 앞 6비트(DSCP)로 패킷이 지나는 노드마다 받을 처리를 고른다 — RFC 2474 §3
 - 그 8비트 칸의 끝 두 비트(비트 6·7)는 ECN 필드다. 혼잡이 막 시작될 때 패킷을 버리는 대신 표시해 알리는 데 쓴다. IPv4 서비스 유형 칸과 IPv6 트래픽 클래스 칸은 서로 대응하고, ECN 필드는 두 칸에서 똑같이 정의된다 — RFC 3168 §5
+- (phase 77 step 3, 2026-11-09 rfc-editor.org 원문) RFC 3168은 RFC 4301·6040·8311·9768이 고쳤다(rfc-editor 상태). 이 문서가 TCP 헤더의 예약 칸에서 두 비트를 새 플래그로 정했다 — 비트 9를 **ECE**(ECN-Echo), 비트 8을 **CWR**(Congestion Window Reduced)로.
+  그 결과 예약 칸은 6비트(옛 정의 — 그림 3: 예약 6비트 + URG·ACK·PSH·RST·SYN·FIN)에서 **4비트**(비트 4~7)가 되었다 — RFC 3168 §6.1, 그림 3·4
+- (phase 77 step 3) 두 비트의 쓰임(TCP 끝점 사이의 신호): 혼잡을 감지한 라우터가 패킷을 버리는 대신 IP 헤더에 혼잡 표시(CE)를 하고 넘긴다 → 받은 쪽이 다음 ACK에 **ECE**를 켜서 보낸 쪽에 알린다 →
+  보낸 쪽은 패킷을 잃은 것처럼 혼잡에 대응하고, 다음 세그먼트에 **CWR**을 켜서 ECE를 받고 대응했다고 알린다 — RFC 3168 §6.1. 대응하는 방식(혼잡 윈도우를 줄이는 것)은 phase 84의 몫이다
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv4-header`(서비스 유형 칸의 지금 이름 — DS 필드와 ECN), `ip-protocol.ipv6-header`(트래픽 클래스의 지금 쓰임), `exam-notes.md` E9
 (phase 73 step 6) `ip-protocol.ipv6-header`(트래픽 클래스 — DS 필드로 다시 정의, 앞 6비트는 처리를 고르는 값·끝 2비트는 ECN), 문항 n060 해설(트래픽 클래스는 서비스 유형 칸에 해당)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.tcp-control-bits`(§6.1 — CWR·ECE의 자리와 쓰임), `tcp-udp.tcp-header`(§6.1 — 예약 칸이 6비트에서 4비트로), `exam-notes.md` E29
 
 ## (phase 73) IANA — Assigned Internet Protocol Numbers
 https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
@@ -1687,9 +1876,13 @@ Proposed Standard(Standards Track)이고 RFC 4291을 고친다.
   - 0 묶음이 이어진 곳이 여럿이면 **가장 긴 곳**을 줄이고, 길이가 같으면 **앞쪽**을 줄인다 — §4.2.3
   - 16진수 글자 a~f는 **소문자**로 적는다 — §4.3
 - 끝 32비트에 IPv4 주소를 품은 특별한 주소는 십진수를 섞은 꼴로 적기를 권한다(예: `::ffff:192.0.2.1`) — §5. 이름만 쓴다
+- (phase 77) 주소와 포트 번호를 글자로 함께 적는 꼴은 여러 가지다(`[2001:db8::1]:80`, `2001:db8::1 port 80` 등). IPv4도 사정이 크게 다르지 않다고 적는다. IPv6에서는 `::` 때문에 `2001:db8::1:80`처럼 쌍점으로만 이으면
+  어디까지가 주소인지 모호하므로, RFC 3986의 꼴대로 주소를 대괄호로 감싸고 `:포트`를 붙이는 `[주소]:포트`를 기본으로 쓴다(SHOULD) — §6.
+  (IPv4 주소는 쌍점을 쓰지 않으므로 `192.0.2.10:80`처럼 주소 뒤에 바로 `:포트`를 붙여도 모호하지 않다 — RFC 3986 §3.2·§3.2.2·§3.2.3의 꼴)
 
 쓰인 곳: (phase 73에서 쓰일 곳) `ip-protocol.ipv6-address-notation`(권고 표기 — §4)
 (phase 73 step 6) `ip-protocol.ipv6-address-notation`(§2 — 같은 주소가 여러 꼴로 적힌다; §4 — 앞쪽 0은 뺀다·`::`는 최대로·가장 긴 곳·같으면 앞쪽·0 묶음 하나는 줄이지 않는다·소문자, 받는 쪽은 RFC 4291이 허락하는 꼴을 모두 받는다), 문항 n058 해설(가장 긴 0 묶음을 줄이고 0 묶음 하나는 줄이지 않기를 권한다)
+(phase 77에서 쓰일 곳) `ports.port-number`·`ports.client-server-ports`(§6 — 주소와 포트를 `주소:포트`로 붙여 적는 꼴. 이 phase의 예는 IPv4 문서용 주소라 `192.0.2.10:50001`처럼 쓴다)
 
 ## (phase 73) RFC 1883 — Internet Protocol, Version 6 (IPv6) Specification [폐기, RFC 2460으로 대체(RFC 2460은 다시 RFC 8200으로 대체) — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1883
@@ -1830,6 +2023,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 (phase 73 step 8) `arp.arp`·`arp.arp-request-reply`(RFC 5737 §3 — 호스트 A~D의 `192.0.2.1`~`192.0.2.4`, 본문 예와 도식 `arp-purpose`·`arp-exchange`)
 (phase 74) 세 블록의 첫 옥텟은 192·198·203이라 셋 다 옛 C 클래스 범위(192~223, RFC 791 §2.3으로 계산)에 든다 — 문서용 IPv4 주소 가운데 A·B 클래스 범위의 것은 없다.
 `ip-addressing`의 예는 모두 이 안에서 만든다 — 서브네팅 예 `192.0.2.0/24`를 `/26` 넷으로(`192.0.2.0`·`.64`·`.128`·`.192`, 서브넷마다 주소 64개·호스트 62개), AND 예 `192.0.2.130` AND `255.255.255.192` = `192.0.2.128`(마지막 옥텟 `10000010` AND `11000000` = `10000000`) — 계산으로 확인(2026-10-29)
+(phase 77 step 2) `ports.well-known-ports`(RFC 2606 §3 — DNS 항목의 예 `www.example.com`과 웹 주소의 예 `http://www.example.com:8080/`), `ports.client-server-ports`(RFC 5737 §3 — 클라이언트 `192.0.2.10`·`192.0.2.11`, 서버 `198.51.100.10`), 문항 n174(`www.example.com`)·n175(`192.0.2.20`·`198.51.100.20`)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
@@ -1991,6 +2185,7 @@ https://www.rfc-editor.org/rfc/rfc2131
 
 쓰인 곳: (phase 73 step 1에서 쓰일 곳) `arp.rarp`(BOOTP가 같은 일을 IP 위에서 하려고 나왔고, DHCP는 BOOTP를 바탕으로 한다 — [기출 2024-02-25 #13]의 맞는 보기와 어긋나지 않는다)
 (phase 73 step 10) `arp.rarp`(RFC 951 §6 — RARP가 먼저 나왔고 링크 수준이라 커널·드라이버를 고쳐야 했으며, BOOTP가 같은 일을 IP·UDP 위에서 다른 기능과 함께 한다; RFC 2131 Abstract — DHCP는 BOOTP를 바탕으로 다시 쓸 수 있는 주소를 자동으로 나눠 준다; RFC 1122 §3.2.2.7 — RARP와 BOOTP). 「RARP는 지금 쓰이지 않는다」는 쓰지 않았다
+(phase 77 step 7) `tcp-udp.udp`(RFC 2131 Abstract·§4.1 — DHCP는 호스트에 설정을 나눠 주고 UDP를 쓴다)
 
 위 머리의 「RARP와의 관계만 가져온다」는 phase 73의 기록이다. 아래 「(phase 74 step 5)」 줄은 `ip-address-types`의 DHCP 개념이 쓸 **DHCP의 동작**을 더한다(RFC 2131 원문을 다시 내려받아 읽었다, 2026-10-29).
 RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·5494·6842가 고쳤다(rfc-editor 상태).
@@ -2018,6 +2213,9 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
   T1 전에 늘려 달라고 해도 된다(MAY). ACK 없이 임대가 끝나면 그 주소로 하던 네트워크 처리를 곧 멈추고 처음부터 주소를 다시 받는다 — RFC 2131 §4.4.5. 필요 없어진 주소는 DHCPRELEASE로 돌려준다 — §4.4.6
 
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
+(phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(RFC 2131 §4.1 — DHCP는 UDP를 쓴다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.1·§4.1 — 메시지 몇 개를 주고받고 UDP를 쓴다), 도식 `transport-choice`
 
 ## (phase 73 step 1) RFC 5227 — IPv4 Address Conflict Detection
 https://www.rfc-editor.org/rfc/rfc5227
@@ -2233,7 +2431,30 @@ XML판(`…/service-names-port-numbers.xml`, 2026-10-27판)을 읽었다.
 - 67은 `bootps`(Bootstrap Protocol Server), 68은 `bootpc`(Bootstrap Protocol Client)이고 TCP·UDP 둘 다 등록돼 있다. 53은 `domain`(Domain Name Server)이다 — 레지스트리의 각 행
 - DHCP가 이 두 BOOTP 포트를 쓴다는 것은 RFC 2131 §4.1(서버 포트 67, 클라이언트 포트 68)과 §1(DHCP 메시지 형식이 BOOTP를 바탕으로 한다)이다 — 위 RFC 951·RFC 2131 항목
 
+phase 77 step 0에서 XML판(레지스트리 머리의 Last Updated 2026-11-06판)을 2026-11-09에 다시 내려받아 읽었다. 이 레지스트리는 항목 하나로 두므로 아래 「(phase 77)」 줄을 이 항목에 더한다.
+
+- (phase 77) **레지스트리 머리 설명**: 서비스 이름과 포트 번호는 TCP·UDP·DCCP·SCTP 같은 전송 프로토콜 위에서 도는 서로 다른 서비스를 가리는 데 쓴다. 포트 번호는 세 범위로 나뉜다 —
+  System Ports(0~1023, IETF 검토나 IESG 승인으로 정해 준다), User Ports(1024~49151, IETF 검토·IESG 승인·전문가 검토로 정해 준다), Dynamic and/or Private Ports(49152~65535, 정해 주지 않는다).
+  범위의 쓰임과 절차는 RFC 6335 §8.1.2가 정한다 — 레지스트리 머리의 note
+- (phase 77) **레지스트리는 전송 프로토콜마다 따로 적는다** — 행마다 번호·전송 프로토콜(`tcp`·`udp`·`sctp`·`dccp`)·서비스 이름이 있고, 같은 번호라도 전송 프로토콜마다 다른 행이다.
+  같은 번호가 TCP와 UDP에서 서로 다른 서비스인 예: 514는 TCP가 `shell`, UDP가 `syslog`다. 같은 번호를 TCP에만 정해 주고 UDP는 남겨 둔 예: 6379는 TCP가 `redis`, UDP는 Reserved다 — 레지스트리의 각 행
+- (phase 77) **0번**은 TCP·UDP 모두 Reserved(RFC 6335)다 — 어떤 서비스에도 정해 주지 않았다. 1023·1024도 Reserved다(범위의 경계) — 레지스트리의 각 행, RFC 6335 §6
+- (phase 77) **이 phase가 쓰는 서비스의 행**(번호·서비스 이름·설명):
+  - 20 `ftp-data` — File Transfer [Default Data], 21 `ftp` — File Transfer Protocol [Control](참조 RFC 959)
+  - 22 `ssh` — The Secure Shell (SSH) Protocol(참조 RFC 4251)
+  - 23 `telnet` — Telnet(참조 RFC 854)
+  - 25 `smtp` — Simple Mail Transfer
+  - 53 `domain` — Domain Name Server, 67 `bootps`·68 `bootpc`(위 줄)
+  - 80 `http`(별칭 `www`·`www-http`) — World Wide Web HTTP(참조 RFC 9110)
+  - 443 `https` — http protocol over TLS/SSL(참조 RFC 9110)
+  - 위 여덟 서비스의 번호는 모두 TCP·UDP 두 행이 같은 서비스로 있다(20·21·22·80·443은 SCTP 행도 있다). 2011년 전까지 IANA가 한 전송 프로토콜만 청해도 TCP·UDP 둘 다 정해 주던 관행이 있었고(RFC 6335 §7.2), 그래서 TCP만 쓰는 서비스도 두 행을 갖는다(services(5) — 아래 「(phase 77) Linux man-pages」 항목).
+    **그러니 레지스트리에 UDP 행이 있다고 그 서비스가 UDP를 쓰는 것은 아니다** — 어느 전송 프로토콜을 쓰는지는 그 프로토콜의 RFC가 정한다: FTP·SSH·Telnet·SMTP·HTTP는 TCP(RFC 959 §8, RFC 4253 §4.1, RFC 854, RFC 5321 §4.5.4.2, RFC 9110 §4.2.1),
+    DHCP는 UDP(RFC 2131 §4.1), DNS는 UDP와 TCP 둘 다(RFC 1035 §4.2), HTTPS는 TCP(RFC 9110 §4.2.2)이고 HTTP/3는 UDP(RFC 9114 §3.1)
+- (phase 77) **강의 p225의 등록된 포트(User Ports) 예 다섯은 모두 레지스트리에 있다**: 1194 `openvpn` — OpenVPN(TCP·UDP), 1433 `ms-sql-s` — Microsoft-SQL-Server(TCP·UDP), 3306 `mysql` — MySQL(TCP·UDP),
+  6379 `redis` — An advanced key-value cache and store(TCP만. UDP 6379는 Reserved), 8080 `http-alt` — HTTP Alternate (see port 80)(TCP·UDP) — 레지스트리의 각 행. 다섯 번호 모두 User Ports 범위(1024~49151) 안이다
+
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
+(phase 77에서 쓰일 곳) `ports.port-number`(전송 프로토콜마다 따로 적는다 — 514·6379의 예), `ports.port-ranges`(머리의 세 범위, 0번 Reserved, 등록된 포트 예 다섯), `ports.well-known-ports`(여덟 서비스의 행, UDP 행이 있어도 UDP를 쓰는 것은 아니다), `exam-notes.md` E27·E28
 
 ## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
 https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
@@ -2367,6 +2588,8 @@ STD 56, Internet Standard이고 폐기되지 않았다. RFC 4822가 고쳤다(rf
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.rip`(§3.1·§3.4 — 거리 벡터, 벨먼-포드, 이웃끼리만, §3.5 — 메트릭은 보통 홉 수, §3.2·§3.6 — 15홉, 16은 닿을 수 없음, §3.6 — UDP 520, §3.8 — 30초, §1·§3.2 — 작은·중간 크기 네트워크, §2·§4.3 — RIPv1과 RIPv2),
 `routing.routing-table`(§3.4 — 항목의 칸, 작은 메트릭을 고른다), `routing.routing`(§3.1 — 라우팅 프로토콜의 목적), 강의 수정 이력 L42(§3.4 — 홉), `exam-notes.md` E18
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§3.6 — RIP 메시지는 UDP 520으로 주고받는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§3.6 — UDP, §3.8 — 30초마다 경로 정보 전체를 이웃에게)
 
 ## (phase 74 step 11) RFC 1058 — Routing Information Protocol [Historic — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1058
@@ -2442,8 +2665,14 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
   게이트웨이는 그 목적지에 닿으려고 넘길 **다음 홉 IP 주소**다 — 바로 붙은 서브넷이면 그 서브넷에 붙은 인터페이스의 주소, 라우터를 거쳐야 하면 바로 닿는 이웃 라우터의 주소다.
   메트릭은 목적지에 가장 잘 맞는 경로가 여럿일 때 고르는 데 쓰는 정수 비용이다. 문서의 예 하나가 기본 게이트웨이 주소로 가는 디폴트 라우트를 목적지 `0.0.0.0`·마스크 `0.0.0.0`으로 넣는다 — route 문서의 설명·Parameters·Examples
 - Windows: `netstat -r`은 IP 라우팅 테이블의 내용을 보여 주고, `route print`와 같다 — netstat 문서 Parameters
+- (phase 77 step 9, 2026-11-10에 다시 읽음 — man7.org netstat(8)은 net-tools 2026-05-10판(upstream에서 2026-08-04에 가져옴), Microsoft Learn netstat은 `updated_at` 2026-09-08) **TCP 상태의 표기**:
+  Linux netstat(8)의 State 칸은 ESTABLISHED, SYN_SENT, SYN_RECV, FIN_WAIT1, FIN_WAIT2, TIME_WAIT, CLOSE(쓰이지 않는 소켓), CLOSE_WAIT, LAST_ACK, LISTEN, CLOSING 같은 값을 보인다 — 밑줄로 잇고 몇 이름을 줄여 적는다(SYN_RECV, FIN_WAIT1) — netstat(8) 「State」.
+  같은 페이지는 netstat이 대부분 낡았고 대신 쓰는 것이 ss라고 적는다 — NOTES.
+  Windows netstat 문서는 TCP 연결의 상태로 CLOSE_WAIT, CLOSED, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, LAST_ACK, LISTEN, **SYN_RECEIVED**, SYN_SEND, TIMED_WAIT를 든다 — Remarks의 State. 곧 RFC의 SYN-RECEIVED를 밑줄로 이은 SYN_RECEIVED가 이 문서의 표기다.
+  이 문서는 SYN-SENT를 SYN_SEND로, TIME-WAIT를 TIMED_WAIT로 적고 CLOSING은 들지 않는다 — RFC 9293 §3.3.2와 이름이 다른 곳이라 본문에 옮기지 않는다
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
+(phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(상태 이름을 밑줄로 잇는 표기 — Windows netstat의 SYN_RECEIVED, Linux netstat의 SYN_RECV), `exam-notes.md`의 「phase 77 step 9」 문단(기출의 SYN_RECEIVED 표기, 오답 보기 CLOSE)
 
 ## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
@@ -3632,3 +3861,283 @@ pgrep(1)은 procps-ng(2025-12-29). FTP 전송 기록 `xferlog`는 man7.org에 �
 
 쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(id(1)·매뉴얼 20.1 — `id`가 보이는 것, 로그인한 뒤 바꾼 그룹은 지금 세션에 바로 나타나지 않는다), `linux-accounts.login-records`(bash(1) — `history`는 셸 명령의 목록),
 `exam-notes.md`의 「phase 76 step 9」 문단(bash(1)·pgrep(1) — 기출 오답 `history`·`pkill`, `xferlog`는 출처에 없다)
+
+## (phase 77) RFC 6335 — Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry
+https://www.rfc-editor.org/rfc/rfc6335
+
+BCP 165(Best Current Practice)이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). IANA가 포트 번호 레지스트리를 어떻게 다루는지 정한 문서다.
+
+- 포트는 두 가지 일을 한다 — 같은 두 끝점 사이의 서로 다른 전송 세션을 가려내는 식별자이고, 프로세스가 이어 붙는 응용 프로토콜과 서비스를 가리키기도 한다. 포트 번호는 16비트다.
+  출발지 포트·목적지 포트와 통신하는 두 끝 시스템의 IP 주소를 함께 보면 한 전송 프로토콜의 세션 하나가 하나로 정해진다 — §3
+- 많은 서비스는 서버가 보통 기다리는 **기본(default) 포트**를 갖고, IANA가 그 포트를 레지스트리에 적어 둔다. 다만 어느 포트가 어느 서비스인지는 결국 연결의 두 끝 사이에서만 뜻이 있는 그 쪽의 결정이다.
+  예로 서비스 이름 `telnet`은 23번, `http`(`www`·`www-http`)는 80번이다. 같은 호스트에서 같은 서비스를 여러 개 띄우면 대개 같은 포트에서 함께 기다릴 수 없다 — §3
+- **세 범위**(TCP·UDP·UDP-Lite·SCTP·DCCP가 모두 16비트 포트 번호 공간을 이렇게 나눈다) — §6:
+  - System Ports — **Well Known Ports**라고도 한다. 0~1023. IANA가 정해 준다
+  - User Ports — **Registered Ports**라고도 한다. 1024~49151. IANA가 정해 준다
+  - Dynamic Ports — **Private Ports** 또는 **Ephemeral Ports**라고도 한다. 49152~65535. 누구에게도 정해 주지 않는다
+- 정해 줄 수 있는 범위(0~49151)의 번호는 Assigned(정해 줌)·Unassigned(비어 있음)·Reserved(남겨 둠) 가운데 하나다. Reserved는 보통의 신청으로는 받을 수 없는 번호이고,
+  범위의 경계에 있는 값(0, 1023, 1024 등)이 여기에 든다 — 나중에 범위를 늘리는 데 쓸 수 있게 남겨 둔 것이다 — §6. **그러니 0번은 어떤 서비스의 포트로도 정해 주지 않는다**
+- **범위마다 다른 절차** — §8.1.2:
+  - Dynamic Ports는 그 호스트에서 그때그때 쓰라고 떼어 둔 범위라 IANA를 거쳐 정해 받을 수 없다. 응용 프로그램은 등록 없이 비어 있는 동적 포트 아무것이나 쓸 수 있다.
+    그러나 특정 번호가 늘 비어 있다고 가정하면 안 되고(MUST NOT), 그래서 이 범위의 번호를 **서비스를 가리키는 번호로 쓰면 안 된다**(MUST NOT)
+  - User Ports는 IANA가 정해 줄 수 있고, 정해 받은 뒤에는 서비스를 가리키는 번호로 써도 된다(MAY). 신청할 때 동적 포트로는 왜 안 되는지 밝혀야 한다
+  - System Ports도 IANA가 정해 주지만 가장 작고 가장 빽빽한 범위라 조건이 더 엄격하다(IETF 검토나 IESG 승인으로만). 동적 포트로도, User Ports로도 왜 안 되는지 둘 다 밝혀야 한다
+- **전송 프로토콜마다 따로 정해 준다** — 이 문서(2011)부터 IANA는 신청서에 적은 전송 프로토콜(TCP·UDP·SCTP·DCCP)에만 번호를 정해 주고, 나머지 전송 프로토콜의 같은 번호는 Reserved로 둔다.
+  그 전에는 한 프로토콜만 청해도 TCP와 UDP 둘 다 정해 주던 관행이 오래 있었다. 응용 프로그램은 한 전송 프로토콜로 받은 번호를 다른 전송 프로토콜에서도 쓸 수 있다고 가정하면 안 된다(MUST NOT) — §7.2
+- 포트의 쓰임은 끝점 프로세스를 가리키는 것, 응용 프로토콜을 가리키는 것, 방화벽이 걸러 내는 기준이 되는 것이다. 포트 번호는 연결의 두 끝점에게만 뜻이 있어서, 지나가는 흐름의 포트 번호만 보고 무슨 서비스인지 판단하는 것은 늘 믿을 만하지 않다 — §7.2
+- FTP처럼 정해 받은 포트 하나로 시작하고, 그다음 주고받기에는 동적 포트를 쓰도록 맞추는 방식도 든다 — §7.2
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(§3 — 포트는 16비트, 주소와 포트 넷으로 세션이 정해진다, §7.2 — 전송 프로토콜마다 따로), `ports.port-ranges`(§6 — 세 범위와 다른 이름, 0번 Reserved, §8.1.2 — 범위마다 다른 절차, 동적 포트는 서비스 번호로 쓰지 않는다),
+`ports.well-known-ports`(§3 — 기본 포트, 결국 두 끝의 결정), `ports.client-server-ports`(§3 — 출발지·목적지 포트와 두 IP 주소), 강의 수정 이력 L43, `exam-notes.md` E27
+
+## (phase 77) RFC 7605 — Recommendations on Using Assigned Transport Port Numbers
+https://www.rfc-editor.org/rfc/rfc7605
+
+BCP 165(RFC 6335와 같은 BCP)이고 폐기되지 않았다(rfc-editor 상태 2026-11-09).
+
+- 역사: 처음 정해 주던 포트는 0~255였고, RFC 1340(1992)이 범위를 0~1023으로 늘렸다(RFC 1340은 지금 역사적 문서다). 그때는 한 번 정해 준 번호가 모든 전송 프로토콜에 그대로 적용된다고 여겼다 — §3
+- 세 범위의 이름: System(Well-Known이라고도) 0~1023, User(Registered라고도) 1024~49151, Dynamic(Private라고도) 49152~65535. System과 User 둘 다 IANA를 거쳐 정해 주므로 둘을 합쳐 「registered」라 부르는 일도 있어
+  「registered」라는 말은 0~49151 전체를 가리키기도 하고 User 범위만 가리키기도 한다 — §4
+- System 범위를 「System」이라 부르는 까닭: 몇몇 시스템에서는 이 범위의 포트를 쓰려면 특권(예: root로 실행)이 필요하기 때문이다. User 범위는 특권 없이 쓰는 범위다. 다만 System 포트가 늘 특권을 요구하지는 않는다 — §4, §7.3.
+  시스템을 만드는 쪽은 System 포트에서 기다리려는 프로세스에 특권을 요구하는 것이 좋다(SHOULD) — §7.3
+- 포트 번호는 16비트이고 쓰임이 둘이다 — 한 호스트 안에서 전송 끝점의 짝(TCP 연결이나 UDP 주고받기 짝)을 가려내는 것과 서비스를 가리키는 것. 앞의 쓰임 때문에, 주어진 두 IP 주소 사이에서 같은 전송 프로토콜을 쓰는 짝은
+  저마다 다른 포트 번호 쌍을 써야 한다. 등록이 필요한 것은 뒤의 쓰임 때문이다 — §5
+- 웹 서버는 어느 포트에서든 돌 수 있다 — 클라이언트가 그 번호를 알기만 하면 된다. 번호를 알리는 방법의 예로 주소에 포트를 적는 것(`http://www.example.com:51509/`)을 든다. 서비스와 포트 번호의 짝은 결국 두 끝점 사이의 약속이다.
+  IANA가 번호를 정해 주는 까닭은 모든 끝점이 그 번호의 기본 뜻에 미리 합의해 두려는 것, 곧 프로토콜이나 서비스마다 **기본 포트 번호**를 주려는 것이다 — §5
+- 한 전송 프로토콜에서 어떤 서비스에 정해 준 번호가, 다른 전송 프로토콜에서는 다른 서비스에 정해질 수 있다 — §7.3
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(§5 — 포트는 16비트, 같은 두 주소 사이의 짝은 다른 포트 쌍, §7.3 — 같은 번호가 전송 프로토콜마다 다른 서비스), `ports.port-ranges`(§4 — 세 범위의 이름, 「registered」의 두 뜻),
+`ports.well-known-ports`(§5 — 웹 서버는 어느 포트에서든 돌 수 있고 주소에 포트를 적어 알린다, 기본 포트, §4·§7.3 — System 포트와 특권), `exam-notes.md` E27
+
+## (phase 77) RFC 6056 — Recommendations for Transport-Protocol Port Randomization
+https://www.rfc-editor.org/rfc/rfc6056
+
+BCP 156이고 폐기되지 않았다(rfc-editor 상태 2026-11-09).
+
+- 서비스는 보통 서비스를 주는 호스트(서버)의 정해진 잘 알려진 포트에 있다. 클라이언트 응용 프로그램은 서버의 IP 주소와 서비스 포트 번호를 정해 서버에 닿는다.
+  클라이언트 쪽의 IP 주소와 포트 번호는 보통 응용 프로그램이 정하지 않고 **클라이언트의 네트워크 스택(운영체제)이 자동으로 고른다**. 이렇게 자동으로 고른 포트를 **임시 포트**(ephemeral port)라 부른다 — §1
+- IANA는 TCP·UDP의 16비트 포트 범위를 Well-Known Ports(0~1023), Registered Ports(1024~49151), Dynamic and/or Private Ports(49152~65535)로 나눠 두었고, 동적 포트 범위는 임시 포트를 고르는 데 쓰라는 범위다 — §2.1
+- 통신 하나는 다섯 값 {프로토콜, 로컬 IP 주소, 로컬 포트, 원격 IP 주소, 원격 포트}로 가려지므로, 임시 포트는 이 다섯 값 묶음이 겹치지 않게 골라야 한다 — §2.2
+- 그러나 임시 포트를 고르는 방법은 49152~65535만이 아니라 **1024~65535 전체**를 쓰는 것이 좋다고 권한다(그 호스트가 서비스에 쓸 등록된 포트는 빼고) — §3.2.
+  곧 클라이언트의 임시 포트가 IANA의 동적 포트 범위 안에서만 나온다는 보장은 없고, 실제 범위는 운영체제와 그 설정이 정한다(Linux·Windows의 예는 아래 두 항목)
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.client-server-ports`(§1 — 서버는 잘 알려진 포트, 클라이언트 포트는 운영체제가 자동으로 고르는 임시 포트, §2.2 — 다섯 값으로 통신을 가린다, §3.2 — 1024~65535 전체를 권한다), `ports.port-ranges`(§2.1 — 동적 포트는 임시 포트용), 강의 수정 이력 L43
+
+## (phase 77) RFC 959 — File Transfer Protocol (FTP)
+https://www.rfc-editor.org/rfc/rfc959
+
+Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등이 고쳤다 — rfc-editor 상태 2026-11-09). **포트와 두 연결만** 가져온다. FTP의 명령과 전송 방식은 응용 프로토콜 주제(phase 78)의 몫이다.
+
+- FTP는 연결 두 종류를 쓴다 — **제어 연결**(control connection)은 사용자 쪽과 서버 쪽이 명령과 응답을 주고받는 통로이고, **데이터 연결**(data connection)은 파일 같은 데이터를 실제로 옮기는 전이중 연결이다 — §2.2
+- 제어 연결은 사용자 프로세스의 포트 U와 서버 프로세스의 포트 L 사이에 **TCP**로 맺고, FTP의 서버 포트는 **21**이다(L = 21) — §8
+- 서버의 기본 데이터 포트는 제어 연결 포트 바로 아래 번호(L − 1), 곧 **20**이다. 사용자 쪽의 기본 데이터 포트는 자기 제어 연결 포트와 같다. 전송 요청을 받으면 서버가 데이터 연결을 연다 — §3.2.
+  PASV 명령을 쓰면 서버는 기본 데이터 포트가 아닌 다른 데이터 포트에서 연결을 기다린다 — §4.1.2
+- (phase 77 step 3) 이 문서는 TCP와 Telnet 프로토콜을 안다고 전제하고 쓰였다 — §1. 데이터를 옮기는 동안 잃거나 뒤섞인 비트를 찾는 장치는 FTP에 없고, **그 수준의 오류 제어는 TCP가 맡는다** — §3.5
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(§2.2 — 제어 연결과 데이터 연결, §8 — TCP 21은 제어, §3.2 — 기본 데이터 포트 20)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§8 — 제어 연결은 TCP, §3.5 — 데이터의 오류 제어를 TCP에 맡긴다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — FTP는 UDP를 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§8 — TCP 연결, §3.5 — 데이터를 잃거나 뒤섞지 않았는지 살피는 일을 TCP에 맡긴다), 도식 `transport-choice`, 문항 n187 해설
+
+## (phase 77) RFC 854 — Telnet Protocol Specification
+https://www.rfc-editor.org/rfc/rfc854
+
+Internet Standard이고 폐기되지 않았다(RFC 764를 대체, RFC 5198이 고쳤다 — rfc-editor 상태 2026-11-09).
+
+- Telnet은 단말(터미널)과 단말을 다루는 프로세스를 표준 방법으로 서로 잇게 하는, 양방향의 범용 통신 수단이다 — INTRODUCTION. Telnet 연결은 **TCP** 연결이다 — GENERAL CONSIDERATIONS
+- Telnet의 TCP 연결은 사용자의 포트 U와 서버의 포트 L 사이에 맺는다. 서버는 자기의 잘 알려진 포트 L에서 연결을 기다린다. TCP 연결은 전이중이고 **포트 쌍으로 가려지므로**,
+  서버는 같은 포트 L로 서로 다른 사용자 포트 U들과 **여러 연결을 동시에** 맺을 수 있다. 원격 단말 접속에 쓸 때 서버 포트는 **23**이다(L = 23) — CONNECTION ESTABLISHMENT
+- 이 문서 전문에 암호화·기밀성에 관한 말이 없다(전문 검색 2026-11-09 — 「encrypt」·「confidential」 없음). 암호화는 나중에 선택 확장으로 정했다 — 아래 RFC 2946 항목
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 23, 원격 단말 접속), `ports.client-server-ports`(CONNECTION ESTABLISHMENT — 서버 포트 하나로 서로 다른 사용자 포트와 여러 연결을 동시에)
+(phase 77 step 3) 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — Telnet은 TCP를 쓴다, GENERAL CONSIDERATIONS)
+
+## (phase 77) RFC 2946 — Telnet Data Encryption Option, RFC 2941 — Telnet Authentication Option
+https://www.rfc-editor.org/rfc/rfc2946
+https://www.rfc-editor.org/rfc/rfc2941
+
+둘 다 Proposed Standard이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). **「Telnet은 기본으로 암호화하지 않는다」의 근거로만** 쓴다. 암호화 옵션의 명령과 알고리즘은 가져오지 않는다.
+
+- 암호화 옵션의 기본값은 쓰지 않는 것이다 — 따로 협상하지 않으면 Telnet 데이터 흐름은 암호화되지 않는다 — RFC 2946 §3
+- 이 옵션을 만든 까닭: Telnet 프로토콜에는 네트워크를 지나는 IP 패킷을 중간의 게이트웨이가 들여다보는 것을 막는 보호가 없고, 비밀번호도 평문(암호화하지 않은 글자)으로 네트워크를 지나 특히 위험하다 — RFC 2946 §4
+- Telnet의 약점 하나는 원격 시스템에 로그인할 때 사용자가 친 비밀번호가 평문으로 네트워크를 지난다는 것이다 — RFC 2941 §4
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(Telnet은 기본으로 주고받는 내용과 비밀번호를 암호화하지 않는다 — SSH와 가르는 점)
+
+## (phase 77) RFC 4251 — The Secure Shell (SSH) Protocol Architecture, RFC 4253 — The Secure Shell (SSH) Transport Layer Protocol
+https://www.rfc-editor.org/rfc/rfc4251
+https://www.rfc-editor.org/rfc/rfc4253
+
+둘 다 Proposed Standard이고 폐기되지 않았다(여러 RFC가 고쳤다 — rfc-editor 상태 2026-11-09). **포트와 「암호화한 원격 접속」만** 가져온다. 키 교환·인증 방식은 가져오지 않는다.
+
+- SSH는 안전하지 않은 네트워크 위에서 안전하게 원격 로그인하고 그 밖의 네트워크 서비스를 쓰게 하는 프로토콜이다. 그 전송 계층 프로토콜이 서버 인증, 기밀성(암호화), 무결성을 주고 보통 TCP/IP 연결 위에서 돈다 — RFC 4251 §1
+- SSH는 Telnet·rlogin 같은 옛 방식보다 훨씬 높은 보안을 준다 — RFC 4251 §4.1
+- SSH 전송 계층은 안전하지 않은 네트워크 위에 **암호화한 안전한 통로**를 만든다 — 서버 호스트 인증, 키 교환, 암호화, 무결성 보호를 한다 — RFC 4253 §14
+- TCP/IP 위에서 쓸 때 서버는 보통 포트 **22**에서 연결을 기다리고, 이 번호는 IANA에 SSH용으로 등록돼 있다 — RFC 4253 §4.1
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 22, 암호화한 원격 접속, Telnet보다 안전하다)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(RFC 4251 §1·RFC 4253 §4.1 — SSH는 보통 TCP 위에서 돈다)
+(phase 77 step 8) `tcp-udp.transport-choice`(RFC 4251 §1 — 원격 로그인, §1·RFC 4253 §4.1 — 보통 TCP 위에서), 도식 `transport-choice`
+
+## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
+https://www.rfc-editor.org/rfc/rfc5321
+
+Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고쳤다 — rfc-editor 상태 2026-11-09). IANA 레지스트리의 25번 행은 이 문서를 고쳐 쓰는 진행 중 초안(`rfc5321bis`)을 참조로 단다 — 아직 RFC가 아니므로 이 문서를 쓴다. **포트와 「메일을 보낸다」만** 가져온다.
+
+- SMTP의 목적은 메일을 믿을 수 있고 효율적으로 옮기는 것이다. 순서가 지켜지는 믿을 수 있는 데이터 흐름만 있으면 되고, 이 문서는 TCP 위의 전송을 다룬다 — §1.1
+- 보낼 메시지가 있는 SMTP 클라이언트는 SMTP 서버로 양방향 통로를 열고, 메일 메시지를 하나 이상의 SMTP 서버에 옮긴다 — §2.1
+- SMTP 서버는 SMTP 포트(IANA가 **25**번으로 정했다)에서 늘 연결을 기다리는 것이 좋다(SHOULD). 그러려면 들어오는 TCP 연결 여럿을 함께 받을 수 있어야 한다 — §4.5.4.2
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
+(phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하고, 이 문서는 TCP 위의 전송을 다룬다. 부록 A의 제목도 「TCP Transport Service」다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — SMTP는 TCP를 쓴다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하다, TCP 위), 도식 `transport-choice`
+
+## (phase 77 step 2) RFC 9846 — The Transport Layer Security (TLS) Protocol Version 1.3
+https://www.rfc-editor.org/rfc/rfc9846
+
+Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명세)을 폐기하고 대신한다(rfc-editor 상태 2026-11-09 — RFC 8446 정보 쪽에 「now obsolete, see RFC 9846」).
+**이름과 「무엇을 막는가」만** 가져온다. 핸드셰이크·키 교환·암호 방식은 가져오지 않는다.
+
+- 프로토콜 이름은 Transport Layer Security(TLS)다. TLS는 클라이언트·서버 응용 프로그램이 인터넷으로 통신할 때 엿듣기(eavesdropping), 바꿔치기(tampering), 메시지 위조를 막도록 설계됐다 — Abstract
+- HTTPS가 TLS로 무엇을 얻는지(서버 인증, 기밀성, 무결성)는 위 RFC 9110 §4.2.2 「(phase 77)」 줄이다
+
+쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
+
+## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
+https://man7.org/linux/man-pages/man7/ip.7.html
+https://man7.org/linux/man-pages/man5/proc_sys_net_ipv4.5.html
+https://man7.org/linux/man-pages/man7/capabilities.7.html
+https://man7.org/linux/man-pages/man7/tcp.7.html
+https://man7.org/linux/man-pages/man7/udp.7.html
+https://man7.org/linux/man-pages/man5/services.5.html
+
+2026-11-09에 IPv4로 내려받아 읽은 판: Linux man-pages 6.19 — ip(7)·capabilities(7)·services(5) 2026-02-08, proc_sys_net_ipv4(5) 2025-12-25, tcp(7) 2026-04-19(udp(7)도 같은 man-pages 6.19 묶음). HTML은 2026-09-09에 만든 것이다.
+capabilities(7)의 다른 사실은 위 「(phase 75) Linux man-pages …」 항목에 있다.
+
+- **ip(7)** — Address format: IP 소켓 주소는 IP 인터페이스 주소와 **16비트 포트 번호**를 합친 것이다. 기본 IP 프로토콜은 포트 번호를 주지 않고, 포트는 그 위의 udp(7)·tcp(7) 같은 프로토콜이 구현한다.
+  **1024보다 작은 포트 번호는 특권 포트**(privileged port, 예약 포트라고도)라 부르고, 특권 프로세스(Linux에서는 CAP_NET_BIND_SERVICE 능력을 가진 프로세스)만 그 포트에 소켓을 묶을(bind) 수 있다
+- **ip(7)** — DESCRIPTION: 들어오는 연결을 받으려는 프로세스는 소켓을 로컬 주소에 묶는다. 한 로컬 (주소, 포트) 쌍에는 IP 소켓 하나만 묶일 수 있다. 묶지 않은 소켓으로 connect(2)를 부르면 그 소켓은 **비어 있는 포트 하나에 저절로 묶인다**
+- **proc_sys_net_ipv4(5)** — `/proc/sys/net/ipv4/ip_local_port_range`: 포트를 정하지 않은 소켓에 줄 **임시 포트의 범위**를 정하는 두 정수가 든 파일이다. 묶지 않은 소켓으로 connect(2)나 sendto(2)를 부르거나, bind(2)에 포트 0을 주면
+  첫 수부터 둘째 수까지에서 임시 포트를 준다. 범위가 다 차면 그 시스템 호출이 오류를 낸다. 첫 수는 잘 알려진 포트와 부딪치지 않게 1024보다, 되도록 4096보다 크게 두라고 권한다.
+  **이 파일의 기본값은 man-pages에 적혀 있지 않다**(ip(7)·proc_sys_net_ipv4(5)·tcp(7)·udp(7) 전문 검색 2026-11-09) — 기본값을 적은 커널 문서(`Documentation/networking/ip-sysctl.rst`)는 허용한 출처 밖이라 읽지 않았다
+- **capabilities(7)**: CAP_NET_BIND_SERVICE는 인터넷 도메인의 특권 포트(1024보다 작은 번호)에 소켓을 묶게 하는 능력이다 — Capabilities list
+- **tcp(7)**: 밖으로 TCP 연결을 만들려면 connect(2)로 다른 TCP 소켓에 연결한다. 들어오는 연결을 받으려면 소켓을 로컬 주소와 포트에 묶고(bind) listen(2)으로 기다리는 상태로 둔 뒤, 들어오는 연결마다 accept(2)로 새 소켓을 받는다 — DESCRIPTION
+- **udp(7)**: 묶지 않은 UDP 소켓으로 보내면 소켓 계층이 `ip_local_port_range`가 정한 범위에서 비어 있는 로컬 포트를 골라 묶는다 — DESCRIPTION
+- **services(5)**: `/etc/services`는 사람이 읽는 서비스 이름과 그 포트 번호·프로토콜을 짝지은 글 파일이다. 1024보다 작은 번호(「낮은 번호」 포트)에는 root만 소켓을 묶을 수 있어서, 그 포트에 붙는 클라이언트는
+  그 포트의 서비스가 그 기계의 일반 사용자가 띄운 가짜가 아니라고 믿을 수 있다. IANA가 정한 잘 알려진 포트는 보통 이 범위에 있다 — DESCRIPTION.
+  같은 쪽은 IANA가 지금도 TCP·UDP를 함께 정해 준다고 적지만, 그 관행은 RFC 6335 §7.2(2011)가 끝냈다 — 정책은 RFC 6335를 따른다. 「TCP만 쓰는 서비스도 두 행이 있다」는 레지스트리의 옛 행을 설명하는 데만 쓴다
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(ip(7) — 소켓 주소는 IP 주소와 16비트 포트, 포트는 전송 계층이 구현한다), `ports.well-known-ports`(ip(7)·capabilities(7)·services(5) — Linux에서 1024보다 작은 포트에서 기다리려면 특권이 필요하다),
+`ports.client-server-ports`(ip(7)·udp(7)·proc_sys_net_ipv4(5) — 클라이언트가 묶지 않고 보내면 운영체제가 비어 있는 임시 포트를 고른다, 범위는 `ip_local_port_range`, tcp(7) — 서버는 bind·listen·accept), 강의 수정 이력 L43, `exam-notes.md` E27
+
+## (phase 77) Microsoft Learn — The default dynamic port range for TCP/IP has changed since Windows Vista and in Windows Server 2008
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang
+
+적용 판: 지원 중인 Windows Server(페이지의 「Applies to」). 페이지 날짜 ms.date 2026-02-12, updated_at 2026-02-19 — 2026-11-09에 내려받아 읽었다.
+
+- IANA 권고에 맞추려고 Windows Vista·Windows Server 2008부터 **밖으로 나가는 연결에 쓰는 동적 클라이언트 포트 범위**의 기본값을 시작 49152, 끝 65535로 바꿨다. 그 전 판의 기본값은 1025~5000이었다
+- 범위는 TCP와 UDP에 따로 정하고, `netsh int ipv4 show dynamicport tcp`처럼 보며 `netsh … set dynamicport`로 바꿀 수 있다(바꿀 수 있는 가장 작은 시작 번호는 1025)
+
+쓰인 곳: (phase 77에서 쓰일 곳) `ports.client-server-ports`(클라이언트 포트의 범위는 운영체제가 정한다 — Windows는 기본 49152~65535, 예전 판은 1025~5000), 강의 수정 이력 L43
+
+## (phase 77 step 3) RFC 3540 — Robust Explicit Congestion Notification (ECN) Signaling with Nonces [Historic — 역사 기록으로만 쓴다], RFC 8311 — Relaxing Restrictions on Explicit Congestion Notification (ECN) Experimentation, RFC 9768 — More Accurate Explicit Congestion Notification (AccECN) Feedback in TCP, IANA — TCP Header Flags
+https://www.rfc-editor.org/rfc/rfc3540
+https://www.rfc-editor.org/rfc/rfc8311
+https://www.rfc-editor.org/rfc/rfc9768
+https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml
+
+상태(rfc-editor 2026-11-09): RFC 3540은 2003-06에 Experimental로 나와 지금은 **HISTORIC**이다. RFC 8311은 2018-01, RFC 9768은 2026-04에 나온 Proposed Standard(Standards Track)이고 둘 다 폐기되지 않았다. RFC 9768은 RFC 3168을 고친다(RFC 9293은 고치지 않는다).
+IANA 레지스트리 묶음 「Transmission Control Protocol (TCP) Parameters」는 XML판(Last Updated 2026-10-22)을 읽었다. **제어 비트가 몇 개인지와 비트 7의 이름만** 가져온다. NS·AE가 혼잡 신호를 어떻게 셈하는지는 가져오지 않는다.
+
+- **NS(Nonce Sum)**: RFC 3540은 ECN 실험의 하나로 TCP 헤더에 **NS 플래그 한 비트**를 CWR·ECE 바로 옆, 비트 7에 두었다 — RFC 3540 §5 그림 3. 같은 그림이 RFC 9768 §1.4 그림 1에도 있다(NS를 둔 시절의 플래그 그림 — 예약 3비트 + NS·CWR·ECE·URG·ACK·PSH·RST·SYN·FIN)
+- **NS를 예약으로 되돌림**: RFC 8311은 RFC 3540의 실험을 끝내고 Experimental에서 Historic으로 돌렸다 — RFC 8311 Abstract, §3. IANA는 「TCP Header Flags」 레지스트리에서 비트 7의 NS 등록을 지우고, 비트 7은 Historic RFC 3540이 NS로 썼지만 **이제 Reserved**라는 설명을 달았다 — RFC 8311 §7
+- **AE(Accurate ECN)**: RFC 9768은 그렇게 비어 있던 비트 7을 **AE**로 다시 정했다 — RFC 9768 §3.1.1, §7(표 6). 연결을 맺는 첫 SYN에 AE·CWR·ECE 셋을 모두 켜서 이 방식을 쓰자고 청하고, AccECN을 지원하는 서버가 받아들인 연결에서만 셋을 이 방식으로 읽는다 — §3.1.1.
+  이 문서의 Abstract는 이것을 「예전에 ECN-nonce에 주었던 예약 비트를 할당한다」고 적는다
+- **IANA 「TCP Header Flags」 레지스트리의 지금(2026-11-09)**: RFC 9293이 만든 레지스트리이고 등록은 Standards Action이다. 비트 4·5·6 — Reserved for future use(RFC 9293), 비트 7 — **AE (Accurate ECN)**(RFC 9768, 2026-04-24 갱신, 주석: 예전에 Historic RFC 3540이 NS로 썼다),
+  비트 8 — CWR, 9 — ECE(RFC 3168), 10 — URG, 11 — ACK, 12 — PSH, 13 — RST, 14 — SYN, 15 — FIN(RFC 9293). 곧 **이름이 붙은 비트가 9개, 예약이 3비트**다
+- **비트 수의 연표**(위 문서들로 정리): 옛 TCP 표준(RFC 793 — RFC 9293이 대체)의 그림은 예약 6비트 + 플래그 6개(URG~FIN)였다(RFC 3168 §6.1 그림 3) → RFC 3168(2001)이 CWR·ECE를 더해 예약 4 + 플래그 8 →
+  RFC 3540(2003, 실험)이 NS를 더해 예약 3 + 플래그 9 → RFC 8311(2018)이 NS를 지워 예약 4 + 플래그 8(RFC 9293(2022)의 그림이 이 상태다 — 위 RFC 9293 항목) → RFC 9768(2026-04)이 AE를 더해 예약 3 + 이름 붙은 플래그 9.
+  어느 때든 **데이터 오프셋 뒤의 12비트(예약 + 제어 비트)** 자체는 바뀌지 않았다(계산 — 6 + 6, 4 + 8, 3 + 9)
+
+쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.tcp-header`(예약 칸의 비트 수가 문서와 때에 따라 다르다), `tcp-udp.tcp-control-bits`(제어 비트를 8개 또는 9개로 세는 까닭, AE), `exam-notes.md` E29
+
+## (phase 77 step 3) RFC 3550 — RTP: A Transport Protocol for Real-Time Applications
+https://www.rfc-editor.org/rfc/rfc3550
+
+Internet Standard이고 폐기되지 않았다(RFC 1889를 대체, RFC 5506 등 여럿이 고쳤다 — rfc-editor 상태 2026-11-09). **「실시간 음성·영상은 보통 UDP 위에서 나른다」만** 가져온다. RTP 헤더와 RTCP는 가져오지 않는다 — 기출이 묻지 않는다.
+
+- RTP는 대화형 음성·영상처럼 **실시간 성질을 가진 데이터**를 끝과 끝 사이에 나르는 프로토콜이다. 응용은 보통 RTP를 **UDP 위에서** 돌린다 — UDP의 다중화(포트)와 체크섬을 쓰려고 — §1
+- RTP 자체는 제때 전달하는 장치도, 전달을 보장하는 장치도, 순서가 바뀌는 것을 막는 장치도 없다 — §1
+- 음성 회의의 예: 20ms 길이의 음성 조각마다 RTP 헤더를 붙여 UDP 패킷에 담아 보낸다. 네트워크가 패킷을 잃거나 순서를 바꾸거나 들쭉날쭉 늦추면, 받는 쪽은 RTP 헤더의 시각 정보와 순서 번호로 소리를 20ms마다 이어 재생하고, 순서 번호로 잃은 패킷 수를 어림한다 — §2.1
+  (곧 잃은 조각을 기다리지 않고 재생을 이어 간다)
+
+쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(실시간 음성·영상은 보통 UDP 위에서), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신에 쓰지 않는다)
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — 실시간 음성·영상은 보통 UDP 위, §2.1 — 받는 쪽은 조각을 정해진 간격으로 이어 재생한다), 도식 `transport-choice`, 문항 n186
+
+## (phase 77 step 3) RFC 4336 — Problem Statement for the Datagram Congestion Control Protocol (DCCP), RFC 4340 — Datagram Congestion Control Protocol (DCCP)
+https://www.rfc-editor.org/rfc/rfc4336
+https://www.rfc-editor.org/rfc/rfc4340
+
+상태(rfc-editor 2026-11-09): RFC 4336은 Informational, RFC 4340은 Proposed Standard이고 둘 다 폐기되지 않았다(4340은 RFC 5595 등이 고쳤다). **「실시간 응용이 왜 TCP 대신 UDP를 쓰는가」만** 가져온다.
+DCCP라는 프로토콜 자체는 가져오지 않는다 — 기출이 묻지 않는다(이름도 본문에 쓰지 않는다).
+
+- UDP는 주로 DNS·SNMP처럼 짧은 요청-응답에 쓰여 왔다 — TCP의 3-way handshake, 재전송, 연결 상태를 피하려고 — RFC 4336 §1
+- 음성 스트리밍·인터넷 전화·온라인 게임 같은 응용은 **신뢰성보다 제때 도착하는 것**을 더 중요하게 본다. TCP는 신뢰성과 순서를 지키느라 **지연을 얼마든지 늘릴 수 있어** 이런 응용은 UDP를 쓴다 — RFC 4336 §1
+- TCP 대신 UDP를 쓰는 까닭 셋: 시작 지연(데이터를 보내기 전 3-way handshake의 지연을 피한다), 상태 없음(연결 상태를 지니지 않는다), 신뢰성과 타이밍의 교환(정한 시점 — 대개 왕복 시간 몇 번 — 까지 닿지 않은 데이터는 받는 쪽에 쓸모가 없다) — RFC 4336 §2.1
+- 인터넷 전화나 영상 스트리밍에서 패킷 하나는 이어지는 흐름의 한 시간 조각이다. 그 조각을 재생할 때가 지나 도착하면 더는 쓸모가 없고, 이런 응용은 빠진 패킷의 영향을 어느 정도 가릴 수 있다.
+  게임의 위치 정보는 잃었다고 옛 위치를 다시 보내지 않고 새 위치를 보낸다 — RFC 4336 §2.1
+- TCP는 이런 응용에 잘 맞지 않는다 — 믿을 수 있는 순서 전달과 혼잡 제어가 지연을 얼마든지 길게 만들 수 있기 때문이다. UDP는 긴 지연을 피하지만, 혼잡 제어를 하려면 응용이 스스로 해야 한다 — RFC 4340 §1
+
+쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(늦게 온 데이터가 쓸모없는 응용, 짧은 요청-응답에 UDP), `tcp-udp.udp`(연결 단계가 없어 지연이 짧다 — 면접 Q38과 같은 사실), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신·손실을 견디는 프로그램용이 아니다)
+(phase 77 step 7) `tcp-udp.udp`(RFC 4336 §1 — DNS 같은 짧은 요청-응답에 UDP, §2.1 — 3-way handshake의 시작 지연을 피한다; RFC 4340 §1 — 믿을 수 있는 순서 전달이 지연을 늘린다), 문항 n184 해설
+(phase 77 step 8) `tcp-udp.transport-choice`(RFC 4336 §1 — 짧은 요청-응답은 3-way handshake·연결 상태를 피해 UDP, 실시간 응용은 제때 도착을 중시; §2.1 — 재생할 때가 지나 닿은 조각은 쓸모없다, 잃은 패킷의 영향을 어느 정도 가린다; RFC 4340 §1 — 믿을 수 있는 순서 전달이 지연을 얼마든지 늘린다), 도식 `transport-choice`, 문항 n186
+
+## (phase 77 step 3) RFC 9000 — QUIC: A UDP-Based Multiplexed and Secure Transport
+https://www.rfc-editor.org/rfc/rfc9000
+
+Proposed Standard이고 폐기되지 않았다(rfc-editor 상태 2026-11-09). **「QUIC은 UDP 위에서 돌며 스스로 신뢰성 있는 전달과 혼잡 제어를 갖춘다」만** 가져온다. 스트림·패킷 형식·핸드셰이크는 가져오지 않는다.
+
+- QUIC은 연결 지향 프로토콜이라 클라이언트와 서버 사이에 상태를 가진 주고받기를 만든다. 핸드셰이크에 TLS를 품는다 — §1
+- QUIC 패킷은 **UDP 데이터그램에 실려** 간다 — 지금의 시스템과 네트워크에 쉽게 놓으려고 — §1
+- QUIC은 **믿을 수 있는 전달과 혼잡 제어**에 필요한 피드백을 갖춘다. 잃은 데이터를 찾아 되살리는 방법은 RFC 9002가 정한다(9002는 읽지 않았다) — §1
+- HTTP/3는 HTTP를 QUIC 위에 옮긴 것이다 — RFC 9114 Abstract(위 항목)
+
+쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(UDP 위에서 프로그램 쪽이 신뢰성을 더하는 예 — HTTP/3가 쓰는 QUIC), `exam-notes.md` E28
+(phase 77 step 8) `tcp-udp.transport-choice`(§1 — QUIC 패킷은 UDP 데이터그램에 실리고 믿을 수 있는 전달과 혼잡 제어를 갖춘다)
+
+## (phase 77 step 3) RFC 5905 — Network Time Protocol Version 4: Protocol and Algorithms Specification
+https://www.rfc-editor.org/rfc/rfc5905
+
+Proposed Standard이고 폐기되지 않았다(RFC 1305·4330을 대체, RFC 7822 등이 고쳤다 — rfc-editor 상태 2026-11-09). **전송 프로토콜만** 가져온다. NTP의 계층(stratum)·시각 계산·포트의 쓰임은 응용 프로토콜 주제(phase 78)의 몫이다.
+
+- NTP 패킷은 **UDP 데이터그램**이다 — §7.3. NTP 포트 번호는 IANA가 정한 123이다 — §7.2 표 「Global Parameters」(PORT)
+- NTP가 시각 값을 주고받는 방식은 패킷을 잃거나 같은 패킷이 두 번 와도 본래 잘 견딘다. 데이터 무결성은 IP·UDP 체크섬이 맡고, **흐름 제어나 재전송 장치는 두지 않으며 필요하지도 않다** — §8
+- (phase 77 step 8, 2026-11-09 rfc-editor.org 원문) NTP는 인터넷에서 **컴퓨터의 시계를 맞추는 데** 널리 쓰인다 — Abstract
+- (phase 77 step 8) 클라이언트·서버 방식에서 클라이언트가 서버에 메시지를 보내면 **서버는 바로 답한다** — §5
+
+쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(짧은 질의·응답 한 번이면 되고 재전송이 필요 없는 응용 — NTP는 UDP)
+(phase 77 step 8) `tcp-udp.transport-choice`(Abstract — 컴퓨터 시계를 맞춘다, §5 — 클라이언트·서버 방식에서 서버는 바로 답한다, §7.3 — UDP, §8 — 재전송 장치를 두지 않는다)
+
+## (phase 77 step 9) Linux man-pages — ss(8)
+https://man7.org/linux/man-pages/man8/ss.8.html
+
+2026-11-10에 읽은 판: iproute2 프로젝트의 페이지이고, upstream Git 저장소에서 2026-08-04에 가져온 것이다(그때 가장 최근 커밋 2026-07-28, HTML 2026-09-09 — COLOPHON).
+**옵션의 뜻과 상태를 부르는 이름만** 적는다. 다른 옵션과 출력 읽기는 `diagnostic-commands` 주제의 몫이다.
+
+- `ss`는 소켓의 통계를 보여 주는 도구다. netstat과 비슷한 정보를 보이되 TCP와 상태 정보를 더 많이 보인다 — DESCRIPTION. 옵션 없이 부르면 연결이 맺어진, 요청을 기다리지 않는(non-listening) 소켓만 보인다 — OPTIONS
+- `-t`(`--tcp`)는 TCP 소켓을 보인다. `-a`(`--all`)는 요청을 기다리는(listening) 소켓과 기다리지 않는 소켓을 모두 보인다 — 그래서 LISTEN 상태의 소켓은 `-a`(또는 기다리는 소켓만 보이는 `-l`)를 줘야 나온다.
+  `-n`(`--numeric`)은 포트를 서비스 이름으로 풀지 않는다(주소·포트를 이름으로 풀려고 하는 것은 `-r`이다) — OPTIONS. 그러니 `ss -tan`은 「TCP 소켓을, 기다리는 것까지 모두, 서비스 이름 대신 번호로」 보인다(옵션 셋을 합친 것)
+- 상태 필터에 쓰는 이름은 established, syn-sent, syn-recv, fin-wait-1, fin-wait-2, time-wait, closed, close-wait, last-ack, listening, closing이다 — STATE-FILTER. 소문자에 하이픈으로 잇고, SYN-RECEIVED를 **syn-recv**로, LISTEN을 listening으로 부른다
+- 출력에는 기본으로 머리줄이 있다(`-H`가 그것을 없앤다 — OPTIONS). 그러나 **머리줄의 내용과, 상태 칸에 무엇이 찍히는지(예: ESTAB)는 이 페이지가 보이지 않는다**. 출력의 꼴은 강의 p271 화면에만 있다(그 화면은 `| head -5`인데 머리줄 없이 다섯 줄이 나와 있어 그대로 옮길 근거가 되지 못한다)
+- SEE ALSO는 TCP 상태의 근거로 RFC 793을 가리킨다 — 지금은 RFC 9293이 대체했다(위 RFC 9293 항목)
+
+쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(`ss -tan`의 옵션 뜻, 상태를 syn-recv처럼 줄여 부르는 이름), 강의 수정 이력 머리의 「phase 77 step 9」 문단(p270–p271의 `ss -tan`)
+
+## (phase 77 step 9) RFC 1337 — TIME-WAIT Assassination Hazards in TCP [Informational]
+https://www.rfc-editor.org/rfc/rfc1337
+
+Informational(1992-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-10). 표준을 정하는 문서가 아니므로 **보조로만** 쓴다 — TIME-WAIT의 사실은 RFC 9293 §3.3.2·§3.4.1·§3.6.1이 근거다(위 RFC 9293 항목).
+
+- TIME-WAIT 동안 기다리는 것은, 연결을 다시 열기 전에 옛 중복 세그먼트가 인터넷에서 사라질 시간을 주려는 것이다 — 서론 (4). 옛 중복 세그먼트가 사라질 시간을 주는 것은 TIME-WAIT의 기능 가운데 하나다 — (F1)
+- 이 문서는 TIME-WAIT가 옛 세그먼트나 RST 때문에 일찍 끝나 버리는 위험과 그 대책을 다룬다 — 이 과목은 쓰지 않는다
+
+쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.time-wait`(보조 — 옛 중복 세그먼트가 사라질 시간)
