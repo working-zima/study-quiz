@@ -74,7 +74,7 @@ const expectedScenarios = [
   {
     id: 'old-segment', label: '늦게 온 옛 세그먼트',
     nodes: ['time-wait', 'old', 'closed'], paths: ['old-out'],
-    caption: '같은 IP 주소와 포트 번호로 곧바로 새 연결을 맺으면 옛 연결에서 늦게 온 세그먼트가 새 연결의 것으로 받아들여질 수 있다. 옛 세그먼트는 MSL보다 오래 남아 있지 않으므로 2×MSL을 기다리는 동안 사라지고, 그 뒤 클라이언트는 CLOSED가 된다.',
+    caption: '양 끝의 IP 주소와 포트 번호가 모두 같은 새 연결을 곧바로 맺으면 옛 연결에서 늦게 온 세그먼트가 새 연결의 것으로 받아들여질 수 있다. 옛 세그먼트는 MSL보다 오래 남아 있지 않으므로 2×MSL을 기다리는 동안 사라지고, 그 뒤 클라이언트는 CLOSED가 된다.',
   },
 ]
 
