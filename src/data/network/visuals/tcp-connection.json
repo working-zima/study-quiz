@@ -1,0 +1,112 @@
+{
+  "diagrams": {
+    "three-way-handshake": {
+      "label": "클라이언트와 서버가 연결을 맺으며 주고받는 세그먼트 셋과, 세그먼트마다 켠 제어 비트와 적는 번호를 보이는 도식",
+      "svgLabel": "클라이언트 192.0.2.10:50001과 서버 198.51.100.10:80 두 기둥 사이에 SYN 세그먼트의 순서 번호 1000, SYN+ACK 세그먼트의 순서 번호 7000과 확인 응답 1001, ACK 세그먼트의 확인 응답 7001을 위에서 아래로 놓은 그림",
+      "question": "연결을 맺을 때 무엇을 주고받을까?",
+      "idleCaption": "클라이언트와 서버가 연결을 맺으며 주고받는 세그먼트 셋을 오가는 차례대로 위에서 아래로 놓았다. ISN 1000과 7000은 설명을 위해 정한 값이다. 버튼을 고르면 세그먼트마다 누가 누구에게 보내고 어떤 번호를 적는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 서버의 IP 주소와 포트 번호이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 가운데 박스 하나가 세그먼트 하나이고, 박스 이름은 그 세그먼트에 켠 제어 비트다. 화살표는 세그먼트가 가는 방향이다.",
+      "nodes": {
+        "client": "192.0.2.10:50001",
+        "server": "198.51.100.10:80",
+        "syn-seq": "순서 번호 1000",
+        "synack-seq": "순서 번호 7000",
+        "synack-ack": "확인 응답 1001",
+        "ack-ack": "확인 응답 7001"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "syn": "SYN",
+        "syn-ack": "SYN+ACK",
+        "ack": "ACK"
+      },
+      "notes": {
+        "plus-client": "1000 + 1 = 1001",
+        "plus-server": "7000 + 1 = 7001"
+      },
+      "scenarios": [
+        {
+          "id": "syn",
+          "label": "① SYN",
+          "caption": "클라이언트가 SYN을 켠 세그먼트를 서버에 보내 연결을 청한다. 순서 번호 칸에는 자기 ISN 1000을 적어, 클라이언트가 보낼 데이터의 번호가 1000에서 시작한다고 알린다.",
+          "sources": [
+            "tcp-connection.three-way-handshake"
+          ]
+        },
+        {
+          "id": "syn-ack",
+          "label": "② SYN+ACK",
+          "caption": "서버가 SYN과 ACK를 함께 켠 세그먼트로 답한다. SYN으로 자기 ISN 7000을 알리고, ACK로 클라이언트의 SYN을 받았다고 확인한다. SYN이 번호 하나를 차지하므로 확인 응답 번호는 1000 + 1 = 1001이다.",
+          "sources": [
+            "tcp-connection.three-way-handshake"
+          ]
+        },
+        {
+          "id": "ack",
+          "label": "③ ACK",
+          "caption": "클라이언트가 ACK를 켠 세그먼트로 서버의 SYN을 받았다고 확인한다. 확인 응답 번호는 7000 + 1 = 7001이다. 서버가 이 세그먼트를 받으면 연결이 맺어지고, 두 쪽은 이 연결로 데이터를 주고받는다.",
+          "sources": [
+            "tcp-connection.three-way-handshake"
+          ]
+        }
+      ],
+      "sources": [
+        "tcp-connection.three-way-handshake"
+      ]
+    },
+    "connection-close": {
+      "label": "연결을 끊을 때 클라이언트와 서버가 FIN과 ACK를 주고받아 두 방향을 하나씩 닫는 차례를 보이는 도식",
+      "svgLabel": "먼저 끊는 클라이언트와 나중에 끊는 서버 두 기둥 사이에 FIN, ACK, 남은 데이터, FIN, ACK를 위에서 아래로 놓은 그림",
+      "question": "연결은 왜 네 번에 걸쳐 끊을까?",
+      "idleCaption": "클라이언트가 먼저 연결을 끊을 때 오가는 세그먼트를 차례대로 위에서 아래로 놓았다. 버튼을 고르면 한 방향이 닫힌 뒤에도 반대 방향으로 데이터가 오가고, 그다음에 그 방향도 닫히는 차례를 볼 수 있다.",
+      "legend": "왼쪽 박스가 먼저 끊는 클라이언트, 오른쪽 박스가 나중에 끊는 서버이고, 그 사이 노드가 오가는 세그먼트다. 화살표는 세그먼트가 가는 방향이다.",
+      "nodes": {
+        "fin-1": "FIN",
+        "ack-1": "ACK",
+        "data": "남은 데이터",
+        "fin-2": "FIN",
+        "ack-2": "ACK"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버"
+      },
+      "notes": {
+        "active": "액티브 클로즈",
+        "passive": "패시브 클로즈"
+      },
+      "scenarios": [
+        {
+          "id": "first-fin",
+          "label": "한쪽 닫기",
+          "caption": "보낼 데이터를 다 보낸 클라이언트가 FIN을 보내고, 서버가 ACK로 그 FIN을 받았다고 확인한다. 이로써 클라이언트에서 서버로 가는 방향 하나가 닫힌다.",
+          "sources": [
+            "tcp-connection.connection-termination"
+          ]
+        },
+        {
+          "id": "half-close",
+          "label": "남은 데이터",
+          "caption": "서버에서 클라이언트로 가는 방향은 아직 열려 있다. 서버는 보낼 데이터가 남아 있으면 마저 보내고, 먼저 FIN을 보낸 클라이언트도 그것을 받는다.",
+          "sources": [
+            "tcp-connection.connection-termination"
+          ]
+        },
+        {
+          "id": "second-fin",
+          "label": "다른 쪽 닫기",
+          "caption": "서버 프로그램이 연결을 닫으면 서버가 FIN을 보내고, 클라이언트가 ACK로 그 FIN을 받았다고 확인한다. 이로써 서버에서 클라이언트로 가는 방향도 닫혀 연결이 끝난다.",
+          "sources": [
+            "tcp-connection.connection-termination"
+          ]
+        }
+      ],
+      "sources": [
+        "tcp-connection.connection-termination"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

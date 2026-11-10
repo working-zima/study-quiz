@@ -42,6 +42,7 @@ import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
+import { ConnectionCloseDiagram } from './ConnectionCloseDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
@@ -258,6 +259,7 @@ import { TcpControlBitsDiagram } from './TcpControlBitsDiagram'
 import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
+import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
@@ -500,6 +502,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-udp.udp': UdpDeliveryDiagram,
   'tcp-udp.udp-header': UdpHeaderDiagram,
   'tcp-udp.transport-choice': TransportChoiceDiagram,
+  'tcp-connection.three-way-handshake': ThreeWayHandshakeDiagram,
+  'tcp-connection.connection-termination': ConnectionCloseDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
