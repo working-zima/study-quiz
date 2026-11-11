@@ -192,6 +192,7 @@ import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
 import { PermissionStringDiagram } from './PermissionStringDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
+import { PingOptionsDiagram } from './PingOptionsDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -287,6 +288,7 @@ import { TlsHandshakeDiagram } from './TlsHandshakeDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
+import { TracertHopsDiagram } from './TracertHopsDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
@@ -550,6 +552,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.sip': SipCallDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
+  'diagnostic-commands.ping-options': PingOptionsDiagram,
+  'diagnostic-commands.tracert': TracertHopsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
