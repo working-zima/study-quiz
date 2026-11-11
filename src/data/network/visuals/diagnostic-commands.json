@@ -197,6 +197,95 @@
         }
       ],
       "sources": ["diagnostic-commands.tracert"]
+    },
+    "pathping-stats": {
+      "label": "PC 192.0.2.10에서 pathping 198.51.100.10을 입력했을 때, 먼저 경로의 라우터를 찾고 그다음 라우터마다 에코 요청을 여러 번 보내 홉 2의 라우터 203.0.113.1에서 잃은 비율 10%를 계산하는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 박스에 PC에서 목적지까지 찾은 경로를 잇고, 오른쪽 박스에 홉 2의 라우터에 보낸 요청과 잃은 요청, 잃은 비율을 차례로 놓은 그림",
+      "question": "pathping은 어느 홉에서 잃는지 어떻게 알려 줄까?",
+      "idleCaption": "PC 192.0.2.10에서 pathping 198.51.100.10을 입력했을 때 하는 두 단계를 나란히 놓았다. 버튼을 고르면 경로를 찾는 단계와 통계를 구하는 단계를 하나씩 볼 수 있다.",
+      "legend": "왼쪽 박스의 선은 패킷이 지나는 길이고, 화살표는 요청이 가는 곳과 계산의 차례를 가리킨다. 오른쪽 박스의 수는 예로 든 값이다.",
+      "nodes": {
+        "pc": "PC · 192.0.2.10",
+        "hop-1": "192.0.2.1",
+        "hop-2": "203.0.113.1",
+        "hop-3": "198.51.100.1",
+        "hop-4": "198.51.100.10",
+        "sent": "보낸 요청 100개",
+        "lost": "잃은 요청 10개",
+        "rate": "잃은 비율 10%"
+      },
+      "groups": {
+        "path": "경로 찾기",
+        "stats": "통계 구하기"
+      },
+      "notes": {
+        "path-note": "먼저 경로를 찾는다",
+        "stats-note": "라우터마다 요청 100개",
+        "both-note": "tracert도 보인다",
+        "more-note": "pathping이 더 보인다"
+      },
+      "scenarios": [
+        {
+          "id": "path",
+          "label": "경로 찾기",
+          "caption": "pathping은 먼저 tracert와 같은 방법으로 경로의 라우터를 찾는다. 결과의 첫 부분인 경로 목록에 홉 0인 PC 자신부터 홉 1의 192.0.2.1, 홉 2의 203.0.113.1, 홉 3의 198.51.100.1, 홉 4의 198.51.100.10이 차례로 나온다.",
+          "sources": ["diagnostic-commands.pathping"]
+        },
+        {
+          "id": "stats",
+          "label": "통계",
+          "caption": "그다음 정해 둔 시간 동안 라우터마다 에코 요청을 여러 번 보낸다. 예로 홉 2의 라우터 203.0.113.1에 보낸 요청 100개 가운데 10개가 돌아오지 않았다면, 잃은 비율은 10 ÷ 100 = 10%다.",
+          "sources": ["diagnostic-commands.pathping"]
+        },
+        {
+          "id": "compare",
+          "label": "tracert와 견주기",
+          "caption": "tracert도 경로의 라우터를 차례대로 보여 주지만, 어디서 패킷을 얼마나 잃는지는 알려 주지 않는다. pathping은 경로에 더해 홉과 링크마다 잃은 비율까지 보여 주는 대신, 결과가 나오기까지 더 오래 걸린다.",
+          "sources": ["diagnostic-commands.pathping"]
+        }
+      ],
+      "sources": ["diagnostic-commands.pathping"]
+    },
+    "netstat-rows": {
+      "label": "Linux 서버 198.51.100.10에서 netstat -an을 입력했을 때 나오는 두 줄, 곧 22번 포트로 연결을 기다리는 LISTEN 줄과 클라이언트 192.0.2.10:50001과 맺은 ESTABLISHED 줄을 칸마다 나눠 읽는 도식",
+      "svgLabel": "기다리는 줄과 맺은 연결의 줄을 각각 프로토콜·로컬 주소·외부 주소·상태 칸으로 나눠 놓고, 맺은 연결의 외부 주소에서 클라이언트로 화살표를 그은 그림",
+      "question": "netstat의 한 줄은 무엇을 말할까?",
+      "idleCaption": "Linux 서버 198.51.100.10에서 netstat -an을 입력했을 때 나오는 TCP 줄 둘을 칸마다 나눠 놓았다. 버튼을 고르면 각 줄이 무엇을 말하는지 볼 수 있다.",
+      "legend": "박스 하나가 결과의 한 줄이고, 박스 안의 칸은 위에서부터 프로토콜·로컬 주소·외부 주소·상태 차례다. 화살표는 외부 주소가 가리키는 컴퓨터로 간다.",
+      "nodes": {
+        "l-proto": "프로토콜: TCP",
+        "l-local": "로컬 주소: 198.51.100.10:22",
+        "l-foreign": "외부 주소: 정해진 상대 없음",
+        "l-state": "상태: LISTEN",
+        "e-proto": "프로토콜: TCP",
+        "e-local": "로컬 주소: 198.51.100.10:22",
+        "e-foreign": "외부 주소: 192.0.2.10:50001",
+        "e-state": "상태: ESTABLISHED",
+        "client": "클라이언트 · 192.0.2.10"
+      },
+      "groups": {
+        "listen": "기다리는 줄",
+        "established": "맺은 연결의 줄"
+      },
+      "notes": {
+        "listen-note": "연결을 기다리는 열린 포트",
+        "est-note": "외부 주소의 컴퓨터와 맺은 연결"
+      },
+      "scenarios": [
+        {
+          "id": "listening",
+          "label": "열린 포트",
+          "caption": "기다리는 줄은 상태가 LISTEN이고 로컬 주소가 198.51.100.10:22다. 이 서버가 22번 포트를 열어 두고 어느 클라이언트에게서든 연결 요청이 오기를 기다린다는 뜻이다. 아직 이어진 상대가 없어 외부 주소 칸에는 정해진 상대가 없다.",
+          "sources": ["diagnostic-commands.netstat"]
+        },
+        {
+          "id": "established",
+          "label": "맺은 연결",
+          "caption": "맺은 연결의 줄은 상태가 ESTABLISHED이고 외부 주소가 192.0.2.10:50001이다. 클라이언트 192.0.2.10의 50001번 포트와 이 서버의 22번 포트 사이에 연결이 맺어져 있다는 뜻으로, 외부 주소 칸이 접속해 있는 상대 컴퓨터를 가리킨다.",
+          "sources": ["diagnostic-commands.netstat"]
+        }
+      ],
+      "sources": ["diagnostic-commands.netstat"]
     }
   },
   "tables": {},

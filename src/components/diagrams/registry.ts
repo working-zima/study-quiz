@@ -167,6 +167,7 @@ import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
+import { NetstatRowsDiagram } from './NetstatRowsDiagram'
 import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
 import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
@@ -187,6 +188,7 @@ import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PasswdFieldsDiagram } from './PasswdFieldsDiagram'
 import { PasswordAgingDiagram } from './PasswordAgingDiagram'
 import { PathResolveDiagram } from './PathResolveDiagram'
+import { PathpingStatsDiagram } from './PathpingStatsDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
@@ -554,6 +556,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
   'diagnostic-commands.tracert': TracertHopsDiagram,
+  'diagnostic-commands.pathping': PathpingStatsDiagram,
+  'diagnostic-commands.netstat': NetstatRowsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
