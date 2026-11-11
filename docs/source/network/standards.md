@@ -78,6 +78,10 @@ RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직�
 「(phase 77 step 9)」가 붙은 줄과 항목은 phase 77 step 9에서 `tcp-connection`(3-way handshake, TCP 연결 종료, TCP 상태, 연결을 맺는 동안의 상태, 연결을 끊는 동안의 상태, TIME-WAIT 상태) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-10).
 RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. **상태 전이는 RFC 9293의 상태 그림(그림 5)과 세그먼트 처리 절(§3.10)을 하나씩 맞춰 본 것만** 적었다.
 재전송 시간·연결 유지(keep-alive)·SYN 플러딩 같은 공격과 동시 열기의 차례는 이 step에서 적지 않았다(phase 84와 보안 주제의 몫이거나 기출이 묻지 않는다).
+「(phase 78 step 0)」이 붙은 줄과 항목은 phase 78 step 0에서 `app-protocols-mail-file`(전자우편의 전달 과정, SMTP, POP3, IMAP, FTP, FTP의 능동 모드와 수동 모드, TFTP, SSH) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IANA 포트 레지스트리는 CSV판(레지스트리 머리의 Last Updated 2026-11-06)을,
+man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 COLOPHON이나 페이지의 `updated_at`과 적용 판을 적는다. learn.microsoft.com은 Windows의 OpenSSH 문서 둘과, Windows Server의 FTP 서버(IIS) 문서 둘(능동·수동 데이터 연결의 이름과 수동 모드용 포트 범위)을 읽었다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — SMTP 확장과 응답 코드 전체, POP3의 APOP·TOP·UIDL, IMAP 명령 전체, FTP의 블록·압축 전송 방식과 표현 형식(TYPE), SFTP·FTPS와 FTP 보안 확장의 명령, TFTP 옵션 확장, SSH의 키 교환·암호 알고리즘. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -1107,8 +1111,17 @@ https://www.rfc-editor.org/rfc/rfc1123
 인터넷 표준이고 폐기되지 않았다(rfc-editor 상태). RFC 1122와 짝으로, 응용 계층과 지원 프로토콜을 다룬다.
 
 - 원격 관리 절에서 네트워크 관리 프로토콜로 SNMP를 들고, 인터넷 호스트는 SNMP(또는 CMOT) 에이전트를 갖추는 것이 좋다(SHOULD)고 한다 — §6.3.1
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로, RFC 5321 등이 고쳤다) **TFTP**: TFTP는 UDP를 전송 프로토콜로 쓰면서 **믿을 수 있는 전달을 스스로 제공한다** — 블록 하나를 보내고 확인 응답을 기다리는 단순한 방식(stop-and-wait)이다.
+  한 번에 512옥텟 블록 하나만 오가는 셈이라 **지연과 대역폭의 곱이 작은 경로에서만 성능이 좋다**. 파일을 다루는 방식이 아주 단순해 접근 제어도 보안도 없다.
+  **가장 중요한 쓰임은 LAN에서 호스트를 부팅하는 일**이다 — 작고 단순해 EPROM에 넣기 쉽다 — §4.2.1. (이 절은 RFC 1350보다 먼저 나와 그 이전 판 RFC 783을 가리키지만, 블록마다 확인 응답을 기다리는 방식은 RFC 1350 §2와 같다)
+- (phase 78 step 0) TFTP 명세의 결함(늦게 온 중복 패킷 때문에 이후 모든 패킷을 두 번씩 보내게 되는 문제)을 고치라고 요구하면서, 그 결함이 있어도 **전송이 끝까지 가면 파일은 언제나 바르게 옮겨진다**고 적는다 — §4.2.3.1.
+  접근 제어가 약해, 브로드캐스트 주소로 온 TFTP 요청은 조용히 무시하는 것이 좋다 — §4.2.3.5
+- (phase 78 step 0) **FTP**: 스트림 방식을 쓰는 사용자 쪽 FTP는 전송 명령마다 그 앞에 `PORT`로 기본이 아닌 데이터 포트를 정해 보내는 것이 좋다(SHOULD) — 닫은 TCP 연결의 주소·포트 쌍은 한동안 다시 쓸 수 없기 때문이다.
+  스트림이 아닌 전송 방식을 쓰면 데이터 연결을 열어 둔 채 여러 번 보낼 수 있다 — §4.1.2.5. 서버 쪽 FTP는 **`PASV`를 반드시 구현해야 한다**(MUST). `PASV` 응답에 담긴 주소는 응답을 보낸 서버의 IP 주소이고, 포트는 `PASV`가 정한 기본이 아닌 데이터 포트다 — §4.1.2.6
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
+`app-protocols-mail-file.ftp`(§4.1.2.5 — 스트림 방식에서는 전송마다 새 데이터 연결), `app-protocols-mail-file.ftp-modes`(§4.1.2.6 — 서버는 `PASV`를 구현해야 한다), `exam-notes.md` E30·E31
 
 ## (2026-10-28) RFC 1350 — The TFTP Protocol (Revision 2)
 https://www.rfc-editor.org/rfc/rfc1350
@@ -1120,10 +1133,22 @@ https://www.rfc-editor.org/rfc/rfc1350
 - (phase 77 step 3) **UDP 위에서 스스로 확인하고 다시 보낸다**: 파일을 512바이트 고정 블록으로 보내고, 데이터 패킷마다 확인 응답 패킷을 받아야 다음 패킷을 보낸다(lock step). 패킷을 잃으면 받을 쪽이 시간 초과 뒤 마지막 패킷을 다시 보내,
   잃은 패킷을 보낸 쪽이 그것을 다시 보내게 한다. 512바이트보다 짧은 데이터 패킷이 전송의 끝을 알린다 — §2
 - (phase 77 step 3) 이 문서는 TFTP가 FTP보다 **빠르다**고 하지 않는다 — 작고 구현하기 쉽다고만 한다(§1). 확인 응답을 받아야 다음 블록을 보내는 방식(§2)이다
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로) **요청과 포트**: 전송은 쓰기 요청(WRQ — 상대의 파일 시스템에 쓴다)이나 읽기 요청(RRQ — 상대에게서 읽는다)으로 시작하고, 그 요청이 곧 연결을 청하는 일이다 — §2, §4.
+  양 끝은 저마다 TID(전송 식별자)를 골라 UDP 포트로 쓴다. 요청하는 쪽은 자기 TID에서 **서버의 69번**으로 첫 요청을 보내고, 서버는 **자기가 새로 고른 TID를 출발지로** 답한다. 그 뒤 전송 내내 그 두 TID(포트)를 쓴다 — §3, §4.
+  읽기 요청의 긍정 응답은 첫 데이터 패킷이고, 쓰기 요청의 긍정 응답은 블록 번호 0인 확인 응답이다. 데이터 블록의 번호는 1부터 하나씩 늘어난다 — §4
+- (phase 78 step 0) 패킷 종류는 다섯이다 — 읽기 요청(RRQ)·쓰기 요청(WRQ)·데이터(DATA)·확인 응답(ACK)·오류(ERROR) — §5
+- (phase 78 step 0) **끝**: 데이터 패킷의 데이터 칸은 0~512바이트다. 512바이트면 마지막 블록이 아니고, 0~511바이트면 그 블록이 전송의 끝이다 — §5, §6.
+  그러니 **파일 크기가 512의 배수이면 마지막에 데이터가 0바이트인 패킷을 보내 끝을 알린다**(위 규칙에서 나오는 계산 — 이 말이 문서에 따로 적혀 있지는 않다). 예: 1,300바이트 파일은 512 + 512 + 276바이트 블록 셋이고, 276 < 512라 셋째가 끝이다(계산)
+- (phase 78 step 0) **잃은 패킷과 실패**: 잃은 패킷은 시간 초과 뒤 다시 보내 채운다(§2 — 위 phase 77 step 3 줄). 오류 패킷은 확인 응답도 재전송도 받지 않고, 대부분의 오류는 연결을 끝낸다 — §2.
+  마지막 데이터 패킷의 확인 응답을 끝내 받지 못한 채 보내는 쪽이 재전송을 그만두면, 전송이 성공했는지 실패했는지 알 수 없는 채로 연결이 닫힌다 — §6.
+  **이 문서는 잃은 블록을 빼놓은 채 전송을 마친다고 하지 않는다** — 다시 보내 채우거나, 전송 자체가 끝나 버린다
+- (phase 78 step 0) 이 문서는 TFTP가 어디에 쓰이는지 말하지 않는다 — 쓰임(LAN에서 호스트를 부팅하는 일)은 위 RFC 1123 §4.2.1
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1 — UDP 위의 간단한 파일 전송, §2 — 512바이트 블록마다 확인 응답, 블록을 잃으면 받을 쪽이 시간 초과 뒤 마지막 확인 응답을 다시 보내 보내는 쪽이 잃은 블록을 다시 보낸다), 도식 `transport-choice`, 문항 n187
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§1 — UDP, 로그인·디렉터리 목록 없음, 읽기와 쓰기만, §2 — 512바이트 블록·블록마다 확인 응답·시간 초과 뒤 재전송·짧은 블록이 끝,
+§4 — 69번으로 요청하고 서버는 새 포트로 답한다, §5·§6 — RRQ·WRQ, 0~511바이트가 끝), `exam-notes.md` E30·E31, 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
 
 ## (2026-10-28) RFC 4949 — Internet Security Glossary, Version 2
 https://www.rfc-editor.org/rfc/rfc4949
@@ -2452,9 +2477,18 @@ phase 77 step 0에서 XML판(레지스트리 머리의 Last Updated 2026-11-06�
     DHCP는 UDP(RFC 2131 §4.1), DNS는 UDP와 TCP 둘 다(RFC 1035 §4.2), HTTPS는 TCP(RFC 9110 §4.2.2)이고 HTTP/3는 UDP(RFC 9114 §3.1)
 - (phase 77) **강의 p225의 등록된 포트(User Ports) 예 다섯은 모두 레지스트리에 있다**: 1194 `openvpn` — OpenVPN(TCP·UDP), 1433 `ms-sql-s` — Microsoft-SQL-Server(TCP·UDP), 3306 `mysql` — MySQL(TCP·UDP),
   6379 `redis` — An advanced key-value cache and store(TCP만. UDP 6379는 Reserved), 8080 `http-alt` — HTTP Alternate (see port 80)(TCP·UDP) — 레지스트리의 각 행. 다섯 번호 모두 User Ports 범위(1024~49151) 안이다
+- (phase 78 step 0, CSV판 — 레지스트리 머리의 Last Updated 2026-11-06, 2026-11-11에 내려받음) **메일·파일 전송 프로토콜의 행**(번호·서비스 이름·설명):
+  - 69 `tftp` — Trivial File Transfer(TCP·UDP 두 행. TFTP가 쓰는 것은 UDP다 — RFC 1350 §1·§4. 위 「UDP 행이 있다고 …」와 같은 이유로 TCP 행이 남아 있다)
+  - 110 `pop3` — Post Office Protocol - Version 3(TCP·UDP 두 행. POP3는 TCP — RFC 1939 §3)
+  - 143 `imap` — Internet Message Access Protocol(TCP, 참조 RFC 3501·RFC 9051. UDP 143은 Reserved)
+  - 587 `submission` — Message Submission(TCP·UDP, 참조 RFC 6409)
+  - 993 `imaps` — IMAP over TLS protocol(TCP, 참조 RFC 3501·8314·9051. UDP 993은 Reserved), 995 `pop3s` — POP3 over TLS protocol(TCP, 참조 RFC 8314), 465 `submissions` — Message Submission over TLS protocol(TCP, 참조 RFC 8314. 같은 번호의 TCP 행에 다른 서비스 `urd`도 있다)
+  - 각 번호의 쓰임은 그 프로토콜의 RFC와 맞는다 — POP3 TCP 110(RFC 1939 §3), IMAP TCP 143·993(RFC 9051 §2.1), 메일 제출 587(RFC 6409 §3.1), TLS로 감싼 POP3 995·IMAP 993·메일 제출 465(RFC 8314 §3.1~§3.3·§7)
+- (phase 78 step 0) 25 `smtp` 행의 참조는 이날 RFC 5321을 고쳐 쓰는 초안의 43판(`RFC-ietf-emailcore-rfc5321bis-43`)이다 — 아직 RFC가 아니므로 SMTP는 RFC 5321로 쓴다(아래 「(phase 77) RFC 5321」 항목)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
 (phase 77에서 쓰일 곳) `ports.port-number`(전송 프로토콜마다 따로 적는다 — 514·6379의 예), `ports.port-ranges`(머리의 세 범위, 0번 Reserved, 등록된 포트 예 다섯), `ports.well-known-ports`(여덟 서비스의 행, UDP 행이 있어도 UDP를 쓰는 것은 아니다), `exam-notes.md` E27·E28
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.smtp`(587), `app-protocols-mail-file.pop3`(110·995), `app-protocols-mail-file.imap`(143·993), `app-protocols-mail-file.tftp`(69 — UDP)
 
 ## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
 https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
@@ -3933,10 +3967,29 @@ Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등�
 - 서버의 기본 데이터 포트는 제어 연결 포트 바로 아래 번호(L − 1), 곧 **20**이다. 사용자 쪽의 기본 데이터 포트는 자기 제어 연결 포트와 같다. 전송 요청을 받으면 서버가 데이터 연결을 연다 — §3.2.
   PASV 명령을 쓰면 서버는 기본 데이터 포트가 아닌 다른 데이터 포트에서 연결을 기다린다 — §4.1.2
 - (phase 77 step 3) 이 문서는 TCP와 Telnet 프로토콜을 안다고 전제하고 쓰였다 — §1. 데이터를 옮기는 동안 잃거나 뒤섞인 비트를 찾는 장치는 FTP에 없고, **그 수준의 오류 제어는 TCP가 맡는다** — §3.5
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard(STD 9) 그대로, RFC 2228·2640·2773·3659·5797·7151이 고쳤다) **목적과 모델**: FTP는 파일을 함께 쓰게 하고, 원격 컴퓨터를 쓰게 하고, 호스트마다 다른 파일 저장 방식을 사용자에게서 가리고,
+  데이터를 믿을 수 있고 효율적으로 옮기려고 만들었다 — §1. 제어 연결은 사용자 쪽이 연다. 명령은 사용자 쪽에서 서버 쪽으로, 응답은 그 명령에 답해 서버 쪽에서 사용자 쪽으로 제어 연결을 따라 간다 — §2.3.
+  데이터 연결은 늘 있어야 하는 것은 아니다(그림 1의 주). 데이터를 옮기는 동안에는 제어 연결이 열려 있어야 하고, 다 쓴 뒤 제어 연결을 닫자고 청하는 것은 사용자 쪽, 실제로 닫는 것은 서버다 — §2.3
+- (phase 78 step 0) **명령**: `USER`(사용자 이름 — 제어 연결을 맺은 뒤 보통 처음 보내는 명령)·`PASS`(암호 — 바로 앞에 `USER`가 와야 한다)는 접근 제어 명령이다 — §4.1.1.
+  `RETR`은 서버가 그 파일의 사본을 데이터 연결로 보내게 하고(서버의 파일은 그대로다), `STOR`는 데이터 연결로 받은 데이터를 서버에 그 이름의 파일로 저장하게 하며(이미 있으면 내용을 바꾸고 없으면 새로 만든다),
+  `LIST`는 디렉터리의 파일 목록(이나 파일 하나의 정보)을 데이터 연결로 보내게 한다 — §4.1.3. `QUIT`는 그 사용자의 접속을 끝내고, 전송 중이 아니면 서버가 제어 연결을 닫는다 — §4.1.1
+- (phase 78 step 0) **한 번의 대화의 차례**(§7의 예와 §5.4의 명령·응답 짝, 응답의 뜻은 §4.2 — 값은 옮기지 않는다): 제어 연결(서버 21) → 서버 `220`(새 사용자를 받을 준비가 됐다) → `USER` → `331`(이름은 됐고 암호가 필요하다) → `PASS` → `230`(로그인했다)
+  → `RETR` → `150`(곧 데이터 연결을 연다) → 데이터 연결로 파일이 간다 → `226`(데이터 연결을 닫는다 — 전송 성공) → `QUIT` → `221`(제어 연결을 닫는다). `PORT`의 성공 응답은 `200`, `PASV`의 성공 응답은 `227`이다 — §5.4
+- (phase 78 step 0) **기본 방식에서는 데이터 연결을 전송마다 맺고 닫는다**: 모든 구현이 받아들여야 하는 기본값은 표현 형식 ASCII Non-print, 전송 방식 **스트림**, 파일 구조 **파일**이다 — §5.1.
+  스트림 방식에서 파일 구조면 **보내는 쪽이 데이터 연결을 닫아 파일의 끝을 알린다** — §3.4.1. §3.3도 스트림 방식에서는 연결을 닫아 파일 끝을 알려야 한다고 적는다 — 그래서 파일을 여러 개 옮기면 그때마다 새 데이터 연결이 필요하다.
+  블록·압축 방식은 연결을 닫지 않고 끝을 알려 데이터 연결을 열어 둔 채 여러 파일을 옮길 수 있다 — §3.3. 서버는 데이터 연결을 닫은 뒤 `226`을 보낸다 — §5.2
+- (phase 78 step 0) **누가 데이터 연결을 여는가**: 기본으로는 사용자 쪽이 데이터 포트에서 기다리고(listen), **전송 요청을 받은 서버가 자기 기본 데이터 포트(L − 1 = 20)에서 그 포트로 연결을 연다** — §3.2, §5.2.
+  사용자 쪽은 `PORT`로 기본이 아닌 자기 데이터 포트를 알릴 수 있다 — 인자는 32비트 IP 주소와 16비트 TCP 포트를 8비트씩 끊어 십진수로 쉼표로 이은 꼴(`h1,h2,h3,h4,p1,p2`)이다 — §3.3, §4.1.2.
+  `PASV`는 서버 쪽에게 기본이 아닌 데이터 포트에서 **연결을 열지 말고 기다리라**고 청하고, 서버의 응답에 기다리는 호스트와 포트가 담긴다(`227 Entering Passive Mode (h1,h2,h3,h4,p1,p2)`) — §4.1.2, §4.2.
+  용어: 데이터 전송 프로세스(DTP)는 능동(active)이거나 수동(passive)일 수 있고, 수동 쪽이 데이터 포트에서 기다리고 능동 쪽이 연결을 연다. 서버 쪽 DTP는 보통 능동 상태이고 수동 상태로 둘 수도 있다 — §2.2.
+  **「active mode」라는 이름은 이 문서에 없다** — 「Passive Mode」는 `227` 응답 문구에만 나온다(능동·수동 데이터 연결이라는 이름은 아래 「(phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings …」 항목)
+- (phase 78 step 0) **익명 FTP와 평문 전송은 이 문서에 없다** — 「anonymous」라는 말이 전문에 없다(전문 검색 2026-11-11). 익명 FTP는 아래 RFC 1635, 사용자 이름·암호와 데이터를 암호화하지 않는다는 것은 아래 RFC 2228 §1
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(§2.2 — 제어 연결과 데이터 연결, §8 — TCP 21은 제어, §3.2 — 기본 데이터 포트 20)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§8 — 제어 연결은 TCP, §3.5 — 데이터의 오류 제어를 TCP에 맡긴다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — FTP는 UDP를 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§8 — TCP 연결, §3.5 — 데이터를 잃거나 뒤섞지 않았는지 살피는 일을 TCP에 맡긴다), 도식 `transport-choice`, 문항 n187 해설
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(§1·§2.3 — 목적, 제어 연결과 데이터 연결, §4.1.1·§4.1.3 — `USER`·`PASS`·`RETR`·`STOR`·`LIST`·`QUIT`, §7·§5.4·§4.2 — 대화의 차례, §5.1·§3.4.1·§3.3·§5.2 — 기본 스트림 방식에서는 전송마다 데이터 연결을 맺고 닫는다),
+`app-protocols-mail-file.ftp-modes`(§3.2·§5.2 — 기본은 서버가 20번에서 연다, §4.1.2 — `PORT`·`PASV`, §2.2 — 능동·수동 DTP, §4.2 — `227 Entering Passive Mode`), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
 
 ## (phase 77) RFC 854 — Telnet Protocol Specification
 https://www.rfc-editor.org/rfc/rfc854
@@ -3973,10 +4026,19 @@ https://www.rfc-editor.org/rfc/rfc4253
 - SSH는 Telnet·rlogin 같은 옛 방식보다 훨씬 높은 보안을 준다 — RFC 4251 §4.1
 - SSH 전송 계층은 안전하지 않은 네트워크 위에 **암호화한 안전한 통로**를 만든다 — 서버 호스트 인증, 키 교환, 암호화, 무결성 보호를 한다 — RFC 4253 §14
 - TCP/IP 위에서 쓸 때 서버는 보통 포트 **22**에서 연결을 기다리고, 이 번호는 IANA에 SSH용으로 등록돼 있다 — RFC 4253 §4.1
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — 둘 다 Proposed Standard 그대로. RFC 4251은 RFC 8308·9141이, RFC 4253은 RFC 6668·8268·8308·8332·8709·8758·9142가 고쳤다) **세 부분**: SSH는
+  전송 계층 프로토콜(서버 인증·기밀성·무결성), 사용자 인증 프로토콜(클라이언트 쪽 사용자를 서버에 인증한다 — 전송 계층 위에서), 연결 프로토콜(암호화한 통로를 여러 논리 채널로 나눈다 — 대화형 셸, 포트 전달 등)로 이루어진다 — RFC 4251 §1
+- (phase 78 step 0) **호스트 키로 서버를 확인한다**: 서버 호스트는 호스트 키를 갖는 것이 좋고(SHOULD), 키 교환 때 서버의 호스트 키로 **클라이언트가 정말 맞는 서버와 이야기하는지** 확인한다 — 그러려면 클라이언트가 서버의 공개 호스트 키를 미리 알아야 한다.
+  믿는 방법은 둘이다 — 클라이언트가 호스트 이름과 공개 호스트 키를 짝지은 자기 목록을 갖는 방법, 믿을 수 있는 인증 기관(CA)이 그 짝을 보증하는 방법 — RFC 4251 §4.1
+- (phase 78 step 0) **처음 접속할 때**: 프로토콜은 처음 접속할 때 이름과 호스트 키의 짝을 확인하지 않고 넘어가는 선택을 둔다 — 그래도 엿듣기는 막지만 중간자 공격에는 약해진다.
+  처음 접속할 때는 확인 없이 받아 자기 목록에 저장하고 다음 접속부터는 그 키와 견주는 전략을 예로 든다. 공개 키에서 만든 지문(fingerprint)을 전화 같은 다른 길로 맞춰 볼 수도 있다. 확인할 수 없는 호스트 키를 받지 않는 선택도 두는 것이 좋다 — RFC 4251 §4.1
+- (phase 78 step 0) 사용자 인증은 서버를 이미 인증하고 암호화한 통로를 세운 전송 계층 위에서 돈다고 전제한다. 클라이언트가 서버와 그 호스트 키를 미리 강하게 짝지어 두지 않으면, 중간에 끼어든 장치에 세션을 맺어 사용자 이름과 암호를 내줄 수 있다 — RFC 4251 §9.4, §9.4.1
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 22, 암호화한 원격 접속, Telnet보다 안전하다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(RFC 4251 §1·RFC 4253 §4.1 — SSH는 보통 TCP 위에서 돈다)
 (phase 77 step 8) `tcp-udp.transport-choice`(RFC 4251 §1 — 원격 로그인, §1·RFC 4253 §4.1 — 보통 TCP 위에서), 도식 `transport-choice`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(RFC 4251 §1 — 원격 로그인·세 하는 일, §4.1 — 호스트 키로 서버를 확인한다·처음 접속할 때 받아 저장하고 다음부터 견준다·지문, §9.4 — 사용자 인증은 암호화한 통로 위에서, RFC 4253 §4.1 — TCP 22),
+기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 암호화·무결성·공개 키)
 
 ## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
 https://www.rfc-editor.org/rfc/rfc5321
@@ -3986,10 +4048,28 @@ Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고�
 - SMTP의 목적은 메일을 믿을 수 있고 효율적으로 옮기는 것이다. 순서가 지켜지는 믿을 수 있는 데이터 흐름만 있으면 되고, 이 문서는 TCP 위의 전송을 다룬다 — §1.1
 - 보낼 메시지가 있는 SMTP 클라이언트는 SMTP 서버로 양방향 통로를 열고, 메일 메시지를 하나 이상의 SMTP 서버에 옮긴다 — §2.1
 - SMTP 서버는 SMTP 포트(IANA가 **25**번으로 정했다)에서 늘 연결을 기다리는 것이 좋다(SHOULD). 그러려면 들어오는 TCP 연결 여럿을 함께 받을 수 있어야 한다 — §4.5.4.2
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Draft Standard 그대로) **누가 누구에게**: 보낼 메일을 가진 SMTP 클라이언트가 SMTP 서버로 양방향 통로를 열고, 메일을 하나 이상의 SMTP 서버에 넘기거나 넘기지 못했다고 알린다.
+  서버는 마지막 목적지일 수도, 받은 뒤 스스로 클라이언트가 되어 다음 서버로 넘기는 중계(relay)일 수도 있다. 명령은 클라이언트가 보내고, 서버는 명령마다 응답을 보낸다. 명령과 응답은 한 번에 하나씩 차례로 오간다 — §2.1.
+  오늘날 흔한 경우는 처음 메일을 중계와 비슷한 「메일 제출(message submission)」 서버에 넘기는 것이다 — §2.1(아래 RFC 6409 항목)
+- (phase 78 step 0) **받는 쪽 서버를 찾는다**: 클라이언트는 목적지 도메인 이름을 DNS로 풀어, 중간의 메일 교환(Mail eXchanger) 호스트나 최종 호스트의 주소를 알아낸다 — §2.1. 그 조회는 먼저 그 이름의 **MX 레코드**를 찾는다(MX가 없으면 그 이름 자체를 MX처럼 다룬다) — §5.1
+- (phase 78 step 0) **주소와 메일함**: 주소는 메일을 받을 사용자나 메일이 놓일 곳을 가리키는 글자열이고, 메일이 놓이는 곳을 메일함(mailbox)이라 한다. 표준 꼴은 `로컬 부분@도메인`이고, 로컬 부분의 뜻은 도메인 부분이 가리키는 호스트만 정한다 — §2.3.11
+- (phase 78 step 0) **한 번의 대화(세션)**: 클라이언트가 서버에 연결을 열면 서버가 첫 인사로 답한다(`220`) — §3.1. 클라이언트가 `EHLO`로 자기를 밝힌다(서비스 확장을 쓸 수 있다는 뜻도 함께 — 옛 시스템은 `HELO`) — §3.2.
+  메일 한 통을 넘기는 일(트랜잭션)은 세 단계다 — `MAIL FROM:<보내는 사람>`(받아들이면 `250`), `RCPT TO:<받는 사람>`(받는 사람마다 되풀이, 받아들이면 `250`),
+  `DATA`(서버가 `354`로 답하면 본문을 보내고 **마침표 하나만 있는 줄**로 끝을 알린다 → 서버가 받아 저장하면 `250`). 이 차례는 지켜야 한다 — §3.3.
+  `QUIT`를 보내면 서버는 `221`로 답하고 연결을 닫는다 — §3.8, §4.1.1.10
+- (phase 78 step 0) **응답 코드**: 세 자리 숫자이고 첫 자리가 결과를 가른다 — 2(요청한 일을 마쳤다), 3(받았지만 정보를 더 기다린다 — `DATA`에 쓴다), 4(일시적인 실패 — 다시 시도한다), 5(영구적인 실패) — §4.2.1.
+  `220` 서비스 준비, `221` 연결을 닫는다, `250` 요청한 일을 마쳤다, `354` 본문을 보내라(끝은 마침표 한 줄) — §4.2.3. 명령마다 성공 응답은 연결 `220`, `EHLO` `250`, `MAIL` `250`, `RCPT` `250`, `DATA` `354` → 본문 → `250`, `QUIT` `221`이다 — §4.3.2.
+  한 세션 전체의 예는 부록 D.1에 있다(값은 옮기지 않는다)
+- (phase 78 step 0) **보내는 쪽의 프로토콜이다**: SMTP는 메일의 전송·배달 프로토콜로 설계됐고, POP·IMAP과 함께 「메일 제출」에도 쓰여 왔다. 지금은 따로 정한 메일 제출 프로토콜(RFC 4409 — 지금은 RFC 6409)을 SMTP를 바로 쓰는 것보다 권한다 — §1.2.
+  배달하는 SMTP 시스템은 메일을 메일 사용자 에이전트에 넘기거나, 그 에이전트가 **나중에 꺼내 볼** 메시지 저장소에 넣는다 — §2.3.10. **이 문서는 메일함에서 메일을 꺼내 오는 명령을 정하지 않는다**
+  (§4.1의 명령은 메일을 넘기는 일·주소 확인·세션 관리다 — `EHLO`·`MAIL`·`RCPT`·`DATA`·`RSET`·`VRFY`·`EXPN`·`HELP`·`NOOP`·`QUIT`). 꺼내 오는 것은 POP3·IMAP이다 — 아래 RFC 1939·RFC 9051·RFC 6409 항목
+- (phase 78 step 0) SMTP 서버와 클라이언트는 메일을 옮기는 일을 하므로 MTA(Mail Transfer Agent)로 불리고, 메일의 출발점과 도착점은 MUA(Mail User Agent)로 여긴다. 다만 이 낱말들이 가리키는 경계가 실제 인터넷 메일의 관행과 꼭 맞지는 않으니 강한 역할 구분으로 읽지 말라고 적는다 — §2.3.3
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하고, 이 문서는 TCP 위의 전송을 다룬다. 부록 A의 제목도 「TCP Transport Service」다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — SMTP는 TCP를 쓴다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하다, TCP 위), 도식 `transport-choice`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.email-delivery`(§2.1 — 중계, DNS로 받는 쪽 서버를 찾는다, §5.1 — MX, §2.3.11 — 주소의 꼴과 메일함, §2.3.10 — 배달된 메일은 나중에 꺼내 볼 저장소에, §2.3.3 — MTA·MUA라는 이름의 한계),
+`app-protocols-mail-file.smtp`(§2.1 — 클라이언트가 서버로 연결을 열고 넘긴다·중계·명령마다 응답, §3.1~§3.3·§3.8·§4.1.1.10 — 대화의 차례, §4.2.1·§4.2.3·§4.3.2 — 응답 코드, §1.2·§2.3.10·§4.1 — 꺼내 오는 일은 하지 않는다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SMTP는 전자우편을 보낸다)
 
 ## (phase 77 step 2) RFC 9846 — The Transport Layer Security (TLS) Protocol Version 1.3
 https://www.rfc-editor.org/rfc/rfc9846
@@ -4141,3 +4221,184 @@ Informational(1992-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor �
 - 이 문서는 TIME-WAIT가 옛 세그먼트나 RST 때문에 일찍 끝나 버리는 위험과 그 대책을 다룬다 — 이 과목은 쓰지 않는다
 
 쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.time-wait`(보조 — 옛 중복 세그먼트가 사라질 시간)
+
+## (phase 78 step 0) RFC 5598 — Internet Mail Architecture [Informational]
+https://www.rfc-editor.org/rfc/rfc5598
+
+Informational(2009-07)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 표준을 정하는 문서가 아니라 인터넷 메일의 구성과 용어를 정리한 문서라, **역할의 이름과 메일이 가는 차례를 확인하는 보조로만** 쓴다 — 프로토콜의 동작은 각 프로토콜의 RFC가 근거다.
+
+- 인터넷 메일의 핵심 표준은 셋이다 — SMTP는 메시지를 인터넷으로 옮기고, IMF(RFC 5322)는 메시지의 꼴을, MIME은 첨부 같은 확장을 정한다 — §1
+- 인터넷 메일은 받아 두었다가 다음으로 넘기는(store-and-forward) 서비스다 — §4. 보내는 곳에서 배달될 곳까지는 메시지를 가진 쪽이 다음 곳으로 넘기는 「밀어내기(push)」가 보통이고, 주로 SMTP를 쓴다.
+  **배달된 뒤에는** 받는 사람의 메일 프로그램(이나 메시지 저장소)이 POP·IMAP으로 메시지를 **끌어올(pull)** 수 있다 — §4.4
+- 역할 이름: MUA(Message User Agent — 사용자를 대신해 메시지를 만들어 제출하고, 받은 메시지를 처리한다), MSA(Mail Submission Agent — 보내는 쪽 MUA가 제출한 메시지를 받는다), MTA(Message Transfer Agent — 메시지를 응용 계층의 한 「홉」씩, IP 라우터처럼 받는 사람 쪽으로 옮긴다),
+  MDA(Mail Delivery Agent — 받는 사람의 메일함으로 넘기는 「배달」을 한다), MS(Message Store — 메시지 저장소) — §4.2.1~§4.3.3
+- 제출은 예전에는 SMTP로 했고 지금은 별도의 TCP 포트를 쓰는 SUBMISSION을 권한다 — §4.3.1. MTA 사이의 전달은 주로 SMTP이고, 받는 쪽 MTA를 찾는 주된 방법은 DNS의 **MX 레코드**다 — §4.3.2.
+  MDA에서 메시지 저장소로 옮기는 데는 POP·IMAP 같은 접근 프로토콜을 쓴다 — §4.3.3. MUA는 메시지 저장소에 POP·IMAP으로 닿고, 저장소는 원격 서버에 있을 수도 MUA와 같은 기계에 있을 수도 있다 — §4.2.2
+- 메일함 주소는 `@`로 나뉜 두 부분이다 — 오른쪽은 도메인 이름, 왼쪽은 로컬 부분이고 로컬 부분은 그 도메인만 해석한다 — §3.1. 도메인 이름은 DNS가 정의하고 운영하며, 점으로 나뉜 이름의 오른쪽 끝이 계층의 맨 위다 — §3.3
+- MUA는 메시지를 「폴더」로 묶어 정리하곤 하고, IMAP에서는 폴더를 「메일함(mailbox)」이라 부른다 — §4.2.1. 원격 저장소를 다루는 관계로 온라인(원격에 둔 채 접속해 본다)·오프라인(원격에서 완전히 옮겨 온다)·연결 끊김(연결될 때 서로 맞춘다)을 든다 — §4.5
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.email-delivery`(§4.4 — 보낼 때는 밀어내고 배달 뒤에는 POP·IMAP으로 끌어온다, §4.3.2 — MX, §3.1 — 주소의 두 부분, §4.2.2 — 저장소는 원격 서버에도). 역할 이름(MUA·MSA·MTA·MDA)은 쓰지 않는 것을 권한다(step 0 summary)
+
+## (phase 78 step 0) RFC 6409 — Message Submission for Mail
+https://www.rfc-editor.org/rfc/rfc6409
+
+Internet Standard(STD 72, 2011-11)이고 폐기되지 않았다(RFC 4409를 대체, RFC 8314가 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- SMTP는 원래 완성된 메시지를 **옮기는(transfer)** 프로토콜이다. 지금은 메일 사용자 에이전트(MUA)가 새 메시지를 메일 전송망에 처음 들여보내는 **제출(submission)**에도 널리 쓰이고, 제출을 받는 프로세스를 MSA라 한다 — §1
+- 스팸을 대량으로 내보내는 감염된 기계가 많아, 표준 SMTP 포트(25)로 나가는 트래픽을 막고 모든 제출을 제출 서버로 보내게 하는 곳이 많다 — §1
+- 용어: MSA는 MUA에게서 메시지를 받아 배달하거나, SMTP 클라이언트가 되어 MTA로 넘긴다. MTA는 MSA나 다른 MTA에게서 받아 배달하거나 다른 MTA로 넘긴다.
+  **배달된 메시지에 닿는 데는 POP3나 IMAP을 쓰고, 메시지를 내보내는 데는 이 제출 프로토콜(이나 SMTP)을 쓴다**(split-MUA 모델) — §2.1
+- **587번은 메일 제출용**이고, 이 포트로 받은 메시지는 제출로 본다. 쓰는 프로토콜은 ESMTP(서비스 확장을 쓰는 SMTP)에 이 문서의 조건을 더한 것이다. 25번을 제출에 쓸 수도 있다 — §3.1
+- MSA는 기본으로, 인증하지 않은 세션의 `MAIL` 명령에 오류로 답해야 한다(MUST) — §4.3
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.smtp`(§1·§3.1 — 메일 클라이언트가 자기 서버에 처음 넘기는 일은 제출이고 587번, §2.1 — SMTP가 MSA·MTA 사이에도 쓰인다), `app-protocols-mail-file.email-delivery`(§2.1 — 꺼내 오기는 POP3·IMAP, 내보내기는 제출·SMTP)
+
+## (phase 78 step 0) RFC 1939 — Post Office Protocol - Version 3
+https://www.rfc-editor.org/rfc/rfc1939
+
+Internet Standard(STD 53, 1996-05)이고 폐기되지 않았다(RFC 1725를 대체, RFC 1957·2449·6186·8314가 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- 작은 기계는 SMTP 서버를 늘 띄워 두거나 늘 네트워크에 붙어 있기 어렵다. 그래서 메일 전송을 하는 기계가 메일을 맡아 두는 곳(maildrop)을 제공하고, **POP3는 작업용 컴퓨터가 서버가 맡아 둔 메일을 가져오게(retrieve)** 한다 — §1
+- POP3는 서버에서 메일을 폭넓게 다루려는 것이 아니다 — **보통은 내려받은 뒤 지운다**. 더 발전한(그리고 더 복잡한) 프로토콜로 IMAP4를 든다 — §1
+- 이 문서는 클라이언트가 메일을 보내는 방법을 정하지 않는다. 이 문서의 생각에 맞는 방법으로, 클라이언트의 메일 프로그램이 자기 중계 호스트에 **SMTP 연결을 맺어 메일을 넘기는 것**을 든다 — §2
+- 서버는 **TCP 110**에서 기다리고, 클라이언트가 TCP 연결을 맺으면 서버가 인사를 보낸다. 명령은 대소문자를 가리지 않는 3~4글자 키워드와 인자이고, 응답은 `+OK`(긍정)나 `-ERR`(부정)로 시작한다. 여러 줄 응답은 마침표 하나만 있는 줄로 끝난다 — §3
+- **세 단계**: 인사 뒤 AUTHORIZATION(클라이언트가 자기를 밝히고 인증한다) → 인증되면 서버가 그 메일함을 잠그고 TRANSACTION(클라이언트가 일을 청한다) → 클라이언트가 `QUIT`를 보내면 UPDATE(서버가 잡은 자원을 풀고 인사한 뒤 TCP 연결을 닫는다) — §3, §4
+- **명령**: `USER`(메일함 이름)·`PASS`(암호 — `USER`가 성공한 바로 뒤에)로 인증한다 — 설명은 §7, 최소 명령 목록은 §9. `STAT`(메일 수와 전체 크기), `LIST`(메일마다 번호와 크기), `RETR`(그 번호의 메일을 보낸다),
+  `DELE`(그 메일에 **지울 표시**만 한다 — 실제로 지우는 것은 UPDATE 단계다), `RSET`(지울 표시를 모두 거둔다), `QUIT` — §5, §6, §9
+- `QUIT`로 UPDATE에 들어가야 서버가 지울 표시를 한 메일을 지운다. 클라이언트의 `QUIT` 없이 세션이 끝나면 UPDATE에 들어가지 않고 아무 메일도 지우지 않는다 — §6.
+  예 세션의 차례: 서버가 TCP 110에서 기다림 → 연결 → 인사 → 인증 → `STAT` → `LIST` → `RETR 1`·`DELE 1` → `RETR 2`·`DELE 2` → `QUIT`(메일함이 비었다고 답한다) → 연결을 닫는다 — §10(이 예는 인증에 `APOP`을 쓴다. 값은 옮기지 않는다)
+- **서버에 남겨 두기와 그 한계**: 클라이언트가 `DELE`를 보내지 않으면(`UIDL`과 함께) IMAP처럼 메일함을 반쯤 영구 보관소로 쓰는 약한 흉내를 낼 수 있고, 클라이언트 프로그램에 「서버에 메일 남기기」 설정이 있기도 하다.
+  그러나 IMAP의 다른 기능 — 열어 둔 연결로 새 메일을 확인하기, **서버에 폴더를 여럿 두기** — 은 POP3에 없다 — §8
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.pop3`(§1 — 서버의 메일함에서 가져온다·보통 내려받고 지운다, §3·§4·§5·§6·§9 — TCP 110·세 단계·명령·`DELE`는 UPDATE에서, §10 — 차례, §8 — 남겨 둘 수도 있다·서버에 폴더 여럿은 없다),
+`app-protocols-mail-file.email-delivery`(§1·§2 — 보내기는 SMTP, 가져오기는 POP3, 늘 접속해 있지 않아도 서버가 맡아 둔다), `app-protocols-mail-file.imap`(§8 — POP3에 없는 IMAP의 기능), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
+
+## (phase 78 step 0) RFC 9051 — Internet Message Access Protocol (IMAP) - Version 4rev2
+https://www.rfc-editor.org/rfc/rfc9051
+
+Proposed Standard(2021-08)이고 폐기되거나 고쳐지지 않았다. RFC 3501(IMAP4rev1, 2003)을 폐기하고 대신한다(rfc-editor 상태 2026-11-11 — RFC 3501 쪽 정보에 obsoleted by RFC 9051).
+
+- IMAP4rev2는 클라이언트가 **서버에 있는 메일에 닿아 다루게** 한다. 메일함(원격의 메시지 폴더)을 로컬 폴더처럼 다룰 수 있고, 오프라인이던 클라이언트가 서버와 다시 맞출 수 있다.
+  메일함 만들기·지우기·이름 바꾸기, 새 메일 확인, 메일을 영구히 지우기, 플래그 켜고 끄기, **검색**, 메일의 필요한 부분만 골라 가져오기를 한다 — Abstract
+- **IMAP은 메일을 보내는 방법을 정하지 않는다** — 그것은 RFC 6409 같은 메일 제출 프로토콜의 몫이다 — Abstract
+- TCP 같은 믿을 수 있는 데이터 흐름을 전제하고, TCP를 쓰면 서버는 **143**(평문 포트)이나 **993**(처음부터 TLS로 감싼 포트)에서 기다린다 — §2.1
+- **플래그**: 메일마다 이름 붙은 표시를 0개 이상 단다. 시스템 플래그로 `\Seen`(읽었다)·`\Answered`(답장했다)·`\Flagged`(특별히 표시)·`\Deleted`(나중에 EXPUNGE로 지운다)·`\Draft`(작성 중)가 있다 — §2.3.2.
+  영구 플래그는 바꾸면 **동시에 열린 세션과 나중 세션이 모두 그 변화를 본다** — §2.3.2
+- 여러 에이전트가 같은 메일함에 동시에 닿아 플래그를 바꿀 수 있고, 서버는 메일함 크기가 바뀌면 알려야 하며 플래그 변화도 알리는 것이 좋다 — §5.2. 같은 메일함에 동시에 닿게 하는 서버는 다른 에이전트가 플래그를 바꾸거나 메일을 지우면 알리는 것이 좋다 — §7
+- `INBOX`는 「이 서버에서 이 사용자의 기본 메일함」을 뜻하는 특별한 이름이다 — §5.1. `CREATE`는 메일함을 만들고(§6.3.4), `MOVE`는 메일을 다른 메일함으로 옮기며(§6.4.8), `SEARCH`는 메일함에서 조건에 맞는 메일을 찾는다(§6.4.4)
+- IMAP4rev2는 IMAP4rev1(RFC 3501)과 대체로 호환되고, 두 판을 함께 알리는 서버도 있다 — §1.3, 부록 A
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.imap`(Abstract — 서버의 메일을 다룬다·메일함은 원격 폴더·검색·보내기는 정하지 않는다, §2.1 — TCP 143·993, §2.3.2·§5.2·§7 — 한 기기의 변화를 다른 세션도 본다, §5.1 — `INBOX`, §6.3.4·§6.4.8·§6.4.4 — 만들기·옮기기·검색, §1.3 — 지금 판은 IMAP4rev2),
+`app-protocols-mail-file.email-delivery`(Abstract — 보내기는 제출 프로토콜의 몫), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
+
+## (phase 78 step 0) RFC 8314 — Cleartext Considered Obsolete: Use of Transport Layer Security (TLS) for Email Submission and Access
+https://www.rfc-editor.org/rfc/rfc8314
+
+Proposed Standard(2018-01)이고 폐기되지 않았다(RFC 1939·2595·3501·5068·6186·6409를 고쳤고, RFC 8997이 이 문서를 고쳤다 — rfc-editor 상태 2026-11-11). **TLS로 감싼 포트의 번호만** 가져온다 — TLS 자체는 `app-protocols-mgmt-security` 주제(phase 78 step 5)의 몫이다.
+
+- 연결을 맺자마자 TLS 핸드셰이크를 시작하는 별도 포트 방식(Implicit TLS)을 POP·IMAP·메일 제출에 권한다 — §3. 기본 포트: POP3 over TLS(`pop3s`) **995**, IMAP over TLS(`imaps`) **993**, 메일 제출 over TLS(`submissions`) **465** — §3.1~§3.3, §7
+- 587번에서 평문으로 시작해 TLS로 바꾸는 방식(STARTTLS)도 널리 쓰여, 한동안 둘 다 구현하라고 한다 — §3.3
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.pop3`(995), `app-protocols-mail-file.imap`(993). 465와 STARTTLS는 쓰지 않는 것을 권한다(기출이 묻지 않는다)
+
+## (phase 78 step 0) RFC 1635 — How to Use Anonymous FTP [Informational]
+https://www.rfc-editor.org/rfc/rfc1635
+
+Informational(FYI 24, 1994-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 표준을 정하는 문서가 아니라 처음 쓰는 사람을 위한 안내다 — **익명 FTP가 있다는 것과 그 계정의 성격만** 가져온다.
+
+- FTP로 두 호스트 사이에 파일을 옮기려면 보통 양쪽에 로그인해야 해서 양쪽의 계정과 암호가 있어야 한다. 그러나 자료를 내주는 보관 사이트(archive site)는 **`anonymous`라는 특별한 계정**으로 누구에게나 자료를 내준다 — 이것이 익명 FTP다 — 「What is FTP?」·「What is Anonymous FTP?」
+- `anonymous` 사용자가 할 수 있는 것은 FTP로 로그인하기, 정해진 디렉터리의 목록 보기, 파일 내려받기뿐이고, 보통 그 사이트에 파일을 올리지는 못한다. 전통적으로 암호로 아무 글자열이나 받고, 흔히 `guest`나 자기 전자우편 주소를 쓴다 — 「What is Anonymous FTP?」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(익명 FTP — 계정이 없는 사람도 정해진 파일을 내려받는다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 「FTP는 계정으로만 접속한다」는 틀린 보기)
+
+## (phase 78 step 0) RFC 2228 — FTP Security Extensions
+https://www.rfc-editor.org/rfc/rfc2228
+
+Proposed Standard(1997-10)이고 폐기되지 않았다(RFC 959를 고쳤다 — rfc-editor 상태 2026-11-11). **「RFC 959의 FTP는 평문으로 보낸다」의 근거로만** 쓴다. 보안 확장의 명령과 이름은 가져오지 않는다.
+
+- RFC 959의 FTP는 `USER`·`PASS` 명령으로 사용자 이름과 암호를 **평문(cleartext)**으로 보내 클라이언트를 인증한다. 익명 FTP 보관소 같은 경우를 빼면, 네트워크를 엿보는 사람이 암호를 훔칠 수 있는 위험이다 — §1
+- FTP에는 명령·응답·옮기는 데이터를 **암호화하거나 진짜인지 확인하는 장치가 없다**. 엿보기만으로 민감한 데이터를 볼 수 있고, 능동적인 공격자는 옮기는 데이터를 지우거나 바꿀 수 있다 — §1
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(§1 — 사용자 이름·암호와 데이터를 암호화하지 않고 보낸다), 기출 대조(§1 — 익명 FTP 보관소가 있다)
+
+## (phase 78 step 0) RFC 1579 — Firewall-Friendly FTP [Informational]
+https://www.rfc-editor.org/rfc/rfc1579
+
+Informational(1994-02)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 프로토콜을 바꾸지 않고 클라이언트 프로그램의 동작을 권하는 문서다 — **수동 모드를 쓰는 까닭의 근거로** 쓴다.
+
+- FTP는 파일을 실제로 옮기는 데 두 번째 TCP 연결을 쓰고, **기본으로는 서버가 클라이언트 쪽으로 연결을 연다(active open)** — 서버의 20번에서, 클라이언트가 제어 연결에 쓴 것과 같은 포트로.
+  그러나 이 문서가 나올 때의 클라이언트는 대부분 전송마다 새 연결을 쓰고, 그때마다 새 포트를 골라 `PORT`로 알린다 — 「Overview and Rational」·「The Gory Details」
+- 패킷 필터 방화벽은 보통 아무 포트로나 **들어오는 연결을 허락하지 못해**, 서버가 클라이언트 쪽으로 여는 데이터 연결이 막힌다. 나가는 연결은 다루기 쉽다 — 「Overview and Rational」·「The Gory Details」
+- 클라이언트가 `PASV`를 보내면 서버가 임의의 포트에서 기다리고(passive open) 그 번호를 알려 주며, 클라이언트가 그 포트로 연결을 연다 — 데이터 연결이 클라이언트에서 나가는 연결이 된다. 그래서 클라이언트가 `PORT` 대신 `PASV`를 쓰라고 권한다 — 「The Gory Details」·「Recommendation」
+- 그러면 이번에는 서버가 임의의 포트로 들어오는 연결을 받아야 한다. 서버는 클라이언트보다 훨씬 적어 지키기 쉽고, **서버가 데이터 연결에 아주 높은 번호의 포트만 쓰도록** 고쳐 그 범위에 위험한 서비스가 없게 할 수 있다 — 「Security Considerations」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(기본은 서버가 20번에서 연결을 연다, 방화벽은 들어오는 연결을 막는다 → `PASV`, 서버가 데이터 연결에 쓸 포트를 좁힌다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 수동 모드)
+
+## (phase 78 step 0) RFC 2428 — FTP Extensions for IPv6 and NATs
+https://www.rfc-editor.org/rfc/rfc2428
+
+Proposed Standard(1998-09)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). **수동 쪽이 방화벽·NAT에 유리하다는 근거로만** 쓴다 — EPRT·EPSV 명령은 가져오지 않는다.
+
+- `PORT`·`PASV`를 IPv6에서도 쓸 수 있게 바꾼 `EPRT`·`EPSV`를 정한다 — §1
+- 수동 쪽(`EPSV`)을 쓰면 방화벽이나 NAT를 지나는 전송에 유리하다. 방화벽은 대개 들어오는 연결을 허락하지 않는데, `PORT`(`EPRT`)를 쓰려면 들어오는 연결이 필요하다(RFC 1579).
+  또 `EPRT` 쪽을 쓰면 NAT가 지나가는 트래픽 안에 적힌 주소를 바꿔야 하지만, 수동 쪽은 그럴 필요가 없다 — §4
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(§4 — 클라이언트 쪽 방화벽·NAT 때문에 수동 모드를 쓴다)
+
+## (phase 78 step 0) RFC 4252 — The Secure Shell (SSH) Authentication Protocol
+https://www.rfc-editor.org/rfc/rfc4252
+
+Proposed Standard(2006-01)이고 폐기되지 않았다(RFC 8308·8332가 고쳤다 — rfc-editor 상태 2026-11-11). **사용자 인증 방식의 이름과 성격만** 가져온다.
+
+- SSH 인증 프로토콜은 SSH 전송 계층 위에서 돌고, 아래 계층이 무결성과 기밀성을 준다고 전제한다 — §1
+- **공개 키 인증**(`publickey`)은 모든 구현이 지원해야 하는 유일한 방식이다. 사용자의 **개인 키를 가지고 있다는 것**이 곧 인증이다 — 클라이언트가 개인 키로 만든 서명을 보내고, 서버는 그 키가 그 사용자의 것인지와 서명이 맞는지 확인한다 — §7
+- **암호 인증**(`password`)은 구현하는 것이 좋다(SHOULD). 패킷에 암호가 평문으로 실리지만 **패킷 전체를 전송 계층이 암호화한다**(기밀성을 쓸 때) — §8
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(§7 — 공개 키 인증, §8 — 암호는 암호화한 통로로 간다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 공개 키 암호를 쓴다)
+
+## (phase 78 step 0) OpenSSH — ssh(1)
+https://man7.org/linux/man-pages/man1/ssh.1.html
+
+2026-11-11에 IPv4로 내려받아 읽은 판: OpenSSH 9.9p2(Portable OpenSSH 프로젝트, 바닥줄 July 18, 2024 — man7.org가 2026-08-04에 openssh-9.9p2 타르볼에서 가져옴 — COLOPHON). sshd(8)은 위 「(phase 76) OpenSSH — sshd(8) …」 항목에 있다.
+
+- 이름은 「OpenSSH 원격 로그인 클라이언트」다. 원격 기계에 로그인하고 명령을 실행하는 프로그램이고, 안전하지 않은 네트워크를 사이에 둔 두 호스트 사이에 암호화한 안전한 통신을 주려는 것이다 — NAME, DESCRIPTION
+- 접속할 대상은 `[사용자@]호스트이름` 꼴(또는 `ssh://[사용자@]호스트이름[:포트]`)로 적고, 사용자는 여러 방법 가운데 하나로 원격 기계에 자기를 증명해야 한다 — SYNOPSIS, DESCRIPTION. 그러니 `ssh 사용자@호스트` 꼴로 접속한다
+- 인증 방법: GSSAPI·호스트 기반·**공개 키**·키보드 대화형·**암호**. 공개 키 인증은 암호화와 복호화에 서로 다른 키를 쓰고 한 키에서 다른 키를 알아낼 수 없는 **공개 키 암호**에 바탕을 둔다 — 사용자가 공개 키·개인 키 한 쌍을 만들고,
+  서버는 공개 키를 알며 개인 키는 사용자만 안다. 클라이언트가 개인 키를 가졌다는 것을 증명하고, 서버는 그 공개 키가 그 계정에 허락됐는지 확인한다 — AUTHENTICATION
+- 암호 인증에서도 암호는 원격 호스트로 보내지지만, 통신이 모두 암호화되어 있어 네트워크를 엿듣는 사람은 볼 수 없다 — AUTHENTICATION
+- 접속한 적 있는 호스트의 키를 사용자의 `~/.ssh/known_hosts`에 저장하고 자동으로 검사한다 — 새 호스트는 자동으로 더하고, 호스트의 키가 바뀌면 경고하고 암호 인증을 막아 서버 위장·중간자 공격을 막는다 — AUTHENTICATION
+- **서버에 처음 접속할 때 서버의 공개 키 지문(fingerprint)을 사용자에게 보인다**(StrictHostKeyChecking을 끄지 않았다면). 지문을 이미 알면 맞춰 보고 키를 받아들이거나 거부할 수 있다 — VERIFYING HOST KEYS.
+  화면의 실제 꼴은 이 페이지가 보이지 않는다 — 아래 Microsoft Learn 「Get started with OpenSSH for Windows」의 예가 보인다
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(DESCRIPTION — `ssh 사용자@호스트`, AUTHENTICATION — 공개 키 암호·암호도 암호화돼 간다·`known_hosts`, VERIFYING HOST KEYS — 처음 접속할 때 지문을 보인다)
+
+## (phase 78 step 0) Microsoft Learn — OpenSSH for Windows overview, Get started with OpenSSH for Windows
+https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh-overview
+https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+
+2026-11-11에 읽은 판(페이지의 `updated_at`): overview 2025-05-01(`ms.date` 2025-02-20), Get started 2026-09-08(`ms.date` 2025-09-04). 둘 다 Windows Server 2019·2022·2025와 Windows 10·11을 대상으로 적는다.
+
+- OpenSSH는 원격 시스템을 관리하는 SSH 도구의 오픈 소스판이다. **Windows 10 빌드 1809와 Windows Server 2019부터** Windows에서 주문형 기능(feature on demand)으로 쓸 수 있다.
+  기본 설치 상태는 판마다 다르다 — Windows Server 2025는 설치돼 있지만 켜져 있지 않고, Windows Server 2019·2022와 Windows 10 1809 이후는 선택 기능으로 설치해 켠다 — overview
+- SSH는 클라이언트-서버 구조다 — 사용자가 일하는 시스템이 클라이언트, 원격으로 관리되는 시스템이 서버다. Windows의 OpenSSH에는 `ssh`(클라이언트), `sshd`(서버 — 원격으로 관리되는 시스템에서 돌아야 한다), `ssh-keygen`(인증 키를 만든다), `scp`·`sftp` 등이 들어 있다 — overview
+- OpenSSH는 SSH 프로토콜로 원격 로그인하는 연결 도구이고, 클라이언트와 서버 사이의 트래픽을 모두 암호화해 엿듣기·연결 가로채기 같은 공격을 막는다 — Get started 머리
+- OpenSSH Server를 설치하면 들어오는 SSH 트래픽을 **TCP 22번**에서 받는 방화벽 규칙이 만들어진다 — Get started
+- PowerShell에서 `ssh domain\username@servername` 꼴로 접속한다. 처음 접속하면 그 호스트가 진짜인지 확인할 수 없다는 말과 **호스트 키의 지문(SHA256)**을 보이고 **계속 접속할지(yes/no)** 묻는다.
+  `yes`를 입력하면 그 서버가 클라이언트의 알려진 SSH 호스트 목록에 들어가고, 이어서 암호를 묻는다(입력하는 글자는 화면에 보이지 않는다) — Get started 「Connect to OpenSSH Server」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(overview — Windows에도 OpenSSH가 들어 있다, Get started — 처음 접속할 때 지문을 보이고 계속할지 묻는다·TCP 22), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 Linux·Unix만의 것이 아니다)
+
+## (phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7, FTP Firewall Support `<firewallSupport>`
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/configuring-ftp-firewall-settings-in-iis-7
+https://learn.microsoft.com/en-us/iis/configuration/system.ftpserver/firewallsupport
+
+2026-11-11에 읽은 판(페이지의 `updated_at`): 둘 다 2025-12-20(`ms.date`는 2008-01-15와 2016-09-26). Windows Server의 FTP 서버(IIS의 FTP 서비스 — 앞 문서는 FTP 7.0·7.5를, 뒤 문서는 IIS 7.5~10.0을 대상으로 적고 IIS 10.0까지 바뀌지 않았다고 한다)의 문서다.
+**능동·수동 데이터 연결의 이름과 수동 모드용 포트 범위의 근거로만** 쓴다 — IIS의 설정 절차와 값은 가져오지 않는다.
+
+- FTP 클라이언트마다 연결 둘이 있어야 한다 — 명령이 오가는 제어 채널(보통 21번)과, 디렉터리 목록·파일 올리기·내려받기 같은 데이터가 오가는 데이터 채널. 방화벽에서 21번만 열면 로그인은 되지만 목록을 받거나 파일을 옮기지 못한다 — 앞 문서 「More Information about Working with Firewalls」
+- 데이터 연결을 맺는 방식은 둘이고, 같은 절은 이를 「두 모드」라 부른다. **능동 데이터 연결(active)**: 클라이언트가 데이터 채널용 포트를 열어 기다리고 서버가 그 포트로 연결을 연다(보통 서버의 20번에서). 예전에는 이것이 기본이었지만 인터넷 환경에서 잘 동작하지 않아 이제 권하지 않는다.
+  **수동 데이터 연결(passive)**: 서버가 데이터 채널용 포트를 열어 기다리고 클라이언트가 그 포트로 연결을 연다. 인터넷 환경에서 훨씬 잘 동작하고 RFC 1579가 권한다 — 앞 문서 같은 절
+- 수동 연결을 `PASV`로 맺으면 서버는 자기 IP 주소와 포트가 담긴 응답을 보낸다. 서버 관리자는 수동 연결의 데이터 채널에 쓸 **포트 범위**(가장 낮은 포트와 가장 높은 포트)를 서버 단위로 정해 둘 수 있고, 그 범위를 방화벽에서도 열어야 한다.
+  범위를 「0-0」으로 두면 Windows TCP/IP의 임시(동적) 포트 범위를 쓴다 — 뒤 문서 Overview·Attributes, 앞 문서 「Step 1: Configure the Passive Port Range for the FTP Service」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(능동·수동이라는 이름과 누가 연결을 여는지, 능동이 예전의 기본, 서버가 수동 모드용 포트 범위를 정해 둔다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 수동 모드)
