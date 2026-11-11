@@ -128,6 +128,8 @@ import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
+import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
+import { IpconfigViewDiagram } from './IpconfigViewDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
@@ -546,6 +548,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
   'app-protocols-mgmt-security.https': HttpsStackDiagram,
   'app-protocols-mgmt-security.sip': SipCallDiagram,
+  'diagnostic-commands.ipconfig': IpconfigViewDiagram,
+  'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

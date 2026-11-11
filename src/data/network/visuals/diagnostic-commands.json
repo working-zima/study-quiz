@@ -1,0 +1,103 @@
+{
+  "diagrams": {
+    "ipconfig-view": {
+      "label": "PC 192.0.2.10에서 옵션 없이 ipconfig를 입력하면 IP 주소·서브넷 마스크·기본 게이트웨이가 나오고, ipconfig /all을 입력하면 호스트 이름과 DNS 서버까지 더 나오는 것을 항목 이름과 값의 줄로 보이는 도식",
+      "svgLabel": "위에 두 명령을, 아래에 옵션 없이도 나오는 줄 셋과 /all에서 더 나오는 줄 둘을 항목 이름과 값의 칸으로 쌓은 그림",
+      "question": "ipconfig는 무엇을 보여 줄까?",
+      "idleCaption": "PC 192.0.2.10에서 두 명령이 보여 주는 항목을 이름과 값의 줄로 나눠 보였다. 버튼을 고르면 각 명령을 입력했을 때 어떤 줄이 나오는지 볼 수 있다.",
+      "legend": "한 줄이 항목 하나이고, 왼쪽 칸이 항목 이름, 오른쪽 칸이 값이다. 화살표는 명령을 입력했을 때 나오는 줄들을 가리킨다.",
+      "nodes": {
+        "cmd-basic": "ipconfig",
+        "cmd-all": "ipconfig /all",
+        "ip-label": "IP 주소",
+        "ip-value": "192.0.2.10",
+        "mask-label": "서브넷 마스크",
+        "mask-value": "255.255.255.0",
+        "gateway-label": "기본 게이트웨이",
+        "gateway-value": "192.0.2.1",
+        "host-label": "호스트 이름",
+        "host-value": "pc1",
+        "dns-label": "DNS 서버",
+        "dns-value": "192.0.2.53"
+      },
+      "groups": {
+        "basic": "옵션 없이도 나오는 줄",
+        "extra": "/all에서 더 나오는 줄"
+      },
+      "scenarios": [
+        {
+          "id": "basic",
+          "label": "옵션 없이",
+          "caption": "옵션 없이 ipconfig를 입력하면 어댑터마다 IP 주소 192.0.2.10, 서브넷 마스크 255.255.255.0, 기본 게이트웨이 192.0.2.1을 간단히 보여 준다. 호스트 이름과 DNS 서버의 주소는 나오지 않는다.",
+          "sources": ["diagnostic-commands.ipconfig"]
+        },
+        {
+          "id": "all",
+          "label": "/all",
+          "caption": "ipconfig /all을 입력하면 어댑터마다 네트워크 설정 전체를 자세히 보여 주어, 세 값에 더해 호스트 이름 pc1과 DNS 서버 192.0.2.53 같은 항목까지 나온다.",
+          "sources": ["diagnostic-commands.ipconfig"]
+        }
+      ],
+      "sources": ["diagnostic-commands.ipconfig"]
+    },
+    "ipconfig-options": {
+      "label": "PC 192.0.2.10에서 ipconfig의 옵션 넷을 입력했을 때, /release와 /renew는 DHCP 서버와 주소를 주고받아 IP 주소를 없애거나 다시 붙이고, /displaydns와 /flushdns는 IP 주소를 그대로 둔 채 DNS 캐시를 보여 주거나 비우는 것을 명령 전과 뒤로 보이는 도식",
+      "svgLabel": "위에 명령 전 PC의 IP 주소와 DNS 캐시를, 아래에 주소를 다루는 옵션 둘과 이름 캐시를 다루는 옵션 둘을 옵션마다 명령 칸과 뒤 상태 칸으로 그린 그림",
+      "question": "옵션마다 무엇이 바뀔까?",
+      "idleCaption": "맨 위 박스가 옵션을 입력하기 전 PC의 IP 주소와 DNS 캐시다. 버튼을 고르면 그 옵션을 입력한 뒤 무엇이 바뀌는지 볼 수 있다.",
+      "legend": "옵션 칸에서 나가는 화살표는 그 옵션을 입력한 뒤의 상태를 가리킨다. DHCP 서버와 잇는 화살표는 PC와 DHCP 서버 사이에서 주소가 오가는 쪽을 가리킨다.",
+      "nodes": {
+        "before-ip": "IP 주소 · 192.0.2.10",
+        "before-cache": "DNS 캐시 · www.example.com",
+        "opt-release": "/release",
+        "after-release": "IP 주소 없음",
+        "dhcp-server": "DHCP 서버",
+        "opt-renew": "/renew",
+        "after-renew": "IP 주소 · 다시 받음",
+        "opt-displaydns": "/displaydns",
+        "after-displaydns": "캐시 내용이 화면에 보임",
+        "opt-flushdns": "/flushdns",
+        "after-flush-cache": "DNS 캐시 · 비었음",
+        "after-flush-ip": "IP 주소 · 192.0.2.10"
+      },
+      "groups": {
+        "before": "명령 전의 PC",
+        "address": "주소를 다루는 옵션",
+        "cache": "이름 캐시를 다루는 옵션"
+      },
+      "notes": {
+        "release-note": "주소를 돌려준다",
+        "renew-note": "주소를 다시 준다"
+      },
+      "scenarios": [
+        {
+          "id": "release",
+          "label": "/release",
+          "caption": "ipconfig /release를 입력하면 PC는 DHCP 서버에 주소를 돌려주겠다고 알리고 어댑터의 주소 설정을 버린다. 그 뒤 어댑터에는 IP 주소가 없어, 주소를 다시 받기 전까지 그 어댑터로는 통신하지 못한다.",
+          "sources": ["diagnostic-commands.ipconfig-options"]
+        },
+        {
+          "id": "renew",
+          "label": "/renew",
+          "caption": "ipconfig /renew를 입력하면 DHCP 서버가 쓸 IP 주소와 설정 값을 골라 다시 알려 주고, 어댑터에 IP 주소가 다시 붙는다. 어떤 주소를 줄지는 DHCP 서버가 정한다.",
+          "sources": ["diagnostic-commands.ipconfig-options"]
+        },
+        {
+          "id": "displaydns",
+          "label": "/displaydns",
+          "caption": "ipconfig /displaydns를 입력하면 DNS 캐시에 적힌 이름과 주소의 짝, 여기서는 www.example.com의 짝이 화면에 나온다. 보여 주기만 하므로 캐시도 IP 주소도 바뀌지 않는다.",
+          "sources": ["diagnostic-commands.ipconfig-options"]
+        },
+        {
+          "id": "flushdns",
+          "label": "/flushdns",
+          "caption": "ipconfig /flushdns를 입력하면 DNS 캐시가 비어, 다음에 www.example.com을 쓸 때 PC는 DNS 서버에 그 주소를 다시 묻는다. 이름의 기록만 지우므로 IP 주소는 192.0.2.10 그대로다.",
+          "sources": ["diagnostic-commands.ipconfig-options"]
+        }
+      ],
+      "sources": ["diagnostic-commands.ipconfig-options"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
