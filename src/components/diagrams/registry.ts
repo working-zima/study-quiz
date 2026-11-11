@@ -247,6 +247,7 @@ import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
+import { SshSessionDiagram } from './SshSessionDiagram'
 import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
@@ -268,6 +269,7 @@ import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TcpStatesDiagram } from './TcpStatesDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
+import { TftpBlocksDiagram } from './TftpBlocksDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TimeWaitDiagram } from './TimeWaitDiagram'
@@ -524,6 +526,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mail-file.imap': ImapSyncDiagram,
   'app-protocols-mail-file.ftp': FtpConnectionsDiagram,
   'app-protocols-mail-file.ftp-modes': FtpModesDiagram,
+  'app-protocols-mail-file.tftp': TftpBlocksDiagram,
+  'app-protocols-mail-file.ssh': SshSessionDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
