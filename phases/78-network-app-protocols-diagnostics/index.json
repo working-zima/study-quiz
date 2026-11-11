@@ -1,0 +1,86 @@
+{
+  "project": "Study Quiz",
+  "phase": "78-network-app-protocols-diagnostics",
+  "steps": [
+    {
+      "step": 0,
+      "name": "mail-file-sources",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "mail-path-smtp",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "pop3-imap",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "ftp-modes",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "tftp-ssh",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "mgmt-security-sources",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "snmp-mib",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "snmp-poll-versions",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "ntp-sntp",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "tls-https",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "sip",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "diagnostic-sources",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "ipconfig",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "ping-tracert",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "pathping-netstat",
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "name": "netstat-options",
+      "status": "pending"
+    }
+  ]
+}
