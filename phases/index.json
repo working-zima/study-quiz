@@ -392,7 +392,8 @@
     },
     {
       "dir": "78-network-app-protocols-diagnostics",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-11-11T20:13:28+0900"
     },
     {
       "dir": "100-azure-cloud-concepts",
