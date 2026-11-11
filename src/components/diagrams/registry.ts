@@ -113,6 +113,7 @@ import { HealthViewsDiagram } from './HealthViewsDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HttpsStackDiagram } from './HttpsStackDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
@@ -279,6 +280,7 @@ import { TftpBlocksDiagram } from './TftpBlocksDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TimeWaitDiagram } from './TimeWaitDiagram'
+import { TlsHandshakeDiagram } from './TlsHandshakeDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
@@ -540,6 +542,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.snmp-versions': SnmpVersionsDiagram,
   'app-protocols-mgmt-security.ntp': NtpStratumDiagram,
   'app-protocols-mgmt-security.sntp': SntpClientDiagram,
+  'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
+  'app-protocols-mgmt-security.https': HttpsStackDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

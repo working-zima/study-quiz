@@ -253,6 +253,95 @@
         }
       ],
       "sources": ["app-protocols-mgmt-security.sntp"]
+    },
+    "tls-handshake": {
+      "label": "웹 브라우저가 www.example.com의 서버와 ClientHello·ServerHello로 인사하고, 서버가 Certificate·CertificateVerify로 자신을 증명하고, 두 쪽이 Finished로 핸드셰이크를 끝맺은 뒤 요청과 응답을 암호화해 주고받는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 기둥과 오른쪽 서버 기둥 사이에, 위 박스에 ClientHello·ServerHello·Certificate·CertificateVerify·Finished·Finished를, 아래 박스에 암호화된 요청과 암호화된 응답을 차례로 놓은 그림",
+      "question": "TLS는 암호화하기 전에 무엇을 주고받을까?",
+      "idleCaption": "웹 브라우저와 www.example.com의 서버가 TLS로 통신을 시작할 때 주고받는 메시지를 위에서 아래로 간추려 놓았다. 위 박스가 핸드셰이크이고, 아래 박스가 핸드셰이크 뒤에 오가는 데이터다. 버튼을 고르면 단계마다 무엇이 어느 쪽에서 어느 쪽으로 가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트인 웹 브라우저와 www.example.com의 서버이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "server": "www.example.com",
+        "client-hello": "ClientHello",
+        "server-hello": "ServerHello",
+        "certificate": "Certificate",
+        "cert-verify": "CertificateVerify",
+        "finished-s": "Finished",
+        "finished-c": "Finished",
+        "request": "암호화된 요청",
+        "response": "암호화된 응답"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "handshake-box": "핸드셰이크",
+        "data-box": "핸드셰이크 뒤"
+      },
+      "notes": {
+        "hello-note": "암호 방식과 키를 정한다",
+        "cert-note": "서버가 자신을 증명한다",
+        "data-note": "암호화되어 오간다"
+      },
+      "scenarios": [
+        {
+          "id": "hello",
+          "label": "인사",
+          "caption": "브라우저가 ClientHello에 자기가 쓸 수 있는 TLS 판과 암호 방식, 키를 함께 만드는 데 쓸 값을 담아 보내면, 서버가 ServerHello로 그 가운데 고른 것과 서버 쪽의 값을 돌려준다. 이 두 메시지로 두 쪽은 함께 쓸 키를 만들고, 그 뒤의 메시지는 모두 암호화해 보낸다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        },
+        {
+          "id": "certificate",
+          "label": "인증서",
+          "caption": "서버가 Certificate로 자기 인증서를 보내고, 그 인증서의 공개 키와 짝인 개인 키로 핸드셰이크에 서명한 CertificateVerify를 보낸다. 브라우저는 인증서의 이름이 www.example.com인지, 인증 기관의 서명이 올바른지, 서버의 서명이 그 공개 키로 맞는지 확인한다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        },
+        {
+          "id": "data",
+          "label": "암호화된 데이터",
+          "caption": "두 쪽이 Finished를 주고받아 핸드셰이크를 끝맺으면, 웹 페이지를 달라는 요청과 그 응답은 핸드셰이크에서 만든 키로 암호화되어 오간다. 중간에서 엿봐도 알아볼 수 없고, 누가 도중에 바꾸면 받는 쪽이 알아챈다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.tls"]
+    },
+    "https-stack": {
+      "label": "같은 www.example.com의 서버를 http:// 주소로 열 때는 HTTP가 TCP 80번 위에 바로 놓이고, https:// 주소로 열 때는 HTTP와 TCP 443번 사이에 TLS가 들어가는 것을 나란히 보이는 도식",
+      "svgLabel": "왼쪽 박스에 HTTP와 TCP · 80번을, 오른쪽 박스에 HTTP·TLS·TCP · 443번을 위에서 아래로 쌓은 그림",
+      "question": "HTTP와 HTTPS는 무엇이 다를까?",
+      "idleCaption": "같은 서버를 http:// 주소와 https:// 주소로 열 때, 브라우저가 보내는 HTTP 요청이 어떤 층을 거쳐 나가는지 나란히 쌓아 보였다. 버튼을 고르면 두 방식의 포트와 보호가 어떻게 다른지 볼 수 있다.",
+      "legend": "박스 하나가 한 주소로 열 때의 쌓임이고, 위 칸이 아래 칸에 데이터를 넘긴다. 화살표는 브라우저가 보내는 HTTP 요청이 아래 층으로 넘겨지는 차례다.",
+      "nodes": {
+        "http-app": "HTTP",
+        "http-tcp": "TCP · 80번",
+        "https-app": "HTTP",
+        "https-tls": "TLS",
+        "https-tcp": "TCP · 443번"
+      },
+      "groups": {
+        "http-stack": "http:// 주소로 열 때",
+        "https-stack": "https:// 주소로 열 때"
+      },
+      "notes": {
+        "http-note": "그대로 보임",
+        "https-note": "암호화됨",
+        "https-check": "서버를 확인한다"
+      },
+      "scenarios": [
+        {
+          "id": "http",
+          "label": "HTTP",
+          "caption": "http://www.example.com/으로 열면 브라우저는 서버의 TCP 80번으로 연결을 맺고, TLS 없이 그 연결로 HTTP 요청과 응답을 주고받는다. 내용이 암호화되지 않아 중간에서 엿보면 그대로 보이고, 브라우저는 상대 서버가 진짜인지 확인하지 않는다.",
+          "sources": ["app-protocols-mgmt-security.https"]
+        },
+        {
+          "id": "https",
+          "label": "HTTPS",
+          "caption": "https://www.example.com/으로 열면 브라우저는 서버의 TCP 443번으로 연결을 맺고 그 위에서 TLS 핸드셰이크를 하며, 인증서의 이름이 www.example.com과 맞는지 확인한다. 그 뒤 HTTP 요청과 응답은 TLS로 암호화되어 오간다.",
+          "sources": ["app-protocols-mgmt-security.https"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.https"]
     }
   },
   "tables": {},
