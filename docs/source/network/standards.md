@@ -88,6 +88,11 @@ man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목�
 RFC 3410·6632·3512는 Informational이라 표준 문서의 사실을 확인하고 풀어 보는 보조로만 쓴다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — SNMP 메시지의 부호화 형식과 GetBulkRequest·Report, USM의 키·알고리즘과 VACM의 세부, NTP의 시각 계산식과 필터·선택 알고리즘의 세부·대칭·브로드캐스트 모드,
 TLS의 키 교환·암호 방식·확장, 인증서의 필드와 폐기, SIP의 프록시·등록·헤더 필드와 응답 코드 전체, SDP의 문법. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 78 step 11)」이 붙은 줄과 항목은 phase 78 step 11에서 `diagnostic-commands`(ipconfig 명령, ipconfig의 옵션, ping 명령의 옵션, tracert 명령, pathping 명령, netstat 명령, Windows netstat의 옵션, Linux netstat의 옵션) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). learn.microsoft.com은 Windows 명령 참조 페이지(`windows-server/administration/windows-commands/<명령>`)와, 그 페이지가 출력의 꼴을 보이지 않는 곳을 메우려고 Windows Server 문제 해결 문서 몇 쪽을 IPv4로 내려받아 읽었다 —
+항목마다 페이지 머리의 `updated_at`·`ms.date`, 바닥의 「Last updated on」과 「Applies to」를 적는다(세 날짜가 서로 다를 수 있다). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적는다.
+**명령의 출력 꼴은 문서가 보이는 것만** 적었다 — 출력 예가 없는 명령은 「출력 예 없음」이라고 적는다. 이 PC에서 명령을 실행한 결과는 출처로 쓰지 않았다.
+**기출이 묻지 않는 옵션은 사실로 가져오지 않았다** — ping의 TTL·TOS·경로 기록·출발지 경로 옵션, tracert·pathping의 출발지 경로 옵션, ipconfig의 `/registerdns`·IPv6 옵션, netstat의 `-q`·주기 갱신, nslookup의 대화형 모드와 하위 명령. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -1244,11 +1249,29 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - (phase 73 step 1) tracert: 목적지로 가는 경로를 알아내려고 TTL을 1부터 하나씩 늘린 **ICMP 에코 요청**(IPv6는 ICMPv6 메시지)을 보낸다. 경로의 라우터는 넘기기 전에 TTL을 최소 1 줄여야 하므로 TTL은 사실상 지날 수 있는 링크 수의 상한이고,
   TTL이 0이 되면 라우터가 출발지에 ICMP 시간 초과를 돌려보내기로 되어 있다. 중간 라우터의 시간 초과와 목적지의 에코 응답으로 경로를 알아낸다. 최대 홉 수는 기본 30(`/h`)이다.
   시간 초과를 보내지 않는 라우터는 보이지 않고 그 홉에는 `*`가 찍힌다 — tracert 첫 세 문단, 「Parameters」
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: ping·tracert 모두 바닥의 「Last updated on」 2024-11-01, 머리의 `updated_at` 2026-02-16(`ms.date`는 ping 2023-09-15, tracert 2023-09-27).
+  두 페이지 모두 「Applies to」가 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후다
+- (phase 78 step 11) ping의 **옵션 표기**: Syntax·Parameters·Examples가 옵션을 모두 빗금(`/t`, `/a`, `/n`, `/l`, `/f`)으로 적는다. 하이픈(`-t`)으로도 받는다는 문장은 이 페이지에 없다 — Syntax, Examples.
+  tracert(`/d`, `/h`)도 빗금으로 적는다 — 같은 꼴. 하이픈 표기의 근거는 아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서」 항목의 IPv6 문서(`ping -6`, `tracert -6`)뿐이다 — `exam-notes.md` E33
+- (phase 78 step 11) ping의 옵션(기출의 보기에 나오는 넷과 그 바탕): `/t`는 사용자가 끊을 때까지 에코 요청을 계속 보내게 한다. 끊는 키는 둘이다 — **Ctrl+Break**는 끊고 **통계를 보여 주고**, **Ctrl+C**는 끊고 **명령을 끝낸다**(문서는 Ctrl+Break 뒤에 계속 보내는지를 따로 적지 않고, 「통계를 보인다」와 「끝낸다」를 나란히 견줄 뿐이다).
+  `/a`는 목적지 IP 주소로 이름을 거꾸로 찾아(역방향 이름 확인) 성공하면 그 호스트 이름을 보인다. `/n`은 보낼 에코 요청의 수(기본 4 — 위 줄). `/l`은 에코 요청의 데이터 칸 크기를 바이트로 정한다(기본 32, 가장 크게 65,500).
+  `/f`는 IP 헤더의 「조각내지 말 것(Don't Fragment)」 플래그를 1로 켜서 보낸다(IPv4만) — 경로의 라우터가 그 요청을 조각낼 수 없어 경로 MTU 문제를 찾을 때 쓴다 — 「Parameters」.
+  `/w`는 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 응답이 없으면 「Request timed out」을 보인다 — 「Parameters」. 옵션 없이 부르면 도움말을 보인다 — 첫 문단
+- (phase 78 step 11) ping의 **출력 예**: 첫 줄에 목적지 이름·`[주소]`와 보내는 데이터 크기(32바이트)를 적고, 이어 응답마다 한 줄씩 `Reply from <주소>: bytes=… time=…ms TTL=…`이 넷 나온다. 요약 줄은 이 페이지의 예에 없다 — 「Example of the ping command output」.
+  요약 줄(`Ping statistics for …: Packets: Sent = …, Received = …, Lost = … (…% loss)`, 이어 왕복 시간의 Minimum·Maximum·Average)의 꼴은 아래 「(phase 74 step 5) Microsoft Learn …, Check Microsoft Broadband Network Adapter」 항목의 「(phase 78 step 11)」 줄에 있다
+- (phase 78 step 11) tracert의 **출력 예**와 읽는 법(Examples): 첫머리에 「목적지 이름 `[주소]`까지, 최대 30홉」을 알리는 줄, 이어 홉마다 한 줄 — **맨 앞 칸은 1부터 하나씩 커지는 홉 번호**, **가운데 세 칸은 그 홉의 장치까지 다녀오는 왕복 시간(ms)**, **맨 끝 칸은 그 장치의 IP 주소나 이름**이다.
+  역방향 DNS 조회가 되면 이름과 `[주소]`가, 안 되면 주소만 나온다. 답이 오지 않은 자리에는 `*`가 찍히고, 세 번 모두 오지 않은 홉은 `*` 셋과 「Request timed out.」이 나온다. 끝에 「Trace complete.」가 나온다 — 「Examples」 뒤 설명.
+  각 홉은 패킷이 목적지로 가며 거치는 라우터 같은 중간 장치다 — 같은 절. 보이는 경로는 각 라우터에서 **보내는 쪽에 가장 가까운 인터페이스**의 주소다 — 셋째 문단
+- (phase 78 step 11) tracert의 옵션: `/d`는 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않게 해 결과가 빨리 나올 수 있다. `/h`는 찾을 최대 홉 수(기본 30). `/w`는 시간 초과·에코 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 받지 못하면 `*`를 찍는다 — 「Parameters」.
+  경로를 찾으면서 **라우터와 링크마다의 지연과 패킷 손실**까지 보려면 pathping을 쓰라고 한다 — 「Important」 뒤 문단
+- (phase 78 step 11) 두 명령 모두 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — ping 첫머리 Note, tracert 「Important」
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
 (phase 73 step 13) `icmp.time-exceeded`와 `traceroute` 도식: Windows tracert의 TTL 1부터 증가, 중간 시간 초과·끝 에코 응답, 기본 최대 30홉·답이 없으면 *. 2026-10-29 tracert 문서를 다시 확인했다.
 (phase 73 step 14) `icmp.ping`(ping — 목적지에 호스트 이름이나 IP 주소를 적는다, `/n`으로 보낼 요청 수를 정하고 기본은 4개, 받은 에코 응답을 왕복 시간과 함께 보이고 출력 예는 응답마다 `time=`(ms 단위)과 `TTL=`를 적는다). 2026-10-29 ping 문서를 다시 확인했다(Last updated 2024-11-01) — 출력 예에는 응답 줄만 있고 요약 줄은 없다
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(ping `/t`·Ctrl+Break·Ctrl+C, `/n` 기본 4, `/a`, `/l` 기본 32, 빗금 표기, 출력 예의 응답 줄), `diagnostic-commands.tracert`(출력 예의 칸 — 홉 번호·왕복 시간 셋·주소나 이름, `*`와 Request timed out, `/d`·`/h` 기본 30, 보내는 쪽에 가까운 인터페이스, 지연·손실은 pathping),
+`diagnostic-commands.pathping`(tracert 문서가 pathping을 가리키는 문단), `exam-notes.md` 「phase 78 step 11」 문단([기출 2025-08-24 #42]의 `/a`·`/f`·`/n` 보기)과 E33
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -1415,11 +1438,18 @@ https://man7.org/linux/man-pages/man8/arp.8.html
   TTL마다 기본 세 번 보내 게이트웨이 주소와 왕복 시간을 한 줄에 적는다. 시간 안에 답이 없으면 `*`를 찍는다 — DESCRIPTION
 - (phase 73 step 1) traceroute(8)의 기본 방법은 UDP 탐사 패킷이다 — 목적지가 쓰지 않을 법한 포트(첫 탐사는 33434, 탐사마다 1씩 늘림)로 보내므로 목적지는 보통 ICMP 포트 도달 불가로 답한다. `-I`는 ICMP 에코를 탐사 패킷으로 쓴다(지금 가장 흔하다고 쓴다) — 「LIST OF AVAILABLE METHODS」, OPTIONS.
   Windows tracert는 ICMP 에코 요청을 쓴다(위 「(phase 71) Microsoft Learn」 항목) — 명령마다 보내는 패킷이 다르다
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: ping(8)은 iputils 20250605(upstream Git에서 2026-08-04에 가져옴, 그때 최신 커밋 2026-07-16), traceroute(8)은 traceroute 2.1.6 타르볼(바닥줄 2006-10-11) — 위 줄과 같은 판이다
+- (phase 78 step 11) ping(8)이 **멈추는 경우**: 이 페이지가 드는 것은 셋이다 — `-c count`로 정한 수만큼 보냈을 때, `-w deadline`으로 정한 초가 지났을 때, 프로그램이 **SIGINT**로 끝날 때(이때도 요약을 보인다).
+  **SIGQUIT**을 보내면 끝내지 않고 짧은 중간 통계만 보인다 — OPTIONS(`-c`·`-w`), OPTIONS 뒤 설명. 「아무것도 정하지 않으면 끝없이 보낸다」를 한 문장으로 적지는 않는다 — 그 셋 밖에 멈추는 조건을 들지 않을 뿐이다.
+  그래서 본문은 「`-c`나 `-w`를 주지 않으면, 사용자가 끊을 때까지 보낸다」를 이 세 조건에서 나오는 말로 쓴다. 터미널에서 Ctrl-C가 SIGINT를 보낸다는 것은 아래 「(phase 78 step 11) Linux man-pages — ip-address(8), termios(3)」 항목에 있다
+- (phase 78 step 11) ping(8)의 `-s packetsize`는 보낼 데이터 바이트 수이고 기본 56이다(ICMP 헤더 8바이트와 합쳐 ICMP 데이터 64바이트) — OPTIONS. Windows ping의 `/l`(기본 32)과 기본값이 다르다
+- (phase 78 step 11) ping(8)의 `-a`는 소리를 내는 ping(audible ping)이고, `-t ttl`은 IP의 TTL을 정한다 — OPTIONS. **Windows ping의 `/a`(이름 거꾸로 찾기)·`/t`(끊을 때까지 보내기)와 글자가 같아도 뜻이 다르다**
 
 쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp(7) 캐시와 시간, arp(8) `-s`·`-d`), `icmp.time-exceeded`(traceroute — UDP 기본·`-I`), `icmp.ping`(ping `-c`, 요약, 응답의 TTL), `exam-notes.md` 앞 문단([기출 2025-05-25 #10]의 캐시 시간, [기출 2025-08-24 #8]의 `-d`)
 (phase 73 step 13) `icmp.time-exceeded`: traceroute의 기본 UDP·끝 포트 도달 불가, -I 에코, 최대 30홉·TTL마다 세 번·응답이 없으면 *. `icmp.echo`의 ping은 에코를 이용하는 명령이라는 한 줄에만 쓴다.
 (phase 73 step 14) `icmp.ping`(ping(8) — `-c`로 보낼 요청 수를 정한다, 다 보내면 손실 통계와 왕복 시간의 최소·평균·최대를 요약한다, 출력의 TTL은 받은 응답 패킷의 TTL 값이고 지금 라우터는 TTL을 1씩 줄인다, 응답의 처음 TTL은 시스템마다 다르다), 문항 n077 해설, 도식 `ping-result`. 결과 요약은 Linux ping(8)만 근거로 썼다 — Windows ping 문서는 요약을 적지 않는다(위 「(phase 71) Microsoft Learn」 항목). 왕복 시간(RTT, round-trip time)을 「요청을 보낸 때부터 그 응답을 받은 때까지」로 푼 것은 이름의 뜻이다
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Linux ping은 `-c`·`-w`가 없으면 끊을 때까지 보낸다 — Windows와 기본이 반대, Ctrl-C(SIGINT)로 끝내면 요약, 같은 글자 `-a`·`-t`의 다른 뜻), `diagnostic-commands.tracert`(Linux는 `traceroute` — 위 traceroute(8) 줄)
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -2536,9 +2566,14 @@ DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지�
   (RFC 2131 §1의 수동 할당 — 관리자가 정한 주소를 DHCP가 전하기만 한다 — 과 같은 꼴로 읽히지만, 두 문서가 서로를 가리키지는 않는다)
 - 범위(scope)는 한 서브넷에서 DHCP 클라이언트에 나눠 줄 주소 범위와 옵션이고, 서브넷 마스크·임대 기간·옵션(DNS 서버, 라우터·기본 게이트웨이 주소 등)을 갖는다 — DHCP scopes 문서 「Single scope」
 - **루프백 확인**: 네트워크 어댑터를 확인하는 첫 단계로 `ping 127.0.0.1`을 실행해 응답 넷이 오는지 본다. 응답이 없으면 그 컴퓨터의 TCP/IP에 문제가 있을 수 있고, 이 단계를 통과해야 다음 단계(자기 어댑터 주소, 기본 게이트웨이로의 ping)로 넘어갈 수 있다 — 네트워크 어댑터 확인 문서 「Use Ping.exe to Check Your Hardware」
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: 자동 주소 지정 문서 `updated_at` 2025-09-22(`ms.date` 2020-05-26), 네트워크 어댑터 확인 문서 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 「Applies to」 지원되는 Windows 클라이언트) — 위 줄과 같은 판이다
+- (phase 78 step 11) **Windows ping의 요약 줄**: 네트워크 어댑터 확인 문서의 출력 예는 응답 넷(`Reply from <주소>: bytes=… time<1ms TTL=…`) 뒤에 요약을 둔다 — 「`Ping statistics for <주소>:`」 다음에 보낸 수(Sent)·받은 수(Received)·잃은 수(Lost)와 그 백분율, 이어 「대략의 왕복 시간(ms)」의 가장 짧은 값(Minimum)·가장 긴 값(Maximum)·평균(Average)이다.
+  셋 다 요청 4개를 보내 4개를 받은(0% 손실) 예다 — 「Use Ping.exe to Check Your Hardware」 1~3단계의 예. 손실이 있는 예는 이 문서에 없다
+- (phase 78 step 11) 자동 주소 지정 문서는 APIPA를 쓰는지 볼 때 `ipconfig /all`의 「Autoconfiguration Enabled」 줄과 「Autoconfiguration IP Address」를 보라고 한다 — 다만 이 대목은 Windows 2000·XP·Server 2003의 방법으로 적혀 있다 — 「More Information」(위 둘째 줄과 같은 대목)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
 `ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Windows ping 요약 줄의 꼴 — 보낸 수·받은 수·잃은 수와 백분율, 왕복 시간의 최소·최대·평균), `diagnostic-commands.ipconfig`(`/all`에 자동 구성 줄이 있다 — 옛 판의 방법으로 적힌 대목)
 
 ## (phase 74 step 11) RFC 1930 — Guidelines for creation, selection, and registration of an Autonomous System (AS)
 https://www.rfc-editor.org/rfc/rfc1930
@@ -2728,9 +2763,38 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
   같은 페이지는 netstat이 대부분 낡았고 대신 쓰는 것이 ss라고 적는다 — NOTES.
   Windows netstat 문서는 TCP 연결의 상태로 CLOSE_WAIT, CLOSED, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, LAST_ACK, LISTEN, **SYN_RECEIVED**, SYN_SEND, TIMED_WAIT를 든다 — Remarks의 State. 곧 RFC의 SYN-RECEIVED를 밑줄로 이은 SYN_RECEIVED가 이 문서의 표기다.
   이 문서는 SYN-SENT를 SYN_SEND로, TIME-WAIT를 TIMED_WAIT로 적고 CLOSING은 들지 않는다 — RFC 9293 §3.3.2와 이름이 다른 곳이라 본문에 옮기지 않는다
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: man7.org netstat(8)은 net-tools 2026-05-10판(upstream Git에서 2026-08-04에 가져옴, 그때 최신 커밋 2026-06-12, HTML 2026-09-09).
+  Microsoft Learn netstat은 `updated_at` 2026-09-08(바닥의 「Last updated on」도 2026-09-08, `ms.date` 2017-10-16), route는 `updated_at` 2026-02-16(「Last updated on」 2023-02-03, `ms.date` 2022-10-05) — 둘 다 「Applies to」 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후
+- (phase 78 step 11) **Windows netstat이 보이는 것**: 활성 TCP 연결, 이 컴퓨터가 연결을 기다리는(listening) 포트, 이더넷 통계, IP 라우팅 테이블, 프로토콜마다의 IPv4 통계(IP·ICMP·TCP·UDP)와 IPv6 통계(IPv6·ICMPv6·IPv6 위의 TCP·UDP)다.
+  **옵션 없이 부르면 활성 TCP 연결만** 보인다 — 첫 문단. 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — 「Important」
+- (phase 78 step 11) **Windows netstat의 옵션**(문서는 옵션을 하이픈으로 적는다 — Syntax·Parameters·Examples): `-a`는 활성 TCP 연결 모두와 이 컴퓨터가 기다리는 TCP·UDP 포트를 보인다.
+  `-b`는 연결이나 기다리는 포트마다 그것을 만든 **실행 파일**을 보인다 — 한 실행 파일이 여러 구성 요소를 품은 경우에는 구성 요소의 차례를 보이고 실행 파일 이름은 그 아래 `[ ]` 안에 적는다. 시간이 걸릴 수 있고, **권한이 충분하지 않으면 실패한다**(어떤 권한인지 이름을 대지는 않는다).
+  `-e`는 주고받은 바이트 수·패킷 수 같은 **이더넷 통계**를 보이고 `-s`와 함께 쓸 수 있다. `-n`은 활성 TCP 연결을 보이되 주소와 포트를 **숫자로** 적고 이름을 알아내려 하지 않는다.
+  `-o`는 활성 TCP 연결과 연결마다의 **PID**를 보이고, 그 PID로 작업 관리자의 프로세스 탭에서 응용 프로그램을 찾을 수 있다 — `-a`·`-n`·`-p`와 함께 쓸 수 있다.
+  `-p <Protocol>`은 **뒤에 적은 프로토콜의 연결만** 보인다 — 고를 수 있는 것은 tcp·udp·tcpv6·udpv6이고, `-s`와 함께 쓸 때는 icmp·ip·icmpv6·ipv6도 고를 수 있다.
+  `-s`는 프로토콜마다의 통계를 보인다(기본은 TCP·UDP·ICMP·IP, IPv6가 있으면 그 넷의 IPv6판도). `-r`은 IP 라우팅 테이블을 보이고 `route print`와 같다(위 줄). 끝에 수(초)를 적으면 그 간격마다 다시 보이고 Ctrl+C로 멈춘다 — 「Parameters」
+- (phase 78 step 11) Windows netstat의 **결과 칸**(Remarks): Proto(TCP나 UDP), Local address(이 컴퓨터의 IP 주소와 쓰는 포트 번호), Foreign address(소켓이 이어진 **원격 컴퓨터**의 IP 주소와 포트 번호), State(TCP 연결의 상태 — 위 「(phase 77 step 9)」 줄의 이름들).
+  `-n`을 주지 않으면 주소와 포트를 이름으로 바꿔 보이고, 포트가 아직 정해지지 않았으면 포트 자리에 `*`를 적는다 — Remarks. **출력 예는 없다** — 칸 이름과 뜻만 있다. `-o`의 PID가 어느 칸에 놓이는지는 적혀 있지 않다
+- (phase 78 step 11) Windows netstat의 **옵션을 이어 쓰는 꼴**: Examples가 `netstat -e -s`, `netstat -s -p tcp udp`, `netstat -o 5`, `netstat -n -o`와, 다섯 옵션을 한데 이은 `netstat -anobq`(모든 연결·기다리는 포트·묶였지만 기다리지 않는 포트를 숫자로, PID와 실행 파일까지)를 든다 — 「Examples」.
+  `netstat -ano`라는 꼴 그대로의 예는 이 페이지에 없다 — 옵션 셋을 이은 것이다. 문제 해결 문서도 `netstat -nato`·`netstat -anb`처럼 이어 쓴다(아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서」 항목)
+- (phase 78 step 11) Windows `route`의 `if` 매개변수 설명은 **인터페이스 목록과 그 인터페이스 번호(인덱스)를 `route print`가 보이는 화면에서 찾으라**고 한다 — route 「Parameters」. 곧 `route print`(= `netstat -r`)는 라우팅 테이블과 함께 인터페이스 목록을 보인다.
+  그 화면의 꼴(출력 예)은 route 페이지에 없다 — `exam-notes.md` E34
+- (phase 78 step 11) **Linux netstat(8)**: 이름 줄은 네트워크 연결·라우팅 테이블·인터페이스 통계 등을 보인다고 적는다 — NAME. 첫 인자 없이 부르면 **열린 소켓**의 목록을 보인다 — DESCRIPTION 「Invocation Mode」.
+  `-r`(`--route`)은 커널 라우팅 테이블(`route -e`와 같은 출력), `-i`(`--interfaces`)는 모든 네트워크 인터페이스의 표와 받기·보내기 오류 수, `-s`(`--statistics`)는 프로토콜마다의 요약 통계다 — 같은 절
+- (phase 78 step 11) Linux netstat(8)의 옵션(기출이 묻는 것): `-a`(`--all`)는 **연결을 기다리는 소켓과 그렇지 않은 소켓을 모두** 보인다(`-i`와 함께 쓰면 켜지지 않은(up이 아닌) 인터페이스도 보인다). `-l`(`--listening`)은 **기다리는 소켓만** 보인다 — 기다리는 소켓은 기본으로 빠진다.
+  `-n`(`--numeric`)은 호스트·포트·사용자 이름을 알아내지 않고 숫자로 보인다. `-p`(`--program`)는 소켓마다 그것을 가진 프로그램의 **PID와 이름**을 보인다 — 다른 프로세스를 들여다볼 권한이 없거나 소켓이 커널의 것이면 하이픈(`-`)을 보이고, 페이지는 이 값을 믿을 만하지 않다고 덧붙인다.
+  자기 것이 아닌 소켓의 이 정보를 보려면 **슈퍼유저 권한**도 있어야 한다 — OPTIONS, OUTPUT 「PID/Program name」. `-o`(`--timers`)는 네트워크 타이머에 관한 정보를 더한다 — OPTIONS.
+  **`-t`·`-u`는 OPTIONS 절에 설명이 없고** SYNOPSIS에 긴 이름 `--tcp|-t`·`--udp|-u`로만 나온다. EXAMPLES의 `netstat -tulpn`이 「열린 TCP·UDP 포트를 모두, 해당 프로세스의 PID와 함께(root 권한 필요)」 보이는 예다 — 그래서 `-t`는 TCP, `-u`는 UDP이고 **시간과는 관계가 없다**. 타이머(시간)는 `-o`의 몫이다 — SYNOPSIS, EXAMPLES, OPTIONS
+- (phase 78 step 11) Linux netstat(8)의 **결과 칸**(OUTPUT 「Active Internet connections」): Proto(tcp·udp 등), Recv-Q(연결이 맺어진 소켓에서 받았지만 프로그램이 아직 가져가지 않은 바이트 수)·Send-Q(보냈지만 상대가 아직 확인하지 않은 바이트 수 — 기다리는 소켓에서는 두 칸의 뜻이 다르다), Local Address(소켓의 이쪽 끝 주소와 포트 — `-n`이 없으면 이름과 서비스 이름으로 바꾼다), Foreign Address(소켓의 저쪽 끝 주소와 포트),
+  State(위 「(phase 77 step 9)」 줄 — LISTEN 상태의 소켓은 `-l`이나 `-a`를 줘야 나온다), User, PID/Program name(`--program`이 이 칸을 넣는다), Timer(`-o`)의 차례로 설명한다. User 칸을 어느 옵션이 넣는지는 적혀 있지 않다. **출력 예는 없다** — 칸 설명만 있다
+- (phase 78 step 11) Linux netstat(8)의 다른 사실: `/etc/services`는 서비스 이름을 바꿔 보일 때 읽는 파일이다(FILES — 「services translation file」). EXAMPLES의 둘째 예는 라우팅 테이블을 숫자로 보이는 `netstat -rn`이다.
+  소켓이 많은 서버에서는 느리니 ss(8)를 쓰라고 한다 — BUGS. netstat이 대부분 낡았고 대신 쓰는 것이 ss라는 것은 위 줄(NOTES)
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
 (phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(상태 이름을 밑줄로 잇는 표기 — Windows netstat의 SYN_RECEIVED, Linux netstat의 SYN_RECV), `exam-notes.md`의 「phase 77 step 9」 문단(기출의 SYN_RECEIVED 표기, 오답 보기 CLOSE)
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat`(Windows — 보이는 것 다섯, 옵션 없으면 활성 TCP 연결만, 결과 칸 넷과 뜻, 출력 예 없음; Linux — 열린 소켓 목록, 결과 칸, 기다리는 소켓은 `-l`·`-a`, 출력 예 없음, 낡았고 ss가 대신한다),
+`diagnostic-commands.netstat-windows-options`(`-a`·`-n`·`-o`(작업 관리자)·`-b`(권한이 모자라면 실패)·`-p`(프로토콜 고르기)·`-r`(= `route print`, 인터페이스 목록도)·`-s`·`-e`, `-anobq`처럼 이어 쓰기),
+`diagnostic-commands.netstat-linux-options`(`-a`·`-n`·`-t`·`-u`·`-l`·`-p`(남의 소켓은 슈퍼유저)·`-r`, `-t`는 TCP이고 타이머는 `-o`, `netstat -tulpn` 예), `exam-notes.md` 「phase 78 step 11」 문단과 E34
 
 ## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
@@ -3514,6 +3578,8 @@ https://man7.org/linux/man-pages/man7/bootparam.7.html
 - **getpid(2)**: getppid()는 부모의 PID를 돌려준다. 이 프로세스를 만든 프로세스가 이미 끝났으면, 이 프로세스가 넘겨진 프로세스(init(1)이나 prctl(2)로 정한 「subreaper」)의 PID를 돌려준다 — DESCRIPTION
 - **signal(7)**: 시그널마다 기본 동작(disposition)이 있고, `Term`은 프로세스를 끝내는 동작이다 — 「Signal dispositions」. SIGTERM은 끝내라는 시그널이고 SIGKILL도 기본 동작이 Term이다 — 「Standard signals」.
   번호는 SIGKILL이 9, SIGTERM이 15다(x86·ARM 등 대부분의 아키텍처) — 「Signal numbering for standard signals」. **SIGKILL과 SIGSTOP은 붙잡거나 막거나 무시할 수 없다** — 「Standard signals」
+  (phase 78 step 11, 2026-11-11에 다시 읽음 — 6.19, 2026-02-08) SIGINT는 키보드에서 온 끼어들기(interrupt), SIGQUIT은 키보드에서 온 끝내기(quit) 시그널이고, 기본 동작은 SIGINT가 Term, SIGQUIT이 Core(끝내며 코어 덤프)다 — 「Standard signals」.
+  어느 키가 그 시그널을 보내는지는 아래 「(phase 78 step 11) Linux man-pages — ip-address(8), termios(3)」 항목의 termios(3) 줄 — 쓰일 곳 `diagnostic-commands.ping-options`(Linux ping을 Ctrl-C로 끝낸다)
 - **nice(2)**: 나이스 값이 클수록 우선순위가 낮다. 범위는 +19(낮은 우선순위)부터 -20(높은 우선순위)까지이고, 범위 밖 값은 끝값으로 맞춰진다.
   전통적으로 나이스 값을 낮추는(우선순위를 높이는) 일은 특권 프로세스만 할 수 있었고, Linux 2.6.12부터는 RLIMIT_NICE 한도가 알맞으면 특권 없는 프로세스도 낮출 수 있다 — DESCRIPTION
 - **sched(7)**: 나이스 값은 CPU 스케줄러가 어떤 프로세스를 더 우대하거나 덜 우대하게 하는 속성이고 nice(2)·setpriority(2) 등으로 바꾼다. 지금 Linux의 범위는 -20(높은 우선순위)~+19(낮은 우선순위)다 — 「The nice value」
@@ -4143,9 +4209,12 @@ capabilities(7)의 다른 사실은 위 「(phase 75) Linux man-pages …」 항
 - **services(5)**: `/etc/services`는 사람이 읽는 서비스 이름과 그 포트 번호·프로토콜을 짝지은 글 파일이다. 1024보다 작은 번호(「낮은 번호」 포트)에는 root만 소켓을 묶을 수 있어서, 그 포트에 붙는 클라이언트는
   그 포트의 서비스가 그 기계의 일반 사용자가 띄운 가짜가 아니라고 믿을 수 있다. IANA가 정한 잘 알려진 포트는 보통 이 범위에 있다 — DESCRIPTION.
   같은 쪽은 IANA가 지금도 TCP·UDP를 함께 정해 준다고 적지만, 그 관행은 RFC 6335 §7.2(2011)가 끝냈다 — 정책은 RFC 6335를 따른다. 「TCP만 쓰는 서비스도 두 행이 있다」는 레지스트리의 옛 행을 설명하는 데만 쓴다
+- (phase 78 step 11, 2026-11-11에 IPv4로 다시 읽음 — services(5)는 Linux man-pages 6.19, 2026-02-08) **services(5)**: 이 파일에 어떤 서비스의 줄이 있다고 해서 그 서비스가 지금 그 기계에서 **돌고 있다는 뜻은 아니다** — DESCRIPTION.
+  줄마다 「서비스 이름, `포트/프로토콜`, 별명」을 적는다 — 같은 절. 곧 `/etc/services`는 이름과 번호의 짝을 적어 둔 목록이고, 지금 열려 있는 포트는 netstat·ss 같은 명령이 보인다(위 「(phase 74 step 11) … netstat」 항목의 「(phase 78 step 11)」 줄)
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(ip(7) — 소켓 주소는 IP 주소와 16비트 포트, 포트는 전송 계층이 구현한다), `ports.well-known-ports`(ip(7)·capabilities(7)·services(5) — Linux에서 1024보다 작은 포트에서 기다리려면 특권이 필요하다),
 `ports.client-server-ports`(ip(7)·udp(7)·proc_sys_net_ipv4(5) — 클라이언트가 묶지 않고 보내면 운영체제가 비어 있는 임시 포트를 고른다, 범위는 `ip_local_port_range`, tcp(7) — 서버는 bind·listen·accept), 강의 수정 이력 L43, `exam-notes.md` E27
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat-linux-options`(services(5) — `/etc/services`는 이름과 번호의 목록일 뿐 지금 도는 서비스를 보이지 않는다), `exam-notes.md` 「phase 78 step 11」 문단([기출 2024-08-25 #32]의 `cat /etc/services` 보기)
 
 ## (phase 77) Microsoft Learn — The default dynamic port range for TCP/IP has changed since Windows Vista and in Windows Server 2008
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang
@@ -4708,3 +4777,84 @@ Proposed Standard(2021-01)이고 폐기되지 않았다(RFC 4566을 대체 — r
 - SIP로 세션을 만들 때 SIP 메시지가 세션 설명을 실어 참가자들이 함께 쓸 미디어 형식에 합의하게 하고, 그 세션 설명은 흔히 SDP로 적는다 — §3.1
 
 쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1·§3.1 — 어떤 음성·영상 방식을 쓸지는 SDP로 적어 SIP 메시지에 실어 주고받는다)
+
+## (phase 78 step 11) Microsoft Learn — ipconfig, nslookup, pathping, Command-Line Syntax Key
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pathping
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key
+
+2026-11-11에 IPv4로 내려받아 읽은 판: ipconfig `updated_at` 2026-02-16(바닥의 「Last updated on」 2023-02-03, `ms.date` 2017-10-16), nslookup `updated_at` 2026-10-21(「Last updated on」 2024-11-01, `ms.date` 2023-09-08),
+pathping `updated_at` 2026-02-16(「Last updated on」 2024-11-01, `ms.date` 2018-07-11), Command-Line Syntax Key `updated_at` 2026-09-08(「Last updated on」 2026-09-08). 넷 다 「Applies to」가 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후다.
+ipconfig·pathping 페이지는 옵션을 빗금(`/all`, `/q`)으로 적고, nslookup 페이지는 옵션을 하이픈으로 붙인다(아래 줄). ping·tracert·netstat 페이지의 사실은 위 「(phase 71) Microsoft Learn …」·「(phase 74 step 11) … Microsoft Learn — route, netstat」 항목에 있다.
+
+- **ipconfig**: 지금의 TCP/IP 네트워크 설정 값을 모두 보이고, DHCP와 DNS 설정을 새로 고친다. **옵션 없이 부르면 모든 어댑터마다 IPv4·IPv6 주소, 서브넷 마스크, 기본 게이트웨이를 보인다** — 첫 문단.
+  어댑터는 설치된 네트워크 어댑터 같은 **물리적인 인터페이스**일 수도, 전화 접속 연결 같은 **논리적인 인터페이스**일 수도 있다 — Parameters의 `/all`
+- ipconfig `/all`: **모든 어댑터의 TCP/IP 설정 전체**를 보인다 — Parameters. **이 페이지는 `/all`이 보이는 항목을 하나하나 늘어놓지 않고, 출력 예도 없다**(Examples에는 입력하는 줄만 있다).
+  항목 이름은 아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서 …」 항목의 출력 예와 점검 차례에서만 확인된다 — 호스트 이름, IP 주소, 서브넷 마스크, 기본 게이트웨이, DNS 서버, 연결별 DNS 접미사, 그리고 위 「(phase 74 step 5) Microsoft Learn …」 항목의 자동 구성 줄.
+  **물리 주소(MAC 주소)·DHCP 사용 여부·DHCP 서버·임대 시각이 `/all`에 나온다는 것은 Windows Server·Windows 명령 문서에서 찾지 못했다**(ipconfig 페이지, 아래 문제 해결 문서 여섯, learn.microsoft.com 검색 — 2026-11-11). Azure VPN Gateway 문서의 출력 예에 Physical Address·DHCP Enabled 줄이 있지만 허용 범위(Windows Server와 Windows 명령) 밖이라 쓰지 않는다
+- ipconfig `/release [<adapter>]`: DHCP 서버에 **DHCPRELEASE 메시지**를 보내 지금의 DHCP 설정을 놓아 주고, 모든 어댑터(어댑터를 적지 않았을 때)나 적은 어댑터의 IP 주소 설정을 버린다.
+  주소를 자동으로 받도록 설정된 어댑터에서는 그 어댑터의 TCP/IP가 꺼진다 — Parameters. DHCPRELEASE가 무엇인지는 위 「(phase 73 step 1) RFC 951 …, RFC 2131 …」 항목(클라이언트가 주소를 돌려주고 남은 임대를 취소한다)
+- ipconfig `/renew [<adapter>]`: 모든 어댑터나 적은 어댑터의 **DHCP 설정을 새로 받는다**. **주소를 자동으로 받도록 설정된 어댑터가 있는 컴퓨터에서만** 쓸 수 있다 — Parameters. 어댑터 이름은 옵션 없이 부른 ipconfig에 나오는 이름을 적고, 이름에 빈칸이 있으면 큰따옴표로 감싸며 `*`로 여러 어댑터를 고를 수 있다 — Parameters, Remarks.
+  Examples는 한 어댑터만 새로 받는 `ipconfig /renew` 예를 든다. **`/release` 다음 `/renew`의 차례는 이 페이지의 예에 없고** 문제 해결 문서에 있다(아래 항목)
+- ipconfig `/displaydns`: **DNS 클라이언트 리졸버 캐시**의 내용을 보인다 — 로컬 Hosts 파일에서 미리 넣은 항목과, 이 컴퓨터가 최근 이름 질의를 풀며 얻은 레코드가 함께 든다. DNS Client 서비스는 자주 묻는 이름을 설정된 DNS 서버에 묻기 **전에** 이 캐시로 빨리 푼다 — Parameters
+- ipconfig `/flushdns`: 그 캐시를 **비우고 새로 시작한다**. DNS 문제를 풀 때 부정 응답 항목(이름이 없다는 답을 기억해 둔 것)과 동적으로 더해진 다른 항목을 버리는 데 쓴다 — Parameters. Examples도 DNS 이름 풀이 문제를 풀 때 쓰는 예로 든다.
+  「비운 뒤에는 그 이름을 DNS 서버에 다시 묻는다」는 이 페이지에 한 문장으로 적혀 있지 않다 — `/displaydns`의 「DNS 서버에 묻기 전에 캐시로 먼저 푼다」와 `/flushdns`의 「캐시를 비운다」를 이어서 나오는 말이다
+- ipconfig `/setclassid <adapter> [<classID>]`: 어댑터의 **DHCP 클래스 ID**를 정한다(`/showclassid`는 보인다). 주소를 자동으로 받는 어댑터에서만 쓸 수 있다 — Parameters. 기출의 오답 보기([기출 2026-02-01 #41])라 뜻만 적는다
+- ipconfig는 주소를 자동으로 받는 컴퓨터에서 가장 쓸모가 있다 — 어느 설정 값이 DHCP·APIPA·대체 구성 가운데 무엇으로 정해졌는지 알 수 있다 — Remarks
+- **nslookup**: DNS 기반 구조의 문제를 살피는 데 쓰는 정보를 보인다 — 첫 문단. 비대화형으로 쓸 때 첫 인자는 찾을 컴퓨터의 **이름이나 IP 주소**, 둘째 인자는 물어볼 **DNS 이름 서버**이고, 둘째를 빼면 기본 DNS 이름 서버에 묻는다. 이름을 주면 그 IP 주소를, IP 주소를 주면 그 도메인 이름을 찾는 예가 있다 — 「Noninteractive mode」.
+  옵션은 `nslookup -<option>`처럼 하이픈으로 붙인다 — 같은 절. 출력 예는 없다
+- **pathping**: 출발지와 목적지 사이 **중간 홉의 지연과 손실**에 관한 정보를 준다. 경로의 라우터마다 에코 요청을 **일정 시간 동안 여러 번** 보내고 라우터마다 돌아온 패킷으로 결과를 계산한다. 어느 라우터나 링크에서 얼마나 잃는지를 보이므로 **어느 라우터나 서브넷에 문제가 있을 수 있는지** 알 수 있다.
+  또 경로에 어떤 라우터가 있는지를 **tracert와 같이** 알아낸 뒤, 정한 시간 동안 모든 라우터에 주기적으로 ping을 보내 각 라우터에서 돌아온 수로 통계를 낸다 — 첫 세 문단. 옵션 없이 부르면 도움말을 보인다 — 첫 문단
+- pathping의 옵션(기출이 묻지는 않지만 오래 걸리는 까닭을 말하는 데 필요한 것): `/q`는 경로의 **라우터마다 보낼 에코 요청 수**(기본 100), `/p`는 **잇따른 ping 사이의 간격**(ms, 기본 250 — 1/4초)이다. ping은 홉마다 하나씩 차례로 보내므로 **같은 홉에 보내는 두 ping의 간격은 간격 값에 홉 수를 곱한 것**이다.
+  `/h`는 찾을 최대 홉 수(기본 30), `/n`은 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않아 결과가 빨리 나올 수 있게 한다, `/w`는 응답 하나를 기다리는 시간(ms, 기본 3000) — Parameters. **모든 매개변수가 대소문자를 가린다** — Remarks.
+  혼잡과 몰려서 잃는 손실의 영향을 줄이려면 ping을 충분히 느리게 보내야 한다 — Remarks
+- pathping의 **출력 예**(「Example of the pathping command output」, `pathping /n` 예): ① 「목적지 이름 `[주소]`까지, 최대 30홉」 줄과 경로 목록 — 홉 번호 0(출발지 자신)부터 차례로 주소 하나씩. ② 「몇 초 동안 통계를 계산하는 중」이라는 줄. ③ 통계 표 — 머리줄은 Hop, RTT, **Source to Here**(출발지에서 그 홉까지)의 Lost/Sent = Pct, **This Node/Link**(그 노드나 링크에서)의 Lost/Sent = Pct, address.
+  표는 라우터 줄(홉 번호·RTT·두 칸의 「잃은 수/보낸 수 = 백분율」·주소)과 그 사이의 **링크 줄**(address 칸에 세로 막대 `|`, This Node/Link 칸만 채운다)이 번갈아 나온다. ④ 「Trace complete.」 — 같은 절. 값(주소·시간·수)은 옮기지 않는다
+- pathping의 결과를 읽는 법(출력 예 뒤 설명): 경로 목록이 먼저 나오고, 이어 **바쁘다는 줄이 대략 90초 동안**(홉 수에 따라 다르다) 보이는 사이에 앞서 나온 모든 라우터와 그 사이 링크에서 정보를 모으며, 그 시간이 끝나면 결과를 보인다.
+  예에서는 두 라우터 사이의 **링크** 하나가 패킷의 13%를 잃고, 홉 2·4의 라우터는 **자기에게 온** 패킷을 잃지만 그 손실은 자기를 지나가는 트래픽을 넘기는 데 영향을 주지 않는다.
+  **링크(`|`)에 보이는 손실률**은 경로로 넘어가는 패킷이 그 링크의 혼잡으로 잃는 것이고, **라우터(주소)에 보이는 손실률**은 그 라우터가 과부하일 수 있다는 뜻이다 — 같은 절
+- (계산 — 문서의 문장이 아니다) 출력 예는 「125초 동안 통계를 계산」이라고 적는데, 이 예의 홉은 출발지 다음으로 5개이므로 기본값 그대로 `/q` 100 × `/p` 250ms × 홉 5 = 125초가 된다. 위 「같은 홉에 보내는 두 ping의 간격 = 간격 × 홉 수」에서 나오는 값이다.
+  문서의 「대략 90초」는 홉 수에 따라 달라지는 어림으로 적힌 말이다 — 본문은 「홉이 많을수록 오래 걸린다」를 쓰고, 이 계산을 쓴다면 계산이라고 밝힌다
+- **Command-Line Syntax Key**: 명령의 문법 줄에 쓰는 기호(그대로 칠 글자, `< >` 안은 값을 넣을 자리, `[ ]` 안은 넣지 않아도 되는 것, `{ }`와 `|`는 하나를 골라야 하는 것, `…`은 되풀이)를 설명한다 — 표.
+  **옵션 앞의 빗금(`/`)과 하이픈(`-`)을 어떻게 쓰는지는 이 페이지에도 없다** — `exam-notes.md` E33
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(옵션 없이 — 어댑터마다 IPv4·IPv6 주소·서브넷 마스크·기본 게이트웨이, 어댑터는 물리·논리 인터페이스, `/all`은 설정 전체 — 항목 목록과 출력 예 없음, 물리 주소·DHCP 서버·임대 시각은 근거 없음),
+`diagnostic-commands.ipconfig-options`(`/release` — DHCPRELEASE·주소 설정을 버림·TCP/IP가 꺼짐, `/renew` — 자동으로 받는 어댑터에서만, `/displaydns` — Hosts 항목과 최근 레코드·DNS 서버보다 먼저, `/flushdns` — 비우기와 부정 응답, `/setclassid`, nslookup — 이름이나 주소를 DNS 서버에 묻는다),
+`diagnostic-commands.pathping`(tracert처럼 경로를 찾은 뒤 라우터마다 일정 시간 여러 번, 노드·링크 손실, `/q` 100·`/p` 250ms, 출력의 세 부분과 칸, 대략 90초·125초 계산, 링크 손실과 라우터 손실의 뜻), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+
+## (phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서(DNS 클라이언트, 네트워크 어댑터의 IP 주소 바꾸기, 공유 프린터, IPv6 설치, TCP/IP 통신, DHCP)
+https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/change-ip-address-network-adapter
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/printing/cannot-install-shared-network-printer-locally
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/install-configure-ip-version-6
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-tcp-ip-communication-guidance
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-dhcp-guidance
+
+2026-11-11에 IPv4로 내려받아 읽은 판: DNS 클라이언트 문서 `updated_at` 2025-09-22(「Last updated on」 2020-08-07, 「Applies to」 Windows Server 2016~2025). 나머지 다섯은 모두 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 「Applies to」 지원되는 Windows Server)다.
+명령 참조 페이지가 출력의 꼴이나 쓰는 차례를 보이지 않는 곳을 메우는 데만 쓴다. **IP 주소 바꾸기·공유 프린터·IPv6 문서는 Windows Server 2003·Windows XP 무렵의 글**이라(「시작 > 실행」, 「Local Area Connection」, 출력의 `IP Address` 줄) 화면의 꼴은 지금 판과 다를 수 있다 — 항목 이름과 차례만 가져오고 화면을 그대로 옮기지 않는다.
+
+- **DNS 클라이언트 문제 해결**(「Check IP configuration」): 관리자 명령 프롬프트에서 `ipconfig /all`을 실행하고 — 그 네트워크에 맞는 IP 주소·서브넷 마스크·기본 게이트웨이가 있는지, **출력에 나온 DNS 서버**의 주소가 맞는지, 출력의 **연결별 DNS 접미사**가 맞는지 본다.
+  설정이 틀렸고 동적으로 설정된 클라이언트이면 `ipconfig /renew`로 DHCP 서버에서 설정을 다시 받게 한다 — 같은 절
+- 같은 문서(이름 풀이 시험 뒤): `nslookup <바깥 이름>`으로 공용 이름을 물어보고, 시험이 다 성공했는데도 어떤 이름이 실패하면 `ipconfig /displaydns`로 그 이름을 찾는다. 그 이름 아래 「Name does not exist」가 있으면 DNS 서버가 준 부정 응답이 클라이언트에 캐시된 것이고, `ipconfig /flushdns`로 캐시를 비워 푼다 — 같은 문서 뒷부분
+- **IP 주소 바꾸기**(「How to automatically obtain an IP Address」): 주소를 자동으로 받게 바꾼 뒤 명령 프롬프트에서 `ipconfig /release`를 입력하고, 이어 `ipconfig /renew`를 입력하면 **DHCP 서버가 어댑터에 IP 주소를 준다**. 그때 나오는 화면은 「Windows Server IP Configuration」 머리줄, 어댑터 이름 줄, 그 아래 「항목 이름 . . . : 값」 꼴의 줄들 — 연결별 DNS 접미사, IP 주소, 서브넷 마스크, 기본 게이트웨이 — 이다 — 같은 절
+- **공유 프린터 문서**(「Resolution」 Method 2): `ipconfig /all`의 출력이 다음과 비슷할 수 있다며 보이는 예 — 「Windows IP Configuration」 머리줄, **호스트 이름**(Host Name), 주 DNS 접미사, DNS 접미사 검색 목록, 어댑터 이름 줄, IP 주소, 서브넷 마스크, **DNS 서버**(여러 줄) — 같은 절. 옛 판의 꼴이고 기본 게이트웨이 줄은 이 예에 없다
+- **IPv6 설치 문서**(「Test IPv6 connectivity by using the PING command」 등): 이름으로 IPv6 호스트에 ping할 때는 `ping -6 name`처럼 **`-6` 매개변수를 넣어야 한다**고 쓰고, `tracert -6`으로 IPv6 경로를 따라간다고 쓴다 — 명령 참조 페이지는 같은 옵션을 `/6`으로 적는다(위 「(phase 71) …」 항목). **Microsoft 문서가 같은 ping·tracert 옵션을 하이픈으로 적은 곳**이다 — `exam-notes.md` E33
+- **TCP/IP 통신 문제 해결**: 특정 포트로 이어지지 않으면 그 포트가 **기다리는(listening) 상태인지** CMD에서 `netstat -nato | findstr :<port>`로 확인하라고 한다 — 「Troubleshooting checklist」 Step 6. TCP 연결이 멈춘 것 같으면 `netstat -a`로 이 컴퓨터의 TCP·UDP 포트 활동을 모두 보라고 한다 — 「Common issues and solutions」
+- **DHCP 문제 해결**: DHCP 서버만 UDP 67·68 포트에서 기다리고 있는지(다른 프로세스가 차지하지 않았는지) `netstat -anb`로 확인하라고 한다 — 「Troubleshoot DHCP servers」. 클라이언트에서 `ipconfig /renew`를 실행해 DHCP 문제를 다시 일으켜 보라고도 한다 — 「Data collection」
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(`/all` 출력의 항목 — 호스트 이름·IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버·연결별 DNS 접미사, 옛 판의 꼴), `diagnostic-commands.ipconfig-options`(`/release` 다음 `/renew`의 차례와 그 결과, `/displaydns`·`/flushdns`로 부정 응답 캐시를 찾고 비우기),
+`diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+
+## (phase 78 step 11) Linux man-pages — ip-address(8), termios(3)
+https://man7.org/linux/man-pages/man8/ip-address.8.html
+https://man7.org/linux/man-pages/man3/termios.3.html
+
+2026-11-11에 IPv4로 내려받아 읽은 판: ip-address(8)은 iproute2 프로젝트의 페이지이고 upstream Git에서 2026-08-04에 가져온 것이다(그때 최신 커밋 2026-07-28, 바닥줄 2011-12-20, HTML 2026-09-09). termios(3)은 Linux man-pages 6.18(2026-02-08, man-pages-6.18 타르볼, HTML 2026-05-30)이다.
+**명령의 이름과 무엇을 보이는지만** 적는다.
+
+- **ip-address(8)**: 주소는 네트워크 장치에 붙은 IPv4나 IPv6 주소이고, 한 장치에 주소가 여럿 붙을 수 있다. `ip address` 명령은 주소와 그 속성을 보이고, 더하고, 지운다 — DESCRIPTION.
+  `ip address show`는 모든 네트워크 인터페이스에 붙은 IPv4·IPv6 주소를 보이고 `show`는 빼도 된다. `ip address show dev <이름>`은 그 인터페이스의 주소만 보인다 — EXAMPLES. **출력 예는 없다**
+- **termios(3)**: 터미널의 끼어들기 문자(INTR)는 **Ctrl-C**이고, 이 문자를 받으면 **SIGINT** 시그널을 보낸다(ISIG가 켜져 있을 때) — DESCRIPTION, 터미널 특수 문자를 정하는 c_cc 배열 설명의 VINTR. SIGINT가 무엇인지는 위 「(phase 76) Linux man-pages …」 항목의 signal(7) 줄
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(Linux에서 주소를 보는 명령 `ip address`), `diagnostic-commands.ping-options`(Linux ping을 Ctrl-C로 끝내면 SIGINT가 가서 요약을 보이고 끝난다)
