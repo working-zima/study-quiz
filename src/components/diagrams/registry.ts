@@ -103,6 +103,8 @@ import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
 import { FreeMemoryDiagram } from './FreeMemoryDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
+import { FtpConnectionsDiagram } from './FtpConnectionsDiagram'
+import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
@@ -520,6 +522,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
   'app-protocols-mail-file.imap': ImapSyncDiagram,
+  'app-protocols-mail-file.ftp': FtpConnectionsDiagram,
+  'app-protocols-mail-file.ftp-modes': FtpModesDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
