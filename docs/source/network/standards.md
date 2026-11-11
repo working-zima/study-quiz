@@ -2789,12 +2789,13 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
   State(위 「(phase 77 step 9)」 줄 — LISTEN 상태의 소켓은 `-l`이나 `-a`를 줘야 나온다), User, PID/Program name(`--program`이 이 칸을 넣는다), Timer(`-o`)의 차례로 설명한다. User 칸을 어느 옵션이 넣는지는 적혀 있지 않다. **출력 예는 없다** — 칸 설명만 있다
 - (phase 78 step 11) Linux netstat(8)의 다른 사실: `/etc/services`는 서비스 이름을 바꿔 보일 때 읽는 파일이다(FILES — 「services translation file」). EXAMPLES의 둘째 예는 라우팅 테이블을 숫자로 보이는 `netstat -rn`이다.
   소켓이 많은 서버에서는 느리니 ss(8)를 쓰라고 한다 — BUGS. netstat이 대부분 낡았고 대신 쓰는 것이 ss라는 것은 위 줄(NOTES)
+- (phase 78 step 15, 2026-11-11에 IPv4로 다시 읽음 — 같은 판) Linux netstat(8)의 **PID/Program name 칸**은 소켓을 가진 프로세스의 PID와 프로세스 이름을 **빗금으로 이은 짝**(`PID/이름` — 본문의 `812/sshd` 꼴)이다 — OUTPUT 「Active Internet connections」의 「PID/Program name」
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
 (phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(상태 이름을 밑줄로 잇는 표기 — Windows netstat의 SYN_RECEIVED, Linux netstat의 SYN_RECV), `exam-notes.md`의 「phase 77 step 9」 문단(기출의 SYN_RECEIVED 표기, 오답 보기 CLOSE)
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat`(Windows — 보이는 것 다섯, 옵션 없으면 활성 TCP 연결만, 결과 칸 넷과 뜻, 출력 예 없음; Linux — 열린 소켓 목록, 결과 칸, 기다리는 소켓은 `-l`·`-a`, 출력 예 없음, 낡았고 ss가 대신한다),
 `diagnostic-commands.netstat-windows-options`(`-a`·`-n`·`-o`(작업 관리자)·`-b`(권한이 모자라면 실패)·`-p`(프로토콜 고르기)·`-r`(= `route print`, 인터페이스 목록도)·`-s`·`-e`, `-anobq`처럼 이어 쓰기),
-`diagnostic-commands.netstat-linux-options`(`-a`·`-n`·`-t`·`-u`·`-l`·`-p`(남의 소켓은 슈퍼유저)·`-r`, `-t`는 TCP이고 타이머는 `-o`, `netstat -tulpn` 예), `exam-notes.md` 「phase 78 step 11」 문단과 E34
+`diagnostic-commands.netstat-linux-options`(`-a`·`-n`·`-t`·`-u`·`-l`·`-p`(남의 소켓은 슈퍼유저)·`-r`, `-t`는 TCP이고 타이머는 `-o`, `netstat -tulpn` 예; (phase 78 step 15) PID/Program name 칸의 빗금 꼴 — 본문·도식), `exam-notes.md` 「phase 78 step 11」 문단과 E34
 
 ## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
@@ -4842,9 +4843,12 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/trouble
 - **IPv6 설치 문서**(「Test IPv6 connectivity by using the PING command」 등): 이름으로 IPv6 호스트에 ping할 때는 `ping -6 name`처럼 **`-6` 매개변수를 넣어야 한다**고 쓰고, `tracert -6`으로 IPv6 경로를 따라간다고 쓴다 — 명령 참조 페이지는 같은 옵션을 `/6`으로 적는다(위 「(phase 71) …」 항목). **Microsoft 문서가 같은 ping·tracert 옵션을 하이픈으로 적은 곳**이다 — `exam-notes.md` E33
 - **TCP/IP 통신 문제 해결**: 특정 포트로 이어지지 않으면 그 포트가 **기다리는(listening) 상태인지** CMD에서 `netstat -nato | findstr :<port>`로 확인하라고 한다 — 「Troubleshooting checklist」 Step 6. TCP 연결이 멈춘 것 같으면 `netstat -a`로 이 컴퓨터의 TCP·UDP 포트 활동을 모두 보라고 한다 — 「Common issues and solutions」
 - **DHCP 문제 해결**: DHCP 서버만 UDP 67·68 포트에서 기다리고 있는지(다른 프로세스가 차지하지 않았는지) `netstat -anb`로 확인하라고 한다 — 「Troubleshoot DHCP servers」. 클라이언트에서 `ipconfig /renew`를 실행해 DHCP 문제를 다시 일으켜 보라고도 한다 — 「Data collection」
+- (phase 78 step 15) **어느 프로그램이 TCP 포트를 쓰는지 알아내기**(https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/determine-which-program-use-block-tcp-ports — 2026-11-11에 IPv4로 내려받아 읽음, `updated_at` 2026-02-19, `ms.date` 2026-02-12, 「Applies to」 Windows Server 2003): `-o`는 연결마다 그 연결과 이어진 프로세스 ID를 보이고, 그것으로 어느 프로세스(프로그램)가 어느 포트에서 기다리는지 알 수 있다고 한다.
+  `netstat -ano`의 출력 예가 머리줄을 **Proto · Local Address · Foreign Address · State · PID** 차례로 적고 그 아래 줄도 같은 차례(프로토콜, 로컬 주소, 외부 주소, 상태, PID)다 — 곧 **PID 칸은 상태 칸 뒤의 마지막 칸**이다. 작업 관리자의 프로세스 탭에서 PID로 프로그램을 찾는다 — 「Summary」·「How to match the process ID to a program」.
+  **Windows Server 2003의 글**이라 화면의 꼴은 지금 판과 다를 수 있다 — 칸의 차례만 가져오고 화면을 그대로 옮기지 않는다. 원격 데스크톱 문제 해결 문서(https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/remote-desktop-disconnected — 2026-11-11 Microsoft Learn 검색으로 읽음)도 `netstat -a -o`의 결과에서 포트를 쓰는 프로세스의 PID가 PID 칸에 나온다고 쓴다(위 「Windows netstat의 결과 칸」 줄은 `-o`의 PID가 어느 칸에 놓이는지 적혀 있지 않다고 했다 — 이 문서로 메운다)
 
 쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(`/all` 출력의 항목 — 호스트 이름·IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버·연결별 DNS 접미사, 옛 판의 꼴), `diagnostic-commands.ipconfig-options`(`/release` 다음 `/renew`의 차례와 그 결과, `/displaydns`·`/flushdns`로 부정 응답 캐시를 찾고 비우기),
-`diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+`diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임; (phase 78 step 15) `netstat -ano`의 PID 칸이 상태 칸 뒤의 마지막 칸이다 — 본문·도식·n224), `exam-notes.md` 「phase 78 step 11」 문단과 E33
 
 ## (phase 78 step 11) Linux man-pages — ip-address(8), termios(3)
 https://man7.org/linux/man-pages/man8/ip-address.8.html

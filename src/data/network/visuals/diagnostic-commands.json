@@ -286,6 +286,110 @@
         }
       ],
       "sources": ["diagnostic-commands.netstat"]
+    },
+    "netstat-windows-options": {
+      "label": "Windows PC 192.0.2.10에서 netstat -ano를 입력했을 때 옵션 -a·-n·-o가 결과의 어느 부분을 바꾸는지, 웹 브라우저가 198.51.100.10:443과 맺은 연결의 줄과 기다리는 줄로 보이는 도식",
+      "svgLabel": "위에 netstat -ano를, 왼쪽에 옵션 -a·-n·-o를 차례로, 오른쪽에 기다리는 줄과 맺은 연결의 줄의 칸을 쌓고, 옵션마다 바꾸는 칸으로 화살표를 그은 그림",
+      "question": "netstat -ano는 무엇을 더 보여 줄까?",
+      "idleCaption": "Windows PC 192.0.2.10에서 netstat -ano를 입력했을 때 나오는 줄을 칸마다 나눠 놓고, 왼쪽에 이은 옵션 셋을 차례로 두었다. 버튼을 고르면 옵션마다 결과의 어느 부분이 바뀌는지 볼 수 있다.",
+      "legend": "왼쪽 칸이 옵션이고, 오른쪽 박스 안의 칸은 결과 줄의 칸이다. 맺은 연결의 줄은 위에서부터 프로토콜·로컬 주소·외부 주소·상태·PID 차례이고, 화살표는 옵션이 바꾸는 칸으로 간다.",
+      "nodes": {
+        "command": "netstat -ano",
+        "opt-a": "-a",
+        "opt-n": "-n",
+        "opt-o": "-o",
+        "listen-state": "상태: LISTEN",
+        "est-proto": "프로토콜: TCP",
+        "est-local": "로컬 주소: 192.0.2.10:50002",
+        "est-foreign": "외부 주소: 198.51.100.10:443",
+        "est-state": "상태: ESTABLISHED",
+        "est-pid": "PID: 3120"
+      },
+      "groups": {
+        "options": "옵션",
+        "listen": "기다리는 줄",
+        "established": "맺은 연결의 줄"
+      },
+      "notes": {
+        "all-note": "기다리는 줄까지 모두 보인다",
+        "numeric-note": "주소를 이름 대신 숫자로 보인다",
+        "pid-note": "상태 칸 뒤에 PID를 보인다"
+      },
+      "scenarios": [
+        {
+          "id": "all",
+          "label": "-a",
+          "caption": "-a를 붙이면 맺어진 TCP 연결에 더해, 상태가 LISTEN인 기다리는 줄까지 모두 나온다. 옵션 없이 입력한 netstat에서는 나오지 않던 줄이다.",
+          "sources": ["diagnostic-commands.netstat-windows-options"]
+        },
+        {
+          "id": "numeric",
+          "label": "-n",
+          "caption": "-n을 붙이면 로컬 주소 192.0.2.10:50002와 외부 주소 198.51.100.10:443이 이름으로 바뀌지 않고 숫자 그대로 나온다.",
+          "sources": ["diagnostic-commands.netstat-windows-options"]
+        },
+        {
+          "id": "pid",
+          "label": "-o",
+          "caption": "-o를 붙이면 상태 칸 뒤의 마지막 칸에 그 연결을 가진 프로그램의 PID 3120이 나온다. 작업 관리자의 프로세스 탭에서 3120을 찾으면 웹 브라우저라는 것을 안다.",
+          "sources": ["diagnostic-commands.netstat-windows-options"]
+        }
+      ],
+      "sources": ["diagnostic-commands.netstat-windows-options"]
+    },
+    "netstat-linux-options": {
+      "label": "Linux 서버 198.51.100.10에서 netstat -antp를 옵션 -a·-n·-t·-p로 나눠 읽고, sshd가 22번 포트로 기다리는 줄에 812/sshd가 붙는 것과 Windows의 -p가 하는 일을 견주는 도식",
+      "svgLabel": "위에 netstat -antp를, 그 아래에 Linux 옵션 넷과 Windows의 -p를 차례로, 맨 아래에 결과의 한 줄을 칸마다 쌓은 그림",
+      "question": "netstat -antp는 어떻게 읽을까?",
+      "idleCaption": "Linux 서버 198.51.100.10에서 netstat -antp를 입력한 옵션을 하나씩 나누고, 그 결과 가운데 sshd가 22번 포트로 기다리는 줄을 칸마다 놓았다. 버튼을 고르면 옵션의 뜻과 Windows의 -p와 다른 점을 볼 수 있다.",
+      "legend": "위 박스의 칸이 Linux netstat의 옵션이고, 그 아래 박스는 Windows netstat의 같은 글자 옵션이다. 맨 아래 박스는 결과의 한 줄에서 프로토콜·로컬 주소·상태·PID/Program name 칸을 골라 차례로 쌓은 것이다.",
+      "nodes": {
+        "command": "netstat -antp",
+        "opt-a": "-a",
+        "opt-n": "-n",
+        "opt-t": "-t",
+        "opt-p": "-p",
+        "win-p": "-p",
+        "r-proto": "프로토콜: tcp",
+        "r-local": "로컬 주소: 198.51.100.10:22",
+        "r-state": "상태: LISTEN",
+        "r-prog": "PID/Program name: 812/sshd"
+      },
+      "groups": {
+        "linux": "Linux의 netstat",
+        "windows": "Windows의 netstat",
+        "result": "결과의 한 줄"
+      },
+      "notes": {
+        "a-note": "모두 보기",
+        "n-note": "숫자로 보기",
+        "t-note": "TCP만 보기",
+        "p-note": "프로그램 보기",
+        "tcp-note": "시간이 아니라 TCP",
+        "p-diff-note": "프로그램 보기",
+        "win-p-note": "프로토콜 고르기"
+      },
+      "scenarios": [
+        {
+          "id": "read",
+          "label": "읽기",
+          "caption": "netstat -antp는 a(모두 보기)·n(숫자로 보기)·t(TCP만 보기)·p(프로그램 보기)를 이은 것이다. 연결을 기다리는 것까지 TCP의 소켓을 모두 숫자로, 그것을 가진 프로그램과 함께 보여, 22번 포트로 기다리는 줄에 812/sshd가 붙는다.",
+          "sources": ["diagnostic-commands.netstat-linux-options"]
+        },
+        {
+          "id": "tcp",
+          "label": "-t",
+          "caption": "-t는 시간에 관한 옵션이 아니라 TCP의 소켓만 고르는 옵션이다. 그래서 결과 줄의 프로토콜 칸이 tcp다. 소켓의 타이머 정보를 더하는 옵션은 -o(--timers)다.",
+          "sources": ["diagnostic-commands.netstat-linux-options"]
+        },
+        {
+          "id": "p-differs",
+          "label": "-p 견주기",
+          "caption": "같은 -p라도 Linux에서는 소켓마다 그것을 가진 프로그램을 보이고, Windows에서는 뒤에 적은 프로토콜의 연결만 고른다. Windows에서 프로그램을 보려면 -o나 -b를 쓴다.",
+          "sources": ["diagnostic-commands.netstat-linux-options"]
+        }
+      ],
+      "sources": ["diagnostic-commands.netstat-linux-options"]
     }
   },
   "tables": {},

@@ -167,7 +167,9 @@ import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
+import { NetstatLinuxOptionsDiagram } from './NetstatLinuxOptionsDiagram'
 import { NetstatRowsDiagram } from './NetstatRowsDiagram'
+import { NetstatWindowsOptionsDiagram } from './NetstatWindowsOptionsDiagram'
 import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
 import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
@@ -558,6 +560,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'diagnostic-commands.tracert': TracertHopsDiagram,
   'diagnostic-commands.pathping': PathpingStatsDiagram,
   'diagnostic-commands.netstat': NetstatRowsDiagram,
+  'diagnostic-commands.netstat-windows-options': NetstatWindowsOptionsDiagram,
+  'diagnostic-commands.netstat-linux-options': NetstatLinuxOptionsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
