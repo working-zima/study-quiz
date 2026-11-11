@@ -120,6 +120,7 @@ import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
@@ -191,6 +192,7 @@ import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
+import { Pop3DownloadDiagram } from './Pop3DownloadDiagram'
 import { PortDemuxDiagram } from './PortDemuxDiagram'
 import { PortRangesDiagram } from './PortRangesDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
@@ -516,6 +518,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.time-wait': TimeWaitDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
+  'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
+  'app-protocols-mail-file.imap': ImapSyncDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
