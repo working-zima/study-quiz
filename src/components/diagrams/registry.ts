@@ -243,6 +243,7 @@ import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { ShellLayerDiagram } from './ShellLayerDiagram'
 import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
+import { SipCallDiagram } from './SipCallDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
@@ -544,6 +545,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.sntp': SntpClientDiagram,
   'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
   'app-protocols-mgmt-security.https': HttpsStackDiagram,
+  'app-protocols-mgmt-security.sip': SipCallDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

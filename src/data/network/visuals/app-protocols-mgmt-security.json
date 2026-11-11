@@ -342,6 +342,57 @@
         }
       ],
       "sources": ["app-protocols-mgmt-security.https"]
+    },
+    "sip-call": {
+      "label": "sip:user1@example.com이 sip:user2@example.net에 INVITE로 영상 통화를 걸고, 180 Ringing·200 OK·ACK로 통화를 맺은 뒤 음성과 영상이 RTP로 오가고, BYE와 200 OK로 통화를 끝내는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 거는 쪽 기둥과 오른쪽 받는 쪽 기둥 사이에, 위 박스에 INVITE·180 Ringing·200 OK·ACK를, 가운데 박스에 RTP로 오가는 음성과 영상을, 아래 박스에 BYE·200 OK를 차례로 놓은 그림",
+      "question": "SIP 통화는 어떤 차례로 맺고 끝낼까?",
+      "idleCaption": "sip:user1@example.com이 sip:user2@example.net에 영상 통화를 걸어 통화를 맺고, 통화하고, 끝내는 동안 두 쪽이 주고받는 것을 위에서 아래로 간추려 놓았다. 버튼을 고르면 단계마다 무엇이 어느 쪽에서 어느 쪽으로 가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 거는 쪽과 받는 쪽의 SIP 주소이고, 그 아래 왼쪽 박스가 거는 쪽, 오른쪽 박스가 받는 쪽이다. 맨 위와 맨 아래 박스의 노드는 SIP 메시지이고, 가운데 박스의 노드는 RTP로 오가는 음성과 영상이다. 화살표는 가는 방향이다.",
+      "nodes": {
+        "caller": "sip:user1@example.com",
+        "callee": "sip:user2@example.net",
+        "invite": "INVITE",
+        "ringing": "180 Ringing",
+        "ok-setup": "200 OK",
+        "ack": "ACK",
+        "media": "RTP · 음성과 영상",
+        "bye": "BYE",
+        "ok-bye": "200 OK"
+      },
+      "groups": {
+        "caller-side": "거는 쪽",
+        "callee-side": "받는 쪽",
+        "setup-box": "통화 맺기",
+        "media-box": "통화 중",
+        "teardown-box": "통화 끝내기"
+      },
+      "notes": {
+        "setup-note": "ACK로 통화가 맺어진다",
+        "media-note": "SIP 메시지와 따로 오간다",
+        "teardown-note": "누구나 BYE를 보낼 수 있다"
+      },
+      "scenarios": [
+        {
+          "id": "setup",
+          "label": "맺기",
+          "caption": "user1 쪽이 INVITE로 user2를 통화에 부르면, user2 쪽은 전화가 울리는 동안 180 Ringing을 보내고 통화를 받으면 200 OK로 답한다. INVITE와 200 OK에는 쓸 음성과 영상의 방식이 SDP로 적혀 있다. user1 쪽이 ACK로 200 OK를 받았다고 확인하면 통화가 맺어진다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        },
+        {
+          "id": "media",
+          "label": "통화",
+          "caption": "통화가 맺어지면 음성과 영상은 SIP 메시지에 실리지 않고, 합의한 방식대로 RTP에 실려 두 쪽 사이를 오간다. 통화하는 내내 양쪽이 서로에게 계속 보낸다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        },
+        {
+          "id": "teardown",
+          "label": "끝내기",
+          "caption": "통화를 끝내려는 쪽이 BYE를 보내고 받은 쪽이 200 OK로 답하면 통화가 끝난다. 여기서는 user2가 먼저 끊었지만, 거는 쪽과 받는 쪽 누구나 BYE를 보낼 수 있다. 이 200 OK에는 ACK를 보내지 않는다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.sip"]
     }
   },
   "tables": {},
