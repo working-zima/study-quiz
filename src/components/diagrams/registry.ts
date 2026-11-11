@@ -145,6 +145,7 @@ import { LoopbackDiagram } from './LoopbackDiagram'
 import { LrsZrsDiagram } from './LrsZrsDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
+import { MailPathDiagram } from './MailPathDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
@@ -237,6 +238,7 @@ import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
+import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
@@ -512,6 +514,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.opening-states': OpeningStatesDiagram,
   'tcp-connection.closing-states': ClosingStatesDiagram,
   'tcp-connection.time-wait': TimeWaitDiagram,
+  'app-protocols-mail-file.email-delivery': MailPathDiagram,
+  'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,

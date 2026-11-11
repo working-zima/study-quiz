@@ -1,0 +1,108 @@
+{
+  "diagrams": {
+    "mail-path": {
+      "label": "메일 한 통이 보내는 사람의 메일 클라이언트에서 메일 서버 두 대를 거쳐 받는 사람의 메일함에 쌓였다가 받는 사람의 메일 클라이언트로 가는 길과, 구간마다 쓰는 프로토콜을 보이는 도식",
+      "svgLabel": "보내는 사람의 메일 클라이언트, mail.example.com, user2의 메일함이 든 mail.example.net, 받는 사람의 메일 클라이언트를 차례로 잇고, 앞의 두 구간에 보내기 · SMTP, 마지막 구간에 가져오기 · POP3나 IMAP을 단 그림",
+      "question": "메일은 어떤 길을 지나 받는 사람에게 갈까?",
+      "idleCaption": "user1@example.com이 user2@example.net에게 보낸 메일 한 통이 지나는 길을 차례대로 놓았다. 앞의 두 구간은 메일을 가진 쪽이 SMTP로 넘겨 보내고, 마지막 구간은 받는 사람이 POP3나 IMAP으로 가져온다. 버튼을 고르면 구간마다 누가 무엇을 하는지 볼 수 있다.",
+      "legend": "노드 하나가 프로그램이나 메일함 하나이고, mail.example.net이라 적힌 박스는 받는 쪽 메일 서버, 그 안의 노드가 받는 사람의 메일함이다. 선 옆의 글은 그 구간에서 하는 일과 쓰는 프로토콜이고, 화살표는 메일이 옮겨 가는 방향이다.",
+      "nodes": {
+        "sender-client": "보내는 사람의 메일 클라이언트",
+        "sender-server": "mail.example.com",
+        "mailbox": "user2의 메일함",
+        "receiver-client": "받는 사람의 메일 클라이언트"
+      },
+      "groups": {
+        "receiver-host": "mail.example.net"
+      },
+      "notes": {
+        "proto-submit": "보내기 · SMTP",
+        "proto-relay": "보내기 · SMTP",
+        "proto-fetch": "가져오기 · POP3나 IMAP"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "① 보내기",
+          "caption": "보내는 사람의 메일 클라이언트가 mail.example.com에, mail.example.com이 다시 mail.example.net에 메일을 넘긴다. 두 구간 모두 메일을 가진 쪽이 다음 서버에 연결해 SMTP로 넘겨 보낸다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        },
+        {
+          "id": "store",
+          "label": "② 메일함",
+          "caption": "mail.example.net이 받은 메일을 user2의 메일함에 넣어 둔다. 받는 사람의 기기는 늘 켜진 채 네트워크에 이어져 있지 않으므로, 메일은 받는 사람이 가져갈 때까지 메일함에 머문다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        },
+        {
+          "id": "fetch",
+          "label": "③ 가져오기",
+          "caption": "user2가 나중에 메일 클라이언트를 열면, 클라이언트가 메일함에 접속해 메일을 가져온다. 이 구간은 SMTP가 아니라 POP3나 IMAP을 쓴다. SMTP는 메일함의 메일을 꺼내 오는 방법을 정하지 않는다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.email-delivery"]
+    },
+    "smtp-dialogue": {
+      "label": "SMTP 클라이언트 mail.example.com이 SMTP 서버 mail.example.net에 메일 한 통을 넘기며 주고받는 명령과 응답 코드를 차례대로 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 mail.example.com과 오른쪽 서버 mail.example.net:25 두 기둥 사이에, 인사의 220·EHLO·250, 주고받을 사람의 MAIL FROM·250·RCPT TO·250, 메일 내용 넘기기의 DATA·354·메일 내용·마침표 한 줄·250, 끝의 QUIT·221을 위에서 아래로 놓은 그림",
+      "question": "SMTP로 메일 한 통을 넘길 때 무엇을 주고받을까?",
+      "idleCaption": "mail.example.com이 mail.example.net의 25번 포트로 연결해 user2@example.net 앞 메일 한 통을 넘기는 대화를 위에서 아래로 놓았다. 가운데 박스의 왼쪽 노드는 클라이언트가 보내는 명령, 오른쪽 노드는 서버가 답하는 응답 코드다. 버튼을 고르면 단계마다 무엇이 오가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 서버의 이름이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 가운데 박스 하나가 대화의 한 단계이고, 화살표는 명령이나 응답이 가는 방향이다.",
+      "nodes": {
+        "client": "mail.example.com",
+        "server": "mail.example.net:25",
+        "r220": "220",
+        "ehlo": "EHLO",
+        "r250-ehlo": "250",
+        "mail-from": "MAIL FROM",
+        "r250-mail": "250",
+        "rcpt-to": "RCPT TO",
+        "r250-rcpt": "250",
+        "data-cmd": "DATA",
+        "r354": "354",
+        "content": "메일 내용",
+        "dot": "마침표 한 줄",
+        "r250-data": "250",
+        "quit-cmd": "QUIT",
+        "r221": "221"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "greet": "인사",
+        "envelope": "주고받을 사람",
+        "data": "메일 내용 넘기기",
+        "quit": "끝"
+      },
+      "scenarios": [
+        {
+          "id": "greet",
+          "label": "① 인사",
+          "caption": "클라이언트가 서버의 25번 포트로 TCP 연결을 열면, 서버가 메일을 받을 준비가 됐다는 뜻으로 220을 보낸다. 클라이언트가 EHLO로 자기를 밝히면 서버가 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "envelope",
+          "label": "② 주고받을 사람",
+          "caption": "클라이언트가 MAIL FROM으로 보내는 사람 user1@example.com을, RCPT TO로 받는 사람 user2@example.net을 알린다. 서버는 명령마다 요청한 일을 마쳤다는 뜻의 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "data",
+          "label": "③ 메일 내용",
+          "caption": "클라이언트가 DATA를 보내면 서버가 354로 메일 내용을 보내라고 답한다. 클라이언트가 메일 내용을 보내고 마침표 한 줄로 끝을 알리면, 서버가 메일을 받아 맡고 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "quit",
+          "label": "④ 끝",
+          "caption": "넘길 메일이 더 없으면 클라이언트가 QUIT를 보내고, 서버가 221로 답한 뒤 연결을 닫는다. 이제 메일은 mail.example.net에 있고, 이 서버가 user2의 메일함에 넣어 둔다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.smtp"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
