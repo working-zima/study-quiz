@@ -82,6 +82,12 @@ RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직�
 이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IANA 포트 레지스트리는 CSV판(레지스트리 머리의 Last Updated 2026-11-06)을,
 man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 COLOPHON이나 페이지의 `updated_at`과 적용 판을 적는다. learn.microsoft.com은 Windows의 OpenSSH 문서 둘과, Windows Server의 FTP 서버(IIS) 문서 둘(능동·수동 데이터 연결의 이름과 수동 모드용 포트 범위)을 읽었다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — SMTP 확장과 응답 코드 전체, POP3의 APOP·TOP·UIDL, IMAP 명령 전체, FTP의 블록·압축 전송 방식과 표현 형식(TYPE), SFTP·FTPS와 FTP 보안 확장의 명령, TFTP 옵션 확장, SSH의 키 교환·암호 알고리즘. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 78 step 5)」가 붙은 줄과 항목은 phase 78 step 5에서 `app-protocols-mgmt-security`(SNMP, MIB, SNMP의 폴링과 트랩, SNMP의 버전과 보안, NTP, SNTP, TLS, HTTPS, SIP) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`과 문서 머리의 STD 번호로 확인했다. IANA 포트 레지스트리는 CSV판(XML판 머리의 Last Updated 2026-11-10)을 읽었다.
+**SNMP는 지금 표준인 SNMPv3(STD 62 — RFC 3411~3418)의 문서를 근거로 쓰고**, SNMPv1(RFC 1157)과 SNMPv2c(RFC 1901)는 둘 다 Historic이라 역사 기록으로만 쓴다. SNTP를 따로 적은 RFC 4330은 RFC 5905가 폐기했으므로 역사 기록으로만 쓴다.
+RFC 3410·6632·3512는 Informational이라 표준 문서의 사실을 확인하고 풀어 보는 보조로만 쓴다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — SNMP 메시지의 부호화 형식과 GetBulkRequest·Report, USM의 키·알고리즘과 VACM의 세부, NTP의 시각 계산식과 필터·선택 알고리즘의 세부·대칭·브로드캐스트 모드,
+TLS의 키 교환·암호 방식·확장, 인증서의 필드와 폐기, SIP의 프록시·등록·헤더 필드와 응답 코드 전체, SDP의 문법. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -716,6 +722,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 74 step 11에서 쓰일 곳) `routing.routing`(§3.3.1 — 호스트도 데이터그램마다 다음 홉을 고른다), `routing.routing-table`(§3.3.1.3 — 호스트에도 라우팅 테이블이 있다), `routing.default-route`(§3.3.1.2 — 경로 정보가 없는 목적지는 기본 게이트웨이로),
 `routing.static-dynamic-routing`(§3.3.1.2 DISCUSSION — 정적 경로는 관리자가 넣고, 구성이 바뀌거나 장비가 고장 나면 장애의 원인이 된다), `exam-notes.md` E17
 (phase 77 step 7) `tcp-udp.udp`·`tcp-udp.udp-header`(§4.1.3.4 — UDP 체크섬은 만들고 검사하는 것이 기본, 맞지 않는 데이터그램은 알리지 않고 버린다), 문항 n184 해설
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(위 2026-10-28 줄 §1.1.3 — SNMP는 응용 계층의 지원 프로토콜이다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNMP는 응용 계층, 오류 보고·혼잡 보고는 ICMP의 일)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -936,10 +943,17 @@ https://www.rfc-editor.org/rfc/rfc9110
   그 서버와 주고받는 HTTP 통신 모두가 기밀성(남이 읽지 못함)과 무결성(바뀌지 않음) 보호를 받는다는 뜻이다. 포트가 없거나 비어 있으면 **TCP 443**(TLS 위의 HTTP에 남겨 둔 포트)이 기본이다.
   클라이언트는 `https` 자원에 보내는 요청을 보내기 전에 보호해야 한다(MUST). `http`와 `https`는 서로 다른 출처(origin)다 — §4.2.2
   (HTTP/3는 같은 `https` 주소에 UDP로 닿는다 — 위 RFC 9114 항목의 「(phase 77)」 줄)
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로이고 폐기되지 않았다. 옛 「HTTP Over TLS」 문서 RFC 2818을 이 문서가 폐기했다) `https` 주소의 자원에 닿는 한 가지 길은 이 차례다 —
+  주소의 호스트 이름을 IP 주소로 바꾸고, 그 주소의 정해진 포트로 **TCP 연결**을 맺고, 그 연결 위에서 **TLS를 시작해** 끝과 끝 사이에 기밀성·무결성 보호를 갖춘 뒤, 그 연결로 HTTP 요청을 보낸다 — §4.3.3
+- (phase 78 step 5) `https`에서 서버가 그 주소에 대해 답할 자격은, 클라이언트가 믿을 만하다고 보는 인증서의 짝인 개인 키를 서버가 쓸 수 있는지로 가린다. 클라이언트는 보통 미리 정해 둔 신뢰의 출발점(trust anchor)에서 이어지는 신뢰 사슬로 그 인증서를 믿을지 정한다 — §4.3.3
+- (phase 78 step 5) **인증서 확인**: 안전한 연결을 맺으려면 클라이언트는 서버가 내민 신원이 주소의 원 서버와 맞는지 **반드시 확인해야 한다**(MUST). 이 확인은 경로 가운데 끼어든 공격자나 이름 풀이를 조작한 공격자가 서버를 흉내 내는 것을 막으려는 것이다.
+  주소의 호스트가 IP 주소면 IP 주소로, 이름이면 DNS 이름으로 견준다. 인증서가 그 주소에 맞지 않으면 웹 브라우저 같은 사용자 에이전트는 사용자에게 계속할지 확인을 받거나, 잘못된 인증서라는 오류로 연결을 끝내야 한다 — §4.3.4
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.https`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — `https`는 TLS로 보호하고 TCP 443이 기본이며 「보호」는 서버 인증·기밀성·무결성, §4.3.3 — TCP 연결 → TLS → HTTP 요청의 차례, §4.3.4 — 인증서가 주소의 이름과 맞는지 확인),
+`app-protocols-mgmt-security.tls`(§4.3.4 — 인증서를 어떻게 확인할지는 TLS 위의 응용 프로토콜이 정한다는 RFC 9846 §1의 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭)
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -1122,6 +1136,7 @@ https://www.rfc-editor.org/rfc/rfc1123
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
 `app-protocols-mail-file.ftp`(§4.1.2.5 — 스트림 방식에서는 전송마다 새 데이터 연결), `app-protocols-mail-file.ftp-modes`(§4.1.2.6 — 서버는 `PASV`를 구현해야 한다), `exam-notes.md` E30·E31
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§6.3.1 — SNMP는 원격 관리에 쓰는 네트워크 관리 프로토콜이고, 인터넷 호스트는 SNMP 에이전트를 갖추는 것이 좋다)
 
 ## (2026-10-28) RFC 1350 — The TFTP Protocol (Revision 2)
 https://www.rfc-editor.org/rfc/rfc1350
@@ -2485,10 +2500,19 @@ phase 77 step 0에서 XML판(레지스트리 머리의 Last Updated 2026-11-06�
   - 993 `imaps` — IMAP over TLS protocol(TCP, 참조 RFC 3501·8314·9051. UDP 993은 Reserved), 995 `pop3s` — POP3 over TLS protocol(TCP, 참조 RFC 8314), 465 `submissions` — Message Submission over TLS protocol(TCP, 참조 RFC 8314. 같은 번호의 TCP 행에 다른 서비스 `urd`도 있다)
   - 각 번호의 쓰임은 그 프로토콜의 RFC와 맞는다 — POP3 TCP 110(RFC 1939 §3), IMAP TCP 143·993(RFC 9051 §2.1), 메일 제출 587(RFC 6409 §3.1), TLS로 감싼 POP3 995·IMAP 993·메일 제출 465(RFC 8314 §3.1~§3.3·§7)
 - (phase 78 step 0) 25 `smtp` 행의 참조는 이날 RFC 5321을 고쳐 쓰는 초안의 43판(`RFC-ietf-emailcore-rfc5321bis-43`)이다 — 아직 RFC가 아니므로 SMTP는 RFC 5321로 쓴다(아래 「(phase 77) RFC 5321」 항목)
+- (phase 78 step 5, CSV판 — XML판 머리의 Last Updated 2026-11-10, 2026-11-11에 내려받음) **관리·시간·보안 프로토콜의 행**(번호·서비스 이름·설명):
+  - 161 `snmp` — SNMP, 162 `snmptrap` — SNMPTRAP(둘 다 TCP·UDP 두 행이고 참조 칸이 비어 있다). SNMP의 기본 전송은 UDP다 — RFC 3417 §1·§3.2, RFC 1157 §4. 위 「UDP 행이 있다고 …」와 같은 까닭으로, 여기서는 TCP 행이 있다고 SNMP가 TCP를 기본으로 쓰는 것이 아니다(TCP로 보내는 덧붙인 방식은 아래 「(phase 78 step 5) RFC 3417 …」 항목)
+  - 10161 `snmptls`(TCP)·`snmpdtls`(UDP), 10162 `snmptls-trap`(TCP)·`snmpdtls-trap`(UDP) — TLS·DTLS로 감싼 SNMP의 포트(참조 RFC 6353)
+  - 123 `ntp` — Network Time Protocol(TCP·UDP, 참조 RFC 5905). NTP와 SNTP가 쓰는 것은 UDP다 — RFC 5905 §7.3, RFC 4330 §4
+  - 443 `https` — http protocol over TLS/SSL(TCP·UDP, 참조 RFC 9110 — 위 「(phase 77)」 줄). **설명 칸이 「TLS/SSL」로 두 이름을 함께 적는다**
+  - 5060 `sip` — SIP, 5061 `sips` — SIP-TLS(둘 다 TCP·UDP 행의 참조는 RFC 3263이고 SCTP 행도 있다). RFC 3261의 기본 포트(5060 — UDP·TCP·SCTP, 5061 — TLS)와 맞는다 — RFC 3261 §18.1.1·§19.1.1
+  - 기출 대조용: 181은 `unify` — Unify(TCP·UDP)이고, 143은 `imap`(TCP. UDP 143은 Reserved — 위 「(phase 78 step 0)」 줄)이다. 둘 다 SNMP의 번호가 아니다
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
 (phase 77에서 쓰일 곳) `ports.port-number`(전송 프로토콜마다 따로 적는다 — 514·6379의 예), `ports.port-ranges`(머리의 세 범위, 0번 Reserved, 등록된 포트 예 다섯), `ports.well-known-ports`(여덟 서비스의 행, UDP 행이 있어도 UDP를 쓰는 것은 아니다), `exam-notes.md` E27·E28
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.smtp`(587), `app-protocols-mail-file.pop3`(110·995), `app-protocols-mail-file.imap`(143·993), `app-protocols-mail-file.tftp`(69 — UDP)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(161), `app-protocols-mgmt-security.snmp-operations`(162), `app-protocols-mgmt-security.ntp`·`sntp`(123), `app-protocols-mgmt-security.https`(443·80, 「TLS/SSL」 표기),
+`app-protocols-mgmt-security.sip`(5060·5061), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 181·143은 SNMP의 번호가 아니다)
 
 ## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
 https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
@@ -4079,8 +4103,22 @@ Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명�
 
 - 프로토콜 이름은 Transport Layer Security(TLS)다. TLS는 클라이언트·서버 응용 프로그램이 인터넷으로 통신할 때 엿듣기(eavesdropping), 바꿔치기(tampering), 메시지 위조를 막도록 설계됐다 — Abstract
 - HTTPS가 TLS로 무엇을 얻는지(서버 인증, 기밀성, 무결성)는 위 RFC 9110 §4.2.2 「(phase 77)」 줄이다
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — 상태 json은 Proposed Standard이고 폐기되지 않았다. RFC 8446과 함께 **TLS 1.2의 명세 RFC 5246**, RFC 5077·6961·7627·8422를 폐기하고 대신한다) 이 step부터는 아래 줄의 범위(핸드셰이크의 메시지 차례·인증·SSL 금지)까지 가져온다. 키 교환 방식·암호 방식·확장은 여전히 가져오지 않는다.
+- (phase 78 step 5) TLS의 목표는 통신하는 두 쪽 사이에 **안전한 통로**를 만드는 것이고, 아래 전송에 바라는 것은 **믿을 수 있고 순서가 지켜지는 데이터 흐름** 하나뿐이다 — §1
+- (phase 78 step 5) 그 통로가 주는 성질은 셋이다. **인증** — 서버 쪽은 늘 인증하고 클라이언트 쪽은 고를 수 있다(공개 키 방식이나 미리 나눠 둔 키로). **기밀성** — 통로를 맺은 뒤 보낸 데이터는 두 끝만 볼 수 있다(데이터의 길이는 감추지 않는다).
+  **무결성** — 맺은 뒤 보낸 데이터를 공격자가 들키지 않고 바꿀 수 없다. 네트워크를 통째로 쥔 공격자 앞에서도 이 성질이 지켜져야 한다 — §1
+- (phase 78 step 5) TLS는 두 부분이다 — **핸드셰이크 프로토콜**(서로 인증하고, 쓸 암호 방식과 매개변수를 정하고, 함께 쓸 키 재료를 만든다)과 **레코드 프로토콜**(그렇게 정한 것으로 오가는 데이터를 레코드 단위로 나눠 보호한다) — §1
+- (phase 78 step 5) TLS는 특정 응용 프로토콜에 매이지 않아 **위 계층 프로토콜이 그 위에 얹힌다**. 언제 핸드셰이크를 시작하고 오간 인증서를 어떻게 확인할지는 TLS 위에서 도는 응용 프로토콜이 정해야 한다(MUST) — §1. (HTTP는 RFC 9110 §4.3.4가, 메일 프로토콜은 RFC 8314가 그것을 정한다 — 위·아래 항목)
+- (phase 78 step 5) 핸드셰이크는 클라이언트와 서버가 처음 통신할 때 쓴다. 판을 정하고, 암호 방식을 고르고, 서로 인증하고(클라이언트 인증은 고를 수 있다), 함께 쓸 비밀 키 재료를 만든다. 끝나면 그 키로 응용 계층의 데이터를 보호한다. 핸드셰이크가 실패하면 연결을 끝낸다 — §2
+- (phase 78 step 5) **기본 핸드셰이크의 메시지 차례**(§2 그림 1을 간추림): 클라이언트 `ClientHello`(지원하는 판·암호 방식·키 교환 값) → 서버 `ServerHello`(고른 것과 서버의 키 교환 값) — 여기까지가 키 교환이고 **이 뒤는 모두 암호화된다** →
+  서버 `EncryptedExtensions` → (클라이언트도 인증서로 확인하려면 서버가 `CertificateRequest`) → 서버 `Certificate`(서버의 인증서) → 서버 `CertificateVerify`(인증서의 공개 키에 짝인 개인 키로 핸드셰이크 전체에 서명한 것) →
+  서버 `Finished`(핸드셰이크 전체에 대한 메시지 인증 코드 — 키를 확인하고 상대의 신원을 키에 묶는다) → 클라이언트 `Finished`(서버가 요청했으면 그 앞에 클라이언트의 `Certificate`·`CertificateVerify`) → 그 뒤 두 쪽이 응용 데이터를 암호화해 주고받는다.
+  `Finished`를 보내기 전에는 응용 데이터를 보내지 않는다(0-RTT라는 예외가 따로 있다) — §2. 핸드셰이크를 키 교환·서버 매개변수·인증의 세 단계로 볼 수 있다 — §2
+- (phase 78 step 5) **SSL 2.0·SSL 3.0·TLS 1.0·TLS 1.1은 보안이 충분하지 않아 어떤 이유로도 협상해서는 안 된다**(MUST NOT) — 부록 E.5(근거로 RFC 6176·7568·8996을 든다)
 
 쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§1 — 믿을 수 있는 순서 있는 전송 위, 인증·기밀성·무결성, 서버는 늘 인증, 두 부분, 위 계층이 얹힌다, §2 — 메시지 차례, 부록 E.5 — SSL 금지),
+`app-protocols-mgmt-security.https`(§1 — 서버 쪽은 늘 인증한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭, 「SSL/TLS」 표기)
 
 ## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
 https://man7.org/linux/man-pages/man7/ip.7.html
@@ -4149,9 +4187,12 @@ Internet Standard이고 폐기되지 않았다(RFC 1889를 대체, RFC 5506 등 
 - RTP 자체는 제때 전달하는 장치도, 전달을 보장하는 장치도, 순서가 바뀌는 것을 막는 장치도 없다 — §1
 - 음성 회의의 예: 20ms 길이의 음성 조각마다 RTP 헤더를 붙여 UDP 패킷에 담아 보낸다. 네트워크가 패킷을 잃거나 순서를 바꾸거나 들쭉날쭉 늦추면, 받는 쪽은 RTP 헤더의 시각 정보와 순서 번호로 소리를 20ms마다 이어 재생하고, 순서 번호로 잃은 패킷 수를 어림한다 — §2.1
   (곧 잃은 조각을 기다리지 않고 재생을 이어 간다)
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로, RFC 5506·5761·6051·6222·7022·7160·7164·8083·8108·8860이 고쳤다) RTP는 대화형 음성·영상처럼 실시간 성질을 가진 데이터를 끝과 끝 사이에 나르는 서비스를 준다 — §1.
+  회의에서 음성과 영상을 함께 쓰면 둘을 **따로 된 RTP 세션**으로 보낸다 — 매체마다 다른 UDP 포트 쌍으로 — §2.2. **세션을 맺고 끝내는 일은 RTP의 몫이 아니라 SIP 같은 신호 프로토콜의 몫이다** — 아래 「(phase 78 step 5) RFC 3261」 항목의 §2·§4
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(실시간 음성·영상은 보통 UDP 위에서), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신에 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1 — 실시간 음성·영상은 보통 UDP 위, §2.1 — 받는 쪽은 조각을 정해진 간격으로 이어 재생한다), 도식 `transport-choice`, 문항 n186
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1 — 음성·영상 자체는 RTP가 나른다, §2.2 — 음성과 영상은 따로 된 RTP 세션)
 
 ## (phase 77 step 3) RFC 4336 — Problem Statement for the Datagram Congestion Control Protocol (DCCP), RFC 4340 — Datagram Congestion Control Protocol (DCCP)
 https://www.rfc-editor.org/rfc/rfc4336
@@ -4193,9 +4234,23 @@ Proposed Standard이고 폐기되지 않았다(RFC 1305·4330을 대체, RFC 782
 - NTP가 시각 값을 주고받는 방식은 패킷을 잃거나 같은 패킷이 두 번 와도 본래 잘 견딘다. 데이터 무결성은 IP·UDP 체크섬이 맡고, **흐름 제어나 재전송 장치는 두지 않으며 필요하지도 않다** — §8
 - (phase 77 step 8, 2026-11-09 rfc-editor.org 원문) NTP는 인터넷에서 **컴퓨터의 시계를 맞추는 데** 널리 쓰인다 — Abstract
 - (phase 77 step 8) 클라이언트·서버 방식에서 클라이언트가 서버에 메시지를 보내면 **서버는 바로 답한다** — §5
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Proposed Standard 그대로, RFC 7822·8573·9109·9748·9769가 고쳤다) 이 step부터는 아래 줄의 범위(계층·원리·여러 서버 견주기·SNTP)까지 가져온다. 시각 계산식과 알고리즘의 세부는 여전히 가져오지 않는다.
+- (phase 78 step 5) NTPv4는 시간 서버와 클라이언트들의 **시스템 시계를 맞추는 데** 널리 쓰인다. 이 문서가 NTPv3(RFC 1305)와 SNTPv4(RFC 4330)를 폐기하고 대신하며, **SNTPv4는 NTPv4의 부분 집합**이다. 몇몇 헤더 칸이 조금 바뀌었어도 앞 판의 NTP·SNTP와 함께 동작한다 — §1
+- (phase 78 step 5) 국가 표준 시각에 선이나 전파로 맞춘 **주 서버**(primary server)에서 **보조 서버**(secondary server)와 클라이언트로 시각 정보를 나른다. 시각 값은 뿌리의 주 서버에서 가지처럼 갈라진 보조 서버들을 지나 클라이언트 쪽으로 흐른다 — §1
+- (phase 78 step 5) NTP 구현은 주 서버·보조 서버·클라이언트 가운데 하나로 동작한다. **주 서버는 UTC에 바로 이어지는 기준 시계(예: GPS, Galileo)에 맞춘다.** 클라이언트는 위쪽 서버 하나 이상에 맞추되 아래쪽에 시각을 내주지 않고, 보조 서버는 위쪽 서버와 아래쪽 서버·클라이언트를 모두 가진다 — §2
+- (phase 78 step 5) 클라이언트·서버 방식에서 클라이언트는 서버에 요청 패킷을 보내고 서버는 답 패킷을 돌려준다. 서버는 클라이언트에게 시각을 내주지만 클라이언트에게서 받지는 않는다. 서버가 GPS 수신기 같은 표준 시각원에서 시각을 바로 얻을 수도 있다 — §3
+- (phase 78 step 5) **계층(stratum)**: 서버마다 층을 stratum 번호로 매긴다. 주 서버가 **stratum 1**이고, 한 층 아래의 보조 서버는 위 층보다 하나 큰 번호를 받는다. 번호가 커질수록 경로와 시계의 안정성에 따라 정확도가 떨어지고, 평균 오차는 대략 stratum 번호와 왕복 지연에 비례해 커진다 — §3
+- (phase 78 step 5) 패킷의 stratum 칸 값은 0이 정하지 않음·무효, **1이 주 서버(예: GPS 수신기를 갖춘 서버)**, **2~15가 (NTP로 맞춘) 보조 서버**, **16이 동기화되지 않음**, 17~255가 남겨 둔 값이다 — §7.3 그림 11. 가장 큰 stratum 번호(MAXSTRAT)는 16이다 — §7.2 그림 6.
+  구현에서는 기준 시계를 흔히 stratum 0으로 나타낸다는 설명도 있다 — §7.3 그림 11 아래. (패킷에서 0은 「정하지 않음·무효」이므로 본문에 「stratum 0 = 기준 시계」라고 쓰지 않는 것을 권한다)
+- (phase 78 step 5) **원리**: 한쪽이 요청을 보낸 시각, 상대가 요청을 받은 시각, 상대가 답을 보낸 시각, 답을 받은 시각 — 네 타임스탬프로 상대 시계와의 차이(offset)와 오가는 데 걸린 왕복 지연(delay)을 계산한다 — §8(그림 15와 그 아래 식. 식은 가져오지 않는다)
+- (phase 78 step 5) **여러 서버 견주기**: 서버 하나에서 받은 표본들 가운데 정확할 만한 것을 고르는 것은 시계 필터 알고리즘이다 — §10. 여러 서버의 값을 모아, 틀린 시각을 내는 서버(falseticker)를 걸러 내고 남은 것들을 묶고 가중 평균으로 합쳐 최종 값으로 시스템 시계를 조절한다(선택·묶기·합치기·시계 조절 알고리즘) — §11
+- (phase 78 step 5) **SNTP**: NTP의 부분 집합인 SNTP를 따르는 주 서버와 클라이언트는 §9 이하의 완화 알고리즘(여러 서버의 값을 견주고 고르는 알고리즘들)을 구현하지 않아도 된다. SNTP는 **기준 시계 하나를 가진 주 서버**와 **위쪽 서버 하나만 두고 아래쪽 클라이언트가 없는 클라이언트**를 위한 것이고,
+  완전한 NTPv4는 위쪽·아래쪽이 여럿인 보조 서버를 위한 것이다. 그 밖에는 NTP와 SNTP의 서버·클라이언트가 **완전히 함께 동작**하고 한 NTP 망에 섞어 쓸 수 있다 — §14. SNTP 클라이언트는 NTP 프로토콜의 일부만 써도 되고, 가장 단순하게는 서버 패킷에 담긴 보낸 시각 하나만 쓴다 — §14
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(짧은 질의·응답 한 번이면 되고 재전송이 필요 없는 응용 — NTP는 UDP)
 (phase 77 step 8) `tcp-udp.transport-choice`(Abstract — 컴퓨터 시계를 맞춘다, §5 — 클라이언트·서버 방식에서 서버는 바로 답한다, §7.3 — UDP, §8 — 재전송 장치를 두지 않는다)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.ntp`(§1·§2·§3 — 시계를 맞춘다, 주 서버·보조 서버·클라이언트, stratum, §7.2·§7.3 — 123, stratum 칸 값과 16, §8 — 네 타임스탬프의 원리, §10·§11 — 여러 서버를 견주어 고른다),
+`app-protocols-mgmt-security.sntp`(§1 — SNTPv4는 NTPv4의 부분 집합이고 RFC 4330을 이 문서가 폐기했다, §14 — 완화 알고리즘 없이·서버 하나·함께 동작), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNTP와 123)
 
 ## (phase 77 step 9) Linux man-pages — ss(8)
 https://man7.org/linux/man-pages/man8/ss.8.html
@@ -4309,6 +4364,7 @@ Proposed Standard(2018-01)이고 폐기되지 않았다(RFC 1939·2595·3501·50
 - 587번에서 평문으로 시작해 TLS로 바꾸는 방식(STARTTLS)도 널리 쓰여, 한동안 둘 다 구현하라고 한다 — §3.3
 
 쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.pop3`(995), `app-protocols-mail-file.imap`(993). 465와 STARTTLS는 쓰지 않는 것을 권한다(기출이 묻지 않는다)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3 — POP3·IMAP·메일 제출도 TLS로 감싸 쓴다: TLS 위에 HTTP 말고도 메일 프로토콜이 얹히는 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 이름이 곧 「TLS로 보호한 것」인 것은 HTTPS)
 
 ## (phase 78 step 0) RFC 1635 — How to Use Anonymous FTP [Informational]
 https://www.rfc-editor.org/rfc/rfc1635
@@ -4411,3 +4467,244 @@ https://learn.microsoft.com/en-us/iis/configuration/system.ftpserver/firewallsup
   범위를 「0-0」으로 두면 Windows TCP/IP의 임시(동적) 포트 범위를 쓴다 — 뒤 문서 Overview·Attributes, 앞 문서 「Step 1: Configure the Passive Port Range for the FTP Service」
 
 쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(능동·수동이라는 이름과 누가 연결을 여는지, 능동이 예전의 기본, 서버가 수동 모드용 포트 범위를 정해 둔다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 수동 모드)
+
+## (phase 78 step 5) RFC 3410 — Introduction and Applicability Statements for Internet-Standard Management Framework [Informational]
+https://www.rfc-editor.org/rfc/rfc3410
+
+Informational(2002-12)이고 폐기되지 않았다(RFC 2570을 대체 — rfc-editor 상태 2026-11-11). SNMP 관리 체계의 세 판(SNMPv1·SNMPv2·SNMPv3)을 한데 소개하는 안내 문서이고, 자세한 문서와 어긋나면 자세한 문서를 따르라고 스스로 적는다 — §1.
+그래서 **판들의 관계와 표준 상태, 그리고 표준 문서(STD 62)의 사실을 확인하는 보조로** 쓴다.
+
+- 관리 체계의 기본 구성은 판과 상관없이 같다 — 관리받는 노드 여럿(노드마다 관리 정보를 원격으로 다루게 해 주는 SNMP 개체가 있고, 예부터 **에이전트**라 부른다), 관리 응용을 가진 SNMP 개체 하나 이상(예부터 **매니저**),
+  두 개체 사이에 관리 정보를 나르는 관리 프로토콜, 그리고 관리 정보 — §2.1
+- 관리 정보는 **관리 객체**들의 모음으로 보고, 그 모음이 놓인 가상의 정보 저장소를 **MIB**(Management Information Base)라 부른다. 관련 있는 객체들은 **MIB 모듈**이라는 문서 단위로 정의한다 — §7.1.
+  MIB 모듈은 관리받는 노드의 계측 장치가 지니는 관리 정보를 정의하고, 그 정보는 에이전트가 원격으로 닿을 수 있게 해 주며, 관리 프로토콜이 나르고 관리 응용이 다룬다 — §6.2
+- 전송: 여러 전송 방식(전송 매핑)이 정의돼 있지만 **UDP 위에 싣는 방식이 우선**(preferred)이다. 다른 방식을 쓰는 시스템도 UDP 방식으로 닿을 수 있게 해 두는 것이 좋다 — §7.3
+- SNMPv1(옛 STD 15, RFC 1157)이 정의한 동작은 get·get-next·get-response·set-request·trap이고, 비연결형 전송 위에 얹는 것이 보통이다 — §3.3
+- SNMPv1은 인증 방식을 여럿 둘 자리만 만들고 실제로는 **커뮤니티 문자열**에 기댄 아주 단순한 인증 하나만 정의했다. 처음부터 알려진 근본적인 약점이다 — §3.4
+- SNMPv2는 v1보다 데이터형(64비트 카운터), 효율(get-bulk), **확인 응답을 받는 알림(inform)**, 오류 처리를 늘렸지만, 처음 목표였던 보안 — 인증(보낸 쪽 확인·메시지 무결성·일부 재전송 방지), 기밀성, 접근 제어 — 과 그 원격 관리를 채우지 못했다 — §4.
+  커뮤니티 기반 SNMPv2(**SNMPv2c**, RFC 1901)가 가장 많은 지지를 받았지만 **보안과 관리 체계가 없었다** — §5. SNMPv3는 SNMPv2에 보안과 관리 기능을 더한 것으로 볼 수 있다 — §5
+- **SNMPv1·SNMPv2c의 메시지는 평문 커뮤니티 문자열에 기댄 단순한 인증만 지원해 근본적으로 안전하지 않다.** 강한 보안을 담은 SNMPv3 문서가 표준(full Standard)이 되자 SNMPv1(옛 STD 15)과 실험 단계의 SNMPv2c(RFC 1901)는
+  보안의 약점 때문에 Historic이 됐다 — SNMPv3가 쓸 판이라는 것을 분명히 하려는 것이다 — §8.2(작업 그룹의 권고는 §8.3)
+- SNMPv3 문서는 STD 62로 묶인다 — 구조(RFC 3411), 메시지 처리(RFC 3412), 응용(RFC 3413), 사용자 기반 보안 모델 USM(RFC 3414), 뷰 기반 접근 제어 VACM(RFC 3415), 프로토콜 동작(RFC 3416), 전송 매핑(RFC 3417), SNMP 개체 자신의 MIB(RFC 3418) — §6.3, §6.4, §7.4.
+  응용의 다섯 종류는 명령 생성기·명령 응답기·알림 발신기·알림 수신기·프록시 전달기다 — §7.7
+- USM은 키를 쓴 해시로 메시지가 도중에 바뀌지 않았는지 지키고(무결성), 그로써 보낸 쪽이 맞는지도 확인하며, 느슨하게 맞춘 시각 값으로 일부 재전송 공격을 막는다. 내용을 감추는 암호화도 쓸 수 있다 — §7.8
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§2.1 — 매니저와 에이전트, §7.3 — UDP가 우선), `app-protocols-mgmt-security.mib`(§7.1·§6.2 — MIB와 MIB 모듈),
+`app-protocols-mgmt-security.snmp-versions`(§3.4·§4·§5·§8.2 — 커뮤니티 문자열이 평문이라 v1·v2c는 안전하지 않아 Historic, v3가 보안을 더했다, §7.8 — USM), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — v2c는 암호화·인증을 기본으로 주지 않는다)
+
+## (phase 78 step 5) RFC 3411 — An Architecture for Describing Simple Network Management Protocol (SNMP) Management Frameworks
+https://www.rfc-editor.org/rfc/rfc3411
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 2571을 대체, RFC 5343·5590이 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- SNMP 관리 체계는 노드 여럿(노드마다 명령 응답기·알림 발신기 응용을 가진 SNMP 개체 — 예부터 **에이전트**), 명령 생성기·알림 수신기 응용을 가진 SNMP 개체 하나 이상(예부터 **매니저**), 그 사이에 관리 정보를 나르는 관리 프로토콜로 이루어진다.
+  매니저 쪽 응용이 관리받는 장치를 **감시하고 제어한다**. 관리받는 장치는 호스트·라우터·터미널 서버 같은 것이고, 그 장치의 관리 정보에 닿아 감시·제어한다 — §1.2
+- 응용의 종류: 명령 생성기는 관리 데이터를 살피고 바꾼다, 명령 응답기는 관리 데이터에 닿게 해 준다, 알림 발신기는 묻지 않은(비동기) 메시지를 먼저 보낸다, 알림 수신기는 그 메시지를 처리한다, 프록시 전달기는 개체 사이에서 메시지를 넘긴다 — §3.1.3.
+  명령 생성기·알림 수신기를 가진 개체를 예부터 SNMP 매니저(§3.1.3.1), 명령 응답기·알림 발신기를 가진 개체를 예부터 SNMP 에이전트라 부른다(§3.1.3.2). 에이전트의 그림에서 명령 응답기는 MIB 계측 장치(MIB instrumentation)와 이어진다 — §3.1.3.2 그림
+- PDU의 갈래: 읽기(`GetRequest`·`GetNextRequest`·`GetBulkRequest`), 쓰기(`SetRequest`), 응답(`Response`·`Report`), 알림(`SNMPv2-Trap`·`InformRequest`). 받는 쪽이 응답을 돌려보내야 하는 것은 Get 계열·`SetRequest`·`InformRequest`이고,
+  트랩은 확인 응답을 받지 않는다 — §2.8
+- 보안 수준은 셋이다 — 인증도 암호화도 없음(noAuthNoPriv), 인증만(authNoPriv), 인증과 암호화(authPriv) — §3.4.3
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§1.2 — 매니저가 호스트·라우터 같은 장치를 감시·제어한다, §3.1.3 — 매니저와 에이전트가 하는 일), `app-protocols-mgmt-security.snmp-operations`(§2.8 — 메시지의 갈래와 응답이 있는 것·없는 것),
+`app-protocols-mgmt-security.snmp-versions`(§3.4.3 — v3도 보안 수준을 고른다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNMP는 장비를 관리·감시한다)
+
+## (phase 78 step 5) RFC 3416 — Version 2 of the Protocol Operations for the Simple Network Management Protocol (SNMP)
+https://www.rfc-editor.org/rfc/rfc3416
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 1905를 대체 — rfc-editor 상태 2026-11-11). 메시지 이름은 이 문서대로 쓴다.
+
+- SNMP 메시지 프로토콜의 첫 판 SNMPv1은 RFC 1157(STD 15)이, **표준 트랙이 아닌** SNMPv2c는 RFC 1901과 RFC 3417이, SNMPv3는 RFC 3417·3412·3414가 정한다 — §1
+- 명령 생성기·알림 수신기를 가진 개체(예부터 「매니저」)가 명령 응답기·알림 발신기를 가진 개체(예부터 「에이전트」)와 통신한다. 이 프로토콜의 목적은 **관리 정보와 동작을 나르는 것**이다 — §2
+- 변수(variable)의 이름은 그 객체 형의 OBJECT IDENTIFIER 뒤에 인스턴스를 가리키는 조각을 이어 붙인 것이다 — §2.1
+- 요청을 받은 쪽은 보통 응답을 만들어 보낸다. 응답이 제때 오지 않을 때 다시 보낼지는 요청을 보낸 응용이 정한다 — §2.2
+- `GetRequest`를 받은 쪽은 적힌 이름과 정확히 맞는 변수의 **값을 채워** `Response`를 만든다 — §4.2.1. `GetNextRequest`를 받은 쪽은 이름의 사전 순서로 바로 다음인 변수의 이름과 값을 돌려준다 — §4.2.2
+- `Response`는 `GetRequest`·`GetNextRequest`·`GetBulkRequest`·`SetRequest`·`InformRequest`를 받았을 때만 만든다 — §4.2.4
+- `SetRequest`를 받은 쪽은 변수들을 모두 검사해 문제가 없으면 값을 바꾸고(하나라도 바꾸지 못하면 나머지도 되돌린다) 결과를 `Response`로 요청한 쪽에 돌려준다 — §4.2.5
+- `SNMPv2-Trap`은 알림 발신기를 대신해 보내고, 멀리 있는 알림 수신기에 일이 생겼거나 어떤 상태가 됐음을 알린다. **확인 응답이 없다**. 보낼 곳은 그 개체가 구현에 따라 정한다 — §4.2.6
+- `InformRequest`도 같은 목적의 알림이지만 받은 쪽이 `Response`를 돌려보낸다(확인 응답이 있는 알림. 그래도 도착을 보장하지는 않는다) — §4.2.7
+- 트랩과 인폼의 앞 두 변수는 `sysUpTime.0`과 `snmpTrapOID.0`이다 — §4.2.6, §4.2.7
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-operations`(메시지 이름과 방향 — §4.2.1·§4.2.2·§4.2.4·§4.2.5·§4.2.6·§4.2.7), `app-protocols-mgmt-security.mib`(§2.1 — 이름 뒤의 인스턴스 조각, §4.2.1 — 에이전트가 값을 채워 돌려준다),
+`app-protocols-mgmt-security.snmp`(§2 — 매니저와 에이전트, 관리 정보를 나른다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 3417 — Transport Mappings for the Simple Network Management Protocol (SNMP), RFC 3430 — SNMP Over TCP Transport Mapping [Experimental], RFC 6353 — TLS Transport Model for SNMP
+https://www.rfc-editor.org/rfc/rfc3417
+https://www.rfc-editor.org/rfc/rfc3430
+https://www.rfc-editor.org/rfc/rfc6353
+
+상태(rfc-editor 2026-11-11): RFC 3417은 Internet Standard(STD 62, 2002-12 — RFC 1906을 대체, RFC 4789·5590이 고쳤다), RFC 3430은 Experimental(2002-12), RFC 6353은 Internet Standard(2011-07 — RFC 5953을 대체, RFC 8996·9456이 고쳤다). 셋 다 폐기되지 않았다.
+**SNMP가 어떤 전송 위에서 도는지만** 가져온다. TLS 전송 모델의 동작은 가져오지 않는다.
+
+- 전송 매핑이 여럿 정의돼 있지만, IPv4를 지원하는 시스템에서는 **UDP over IPv4 매핑이 우선**이고 IPv4를 구현한 시스템은 이 매핑을 **반드시 구현해야 한다**(MUST). 다른 매핑을 지원하는 시스템도 UDP 매핑으로 닿게 하는 것이 좋다(SHOULD) — RFC 3417 §1, §3.
+  이 문서가 정의하는 다른 매핑은 OSI·AppleTalk(DDP)·IPX 위다 — §4~§6
+- 메시지 하나는 UDP 데이터그램 하나에 싣는다 — RFC 3417 §3.1
+- **명령 응답기(에이전트 쪽)는 UDP 161에서, 알림 수신기(매니저 쪽)는 UDP 162에서** 기다리게 설정하기를 권한다 — RFC 3417 §3.2
+- SNMPv1만으로는 안전하지 않다 — 네트워크 자체가 안전해도 누가 객체를 읽고 바꿀 수 있는지 통제하지 못한다. SNMPv3의 USM(RFC 3414)·VACM(RFC 3415)을 쓰기를 권한다 — RFC 3417 §12
+- TCP 매핑(RFC 3430): **덧붙인 선택적인 매핑**이고 주로 대량 전송을 위해 정의했다. 이 매핑을 구현한 엔진도 UDP 매핑을 **반드시 함께 구현해야 한다**. TCP는 자원을 더 쓰므로 TCP 연결이 너무 많으면 새 연결을 거절해 UDP로 돌아가게 할 수 있다 — RFC 3430 §1, §2
+- TLS 전송 모델(RFC 6353): SNMP 메시지를 TCP 위의 TLS나 UDP 위의 DTLS로 보내는 방식이고, 기본 포트는 10161(명령)·10162(알림)다 — RFC 6353 §1, §10
+- 곧 표준의 SNMP는 **UDP가 기본이자 반드시 갖출 전송**이고, TCP 위로 보내는 방식은 따로 정의한 선택이다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(RFC 3417 §1·§3 — UDP가 우선이고 반드시 구현, §3.2 — 에이전트는 UDP 161, RFC 3430 — TCP는 덧붙인 선택), `app-protocols-mgmt-security.snmp-operations`(RFC 3417 §3.2 — 트랩은 UDP 162),
+`app-protocols-mgmt-security.snmp-versions`(RFC 3417 §12 — v1만으로는 안전하지 않다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「TCP를 쓴다」가 틀린 까닭과 문항에서 조심할 것)
+
+## (phase 78 step 5) RFC 1157 — A Simple Network Management Protocol (SNMP) [Historic — 역사 기록으로만 쓴다], RFC 1901 — Introduction to Community-based SNMPv2 [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1157
+https://www.rfc-editor.org/rfc/rfc1901
+
+상태(rfc-editor 2026-11-11): RFC 1157은 Historic(1990-05, 옛 STD 15 — RFC 1098을 대체), RFC 1901은 Historic(1996-01, 문서 머리의 분류는 Experimental — 「Internet standard가 아니다」라고 스스로 적는다).
+둘 다 RFC 3410 §8.2대로 보안의 약점 때문에 Historic이 됐다. **SNMP의 첫 판과 v2c가 무엇이었는지, 그리고 지금 표준과 같은 사실을 확인하는 데만** 쓴다.
+
+- SNMP 구조: 관리국(network management station)의 관리 응용이 네트워크 요소를 감시·제어하고, 호스트·게이트웨이·터미널 서버 같은 네트워크 요소의 **관리 에이전트**가 관리국이 요청한 관리 기능을 수행한다. SNMP는 둘 사이에 관리 정보를 주고받는 데 쓴다 — RFC 1157 §3
+- 목표: 에이전트가 하는 관리 기능의 수와 복잡도를 줄여, 에이전트 소프트웨어를 만드는 비용을 낮추는 것 — §3.1(1). 감시·제어의 방식이 예상하지 못한 운영·관리 측면까지 넓혀 받아들일 수 있게 하는 것 — §3.1 둘째 목표. 특정 호스트·게이트웨이의 구조와 상관없게 하는 것 — §3.1 셋째 목표
+- 에이전트의 일을 변수를 살피는 것(get)과 바꾸는 것(set) 둘로 본다 — §3.2.3
+- **네트워크 상태를 자세히 감시하는 일은 주로 관리국 쪽의 폴링으로 하고, 묻지 않은 메시지(트랩) 몇 가지가 폴링을 언제 어디에 할지 이끈다.** 묻지 않은 메시지 수를 적게 두는 것은 단순함과, 네트워크 관리가 만들어 내는 트래픽을 줄이는 목표에 맞는다 — §3.2.3
+- SNMP 메시지를 주고받는 데는 믿을 수 없는 데이터그램 서비스면 충분하고 메시지 하나는 전송 데이터그램 하나다. 이 문서는 UDP로 주고받는 것을 정하지만 다른 전송에도 대체로 맞는다 — §3.2.4
+- 에이전트와 응용 개체의 묶음을 **SNMP 커뮤니티**라 하고, 커뮤니티마다 옥텟 문자열로 된 **커뮤니티 이름**이 있다. 메시지가 그 커뮤니티의 것인지 가리는 규칙을 인증 방식이라 한다. 모든 메시지를 진짜로 보는 아주 단순한 인증만 지원하는 구현도 있을 수 있다 — §3.2.5
+- SNMP는 에이전트의 MIB 변수를 살피거나 바꾸는 **응용 프로토콜**이다. 메시지 하나는 UDP 데이터그램 하나에 실리고 **판 번호·커뮤니티 이름·PDU**로 이루어진다. 트랩이 아닌 메시지는 **UDP 161**에서, 트랩은 **UDP 162**에서 받는다. 다섯 PDU(GetRequest·GetNextRequest·GetResponse·SetRequest·Trap)를 모두 지원해야 한다 — §4.
+  (커뮤니티 이름이 평문이라는 것은 위 RFC 3410 §8.2)
+- 트랩의 예: 에이전트가 맡은 통신 링크 가운데 하나가 끊겼음(linkDown)·다시 살아났음(linkUp), 다시 시작함(coldStart·warmStart), 인증 실패 — §4.1.6
+- 이 문서는 보안을 다루지 않는다 — 「Security Considerations」 절
+- RFC 1901: SNMPv1의 커뮤니티 기반 관리 체계를 SNMPv2에 그대로 쓴 것을 **커뮤니티 기반 SNMPv2(SNMPv2c)**라 부른다. 메시지 꼴도 v1에서 가져오고 판 번호만 바꿨다(판 번호·커뮤니티 이름·PDU) — RFC 1901 §3. 보안은 다루지 않는다 — §4. 전송은 UDP 매핑이 우선이다 — §2.5
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(RFC 1157 §3 — 관리국과 에이전트, §4 — 응용 프로토콜·UDP 161, 첫 판이 RFC 1157이고 지금은 Historic), `app-protocols-mgmt-security.snmp-operations`(§3.2.3 — 감시는 주로 폴링·트랩이 폴링을 이끈다, §4 — 트랩은 162, §4.1.6 — linkDown),
+`app-protocols-mgmt-security.snmp-versions`(§3.2.5·§4 — 커뮤니티 이름이 메시지의 한 칸, RFC 1901 §3 — v2c), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 폴링, RFC 1157에 규정), `exam-notes.md` E32(§3.1)
+
+## (phase 78 step 5) RFC 3414 — User-based Security Model (USM) for version 3 of the Simple Network Management Protocol (SNMPv3)
+https://www.rfc-editor.org/rfc/rfc3414
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 2574를 대체, RFC 5590이 고쳤다 — rfc-editor 상태 2026-11-11). **v3가 무엇을 지키는지만** 가져온다. 알고리즘 이름과 키 관리는 가져오지 않는다.
+
+- 사용자(사용자 이름으로 가리킨다)를 단위로 보안 정보를 묶는 사용자 기반 보안 모델이다 — §1
+- 막으려는 주된 위협은 둘이다 — 오가는 메시지를 허락받지 않은 쪽이 바꿔치기하는 것(정보 변경), 권한이 있는 다른 사용자인 척하는 것(가장). 덜 중요한 위협 — 에이전트와 관리국 사이를 엿보는 것(누설), 메시지를 일부러 늦추거나 다시 보내거나 순서를 바꾸는 것 — 도 어느 정도 막는다.
+  서비스 거부와 트래픽 분석은 막지 않는다 — §1.1
+- 목표: 받은 메시지가 도중에 바뀌지 않았는지, 메시지가 주장하는 사용자가 맞는지, 최근에 만든 메시지인지 확인하고, 필요하면 내용을 엿보지 못하게 한다 — §1.2
+- 서비스: 데이터 무결성, 데이터 출처 인증, 데이터 기밀성, 메시지 시각 확인과 제한된 재전송 방지. 기밀성은 무결성·출처 인증과 함께일 때만 쓸 수 있다 — §1.3
+- 이 문서는 인증과 암호화 방식을 하나씩 정하면서, 다른 방식으로 바꾸거나 더할 수 있게 했다 — §1
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-versions`(§1.1·§1.2·§1.3 — v3는 사용자마다 인증(바뀌지 않았는지·보낸 사용자가 맞는지)과 암호화를 더한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 2578 — Structure of Management Information Version 2 (SMIv2), RFC 3418 — Management Information Base (MIB) for the Simple Network Management Protocol (SNMP), RFC 1213 — MIB-II
+https://www.rfc-editor.org/rfc/rfc2578
+https://www.rfc-editor.org/rfc/rfc3418
+https://www.rfc-editor.org/rfc/rfc1213
+
+상태(rfc-editor 2026-11-11): RFC 2578은 Internet Standard(STD 58, 1999-04 — RFC 1902를 대체), RFC 3418은 Internet Standard(STD 62, 2002-12 — RFC 1907을 대체), RFC 1213은 Internet Standard(STD 17, 1991-03 — RFC 1158을 대체, RFC 2011~2013이 고쳤다). 셋 다 폐기되지 않았다.
+**OID의 꼴과 sysUpTime의 이름·번호·뜻만** 가져온다. 데이터형·매크로 문법은 가져오지 않는다.
+
+- 관리 정보는 MIB라는 가상의 정보 저장소에 놓인 관리 객체들의 모음으로 보고, 관련 객체들은 MIB 모듈로 정의한다 — RFC 2578 §1
+- **OBJECT IDENTIFIER(OID)** 값은 음이 아닌 수를 차례로 늘어놓은 것이고, 수 하나하나를 하위 식별자(sub-identifier)라 부른다. 첫 하위 식별자는 0(ccitt)·1(iso)·2(joint-iso-ccitt) 가운데 하나다 — RFC 2578 §3.5
+- 뿌리에서 내려오는 길: `org`는 `iso` 아래 3, `dod`는 `org` 아래 6, `internet`은 `dod` 아래 1, `mgmt`는 `internet` 아래 2, `mib-2`는 `mgmt` 아래 1 — RFC 2578 §2(SNMPv2-SMI 정의. 「iso」 = 1이라는 주석도 같은 자리에 있다).
+  IANA가 맡는 인터넷 갈래는 `1.3.6.1`로 시작하고, `mgmt(2)` 아래는 「표준」 객체를 가리키는 데 쓴다 — RFC 2578 §4
+- `system` 그룹은 `mib-2` 아래 1이고(모든 관리받는 시스템에 공통인 객체의 모음), `sysUpTime`은 `system` 아래 3이다 — RFC 3418 §2. RFC 1213(MIB-II)도 같은 자리에 정의한다 — RFC 1213의 system 그룹(`system ::= { mib-2 1 }`, `sysUpTime ::= { system 3 }`)
+- **`sysUpTime`의 뜻: 그 시스템의 네트워크 관리 부분이 마지막으로 다시 초기화된 뒤 흐른 시간이고, 단위는 100분의 1초(TimeTicks)다. 읽기만 된다** — RFC 3418 §2. (장비 전체가 켜진 뒤의 시간이 아니라 **관리 부분(에이전트)**이 다시 시작한 뒤의 시간이다)
+- **계산 — 손으로 두 번 맞췄다**: iso(1) → org(3) → dod(6) → internet(1) → mgmt(2) → mib-2(1) → system(1) → sysUpTime(3) — 그래서 `1.3.6.1.2.1.1.3`이다
+- 표 안에 있지 않은 객체(스칼라 객체)의 인스턴스는 객체 이름 뒤에 **하위 식별자 0을 하나 붙여** 가리킨다 — RFC 2578 §7. 그래서 값을 물을 때의 이름은 `1.3.6.1.2.1.1.3.0`(`sysUpTime.0`)이다. RFC 3416 §4.2.6도 트랩의 첫 변수를 `sysUpTime.0`으로 적는다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.mib`(RFC 2578 §1 — MIB·MIB 모듈, §3.5 — OID의 꼴, §2·§4 — 가지 이름과 번호, §7 — `.0`, RFC 3418 §2 — `system`·`sysUpTime`과 그 뜻)
+
+## (phase 78 step 5) RFC 6632 — An Overview of the IETF Network Management Standards [Informational]
+https://www.rfc-editor.org/rfc/rfc6632
+
+Informational(2012-06)이고 폐기되지 않았다(rfc-editor 상태 2026-11-11). IETF 네트워크 관리 표준을 훑는 안내 문서라 **표준 문서의 사실을 확인하고 쓰임의 예를 대는 보조로만** 쓴다.
+
+- SNMP는 **매니저·에이전트·MIB** 세 개념 위에 선다. 어떤 구성에서도 매니저 노드가 적어도 하나 있어 관리 소프트웨어를 돌리고, 보통 **브리지·라우터·서버 같은 네트워크 장비가 에이전트를 갖춘다**. 에이전트는 자기 노드의 자원과 활동을 반영하는 객체들의 로컬 MIB에 닿게 해 준다 — §2.1.2
+- 에이전트는 알림을 만들어 묻지 않은 메시지로 관리 응용에 보낼 수 있다. SNMPv2가 인폼 PDU 등을 더했다. **SNMPv1·SNMPv2 모두 보안 기능이 충분하지 않아** 그 약점을 메우려고 SNMPv3가 나왔다 — §2.1.2
+- 트랩·인폼으로 알린 내용이 뒤따르는 폴링을 이끌 수 있다. SNMP는 장애·성능 데이터 감시에 널리 쓰이고 상태를 폴링하는 데에도 잘 맞는다. 표준 MIB 모듈의 카운터는 **여러 인터페이스로 드나든 바이트·패킷 수**를 감시하는 데 특히 쓸모가 있었다.
+  장비가 살아 있는지 보려고 `sysUpTime`(장비의 네트워크 관리 부분이 다시 초기화된 뒤 흐른 시간)을 폴링하곤 한다 — §2.1.2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§2.1.2 — 장비가 에이전트를 갖춘다), `app-protocols-mgmt-security.mib`(§2.1.2 — 인터페이스로 드나든 바이트 수 카운터, `sysUpTime`), `app-protocols-mgmt-security.snmp-operations`(§2.1.2 — 상태 폴링, 알림이 폴링을 이끈다),
+`app-protocols-mgmt-security.snmp-versions`(§2.1.2 — v1·v2는 보안이 모자라 v3), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 3512 — Configuring Networks and Devices with Simple Network Management Protocol (SNMP) [Informational]
+https://www.rfc-editor.org/rfc/rfc3512
+
+Informational(2003-04)이고 폐기되지 않았다(rfc-editor 상태 2026-11-11). **폴링의 부담에 관한 말만** 가져온다 — 기출([기출 2024-05-19 #7])이 맞는 말로 두는 「폴링과 트래픽」을 대조하려는 것이다.
+
+- 바뀐 것을 알아내려고 객체 여럿을 폴링해야 하는 구성은 규모가 커지면 잘 맞지 않는다 — §3.3.5
+- 설정 데이터가 아주 많은 장비에서 매니저가 설정 표 전체를 주기적으로 폴링하면 **에이전트와 매니저 둘 다에 부담**이 된다 — §3.3.6
+- 트랩은 받았는지 확인할 방법이 없어, 확인이 필요하면 SNMP 밖의 방법을 써야 하고 보통 폴링이라는 대가가 따른다. 인폼은 받은 쪽이 `Response`로 답하므로 보낸 쪽이 받았는지 확인할 수 있다 — §3.10.2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-operations`(§3.3.5·§3.3.6 — 폴링은 장비와 객체가 많을수록 부담이 커진다. 쓰면 「요청 하나에 응답 하나이므로 장비 수 × 묻는 횟수만큼 메시지가 오간다」는 계산임을 밝힌다, §3.10.2 — 인폼은 확인 응답이 있다),
+기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 폴링과 트래픽)
+
+## (phase 78 step 5) RFC 4330 — Simple Network Time Protocol (SNTP) Version 4 for IPv4, IPv6 and OSI [Informational, 폐기 — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc4330
+
+Informational(2006-01)이고 **RFC 5905가 폐기하고 대신했다**(RFC 2030·1769를 대체했었다 — rfc-editor 상태 2026-11-11). 지금 SNTP의 근거는 위 RFC 5905 §14이고, 이 문서는 **SNTP를 따로 적은 옛 문서가 무엇을 말했는지 확인하는 역사 기록으로만** 쓴다.
+
+- 정확도가 덜 필요한 쓰임(1초의 상당 부분까지, 집의 라우터라면 1분까지도 괜찮은 곳)에는 완전한 NTP 소프트웨어가 너무 크고 복잡하므로, 더 단순한 소프트웨어로 NTP 서버·클라이언트에 닿는 방식으로 SNTPv4를 적었다 — §1
+- NTP와 SNTP는 **패킷 꼴이 같고**, 시각·차이·왕복 지연을 계산하는 산술도 같다. NTP·SNTP 서버에게 NTP 클라이언트와 SNTP 클라이언트는 구별되지 않고, 클라이언트에게도 두 서버가 구별되지 않는다. 대부분의 NTP 클라이언트와 달리 **SNTP 클라이언트는 보통 한 번에 서버 하나만 쓴다** — §1
+- SNTP 클라이언트는 동기화 망의 끝(가장 높은 stratum)에서만 쓰고, 다른 클라이언트가 SNTP 클라이언트에 시각을 기대지 않게 하라고 강하게 권한다 — §1
+- NTP와 SNTP는 모두 UDP를 쓰고, IANA가 NTP에 정한 UDP 포트는 **123**이다. SNTP 클라이언트는 요청의 목적지 포트를 123으로 한다 — §4
+- 서버를 여럿 알려 주면 하나를 쓰고 나머지는 그 서버가 고장 났을 때의 예비로 둘 수 있다 — §7
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sntp`(역사 기록으로 — 「SNTP를 RFC 4330이 따로 적었고 지금은 RFC 5905 §14에 들어 있다」, §1 — 같은 패킷 꼴·서버 하나·정확도가 덜 필요한 기기, §4 — UDP 123), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNTP와 123)
+
+## (phase 78 step 5) RFC 5280 — Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile
+https://www.rfc-editor.org/rfc/rfc5280
+
+Proposed Standard(2008-05)이고 폐기되지 않았다(RFC 3280·4325·4630을 대체, RFC 6818·8398·8399·9549·9598·9608·9618·9925·10007이 고쳤다 — rfc-editor 상태 2026-11-11). **인증서가 무엇인지만** 가져온다. 인증서의 필드·확장·경로 검증·폐기 목록은 가져오지 않는다.
+
+- 공개 키를 쓰는 쪽은 그 짝인 개인 키를 올바른 상대(사람이나 시스템)가 가졌다는 믿음이 필요하다. 그 믿음을 주는 것이 **공개 키 인증서**다 — **공개 키 값을 그 주인(subject)에 묶은 데이터**이고, 믿을 수 있는 **인증 기관(CA)**이 인증서마다 디지털 서명을 해서 그 묶음을 보증한다 — §3.1
+- 인증서에는 서명된 내용 안에 유효 기간이 적혀 있다. 인증서를 쓰는 쪽이 서명과 기간을 스스로 확인할 수 있으므로, 인증서는 믿을 수 없는 통로로 나눠 주어도 된다 — §3.1
+- 인증서의 표준 형식은 ITU-T X.509이고, 지금 쓰는 것은 확장 칸을 더한 버전 3(v3)이다 — §3.1
+- 이 체계의 구성 요소는 인증서의 주인인 끝 개체(end entity), 인증 기관(CA), 등록 기관(RA) 등이다 — §3
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3.1 — 인증서는 주인의 이름과 공개 키를 묶어 인증 기관이 서명한 것, 받는 쪽이 서명과 기간을 확인한다), `app-protocols-mgmt-security.https`
+
+## (phase 78 step 5) RFC 7568 — Deprecating Secure Sockets Layer Version 3.0, RFC 6176 — Prohibiting Secure Sockets Layer (SSL) Version 2.0, RFC 6101 — The Secure Sockets Layer (SSL) Protocol Version 3.0 [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc7568
+https://www.rfc-editor.org/rfc/rfc6176
+https://www.rfc-editor.org/rfc/rfc6101
+
+상태(rfc-editor 2026-11-11): RFC 7568은 Proposed Standard(2015-06 — RFC 8996이 고쳤다), RFC 6176은 Proposed Standard(2011-03 — RFC 8996이 고쳤다), RFC 6101은 Historic(2011-08 — SSL 3.0을 남기는 역사 기록). 셋 다 폐기되지 않았다.
+**SSL이 TLS와 어떤 관계이고 왜 쓰지 않는지만** 가져온다. SSL의 결함을 이루는 공격과 암호 구성의 세부는 가져오지 않는다.
+
+- SSL 3.0은 널리 구현됐고 **TLS의 바탕**이었지만 IETF가 정식 문서로 낸 적이 없어, 1996년판을 역사 기록으로 남긴 것이 RFC 6101이다 — RFC 6101 Abstract·Foreword. SSL도 TCP 같은 믿을 수 있는 전송 위에 얹히고, 응용 프로토콜이 데이터를 주고받기 전에 핸드셰이크로 서로 인증하고 암호 방식과 키를 정했다 — RFC 6101 §1(역사 기록)
+- SSL 3.0은 1996년에 나온 뒤 키 교환과 암호 방식 모두에 공격이 이어졌다. 1999년 TLS 1.0(RFC 2246)이 SSL 3.0을 대신했고 TLS 1.1·1.2가 뒤따랐다. SSL 3.0의 앞 판인 SSL 2.0도 충분히 안전하지 않다 — RFC 7568 §1
+- **SSL 3.0은 써서는 안 된다**(MUST NOT). 어느 판의 TLS에서도 SSL 3.0으로 협상하게 두어서는 안 된다. TLS는 어느 판이든 SSL 3.0보다 안전하다 — RFC 7568 §3
+- SSL 3.0은 데이터를 보호하는 방식(레코드 보호), 키 교환, 직접 만든 암호 구성 요소 모두에 결함이 있고, 확장을 쓸 수 없어 고칠 수도 없다 — RFC 7568 §4
+- TLS 클라이언트·서버는 SSL 2.0을 협상해서는 안 된다 — RFC 6176 Abstract, §3
+- 지금 TLS 1.3 명세도 SSL 2.0·3.0과 TLS 1.0·1.1을 협상하지 말라고 한다 — 위 RFC 9846 항목의 「(phase 78 step 5)」 줄(부록 E.5)
+- IANA 레지스트리는 443번의 설명을 「http protocol over TLS/SSL」로 적는다 — 위 IANA 항목의 「(phase 78 step 5)」 줄. 곧 「SSL/TLS」·「TLS/SSL」은 **두 이름을 함께 적는 표기**이고, 지금의 표준에서 실제로 쓰는 것은 TLS다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(RFC 6101 — SSL은 TLS의 바탕이 된 앞 프로토콜, RFC 7568 §1·§3·§4·RFC 6176 — 결함 때문에 쓰지 않게 정해졌다, 「SSL/TLS」는 두 이름을 함께 적는 표기), `app-protocols-mgmt-security.https`,
+기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — HTTPS의 「SSL/TLS」)
+
+## (phase 78 step 5) RFC 3261 — SIP: Session Initiation Protocol
+https://www.rfc-editor.org/rfc/rfc3261
+
+Proposed Standard(2002-07)이고 폐기되지 않았다(RFC 2543을 대체. RFC 3265·3853·4320·4916·5393·5621·5626·5630·5922·5954·6026·6141·6665·6878·7462·7463·8217·8591·8760·8898·8996이 고쳤다 — rfc-editor 상태 2026-11-11). 기본 동작은 이 문서로 쓴다.
+**세션을 맺고 끝내는 기본 차례, 주소 꼴, 전송·포트, SDP·RTP와의 관계만** 가져온다. 프록시·등록·헤더 필드·응답 코드 전체·보안 방식은 가져오지 않는다. §4의 예에 나오는 사람·도메인 이름은 옮기지 않는다.
+
+- 세션은 참가자들 사이에 데이터를 주고받는 것이다. 음성·영상·문자 같은 실시간 멀티미디어 데이터를 나르는 프로토콜은 따로 있고, **SIP는 그것들과 함께 일하며** 인터넷의 끝점(사용자 에이전트)들이 서로를 찾고 함께 쓸 세션의 성격에 합의하게 한다.
+  SIP는 세션을 **만들고, 바꾸고, 끝내는** 도구이고 아래 전송 프로토콜이나 세션의 종류에 기대지 않는다 — §1
+- **SIP는 인터넷 전화 같은 멀티미디어 세션(회의)을 맺고, 바꾸고, 끝내는 응용 계층의 제어 프로토콜**이다. 이미 있는 세션에 사람을 부르거나 미디어를 더하고 뺄 수도 있다 — §2
+- SIP가 맡는 다섯 면: 상대가 어느 끝 시스템에 있는지(위치), 받을 뜻이 있는지(가용성), 쓸 미디어와 그 매개변수(능력), 울리기와 양쪽의 세션 매개변수 정하기(세션 설정), 넘기기·끝내기·매개변수 바꾸기(세션 관리) — §2
+- SIP는 혼자 완결된 통신 체계가 아니라 다른 프로토콜과 함께 쓰는 부품이다. 보통 **실시간 데이터를 나르는 RTP**, 멀티미디어 세션을 적는 SDP 등과 함께 쓴다 — §2
+- 요청·응답 방식은 HTTP와 비슷하다 — 트랜잭션 하나는 어떤 일을 시키는 요청 하나와 응답 하나 이상이다. 응답은 세 자리 코드와 짧은 설명 문구다 — §4
+- SIP 주소(SIP URI)는 전자우편 주소와 비슷한 꼴로 보통 사용자 이름과 호스트 이름을 담는다 — `sip:사용자@도메인`. SIPS URI(`sips:`)로 걸면 거는 쪽에서 받는 쪽 도메인까지 SIP 메시지를 TLS로 나른다 — §4, §19.1.
+  일반 꼴은 `sip:user:password@host:port;uri-parameters?headers`이고, user는 그 호스트(흔히 도메인)에서 특정 자원을 가리킨다 — §19.1.1
+- **통화 한 번의 차례**(§4 그림 1의 예 — 양쪽 도메인의 프록시 서버 둘을 거친다): 거는 쪽이 `INVITE` → 각 프록시가 받았다는 `100 (Trying)` → 받는 쪽 전화가 울리며 `180 (Ringing)` → 받으면 `200 (OK)`(받는 쪽의 세션 설명을 담는다) →
+  거는 쪽이 `ACK`(최종 응답을 받았다는 확인. 이때는 서로의 주소를 알게 돼 프록시를 거치지 않고 바로 간다 — 이 INVITE/200/ACK가 세션을 맺는 3단계 주고받기다) → **미디어 세션**(세션 설명으로 합의한 형식의 미디어 패킷을 주고받는다. 끝과 끝 사이의 미디어 패킷은 **SIP 신호와 다른 길**로 간다) →
+  한쪽이 끊으며 `BYE`(그림에서는 받은 쪽이 먼저 끊었다) → 상대가 `200 (OK)`. BYE에는 ACK를 보내지 않는다 — ACK는 INVITE의 최종 응답에만 보낸다 — §4
+- 미디어 종류·코덱 같은 세션의 세부는 SIP로 적지 않고, SIP 메시지 본문에 다른 형식(SDP)으로 담는다 — 전자우편이 첨부를, HTTP 메시지가 웹 페이지를 나르는 것처럼. INVITE와 200 (OK)에 세션 설명이 한 번씩 실려 간단히 협상한다 — §4
+- 받는 쪽이 받지 않거나 통화 중이면 200 (OK) 대신 오류 응답이 가고 미디어 세션은 생기지 않는다 — §4. 통화 중에 한쪽이 새 미디어 설명을 담은 re-INVITE로 세션의 성격을 바꿀 수 있다 — §4, §14
+- 세션을 끝내는 것은 `BYE`다. 맺어진 통화에서는 거는 쪽과 받는 쪽 모두 BYE를 보낼 수 있다 — §15
+- INVITE를 받은 서버 쪽 트랜잭션은 200ms 안에 다른 응답을 보낼 것을 알지 못하면 `100 (Trying)`을 보내야 한다(MUST) — §17.2.1. (그러니 프록시 없이 두 전화가 바로 주고받아도 `180` 앞에 `100`이 올 수 있다)
+- 전송: **모든 SIP 요소는 UDP와 TCP를 둘 다 구현해야 한다**(MUST) — 큰 메시지는 TCP로 보내야 해서다 — §18. 서버는 UDP로 기다리는 포트·인터페이스에서 TCP로도 기다려야 한다 — §18.2.1.
+  기본 포트는 UDP·TCP·SCTP에서 **5060**, TLS에서 **5061**이다 — §18.1.1, §18.2.1, §19.1.1 표의 주. `sip:` 주소의 기본 전송은 UDP, `sips:` 주소는 TCP다 — §19.1.1 표의 주
+- SIP는 IPv4와 IPv6 모두에서 동작한다 — §2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1·§2 — 세션을 맺고 바꾸고 끝내는 응용 계층의 제어(신호) 프로토콜, RTP·SDP와 함께 쓰는 부품, §4 — 통화 차례·SDP·미디어는 다른 길, §15 — BYE는 어느 쪽이든, §17.2.1 — `100 (Trying)`,
+§18·§19.1 — UDP·TCP 둘 다, 5060·5061, 주소 꼴), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 화상 회의의 SIP)
+
+## (phase 78 step 5) RFC 8866 — SDP: Session Description Protocol
+https://www.rfc-editor.org/rfc/rfc8866
+
+Proposed Standard(2021-01)이고 폐기되지 않았다(RFC 4566을 대체 — rfc-editor 상태 2026-11-11). **SDP가 무엇이고 SIP와 어떻게 함께 쓰이는지만** 가져온다. SDP의 문법은 가져오지 않는다.
+
+- 멀티미디어 회의·인터넷 전화·영상 스트리밍 같은 세션을 시작할 때는 참가자들에게 미디어의 세부, 미디어를 보낼 주소, 그 밖의 세션 정보를 알려야 한다. SDP는 그 정보를 적는 **표준 형식**이고 **그 자체로는 전송 프로토콜이 아니다** — SIP·RTSP·전자우편·HTTP 같은 다른 프로토콜에 실려 간다 — §1
+- SIP로 세션을 만들 때 SIP 메시지가 세션 설명을 실어 참가자들이 함께 쓸 미디어 형식에 합의하게 하고, 그 세션 설명은 흔히 SDP로 적는다 — §3.1
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1·§3.1 — 어떤 음성·영상 방식을 쓸지는 SDP로 적어 SIP 메시지에 실어 주고받는다)
