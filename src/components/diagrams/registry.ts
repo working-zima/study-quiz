@@ -244,7 +244,9 @@ import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
+import { SnmpPollTrapDiagram } from './SnmpPollTrapDiagram'
 import { SnmpRolesDiagram } from './SnmpRolesDiagram'
+import { SnmpVersionsDiagram } from './SnmpVersionsDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
@@ -532,6 +534,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mail-file.ssh': SshSessionDiagram,
   'app-protocols-mgmt-security.snmp': SnmpRolesDiagram,
   'app-protocols-mgmt-security.mib': MibTreeDiagram,
+  'app-protocols-mgmt-security.snmp-operations': SnmpPollTrapDiagram,
+  'app-protocols-mgmt-security.snmp-versions': SnmpVersionsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
