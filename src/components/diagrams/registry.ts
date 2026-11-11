@@ -172,6 +172,7 @@ import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { NsgAssociationDiagram } from './NsgAssociationDiagram'
 import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
+import { NtpStratumDiagram } from './NtpStratumDiagram'
 import { OctalModeDiagram } from './OctalModeDiagram'
 import { OpeningStatesDiagram } from './OpeningStatesDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
@@ -248,6 +249,7 @@ import { SnmpPollTrapDiagram } from './SnmpPollTrapDiagram'
 import { SnmpRolesDiagram } from './SnmpRolesDiagram'
 import { SnmpVersionsDiagram } from './SnmpVersionsDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
+import { SntpClientDiagram } from './SntpClientDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
@@ -536,6 +538,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.mib': MibTreeDiagram,
   'app-protocols-mgmt-security.snmp-operations': SnmpPollTrapDiagram,
   'app-protocols-mgmt-security.snmp-versions': SnmpVersionsDiagram,
+  'app-protocols-mgmt-security.ntp': NtpStratumDiagram,
+  'app-protocols-mgmt-security.sntp': SntpClientDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
