@@ -1,6 +1,7 @@
 import questionsData from './questions.json'
 import topicsData from './topics.json'
 import appProtocolsMailFileVisuals from './visuals/app-protocols-mail-file.json'
+import appProtocolsMgmtSecurityVisuals from './visuals/app-protocols-mgmt-security.json'
 import arpVisuals from './visuals/arp.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
@@ -42,6 +43,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'tcp-udp': tcpUdpVisuals,
   'tcp-connection': tcpConnectionVisuals,
   'app-protocols-mail-file': appProtocolsMailFileVisuals,
+  'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
   'linux-shell': linuxShellVisuals,

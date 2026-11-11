@@ -1,0 +1,96 @@
+{
+  "diagrams": {
+    "snmp-roles": {
+      "label": "관리 시스템의 매니저가 「라우터 1」과 「스위치 1」의 에이전트에게 요청을 보내 값을 묻거나 바꾸고, 에이전트가 응답을 돌려주는 것을 보이는 도식",
+      "svgLabel": "위에 관리 시스템 박스 안의 매니저를, 아래에 라우터 1 박스와 스위치 1 박스 안의 에이전트를 두고 둘 사이를 화살표로 잇는 그림",
+      "question": "SNMP에서 누가 묻고 누가 답할까?",
+      "idleCaption": "관리 시스템 한 대에서 실행되는 매니저가 「라우터 1」과 「스위치 1」을 관리한다. 두 장비에는 각각 에이전트가 실행되고 있다. 버튼을 고르면 누가 묻고 누가 답하는지, 요청이 무엇에 실려 어디로 가는지 볼 수 있다.",
+      "legend": "위의 박스가 관리 시스템이고 아래의 두 박스가 관리받는 장비다. 박스 안의 노드는 그 안에서 실행되는 프로그램이다. 화살표는 요청과 응답이 가는 방향이다.",
+      "nodes": {
+        "manager": "매니저",
+        "router-agent": "에이전트",
+        "switch-agent": "에이전트"
+      },
+      "groups": {
+        "nms": "관리 시스템",
+        "router": "라우터 1",
+        "switch": "스위치 1"
+      },
+      "notes": {
+        "query-note": "값을 묻고 답한다",
+        "set-note": "값을 바꾼다",
+        "udp-note": "UDP · 161번"
+      },
+      "scenarios": [
+        {
+          "id": "query",
+          "label": "조회",
+          "caption": "관리 시스템의 매니저가 「라우터 1」의 에이전트에게 값을 묻는 요청을 보내면, 에이전트가 그 라우터의 값을 응답에 담아 돌려준다. 요청을 먼저 보내는 쪽은 매니저이고, 값을 가진 쪽은 에이전트다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        },
+        {
+          "id": "set",
+          "label": "설정",
+          "caption": "매니저가 「스위치 1」의 에이전트에게 설정 값 하나를 바꾸라는 요청을 보내면, 에이전트가 값을 바꾸고 그 결과를 응답으로 돌려준다. SNMP는 장비를 살피는 데에 그치지 않고 설정을 바꾸는 데에도 쓴다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        },
+        {
+          "id": "transport",
+          "label": "UDP",
+          "caption": "매니저의 요청은 UDP에 실려, 장비마다 에이전트가 기다리는 161번 포트로 간다. TCP 위로 보내는 방식도 따로 정의돼 있지만 덧붙인 선택이고, SNMP의 기본 전송은 UDP다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.snmp"]
+    },
+    "mib-tree": {
+      "label": "OID 나무를 iso(1)에서 sysUpTime(3)까지 따라 읽어 1.3.6.1.2.1.1.3을 얻고, 매니저가 그 OID로 묻고 「라우터 1」의 에이전트가 MIB의 값을 돌려주는 것을 보이는 도식",
+      "svgLabel": "iso(1)부터 sysUpTime(3)까지 여덟 가지를 차례로 잇고 그 끝에 OID 1.3.6.1.2.1.1.3을 둔 나무와, 매니저와 라우터 1의 에이전트를 둔 그림",
+      "question": "OID는 MIB의 값을 어떻게 가리킬까?",
+      "idleCaption": "sysUpTime이라는 관리 객체의 OID를 나무의 맨 위에서부터 한 갈래만 따라 그렸다. 그 옆에는 이 OID로 값을 묻는 매니저와 「라우터 1」의 에이전트를 두었다. 버튼을 고르면 OID를 읽는 법과 값이 어디서 오는지 볼 수 있다.",
+      "legend": "노드 안 이름 뒤의 괄호 속 수가 그 가지의 번호이고, 노드 사이의 선은 가지가 이어진 관계다. 화살표는 따라가는 방향이나 메시지가 가는 방향이다.",
+      "nodes": {
+        "iso": "iso(1)",
+        "org": "org(3)",
+        "dod": "dod(6)",
+        "internet": "internet(1)",
+        "mgmt": "mgmt(2)",
+        "mib2": "mib-2(1)",
+        "system": "system(1)",
+        "sysuptime": "sysUpTime(3)",
+        "oid": "1.3.6.1.2.1.1.3",
+        "manager": "매니저",
+        "agent": "라우터 1의 에이전트"
+      },
+      "notes": {
+        "join-note": "번호를 점으로 잇는다",
+        "object-note": "관리 객체의 이름표",
+        "ask-note": "OID로 묻는다",
+        "value-note": "값을 돌려준다"
+      },
+      "scenarios": [
+        {
+          "id": "path",
+          "label": "나무 따라가기",
+          "caption": "맨 위의 iso(1)에서 org(3), dod(6), internet(1), mgmt(2), mib-2(1), system(1)을 거쳐 sysUpTime(3)까지 가지를 따라간다. 지나온 가지의 번호를 차례로 점으로 이으면 OID 1.3.6.1.2.1.1.3이 된다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        },
+        {
+          "id": "object",
+          "label": "관리 객체",
+          "caption": "1.3.6.1.2.1.1.3은 sysUpTime이라는 관리 객체의 이름표다. 이 값은 장비에서 네트워크 관리를 맡은 부분이 마지막으로 다시 시작된 뒤 흐른 시간이고, 100분의 1초 단위로 센다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        },
+        {
+          "id": "agent",
+          "label": "값은 에이전트에",
+          "caption": "매니저는 이 OID 뒤에 0을 붙인 1.3.6.1.2.1.1.3.0으로 「라우터 1」의 에이전트에게 값을 묻고, 에이전트가 자기 장비의 MIB에서 찾은 값을 응답에 채워 돌려준다. 값을 가진 쪽은 매니저가 아니라 에이전트다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.mib"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

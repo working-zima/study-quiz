@@ -154,6 +154,7 @@ import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
+import { MibTreeDiagram } from './MibTreeDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
@@ -243,6 +244,7 @@ import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
+import { SnmpRolesDiagram } from './SnmpRolesDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
@@ -528,6 +530,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mail-file.ftp-modes': FtpModesDiagram,
   'app-protocols-mail-file.tftp': TftpBlocksDiagram,
   'app-protocols-mail-file.ssh': SshSessionDiagram,
+  'app-protocols-mgmt-security.snmp': SnmpRolesDiagram,
+  'app-protocols-mgmt-security.mib': MibTreeDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
