@@ -277,6 +277,85 @@
         }
       ],
       "sources": ["dns.name-resolution"]
+    },
+    "query-modes": {
+      "label": "클라이언트가 로컬 DNS 서버에 보내는 재귀적 질의와, 로컬 DNS 서버가 루트·TLD·권한 있는 네임 서버에 보내는 반복적 질의에서 질의를 받은 서버가 무엇을 돌려주는지 보이는 도식",
+      "svgLabel": "루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 쌓아 한쪽에 두고, 로컬 DNS 서버와 클라이언트를 따로 놓아 질의와 응답의 화살표로 잇는 그림",
+      "question": "물은 서버가 끝까지 찾아 줄까, 다음 서버를 알려 줄까?",
+      "idleCaption": "캐시가 비어 있을 때 클라이언트가 www.example.com의 IP 주소를 찾는 장면이다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 클라이언트가 보내는 재귀적 질의와 로컬 DNS 서버가 보내는 반복적 질의에서, 질의를 받은 서버가 무엇을 돌려주는지 볼 수 있다.",
+      "legend": "화살표는 질의나 응답이 가는 방향이고, 화살표 곁의 글은 질의의 방식이나 응답에 담긴 것이다.",
+      "nodes": {
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버",
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버"
+      },
+      "notes": {
+        "recursive-note": "재귀적 질의",
+        "final-note": "198.51.100.10",
+        "iterative-note": "반복적 질의",
+        "root-note": "다음에 물을 서버를 알려 준다",
+        "tld-note": "다음에 물을 서버를 알려 준다",
+        "auth-note": "198.51.100.10"
+      },
+      "scenarios": [
+        {
+          "id": "recursive",
+          "label": "재귀적",
+          "caption": "클라이언트는 로컬 DNS 서버에 재귀적 질의 하나를 보내고 답을 기다린다. 로컬 DNS 서버는 필요하면 다른 서버들에 대신 물어 가며 끝까지 찾고, 다른 서버를 알려 주지 않고 최종 주소 198.51.100.10을 돌려준다.",
+          "sources": ["dns.recursive-iterative-query"]
+        },
+        {
+          "id": "iterative",
+          "label": "반복적",
+          "caption": "로컬 DNS 서버가 루트 네임 서버와 com TLD 네임 서버에 반복적 질의를 보내면, 두 서버는 다른 서버에 묻지 않고 다음에 물을 서버를 알려 준다. 그 서버에 다시 묻는 쪽은 로컬 DNS 서버이고, 마지막에 권한 있는 네임 서버가 198.51.100.10을 답한다.",
+          "sources": ["dns.recursive-iterative-query"]
+        }
+      ],
+      "sources": ["dns.recursive-iterative-query"]
+    },
+    "cache-expiry": {
+      "label": "TTL이 3600초인 www.example.com의 레코드가 로컬 DNS 서버의 캐시에 들어온 뒤, 1800초 뒤와 3600초 뒤에 남은 TTL과 캐시가 그 레코드로 하는 일을 보이는 도식",
+      "svgLabel": "로컬 DNS 서버의 캐시 상자 안에 들어온 때, 1800초 뒤, 3600초 뒤의 남은 TTL을 위에서 아래로 놓고, 상자 아래에 다시 물어 새 레코드 받기를 놓은 그림",
+      "question": "캐시에 든 DNS 답은 언제까지 쓸까?",
+      "idleCaption": "TTL이 3600초인 www.example.com의 레코드가 로컬 DNS 서버의 캐시에 들어온 뒤, 위에서 아래로 시간이 지나며 남은 TTL이 줄어드는 모습이다. TTL 값은 예로 붙인 것이다. 버튼을 고르면 시점마다 캐시가 이 레코드로 무엇을 하는지 볼 수 있다.",
+      "legend": "위에서 아래로 시간이 지나고, 상자 곁의 글은 그 시점에 캐시가 이 레코드로 하는 일이다.",
+      "nodes": {
+        "stored": "들어온 때 · 남은 TTL 3600",
+        "half": "1800초 뒤 · 남은 TTL 1800",
+        "expired": "3600초 뒤 · 남은 TTL 0",
+        "reask": "다시 물어 새 레코드 받기"
+      },
+      "groups": {
+        "cache": "로컬 DNS 서버의 캐시"
+      },
+      "notes": {
+        "stored-note": "TTL 3600과 함께 넣는다",
+        "half-note": "다시 묻지 않고 캐시로 답한다",
+        "expired-note": "레코드를 버린다"
+      },
+      "scenarios": [
+        {
+          "id": "stored",
+          "label": "저장",
+          "caption": "로컬 DNS 서버는 이름 풀이로 받아 온 레코드를 TTL 3600과 함께 캐시에 넣는다. TTL은 이 레코드를 캐시에 둘 수 있는 가장 긴 시간이라, 이 레코드는 길어야 3600초 동안 캐시에 머문다.",
+          "sources": ["dns.dns-cache-ttl"]
+        },
+        {
+          "id": "half",
+          "label": "1800초 뒤",
+          "caption": "들어온 지 1800초 뒤에는 남은 TTL이 3600에서 1800을 뺀 1800이다. TTL이 남아 있으므로 로컬 DNS 서버는 다른 서버에 묻지 않고 캐시의 레코드로 답하고, 클라이언트가 받는 레코드에도 남은 1800이 적힌다.",
+          "sources": ["dns.dns-cache-ttl"]
+        },
+        {
+          "id": "expired",
+          "label": "만료",
+          "caption": "들어온 지 3600초가 지나면 남은 TTL이 0이 되어 로컬 DNS 서버가 이 레코드를 버린다. 그 뒤 이 이름을 물으면 캐시로 답하지 못하고, 다시 물어 새 레코드를 받는다.",
+          "sources": ["dns.dns-cache-ttl"]
+        }
+      ],
+      "sources": ["dns.dns-cache-ttl"]
     }
   },
   "tables": {},

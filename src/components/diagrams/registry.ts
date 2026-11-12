@@ -28,6 +28,7 @@ import { BandwidthDiagram } from './BandwidthDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
+import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
@@ -222,6 +223,7 @@ import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
+import { QueryModesDiagram } from './QueryModesDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
@@ -549,6 +551,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'dns.name-servers': NameServerRolesDiagram,
   'dns.dns-zone': ZoneTransferDiagram,
   'dns.name-resolution': ResolutionStepsDiagram,
+  'dns.recursive-iterative-query': QueryModesDiagram,
+  'dns.dns-cache-ttl': CacheExpiryDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
