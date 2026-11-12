@@ -1,0 +1,81 @@
+{
+  "project": "Study Quiz",
+  "phase": "79-network-dns-linux-servers",
+  "steps": [
+    {
+      "step": 0,
+      "name": "dns-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "dns-hosts",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "hierarchy-name-servers",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "zone-resolution",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "query-modes-ttl",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "dns-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "records-soa",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "reverse-round-robin",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "transport-dnssec",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "linux-servers-sources",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "resolv-bind",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "named-options-httpd",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "listen-keepalive",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "indexes-request-body",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "iptables",
+      "status": "pending"
+    }
+  ]
+}
