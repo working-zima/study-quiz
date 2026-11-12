@@ -113,6 +113,7 @@ import { HealthViewsDiagram } from './HealthViewsDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HostsFileDiagram } from './HostsFileDiagram'
 import { HttpsStackDiagram } from './HttpsStackDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
@@ -163,6 +164,7 @@ import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NameToAddressDiagram } from './NameToAddressDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
@@ -537,6 +539,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.opening-states': OpeningStatesDiagram,
   'tcp-connection.closing-states': ClosingStatesDiagram,
   'tcp-connection.time-wait': TimeWaitDiagram,
+  'dns.dns': NameToAddressDiagram,
+  'dns.hosts-file': HostsFileDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,

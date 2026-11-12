@@ -1,0 +1,92 @@
+{
+  "diagrams": {
+    "name-to-address": {
+      "label": "PC가 DNS 서버에 이름의 IP 주소를 묻고, 답으로 받은 주소로 웹 브라우저가 웹 서버에 접속하는 차례를 보이는 도식",
+      "svgLabel": "왼쪽에 PC(웹 브라우저), 오른쪽 위에 DNS 서버, 오른쪽 아래에 웹 서버 198.51.100.10을 놓은 그림",
+      "question": "이름만 아는 웹 서버에 어떻게 접속할까?",
+      "idleCaption": "사용자가 웹 브라우저에 www.example.com을 입력하면, PC는 먼저 DNS 서버에 그 이름의 IP 주소를 묻고 받은 주소로 웹 서버에 접속한다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 차례마다 누가 누구에게 무엇을 보내는지 볼 수 있다.",
+      "legend": "화살표는 메시지가 가는 방향이고, 화살표 옆의 글은 그 메시지에 담긴 것이다.",
+      "nodes": {
+        "pc": "PC (웹 브라우저)",
+        "dns-server": "DNS 서버",
+        "web-server": "웹 서버 198.51.100.10"
+      },
+      "notes": {
+        "ask-note": "www.example.com의 주소는?",
+        "answer-note": "198.51.100.10",
+        "connect-note": "198.51.100.10으로 접속"
+      },
+      "scenarios": [
+        {
+          "id": "ask",
+          "label": "① 묻기",
+          "caption": "PC가 DNS 서버에 www.example.com의 IP 주소를 묻는다. PC는 이름만 알고 주소는 모르므로, 아직 웹 서버에는 아무것도 보내지 않는다.",
+          "sources": ["dns.dns"]
+        },
+        {
+          "id": "answer",
+          "label": "② 답",
+          "caption": "DNS 서버가 이 이름에 짝지어진 IP 주소 198.51.100.10을 PC에 돌려준다. 이렇게 이름으로 IP 주소를 찾는 일을 이름 풀이라 한다.",
+          "sources": ["dns.dns"]
+        },
+        {
+          "id": "connect",
+          "label": "③ 접속",
+          "caption": "웹 브라우저는 받은 주소 198.51.100.10으로 웹 서버에 접속해 웹 페이지를 요청한다. 접속에 쓰이는 것은 이름이 아니라 IP 주소이고, DNS 서버가 할 일은 주소를 알려 주는 데서 끝난다.",
+          "sources": ["dns.dns"]
+        }
+      ],
+      "sources": ["dns.dns"]
+    },
+    "hosts-file": {
+      "label": "/etc/hosts의 한 줄을 IP 주소·정식 이름·별명 칸으로 나누고, hosts 파일을 먼저 보는 차례에서 파일에 적힌 이름과 없는 이름이 어디서 주소를 얻는지 보이는 도식",
+      "svgLabel": "위에 /etc/hosts의 한 줄 192.0.2.20, server1.example.com, server1을 칸 셋으로 나눠 놓고, 아래에 server1 찾기와 www.example.com 찾기가 /etc/hosts 보기로 이어지고 그 옆에 DNS 서버에 묻기가 있는 그림",
+      "question": "hosts 파일에 적어 둔 이름은 어디서 주소를 찾을까?",
+      "idleCaption": "위는 /etc/hosts의 예 한 줄이고, 아래는 Linux에서 /etc/nsswitch.conf에 hosts: files dns라고 적어 hosts 파일을 먼저 보는 차례다. 주소와 이름은 예로 붙인 것이다. 버튼을 고르면 줄의 칸과, 파일에 적힌 이름과 없는 이름이 어디서 주소를 얻는지 볼 수 있다.",
+      "legend": "위 박스의 노드 셋은 한 줄의 칸을 왼쪽부터 차례로 놓은 것이고, 노드 아래 글은 그 칸의 이름이다. 화살표는 이름을 찾는 차례다.",
+      "nodes": {
+        "addr": "192.0.2.20",
+        "canonical": "server1.example.com",
+        "alias": "server1",
+        "find-listed": "server1 찾기",
+        "find-unlisted": "www.example.com 찾기",
+        "look-hosts": "/etc/hosts 보기",
+        "ask-dns": "DNS 서버에 묻기"
+      },
+      "groups": {
+        "line": "/etc/hosts의 한 줄",
+        "order": "hosts: files dns일 때"
+      },
+      "notes": {
+        "addr-name": "IP 주소",
+        "canonical-name": "정식 이름",
+        "alias-name": "별명",
+        "listed-result": "192.0.2.20을 쓴다",
+        "unlisted-result": "파일에 없는 이름"
+      },
+      "scenarios": [
+        {
+          "id": "fields",
+          "label": "줄의 칸",
+          "caption": "한 줄에는 IP 주소 192.0.2.20, 그 주소를 가진 호스트의 정식 이름 server1.example.com, 별명 server1을 차례로 적고 칸 사이는 빈칸이나 탭으로 띄운다. 별명은 정식 이름 대신 쓸 수 있는 짧은 이름이다.",
+          "sources": ["dns.hosts-file"]
+        },
+        {
+          "id": "listed",
+          "label": "적힌 이름",
+          "caption": "server1은 이 줄에 별명으로 적혀 있다. hosts 파일을 먼저 보는 차례라서 /etc/hosts에서 짝을 찾으면 거기서 192.0.2.20을 얻고, DNS 서버에는 묻지 않는다.",
+          "sources": ["dns.hosts-file"]
+        },
+        {
+          "id": "unlisted",
+          "label": "없는 이름",
+          "caption": "www.example.com은 /etc/hosts에 적혀 있지 않다. 그래서 파일에서 짝을 찾지 못하고, 다음 차례인 DNS 서버에 이 이름의 IP 주소를 묻는다.",
+          "sources": ["dns.hosts-file"]
+        }
+      ],
+      "sources": ["dns.hosts-file"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
