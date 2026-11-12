@@ -1,0 +1,393 @@
+{
+  "diagrams": {
+    "mail-path": {
+      "label": "메일 한 통이 보내는 사람의 메일 클라이언트에서 메일 서버 두 대를 거쳐 받는 사람의 메일함에 쌓였다가 받는 사람의 메일 클라이언트로 가는 길과, 구간마다 쓰는 프로토콜을 보이는 도식",
+      "svgLabel": "보내는 사람의 메일 클라이언트, mail.example.com, user2의 메일함이 든 mail.example.net, 받는 사람의 메일 클라이언트를 차례로 잇고, 앞의 두 구간에 보내기 · SMTP, 마지막 구간에 가져오기 · POP3나 IMAP을 단 그림",
+      "question": "메일은 어떤 길을 지나 받는 사람에게 갈까?",
+      "idleCaption": "user1@example.com이 user2@example.net에게 보낸 메일 한 통이 지나는 길을 차례대로 놓았다. 앞의 두 구간은 메일을 가진 쪽이 SMTP로 넘겨 보내고, 마지막 구간은 받는 사람이 POP3나 IMAP으로 가져온다. 버튼을 고르면 구간마다 누가 무엇을 하는지 볼 수 있다.",
+      "legend": "노드 하나가 프로그램이나 메일함 하나이고, mail.example.net이라 적힌 박스는 받는 쪽 메일 서버, 그 안의 노드가 받는 사람의 메일함이다. 선 옆의 글은 그 구간에서 하는 일과 쓰는 프로토콜이고, 화살표는 메일이 옮겨 가는 방향이다.",
+      "nodes": {
+        "sender-client": "보내는 사람의 메일 클라이언트",
+        "sender-server": "mail.example.com",
+        "mailbox": "user2의 메일함",
+        "receiver-client": "받는 사람의 메일 클라이언트"
+      },
+      "groups": {
+        "receiver-host": "mail.example.net"
+      },
+      "notes": {
+        "proto-submit": "보내기 · SMTP",
+        "proto-relay": "보내기 · SMTP",
+        "proto-fetch": "가져오기 · POP3나 IMAP"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "① 보내기",
+          "caption": "보내는 사람의 메일 클라이언트가 mail.example.com에, mail.example.com이 다시 mail.example.net에 메일을 넘긴다. 두 구간 모두 메일을 가진 쪽이 다음 서버에 연결해 SMTP로 넘겨 보낸다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        },
+        {
+          "id": "store",
+          "label": "② 메일함",
+          "caption": "mail.example.net이 받은 메일을 user2의 메일함에 넣어 둔다. 받는 사람의 기기는 늘 켜진 채 네트워크에 이어져 있지 않으므로, 메일은 받는 사람이 가져갈 때까지 메일함에 머문다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        },
+        {
+          "id": "fetch",
+          "label": "③ 가져오기",
+          "caption": "user2가 나중에 메일 클라이언트를 열면, 클라이언트가 메일함에 접속해 메일을 가져온다. 이 구간은 SMTP가 아니라 POP3나 IMAP을 쓴다. SMTP는 메일함의 메일을 꺼내 오는 방법을 정하지 않는다.",
+          "sources": ["app-protocols-mail-file.email-delivery"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.email-delivery"]
+    },
+    "smtp-dialogue": {
+      "label": "SMTP 클라이언트 mail.example.com이 SMTP 서버 mail.example.net에 메일 한 통을 넘기며 주고받는 명령과 응답 코드를 차례대로 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 mail.example.com과 오른쪽 서버 mail.example.net:25 두 기둥 사이에, 인사의 220·EHLO·250, 주고받을 사람의 MAIL FROM·250·RCPT TO·250, 메일 내용 넘기기의 DATA·354·메일 내용·마침표 한 줄·250, 끝의 QUIT·221을 위에서 아래로 놓은 그림",
+      "question": "SMTP로 메일 한 통을 넘길 때 무엇을 주고받을까?",
+      "idleCaption": "mail.example.com이 mail.example.net의 25번 포트로 연결해 user2@example.net 앞 메일 한 통을 넘기는 대화를 위에서 아래로 놓았다. 가운데 박스의 왼쪽 노드는 클라이언트가 보내는 명령, 오른쪽 노드는 서버가 답하는 응답 코드다. 버튼을 고르면 단계마다 무엇이 오가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 서버의 이름이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 가운데 박스 하나가 대화의 한 단계이고, 화살표는 명령이나 응답이 가는 방향이다.",
+      "nodes": {
+        "client": "mail.example.com",
+        "server": "mail.example.net:25",
+        "r220": "220",
+        "ehlo": "EHLO",
+        "r250-ehlo": "250",
+        "mail-from": "MAIL FROM",
+        "r250-mail": "250",
+        "rcpt-to": "RCPT TO",
+        "r250-rcpt": "250",
+        "data-cmd": "DATA",
+        "r354": "354",
+        "content": "메일 내용",
+        "dot": "마침표 한 줄",
+        "r250-data": "250",
+        "quit-cmd": "QUIT",
+        "r221": "221"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "greet": "인사",
+        "envelope": "주고받을 사람",
+        "data": "메일 내용 넘기기",
+        "quit": "끝"
+      },
+      "scenarios": [
+        {
+          "id": "greet",
+          "label": "① 인사",
+          "caption": "클라이언트가 서버의 25번 포트로 TCP 연결을 열면, 서버가 메일을 받을 준비가 됐다는 뜻으로 220을 보낸다. 클라이언트가 EHLO로 자기를 밝히면 서버가 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "envelope",
+          "label": "② 주고받을 사람",
+          "caption": "클라이언트가 MAIL FROM으로 보내는 사람 user1@example.com을, RCPT TO로 받는 사람 user2@example.net을 알린다. 서버는 명령마다 요청한 일을 마쳤다는 뜻의 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "data",
+          "label": "③ 메일 내용",
+          "caption": "클라이언트가 DATA를 보내면 서버가 354로 메일 내용을 보내라고 답한다. 클라이언트가 메일 내용을 보내고 마침표 한 줄로 끝을 알리면, 서버가 메일을 받아 맡고 250으로 답한다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        },
+        {
+          "id": "quit",
+          "label": "④ 끝",
+          "caption": "넘길 메일이 더 없으면 클라이언트가 QUIT를 보내고, 서버가 221로 답한 뒤 연결을 닫는다. 이제 메일은 mail.example.net에 있고, 이 서버가 user2의 메일함에 넣어 둔다.",
+          "sources": ["app-protocols-mail-file.smtp"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.smtp"]
+    },
+    "pop3-download": {
+      "label": "user2의 노트북이 POP3로 mail.example.net의 메일함에서 메일 두 통을 내려받고, QUIT 뒤 서버가 그 메일을 지워 휴대폰으로 접속해도 메일함이 비어 있는 것을 보이는 도식",
+      "svgLabel": "왼쪽 위 처음의 메일함 박스에 1번 메일과 2번 메일, 오른쪽 위 노트북 박스에 내려받은 1번 메일과 2번 메일, 왼쪽 아래에 QUIT 뒤의 메일함, 오른쪽 아래에 휴대폰을 둔 그림",
+      "question": "POP3로 받은 메일은 어디에 남을까?",
+      "idleCaption": "왼쪽은 mail.example.net에 있는 user2의 메일함이다. 위는 노트북이 접속하기 전, 아래는 노트북이 QUIT로 대화를 마친 뒤의 모습이다. 오른쪽은 user2의 두 기기다. 버튼을 고르면 메일이 어디로 가고 어디에 남는지 차례대로 볼 수 있다.",
+      "legend": "박스 하나가 메일함이나 기기 하나이고, 박스 안의 노드가 그 안에 든 메일이다. 화살표는 메일이 옮겨 가거나 기기가 메일함에 접속하는 방향이고, 곁의 글은 그때 보내는 명령이나 그 결과다.",
+      "nodes": {
+        "mail1-server": "1번 메일",
+        "mail2-server": "2번 메일",
+        "mail1-laptop": "1번 메일",
+        "mail2-laptop": "2번 메일",
+        "mailbox-after": "QUIT 뒤의 메일함",
+        "phone": "휴대폰"
+      },
+      "groups": {
+        "server-before": "처음의 메일함",
+        "laptop": "노트북"
+      },
+      "notes": {
+        "retr-note": "RETR",
+        "quit-note": "QUIT · 지워짐",
+        "empty-note": "두 통이 없다"
+      },
+      "scenarios": [
+        {
+          "id": "download",
+          "label": "① 내려받기",
+          "caption": "노트북의 메일 클라이언트가 USER와 PASS로 사용자 확인을 마친 뒤, RETR로 1번과 2번 메일을 내려받아 노트북에 저장한다. 이어서 DELE로 두 메일에 지우기 표시를 하지만, 서버의 메일은 아직 그대로 있다.",
+          "sources": ["app-protocols-mail-file.pop3"]
+        },
+        {
+          "id": "delete",
+          "label": "② 지우기",
+          "caption": "노트북이 QUIT를 보내면 서버가 지우기 표시가 된 1번과 2번 메일을 메일함에서 지우고 연결을 닫는다. 이제 두 통은 노트북에만 있고, 서버의 메일함은 비었다.",
+          "sources": ["app-protocols-mail-file.pop3"]
+        },
+        {
+          "id": "other-device",
+          "label": "③ 다른 기기",
+          "caption": "그 뒤 user2가 휴대폰으로 같은 메일함에 접속해도 메일함이 비어 있어 두 통을 볼 수 없다. POP3로 내려받고 서버에서 지운 메일은 내려받은 기기에만 있다.",
+          "sources": ["app-protocols-mail-file.pop3"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.pop3"]
+    },
+    "imap-sync": {
+      "label": "user2의 노트북과 휴대폰이 IMAP으로 mail.example.net의 같은 메일함에 접속해, 노트북에서 메일을 읽고 여행 메일함으로 옮긴 일을 휴대폰도 그대로 보는 것을 보이는 도식",
+      "svgLabel": "mail.example.net 박스 안에 INBOX 메일함의 읽지 않은 메일과 여행 메일함의 읽은 메일을 두고, 아래에 노트북과 휴대폰을 각각 서버 박스에 이은 그림",
+      "question": "IMAP을 쓰면 두 기기가 같은 메일함을 볼까?",
+      "idleCaption": "user2의 노트북과 휴대폰이 모두 IMAP으로 mail.example.net의 메일함에 접속해 있다. 서버 박스 안의 INBOX와 여행은 user2의 메일함 둘이고, INBOX 쪽은 처음 상태, 여행 쪽은 노트북이 메일을 옮긴 뒤의 상태다. 버튼을 고르면 무엇이 어디에 남고 누가 무엇을 보는지 볼 수 있다.",
+      "legend": "mail.example.net이라 적힌 박스가 메일 서버이고, 그 안의 작은 박스가 메일함, 메일함 안의 노드가 메일이다. 서버 박스 아래의 두 노드는 user2의 기기이고, 선은 기기가 서버에 접속해 있다는 뜻이다. 화살표는 바뀐 것이 전해지는 방향이다.",
+      "nodes": {
+        "mail-new": "읽지 않은 메일",
+        "mail-moved": "읽은 메일",
+        "laptop": "노트북",
+        "phone": "휴대폰"
+      },
+      "groups": {
+        "server": "mail.example.net",
+        "inbox": "INBOX",
+        "trip": "여행"
+      },
+      "notes": {
+        "keep-note": "서버에 남는다",
+        "move-note": "읽고 여행으로 옮김",
+        "same-note": "같은 상태"
+      },
+      "scenarios": [
+        {
+          "id": "keep",
+          "label": "① 서버에 둔다",
+          "caption": "메일은 서버의 INBOX에 들어 있고, 노트북과 휴대폰은 각자 이 메일함에 접속해 본다. 메일을 보여 줄 때 필요한 부분을 가져가도 메일 자체는 서버의 메일함에 남는다.",
+          "sources": ["app-protocols-mail-file.imap"]
+        },
+        {
+          "id": "change",
+          "label": "② 한 기기에서",
+          "caption": "노트북에서 그 메일을 열어 읽으면 서버의 메일에 \\Seen이 붙고, 여행으로 옮기면 서버에서 그 메일이 INBOX에서 빠져 여행에 들어간다. 노트북에서 한 일이 서버의 메일함을 바꾼다.",
+          "sources": ["app-protocols-mail-file.imap"]
+        },
+        {
+          "id": "sync",
+          "label": "③ 다른 기기에서",
+          "caption": "나중에 휴대폰에서 메일 클라이언트를 열면 휴대폰도 서버의 메일함을 보므로, 그 메일은 INBOX가 아니라 여행에 있고 이미 읽은 메일로 보인다. 휴대폰에서 같은 일을 다시 할 필요가 없다.",
+          "sources": ["app-protocols-mail-file.imap"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.imap"]
+    },
+    "ftp-connections": {
+      "label": "클라이언트 192.0.2.10이 서버 198.51.100.10에 FTP로 접속해, 하나로 이어지는 제어 연결로 명령을 보내고 파일마다 새로 맺는 데이터 연결로 report.txt와 notes.txt의 내용을 받는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 192.0.2.10과 오른쪽 서버 198.51.100.10 두 기둥 사이에, 위에서부터 제어 연결 · 21번, USER · PASS, RETR report.txt, 데이터 연결 박스의 report.txt 내용, RETR notes.txt, 데이터 연결 박스의 notes.txt 내용, QUIT를 차례로 놓은 그림",
+      "question": "FTP는 명령과 파일을 같은 연결로 보낼까?",
+      "idleCaption": "클라이언트 192.0.2.10이 서버 198.51.100.10에 접속해 파일 둘을 내려받고 접속을 끝내기까지를 위에서 아래로 놓았다. 두 기둥 사이 맨 위 노드는 클라이언트가 여는 제어 연결이고, 박스 밖의 다른 노드는 그 제어 연결로 보내는 명령이다. 데이터 연결 박스 안의 노드는 그때 맺은 데이터 연결로 오는 파일 내용이다. 버튼을 고르면 연결마다 무엇이 오가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 서버의 주소이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 화살표는 명령이나 파일 내용이 가는 방향이고, 곁의 글은 그 데이터 연결이 어떻게 되는지다.",
+      "nodes": {
+        "client": "192.0.2.10",
+        "server": "198.51.100.10",
+        "control": "제어 연결 · 21번",
+        "user-pass": "USER · PASS",
+        "retr1": "RETR report.txt",
+        "data1": "report.txt 내용",
+        "retr2": "RETR notes.txt",
+        "data2": "notes.txt 내용",
+        "quit": "QUIT"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "data1-box": "데이터 연결",
+        "data2-box": "데이터 연결"
+      },
+      "notes": {
+        "data1-note": "다 보내면 끊긴다",
+        "data2-note": "새로 맺는다"
+      },
+      "scenarios": [
+        {
+          "id": "control",
+          "label": "① 제어 연결",
+          "caption": "클라이언트가 서버의 21번 포트로 제어 연결을 열고, 이 연결로 USER·PASS, RETR, QUIT 같은 명령을 보내고 응답을 받는다. 제어 연결은 QUIT로 접속을 끝낼 때까지 하나로 이어진다.",
+          "sources": ["app-protocols-mail-file.ftp"]
+        },
+        {
+          "id": "data",
+          "label": "② 데이터 연결",
+          "caption": "RETR report.txt를 보내면 데이터 연결이 맺어지고, 서버가 그 연결로 report.txt의 내용을 보낸다. 다 보내면 서버가 데이터 연결을 닫고 제어 연결로 226을 보낸다. 제어 연결은 그대로 남는다.",
+          "sources": ["app-protocols-mail-file.ftp"]
+        },
+        {
+          "id": "next-file",
+          "label": "③ 다음 파일",
+          "caption": "이어서 RETR notes.txt를 보내면 데이터 연결을 새로 맺어 notes.txt의 내용을 보내고, 다 보내면 다시 닫는다. 파일 하나를 옮길 때마다 데이터 연결을 새로 맺고, 명령은 처음 연 제어 연결로 계속 보낸다.",
+          "sources": ["app-protocols-mail-file.ftp"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.ftp"]
+    },
+    "ftp-modes": {
+      "label": "FTP에서 클라이언트 192.0.2.10이 서버 198.51.100.10의 파일을 받을 때, 능동 모드와 수동 모드 가운데 어느 쪽이 데이터 연결을 여는지 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 192.0.2.10과 오른쪽 서버 198.51.100.10 두 기둥 사이에, 위 능동 모드 박스에 PORT · 50002번과 20번에서 50002번으로를, 아래 수동 모드 박스에 PASV, 227 · 50200번, 50200번으로를 놓은 그림",
+      "question": "데이터 연결은 누가 열까?",
+      "idleCaption": "클라이언트 192.0.2.10이 서버 198.51.100.10에서 report.txt를 받으려고 데이터 연결을 맺는 두 방식을 놓았다. 위 박스가 능동 모드, 아래 박스가 수동 모드다. 버튼을 고르면 어느 쪽이 제어 연결로 포트를 알리고 어느 쪽이 데이터 연결을 여는지 볼 수 있다.",
+      "legend": "PORT·PASV·227 노드는 제어 연결로 오가는 명령과 응답이고, 「~번으로」로 끝나는 노드가 데이터 연결이다. 화살표는 명령이나 응답이 가는 방향, 데이터 연결을 여는 방향이다.",
+      "nodes": {
+        "client": "192.0.2.10",
+        "server": "198.51.100.10",
+        "port-cmd": "PORT · 50002번",
+        "active-data": "20번에서 50002번으로",
+        "pasv-cmd": "PASV",
+        "pasv-reply": "227 · 50200번",
+        "passive-data": "50200번으로"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "active": "능동 모드",
+        "passive": "수동 모드"
+      },
+      "notes": {
+        "active-note": "클라이언트로 들어오는 연결",
+        "passive-note": "클라이언트에서 나가는 연결"
+      },
+      "scenarios": [
+        {
+          "id": "active",
+          "label": "능동 모드",
+          "caption": "클라이언트가 자기 50002번 포트를 열어 놓고 PORT로 그 주소와 포트를 알리면, 서버가 자기 20번 포트에서 그 포트로 데이터 연결을 연다. 이 연결은 클라이언트 쪽으로 들어오는 연결이라, 들어오는 연결을 막는 방화벽이 클라이언트 앞에 있으면 막힌다.",
+          "sources": ["app-protocols-mail-file.ftp-modes"]
+        },
+        {
+          "id": "passive",
+          "label": "수동 모드",
+          "caption": "클라이언트가 PASV를 보내면 서버가 기다릴 포트 50200번을 골라 227 응답으로 알리고, 클라이언트가 그 포트로 데이터 연결을 연다. 이 연결은 클라이언트에서 바깥으로 나가는 연결이라, 들어오는 연결만 막는 방화벽을 지난다.",
+          "sources": ["app-protocols-mail-file.ftp-modes"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.ftp-modes"]
+    },
+    "tftp-blocks": {
+      "label": "클라이언트 192.0.2.10이 서버 198.51.100.10에서 1,300바이트 파일 config.txt를 TFTP로 내려받으며 블록마다 확인 응답을 주고받는 차례와, 블록 2를 잃었을 때 다시 보내는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 192.0.2.10과 오른쪽 서버 198.51.100.10 두 기둥 사이에, 위에서부터 읽기 요청 · 69번, 블록 1 · 512바이트, 확인 응답 1, 블록 2 · 512바이트, 확인 응답 2, 블록 3 · 276바이트, 확인 응답 3을 차례로 놓고, 그 아래 블록 2를 잃었을 때 박스에 블록 2 · 512바이트, 확인 응답 1 · 다시, 블록 2 · 다시를 놓은 그림",
+      "question": "TFTP는 파일을 어떻게 나눠 보낼까?",
+      "idleCaption": "클라이언트 192.0.2.10이 서버 198.51.100.10에서 1,300바이트 파일 config.txt를 내려받는 차례를 위에서 아래로 놓았다. 클라이언트가 서버의 69번으로 읽기 요청을 보내면, 서버가 파일을 512바이트씩 블록으로 나눠 보내고 클라이언트가 블록마다 확인 응답을 보낸다. 아래 박스는 블록 2를 잃었을 때의 차례다. 버튼을 고르면 단계마다 무엇이 오가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 서버의 주소이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 화살표는 요청·블록·확인 응답이 가는 방향이고, 곁의 글은 그 블록이 어떻게 되는지다.",
+      "nodes": {
+        "client": "192.0.2.10",
+        "server": "198.51.100.10",
+        "req": "읽기 요청 · 69번",
+        "b1": "블록 1 · 512바이트",
+        "a1": "확인 응답 1",
+        "b2": "블록 2 · 512바이트",
+        "a2": "확인 응답 2",
+        "b3": "블록 3 · 276바이트",
+        "a3": "확인 응답 3",
+        "lost2": "블록 2 · 512바이트",
+        "re-a1": "확인 응답 1 · 다시",
+        "re-b2": "블록 2 · 다시"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "lost-box": "블록 2를 잃었을 때"
+      },
+      "notes": {
+        "last-note": "512보다 짧아 끝",
+        "lost-note": "사라짐"
+      },
+      "scenarios": [
+        {
+          "id": "lockstep",
+          "label": "블록마다",
+          "caption": "서버가 블록 1을 보내면 클라이언트가 확인 응답 1을 보내고, 서버는 확인 응답 1을 받고 나서야 블록 2를 보낸다. 확인 응답을 받기 전에는 다음 블록을 보내지 않으므로 한 번에 블록 하나만 오간다.",
+          "sources": ["app-protocols-mail-file.tftp"]
+        },
+        {
+          "id": "last",
+          "label": "끝",
+          "caption": "블록 1과 블록 2로 512 + 512 = 1,024바이트를 보내면 남은 크기는 1,300 − 1,024 = 276바이트다. 이 276바이트가 블록 3이 되고, 512바이트보다 짧으므로 클라이언트는 블록 3이 마지막임을 알고 확인 응답 3을 보낸다.",
+          "sources": ["app-protocols-mail-file.tftp"]
+        },
+        {
+          "id": "lost",
+          "label": "잃었을 때",
+          "caption": "서버가 보낸 블록 2가 오는 길에 사라지면, 블록 2를 기다리던 클라이언트가 시간 초과 뒤 마지막으로 보낸 확인 응답 1을 다시 보낸다. 이를 받은 서버가 블록 2를 다시 보내 빠진 자리를 채운다.",
+          "sources": ["app-protocols-mail-file.tftp"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.tftp"]
+    },
+    "ssh-session": {
+      "label": "사용자의 컴퓨터가 ssh user1@198.51.100.10으로 서버 198.51.100.10에 SSH로 접속해, 서버를 확인하고 암호화한 통로를 세운 뒤 사용자를 확인하고 명령과 결과를 주고받는 차례를, Telnet으로 접속할 때와 견주어 보이는 도식",
+      "svgLabel": "왼쪽 사용자의 컴퓨터와 오른쪽 서버 198.51.100.10 두 기둥 사이에, 위에서부터 TCP 연결 · 22번, 서버의 호스트 키, 암호화한 통로 박스의 사용자 인증·명령·결과를 차례로 놓고, 그 아래 Telnet으로 접속하면 박스에 Telnet 연결 · 23번과 로그인 암호를 놓은 그림",
+      "question": "SSH는 원격 접속의 무엇을 지켜 줄까?",
+      "idleCaption": "사용자가 자기 컴퓨터에서 ssh user1@198.51.100.10을 입력해 서버 198.51.100.10에 접속하는 차례를 위에서 아래로 놓았다. 암호화한 통로 박스 안의 노드는 그 통로로 오가는 것이고, 맨 아래 박스는 같은 서버에 Telnet으로 접속할 때다. 버튼을 고르면 단계마다 무엇이 오가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 사용자의 컴퓨터와 서버의 주소이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 화살표는 데이터가 가는 방향이고, 곁의 글은 그 데이터가 네트워크에서 어떻게 보이는지다.",
+      "nodes": {
+        "client": "사용자의 컴퓨터",
+        "server": "198.51.100.10",
+        "tcp": "TCP 연결 · 22번",
+        "hostkey": "서버의 호스트 키",
+        "userauth": "사용자 인증",
+        "cmd": "명령",
+        "res": "결과",
+        "telnet": "Telnet 연결 · 23번",
+        "tpw": "로그인 암호"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "channel-box": "암호화한 통로",
+        "telnet-box": "Telnet으로 접속하면"
+      },
+      "notes": {
+        "channel-note": "암호화됨",
+        "telnet-note": "그대로 보임"
+      },
+      "scenarios": [
+        {
+          "id": "server-auth",
+          "label": "서버 확인",
+          "caption": "사용자가 ssh user1@198.51.100.10을 입력하면 클라이언트가 서버의 22번으로 TCP 연결을 연다. 서버는 자기 호스트 키로 맞는 서버임을 증명하고, 처음 접속하는 서버라면 ssh가 호스트 키의 지문을 보여 주며 계속 접속할지 묻는다.",
+          "sources": ["app-protocols-mail-file.ssh"]
+        },
+        {
+          "id": "user-auth",
+          "label": "사용자 확인",
+          "caption": "서버를 확인하고 암호화한 통로를 세운 뒤, 사용자가 암호나 공개 키로 자신이 계정 user1의 주인임을 증명한다. 암호로 증명할 때도 암호는 암호화한 통로로 서버에 간다.",
+          "sources": ["app-protocols-mail-file.ssh"]
+        },
+        {
+          "id": "channel",
+          "label": "암호화한 통로",
+          "caption": "확인이 끝나면 사용자가 입력한 명령과 서버에서 실행한 결과가 암호화한 통로로 오간다. 중간에서 엿봐도 원래 내용을 알아볼 수 없고, 누가 도중에 내용을 바꾸면 받는 쪽이 알아챈다.",
+          "sources": ["app-protocols-mail-file.ssh"]
+        },
+        {
+          "id": "telnet",
+          "label": "Telnet과 견주기",
+          "caption": "Telnet도 TCP로 원격 접속하지만 23번을 쓰고, 따로 설정하지 않으면 암호화하지 않는다. 그래서 로그인할 때 입력한 암호까지 알아볼 수 있는 글자 그대로 네트워크를 지나간다.",
+          "sources": ["app-protocols-mail-file.ssh"]
+        }
+      ],
+      "sources": ["app-protocols-mail-file.ssh"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

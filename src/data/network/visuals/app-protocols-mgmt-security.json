@@ -1,0 +1,400 @@
+{
+  "diagrams": {
+    "snmp-roles": {
+      "label": "관리 시스템의 매니저가 「라우터 1」과 「스위치 1」의 에이전트에게 요청을 보내 값을 묻거나 바꾸고, 에이전트가 응답을 돌려주는 것을 보이는 도식",
+      "svgLabel": "위에 관리 시스템 박스 안의 매니저를, 아래에 라우터 1 박스와 스위치 1 박스 안의 에이전트를 두고 둘 사이를 화살표로 잇는 그림",
+      "question": "SNMP에서 누가 묻고 누가 답할까?",
+      "idleCaption": "관리 시스템 한 대에서 실행되는 매니저가 「라우터 1」과 「스위치 1」을 관리한다. 두 장비에는 각각 에이전트가 실행되고 있다. 버튼을 고르면 누가 묻고 누가 답하는지, 요청이 무엇에 실려 어디로 가는지 볼 수 있다.",
+      "legend": "위의 박스가 관리 시스템이고 아래의 두 박스가 관리받는 장비다. 박스 안의 노드는 그 안에서 실행되는 프로그램이다. 화살표는 요청과 응답이 가는 방향이다.",
+      "nodes": {
+        "manager": "매니저",
+        "router-agent": "에이전트",
+        "switch-agent": "에이전트"
+      },
+      "groups": {
+        "nms": "관리 시스템",
+        "router": "라우터 1",
+        "switch": "스위치 1"
+      },
+      "notes": {
+        "query-note": "값을 묻고 답한다",
+        "set-note": "값을 바꾼다",
+        "udp-note": "UDP · 161번"
+      },
+      "scenarios": [
+        {
+          "id": "query",
+          "label": "조회",
+          "caption": "관리 시스템의 매니저가 「라우터 1」의 에이전트에게 값을 묻는 요청을 보내면, 에이전트가 그 라우터의 값을 응답에 담아 돌려준다. 요청을 먼저 보내는 쪽은 매니저이고, 값을 가진 쪽은 에이전트다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        },
+        {
+          "id": "set",
+          "label": "설정",
+          "caption": "매니저가 「스위치 1」의 에이전트에게 설정 값 하나를 바꾸라는 요청을 보내면, 에이전트가 값을 바꾸고 그 결과를 응답으로 돌려준다. SNMP는 장비를 살피는 데에 그치지 않고 설정을 바꾸는 데에도 쓴다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        },
+        {
+          "id": "transport",
+          "label": "UDP",
+          "caption": "매니저의 요청은 UDP에 실려, 장비마다 에이전트가 기다리는 161번 포트로 간다. TCP 위로 보내는 방식도 따로 정의돼 있지만 덧붙인 선택이고, SNMP의 기본 전송은 UDP다.",
+          "sources": ["app-protocols-mgmt-security.snmp"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.snmp"]
+    },
+    "mib-tree": {
+      "label": "OID 나무를 iso(1)에서 sysUpTime(3)까지 따라 읽어 1.3.6.1.2.1.1.3을 얻고, 매니저가 그 OID로 묻고 「라우터 1」의 에이전트가 MIB의 값을 돌려주는 것을 보이는 도식",
+      "svgLabel": "iso(1)부터 sysUpTime(3)까지 여덟 가지를 차례로 잇고 그 끝에 OID 1.3.6.1.2.1.1.3을 둔 나무와, 매니저와 라우터 1의 에이전트를 둔 그림",
+      "question": "OID는 MIB의 값을 어떻게 가리킬까?",
+      "idleCaption": "sysUpTime이라는 관리 객체의 OID를 나무의 맨 위에서부터 한 갈래만 따라 그렸다. 그 옆에는 이 OID로 값을 묻는 매니저와 「라우터 1」의 에이전트를 두었다. 버튼을 고르면 OID를 읽는 법과 값이 어디서 오는지 볼 수 있다.",
+      "legend": "노드 안 이름 뒤의 괄호 속 수가 그 가지의 번호이고, 노드 사이의 선은 가지가 이어진 관계다. 화살표는 따라가는 방향이나 메시지가 가는 방향이다.",
+      "nodes": {
+        "iso": "iso(1)",
+        "org": "org(3)",
+        "dod": "dod(6)",
+        "internet": "internet(1)",
+        "mgmt": "mgmt(2)",
+        "mib2": "mib-2(1)",
+        "system": "system(1)",
+        "sysuptime": "sysUpTime(3)",
+        "oid": "1.3.6.1.2.1.1.3",
+        "manager": "매니저",
+        "agent": "라우터 1의 에이전트"
+      },
+      "notes": {
+        "join-note": "번호를 점으로 잇는다",
+        "object-note": "관리 객체의 이름표",
+        "ask-note": "OID로 묻는다",
+        "value-note": "값을 돌려준다"
+      },
+      "scenarios": [
+        {
+          "id": "path",
+          "label": "나무 따라가기",
+          "caption": "맨 위의 iso(1)에서 org(3), dod(6), internet(1), mgmt(2), mib-2(1), system(1)을 거쳐 sysUpTime(3)까지 가지를 따라간다. 지나온 가지의 번호를 차례로 점으로 이으면 OID 1.3.6.1.2.1.1.3이 된다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        },
+        {
+          "id": "object",
+          "label": "관리 객체",
+          "caption": "1.3.6.1.2.1.1.3은 sysUpTime이라는 관리 객체의 이름표다. 이 값은 장비에서 네트워크 관리를 맡은 부분이 마지막으로 다시 시작된 뒤 흐른 시간이고, 100분의 1초 단위로 센다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        },
+        {
+          "id": "agent",
+          "label": "값은 에이전트에",
+          "caption": "매니저는 이 OID 뒤에 0을 붙인 1.3.6.1.2.1.1.3.0으로 「라우터 1」의 에이전트에게 값을 묻고, 에이전트가 자기 장비의 MIB에서 찾은 값을 응답에 채워 돌려준다. 값을 가진 쪽은 매니저가 아니라 에이전트다.",
+          "sources": ["app-protocols-mgmt-security.mib"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.mib"]
+    },
+    "snmp-poll-trap": {
+      "label": "관리 시스템의 매니저가 GetRequest·SetRequest를 먼저 보내고 에이전트가 Response로 답하는 폴링과, 관리받는 장비의 에이전트가 묻지 않아도 매니저에게 SNMPv2-Trap을 먼저 보내는 트랩을 견주어 보이는 도식",
+      "svgLabel": "왼쪽 매니저 기둥과 오른쪽 에이전트 기둥 사이에, 위 박스에 GetRequest·Response·SetRequest·Response를, 아래 박스에 SNMPv2-Trap을 차례로 놓은 그림",
+      "question": "SNMP 메시지는 누가 먼저 보낼까?",
+      "idleCaption": "관리 시스템의 매니저와 관리받는 장비의 에이전트가 주고받는 SNMP 메시지를 위에서 아래로 놓았다. 위 박스는 매니저가 먼저 보내는 요청과 그 응답이고, 아래 박스는 에이전트가 먼저 보내는 알림이다. 버튼을 고르면 메시지가 어느 쪽에서 어느 쪽으로 가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 매니저가 실행되는 관리 시스템과 에이전트가 실행되는 관리받는 장비이고, 그 아래 왼쪽 박스가 매니저, 오른쪽 박스가 에이전트다. 화살표는 메시지가 가는 방향이고, 곁의 글은 그 메시지가 가는 포트다.",
+      "nodes": {
+        "nms": "관리 시스템",
+        "device": "관리받는 장비",
+        "get": "GetRequest",
+        "get-res": "Response",
+        "set": "SetRequest",
+        "set-res": "Response",
+        "trap": "SNMPv2-Trap"
+      },
+      "groups": {
+        "manager-side": "매니저",
+        "agent-side": "에이전트",
+        "poll-box": "매니저가 먼저 보낸다",
+        "trap-box": "에이전트가 먼저 보낸다"
+      },
+      "notes": {
+        "poll-note": "에이전트의 161번으로",
+        "trap-note": "매니저의 162번으로"
+      },
+      "scenarios": [
+        {
+          "id": "poll",
+          "label": "폴링",
+          "caption": "매니저가 정해 둔 간격마다 「라우터 1」의 에이전트에게 GetRequest를 보내 값을 묻고, 에이전트는 MIB에서 찾은 값을 Response에 채워 돌려준다. 요청은 에이전트의 161번으로 간다. 물을 때마다 요청 하나와 응답 하나가 오가므로, 장비가 많고 간격이 짧을수록 오가는 메시지가 늘어난다.",
+          "sources": ["app-protocols-mgmt-security.snmp-operations"]
+        },
+        {
+          "id": "set",
+          "label": "설정",
+          "caption": "장비의 설정 값을 바꾸게 할 때도 매니저가 먼저 SetRequest를 보내고, 에이전트는 값을 바꾼 결과를 Response로 돌려준다. 에이전트가 Response를 보내는 것은 요청을 받았을 때뿐이다.",
+          "sources": ["app-protocols-mgmt-security.snmp-operations"]
+        },
+        {
+          "id": "trap",
+          "label": "트랩",
+          "caption": "「스위치 1」의 인터페이스 하나가 끊기면, 에이전트가 매니저의 요청을 기다리지 않고 SNMPv2-Trap을 보내 매니저의 162번으로 알린다. 매니저는 잘 받았다는 답을 돌려보내지 않으므로, 트랩이 도중에 사라져도 에이전트는 알 수 없다.",
+          "sources": ["app-protocols-mgmt-security.snmp-operations"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.snmp-operations"]
+    },
+    "snmp-versions": {
+      "label": "관리 시스템의 매니저가 「라우터 1」의 에이전트에게 같은 요청을 SNMPv2c와 SNMPv3로 보낼 때, 중간에서 엿보는 사람에게 커뮤니티 문자열 netops가 그대로 보이는지 암호화되어 알아볼 수 없는지를 견주어 보이는 도식",
+      "svgLabel": "왼쪽 매니저 기둥과 오른쪽 에이전트 기둥 사이에, 위 SNMPv2c 박스에 netops가 실린 요청과 엿보는 사람을, 아래 SNMPv3 박스에 암호화한 요청과 엿보는 사람을 놓은 그림",
+      "question": "중간에서 엿보면 무엇이 보일까?",
+      "idleCaption": "관리 시스템의 매니저가 「라우터 1」의 에이전트에게 값을 묻는 요청을 보내는 두 경우를 위아래로 놓았다. 위 박스는 커뮤니티 문자열을 쓰는 SNMPv2c로, 아래 박스는 인증과 암호화를 함께 쓰는 SNMPv3로 보낼 때다. 버튼을 고르면 중간에서 엿보는 사람에게 무엇이 보이는지 볼 수 있다.",
+      "legend": "위의 두 노드는 매니저가 실행되는 관리 시스템과 에이전트가 실행되는 「라우터 1」이고, 그 아래 왼쪽 박스가 매니저, 오른쪽 박스가 에이전트다. 가로 화살표는 요청이 가는 방향이고, 아래로 난 화살표는 엿보는 사람이 그 요청을 읽는 것이다. 곁의 글은 엿보는 사람에게 보이는 것이다.",
+      "nodes": {
+        "nms": "관리 시스템",
+        "router": "라우터 1",
+        "v2c-req": "netops가 실린 요청",
+        "v2c-peek": "엿보는 사람",
+        "v3-req": "암호화한 요청",
+        "v3-peek": "엿보는 사람"
+      },
+      "groups": {
+        "manager-side": "매니저",
+        "agent-side": "에이전트",
+        "v2c-box": "SNMPv2c · 커뮤니티 문자열",
+        "v3-box": "SNMPv3 · 인증과 암호화"
+      },
+      "notes": {
+        "v2c-note": "netops가 그대로 보임",
+        "v3-note": "암호화되어 알아볼 수 없음"
+      },
+      "scenarios": [
+        {
+          "id": "v2c",
+          "label": "SNMPv2c",
+          "caption": "SNMPv2c에서는 매니저와 「라우터 1」의 에이전트가 미리 맞춰 둔 커뮤니티 문자열 netops가 GetRequest 메시지에 암호화되지 않은 채 실려 간다. 중간에서 엿보는 사람도 netops를 글자 그대로 읽어 낼 수 있고, 그 글자열을 실어 요청을 꾸며 보낼 수도 있다.",
+          "sources": ["app-protocols-mgmt-security.snmp-versions"]
+        },
+        {
+          "id": "v3",
+          "label": "SNMPv3",
+          "caption": "SNMPv3에서는 메시지를 보냈다는 사용자가 맞는지와 메시지가 도중에 바뀌지 않았는지 확인하는 인증을 하고, 고르면 내용을 암호화한다. 인증과 암호화를 함께 쓰면 엿보는 사람은 요청의 내용을 알아볼 수 없고, 누가 도중에 내용을 바꾸면 에이전트가 알아챈다.",
+          "sources": ["app-protocols-mgmt-security.snmp-versions"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.snmp-versions"]
+    },
+    "ntp-stratum": {
+      "label": "기준 시계에 바로 맞추는 주 서버(stratum 1)에서 회사의 시각 서버(stratum 2)가 시각을 받고, 「PC 1」과 「PC 2」가 그 서버에 UDP 123번으로 시각을 물어 시계를 맞추는 차례를 보이는 도식",
+      "svgLabel": "기준 시계, 주 서버, 회사의 시각 서버를 차례로 잇고 회사의 시각 서버 아래에 PC 1과 PC 2를 둔 그림",
+      "question": "시각은 어떤 차례로 전해질까?",
+      "idleCaption": "기준 시계에서 주 서버와 회사의 시각 서버를 거쳐 회사의 PC 두 대까지 시각이 전해지는 차례를 그렸다. 버튼을 고르면 층마다 시각을 어떻게 주고받는지 볼 수 있다.",
+      "legend": "노드 사이의 선은 시각이 전해지는 길이고, 화살표는 시각을 묻는 요청이나 시각을 알려 주는 답이 가는 방향이다. 서버 곁의 stratum 번호는 그 서버가 기준 시계에서 몇 번째 층인지 나타낸다.",
+      "nodes": {
+        "clock": "기준 시계",
+        "primary": "주 서버",
+        "company": "회사의 시각 서버",
+        "pc1": "PC 1",
+        "pc2": "PC 2"
+      },
+      "notes": {
+        "stratum-1": "stratum 1",
+        "stratum-2": "stratum 2",
+        "source-note": "기준 시계에 바로 맞춘다",
+        "chain-note": "번호가 하나 커진다",
+        "udp-note": "UDP · 123번"
+      },
+      "scenarios": [
+        {
+          "id": "source",
+          "label": "기준 시계",
+          "caption": "GPS 수신기처럼 표준 시각을 바로 받아 알려 주는 장치가 기준 시계이고, 이 기준 시계에 바로 맞추는 서버가 주 서버다. 주 서버의 stratum 번호는 1이다.",
+          "sources": ["app-protocols-mgmt-security.ntp"]
+        },
+        {
+          "id": "chain",
+          "label": "이어 받기",
+          "caption": "회사의 시각 서버는 주 서버에 시각을 묻는 요청을 보내고, 주 서버가 돌려준 답으로 시계를 맞춘다. stratum 1 서버에서 시각을 받으므로 번호가 하나 커진 stratum 2다.",
+          "sources": ["app-protocols-mgmt-security.ntp"]
+        },
+        {
+          "id": "client",
+          "label": "클라이언트",
+          "caption": "「PC 1」과 「PC 2」는 회사의 시각 서버의 UDP 123번으로 시각을 묻고, 서버가 바로 돌려준 답으로 자기 시계를 맞춘다. 서버는 PC에게 시각을 알려 주기만 한다.",
+          "sources": ["app-protocols-mgmt-security.ntp"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.ntp"]
+    },
+    "sntp-client": {
+      "label": "NTP 클라이언트인 「PC 1」은 시각 서버 세 곳에 시각을 물어 답을 견주고, SNTP 클라이언트인 「작은 기기」는 「시각 서버 3」 한 곳에만 물어 그 답으로 시계를 맞추는 것을 보이는 도식",
+      "svgLabel": "위에 시각 서버 1, 시각 서버 2, 시각 서버 3을, 아래에 PC 1과 작은 기기를 둔 그림",
+      "question": "SNTP는 NTP와 무엇이 다를까?",
+      "idleCaption": "위에 시각 서버 셋을, 아래에 NTP로 시계를 맞추는 「PC 1」과 SNTP로 맞추는 「작은 기기」를 두었다. 버튼을 고르면 두 클라이언트가 몇 곳에 시각을 묻는지 볼 수 있다.",
+      "legend": "화살표는 시각을 묻는 요청이 가는 방향이다. 요청을 받은 시각 서버는 바로 답을 돌려준다.",
+      "nodes": {
+        "s1": "시각 서버 1",
+        "s2": "시각 서버 2",
+        "s3": "시각 서버 3",
+        "pc1": "PC 1",
+        "device": "작은 기기"
+      },
+      "notes": {
+        "compare-note": "답을 견주어 고른다",
+        "ntp-udp": "UDP · 123번",
+        "single-note": "서버 한 곳에 묻는다",
+        "sntp-udp": "UDP · 123번"
+      },
+      "scenarios": [
+        {
+          "id": "ntp-client",
+          "label": "NTP",
+          "caption": "「PC 1」의 NTP 클라이언트는 시각 서버 세 곳의 UDP 123번으로 시각을 묻는다. 돌아온 답들을 견주어 틀린 시각을 알려 주는 서버를 걸러 내고, 남은 값들로 시계를 맞출 값을 정한다.",
+          "sources": ["app-protocols-mgmt-security.sntp"]
+        },
+        {
+          "id": "sntp-client",
+          "label": "SNTP",
+          "caption": "「작은 기기」의 SNTP 클라이언트는 NTP와 같은 꼴의 요청을 「시각 서버 3」의 UDP 123번으로 보내고, 그 서버 한 곳의 답으로 시계를 맞춘다. 여러 답을 견주어 고르는 일은 하지 않는다.",
+          "sources": ["app-protocols-mgmt-security.sntp"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.sntp"]
+    },
+    "tls-handshake": {
+      "label": "웹 브라우저가 www.example.com의 서버와 ClientHello·ServerHello로 인사하고, 서버가 Certificate·CertificateVerify로 자신을 증명하고, 두 쪽이 Finished로 핸드셰이크를 끝맺은 뒤 요청과 응답을 암호화해 주고받는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트 기둥과 오른쪽 서버 기둥 사이에, 위 박스에 ClientHello·ServerHello·Certificate·CertificateVerify·Finished·Finished를, 아래 박스에 암호화된 요청과 암호화된 응답을 차례로 놓은 그림",
+      "question": "TLS는 암호화하기 전에 무엇을 주고받을까?",
+      "idleCaption": "웹 브라우저와 www.example.com의 서버가 TLS로 통신을 시작할 때 주고받는 메시지를 위에서 아래로 간추려 놓았다. 위 박스가 핸드셰이크이고, 아래 박스가 핸드셰이크 뒤에 오가는 데이터다. 버튼을 고르면 단계마다 무엇이 어느 쪽에서 어느 쪽으로 가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트인 웹 브라우저와 www.example.com의 서버이고, 그 아래 왼쪽 박스가 클라이언트, 오른쪽 박스가 서버다. 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "server": "www.example.com",
+        "client-hello": "ClientHello",
+        "server-hello": "ServerHello",
+        "certificate": "Certificate",
+        "cert-verify": "CertificateVerify",
+        "finished-s": "Finished",
+        "finished-c": "Finished",
+        "request": "암호화된 요청",
+        "response": "암호화된 응답"
+      },
+      "groups": {
+        "client-side": "클라이언트",
+        "server-side": "서버",
+        "handshake-box": "핸드셰이크",
+        "data-box": "핸드셰이크 뒤"
+      },
+      "notes": {
+        "hello-note": "암호 방식과 키를 정한다",
+        "cert-note": "서버가 자신을 증명한다",
+        "data-note": "암호화되어 오간다"
+      },
+      "scenarios": [
+        {
+          "id": "hello",
+          "label": "인사",
+          "caption": "브라우저가 ClientHello에 자기가 쓸 수 있는 TLS 판과 암호 방식, 키를 함께 만드는 데 쓸 값을 담아 보내면, 서버가 ServerHello로 그 가운데 고른 것과 서버 쪽의 값을 돌려준다. 이 두 메시지로 두 쪽은 함께 쓸 키를 만들고, 그 뒤의 메시지는 모두 암호화해 보낸다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        },
+        {
+          "id": "certificate",
+          "label": "인증서",
+          "caption": "서버가 Certificate로 자기 인증서를 보내고, 그 인증서의 공개 키와 짝인 개인 키로 핸드셰이크에 서명한 CertificateVerify를 보낸다. 브라우저는 인증서의 이름이 www.example.com인지, 인증 기관의 서명이 올바른지, 서버의 서명이 그 공개 키로 맞는지 확인한다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        },
+        {
+          "id": "data",
+          "label": "암호화된 데이터",
+          "caption": "두 쪽이 Finished를 주고받아 핸드셰이크를 끝맺으면, 웹 페이지를 달라는 요청과 그 응답은 핸드셰이크에서 만든 키로 암호화되어 오간다. 중간에서 엿봐도 알아볼 수 없고, 누가 도중에 바꾸면 받는 쪽이 알아챈다.",
+          "sources": ["app-protocols-mgmt-security.tls"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.tls"]
+    },
+    "https-stack": {
+      "label": "같은 www.example.com의 서버를 http:// 주소로 열 때는 HTTP가 TCP 80번 위에 바로 놓이고, https:// 주소로 열 때는 HTTP와 TCP 443번 사이에 TLS가 들어가는 것을 나란히 보이는 도식",
+      "svgLabel": "왼쪽 박스에 HTTP와 TCP · 80번을, 오른쪽 박스에 HTTP·TLS·TCP · 443번을 위에서 아래로 쌓은 그림",
+      "question": "HTTP와 HTTPS는 무엇이 다를까?",
+      "idleCaption": "같은 서버를 http:// 주소와 https:// 주소로 열 때, 브라우저가 보내는 HTTP 요청이 어떤 층을 거쳐 나가는지 나란히 쌓아 보였다. 버튼을 고르면 두 방식의 포트와 보호가 어떻게 다른지 볼 수 있다.",
+      "legend": "박스 하나가 한 주소로 열 때의 쌓임이고, 위 칸이 아래 칸에 데이터를 넘긴다. 화살표는 브라우저가 보내는 HTTP 요청이 아래 층으로 넘겨지는 차례다.",
+      "nodes": {
+        "http-app": "HTTP",
+        "http-tcp": "TCP · 80번",
+        "https-app": "HTTP",
+        "https-tls": "TLS",
+        "https-tcp": "TCP · 443번"
+      },
+      "groups": {
+        "http-stack": "http:// 주소로 열 때",
+        "https-stack": "https:// 주소로 열 때"
+      },
+      "notes": {
+        "http-note": "그대로 보임",
+        "https-note": "암호화됨",
+        "https-check": "서버를 확인한다"
+      },
+      "scenarios": [
+        {
+          "id": "http",
+          "label": "HTTP",
+          "caption": "http://www.example.com/으로 열면 브라우저는 서버의 TCP 80번으로 연결을 맺고, TLS 없이 그 연결로 HTTP 요청과 응답을 주고받는다. 내용이 암호화되지 않아 중간에서 엿보면 그대로 보이고, 브라우저는 상대 서버가 진짜인지 확인하지 않는다.",
+          "sources": ["app-protocols-mgmt-security.https"]
+        },
+        {
+          "id": "https",
+          "label": "HTTPS",
+          "caption": "https://www.example.com/으로 열면 브라우저는 서버의 TCP 443번으로 연결을 맺고 그 위에서 TLS 핸드셰이크를 하며, 인증서의 이름이 www.example.com과 맞는지 확인한다. 그 뒤 HTTP 요청과 응답은 TLS로 암호화되어 오간다.",
+          "sources": ["app-protocols-mgmt-security.https"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.https"]
+    },
+    "sip-call": {
+      "label": "sip:user1@example.com이 sip:user2@example.net에 INVITE로 영상 통화를 걸고, 180 Ringing·200 OK·ACK로 통화를 맺은 뒤 음성과 영상이 RTP로 오가고, BYE와 200 OK로 통화를 끝내는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 거는 쪽 기둥과 오른쪽 받는 쪽 기둥 사이에, 위 박스에 INVITE·180 Ringing·200 OK·ACK를, 가운데 박스에 RTP로 오가는 음성과 영상을, 아래 박스에 BYE·200 OK를 차례로 놓은 그림",
+      "question": "SIP 통화는 어떤 차례로 맺고 끝낼까?",
+      "idleCaption": "sip:user1@example.com이 sip:user2@example.net에 영상 통화를 걸어 통화를 맺고, 통화하고, 끝내는 동안 두 쪽이 주고받는 것을 위에서 아래로 간추려 놓았다. 버튼을 고르면 단계마다 무엇이 어느 쪽에서 어느 쪽으로 가는지 볼 수 있다.",
+      "legend": "위의 두 노드는 거는 쪽과 받는 쪽의 SIP 주소이고, 그 아래 왼쪽 박스가 거는 쪽, 오른쪽 박스가 받는 쪽이다. 맨 위와 맨 아래 박스의 노드는 SIP 메시지이고, 가운데 박스의 노드는 RTP로 오가는 음성과 영상이다. 화살표는 가는 방향이다.",
+      "nodes": {
+        "caller": "sip:user1@example.com",
+        "callee": "sip:user2@example.net",
+        "invite": "INVITE",
+        "ringing": "180 Ringing",
+        "ok-setup": "200 OK",
+        "ack": "ACK",
+        "media": "RTP · 음성과 영상",
+        "bye": "BYE",
+        "ok-bye": "200 OK"
+      },
+      "groups": {
+        "caller-side": "거는 쪽",
+        "callee-side": "받는 쪽",
+        "setup-box": "통화 맺기",
+        "media-box": "통화 중",
+        "teardown-box": "통화 끝내기"
+      },
+      "notes": {
+        "setup-note": "ACK로 통화가 맺어진다",
+        "media-note": "SIP 메시지와 따로 오간다",
+        "teardown-note": "누구나 BYE를 보낼 수 있다"
+      },
+      "scenarios": [
+        {
+          "id": "setup",
+          "label": "맺기",
+          "caption": "user1 쪽이 INVITE로 user2를 통화에 부르면, user2 쪽은 전화가 울리는 동안 180 Ringing을 보내고 통화를 받으면 200 OK로 답한다. INVITE와 200 OK에는 쓸 음성과 영상의 방식이 SDP로 적혀 있다. user1 쪽이 ACK로 200 OK를 받았다고 확인하면 통화가 맺어진다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        },
+        {
+          "id": "media",
+          "label": "통화",
+          "caption": "통화가 맺어지면 음성과 영상은 SIP 메시지에 실리지 않고, 합의한 방식대로 RTP에 실려 두 쪽 사이를 오간다. 통화하는 내내 양쪽이 서로에게 계속 보낸다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        },
+        {
+          "id": "teardown",
+          "label": "끝내기",
+          "caption": "통화를 끝내려는 쪽이 BYE를 보내고 받은 쪽이 200 OK로 답하면 통화가 끝난다. 여기서는 user2가 먼저 끊었지만, 거는 쪽과 받는 쪽 누구나 BYE를 보낼 수 있다. 이 200 OK에는 ACK를 보내지 않는다.",
+          "sources": ["app-protocols-mgmt-security.sip"]
+        }
+      ],
+      "sources": ["app-protocols-mgmt-security.sip"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
