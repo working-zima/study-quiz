@@ -97,6 +97,9 @@ TLS의 키 교환·암호 방식·확장, 인증서의 필드와 폐기, SIP의 
 `dns`는 강의 주제라 강의·면접·표준을 함께 쓴다. RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`과 문서 머리의 STD·BCP 번호로 확인했다. 용어는 DNS 용어를 모은 RFC 9499(BCP 219)를 먼저 보고, 그 정의가 가리키는 원래 절(RFC 1034·1035·1123·2181 등)을 함께 읽었다.
 iana.org의 루트 서버 페이지, man7.org의 hosts(5)·nsswitch.conf(5)(COLOPHON의 판을 적는다), learn.microsoft.com의 Windows Server DNS 문서 셋(`updated_at`·「Applies to」를 적는다 — 한국어판은 기계 번역이라 용어만 참고)도 내려받아 읽었다.
 **루트 서버의 운영 요건(재귀를 끄는지 등)은 지금 ICANN RSSAC 문서에 있어 허용한 출처 밖이다** — 폐기된 RFC 2870만 역사 기록으로 적는다. 레코드 유형·SOA 필드·PTR·라운드 로빈·DNS의 전송·DNSSEC은 이 step에서 적지 않았다(step 5의 몫) — 영역 전송을 설명하는 데 필요한 SOA의 SERIAL·REFRESH·RETRY·EXPIRE 한 줄만 RFC 1034 §4.3.5 줄에 있다.
+「(phase 79 step 5)」가 붙은 줄과 항목은 phase 79 step 5에서 `dns` 주제의 뒤 개념 여섯(DNS 레코드, SOA 레코드, 역방향 조회와 PTR 레코드, DNS 라운드 로빈, DNS가 쓰는 UDP와 TCP, DNSSEC)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-12).
+RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`과 문서 머리의 STD·BCP 번호)으로 읽었다. learn.microsoft.com은 Windows Server DNS 문서와 Win32 DNS 참조·문제 해결 문서를 영문판과 한국어판(`ko-kr`)으로 내려받아 `updated_at`·「Applies to」를 적었다.
+**DNS 관리자 화면의 한국어 메뉴·필드 이름은 한국어판 문서(기계 번역)의 표기로만 확인했고 실제 화면으로는 확인하지 못했다** — 항목에 그렇게 적는다. 정보성(Informational) RFC(1794·1912·3833)는 표준이 아니라 역사 기록·운영 관례·위협 분석으로만 쓴다고 항목마다 밝힌다.
 
 ---
 
@@ -773,11 +776,14 @@ https://www.rfc-editor.org/rfc/rfc7766
 - TCP는 전체 영역 전송(AXFR)에 늘 쓰이고, 원래의 512바이트 한도를 넘는 메시지에도 자주 쓰인다 — §1
 - 잘린 응답(TC 플래그)을 받으면 TCP로 다시 묻는다 — §4
 - 범용 DNS 구현은 UDP와 TCP를 모두 지원해야 하고, TCP는 단지 재시도 수단이 아니라 UDP의 대안이다 — §5
+- (phase 79 step 5, 2026-11-12 rfc-editor.org 원문 다시 확인 — Proposed Standard, RFC 8490·9103이 고쳤다) DNSSEC과 IPv6가 퍼지며 응답이 커져 TCP를 쓰는 일이 늘었다. 서버가 TCP를 지원하지 않거나 **망에서 TCP 위의 DNS를 막으면** 이름 풀이가 실패하거나 응용이 기다리다 시간이 다 될 수 있다 — §1
+- (phase 79 step 5) 권한 있는 서버, 재귀 서버(전달자 포함), 스텁 리졸버 구현이 저마다 TCP를 지원해야 한다(MUST) — 응답 크기를 UDP 패킷 하나에 묶지 않고, 큰 응답이 클라이언트까지 닿게 하려는 것이다. 리졸버는 운영 사정에 따라 질의를 UDP로도 TCP로도 처음부터 보낼 수 있고, 서버는 질의가 온 전송(TCP면 같은 연결)으로 응답한다 — §5
 
 쓰인 곳: 강의 수정 이력 L11
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(DNS는 주로 UDP, TCP도 — L11)
 (phase 77 step 7) `tcp-udp.udp`(§1 — DNS는 주로 UDP, 큰 메시지 등에는 TCP도 — L11)
 (phase 77 step 8) `tcp-udp.transport-choice`(DNS는 응답이 클 때 등에는 TCP도 — L11), 도식 `transport-choice` 「짧은 질의」 캡션
+(phase 79 step 5에서 쓰일 곳) `dns.dns-transport`(§1 — 영역 전체 전송은 늘 TCP, 큰 응답에 TCP, TCP를 막으면 이름 풀이가 실패할 수 있다, §4 — 잘린 응답 뒤 TCP로 다시 묻는다, §5 — 서버·리졸버 모두 TCP 필수), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단 — [기출 2025-05-25 #42]·[기출 2026-02-01 #8]·[기출 2026-05-17 #11])
 
 ## RFC 1034 — Domain Names - Concepts and Facilities
 https://www.rfc-editor.org/rfc/rfc1034
@@ -818,6 +824,16 @@ https://www.rfc-editor.org/rfc/rfc1034
 - (phase 79 step 0) **스텁 리졸버**: 이름 풀이를 자기 컴퓨터에서 하지 않고 재귀 질의를 해 주는 네임 서버에 맡기는 리졸버다. 그 서버들의 주소 목록만 있으면 되고 보통 설정 파일에 적는다. 네임 서버는 어떤 클라이언트에게든 재귀를 거절할 수 있다 — §5.3.1
 - (phase 79 step 0) 리졸버의 캐시는 TTL이 지난 레코드를 버릴 책임이 있다 — §5.3.2 CACHE. 처리 순서의 4단계에서, 응답이 답이거나 이름이 없다는 오류면 캐시에 넣고 클라이언트에 돌려주고, **더 나은 위임(다른 서버)을 알려 주면 그 위임 정보를 캐시에 넣고 2단계(물을 서버 고르기)로 돌아간다** — §5.3.3
 - (phase 79 step 3, 2026-11-12 rfc-editor.org 원문 다시 확인) **물을 서버 고르기(2단계)**: 찾는 이름에서 시작해 그 부모, 그 위 부모로 루트 쪽으로 올라가며 가지고 있는 NS 레코드를 찾고, 처음 찾은 단계의 서버들을 물을 목록으로 삼는다(예: 이름이 `Mockapetris.ISI.EDU`면 그 이름, `ISI.EDU`, `EDU`, 루트의 차례로 NS 레코드를 찾는다) — §5.3.3 Step 2. 그래서 앞 질의에서 받은 위임 정보가 캐시에 있으면 루트부터 다시 묻지 않고 가장 가까운 영역의 서버부터 묻는다
+- (phase 79 step 5, 2026-11-12 rfc-editor.org 원문 다시 확인) **레코드 묶음 안의 차례**: 한 이름에 붙은 레코드들의 차례에는 뜻이 없고, 네임 서버·리졸버를 비롯한 DNS의 어느 부분도 그 차례를 지켜 줄 필요가 없다 — §3.6.
+  그래서 이름을 주소로 바꾸는 리졸버 기능은 받은 주소들을 다시 정렬하거나 그 가운데 「가장 나은」 하나를 골라 줄 수 있다. 주소를 여럿 돌려주기를 권한다 — §5.2.1의 1번
+- (phase 79 step 5) **이 문서가 드는 레코드 유형과 데이터**: A(호스트 주소 — 인터넷 클래스에서 32비트 IP 주소), CNAME(별칭의 정식 이름 — 도메인 이름), MX(그 도메인의 메일 교환 호스트 — 16비트 우선순위 값(**작을수록 앞선다**)과 메일을 받아 줄 호스트 이름),
+  NS(그 도메인의 권한 있는 네임 서버 — 호스트 이름), PTR(이름 공간의 다른 곳을 가리킨다 — 도메인 이름), SOA(권한 영역의 시작 — 여러 필드) — §3.6
+- (phase 79 step 5) **레코드를 글자로 적는 꼴**: 줄 맨 앞이 소유자이고, 줄이 빈칸으로 시작하면 바로 앞 레코드와 소유자가 같다. 소유자 뒤에 TTL·클래스·유형을 적되 유형 이름을 늘 마지막에 두어 헷갈리지 않게 하고(TTL은 정수), 예에서는 클래스 IN과 TTL을 흔히 뺀다. 그 뒤가 데이터다.
+  대부분 한 줄이고 괄호로 여러 줄에 걸칠 수 있다 — §3.6.1. 이 문서의 영역 예에서 여러 줄로 적은 것은 SOA뿐이고, 한 영역의 레코드는 클래스가 모두 같아야 하므로 첫 레코드만 클래스를 적어도 된다 — §6.1(예의 이름·값은 옮기지 않는다)
+- (phase 79 step 5) **CNAME**: 같은 대상(호스트·메일함)을 가리키는 이름이 여럿이면 하나를 정식(canonical) 이름, 나머지를 별칭(alias)으로 본다. CNAME 레코드는 **소유자 이름을 별칭으로 정하고 데이터에 정식 이름을 적는다**.
+  CNAME이 있는 이름에는 다른 데이터를 두지 않는 것이 좋다(should) — 별칭과 정식 이름의 데이터가 서로 달라지지 않고, 캐시한 CNAME을 다른 유형 때문에 권한 있는 서버에 다시 확인하지 않아도 되게 하려는 것이다.
+  찾는 유형의 레코드가 없고 CNAME이 있으면 네임 서버는 그 CNAME을 응답에 넣고 정식 이름으로 다시 찾는다(CNAME 자체를 묻는 질의는 빼고). 다른 이름을 가리키는 레코드(예: 주소 → 이름의 PTR)는 별칭이 아니라 정식 이름을 가리켜야 한다 — §3.6.2
+- (phase 79 step 5) **주소 → 이름**: 리졸버의 이 기능은 32비트 IP 주소의 옥텟을 거꾸로 늘어놓아 이름 조각으로 쓰고 끝에 `IN-ADDR.ARPA`를 붙여 PTR을 묻고, 그 답이 그 호스트의 주된(primary) 이름이다(예: 주소 `1.2.3.4`면 `4.3.2.1.IN-ADDR.ARPA`의 PTR) — §5.2.1의 2번
 
 쓰인 곳: 면접 수정 이력 I11
 (phase 77 step 2) `ports.well-known-ports`(DNS 항목 — 풀어 쓴 이름 Domain Name System, 도메인 이름으로 호스트의 IP 주소를 찾아 준다)
@@ -826,6 +842,7 @@ https://www.rfc-editor.org/rfc/rfc1034
 `dns.domain-hierarchy`(§3.1 — 레이블·루트·오른쪽이 위 단계·대소문자·끝의 점·255옥텟·도메인과 서브 도메인, §3.5 — 권장 이름 문법), `dns.name-servers`(§2.4 — 권한, §4.1 — 영역을 여러 서버가 맡는다, §5.3.1 — 스텁 리졸버),
 `dns.dns-zone`(§4.1 — 둘 이상, §4.2·§4.2.1·§4.2.2 — 영역·위임·꼭대기의 NS와 SOA, §4.3.5 — 주·보조 서버, SERIAL·REFRESH·RETRY·EXPIRE, AXFR은 TCP), `dns.name-resolution`(§4.3.2 3.b·§5.3.3 — referral과 위임 정보의 캐시, phase 79 step 3 — §5.3.3 Step 2: 캐시의 위임 정보로 가장 가까운 영역의 서버부터 묻는다),
 `dns.recursive-iterative-query`(§2.3·§4.3.1 — 재귀는 선택, RD·RA, 반복은 필수), `dns.dns-cache-ttl`(§3.6 — TTL의 쓰임·0이면 캐시 금지·바꾸기 전에 줄이기, §5.1 — 캐시가 지연과 서버 부하를 줄인다), 강의 수정 이력 L48·L50·L51
+(phase 79 step 5에서 쓰일 곳) `dns.resource-records`(§3.6 — 유형과 데이터, §3.6.1 — 글자로 적는 꼴, §3.6.2 — CNAME), `dns.reverse-lookup`(§5.2.1의 2번 — 옥텟을 거꾸로 하고 `IN-ADDR.ARPA`를 붙여 PTR을 묻는다), `dns.dns-round-robin`(§3.6·§5.2.1의 1번 — 레코드 묶음의 차례에는 뜻이 없고 리졸버가 다시 정렬하거나 하나를 고를 수 있다)
 
 ## RFC 1035 — Domain Names - Implementation and Specification
 https://www.rfc-editor.org/rfc/rfc1035
@@ -847,12 +864,36 @@ https://www.rfc-editor.org/rfc/rfc1035
   **RA(Recursion Available)** — 응답에서 그 네임 서버가 재귀를 해 줄 수 있는지 알린다 — §4.1.1
 - (phase 79 step 0) **시간의 셈**: 레코드의 TTL과 갱신 타이머는 초 단위 32비트 타이머다. 영역의 데이터는 TTL이 그대로이고, **캐시에 든 데이터의 TTL은 시간이 지나며 줄어든다**. 캐시의 시각은 절대 시각으로 저장했다가 질의에 답할 때 남은 시간(상대값)으로 바꿔 넣고, 바꾼 값이 음수면 시한이 지난 것이라 쓰지 않는다 — §6.1.3
 - (phase 79 step 0) **캐시 쓰기**: 리졸버는 응답으로 받은 데이터를 대개 모두 캐시에 넣는다. 다만 잘려서 일부만 받았을지 모르는 레코드 묶음, 믿기 어려운 응답 등은 넣지 않고, **캐시 데이터를 권한 있는 데이터보다 앞세우지 않는다** — §7.4
+- (phase 79 step 5, 2026-11-12 rfc-editor.org 원문 다시 확인) **레코드의 칸(메시지 안의 꼴)**: NAME(소유자 이름 — 이 레코드가 딸린 노드) · TYPE(2옥텟 유형 코드) · CLASS(2옥텟 클래스 코드) · TTL(32비트) · RDLENGTH(데이터 길이, 옥텟 수) · RDATA(유형·클래스에 따라 꼴이 다른 데이터)의 차례다 — §3.2.1.
+  (같은 절의 「SOA는 캐시하지 않게 TTL 0으로 보낸다」는 쓰지 않는다 — 이 phase에 필요 없고, 뒤 문서 RFC 2308 §5는 SOA의 TTL을 부정 응답의 캐시 시간에 쓴다)
+- (phase 79 step 5) **유형 값**: A 1, NS 2, CNAME 5, SOA 6, PTR 12, MX 15, TXT 16(MD·MF는 MX로 바뀌어 쓰지 않는다) — §3.2.2. **클래스**: IN(1)은 인터넷이다 — §3.2.4
+- (phase 79 step 5) **A**: 데이터는 32비트 인터넷 주소 하나다. 주소가 여럿인 호스트는 A 레코드를 여럿 갖는다. 영역 파일에서는 점으로 나눈 십진수 넷으로 적는다 — §3.4.1
+- (phase 79 step 5) **MX**: 데이터는 PREFERENCE(16비트 — 같은 소유자의 MX들 사이에서 이 레코드를 얼마나 앞세울지, **값이 작을수록 먼저**)와 EXCHANGE(소유자 이름의 메일을 받아 줄 호스트의 도메인 이름)다 — §3.3.9.
+  메일을 보낼 때는 받는 주소의 메일 도메인 부분으로 MX를 찾아 거기 적힌 호스트들을 우선순위대로 쓰고, 주소의 앞부분(로컬 부분)은 보지 않는다 — §8.1
+- (phase 79 step 5) **PTR**: 데이터는 이름 공간의 다른 곳을 가리키는 도메인 이름이다. CNAME 같은 특별한 처리를 하지 않는 단순한 데이터이고, 특별한 도메인(`IN-ADDR.ARPA`)에서 쓴다 — §3.3.12
+- (phase 79 step 5) **TXT**: 설명하는 글자열을 하나 이상 담는다. 그 글이 무슨 뜻인지는 레코드가 놓인 도메인이 정한다 — §3.3.14
+- (phase 79 step 5) **SOA(L15에 더해)**: SERIAL은 영역 원본의 부호 없는 32비트 판 번호이고 영역 전송으로 옮겨도 그대로이며, 최댓값을 넘으면 처음으로 돌아가므로 순환 산술로 견준다. REFRESH·RETRY·EXPIRE는 32비트 시간 값이고 **모든 시간의 단위는 초**다.
+  필드 대부분은 네임 서버의 영역 유지에만 쓰인다. MINIMUM은 원래 영역의 모든 레코드 TTL의 아래 한도로 정했는데 이 뜻은 RFC 2308 §4가 바꿨다(아래 RFC 2308 항목) — §3.3.13
+- (phase 79 step 5) **IN-ADDR.ARPA**: 인터넷 주소로 호스트 이름을 찾게 만든 특별한 도메인이다. `IN-ADDR.ARPA` 앞에 레이블을 넷까지 두고, 레이블 하나가 주소의 옥텟 하나다(0~255의 십진수, 앞자리 0은 뺀다). 호스트 주소는 레이블 넷을 다 적은 이름이고 **주소를 거꾸로 적는다**(절의 예: 주소 `10.2.0.52`의 데이터는 `52.0.2.10.IN-ADDR.ARPA`에 있다).
+  거꾸로 적어 읽기는 어색하지만, 그 덕에 한 네트워크의 주소 범위를 그대로 한 영역으로 위임할 수 있다. 주소 노드의 PTR은 그 호스트의 주된 이름을 가리킨다. 이 도메인과 그 호스트의 보통 이름은 서로 다른 영역에 있어 두 쪽의 데이터가 어긋날 수 있다 — §3.5
+- (phase 79 step 5) **UDP**: 포트 53을 쓰고, UDP로 나르는 메시지는 IP·UDP 헤더를 빼고 **512바이트**로 제한된다. 더 긴 메시지는 잘라 헤더의 TC 비트를 켠다. 영역 전송에는 UDP를 쓸 수 없고, 보통의 질의에는 UDP를 권한다. UDP 질의는 잃을 수 있어 다시 보내는 방법이 필요하다 — §4.2.1.
+  **TCP**: 포트 53을 쓰고, 메시지 앞에 메시지 길이를 적은 2바이트를 붙인다 — §4.2.2
+- (phase 79 step 5) **영역 파일(master file)의 꼴**: 대부분 한 줄에 한 항목이고 괄호로 여러 줄에 걸칠 수 있다. 빈칸·탭이 칸을 가르고, `;`부터 줄 끝은 주석이며 빈 줄과 주석은 어디에나 둘 수 있다. 제어 항목 `$ORIGIN`(상대 이름에 붙일 기준 이름)·`$INCLUDE`(다른 파일 끼우기)가 있다.
+  레코드 항목은 소유자 이름으로 시작하거나(소유자를 새로 정한다) 빈칸으로 시작한다(바로 앞 소유자). 그 뒤는 `[TTL] [클래스] 유형 데이터` 또는 `[클래스] [TTL] 유형 데이터`이고, TTL·클래스를 빼면 마지막으로 적은 값을 쓴다.
+  점으로 끝나는 이름은 완전한(절대) 이름이고, 점이 없으면 기준 이름이 뒤에 붙는다. 홀로 쓴 `@`는 지금의 기준 이름이다 — §5.1
+- (phase 79 step 5) **영역 파일로 영역을 읽을 때**: 오류가 하나라도 있으면 그 영역을 읽지 않는 것이 좋다. 파일의 레코드는 클래스가 모두 같아야 하고, **영역 꼭대기에 SOA가 정확히 하나** 있어야 한다 — §5.2.
+  이 절의 영역 파일 예는 SOA를 맨 앞에 괄호로 여러 줄에 걸쳐 적고 수마다 `;` 주석을 단다 — §5.3(예의 이름·값은 옮기지 않는다)
+- (phase 79 step 5) **메일 주소를 이름 꼴로 적는 법**: `<로컬 부분>@<메일 도메인>` 꼴의 메일함은, 로컬 부분을 레이블 하나로 만들어 메일 도메인 이름 앞에 붙인 도메인 이름으로 적는다 — 곧 `@` 자리가 점이 된다. 로컬 부분에 점이 있으면 영역 파일에서 그 점 앞에 `\`를 붙여야 한다 — §8.
+  SOA의 RNAME이 이 꼴이고, §5.3 예 아래 설명도 `\`로 책임자 메일함의 점을 적었다고 밝힌다
 
 쓰인 곳: 강의 수정 이력 L11, L15
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1·§4.2.2 — DNS는 53번을 UDP와 TCP 둘 다 쓴다. IANA 레지스트리의 53 `domain` — 아래 IANA 항목)
 (phase 79 step 0에서 쓰일 곳) `dns.dns`(§2.1 — 데이터가 여러 서버에 나뉘어 있고 리졸버가 감춘다), `dns.domain-hierarchy`(§2.3.1·§2.3.3·§2.3.4 — 이름 문법·대소문자·길이 한도), `dns.name-servers`(§2.2 — 스텁 리졸버와 재귀 서버),
 `dns.dns-zone`(§2.2 — 영역은 둘 이상의 서버가 맡고 보조 서버는 영역 전송으로 받는다), `dns.name-resolution`(§4.1.1 QR — 질의와 응답), `dns.recursive-iterative-query`(§4.1.1 RD·RA),
 `dns.dns-cache-ttl`(§2.1 — 캐시는 시한이 지나면 버린다, §3.2.1·§4.1.3 — TTL의 뜻·초 단위·0, §6.1.3 — 캐시의 TTL은 줄어든다, §7.4 — 캐시에 넣는 것)
+(phase 79 step 5에서 쓰일 곳) `dns.resource-records`(§3.2.1 — 레코드의 칸, §3.2.2·§3.2.4 — 유형·클래스 IN, §3.4.1 — A, §3.3.9·§8.1 — MX, §3.3.12 — PTR, §3.3.14 — TXT, §5.1 — 영역 파일의 꼴),
+`dns.soa-record`(§3.3.13 — 필드·초 단위·SERIAL, §5.2·§5.3 — 영역 꼭대기에 정확히 하나·예 파일은 SOA로 시작, §8 — RNAME의 `@` 자리는 점), `dns.reverse-lookup`(§3.5 — `IN-ADDR.ARPA`, 거꾸로 적는 까닭, 두 영역이 어긋날 수 있다, §3.3.12 — PTR),
+`dns.dns-transport`(§4.2.1 — UDP 512바이트·TC, 영역 전송은 UDP 불가, §4.2.2 — TCP 53), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단)
 
 ## RFC 5681 — TCP Congestion Control
 https://www.rfc-editor.org/rfc/rfc5681
@@ -4972,10 +5013,16 @@ Best Current Practice(BCP 219)이고 RFC 8499를 폐기했으며 RFC 2308을 고
   안내만 담은 응답은 답 칸이 비고, 권한 칸에 안내하는 영역의 NS 레코드 묶음이, 추가 칸에 그 주소 레코드가 들 수 있으며, AA 비트는 꺼져 있다 — §4 「Referrals」
 - **TTL**: 자원 레코드의 **최대** 유효 시간. 0 이상 2147483647(2^31 − 1) 이하의 부호 없는 수이고(RFC 2181 §8), 출처에 다시 물을 때까지 캐시에 둘 수 있는 시간이다(RFC 1035 §3.2.1·§4.1.3). 「최대」인 까닭은 캐시 운영자가 운영상 TTL을 더 짧게 줄일 수 있어서다.
   캐시는 TTL이 다 되기 전에 레코드를 비울 수도 있다. 영역의 **기본 TTL**을 서버 소프트웨어의 설정이나 영역 파일의 `$TTL` 지시어로 정하기도 한다 — §5 「TTL」. **소유자**(owner): 레코드가 있는 도메인 이름 — §5 「Owner」. 영역 파일(zone file)은 master file이라고도 하는, 레코드를 글자 꼴로 적은 파일이다 — §5 「Master file」
+- (phase 79 step 5, 2026-11-12 원문 다시 확인) **SOA의 필드 이름**: SOA는 「start of a zone of authority」의 줄임이고, 필드는 데이터에 놓인 차례대로 MNAME·RNAME·SERIAL·REFRESH·RETRY·EXPIRE·MINIMUM이다(정의는 RFC 1035 §3.3.13). **MINIMUM의 뜻은 RFC 2308 §4가 바꿔 지금은 「부정 응답에 쓸 TTL」 하나다** — §5 「SOA field names」.
+  한 레코드 묶음 안의 레코드는 TTL이 모두 같아야 하고(RFC 2181 §5.2), 영역 파일의 `$TTL` 지시어는 RFC 2308이 더했다 — §5 「TTL」
+- (phase 79 step 5) **영역의 꼭대기**(apex): 영역의 SOA와 권한 있는 NS 묶음이 놓인 이름 공간의 지점이다(영역 이름 그 자체) — §7 「Apex」. **주 서버**(primary master): 영역 SOA의 MNAME에 이름이 오르는 서버다(RFC 1996 §2.1) — §6 「Primary master」
+- (phase 79 step 5) **DNSSEC의 말**: 서명된 영역(signed zone)은 레코드 묶음들이 서명되고 DNSKEY·RRSIG·NSEC(지금은 NSEC3일 수도 있다)과 (선택으로) DS를 갖춘 영역이다. 검증(validation)은 서명이 유효한지 보는 것과, 신뢰 앵커에서 응답까지 인증 사슬을 잇는 것을 가리킨다.
+  검증하는 리졸버(validating resolver)는 검증을 하는 보안 인식 재귀 서버·리졸버·스텁 리졸버이고, 신뢰 앵커(trust anchor)는 그 리졸버가 인증 사슬의 출발점으로 쓰려고 미리 설정한 DNSKEY나 DS다(RFC 4033 §2) — §10 「Signed zone」·「Validation」·「Validating resolver」·「Trust anchor」
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns`(§6 「Resolver」 — 이름 풀이, 「Policy-implementing resolver」 — 답을 바꾸는 리졸버가 있다, 「Classic DNS」 — 암호화되지 않는다), `dns.domain-hierarchy`(§2 — 레이블·루트·끝의 점·FQDN·호스트 이름·TLD·서브 도메인),
 `dns.name-servers`(§2 「Global DNS」 — 독립된 루트 운영자, §6 — 리졸버의 종류·권한 있는 서버·열린 리졸버·애니캐스트·인스턴스), `dns.dns-zone`(§6 — 영역 전송·주 서버·보조 서버와 옛 이름, §7 — 영역·위임·영역 경계), `dns.name-resolution`(§4 「Referrals」),
 `dns.recursive-iterative-query`(§6 — 재귀·반복 모드, 재귀·비재귀 질의, 반복적 이름 풀이), `dns.dns-cache-ttl`(§5 「TTL」 — 최대 시간·범위·기본 TTL), 강의 수정 이력 L48·L49·L50·L51
+(phase 79 step 5에서 쓰일 곳) `dns.soa-record`(§5 「SOA field names」 — 필드 차례·MINIMUM의 새 뜻, §7 「Apex」·§6 「Primary master」), `dns.resource-records`(§5 「Owner」 — 소유자), `dns.dnssec`(§10 — 서명된 영역·검증·검증하는 리졸버·신뢰 앵커, §6 「Classic DNS」 — 암호화되지 않는다)
 
 ## (phase 79 step 0) RFC 2181 — Clarifications to the DNS Specification
 https://www.rfc-editor.org/rfc/rfc2181
@@ -4985,8 +5032,13 @@ Proposed Standard이고 RFC 1034·1035·1123을 고쳤으며, RFC 4033~4035·434
 - **TTL의 범위**: TTL 값은 부호 없는 수이고 최소 0, 최대 2147483647(2^31 − 1)이다. 32비트 칸의 아래 31비트에 넣고 맨 위 비트는 0으로 둔다. 맨 위 비트가 켜진 값을 받으면 0으로 본다. 구현은 받은 TTL에 상한을 둘 수 있고, **TTL은 지켜야 할 시간이 아니라 최대 유효 시간이다** — §8
 - **이름의 문법**: DNS가 호스트 이름과 주소를 잇는 데만 쓰인다는 생각은 틀렸고, DNS는 (조금 제한은 있지만) 거의 어떤 데이터든 담는 일반 계층형 데이터베이스다. **DNS 자체가 레이블에 거는 제한은 길이 하나뿐이다** — 레이블은 1~63옥텟, 전체 이름은 구분자를 포함해 255옥텟. 길이 0인 이름은 루트이고 보통 `.`으로 적는다.
   그 밖에는 어떤 이진 문자열이든 레이블이 될 수 있고, DNS 서버는 일부 클라이언트가 받아들이지 못할 레이블이 있다는 이유로 영역을 거부하면 안 된다. 다만 DNS 데이터를 쓰는 응용은 자기 환경에 맞게 값을 제한할 수 있다(예: 아무 이진 레이블이나 메일 주소의 호스트 부분이 될 수는 없다) — §11
+- (phase 79 step 5, 2026-11-12 원문 다시 확인) **레코드 묶음**(RRSet): 레이블·클래스·유형이 같고 데이터만 다른 레코드들의 무리다(네 가지가 모두 같은 레코드 둘은 뜻이 없어 서버가 하나로 줄인다). 질의는 그 묶음의 레코드를 모두 돌려주고, 응답에 다 들어가지 않으면 잘렸다고 표시한다 — §5, §5.1. 한 묶음의 레코드는 TTL이 모두 같아야 한다 — §5.2
+- (phase 79 step 5) **CNAME**: 별칭 하나에 정식 이름은 하나뿐이다. 별칭인 이름에는 DNSSEC에 쓰는 레코드 말고 다른 데이터를 둘 수 없다 — 그래서 어떤 이름이든 ① CNAME 하나(DNSSEC 레코드는 함께 둘 수 있다) ② CNAME이 아닌 레코드 하나 이상 ③ 레코드 없이 이름만 있음 ④ 이름이 없음 가운데 정확히 하나다 — §10.1.
+  (이 절이 드는 DNSSEC 레코드 이름 SIG·NXT·KEY는 옛것이고, 지금은 RFC 4035 §2.5대로 RRSIG·NSEC이다 — 아래 「(phase 79 step 5) DNSSEC」 항목). CNAME 레코드의 이름(레이블)은 정식 이름이 아니라 별칭이다 — 흔히 그 이름을 「CNAME」이라 부르는 것은 잘못 붙은 말버릇이다 — §10.1.1
+- (phase 79 step 5) **PTR**: 한 이름에 PTR이 하나뿐이어야 한다는 제한은 없다. PTR의 값은 별칭이 아니라 정식 이름이어야 한다 — §10.2. **MX·NS**: 그 값(이름)은 별칭이면 안 되고, 주소 레코드를 가진 이름이어야 한다 — §10.3
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.domain-hierarchy`(§11 — DNS 이름 일반의 제한은 길이뿐이고 호스트 이름 규칙은 응용 쪽의 제한이다), `dns.dns-cache-ttl`(§8 — 범위·최대 시간), 강의 수정 이력 L51
+(phase 79 step 5에서 쓰일 곳) `dns.resource-records`(§5 — 레코드 묶음, §10.1 — CNAME과 다른 데이터를 함께 둘 수 없다·DNSSEC 예외, §10.3 — MX·NS의 값은 별칭이 아니다), `dns.reverse-lookup`(§10.2 — PTR의 값은 정식 이름), `dns.dns-round-robin`(§5·§5.1 — 같은 이름의 A 여럿은 한 묶음으로 함께 돌아간다)
 
 ## (phase 79 step 0) RFC 7720 — DNS Root Name Service Protocol and Deployment Requirements
 https://www.rfc-editor.org/rfc/rfc7720
@@ -5036,8 +5088,10 @@ Proposed Standard이고 RFC 1034·1035를 고쳤으며 RFC 9103이 이 문서를
 
 - 한 영역을 맡은 서버들의 데이터를 맞춰 두는 표준 장치는 셋이다 — 영역 전체를 옮기는 **AXFR**(RFC 1034·1035), 바뀐 것만 옮기는 **IXFR**(RFC 1995), 바뀐 것을 곧바로 알리는 **NOTIFY**(RFC 1996). 목적은 여러 서버가 한 영역에 대해 어긋나지 않게 권한 있는 답을 하게 하는 것이다 — §1
 - **AXFR은 TCP로 한다**(RFC 1034 §4.3.5 — 정확해야 하므로 TCP 같은 믿을 수 있는 프로토콜). 보통은 클라이언트가 TCP 연결을 열고 AXFR 질의를 보내 응답을 받은 뒤 연결을 닫는다. 같은 연결로 SOA를 먼저 묻거나 다른 질의에 다시 쓰기도 한다 — §4. **UDP 위의 AXFR은 정의되지 않았다** — §4.2
+- (phase 79 step 5, 2026-11-12 원문 다시 확인) AXFR 응답은 그 영역의 **SOA로 시작해 같은 SOA로 끝난다**. 그 사이의 레코드는 차례가 정해지지 않은 모음으로 다룬다 — §2.2
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns-zone`(§1 — AXFR·IXFR·NOTIFY, §4·§4.2 — AXFR은 TCP로 하고 UDP로는 정의되지 않았다), 강의 수정 이력 L11(영역 전송은 TCP)과 함께
+(phase 79 step 5에서 쓰일 곳) `dns.soa-record`(§2.2 — 영역 전체 전송도 SOA로 시작해 SOA로 끝난다), `dns.dns-transport`(§4·§4.2 — 영역 전체 전송은 TCP)
 
 ## (phase 79 step 0) RFC 1995 — Incremental Zone Transfer in DNS, RFC 1996 — A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)
 https://www.rfc-editor.org/rfc/rfc1995
@@ -5103,6 +5157,174 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/trouble
   Windows에서 SOA의 새로 고침 간격 기본값은 15분이다. 전체 영역 전송(AXFR)과 바뀐 레코드만 옮기는 증분 영역 전송(IXFR) 두 가지가 있다 — 「Types of zone file replication」. 영역 전송은 NS 레코드의 서버나 지정한 서버에만 허락하는 것이 안전하다 — 「Zone transfer settings」
 - 한국어판 용어(2026-11-12, 기계 번역): 「Primary zone」을 같은 페이지 안에서 **「기본 영역」과 「주 영역」 두 가지로 섞어 옮기고**, 「Secondary zone」은 「보조 영역」, 「Zone transfer」는 「영역 전송」, 「name resolution」은 「이름 확인」, recursion·iteration은 「재귀」·「반복」, root hints는 「루트 힌트」, FQDN은 「FQDN(정규화된 도메인 이름)」으로 옮긴다(「DNS queries and lookups」 한국어판). DNS 관리자 화면의 실제 메뉴 이름은 이 문서들로 확인하지 못했다
 - **Troubleshoot DNS client name resolution issues**: `C:\Windows\System32\drivers\etc`에 있는 Hosts 파일에 그 이름의 줄이 있으면 DNS 서버로 질의가 나가지 않는다. DNS 클라이언트는 이름을 풀 때 **① 캐시 ② Hosts 파일 ③ DNS 서버 질의**의 차례를 쓰기 때문이다 — 「Scenario 2: There's an entry for the domain name in the Hosts file」
+- (phase 79 step 5, 2026-11-12 한국어판 다시 받음 — `updated_at` 2026-01-21) 한국어판 「DNS zones」는 Refresh interval을 **「새로 고침 간격」**으로 옮기고, 그 기본값이 영역 SOA에서 15분이라는 것을 같은 절에 적는다. 같은 문서 영문판 「DNS zone types」는 정방향 조회(forward lookup — A 레코드에 적힌 이름으로 찾아 IP 주소를 답으로 기대한다)와
+  역방향 조회(reverse lookup — 아는 IP 주소로 컴퓨터 이름을 찾는다)를 가르고, 역방향 이름은 `in-addr.arpa` 아래에 IP 주소의 점 십진 표기의 수를 거꾸로 늘어놓아 만든다고 적는다
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(Windows Hosts 파일의 위치, 캐시 → Hosts 파일 → DNS 서버 차례, Hosts 파일의 짝이 캐시에 실린다), `dns.domain-hierarchy`(한국어판의 「정규화된 도메인 이름」), `dns.name-servers`(루트 힌트), `dns.dns-zone`(주 영역·보조 영역, 영역 전송이 시작되는 두 길, AXFR·IXFR),
 `dns.name-resolution`(DNS 서버는 영역 → 캐시 → 재귀, 재귀하는 서버가 반복 질의로 안내를 따라간다), `dns.recursive-iterative-query`(재귀와 반복, Windows DNS 클라이언트는 재귀를 하지 않고 서버에 재귀를 청한다), `dns.dns-cache-ttl`(캐시가 질의 트래픽을 줄인다, Windows의 기본 TTL은 SOA의 최소 TTL 3600초), 강의 수정 이력 L48
+(phase 79 step 5에서 쓰일 곳) `dns.soa-record`(한국어판의 「새로 고침 간격」·기본 15분), `dns.reverse-lookup`(정방향 조회와 역방향 조회, `in-addr.arpa` 아래 수를 거꾸로)
+
+## (phase 79 step 5) RFC 3596 — DNS Extensions to Support IP Version 6
+https://www.rfc-editor.org/rfc/rfc3596
+
+rfc-editor 상태는 Internet Standard다(2003-10 Draft Standard로 나왔고 원문 머리는 Standards Track) — RFC 1886·3152를 폐기했고 이 문서를 고친 RFC는 없다(2026-11-12). **AAAA와 `IP6.ARPA`의 한 줄씩만** 가져온다.
+
+- AAAA는 인터넷 클래스에만 있는 레코드 유형으로 IPv6 주소 하나를 담는다(유형 값 28). IPv6 주소가 여럿인 호스트는 AAAA를 여럿 둔다 — §2, §2.1
+- 데이터는 128비트 IPv6 주소다 — §2.2. 영역 파일에서는 IPv6 주소의 글자 표기로 적는다 — §2.4
+- IPv6 주소로 이름을 찾는 특별한 도메인은 `IP6.ARPA`다. 주소를 4비트(니블)마다 16진수 한 글자로 나눠 **낮은 쪽 니블부터 거꾸로** 점으로 잇고 끝에 `.IP6.ARPA`를 붙인다 — §2.5(절의 예 주소는 옮기지 않는다)
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.resource-records`(AAAA — 128비트 IPv6 주소), `dns.reverse-lookup`(`ip6.arpa` 한 줄 — 니블 단위로 거꾸로)
+
+## (phase 79 step 5) RFC 2308 — Negative Caching of DNS Queries (DNS NCACHE)
+https://www.rfc-editor.org/rfc/rfc2308
+
+Proposed Standard(1998-03)이고 RFC 1034·1035를 고쳤으며, RFC 4033~4035·6604·8020·8499·9499·9520이 이 문서를 고쳤다(rfc-editor 상태, 2026-11-12). **SOA MINIMUM의 뜻과 `$TTL`, 부정 응답의 캐시 시간만** 가져온다.
+
+- 부정 캐시(negative caching)는 「무엇이 없다」는 사실을 캐시에 두는 것이다. NXDOMAIN은 이름이 없다는 응답 코드(Name Error)이고, NODATA는 이름은 있지만 물은 유형의 레코드가 없다는 뜻이다 — §1
+- SOA의 MINIMUM은 세 뜻(영역의 모든 레코드 TTL의 아래 한도, 영역 파일에서 TTL을 적지 않은 레코드의 기본 TTL, 부정 응답의 TTL)으로 겹쳐 쓰여 왔다. 첫째는 실제로 쓰인 적이 없어 버리고(deprecated), 둘째는 주 서버에서만 뜻이 있으므로 MINIMUM이 아닌 다른 방법으로 정하게 하며,
+  **남은 셋째 — 부정 응답에 쓸 TTL — 을 MINIMUM의 새 뜻으로 정한다** — §4
+- 영역 파일에 `$TTL <TTL>` 지시어를 더해, 그 뒤에 나오는 레코드 가운데 TTL을 적지 않은 것은 이 값을 TTL로 쓰게 한다 — §4
+- 부정 응답에는 TTL을 붙일 레코드가 없으므로 응답의 권한 칸에 그 영역의 SOA를 넣어 TTL을 실어 보내고, 그 TTL은 **SOA의 MINIMUM과 SOA 자신의 TTL 가운데 작은 값**이다. 이 TTL도 보통의 캐시처럼 줄어들고 0이 되면 그 부정 응답을 다시 쓰지 않는다 — §5
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.soa-record`(§4 — MINIMUM의 새 뜻: 「그런 이름이 없다」 같은 부정 응답을 캐시에 둘 시간, §5 — SOA의 MINIMUM과 TTL 가운데 작은 값), `dns.resource-records`(§4 — `$TTL`이 필요하면 한 줄)
+
+## (phase 79 step 5) RFC 1912 — Common DNS Operational and Configuration Errors [Informational — 운영 관례로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1912
+
+Informational(1996-02)이고 RFC 1537을 폐기했다(rfc-editor 상태, 2026-11-12). 표준이 아니라 오래된 운영 지침이라 **관례로만 쓰고 그렇다고 밝힌다**. 이 문서의 SOA 시간 값 권고(몇 분~몇 주)와 MINIMUM 설명(기본 TTL — RFC 2308 이전의 뜻)은 쓰지 않는다.
+
+- SOA에 책임자 메일 주소를 적을 때 `@`를 먼저 `.`로 바꾸고 `@`를 쓰지 않는다. 로컬 부분에 점이 있으면 그 점 앞에 `\`를 붙인다 — §2.2(RFC 1035 §8과 같다)
+- 일련번호에 소수를 쓰지 말고, `YYYYMMDDnn`(연·월·일과 그날 몇 번째로 고쳤는지) 꼴을 권한다 — §2.2. **관례의 근거로만 쓴다** — 표준(RFC 1035 §3.3.13)은 부호 없는 32비트 판 번호라고만 하고 꼴을 정하지 않는다
+- EXPIRE가 지나도록 주 서버에 닿지 못한 보조 서버는 주 서버에 계속 닿아 보려 하지만 그 영역의 이름 서비스는 멈춘다 — §2.2
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.soa-record`(RNAME의 `@` → `.`, 일련번호를 날짜로 적는 관례 — 「그렇게 적기를 권하는 문서가 있다」로만, EXPIRE 뒤 보조 서버가 답하기를 멈춘다)
+
+## (phase 79 step 5) RFC 1794 — DNS Support for Load Balancing [Informational — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1794
+
+Informational(1995-04)이고 폐기·개정 관계가 없다(rfc-editor 상태, 2026-11-12). 문서 스스로 인터넷 표준을 정하지 않는다고 적는다. **DNS로 부하를 나누던 방식의 역사와 그 한계만** 가져온다 — 이 문서가 제안하는 BIND 고친 판의 설정은 가져오지 않는다.
+
+- 1986년 무렵 BIND를 고쳐 쓴 방식들 가운데 **A 레코드의 차례를 돌려 내주는** 「Shuffle Address」와 「Round Robin」 코드가 널리 퍼졌다 — §2
+- 그 방식은 차례만 돌릴 뿐 **대상 기계의 실제 부하는 따지지 않았다** — §2
+- 주소를 여럿 함께 보내자는 요구의 까닭으로, 가장 나은 주소로 알린 기계가 그 레코드의 TTL 안에 멈출 수 있으니 다음 주소들도 함께 알려 복구할 길을 남기자고 적는다 — §2 (C). 곧 DNS가 알려 준 주소의 기계가 멈춰 있을 수 있다
+- DNS 프로토콜은 레코드의 차례를 보장하지 않고, 받는 쪽(클라이언트)이 차례를 다시 정할 수 있다(정렬 목록 등) — §4. 차례가 자주 바뀌는 정보를 내주려면 그 레코드의 TTL도 짧게 잡아야 쓸모가 있다 — §4
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-round-robin`(역사 한 줄, 한계 — 부하를 보지 않는다, 멈춘 기계의 주소도 알려질 수 있다, 받는 쪽이 차례를 다시 정할 수 있다)
+
+## (phase 79 step 5) RFC 6891 — Extension Mechanisms for DNS (EDNS(0))
+https://www.rfc-editor.org/rfc/rfc6891
+
+Internet Standard(STD 75, 2013-04)이고 RFC 2671·2673을 폐기했다(rfc-editor 상태, 2026-11-12). **UDP 크기 한도를 넓힌다는 것 한 줄만** 가져온다 — 옵션과 칸은 가져오지 않는다.
+
+- 이 확장 없이 UDP로 보내는 DNS 메시지는 최대 512바이트다 — §1. 이 한도에 여러 IPv6 주소나 DNSSEC 서명 같은 큰 데이터를 담기가 어려워졌다 — §1, §4.3
+- EDNS(0)으로 더 큰 응답을 받을 수 있다고 알리면, 잘린 UDP 응답과 그 뒤의 TCP 재시도를 피하게 돕는다 — §4.3. EDNS는 이름 풀이의 구간마다(스텁 리졸버와 재귀 리졸버 사이, 재귀 리졸버와 권한 있는 서버 사이) 따로 맞춘다 — §1
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-transport`(EDNS 한 줄 — 512바이트보다 큰 UDP 응답을 받을 수 있게 하는 확장)
+
+## (phase 79 step 5) RFC 9210 — DNS Transport over TCP - Operational Requirements
+https://www.rfc-editor.org/rfc/rfc9210
+
+Best Current Practice(BCP 235, 2022-03)이고 RFC 1123·1536을 고쳤다(rfc-editor 상태, 2026-11-12). RFC 7766이 정한 구현 요건에 맞춰 **운영하는 쪽**의 요건을 정한다.
+
+- 대부분의 DNS 거래는 UDP지만, TCP 위의 DNS를 막으면 여러 통신 실패와 문제 추적의 어려움이 생긴다. 이 문서는 RFC 1123 §6.1.3.2를 고쳐 모든 리졸버·재귀 서버가 TCP와 UDP 질의를 함께 지원하게 하고, RFC 1536의 「TCP는 영역 전송에만 쓴다」는 오해를 지운다 — §1, §2.5, §3
+- 모든 DNS 리졸버와 서버는 UDP와 TCP 질의를 함께 지원하고 처리해야 한다. 서버(전달자 포함)는 UDP로 보내기에 큰 응답을 클라이언트가 받을 수 있게 TCP 질의를 받아야 하고, 클라이언트는 잘린 UDP 응답을 다시 물을 수 있게 TCP로 질의를 보낼 수 있어야 한다 — §3
+- **DNS 서버 운영자와 망 운영자는 DNS 서비스를 UDP와 TCP 둘 다로 허용해야 한다(MUST)**. TCP 위의 DNS를 걸러 막는 것은 대체로 해롭다 — §3, §5
+- TCP를 막은 곳에서는, 잘렸다는 표시(TC)를 받은 리졸버가 TCP로 다시 물어도 닿지 못하고 시간이 다 될 때까지 자원을 붙잡는다 — §5.1
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-transport`(§3 — 방화벽은 UDP 53과 TCP 53을 함께 연다, §1·§2.5 — 「TCP는 영역 전송에만」은 오해, §5.1 — 막으면 생기는 일), `linux-servers.bind-named`(같은 사실 — BIND 쪽은 step 9가 본다), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단 — [기출 2025-05-25 #42])
+
+## (phase 79 step 5) DNSSEC — RFC 9364(BCP 237), RFC 4033, RFC 4034, RFC 4035
+https://www.rfc-editor.org/rfc/rfc9364
+https://www.rfc-editor.org/rfc/rfc4033
+https://www.rfc-editor.org/rfc/rfc4034
+https://www.rfc-editor.org/rfc/rfc4035
+
+상태(rfc-editor 2026-11-12): RFC 9364는 Best Current Practice(BCP 237, 2023-02)이고 다른 RFC를 고치지 않는다. RFC 4033·4034·4035는 Proposed Standard(2005-03)이고 RFC 2535 등을 폐기했으며 RFC 1034·1035·2181·2308 등을 고쳤다. RFC 4033은 RFC 6014·6840이, RFC 4034·4035는 RFC 6840 등이 고쳤다.
+**키 관리·서명 알고리즘·NSEC·NSEC3는 가져오지 않는다.**
+
+- 지금 DNSSEC이라 부르는 것의 핵심 명세는 RFC 4033·4034·4035 셋이다(RFC 6840이 고치고 넓혔지만 동작 방식은 그대로다). RFC 9364는 그 문서들을 한곳에 모아 소개하고 다른 문서가 DNSSEC을 가리킬 때 쓰는 문서다 — RFC 9364 Abstract, §1.
+  **DNS 데이터의 출처 인증에 DNSSEC을 쓰는 것이 지금의 최선 관행(BCP)이고, 표준 트랙 RFC 가운데 DNS 데이터의 출처를 인증하는 다른 방법은 없다** — §1.1
+- DNSSEC은 DNS 데이터에 **출처 인증(origin authentication)과 무결성 보호**를 주고 공개 키를 나누는 수단도 준다. **기밀성은 주지 않는다** — RFC 4033 §1. DNS는 누가 묻든 같은 답을 내고 모든 데이터가 보인다는 전제로 설계되어, DNSSEC도 기밀성이나 접근 제어를 주도록 설계하지 않았다. 서비스 거부 공격도 막지 않는다 — RFC 4033 §4
+- 새 레코드 유형 넷 — RRSIG(레코드 묶음의 서명), DNSKEY(공개 키), DS(위임 서명자), NSEC — 과 헤더 비트 CD·AD를 더하고, 커진 메시지를 위해 EDNS0과 DO 비트를 요구한다 — RFC 4033 §3
+- **서명과 확인**: 영역은 자기 권한 있는 레코드 묶음을 개인 키로 서명하고 짝인 공개 키를 DNSKEY 레코드에 둔다. 리졸버는 그 공개 키로 서명을 확인해 레코드 묶음을 인증한다 — RFC 4034 §2. 서명은 RRSIG 레코드에 담기고, 서명이 유효한 기간과 확인에 쓸 DNSKEY를 찾는 정보가 함께 있다 — RFC 4034 §3.
+  서명하는 키는 그 영역에 딸린 것이지 그 영역의 네임 서버에 딸린 것이 아니다 — RFC 4033 §3.1
+- **믿음의 사슬**: DS 레코드는 위임하는 쪽(부모 영역)에만 있고, 자식 영역의 DNSKEY를 가리킨다(그 키의 요약값 등을 담는다). DS를 인증하면 그것이 가리키는 DNSKEY를 인증할 수 있다 — RFC 4034 §5. 그래서 인증 사슬은 보통 DNSKEY에서 시작해 「DS → DNSKEY」를 되풀이하며 레코드 묶음까지 이어지고,
+  보안을 아는 리졸버는 미리 설정한 루트의 공개 키에서 시작해 아래 영역으로 사슬을 잇는다. 리졸버에는 신뢰 앵커가 적어도 하나 설정돼 있어야 한다 — RFC 4033 §3.1
+- **누가 확인하나**: 대부분의 질의는 스텁 리졸버에서 나오고 스텁 리졸버는 이름 풀이를 재귀 서버에 맡긴다. 스스로 확인하지 않는 스텁 리졸버도 재귀 서버가 보안을 알면 DNSSEC의 덕을 보지만, 그러려면 그 재귀 서버와 둘 사이의 통신을 믿어야 한다 — RFC 4033 §7
+- **CNAME과 DNSSEC**: 서명된 영역에서 CNAME이 있는 이름에는 RRSIG·NSEC이 반드시 함께 있어야 하고, 그 밖의 유형은 둘 수 없다(보안 동적 갱신용 KEY만 예외). CNAME 옆에 다른 데이터를 두지 않는다는 RFC 1034의 원래 정의를 이렇게 고쳤다 — RFC 4035 §2.5
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dnssec`(출처 인증·무결성, 기밀성 없음, RRSIG·DNSKEY·DS, 위 영역이 아래 영역의 키를 보증하는 사슬, 확인하는 쪽은 보통 재귀 서버), `dns.resource-records`(CNAME 옆에 둘 수 있는 DNSSEC 레코드 한 줄이 필요하면), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단 — [기출 2025-11-02 #42])
+
+## (phase 79 step 5) RFC 3833 — Threat Analysis of the Domain Name System (DNS) [Informational]
+https://www.rfc-editor.org/rfc/rfc3833
+
+Informational(2004-08)이고 폐기·개정 관계가 없다(rfc-editor 상태, 2026-11-12). **DNSSEC이 막으려는 위협에 이름을 붙이는 데만** 쓴다.
+
+- 패킷을 가로채거나 질의를 엿보고 거짓 응답을 진짜보다 먼저 리졸버에 보내는 공격은, DNS가 보통 질의나 응답 하나를 **서명도 암호화도 하지 않은 UDP 패킷 하나**로 보내서 특히 쉽다 — §2.1
+- 질의 ID(16비트)와 포트를 맞혀 거짓 응답을 끼워 넣는 공격도 있다 — §2.2. 이름에 기댄 공격들을 흔히 **「cache poisoning」(캐시 오염)** 공격이라 부르고, 응답에 실린 레코드를 고리로 피해자의 캐시에 나쁜 데이터를 넣는다 — §2.3
+- DNSSEC은 데이터를 만든 쪽(영역 관리자)에서 쓰는 쪽까지 끝에서 끝으로 무결성을 확인하게 해 이런 가로채기 공격에 더 나은 해법이고, 서명을 스스로 확인하는 리졸버는 위조 응답을 알아챈다 — §2.1, §2.2
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dnssec`(막으려는 것 — 가짜 응답을 리졸버의 캐시에 넣는 공격, 흔히 「캐시 오염」이라 부른다)
+
+## (phase 79 step 5) Microsoft Learn — Windows Server DNS: Manage DNS resource records, DNS Architecture in Windows Server, Reverse lookup, What is DNSSEC?, Validate and secure DNS responses using DNSSEC, Dnscmd
+https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-resource-records
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-architecture
+https://learn.microsoft.com/en-us/windows-server/networking/dns/reverse-lookup
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dnssec-overview
+https://learn.microsoft.com/en-us/windows-server/networking/dns/validate-dnssec-responses
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd
+
+2026-11-12에 IPv4로 내려받아 읽은 판(모두 「Applies to」 Windows Server 2016~2025. Dnscmd는 Windows 10·11 등도 든다): 「Manage DNS resource records」 `updated_at` 2024-10-17(`ms.date` 2023-06-14), 「DNS Architecture in Windows Server」 2025-04-28(2025-02-06), 「Reverse lookup」 2025-04-28(2025-02-13),
+「What is DNSSEC?」 2024-10-17(2023-06-05), 「Validate and secure DNS responses using DNSSEC」 2025-04-28(2025-02-17), 「Dnscmd」 2025-10-22(2024-03-21). 한국어판(`ko-kr`, 기계 번역)은 앞의 넷과 Dnscmd를 받았고 `updated_at`이 모두 2026-01-21이다 — **용어 표기만** 참고한다.
+
+- **Manage DNS resource records**: DNS 관리자(DNS Manager)에서 만들 수 있는 레코드는 Host (A or AAAA)·Alias (CNAME)·Mail Exchanger (MX)·Pointer (PTR)·Service Locator (SRV)·Text (TXT)다. 정방향 조회 영역(Forward Lookup Zone)을 오른쪽 단추로 눌러
+  **New Host (A or AAAA)**(IPv4·IPv6 모두 이 메뉴 — 이름과 IP 주소를 넣는다), **New Alias (CNAME)**(별칭 이름과 대상 호스트의 FQDN을 넣는다), **New Mail Exchanger (MX)**(호스트나 자식 도메인 — 비우면 부모 도메인, 메일 서버의 FQDN, 메일 서버 우선순위를 넣는다)를 고르고, TXT는 **Other New Records**에서 Text (TXT)를 고른다.
+  PTR은 **역방향 조회 영역**(Reverse Lookup Zone)을 오른쪽 단추로 눌러 **New Pointer (PTR)**을 고르고 호스트 IP 주소와 호스트 이름을 넣는다 — 「Create resource records」(예의 이름·주소는 옮기지 않는다)
+- 같은 문서 한국어판의 표기: 「정방향 조회 영역」·「역방향 조회 영역」·「새 호스트(A 또는 AAAA)」·「새 별칭(CNAME)」·**「새 MX(메일 교환기)」**·「새 포인터(PTR)」·「다른 새 레코드」·「텍스트(TXT)」·「새 리소스 레코드」. **실제 한국어 화면의 메뉴 이름은 확인하지 못했다** — 기출은 「새 메일 교환기(MX)」로 적는다
+- **DNS Architecture in Windows Server**: DNS는 계층형 분산 데이터베이스다. 레코드 유형 표 — Host (A, AAAA)는 호스트 이름을 IP 주소로 잇는다. Alias (CNAME)는 별칭인 도메인 이름이나 하위 도메인 이름을 다른 정식 이름으로 넘기고, 한 호스트를 여러 DNS 이름으로 가리키게 한다.
+  Mail exchanger (MX)는 메일을 주고받는 컴퓨터의 이름을 정하고, 메일 응용은 받는 사람 주소의 도메인으로 MX를 찾으며 MX가 여럿이면 **우선순위 값이 작은 것부터** 연결해 본다. Pointer (PTR)는 역방향 조회에서 IP 주소를 도메인으로 잇고 `in-addr.arpa` 아래 영역에 두며, PTR을 만들려면 알맞은 역방향 조회 영역이 서버에 있어야 한다.
+  Name server (NS)는 그 도메인의 권한 있는 네임 서버를 정한다. Text (TXT)는 DNS에 글을 실어 질의로 돌려주고 영역의 소유를 확인하는 데 흔히 쓴다. Start of authority (SOA)는 영역의 권한 정보(주 네임 서버, 영역 관리자의 연락처, 새로 고침 정보 등)를 담는다 — 「DNS resource records」
+- 같은 문서: **모든 영역 파일의 첫 레코드는 SOA다**. SOA는 영역의 주 DNS 서버를 그 영역 데이터의 가장 좋은 출처로 가리킨다 — 「Zones and delegation」
+- 같은 문서: TTL을 정할 때는 캐시한 정보의 정확도와, DNS 서버의 사용률·네트워크 트래픽이 맞선다. **TTL이 짧으면 낡은 정보를 쓸 가능성은 크게 줄지만 만료된 데이터를 다시 물어야 해 DNS 서버 사용률과 트래픽이 늘고, 길면 서버 사용률과 트래픽은 줄지만 캐시한 답이 낡아 틀린 답을 줄 수 있다**.
+  DNS 서버 서비스가 만드는 대부분의 레코드는 SOA의 최소(기본) TTL 1시간을 물려받는다. TTL을 0으로 두면 서버가 만료된 데이터를 끊임없이 다시 물어 성능에 큰 영향을 주므로 권하지 않는다 — 「Time-to-Live for resource records」
+- 같은 문서 한국어판의 표기: SOA를 「SOA 레코드(권한 부여 시작)」·「SOA(권한 시작)」로 옮긴다
+- **Reverse lookup**: 정방향 조회는 다른 컴퓨터의 DNS 이름(A 레코드에 적힌 것)으로 찾아 IP 주소를 답으로 기대하고, 역방향 조회는 아는 IP 주소로 컴퓨터 이름을 찾는다. `in-addr.arpa` 아래 이름은 점 십진 표기의 수를 거꾸로 늘어놓아 만든다 —
+  **IP 주소는 왼쪽에서 오른쪽으로 읽으면 네트워크 부분에서 시작해 호스트 부분으로 끝나, DNS 이름과 읽는 방향이 반대이기 때문이다**. PTR은 역방향 조회 영역에, 보통 정방향 조회 영역의 호스트(A) 레코드에 대응하는 짝을 만든다. IPv6의 역방향 영역은 `ip6.arpa`를 쓴다 — 「How reverse lookup works」
+- 같은 문서: **PTR과 역방향 조회 영역은 DNS 표준 구현에서 선택 사항이라 꼭 둘 필요는 없지만, 일부 네트워크 응용이 보안 검사에 쓴다** — Note. 역방향 질의의 차례: 클라이언트가 그 주소의 PTR을 묻고, 리졸버가 주소를 거꾸로 하고 `in-addr.arpa`를 붙인 FQDN(끝에 점)을 만들어 역방향 조회 영역에서 찾으며,
+  그 이름의 권한 있는 서버가 PTR(호스트의 DNS 도메인 이름)로 답한다. 물은 서버가 답할 수 없으면 정방향 조회와 똑같이 재귀나 반복으로 권한 있는 서버를 찾는다 — 「Example: IPv4 Reverse query」(예의 주소·이름은 옮기지 않는다). 한국어판은 「정방향 조회 영역」·「역방향 조회 영역」·「역방향 조회」로 옮긴다
+- **What is DNSSEC?**: DNSSEC은 DNS 응답을 검증할 수 있게 해 DNS 프로토콜에 보안을 더하는 확장 묶음이고, **출처 인증(origin authority)·데이터 무결성·존재하지 않음의 인증**을 준다. 이것으로 DNS 스푸핑 공격 같은 공격에 덜 취약해진다. DNSSEC을 지원하는 권한 있는 서버에서 영역을 서명(zone signing)하면,
+  질의와 응답의 기본 방식은 그대로 둔 채 응답에 실린 전자 서명으로 검증하게 된다. 핵심 명세는 RFC 4033·4034·4035다. 레코드: RRSIG(서명), NSEC·NSEC3(이름이 없음을 증명), DNSKEY(서명을 확인하는 공개 키), DS(위임을 보호하고 자식 영역으로 인증 사슬을 잇는다 — 부모 영역에 두며 서명할 때 저절로 생기지 않는다).
+  DNSKEY·DS를 신뢰 앵커(trust anchor)라고도 하고, 응답을 검증하는 권한 없는 DNS 서버(재귀 서버)들에 나눠 줘야 한다. Windows Server 2012 이후의 DNS 서버는 NSEC·NSEC3를 함께 지원한다 — 「How DNSSEC works」, 「Trust anchors」. 한국어판은 「원본 인증, 데이터 무결성」·「DNS 스푸핑 공격」·「트러스트 앵커」로 옮긴다
+- **Validate and secure DNS responses using DNSSEC**: DNSSEC을 아는 재귀(또는 전달) DNS 서버가 서명된 영역에 대한 클라이언트의 질의를 받으면 권한 있는 서버에 DNSSEC 레코드도 보내 달라고 하고, DNSKEY로 서명을 확인해 맞으면 요청한 데이터로 답하고 맞지 않으면 `SERVFAIL`로 답한다 —
+  그래서 클라이언트가 DNSSEC을 몰라도 신뢰 앵커를 가진 재귀 서버가 스푸핑 공격을 막는다. 검증했는지는 응답의 AD 비트로 알린다 — 「Recursive DNS」, 「DNS query and response process」
+- **Dnscmd**: `dnscmd /config /roundrobin [0|1]`은 같은 이름에 호스트 레코드가 여럿일 때 돌려줄 차례를 정한다. 0이면 라운드 로빈을 쓰지 않고 모든 질의에 첫 레코드부터 돌려주고, **1이면 맞는 레코드 목록을 위에서 아래로 돌아가며 바꿔 내준다 — 기본값이 1(켜짐)이다**.
+  `/localnetpriority [0|1]`은 1(기본)이면 질의한 클라이언트와 비슷한 네트워크 주소의 레코드를 먼저 돌려주고, 0이면 데이터베이스에 적힌 차례대로 돌려준다 — 「dnscmd /config command」. **DNS 관리자 화면에서 이 설정을 바꾸는 자리(탭·확인란 이름)는 이 문서들로 확인하지 못했다**
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.resource-records`(DNS 관리자의 메뉴 이름 — 영문과 한국어판 표기, 레코드 유형 표, MX는 값이 작은 것부터), `dns.soa-record`(모든 영역 파일의 첫 레코드는 SOA, TTL이 길면 서버 사용률이 줄고 짧으면 는다),
+`dns.reverse-lookup`(정방향·역방향 조회, 거꾸로 적는 까닭, PTR은 A와 짝지어 따로 만든다, 역방향 조회는 선택이지만 보안 검사에 쓰인다, 역방향 조회 영역), `dns.dns-round-robin`(Dnscmd — 기본 켜짐, 끄면 첫 레코드부터, 서브넷 우선순위 기본 켜짐),
+`dns.dnssec`(출처 인증·무결성, 스푸핑 공격, 레코드 이름, 신뢰 앵커, 재귀 서버가 검증한다, Windows Server 2016~2025가 지원한다), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단)
+
+## (phase 79 step 5) Microsoft Learn — Win32 DNS 참조(Resource Records, MicrosoftDNS_SOAType, Modify method of the MicrosoftDNS_SOAType class)와 Windows Server 문제 해결 문서 둘
+https://learn.microsoft.com/en-us/windows/win32/dns/resource-records
+https://learn.microsoft.com/en-us/windows/win32/dns/microsoftdns-soatype
+https://learn.microsoft.com/en-us/windows/win32/dns/microsoftdns-soatype-modify
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/how-to-use-netmask-ordering-round-robin-feature
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-subnetted-reverse-lookup-zone
+
+2026-11-12에 IPv4로 내려받아 읽은 판: 「Resource Records」 `updated_at` 2025-03-11(`ms.date` 2018-05-31), 「MicrosoftDNS_SOAType class」·「Modify method …」 `updated_at` 2020-12-11(`ms.date` 2018-05-31 — 요구 사항: Windows 2000 Server부터, 한국어판 2026-07-05),
+「Description of the netmask ordering feature and the round robin feature in Windows Server 2003 DNS」(KB 842197) `updated_at` 2026-02-19 — 머리는 「지원되는 Windows Server」지만 **본문의 적용 대상은 Windows Server 2003**이다, 「How to configure a subnetted reverse lookup zone」 `updated_at` 2026-02-19(「Applies to」 지원되는 Windows Server, 한국어판 2026-10-14).
+
+- **Resource Records**(Win32): 레코드는 영역 파일에 들어가는 정보의 단위다. 영역 파일에 A 레코드를 한 줄로 적으면 칸이 다섯이다 — 소유자, TTL(초), 클래스(거의 늘 인터넷 클래스 IN), 유형, 데이터(RDATA — A면 32비트 IP 주소)(예의 이름·주소는 옮기지 않는다).
+  흔히 쓰는 유형을 Start of authority (SOA)·Name server (NS)·Pointer record (PTR)·Address (A)·IPv6 Address (AAAA)·Mail exchange (MX)·Canonical name (CNAME) 같은 이름으로 든다
+- **MicrosoftDNS_SOAType**(Windows DNS의 WMI 클래스): SOA의 필드를 SerialNumber(SOA의 일련번호)·PrimaryServer(그 영역의 권한 있는 DNS 서버)·ResponsibleParty(그 영역의 책임자 이름)·RefreshInterval(영역을 새로 고치기까지의 초)·RetryDelay(실패한 새로 고침을 다시 해 보기까지의 초)·
+  ExpireLimit(응답하지 않는 영역이 권한을 잃기까지의 초)·MinimumTTL(그 영역의 레코드를 캐시에 둘 수 있는 시간의 아래 한도, 초)로 부른다 — 「Properties」
+- **Modify method**: SerialNumber는 영역이 고쳐진 횟수를 나타내고 보조 서버가 영역 전송이 필요한지 판단하는 데 쓴다. **ResponsibleParty는 책임자의 메일함 주소를 `alias.domain` 꼴로 적고 `@` 대신 점을 쓴다**. ExpireLimit은 보조 서버가 주 서버의 응답을 기다리다 영역 사본을 무효로 버리기까지의 초다.
+  MinimumTTL은 TTL을 따로 적지 않은 레코드에 쓰는 TTL이라고 적는다 — 「Parameters」. (MinimumTTL을 SOAType은 「캐시의 아래 한도」로, Modify는 「기본 TTL」로 적어 두 쪽이 다르다 — RFC 2308 §4가 정리한 MINIMUM의 옛 뜻 둘이다)
+- 같은 두 문서의 한국어판 표기(기계 번역): 「SOA 일련 번호」·「주 서버」·「책임 당사자의 사서함 주소」·「at 기호(@)가 아닌 마침표」. **DNS 관리자 SOA 탭의 실제 필드 이름(영문·한국어)은 확인하지 못했다** — 기출은 「일련번호」·「주 서버」·「책임자」·「새로 고침 간격」으로 적는다(「새로 고침 간격」은 한국어판 「DNS zones」에 있다)
+- **KB 842197(Windows Server 2003)**: 라운드 로빈은 같은 이름의 A 레코드 여럿을 질의마다 다른 차례로 내놓아 기본적인 부하 분산을 한다. 질의마다 다른 주소가 맨 위에 오므로 클라이언트들이 늘 같은 서버로 가지 않는다. 넷마스크 차례(netmask ordering)는 클라이언트에 가까운 주소를 앞에 둔다. Windows 2000 Server 처음 판은 둘을 함께 쓸 수 없었고 Windows Server 2003부터 함께 쓸 수 있다 — 「More information」.
+  **옛 판의 문서라 지금 판(Windows Server 2016~2025)의 기본값은 위 Dnscmd 항목으로 적는다**
+- **How to configure a subnetted reverse lookup zone**: DNS 관리자에서 A(호스트) 레코드를 만들 때 쓰는 **「Create Associated PTR record」 확인란**(한국어판 「연결된 PTR 레코드 만들기」)이 있다 — 이 문서는 그 확인란이 서브넷으로 나눈 역방향 조회 영역에서는 동작하지 않는다는 문맥에서 이름을 든다 — 「More information」 Note.
+  곧 PTR은 A와 따로 있는 레코드이고, A를 만들 때 함께 만들도록 고를 수 있다는 것까지만 쓴다. **그 확인란이 기본으로 켜져 있는지는 확인하지 못했다**
+
+쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.resource-records`(Win32 「Resource Records」 — 한 줄의 다섯 칸), `dns.soa-record`(Windows 쪽 필드 이름 — 영문 WMI 이름과 한국어판 표기, 책임자 칸은 `@` 대신 점), `dns.reverse-lookup`(「Create Associated PTR record」 확인란 — A를 만들 때 PTR도 함께 만들도록 고를 수 있다),
+`dns.dns-round-robin`(KB 842197 — 질의마다 맨 위 주소가 바뀌어 클라이언트들이 나뉜다, 넷마스크 차례), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단)

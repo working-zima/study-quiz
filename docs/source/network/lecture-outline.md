@@ -652,6 +652,14 @@ TLD 서버가 com·kr 같은 단계를 맡는다는 것(p340 — RFC 9499 §2 �
 p346 반복적 질의 그림(로컬 DNS 서버가 루트 → TLD → 권한 있는 서버에 차례로 묻고, 각 서버는 다음 서버를 알려 주며, 마지막에 얻은 답을 호스트에 돌려준다 — RFC 1034 §4.3.1·§5.3.3, RFC 9499 §4 「Referrals」. 호스트 → 로컬 DNS 서버 구간(1·8)은 재귀적 질의다 — 그림의 제목은 로컬 DNS 서버가 묻고 다니는 구간을 가리킨다),
 DNS 캐시가 레코드를 TTL 동안 저장한다는 것과 p351의 `ipconfig /displaydns` 화면(항목 이름은 데이터 이름·데이터 유형·TTL(Time To Live)·데이터 길이·섹션과 레코드 줄 — RFC 1035 §3.2.1·§6.1.3, Microsoft Learn 「DNS queries and lookups」·ipconfig 페이지(phase 78 항목). 화면의 이름·주소·TTL 값은 옮기지 않는다).
 강의 예시(p333의 `fastcampus.co.kr`, p335의 hosts 파일 예 줄, p337–p342의 `fastcampus`·`www`·`api`·`blog`, p343의 `naver.com`·`wikipedia.com`, p346–p347의 `poly.edu`·`umass.edu` 호스트 이름, p351 화면의 이름·주소)는 `phases/79-network-dns-linux-servers/guide.md` 「예시 값」대로 옮기지 않는다.
+phase 79 step 5에서 `dns` 주제(Ch5-1)의 뒤 개념 여섯(DNS 레코드, SOA 레코드, 역방향 조회와 PTR 레코드, DNS 라운드 로빈, DNS가 쓰는 UDP와 TCP, DNSSEC)이 쓸 사실을 표준·공식 문서 쪽에서 확인했다 — **새로 더한 수정 이력은 없다**.
+근거 문서는 rfc-editor.org의 RFC 원문(텍스트판과 상태 `…/rfcNNNN.json`)과 learn.microsoft.com의 Windows Server DNS 문서를 IPv4로 내려받아 절까지 확인했다(2026-11-12). 그림 슬라이드 p348–p349와 p350은 렌더해서 봤다(p349는 확대해 표의 칸 이름을 읽었다). 이미 있던 L11(DNS는 TCP도 쓴다)·L15(SOA와 NS)의 처리는 그대로다.
+Ch5-1의 p348–p350은 L15 밖에서 표준·공식 문서와 어긋나지 않았다 —
+DNS 서버가 저장하는 것이 DNS 레코드(자원 레코드)라는 것(p348·p350 — RFC 1034 §3.6, RFC 1035 §3.2.1),
+A가 IPv4 주소, AAAA가 IPv6 주소라는 것(p350 — RFC 1035 §3.4.1의 32비트 주소, RFC 3596 §2.2의 128비트 주소. 「도메인에 대한」의 도메인은 레코드의 소유자 이름으로 읽는다 — L51),
+CNAME이 별칭이라는 것(p350 — L15에 적은 대로 소유자 이름이 별칭이고 데이터가 정식 이름이다, RFC 1034 §3.6.2),
+p349 업체 화면의 칸(레코드 유형 A·MX·CNAME·TXT, 호스트, 값/위치, TTL, 우선순위 — RFC 1035 §3.2.1의 소유자·유형·TTL·데이터와 §3.3.9 MX의 우선순위, §3.3.14 TXT와 맞는다. 화면은 업체의 것이라 옮기지 않고, 칸에 미리 들어 있는 TTL 값도 옮기지 않는다).
+강의가 다루지 않는 SOA의 필드, 역방향 조회와 PTR, 라운드 로빈, DNS의 UDP 크기 한도와 TCP, DNSSEC은 강의 사실이 아니므로 `standards.md`의 「(phase 79 step 5)」 줄과 항목만 근거로 쓴다.
 
 ### L1 — 이더타입/길이 필드가 1500 이하일 때 (Ch2-1 p67) [후보 a]
 
