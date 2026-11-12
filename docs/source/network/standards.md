@@ -93,6 +93,10 @@ TLS의 키 교환·암호 방식·확장, 인증서의 필드와 폐기, SIP의 
 항목마다 페이지 머리의 `updated_at`·`ms.date`, 바닥의 「Last updated on」과 「Applies to」를 적는다(세 날짜가 서로 다를 수 있다). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적는다.
 **명령의 출력 꼴은 문서가 보이는 것만** 적었다 — 출력 예가 없는 명령은 「출력 예 없음」이라고 적는다. 이 PC에서 명령을 실행한 결과는 출처로 쓰지 않았다.
 **기출이 묻지 않는 옵션은 사실로 가져오지 않았다** — ping의 TTL·TOS·경로 기록·출발지 경로 옵션, tracert·pathping의 출발지 경로 옵션, ipconfig의 `/registerdns`·IPv6 옵션, netstat의 `-q`·주기 갱신, nslookup의 대화형 모드와 하위 명령. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 79 step 0)」이 붙은 줄과 항목은 phase 79 step 0에서 `dns` 주제의 앞 개념 여덟(DNS, hosts 파일, 도메인 이름의 계층 구조, 네임 서버의 종류, 영역과 주 서버·보조 서버, 이름 풀이 과정, 재귀적 질의와 반복적 질의, DNS 캐시와 TTL)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-12).
+`dns`는 강의 주제라 강의·면접·표준을 함께 쓴다. RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`과 문서 머리의 STD·BCP 번호로 확인했다. 용어는 DNS 용어를 모은 RFC 9499(BCP 219)를 먼저 보고, 그 정의가 가리키는 원래 절(RFC 1034·1035·1123·2181 등)을 함께 읽었다.
+iana.org의 루트 서버 페이지, man7.org의 hosts(5)·nsswitch.conf(5)(COLOPHON의 판을 적는다), learn.microsoft.com의 Windows Server DNS 문서 셋(`updated_at`·「Applies to」를 적는다 — 한국어판은 기계 번역이라 용어만 참고)도 내려받아 읽었다.
+**루트 서버의 운영 요건(재귀를 끄는지 등)은 지금 ICANN RSSAC 문서에 있어 허용한 출처 밖이다** — 폐기된 RFC 2870만 역사 기록으로 적는다. 레코드 유형·SOA 필드·PTR·라운드 로빈·DNS의 전송·DNSSEC은 이 step에서 적지 않았다(step 5의 몫) — 영역 전송을 설명하는 데 필요한 SOA의 SERIAL·REFRESH·RETRY·EXPIRE 한 줄만 RFC 1034 §4.3.5 줄에 있다.
 
 ---
 
@@ -782,10 +786,45 @@ https://www.rfc-editor.org/rfc/rfc1034
 - 재귀적(recursive) 질의는 네임 서버가 해 줄지 고를 수 있는 선택 기능이다. 묻는 쪽이 질의의 RD(recursion desired) 비트로 청하고, 서버는 RD로 청하지 않은 질의에 재귀를 하지 않는다 — §4.3.1
 - 리졸버는 먼저 자기 정보(캐시 포함)에서 답을 찾고, 없으면 아는 네임 서버 가운데 가장 가까운 것부터 차례로 묻고, 받은 답은 캐시에 넣은 뒤 클라이언트에 돌려준다 — §5.3.3
 - (phase 77 step 2, 2026-11-09 rfc-editor.org 원문) 이 문서는 Domain Name System(DNS)을 소개하는 문서다 — §1 STATUS OF THIS MEMO. 설계 목표의 하나는 이름으로 호스트 주소를 찾아 쓰는 것이다 — §2.2
+- (phase 79 step 0, 2026-11-12 rfc-editor.org 원문 — Internet Standard(STD 13) 그대로, RFC 2181·2308·5936 등이 고쳤다) **DNS 전의 방식**: 이름과 주소의 짝을 한 기관(NIC)이 파일 하나(HOSTS.TXT)로 관리하고 모든 호스트가 그 파일을 내려받아 썼다.
+  호스트가 늘자 파일을 나눠 주는 부담이 감당할 수 없게 커졌고, 기관마다 자기 이름을 스스로 관리하고 싶어 했다 — §2.1
+- (phase 79 step 0) **설계 목표**: 데이터베이스가 크고 자주 바뀌므로 **여러 곳에 나눠 관리하고(분산), 성능을 위해 받은 것을 가까이 저장해 둔다(캐시)**. 이름으로 호스트 주소뿐 아니라 메일함 정보 같은 다른 정보도 찾을 수 있게 하고, 데이터에 유형을 붙여 질의를 한 유형으로 좁힐 수 있게 한다.
+  데이터를 얻는 비용·바뀐 것이 퍼지는 속도·캐시의 정확도 사이에서 무엇을 고를지는 데이터의 출처(영역 관리자)가 정한다 — §2.2
+- (phase 79 step 0) **쓰임의 가정**: 대부분의 데이터는 아주 천천히 바뀐다. 이름의 관리 책임을 나누는 경계는 대개 조직이고, 조직은 여분의 네임 서버를 둔다. 정보에 닿을 수 있는 것이 즉시 갱신보다 중요해서, 바뀐 것은 사본들로 차츰 퍼지고 사본에는 다시 받아 올 시한이 붙는다.
+  질의를 다른 서버가 답해야 할 때의 두 방법 — 첫 서버가 대신 끝까지 찾아 주는 **재귀**(recursive)와, 다른 서버를 알려 주고 묻는 쪽이 이어 묻게 하는 **반복**(iterative). **반복 방식은 반드시 구현해야 하고 재귀는 선택이다** — §2.3
+- (phase 79 step 0) **세 구성 요소**: ① 이름 공간(나무 구조)과 이름에 딸린 자원 레코드, ② **네임 서버** — 나무의 일부에 대한 완전한 정보를 갖고(그 부분의 **권한**(authority)을 가졌다고 한다), 다른 부분은 그것을 아는 네임 서버를 가리킨다. 권한 있는 정보는 **영역**(zone) 단위로 묶여 여러 네임 서버에 나눠 둔다.
+  ③ **리졸버** — 클라이언트의 요청을 받아 네임 서버에서 정보를 얻어 내는 프로그램으로, 네임 서버에 직접 답을 얻거나 다른 서버를 알려 주는 답(referral)을 따라간다 — §2.4
+- (phase 79 step 0) **이름 공간**: 나무 구조이고 노드마다 **레이블**이 있으며 레이블은 0~63옥텟이다. 길이 0인 레이블은 루트 하나만 쓴다. 노드의 도메인 이름은 그 노드에서 루트까지의 레이블 목록이고, **가장 구체적인(루트에서 먼) 것부터 왼쪽에서 오른쪽으로** 적는다.
+  이름을 비교할 때 **대소문자를 가리지 않는다**. 완전한 이름은 루트의 빈 레이블로 끝나므로 **끝에 점이 붙고**(절대 이름), 끝의 점이 없으면 그 지역의 도메인으로 채워질 상대 이름일 수 있다. 이름 전체(레이블과 길이 옥텟의 합)는 **255옥텟**을 넘지 않는다.
+  **도메인**은 그 도메인 이름이 가리키는 노드와 그 아래 전체이고, 어떤 도메인 안에 든 도메인이 그 **서브 도메인**이다(이름이 상대 도메인의 이름으로 끝나는지로 알 수 있다) — §3.1
+- (phase 79 step 0) DNS 명세는 나무의 모양이나 레이블을 고르는 규칙을 정하지 않는다. 다만 특수 문자나 숫자로 시작하는 레이블은 더 좁은 규칙에 기대는 옛 소프트웨어를 망가뜨리기 쉽다 — §3.2
+- (phase 79 step 0) **권장 이름 문법**: 레이블은 영문자로 시작해 영문자·숫자로 끝나고 가운데에는 영문자·숫자·하이픈만 쓴다(옛 ARPANET 호스트 이름 규칙). 레이블은 63자 이하다. 새 호스트 이름은 옛 HOSTS.TXT의 규칙을 따르는 것이 좋다 — §3.5(RFC 1035 §2.3.1과 같다. 숫자로 시작해도 된다는 완화는 아래 RFC 1123 항목의 §2.1)
+- (phase 79 step 0) **자원 레코드의 칸**: 소유자(owner — 레코드가 있는 도메인 이름), 유형(16비트), 클래스(16비트 — IN은 인터넷), **TTL**(32비트, 초 단위 — 주로 리졸버가 레코드를 캐시에 둘 때 쓰고, 버리기 전까지 캐시에 둘 수 있는 시간을 말한다), RDATA(유형에 따른 데이터) — §3.6
+- (phase 79 step 0) **TTL의 쓰임**: TTL은 캐시에 둘 수 있는 시간의 한도이고, 영역의 원본 데이터에는 걸리지 않는다(원본은 영역의 갱신 규칙으로 시한이 정해진다). TTL은 그 데이터가 나온 영역의 관리자가 정한다.
+  **TTL을 짧게 잡으면 캐시를 덜 쓰게 되고, 0이면 캐시에 두지 못한다**. 인터넷의 성능을 생각하면 보통 호스트의 TTL은 며칠 단위가 알맞다. **바뀔 것을 미리 알면 바꾸기 전에 TTL을 줄여 바뀌는 동안의 어긋남을 줄이고, 바꾼 뒤 되돌린다** — §3.6
+- (phase 79 step 0) **영역**: 네임 서버는 영역의 데이터로 질의에 답하는 것이 본업이다. 응답은 언제나 자기 데이터만으로 만들 수 있고, 답이거나 답에 「더 가까운」 다른 네임 서버를 알려 주는 것이다. **영역 하나를 여러 네임 서버가 맡아 한 서버나 통신 경로가 멈춰도 쓸 수 있게 하고, 모든 영역이 적어도 두 서버에 있어야 한다**.
+  네임 서버는 응답에 그것이 권한 있는 데이터인지 아닌지 표시한다 — §4.1
+- (phase 79 step 0) 이름 공간을 노드 사이에서 잘라(cut) 나누면 이어진 한 덩어리가 영역 하나이고, 영역은 그 안의 모든 이름에 권한을 갖는다. 영역에서 루트에 가장 가까운 노드의 이름으로 영역을 부르는 일이 많다. 어떤 조직이 하위 나무를 직접 맡고 싶은 곳에서 자르고,
+  자기 영역을 맡은 조직은 그 안의 데이터를 바꾸고 그 아래에 다시 하위 영역을 **위임**할 수 있다 — §4.2. 영역의 데이터는 영역 안 노드의 권한 있는 데이터, 영역 꼭대기를 정하는 데이터(그 영역의 서버들을 적은 NS 레코드와 SOA 레코드 하나), 아래로 위임한 하위 영역을 적은 NS 레코드, 하위 영역 서버의 주소(glue)다.
+  영역 전체는 레코드 묶음으로 서버 사이에 옮길 수 있다 — §4.2.1. 하위 영역을 위임받으려면 부모 영역 관리자의 동의를 얻고, 여분의 네임 서버를 갖추고, 마지막에 부모 영역에 NS 레코드(와 glue)를 넣는다 — §4.2.2
+- (phase 79 step 0) **질의와 응답**: 질의와 응답은 같은 메시지 형식으로 오가고, 질의에는 찾는 이름(QNAME)·유형·클래스가 든다. **비재귀** 모드의 서버는 자기 데이터만으로 오류·답·더 가까운 서버로의 안내(referral) 가운데 하나로 답하고, 모든 네임 서버가 이것을 구현해야 한다.
+  **재귀** 모드의 서버는 리졸버 노릇을 해서 답이나 오류만 돌려주고 다른 서버를 알려 주지 않는다. 재귀는 선택 기능이고, 서버는 재귀를 쓸 수 있는 클라이언트를 제한할 수 있다.
+  재귀는 클라이언트가 질의의 RD 비트로 청하고 서버가 응답의 RA 비트로 해 줄 수 있음을 알릴 때만 쓰며, 서버는 RD로 청하지 않은 질의에 재귀를 하지 않는다. 재귀는 바로 답만 쓸 수 있는 단순한 클라이언트나, 클라이언트마다 캐시를 따로 두지 않고 한곳에 모으고 싶을 때 쓸모 있다 — §4.3.1
+- (phase 79 step 0) 서버의 처리 순서에서, 찾아 내려가다 영역의 권한 있는 데이터 밖(아래로 위임한 곳의 NS 레코드)에 닿으면 그 NS 레코드를 응답의 권한 칸에, 아는 주소를 추가 칸에 넣어 **다른 서버를 알려 주는 응답(referral)**을 만든다 — §4.3.2 3.b
+- (phase 79 step 0) **영역 유지와 전송**: 영역을 맡은 서버들 가운데 하나가 **주(primary, master) 서버**이고, 바꾸는 일은 대개 주 서버의 영역 파일을 고쳐서 한다. 나머지 **보조(secondary) 서버**는 정한 간격으로 바뀌었는지 확인해 바뀌었으면 새 사본을 받아 온다.
+  바뀌었는지는 SOA의 **SERIAL** 칸으로 보고, 영역을 바꿀 때마다 SERIAL을 늘린다. 확인 간격은 SOA의 REFRESH·RETRY·EXPIRE가 정한다 — 보조 서버는 영역을 받은 뒤 REFRESH초를 기다렸다가 주 서버에 SOA를 물어 SERIAL을 견주고, 확인하지 못하면 RETRY초마다 다시 해 보며, EXPIRE 동안 끝내 확인하지 못하면 그 사본을 낡은 것으로 보고 버린다.
+  바뀌었으면 **AXFR** 요청으로 영역을 받아 오는데, 정확해야 하므로 **TCP 같은 믿을 수 있는 프로토콜로** 한다 — §4.3.5
+- (phase 79 step 0) **리졸버**: 리졸버는 사용자 프로그램과 네임 서버를 잇는 프로그램이고, 요청한 프로그램과 같은 컴퓨터에 있다. **리졸버의 중요한 목표는 이전 결과를 캐시에 두고 거기서 답해, 대부분의 요청에서 네트워크 지연과 네임 서버의 부하를 없애는 것**이다. 여럿이 함께 쓰는 캐시가 더 효율적이다 — §5.1
+- (phase 79 step 0) **스텁 리졸버**: 이름 풀이를 자기 컴퓨터에서 하지 않고 재귀 질의를 해 주는 네임 서버에 맡기는 리졸버다. 그 서버들의 주소 목록만 있으면 되고 보통 설정 파일에 적는다. 네임 서버는 어떤 클라이언트에게든 재귀를 거절할 수 있다 — §5.3.1
+- (phase 79 step 0) 리졸버의 캐시는 TTL이 지난 레코드를 버릴 책임이 있다 — §5.3.2 CACHE. 처리 순서의 4단계에서, 응답이 답이거나 이름이 없다는 오류면 캐시에 넣고 클라이언트에 돌려주고, **더 나은 위임(다른 서버)을 알려 주면 그 위임 정보를 캐시에 넣고 2단계(물을 서버 고르기)로 돌아간다** — §5.3.3
 
 쓰인 곳: 면접 수정 이력 I11
 (phase 77 step 2) `ports.well-known-ports`(DNS 항목 — 풀어 쓴 이름 Domain Name System, 도메인 이름으로 호스트의 IP 주소를 찾아 준다)
 (phase 77 step 7) `tcp-udp.udp`(§2.2 — DNS는 이름으로 호스트 주소를 찾는다)
+(phase 79 step 0에서 쓰일 곳) `dns.dns`(§2.1 — 파일 하나로 관리하던 방식의 한계, §2.2 — 분산·캐시, 주소 말고 메일 정보 등도 찾는다, §2.4 — 네임 서버·리졸버·영역), `dns.hosts-file`(§2.1),
+`dns.domain-hierarchy`(§3.1 — 레이블·루트·오른쪽이 위 단계·대소문자·끝의 점·255옥텟·도메인과 서브 도메인, §3.5 — 권장 이름 문법), `dns.name-servers`(§2.4 — 권한, §4.1 — 영역을 여러 서버가 맡는다, §5.3.1 — 스텁 리졸버),
+`dns.dns-zone`(§4.1 — 둘 이상, §4.2·§4.2.1·§4.2.2 — 영역·위임·꼭대기의 NS와 SOA, §4.3.5 — 주·보조 서버, SERIAL·REFRESH·RETRY·EXPIRE, AXFR은 TCP), `dns.name-resolution`(§4.3.2 3.b·§5.3.3 — referral과 위임 정보의 캐시),
+`dns.recursive-iterative-query`(§2.3·§4.3.1 — 재귀는 선택, RD·RA, 반복은 필수), `dns.dns-cache-ttl`(§3.6 — TTL의 쓰임·0이면 캐시 금지·바꾸기 전에 줄이기, §5.1 — 캐시가 지연과 서버 부하를 줄인다), 강의 수정 이력 L48·L50·L51
 
 ## RFC 1035 — Domain Names - Implementation and Specification
 https://www.rfc-editor.org/rfc/rfc1035
@@ -795,9 +834,24 @@ https://www.rfc-editor.org/rfc/rfc1035
 - SOA 레코드는 영역(zone)의 시작을 알리고 다음을 담는다 — 원래(주) 네임 서버 이름(MNAME), 영역 책임자의 메일 주소(RNAME), 영역 버전 번호(SERIAL),
   다시 가져오기 간격(REFRESH), 실패 뒤 재시도 간격(RETRY), 권한을 잃기까지의 최대 시간(EXPIRE), 레코드에 붙일 최소 TTL(MINIMUM) — §3.3.13
 - DNS는 UDP 53번과 TCP 53번을 모두 쓴다. 일반 질의에는 UDP를 권하고, 영역 전송은 TCP로 한다 — §4.2.1, §4.2.2
+- (phase 79 step 0, 2026-11-12 rfc-editor.org 원문 — Internet Standard(STD 13) 그대로, RFC 2181·2308·5936·7766 등이 고쳤다) **두 쪽에서 본 DNS**: 사용자에게 이름 나무는 하나의 정보 공간이고, 데이터가 여러 네임 서버에 나뉘어 있다는 것은 리졸버가 감춘다.
+  리졸버에게는 이름 공간의 데이터가 여러 네임 서버에 나뉘어 있고 같은 데이터가 둘 이상의 서버에 겹쳐 있다. 리졸버는 아는 네임 서버 하나에서 시작해, 원하는 정보나 다른 서버를 알려 주는 답(referral)을 받고, 그것을 따라가며 다른 서버를 알아 간다.
+  네임 서버가 다루는 데이터는 둘이다 — 영역(이름 공간의 잘라 낸 하위 나무 하나에 대한 완전한 데이터, 권한 있는 데이터)과, 리졸버가 얻어 둔 캐시 데이터. **캐시 데이터는 시한이 지나면 버린다** — §2.1
+- (phase 79 step 0) **흔한 구성**: 리졸버와 그 캐시는 보통 호스트 운영체제의 일부다(§2.2 첫 그림). **DNS는 모든 영역을 둘 이상의 네임 서버가 맡게 하고, 정해 둔 보조 서버가 DNS의 영역 전송으로 주 서버에서 영역을 받아 오고 바뀌었는지 확인한다**.
+  여러 호스트가 캐시 몇 개를 함께 쓰게 하려고 리졸버 대신 **스텁 리졸버**를 두고, 스텁 리졸버는 재귀를 해 주는 네임 서버의 리졸버에 질의를 넘기는 앞단 노릇을 한다 — §2.2
+- (phase 79 step 0) 권장 이름 문법(영문자로 시작, 영문자·숫자로 끝, 가운데는 영문자·숫자·하이픈, 레이블 63자 이하)은 RFC 1034 §3.5와 같다 — §2.3.1. 문자열(레이블·도메인 이름) 비교는 모두 대소문자를 가리지 않고, 들어온 데이터의 대소문자는 될 수 있는 대로 그대로 둔다 — §2.3.3.
+  크기 한도: 레이블 63옥텟 이하, 이름 255옥텟 이하, UDP 메시지 512옥텟 이하. TTL은 이 문서에서 「부호 있는 32비트 수의 양수」로 적었는데 RFC 2181 §8이 부호 없는 수로 바로잡았다(아래 RFC 2181 항목) — §2.3.4
+- (phase 79 step 0) **TTL 칸**: 그 레코드를 캐시에 둘 수 있는 시간이고, 그 시간이 지나면 정보의 출처에 다시 물어야 한다. **0이면 지금 처리 중인 일에만 쓰고 캐시에 두지 않는다**. 아주 자주 바뀌는 데이터에 0을 쓸 수 있다 — §3.2.1. 메시지 안의 레코드에서 TTL은 **초 단위**의 32비트 수다 — §4.1.3(이 절은 부호 없는 수로 적는다)
+- (phase 79 step 0) **메시지 헤더**: QR — 질의(0)인지 응답(1)인지. AA — 응답한 네임 서버가 그 이름의 권한 있는 서버라는 표시. TC — 전송 경로가 허락한 것보다 길어 잘렸다는 표시. **RD(Recursion Desired)** — 질의에 켤 수 있고 응답에 그대로 옮겨지며, 켜져 있으면 네임 서버에게 재귀로 찾으라고 청한다(재귀 지원은 선택).
+  **RA(Recursion Available)** — 응답에서 그 네임 서버가 재귀를 해 줄 수 있는지 알린다 — §4.1.1
+- (phase 79 step 0) **시간의 셈**: 레코드의 TTL과 갱신 타이머는 초 단위 32비트 타이머다. 영역의 데이터는 TTL이 그대로이고, **캐시에 든 데이터의 TTL은 시간이 지나며 줄어든다**. 캐시의 시각은 절대 시각으로 저장했다가 질의에 답할 때 남은 시간(상대값)으로 바꿔 넣고, 바꾼 값이 음수면 시한이 지난 것이라 쓰지 않는다 — §6.1.3
+- (phase 79 step 0) **캐시 쓰기**: 리졸버는 응답으로 받은 데이터를 대개 모두 캐시에 넣는다. 다만 잘려서 일부만 받았을지 모르는 레코드 묶음, 믿기 어려운 응답 등은 넣지 않고, **캐시 데이터를 권한 있는 데이터보다 앞세우지 않는다** — §7.4
 
 쓰인 곳: 강의 수정 이력 L11, L15
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1·§4.2.2 — DNS는 53번을 UDP와 TCP 둘 다 쓴다. IANA 레지스트리의 53 `domain` — 아래 IANA 항목)
+(phase 79 step 0에서 쓰일 곳) `dns.dns`(§2.1 — 데이터가 여러 서버에 나뉘어 있고 리졸버가 감춘다), `dns.domain-hierarchy`(§2.3.1·§2.3.3·§2.3.4 — 이름 문법·대소문자·길이 한도), `dns.name-servers`(§2.2 — 스텁 리졸버와 재귀 서버),
+`dns.dns-zone`(§2.2 — 영역은 둘 이상의 서버가 맡고 보조 서버는 영역 전송으로 받는다), `dns.name-resolution`(§4.1.1 QR — 질의와 응답), `dns.recursive-iterative-query`(§4.1.1 RD·RA),
+`dns.dns-cache-ttl`(§2.1 — 캐시는 시한이 지나면 버린다, §3.2.1·§4.1.3 — TTL의 뜻·초 단위·0, §6.1.3 — 캐시의 TTL은 줄어든다, §7.4 — 캐시에 넣는 것)
 
 ## RFC 5681 — TCP Congestion Control
 https://www.rfc-editor.org/rfc/rfc5681
@@ -1137,11 +1191,22 @@ https://www.rfc-editor.org/rfc/rfc1123
   접근 제어가 약해, 브로드캐스트 주소로 온 TFTP 요청은 조용히 무시하는 것이 좋다 — §4.2.3.5
 - (phase 78 step 0) **FTP**: 스트림 방식을 쓰는 사용자 쪽 FTP는 전송 명령마다 그 앞에 `PORT`로 기본이 아닌 데이터 포트를 정해 보내는 것이 좋다(SHOULD) — 닫은 TCP 연결의 주소·포트 쌍은 한동안 다시 쓸 수 없기 때문이다.
   스트림이 아닌 전송 방식을 쓰면 데이터 연결을 열어 둔 채 여러 번 보낼 수 있다 — §4.1.2.5. 서버 쪽 FTP는 **`PASV`를 반드시 구현해야 한다**(MUST). `PASV` 응답에 담긴 주소는 응답을 보낸 서버의 IP 주소이고, 포트는 `PASV`가 정한 기본이 아닌 데이터 포트다 — §4.1.2.6
+- (phase 79 step 0, 2026-11-12 rfc-editor.org 원문 — Internet Standard 그대로) **호스트 이름의 문법**: 인터넷 호스트 이름의 문법은 RFC 952가 정했고(RFC 952는 rfc-editor 상태 「Unknown」, RFC 1123이 고쳤다), 이 문서가 **첫 글자 제한을 풀어 영문자나 숫자로 시작할 수 있게** 한다.
+  호스트 소프트웨어는 63자까지의 호스트 이름을 반드시 다루고 255자까지는 다루는 것이 좋다. 다만 맨 위 단계의 레이블은 영문자라서, 올바른 호스트 이름이 점 넷으로 나눈 숫자(IPv4 주소 꼴)와 같아지는 일은 없다 — §2.1
+- (phase 79 step 0) 모든 호스트는 DNS 리졸버를 갖추고 그것으로 호스트 이름을 IP 주소로(또 거꾸로) 바꿔야 한다. 그 밖에 **로컬 호스트 테이블을 찾는 방식을 함께 둘 수도 있다**(MAY). DISCUSSION: 처음에는 모든 호스트의 표를 저마다 복사해 찾았는데, 표가 너무 커져 제때 고쳐 나눠 주기 어려워 DNS가 생겼다.
+  **DNS는 주로 호스트 이름과 주소를 바꾸는 데 쓰는 분산 데이터베이스**이고, 네임 서버와 리졸버 두 부분으로 이루어진다. 어느 네임 서버도 모든 정보를 갖지 않으므로 질의 하나를 풀려면 대개 여러 네임 서버에서 정보를 얻어야 한다 — §6.1.1
+- (phase 79 step 0) TTL이 0인 레코드는 클라이언트에 돌려주되 캐시에 두지 않는다 — §6.1.2.1
+- (phase 79 step 0) **리졸버의 두 모델**: **완전 서비스 리졸버**(full-service resolver)는 스스로 알맞은 네임 서버를 찾아가며 이름을 푸는 리졸버이고, 같은 요청에 다시 원격으로 묻지 않도록 **캐시를 반드시 두고 캐시의 정보에 시한을 둬야 한다**.
+  **스텁 리졸버**는 같은 네트워크나 가까운 네트워크의 재귀 네임 서버에 맡기는 리졸버로, PC 같은 작은 호스트에 알맞고 여러 컴퓨터가 재귀 서버의 캐시를 함께 써서 바깥으로 나가는 질의를 줄인다. 스텁 리졸버는 여분의 재귀 네임 서버들에 요청을 보낼 수 있어야 하고, 재귀 네임 서버는 받아 줄 요청의 출처를 제한할 수 있다 — §6.1.3.1
+- (phase 79 step 0) DNS 자체는 이름 문법을 넓게 정한다 — 레이블마다 8비트 옥텟 63개까지, 점으로 나누고 전체 255옥텟까지. DNS를 쓰는 응용마다 이름 문법을 더 좁힐 수 있다 — §6.1.3.5 DISCUSSION
+- (phase 79 step 0) **로컬 호스트 테이블**: 호스트는 로컬 호스트 테이블을 DNS의 예비나 보충으로 쓸 수 있다. 그러면 DNS와 호스트 테이블 가운데 무엇을 앞세울지가 문제인데, **가장 유연한 방법은 그것을 설정으로 정하게 하는 것**이다 — §6.1.3.8 DISCUSSION
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
 `app-protocols-mail-file.ftp`(§4.1.2.5 — 스트림 방식에서는 전송마다 새 데이터 연결), `app-protocols-mail-file.ftp-modes`(§4.1.2.6 — 서버는 `PASV`를 구현해야 한다), `exam-notes.md` E30·E31
 (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§6.3.1 — SNMP는 원격 관리에 쓰는 네트워크 관리 프로토콜이고, 인터넷 호스트는 SNMP 에이전트를 갖추는 것이 좋다)
+(phase 79 step 0에서 쓰일 곳) `dns.dns`(§6.1.1 — 분산 데이터베이스, 호스트 테이블이 커져 DNS가 생겼다), `dns.hosts-file`(§6.1.1 — 로컬 호스트 테이블을 함께 둘 수 있다, §6.1.3.8 — 무엇을 앞세울지는 설정),
+`dns.domain-hierarchy`(§2.1 — 호스트 이름은 숫자로 시작해도 된다·63자/255자, §6.1.3.5 — DNS 자체의 문법은 넓다), `dns.name-servers`(§6.1.3.1 — 완전 서비스 리졸버와 스텁 리졸버), `dns.dns-cache-ttl`(§6.1.2.1 — TTL 0)
 
 ## (2026-10-28) RFC 1350 — The TFTP Protocol (Revision 2)
 https://www.rfc-editor.org/rfc/rfc1350
@@ -2094,6 +2159,7 @@ RFC 5737·3849·9637은 Informational, RFC 2606은 BCP 32다.
 (phase 74) 세 블록의 첫 옥텟은 192·198·203이라 셋 다 옛 C 클래스 범위(192~223, RFC 791 §2.3으로 계산)에 든다 — 문서용 IPv4 주소 가운데 A·B 클래스 범위의 것은 없다.
 `ip-addressing`의 예는 모두 이 안에서 만든다 — 서브네팅 예 `192.0.2.0/24`를 `/26` 넷으로(`192.0.2.0`·`.64`·`.128`·`.192`, 서브넷마다 주소 64개·호스트 62개), AND 예 `192.0.2.130` AND `255.255.255.192` = `192.0.2.128`(마지막 옥텟 `10000010` AND `11000000` = `10000000`) — 계산으로 확인(2026-10-29)
 (phase 77 step 2) `ports.well-known-ports`(RFC 2606 §3 — DNS 항목의 예 `www.example.com`과 웹 주소의 예 `http://www.example.com:8080/`), `ports.client-server-ports`(RFC 5737 §3 — 클라이언트 `192.0.2.10`·`192.0.2.11`, 서버 `198.51.100.10`), 문항 n174(`www.example.com`)·n175(`192.0.2.20`·`198.51.100.20`)
+(phase 79 step 0에서 쓰일 곳) `phases/79-network-dns-linux-servers/guide.md` 「예시 값」 — `dns`·`linux-servers`의 본문·문항·도식에 쓰는 주소(RFC 5737)와 이름(RFC 2606 §3 — `example.com`은 문서의 예로 쓰라고 남겨 둔 **2단계 도메인 이름**이다. 「2단계 도메인」이라는 말의 근거로도 쓴다 — 강의 p342의 Second Level Domain)
 
 ## (phase 73 step 1) RFC 826 — An Ethernet Address Resolution Protocol
 https://www.rfc-editor.org/rfc/rfc826
@@ -2492,6 +2558,7 @@ Draft Standard이고 RFC 1533을 대체했으며 RFC 3442·3942·4361·4833·549
 - 서버 식별자 옵션(코드 54) — 고른 서버의 IP 주소. 서버는 OFFER에 넣어 클라이언트가 제안들을 가르게 하고, 클라이언트는 REQUEST에 넣어 어느 제안을 받아들이는지 알린다 — §9.7
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(주소와 함께 주는 설정 — 서브넷 마스크·기본 게이트웨이(라우터)·DNS 서버, 임대 시간), `ip-address-types.dhcp-messages`(메시지 종류, 서버 식별자로 고른 서버를 알린다)
+(phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§3.8 — 로컬 DNS 서버의 주소를 DHCP로 자동으로 받는다. 누가 DHCP 서버인지(ISP 쪽 장비인지 공유기인지)는 이 문서가 말하지 않는다), 강의 수정 이력 「phase 79 step 0」 문단(p345)
 
 ## (phase 74 step 5) IANA — Service Name and Transport Protocol Port Number Registry
 https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
@@ -2836,6 +2903,7 @@ Version 3.0, 2015-03-19 발행. The Linux Foundation의 LSB Workgroup이 낸 판
 쓰인 곳: (phase 75에서 쓰일 곳) `linux-filesystem.directory-hierarchy`(Abstract·§1.1 — FHS가 무엇인가, §3.1 — /usr·/var를 다른 파티션에 둘 수 있다), `linux-filesystem.standard-directories`(항목마다의 절),
 `linux-filesystem.etc-directory`(§3.7.1·§3.7.2·§3.7.3, 각주 3), `linux-filesystem.proc-filesystem`(§6.1.5), `exam-notes.md`의 「phase 75 step 0」 문단
 (phase 76에서 쓰일 곳) `linux-process-boot.dmesg`(§5.10.2 — `/var/log/dmesg`는 이 목록에 없다), `exam-notes.md` E25
+(phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(§3.7.3 — `/etc` 아래 hosts. 줄의 꼴은 아래 「(phase 79 step 0) Linux man-pages — hosts(5), nsswitch.conf(5)」 항목)
 
 ## (phase 75) POSIX.1-2024 — Base Definitions §3 Definitions, §4 General Concepts
 https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html
@@ -4823,6 +4891,7 @@ ipconfig·pathping 페이지는 옵션을 빗금(`/all`, `/q`)으로 적고, nsl
 쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(옵션 없이 — 어댑터마다 IPv4·IPv6 주소·서브넷 마스크·기본 게이트웨이, 어댑터는 물리·논리 인터페이스, `/all`은 설정 전체 — 항목 목록과 출력 예 없음, 물리 주소·DHCP 서버·임대 시각은 근거 없음),
 `diagnostic-commands.ipconfig-options`(`/release` — DHCPRELEASE·주소 설정을 버림·TCP/IP가 꺼짐, `/renew` — 자동으로 받는 어댑터에서만, `/displaydns` — Hosts 항목과 최근 레코드·DNS 서버보다 먼저, `/flushdns` — 비우기와 부정 응답, `/setclassid`, nslookup — 이름이나 주소를 DNS 서버에 묻는다),
 `diagnostic-commands.pathping`(tracert처럼 경로를 찾은 뒤 라우터마다 일정 시간 여러 번, 노드·링크 손실, `/q` 100·`/p` 250ms, 출력의 세 부분과 칸, 대략 90초·125초 계산, 링크 손실과 라우터 손실의 뜻), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+(phase 79 step 0에서 쓰일 곳) `dns.dns-cache-ttl`(`/displaydns` — DNS 클라이언트 리졸버 캐시에 Hosts 파일의 항목과 최근 레코드가 함께 든다, DNS 서버에 묻기 전에 캐시로 푼다. 강의 p351 화면의 항목 이름은 데이터 이름·데이터 유형·TTL(Time To Live)·데이터 길이·섹션·레코드 줄이다 — 이 페이지는 출력 예를 보이지 않는다), `dns.hosts-file`(`/displaydns` — Hosts 파일의 항목이 캐시에 미리 실린다)
 
 ## (phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서(DNS 클라이언트, 네트워크 어댑터의 IP 주소 바꾸기, 공유 프린터, IPv6 설치, TCP/IP 통신, DHCP)
 https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client
@@ -4862,3 +4931,177 @@ https://man7.org/linux/man-pages/man3/termios.3.html
 - **termios(3)**: 터미널의 끼어들기 문자(INTR)는 **Ctrl-C**이고, 이 문자를 받으면 **SIGINT** 시그널을 보낸다(ISIG가 켜져 있을 때) — DESCRIPTION, 터미널 특수 문자를 정하는 c_cc 배열 설명의 VINTR. SIGINT가 무엇인지는 위 「(phase 76) Linux man-pages …」 항목의 signal(7) 줄
 
 쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(Linux에서 주소를 보는 명령 `ip address`), `diagnostic-commands.ping-options`(Linux ping을 Ctrl-C로 끝내면 SIGINT가 가서 요약을 보이고 끝난다)
+
+## (phase 79 step 0) RFC 9499 — DNS Terminology
+https://www.rfc-editor.org/rfc/rfc9499
+
+Best Current Practice(BCP 219)이고 RFC 8499를 폐기했으며 RFC 2308을 고쳤다(rfc-editor 상태, 2026-11-12). 이 문서는 용어의 뜻을 모은 것이라 프로토콜을 새로 정하지 않는다 — 다른 RFC의 정의를 따다 쓰고 어디서 왔는지 밝힌다. 이 phase가 쓰는 낱말만 가져온다.
+
+- **도메인 이름**: 레이블 하나 이상의 순서 있는 목록. **레이블**: 도메인 이름의 한 조각을 이루는 0옥텟 이상의 순서 있는 목록으로, 이름 나무의 노드 하나를 가리킨다 — §2 「Domain name」·「Label」
+- **전 세계 DNS의 이름**: 레이블은 0~63옥텟이다. 완전한 이름(FQDN)에서 맨 끝 레이블은 길이 0이고 길이 0일 수 있는 것은 그것뿐이며, 그것을 **루트**(루트 레이블)라 한다. 이름 전체는 전송 꼴로 최대 255옥텟이고 루트도 1옥텟으로 센다 — §2 「Global DNS」 Composition of names
+- **이름을 적는 꼴**: 문서용 꼴(presentation format — 영역 파일에 쓰는 꼴)에서는 루트에서 먼 레이블부터 점을 사이에 두고 적고, 완전한 이름이면 루트와 그 앞의 점까지 적어 `example.tld.`처럼 끝에 점이 붙는다. 응용 프로그램과 글에서 쓰는 꼴(common display format)에서는 끝의 점을 붙이지 않는 것이 보통이다.
+  영어처럼 왼쪽에서 오른쪽으로 쓰는 글에서는 **루트(최상위 도메인) 쪽 레이블이 맨 오른쪽**에 온다 — §2 「Global DNS」 Format of names
+- **이름의 관리**는 **위임**으로 정해진다. 루트 영역을 맡는 네임 서버는 서로 독립된 루트 운영자들이 제공한다 — §2 「Global DNS」 Administration of names. 이름 하나에는 자원 레코드가 0개 이상 붙을 수 있고, 레코드 유형은 IANA 레지스트리에 많다 — 같은 절 Types of data
+- **FQDN**(Fully Qualified Domain Name): 노드의 도메인 이름을 분명하게 말하는 이름이다. 엄밀히는 루트의 빈 레이블까지 모두 적어 `www.example.net.`처럼 끝에 점이 붙지만, 모든 이름이 루트를 함께 쓰므로 `www.example.net`처럼 루트를 빼고 적어도 흔히 FQDN이라 부른다.
+  이 말이 필요한 까닭은 끝의 레이블 몇 개를 뺀 이름(예: `example.net`에 대한 `www`)이 있어서이고, 그런 이름은 문맥으로만 뜻이 정해진다 — §2 「Fully Qualified Domain Name (FQDN)」
+- **호스트 이름**: 널리 쓰는 말이지만 RFC 1034·1035·1123·2181 어디에도 정의돼 있지 않다. 흔히 RFC 1034 §3.5의 「권장 이름 문법」(레이블의 모든 글자가 영문자·숫자·하이픈)을 따르고, RFC 1123 §2.1대로 숫자로 시작해도 되는 도메인 이름을 가리킨다.
+  **도메인 이름의 레이블 자체에는 어떤 옥텟 값이든 들어갈 수 있다**. FQDN의 첫 레이블만을 호스트 이름이라 부르기도 한다 — §2 「Host name」
+- **최상위 도메인**(TLD — Top-Level Domain): 루트 한 층 아래의 영역(예: `com`, `jp`). DNS로 보면 TLD에 특별한 것은 없고, 나라별(ccTLD)·일반(gTLD) 같은 구분은 정책의 일이다 — §2 「Top-Level Domain (TLD)」
+- **서브 도메인**: 어떤 도메인 안에 든 도메인이고, 이름이 그 도메인의 이름으로 끝나는지로 알 수 있다(RFC 1034 §3.1). 레이블 단위로 견주므로 `ooo.example.com`은 `oo.example.com`의 서브 도메인이 아니다 — §2 「Subdomain」
+- **리졸버**: 클라이언트의 요청에 따라 네임 서버에서 정보를 얻어 내는 프로그램(RFC 1034 §2.4). 이름·유형·클래스로 질의를 보내고 응답을 받으며, 그 일을 **resolution**(이름 풀이)이라 부른다. 「resolve」는 RFC 1034·1035에 정식으로 정의돼 있지 않다 — §6 「Resolver」
+- **스텁 리졸버**(stub resolver): 이름 풀이를 스스로 다 하지 못하고 보통 재귀 리졸버에 맡기는 리졸버(정의는 RFC 1123 §6.1.3.1) — §6 「Stub resolver」
+- **반복 모드**(iterative mode): 질의를 받은 서버가 다른 서버를 알려 주는 답(referral)으로 응답하는 방식 — 서버는 클라이언트에게 다른 서버를 알려 주고 거기에 이어 묻게 한다. **재귀 모드**(recursive mode): 질의를 받은 서버가 캐시로 답하거나, 다른 서버들에 질의를 보내 최종 답을 얻어 답하는 방식이다.
+  재귀 모드의 서버는 리졸버 노릇을 해 오류나 답만 돌려주고 다른 서버를 알려 주지 않는다. 재귀 모드는 RD가 켜진 질의가 재귀를 해 줄 서버에 닿을 때 일어나고, 클라이언트는 응답에 RA와 RD가 함께 켜졌는지로 확인한다.
+  이렇게 동작하는 시스템을 흔히 **재귀 서버**(recursive server), 때로 **재귀 리졸버**(recursive resolver)라 부르고, 두 말은 섞여 쓰인다 — §6 「Iterative mode」·「Recursive mode」·「Recursive resolver」
+- **재귀 질의**(recursive query): 헤더의 RD(Recursion Desired) 비트가 1인 질의. 재귀 서비스를 할 수 있고 RD로 청했으면 서버가 리졸버를 써서 답한다. **비재귀 질의**(non-recursive query): RD 비트가 0인 질의. 서버는 자기 정보만으로 오류·답·답에 더 가까운 다른 서버로의 안내 가운데 하나로 답한다 — §6 「Recursive query」·「Non-recursive query」
+- **반복적 이름 풀이**(iterative resolution): 다른 서버만 답할 수 있는 질의를 다루는 두 방법 가운데, 첫 서버가 클라이언트 대신 다른 서버에 이어 묻는 것이 재귀, 서버가 다른 서버를 알려 주고 클라이언트가 이어 묻는 것이 반복이다(RFC 1034 §2.3). 반복적 이름 풀이에서 클라이언트는 **비재귀 질의를 되풀이하며** 안내(referral)와 별칭을 따라간다(알고리즘은 RFC 1034 §5.3.3) — §6 「Iterative resolution」
+- **완전 서비스 리졸버**(full-service resolver): 캐시를 갖고 재귀 모드로 동작하는 리졸버(RFC 1123 §6.1.3.1). 재귀 리졸버는 대개 받은 답을 캐시에 둔다고 기대된다 — §6 「Full-service resolver」·「Recursive resolver」
+- **프라이밍**(priming)과 **루트 힌트**: 재귀 모드로 동작하려면 루트 서버 하나 이상의 주소를 알아야 하고, 루트 영역을 맡은 서버들의 이름과 주소를 적은 루트 힌트 파일(많은 소프트웨어에 들어 있다)에서 루트 서버 목록을 찾아 시작한다 — §6 「Priming」·「Root hints」
+- **권한 있는 서버**(authoritative server): DNS 영역의 내용을 자기 데이터로 알고 있어 다른 서버에 묻지 않고 그 영역의 질의에 답하는 서버(RFC 2182 §2). 영역의 NS 레코드에 이름이 오르고, 그 영역의 정보로 답할 때 헤더의 AA 플래그를 1로 켠다. 영역 하나 이상에 권한을 갖는다.
+  권한 있는 서버도 자기 아래로 위임한 하위 영역에 대해서는 위임 정보(referral)를 주는데, 그때는 AA 비트가 0이다 — §6 「Authoritative server」. **권한만 있는 서버**(authoritative-only server)는 재귀 요청을 무시하고(재귀를 하지 않았다는 응답을 하고) 자기가 맡은 영역의 정보만 준다 — §6 「Authoritative-only server」
+- **영역 전송**(zone transfer): 클라이언트가 영역의 사본을 요청하고 권한 있는 서버가 보내 주는 일. 표준 방법은 둘이다 — 영역 전체를 옮기는 **AXFR**(RFC 5936)과 바뀐 부분만 옮기는 **IXFR**(RFC 1995) — §6 「Zone transfer」
+- **보조 서버**(secondary server): 영역 전송으로 영역을 받아 오는 권한 있는 서버(RFC 1996 §2.1). 옛 RFC는 「slave」라 불렀고 지금은 「secondary」라 부르는 것이 보통이다. **주 서버**(primary server): 보조 서버들에게 영역 전송의 원본이 되도록 설정된 권한 있는 서버. 옛 RFC는 「master」라 불렀다 — §6 「Secondary server」·「Slave server」·「Primary server」·「Master server」
+- **열린 리졸버**(open resolver): 어느 클라이언트의 질의든(또는 거의 모든 질의를) 받아 처리하는 완전 서비스 리졸버. 「public resolver」라고도 하는데, 이 말은 일부러 열어 둔 것에 더 쓴다 — §6 「Open resolver」
+- **정책을 적용하는 리졸버**(policy-implementing resolver): 재귀 모드로 동작하면서, 악성 코드 사이트 같은 곳에 닿지 못하게 하는 등의 정책 기준으로 돌려줄 답 일부를 바꾸는 리졸버 — §6 「Policy-implementing resolver」
+- **애니캐스트**와 **인스턴스**: 같은 서비스 주소를 서로 떨어진 여러 곳에서 제공해 데이터그램이 그 가운데 한 곳으로 가게 하는 방식이 애니캐스트이고, 그렇게 같은 IP 주소를 쓰는 서버 하나하나를 인스턴스라 한다. 루트 서버의 인스턴스를 흔히 애니캐스트 인스턴스라 부른다 — §6 「Anycast」·「Instance」
+- **클래식 DNS**(UDP나 TCP 위의 DNS)는 스텁 리졸버와 재귀 리졸버 사이, 재귀 리졸버와 권한 있는 서버 사이에서 쓰이고 **암호화되지 않는다** — §6 「Classic DNS」
+- **영역**(zone): 권한 있는 정보를 묶는 단위로, 영역의 데이터를 겹쳐 맡는 여러 네임 서버에 자동으로 나눠 줄 수 있다(RFC 1034 §2.4) — §7 「Zone」. **영역 경계**(zone cut): 한 영역의 꼭대기가 다른 영역의 자식인 곳의 경계 — §7 「Zone cut」.
+  **위임**(delegation): 어떤 도메인의 꼭대기 아래 이름 공간에 따로 영역을 만드는 일이다. 부모 영역에 자식 영역 꼭대기 이름의 NS 레코드 묶음을 넣을 때 일어나고, 늘 영역 경계에서 일어난다. 그렇게 만든 새 영역을 가리키기도 한다 — §7 「Delegation」. **루트 영역**: 꼭대기가 길이 0인 레이블인 영역 — §7 「Root zone」
+- **안내 응답**(referral): 서버가 답에 대해 (완전히) 권한이 없다는 것을 알리며, 질의를 보낼 다른 곳을 리졸버에게 알려 주는 응답이다. 서버가 재귀 서비스를 하지 않을 때 생긴다(RFC 1034 §4.3.2 3.b). 보통 「referral」은 아래로의 안내(위임 응답)를 뜻한다.
+  안내만 담은 응답은 답 칸이 비고, 권한 칸에 안내하는 영역의 NS 레코드 묶음이, 추가 칸에 그 주소 레코드가 들 수 있으며, AA 비트는 꺼져 있다 — §4 「Referrals」
+- **TTL**: 자원 레코드의 **최대** 유효 시간. 0 이상 2147483647(2^31 − 1) 이하의 부호 없는 수이고(RFC 2181 §8), 출처에 다시 물을 때까지 캐시에 둘 수 있는 시간이다(RFC 1035 §3.2.1·§4.1.3). 「최대」인 까닭은 캐시 운영자가 운영상 TTL을 더 짧게 줄일 수 있어서다.
+  캐시는 TTL이 다 되기 전에 레코드를 비울 수도 있다. 영역의 **기본 TTL**을 서버 소프트웨어의 설정이나 영역 파일의 `$TTL` 지시어로 정하기도 한다 — §5 「TTL」. **소유자**(owner): 레코드가 있는 도메인 이름 — §5 「Owner」. 영역 파일(zone file)은 master file이라고도 하는, 레코드를 글자 꼴로 적은 파일이다 — §5 「Master file」
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns`(§6 「Resolver」 — 이름 풀이, 「Policy-implementing resolver」 — 답을 바꾸는 리졸버가 있다, 「Classic DNS」 — 암호화되지 않는다), `dns.domain-hierarchy`(§2 — 레이블·루트·끝의 점·FQDN·호스트 이름·TLD·서브 도메인),
+`dns.name-servers`(§2 「Global DNS」 — 독립된 루트 운영자, §6 — 리졸버의 종류·권한 있는 서버·열린 리졸버·애니캐스트·인스턴스), `dns.dns-zone`(§6 — 영역 전송·주 서버·보조 서버와 옛 이름, §7 — 영역·위임·영역 경계), `dns.name-resolution`(§4 「Referrals」),
+`dns.recursive-iterative-query`(§6 — 재귀·반복 모드, 재귀·비재귀 질의, 반복적 이름 풀이), `dns.dns-cache-ttl`(§5 「TTL」 — 최대 시간·범위·기본 TTL), 강의 수정 이력 L48·L49·L50·L51
+
+## (phase 79 step 0) RFC 2181 — Clarifications to the DNS Specification
+https://www.rfc-editor.org/rfc/rfc2181
+
+Proposed Standard이고 RFC 1034·1035·1123을 고쳤으며, RFC 4033~4035·4343·5452·8767 등이 이 문서를 고쳤다(rfc-editor 상태, 2026-11-12).
+
+- **TTL의 범위**: TTL 값은 부호 없는 수이고 최소 0, 최대 2147483647(2^31 − 1)이다. 32비트 칸의 아래 31비트에 넣고 맨 위 비트는 0으로 둔다. 맨 위 비트가 켜진 값을 받으면 0으로 본다. 구현은 받은 TTL에 상한을 둘 수 있고, **TTL은 지켜야 할 시간이 아니라 최대 유효 시간이다** — §8
+- **이름의 문법**: DNS가 호스트 이름과 주소를 잇는 데만 쓰인다는 생각은 틀렸고, DNS는 (조금 제한은 있지만) 거의 어떤 데이터든 담는 일반 계층형 데이터베이스다. **DNS 자체가 레이블에 거는 제한은 길이 하나뿐이다** — 레이블은 1~63옥텟, 전체 이름은 구분자를 포함해 255옥텟. 길이 0인 이름은 루트이고 보통 `.`으로 적는다.
+  그 밖에는 어떤 이진 문자열이든 레이블이 될 수 있고, DNS 서버는 일부 클라이언트가 받아들이지 못할 레이블이 있다는 이유로 영역을 거부하면 안 된다. 다만 DNS 데이터를 쓰는 응용은 자기 환경에 맞게 값을 제한할 수 있다(예: 아무 이진 레이블이나 메일 주소의 호스트 부분이 될 수는 없다) — §11
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.domain-hierarchy`(§11 — DNS 이름 일반의 제한은 길이뿐이고 호스트 이름 규칙은 응용 쪽의 제한이다), `dns.dns-cache-ttl`(§8 — 범위·최대 시간), 강의 수정 이력 L51
+
+## (phase 79 step 0) RFC 7720 — DNS Root Name Service Protocol and Deployment Requirements
+https://www.rfc-editor.org/rfc/rfc7720
+
+Best Current Practice(BCP 40)이고 RFC 2870을 폐기했다(rfc-editor 상태, 2026-11-12). 프로토콜·배치 요건만 정하고, **운영 요건은 이 문서에서 빼 ICANN RSSAC의 문서(RSSAC-001)로 넘겼다** — §1. RSSAC 문서는 허용한 출처가 아니라 읽지 않았다.
+
+- **루트 서버는 하나뿐인 루트 영역(`.`)의 권한 있는 서버**이고, 지금은 `root-servers.net` 영역도 맡으며 일부는 `.arpa` 최상위 도메인의 영역도 맡는다 — §1
+- 루트 이름 서비스는 IPv4·IPv6로, **UDP와 TCP로** DNS 질의와 응답을 주고받을 수 있어야 하고, 권한 있는 서비스로서 DNSSEC과 EDNS(0)를 구현해야 한다 — §2. 올바른 IP 주소를 가진 누구의 질의에든 답해야 한다 — §3
+- **이 문서는 루트 서버가 재귀를 하지 않는다는 요건을 적지 않는다**(운영 요건과 함께 빠졌다) — 아래 RFC 2870 항목
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§1 — 루트 서버는 루트 영역의 권한 있는 서버), `dns.recursive-iterative-query`, 강의 수정 이력 L48·L50
+
+## (phase 79 step 0) RFC 2870 — Root Name Server Operational Requirements [폐기, RFC 7720으로 대체 — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc2870
+
+Best Current Practice(BCP 40)였고 RFC 7720이 폐기했다(rfc-editor 상태, 2026-11-12).
+
+- 루트 서버는 자기가 맡은 영역의 권한 있는 응답만 해야 하고, **재귀 조회·전달처럼 캐시한 답을 줄 수 있게 하는 기능을 모두 꺼야 했다**. 루트 서버의 부하를 줄이고 틀린 데이터를 캐시할 위험을 줄이려는 것이었다 — §2.5
+
+쓰인 곳: (phase 79 step 0) 강의 수정 이력 L48(「루트 서버는 재귀를 하지 않는다」는 이 폐기된 문서의 요건이라 지금 표준의 문장으로 단정하지 않는다)
+
+## (phase 79 step 0) RFC 9609 — Initializing a DNS Resolver with Priming Queries
+https://www.rfc-editor.org/rfc/rfc9609
+
+Best Current Practice(BCP 209)이고 2025-02에 나와 RFC 8109를 폐기했다(rfc-editor 상태, 2026-11-12). 재귀 리졸버가 빈 캐시에서 루트 서버 목록을 얻는 방법(프라이밍)을 다룬다.
+
+- 재귀 리졸버는 빈 캐시와, 루트 서버들의 이름과 주소를 찾는 설정에서 시작한다 — §1. 루트 서버의 도메인 이름을 「루트 서버 식별자」라 하고, **이 목록은 1997년부터 그대로이지만 그 IPv4·IPv6 주소는 가끔 바뀐다** — §2
+- 리졸버 소프트웨어는 루트의 NS 레코드가 13개라고 기대하면 안 된다(예전에 더 적게 돌려준 루트 서버가 있었다) — §4.1. **이 문서가 나올 때 루트 서버 운영 기관 13곳이 루트 서버 인스턴스를 1500개 넘게 운영했고, 인스턴스마다 IPv4 주소 하나와 IPv6 주소 하나를 쓴다** — §4.2
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§2·§4.2 — 이름 목록은 1997년부터, 인스턴스 1500개 넘게), 강의 수정 이력 L49
+
+## (phase 79 step 0) IANA — Root Servers
+https://www.iana.org/domains/root/servers
+
+2026-11-12에 IPv4로 내려받아 읽었다(페이지에 고친 날 표시가 없다).
+
+- 루트 영역을 맡는 권한 있는 네임 서버들(흔히 「루트 서버」)은 **여러 나라에 흩어진 수백 대의 서버로 이루어진 망**이고, 루트 영역에는 **이름 붙은 권한 13개**로 설정돼 있다 — 머리 문단
+- 그 이름은 `a.root-servers.net`부터 `m.root-servers.net`까지이고, 표에 이름마다 IPv4·IPv6 주소와 운영 기관이 있다. 표의 운영 기관은 12곳이다 — 한 기관이 `a`와 `j`를 운영한다 — 「List of Root Servers」 표. **주소와 운영 기관 이름은 옮기지 않는다**
+- 재귀 리졸버를 운영하는 사람은 보통 루트 서버들의 이름과 주소를 적은 「루트 힌트 파일」을 설정해야 하고, 많은 소프트웨어에는 이 목록이 들어 있다 — 「Configuring the Root Servers」
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(이름 13개 a~m, 수백 대의 서버, 루트 힌트), 강의 수정 이력 L48·L49
+
+## (phase 79 step 0) RFC 5936 — DNS Zone Transfer Protocol (AXFR)
+https://www.rfc-editor.org/rfc/rfc5936
+
+Proposed Standard이고 RFC 1034·1035를 고쳤으며 RFC 9103이 이 문서를 고쳤다(rfc-editor 상태, 2026-11-12).
+
+- 한 영역을 맡은 서버들의 데이터를 맞춰 두는 표준 장치는 셋이다 — 영역 전체를 옮기는 **AXFR**(RFC 1034·1035), 바뀐 것만 옮기는 **IXFR**(RFC 1995), 바뀐 것을 곧바로 알리는 **NOTIFY**(RFC 1996). 목적은 여러 서버가 한 영역에 대해 어긋나지 않게 권한 있는 답을 하게 하는 것이다 — §1
+- **AXFR은 TCP로 한다**(RFC 1034 §4.3.5 — 정확해야 하므로 TCP 같은 믿을 수 있는 프로토콜). 보통은 클라이언트가 TCP 연결을 열고 AXFR 질의를 보내 응답을 받은 뒤 연결을 닫는다. 같은 연결로 SOA를 먼저 묻거나 다른 질의에 다시 쓰기도 한다 — §4. **UDP 위의 AXFR은 정의되지 않았다** — §4.2
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns-zone`(§1 — AXFR·IXFR·NOTIFY, §4·§4.2 — AXFR은 TCP로 하고 UDP로는 정의되지 않았다), 강의 수정 이력 L11(영역 전송은 TCP)과 함께
+
+## (phase 79 step 0) RFC 1995 — Incremental Zone Transfer in DNS, RFC 1996 — A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)
+https://www.rfc-editor.org/rfc/rfc1995
+https://www.rfc-editor.org/rfc/rfc1996
+
+둘 다 Proposed Standard이고 RFC 1035를 고쳤다. RFC 1995는 RFC 9103이 고쳤다(rfc-editor 상태, 2026-11-12). **이름과 한 줄만 쓴다** — 메시지 꼴은 가져오지 않는다.
+
+- **IXFR**: 영역의 작은 일부가 바뀌었을 때 AXFR은 영역 파일 전체를 옮겨 비효율적이라, 바뀐 부분만 옮긴다 — RFC 1995 §1. 영역의 낡은 사본을 가진 쪽(보통 SOA의 갱신 시간이 되었거나 NOTIFY를 받은 보조 서버)이 자기 사본의 SOA 일련번호를 실어 요청하고, 서버는 그 판부터의 차이만 보내거나 영역 전체를 보낸다.
+  **IXFR 질의는 UDP나 TCP로 보낼 수 있다** — 응답이 UDP 패킷 하나에 들어가면 UDP로 답하고, 안 들어가면 TCP로 다시 묻게 한다 — RFC 1995 §2. (그래서 「영역 전송은 TCP」는 AXFR에 대해서는 언제나 맞고, IXFR은 UDP로 시작할 수 있다)
+- **NOTIFY**: 주(master) 서버가 보조(slave) 서버들에게 영역의 데이터가 바뀌었으니 새 데이터를 알아보라고 알린다 — RFC 1996 Abstract. 영역의 갱신 간격이 길면 주 서버의 부하는 줄지만 영역이 바뀔 때마다 서버들이 어긋나 있는 시간이 길어지므로,
+  보조 서버가 정해진 간격으로 묻는 대신 주 서버가 바뀔 때 알려 퍼지는 시간을 줄인다 — RFC 1996 §1.1·§1.2. 주 서버(master)는 보조 서버들의 영역 전송 원본으로 설정된 권한 있는 서버, 보조 서버(slave)는 영역 전송으로 영역을 받는 권한 있는 서버다 — RFC 1996 §2.1
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns-zone`(IXFR은 바뀐 것만, NOTIFY는 주 서버가 먼저 알린다 — 이름과 한 줄씩)
+
+## (phase 79 step 0) RFC 2182 — Selection and Operation of Secondary DNS Servers
+https://www.rfc-editor.org/rfc/rfc2182
+
+Best Current Practice(BCP 16)이다(rfc-editor 상태, 2026-11-12).
+
+- 이 문서에서의 정의 — **주 서버**(primary server): 영역 정보를 자기 설정으로 가진 권한 있는 서버, 마스터 서버라고도 한다. **보조 서버**(secondary server): 주 서버에서 영역 전송으로 영역 정보를 얻는 권한 있는 서버, 슬레이브 서버라고도 한다. **권한 있는 서버**: 영역의 내용을 자기 데이터로 알아 다른 서버에 묻지 않고 답하는 서버 — §2
+- **영역마다 서버를 여럿 두는 큰 까닭은, 서버 하나가 멈추거나 닿지 않을 때에도 영역의 정보를 어디서나 믿을 만하게 얻게 하는 것**이다. 서버가 여럿이면 이름 풀이의 부하도 나뉜다. 보통 하나가 주 서버이고 나머지가 보조 서버다. 주 서버와 보조 서버의 구분은 그 영역의 서버들 사이에서만 뜻이 있고, 나머지 DNS에게는 그냥 여러 서버다 — §3
+- 보조 서버는 한 번에 모두 끊기지 않도록 지리적으로도 네트워크 경로로도 떨어진 곳에 두어야 한다 — §3.1. DNS 명세와 도메인 등록 규칙은 **영역마다 서버를 적어도 둘**(보통 주 서버와 보조 서버 하나) 두게 하고, 이 문서는 셋을 권한다 — §5
+- 보조 서버는 영역 SOA의 일련번호로 자기 사본을 바꿀 때인지 판단하므로, 주 서버에서 영역을 바꿀 때마다 일련번호를 늘려야 한다 — §7(일련번호를 줄일 때의 절차는 가져오지 않는다)
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.dns-zone`(§2 — 주·보조 서버와 옛 이름, §3·§5 — 둘 이상 두는 까닭), `dns.name-servers`(§2 — 권한 있는 서버), 강의 수정 이력 L50
+
+## (phase 79 step 0) Linux man-pages — hosts(5), nsswitch.conf(5)
+https://man7.org/linux/man-pages/man5/hosts.5.html
+https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html
+
+2026-11-12에 IPv4로 내려받아 읽은 판: 둘 다 Linux man-pages 6.19(man-pages-6.19 타르볼, 2026-09-09에 가져온 것, HTML 2026-09-09). 바닥줄 날짜는 hosts(5) 2026-02-11, nsswitch.conf(5) 2026-02-08이다.
+
+- **hosts(5)**: `/etc/hosts`는 IP 주소와 호스트 이름을 짝짓는 단순한 글자 파일이고 **IP 주소 하나에 한 줄**이다. 줄마다 `IP_주소 정식_호스트_이름 [별명...]`을 적는다. IP 주소는 IPv4나 IPv6이고, 칸 사이는 빈칸이나 탭 몇 개든 된다. `#`부터 줄 끝까지는 주석이다 — DESCRIPTION
+- hosts(5): 이 파일의 호스트 이름은 영숫자·하이픈(`-`)·마침표(`.`)만 쓰고, 영문자로 시작해 영숫자로 끝나야 한다. 별명은 이름 바꿈, 다른 철자, 더 짧은 이름 등에 쓴다. IPv4와 IPv6 줄을 따로 둘 수 있다 — DESCRIPTION
+- hosts(5): BIND는 `/etc/hosts`를 보충하거나 대신해, 호스트가 이 파일이 최신이고 완전하다는 데 기대지 않게 한다. 호스트 테이블은 DNS로 대체되었지만 지금도 쓰인다 — 부팅 중처럼 DNS가 돌지 않을 때 쓰는 로컬 네트워크의 중요한 호스트 몇 개, NIS의 입력, 인터넷에 이어지지 않은 아주 작은 사이트 — DESCRIPTION
+- hosts(5): 이 파일을 고치면 보통 바로 적용된다(응용이 파일을 캐시하는 경우는 빼고) — NOTES. DNS가 나오기 전에는 호스트 테이블이 인터넷에서 호스트 이름을 푸는 유일한 방법이었고, 원래 꼴은 RFC 952가 정했다 — NOTES 「Historical notes」. EXAMPLES의 주소·이름은 옮기지 않는다
+- **nsswitch.conf(5)**: `/etc/nsswitch.conf`(Name Service Switch 설정 파일)는 GNU C 라이브러리 등이 이름 서비스 정보를 **어디서, 어떤 차례로** 얻을지 정하는 데 쓴다. 정보의 갈래마다 데이터베이스 이름이 있고, 줄의 첫 칸이 데이터베이스 이름, 나머지 칸이 물어볼 출처의 차례다 — DESCRIPTION
+- nsswitch.conf(5): **`hosts` 데이터베이스는 호스트 이름과 번호**(gethostbyname(3) 등이 쓴다)다. 줄에 적은 서비스의 **차례대로 결과가 나올 때까지 묻는다**. 표준 설치에서 `files` 등을 쓸 수 있고 **`hosts` 데이터베이스에는 `dns`도 쓸 수 있다**.
+  `files` 출처를 적으면 `hosts` 데이터베이스는 **`/etc/hosts`를 읽는다** — DESCRIPTION, FILES. 서비스 뒤에 `[NOTFOUND=return]` 같은 동작을 붙여 앞 출처의 결과에 따라 멈출지 이어 갈지 정할 수 있다 — DESCRIPTION.
+  **페이지의 예 파일은 `hosts: dns [!UNAVAIL=return] files`로 dns를 앞에 둔다** — 곧 차례는 설정이 정하고 `files`가 늘 먼저인 것은 아니다. `hosts: files dns`(hosts 파일을 먼저, 없으면 DNS)는 위 규칙대로 읽은 예이지 man 페이지의 문장이 아니다
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(hosts(5) — 줄의 꼴·주석·쓰임·고치면 바로 적용, nsswitch.conf(5) — `hosts:` 줄의 차례가 hosts 파일과 DNS 가운데 무엇을 먼저 볼지 정한다), `dns.domain-hierarchy`(hosts(5) — 이 파일의 호스트 이름 규칙)
+
+## (phase 79 step 0) Microsoft Learn — DNS queries and lookups, DNS zones, Troubleshoot DNS client name resolution issues
+https://learn.microsoft.com/en-us/windows-server/networking/dns/queries-lookups
+https://learn.microsoft.com/en-us/windows-server/networking/dns/zone-types
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/troubleshoot-dns-client-resolution-issues
+
+2026-11-12에 IPv4로 내려받아 읽은 판: 「DNS queries and lookups」 `updated_at` 2025-04-28(`ms.date` 2025-02-13, 바닥의 「Last updated on」 2025-03-24), 「DNS zones」 `updated_at` 2025-04-28(`ms.date` 2025-01-31, 「Last updated on」 2025-03-24) — 둘 다 「Applies to」 Windows Server 2016~2025.
+「Troubleshoot DNS client name resolution issues」 `updated_at` 2026-02-19(`ms.date` 2026-02-12), 「Applies to」 지원되는 Windows 클라이언트. 한국어판(`ko-kr`)도 내려받아 용어를 봤는데 기계 번역이라 **용어 표기만** 참고한다(아래 줄).
+
+- **DNS queries and lookups**: 클라이언트의 질의에는 FQDN으로 적은 이름, 질의 유형(레코드 유형), 클래스(Windows DNS 서버에서는 늘 IN)가 든다. DNS 서버가 클라이언트 대신 다른 DNS 서버들에 묻고 이름을 풀어 답을 돌려주는 것이 **재귀**, 클라이언트가 서버들의 안내(referral)에 따라 따로 질의를 보내며 스스로 다른 서버에 묻는 것이 **반복**이다 — 「How DNS queries work」
+- 같은 문서: 반복은 클라이언트가 재귀를 청했으나 서버가 재귀를 꺼 두었을 때나, 클라이언트가 재귀를 청하지 않았을 때 쓰인다. 반복 질의를 받은 서버는 다른 서버에 묻지 않고 자기가 아는 것(캐시 포함)으로 가장 나은 답을 하고, 모르면 **답에 더 가까운 다른 DNS 서버들의 NS·A 레코드 목록**(referral)을 준다.
+  **Windows의 DNS 클라이언트 서비스는 재귀를 하지 않는다** — 「How iteration works」. 기본으로 DNS 클라이언트 서비스는 서버에게 재귀로 끝까지 풀어 달라고 청한다 — 「DNS server query process」
+- 같은 문서: 캐시는 자주 묻는 이름의 풀이를 빠르게 하고 **네트워크의 DNS 질의 트래픽을 크게 줄인다**. 캐시한 레코드에는 TTL이 걸리고 TTL이 다하지 않는 동안 그 레코드로 답할 수 있다. Windows DNS 서버에서 대부분의 영역은 레코드의 TTL로 **영역 SOA 레코드에 정한 최소(기본) TTL**을 쓰고, 기본값은 3600초(1시간)이며 레코드마다 따로 정할 수도 있다 — 「How caching works」
+- 같은 문서: Windows DNS 서버는 루트 서버들의 NS·A 레코드를 적은 **루트 힌트 파일**(`cache.dns`)로 루트 서버를 찾아 재귀를 한다 — 「How caching works」 Note, 「DNS server query process」
+- 같은 문서: **로컬 리졸버 캐시**의 정보는 두 곳에서 온다 — ① 컴퓨터에 Hosts 파일이 있으면 DNS 클라이언트 서비스가 시작할 때 그 파일의 이름-주소 짝을 캐시에 싣는다, ② 이전 질의의 답으로 받은 레코드를 TTL이 정한 시간 동안 캐시에 둔다. 캐시에 맞는 것이 없으면 DNS 서버에 묻는다. DNS 서버를 둘 이상 설정하면 한 서버나 경로가 멈춰도 이름을 풀 수 있다 — 「DNS Client service resolver」
+- 같은 문서: DNS 서버는 질의를 받으면 먼저 자기 영역으로 권한 있게 답할 수 있는지 보고, 없으면 캐시를 보고, 그래도 없으면 재귀로 푼다 — 「DNS server query process」. 재귀하는 서버는 `com`을 맡은 서버에 반복 질의를 보내 다음 서버의 안내를 받고, 그 안내를 따라 마지막 서버에게서 권한 있는 답을 받으면 그 답을 클라이언트에 돌려준다.
+  그 과정에서 얻은 정보를 캐시에 넣어 뒤의 질의에 쓴다 — 「DNS recursion」
+- **DNS zones**: 영역은 DNS 서버가 맡는 DNS 이름 공간의 한 부분이고 레코드를 담는다. Windows DNS 서버의 영역 종류는 **주 영역**(primary zone — 레코드를 만들고 고치고 지우는 쓰기 가능한 원본), **보조 영역**(secondary zone — 주 영역의 읽기 전용 사본으로, 그 영역을 가진 다른 DNS 서버에서 받아 와야 한다), 스텁 영역, 역방향 조회 영역이다 — 「DNS zone types」.
+  주 영역을 맡은 서버를 그 영역의 주 DNS 서버, 보조 영역을 맡은 서버를 보조 DNS 서버라 한다. 주·보조·스텁 영역을 맡은 서버는 모두 그 영역의 이름에 권한이 있다 — 「Replicate the DNS database」. 파일에 둔 주 영역의 기본 파일 이름은 `zone_name.dns`, 위치는 `%windir%\System32\Dns`다 — 「Primary zones」
+- 같은 문서 「Zone transfer」: 영역 파일을 여러 DNS 서버로 복제하는 것을 영역 전송이라 한다. 영역 전송은 ① 주 DNS 서버가 영역이 바뀌었다고 보조 서버들에 알리거나(NOTIFY — RFC 1996), ② 보조 서버의 서비스가 시작되거나 영역의 **새로 고침 간격**이 지났을 때 보조 서버가 주 서버에 바뀐 것을 물으면서 시작된다.
+  Windows에서 SOA의 새로 고침 간격 기본값은 15분이다. 전체 영역 전송(AXFR)과 바뀐 레코드만 옮기는 증분 영역 전송(IXFR) 두 가지가 있다 — 「Types of zone file replication」. 영역 전송은 NS 레코드의 서버나 지정한 서버에만 허락하는 것이 안전하다 — 「Zone transfer settings」
+- 한국어판 용어(2026-11-12, 기계 번역): 「Primary zone」을 같은 페이지 안에서 **「기본 영역」과 「주 영역」 두 가지로 섞어 옮기고**, 「Secondary zone」은 「보조 영역」, 「Zone transfer」는 「영역 전송」, 「name resolution」은 「이름 확인」, recursion·iteration은 「재귀」·「반복」, root hints는 「루트 힌트」, FQDN은 「FQDN(정규화된 도메인 이름)」으로 옮긴다(「DNS queries and lookups」 한국어판). DNS 관리자 화면의 실제 메뉴 이름은 이 문서들로 확인하지 못했다
+- **Troubleshoot DNS client name resolution issues**: `C:\Windows\System32\drivers\etc`에 있는 Hosts 파일에 그 이름의 줄이 있으면 DNS 서버로 질의가 나가지 않는다. DNS 클라이언트는 이름을 풀 때 **① 캐시 ② Hosts 파일 ③ DNS 서버 질의**의 차례를 쓰기 때문이다 — 「Scenario 2: There's an entry for the domain name in the Hosts file」
+
+쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(Windows Hosts 파일의 위치, 캐시 → Hosts 파일 → DNS 서버 차례, Hosts 파일의 짝이 캐시에 실린다), `dns.domain-hierarchy`(한국어판의 「정규화된 도메인 이름」), `dns.name-servers`(루트 힌트), `dns.dns-zone`(주 영역·보조 영역, 영역 전송이 시작되는 두 길, AXFR·IXFR),
+`dns.name-resolution`(DNS 서버는 영역 → 캐시 → 재귀, 재귀하는 서버가 반복 질의로 안내를 따라간다), `dns.recursive-iterative-query`(재귀와 반복, Windows DNS 클라이언트는 재귀를 하지 않고 서버에 재귀를 청한다), `dns.dns-cache-ttl`(캐시가 질의 트래픽을 줄인다, Windows의 기본 TTL은 SOA의 최소 TTL 3600초), 강의 수정 이력 L48
