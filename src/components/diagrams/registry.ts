@@ -227,6 +227,7 @@ import { QueryModesDiagram } from './QueryModesDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
+import { RecordTypesDiagram } from './RecordTypesDiagram'
 import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
@@ -266,6 +267,7 @@ import { SnmpRolesDiagram } from './SnmpRolesDiagram'
 import { SnmpVersionsDiagram } from './SnmpVersionsDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SntpClientDiagram } from './SntpClientDiagram'
+import { SoaFieldsDiagram } from './SoaFieldsDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
@@ -553,6 +555,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'dns.name-resolution': ResolutionStepsDiagram,
   'dns.recursive-iterative-query': QueryModesDiagram,
   'dns.dns-cache-ttl': CacheExpiryDiagram,
+  'dns.resource-records': RecordTypesDiagram,
+  'dns.soa-record': SoaFieldsDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,

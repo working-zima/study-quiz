@@ -356,6 +356,108 @@
         }
       ],
       "sources": ["dns.dns-cache-ttl"]
+    },
+    "record-types": {
+      "label": "example.com 영역의 CNAME·A·MX·NS 레코드를 이름·유형·데이터 칸으로 나눠, 유형마다 이름에 무엇을 짝지어 두는지 보이는 도식",
+      "svgLabel": "example.com 영역 상자 안에 web.example.com의 CNAME, www.example.com의 A, example.com의 MX와 NS 레코드를 맞닿은 칸 셋씩으로 놓은 그림",
+      "question": "레코드마다 이름에 무엇을 짝지어 둘까?",
+      "idleCaption": "example.com 영역에 든 레코드 넷이다. 맞닿은 칸 셋이 레코드 하나로, 이름·유형·데이터를 적었고 TTL과 클래스 칸은 빼고 그렸다. 이름과 값은 예로 붙인 것이다. 버튼을 고르면 유형마다 이름에 무엇을 짝지어 두는지 볼 수 있다.",
+      "legend": "맞닿은 칸 셋이 레코드 하나이고, 화살표는 별칭이 가리키는 정식 이름이다.",
+      "nodes": {
+        "cname-name": "web.example.com",
+        "cname-type": "CNAME",
+        "cname-data": "www.example.com",
+        "a-name": "www.example.com",
+        "a-type": "A",
+        "a-data": "198.51.100.10",
+        "mx-name": "example.com",
+        "mx-type": "MX",
+        "mx-data": "10 mail.example.com",
+        "ns-name": "example.com",
+        "ns-type": "NS",
+        "ns-data": "ns1.example.com"
+      },
+      "groups": {
+        "zone": "example.com 영역의 레코드"
+      },
+      "notes": {
+        "alias-note": "다른 이름을 가리킨다",
+        "address-note": "IPv4 주소를 짝짓는다",
+        "mx-note": "메일 서버를 알린다",
+        "ns-note": "네임 서버를 알린다"
+      },
+      "scenarios": [
+        {
+          "id": "address",
+          "label": "주소",
+          "caption": "www.example.com의 A 레코드는 이 이름에 IPv4 주소 198.51.100.10을 짝지어 둔다. 이 이름의 IP 주소를 물으면 네임 서버는 이 데이터를 답으로 돌려준다.",
+          "sources": ["dns.resource-records"]
+        },
+        {
+          "id": "alias",
+          "label": "별칭",
+          "caption": "web.example.com의 CNAME 레코드는 주소 대신 정식 이름 www.example.com을 적는다. 이 별칭의 IP 주소를 물으면 네임 서버는 정식 이름으로 다시 찾아, www.example.com의 A 레코드에서 198.51.100.10을 얻는다.",
+          "sources": ["dns.resource-records"]
+        },
+        {
+          "id": "mail-ns",
+          "label": "메일과 네임 서버",
+          "caption": "example.com 앞으로 오는 메일을 받을 서버는 MX 레코드가 mail.example.com으로 알리고, 이 영역의 이름을 물을 때 답하는 네임 서버는 NS 레코드가 ns1.example.com으로 알린다. 둘 다 데이터는 IP 주소가 아니라 서버의 이름이고, 10은 MX의 우선순위 값이다.",
+          "sources": ["dns.resource-records"]
+        }
+      ],
+      "sources": ["dns.resource-records"]
+    },
+    "soa-fields": {
+      "label": "example.com 영역의 SOA 레코드에 든 필드 일곱을 예의 값과 함께 놓고, 필드마다 무엇을 정하는지 보이는 도식",
+      "svgLabel": "MNAME·RNAME·SERIAL·REFRESH·RETRY·EXPIRE·MINIMUM 필드를 필드 이름과 값의 칸으로 놓고, RNAME 아래에 메일 주소 hostmaster@example.com을 두고, REFRESH·RETRY·EXPIRE를 보조 서버의 일정 상자로 묶은 그림",
+      "question": "SOA 레코드의 필드는 각각 무엇을 정할까?",
+      "idleCaption": "example.com 영역의 SOA 레코드에 든 필드 일곱을 데이터에 적는 차례대로 놓은 것이다. 시간은 초로 적고, 값은 예로 붙인 것이지 권하는 값이 아니다. 버튼을 고르면 필드들이 무엇을 정하는지 볼 수 있다.",
+      "legend": "왼쪽 칸이 필드 이름, 오른쪽 칸이 예의 값이고, 상자로 묶은 필드는 보조 서버가 쓴다.",
+      "nodes": {
+        "mname-name": "MNAME",
+        "mname-value": "ns1.example.com.",
+        "rname-name": "RNAME",
+        "rname-value": "hostmaster.example.com.",
+        "mail": "hostmaster@example.com",
+        "serial-name": "SERIAL",
+        "serial-value": "100",
+        "refresh-name": "REFRESH",
+        "refresh-value": "7200초 (2시간)",
+        "retry-name": "RETRY",
+        "retry-value": "600초 (10분)",
+        "expire-name": "EXPIRE",
+        "expire-value": "604800초 (7일)",
+        "minimum-name": "MINIMUM",
+        "minimum-value": "300초 (5분)"
+      },
+      "groups": {
+        "secondary": "보조 서버의 일정"
+      },
+      "notes": {
+        "rname-note": "@ 대신 점"
+      },
+      "scenarios": [
+        {
+          "id": "who",
+          "label": "서버와 책임자",
+          "caption": "MNAME에는 이 영역의 원본을 가진 주 서버의 이름 ns1.example.com.을, RNAME에는 영역 책임자의 메일 주소를 적는다. 메일 주소의 @ 자리에 점을 써서 hostmaster.example.com.으로 적고, 이것은 메일 주소 hostmaster@example.com이다.",
+          "sources": ["dns.soa-record"]
+        },
+        {
+          "id": "version",
+          "label": "판 번호",
+          "caption": "SERIAL은 영역의 판 번호인 일련번호다. 영역을 고칠 때마다 올리고, 보조 서버는 주 서버의 이 번호를 자기 사본의 번호와 견주어 영역이 바뀌었는지 안다.",
+          "sources": ["dns.soa-record"]
+        },
+        {
+          "id": "secondary",
+          "label": "보조 서버의 일정",
+          "caption": "REFRESH·RETRY·EXPIRE는 보조 서버가 따르는 일정이다. 보조 서버는 7200초를 기다렸다가 주 서버에 일련번호를 물어 견주고, 닿지 못하면 600초마다 다시 해 보며, 마지막으로 확인한 뒤 604800초가 지나도록 끝내 닿지 못하면 사본을 버리고 이 영역에 답하기를 멈춘다.",
+          "sources": ["dns.soa-record"]
+        }
+      ],
+      "sources": ["dns.soa-record"]
     }
   },
   "tables": {},
