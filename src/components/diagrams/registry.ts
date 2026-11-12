@@ -236,8 +236,10 @@ import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
+import { ReverseNameDiagram } from './ReverseNameDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
+import { RoundRobinAnswersDiagram } from './RoundRobinAnswersDiagram'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
 import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
@@ -557,6 +559,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'dns.dns-cache-ttl': CacheExpiryDiagram,
   'dns.resource-records': RecordTypesDiagram,
   'dns.soa-record': SoaFieldsDiagram,
+  'dns.reverse-lookup': ReverseNameDiagram,
+  'dns.dns-round-robin': RoundRobinAnswersDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
