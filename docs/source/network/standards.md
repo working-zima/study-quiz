@@ -100,6 +100,10 @@ iana.org의 루트 서버 페이지, man7.org의 hosts(5)·nsswitch.conf(5)(COLO
 「(phase 79 step 5)」가 붙은 줄과 항목은 phase 79 step 5에서 `dns` 주제의 뒤 개념 여섯(DNS 레코드, SOA 레코드, 역방향 조회와 PTR 레코드, DNS 라운드 로빈, DNS가 쓰는 UDP와 TCP, DNSSEC)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-12).
 RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`과 문서 머리의 STD·BCP 번호)으로 읽었다. learn.microsoft.com은 Windows Server DNS 문서와 Win32 DNS 참조·문제 해결 문서를 영문판과 한국어판(`ko-kr`)으로 내려받아 `updated_at`·「Applies to」를 적었다.
 **DNS 관리자 화면의 한국어 메뉴·필드 이름은 한국어판 문서(기계 번역)의 표기로만 확인했고 실제 화면으로는 확인하지 못했다** — 항목에 그렇게 적는다. 정보성(Informational) RFC(1794·1912·3833)는 표준이 아니라 역사 기록·운영 관례·위협 분석으로만 쓴다고 항목마다 밝힌다.
+「(phase 79 step 9)」가 붙은 줄과 항목은 phase 79 step 9에서 `linux-servers` 주제(DNS 클라이언트 설정 파일, BIND와 named, named.conf의 options 문, Apache HTTP Server와 httpd.conf, Listen 지시자와 포트 권한, KeepAlive와 KeepAliveTimeout, Options 지시자와 디렉터리 목록, LimitRequestBody 지시자, iptables)가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-12).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적었다. BIND 9 관리자 참조 설명서(ARM)와 명령 설명은 bind9.readthedocs.io의 안정판(`en/stable/` — 이날 9.20.30)을, Apache HTTP Server 문서는 httpd.apache.org의 2.4 문서(이날 최신 판 2.4.71)를 IPv4로 내려받아 읽었다 —
+Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이 판마다 바뀐 지시자는 문서의 Compatibility 줄대로 몇 판부터인지 적는다. netfilter.org는 프로젝트 소개 페이지 셋을 읽었다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — BIND의 `view`·ACL 문법 전체·`rndc` 명령 전체·DNS over TLS/HTTPS, Apache의 가상 호스트·모듈 전체·MPM·`.htaccess`의 세부, iptables의 `nat`·`mangle` 테이블과 연결 추적, nftables 문법, `rpm`·`yum`·`sudo`. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -970,6 +974,7 @@ https://www.rfc-editor.org/rfc/rfc9112
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
 (phase 77 step 8) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP), 도식 `transport-choice`
+(phase 79 step 9에서 쓰일 곳) `linux-servers.apache-keepalive`(§9.3 — HTTP/1.1은 기본으로 지속 연결을 써서 한 연결에 요청·응답을 여럿 싣는다, `close`가 있으면 그 응답 뒤에 닫는다. Apache 쪽은 아래 「(phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명 …」 항목의 `KeepAlive`)
 
 ## MDN — An overview of HTTP
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview
@@ -2948,6 +2953,7 @@ Version 3.0, 2015-03-19 발행. The Linux Foundation의 LSB Workgroup이 낸 판
 `linux-filesystem.etc-directory`(§3.7.1·§3.7.2·§3.7.3, 각주 3), `linux-filesystem.proc-filesystem`(§6.1.5), `exam-notes.md`의 「phase 75 step 0」 문단
 (phase 76에서 쓰일 곳) `linux-process-boot.dmesg`(§5.10.2 — `/var/log/dmesg`는 이 목록에 없다), `exam-notes.md` E25
 (phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(§3.7.3 — `/etc` 아래 hosts. 줄의 꼴은 아래 「(phase 79 step 0) Linux man-pages — hosts(5), nsswitch.conf(5)」 항목)
+(phase 79 step 9에서 쓰일 곳) `linux-servers.resolv-conf`(§3.7.3 — `/etc` 아래 resolv.conf. 줄의 꼴은 아래 「(phase 79 step 9) Linux man-pages — resolv.conf(5) …」 항목)
 
 ## (phase 75) POSIX.1-2024 — Base Definitions §3 Definitions, §4 General Concepts
 https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html
@@ -4075,9 +4081,13 @@ https://man7.org/linux/man-pages/man8/systemd-sysusers.8.html
   `u` 줄로 만든 계정은 로그인할 수 없게 만들어지고, 시스템 사용자는 보통 로그인을 허용하지 않아야 한다 — 「u」 줄
 - **systemd-sysusers(8)**: 예로, 패키지 설치 스크립트가 데몬 `radvd`를 위한 사용자 `radvd`(설명 「radvd daemon」)를 만든다 — OPTIONS의 Example 1.
   위 둘을 이으면 「시스템 계정은 사람이 아니라 프로그램(데몬 같은 것)을 위해 패키지를 설치할 때 만들고, 보통 로그인을 막아 둔다」를 쓸 수 있다. 번호의 범위는 login.defs의 SYS_UID_MIN~SYS_UID_MAX다(위 shadow-utils 항목)
+- (phase 79 step 9, 2026-11-12에 IPv4로 다시 읽음 — 같은 util-linux 2.43.devel-739-eee2e, 2026-05-24) **su(1)**: 다른 사용자·그룹 ID로 명령을 실행하게 하는 명령이다. 꼴은 `su [옵션] [-] [사용자|UID [인자...]]`이다 — SYNOPSIS.
+  사용자를 적지 않으면 root로 대화형 셸을 띄우고, 사용자를 적으면 그 뒤의 인자는 그 사용자의 셸에 넘긴다 — DESCRIPTION. 명령 하나를 실행하게 하려면 `-c 명령`으로 그 명령을 셸에 넘긴다 — OPTIONS `-c`. 인증·계정·세션은 PAM으로 다룬다 — DESCRIPTION.
+  곧 **`su` 바로 뒤에 오는 첫 인자는 사용자 이름이지 실행할 명령이 아니다** — 「실행할 명령 앞에 `su`를 붙인다」는 이 꼴이 아니다(`exam-notes.md` 「phase 79 step 9」 문단)
 
 쓰인 곳: (phase 76 step 9에서 쓰일 곳) `linux-accounts.user-account`(login(1) — 로그인 때 UID·GID가 /etc/passwd의 값으로 정해진다, 새 파일의 그룹; sysusers.d(5)·systemd-sysusers(8) — 시스템 계정과 일반 계정),
 `linux-accounts.etc-passwd`(login(1) — 셸 칸의 프로그램을 시작한다), `linux-accounts.login-records`(login(1) — wtmp·lastlog에 남긴다; su(1) — 실패한 시도를 btmp에 남긴다)
+(phase 79 step 9에서 쓰일 곳) `linux-servers.apache-listen`(su(1) — 꼴과 `-c`, 기출 오답 「명령 앞에 `su`를 붙인다」의 판정), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #41], [기출 2025-11-02 #35])
 
 ## (phase 76 step 9) GNU coreutils — id(1), GNU Coreutils 매뉴얼 20.1; GNU Bash — bash(1) HISTORY; procps-ng — pgrep(1)
 https://man7.org/linux/man-pages/man1/id.1.html
@@ -4193,6 +4203,7 @@ Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등�
 (phase 77 step 8) `tcp-udp.transport-choice`(§8 — TCP 연결, §3.5 — 데이터를 잃거나 뒤섞지 않았는지 살피는 일을 TCP에 맡긴다), 도식 `transport-choice`, 문항 n187 해설
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(§1·§2.3 — 목적, 제어 연결과 데이터 연결, §4.1.1·§4.1.3 — `USER`·`PASS`·`RETR`·`STOR`·`LIST`·`QUIT`, §7·§5.4·§4.2 — 대화의 차례, §5.1·§3.4.1·§3.3·§5.2 — 기본 스트림 방식에서는 전송마다 데이터 연결을 맺고 닫는다),
 `app-protocols-mail-file.ftp-modes`(§3.2·§5.2 — 기본은 서버가 20번에서 연다, §4.1.2 — `PORT`·`PASV`, §2.2 — 능동·수동 DTP, §4.2 — `227 Entering Passive Mode`), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
+(phase 79 step 9) 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44]의 오답 `--dport 21`은 FTP 제어 연결의 포트다, §8)
 
 ## (phase 77) RFC 854 — Telnet Protocol Specification
 https://www.rfc-editor.org/rfc/rfc854
@@ -4206,6 +4217,7 @@ Internet Standard이고 폐기되지 않았다(RFC 764를 대체, RFC 5198이 �
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 23, 원격 단말 접속), `ports.client-server-ports`(CONNECTION ESTABLISHMENT — 서버 포트 하나로 서로 다른 사용자 포트와 여러 연결을 동시에)
 (phase 77 step 3) 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — Telnet은 TCP를 쓴다, GENERAL CONSIDERATIONS)
+(phase 79 step 9에서 쓰일 곳) `linux-servers.iptables`(GENERAL CONSIDERATIONS·CONNECTION ESTABLISHMENT — Telnet은 TCP 23이라 막는 규칙은 `-p tcp --dport 23`), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44])
 
 ## (phase 77) RFC 2946 — Telnet Data Encryption Option, RFC 2941 — Telnet Authentication Option
 https://www.rfc-editor.org/rfc/rfc2946
@@ -4328,6 +4340,7 @@ capabilities(7)의 다른 사실은 위 「(phase 75) Linux man-pages …」 항
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(ip(7) — 소켓 주소는 IP 주소와 16비트 포트, 포트는 전송 계층이 구현한다), `ports.well-known-ports`(ip(7)·capabilities(7)·services(5) — Linux에서 1024보다 작은 포트에서 기다리려면 특권이 필요하다),
 `ports.client-server-ports`(ip(7)·udp(7)·proc_sys_net_ipv4(5) — 클라이언트가 묶지 않고 보내면 운영체제가 비어 있는 임시 포트를 고른다, 범위는 `ip_local_port_range`, tcp(7) — 서버는 bind·listen·accept), 강의 수정 이력 L43, `exam-notes.md` E27
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat-linux-options`(services(5) — `/etc/services`는 이름과 번호의 목록일 뿐 지금 도는 서비스를 보이지 않는다), `exam-notes.md` 「phase 78 step 11」 문단([기출 2024-08-25 #32]의 `cat /etc/services` 보기)
+(phase 79 step 9에서 쓰일 곳) `linux-servers.apache-listen`(ip(7)·capabilities(7)·services(5) — 1024보다 작은 포트에 묶으려면 특권(root)이 필요하다, ip(7) — 한 주소·포트 쌍에는 소켓 하나만 묶인다), `exam-notes.md` 「phase 79 step 9」 문단([기출 2024-05-19 #41], [기출 2025-11-02 #35])
 
 ## (phase 77) Microsoft Learn — The default dynamic port range for TCP/IP has changed since Windows Vista and in Windows Server 2008
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang
@@ -5136,8 +5149,11 @@ https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html
 - nsswitch.conf(5): **`hosts` 데이터베이스는 호스트 이름과 번호**(gethostbyname(3) 등이 쓴다)다. 줄에 적은 서비스의 **차례대로 결과가 나올 때까지 묻는다**. 표준 설치에서 `files` 등을 쓸 수 있고 **`hosts` 데이터베이스에는 `dns`도 쓸 수 있다**.
   `files` 출처를 적으면 `hosts` 데이터베이스는 **`/etc/hosts`를 읽는다** — DESCRIPTION, FILES. 서비스 뒤에 `[NOTFOUND=return]` 같은 동작을 붙여 앞 출처의 결과에 따라 멈출지 이어 갈지 정할 수 있다 — DESCRIPTION.
   **페이지의 예 파일은 `hosts: dns [!UNAVAIL=return] files`로 dns를 앞에 둔다** — 곧 차례는 설정이 정하고 `files`가 늘 먼저인 것은 아니다. `hosts: files dns`(hosts 파일을 먼저, 없으면 DNS)는 위 규칙대로 읽은 예이지 man 페이지의 문장이 아니다
+- (phase 79 step 9, 2026-11-12에 IPv4로 다시 읽음 — 같은 man-pages 6.19) nsswitch.conf(5)는 `dns` 출처를 `libnss_dns`가 구현한다고만 적고(FILES) resolv.conf를 말하지 않는다(SEE ALSO에만 든다). 그러니 「`hosts:` 줄의 `dns`가 DNS에 묻는 **차례**를 정하고, 물을 DNS 서버의 **주소**는 `/etc/resolv.conf`가 정한다」는
+  이 페이지와 아래 「(phase 79 step 9) Linux man-pages — resolv.conf(5) …」 항목을 이은 것이고, 한 문장으로 적힌 곳은 없다
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.hosts-file`(hosts(5) — 줄의 꼴·주석·쓰임·고치면 바로 적용, nsswitch.conf(5) — `hosts:` 줄의 차례가 hosts 파일과 DNS 가운데 무엇을 먼저 볼지 정한다), `dns.domain-hierarchy`(hosts(5) — 이 파일의 호스트 이름 규칙)
+(phase 79 step 9에서 쓰일 곳) `linux-servers.resolv-conf`(nsswitch.conf(5) — `/etc/hosts`와 DNS 가운데 무엇을 먼저 볼지는 `hosts:` 줄이 정한다, 그 `dns`가 물을 서버의 주소는 resolv.conf가 정한다 — 두 문서를 이은 것)
 
 ## (phase 79 step 0) Microsoft Learn — DNS queries and lookups, DNS zones, Troubleshoot DNS client name resolution issues
 https://learn.microsoft.com/en-us/windows-server/networking/dns/queries-lookups
@@ -5332,3 +5348,213 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configu
 
 쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.resource-records`(Win32 「Resource Records」 — 한 줄의 다섯 칸), `dns.soa-record`(Windows 쪽 필드 이름 — 영문 WMI 이름과 한국어판 표기, 책임자 칸은 `@` 대신 점), `dns.reverse-lookup`(「Create Associated PTR record」 확인란 — A를 만들 때 PTR도 함께 만들도록 고를 수 있다),
 `dns.dns-round-robin`(KB 842197 — 질의마다 맨 위 주소가 바뀌어 클라이언트들이 나뉜다, 넷마스크 차례), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단)
+
+## (phase 79 step 9) Linux man-pages — resolv.conf(5), resolver(3), bind(2); systemd — systemd-resolved.service(8)
+https://man7.org/linux/man-pages/man5/resolv.conf.5.html
+https://man7.org/linux/man-pages/man3/resolver.3.html
+https://man7.org/linux/man-pages/man2/bind.2.html
+https://man7.org/linux/man-pages/man8/systemd-resolved.service.8.html
+
+2026-11-12에 IPv4로 내려받아 읽은 판: resolv.conf(5)·resolver(3)·bind(2)은 Linux man-pages 6.19(man-pages-6.19 타르볼, 2026-09-09에 가져옴, HTML 2026-09-09) — 바닥줄 날짜는 resolv.conf(5) 2026-08-22, resolver(3)·bind(2) 2026-02-08.
+systemd-resolved.service(8)은 systemd 262~devel(systemd 저장소에서 2026-08-04에 가져옴). FHS §3.7.3(`/etc` 아래 resolv.conf)은 위 「(phase 75) FHS 3.0」 항목에 이미 있다.
+
+- **resolv.conf(5)**: 리졸버는 C 라이브러리 안에서 DNS에 묻는 함수들의 묶음이고, `/etc/resolv.conf`는 그 리졸버의 설정 파일이다. 한 프로세스가 리졸버 함수를 처음 부를 때 읽는다. 사람이 읽을 수 있게 만든 파일이고 키워드와 값을 늘어놓는다 — DESCRIPTION 첫 문단
+- resolv.conf(5): 한 줄에 키워드 하나와 그 값을 적는다. 키워드(예: `nameserver`)가 줄 맨 앞에 오고 값은 빈칸으로 띄운다. 첫 칸이 `;`나 `#`인 줄은 주석이다 — DESCRIPTION 끝 문단
+- resolv.conf(5) — `nameserver`: 리졸버가 물을 이름 서버(DNS 서버)의 IP 주소 하나를 적는다(IPv4 또는 IPv6). 한 줄에 하나씩, 지금은 **3개까지**(MAXNS — `<res_state.h>`). 여럿이면 **적은 차례대로** 묻는다 —
+  한 서버에 물어 시간이 다 되면 다음 서버에 묻고, 끝까지 가면 처음부터 다시 돌며 정해진 재시도 횟수까지 묻는다. **`nameserver` 줄이 하나도 없으면 이 컴퓨터 자신의 이름 서버에 묻는다** — DESCRIPTION 「nameserver」.
+  기다리는 시간의 기본은 5초(`options timeout:n`), 재시도 횟수의 기본은 2(`options attempts:n`)다 — 「options」
+- resolv.conf(5): **이 파일이 아예 없으면** 이 컴퓨터의 이름 서버에만 묻고, 검색 목록은 호스트 이름에서 얻은 로컬 도메인 하나다 — DESCRIPTION 둘째 문단
+- resolv.conf(5) — `search`: 짧은 이름 뒤에 붙여 볼 도메인 목록을 빈칸으로 띄워 적는다. 적지 않으면 로컬 도메인 하나다(호스트 이름의 첫 점 뒤 전부, 점이 없으면 루트). 이름 안의 점이 `ndots`(기본 1)개보다 적으면 목록의 도메인을 차례로 붙여 맞는 것이 나올 때까지 묻는다.
+  `search` 줄이 여럿이면 마지막 줄만 쓴다. glibc 2.25까지는 도메인 6개·256자로 묶였고 glibc 2.26부터는 제한이 없다. 목록의 도메인을 맡은 서버가 가까이 없으면 느리고 질의가 많이 생길 수 있다 — DESCRIPTION 「search」
+- resolv.conf(5) — `options ndots:n`: 이름에 점이 n개 이상이면 검색 목록을 붙이기 전에 그 이름 그대로 먼저 묻는다. 기본 n은 1이다 — 「options」. 곧 점이 없는 짧은 이름(예: 호스트 이름 하나)은 기본 설정에서 `search`의 도메인을 붙여 먼저 묻는다
+- resolv.conf(5): **`domain`은 `search`의 옛 이름**이고 도메인 하나만 다룬다 — DESCRIPTION 「search」 끝
+- resolv.conf(5) — `options rotate`: 적은 서버들 가운데 돌아가며 골라 질의 부담을 나눈다(켜지 않으면 늘 첫 서버부터 묻는다). `options no-reload`(glibc 2.26부터)는 바뀐 설정 파일을 저절로 다시 읽는 것을 끈다 — 곧 그 판부터는 고친 파일을 저절로 다시 읽는 것이 기본이다(옵션 설명에서 이어 읽은 것) — 「options」
+- **resolver(3)**: `res_init()`·`res_ninit()`은 설정 파일(resolv.conf(5))을 읽어 기본 도메인 이름과 이름 서버 주소를 얻고, 서버가 적혀 있지 않으면 로컬 호스트에 묻는다 — DESCRIPTION
+- **systemd-resolved.service(8)** — 「/ETC/RESOLV.CONF」: `/etc/resolv.conf`를 다루는 방식이 넷이다. ① systemd-resolved가 늘 새로 고쳐 두는 `/run/systemd/resolve/stub-resolv.conf`(로컬 스텁 `127.0.0.53` 하나와 검색 도메인 — 권장)를 `/etc/resolv.conf`가 심볼릭 링크로 가리킨다,
+  ② 검색 도메인 없이 `127.0.0.53`만 적은 정적 파일 `/usr/lib/systemd/resolv.conf`를 가리킨다, ③ systemd-resolved가 알고 있는 DNS 서버를 모두 적어 늘 새로 고쳐 두는 `/run/systemd/resolve/resolv.conf`를 가리킨다, ④ **다른 패키지가 `/etc/resolv.conf`를 관리하고** systemd-resolved는 그것을 읽기만 한다.
+  어느 방식인지는 그 파일이 무엇을 가리키는지(또는 `127.0.0.53`을 적었는지)로 저절로 정해진다. 곧 **`/etc/resolv.conf`의 내용을 사람이 아니라 다른 프로그램이 만들어 고쳐 두기도 한다** — 「/ETC/RESOLV.CONF」.
+  systemd-resolved가 물을 DNS 서버는 자기 설정 파일, 인터페이스별 설정, **DHCP로 받은 값** 등에서 정한다 — DESCRIPTION. **DHCP 클라이언트가 `/etc/resolv.conf`를 직접 고쳐 쓴다는 문장은 이날 읽은 허용 출처에서 찾지 못했다**
+- **bind(2)**: 소켓에 주소(인터넷 소켓이면 IP 주소와 포트)를 붙인다. 실패 까닭에 **「그 주소가 보호되어 있는데 사용자가 슈퍼유저가 아니다」(EACCES)**와 **「그 주소를 이미 쓰고 있다」(EADDRINUSE)**가 있다 — DESCRIPTION, ERRORS.
+  위 「(phase 77) Linux man-pages — ip(7) …」 항목(1024보다 작은 포트는 특권 프로세스만 묶는다, 한 주소·포트 쌍에는 소켓 하나만 묶인다)과 같은 사실을 오류 쪽에서 본 것이다
+
+쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.resolv-conf`(resolv.conf(5) — 파일의 뜻, 줄의 꼴과 주석, `nameserver`의 수·차례·없을 때, `search`·`ndots`·`domain`, 파일이 없을 때; resolver(3); systemd-resolved.service(8) — 다른 프로그램이 이 파일을 관리하기도 한다),
+`linux-servers.apache-listen`(bind(2) — 1024보다 작은 포트는 슈퍼유저가 아니면 EACCES, 이미 쓰는 주소·포트는 EADDRINUSE), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #28])
+
+## (phase 79 step 9) ISC BIND 9 Administrator Reference Manual(9.20.30) — §1 Introduction, §3 Configurations and Zone Files, §5.3.1 Validation Failures, §8 Configuration Reference(named.conf, options·zone 블록); Manual Pages — named, named-checkconf, named-checkzone, rndc
+https://bind9.readthedocs.io/en/stable/chapter1.html
+https://bind9.readthedocs.io/en/stable/chapter3.html
+https://bind9.readthedocs.io/en/stable/chapter5.html
+https://bind9.readthedocs.io/en/stable/reference.html
+https://bind9.readthedocs.io/en/stable/manpages.html
+
+bind9.readthedocs.io의 안정판(`en/stable/`)을 2026-11-12에 IPv4로 내려받아 읽었다 — 문서 제목은 「BIND 9 9.20.30 documentation」이고, §1.1이 이 설명서가 BIND 9.20.30을 다룬다고 밝힌다(저작권 Internet Systems Consortium).
+판 노트(`notes.html`)도 받아 문 이름을 찾는 데만 썼다. **문의 기본값은 판마다 바뀔 수 있다** — 아래 값은 모두 9.20.30 설명서의 것이다.
+
+- **BIND**: Berkeley Internet Name Domain의 줄임이고, 여러 운영체제에서 도는 도메인 이름 서버 소프트웨어다. 만드는 곳은 Internet Systems Consortium(ISC)이고 지금 판은 BIND 9다 — §1.1
+- BIND 9는 DNS 프로토콜 전체를 구현하고, `named.conf`로 설정해 **권한 있는 네임 서버, 리졸버(재귀 서버), (지원하는 호스트에서는) 스텁 리졸버**로 쓸 수 있다. 한 서버가 권한 있는 서버와 리졸버를 함께 맡을 수도 있다 — §1.4.6
+- **named(8)**: `named`는 BIND 9 배포판의 DNS 서버 프로그램이다. **인자 없이 실행하면 기본 설정 파일 `/etc/named.conf`를 읽고**, 데이터를 읽어 들인 뒤 질의를 기다린다. `-c 파일`로 다른 설정 파일을 쓸 수 있고,
+  `directory`로 작업 디렉터리가 바뀌어도 다시 읽을 수 있게 그 경로는 절대 경로로 주라고 한다 — 「named - Internet domain name server」 Description, Options `-c`
+- **설정 파일의 자리를 두 곳이 다르게 말한다**: §3.1은 `named.conf`가 보통 `/etc/namedb`나 `/usr/local/etc/namedb`에 있다고 적고, named(8)·named-checkconf(8)은 따로 정하지 않으면 `/etc/named.conf`를 읽는다고 적는다.
+  곧 자리는 설치에 따라 다르고, 쓸 수 있는 것은 「`named`가 따로 정하지 않으면 읽는 파일은 `/etc/named.conf`다(named(8))」까지다
+- **named.conf의 짜임**: 주석, 블록(block), 문(statement) 셋으로 이루어진다. 블록은 문을 담는 그릇이고 그 안의 문이 걸리는 범위를 정한다 — `options`·`logging`처럼 맨 위에만 놓이는 블록과, `zone example.com { … };`처럼 이름을 붙여 여러 번 놓는 블록이 있다.
+  문은 BIND의 동작 하나를 정하고 값 하나(예: `recursion yes;`)나 인자·값 짝을 받는다. 같은 문을 `options`에 두면 서버 전체에, `zone`에 두면 그 영역에만 걸리고 영역 쪽이 앞선다(문마다 놓일 수 있는 블록이 정해져 있다) — §8.1.
+  설명서는 이제 Block·Statement·Argument·Value·Directive라는 말만 쓴다고 밝힌다 — §8.1 Note. 다만 §8.2.13의 첫 문장은 아직 「options statement」라고도 부른다
+- 주석은 C 꼴(`/* … */`), C++ 꼴(`//`부터 줄 끝), 셸 꼴(`#`부터 줄 끝)을 다 쓸 수 있고, 빈칸이 놓일 수 있는 곳이면 어디에나 둔다 — §8.1.1
+- 주소 목록(address match list)은 IP 주소, `/` 접두사, 다른 목록 이름 등을 담고, 미리 정해 둔 이름으로 `any`(모든 호스트)·`none`(어떤 호스트도 아님)·`localhost`·`localnets`가 있다 — §8.1.4.2, §8.2.2
+- **options 블록**: 서버 전체에 걸리는 설정과 다른 문의 기본값을 정한다 — §8.2. 설정 파일에 한 번만 놓을 수 있고, 없으면 모든 옵션이 기본값인 options 블록을 쓴 것과 같다 — §8.2.13
+- **`directory "경로";`**: 서버의 **작업 디렉터리**를 정한다. 설정 파일 안에서 절대 경로가 아닌 경로는 모두 이 디렉터리를 기준으로 읽고(그래서 `zone`의 `file`에 상대 경로로 적은 영역 파일도 여기서 찾는다), 서버가 남기는 파일 대부분의 기본 자리도 여기다.
+  정하지 않으면 서버를 시작한 디렉터리(`.`)다. 절대 경로로 적고 `named` 프로세스가 쓸 수 있어야 하며, 상대 경로로 파일을 끌어오는 다른 지시(예: `include`)보다 먼저 적어야 한다 — §8.2.13 「directory」
+- **`listen-on [port 번호] { 주소 목록; };`**: 서버가 DNS 질의를 받을 **IPv4 주소**를 정한다. 여러 줄을 둘 수 있다. **정하지 않으면 모든 IPv4 인터페이스의 53번 포트**에서 받는다. 포트를 적지 않으면 보통 DNS는 53이다(TLS·HTTPS로 받는 경우의 포트는 다루지 않는다).
+  `listen-on-v6`는 같은 일을 IPv6 주소에 하고, 정하지 않으면 모든 IPv6 인터페이스의 53번에서 받으며, `{ none; };`이면 IPv6에서는 받지 않는다 — §8.2.13.5 Interfaces
+- **`port`**: 서버가 DNS를 주고받는 **UDP/TCP 포트 번호**이고 기본은 53이다. 53이 아닌 포트의 서버는 인터넷의 DNS와 통신할 수 없어 주로 시험용이다 — §8.2.13 「port」
+- **`allow-query { 주소 목록; };`**: 어느 호스트의 질의를 받아 줄지 정한다. **정하지 않으면 모든 호스트**의 질의를 받는다. `zone` 블록에도 둘 수 있고 그때는 options의 값보다 앞선다. 캐시에 든 데이터를 누가 받을 수 있는지는 따로 `allow-query-cache`가 정한다 — §8.2.13.4 Access Control 「allow-query」
+- **`recursion yes|no;`**: 재귀(와 그에 따른 캐시 쌓기)를 허락할지 정한다. `yes`이고 질의가 재귀를 청하면 답을 얻는 데 필요한 일을 서버가 다 한다. 꺼져 있고 답을 모르면 안내 응답(referral)을 돌려준다. **기본은 `yes`**.
+  꺼도 캐시에 이미 있는 데이터를 돌려주는 것은 막지 않는다 — 클라이언트의 질의 때문에 새 데이터가 캐시에 쌓이는 것만 막는다 — §8.2.13.1 Boolean Options 「recursion」
+- **`dnssec-validation yes|no|auto;`**: `named`의 DNSSEC 검증을 켠다. `auto`는 검증을 켜고 BIND에 들어 있는 루트 영역의 신뢰 앵커를 쓴다. `yes`는 검증을 켜지만 신뢰 앵커를 `trust-anchors`로 직접 정해야 하고, **정하지 않으면 설정 오류**다.
+  `no`는 검증을 끈다(그래도 나가는 질의에 DNSSEC 응답을 받을 수 있다는 DO 비트는 켠다). **기본은 `auto`**다(BIND를 `--disable-auto-validation`으로 빌드했으면 `yes`) — §8.2.13.1 「dnssec-validation」
+- **검증에 실패하면**: 검증을 켜 두면 리졸버는 서명된 안전한 영역에서 온 답이 검증에 실패할 때 그 답을 받아들이지 않고 **클라이언트에 SERVFAIL을 돌려준다**. 실패 까닭의 예는 서명이 없거나 만료되었거나 맞지 않는 것, 부모 영역의 DS와 맞지 않는 키다 — §5.3.1 Validation Failures
+- `dnssec-enable`이라는 문은 9.20 설명서(참조 장·명령 설명·판 노트)에 없다 — 전문 검색 2026-11-12
+- **`masterfile-format text|raw;`**: 영역 파일의 형식을 정한다. `text`는 사람이 읽는 표준 글자 꼴이고 `raw`는 이진 꼴이다. **기본은 `text`이지만 보조(secondary) 영역은 기본이 `raw`**다. `options`에 두면 모든 영역에 걸리고, 영역·뷰마다 따로 바꿀 수 있다.
+  `text`가 아닌 파일을 읽을 때는 `text` 파일에 하는 검사 일부를 건너뛸 수 있다 — §8.2.13.12 Tuning 「masterfile-format」
+- **`dump-file "경로";`**: 관리 명령 `rndc dumpdb`를 받았을 때 서버가 데이터베이스를 쏟아 내는 파일의 경로다. 정하지 않으면 `named_dump.db`다 — §8.2.13 「dump-file」.
+  rndc(8)의 `dumpdb`는 서버의 캐시(기본)나 영역을 그 파일에 쏟아 낸다 — Manual Pages 「rndc」 `dumpdb`
+- **zone 블록**: 영역 하나를 정하고 맨 위나 `view` 안에 놓인다 — §8.2.32. 꼴은 `zone "영역 이름" { type …; file "…"; … };`이다(§8.2.33.1의 Grammar). `type`은 꼭 적어야 하고 값은 `primary`(또는 `master`), `secondary`(또는 `slave`), `mirror`·`hint`·`stub`·`static-stub`·`forward`·`redirect`다 —
+  **옛 이름 `master`·`slave`는 지금도 같은 뜻으로 받는다** — §8.2.33.1 「type」, 「type primary」(`master`는 `primary`와 같은 말), 「type secondary」(`slave`는 `secondary`와 같은 말)
+- `type primary`: 영역 데이터의 원본을 갖고 그 영역에 권한 있게 답한다. `type secondary`: 주 영역의 사본이고 `primaries`에 적은 주 서버(IP 주소 하나 이상)에 연락해 사본을 새로 고친다 — NOTIFY를 받거나 SOA의 REFRESH가 정한 시간이 지나면 주 서버에 SOA를 묻고,
+  일련번호가 지금 것보다 크면 영역 전송을 한다. `file`을 적으면 받은 사본을 영역이 바뀔 때마다 그 파일에 쓰고 다시 시작할 때 거기서 읽는다(권한다) — §8.2.33.1 「type primary」·「type secondary」
+- `file "파일 이름";`은 영역 파일의 이름을 정한다 — §8.3 Statements 「file」. `primaries { 주소; … };`는 보조 영역이 영역 전송을 청할 주 서버 목록이고, 기본으로 그 서버들의 53번 포트로 한다 — §8.2.13.7 Zone Transfers 「primaries」
+- 설명서의 예(§3.2.1·§3.2.2)는 주 서버를 `zone "example.com" { type primary; file "…"; };`로, 보조 서버를 `zone "example.com" { type secondary; file "…"; primaries { 주소; }; };`로 적는다(파일 이름·주소는 옮기지 않는다).
+  같은 예의 options 블록에 `directory`를 두고 모든 상대 경로의 기준이라고 주석을 단다 — §3.1.1·§3.2.1
+- **named-checkconf(8)**: `named` 설정 파일의 **구문(syntax)만** 검사하고 의미는 검사하지 않는다. 그 파일과 끌어온 파일을 모두 읽어 구문 오류를 찾고, **파일을 주지 않으면 `/etc/named.conf`**를 읽는다. 오류가 있으면 종료 상태 1, 없으면 0이다.
+  `-z`를 주면 `named.conf`의 주(primary) 영역을 시험 삼아 읽어 본다 — Manual Pages 「named-checkconf」 Description, Options `-z`, Return Values
+- **named-checkzone(8)**: 영역 파일의 구문과 무결성을 검사한다. `named`가 영역을 읽을 때 하는 검사와 같아서, 서버 설정에 넣기 전에 영역 파일을 검사하는 데 쓴다. 꼴은 `named-checkzone [옵션] 영역_이름 파일_이름`이다 — Manual Pages 「named-checkzone」 Synopsis, Description
+
+쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.bind-named`(§1.1·§1.4.6 — BIND와 그 노릇, named(8) — 기본 설정 파일, §3.1과의 차이, §8.1 — 블록·문·주석, zone 블록과 `type`·`file`·`primaries`, named-checkconf(8)·named-checkzone(8), `port` — UDP/TCP 53),
+`linux-servers.named-conf-options`(options 블록과 그 안의 문 — `directory`·`listen-on`·`listen-on-v6`·`allow-query`·`recursion`·`dnssec-validation`·`masterfile-format`·`dump-file`, §5.3.1 — 검증에 실패하면 SERVFAIL, §8.1.4.2·§8.2.2 — `any`),
+기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #40], [기출 2024-11-03 #42], [기출 2025-05-25 #42], [기출 2026-02-01 #30])
+
+## (phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명: core(KeepAlive·KeepAliveTimeout·MaxKeepAliveRequests·TimeOut·LimitRequestBody·LimitRequestFields·Options·<Directory>·DocumentRoot·ServerRoot·ServerAdmin·Include), mpm_common(Listen), mod_unixd(User·Group), mod_dir(DirectoryIndex·DirectorySlash), mod_autoindex, mod_alias(ScriptAlias), 지시자 색인
+https://httpd.apache.org/docs/2.4/mod/core.html
+https://httpd.apache.org/docs/2.4/mod/mpm_common.html#listen
+https://httpd.apache.org/docs/2.4/mod/mod_unixd.html
+https://httpd.apache.org/docs/2.4/mod/mod_dir.html
+https://httpd.apache.org/docs/2.4/mod/mod_autoindex.html
+https://httpd.apache.org/docs/2.4/mod/mod_alias.html#scriptalias
+https://httpd.apache.org/docs/2.4/mod/directives.html
+
+httpd.apache.org의 「Apache HTTP Server Version 2.4」 문서를 2026-11-12에 IPv4로 내려받아 읽었다. 이날 최신 판은 **2.4.71**(2026-11-11 발표 — httpd.apache.org 첫 화면)이다. 응답 머리의 Last-Modified: `mod/core.html` 2026-06-08, `mpm_common`·`mod_unixd`·`mod_dir`·`mod_autoindex`·`mod_alias` 2026-05-31.
+지시자마다 문서의 Default(기본값)·Context(놓을 수 있는 자리) 줄을 적고, **판에 따라 바뀐 기본값은 Compatibility 줄대로** 적는다. 지시자 설명의 예 값은 옮기지 않는다.
+
+- **KeepAlive On|Off**(기본 `On`, 놓는 자리: 서버 전체·가상 호스트): HTTP 지속 연결을 켤지 정한다. HTTP/1.0의 Keep-Alive 확장과 HTTP/1.1의 지속 연결은 한 TCP 연결로 요청을 여럿 보낼 수 있게 하고, 문서는 이것을 오래 가는 HTTP 세션(long-lived HTTP sessions)이라 부른다.
+  HTTP/1.1 클라이언트에게는 따로 정하지 않으면 지속 연결이 기본이고, HTTP/1.0 클라이언트에게는 클라이언트가 청할 때만 쓴다 — 「KeepAlive Directive」
+- **KeepAliveTimeout 초**(기본 `5`, 뒤에 `ms`를 붙이면 밀리초, 놓는 자리: 서버 전체·가상 호스트): 지속 연결에서 **다음 요청을 기다리다가 연결을 닫기까지의 초**다. 요청을 받기 시작한 뒤에는 `TimeOut`이 걸린다.
+  **크게 잡으면 쉬는 클라이언트와의 연결을 기다리느라 서버 프로세스가 더 많이 묶여** 부하가 큰 서버에서 성능 문제가 날 수 있다 — 「KeepAliveTimeout Directive」
+- **MaxKeepAliveRequests 수**(기본 `100`): `KeepAlive`가 켜져 있을 때 한 연결에서 받을 요청 수의 한도. `0`이면 제한이 없다. 성능을 위해 높게 두라고 권한다 — 「MaxKeepAliveRequests Directive」
+- **TimeOut 초**(기본 `60`, 놓는 자리: 서버 전체·가상 호스트): 여러 경우에 입출력을 기다리는 시간이다 — 클라이언트에게서 데이터를 읽을 때 읽을 것이 없으면 TCP 패킷이 오기를 기다리는 시간, 클라이언트에게 쓸 때 보낼 자리가 차 있으면 확인 응답을 기다리는 시간, CGI 스크립트의 출력을 기다리는 시간 등 — 「TimeOut Directive」.
+  곧 `KeepAliveTimeout`은 응답 뒤 **다음 요청이 오기까지**, `TimeOut`은 **요청을 주고받는 도중**의 기다림이다(두 설명을 이은 것)
+- **LimitRequestBody 바이트**(기본 `1073741824`, 놓는 자리: 서버 전체·가상 호스트·디렉터리·`.htaccess`): 클라이언트가 보내는 **HTTP 요청 본문**에 허락하는 바이트 수다. `0`이면 제한이 없다. **Compatibility: 2.4.53과 그 앞 판에서는 기본이 `0`(제한 없음)이었다** — 곧 2.4.54부터 기본이 1073741824바이트(= 1024 × 1024 × 1024, 1GiB)다.
+  둔 자리(서버·디렉터리·파일·위치)의 요청에 걸리고, 요청이 한도를 넘으면 처리하지 않고 **오류 응답**을 돌려준다(어떤 상태 코드인지는 이 설명에 없다 — 전문 검색으로 「413」 없음). 비정상적인 클라이언트 요청을 다루는 데 쓸모 있어 몇몇 서비스 거부 공격을 피하는 데 도움이 된다고 적고, 파일 올리기의 크기를 묶는 예를 든다 — 「LimitRequestBody Directive」
+- **LimitRequestFields 수**(기본 `100`, `0`이면 제한 없음): 받을 요청 헤더 필드 수의 한도다. 같은 무리로 `LimitRequestFieldSize`·`LimitRequestLine`이 있다 — 「LimitRequestFields Directive」, 지시자 목차
+- **Options [+|-]옵션 …**(기본 `FollowSymlinks`, 놓는 자리: 서버 전체·가상 호스트·디렉터리·`.htaccess`, **Compatibility: 2.3.11에서 기본이 `All`에서 `FollowSymlinks`로 바뀌었다**): 그 디렉터리에서 쓸 수 있는 서버 기능을 정한다. 값은 `None`(아무것도 켜지 않는다)이거나 다음 가운데 하나 이상이다 —
+  `All`(MultiViews 말고 전부), `ExecCGI`(mod_cgi로 CGI 스크립트를 실행하게 한다), `FollowSymLinks`(이 디렉터리의 심볼릭 링크를 따라간다), `Includes`(mod_include의 SSI를 허락한다), `IncludesNOEXEC`(SSI는 허락하되 명령·CGI 실행을 막는다),
+  **`Indexes`(디렉터리를 가리키는 주소를 요청했는데 그 안에 `DirectoryIndex`의 파일(예: index.html)이 없으면 mod_autoindex가 디렉터리 목록을 만들어 돌려준다)**, `MultiViews`, `SymLinksIfOwnerMatch` — 「Options Directive」
+- 같은 절: **`FollowSymLinks`를 빼는 것을 보안 제한으로 여기지 말라**고 적는다 — 심볼릭 링크 검사에 경쟁 조건이 있어 피해 갈 수 있기 때문이다. `FollowSymLinks`·`SymLinksIfOwnerMatch`는 `<Directory>`나 `.htaccess`에서만 동작한다
+- 같은 절: 한 디렉터리에 `Options`가 여럿 걸리면 보통 가장 구체적인 것 하나만 쓰고 합치지 않는다. **모든 값 앞에 `+`·`-`를 붙이면** 지금 걸려 있는 값에 더하거나 뺀다. **`+`·`-`가 붙은 값과 안 붙은 값을 섞으면 구문 오류**라 서버가 시작할 때 거부한다. `All`·`None`은 맨 앞에 쓰고 `+`·`-`를 붙일 수 없다. 아무것도 정하지 않으면 `FollowSymlinks`다
+- **`<Directory 경로>` … `</Directory>`**(놓는 자리: 서버 전체·가상 호스트): 그 디렉터리와 하위 디렉터리, 그 안의 파일에만 걸리는 지시자를 묶는다. 경로는 전체 경로나 셸 꼴 와일드카드이고, 빈칸이 있으면 따옴표로 감싸야 한다.
+  다른 경로(다른 심볼릭 링크)로 닿은 같은 파일에는 걸리지 않는다. 설명의 예는 이 구역 안에 `Options Indexes FollowSymLinks`를 둔다 — 「<Directory> Directive」
+- **DocumentRoot 경로**(문서의 Default 줄 `"/usr/local/apache/htdocs"`, 놓는 자리: 서버 전체·가상 호스트): 웹에 보일 문서 나무의 디렉터리다. `Alias` 같은 것에 걸리지 않으면 **요청 주소의 경로를 이 디렉터리 뒤에 붙여** 파일의 경로를 만든다. 상대 경로면 `ServerRoot` 기준이고, 끝에 `/`를 붙이지 않는다 — 「DocumentRoot Directive」
+- **ServerRoot 경로**(문서의 Default 줄 `/usr/local/apache`, 놓는 자리: 서버 전체): 서버가 설치된 기준 디렉터리다. 보통 `conf/`·`logs/`를 담고, `Include`·`LoadModule` 같은 지시자의 상대 경로는 이 디렉터리 기준이다. 기본 위치는 `configure --prefix`로 바뀌고 **제3자 배포판은 대개 다른 곳을 쓴다** — 「ServerRoot Directive」.
+  **기본 경로를 문서끼리 다르게 적는다** — 이 두 지시자의 Default 줄은 `/usr/local/apache`를, 아래 항목의 httpd(8) `-d`와 설치 문서의 PREFIX 기본은 `/usr/local/apache2`를 적는다. 그러니 기본 경로는 쓰지 않고 「설치 방식에 따라 다르다」로 쓴다
+- **ServerAdmin 메일주소|URL**(Default 줄 없음, 놓는 자리: 서버 전체·가상 호스트): 서버가 클라이언트에게 돌려주는 **오류 메시지에 넣는 연락처**다. URL로 알아보지 못하면 메일 주소로 본다. 메일 주소를 쓰라고 권한다 — 「ServerAdmin Directive」
+- **Include 경로**(놓는 자리: 서버 전체·가상 호스트·디렉터리): 설정 파일 안에서 **다른 설정 파일을 끌어온다**. 셸 꼴 와일드카드로 여러 파일을 알파벳 차례로 읽을 수 있고, 디렉터리를 가리키면 그 안의 모든 파일을 읽는다(권하지 않는다). 와일드카드에 맞는 파일이 없으면 오류다(`IncludeOptional`은 넘어간다).
+  경로는 절대 경로이거나 `ServerRoot` 기준 상대 경로다 — 「Include Directive」
+- **Listen [IP주소:]포트 [프로토콜]**(mpm_common, 놓는 자리: 서버 전체): 서버가 들어오는 요청을 받을 **포트, 또는 IP 주소와 포트의 짝**을 정한다. **이제 꼭 있어야 하는 지시자**라 설정 파일에 없으면 서버가 시작하지 못한다. 포트만 적으면 모든 인터페이스의 그 포트에서 받는다.
+  **여러 줄을 두어 여러 주소·포트에서 받을 수 있다**. IPv6 주소는 대괄호로 감싼다. 프로토콜을 적지 않으면 443은 https, 나머지는 http다(protocol 인자는 2.1.5부터). **같은 IP 주소와 포트를 가리키는 `Listen`이 여럿이면 「Address already in use」 오류**가 난다 — 「Listen Directive」
+- **User 사용자 / Group 그룹**(mod_unixd, 기본 `#-1`, 놓는 자리: 서버 전체): 서버가 **요청에 답할 때 쓰는 사용자 ID·그룹**이다. 이 지시자를 쓰려면 **서버를 처음에 root로 실행해야** 하고, root가 아닌 사용자로 시작하면 바꾸지 못해 처음 사용자 그대로 돈다. root로 시작했으면 부모 프로세스가 root로 남는 것이 정상이다.
+  그 사용자는 바깥에 보이면 안 되는 파일에 닿거나 HTTP 요청과 관계없는 코드를 실행할 권한이 없어야 하고, 서버만을 위한 새 사용자·그룹을 만들라고 권하며, root로 두지 말라고 경고한다 — 「User Directive」, 「Group Directive」
+- **DirectoryIndex 파일 …**(mod_dir, 기본 `index.html`, 놓는 자리: 서버 전체·가상 호스트·디렉터리·`.htaccess`): 클라이언트가 디렉터리 끝에 `/`를 붙여 요청할 때 찾을 자원 목록이다. 여럿이면 처음 찾은 것을 돌려주고, **하나도 없는데 `Indexes`가 켜져 있으면 서버가 디렉터리 목록을 만든다**. `disabled`이면 찾지 않는다 — 「DirectoryIndex Directive」
+- mod_dir·mod_autoindex의 Summary: 디렉터리의 색인은 둘 가운데 하나에서 온다 — 사용자가 둔 파일(보통 index.html, 이름은 `DirectoryIndex`가 정하고 mod_dir이 다룬다)이거나, 서버가 만든 목록(mod_autoindex)이다. 자동 목록은 `Options +Indexes`로 켠다 — 두 모듈 「Summary」
+- mod_dir 「DirectorySlash Directive」의 Security Warning: 끝 `/` 리다이렉트를 끄면, `Options +Indexes`이고 `DirectoryIndex` 파일이 있어도 `/` 없이 요청할 때 디렉터리 내용이 나열되어 **정보가 드러날 수 있다**고 경고한다. 곧 Apache 문서도 의도하지 않은 디렉터리 목록을 정보 노출로 본다
+- **`Indexes`가 꺼져 있고 기본 문서가 없을 때 그 요청에 어떻게 답하는지(상태 코드)는 이날 읽은 페이지(core·mod_dir·mod_autoindex·Security Tips)에서 찾지 못했다**
+- **ScriptAlias [URL경로] 파일경로|디렉터리경로**(mod_alias): 주소 경로를 파일 시스템 위치에 잇고, 그 대상을 CGI 스크립트가 든 곳으로 표시한다 — `Alias`에 `Options +ExecCGI`(그리고 cgi-script 처리기)를 함께 준 것과 거의 같다 — 「ScriptAlias Directive」
+- **지시자 색인**(`mod/directives.html`, 2026-11-12 대조): `Listen`·`KeepAlive`·`LimitRequestBody`·`DocumentRoot`·`ServerRoot`·`ServerAdmin`·`Options`·`ScriptAlias`·`StartServers`·`NameVirtualHost`는 있고,
+  **`Port`·`Listening`·`Default Port`·`KeepRequestSize`·`RestrictBodyRequest`·`PostRequestSize`·`Exec-timeout`이라는 지시자는 없다**. `NameVirtualHost`는 2.4에서 경고만 내고 아무 효과가 없다 — `upgrading.html`
+
+쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.httpd-conf`(`DocumentRoot`·`ServerRoot`·`ServerAdmin`·`Include`·`<Directory>`, 기본 경로가 문서끼리 다르다), `linux-servers.apache-listen`(`Listen`, `User`·`Group`, 색인에 `Port`·`Listening` 없음),
+`linux-servers.apache-keepalive`(`KeepAlive`·`KeepAliveTimeout`·`MaxKeepAliveRequests`·`TimeOut`), `linux-servers.options-indexes`(`Options`, `DirectoryIndex`, mod_autoindex·mod_dir Summary, DirectorySlash 경고, `ScriptAlias`), `linux-servers.limit-request-body`(`LimitRequestBody`·`LimitRequestFields`, 색인),
+기출 대조(`exam-notes.md` 「phase 79 step 9」 문단)
+
+## (phase 79 step 9) Apache HTTP Server 2.4 문서 — Configuration Files, Starting Apache, httpd·apachectl, Binding to Addresses and Ports, Compiling and Installing, Security Tips; 2.0 문서 Upgrading to 2.0 from 1.3
+https://httpd.apache.org/docs/2.4/configuring.html
+https://httpd.apache.org/docs/2.4/invoking.html
+https://httpd.apache.org/docs/2.4/programs/httpd.html
+https://httpd.apache.org/docs/2.4/programs/apachectl.html
+https://httpd.apache.org/docs/2.4/bind.html
+https://httpd.apache.org/docs/2.4/install.html
+https://httpd.apache.org/docs/2.4/misc/security_tips.html
+https://httpd.apache.org/docs/2.0/upgrading.html
+https://httpd.apache.org/
+
+2026-11-12에 IPv4로 내려받아 읽었다. Last-Modified: `configuring`·`invoking`·`bind`·`programs/httpd`·`programs/apachectl` 2026-05-31, `install` 2026-06-11, `misc/security_tips` 2026-09-29.
+`docs/2.0/upgrading.html`(2021-07-09)은 지원이 끝난 2.0 판의 문서라 **`Port` 지시자가 언제 없어졌는지의 역사 기록으로만** 쓴다(2.4 문서의 `upgrading.html`은 2.2 → 2.4만 다루고 `Port`를 말하지 않는다).
+
+- **httpd.apache.org 첫 화면**: Apache HTTP Server는 **The Apache Software Foundation의 프로젝트**다. 이날 최신 판은 2.4.71(2026-11-11 발표)이다
+
+- **Configuration Files** — 「Main Configuration Files」: Apache HTTP Server는 일반 글자 설정 파일에 지시자를 적어 설정한다. **주 설정 파일은 보통 `httpd.conf`**이고, 그 위치는 **컴파일할 때 정해지며 `-f` 명령줄 옵션으로 바꿀 수 있다**.
+  `Include`로 다른 설정 파일을 더할 수 있고 **어떤 지시자든 이 설정 파일들 가운데 어디에나 둘 수 있다**. 주 설정 파일을 바꾸면 **httpd를 시작하거나 다시 시작할 때만** 반영된다
+- 같은 문서 「Syntax of the Configuration Files」: 한 줄에 지시자 하나다. 줄 끝의 `\`는 다음 줄로 이어짐을 뜻한다. `#`으로 시작하는 줄은 주석이고, 지시자와 같은 줄에 주석을 둘 수 없다. 지시자 앞의 빈칸과 빈 줄은 무시한다. **인자는 빈칸으로 가르고**, 빈칸이 든 인자는 따옴표로 감싼다
+- 같은 문서 「Scope of Directives」: 주 설정 파일에 둔 지시자는 서버 전체에 걸리고, `<Directory>`·`<Files>`·`<Location>` 같은 구역(section)에 넣으면 그 파일 시스템 위치나 URL에만 걸린다. `<VirtualHost>`로 웹사이트마다 나눌 수도 있다. 지시자마다 놓을 수 있는 자리는 그 지시자 설명의 Context 줄이 정한다.
+  「.htaccess Files」: 웹 나무 안에 두는 설정 파일로 그 디렉터리와 하위에 걸리고 요청마다 읽혀 바로 반영된다. 어떤 지시자를 둘 수 있는지는 주 설정의 `AllowOverride`가 정한다
+- **Starting Apache** — 머리 문단, 「How Apache Starts」: Unix에서 `httpd` 프로그램은 뒤에서 늘 돌며 요청을 처리하는 데몬으로 실행된다. 설정의 `Listen`이 기본 80(또는 **1024보다 작은 다른 포트**)이면 그 특권 포트에 묶으려고 **root 권한으로 시작해야** 한다.
+  서버가 로그 파일을 여는 등의 준비를 마치면 요청을 받아 답하는 일을 맡는 **자식 프로세스 여럿**을 띄우고, **주 `httpd` 프로세스는 root로 남지만 자식 프로세스는 권한이 낮은 사용자로 돈다**(MPM이 정한다). 띄울 때는 `apachectl` 스크립트를 쓰라고 권한다.
+  `httpd`는 실행되자마자 `httpd.conf`를 찾아 읽는다(위치는 컴파일 때 정해지고 `-f`로 바꾼다)
+- 같은 문서 「Errors During Start-up」: 시작 중 흔한 오류 「Unable to bind to Port …」는 대개 **root로 로그인하지 않고 특권 포트에서 시작하려 했거나, 다른 Apache나 다른 웹 서버가 이미 같은 포트에 묶여 있을 때** 난다
+- **httpd(8)** — Synopsis, Options: 꼴은 `httpd [-d serverroot] [-f config] [-k start|restart|graceful|stop|graceful-stop] [-t] …`이다. `-d`의 기본은 `/usr/local/apache2`, `-f`의 기본은 `ServerRoot` 기준 `conf/httpd.conf`다. `-t`는 설정 파일의 구문 검사만 하고 끝낸다(종료 코드 0이면 Syntax OK)
+- **apachectl(8)** — Options: `configtest`는 설정 파일을 읽어 구문을 시험하고 「Syntax Ok」나 오류 내용을 알린다(`apachectl -t`와 같다). `restart`는 데몬을 다시 시작하고(돌고 있지 않으면 시작), `graceful`은 **열린 연결을 끊지 않고** 다시 시작한다. 둘 다 다시 시작하기 전에 `configtest`처럼 설정을 검사해 데몬이 죽지 않게 한다.
+  「Files」: 기본 경로는 컴파일할 때 바뀔 수 있다
+- **Binding to Addresses and Ports** — 「Overview」: httpd는 시작할 때 로컬 기계의 포트와 주소에 묶이고 들어오는 요청을 기다린다. 기본으로 기계의 모든 주소에서 기다린다. **겹치는 `Listen`은 서버가 시작하지 못하는 치명적 오류**가 된다(「Address already in use」).
+  「Changing Listen configuration on restart」: 다시 시작할 때는 이미 묶은 포트를 그대로 두므로, `Listen`을 바꿔 옛 설정과 부딪히면 설정이 실패하고 서버가 끝난다
+- **Compiling and Installing**: 머리 문단 — **배포판 꾸러미(RPM·DEB 등)로 설치하면 설정 파일의 배치와 기본값이 이 문서와 다를 수 있다**. 「Customize」·「Test」 — 소스에서 설치하면 `PREFIX/conf/` 아래 설정 파일(`PREFIX/conf/httpd.conf`)을 고치고 `PREFIX/bin/apachectl -k start`로 시작하며, 첫 문서는 `DocumentRoot` 아래, 보통 `PREFIX/htdocs/`에 있다.
+  「Overview for the impatient」 — `--prefix`를 주지 않으면 PREFIX는 `/usr/local/apache2`다. 「Third-party packages」 — 운영체제가 주는 꾸러미는 설정 파일 배치·모듈·기본 경로가 소스 설치와 다를 수 있으니 배포판 문서를 보라고 한다
+- **`conf/extra/` 아래 파일 이름(`httpd-default.conf`·`httpd-vhosts.conf`·`httpd-mpm.conf`)은 이날 읽은 페이지**(configuring·install·invoking·core·mpm·vhosts 셋·platform/windows)**에서 찾지 못했다**
+- **Security Tips** — 「Permissions on ServerRoot Directories」: 보통 Apache는 root 사용자가 시작하고, 요청에 답할 때는 `User`가 정한 사용자로 바꾼다.
+  「Denial of Service (DoS) attacks」: 서비스 거부 공격을 줄이는 설정으로 `TimeOut`을 낮추고, `KeepAliveTimeout`도 낮출 수 있으며(어떤 곳은 `KeepAlive`를 아예 끄지만 성능에 손해가 있다), `LimitRequestBody`·`LimitRequestFields`·`LimitRequestFieldSize`·`LimitRequestLine` 등을 신중히 정해 클라이언트 입력이 일으키는 자원 소비를 묶으라고 든다
+- 같은 문서 「Server Side Includes」: SSI는 서버 부하를 늘리고, Apache가 도는 사용자·그룹의 권한으로 아무 CGI 스크립트나 프로그램을 실행할 수 있다는 위험이 있다 — `Options`의 `Includes` 대신 `IncludesNOEXEC`로 스크립트·프로그램 실행을 막을 수 있다.
+  「CGI in General」·「Non Script Aliased CGI」·「Script Aliased CGI」: CGI 스크립트는 웹 서버 사용자의 권한으로 아무 명령이나 실행할 수 있어 위험하고, 아무 디렉터리에서나 실행하게 하는 것보다 `ScriptAlias`로 정한 디렉터리로 묶는 쪽이 더 안전하다.
+  **이 문서에는 디렉터리 목록(`Indexes`)에 관한 절이 없다**(전문 검색 2026-11-12)
+- **Upgrading to 2.0 from 1.3**(2.0 문서) — 「Run-Time Configuration Changes」: **`BindAddress`와 `Port` 지시자는 2.0에서 없어졌고 같은 일을 더 유연한 `Listen`이 한다**. 1.3에서 `Port`로 정하던, 서버가 자기를 가리키는 URL에 쓸 포트 번호는 2.0부터 `ServerName`에 호스트 이름과 함께 적는다
+
+쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.httpd-conf`(첫 화면 — The Apache Software Foundation의 프로젝트; Configuration Files — 주 설정 파일 `httpd.conf`, 위치는 컴파일 때·`-f`, `Include`, 어떤 지시자든 어느 설정 파일에나, 바꾸면 다시 시작해야 반영, 줄의 꼴과 주석, 구역; Starting Apache — 데몬 `httpd`; apachectl(8) — `configtest`·`graceful`; Compiling and Installing — 배포판마다 배치가 다르다),
+`linux-servers.apache-listen`(Starting Apache — 1024보다 작은 포트는 root로 시작, 자식 프로세스는 낮은 권한, 시작 오류의 두 까닭; Binding to Addresses and Ports — 겹치는 `Listen`; 2.0 Upgrading — `Port`가 없어졌다), `linux-servers.apache-keepalive`·`linux-servers.limit-request-body`(Security Tips 「DoS」),
+`linux-servers.options-indexes`(Security Tips 「Server Side Includes」·「CGI」), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단)
+
+## (phase 79 step 9) iptables 1.8.13 — iptables(8), iptables-extensions(8); netfilter.org — 프로젝트 소개, iptables·nftables 프로젝트 페이지
+https://man7.org/linux/man-pages/man8/iptables.8.html
+https://man7.org/linux/man-pages/man8/iptables-extensions.8.html
+https://www.netfilter.org/
+https://www.netfilter.org/projects/iptables/index.html
+https://www.netfilter.org/projects/nftables/index.html
+
+2026-11-12에 IPv4로 내려받아 읽은 판: man7.org의 iptables(8)·iptables-extensions(8)은 「iptables 1.8.13」(VERSION 절 — netfilter의 iptables 저장소에서 2026-08-04에 가져옴, 마지막 커밋 2026-07-10).
+netfilter.org는 첫 화면과 프로젝트 페이지 둘을 읽었다(첫 화면 소식 목록의 최신 판: iptables 1.8.13, nftables 1.1.7). **규칙 문법은 iptables의 것만** 적고 nftables(`nft`)의 문법은 가져오지 않는다.
+
+- **iptables(8)** — NAME, DESCRIPTION: iptables(IPv6는 ip6tables)는 **Linux 커널의 IPv4 패킷 거르기 규칙 표를 만들고 고치고 살펴보는 관리 도구**다. 표(table)가 여럿이고, 표마다 내장 체인(built-in chain)이 있으며 사용자가 체인을 만들 수도 있다.
+  **체인은 패킷들에 맞을 수 있는 규칙의 목록**이고, 규칙마다 맞는 패킷을 어떻게 할지(대상, target)를 정한다
+- iptables(8) — TARGETS: 규칙은 패킷의 조건과 대상으로 이루어진다. **패킷이 규칙에 맞지 않으면 체인의 다음 규칙을 보고, 맞으면 그 규칙의 대상을 따른다**. 대상은 사용자 체인, 확장 대상, 또는 특별한 값 `ACCEPT`(패킷을 지나가게 한다)·`DROP`(패킷을 버린다)·`RETURN`이다.
+  **내장 체인의 끝에 닿으면 그 체인의 정책(policy)이 정한 대상이** 패킷을 어떻게 할지 정한다
+- iptables(8) — TABLES: 표는 지금 다섯(`filter`·`nat`·`mangle`·`raw`·`security`)이다. **`filter`는 `-t`를 주지 않을 때의 기본 표**이고 내장 체인 셋을 갖는다 — **`INPUT`(이 기계의 로컬 소켓으로 가는 패킷), `FORWARD`(이 기계를 거쳐 라우팅되는 패킷), `OUTPUT`(이 기계에서 만들어진 패킷)**
+- iptables(8) — OPTIONS 「COMMANDS」: `-A 체인 규칙`(체인의 **끝에** 규칙을 더한다), `-I 체인 [번호] 규칙`(그 번호 자리에 끼운다 — 번호를 빼면 맨 앞), `-D`(지운다), `-L [체인]`(규칙 목록을 보인다 — 체인을 빼면 모든 체인, 이름 풀이를 피하려 흔히 `-n`과 함께 쓴다),
+  `-S`(규칙을 명령 꼴로 보인다), `-F`(체인을 비운다), `-P 체인 대상`(내장 체인의 정책을 `ACCEPT`나 `DROP`으로 정한다). **내장 체인 정책의 처음 값(아무것도 정하지 않았을 때)은 이 페이지에 적혀 있지 않다**(전문 검색)
+- iptables(8) — OPTIONS 「PARAMETERS」: `-p 프로토콜`(`tcp`·`udp`·`icmp` 등이나 번호, 빼면 `all`), `-j 대상`(규칙에 맞을 때 할 일 — 빼면 패킷의 운명에 영향이 없고 규칙의 계수만 는다), `-s 주소[/마스크]`(출발지), `-i 인터페이스`(패킷을 받은 인터페이스 — `INPUT`·`FORWARD`·`PREROUTING`에만)
+- **iptables-extensions(8)** — MATCH EXTENSIONS 머리 문단, 「tcp」·「udp」: 확장 조건 모듈은 `-m 이름`으로 부르고, `-p`를 준 규칙에서 모르는 옵션을 만나면 그 프로토콜과 같은 이름의 모듈을 불러온다.
+  **`tcp` 확장은 `--protocol tcp`일 때** 쓸 수 있고 `--dport`(`--destination-port` — 목적지 포트나 범위)·`--sport`·`--tcp-flags`·`--syn`을 준다. **`udp` 확장도 `--protocol udp`일 때** `--dport`·`--sport`를 준다. 곧 `--dport`는 `-p tcp`나 `-p udp`와 함께 쓰는 옵션이다
+- 같은 페이지 「tcp」 `--syn`: SYN만 켜진, 연결을 청하는 패킷에 맞는다 — 이런 패킷을 들어오는 쪽에서 막으면 들어오는 TCP 연결은 막히고 나가는 TCP 연결은 그대로다
+- 같은 페이지 TARGET EXTENSIONS 「REJECT (IPv4-specific)」: **`REJECT`는 맞는 패킷에 오류 패킷을 되돌려 보내고, 그 밖에는 `DROP`과 같다**(규칙 훑기를 끝내는 대상). `INPUT`·`FORWARD`·`OUTPUT` 체인(과 거기서만 부르는 사용자 체인)에서만 쓴다. 기본으로 보내는 오류는 ICMP port-unreachable이고, TCP 규칙에서는 TCP RST를 보낼 수도 있다.
+  곧 **`DROP`은 말없이 버리고 `REJECT`는 버리면서 보낸 쪽에 알린다**(두 설명을 이은 것)
+- **netfilter.org** — 「What is the netfilter.org project?」: netfilter 프로젝트는 Linux 2.4 이후 커널의 **패킷 거르기 소프트웨어**를 만드는 공동체 자유 소프트웨어 프로젝트이고, iptables와 그 뒤를 잇는 nftables로 알려져 있다. 패킷 거르기, 주소·포트 변환(NA[P]T), 패킷 기록 등을 한다.
+  **netfilter 훅**은 커널 네트워크 스택의 여러 자리에 모듈이 함수를 걸어 두면 그 자리를 지나는 패킷마다 그 함수가 불리게 하는 커널 안의 틀이다. **iptables는 규칙 묶음을 정하는 범용 방화벽 소프트웨어**이고, 규칙마다 조건(matches) 여럿과 동작(target) 하나가 있다. **nftables는 iptables의 뒤를 잇는 것**이고 새 기능은 거기서 만든다
+- netfilter.org — `projects/iptables/`: iptables는 Linux 2.4 이후의 패킷 거르기 규칙 묶음을 설정하는 **사용자 공간의 명령줄 프로그램**이고 시스템 관리자를 위한 것이다. NAT도 같은 규칙 묶음에서 설정하므로 그 일에도 쓴다 — 「What is iptables?」.
+  `projects/nftables/`: nftables는 `{ip,ip6,arp,eb}tables`를 대신하고 명령줄 도구는 `nft`다. 커널 3.13부터 쓸 수 있고, 같은 문법의 iptables 명령을 nftables 위에서 돌리는 **하위 호환 층**이 있다
+
+쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.iptables`(iptables(8) — 무엇인가, 표·체인·대상·정책, `filter`와 `INPUT`·`OUTPUT`·`FORWARD`, `-A`·`-I`·`-L`·`-P`·`-p`·`-j`·`-s`·`-i`; iptables-extensions(8) — `tcp`·`udp`의 `--dport`, `REJECT`; netfilter.org — netfilter 훅, 방화벽 소프트웨어, nftables가 뒤를 잇는다),
+`linux-servers.bind-named`(방화벽에 UDP 53과 TCP 53을 함께 연다 — 규칙의 꼴), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44], [기출 2025-05-25 #42])
