@@ -67,6 +67,7 @@ import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DomainServicesDiagram } from './DomainServicesDiagram'
+import { DomainTreeDiagram } from './DomainTreeDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -164,6 +165,7 @@ import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
@@ -541,6 +543,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.time-wait': TimeWaitDiagram,
   'dns.dns': NameToAddressDiagram,
   'dns.hosts-file': HostsFileDiagram,
+  'dns.domain-hierarchy': DomainTreeDiagram,
+  'dns.name-servers': NameServerRolesDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,

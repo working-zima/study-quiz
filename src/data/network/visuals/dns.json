@@ -85,6 +85,111 @@
         }
       ],
       "sources": ["dns.hosts-file"]
+    },
+    "domain-tree": {
+      "label": "도메인 이름을 묶는 이름 나무의 일부와 이름 www.example.com을 레이블마다 나눈 것을 함께 놓고, 이름을 읽는 차례와 최상위 도메인, 서브 도메인을 보이는 도식",
+      "svgLabel": "루트 아래에 최상위 도메인 com, net, org가, com 아래에 example이, example 아래에 www와 mail이 있는 이름 나무와, 이름 www.example.com을 www, example, com 레이블로 나눈 그림",
+      "question": "도메인 이름은 어느 쪽부터 읽어야 할까?",
+      "idleCaption": "도메인 이름을 묶는 이름 나무의 일부와, 이름 www.example.com을 레이블마다 나눈 것을 함께 놓았다. 이름은 예로 붙인 것이다. 버튼을 고르면 이름을 읽는 차례와 최상위 도메인, 서브 도메인을 볼 수 있다.",
+      "legend": "나무의 선은 위 단계의 마디와 그 바로 아래 마디를 잇고, 화살표는 루트에서 한 단계씩 내려가는 차례다. 단계 이름은 나무의 층과 이름의 레이블에 함께 붙어 있다.",
+      "nodes": {
+        "root": "루트",
+        "com": "com",
+        "net": "net",
+        "org": "org",
+        "example": "example",
+        "www": "www",
+        "mail": "mail",
+        "name-www": "www",
+        "name-example": "example",
+        "name-com": "com"
+      },
+      "groups": {
+        "tree": "이름 나무",
+        "name": "이름 www.example.com"
+      },
+      "notes": {
+        "tld-layer": "최상위 도메인",
+        "second-layer": "2단계",
+        "third-layer": "3단계",
+        "www-level": "3단계",
+        "example-level": "2단계",
+        "com-level": "최상위 도메인",
+        "read-note": "오른쪽 레이블부터 읽는다",
+        "sub-note": "서브 도메인"
+      },
+      "scenarios": [
+        {
+          "id": "read",
+          "label": "읽는 차례",
+          "caption": "www.example.com은 오른쪽 레이블일수록 위 단계라서 오른쪽부터 읽는다. 루트에서 시작해 최상위 도메인 com, 2단계 example, 3단계 www로 한 단계씩 내려가며, 맨 왼쪽의 www가 가장 아래 단계다.",
+          "sources": ["dns.domain-hierarchy"]
+        },
+        {
+          "id": "tld",
+          "label": "최상위 도메인",
+          "caption": "루트 바로 아래 단계가 최상위 도메인이다. com, net, org가 이 단계에 있고, 이름 www.example.com에서는 맨 오른쪽 레이블 com이 최상위 도메인이다.",
+          "sources": ["dns.domain-hierarchy"]
+        },
+        {
+          "id": "subdomain",
+          "label": "서브 도메인",
+          "caption": "example.com 도메인에는 그 아래에 딸린 www.example.com과 mail.example.com이 함께 든다. 이렇게 어떤 도메인 안에 든 도메인을 그 도메인의 서브 도메인이라 하고, 두 이름은 모두 example.com으로 끝난다.",
+          "sources": ["dns.domain-hierarchy"]
+        }
+      ],
+      "sources": ["dns.domain-hierarchy"]
+    },
+    "name-server-roles": {
+      "label": "이름의 단계를 나눠 맡는 루트 네임 서버, TLD 네임 서버, 권한 있는 네임 서버와, 클라이언트 대신 찾아 주는 로컬 DNS 서버가 저마다 무엇을 맡고 무엇을 돌려주는지 보이는 도식",
+      "svgLabel": "한 묶음에 루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 잇고, 다른 묶음에 로컬 DNS 서버를 두고 그 위에 클라이언트를 놓은 그림",
+      "question": "네임 서버는 저마다 무엇을 맡을까?",
+      "idleCaption": "www.example.com을 예로, 이름의 단계를 나눠 맡는 세 서버와 클라이언트 대신 찾아 주는 로컬 DNS 서버를 나눠 놓았다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 서버마다 맡는 것과 돌려주는 것을 볼 수 있다.",
+      "legend": "세 서버를 잇는 선은 위 단계와 그 아래 단계를 잇는다. 화살표는 클라이언트가 보내는 질의다.",
+      "nodes": {
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버",
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버"
+      },
+      "groups": {
+        "layers": "이름의 단계를 나눠 맡는 서버",
+        "resolver": "대신 찾아 주는 서버"
+      },
+      "notes": {
+        "root-note": "최상위 도메인을 맡은 서버를 알려 준다",
+        "tld-note": "example.com을 맡은 서버를 알려 준다",
+        "auth-note": "원본 정보로 최종 답을 준다",
+        "local-note": "클라이언트 대신 차례로 묻는다"
+      },
+      "scenarios": [
+        {
+          "id": "root",
+          "label": "루트",
+          "caption": "루트 네임 서버는 이름 나무의 맨 위인 루트를 맡는다. www.example.com을 물으면 IP 주소 대신 최상위 도메인 com을 맡은 서버들을 알려 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "tld",
+          "label": "TLD",
+          "caption": "com TLD 네임 서버는 최상위 도메인 com을 맡는다. www.example.com을 물으면 역시 IP 주소 대신 그 아래 example.com을 맡은 서버들을 알려 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "authoritative",
+          "label": "권한 있는 서버",
+          "caption": "example.com의 권한 있는 네임 서버는 이 도메인의 정보를 원본으로 갖고 있어, 다른 서버에 묻지 않고 www.example.com의 IP 주소 198.51.100.10을 최종 답으로 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "local",
+          "label": "로컬 DNS 서버",
+          "caption": "로컬 DNS 서버는 이름의 어느 단계를 맡는 서버가 아니다. 클라이언트가 가장 먼저 찾아와 묻는 서버로, 클라이언트 대신 단계를 맡은 서버들에 차례로 물어 최종 답을 얻어 준다.",
+          "sources": ["dns.name-servers"]
+        }
+      ],
+      "sources": ["dns.name-servers"]
     }
   },
   "tables": {},
