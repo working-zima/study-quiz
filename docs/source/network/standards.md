@@ -78,6 +78,21 @@ RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직�
 「(phase 77 step 9)」가 붙은 줄과 항목은 phase 77 step 9에서 `tcp-connection`(3-way handshake, TCP 연결 종료, TCP 상태, 연결을 맺는 동안의 상태, 연결을 끊는 동안의 상태, TIME-WAIT 상태) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-10).
 RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직접 읽고, 상태는 `…/rfcNNNN.json`)으로, man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다. **상태 전이는 RFC 9293의 상태 그림(그림 5)과 세그먼트 처리 절(§3.10)을 하나씩 맞춰 본 것만** 적었다.
 재전송 시간·연결 유지(keep-alive)·SYN 플러딩 같은 공격과 동시 열기의 차례는 이 step에서 적지 않았다(phase 84와 보안 주제의 몫이거나 기출이 묻지 않는다).
+「(phase 78 step 0)」이 붙은 줄과 항목은 phase 78 step 0에서 `app-protocols-mail-file`(전자우편의 전달 과정, SMTP, POP3, IMAP, FTP, FTP의 능동 모드와 수동 모드, TFTP, SSH) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IANA 포트 레지스트리는 CSV판(레지스트리 머리의 Last Updated 2026-11-06)을,
+man7.org·learn.microsoft.com은 페이지를 내려받아 읽었다 — 항목마다 COLOPHON이나 페이지의 `updated_at`과 적용 판을 적는다. learn.microsoft.com은 Windows의 OpenSSH 문서 둘과, Windows Server의 FTP 서버(IIS) 문서 둘(능동·수동 데이터 연결의 이름과 수동 모드용 포트 범위)을 읽었다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — SMTP 확장과 응답 코드 전체, POP3의 APOP·TOP·UIDL, IMAP 명령 전체, FTP의 블록·압축 전송 방식과 표현 형식(TYPE), SFTP·FTPS와 FTP 보안 확장의 명령, TFTP 옵션 확장, SSH의 키 교환·암호 알고리즘. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 78 step 5)」가 붙은 줄과 항목은 phase 78 step 5에서 `app-protocols-mgmt-security`(SNMP, MIB, SNMP의 폴링과 트랩, SNMP의 버전과 보안, NTP, SNTP, TLS, HTTPS, SIP) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`과 문서 머리의 STD 번호로 확인했다. IANA 포트 레지스트리는 CSV판(XML판 머리의 Last Updated 2026-11-10)을 읽었다.
+**SNMP는 지금 표준인 SNMPv3(STD 62 — RFC 3411~3418)의 문서를 근거로 쓰고**, SNMPv1(RFC 1157)과 SNMPv2c(RFC 1901)는 둘 다 Historic이라 역사 기록으로만 쓴다. SNTP를 따로 적은 RFC 4330은 RFC 5905가 폐기했으므로 역사 기록으로만 쓴다.
+RFC 3410·6632·3512는 Informational이라 표준 문서의 사실을 확인하고 풀어 보는 보조로만 쓴다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — SNMP 메시지의 부호화 형식과 GetBulkRequest·Report, USM의 키·알고리즘과 VACM의 세부, NTP의 시각 계산식과 필터·선택 알고리즘의 세부·대칭·브로드캐스트 모드,
+TLS의 키 교환·암호 방식·확장, 인증서의 필드와 폐기, SIP의 프록시·등록·헤더 필드와 응답 코드 전체, SDP의 문법. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 78 step 11)」이 붙은 줄과 항목은 phase 78 step 11에서 `diagnostic-commands`(ipconfig 명령, ipconfig의 옵션, ping 명령의 옵션, tracert 명령, pathping 명령, netstat 명령, Windows netstat의 옵션, Linux netstat의 옵션) 주제가 쓸 사실을 확인하며 더했다(확인한 날 2026-11-11).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). learn.microsoft.com은 Windows 명령 참조 페이지(`windows-server/administration/windows-commands/<명령>`)와, 그 페이지가 출력의 꼴을 보이지 않는 곳을 메우려고 Windows Server 문제 해결 문서 몇 쪽을 IPv4로 내려받아 읽었다 —
+항목마다 페이지 머리의 `updated_at`·`ms.date`, 바닥의 「Last updated on」과 「Applies to」를 적는다(세 날짜가 서로 다를 수 있다). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적는다.
+**명령의 출력 꼴은 문서가 보이는 것만** 적었다 — 출력 예가 없는 명령은 「출력 예 없음」이라고 적는다. 이 PC에서 명령을 실행한 결과는 출처로 쓰지 않았다.
+**기출이 묻지 않는 옵션은 사실로 가져오지 않았다** — ping의 TTL·TOS·경로 기록·출발지 경로 옵션, tracert·pathping의 출발지 경로 옵션, ipconfig의 `/registerdns`·IPv6 옵션, netstat의 `-q`·주기 갱신, nslookup의 대화형 모드와 하위 명령. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -712,6 +727,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 (phase 74 step 11에서 쓰일 곳) `routing.routing`(§3.3.1 — 호스트도 데이터그램마다 다음 홉을 고른다), `routing.routing-table`(§3.3.1.3 — 호스트에도 라우팅 테이블이 있다), `routing.default-route`(§3.3.1.2 — 경로 정보가 없는 목적지는 기본 게이트웨이로),
 `routing.static-dynamic-routing`(§3.3.1.2 DISCUSSION — 정적 경로는 관리자가 넣고, 구성이 바뀌거나 장비가 고장 나면 장애의 원인이 된다), `exam-notes.md` E17
 (phase 77 step 7) `tcp-udp.udp`·`tcp-udp.udp-header`(§4.1.3.4 — UDP 체크섬은 만들고 검사하는 것이 기본, 맞지 않는 데이터그램은 알리지 않고 버린다), 문항 n184 해설
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(위 2026-10-28 줄 §1.1.3 — SNMP는 응용 계층의 지원 프로토콜이다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNMP는 응용 계층, 오류 보고·혼잡 보고는 ICMP의 일)
 
 ## RFC 871 — A Perspective on the ARPANET Reference Model
 https://www.rfc-editor.org/rfc/rfc871
@@ -932,10 +948,17 @@ https://www.rfc-editor.org/rfc/rfc9110
   그 서버와 주고받는 HTTP 통신 모두가 기밀성(남이 읽지 못함)과 무결성(바뀌지 않음) 보호를 받는다는 뜻이다. 포트가 없거나 비어 있으면 **TCP 443**(TLS 위의 HTTP에 남겨 둔 포트)이 기본이다.
   클라이언트는 `https` 자원에 보내는 요청을 보내기 전에 보호해야 한다(MUST). `http`와 `https`는 서로 다른 출처(origin)다 — §4.2.2
   (HTTP/3는 같은 `https` 주소에 UDP로 닿는다 — 위 RFC 9114 항목의 「(phase 77)」 줄)
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로이고 폐기되지 않았다. 옛 「HTTP Over TLS」 문서 RFC 2818을 이 문서가 폐기했다) `https` 주소의 자원에 닿는 한 가지 길은 이 차례다 —
+  주소의 호스트 이름을 IP 주소로 바꾸고, 그 주소의 정해진 포트로 **TCP 연결**을 맺고, 그 연결 위에서 **TLS를 시작해** 끝과 끝 사이에 기밀성·무결성 보호를 갖춘 뒤, 그 연결로 HTTP 요청을 보낸다 — §4.3.3
+- (phase 78 step 5) `https`에서 서버가 그 주소에 대해 답할 자격은, 클라이언트가 믿을 만하다고 보는 인증서의 짝인 개인 키를 서버가 쓸 수 있는지로 가린다. 클라이언트는 보통 미리 정해 둔 신뢰의 출발점(trust anchor)에서 이어지는 신뢰 사슬로 그 인증서를 믿을지 정한다 — §4.3.3
+- (phase 78 step 5) **인증서 확인**: 안전한 연결을 맺으려면 클라이언트는 서버가 내민 신원이 주소의 원 서버와 맞는지 **반드시 확인해야 한다**(MUST). 이 확인은 경로 가운데 끼어든 공격자나 이름 풀이를 조작한 공격자가 서버를 흉내 내는 것을 막으려는 것이다.
+  주소의 호스트가 IP 주소면 IP 주소로, 이름이면 DNS 이름으로 견준다. 인증서가 그 주소에 맞지 않으면 웹 브라우저 같은 사용자 에이전트는 사용자에게 계속할지 확인을 받거나, 잘못된 인증서라는 오류로 연결을 끝내야 한다 — §4.3.4
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.https`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — `https`는 TLS로 보호하고 TCP 443이 기본이며 「보호」는 서버 인증·기밀성·무결성, §4.3.3 — TCP 연결 → TLS → HTTP 요청의 차례, §4.3.4 — 인증서가 주소의 이름과 맞는지 확인),
+`app-protocols-mgmt-security.tls`(§4.3.4 — 인증서를 어떻게 확인할지는 TLS 위의 응용 프로토콜이 정한다는 RFC 9846 §1의 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭)
 
 ## RFC 9111 — HTTP Caching
 https://www.rfc-editor.org/rfc/rfc9111
@@ -1107,8 +1130,18 @@ https://www.rfc-editor.org/rfc/rfc1123
 인터넷 표준이고 폐기되지 않았다(rfc-editor 상태). RFC 1122와 짝으로, 응용 계층과 지원 프로토콜을 다룬다.
 
 - 원격 관리 절에서 네트워크 관리 프로토콜로 SNMP를 들고, 인터넷 호스트는 SNMP(또는 CMOT) 에이전트를 갖추는 것이 좋다(SHOULD)고 한다 — §6.3.1
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로, RFC 5321 등이 고쳤다) **TFTP**: TFTP는 UDP를 전송 프로토콜로 쓰면서 **믿을 수 있는 전달을 스스로 제공한다** — 블록 하나를 보내고 확인 응답을 기다리는 단순한 방식(stop-and-wait)이다.
+  한 번에 512옥텟 블록 하나만 오가는 셈이라 **지연과 대역폭의 곱이 작은 경로에서만 성능이 좋다**. 파일을 다루는 방식이 아주 단순해 접근 제어도 보안도 없다.
+  **가장 중요한 쓰임은 LAN에서 호스트를 부팅하는 일**이다 — 작고 단순해 EPROM에 넣기 쉽다 — §4.2.1. (이 절은 RFC 1350보다 먼저 나와 그 이전 판 RFC 783을 가리키지만, 블록마다 확인 응답을 기다리는 방식은 RFC 1350 §2와 같다)
+- (phase 78 step 0) TFTP 명세의 결함(늦게 온 중복 패킷 때문에 이후 모든 패킷을 두 번씩 보내게 되는 문제)을 고치라고 요구하면서, 그 결함이 있어도 **전송이 끝까지 가면 파일은 언제나 바르게 옮겨진다**고 적는다 — §4.2.3.1.
+  접근 제어가 약해, 브로드캐스트 주소로 온 TFTP 요청은 조용히 무시하는 것이 좋다 — §4.2.3.5
+- (phase 78 step 0) **FTP**: 스트림 방식을 쓰는 사용자 쪽 FTP는 전송 명령마다 그 앞에 `PORT`로 기본이 아닌 데이터 포트를 정해 보내는 것이 좋다(SHOULD) — 닫은 TCP 연결의 주소·포트 쌍은 한동안 다시 쓸 수 없기 때문이다.
+  스트림이 아닌 전송 방식을 쓰면 데이터 연결을 열어 둔 채 여러 번 보낼 수 있다 — §4.1.2.5. 서버 쪽 FTP는 **`PASV`를 반드시 구현해야 한다**(MUST). `PASV` 응답에 담긴 주소는 응답을 보낸 서버의 IP 주소이고, 포트는 `PASV`가 정한 기본이 아닌 데이터 포트다 — §4.1.2.6
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
+`app-protocols-mail-file.ftp`(§4.1.2.5 — 스트림 방식에서는 전송마다 새 데이터 연결), `app-protocols-mail-file.ftp-modes`(§4.1.2.6 — 서버는 `PASV`를 구현해야 한다), `exam-notes.md` E30·E31
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§6.3.1 — SNMP는 원격 관리에 쓰는 네트워크 관리 프로토콜이고, 인터넷 호스트는 SNMP 에이전트를 갖추는 것이 좋다)
 
 ## (2026-10-28) RFC 1350 — The TFTP Protocol (Revision 2)
 https://www.rfc-editor.org/rfc/rfc1350
@@ -1120,10 +1153,22 @@ https://www.rfc-editor.org/rfc/rfc1350
 - (phase 77 step 3) **UDP 위에서 스스로 확인하고 다시 보낸다**: 파일을 512바이트 고정 블록으로 보내고, 데이터 패킷마다 확인 응답 패킷을 받아야 다음 패킷을 보낸다(lock step). 패킷을 잃으면 받을 쪽이 시간 초과 뒤 마지막 패킷을 다시 보내,
   잃은 패킷을 보낸 쪽이 그것을 다시 보내게 한다. 512바이트보다 짧은 데이터 패킷이 전송의 끝을 알린다 — §2
 - (phase 77 step 3) 이 문서는 TFTP가 FTP보다 **빠르다**고 하지 않는다 — 작고 구현하기 쉽다고만 한다(§1). 확인 응답을 받아야 다음 블록을 보내는 방식(§2)이다
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로) **요청과 포트**: 전송은 쓰기 요청(WRQ — 상대의 파일 시스템에 쓴다)이나 읽기 요청(RRQ — 상대에게서 읽는다)으로 시작하고, 그 요청이 곧 연결을 청하는 일이다 — §2, §4.
+  양 끝은 저마다 TID(전송 식별자)를 골라 UDP 포트로 쓴다. 요청하는 쪽은 자기 TID에서 **서버의 69번**으로 첫 요청을 보내고, 서버는 **자기가 새로 고른 TID를 출발지로** 답한다. 그 뒤 전송 내내 그 두 TID(포트)를 쓴다 — §3, §4.
+  읽기 요청의 긍정 응답은 첫 데이터 패킷이고, 쓰기 요청의 긍정 응답은 블록 번호 0인 확인 응답이다. 데이터 블록의 번호는 1부터 하나씩 늘어난다 — §4
+- (phase 78 step 0) 패킷 종류는 다섯이다 — 읽기 요청(RRQ)·쓰기 요청(WRQ)·데이터(DATA)·확인 응답(ACK)·오류(ERROR) — §5
+- (phase 78 step 0) **끝**: 데이터 패킷의 데이터 칸은 0~512바이트다. 512바이트면 마지막 블록이 아니고, 0~511바이트면 그 블록이 전송의 끝이다 — §5, §6.
+  그러니 **파일 크기가 512의 배수이면 마지막에 데이터가 0바이트인 패킷을 보내 끝을 알린다**(위 규칙에서 나오는 계산 — 이 말이 문서에 따로 적혀 있지는 않다). 예: 1,300바이트 파일은 512 + 512 + 276바이트 블록 셋이고, 276 < 512라 셋째가 끝이다(계산)
+- (phase 78 step 0) **잃은 패킷과 실패**: 잃은 패킷은 시간 초과 뒤 다시 보내 채운다(§2 — 위 phase 77 step 3 줄). 오류 패킷은 확인 응답도 재전송도 받지 않고, 대부분의 오류는 연결을 끝낸다 — §2.
+  마지막 데이터 패킷의 확인 응답을 끝내 받지 못한 채 보내는 쪽이 재전송을 그만두면, 전송이 성공했는지 실패했는지 알 수 없는 채로 연결이 닫힌다 — §6.
+  **이 문서는 잃은 블록을 빼놓은 채 전송을 마친다고 하지 않는다** — 다시 보내 채우거나, 전송 자체가 끝나 버린다
+- (phase 78 step 0) 이 문서는 TFTP가 어디에 쓰이는지 말하지 않는다 — 쓰임(LAN에서 호스트를 부팅하는 일)은 위 RFC 1123 §4.2.1
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1 — UDP 위의 간단한 파일 전송, §2 — 512바이트 블록마다 확인 응답, 블록을 잃으면 받을 쪽이 시간 초과 뒤 마지막 확인 응답을 다시 보내 보내는 쪽이 잃은 블록을 다시 보낸다), 도식 `transport-choice`, 문항 n187
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§1 — UDP, 로그인·디렉터리 목록 없음, 읽기와 쓰기만, §2 — 512바이트 블록·블록마다 확인 응답·시간 초과 뒤 재전송·짧은 블록이 끝,
+§4 — 69번으로 요청하고 서버는 새 포트로 답한다, §5·§6 — RRQ·WRQ, 0~511바이트가 끝), `exam-notes.md` E30·E31, 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
 
 ## (2026-10-28) RFC 4949 — Internet Security Glossary, Version 2
 https://www.rfc-editor.org/rfc/rfc4949
@@ -1204,11 +1249,29 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - (phase 73 step 1) tracert: 목적지로 가는 경로를 알아내려고 TTL을 1부터 하나씩 늘린 **ICMP 에코 요청**(IPv6는 ICMPv6 메시지)을 보낸다. 경로의 라우터는 넘기기 전에 TTL을 최소 1 줄여야 하므로 TTL은 사실상 지날 수 있는 링크 수의 상한이고,
   TTL이 0이 되면 라우터가 출발지에 ICMP 시간 초과를 돌려보내기로 되어 있다. 중간 라우터의 시간 초과와 목적지의 에코 응답으로 경로를 알아낸다. 최대 홉 수는 기본 30(`/h`)이다.
   시간 초과를 보내지 않는 라우터는 보이지 않고 그 홉에는 `*`가 찍힌다 — tracert 첫 세 문단, 「Parameters」
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: ping·tracert 모두 바닥의 「Last updated on」 2024-11-01, 머리의 `updated_at` 2026-02-16(`ms.date`는 ping 2023-09-15, tracert 2023-09-27).
+  두 페이지 모두 「Applies to」가 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후다
+- (phase 78 step 11) ping의 **옵션 표기**: Syntax·Parameters·Examples가 옵션을 모두 빗금(`/t`, `/a`, `/n`, `/l`, `/f`)으로 적는다. 하이픈(`-t`)으로도 받는다는 문장은 이 페이지에 없다 — Syntax, Examples.
+  tracert(`/d`, `/h`)도 빗금으로 적는다 — 같은 꼴. 하이픈 표기의 근거는 아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서」 항목의 IPv6 문서(`ping -6`, `tracert -6`)뿐이다 — `exam-notes.md` E33
+- (phase 78 step 11) ping의 옵션(기출의 보기에 나오는 넷과 그 바탕): `/t`는 사용자가 끊을 때까지 에코 요청을 계속 보내게 한다. 끊는 키는 둘이다 — **Ctrl+Break**는 끊고 **통계를 보여 주고**, **Ctrl+C**는 끊고 **명령을 끝낸다**(문서는 Ctrl+Break 뒤에 계속 보내는지를 따로 적지 않고, 「통계를 보인다」와 「끝낸다」를 나란히 견줄 뿐이다).
+  `/a`는 목적지 IP 주소로 이름을 거꾸로 찾아(역방향 이름 확인) 성공하면 그 호스트 이름을 보인다. `/n`은 보낼 에코 요청의 수(기본 4 — 위 줄). `/l`은 에코 요청의 데이터 칸 크기를 바이트로 정한다(기본 32, 가장 크게 65,500).
+  `/f`는 IP 헤더의 「조각내지 말 것(Don't Fragment)」 플래그를 1로 켜서 보낸다(IPv4만) — 경로의 라우터가 그 요청을 조각낼 수 없어 경로 MTU 문제를 찾을 때 쓴다 — 「Parameters」.
+  `/w`는 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 응답이 없으면 「Request timed out」을 보인다 — 「Parameters」. 옵션 없이 부르면 도움말을 보인다 — 첫 문단
+- (phase 78 step 11) ping의 **출력 예**: 첫 줄에 목적지 이름·`[주소]`와 보내는 데이터 크기(32바이트)를 적고, 이어 응답마다 한 줄씩 `Reply from <주소>: bytes=… time=…ms TTL=…`이 넷 나온다. 요약 줄은 이 페이지의 예에 없다 — 「Example of the ping command output」.
+  요약 줄(`Ping statistics for …: Packets: Sent = …, Received = …, Lost = … (…% loss)`, 이어 왕복 시간의 Minimum·Maximum·Average)의 꼴은 아래 「(phase 74 step 5) Microsoft Learn …, Check Microsoft Broadband Network Adapter」 항목의 「(phase 78 step 11)」 줄에 있다
+- (phase 78 step 11) tracert의 **출력 예**와 읽는 법(Examples): 첫머리에 「목적지 이름 `[주소]`까지, 최대 30홉」을 알리는 줄, 이어 홉마다 한 줄 — **맨 앞 칸은 1부터 하나씩 커지는 홉 번호**, **가운데 세 칸은 그 홉의 장치까지 다녀오는 왕복 시간(ms)**, **맨 끝 칸은 그 장치의 IP 주소나 이름**이다.
+  역방향 DNS 조회가 되면 이름과 `[주소]`가, 안 되면 주소만 나온다. 답이 오지 않은 자리에는 `*`가 찍히고, 세 번 모두 오지 않은 홉은 `*` 셋과 「Request timed out.」이 나온다. 끝에 「Trace complete.」가 나온다 — 「Examples」 뒤 설명.
+  각 홉은 패킷이 목적지로 가며 거치는 라우터 같은 중간 장치다 — 같은 절. 보이는 경로는 각 라우터에서 **보내는 쪽에 가장 가까운 인터페이스**의 주소다 — 셋째 문단
+- (phase 78 step 11) tracert의 옵션: `/d`는 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않게 해 결과가 빨리 나올 수 있다. `/h`는 찾을 최대 홉 수(기본 30). `/w`는 시간 초과·에코 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 받지 못하면 `*`를 찍는다 — 「Parameters」.
+  경로를 찾으면서 **라우터와 링크마다의 지연과 패킷 손실**까지 보려면 pathping을 쓰라고 한다 — 「Important」 뒤 문단
+- (phase 78 step 11) 두 명령 모두 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — ping 첫머리 Note, tracert 「Important」
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
 (phase 73 step 13) `icmp.time-exceeded`와 `traceroute` 도식: Windows tracert의 TTL 1부터 증가, 중간 시간 초과·끝 에코 응답, 기본 최대 30홉·답이 없으면 *. 2026-10-29 tracert 문서를 다시 확인했다.
 (phase 73 step 14) `icmp.ping`(ping — 목적지에 호스트 이름이나 IP 주소를 적는다, `/n`으로 보낼 요청 수를 정하고 기본은 4개, 받은 에코 응답을 왕복 시간과 함께 보이고 출력 예는 응답마다 `time=`(ms 단위)과 `TTL=`를 적는다). 2026-10-29 ping 문서를 다시 확인했다(Last updated 2024-11-01) — 출력 예에는 응답 줄만 있고 요약 줄은 없다
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(ping `/t`·Ctrl+Break·Ctrl+C, `/n` 기본 4, `/a`, `/l` 기본 32, 빗금 표기, 출력 예의 응답 줄), `diagnostic-commands.tracert`(출력 예의 칸 — 홉 번호·왕복 시간 셋·주소나 이름, `*`와 Request timed out, `/d`·`/h` 기본 30, 보내는 쪽에 가까운 인터페이스, 지연·손실은 pathping),
+`diagnostic-commands.pathping`(tracert 문서가 pathping을 가리키는 문단), `exam-notes.md` 「phase 78 step 11」 문단([기출 2025-08-24 #42]의 `/a`·`/f`·`/n` 보기)과 E33
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -1375,11 +1438,18 @@ https://man7.org/linux/man-pages/man8/arp.8.html
   TTL마다 기본 세 번 보내 게이트웨이 주소와 왕복 시간을 한 줄에 적는다. 시간 안에 답이 없으면 `*`를 찍는다 — DESCRIPTION
 - (phase 73 step 1) traceroute(8)의 기본 방법은 UDP 탐사 패킷이다 — 목적지가 쓰지 않을 법한 포트(첫 탐사는 33434, 탐사마다 1씩 늘림)로 보내므로 목적지는 보통 ICMP 포트 도달 불가로 답한다. `-I`는 ICMP 에코를 탐사 패킷으로 쓴다(지금 가장 흔하다고 쓴다) — 「LIST OF AVAILABLE METHODS」, OPTIONS.
   Windows tracert는 ICMP 에코 요청을 쓴다(위 「(phase 71) Microsoft Learn」 항목) — 명령마다 보내는 패킷이 다르다
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: ping(8)은 iputils 20250605(upstream Git에서 2026-08-04에 가져옴, 그때 최신 커밋 2026-07-16), traceroute(8)은 traceroute 2.1.6 타르볼(바닥줄 2006-10-11) — 위 줄과 같은 판이다
+- (phase 78 step 11) ping(8)이 **멈추는 경우**: 이 페이지가 드는 것은 셋이다 — `-c count`로 정한 수만큼 보냈을 때, `-w deadline`으로 정한 초가 지났을 때, 프로그램이 **SIGINT**로 끝날 때(이때도 요약을 보인다).
+  **SIGQUIT**을 보내면 끝내지 않고 짧은 중간 통계만 보인다 — OPTIONS(`-c`·`-w`), OPTIONS 뒤 설명. 「아무것도 정하지 않으면 끝없이 보낸다」를 한 문장으로 적지는 않는다 — 그 셋 밖에 멈추는 조건을 들지 않을 뿐이다.
+  그래서 본문은 「`-c`나 `-w`를 주지 않으면, 사용자가 끊을 때까지 보낸다」를 이 세 조건에서 나오는 말로 쓴다. 터미널에서 Ctrl-C가 SIGINT를 보낸다는 것은 아래 「(phase 78 step 11) Linux man-pages — ip-address(8), termios(3)」 항목에 있다
+- (phase 78 step 11) ping(8)의 `-s packetsize`는 보낼 데이터 바이트 수이고 기본 56이다(ICMP 헤더 8바이트와 합쳐 ICMP 데이터 64바이트) — OPTIONS. Windows ping의 `/l`(기본 32)과 기본값이 다르다
+- (phase 78 step 11) ping(8)의 `-a`는 소리를 내는 ping(audible ping)이고, `-t ttl`은 IP의 TTL을 정한다 — OPTIONS. **Windows ping의 `/a`(이름 거꾸로 찾기)·`/t`(끊을 때까지 보내기)와 글자가 같아도 뜻이 다르다**
 
 쓰인 곳: `ethernet.mac-address`(콜론 꼴 표기),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp(7) 캐시와 시간, arp(8) `-s`·`-d`), `icmp.time-exceeded`(traceroute — UDP 기본·`-I`), `icmp.ping`(ping `-c`, 요약, 응답의 TTL), `exam-notes.md` 앞 문단([기출 2025-05-25 #10]의 캐시 시간, [기출 2025-08-24 #8]의 `-d`)
 (phase 73 step 13) `icmp.time-exceeded`: traceroute의 기본 UDP·끝 포트 도달 불가, -I 에코, 최대 30홉·TTL마다 세 번·응답이 없으면 *. `icmp.echo`의 ping은 에코를 이용하는 명령이라는 한 줄에만 쓴다.
 (phase 73 step 14) `icmp.ping`(ping(8) — `-c`로 보낼 요청 수를 정한다, 다 보내면 손실 통계와 왕복 시간의 최소·평균·최대를 요약한다, 출력의 TTL은 받은 응답 패킷의 TTL 값이고 지금 라우터는 TTL을 1씩 줄인다, 응답의 처음 TTL은 시스템마다 다르다), 문항 n077 해설, 도식 `ping-result`. 결과 요약은 Linux ping(8)만 근거로 썼다 — Windows ping 문서는 요약을 적지 않는다(위 「(phase 71) Microsoft Learn」 항목). 왕복 시간(RTT, round-trip time)을 「요청을 보낸 때부터 그 응답을 받은 때까지」로 푼 것은 이름의 뜻이다
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Linux ping은 `-c`·`-w`가 없으면 끊을 때까지 보낸다 — Windows와 기본이 반대, Ctrl-C(SIGINT)로 끝내면 요약, 같은 글자 `-a`·`-t`의 다른 뜻), `diagnostic-commands.tracert`(Linux는 `traceroute` — 위 traceroute(8) 줄)
 
 ## (phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지
 https://www.ieee802.org/
@@ -2452,9 +2522,27 @@ phase 77 step 0에서 XML판(레지스트리 머리의 Last Updated 2026-11-06�
     DHCP는 UDP(RFC 2131 §4.1), DNS는 UDP와 TCP 둘 다(RFC 1035 §4.2), HTTPS는 TCP(RFC 9110 §4.2.2)이고 HTTP/3는 UDP(RFC 9114 §3.1)
 - (phase 77) **강의 p225의 등록된 포트(User Ports) 예 다섯은 모두 레지스트리에 있다**: 1194 `openvpn` — OpenVPN(TCP·UDP), 1433 `ms-sql-s` — Microsoft-SQL-Server(TCP·UDP), 3306 `mysql` — MySQL(TCP·UDP),
   6379 `redis` — An advanced key-value cache and store(TCP만. UDP 6379는 Reserved), 8080 `http-alt` — HTTP Alternate (see port 80)(TCP·UDP) — 레지스트리의 각 행. 다섯 번호 모두 User Ports 범위(1024~49151) 안이다
+- (phase 78 step 0, CSV판 — 레지스트리 머리의 Last Updated 2026-11-06, 2026-11-11에 내려받음) **메일·파일 전송 프로토콜의 행**(번호·서비스 이름·설명):
+  - 69 `tftp` — Trivial File Transfer(TCP·UDP 두 행. TFTP가 쓰는 것은 UDP다 — RFC 1350 §1·§4. 위 「UDP 행이 있다고 …」와 같은 이유로 TCP 행이 남아 있다)
+  - 110 `pop3` — Post Office Protocol - Version 3(TCP·UDP 두 행. POP3는 TCP — RFC 1939 §3)
+  - 143 `imap` — Internet Message Access Protocol(TCP, 참조 RFC 3501·RFC 9051. UDP 143은 Reserved)
+  - 587 `submission` — Message Submission(TCP·UDP, 참조 RFC 6409)
+  - 993 `imaps` — IMAP over TLS protocol(TCP, 참조 RFC 3501·8314·9051. UDP 993은 Reserved), 995 `pop3s` — POP3 over TLS protocol(TCP, 참조 RFC 8314), 465 `submissions` — Message Submission over TLS protocol(TCP, 참조 RFC 8314. 같은 번호의 TCP 행에 다른 서비스 `urd`도 있다)
+  - 각 번호의 쓰임은 그 프로토콜의 RFC와 맞는다 — POP3 TCP 110(RFC 1939 §3), IMAP TCP 143·993(RFC 9051 §2.1), 메일 제출 587(RFC 6409 §3.1), TLS로 감싼 POP3 995·IMAP 993·메일 제출 465(RFC 8314 §3.1~§3.3·§7)
+- (phase 78 step 0) 25 `smtp` 행의 참조는 이날 RFC 5321을 고쳐 쓰는 초안의 43판(`RFC-ietf-emailcore-rfc5321bis-43`)이다 — 아직 RFC가 아니므로 SMTP는 RFC 5321로 쓴다(아래 「(phase 77) RFC 5321」 항목)
+- (phase 78 step 5, CSV판 — XML판 머리의 Last Updated 2026-11-10, 2026-11-11에 내려받음) **관리·시간·보안 프로토콜의 행**(번호·서비스 이름·설명):
+  - 161 `snmp` — SNMP, 162 `snmptrap` — SNMPTRAP(둘 다 TCP·UDP 두 행이고 참조 칸이 비어 있다). SNMP의 기본 전송은 UDP다 — RFC 3417 §1·§3.2, RFC 1157 §4. 위 「UDP 행이 있다고 …」와 같은 까닭으로, 여기서는 TCP 행이 있다고 SNMP가 TCP를 기본으로 쓰는 것이 아니다(TCP로 보내는 덧붙인 방식은 아래 「(phase 78 step 5) RFC 3417 …」 항목)
+  - 10161 `snmptls`(TCP)·`snmpdtls`(UDP), 10162 `snmptls-trap`(TCP)·`snmpdtls-trap`(UDP) — TLS·DTLS로 감싼 SNMP의 포트(참조 RFC 6353)
+  - 123 `ntp` — Network Time Protocol(TCP·UDP, 참조 RFC 5905). NTP와 SNTP가 쓰는 것은 UDP다 — RFC 5905 §7.3, RFC 4330 §4
+  - 443 `https` — http protocol over TLS/SSL(TCP·UDP, 참조 RFC 9110 — 위 「(phase 77)」 줄). **설명 칸이 「TLS/SSL」로 두 이름을 함께 적는다**
+  - 5060 `sip` — SIP, 5061 `sips` — SIP-TLS(둘 다 TCP·UDP 행의 참조는 RFC 3263이고 SCTP 행도 있다). RFC 3261의 기본 포트(5060 — UDP·TCP·SCTP, 5061 — TLS)와 맞는다 — RFC 3261 §18.1.1·§19.1.1
+  - 기출 대조용: 181은 `unify` — Unify(TCP·UDP)이고, 143은 `imap`(TCP. UDP 143은 Reserved — 위 「(phase 78 step 0)」 줄)이다. 둘 다 SNMP의 번호가 아니다
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(서버 67·클라이언트 68, 53은 DNS의 포트)
 (phase 77에서 쓰일 곳) `ports.port-number`(전송 프로토콜마다 따로 적는다 — 514·6379의 예), `ports.port-ranges`(머리의 세 범위, 0번 Reserved, 등록된 포트 예 다섯), `ports.well-known-ports`(여덟 서비스의 행, UDP 행이 있어도 UDP를 쓰는 것은 아니다), `exam-notes.md` E27·E28
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.smtp`(587), `app-protocols-mail-file.pop3`(110·995), `app-protocols-mail-file.imap`(143·993), `app-protocols-mail-file.tftp`(69 — UDP)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(161), `app-protocols-mgmt-security.snmp-operations`(162), `app-protocols-mgmt-security.ntp`·`sntp`(123), `app-protocols-mgmt-security.https`(443·80, 「TLS/SSL」 표기),
+`app-protocols-mgmt-security.sip`(5060·5061), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 181·143은 SNMP의 번호가 아니다)
 
 ## (phase 74 step 5) Microsoft Learn — How to use automatic TCP/IP addressing without a DHCP server, What is DHCP Server in Windows Server?, DHCP scopes in Windows Server, Check Microsoft Broadband Network Adapter
 https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh
@@ -2478,9 +2566,14 @@ DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지�
   (RFC 2131 §1의 수동 할당 — 관리자가 정한 주소를 DHCP가 전하기만 한다 — 과 같은 꼴로 읽히지만, 두 문서가 서로를 가리키지는 않는다)
 - 범위(scope)는 한 서브넷에서 DHCP 클라이언트에 나눠 줄 주소 범위와 옵션이고, 서브넷 마스크·임대 기간·옵션(DNS 서버, 라우터·기본 게이트웨이 주소 등)을 갖는다 — DHCP scopes 문서 「Single scope」
 - **루프백 확인**: 네트워크 어댑터를 확인하는 첫 단계로 `ping 127.0.0.1`을 실행해 응답 넷이 오는지 본다. 응답이 없으면 그 컴퓨터의 TCP/IP에 문제가 있을 수 있고, 이 단계를 통과해야 다음 단계(자기 어댑터 주소, 기본 게이트웨이로의 ping)로 넘어갈 수 있다 — 네트워크 어댑터 확인 문서 「Use Ping.exe to Check Your Hardware」
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: 자동 주소 지정 문서 `updated_at` 2025-09-22(`ms.date` 2020-05-26), 네트워크 어댑터 확인 문서 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 「Applies to」 지원되는 Windows 클라이언트) — 위 줄과 같은 판이다
+- (phase 78 step 11) **Windows ping의 요약 줄**: 네트워크 어댑터 확인 문서의 출력 예는 응답 넷(`Reply from <주소>: bytes=… time<1ms TTL=…`) 뒤에 요약을 둔다 — 「`Ping statistics for <주소>:`」 다음에 보낸 수(Sent)·받은 수(Received)·잃은 수(Lost)와 그 백분율, 이어 「대략의 왕복 시간(ms)」의 가장 짧은 값(Minimum)·가장 긴 값(Maximum)·평균(Average)이다.
+  셋 다 요청 4개를 보내 4개를 받은(0% 손실) 예다 — 「Use Ping.exe to Check Your Hardware」 1~3단계의 예. 손실이 있는 예는 이 문서에 없다
+- (phase 78 step 11) 자동 주소 지정 문서는 APIPA를 쓰는지 볼 때 `ipconfig /all`의 「Autoconfiguration Enabled」 줄과 「Autoconfiguration IP Address」를 보라고 한다 — 다만 이 대목은 Windows 2000·XP·Server 2003의 방법으로 적혀 있다 — 「More Information」(위 둘째 줄과 같은 대목)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
 `ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Windows ping 요약 줄의 꼴 — 보낸 수·받은 수·잃은 수와 백분율, 왕복 시간의 최소·최대·평균), `diagnostic-commands.ipconfig`(`/all`에 자동 구성 줄이 있다 — 옛 판의 방법으로 적힌 대목)
 
 ## (phase 74 step 11) RFC 1930 — Guidelines for creation, selection, and registration of an Autonomous System (AS)
 https://www.rfc-editor.org/rfc/rfc1930
@@ -2670,9 +2763,39 @@ Microsoft Learn은 route(`updated_at` 2026-02-16)와 netstat(2026-09-08)이고, 
   같은 페이지는 netstat이 대부분 낡았고 대신 쓰는 것이 ss라고 적는다 — NOTES.
   Windows netstat 문서는 TCP 연결의 상태로 CLOSE_WAIT, CLOSED, ESTABLISHED, FIN_WAIT_1, FIN_WAIT_2, LAST_ACK, LISTEN, **SYN_RECEIVED**, SYN_SEND, TIMED_WAIT를 든다 — Remarks의 State. 곧 RFC의 SYN-RECEIVED를 밑줄로 이은 SYN_RECEIVED가 이 문서의 표기다.
   이 문서는 SYN-SENT를 SYN_SEND로, TIME-WAIT를 TIMED_WAIT로 적고 CLOSING은 들지 않는다 — RFC 9293 §3.3.2와 이름이 다른 곳이라 본문에 옮기지 않는다
+- (phase 78 step 11) 2026-11-11에 IPv4로 다시 내려받아 읽은 판: man7.org netstat(8)은 net-tools 2026-05-10판(upstream Git에서 2026-08-04에 가져옴, 그때 최신 커밋 2026-06-12, HTML 2026-09-09).
+  Microsoft Learn netstat은 `updated_at` 2026-09-08(바닥의 「Last updated on」도 2026-09-08, `ms.date` 2017-10-16), route는 `updated_at` 2026-02-16(「Last updated on」 2023-02-03, `ms.date` 2022-10-05) — 둘 다 「Applies to」 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후
+- (phase 78 step 11) **Windows netstat이 보이는 것**: 활성 TCP 연결, 이 컴퓨터가 연결을 기다리는(listening) 포트, 이더넷 통계, IP 라우팅 테이블, 프로토콜마다의 IPv4 통계(IP·ICMP·TCP·UDP)와 IPv6 통계(IPv6·ICMPv6·IPv6 위의 TCP·UDP)다.
+  **옵션 없이 부르면 활성 TCP 연결만** 보인다 — 첫 문단. 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — 「Important」
+- (phase 78 step 11) **Windows netstat의 옵션**(문서는 옵션을 하이픈으로 적는다 — Syntax·Parameters·Examples): `-a`는 활성 TCP 연결 모두와 이 컴퓨터가 기다리는 TCP·UDP 포트를 보인다.
+  `-b`는 연결이나 기다리는 포트마다 그것을 만든 **실행 파일**을 보인다 — 한 실행 파일이 여러 구성 요소를 품은 경우에는 구성 요소의 차례를 보이고 실행 파일 이름은 그 아래 `[ ]` 안에 적는다. 시간이 걸릴 수 있고, **권한이 충분하지 않으면 실패한다**(어떤 권한인지 이름을 대지는 않는다).
+  `-e`는 주고받은 바이트 수·패킷 수 같은 **이더넷 통계**를 보이고 `-s`와 함께 쓸 수 있다. `-n`은 활성 TCP 연결을 보이되 주소와 포트를 **숫자로** 적고 이름을 알아내려 하지 않는다.
+  `-o`는 활성 TCP 연결과 연결마다의 **PID**를 보이고, 그 PID로 작업 관리자의 프로세스 탭에서 응용 프로그램을 찾을 수 있다 — `-a`·`-n`·`-p`와 함께 쓸 수 있다.
+  `-p <Protocol>`은 **뒤에 적은 프로토콜의 연결만** 보인다 — 고를 수 있는 것은 tcp·udp·tcpv6·udpv6이고, `-s`와 함께 쓸 때는 icmp·ip·icmpv6·ipv6도 고를 수 있다.
+  `-s`는 프로토콜마다의 통계를 보인다(기본은 TCP·UDP·ICMP·IP, IPv6가 있으면 그 넷의 IPv6판도). `-r`은 IP 라우팅 테이블을 보이고 `route print`와 같다(위 줄). 끝에 수(초)를 적으면 그 간격마다 다시 보이고 Ctrl+C로 멈춘다 — 「Parameters」
+- (phase 78 step 11) Windows netstat의 **결과 칸**(Remarks): Proto(TCP나 UDP), Local address(이 컴퓨터의 IP 주소와 쓰는 포트 번호), Foreign address(소켓이 이어진 **원격 컴퓨터**의 IP 주소와 포트 번호), State(TCP 연결의 상태 — 위 「(phase 77 step 9)」 줄의 이름들).
+  `-n`을 주지 않으면 주소와 포트를 이름으로 바꿔 보이고, 포트가 아직 정해지지 않았으면 포트 자리에 `*`를 적는다 — Remarks. **출력 예는 없다** — 칸 이름과 뜻만 있다. `-o`의 PID가 어느 칸에 놓이는지는 적혀 있지 않다
+- (phase 78 step 11) Windows netstat의 **옵션을 이어 쓰는 꼴**: Examples가 `netstat -e -s`, `netstat -s -p tcp udp`, `netstat -o 5`, `netstat -n -o`와, 다섯 옵션을 한데 이은 `netstat -anobq`(모든 연결·기다리는 포트·묶였지만 기다리지 않는 포트를 숫자로, PID와 실행 파일까지)를 든다 — 「Examples」.
+  `netstat -ano`라는 꼴 그대로의 예는 이 페이지에 없다 — 옵션 셋을 이은 것이다. 문제 해결 문서도 `netstat -nato`·`netstat -anb`처럼 이어 쓴다(아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서」 항목)
+- (phase 78 step 11) Windows `route`의 `if` 매개변수 설명은 **인터페이스 목록과 그 인터페이스 번호(인덱스)를 `route print`가 보이는 화면에서 찾으라**고 한다 — route 「Parameters」. 곧 `route print`(= `netstat -r`)는 라우팅 테이블과 함께 인터페이스 목록을 보인다.
+  그 화면의 꼴(출력 예)은 route 페이지에 없다 — `exam-notes.md` E34
+- (phase 78 step 11) **Linux netstat(8)**: 이름 줄은 네트워크 연결·라우팅 테이블·인터페이스 통계 등을 보인다고 적는다 — NAME. 첫 인자 없이 부르면 **열린 소켓**의 목록을 보인다 — DESCRIPTION 「Invocation Mode」.
+  `-r`(`--route`)은 커널 라우팅 테이블(`route -e`와 같은 출력), `-i`(`--interfaces`)는 모든 네트워크 인터페이스의 표와 받기·보내기 오류 수, `-s`(`--statistics`)는 프로토콜마다의 요약 통계다 — 같은 절
+- (phase 78 step 11) Linux netstat(8)의 옵션(기출이 묻는 것): `-a`(`--all`)는 **연결을 기다리는 소켓과 그렇지 않은 소켓을 모두** 보인다(`-i`와 함께 쓰면 켜지지 않은(up이 아닌) 인터페이스도 보인다). `-l`(`--listening`)은 **기다리는 소켓만** 보인다 — 기다리는 소켓은 기본으로 빠진다.
+  `-n`(`--numeric`)은 호스트·포트·사용자 이름을 알아내지 않고 숫자로 보인다. `-p`(`--program`)는 소켓마다 그것을 가진 프로그램의 **PID와 이름**을 보인다 — 다른 프로세스를 들여다볼 권한이 없거나 소켓이 커널의 것이면 하이픈(`-`)을 보이고, 페이지는 이 값을 믿을 만하지 않다고 덧붙인다.
+  자기 것이 아닌 소켓의 이 정보를 보려면 **슈퍼유저 권한**도 있어야 한다 — OPTIONS, OUTPUT 「PID/Program name」. `-o`(`--timers`)는 네트워크 타이머에 관한 정보를 더한다 — OPTIONS.
+  **`-t`·`-u`는 OPTIONS 절에 설명이 없고** SYNOPSIS에 긴 이름 `--tcp|-t`·`--udp|-u`로만 나온다. EXAMPLES의 `netstat -tulpn`이 「열린 TCP·UDP 포트를 모두, 해당 프로세스의 PID와 함께(root 권한 필요)」 보이는 예다 — 그래서 `-t`는 TCP, `-u`는 UDP이고 **시간과는 관계가 없다**. 타이머(시간)는 `-o`의 몫이다 — SYNOPSIS, EXAMPLES, OPTIONS
+- (phase 78 step 11) Linux netstat(8)의 **결과 칸**(OUTPUT 「Active Internet connections」): Proto(tcp·udp 등), Recv-Q(연결이 맺어진 소켓에서 받았지만 프로그램이 아직 가져가지 않은 바이트 수)·Send-Q(보냈지만 상대가 아직 확인하지 않은 바이트 수 — 기다리는 소켓에서는 두 칸의 뜻이 다르다), Local Address(소켓의 이쪽 끝 주소와 포트 — `-n`이 없으면 이름과 서비스 이름으로 바꾼다), Foreign Address(소켓의 저쪽 끝 주소와 포트),
+  State(위 「(phase 77 step 9)」 줄 — LISTEN 상태의 소켓은 `-l`이나 `-a`를 줘야 나온다), User, PID/Program name(`--program`이 이 칸을 넣는다), Timer(`-o`)의 차례로 설명한다. User 칸을 어느 옵션이 넣는지는 적혀 있지 않다. **출력 예는 없다** — 칸 설명만 있다
+- (phase 78 step 11) Linux netstat(8)의 다른 사실: `/etc/services`는 서비스 이름을 바꿔 보일 때 읽는 파일이다(FILES — 「services translation file」). EXAMPLES의 둘째 예는 라우팅 테이블을 숫자로 보이는 `netstat -rn`이다.
+  소켓이 많은 서버에서는 느리니 ss(8)를 쓰라고 한다 — BUGS. netstat이 대부분 낡았고 대신 쓰는 것이 ss라는 것은 위 줄(NOTES)
+- (phase 78 step 15, 2026-11-11에 IPv4로 다시 읽음 — 같은 판) Linux netstat(8)의 **PID/Program name 칸**은 소켓을 가진 프로세스의 PID와 프로세스 이름을 **빗금으로 이은 짝**(`PID/이름` — 본문의 `812/sshd` 꼴)이다 — OUTPUT 「Active Internet connections」의 「PID/Program name」
 
 쓰인 곳: (phase 74 step 11에서 쓰일 곳) `routing.routing-table`(호스트에서 표를 보는 명령의 이름 — Linux `ip route`·`route`·`netstat -r`, Windows `route print`·`netstat -r`, 칸의 뜻), `routing.default-route`(목적지·마스크 `0.0.0.0`이 디폴트 라우트, 기본 게이트웨이로 가는 디폴트 라우트), 강의 수정 이력 머리의 「phase 74 step 11」 문단(p209–p210의 `route -v`·`netstat -rn`)
 (phase 77 step 9에서 쓰일 곳) `tcp-connection.tcp-states`(상태 이름을 밑줄로 잇는 표기 — Windows netstat의 SYN_RECEIVED, Linux netstat의 SYN_RECV), `exam-notes.md`의 「phase 77 step 9」 문단(기출의 SYN_RECEIVED 표기, 오답 보기 CLOSE)
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat`(Windows — 보이는 것 다섯, 옵션 없으면 활성 TCP 연결만, 결과 칸 넷과 뜻, 출력 예 없음; Linux — 열린 소켓 목록, 결과 칸, 기다리는 소켓은 `-l`·`-a`, 출력 예 없음, 낡았고 ss가 대신한다),
+`diagnostic-commands.netstat-windows-options`(`-a`·`-n`·`-o`(작업 관리자)·`-b`(권한이 모자라면 실패)·`-p`(프로토콜 고르기)·`-r`(= `route print`, 인터페이스 목록도)·`-s`·`-e`, `-anobq`처럼 이어 쓰기),
+`diagnostic-commands.netstat-linux-options`(`-a`·`-n`·`-t`·`-u`·`-l`·`-p`(남의 소켓은 슈퍼유저)·`-r`, `-t`는 TCP이고 타이머는 `-o`, `netstat -tulpn` 예; (phase 78 step 15) PID/Program name 칸의 빗금 꼴 — 본문·도식), `exam-notes.md` 「phase 78 step 11」 문단과 E34
 
 ## (phase 75) FHS 3.0 — Filesystem Hierarchy Standard
 https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html
@@ -3456,6 +3579,8 @@ https://man7.org/linux/man-pages/man7/bootparam.7.html
 - **getpid(2)**: getppid()는 부모의 PID를 돌려준다. 이 프로세스를 만든 프로세스가 이미 끝났으면, 이 프로세스가 넘겨진 프로세스(init(1)이나 prctl(2)로 정한 「subreaper」)의 PID를 돌려준다 — DESCRIPTION
 - **signal(7)**: 시그널마다 기본 동작(disposition)이 있고, `Term`은 프로세스를 끝내는 동작이다 — 「Signal dispositions」. SIGTERM은 끝내라는 시그널이고 SIGKILL도 기본 동작이 Term이다 — 「Standard signals」.
   번호는 SIGKILL이 9, SIGTERM이 15다(x86·ARM 등 대부분의 아키텍처) — 「Signal numbering for standard signals」. **SIGKILL과 SIGSTOP은 붙잡거나 막거나 무시할 수 없다** — 「Standard signals」
+  (phase 78 step 11, 2026-11-11에 다시 읽음 — 6.19, 2026-02-08) SIGINT는 키보드에서 온 끼어들기(interrupt), SIGQUIT은 키보드에서 온 끝내기(quit) 시그널이고, 기본 동작은 SIGINT가 Term, SIGQUIT이 Core(끝내며 코어 덤프)다 — 「Standard signals」.
+  어느 키가 그 시그널을 보내는지는 아래 「(phase 78 step 11) Linux man-pages — ip-address(8), termios(3)」 항목의 termios(3) 줄 — 쓰일 곳 `diagnostic-commands.ping-options`(Linux ping을 Ctrl-C로 끝낸다)
 - **nice(2)**: 나이스 값이 클수록 우선순위가 낮다. 범위는 +19(낮은 우선순위)부터 -20(높은 우선순위)까지이고, 범위 밖 값은 끝값으로 맞춰진다.
   전통적으로 나이스 값을 낮추는(우선순위를 높이는) 일은 특권 프로세스만 할 수 있었고, Linux 2.6.12부터는 RLIMIT_NICE 한도가 알맞으면 특권 없는 프로세스도 낮출 수 있다 — DESCRIPTION
 - **sched(7)**: 나이스 값은 CPU 스케줄러가 어떤 프로세스를 더 우대하거나 덜 우대하게 하는 속성이고 nice(2)·setpriority(2) 등으로 바꾼다. 지금 Linux의 범위는 -20(높은 우선순위)~+19(낮은 우선순위)다 — 「The nice value」
@@ -3933,10 +4058,29 @@ Internet Standard이고 폐기되지 않았다(RFC 765를 대체, RFC 2228 등�
 - 서버의 기본 데이터 포트는 제어 연결 포트 바로 아래 번호(L − 1), 곧 **20**이다. 사용자 쪽의 기본 데이터 포트는 자기 제어 연결 포트와 같다. 전송 요청을 받으면 서버가 데이터 연결을 연다 — §3.2.
   PASV 명령을 쓰면 서버는 기본 데이터 포트가 아닌 다른 데이터 포트에서 연결을 기다린다 — §4.1.2
 - (phase 77 step 3) 이 문서는 TCP와 Telnet 프로토콜을 안다고 전제하고 쓰였다 — §1. 데이터를 옮기는 동안 잃거나 뒤섞인 비트를 찾는 장치는 FTP에 없고, **그 수준의 오류 제어는 TCP가 맡는다** — §3.5
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Internet Standard(STD 9) 그대로, RFC 2228·2640·2773·3659·5797·7151이 고쳤다) **목적과 모델**: FTP는 파일을 함께 쓰게 하고, 원격 컴퓨터를 쓰게 하고, 호스트마다 다른 파일 저장 방식을 사용자에게서 가리고,
+  데이터를 믿을 수 있고 효율적으로 옮기려고 만들었다 — §1. 제어 연결은 사용자 쪽이 연다. 명령은 사용자 쪽에서 서버 쪽으로, 응답은 그 명령에 답해 서버 쪽에서 사용자 쪽으로 제어 연결을 따라 간다 — §2.3.
+  데이터 연결은 늘 있어야 하는 것은 아니다(그림 1의 주). 데이터를 옮기는 동안에는 제어 연결이 열려 있어야 하고, 다 쓴 뒤 제어 연결을 닫자고 청하는 것은 사용자 쪽, 실제로 닫는 것은 서버다 — §2.3
+- (phase 78 step 0) **명령**: `USER`(사용자 이름 — 제어 연결을 맺은 뒤 보통 처음 보내는 명령)·`PASS`(암호 — 바로 앞에 `USER`가 와야 한다)는 접근 제어 명령이다 — §4.1.1.
+  `RETR`은 서버가 그 파일의 사본을 데이터 연결로 보내게 하고(서버의 파일은 그대로다), `STOR`는 데이터 연결로 받은 데이터를 서버에 그 이름의 파일로 저장하게 하며(이미 있으면 내용을 바꾸고 없으면 새로 만든다),
+  `LIST`는 디렉터리의 파일 목록(이나 파일 하나의 정보)을 데이터 연결로 보내게 한다 — §4.1.3. `QUIT`는 그 사용자의 접속을 끝내고, 전송 중이 아니면 서버가 제어 연결을 닫는다 — §4.1.1
+- (phase 78 step 0) **한 번의 대화의 차례**(§7의 예와 §5.4의 명령·응답 짝, 응답의 뜻은 §4.2 — 값은 옮기지 않는다): 제어 연결(서버 21) → 서버 `220`(새 사용자를 받을 준비가 됐다) → `USER` → `331`(이름은 됐고 암호가 필요하다) → `PASS` → `230`(로그인했다)
+  → `RETR` → `150`(곧 데이터 연결을 연다) → 데이터 연결로 파일이 간다 → `226`(데이터 연결을 닫는다 — 전송 성공) → `QUIT` → `221`(제어 연결을 닫는다). `PORT`의 성공 응답은 `200`, `PASV`의 성공 응답은 `227`이다 — §5.4
+- (phase 78 step 0) **기본 방식에서는 데이터 연결을 전송마다 맺고 닫는다**: 모든 구현이 받아들여야 하는 기본값은 표현 형식 ASCII Non-print, 전송 방식 **스트림**, 파일 구조 **파일**이다 — §5.1.
+  스트림 방식에서 파일 구조면 **보내는 쪽이 데이터 연결을 닫아 파일의 끝을 알린다** — §3.4.1. §3.3도 스트림 방식에서는 연결을 닫아 파일 끝을 알려야 한다고 적는다 — 그래서 파일을 여러 개 옮기면 그때마다 새 데이터 연결이 필요하다.
+  블록·압축 방식은 연결을 닫지 않고 끝을 알려 데이터 연결을 열어 둔 채 여러 파일을 옮길 수 있다 — §3.3. 서버는 데이터 연결을 닫은 뒤 `226`을 보낸다 — §5.2
+- (phase 78 step 0) **누가 데이터 연결을 여는가**: 기본으로는 사용자 쪽이 데이터 포트에서 기다리고(listen), **전송 요청을 받은 서버가 자기 기본 데이터 포트(L − 1 = 20)에서 그 포트로 연결을 연다** — §3.2, §5.2.
+  사용자 쪽은 `PORT`로 기본이 아닌 자기 데이터 포트를 알릴 수 있다 — 인자는 32비트 IP 주소와 16비트 TCP 포트를 8비트씩 끊어 십진수로 쉼표로 이은 꼴(`h1,h2,h3,h4,p1,p2`)이다 — §3.3, §4.1.2.
+  `PASV`는 서버 쪽에게 기본이 아닌 데이터 포트에서 **연결을 열지 말고 기다리라**고 청하고, 서버의 응답에 기다리는 호스트와 포트가 담긴다(`227 Entering Passive Mode (h1,h2,h3,h4,p1,p2)`) — §4.1.2, §4.2.
+  용어: 데이터 전송 프로세스(DTP)는 능동(active)이거나 수동(passive)일 수 있고, 수동 쪽이 데이터 포트에서 기다리고 능동 쪽이 연결을 연다. 서버 쪽 DTP는 보통 능동 상태이고 수동 상태로 둘 수도 있다 — §2.2.
+  **「active mode」라는 이름은 이 문서에 없다** — 「Passive Mode」는 `227` 응답 문구에만 나온다(능동·수동 데이터 연결이라는 이름은 아래 「(phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings …」 항목)
+- (phase 78 step 0) **익명 FTP와 평문 전송은 이 문서에 없다** — 「anonymous」라는 말이 전문에 없다(전문 검색 2026-11-11). 익명 FTP는 아래 RFC 1635, 사용자 이름·암호와 데이터를 암호화하지 않는다는 것은 아래 RFC 2228 §1
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(§2.2 — 제어 연결과 데이터 연결, §8 — TCP 21은 제어, §3.2 — 기본 데이터 포트 20)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§8 — 제어 연결은 TCP, §3.5 — 데이터의 오류 제어를 TCP에 맡긴다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — FTP는 UDP를 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§8 — TCP 연결, §3.5 — 데이터를 잃거나 뒤섞지 않았는지 살피는 일을 TCP에 맡긴다), 도식 `transport-choice`, 문항 n187 해설
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(§1·§2.3 — 목적, 제어 연결과 데이터 연결, §4.1.1·§4.1.3 — `USER`·`PASS`·`RETR`·`STOR`·`LIST`·`QUIT`, §7·§5.4·§4.2 — 대화의 차례, §5.1·§3.4.1·§3.3·§5.2 — 기본 스트림 방식에서는 전송마다 데이터 연결을 맺고 닫는다),
+`app-protocols-mail-file.ftp-modes`(§3.2·§5.2 — 기본은 서버가 20번에서 연다, §4.1.2 — `PORT`·`PASV`, §2.2 — 능동·수동 DTP, §4.2 — `227 Entering Passive Mode`), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
 
 ## (phase 77) RFC 854 — Telnet Protocol Specification
 https://www.rfc-editor.org/rfc/rfc854
@@ -3973,10 +4117,19 @@ https://www.rfc-editor.org/rfc/rfc4253
 - SSH는 Telnet·rlogin 같은 옛 방식보다 훨씬 높은 보안을 준다 — RFC 4251 §4.1
 - SSH 전송 계층은 안전하지 않은 네트워크 위에 **암호화한 안전한 통로**를 만든다 — 서버 호스트 인증, 키 교환, 암호화, 무결성 보호를 한다 — RFC 4253 §14
 - TCP/IP 위에서 쓸 때 서버는 보통 포트 **22**에서 연결을 기다리고, 이 번호는 IANA에 SSH용으로 등록돼 있다 — RFC 4253 §4.1
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — 둘 다 Proposed Standard 그대로. RFC 4251은 RFC 8308·9141이, RFC 4253은 RFC 6668·8268·8308·8332·8709·8758·9142가 고쳤다) **세 부분**: SSH는
+  전송 계층 프로토콜(서버 인증·기밀성·무결성), 사용자 인증 프로토콜(클라이언트 쪽 사용자를 서버에 인증한다 — 전송 계층 위에서), 연결 프로토콜(암호화한 통로를 여러 논리 채널로 나눈다 — 대화형 셸, 포트 전달 등)로 이루어진다 — RFC 4251 §1
+- (phase 78 step 0) **호스트 키로 서버를 확인한다**: 서버 호스트는 호스트 키를 갖는 것이 좋고(SHOULD), 키 교환 때 서버의 호스트 키로 **클라이언트가 정말 맞는 서버와 이야기하는지** 확인한다 — 그러려면 클라이언트가 서버의 공개 호스트 키를 미리 알아야 한다.
+  믿는 방법은 둘이다 — 클라이언트가 호스트 이름과 공개 호스트 키를 짝지은 자기 목록을 갖는 방법, 믿을 수 있는 인증 기관(CA)이 그 짝을 보증하는 방법 — RFC 4251 §4.1
+- (phase 78 step 0) **처음 접속할 때**: 프로토콜은 처음 접속할 때 이름과 호스트 키의 짝을 확인하지 않고 넘어가는 선택을 둔다 — 그래도 엿듣기는 막지만 중간자 공격에는 약해진다.
+  처음 접속할 때는 확인 없이 받아 자기 목록에 저장하고 다음 접속부터는 그 키와 견주는 전략을 예로 든다. 공개 키에서 만든 지문(fingerprint)을 전화 같은 다른 길로 맞춰 볼 수도 있다. 확인할 수 없는 호스트 키를 받지 않는 선택도 두는 것이 좋다 — RFC 4251 §4.1
+- (phase 78 step 0) 사용자 인증은 서버를 이미 인증하고 암호화한 통로를 세운 전송 계층 위에서 돈다고 전제한다. 클라이언트가 서버와 그 호스트 키를 미리 강하게 짝지어 두지 않으면, 중간에 끼어든 장치에 세션을 맺어 사용자 이름과 암호를 내줄 수 있다 — RFC 4251 §9.4, §9.4.1
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 22, 암호화한 원격 접속, Telnet보다 안전하다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(RFC 4251 §1·RFC 4253 §4.1 — SSH는 보통 TCP 위에서 돈다)
 (phase 77 step 8) `tcp-udp.transport-choice`(RFC 4251 §1 — 원격 로그인, §1·RFC 4253 §4.1 — 보통 TCP 위에서), 도식 `transport-choice`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(RFC 4251 §1 — 원격 로그인·세 하는 일, §4.1 — 호스트 키로 서버를 확인한다·처음 접속할 때 받아 저장하고 다음부터 견준다·지문, §9.4 — 사용자 인증은 암호화한 통로 위에서, RFC 4253 §4.1 — TCP 22),
+기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 암호화·무결성·공개 키)
 
 ## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
 https://www.rfc-editor.org/rfc/rfc5321
@@ -3986,10 +4139,28 @@ Draft Standard이고 폐기되지 않았다(RFC 2821을 대체, RFC 7504가 고�
 - SMTP의 목적은 메일을 믿을 수 있고 효율적으로 옮기는 것이다. 순서가 지켜지는 믿을 수 있는 데이터 흐름만 있으면 되고, 이 문서는 TCP 위의 전송을 다룬다 — §1.1
 - 보낼 메시지가 있는 SMTP 클라이언트는 SMTP 서버로 양방향 통로를 열고, 메일 메시지를 하나 이상의 SMTP 서버에 옮긴다 — §2.1
 - SMTP 서버는 SMTP 포트(IANA가 **25**번으로 정했다)에서 늘 연결을 기다리는 것이 좋다(SHOULD). 그러려면 들어오는 TCP 연결 여럿을 함께 받을 수 있어야 한다 — §4.5.4.2
+- (phase 78 step 0, 2026-11-11 rfc-editor.org 원문 — Draft Standard 그대로) **누가 누구에게**: 보낼 메일을 가진 SMTP 클라이언트가 SMTP 서버로 양방향 통로를 열고, 메일을 하나 이상의 SMTP 서버에 넘기거나 넘기지 못했다고 알린다.
+  서버는 마지막 목적지일 수도, 받은 뒤 스스로 클라이언트가 되어 다음 서버로 넘기는 중계(relay)일 수도 있다. 명령은 클라이언트가 보내고, 서버는 명령마다 응답을 보낸다. 명령과 응답은 한 번에 하나씩 차례로 오간다 — §2.1.
+  오늘날 흔한 경우는 처음 메일을 중계와 비슷한 「메일 제출(message submission)」 서버에 넘기는 것이다 — §2.1(아래 RFC 6409 항목)
+- (phase 78 step 0) **받는 쪽 서버를 찾는다**: 클라이언트는 목적지 도메인 이름을 DNS로 풀어, 중간의 메일 교환(Mail eXchanger) 호스트나 최종 호스트의 주소를 알아낸다 — §2.1. 그 조회는 먼저 그 이름의 **MX 레코드**를 찾는다(MX가 없으면 그 이름 자체를 MX처럼 다룬다) — §5.1
+- (phase 78 step 0) **주소와 메일함**: 주소는 메일을 받을 사용자나 메일이 놓일 곳을 가리키는 글자열이고, 메일이 놓이는 곳을 메일함(mailbox)이라 한다. 표준 꼴은 `로컬 부분@도메인`이고, 로컬 부분의 뜻은 도메인 부분이 가리키는 호스트만 정한다 — §2.3.11
+- (phase 78 step 0) **한 번의 대화(세션)**: 클라이언트가 서버에 연결을 열면 서버가 첫 인사로 답한다(`220`) — §3.1. 클라이언트가 `EHLO`로 자기를 밝힌다(서비스 확장을 쓸 수 있다는 뜻도 함께 — 옛 시스템은 `HELO`) — §3.2.
+  메일 한 통을 넘기는 일(트랜잭션)은 세 단계다 — `MAIL FROM:<보내는 사람>`(받아들이면 `250`), `RCPT TO:<받는 사람>`(받는 사람마다 되풀이, 받아들이면 `250`),
+  `DATA`(서버가 `354`로 답하면 본문을 보내고 **마침표 하나만 있는 줄**로 끝을 알린다 → 서버가 받아 저장하면 `250`). 이 차례는 지켜야 한다 — §3.3.
+  `QUIT`를 보내면 서버는 `221`로 답하고 연결을 닫는다 — §3.8, §4.1.1.10
+- (phase 78 step 0) **응답 코드**: 세 자리 숫자이고 첫 자리가 결과를 가른다 — 2(요청한 일을 마쳤다), 3(받았지만 정보를 더 기다린다 — `DATA`에 쓴다), 4(일시적인 실패 — 다시 시도한다), 5(영구적인 실패) — §4.2.1.
+  `220` 서비스 준비, `221` 연결을 닫는다, `250` 요청한 일을 마쳤다, `354` 본문을 보내라(끝은 마침표 한 줄) — §4.2.3. 명령마다 성공 응답은 연결 `220`, `EHLO` `250`, `MAIL` `250`, `RCPT` `250`, `DATA` `354` → 본문 → `250`, `QUIT` `221`이다 — §4.3.2.
+  한 세션 전체의 예는 부록 D.1에 있다(값은 옮기지 않는다)
+- (phase 78 step 0) **보내는 쪽의 프로토콜이다**: SMTP는 메일의 전송·배달 프로토콜로 설계됐고, POP·IMAP과 함께 「메일 제출」에도 쓰여 왔다. 지금은 따로 정한 메일 제출 프로토콜(RFC 4409 — 지금은 RFC 6409)을 SMTP를 바로 쓰는 것보다 권한다 — §1.2.
+  배달하는 SMTP 시스템은 메일을 메일 사용자 에이전트에 넘기거나, 그 에이전트가 **나중에 꺼내 볼** 메시지 저장소에 넣는다 — §2.3.10. **이 문서는 메일함에서 메일을 꺼내 오는 명령을 정하지 않는다**
+  (§4.1의 명령은 메일을 넘기는 일·주소 확인·세션 관리다 — `EHLO`·`MAIL`·`RCPT`·`DATA`·`RSET`·`VRFY`·`EXPN`·`HELP`·`NOOP`·`QUIT`). 꺼내 오는 것은 POP3·IMAP이다 — 아래 RFC 1939·RFC 9051·RFC 6409 항목
+- (phase 78 step 0) SMTP 서버와 클라이언트는 메일을 옮기는 일을 하므로 MTA(Mail Transfer Agent)로 불리고, 메일의 출발점과 도착점은 MUA(Mail User Agent)로 여긴다. 다만 이 낱말들이 가리키는 경계가 실제 인터넷 메일의 관행과 꼭 맞지는 않으니 강한 역할 구분으로 읽지 말라고 적는다 — §2.3.3
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.well-known-ports`(TCP 25, 메일을 보낸다)
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하고, 이 문서는 TCP 위의 전송을 다룬다. 부록 A의 제목도 「TCP Transport Service」다), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — SMTP는 TCP를 쓴다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1.1 — 순서가 지켜지는 믿을 수 있는 데이터 흐름이 필요하다, TCP 위), 도식 `transport-choice`
+(phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.email-delivery`(§2.1 — 중계, DNS로 받는 쪽 서버를 찾는다, §5.1 — MX, §2.3.11 — 주소의 꼴과 메일함, §2.3.10 — 배달된 메일은 나중에 꺼내 볼 저장소에, §2.3.3 — MTA·MUA라는 이름의 한계),
+`app-protocols-mail-file.smtp`(§2.1 — 클라이언트가 서버로 연결을 열고 넘긴다·중계·명령마다 응답, §3.1~§3.3·§3.8·§4.1.1.10 — 대화의 차례, §4.2.1·§4.2.3·§4.3.2 — 응답 코드, §1.2·§2.3.10·§4.1 — 꺼내 오는 일은 하지 않는다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SMTP는 전자우편을 보낸다)
 
 ## (phase 77 step 2) RFC 9846 — The Transport Layer Security (TLS) Protocol Version 1.3
 https://www.rfc-editor.org/rfc/rfc9846
@@ -3999,8 +4170,22 @@ Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명�
 
 - 프로토콜 이름은 Transport Layer Security(TLS)다. TLS는 클라이언트·서버 응용 프로그램이 인터넷으로 통신할 때 엿듣기(eavesdropping), 바꿔치기(tampering), 메시지 위조를 막도록 설계됐다 — Abstract
 - HTTPS가 TLS로 무엇을 얻는지(서버 인증, 기밀성, 무결성)는 위 RFC 9110 §4.2.2 「(phase 77)」 줄이다
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — 상태 json은 Proposed Standard이고 폐기되지 않았다. RFC 8446과 함께 **TLS 1.2의 명세 RFC 5246**, RFC 5077·6961·7627·8422를 폐기하고 대신한다) 이 step부터는 아래 줄의 범위(핸드셰이크의 메시지 차례·인증·SSL 금지)까지 가져온다. 키 교환 방식·암호 방식·확장은 여전히 가져오지 않는다.
+- (phase 78 step 5) TLS의 목표는 통신하는 두 쪽 사이에 **안전한 통로**를 만드는 것이고, 아래 전송에 바라는 것은 **믿을 수 있고 순서가 지켜지는 데이터 흐름** 하나뿐이다 — §1
+- (phase 78 step 5) 그 통로가 주는 성질은 셋이다. **인증** — 서버 쪽은 늘 인증하고 클라이언트 쪽은 고를 수 있다(공개 키 방식이나 미리 나눠 둔 키로). **기밀성** — 통로를 맺은 뒤 보낸 데이터는 두 끝만 볼 수 있다(데이터의 길이는 감추지 않는다).
+  **무결성** — 맺은 뒤 보낸 데이터를 공격자가 들키지 않고 바꿀 수 없다. 네트워크를 통째로 쥔 공격자 앞에서도 이 성질이 지켜져야 한다 — §1
+- (phase 78 step 5) TLS는 두 부분이다 — **핸드셰이크 프로토콜**(서로 인증하고, 쓸 암호 방식과 매개변수를 정하고, 함께 쓸 키 재료를 만든다)과 **레코드 프로토콜**(그렇게 정한 것으로 오가는 데이터를 레코드 단위로 나눠 보호한다) — §1
+- (phase 78 step 5) TLS는 특정 응용 프로토콜에 매이지 않아 **위 계층 프로토콜이 그 위에 얹힌다**. 언제 핸드셰이크를 시작하고 오간 인증서를 어떻게 확인할지는 TLS 위에서 도는 응용 프로토콜이 정해야 한다(MUST) — §1. (HTTP는 RFC 9110 §4.3.4가, 메일 프로토콜은 RFC 8314가 그것을 정한다 — 위·아래 항목)
+- (phase 78 step 5) 핸드셰이크는 클라이언트와 서버가 처음 통신할 때 쓴다. 판을 정하고, 암호 방식을 고르고, 서로 인증하고(클라이언트 인증은 고를 수 있다), 함께 쓸 비밀 키 재료를 만든다. 끝나면 그 키로 응용 계층의 데이터를 보호한다. 핸드셰이크가 실패하면 연결을 끝낸다 — §2
+- (phase 78 step 5) **기본 핸드셰이크의 메시지 차례**(§2 그림 1을 간추림): 클라이언트 `ClientHello`(지원하는 판·암호 방식·키 교환 값) → 서버 `ServerHello`(고른 것과 서버의 키 교환 값) — 여기까지가 키 교환이고 **이 뒤는 모두 암호화된다** →
+  서버 `EncryptedExtensions` → (클라이언트도 인증서로 확인하려면 서버가 `CertificateRequest`) → 서버 `Certificate`(서버의 인증서) → 서버 `CertificateVerify`(인증서의 공개 키에 짝인 개인 키로 핸드셰이크 전체에 서명한 것) →
+  서버 `Finished`(핸드셰이크 전체에 대한 메시지 인증 코드 — 키를 확인하고 상대의 신원을 키에 묶는다) → 클라이언트 `Finished`(서버가 요청했으면 그 앞에 클라이언트의 `Certificate`·`CertificateVerify`) → 그 뒤 두 쪽이 응용 데이터를 암호화해 주고받는다.
+  `Finished`를 보내기 전에는 응용 데이터를 보내지 않는다(0-RTT라는 예외가 따로 있다) — §2. 핸드셰이크를 키 교환·서버 매개변수·인증의 세 단계로 볼 수 있다 — §2
+- (phase 78 step 5) **SSL 2.0·SSL 3.0·TLS 1.0·TLS 1.1은 보안이 충분하지 않아 어떤 이유로도 협상해서는 안 된다**(MUST NOT) — 부록 E.5(근거로 RFC 6176·7568·8996을 든다)
 
 쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§1 — 믿을 수 있는 순서 있는 전송 위, 인증·기밀성·무결성, 서버는 늘 인증, 두 부분, 위 계층이 얹힌다, §2 — 메시지 차례, 부록 E.5 — SSL 금지),
+`app-protocols-mgmt-security.https`(§1 — 서버 쪽은 늘 인증한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭, 「SSL/TLS」 표기)
 
 ## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
 https://man7.org/linux/man-pages/man7/ip.7.html
@@ -4025,9 +4210,12 @@ capabilities(7)의 다른 사실은 위 「(phase 75) Linux man-pages …」 항
 - **services(5)**: `/etc/services`는 사람이 읽는 서비스 이름과 그 포트 번호·프로토콜을 짝지은 글 파일이다. 1024보다 작은 번호(「낮은 번호」 포트)에는 root만 소켓을 묶을 수 있어서, 그 포트에 붙는 클라이언트는
   그 포트의 서비스가 그 기계의 일반 사용자가 띄운 가짜가 아니라고 믿을 수 있다. IANA가 정한 잘 알려진 포트는 보통 이 범위에 있다 — DESCRIPTION.
   같은 쪽은 IANA가 지금도 TCP·UDP를 함께 정해 준다고 적지만, 그 관행은 RFC 6335 §7.2(2011)가 끝냈다 — 정책은 RFC 6335를 따른다. 「TCP만 쓰는 서비스도 두 행이 있다」는 레지스트리의 옛 행을 설명하는 데만 쓴다
+- (phase 78 step 11, 2026-11-11에 IPv4로 다시 읽음 — services(5)는 Linux man-pages 6.19, 2026-02-08) **services(5)**: 이 파일에 어떤 서비스의 줄이 있다고 해서 그 서비스가 지금 그 기계에서 **돌고 있다는 뜻은 아니다** — DESCRIPTION.
+  줄마다 「서비스 이름, `포트/프로토콜`, 별명」을 적는다 — 같은 절. 곧 `/etc/services`는 이름과 번호의 짝을 적어 둔 목록이고, 지금 열려 있는 포트는 netstat·ss 같은 명령이 보인다(위 「(phase 74 step 11) … netstat」 항목의 「(phase 78 step 11)」 줄)
 
 쓰인 곳: (phase 77에서 쓰일 곳) `ports.port-number`(ip(7) — 소켓 주소는 IP 주소와 16비트 포트, 포트는 전송 계층이 구현한다), `ports.well-known-ports`(ip(7)·capabilities(7)·services(5) — Linux에서 1024보다 작은 포트에서 기다리려면 특권이 필요하다),
 `ports.client-server-ports`(ip(7)·udp(7)·proc_sys_net_ipv4(5) — 클라이언트가 묶지 않고 보내면 운영체제가 비어 있는 임시 포트를 고른다, 범위는 `ip_local_port_range`, tcp(7) — 서버는 bind·listen·accept), 강의 수정 이력 L43, `exam-notes.md` E27
+(phase 78 step 11에서 쓰일 곳) `diagnostic-commands.netstat-linux-options`(services(5) — `/etc/services`는 이름과 번호의 목록일 뿐 지금 도는 서비스를 보이지 않는다), `exam-notes.md` 「phase 78 step 11」 문단([기출 2024-08-25 #32]의 `cat /etc/services` 보기)
 
 ## (phase 77) Microsoft Learn — The default dynamic port range for TCP/IP has changed since Windows Vista and in Windows Server 2008
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang
@@ -4069,9 +4257,12 @@ Internet Standard이고 폐기되지 않았다(RFC 1889를 대체, RFC 5506 등 
 - RTP 자체는 제때 전달하는 장치도, 전달을 보장하는 장치도, 순서가 바뀌는 것을 막는 장치도 없다 — §1
 - 음성 회의의 예: 20ms 길이의 음성 조각마다 RTP 헤더를 붙여 UDP 패킷에 담아 보낸다. 네트워크가 패킷을 잃거나 순서를 바꾸거나 들쭉날쭉 늦추면, 받는 쪽은 RTP 헤더의 시각 정보와 순서 번호로 소리를 20ms마다 이어 재생하고, 순서 번호로 잃은 패킷 수를 어림한다 — §2.1
   (곧 잃은 조각을 기다리지 않고 재생을 이어 간다)
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Internet Standard 그대로, RFC 5506·5761·6051·6222·7022·7160·7164·8083·8108·8860이 고쳤다) RTP는 대화형 음성·영상처럼 실시간 성질을 가진 데이터를 끝과 끝 사이에 나르는 서비스를 준다 — §1.
+  회의에서 음성과 영상을 함께 쓰면 둘을 **따로 된 RTP 세션**으로 보낸다 — 매체마다 다른 UDP 포트 쌍으로 — §2.2. **세션을 맺고 끝내는 일은 RTP의 몫이 아니라 SIP 같은 신호 프로토콜의 몫이다** — 아래 「(phase 78 step 5) RFC 3261」 항목의 §2·§4
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(실시간 음성·영상은 보통 UDP 위에서), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TCP는 실시간 화상 통신에 쓰지 않는다)
 (phase 77 step 8) `tcp-udp.transport-choice`(§1 — 실시간 음성·영상은 보통 UDP 위, §2.1 — 받는 쪽은 조각을 정해진 간격으로 이어 재생한다), 도식 `transport-choice`, 문항 n186
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1 — 음성·영상 자체는 RTP가 나른다, §2.2 — 음성과 영상은 따로 된 RTP 세션)
 
 ## (phase 77 step 3) RFC 4336 — Problem Statement for the Datagram Congestion Control Protocol (DCCP), RFC 4340 — Datagram Congestion Control Protocol (DCCP)
 https://www.rfc-editor.org/rfc/rfc4336
@@ -4113,9 +4304,23 @@ Proposed Standard이고 폐기되지 않았다(RFC 1305·4330을 대체, RFC 782
 - NTP가 시각 값을 주고받는 방식은 패킷을 잃거나 같은 패킷이 두 번 와도 본래 잘 견딘다. 데이터 무결성은 IP·UDP 체크섬이 맡고, **흐름 제어나 재전송 장치는 두지 않으며 필요하지도 않다** — §8
 - (phase 77 step 8, 2026-11-09 rfc-editor.org 원문) NTP는 인터넷에서 **컴퓨터의 시계를 맞추는 데** 널리 쓰인다 — Abstract
 - (phase 77 step 8) 클라이언트·서버 방식에서 클라이언트가 서버에 메시지를 보내면 **서버는 바로 답한다** — §5
+- (phase 78 step 5, 2026-11-11 rfc-editor.org 원문 — Proposed Standard 그대로, RFC 7822·8573·9109·9748·9769가 고쳤다) 이 step부터는 아래 줄의 범위(계층·원리·여러 서버 견주기·SNTP)까지 가져온다. 시각 계산식과 알고리즘의 세부는 여전히 가져오지 않는다.
+- (phase 78 step 5) NTPv4는 시간 서버와 클라이언트들의 **시스템 시계를 맞추는 데** 널리 쓰인다. 이 문서가 NTPv3(RFC 1305)와 SNTPv4(RFC 4330)를 폐기하고 대신하며, **SNTPv4는 NTPv4의 부분 집합**이다. 몇몇 헤더 칸이 조금 바뀌었어도 앞 판의 NTP·SNTP와 함께 동작한다 — §1
+- (phase 78 step 5) 국가 표준 시각에 선이나 전파로 맞춘 **주 서버**(primary server)에서 **보조 서버**(secondary server)와 클라이언트로 시각 정보를 나른다. 시각 값은 뿌리의 주 서버에서 가지처럼 갈라진 보조 서버들을 지나 클라이언트 쪽으로 흐른다 — §1
+- (phase 78 step 5) NTP 구현은 주 서버·보조 서버·클라이언트 가운데 하나로 동작한다. **주 서버는 UTC에 바로 이어지는 기준 시계(예: GPS, Galileo)에 맞춘다.** 클라이언트는 위쪽 서버 하나 이상에 맞추되 아래쪽에 시각을 내주지 않고, 보조 서버는 위쪽 서버와 아래쪽 서버·클라이언트를 모두 가진다 — §2
+- (phase 78 step 5) 클라이언트·서버 방식에서 클라이언트는 서버에 요청 패킷을 보내고 서버는 답 패킷을 돌려준다. 서버는 클라이언트에게 시각을 내주지만 클라이언트에게서 받지는 않는다. 서버가 GPS 수신기 같은 표준 시각원에서 시각을 바로 얻을 수도 있다 — §3
+- (phase 78 step 5) **계층(stratum)**: 서버마다 층을 stratum 번호로 매긴다. 주 서버가 **stratum 1**이고, 한 층 아래의 보조 서버는 위 층보다 하나 큰 번호를 받는다. 번호가 커질수록 경로와 시계의 안정성에 따라 정확도가 떨어지고, 평균 오차는 대략 stratum 번호와 왕복 지연에 비례해 커진다 — §3
+- (phase 78 step 5) 패킷의 stratum 칸 값은 0이 정하지 않음·무효, **1이 주 서버(예: GPS 수신기를 갖춘 서버)**, **2~15가 (NTP로 맞춘) 보조 서버**, **16이 동기화되지 않음**, 17~255가 남겨 둔 값이다 — §7.3 그림 11. 가장 큰 stratum 번호(MAXSTRAT)는 16이다 — §7.2 그림 6.
+  구현에서는 기준 시계를 흔히 stratum 0으로 나타낸다는 설명도 있다 — §7.3 그림 11 아래. (패킷에서 0은 「정하지 않음·무효」이므로 본문에 「stratum 0 = 기준 시계」라고 쓰지 않는 것을 권한다)
+- (phase 78 step 5) **원리**: 한쪽이 요청을 보낸 시각, 상대가 요청을 받은 시각, 상대가 답을 보낸 시각, 답을 받은 시각 — 네 타임스탬프로 상대 시계와의 차이(offset)와 오가는 데 걸린 왕복 지연(delay)을 계산한다 — §8(그림 15와 그 아래 식. 식은 가져오지 않는다)
+- (phase 78 step 5) **여러 서버 견주기**: 서버 하나에서 받은 표본들 가운데 정확할 만한 것을 고르는 것은 시계 필터 알고리즘이다 — §10. 여러 서버의 값을 모아, 틀린 시각을 내는 서버(falseticker)를 걸러 내고 남은 것들을 묶고 가중 평균으로 합쳐 최종 값으로 시스템 시계를 조절한다(선택·묶기·합치기·시계 조절 알고리즘) — §11
+- (phase 78 step 5) **SNTP**: NTP의 부분 집합인 SNTP를 따르는 주 서버와 클라이언트는 §9 이하의 완화 알고리즘(여러 서버의 값을 견주고 고르는 알고리즘들)을 구현하지 않아도 된다. SNTP는 **기준 시계 하나를 가진 주 서버**와 **위쪽 서버 하나만 두고 아래쪽 클라이언트가 없는 클라이언트**를 위한 것이고,
+  완전한 NTPv4는 위쪽·아래쪽이 여럿인 보조 서버를 위한 것이다. 그 밖에는 NTP와 SNTP의 서버·클라이언트가 **완전히 함께 동작**하고 한 NTP 망에 섞어 쓸 수 있다 — §14. SNTP 클라이언트는 NTP 프로토콜의 일부만 써도 되고, 가장 단순하게는 서버 패킷에 담긴 보낸 시각 하나만 쓴다 — §14
 
 쓰인 곳: (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(짧은 질의·응답 한 번이면 되고 재전송이 필요 없는 응용 — NTP는 UDP)
 (phase 77 step 8) `tcp-udp.transport-choice`(Abstract — 컴퓨터 시계를 맞춘다, §5 — 클라이언트·서버 방식에서 서버는 바로 답한다, §7.3 — UDP, §8 — 재전송 장치를 두지 않는다)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.ntp`(§1·§2·§3 — 시계를 맞춘다, 주 서버·보조 서버·클라이언트, stratum, §7.2·§7.3 — 123, stratum 칸 값과 16, §8 — 네 타임스탬프의 원리, §10·§11 — 여러 서버를 견주어 고른다),
+`app-protocols-mgmt-security.sntp`(§1 — SNTPv4는 NTPv4의 부분 집합이고 RFC 4330을 이 문서가 폐기했다, §14 — 완화 알고리즘 없이·서버 하나·함께 동작), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNTP와 123)
 
 ## (phase 77 step 9) Linux man-pages — ss(8)
 https://man7.org/linux/man-pages/man8/ss.8.html
@@ -4141,3 +4346,519 @@ Informational(1992-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor �
 - 이 문서는 TIME-WAIT가 옛 세그먼트나 RST 때문에 일찍 끝나 버리는 위험과 그 대책을 다룬다 — 이 과목은 쓰지 않는다
 
 쓰인 곳: (phase 77 step 9에서 쓰일 곳) `tcp-connection.time-wait`(보조 — 옛 중복 세그먼트가 사라질 시간)
+
+## (phase 78 step 0) RFC 5598 — Internet Mail Architecture [Informational]
+https://www.rfc-editor.org/rfc/rfc5598
+
+Informational(2009-07)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 표준을 정하는 문서가 아니라 인터넷 메일의 구성과 용어를 정리한 문서라, **역할의 이름과 메일이 가는 차례를 확인하는 보조로만** 쓴다 — 프로토콜의 동작은 각 프로토콜의 RFC가 근거다.
+
+- 인터넷 메일의 핵심 표준은 셋이다 — SMTP는 메시지를 인터넷으로 옮기고, IMF(RFC 5322)는 메시지의 꼴을, MIME은 첨부 같은 확장을 정한다 — §1
+- 인터넷 메일은 받아 두었다가 다음으로 넘기는(store-and-forward) 서비스다 — §4. 보내는 곳에서 배달될 곳까지는 메시지를 가진 쪽이 다음 곳으로 넘기는 「밀어내기(push)」가 보통이고, 주로 SMTP를 쓴다.
+  **배달된 뒤에는** 받는 사람의 메일 프로그램(이나 메시지 저장소)이 POP·IMAP으로 메시지를 **끌어올(pull)** 수 있다 — §4.4
+- 역할 이름: MUA(Message User Agent — 사용자를 대신해 메시지를 만들어 제출하고, 받은 메시지를 처리한다), MSA(Mail Submission Agent — 보내는 쪽 MUA가 제출한 메시지를 받는다), MTA(Message Transfer Agent — 메시지를 응용 계층의 한 「홉」씩, IP 라우터처럼 받는 사람 쪽으로 옮긴다),
+  MDA(Mail Delivery Agent — 받는 사람의 메일함으로 넘기는 「배달」을 한다), MS(Message Store — 메시지 저장소) — §4.2.1~§4.3.3
+- 제출은 예전에는 SMTP로 했고 지금은 별도의 TCP 포트를 쓰는 SUBMISSION을 권한다 — §4.3.1. MTA 사이의 전달은 주로 SMTP이고, 받는 쪽 MTA를 찾는 주된 방법은 DNS의 **MX 레코드**다 — §4.3.2.
+  MDA에서 메시지 저장소로 옮기는 데는 POP·IMAP 같은 접근 프로토콜을 쓴다 — §4.3.3. MUA는 메시지 저장소에 POP·IMAP으로 닿고, 저장소는 원격 서버에 있을 수도 MUA와 같은 기계에 있을 수도 있다 — §4.2.2
+- 메일함 주소는 `@`로 나뉜 두 부분이다 — 오른쪽은 도메인 이름, 왼쪽은 로컬 부분이고 로컬 부분은 그 도메인만 해석한다 — §3.1. 도메인 이름은 DNS가 정의하고 운영하며, 점으로 나뉜 이름의 오른쪽 끝이 계층의 맨 위다 — §3.3
+- MUA는 메시지를 「폴더」로 묶어 정리하곤 하고, IMAP에서는 폴더를 「메일함(mailbox)」이라 부른다 — §4.2.1. 원격 저장소를 다루는 관계로 온라인(원격에 둔 채 접속해 본다)·오프라인(원격에서 완전히 옮겨 온다)·연결 끊김(연결될 때 서로 맞춘다)을 든다 — §4.5
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.email-delivery`(§4.4 — 보낼 때는 밀어내고 배달 뒤에는 POP·IMAP으로 끌어온다, §4.3.2 — MX, §3.1 — 주소의 두 부분, §4.2.2 — 저장소는 원격 서버에도). 역할 이름(MUA·MSA·MTA·MDA)은 쓰지 않는 것을 권한다(step 0 summary)
+
+## (phase 78 step 0) RFC 6409 — Message Submission for Mail
+https://www.rfc-editor.org/rfc/rfc6409
+
+Internet Standard(STD 72, 2011-11)이고 폐기되지 않았다(RFC 4409를 대체, RFC 8314가 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- SMTP는 원래 완성된 메시지를 **옮기는(transfer)** 프로토콜이다. 지금은 메일 사용자 에이전트(MUA)가 새 메시지를 메일 전송망에 처음 들여보내는 **제출(submission)**에도 널리 쓰이고, 제출을 받는 프로세스를 MSA라 한다 — §1
+- 스팸을 대량으로 내보내는 감염된 기계가 많아, 표준 SMTP 포트(25)로 나가는 트래픽을 막고 모든 제출을 제출 서버로 보내게 하는 곳이 많다 — §1
+- 용어: MSA는 MUA에게서 메시지를 받아 배달하거나, SMTP 클라이언트가 되어 MTA로 넘긴다. MTA는 MSA나 다른 MTA에게서 받아 배달하거나 다른 MTA로 넘긴다.
+  **배달된 메시지에 닿는 데는 POP3나 IMAP을 쓰고, 메시지를 내보내는 데는 이 제출 프로토콜(이나 SMTP)을 쓴다**(split-MUA 모델) — §2.1
+- **587번은 메일 제출용**이고, 이 포트로 받은 메시지는 제출로 본다. 쓰는 프로토콜은 ESMTP(서비스 확장을 쓰는 SMTP)에 이 문서의 조건을 더한 것이다. 25번을 제출에 쓸 수도 있다 — §3.1
+- MSA는 기본으로, 인증하지 않은 세션의 `MAIL` 명령에 오류로 답해야 한다(MUST) — §4.3
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.smtp`(§1·§3.1 — 메일 클라이언트가 자기 서버에 처음 넘기는 일은 제출이고 587번, §2.1 — SMTP가 MSA·MTA 사이에도 쓰인다), `app-protocols-mail-file.email-delivery`(§2.1 — 꺼내 오기는 POP3·IMAP, 내보내기는 제출·SMTP)
+
+## (phase 78 step 0) RFC 1939 — Post Office Protocol - Version 3
+https://www.rfc-editor.org/rfc/rfc1939
+
+Internet Standard(STD 53, 1996-05)이고 폐기되지 않았다(RFC 1725를 대체, RFC 1957·2449·6186·8314가 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- 작은 기계는 SMTP 서버를 늘 띄워 두거나 늘 네트워크에 붙어 있기 어렵다. 그래서 메일 전송을 하는 기계가 메일을 맡아 두는 곳(maildrop)을 제공하고, **POP3는 작업용 컴퓨터가 서버가 맡아 둔 메일을 가져오게(retrieve)** 한다 — §1
+- POP3는 서버에서 메일을 폭넓게 다루려는 것이 아니다 — **보통은 내려받은 뒤 지운다**. 더 발전한(그리고 더 복잡한) 프로토콜로 IMAP4를 든다 — §1
+- 이 문서는 클라이언트가 메일을 보내는 방법을 정하지 않는다. 이 문서의 생각에 맞는 방법으로, 클라이언트의 메일 프로그램이 자기 중계 호스트에 **SMTP 연결을 맺어 메일을 넘기는 것**을 든다 — §2
+- 서버는 **TCP 110**에서 기다리고, 클라이언트가 TCP 연결을 맺으면 서버가 인사를 보낸다. 명령은 대소문자를 가리지 않는 3~4글자 키워드와 인자이고, 응답은 `+OK`(긍정)나 `-ERR`(부정)로 시작한다. 여러 줄 응답은 마침표 하나만 있는 줄로 끝난다 — §3
+- **세 단계**: 인사 뒤 AUTHORIZATION(클라이언트가 자기를 밝히고 인증한다) → 인증되면 서버가 그 메일함을 잠그고 TRANSACTION(클라이언트가 일을 청한다) → 클라이언트가 `QUIT`를 보내면 UPDATE(서버가 잡은 자원을 풀고 인사한 뒤 TCP 연결을 닫는다) — §3, §4
+- **명령**: `USER`(메일함 이름)·`PASS`(암호 — `USER`가 성공한 바로 뒤에)로 인증한다 — 설명은 §7, 최소 명령 목록은 §9. `STAT`(메일 수와 전체 크기), `LIST`(메일마다 번호와 크기), `RETR`(그 번호의 메일을 보낸다),
+  `DELE`(그 메일에 **지울 표시**만 한다 — 실제로 지우는 것은 UPDATE 단계다), `RSET`(지울 표시를 모두 거둔다), `QUIT` — §5, §6, §9
+- `QUIT`로 UPDATE에 들어가야 서버가 지울 표시를 한 메일을 지운다. 클라이언트의 `QUIT` 없이 세션이 끝나면 UPDATE에 들어가지 않고 아무 메일도 지우지 않는다 — §6.
+  예 세션의 차례: 서버가 TCP 110에서 기다림 → 연결 → 인사 → 인증 → `STAT` → `LIST` → `RETR 1`·`DELE 1` → `RETR 2`·`DELE 2` → `QUIT`(메일함이 비었다고 답한다) → 연결을 닫는다 — §10(이 예는 인증에 `APOP`을 쓴다. 값은 옮기지 않는다)
+- **서버에 남겨 두기와 그 한계**: 클라이언트가 `DELE`를 보내지 않으면(`UIDL`과 함께) IMAP처럼 메일함을 반쯤 영구 보관소로 쓰는 약한 흉내를 낼 수 있고, 클라이언트 프로그램에 「서버에 메일 남기기」 설정이 있기도 하다.
+  그러나 IMAP의 다른 기능 — 열어 둔 연결로 새 메일을 확인하기, **서버에 폴더를 여럿 두기** — 은 POP3에 없다 — §8
+- (phase 78 step 2) **평문으로 오간다**: `PASS`는 암호를, `RETR`(와 `TOP`)은 메일 내용을 네트워크에 평문(암호화하지 않은 그대로)으로 보낸다 — §13 Security Considerations.
+  TLS로 감싼 포트 995는 아래 RFC 8314 항목. 쓰인 곳(phase 78 step 2): `app-protocols-mail-file.pop3`의 마지막 문단(`110`번은 암호와 메일 내용을 암호화하지 않는다)
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.pop3`(§1 — 서버의 메일함에서 가져온다·보통 내려받고 지운다, §3·§4·§5·§6·§9 — TCP 110·세 단계·명령·`DELE`는 UPDATE에서, §10 — 차례, §8 — 남겨 둘 수도 있다·서버에 폴더 여럿은 없다),
+`app-protocols-mail-file.email-delivery`(§1·§2 — 보내기는 SMTP, 가져오기는 POP3, 늘 접속해 있지 않아도 서버가 맡아 둔다), `app-protocols-mail-file.imap`(§8 — POP3에 없는 IMAP의 기능), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
+
+## (phase 78 step 0) RFC 9051 — Internet Message Access Protocol (IMAP) - Version 4rev2
+https://www.rfc-editor.org/rfc/rfc9051
+
+Proposed Standard(2021-08)이고 폐기되거나 고쳐지지 않았다. RFC 3501(IMAP4rev1, 2003)을 폐기하고 대신한다(rfc-editor 상태 2026-11-11 — RFC 3501 쪽 정보에 obsoleted by RFC 9051).
+
+- IMAP4rev2는 클라이언트가 **서버에 있는 메일에 닿아 다루게** 한다. 메일함(원격의 메시지 폴더)을 로컬 폴더처럼 다룰 수 있고, 오프라인이던 클라이언트가 서버와 다시 맞출 수 있다.
+  메일함 만들기·지우기·이름 바꾸기, 새 메일 확인, 메일을 영구히 지우기, 플래그 켜고 끄기, **검색**, 메일의 필요한 부분만 골라 가져오기를 한다 — Abstract
+- **IMAP은 메일을 보내는 방법을 정하지 않는다** — 그것은 RFC 6409 같은 메일 제출 프로토콜의 몫이다 — Abstract
+- TCP 같은 믿을 수 있는 데이터 흐름을 전제하고, TCP를 쓰면 서버는 **143**(평문 포트)이나 **993**(처음부터 TLS로 감싼 포트)에서 기다린다 — §2.1
+- **플래그**: 메일마다 이름 붙은 표시를 0개 이상 단다. 시스템 플래그로 `\Seen`(읽었다)·`\Answered`(답장했다)·`\Flagged`(특별히 표시)·`\Deleted`(나중에 EXPUNGE로 지운다)·`\Draft`(작성 중)가 있다 — §2.3.2.
+  영구 플래그는 바꾸면 **동시에 열린 세션과 나중 세션이 모두 그 변화를 본다** — §2.3.2
+- 여러 에이전트가 같은 메일함에 동시에 닿아 플래그를 바꿀 수 있고, 서버는 메일함 크기가 바뀌면 알려야 하며 플래그 변화도 알리는 것이 좋다 — §5.2. 같은 메일함에 동시에 닿게 하는 서버는 다른 에이전트가 플래그를 바꾸거나 메일을 지우면 알리는 것이 좋다 — §7
+- `INBOX`는 「이 서버에서 이 사용자의 기본 메일함」을 뜻하는 특별한 이름이다 — §5.1. `CREATE`는 메일함을 만들고(§6.3.4), `MOVE`는 메일을 다른 메일함으로 옮기며(§6.4.8), `SEARCH`는 메일함에서 조건에 맞는 메일을 찾는다(§6.4.4)
+- IMAP4rev2는 IMAP4rev1(RFC 3501)과 대체로 호환되고, 두 판을 함께 알리는 서버도 있다 — §1.3, 부록 A
+- (phase 78 step 2) **메일 내용을 가져오면 `\Seen`이 붙는다**: `FETCH`로 메일 본문(`BODY[]`)을 가져오면 `\Seen` 플래그가 저절로 켜진다. 켜지 않고 보려면 `BODY.PEEK[]`를 쓴다 — §6.4.5
+- (phase 78 step 2) **옮기기는 서버에서 일어난다**: `MOVE`는 메일을 대상 메일함 끝으로 옮긴다 — 대상 메일함에 새 메일이 생기고 원래 메일함에서는 빠지며, 플래그와 받은 날짜는 그대로 두는 것이 좋다(SHOULD).
+  일부만 옮겨지더라도 메일이 사라지거나 두 메일함에 함께 남지 않게 한다 — §6.4.8.
+  플래그는 메일마다 영구(permanent)이거나 그 세션에서만 유효한데, 영구 플래그를 바꾸면 동시에 열린 세션과 나중 세션이 모두 그 변화를 본다 — §2.3.2(위 「플래그」 줄과 같은 절)
+- (phase 78 step 2) 메일함 이름은 Net-Unicode로 적으므로 한글 이름도 쓸 수 있다 — §5.1(본문 예 `여행`)
+
+쓰인 곳 (phase 78 step 2): `app-protocols-mail-file.imap`(§6.4.5 — 메일 내용을 가져오면 `\Seen`, §6.4.8 — 옮기면 원래 메일함에서 빠지고 플래그가 따라간다, §5.1 — 한글 메일함 이름), 문항 n199
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.imap`(Abstract — 서버의 메일을 다룬다·메일함은 원격 폴더·검색·보내기는 정하지 않는다, §2.1 — TCP 143·993, §2.3.2·§5.2·§7 — 한 기기의 변화를 다른 세션도 본다, §5.1 — `INBOX`, §6.3.4·§6.4.8·§6.4.4 — 만들기·옮기기·검색, §1.3 — 지금 판은 IMAP4rev2),
+`app-protocols-mail-file.email-delivery`(Abstract — 보내기는 제출 프로토콜의 몫), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단)
+
+## (phase 78 step 0) RFC 8314 — Cleartext Considered Obsolete: Use of Transport Layer Security (TLS) for Email Submission and Access
+https://www.rfc-editor.org/rfc/rfc8314
+
+Proposed Standard(2018-01)이고 폐기되지 않았다(RFC 1939·2595·3501·5068·6186·6409를 고쳤고, RFC 8997이 이 문서를 고쳤다 — rfc-editor 상태 2026-11-11). **TLS로 감싼 포트의 번호만** 가져온다 — TLS 자체는 `app-protocols-mgmt-security` 주제(phase 78 step 5)의 몫이다.
+
+- 연결을 맺자마자 TLS 핸드셰이크를 시작하는 별도 포트 방식(Implicit TLS)을 POP·IMAP·메일 제출에 권한다 — §3. 기본 포트: POP3 over TLS(`pop3s`) **995**, IMAP over TLS(`imaps`) **993**, 메일 제출 over TLS(`submissions`) **465** — §3.1~§3.3, §7
+- 587번에서 평문으로 시작해 TLS로 바꾸는 방식(STARTTLS)도 널리 쓰여, 한동안 둘 다 구현하라고 한다 — §3.3
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.pop3`(995), `app-protocols-mail-file.imap`(993). 465와 STARTTLS는 쓰지 않는 것을 권한다(기출이 묻지 않는다)
+(phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3 — POP3·IMAP·메일 제출도 TLS로 감싸 쓴다: TLS 위에 HTTP 말고도 메일 프로토콜이 얹히는 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 이름이 곧 「TLS로 보호한 것」인 것은 HTTPS)
+
+## (phase 78 step 0) RFC 1635 — How to Use Anonymous FTP [Informational]
+https://www.rfc-editor.org/rfc/rfc1635
+
+Informational(FYI 24, 1994-05)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 표준을 정하는 문서가 아니라 처음 쓰는 사람을 위한 안내다 — **익명 FTP가 있다는 것과 그 계정의 성격만** 가져온다.
+
+- FTP로 두 호스트 사이에 파일을 옮기려면 보통 양쪽에 로그인해야 해서 양쪽의 계정과 암호가 있어야 한다. 그러나 자료를 내주는 보관 사이트(archive site)는 **`anonymous`라는 특별한 계정**으로 누구에게나 자료를 내준다 — 이것이 익명 FTP다 — 「What is FTP?」·「What is Anonymous FTP?」
+- `anonymous` 사용자가 할 수 있는 것은 FTP로 로그인하기, 정해진 디렉터리의 목록 보기, 파일 내려받기뿐이고, 보통 그 사이트에 파일을 올리지는 못한다. 전통적으로 암호로 아무 글자열이나 받고, 흔히 `guest`나 자기 전자우편 주소를 쓴다 — 「What is Anonymous FTP?」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(익명 FTP — 계정이 없는 사람도 정해진 파일을 내려받는다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 「FTP는 계정으로만 접속한다」는 틀린 보기)
+
+## (phase 78 step 0) RFC 2228 — FTP Security Extensions
+https://www.rfc-editor.org/rfc/rfc2228
+
+Proposed Standard(1997-10)이고 폐기되지 않았다(RFC 959를 고쳤다 — rfc-editor 상태 2026-11-11). **「RFC 959의 FTP는 평문으로 보낸다」의 근거로만** 쓴다. 보안 확장의 명령과 이름은 가져오지 않는다.
+
+- RFC 959의 FTP는 `USER`·`PASS` 명령으로 사용자 이름과 암호를 **평문(cleartext)**으로 보내 클라이언트를 인증한다. 익명 FTP 보관소 같은 경우를 빼면, 네트워크를 엿보는 사람이 암호를 훔칠 수 있는 위험이다 — §1
+- FTP에는 명령·응답·옮기는 데이터를 **암호화하거나 진짜인지 확인하는 장치가 없다**. 엿보기만으로 민감한 데이터를 볼 수 있고, 능동적인 공격자는 옮기는 데이터를 지우거나 바꿀 수 있다 — §1
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp`(§1 — 사용자 이름·암호와 데이터를 암호화하지 않고 보낸다), 기출 대조(§1 — 익명 FTP 보관소가 있다)
+
+## (phase 78 step 0) RFC 1579 — Firewall-Friendly FTP [Informational]
+https://www.rfc-editor.org/rfc/rfc1579
+
+Informational(1994-02)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). 프로토콜을 바꾸지 않고 클라이언트 프로그램의 동작을 권하는 문서다 — **수동 모드를 쓰는 까닭의 근거로** 쓴다.
+
+- FTP는 파일을 실제로 옮기는 데 두 번째 TCP 연결을 쓰고, **기본으로는 서버가 클라이언트 쪽으로 연결을 연다(active open)** — 서버의 20번에서, 클라이언트가 제어 연결에 쓴 것과 같은 포트로.
+  그러나 이 문서가 나올 때의 클라이언트는 대부분 전송마다 새 연결을 쓰고, 그때마다 새 포트를 골라 `PORT`로 알린다 — 「Overview and Rational」·「The Gory Details」
+- 패킷 필터 방화벽은 보통 아무 포트로나 **들어오는 연결을 허락하지 못해**, 서버가 클라이언트 쪽으로 여는 데이터 연결이 막힌다. 나가는 연결은 다루기 쉽다 — 「Overview and Rational」·「The Gory Details」
+- 클라이언트가 `PASV`를 보내면 서버가 임의의 포트에서 기다리고(passive open) 그 번호를 알려 주며, 클라이언트가 그 포트로 연결을 연다 — 데이터 연결이 클라이언트에서 나가는 연결이 된다. 그래서 클라이언트가 `PORT` 대신 `PASV`를 쓰라고 권한다 — 「The Gory Details」·「Recommendation」
+- 그러면 이번에는 서버가 임의의 포트로 들어오는 연결을 받아야 한다. 서버는 클라이언트보다 훨씬 적어 지키기 쉽고, **서버가 데이터 연결에 아주 높은 번호의 포트만 쓰도록** 고쳐 그 범위에 위험한 서비스가 없게 할 수 있다 — 「Security Considerations」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(기본은 서버가 20번에서 연결을 연다, 방화벽은 들어오는 연결을 막는다 → `PASV`, 서버가 데이터 연결에 쓸 포트를 좁힌다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 수동 모드)
+
+## (phase 78 step 0) RFC 2428 — FTP Extensions for IPv6 and NATs
+https://www.rfc-editor.org/rfc/rfc2428
+
+Proposed Standard(1998-09)이고 폐기되거나 고쳐지지 않았다(rfc-editor 상태 2026-11-11). **수동 쪽이 방화벽·NAT에 유리하다는 근거로만** 쓴다 — EPRT·EPSV 명령은 가져오지 않는다.
+
+- `PORT`·`PASV`를 IPv6에서도 쓸 수 있게 바꾼 `EPRT`·`EPSV`를 정한다 — §1
+- 수동 쪽(`EPSV`)을 쓰면 방화벽이나 NAT를 지나는 전송에 유리하다. 방화벽은 대개 들어오는 연결을 허락하지 않는데, `PORT`(`EPRT`)를 쓰려면 들어오는 연결이 필요하다(RFC 1579).
+  또 `EPRT` 쪽을 쓰면 NAT가 지나가는 트래픽 안에 적힌 주소를 바꿔야 하지만, 수동 쪽은 그럴 필요가 없다 — §4
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(§4 — 클라이언트 쪽 방화벽·NAT 때문에 수동 모드를 쓴다)
+
+## (phase 78 step 0) RFC 4252 — The Secure Shell (SSH) Authentication Protocol
+https://www.rfc-editor.org/rfc/rfc4252
+
+Proposed Standard(2006-01)이고 폐기되지 않았다(RFC 8308·8332가 고쳤다 — rfc-editor 상태 2026-11-11). **사용자 인증 방식의 이름과 성격만** 가져온다.
+
+- SSH 인증 프로토콜은 SSH 전송 계층 위에서 돌고, 아래 계층이 무결성과 기밀성을 준다고 전제한다 — §1
+- **공개 키 인증**(`publickey`)은 모든 구현이 지원해야 하는 유일한 방식이다. 사용자의 **개인 키를 가지고 있다는 것**이 곧 인증이다 — 클라이언트가 개인 키로 만든 서명을 보내고, 서버는 그 키가 그 사용자의 것인지와 서명이 맞는지 확인한다 — §7
+- **암호 인증**(`password`)은 구현하는 것이 좋다(SHOULD). 패킷에 암호가 평문으로 실리지만 **패킷 전체를 전송 계층이 암호화한다**(기밀성을 쓸 때) — §8
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(§7 — 공개 키 인증, §8 — 암호는 암호화한 통로로 간다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 공개 키 암호를 쓴다)
+
+## (phase 78 step 0) OpenSSH — ssh(1)
+https://man7.org/linux/man-pages/man1/ssh.1.html
+
+2026-11-11에 IPv4로 내려받아 읽은 판: OpenSSH 9.9p2(Portable OpenSSH 프로젝트, 바닥줄 July 18, 2024 — man7.org가 2026-08-04에 openssh-9.9p2 타르볼에서 가져옴 — COLOPHON). sshd(8)은 위 「(phase 76) OpenSSH — sshd(8) …」 항목에 있다.
+
+- 이름은 「OpenSSH 원격 로그인 클라이언트」다. 원격 기계에 로그인하고 명령을 실행하는 프로그램이고, 안전하지 않은 네트워크를 사이에 둔 두 호스트 사이에 암호화한 안전한 통신을 주려는 것이다 — NAME, DESCRIPTION
+- 접속할 대상은 `[사용자@]호스트이름` 꼴(또는 `ssh://[사용자@]호스트이름[:포트]`)로 적고, 사용자는 여러 방법 가운데 하나로 원격 기계에 자기를 증명해야 한다 — SYNOPSIS, DESCRIPTION. 그러니 `ssh 사용자@호스트` 꼴로 접속한다
+- 인증 방법: GSSAPI·호스트 기반·**공개 키**·키보드 대화형·**암호**. 공개 키 인증은 암호화와 복호화에 서로 다른 키를 쓰고 한 키에서 다른 키를 알아낼 수 없는 **공개 키 암호**에 바탕을 둔다 — 사용자가 공개 키·개인 키 한 쌍을 만들고,
+  서버는 공개 키를 알며 개인 키는 사용자만 안다. 클라이언트가 개인 키를 가졌다는 것을 증명하고, 서버는 그 공개 키가 그 계정에 허락됐는지 확인한다 — AUTHENTICATION
+- 암호 인증에서도 암호는 원격 호스트로 보내지지만, 통신이 모두 암호화되어 있어 네트워크를 엿듣는 사람은 볼 수 없다 — AUTHENTICATION
+- 접속한 적 있는 호스트의 키를 사용자의 `~/.ssh/known_hosts`에 저장하고 자동으로 검사한다 — 새 호스트는 자동으로 더하고, 호스트의 키가 바뀌면 경고하고 암호 인증을 막아 서버 위장·중간자 공격을 막는다 — AUTHENTICATION
+- **서버에 처음 접속할 때 서버의 공개 키 지문(fingerprint)을 사용자에게 보인다**(StrictHostKeyChecking을 끄지 않았다면). 지문을 이미 알면 맞춰 보고 키를 받아들이거나 거부할 수 있다 — VERIFYING HOST KEYS.
+  화면의 실제 꼴은 이 페이지가 보이지 않는다 — 아래 Microsoft Learn 「Get started with OpenSSH for Windows」의 예가 보인다
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(DESCRIPTION — `ssh 사용자@호스트`, AUTHENTICATION — 공개 키 암호·암호도 암호화돼 간다·`known_hosts`, VERIFYING HOST KEYS — 처음 접속할 때 지문을 보인다)
+
+## (phase 78 step 0) Microsoft Learn — OpenSSH for Windows overview, Get started with OpenSSH for Windows
+https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh-overview
+https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+
+2026-11-11에 읽은 판(페이지의 `updated_at`): overview 2025-05-01(`ms.date` 2025-02-20), Get started 2026-09-08(`ms.date` 2025-09-04). 둘 다 Windows Server 2019·2022·2025와 Windows 10·11을 대상으로 적는다.
+
+- OpenSSH는 원격 시스템을 관리하는 SSH 도구의 오픈 소스판이다. **Windows 10 빌드 1809와 Windows Server 2019부터** Windows에서 주문형 기능(feature on demand)으로 쓸 수 있다.
+  기본 설치 상태는 판마다 다르다 — Windows Server 2025는 설치돼 있지만 켜져 있지 않고, Windows Server 2019·2022와 Windows 10 1809 이후는 선택 기능으로 설치해 켠다 — overview
+- SSH는 클라이언트-서버 구조다 — 사용자가 일하는 시스템이 클라이언트, 원격으로 관리되는 시스템이 서버다. Windows의 OpenSSH에는 `ssh`(클라이언트), `sshd`(서버 — 원격으로 관리되는 시스템에서 돌아야 한다), `ssh-keygen`(인증 키를 만든다), `scp`·`sftp` 등이 들어 있다 — overview
+- OpenSSH는 SSH 프로토콜로 원격 로그인하는 연결 도구이고, 클라이언트와 서버 사이의 트래픽을 모두 암호화해 엿듣기·연결 가로채기 같은 공격을 막는다 — Get started 머리
+- OpenSSH Server를 설치하면 들어오는 SSH 트래픽을 **TCP 22번**에서 받는 방화벽 규칙이 만들어진다 — Get started
+- PowerShell에서 `ssh domain\username@servername` 꼴로 접속한다. 처음 접속하면 그 호스트가 진짜인지 확인할 수 없다는 말과 **호스트 키의 지문(SHA256)**을 보이고 **계속 접속할지(yes/no)** 묻는다.
+  `yes`를 입력하면 그 서버가 클라이언트의 알려진 SSH 호스트 목록에 들어가고, 이어서 암호를 묻는다(입력하는 글자는 화면에 보이지 않는다) — Get started 「Connect to OpenSSH Server」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(overview — Windows에도 OpenSSH가 들어 있다, Get started — 처음 접속할 때 지문을 보이고 계속할지 묻는다·TCP 22), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 Linux·Unix만의 것이 아니다)
+
+## (phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7, FTP Firewall Support `<firewallSupport>`
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/configuring-ftp-firewall-settings-in-iis-7
+https://learn.microsoft.com/en-us/iis/configuration/system.ftpserver/firewallsupport
+
+2026-11-11에 읽은 판(페이지의 `updated_at`): 둘 다 2025-12-20(`ms.date`는 2008-01-15와 2016-09-26). Windows Server의 FTP 서버(IIS의 FTP 서비스 — 앞 문서는 FTP 7.0·7.5를, 뒤 문서는 IIS 7.5~10.0을 대상으로 적고 IIS 10.0까지 바뀌지 않았다고 한다)의 문서다.
+**능동·수동 데이터 연결의 이름과 수동 모드용 포트 범위의 근거로만** 쓴다 — IIS의 설정 절차와 값은 가져오지 않는다.
+
+- FTP 클라이언트마다 연결 둘이 있어야 한다 — 명령이 오가는 제어 채널(보통 21번)과, 디렉터리 목록·파일 올리기·내려받기 같은 데이터가 오가는 데이터 채널. 방화벽에서 21번만 열면 로그인은 되지만 목록을 받거나 파일을 옮기지 못한다 — 앞 문서 「More Information about Working with Firewalls」
+- 데이터 연결을 맺는 방식은 둘이고, 같은 절은 이를 「두 모드」라 부른다. **능동 데이터 연결(active)**: 클라이언트가 데이터 채널용 포트를 열어 기다리고 서버가 그 포트로 연결을 연다(보통 서버의 20번에서). 예전에는 이것이 기본이었지만 인터넷 환경에서 잘 동작하지 않아 이제 권하지 않는다.
+  **수동 데이터 연결(passive)**: 서버가 데이터 채널용 포트를 열어 기다리고 클라이언트가 그 포트로 연결을 연다. 인터넷 환경에서 훨씬 잘 동작하고 RFC 1579가 권한다 — 앞 문서 같은 절
+- 수동 연결을 `PASV`로 맺으면 서버는 자기 IP 주소와 포트가 담긴 응답을 보낸다. 서버 관리자는 수동 연결의 데이터 채널에 쓸 **포트 범위**(가장 낮은 포트와 가장 높은 포트)를 서버 단위로 정해 둘 수 있고, 그 범위를 방화벽에서도 열어야 한다.
+  범위를 「0-0」으로 두면 Windows TCP/IP의 임시(동적) 포트 범위를 쓴다 — 뒤 문서 Overview·Attributes, 앞 문서 「Step 1: Configure the Passive Port Range for the FTP Service」
+
+쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ftp-modes`(능동·수동이라는 이름과 누가 연결을 여는지, 능동이 예전의 기본, 서버가 수동 모드용 포트 범위를 정해 둔다), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — 수동 모드)
+
+## (phase 78 step 5) RFC 3410 — Introduction and Applicability Statements for Internet-Standard Management Framework [Informational]
+https://www.rfc-editor.org/rfc/rfc3410
+
+Informational(2002-12)이고 폐기되지 않았다(RFC 2570을 대체 — rfc-editor 상태 2026-11-11). SNMP 관리 체계의 세 판(SNMPv1·SNMPv2·SNMPv3)을 한데 소개하는 안내 문서이고, 자세한 문서와 어긋나면 자세한 문서를 따르라고 스스로 적는다 — §1.
+그래서 **판들의 관계와 표준 상태, 그리고 표준 문서(STD 62)의 사실을 확인하는 보조로** 쓴다.
+
+- 관리 체계의 기본 구성은 판과 상관없이 같다 — 관리받는 노드 여럿(노드마다 관리 정보를 원격으로 다루게 해 주는 SNMP 개체가 있고, 예부터 **에이전트**라 부른다), 관리 응용을 가진 SNMP 개체 하나 이상(예부터 **매니저**),
+  두 개체 사이에 관리 정보를 나르는 관리 프로토콜, 그리고 관리 정보 — §2.1
+- 관리 정보는 **관리 객체**들의 모음으로 보고, 그 모음이 놓인 가상의 정보 저장소를 **MIB**(Management Information Base)라 부른다. 관련 있는 객체들은 **MIB 모듈**이라는 문서 단위로 정의한다 — §7.1.
+  MIB 모듈은 관리받는 노드의 계측 장치가 지니는 관리 정보를 정의하고, 그 정보는 에이전트가 원격으로 닿을 수 있게 해 주며, 관리 프로토콜이 나르고 관리 응용이 다룬다 — §6.2
+- 전송: 여러 전송 방식(전송 매핑)이 정의돼 있지만 **UDP 위에 싣는 방식이 우선**(preferred)이다. 다른 방식을 쓰는 시스템도 UDP 방식으로 닿을 수 있게 해 두는 것이 좋다 — §7.3
+- SNMPv1(옛 STD 15, RFC 1157)이 정의한 동작은 get·get-next·get-response·set-request·trap이고, 비연결형 전송 위에 얹는 것이 보통이다 — §3.3
+- SNMPv1은 인증 방식을 여럿 둘 자리만 만들고 실제로는 **커뮤니티 문자열**에 기댄 아주 단순한 인증 하나만 정의했다. 처음부터 알려진 근본적인 약점이다 — §3.4
+- SNMPv2는 v1보다 데이터형(64비트 카운터), 효율(get-bulk), **확인 응답을 받는 알림(inform)**, 오류 처리를 늘렸지만, 처음 목표였던 보안 — 인증(보낸 쪽 확인·메시지 무결성·일부 재전송 방지), 기밀성, 접근 제어 — 과 그 원격 관리를 채우지 못했다 — §4.
+  커뮤니티 기반 SNMPv2(**SNMPv2c**, RFC 1901)가 가장 많은 지지를 받았지만 **보안과 관리 체계가 없었다** — §5. SNMPv3는 SNMPv2에 보안과 관리 기능을 더한 것으로 볼 수 있다 — §5
+- **SNMPv1·SNMPv2c의 메시지는 평문 커뮤니티 문자열에 기댄 단순한 인증만 지원해 근본적으로 안전하지 않다.** 강한 보안을 담은 SNMPv3 문서가 표준(full Standard)이 되자 SNMPv1(옛 STD 15)과 실험 단계의 SNMPv2c(RFC 1901)는
+  보안의 약점 때문에 Historic이 됐다 — SNMPv3가 쓸 판이라는 것을 분명히 하려는 것이다 — §8.2(작업 그룹의 권고는 §8.3)
+- SNMPv3 문서는 STD 62로 묶인다 — 구조(RFC 3411), 메시지 처리(RFC 3412), 응용(RFC 3413), 사용자 기반 보안 모델 USM(RFC 3414), 뷰 기반 접근 제어 VACM(RFC 3415), 프로토콜 동작(RFC 3416), 전송 매핑(RFC 3417), SNMP 개체 자신의 MIB(RFC 3418) — §6.3, §6.4, §7.4.
+  응용의 다섯 종류는 명령 생성기·명령 응답기·알림 발신기·알림 수신기·프록시 전달기다 — §7.7
+- USM은 키를 쓴 해시로 메시지가 도중에 바뀌지 않았는지 지키고(무결성), 그로써 보낸 쪽이 맞는지도 확인하며, 느슨하게 맞춘 시각 값으로 일부 재전송 공격을 막는다. 내용을 감추는 암호화도 쓸 수 있다 — §7.8
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§2.1 — 매니저와 에이전트, §7.3 — UDP가 우선), `app-protocols-mgmt-security.mib`(§7.1·§6.2 — MIB와 MIB 모듈),
+`app-protocols-mgmt-security.snmp-versions`(§3.4·§4·§5·§8.2 — 커뮤니티 문자열이 평문이라 v1·v2c는 안전하지 않아 Historic, v3가 보안을 더했다, §7.8 — USM), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — v2c는 암호화·인증을 기본으로 주지 않는다)
+
+## (phase 78 step 5) RFC 3411 — An Architecture for Describing Simple Network Management Protocol (SNMP) Management Frameworks
+https://www.rfc-editor.org/rfc/rfc3411
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 2571을 대체, RFC 5343·5590이 고쳤다 — rfc-editor 상태 2026-11-11).
+
+- SNMP 관리 체계는 노드 여럿(노드마다 명령 응답기·알림 발신기 응용을 가진 SNMP 개체 — 예부터 **에이전트**), 명령 생성기·알림 수신기 응용을 가진 SNMP 개체 하나 이상(예부터 **매니저**), 그 사이에 관리 정보를 나르는 관리 프로토콜로 이루어진다.
+  매니저 쪽 응용이 관리받는 장치를 **감시하고 제어한다**. 관리받는 장치는 호스트·라우터·터미널 서버 같은 것이고, 그 장치의 관리 정보에 닿아 감시·제어한다 — §1.2
+- 응용의 종류: 명령 생성기는 관리 데이터를 살피고 바꾼다, 명령 응답기는 관리 데이터에 닿게 해 준다, 알림 발신기는 묻지 않은(비동기) 메시지를 먼저 보낸다, 알림 수신기는 그 메시지를 처리한다, 프록시 전달기는 개체 사이에서 메시지를 넘긴다 — §3.1.3.
+  명령 생성기·알림 수신기를 가진 개체를 예부터 SNMP 매니저(§3.1.3.1), 명령 응답기·알림 발신기를 가진 개체를 예부터 SNMP 에이전트라 부른다(§3.1.3.2). 에이전트의 그림에서 명령 응답기는 MIB 계측 장치(MIB instrumentation)와 이어진다 — §3.1.3.2 그림
+- PDU의 갈래: 읽기(`GetRequest`·`GetNextRequest`·`GetBulkRequest`), 쓰기(`SetRequest`), 응답(`Response`·`Report`), 알림(`SNMPv2-Trap`·`InformRequest`). 받는 쪽이 응답을 돌려보내야 하는 것은 Get 계열·`SetRequest`·`InformRequest`이고,
+  트랩은 확인 응답을 받지 않는다 — §2.8
+- 보안 수준은 셋이다 — 인증도 암호화도 없음(noAuthNoPriv), 인증만(authNoPriv), 인증과 암호화(authPriv) — §3.4.3
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§1.2 — 매니저가 호스트·라우터 같은 장치를 감시·제어한다, §3.1.3 — 매니저와 에이전트가 하는 일), `app-protocols-mgmt-security.snmp-operations`(§2.8 — 메시지의 갈래와 응답이 있는 것·없는 것),
+`app-protocols-mgmt-security.snmp-versions`(§3.4.3 — v3도 보안 수준을 고른다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNMP는 장비를 관리·감시한다)
+
+## (phase 78 step 5) RFC 3416 — Version 2 of the Protocol Operations for the Simple Network Management Protocol (SNMP)
+https://www.rfc-editor.org/rfc/rfc3416
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 1905를 대체 — rfc-editor 상태 2026-11-11). 메시지 이름은 이 문서대로 쓴다.
+
+- SNMP 메시지 프로토콜의 첫 판 SNMPv1은 RFC 1157(STD 15)이, **표준 트랙이 아닌** SNMPv2c는 RFC 1901과 RFC 3417이, SNMPv3는 RFC 3417·3412·3414가 정한다 — §1
+- 명령 생성기·알림 수신기를 가진 개체(예부터 「매니저」)가 명령 응답기·알림 발신기를 가진 개체(예부터 「에이전트」)와 통신한다. 이 프로토콜의 목적은 **관리 정보와 동작을 나르는 것**이다 — §2
+- 변수(variable)의 이름은 그 객체 형의 OBJECT IDENTIFIER 뒤에 인스턴스를 가리키는 조각을 이어 붙인 것이다 — §2.1
+- 요청을 받은 쪽은 보통 응답을 만들어 보낸다. 응답이 제때 오지 않을 때 다시 보낼지는 요청을 보낸 응용이 정한다 — §2.2
+- `GetRequest`를 받은 쪽은 적힌 이름과 정확히 맞는 변수의 **값을 채워** `Response`를 만든다 — §4.2.1. `GetNextRequest`를 받은 쪽은 이름의 사전 순서로 바로 다음인 변수의 이름과 값을 돌려준다 — §4.2.2
+- `Response`는 `GetRequest`·`GetNextRequest`·`GetBulkRequest`·`SetRequest`·`InformRequest`를 받았을 때만 만든다 — §4.2.4
+- `SetRequest`를 받은 쪽은 변수들을 모두 검사해 문제가 없으면 값을 바꾸고(하나라도 바꾸지 못하면 나머지도 되돌린다) 결과를 `Response`로 요청한 쪽에 돌려준다 — §4.2.5
+- `SNMPv2-Trap`은 알림 발신기를 대신해 보내고, 멀리 있는 알림 수신기에 일이 생겼거나 어떤 상태가 됐음을 알린다. **확인 응답이 없다**. 보낼 곳은 그 개체가 구현에 따라 정한다 — §4.2.6
+- `InformRequest`도 같은 목적의 알림이지만 받은 쪽이 `Response`를 돌려보낸다(확인 응답이 있는 알림. 그래도 도착을 보장하지는 않는다) — §4.2.7
+- 트랩과 인폼의 앞 두 변수는 `sysUpTime.0`과 `snmpTrapOID.0`이다 — §4.2.6, §4.2.7
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-operations`(메시지 이름과 방향 — §4.2.1·§4.2.2·§4.2.4·§4.2.5·§4.2.6·§4.2.7), `app-protocols-mgmt-security.mib`(§2.1 — 이름 뒤의 인스턴스 조각, §4.2.1 — 에이전트가 값을 채워 돌려준다),
+`app-protocols-mgmt-security.snmp`(§2 — 매니저와 에이전트, 관리 정보를 나른다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 3417 — Transport Mappings for the Simple Network Management Protocol (SNMP), RFC 3430 — SNMP Over TCP Transport Mapping [Experimental], RFC 6353 — TLS Transport Model for SNMP
+https://www.rfc-editor.org/rfc/rfc3417
+https://www.rfc-editor.org/rfc/rfc3430
+https://www.rfc-editor.org/rfc/rfc6353
+
+상태(rfc-editor 2026-11-11): RFC 3417은 Internet Standard(STD 62, 2002-12 — RFC 1906을 대체, RFC 4789·5590이 고쳤다), RFC 3430은 Experimental(2002-12), RFC 6353은 Internet Standard(2011-07 — RFC 5953을 대체, RFC 8996·9456이 고쳤다). 셋 다 폐기되지 않았다.
+**SNMP가 어떤 전송 위에서 도는지만** 가져온다. TLS 전송 모델의 동작은 가져오지 않는다.
+
+- 전송 매핑이 여럿 정의돼 있지만, IPv4를 지원하는 시스템에서는 **UDP over IPv4 매핑이 우선**이고 IPv4를 구현한 시스템은 이 매핑을 **반드시 구현해야 한다**(MUST). 다른 매핑을 지원하는 시스템도 UDP 매핑으로 닿게 하는 것이 좋다(SHOULD) — RFC 3417 §1, §3.
+  이 문서가 정의하는 다른 매핑은 OSI·AppleTalk(DDP)·IPX 위다 — §4~§6
+- 메시지 하나는 UDP 데이터그램 하나에 싣는다 — RFC 3417 §3.1
+- **명령 응답기(에이전트 쪽)는 UDP 161에서, 알림 수신기(매니저 쪽)는 UDP 162에서** 기다리게 설정하기를 권한다 — RFC 3417 §3.2
+- SNMPv1만으로는 안전하지 않다 — 네트워크 자체가 안전해도 누가 객체를 읽고 바꿀 수 있는지 통제하지 못한다. SNMPv3의 USM(RFC 3414)·VACM(RFC 3415)을 쓰기를 권한다 — RFC 3417 §12
+- TCP 매핑(RFC 3430): **덧붙인 선택적인 매핑**이고 주로 대량 전송을 위해 정의했다. 이 매핑을 구현한 엔진도 UDP 매핑을 **반드시 함께 구현해야 한다**. TCP는 자원을 더 쓰므로 TCP 연결이 너무 많으면 새 연결을 거절해 UDP로 돌아가게 할 수 있다 — RFC 3430 §1, §2
+- TLS 전송 모델(RFC 6353): SNMP 메시지를 TCP 위의 TLS나 UDP 위의 DTLS로 보내는 방식이고, 기본 포트는 10161(명령)·10162(알림)다 — RFC 6353 §1, §10
+- 곧 표준의 SNMP는 **UDP가 기본이자 반드시 갖출 전송**이고, TCP 위로 보내는 방식은 따로 정의한 선택이다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(RFC 3417 §1·§3 — UDP가 우선이고 반드시 구현, §3.2 — 에이전트는 UDP 161, RFC 3430 — TCP는 덧붙인 선택), `app-protocols-mgmt-security.snmp-operations`(RFC 3417 §3.2 — 트랩은 UDP 162),
+`app-protocols-mgmt-security.snmp-versions`(RFC 3417 §12 — v1만으로는 안전하지 않다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「TCP를 쓴다」가 틀린 까닭과 문항에서 조심할 것)
+
+## (phase 78 step 5) RFC 1157 — A Simple Network Management Protocol (SNMP) [Historic — 역사 기록으로만 쓴다], RFC 1901 — Introduction to Community-based SNMPv2 [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc1157
+https://www.rfc-editor.org/rfc/rfc1901
+
+상태(rfc-editor 2026-11-11): RFC 1157은 Historic(1990-05, 옛 STD 15 — RFC 1098을 대체), RFC 1901은 Historic(1996-01, 문서 머리의 분류는 Experimental — 「Internet standard가 아니다」라고 스스로 적는다).
+둘 다 RFC 3410 §8.2대로 보안의 약점 때문에 Historic이 됐다. **SNMP의 첫 판과 v2c가 무엇이었는지, 그리고 지금 표준과 같은 사실을 확인하는 데만** 쓴다.
+
+- SNMP 구조: 관리국(network management station)의 관리 응용이 네트워크 요소를 감시·제어하고, 호스트·게이트웨이·터미널 서버 같은 네트워크 요소의 **관리 에이전트**가 관리국이 요청한 관리 기능을 수행한다. SNMP는 둘 사이에 관리 정보를 주고받는 데 쓴다 — RFC 1157 §3
+- 목표: 에이전트가 하는 관리 기능의 수와 복잡도를 줄여, 에이전트 소프트웨어를 만드는 비용을 낮추는 것 — §3.1(1). 감시·제어의 방식이 예상하지 못한 운영·관리 측면까지 넓혀 받아들일 수 있게 하는 것 — §3.1 둘째 목표. 특정 호스트·게이트웨이의 구조와 상관없게 하는 것 — §3.1 셋째 목표
+- 에이전트의 일을 변수를 살피는 것(get)과 바꾸는 것(set) 둘로 본다 — §3.2.3
+- **네트워크 상태를 자세히 감시하는 일은 주로 관리국 쪽의 폴링으로 하고, 묻지 않은 메시지(트랩) 몇 가지가 폴링을 언제 어디에 할지 이끈다.** 묻지 않은 메시지 수를 적게 두는 것은 단순함과, 네트워크 관리가 만들어 내는 트래픽을 줄이는 목표에 맞는다 — §3.2.3
+- SNMP 메시지를 주고받는 데는 믿을 수 없는 데이터그램 서비스면 충분하고 메시지 하나는 전송 데이터그램 하나다. 이 문서는 UDP로 주고받는 것을 정하지만 다른 전송에도 대체로 맞는다 — §3.2.4
+- 에이전트와 응용 개체의 묶음을 **SNMP 커뮤니티**라 하고, 커뮤니티마다 옥텟 문자열로 된 **커뮤니티 이름**이 있다. 메시지가 그 커뮤니티의 것인지 가리는 규칙을 인증 방식이라 한다. 모든 메시지를 진짜로 보는 아주 단순한 인증만 지원하는 구현도 있을 수 있다 — §3.2.5
+- SNMP는 에이전트의 MIB 변수를 살피거나 바꾸는 **응용 프로토콜**이다. 메시지 하나는 UDP 데이터그램 하나에 실리고 **판 번호·커뮤니티 이름·PDU**로 이루어진다. 트랩이 아닌 메시지는 **UDP 161**에서, 트랩은 **UDP 162**에서 받는다. 다섯 PDU(GetRequest·GetNextRequest·GetResponse·SetRequest·Trap)를 모두 지원해야 한다 — §4.
+  (커뮤니티 이름이 평문이라는 것은 위 RFC 3410 §8.2)
+- 트랩의 예: 에이전트가 맡은 통신 링크 가운데 하나가 끊겼음(linkDown)·다시 살아났음(linkUp), 다시 시작함(coldStart·warmStart), 인증 실패 — §4.1.6
+- 이 문서는 보안을 다루지 않는다 — 「Security Considerations」 절
+- RFC 1901: SNMPv1의 커뮤니티 기반 관리 체계를 SNMPv2에 그대로 쓴 것을 **커뮤니티 기반 SNMPv2(SNMPv2c)**라 부른다. 메시지 꼴도 v1에서 가져오고 판 번호만 바꿨다(판 번호·커뮤니티 이름·PDU) — RFC 1901 §3. 보안은 다루지 않는다 — §4. 전송은 UDP 매핑이 우선이다 — §2.5
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(RFC 1157 §3 — 관리국과 에이전트, §4 — 응용 프로토콜·UDP 161, 첫 판이 RFC 1157이고 지금은 Historic), `app-protocols-mgmt-security.snmp-operations`(§3.2.3 — 감시는 주로 폴링·트랩이 폴링을 이끈다, §4 — 트랩은 162, §4.1.6 — linkDown),
+`app-protocols-mgmt-security.snmp-versions`(§3.2.5·§4 — 커뮤니티 이름이 메시지의 한 칸, RFC 1901 §3 — v2c), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 폴링, RFC 1157에 규정), `exam-notes.md` E32(§3.1)
+
+## (phase 78 step 5) RFC 3414 — User-based Security Model (USM) for version 3 of the Simple Network Management Protocol (SNMPv3)
+https://www.rfc-editor.org/rfc/rfc3414
+
+Internet Standard(STD 62, 2002-12)이고 폐기되지 않았다(RFC 2574를 대체, RFC 5590이 고쳤다 — rfc-editor 상태 2026-11-11). **v3가 무엇을 지키는지만** 가져온다. 알고리즘 이름과 키 관리는 가져오지 않는다.
+
+- 사용자(사용자 이름으로 가리킨다)를 단위로 보안 정보를 묶는 사용자 기반 보안 모델이다 — §1
+- 막으려는 주된 위협은 둘이다 — 오가는 메시지를 허락받지 않은 쪽이 바꿔치기하는 것(정보 변경), 권한이 있는 다른 사용자인 척하는 것(가장). 덜 중요한 위협 — 에이전트와 관리국 사이를 엿보는 것(누설), 메시지를 일부러 늦추거나 다시 보내거나 순서를 바꾸는 것 — 도 어느 정도 막는다.
+  서비스 거부와 트래픽 분석은 막지 않는다 — §1.1
+- 목표: 받은 메시지가 도중에 바뀌지 않았는지, 메시지가 주장하는 사용자가 맞는지, 최근에 만든 메시지인지 확인하고, 필요하면 내용을 엿보지 못하게 한다 — §1.2
+- 서비스: 데이터 무결성, 데이터 출처 인증, 데이터 기밀성, 메시지 시각 확인과 제한된 재전송 방지. 기밀성은 무결성·출처 인증과 함께일 때만 쓸 수 있다 — §1.3
+- 이 문서는 인증과 암호화 방식을 하나씩 정하면서, 다른 방식으로 바꾸거나 더할 수 있게 했다 — §1
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-versions`(§1.1·§1.2·§1.3 — v3는 사용자마다 인증(바뀌지 않았는지·보낸 사용자가 맞는지)과 암호화를 더한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 2578 — Structure of Management Information Version 2 (SMIv2), RFC 3418 — Management Information Base (MIB) for the Simple Network Management Protocol (SNMP), RFC 1213 — MIB-II
+https://www.rfc-editor.org/rfc/rfc2578
+https://www.rfc-editor.org/rfc/rfc3418
+https://www.rfc-editor.org/rfc/rfc1213
+
+상태(rfc-editor 2026-11-11): RFC 2578은 Internet Standard(STD 58, 1999-04 — RFC 1902를 대체), RFC 3418은 Internet Standard(STD 62, 2002-12 — RFC 1907을 대체), RFC 1213은 Internet Standard(STD 17, 1991-03 — RFC 1158을 대체, RFC 2011~2013이 고쳤다). 셋 다 폐기되지 않았다.
+**OID의 꼴과 sysUpTime의 이름·번호·뜻만** 가져온다. 데이터형·매크로 문법은 가져오지 않는다.
+
+- 관리 정보는 MIB라는 가상의 정보 저장소에 놓인 관리 객체들의 모음으로 보고, 관련 객체들은 MIB 모듈로 정의한다 — RFC 2578 §1
+- **OBJECT IDENTIFIER(OID)** 값은 음이 아닌 수를 차례로 늘어놓은 것이고, 수 하나하나를 하위 식별자(sub-identifier)라 부른다. 첫 하위 식별자는 0(ccitt)·1(iso)·2(joint-iso-ccitt) 가운데 하나다 — RFC 2578 §3.5
+- 뿌리에서 내려오는 길: `org`는 `iso` 아래 3, `dod`는 `org` 아래 6, `internet`은 `dod` 아래 1, `mgmt`는 `internet` 아래 2, `mib-2`는 `mgmt` 아래 1 — RFC 2578 §2(SNMPv2-SMI 정의. 「iso」 = 1이라는 주석도 같은 자리에 있다).
+  IANA가 맡는 인터넷 갈래는 `1.3.6.1`로 시작하고, `mgmt(2)` 아래는 「표준」 객체를 가리키는 데 쓴다 — RFC 2578 §4
+- `system` 그룹은 `mib-2` 아래 1이고(모든 관리받는 시스템에 공통인 객체의 모음), `sysUpTime`은 `system` 아래 3이다 — RFC 3418 §2. RFC 1213(MIB-II)도 같은 자리에 정의한다 — RFC 1213의 system 그룹(`system ::= { mib-2 1 }`, `sysUpTime ::= { system 3 }`)
+- **`sysUpTime`의 뜻: 그 시스템의 네트워크 관리 부분이 마지막으로 다시 초기화된 뒤 흐른 시간이고, 단위는 100분의 1초(TimeTicks)다. 읽기만 된다** — RFC 3418 §2. (장비 전체가 켜진 뒤의 시간이 아니라 **관리 부분(에이전트)**이 다시 시작한 뒤의 시간이다)
+- **계산 — 손으로 두 번 맞췄다**: iso(1) → org(3) → dod(6) → internet(1) → mgmt(2) → mib-2(1) → system(1) → sysUpTime(3) — 그래서 `1.3.6.1.2.1.1.3`이다
+- 표 안에 있지 않은 객체(스칼라 객체)의 인스턴스는 객체 이름 뒤에 **하위 식별자 0을 하나 붙여** 가리킨다 — RFC 2578 §7. 그래서 값을 물을 때의 이름은 `1.3.6.1.2.1.1.3.0`(`sysUpTime.0`)이다. RFC 3416 §4.2.6도 트랩의 첫 변수를 `sysUpTime.0`으로 적는다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.mib`(RFC 2578 §1 — MIB·MIB 모듈, §3.5 — OID의 꼴, §2·§4 — 가지 이름과 번호, §7 — `.0`, RFC 3418 §2 — `system`·`sysUpTime`과 그 뜻)
+
+## (phase 78 step 5) RFC 6632 — An Overview of the IETF Network Management Standards [Informational]
+https://www.rfc-editor.org/rfc/rfc6632
+
+Informational(2012-06)이고 폐기되지 않았다(rfc-editor 상태 2026-11-11). IETF 네트워크 관리 표준을 훑는 안내 문서라 **표준 문서의 사실을 확인하고 쓰임의 예를 대는 보조로만** 쓴다.
+
+- SNMP는 **매니저·에이전트·MIB** 세 개념 위에 선다. 어떤 구성에서도 매니저 노드가 적어도 하나 있어 관리 소프트웨어를 돌리고, 보통 **브리지·라우터·서버 같은 네트워크 장비가 에이전트를 갖춘다**. 에이전트는 자기 노드의 자원과 활동을 반영하는 객체들의 로컬 MIB에 닿게 해 준다 — §2.1.2
+- 에이전트는 알림을 만들어 묻지 않은 메시지로 관리 응용에 보낼 수 있다. SNMPv2가 인폼 PDU 등을 더했다. **SNMPv1·SNMPv2 모두 보안 기능이 충분하지 않아** 그 약점을 메우려고 SNMPv3가 나왔다 — §2.1.2
+- 트랩·인폼으로 알린 내용이 뒤따르는 폴링을 이끌 수 있다. SNMP는 장애·성능 데이터 감시에 널리 쓰이고 상태를 폴링하는 데에도 잘 맞는다. 표준 MIB 모듈의 카운터는 **여러 인터페이스로 드나든 바이트·패킷 수**를 감시하는 데 특히 쓸모가 있었다.
+  장비가 살아 있는지 보려고 `sysUpTime`(장비의 네트워크 관리 부분이 다시 초기화된 뒤 흐른 시간)을 폴링하곤 한다 — §2.1.2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp`(§2.1.2 — 장비가 에이전트를 갖춘다), `app-protocols-mgmt-security.mib`(§2.1.2 — 인터페이스로 드나든 바이트 수 카운터, `sysUpTime`), `app-protocols-mgmt-security.snmp-operations`(§2.1.2 — 상태 폴링, 알림이 폴링을 이끈다),
+`app-protocols-mgmt-security.snmp-versions`(§2.1.2 — v1·v2는 보안이 모자라 v3), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단)
+
+## (phase 78 step 5) RFC 3512 — Configuring Networks and Devices with Simple Network Management Protocol (SNMP) [Informational]
+https://www.rfc-editor.org/rfc/rfc3512
+
+Informational(2003-04)이고 폐기되지 않았다(rfc-editor 상태 2026-11-11). **폴링의 부담에 관한 말만** 가져온다 — 기출([기출 2024-05-19 #7])이 맞는 말로 두는 「폴링과 트래픽」을 대조하려는 것이다.
+
+- 바뀐 것을 알아내려고 객체 여럿을 폴링해야 하는 구성은 규모가 커지면 잘 맞지 않는다 — §3.3.5
+- 설정 데이터가 아주 많은 장비에서 매니저가 설정 표 전체를 주기적으로 폴링하면 **에이전트와 매니저 둘 다에 부담**이 된다 — §3.3.6
+- 트랩은 받았는지 확인할 방법이 없어, 확인이 필요하면 SNMP 밖의 방법을 써야 하고 보통 폴링이라는 대가가 따른다. 인폼은 받은 쪽이 `Response`로 답하므로 보낸 쪽이 받았는지 확인할 수 있다 — §3.10.2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.snmp-operations`(§3.3.5·§3.3.6 — 폴링은 장비와 객체가 많을수록 부담이 커진다. 쓰면 「요청 하나에 응답 하나이므로 장비 수 × 묻는 횟수만큼 메시지가 오간다」는 계산임을 밝힌다, §3.10.2 — 인폼은 확인 응답이 있다),
+기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 폴링과 트래픽)
+
+## (phase 78 step 5) RFC 4330 — Simple Network Time Protocol (SNTP) Version 4 for IPv4, IPv6 and OSI [Informational, 폐기 — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc4330
+
+Informational(2006-01)이고 **RFC 5905가 폐기하고 대신했다**(RFC 2030·1769를 대체했었다 — rfc-editor 상태 2026-11-11). 지금 SNTP의 근거는 위 RFC 5905 §14이고, 이 문서는 **SNTP를 따로 적은 옛 문서가 무엇을 말했는지 확인하는 역사 기록으로만** 쓴다.
+
+- 정확도가 덜 필요한 쓰임(1초의 상당 부분까지, 집의 라우터라면 1분까지도 괜찮은 곳)에는 완전한 NTP 소프트웨어가 너무 크고 복잡하므로, 더 단순한 소프트웨어로 NTP 서버·클라이언트에 닿는 방식으로 SNTPv4를 적었다 — §1
+- NTP와 SNTP는 **패킷 꼴이 같고**, 시각·차이·왕복 지연을 계산하는 산술도 같다. NTP·SNTP 서버에게 NTP 클라이언트와 SNTP 클라이언트는 구별되지 않고, 클라이언트에게도 두 서버가 구별되지 않는다. 대부분의 NTP 클라이언트와 달리 **SNTP 클라이언트는 보통 한 번에 서버 하나만 쓴다** — §1
+- SNTP 클라이언트는 동기화 망의 끝(가장 높은 stratum)에서만 쓰고, 다른 클라이언트가 SNTP 클라이언트에 시각을 기대지 않게 하라고 강하게 권한다 — §1
+- NTP와 SNTP는 모두 UDP를 쓰고, IANA가 NTP에 정한 UDP 포트는 **123**이다. SNTP 클라이언트는 요청의 목적지 포트를 123으로 한다 — §4
+- 서버를 여럿 알려 주면 하나를 쓰고 나머지는 그 서버가 고장 났을 때의 예비로 둘 수 있다 — §7
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sntp`(역사 기록으로 — 「SNTP를 RFC 4330이 따로 적었고 지금은 RFC 5905 §14에 들어 있다」, §1 — 같은 패킷 꼴·서버 하나·정확도가 덜 필요한 기기, §4 — UDP 123), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — SNTP와 123)
+
+## (phase 78 step 5) RFC 5280 — Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile
+https://www.rfc-editor.org/rfc/rfc5280
+
+Proposed Standard(2008-05)이고 폐기되지 않았다(RFC 3280·4325·4630을 대체, RFC 6818·8398·8399·9549·9598·9608·9618·9925·10007이 고쳤다 — rfc-editor 상태 2026-11-11). **인증서가 무엇인지만** 가져온다. 인증서의 필드·확장·경로 검증·폐기 목록은 가져오지 않는다.
+
+- 공개 키를 쓰는 쪽은 그 짝인 개인 키를 올바른 상대(사람이나 시스템)가 가졌다는 믿음이 필요하다. 그 믿음을 주는 것이 **공개 키 인증서**다 — **공개 키 값을 그 주인(subject)에 묶은 데이터**이고, 믿을 수 있는 **인증 기관(CA)**이 인증서마다 디지털 서명을 해서 그 묶음을 보증한다 — §3.1
+- 인증서에는 서명된 내용 안에 유효 기간이 적혀 있다. 인증서를 쓰는 쪽이 서명과 기간을 스스로 확인할 수 있으므로, 인증서는 믿을 수 없는 통로로 나눠 주어도 된다 — §3.1
+- 인증서의 표준 형식은 ITU-T X.509이고, 지금 쓰는 것은 확장 칸을 더한 버전 3(v3)이다 — §3.1
+- 이 체계의 구성 요소는 인증서의 주인인 끝 개체(end entity), 인증 기관(CA), 등록 기관(RA) 등이다 — §3
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3.1 — 인증서는 주인의 이름과 공개 키를 묶어 인증 기관이 서명한 것, 받는 쪽이 서명과 기간을 확인한다), `app-protocols-mgmt-security.https`
+
+## (phase 78 step 5) RFC 7568 — Deprecating Secure Sockets Layer Version 3.0, RFC 6176 — Prohibiting Secure Sockets Layer (SSL) Version 2.0, RFC 6101 — The Secure Sockets Layer (SSL) Protocol Version 3.0 [Historic — 역사 기록으로만 쓴다]
+https://www.rfc-editor.org/rfc/rfc7568
+https://www.rfc-editor.org/rfc/rfc6176
+https://www.rfc-editor.org/rfc/rfc6101
+
+상태(rfc-editor 2026-11-11): RFC 7568은 Proposed Standard(2015-06 — RFC 8996이 고쳤다), RFC 6176은 Proposed Standard(2011-03 — RFC 8996이 고쳤다), RFC 6101은 Historic(2011-08 — SSL 3.0을 남기는 역사 기록). 셋 다 폐기되지 않았다.
+**SSL이 TLS와 어떤 관계이고 왜 쓰지 않는지만** 가져온다. SSL의 결함을 이루는 공격과 암호 구성의 세부는 가져오지 않는다.
+
+- SSL 3.0은 널리 구현됐고 **TLS의 바탕**이었지만 IETF가 정식 문서로 낸 적이 없어, 1996년판을 역사 기록으로 남긴 것이 RFC 6101이다 — RFC 6101 Abstract·Foreword. SSL도 TCP 같은 믿을 수 있는 전송 위에 얹히고, 응용 프로토콜이 데이터를 주고받기 전에 핸드셰이크로 서로 인증하고 암호 방식과 키를 정했다 — RFC 6101 §1(역사 기록)
+- SSL 3.0은 1996년에 나온 뒤 키 교환과 암호 방식 모두에 공격이 이어졌다. 1999년 TLS 1.0(RFC 2246)이 SSL 3.0을 대신했고 TLS 1.1·1.2가 뒤따랐다. SSL 3.0의 앞 판인 SSL 2.0도 충분히 안전하지 않다 — RFC 7568 §1
+- **SSL 3.0은 써서는 안 된다**(MUST NOT). 어느 판의 TLS에서도 SSL 3.0으로 협상하게 두어서는 안 된다. TLS는 어느 판이든 SSL 3.0보다 안전하다 — RFC 7568 §3
+- SSL 3.0은 데이터를 보호하는 방식(레코드 보호), 키 교환, 직접 만든 암호 구성 요소 모두에 결함이 있고, 확장을 쓸 수 없어 고칠 수도 없다 — RFC 7568 §4
+- TLS 클라이언트·서버는 SSL 2.0을 협상해서는 안 된다 — RFC 6176 Abstract, §3
+- 지금 TLS 1.3 명세도 SSL 2.0·3.0과 TLS 1.0·1.1을 협상하지 말라고 한다 — 위 RFC 9846 항목의 「(phase 78 step 5)」 줄(부록 E.5)
+- IANA 레지스트리는 443번의 설명을 「http protocol over TLS/SSL」로 적는다 — 위 IANA 항목의 「(phase 78 step 5)」 줄. 곧 「SSL/TLS」·「TLS/SSL」은 **두 이름을 함께 적는 표기**이고, 지금의 표준에서 실제로 쓰는 것은 TLS다
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(RFC 6101 — SSL은 TLS의 바탕이 된 앞 프로토콜, RFC 7568 §1·§3·§4·RFC 6176 — 결함 때문에 쓰지 않게 정해졌다, 「SSL/TLS」는 두 이름을 함께 적는 표기), `app-protocols-mgmt-security.https`,
+기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — HTTPS의 「SSL/TLS」)
+
+## (phase 78 step 5) RFC 3261 — SIP: Session Initiation Protocol
+https://www.rfc-editor.org/rfc/rfc3261
+
+Proposed Standard(2002-07)이고 폐기되지 않았다(RFC 2543을 대체. RFC 3265·3853·4320·4916·5393·5621·5626·5630·5922·5954·6026·6141·6665·6878·7462·7463·8217·8591·8760·8898·8996이 고쳤다 — rfc-editor 상태 2026-11-11). 기본 동작은 이 문서로 쓴다.
+**세션을 맺고 끝내는 기본 차례, 주소 꼴, 전송·포트, SDP·RTP와의 관계만** 가져온다. 프록시·등록·헤더 필드·응답 코드 전체·보안 방식은 가져오지 않는다. §4의 예에 나오는 사람·도메인 이름은 옮기지 않는다.
+
+- 세션은 참가자들 사이에 데이터를 주고받는 것이다. 음성·영상·문자 같은 실시간 멀티미디어 데이터를 나르는 프로토콜은 따로 있고, **SIP는 그것들과 함께 일하며** 인터넷의 끝점(사용자 에이전트)들이 서로를 찾고 함께 쓸 세션의 성격에 합의하게 한다.
+  SIP는 세션을 **만들고, 바꾸고, 끝내는** 도구이고 아래 전송 프로토콜이나 세션의 종류에 기대지 않는다 — §1
+- **SIP는 인터넷 전화 같은 멀티미디어 세션(회의)을 맺고, 바꾸고, 끝내는 응용 계층의 제어 프로토콜**이다. 이미 있는 세션에 사람을 부르거나 미디어를 더하고 뺄 수도 있다 — §2
+- SIP가 맡는 다섯 면: 상대가 어느 끝 시스템에 있는지(위치), 받을 뜻이 있는지(가용성), 쓸 미디어와 그 매개변수(능력), 울리기와 양쪽의 세션 매개변수 정하기(세션 설정), 넘기기·끝내기·매개변수 바꾸기(세션 관리) — §2
+- SIP는 혼자 완결된 통신 체계가 아니라 다른 프로토콜과 함께 쓰는 부품이다. 보통 **실시간 데이터를 나르는 RTP**, 멀티미디어 세션을 적는 SDP 등과 함께 쓴다 — §2
+- 요청·응답 방식은 HTTP와 비슷하다 — 트랜잭션 하나는 어떤 일을 시키는 요청 하나와 응답 하나 이상이다. 응답은 세 자리 코드와 짧은 설명 문구다 — §4
+- SIP 주소(SIP URI)는 전자우편 주소와 비슷한 꼴로 보통 사용자 이름과 호스트 이름을 담는다 — `sip:사용자@도메인`. SIPS URI(`sips:`)로 걸면 거는 쪽에서 받는 쪽 도메인까지 SIP 메시지를 TLS로 나른다 — §4, §19.1.
+  일반 꼴은 `sip:user:password@host:port;uri-parameters?headers`이고, user는 그 호스트(흔히 도메인)에서 특정 자원을 가리킨다 — §19.1.1
+- **통화 한 번의 차례**(§4 그림 1의 예 — 양쪽 도메인의 프록시 서버 둘을 거친다): 거는 쪽이 `INVITE` → 각 프록시가 받았다는 `100 (Trying)` → 받는 쪽 전화가 울리며 `180 (Ringing)` → 받으면 `200 (OK)`(받는 쪽의 세션 설명을 담는다) →
+  거는 쪽이 `ACK`(최종 응답을 받았다는 확인. 이때는 서로의 주소를 알게 돼 프록시를 거치지 않고 바로 간다 — 이 INVITE/200/ACK가 세션을 맺는 3단계 주고받기다) → **미디어 세션**(세션 설명으로 합의한 형식의 미디어 패킷을 주고받는다. 끝과 끝 사이의 미디어 패킷은 **SIP 신호와 다른 길**로 간다) →
+  한쪽이 끊으며 `BYE`(그림에서는 받은 쪽이 먼저 끊었다) → 상대가 `200 (OK)`. BYE에는 ACK를 보내지 않는다 — ACK는 INVITE의 최종 응답에만 보낸다 — §4
+- 미디어 종류·코덱 같은 세션의 세부는 SIP로 적지 않고, SIP 메시지 본문에 다른 형식(SDP)으로 담는다 — 전자우편이 첨부를, HTTP 메시지가 웹 페이지를 나르는 것처럼. INVITE와 200 (OK)에 세션 설명이 한 번씩 실려 간단히 협상한다 — §4
+- 받는 쪽이 받지 않거나 통화 중이면 200 (OK) 대신 오류 응답이 가고 미디어 세션은 생기지 않는다 — §4. 통화 중에 한쪽이 새 미디어 설명을 담은 re-INVITE로 세션의 성격을 바꿀 수 있다 — §4, §14
+- 세션을 끝내는 것은 `BYE`다. 맺어진 통화에서는 거는 쪽과 받는 쪽 모두 BYE를 보낼 수 있다 — §15
+- INVITE를 받은 서버 쪽 트랜잭션은 200ms 안에 다른 응답을 보낼 것을 알지 못하면 `100 (Trying)`을 보내야 한다(MUST) — §17.2.1. (그러니 프록시 없이 두 전화가 바로 주고받아도 `180` 앞에 `100`이 올 수 있다)
+- 전송: **모든 SIP 요소는 UDP와 TCP를 둘 다 구현해야 한다**(MUST) — 큰 메시지는 TCP로 보내야 해서다 — §18. 서버는 UDP로 기다리는 포트·인터페이스에서 TCP로도 기다려야 한다 — §18.2.1.
+  기본 포트는 UDP·TCP·SCTP에서 **5060**, TLS에서 **5061**이다 — §18.1.1, §18.2.1, §19.1.1 표의 주. `sip:` 주소의 기본 전송은 UDP, `sips:` 주소는 TCP다 — §19.1.1 표의 주
+- SIP는 IPv4와 IPv6 모두에서 동작한다 — §2
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1·§2 — 세션을 맺고 바꾸고 끝내는 응용 계층의 제어(신호) 프로토콜, RTP·SDP와 함께 쓰는 부품, §4 — 통화 차례·SDP·미디어는 다른 길, §15 — BYE는 어느 쪽이든, §17.2.1 — `100 (Trying)`,
+§18·§19.1 — UDP·TCP 둘 다, 5060·5061, 주소 꼴), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 화상 회의의 SIP)
+
+## (phase 78 step 5) RFC 8866 — SDP: Session Description Protocol
+https://www.rfc-editor.org/rfc/rfc8866
+
+Proposed Standard(2021-01)이고 폐기되지 않았다(RFC 4566을 대체 — rfc-editor 상태 2026-11-11). **SDP가 무엇이고 SIP와 어떻게 함께 쓰이는지만** 가져온다. SDP의 문법은 가져오지 않는다.
+
+- 멀티미디어 회의·인터넷 전화·영상 스트리밍 같은 세션을 시작할 때는 참가자들에게 미디어의 세부, 미디어를 보낼 주소, 그 밖의 세션 정보를 알려야 한다. SDP는 그 정보를 적는 **표준 형식**이고 **그 자체로는 전송 프로토콜이 아니다** — SIP·RTSP·전자우편·HTTP 같은 다른 프로토콜에 실려 간다 — §1
+- SIP로 세션을 만들 때 SIP 메시지가 세션 설명을 실어 참가자들이 함께 쓸 미디어 형식에 합의하게 하고, 그 세션 설명은 흔히 SDP로 적는다 — §3.1
+
+쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.sip`(§1·§3.1 — 어떤 음성·영상 방식을 쓸지는 SDP로 적어 SIP 메시지에 실어 주고받는다)
+
+## (phase 78 step 11) Microsoft Learn — ipconfig, nslookup, pathping, Command-Line Syntax Key
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pathping
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key
+
+2026-11-11에 IPv4로 내려받아 읽은 판: ipconfig `updated_at` 2026-02-16(바닥의 「Last updated on」 2023-02-03, `ms.date` 2017-10-16), nslookup `updated_at` 2026-10-21(「Last updated on」 2024-11-01, `ms.date` 2023-09-08),
+pathping `updated_at` 2026-02-16(「Last updated on」 2024-11-01, `ms.date` 2018-07-11), Command-Line Syntax Key `updated_at` 2026-09-08(「Last updated on」 2026-09-08). 넷 다 「Applies to」가 Windows Server 2016~2025, Windows 10·11, Azure Local 2311.2 이후다.
+ipconfig·pathping 페이지는 옵션을 빗금(`/all`, `/q`)으로 적고, nslookup 페이지는 옵션을 하이픈으로 붙인다(아래 줄). ping·tracert·netstat 페이지의 사실은 위 「(phase 71) Microsoft Learn …」·「(phase 74 step 11) … Microsoft Learn — route, netstat」 항목에 있다.
+
+- **ipconfig**: 지금의 TCP/IP 네트워크 설정 값을 모두 보이고, DHCP와 DNS 설정을 새로 고친다. **옵션 없이 부르면 모든 어댑터마다 IPv4·IPv6 주소, 서브넷 마스크, 기본 게이트웨이를 보인다** — 첫 문단.
+  어댑터는 설치된 네트워크 어댑터 같은 **물리적인 인터페이스**일 수도, 전화 접속 연결 같은 **논리적인 인터페이스**일 수도 있다 — Parameters의 `/all`
+- ipconfig `/all`: **모든 어댑터의 TCP/IP 설정 전체**를 보인다 — Parameters. **이 페이지는 `/all`이 보이는 항목을 하나하나 늘어놓지 않고, 출력 예도 없다**(Examples에는 입력하는 줄만 있다).
+  항목 이름은 아래 「(phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서 …」 항목의 출력 예와 점검 차례에서만 확인된다 — 호스트 이름, IP 주소, 서브넷 마스크, 기본 게이트웨이, DNS 서버, 연결별 DNS 접미사, 그리고 위 「(phase 74 step 5) Microsoft Learn …」 항목의 자동 구성 줄.
+  **물리 주소(MAC 주소)·DHCP 사용 여부·DHCP 서버·임대 시각이 `/all`에 나온다는 것은 Windows Server·Windows 명령 문서에서 찾지 못했다**(ipconfig 페이지, 아래 문제 해결 문서 여섯, learn.microsoft.com 검색 — 2026-11-11). Azure VPN Gateway 문서의 출력 예에 Physical Address·DHCP Enabled 줄이 있지만 허용 범위(Windows Server와 Windows 명령) 밖이라 쓰지 않는다
+- ipconfig `/release [<adapter>]`: DHCP 서버에 **DHCPRELEASE 메시지**를 보내 지금의 DHCP 설정을 놓아 주고, 모든 어댑터(어댑터를 적지 않았을 때)나 적은 어댑터의 IP 주소 설정을 버린다.
+  주소를 자동으로 받도록 설정된 어댑터에서는 그 어댑터의 TCP/IP가 꺼진다 — Parameters. DHCPRELEASE가 무엇인지는 위 「(phase 73 step 1) RFC 951 …, RFC 2131 …」 항목(클라이언트가 주소를 돌려주고 남은 임대를 취소한다)
+- ipconfig `/renew [<adapter>]`: 모든 어댑터나 적은 어댑터의 **DHCP 설정을 새로 받는다**. **주소를 자동으로 받도록 설정된 어댑터가 있는 컴퓨터에서만** 쓸 수 있다 — Parameters. 어댑터 이름은 옵션 없이 부른 ipconfig에 나오는 이름을 적고, 이름에 빈칸이 있으면 큰따옴표로 감싸며 `*`로 여러 어댑터를 고를 수 있다 — Parameters, Remarks.
+  Examples는 한 어댑터만 새로 받는 `ipconfig /renew` 예를 든다. **`/release` 다음 `/renew`의 차례는 이 페이지의 예에 없고** 문제 해결 문서에 있다(아래 항목)
+- ipconfig `/displaydns`: **DNS 클라이언트 리졸버 캐시**의 내용을 보인다 — 로컬 Hosts 파일에서 미리 넣은 항목과, 이 컴퓨터가 최근 이름 질의를 풀며 얻은 레코드가 함께 든다. DNS Client 서비스는 자주 묻는 이름을 설정된 DNS 서버에 묻기 **전에** 이 캐시로 빨리 푼다 — Parameters
+- ipconfig `/flushdns`: 그 캐시를 **비우고 새로 시작한다**. DNS 문제를 풀 때 부정 응답 항목(이름이 없다는 답을 기억해 둔 것)과 동적으로 더해진 다른 항목을 버리는 데 쓴다 — Parameters. Examples도 DNS 이름 풀이 문제를 풀 때 쓰는 예로 든다.
+  「비운 뒤에는 그 이름을 DNS 서버에 다시 묻는다」는 이 페이지에 한 문장으로 적혀 있지 않다 — `/displaydns`의 「DNS 서버에 묻기 전에 캐시로 먼저 푼다」와 `/flushdns`의 「캐시를 비운다」를 이어서 나오는 말이다
+- ipconfig `/setclassid <adapter> [<classID>]`: 어댑터의 **DHCP 클래스 ID**를 정한다(`/showclassid`는 보인다). 주소를 자동으로 받는 어댑터에서만 쓸 수 있다 — Parameters. 기출의 오답 보기([기출 2026-02-01 #41])라 뜻만 적는다
+- ipconfig는 주소를 자동으로 받는 컴퓨터에서 가장 쓸모가 있다 — 어느 설정 값이 DHCP·APIPA·대체 구성 가운데 무엇으로 정해졌는지 알 수 있다 — Remarks
+- **nslookup**: DNS 기반 구조의 문제를 살피는 데 쓰는 정보를 보인다 — 첫 문단. 비대화형으로 쓸 때 첫 인자는 찾을 컴퓨터의 **이름이나 IP 주소**, 둘째 인자는 물어볼 **DNS 이름 서버**이고, 둘째를 빼면 기본 DNS 이름 서버에 묻는다. 이름을 주면 그 IP 주소를, IP 주소를 주면 그 도메인 이름을 찾는 예가 있다 — 「Noninteractive mode」.
+  옵션은 `nslookup -<option>`처럼 하이픈으로 붙인다 — 같은 절. 출력 예는 없다
+- **pathping**: 출발지와 목적지 사이 **중간 홉의 지연과 손실**에 관한 정보를 준다. 경로의 라우터마다 에코 요청을 **일정 시간 동안 여러 번** 보내고 라우터마다 돌아온 패킷으로 결과를 계산한다. 어느 라우터나 링크에서 얼마나 잃는지를 보이므로 **어느 라우터나 서브넷에 문제가 있을 수 있는지** 알 수 있다.
+  또 경로에 어떤 라우터가 있는지를 **tracert와 같이** 알아낸 뒤, 정한 시간 동안 모든 라우터에 주기적으로 ping을 보내 각 라우터에서 돌아온 수로 통계를 낸다 — 첫 세 문단. 옵션 없이 부르면 도움말을 보인다 — 첫 문단
+- pathping의 옵션(기출이 묻지는 않지만 오래 걸리는 까닭을 말하는 데 필요한 것): `/q`는 경로의 **라우터마다 보낼 에코 요청 수**(기본 100), `/p`는 **잇따른 ping 사이의 간격**(ms, 기본 250 — 1/4초)이다. ping은 홉마다 하나씩 차례로 보내므로 **같은 홉에 보내는 두 ping의 간격은 간격 값에 홉 수를 곱한 것**이다.
+  `/h`는 찾을 최대 홉 수(기본 30), `/n`은 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않아 결과가 빨리 나올 수 있게 한다, `/w`는 응답 하나를 기다리는 시간(ms, 기본 3000) — Parameters. **모든 매개변수가 대소문자를 가린다** — Remarks.
+  혼잡과 몰려서 잃는 손실의 영향을 줄이려면 ping을 충분히 느리게 보내야 한다 — Remarks
+- pathping의 **출력 예**(「Example of the pathping command output」, `pathping /n` 예): ① 「목적지 이름 `[주소]`까지, 최대 30홉」 줄과 경로 목록 — 홉 번호 0(출발지 자신)부터 차례로 주소 하나씩. ② 「몇 초 동안 통계를 계산하는 중」이라는 줄. ③ 통계 표 — 머리줄은 Hop, RTT, **Source to Here**(출발지에서 그 홉까지)의 Lost/Sent = Pct, **This Node/Link**(그 노드나 링크에서)의 Lost/Sent = Pct, address.
+  표는 라우터 줄(홉 번호·RTT·두 칸의 「잃은 수/보낸 수 = 백분율」·주소)과 그 사이의 **링크 줄**(address 칸에 세로 막대 `|`, This Node/Link 칸만 채운다)이 번갈아 나온다. ④ 「Trace complete.」 — 같은 절. 값(주소·시간·수)은 옮기지 않는다
+- pathping의 결과를 읽는 법(출력 예 뒤 설명): 경로 목록이 먼저 나오고, 이어 **바쁘다는 줄이 대략 90초 동안**(홉 수에 따라 다르다) 보이는 사이에 앞서 나온 모든 라우터와 그 사이 링크에서 정보를 모으며, 그 시간이 끝나면 결과를 보인다.
+  예에서는 두 라우터 사이의 **링크** 하나가 패킷의 13%를 잃고, 홉 2·4의 라우터는 **자기에게 온** 패킷을 잃지만 그 손실은 자기를 지나가는 트래픽을 넘기는 데 영향을 주지 않는다.
+  **링크(`|`)에 보이는 손실률**은 경로로 넘어가는 패킷이 그 링크의 혼잡으로 잃는 것이고, **라우터(주소)에 보이는 손실률**은 그 라우터가 과부하일 수 있다는 뜻이다 — 같은 절
+- (계산 — 문서의 문장이 아니다) 출력 예는 「125초 동안 통계를 계산」이라고 적는데, 이 예의 홉은 출발지 다음으로 5개이므로 기본값 그대로 `/q` 100 × `/p` 250ms × 홉 5 = 125초가 된다. 위 「같은 홉에 보내는 두 ping의 간격 = 간격 × 홉 수」에서 나오는 값이다.
+  문서의 「대략 90초」는 홉 수에 따라 달라지는 어림으로 적힌 말이다 — 본문은 「홉이 많을수록 오래 걸린다」를 쓰고, 이 계산을 쓴다면 계산이라고 밝힌다
+- **Command-Line Syntax Key**: 명령의 문법 줄에 쓰는 기호(그대로 칠 글자, `< >` 안은 값을 넣을 자리, `[ ]` 안은 넣지 않아도 되는 것, `{ }`와 `|`는 하나를 골라야 하는 것, `…`은 되풀이)를 설명한다 — 표.
+  **옵션 앞의 빗금(`/`)과 하이픈(`-`)을 어떻게 쓰는지는 이 페이지에도 없다** — `exam-notes.md` E33
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(옵션 없이 — 어댑터마다 IPv4·IPv6 주소·서브넷 마스크·기본 게이트웨이, 어댑터는 물리·논리 인터페이스, `/all`은 설정 전체 — 항목 목록과 출력 예 없음, 물리 주소·DHCP 서버·임대 시각은 근거 없음),
+`diagnostic-commands.ipconfig-options`(`/release` — DHCPRELEASE·주소 설정을 버림·TCP/IP가 꺼짐, `/renew` — 자동으로 받는 어댑터에서만, `/displaydns` — Hosts 항목과 최근 레코드·DNS 서버보다 먼저, `/flushdns` — 비우기와 부정 응답, `/setclassid`, nslookup — 이름이나 주소를 DNS 서버에 묻는다),
+`diagnostic-commands.pathping`(tracert처럼 경로를 찾은 뒤 라우터마다 일정 시간 여러 번, 노드·링크 손실, `/q` 100·`/p` 250ms, 출력의 세 부분과 칸, 대략 90초·125초 계산, 링크 손실과 라우터 손실의 뜻), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+
+## (phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서(DNS 클라이언트, 네트워크 어댑터의 IP 주소 바꾸기, 공유 프린터, IPv6 설치, TCP/IP 통신, DHCP)
+https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/change-ip-address-network-adapter
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/printing/cannot-install-shared-network-printer-locally
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/install-configure-ip-version-6
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-tcp-ip-communication-guidance
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-dhcp-guidance
+
+2026-11-11에 IPv4로 내려받아 읽은 판: DNS 클라이언트 문서 `updated_at` 2025-09-22(「Last updated on」 2020-08-07, 「Applies to」 Windows Server 2016~2025). 나머지 다섯은 모두 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 「Applies to」 지원되는 Windows Server)다.
+명령 참조 페이지가 출력의 꼴이나 쓰는 차례를 보이지 않는 곳을 메우는 데만 쓴다. **IP 주소 바꾸기·공유 프린터·IPv6 문서는 Windows Server 2003·Windows XP 무렵의 글**이라(「시작 > 실행」, 「Local Area Connection」, 출력의 `IP Address` 줄) 화면의 꼴은 지금 판과 다를 수 있다 — 항목 이름과 차례만 가져오고 화면을 그대로 옮기지 않는다.
+
+- **DNS 클라이언트 문제 해결**(「Check IP configuration」): 관리자 명령 프롬프트에서 `ipconfig /all`을 실행하고 — 그 네트워크에 맞는 IP 주소·서브넷 마스크·기본 게이트웨이가 있는지, **출력에 나온 DNS 서버**의 주소가 맞는지, 출력의 **연결별 DNS 접미사**가 맞는지 본다.
+  설정이 틀렸고 동적으로 설정된 클라이언트이면 `ipconfig /renew`로 DHCP 서버에서 설정을 다시 받게 한다 — 같은 절
+- 같은 문서(이름 풀이 시험 뒤): `nslookup <바깥 이름>`으로 공용 이름을 물어보고, 시험이 다 성공했는데도 어떤 이름이 실패하면 `ipconfig /displaydns`로 그 이름을 찾는다. 그 이름 아래 「Name does not exist」가 있으면 DNS 서버가 준 부정 응답이 클라이언트에 캐시된 것이고, `ipconfig /flushdns`로 캐시를 비워 푼다 — 같은 문서 뒷부분
+- **IP 주소 바꾸기**(「How to automatically obtain an IP Address」): 주소를 자동으로 받게 바꾼 뒤 명령 프롬프트에서 `ipconfig /release`를 입력하고, 이어 `ipconfig /renew`를 입력하면 **DHCP 서버가 어댑터에 IP 주소를 준다**. 그때 나오는 화면은 「Windows Server IP Configuration」 머리줄, 어댑터 이름 줄, 그 아래 「항목 이름 . . . : 값」 꼴의 줄들 — 연결별 DNS 접미사, IP 주소, 서브넷 마스크, 기본 게이트웨이 — 이다 — 같은 절
+- **공유 프린터 문서**(「Resolution」 Method 2): `ipconfig /all`의 출력이 다음과 비슷할 수 있다며 보이는 예 — 「Windows IP Configuration」 머리줄, **호스트 이름**(Host Name), 주 DNS 접미사, DNS 접미사 검색 목록, 어댑터 이름 줄, IP 주소, 서브넷 마스크, **DNS 서버**(여러 줄) — 같은 절. 옛 판의 꼴이고 기본 게이트웨이 줄은 이 예에 없다
+- **IPv6 설치 문서**(「Test IPv6 connectivity by using the PING command」 등): 이름으로 IPv6 호스트에 ping할 때는 `ping -6 name`처럼 **`-6` 매개변수를 넣어야 한다**고 쓰고, `tracert -6`으로 IPv6 경로를 따라간다고 쓴다 — 명령 참조 페이지는 같은 옵션을 `/6`으로 적는다(위 「(phase 71) …」 항목). **Microsoft 문서가 같은 ping·tracert 옵션을 하이픈으로 적은 곳**이다 — `exam-notes.md` E33
+- **TCP/IP 통신 문제 해결**: 특정 포트로 이어지지 않으면 그 포트가 **기다리는(listening) 상태인지** CMD에서 `netstat -nato | findstr :<port>`로 확인하라고 한다 — 「Troubleshooting checklist」 Step 6. TCP 연결이 멈춘 것 같으면 `netstat -a`로 이 컴퓨터의 TCP·UDP 포트 활동을 모두 보라고 한다 — 「Common issues and solutions」
+- **DHCP 문제 해결**: DHCP 서버만 UDP 67·68 포트에서 기다리고 있는지(다른 프로세스가 차지하지 않았는지) `netstat -anb`로 확인하라고 한다 — 「Troubleshoot DHCP servers」. 클라이언트에서 `ipconfig /renew`를 실행해 DHCP 문제를 다시 일으켜 보라고도 한다 — 「Data collection」
+- (phase 78 step 15) **어느 프로그램이 TCP 포트를 쓰는지 알아내기**(https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/determine-which-program-use-block-tcp-ports — 2026-11-11에 IPv4로 내려받아 읽음, `updated_at` 2026-02-19, `ms.date` 2026-02-12, 「Applies to」 Windows Server 2003): `-o`는 연결마다 그 연결과 이어진 프로세스 ID를 보이고, 그것으로 어느 프로세스(프로그램)가 어느 포트에서 기다리는지 알 수 있다고 한다.
+  `netstat -ano`의 출력 예가 머리줄을 **Proto · Local Address · Foreign Address · State · PID** 차례로 적고 그 아래 줄도 같은 차례(프로토콜, 로컬 주소, 외부 주소, 상태, PID)다 — 곧 **PID 칸은 상태 칸 뒤의 마지막 칸**이다. 작업 관리자의 프로세스 탭에서 PID로 프로그램을 찾는다 — 「Summary」·「How to match the process ID to a program」.
+  **Windows Server 2003의 글**이라 화면의 꼴은 지금 판과 다를 수 있다 — 칸의 차례만 가져오고 화면을 그대로 옮기지 않는다. 원격 데스크톱 문제 해결 문서(https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/remote-desktop-disconnected — 2026-11-11 Microsoft Learn 검색으로 읽음)도 `netstat -a -o`의 결과에서 포트를 쓰는 프로세스의 PID가 PID 칸에 나온다고 쓴다(위 「Windows netstat의 결과 칸」 줄은 `-o`의 PID가 어느 칸에 놓이는지 적혀 있지 않다고 했다 — 이 문서로 메운다)
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(`/all` 출력의 항목 — 호스트 이름·IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버·연결별 DNS 접미사, 옛 판의 꼴), `diagnostic-commands.ipconfig-options`(`/release` 다음 `/renew`의 차례와 그 결과, `/displaydns`·`/flushdns`로 부정 응답 캐시를 찾고 비우기),
+`diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임; (phase 78 step 15) `netstat -ano`의 PID 칸이 상태 칸 뒤의 마지막 칸이다 — 본문·도식·n224), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+
+## (phase 78 step 11) Linux man-pages — ip-address(8), termios(3)
+https://man7.org/linux/man-pages/man8/ip-address.8.html
+https://man7.org/linux/man-pages/man3/termios.3.html
+
+2026-11-11에 IPv4로 내려받아 읽은 판: ip-address(8)은 iproute2 프로젝트의 페이지이고 upstream Git에서 2026-08-04에 가져온 것이다(그때 최신 커밋 2026-07-28, 바닥줄 2011-12-20, HTML 2026-09-09). termios(3)은 Linux man-pages 6.18(2026-02-08, man-pages-6.18 타르볼, HTML 2026-05-30)이다.
+**명령의 이름과 무엇을 보이는지만** 적는다.
+
+- **ip-address(8)**: 주소는 네트워크 장치에 붙은 IPv4나 IPv6 주소이고, 한 장치에 주소가 여럿 붙을 수 있다. `ip address` 명령은 주소와 그 속성을 보이고, 더하고, 지운다 — DESCRIPTION.
+  `ip address show`는 모든 네트워크 인터페이스에 붙은 IPv4·IPv6 주소를 보이고 `show`는 빼도 된다. `ip address show dev <이름>`은 그 인터페이스의 주소만 보인다 — EXAMPLES. **출력 예는 없다**
+- **termios(3)**: 터미널의 끼어들기 문자(INTR)는 **Ctrl-C**이고, 이 문자를 받으면 **SIGINT** 시그널을 보낸다(ISIG가 켜져 있을 때) — DESCRIPTION, 터미널 특수 문자를 정하는 c_cc 배열 설명의 VINTR. SIGINT가 무엇인지는 위 「(phase 76) Linux man-pages …」 항목의 signal(7) 줄
+
+쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(Linux에서 주소를 보는 명령 `ip address`), `diagnostic-commands.ping-options`(Linux ping을 Ctrl-C로 끝내면 SIGINT가 가서 요약을 보이고 끝난다)

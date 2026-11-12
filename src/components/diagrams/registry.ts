@@ -103,6 +103,8 @@ import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
 import { FreeMemoryDiagram } from './FreeMemoryDiagram'
 import { FstabFieldsDiagram } from './FstabFieldsDiagram'
+import { FtpConnectionsDiagram } from './FtpConnectionsDiagram'
+import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
@@ -111,6 +113,7 @@ import { HealthViewsDiagram } from './HealthViewsDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HttpsStackDiagram } from './HttpsStackDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
@@ -120,10 +123,13 @@ import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
+import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
+import { IpconfigViewDiagram } from './IpconfigViewDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
@@ -145,11 +151,13 @@ import { LoopbackDiagram } from './LoopbackDiagram'
 import { LrsZrsDiagram } from './LrsZrsDiagram'
 import { MacAddressDiagram } from './MacAddressDiagram'
 import { MacTableDiagram } from './MacTableDiagram'
+import { MailPathDiagram } from './MailPathDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
+import { MibTreeDiagram } from './MibTreeDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
@@ -159,6 +167,9 @@ import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
 import { NeighborDiscoveryDiagram } from './NeighborDiscoveryDiagram'
+import { NetstatLinuxOptionsDiagram } from './NetstatLinuxOptionsDiagram'
+import { NetstatRowsDiagram } from './NetstatRowsDiagram'
+import { NetstatWindowsOptionsDiagram } from './NetstatWindowsOptionsDiagram'
 import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
 import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
@@ -167,6 +178,7 @@ import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
 import { NsgAssociationDiagram } from './NsgAssociationDiagram'
 import { NsgRuleOrderDiagram } from './NsgRuleOrderDiagram'
+import { NtpStratumDiagram } from './NtpStratumDiagram'
 import { OctalModeDiagram } from './OctalModeDiagram'
 import { OpeningStatesDiagram } from './OpeningStatesDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
@@ -178,11 +190,13 @@ import { PartitionLayoutDiagram } from './PartitionLayoutDiagram'
 import { PasswdFieldsDiagram } from './PasswdFieldsDiagram'
 import { PasswordAgingDiagram } from './PasswordAgingDiagram'
 import { PathResolveDiagram } from './PathResolveDiagram'
+import { PathpingStatsDiagram } from './PathpingStatsDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
 import { PermissionStringDiagram } from './PermissionStringDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
+import { PingOptionsDiagram } from './PingOptionsDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
@@ -190,6 +204,7 @@ import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
+import { Pop3DownloadDiagram } from './Pop3DownloadDiagram'
 import { PortDemuxDiagram } from './PortDemuxDiagram'
 import { PortRangesDiagram } from './PortRangesDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
@@ -235,12 +250,19 @@ import { SharedResponsibilityDiagram } from './SharedResponsibilityDiagram'
 import { ShellLayerDiagram } from './ShellLayerDiagram'
 import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
+import { SipCallDiagram } from './SipCallDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
+import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
+import { SnmpPollTrapDiagram } from './SnmpPollTrapDiagram'
+import { SnmpRolesDiagram } from './SnmpRolesDiagram'
+import { SnmpVersionsDiagram } from './SnmpVersionsDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
+import { SntpClientDiagram } from './SntpClientDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
+import { SshSessionDiagram } from './SshSessionDiagram'
 import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
@@ -262,12 +284,15 @@ import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TcpStatesDiagram } from './TcpStatesDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
+import { TftpBlocksDiagram } from './TftpBlocksDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TimeWaitDiagram } from './TimeWaitDiagram'
+import { TlsHandshakeDiagram } from './TlsHandshakeDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
+import { TracertHopsDiagram } from './TracertHopsDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
@@ -512,6 +537,31 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.opening-states': OpeningStatesDiagram,
   'tcp-connection.closing-states': ClosingStatesDiagram,
   'tcp-connection.time-wait': TimeWaitDiagram,
+  'app-protocols-mail-file.email-delivery': MailPathDiagram,
+  'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
+  'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
+  'app-protocols-mail-file.imap': ImapSyncDiagram,
+  'app-protocols-mail-file.ftp': FtpConnectionsDiagram,
+  'app-protocols-mail-file.ftp-modes': FtpModesDiagram,
+  'app-protocols-mail-file.tftp': TftpBlocksDiagram,
+  'app-protocols-mail-file.ssh': SshSessionDiagram,
+  'app-protocols-mgmt-security.snmp': SnmpRolesDiagram,
+  'app-protocols-mgmt-security.mib': MibTreeDiagram,
+  'app-protocols-mgmt-security.snmp-operations': SnmpPollTrapDiagram,
+  'app-protocols-mgmt-security.snmp-versions': SnmpVersionsDiagram,
+  'app-protocols-mgmt-security.ntp': NtpStratumDiagram,
+  'app-protocols-mgmt-security.sntp': SntpClientDiagram,
+  'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
+  'app-protocols-mgmt-security.https': HttpsStackDiagram,
+  'app-protocols-mgmt-security.sip': SipCallDiagram,
+  'diagnostic-commands.ipconfig': IpconfigViewDiagram,
+  'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
+  'diagnostic-commands.ping-options': PingOptionsDiagram,
+  'diagnostic-commands.tracert': TracertHopsDiagram,
+  'diagnostic-commands.pathping': PathpingStatsDiagram,
+  'diagnostic-commands.netstat': NetstatRowsDiagram,
+  'diagnostic-commands.netstat-windows-options': NetstatWindowsOptionsDiagram,
+  'diagnostic-commands.netstat-linux-options': NetstatLinuxOptionsDiagram,
   'linux-filesystem.directory-hierarchy': DirectoryTreeDiagram,
   'linux-filesystem.standard-directories': StandardDirectoriesDiagram,
   'linux-filesystem.etc-directory': EtcFilesDiagram,
