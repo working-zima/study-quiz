@@ -170,6 +170,7 @@ import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
+import { NamedFilesDiagram } from './NamedFilesDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
@@ -235,6 +236,7 @@ import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
+import { ResolvConfDiagram } from './ResolvConfDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
@@ -640,6 +642,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-accounts.useradd': UseraddOptionsDiagram,
   'linux-accounts.chage': PasswordAgingDiagram,
   'linux-accounts.login-records': LoginRecordsDiagram,
+  'linux-servers.resolv-conf': ResolvConfDiagram,
+  'linux-servers.bind-named': NamedFilesDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

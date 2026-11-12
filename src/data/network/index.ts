@@ -15,6 +15,7 @@ import linuxAccountsVisuals from './visuals/linux-accounts.json'
 import linuxFilesystemVisuals from './visuals/linux-filesystem.json'
 import linuxPermissionsVisuals from './visuals/linux-permissions.json'
 import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
+import linuxServersVisuals from './visuals/linux-servers.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import portsVisuals from './visuals/ports.json'
@@ -53,6 +54,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'linux-shell': linuxShellVisuals,
   'linux-process-boot': linuxProcessBootVisuals,
   'linux-accounts': linuxAccountsVisuals,
+  'linux-servers': linuxServersVisuals,
 }
 
 export const networkSubject: Subject = {
