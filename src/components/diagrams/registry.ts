@@ -67,6 +67,8 @@ import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
+import { DnsTransportDiagram } from './DnsTransportDiagram'
+import { DnssecChainDiagram } from './DnssecChainDiagram'
 import { DomainServicesDiagram } from './DomainServicesDiagram'
 import { DomainTreeDiagram } from './DomainTreeDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
@@ -561,6 +563,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'dns.soa-record': SoaFieldsDiagram,
   'dns.reverse-lookup': ReverseNameDiagram,
   'dns.dns-round-robin': RoundRobinAnswersDiagram,
+  'dns.dns-transport': DnsTransportDiagram,
+  'dns.dnssec': DnssecChainDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,

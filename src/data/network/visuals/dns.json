@@ -554,6 +554,94 @@
         }
       ],
       "sources": ["dns.dns-round-robin"]
+    },
+    "dns-transport": {
+      "label": "클라이언트가 로컬 DNS 서버에 이름을 물을 때 보통은 UDP로 묻고 답하지만, 응답이 잘리면 같은 질의를 TCP로 다시 묻는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트와 오른쪽 로컬 DNS 서버 두 기둥 사이에 UDP 53으로 질의, UDP로 응답, UDP로 잘린 응답, TCP 53으로 질의, TCP로 응답을 위에서 아래로 놓은 그림",
+      "question": "DNS는 언제 UDP를 쓰고 언제 TCP를 쓸까?",
+      "idleCaption": "클라이언트 192.0.2.10이 로컬 DNS 서버 192.0.2.53에 www.example.com의 IP 주소를 묻는 동안 오가는 메시지를 차례대로 위에서 아래로 놓았다. 두 주소는 예로 붙인 것이다. 버튼을 고르면 보통의 질의와, 응답이 커서 잘렸을 때를 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 로컬 DNS 서버이고, 그 아래 박스에는 저마다의 IP 주소를 붙였다. 가운데 노드 하나가 메시지 하나이고, 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "client": "클라이언트",
+        "server": "로컬 DNS 서버",
+        "query": "UDP 53으로 질의",
+        "answer": "UDP로 응답",
+        "truncated": "UDP로 잘린 응답",
+        "tcp-query": "TCP 53으로 질의",
+        "tcp-answer": "TCP로 응답"
+      },
+      "groups": {
+        "client-side": "192.0.2.10",
+        "server-side": "192.0.2.53"
+      },
+      "notes": {
+        "answer-note": "연결을 맺지 않는다",
+        "truncated-note": "잘렸다는 표시가 켜져 있다",
+        "tcp-query-note": "연결을 맺고 다시 묻는다",
+        "tcp-answer-note": "잘리지 않고 온다"
+      },
+      "scenarios": [
+        {
+          "id": "udp",
+          "label": "보통 질의",
+          "caption": "보통의 질의는 UDP로 보낸다. 클라이언트가 로컬 DNS 서버의 UDP 53번 포트로 질의 하나를 보내면 응답 하나가 돌아오고, 그 앞에 연결을 맺느라 기다리는 단계가 없다.",
+          "sources": ["dns.dns-transport"]
+        },
+        {
+          "id": "truncated",
+          "label": "큰 응답",
+          "caption": "응답이 UDP로 보내기에 커서 잘렸다는 표시가 켜진 채 오면, 클라이언트는 그 응답을 쓰지 않는다. 로컬 DNS 서버의 TCP 53번 포트로 연결을 맺고 같은 질의를 다시 보내, 잘리지 않은 응답을 받는다.",
+          "sources": ["dns.dns-transport"]
+        }
+      ],
+      "sources": ["dns.dns-transport"]
+    },
+    "dnssec-chain": {
+      "label": "서명된 영역이 레코드에 서명을 붙여 두고, 로컬 DNS 서버가 루트까지 이어진 키로 그 서명을 확인하며, 서명이 응답의 내용을 감추지는 않는다는 것을 보이는 도식",
+      "svgLabel": "루트 영역, com 영역, example.com 영역을 위에서 아래로 이은 박스와, A 198.51.100.10과 RRSIG (서명)가 든 답 박스, 로컬 DNS 서버를 놓은 그림",
+      "question": "DNSSEC은 응답의 무엇을 확인해 줄까?",
+      "idleCaption": "www.example.com의 A 레코드를 예로, 서명된 example.com 영역과 그 위의 com·루트 영역이 이루는 사슬, 레코드와 서명이 함께 실린 답, 그 답을 받는 로컬 DNS 서버를 놓았다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 서명을 붙이는 일, 확인하는 일, 감추지 않는 것을 볼 수 있다.",
+      "legend": "위 박스의 세 영역을 잇는 선은 위 영역과 그 아래 영역을 잇는다. 아래 박스는 응답에 함께 실린 레코드와 서명이다. 화살표는 서명을 붙이는 쪽과 답이 가는 쪽을 가리킨다.",
+      "nodes": {
+        "root": "루트 영역",
+        "com": "com 영역",
+        "example": "example.com 영역",
+        "record": "A 198.51.100.10",
+        "signature": "RRSIG (서명)",
+        "local": "로컬 DNS 서버"
+      },
+      "groups": {
+        "chain": "서명된 영역",
+        "answer": "www.example.com의 답"
+      },
+      "notes": {
+        "sign-note": "개인 키로 서명해 둔다",
+        "root-com-note": "루트가 com의 키를 보증",
+        "com-example-note": "com이 example.com의 키를 보증",
+        "local-note": "공개 키로 서명을 확인한다",
+        "visible-note": "내용은 그대로 보인다"
+      },
+      "scenarios": [
+        {
+          "id": "sign",
+          "label": "서명",
+          "caption": "example.com 영역은 www.example.com의 A 레코드에 그 영역의 개인 키로 서명해, 그 서명을 RRSIG 레코드에 담아 둔다. 응답에는 레코드와 서명이 함께 실린다.",
+          "sources": ["dns.dnssec"]
+        },
+        {
+          "id": "verify",
+          "label": "확인",
+          "caption": "로컬 DNS 서버는 example.com의 DNSKEY 레코드에 든 공개 키로 서명을 확인한다. 그 키는 com 영역이 DS 레코드로 보증하고, com의 키는 루트 영역이 보증하며, 루트 영역의 공개 키는 처음부터 믿을 키로 설정해 둔 신뢰 앵커다.",
+          "sources": ["dns.dnssec"]
+        },
+        {
+          "id": "visible",
+          "label": "감추지 않음",
+          "caption": "서명은 레코드가 바뀌지 않았는지 확인할 값을 덧붙일 뿐 내용을 감추지 않는다. 질의와 응답은 암호화되지 않아, 엿보는 사람도 www.example.com과 주소 198.51.100.10을 그대로 알아볼 수 있다.",
+          "sources": ["dns.dnssec"]
+        }
+      ],
+      "sources": ["dns.dnssec"]
     }
   },
   "tables": {},

@@ -778,12 +778,14 @@ https://www.rfc-editor.org/rfc/rfc7766
 - 범용 DNS 구현은 UDP와 TCP를 모두 지원해야 하고, TCP는 단지 재시도 수단이 아니라 UDP의 대안이다 — §5
 - (phase 79 step 5, 2026-11-12 rfc-editor.org 원문 다시 확인 — Proposed Standard, RFC 8490·9103이 고쳤다) DNSSEC과 IPv6가 퍼지며 응답이 커져 TCP를 쓰는 일이 늘었다. 서버가 TCP를 지원하지 않거나 **망에서 TCP 위의 DNS를 막으면** 이름 풀이가 실패하거나 응용이 기다리다 시간이 다 될 수 있다 — §1
 - (phase 79 step 5) 권한 있는 서버, 재귀 서버(전달자 포함), 스텁 리졸버 구현이 저마다 TCP를 지원해야 한다(MUST) — 응답 크기를 UDP 패킷 하나에 묶지 않고, 큰 응답이 클라이언트까지 닿게 하려는 것이다. 리졸버는 운영 사정에 따라 질의를 UDP로도 TCP로도 처음부터 보낼 수 있고, 서버는 질의가 온 전송(TCP면 같은 연결)으로 응답한다 — §5
+- (phase 79 step 8, 2026-11-12 rfc-editor.org 원문 다시 확인) EDNS0 없이 512바이트를 넘는 UDP 응답을 보내야 하는 서버는 응답을 **그 한도에 들어가게 잘라** TC 플래그를 켜고, 이 응답을 받은 클라이언트는 TC 플래그를 TCP로 다시 물으라는 뜻으로 받는다. EDNS0를 아는 클라이언트와 서버 사이에서는 클라이언트가 알린 크기까지 잘리지 않은 UDP 응답을 보낼 수 있다 — §4
 
 쓰인 곳: 강의 수정 이력 L11
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.udp`·`tcp-udp.transport-choice`(DNS는 주로 UDP, TCP도 — L11)
 (phase 77 step 7) `tcp-udp.udp`(§1 — DNS는 주로 UDP, 큰 메시지 등에는 TCP도 — L11)
 (phase 77 step 8) `tcp-udp.transport-choice`(DNS는 응답이 클 때 등에는 TCP도 — L11), 도식 `transport-choice` 「짧은 질의」 캡션
 (phase 79 step 5에서 쓰일 곳) `dns.dns-transport`(§1 — 영역 전체 전송은 늘 TCP, 큰 응답에 TCP, TCP를 막으면 이름 풀이가 실패할 수 있다, §4 — 잘린 응답 뒤 TCP로 다시 묻는다, §5 — 서버·리졸버 모두 TCP 필수), 기출 대조(`exam-notes.md` 「phase 79 step 5」 문단 — [기출 2025-05-25 #42]·[기출 2026-02-01 #8]·[기출 2026-05-17 #11])
+(phase 79 step 8) `dns.dns-transport`(§4 — 한도에 들어가게 잘라 TC를 켠다·클라이언트는 TCP로 다시 묻는다, §5 — 구현은 모두 TCP 필수·처음부터 TCP로 물어도 된다·같은 연결로 응답한다), 도식 `dns-transport`, 문항 n243 해설
 
 ## RFC 1034 — Domain Names - Concepts and Facilities
 https://www.rfc-editor.org/rfc/rfc1034
@@ -5036,9 +5038,11 @@ Proposed Standard이고 RFC 1034·1035·1123을 고쳤으며, RFC 4033~4035·434
 - (phase 79 step 5) **CNAME**: 별칭 하나에 정식 이름은 하나뿐이다. 별칭인 이름에는 DNSSEC에 쓰는 레코드 말고 다른 데이터를 둘 수 없다 — 그래서 어떤 이름이든 ① CNAME 하나(DNSSEC 레코드는 함께 둘 수 있다) ② CNAME이 아닌 레코드 하나 이상 ③ 레코드 없이 이름만 있음 ④ 이름이 없음 가운데 정확히 하나다 — §10.1.
   (이 절이 드는 DNSSEC 레코드 이름 SIG·NXT·KEY는 옛것이고, 지금은 RFC 4035 §2.5대로 RRSIG·NSEC이다 — 아래 「(phase 79 step 5) DNSSEC」 항목). CNAME 레코드의 이름(레이블)은 정식 이름이 아니라 별칭이다 — 흔히 그 이름을 「CNAME」이라 부르는 것은 잘못 붙은 말버릇이다 — §10.1.1
 - (phase 79 step 5) **PTR**: 한 이름에 PTR이 하나뿐이어야 한다는 제한은 없다. PTR의 값은 별칭이 아니라 정식 이름이어야 한다 — §10.2. **MX·NS**: 그 값(이름)은 별칭이면 안 되고, 주소 레코드를 가진 이름이어야 한다 — §10.3
+- (phase 79 step 8, 2026-11-12 rfc-editor.org 원문 다시 확인) **TC 비트**: 응답에 꼭 실어야 할 레코드 묶음을 통째로 담지 못했을 때만 TC 비트를 켠다. TC가 켜진 응답에는 다 담지 못한 묶음의 일부가 남아 있을 수 있고, 이런 응답을 받은 DNS 클라이언트는 **그 응답을 쓰지 않고** TCP 연결처럼 더 큰 응답을 받을 수 있는 방법으로 다시 묻는 것이 좋다(should) — §9
 
 쓰인 곳: (phase 79 step 0에서 쓰일 곳) `dns.domain-hierarchy`(§11 — DNS 이름 일반의 제한은 길이뿐이고 호스트 이름 규칙은 응용 쪽의 제한이다), `dns.dns-cache-ttl`(§8 — 범위·최대 시간), 강의 수정 이력 L51
 (phase 79 step 5에서 쓰일 곳) `dns.resource-records`(§5 — 레코드 묶음, §10.1 — CNAME과 다른 데이터를 함께 둘 수 없다·DNSSEC 예외, §10.3 — MX·NS의 값은 별칭이 아니다), `dns.reverse-lookup`(§10.2 — PTR의 값은 정식 이름), `dns.dns-round-robin`(§5·§5.1 — 같은 이름의 A 여럿은 한 묶음으로 함께 돌아간다)
+(phase 79 step 8) `dns.dns-transport`(§9 — 잘린 응답에는 레코드가 다 들어 있지 않을 수 있고, 그 응답을 쓰지 않고 TCP로 다시 묻는다), 문항 n243 해설
 
 ## (phase 79 step 0) RFC 7720 — DNS Root Name Service Protocol and Deployment Requirements
 https://www.rfc-editor.org/rfc/rfc7720
