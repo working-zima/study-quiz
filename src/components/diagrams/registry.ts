@@ -229,6 +229,7 @@ import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
+import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
@@ -322,6 +323,7 @@ import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
+import { ZoneTransferDiagram } from './ZoneTransferDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
@@ -545,6 +547,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'dns.hosts-file': HostsFileDiagram,
   'dns.domain-hierarchy': DomainTreeDiagram,
   'dns.name-servers': NameServerRolesDiagram,
+  'dns.dns-zone': ZoneTransferDiagram,
+  'dns.name-resolution': ResolutionStepsDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,

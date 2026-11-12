@@ -190,6 +190,93 @@
         }
       ],
       "sources": ["dns.name-servers"]
+    },
+    "zone-transfer": {
+      "label": "보조 서버가 주 서버에 영역의 일련번호를 묻고, 받은 번호가 자기 사본과 같을 때와 커졌을 때 영역 데이터를 받아 오는지가 어떻게 달라지는지 보이는 도식",
+      "svgLabel": "왼쪽 보조 서버 ns2.example.com과 오른쪽 주 서버 ns1.example.com 두 기둥 사이에 일련번호 묻기, 일련번호 100, 일련번호 101, 영역 전송 (AXFR)을 위에서 아래로 놓은 그림",
+      "question": "보조 서버는 언제 주 서버의 영역을 받아 올까?",
+      "idleCaption": "example.com 영역을 함께 맡은 보조 서버 ns2.example.com과 주 서버 ns1.example.com 사이에 오가는 메시지를 차례대로 위에서 아래로 놓았다. 보조 서버가 가진 사본의 일련번호는 100이고, 서버 이름과 일련번호는 예로 붙인 값이다. 버튼을 고르면 주 서버의 일련번호가 그대로일 때와 커졌을 때를 볼 수 있다.",
+      "legend": "위의 두 노드는 두 서버의 이름이고, 그 아래 왼쪽 박스가 보조 서버, 오른쪽 박스가 주 서버다. 가운데 노드 하나가 메시지 하나이고, 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "secondary": "ns2.example.com",
+        "primary": "ns1.example.com",
+        "ask": "일련번호 묻기",
+        "serial-same": "일련번호 100",
+        "serial-changed": "일련번호 101",
+        "transfer": "영역 전송 (AXFR)"
+      },
+      "groups": {
+        "secondary-side": "보조 서버",
+        "primary-side": "주 서버"
+      },
+      "notes": {
+        "same-note": "사본도 100이라 그대로 둔다",
+        "changed-note": "사본의 100보다 크다",
+        "transfer-note": "TCP로 받아 온다"
+      },
+      "scenarios": [
+        {
+          "id": "same",
+          "label": "그대로",
+          "caption": "영역을 고치지 않은 동안에는 주 서버가 일련번호 100을 답한다. 보조 서버의 사본도 100이라 영역이 바뀌지 않은 것이므로, 영역 데이터를 받아 오지 않고 가진 사본으로 계속 답한다.",
+          "sources": ["dns.dns-zone"]
+        },
+        {
+          "id": "changed",
+          "label": "바뀜",
+          "caption": "주 서버에서 레코드를 고치고 일련번호를 101로 올린 뒤에는 주 서버가 101을 답한다. 사본의 100보다 크므로 보조 서버는 영역 전송으로 영역 데이터를 TCP로 받아 오고, 그때부터 고친 데이터로 답한다.",
+          "sources": ["dns.dns-zone"]
+        }
+      ],
+      "sources": ["dns.dns-zone"]
+    },
+    "resolution-steps": {
+      "label": "클라이언트가 로컬 DNS 서버에 www.example.com의 IP 주소를 묻고, 로컬 DNS 서버가 루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버에 차례로 물어 얻은 답을 돌려주는 차례를 보이는 도식",
+      "svgLabel": "루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 쌓아 한쪽에 두고, 로컬 DNS 서버와 클라이언트를 따로 놓아 번호 붙은 화살표로 잇는 그림",
+      "question": "이름 하나의 주소는 어떤 차례로 찾을까?",
+      "idleCaption": "캐시가 모두 비어 있을 때 클라이언트가 www.example.com의 IP 주소를 얻는 차례다. 화살표 옆의 번호가 메시지가 오가는 차례이고, 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 차례의 구간마다 누가 누구에게 묻고 무엇을 돌려받는지 볼 수 있다.",
+      "legend": "화살표는 질의나 응답이 가는 방향이고, 화살표 옆의 번호는 메시지가 오가는 차례다.",
+      "nodes": {
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버",
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버"
+      },
+      "notes": {
+        "n1": "①",
+        "n2": "②",
+        "n3": "③",
+        "n4": "④",
+        "n5": "⑤",
+        "n6": "⑥",
+        "n7": "⑦",
+        "n8": "⑧",
+        "root-note": "com TLD 네임 서버를 알려 준다",
+        "tld-note": "example.com을 맡은 서버를 알려 준다",
+        "auth-note": "198.51.100.10"
+      },
+      "scenarios": [
+        {
+          "id": "ask-local",
+          "label": "로컬에 묻기",
+          "caption": "① 클라이언트는 자기 캐시에 답이 없으면 로컬 DNS 서버 하나에 www.example.com의 IP 주소를 묻는 질의를 보내고 응답을 기다린다. 루트나 TLD 네임 서버가 어디 있는지는 몰라도 된다.",
+          "sources": ["dns.name-resolution"]
+        },
+        {
+          "id": "referral",
+          "label": "다음 서버 안내",
+          "caption": "②③ 로컬 DNS 서버가 루트 네임 서버에 물으면, 루트는 주소 대신 com을 맡은 TLD 네임 서버들을 알려 준다. ④⑤ 그 TLD 네임 서버에 다시 물으면, 역시 주소 대신 example.com을 맡은 권한 있는 네임 서버들을 알려 준다.",
+          "sources": ["dns.name-resolution"]
+        },
+        {
+          "id": "answer",
+          "label": "최종 답",
+          "caption": "⑥⑦ 로컬 DNS 서버가 example.com의 권한 있는 네임 서버에 물으면, 그 서버가 원본 정보로 IP 주소 198.51.100.10을 답한다. ⑧ 로컬 DNS 서버는 이 답을 캐시에 넣고 클라이언트에 돌려준다.",
+          "sources": ["dns.name-resolution"]
+        }
+      ],
+      "sources": ["dns.name-resolution"]
     }
   },
   "tables": {},
