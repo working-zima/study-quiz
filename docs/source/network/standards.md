@@ -970,11 +970,15 @@ https://www.rfc-editor.org/rfc/rfc9112
 - HTTP/1.1은 기본으로 지속 연결을 써서 한 연결에 여러 요청·응답을 싣는다. `close` 연결 옵션이 있으면 그 응답 뒤에 닫는다.
   HTTP/1.0은 `keep-alive` 연결 옵션이 있고 받는 쪽이 받아들일 때만 연결을 유지한다 — §9.3
 - (phase 77 step 3, 2026-11-09 rfc-editor.org 원문 — RFC 9931이 고쳤다) 어떤 연결 프로토콜을 쓸지는 클라이언트 설정과 대상 주소가 정하고, `http` 주소는 기본으로 **IP 위의 TCP**, 기본 TCP 포트 80을 쓴다 — §9
+- (phase 79 step 12, 2026-11-13 rfc-editor.org 원문 텍스트판을 IPv4로 다시 받아 읽음) 지속 연결을 지원하지 않는 서버는 1xx가 아닌 모든 응답에 `close` 연결 옵션을 보내야 한다 — §9.3.
+  `close` 연결 옵션을 담은 응답을 보낸 서버는 그 응답 뒤에 연결 닫기를 시작해야 하고, 그 연결로 오는 요청을 더 처리하지 않는다 — §9.6. 클라이언트는 `close`를 받기 전까지 지속 연결에 요청을 더 보낼 수 있다 — §9.3.
+  위 「(phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명 …」 항목의 `KeepAlive`(지속 연결을 켤지 정한다)와 이으면, **`KeepAlive Off`로 지속 연결을 끈 서버는 응답마다 그 연결을 닫고, 웹 브라우저는 다음 요청을 보내려면 연결을 새로 맺는다**(두 문서를 이은 것)
 
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
 (phase 77 step 8) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP), 도식 `transport-choice`
 (phase 79 step 9에서 쓰일 곳) `linux-servers.apache-keepalive`(§9.3 — HTTP/1.1은 기본으로 지속 연결을 써서 한 연결에 요청·응답을 여럿 싣는다, `close`가 있으면 그 응답 뒤에 닫는다. Apache 쪽은 아래 「(phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명 …」 항목의 `KeepAlive`)
+(phase 79 step 12) `linux-servers.apache-keepalive`(§9.3·§9.6 — `KeepAlive Off`이면 응답마다 연결을 닫아 요청마다 연결을 새로 맺는다, Apache `KeepAlive`와 이은 것), 도식 `keepalive-timeline`(「끄기」 시나리오)
 
 ## MDN — An overview of HTTP
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview

@@ -141,6 +141,7 @@ import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
 import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
+import { KeepAliveTimelineDiagram } from './KeepAliveTimelineDiagram'
 import { KernelMessagesDiagram } from './KernelMessagesDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
@@ -149,6 +150,7 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { ListenPortDiagram } from './ListenPortDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
 import { LoginRecordsDiagram } from './LoginRecordsDiagram'
@@ -648,6 +650,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-servers.bind-named': NamedFilesDiagram,
   'linux-servers.named-conf-options': NamedOptionsDiagram,
   'linux-servers.httpd-conf': HttpdConfDiagram,
+  'linux-servers.apache-listen': ListenPortDiagram,
+  'linux-servers.apache-keepalive': KeepAliveTimelineDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
