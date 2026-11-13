@@ -118,6 +118,7 @@ import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
 import { HostsFileDiagram } from './HostsFileDiagram'
+import { HttpdConfDiagram } from './HttpdConfDiagram'
 import { HttpsStackDiagram } from './HttpsStackDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
@@ -171,6 +172,7 @@ import { MtuLimitDiagram } from './MtuLimitDiagram'
 import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
 import { NamedFilesDiagram } from './NamedFilesDiagram'
+import { NamedOptionsDiagram } from './NamedOptionsDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
@@ -644,6 +646,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-accounts.login-records': LoginRecordsDiagram,
   'linux-servers.resolv-conf': ResolvConfDiagram,
   'linux-servers.bind-named': NamedFilesDiagram,
+  'linux-servers.named-conf-options': NamedOptionsDiagram,
+  'linux-servers.httpd-conf': HttpdConfDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
