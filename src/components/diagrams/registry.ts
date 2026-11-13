@@ -64,6 +64,7 @@ import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DirectoryListingDiagram } from './DirectoryListingDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
@@ -238,6 +239,7 @@ import { RecordTypesDiagram } from './RecordTypesDiagram'
 import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
+import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
 import { ResolvConfDiagram } from './ResolvConfDiagram'
@@ -652,6 +654,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-servers.httpd-conf': HttpdConfDiagram,
   'linux-servers.apache-listen': ListenPortDiagram,
   'linux-servers.apache-keepalive': KeepAliveTimelineDiagram,
+  'linux-servers.options-indexes': DirectoryListingDiagram,
+  'linux-servers.limit-request-body': RequestBodyLimitDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

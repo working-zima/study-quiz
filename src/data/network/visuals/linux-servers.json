@@ -292,6 +292,87 @@
         }
       ],
       "sources": ["linux-servers.apache-keepalive"]
+    },
+    "directory-listing": {
+      "label": "기본 문서가 없는 디렉터리를 요청할 때 Options Indexes로 Indexes를 켜면 파일 목록을 보내고, Options -Indexes로 끄면 목록을 만들지 않으며, index.html을 두면 목록 대신 그 파일을 보내는 것을 보이는 도식",
+      "svgLabel": "요청 주소 http://www.example.com/files/와 /srv/www/example/files 박스 안의 report.pdf·notes.txt·index.html, 왼쪽의 줄 Options Indexes와 Options -Indexes, 결과 파일 목록을 보낸다·목록을 만들지 않는다·index.html을 보낸다가 있는 그림",
+      "question": "디렉터리 주소를 요청하면 무엇을 보게 될까?",
+      "idleCaption": "웹 브라우저가 요청하는 디렉터리 주소와 그 디렉터리에 든 파일, 그 디렉터리의 <Directory> 구역에 적을 수 있는 Options 줄 둘과 그 결과를 놓았다. index.html은 기본 문서를 더 둔 경우에 쓴다. 이름과 경로는 예로 붙인 것이다. 버튼을 고르면 Indexes를 켰을 때, 껐을 때, 기본 문서가 있을 때를 볼 수 있다.",
+      "legend": "박스는 /srv/www/example/files 디렉터리이고, 그 안의 index.html은 기본 문서를 더 둔 경우에만 있는 파일이다. 왼쪽의 두 줄은 이 디렉터리의 <Directory> 구역에 적는 Options 줄이고, 화살표는 그 줄이나 파일 때문에 웹 브라우저가 받게 되는 결과를 가리킨다.",
+      "nodes": {
+        "url": "http://www.example.com/files/",
+        "report": "report.pdf",
+        "notes": "notes.txt",
+        "index": "index.html",
+        "send-index": "index.html을 보낸다",
+        "opt-on": "Options Indexes",
+        "list": "파일 목록을 보낸다",
+        "opt-off": "Options -Indexes",
+        "none": "목록을 만들지 않는다"
+      },
+      "groups": {
+        "dir": "/srv/www/example/files"
+      },
+      "notes": {
+        "index-note": "Indexes가 켜져 있어도",
+        "on-note": "파일 이름이 드러난다",
+        "off-note": "파일 이름이 드러나지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "indexes-on",
+          "label": "켬",
+          "caption": "files 디렉터리에 기본 문서 index.html이 없고 Options Indexes로 Indexes가 켜져 있으면, Apache는 http://www.example.com/files/ 요청에 report.pdf와 notes.txt의 이름이 담긴 파일 목록을 보낸다. 보여 주려 하지 않은 파일의 이름까지 드러난다.",
+          "sources": ["linux-servers.options-indexes"]
+        },
+        {
+          "id": "indexes-off",
+          "label": "끔",
+          "caption": "같은 구역에 Options -Indexes를 적으면 Indexes가 꺼져, 기본 문서가 없어도 Apache는 파일 목록을 만들지 않는다. 그래서 report.pdf와 notes.txt의 이름이 웹 브라우저에 드러나지 않는다.",
+          "sources": ["linux-servers.options-indexes"]
+        },
+        {
+          "id": "index-file",
+          "label": "기본 문서",
+          "caption": "files 디렉터리에 index.html을 더 두면, Options Indexes로 Indexes가 켜져 있어도 Apache는 목록 대신 기본 문서인 index.html을 보낸다.",
+          "sources": ["linux-servers.options-indexes"]
+        }
+      ],
+      "sources": ["linux-servers.options-indexes"]
+    },
+    "request-body-limit": {
+      "label": "요청 본문의 한도를 LimitRequestBody 1048576, 곧 1MiB로 정했을 때 본문이 500KiB인 요청은 받아 처리하고 2MiB인 요청은 오류로 답하는 것을 보이는 도식",
+      "svgLabel": "줄 LimitRequestBody 1048576과 그 계산 1048576 = 1024 × 1024 = 1MiB, 요청 둘 본문 500KiB 요청·본문 2MiB 요청과 그 결과 받아 처리한다·오류로 답한다가 있는 그림",
+      "question": "요청 본문이 한도를 넘으면 어떻게 될까?",
+      "idleCaption": "<Directory> 구역에 적은 LimitRequestBody 줄과 그 값의 계산, 본문 크기가 다른 요청 둘과 그 결과를 놓았다. 값과 크기는 예로 든 것이다. 버튼을 고르면 본문이 한도 안일 때와 한도를 넘을 때를 볼 수 있다.",
+      "legend": "맨 위는 한도를 정한 줄이고, 가는 선으로 이은 그 아래는 그 값이 몇 MiB인지 보이는 계산이다. 화살표는 요청이 어떤 결과로 이어지는지를 가리킨다.",
+      "nodes": {
+        "limit": "LimitRequestBody 1048576",
+        "calc": "1048576 = 1024 × 1024 = 1MiB",
+        "req-small": "본문 500KiB 요청",
+        "req-large": "본문 2MiB 요청",
+        "accept": "받아 처리한다",
+        "reject": "오류로 답한다"
+      },
+      "notes": {
+        "under-note": "한도보다 작다",
+        "over-note": "한도를 넘는다"
+      },
+      "scenarios": [
+        {
+          "id": "under",
+          "label": "한도 안",
+          "caption": "본문 500KiB는 500 × 1024 = 512000바이트로 한도 1048576바이트보다 작다. 그래서 Apache는 이 요청을 평소대로 받아 처리한다.",
+          "sources": ["linux-servers.limit-request-body"]
+        },
+        {
+          "id": "over",
+          "label": "한도 넘음",
+          "caption": "본문 2MiB는 2 × 1024 × 1024 = 2097152바이트로 한도 1048576바이트를 넘는다. 그래서 Apache는 이 요청을 처리하지 않고 웹 브라우저에 오류로 답한다.",
+          "sources": ["linux-servers.limit-request-body"]
+        }
+      ],
+      "sources": ["linux-servers.limit-request-body"]
     }
   },
   "tables": {},
