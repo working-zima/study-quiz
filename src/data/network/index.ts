@@ -4,6 +4,7 @@ import appProtocolsMailFileVisuals from './visuals/app-protocols-mail-file.json'
 import appProtocolsMgmtSecurityVisuals from './visuals/app-protocols-mgmt-security.json'
 import arpVisuals from './visuals/arp.json'
 import diagnosticCommandsVisuals from './visuals/diagnostic-commands.json'
+import dnsVisuals from './visuals/dns.json'
 import ethernetVisuals from './visuals/ethernet.json'
 import hubSwitchVlanVisuals from './visuals/hub-switch-vlan.json'
 import icmpVisuals from './visuals/icmp.json'
@@ -14,6 +15,7 @@ import linuxAccountsVisuals from './visuals/linux-accounts.json'
 import linuxFilesystemVisuals from './visuals/linux-filesystem.json'
 import linuxPermissionsVisuals from './visuals/linux-permissions.json'
 import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
+import linuxServersVisuals from './visuals/linux-servers.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import portsVisuals from './visuals/ports.json'
@@ -43,6 +45,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'ports': portsVisuals,
   'tcp-udp': tcpUdpVisuals,
   'tcp-connection': tcpConnectionVisuals,
+  'dns': dnsVisuals,
   'app-protocols-mail-file': appProtocolsMailFileVisuals,
   'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
   'diagnostic-commands': diagnosticCommandsVisuals,
@@ -51,6 +54,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'linux-shell': linuxShellVisuals,
   'linux-process-boot': linuxProcessBootVisuals,
   'linux-accounts': linuxAccountsVisuals,
+  'linux-servers': linuxServersVisuals,
 }
 
 export const networkSubject: Subject = {
