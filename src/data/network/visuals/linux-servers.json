@@ -373,6 +373,65 @@
         }
       ],
       "sources": ["linux-servers.limit-request-body"]
+    },
+    "iptables-chains": {
+      "label": "iptables의 filter 테이블에서 들어오는 패킷은 INPUT, 내보내는 패킷은 OUTPUT, 거쳐 가는 패킷은 FORWARD 체인의 규칙과 견주어지는 것과, 규칙 iptables -A INPUT -p tcp --dport 8080 -j DROP을 조각마다 읽는 것을 보이는 도식",
+      "svgLabel": "맨 위에 다른 컴퓨터, 그 아래 이 컴퓨터 박스 안에 INPUT·OUTPUT·FORWARD 체인과 웹 서버, 박스 아래에 또 다른 컴퓨터, 맨 아래 iptables 규칙 한 줄 박스 안에 -A INPUT, -p tcp, --dport 8080, -j DROP 조각이 있는 그림",
+      "question": "패킷은 어느 체인의 규칙과 견주어질까?",
+      "idleCaption": "이 컴퓨터 안에 filter 테이블의 세 체인 INPUT·OUTPUT·FORWARD와 웹 서버를 두고, 바깥에 다른 컴퓨터와 또 다른 컴퓨터를 두었다. 아래는 규칙 한 줄을 뜻이 갈리는 조각 넷으로 나눈 것이고, 포트 번호는 예로 든 것이다. 버튼을 고르면 패킷이 가는 길마다 지나는 체인과, 규칙 조각의 뜻을 볼 수 있다.",
+      "legend": "위의 큰 박스는 이 컴퓨터이고, 아래 박스는 iptables 규칙 한 줄을 조각으로 나눈 것이다. 화살표는 패킷이 가는 길을 가리킨다.",
+      "nodes": {
+        "outside": "다른 컴퓨터",
+        "input": "INPUT",
+        "output": "OUTPUT",
+        "forward": "FORWARD",
+        "program": "웹 서버",
+        "beyond": "또 다른 컴퓨터",
+        "frag-a": "-A INPUT",
+        "frag-p": "-p tcp",
+        "frag-d": "--dport 8080",
+        "frag-j": "-j DROP"
+      },
+      "groups": {
+        "this": "이 컴퓨터",
+        "rule": "iptables 규칙 한 줄"
+      },
+      "notes": {
+        "in-note": "이 컴퓨터로 들어온다",
+        "out-note": "이 컴퓨터에서 나간다",
+        "fwd-note": "거쳐 지나간다",
+        "a-note": "INPUT 끝에 더한다",
+        "p-note": "TCP 패킷만",
+        "d-note": "목적지 포트가 8080",
+        "j-note": "맞으면 버린다"
+      },
+      "scenarios": [
+        {
+          "id": "input",
+          "label": "들어오는 패킷",
+          "caption": "다른 컴퓨터가 이 컴퓨터의 웹 서버에게 보낸 패킷은 INPUT 체인을 지나며, 그 체인의 규칙과 맨 위부터 차례로 견주어진다. 다른 컴퓨터가 접속해 오는 것을 막는 규칙은 이 체인에 넣는다.",
+          "sources": ["linux-servers.iptables"]
+        },
+        {
+          "id": "output",
+          "label": "내보내는 패킷",
+          "caption": "이 컴퓨터의 웹 서버가 만들어 다른 컴퓨터로 내보내는 패킷은 OUTPUT 체인을 지난다. 그래서 OUTPUT에 넣은 규칙은 이 컴퓨터가 내보내는 패킷과 견주어진다.",
+          "sources": ["linux-servers.iptables"]
+        },
+        {
+          "id": "forward",
+          "label": "거쳐 가는 패킷",
+          "caption": "다른 컴퓨터에서 와서 이 컴퓨터를 거쳐 또 다른 컴퓨터로 가는 패킷은 FORWARD 체인을 지난다. 이 컴퓨터의 프로그램에게 가는 패킷이 아니므로 INPUT이 아니라 FORWARD의 규칙과 견주어진다.",
+          "sources": ["linux-servers.iptables"]
+        },
+        {
+          "id": "rule",
+          "label": "규칙 읽기",
+          "caption": "iptables -A INPUT -p tcp --dport 8080 -j DROP은 INPUT 체인의 끝에 규칙 하나를 더한다. 이 규칙에 이른 패킷이 TCP 패킷이고 목적지 포트가 8080이면, 두 조건에 모두 맞으므로 버린다.",
+          "sources": ["linux-servers.iptables"]
+        }
+      ],
+      "sources": ["linux-servers.iptables"]
     }
   },
   "tables": {},

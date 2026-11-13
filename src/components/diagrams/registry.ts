@@ -137,6 +137,7 @@ import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
 import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
 import { IpconfigViewDiagram } from './IpconfigViewDiagram'
+import { IptablesChainsDiagram } from './IptablesChainsDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
@@ -656,6 +657,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-servers.apache-keepalive': KeepAliveTimelineDiagram,
   'linux-servers.options-indexes': DirectoryListingDiagram,
   'linux-servers.limit-request-body': RequestBodyLimitDiagram,
+  'linux-servers.iptables': IptablesChainsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

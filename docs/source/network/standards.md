@@ -4258,6 +4258,7 @@ https://www.rfc-editor.org/rfc/rfc4253
 (phase 77 step 8) `tcp-udp.transport-choice`(RFC 4251 §1 — 원격 로그인, §1·RFC 4253 §4.1 — 보통 TCP 위에서), 도식 `transport-choice`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(RFC 4251 §1 — 원격 로그인·세 하는 일, §4.1 — 호스트 키로 서버를 확인한다·처음 접속할 때 받아 저장하고 다음부터 견준다·지문, §9.4 — 사용자 인증은 암호화한 통로 위에서, RFC 4253 §4.1 — TCP 22),
 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 암호화·무결성·공개 키)
+(phase 79 step 14) 문항 n255(RFC 4253 §4.1 — SSH 서버는 TCP 22에서 접속을 기다린다. 상황으로만 쓰고 이 사실을 묻지 않는다)
 
 ## (phase 77) RFC 5321 — Simple Mail Transfer Protocol
 https://www.rfc-editor.org/rfc/rfc5321
@@ -5562,3 +5563,4 @@ netfilter.org는 첫 화면과 프로젝트 페이지 둘을 읽었다(첫 화�
 
 쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.iptables`(iptables(8) — 무엇인가, 표·체인·대상·정책, `filter`와 `INPUT`·`OUTPUT`·`FORWARD`, `-A`·`-I`·`-L`·`-P`·`-p`·`-j`·`-s`·`-i`; iptables-extensions(8) — `tcp`·`udp`의 `--dport`, `REJECT`; netfilter.org — netfilter 훅, 방화벽 소프트웨어, nftables가 뒤를 잇는다),
 `linux-servers.bind-named`(방화벽에 UDP 53과 TCP 53을 함께 연다 — 규칙의 꼴), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44], [기출 2025-05-25 #42])
+(phase 79 step 14) iptables-extensions(8) 「tcp」을 2026-11-13에 IPv4로 다시 받아 확인했다(iptables 1.8.13): `--sport`는 `--source-port`의 줄임이고 **출발지 포트**(나 범위)로, `--dport`는 `--destination-port`의 줄임이고 **목적지 포트**(나 범위)로 견준다. 쓰인 곳: `linux-servers.iptables`(목적지 포트와 출발지 포트, `--sport`), 문항 n255(오답 `--sport 22` — 접속하려는 쪽이 보내는 패킷에서 22는 목적지 포트에 적힌다. 출발지·목적지 포트가 응답에서 맞바뀌는 것은 RFC 6335 §3·RFC 6056 §1 항목과 `ports.client-server-ports`대로)
