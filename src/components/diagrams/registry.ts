@@ -28,6 +28,7 @@ import { BandwidthDiagram } from './BandwidthDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
+import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
@@ -63,10 +64,14 @@ import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DirectoryListingDiagram } from './DirectoryListingDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
+import { DnsTransportDiagram } from './DnsTransportDiagram'
+import { DnssecChainDiagram } from './DnssecChainDiagram'
 import { DomainServicesDiagram } from './DomainServicesDiagram'
+import { DomainTreeDiagram } from './DomainTreeDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -113,6 +118,8 @@ import { HealthViewsDiagram } from './HealthViewsDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
 import { HopByHopDiagram } from './HopByHopDiagram'
 import { HostEndpointsDiagram } from './HostEndpointsDiagram'
+import { HostsFileDiagram } from './HostsFileDiagram'
+import { HttpdConfDiagram } from './HttpdConfDiagram'
 import { HttpsStackDiagram } from './HttpsStackDiagram'
 import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
@@ -130,11 +137,13 @@ import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
 import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
 import { IpconfigViewDiagram } from './IpconfigViewDiagram'
+import { IptablesChainsDiagram } from './IptablesChainsDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
 import { Ipv6ChangesDiagram } from './Ipv6ChangesDiagram'
 import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
+import { KeepAliveTimelineDiagram } from './KeepAliveTimelineDiagram'
 import { KernelMessagesDiagram } from './KernelMessagesDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
@@ -143,6 +152,7 @@ import { LayerMappingDiagram } from './LayerMappingDiagram'
 import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
+import { ListenPortDiagram } from './ListenPortDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
 import { LoginRecordsDiagram } from './LoginRecordsDiagram'
@@ -163,6 +173,10 @@ import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NameServerRolesDiagram } from './NameServerRolesDiagram'
+import { NameToAddressDiagram } from './NameToAddressDiagram'
+import { NamedFilesDiagram } from './NamedFilesDiagram'
+import { NamedOptionsDiagram } from './NamedOptionsDiagram'
 import { NaptPortsDiagram } from './NaptPortsDiagram'
 import { NatCountDiagram } from './NatCountDiagram'
 import { NatTranslationDiagram } from './NatTranslationDiagram'
@@ -218,18 +232,25 @@ import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
+import { QueryModesDiagram } from './QueryModesDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
+import { RecordTypesDiagram } from './RecordTypesDiagram'
 import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
+import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
+import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
+import { ResolvConfDiagram } from './ResolvConfDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
+import { ReverseNameDiagram } from './ReverseNameDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
+import { RoundRobinAnswersDiagram } from './RoundRobinAnswersDiagram'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
 import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
@@ -259,6 +280,7 @@ import { SnmpRolesDiagram } from './SnmpRolesDiagram'
 import { SnmpVersionsDiagram } from './SnmpVersionsDiagram'
 import { SnsFanoutDiagram } from './SnsFanoutDiagram'
 import { SntpClientDiagram } from './SntpClientDiagram'
+import { SoaFieldsDiagram } from './SoaFieldsDiagram'
 import { SpanningTreeDiagram } from './SpanningTreeDiagram'
 import { SpendingLimitDiagram } from './SpendingLimitDiagram'
 import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
@@ -318,6 +340,7 @@ import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
+import { ZoneTransferDiagram } from './ZoneTransferDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
 import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
@@ -537,6 +560,20 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'tcp-connection.opening-states': OpeningStatesDiagram,
   'tcp-connection.closing-states': ClosingStatesDiagram,
   'tcp-connection.time-wait': TimeWaitDiagram,
+  'dns.dns': NameToAddressDiagram,
+  'dns.hosts-file': HostsFileDiagram,
+  'dns.domain-hierarchy': DomainTreeDiagram,
+  'dns.name-servers': NameServerRolesDiagram,
+  'dns.dns-zone': ZoneTransferDiagram,
+  'dns.name-resolution': ResolutionStepsDiagram,
+  'dns.recursive-iterative-query': QueryModesDiagram,
+  'dns.dns-cache-ttl': CacheExpiryDiagram,
+  'dns.resource-records': RecordTypesDiagram,
+  'dns.soa-record': SoaFieldsDiagram,
+  'dns.reverse-lookup': ReverseNameDiagram,
+  'dns.dns-round-robin': RoundRobinAnswersDiagram,
+  'dns.dns-transport': DnsTransportDiagram,
+  'dns.dnssec': DnssecChainDiagram,
   'app-protocols-mail-file.email-delivery': MailPathDiagram,
   'app-protocols-mail-file.smtp': SmtpDialogueDiagram,
   'app-protocols-mail-file.pop3': Pop3DownloadDiagram,
@@ -612,6 +649,15 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-accounts.useradd': UseraddOptionsDiagram,
   'linux-accounts.chage': PasswordAgingDiagram,
   'linux-accounts.login-records': LoginRecordsDiagram,
+  'linux-servers.resolv-conf': ResolvConfDiagram,
+  'linux-servers.bind-named': NamedFilesDiagram,
+  'linux-servers.named-conf-options': NamedOptionsDiagram,
+  'linux-servers.httpd-conf': HttpdConfDiagram,
+  'linux-servers.apache-listen': ListenPortDiagram,
+  'linux-servers.apache-keepalive': KeepAliveTimelineDiagram,
+  'linux-servers.options-indexes': DirectoryListingDiagram,
+  'linux-servers.limit-request-body': RequestBodyLimitDiagram,
+  'linux-servers.iptables': IptablesChainsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

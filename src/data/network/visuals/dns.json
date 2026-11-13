@@ -1,0 +1,649 @@
+{
+  "diagrams": {
+    "name-to-address": {
+      "label": "PC가 DNS 서버에 이름의 IP 주소를 묻고, 답으로 받은 주소로 웹 브라우저가 웹 서버에 접속하는 차례를 보이는 도식",
+      "svgLabel": "왼쪽에 PC(웹 브라우저), 오른쪽 위에 DNS 서버, 오른쪽 아래에 웹 서버 198.51.100.10을 놓은 그림",
+      "question": "이름만 아는 웹 서버에 어떻게 접속할까?",
+      "idleCaption": "사용자가 웹 브라우저에 www.example.com을 입력하면, PC는 먼저 DNS 서버에 그 이름의 IP 주소를 묻고 받은 주소로 웹 서버에 접속한다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 차례마다 누가 누구에게 무엇을 보내는지 볼 수 있다.",
+      "legend": "화살표는 메시지가 가는 방향이고, 화살표 옆의 글은 그 메시지에 담긴 것이다.",
+      "nodes": {
+        "pc": "PC (웹 브라우저)",
+        "dns-server": "DNS 서버",
+        "web-server": "웹 서버 198.51.100.10"
+      },
+      "notes": {
+        "ask-note": "www.example.com의 주소는?",
+        "answer-note": "198.51.100.10",
+        "connect-note": "198.51.100.10으로 접속"
+      },
+      "scenarios": [
+        {
+          "id": "ask",
+          "label": "① 묻기",
+          "caption": "PC가 DNS 서버에 www.example.com의 IP 주소를 묻는다. PC는 이름만 알고 주소는 모르므로, 아직 웹 서버에는 아무것도 보내지 않는다.",
+          "sources": ["dns.dns"]
+        },
+        {
+          "id": "answer",
+          "label": "② 답",
+          "caption": "DNS 서버가 이 이름에 짝지어진 IP 주소 198.51.100.10을 PC에 돌려준다. 이렇게 이름으로 IP 주소를 찾는 일을 이름 풀이라 한다.",
+          "sources": ["dns.dns"]
+        },
+        {
+          "id": "connect",
+          "label": "③ 접속",
+          "caption": "웹 브라우저는 받은 주소 198.51.100.10으로 웹 서버에 접속해 웹 페이지를 요청한다. 접속에 쓰이는 것은 이름이 아니라 IP 주소이고, DNS 서버가 할 일은 주소를 알려 주는 데서 끝난다.",
+          "sources": ["dns.dns"]
+        }
+      ],
+      "sources": ["dns.dns"]
+    },
+    "hosts-file": {
+      "label": "/etc/hosts의 한 줄을 IP 주소·정식 이름·별명 칸으로 나누고, hosts 파일을 먼저 보는 차례에서 파일에 적힌 이름과 없는 이름이 어디서 주소를 얻는지 보이는 도식",
+      "svgLabel": "위에 /etc/hosts의 한 줄 192.0.2.20, server1.example.com, server1을 칸 셋으로 나눠 놓고, 아래에 server1 찾기와 www.example.com 찾기가 /etc/hosts 보기로 이어지고 그 옆에 DNS 서버에 묻기가 있는 그림",
+      "question": "hosts 파일에 적어 둔 이름은 어디서 주소를 찾을까?",
+      "idleCaption": "위는 /etc/hosts의 예 한 줄이고, 아래는 Linux에서 /etc/nsswitch.conf에 hosts: files dns라고 적어 hosts 파일을 먼저 보는 차례다. 주소와 이름은 예로 붙인 것이다. 버튼을 고르면 줄의 칸과, 파일에 적힌 이름과 없는 이름이 어디서 주소를 얻는지 볼 수 있다.",
+      "legend": "위 박스의 노드 셋은 한 줄의 칸을 왼쪽부터 차례로 놓은 것이고, 노드 아래 글은 그 칸의 이름이다. 화살표는 이름을 찾는 차례다.",
+      "nodes": {
+        "addr": "192.0.2.20",
+        "canonical": "server1.example.com",
+        "alias": "server1",
+        "find-listed": "server1 찾기",
+        "find-unlisted": "www.example.com 찾기",
+        "look-hosts": "/etc/hosts 보기",
+        "ask-dns": "DNS 서버에 묻기"
+      },
+      "groups": {
+        "line": "/etc/hosts의 한 줄",
+        "order": "hosts: files dns일 때"
+      },
+      "notes": {
+        "addr-name": "IP 주소",
+        "canonical-name": "정식 이름",
+        "alias-name": "별명",
+        "listed-result": "192.0.2.20을 쓴다",
+        "unlisted-result": "파일에 없는 이름"
+      },
+      "scenarios": [
+        {
+          "id": "fields",
+          "label": "줄의 칸",
+          "caption": "한 줄에는 IP 주소 192.0.2.20, 그 주소를 가진 호스트의 정식 이름 server1.example.com, 별명 server1을 차례로 적고 칸 사이는 빈칸이나 탭으로 띄운다. 별명은 정식 이름 대신 쓸 수 있는 짧은 이름이다.",
+          "sources": ["dns.hosts-file"]
+        },
+        {
+          "id": "listed",
+          "label": "적힌 이름",
+          "caption": "server1은 이 줄에 별명으로 적혀 있다. hosts 파일을 먼저 보는 차례라서 /etc/hosts에서 짝을 찾으면 거기서 192.0.2.20을 얻고, DNS 서버에는 묻지 않는다.",
+          "sources": ["dns.hosts-file"]
+        },
+        {
+          "id": "unlisted",
+          "label": "없는 이름",
+          "caption": "www.example.com은 /etc/hosts에 적혀 있지 않다. 그래서 파일에서 짝을 찾지 못하고, 다음 차례인 DNS 서버에 이 이름의 IP 주소를 묻는다.",
+          "sources": ["dns.hosts-file"]
+        }
+      ],
+      "sources": ["dns.hosts-file"]
+    },
+    "domain-tree": {
+      "label": "도메인 이름을 묶는 이름 나무의 일부와 이름 www.example.com을 레이블마다 나눈 것을 함께 놓고, 이름을 읽는 차례와 최상위 도메인, 서브 도메인을 보이는 도식",
+      "svgLabel": "루트 아래에 최상위 도메인 com, net, org가, com 아래에 example이, example 아래에 www와 mail이 있는 이름 나무와, 이름 www.example.com을 www, example, com 레이블로 나눈 그림",
+      "question": "도메인 이름은 어느 쪽부터 읽어야 할까?",
+      "idleCaption": "도메인 이름을 묶는 이름 나무의 일부와, 이름 www.example.com을 레이블마다 나눈 것을 함께 놓았다. 이름은 예로 붙인 것이다. 버튼을 고르면 이름을 읽는 차례와 최상위 도메인, 서브 도메인을 볼 수 있다.",
+      "legend": "나무의 선은 위 단계의 마디와 그 바로 아래 마디를 잇고, 화살표는 루트에서 한 단계씩 내려가는 차례다. 단계 이름은 나무의 층과 이름의 레이블에 함께 붙어 있다.",
+      "nodes": {
+        "root": "루트",
+        "com": "com",
+        "net": "net",
+        "org": "org",
+        "example": "example",
+        "www": "www",
+        "mail": "mail",
+        "name-www": "www",
+        "name-example": "example",
+        "name-com": "com"
+      },
+      "groups": {
+        "tree": "이름 나무",
+        "name": "이름 www.example.com"
+      },
+      "notes": {
+        "tld-layer": "최상위 도메인",
+        "second-layer": "2단계",
+        "third-layer": "3단계",
+        "www-level": "3단계",
+        "example-level": "2단계",
+        "com-level": "최상위 도메인",
+        "read-note": "오른쪽 레이블부터 읽는다",
+        "sub-note": "서브 도메인"
+      },
+      "scenarios": [
+        {
+          "id": "read",
+          "label": "읽는 차례",
+          "caption": "www.example.com은 오른쪽 레이블일수록 위 단계라서 오른쪽부터 읽는다. 루트에서 시작해 최상위 도메인 com, 2단계 example, 3단계 www로 한 단계씩 내려가며, 맨 왼쪽의 www가 가장 아래 단계다.",
+          "sources": ["dns.domain-hierarchy"]
+        },
+        {
+          "id": "tld",
+          "label": "최상위 도메인",
+          "caption": "루트 바로 아래 단계가 최상위 도메인이다. com, net, org가 이 단계에 있고, 이름 www.example.com에서는 맨 오른쪽 레이블 com이 최상위 도메인이다.",
+          "sources": ["dns.domain-hierarchy"]
+        },
+        {
+          "id": "subdomain",
+          "label": "서브 도메인",
+          "caption": "example.com 도메인에는 그 아래에 딸린 www.example.com과 mail.example.com이 함께 든다. 이렇게 어떤 도메인 안에 든 도메인을 그 도메인의 서브 도메인이라 하고, 두 이름은 모두 example.com으로 끝난다.",
+          "sources": ["dns.domain-hierarchy"]
+        }
+      ],
+      "sources": ["dns.domain-hierarchy"]
+    },
+    "name-server-roles": {
+      "label": "이름의 단계를 나눠 맡는 루트 네임 서버, TLD 네임 서버, 권한 있는 네임 서버와, 클라이언트 대신 찾아 주는 로컬 DNS 서버가 저마다 무엇을 맡고 무엇을 돌려주는지 보이는 도식",
+      "svgLabel": "한 묶음에 루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 잇고, 다른 묶음에 로컬 DNS 서버를 두고 그 위에 클라이언트를 놓은 그림",
+      "question": "네임 서버는 저마다 무엇을 맡을까?",
+      "idleCaption": "www.example.com을 예로, 이름의 단계를 나눠 맡는 세 서버와 클라이언트 대신 찾아 주는 로컬 DNS 서버를 나눠 놓았다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 서버마다 맡는 것과 돌려주는 것을 볼 수 있다.",
+      "legend": "세 서버를 잇는 선은 위 단계와 그 아래 단계를 잇는다. 화살표는 클라이언트가 보내는 질의다.",
+      "nodes": {
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버",
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버"
+      },
+      "groups": {
+        "layers": "이름의 단계를 나눠 맡는 서버",
+        "resolver": "대신 찾아 주는 서버"
+      },
+      "notes": {
+        "root-note": "최상위 도메인을 맡은 서버를 알려 준다",
+        "tld-note": "example.com을 맡은 서버를 알려 준다",
+        "auth-note": "원본 정보로 최종 답을 준다",
+        "local-note": "클라이언트 대신 차례로 묻는다"
+      },
+      "scenarios": [
+        {
+          "id": "root",
+          "label": "루트",
+          "caption": "루트 네임 서버는 이름 나무의 맨 위인 루트를 맡는다. www.example.com을 물으면 IP 주소 대신 최상위 도메인 com을 맡은 서버들을 알려 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "tld",
+          "label": "TLD",
+          "caption": "com TLD 네임 서버는 최상위 도메인 com을 맡는다. www.example.com을 물으면 역시 IP 주소 대신 그 아래 example.com을 맡은 서버들을 알려 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "authoritative",
+          "label": "권한 있는 서버",
+          "caption": "example.com의 권한 있는 네임 서버는 이 도메인의 정보를 원본으로 갖고 있어, 다른 서버에 묻지 않고 www.example.com의 IP 주소 198.51.100.10을 최종 답으로 준다.",
+          "sources": ["dns.name-servers"]
+        },
+        {
+          "id": "local",
+          "label": "로컬 DNS 서버",
+          "caption": "로컬 DNS 서버는 이름의 어느 단계를 맡는 서버가 아니다. 클라이언트가 가장 먼저 찾아와 묻는 서버로, 클라이언트 대신 단계를 맡은 서버들에 차례로 물어 최종 답을 얻어 준다.",
+          "sources": ["dns.name-servers"]
+        }
+      ],
+      "sources": ["dns.name-servers"]
+    },
+    "zone-transfer": {
+      "label": "보조 서버가 주 서버에 영역의 일련번호를 묻고, 받은 번호가 자기 사본과 같을 때와 커졌을 때 영역 데이터를 받아 오는지가 어떻게 달라지는지 보이는 도식",
+      "svgLabel": "왼쪽 보조 서버 ns2.example.com과 오른쪽 주 서버 ns1.example.com 두 기둥 사이에 일련번호 묻기, 일련번호 100, 일련번호 101, 영역 전송 (AXFR)을 위에서 아래로 놓은 그림",
+      "question": "보조 서버는 언제 주 서버의 영역을 받아 올까?",
+      "idleCaption": "example.com 영역을 함께 맡은 보조 서버 ns2.example.com과 주 서버 ns1.example.com 사이에 오가는 메시지를 차례대로 위에서 아래로 놓았다. 보조 서버가 가진 사본의 일련번호는 100이고, 서버 이름과 일련번호는 예로 붙인 값이다. 버튼을 고르면 주 서버의 일련번호가 그대로일 때와 커졌을 때를 볼 수 있다.",
+      "legend": "위의 두 노드는 두 서버의 이름이고, 그 아래 왼쪽 박스가 보조 서버, 오른쪽 박스가 주 서버다. 가운데 노드 하나가 메시지 하나이고, 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "secondary": "ns2.example.com",
+        "primary": "ns1.example.com",
+        "ask": "일련번호 묻기",
+        "serial-same": "일련번호 100",
+        "serial-changed": "일련번호 101",
+        "transfer": "영역 전송 (AXFR)"
+      },
+      "groups": {
+        "secondary-side": "보조 서버",
+        "primary-side": "주 서버"
+      },
+      "notes": {
+        "same-note": "사본도 100이라 그대로 둔다",
+        "changed-note": "사본의 100보다 크다",
+        "transfer-note": "TCP로 받아 온다"
+      },
+      "scenarios": [
+        {
+          "id": "same",
+          "label": "그대로",
+          "caption": "영역을 고치지 않은 동안에는 주 서버가 일련번호 100을 답한다. 보조 서버의 사본도 100이라 영역이 바뀌지 않은 것이므로, 영역 데이터를 받아 오지 않고 가진 사본으로 계속 답한다.",
+          "sources": ["dns.dns-zone"]
+        },
+        {
+          "id": "changed",
+          "label": "바뀜",
+          "caption": "주 서버에서 레코드를 고치고 일련번호를 101로 올린 뒤에는 주 서버가 101을 답한다. 사본의 100보다 크므로 보조 서버는 영역 전송으로 영역 데이터를 TCP로 받아 오고, 그때부터 고친 데이터로 답한다.",
+          "sources": ["dns.dns-zone"]
+        }
+      ],
+      "sources": ["dns.dns-zone"]
+    },
+    "resolution-steps": {
+      "label": "클라이언트가 로컬 DNS 서버에 www.example.com의 IP 주소를 묻고, 로컬 DNS 서버가 루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버에 차례로 물어 얻은 답을 돌려주는 차례를 보이는 도식",
+      "svgLabel": "루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 쌓아 한쪽에 두고, 로컬 DNS 서버와 클라이언트를 따로 놓아 번호 붙은 화살표로 잇는 그림",
+      "question": "이름 하나의 주소는 어떤 차례로 찾을까?",
+      "idleCaption": "캐시가 모두 비어 있을 때 클라이언트가 www.example.com의 IP 주소를 얻는 차례다. 화살표 옆의 번호가 메시지가 오가는 차례이고, 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 차례의 구간마다 누가 누구에게 묻고 무엇을 돌려받는지 볼 수 있다.",
+      "legend": "화살표는 질의나 응답이 가는 방향이고, 화살표 옆의 번호는 메시지가 오가는 차례다.",
+      "nodes": {
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버",
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버"
+      },
+      "notes": {
+        "n1": "①",
+        "n2": "②",
+        "n3": "③",
+        "n4": "④",
+        "n5": "⑤",
+        "n6": "⑥",
+        "n7": "⑦",
+        "n8": "⑧",
+        "root-note": "com TLD 네임 서버를 알려 준다",
+        "tld-note": "example.com을 맡은 서버를 알려 준다",
+        "auth-note": "198.51.100.10"
+      },
+      "scenarios": [
+        {
+          "id": "ask-local",
+          "label": "로컬에 묻기",
+          "caption": "① 클라이언트는 자기 캐시에 답이 없으면 로컬 DNS 서버 하나에 www.example.com의 IP 주소를 묻는 질의를 보내고 응답을 기다린다. 루트나 TLD 네임 서버가 어디 있는지는 몰라도 된다.",
+          "sources": ["dns.name-resolution"]
+        },
+        {
+          "id": "referral",
+          "label": "다음 서버 안내",
+          "caption": "②③ 로컬 DNS 서버가 루트 네임 서버에 물으면, 루트는 주소 대신 com을 맡은 TLD 네임 서버들을 알려 준다. ④⑤ 그 TLD 네임 서버에 다시 물으면, 역시 주소 대신 example.com을 맡은 권한 있는 네임 서버들을 알려 준다.",
+          "sources": ["dns.name-resolution"]
+        },
+        {
+          "id": "answer",
+          "label": "최종 답",
+          "caption": "⑥⑦ 로컬 DNS 서버가 example.com의 권한 있는 네임 서버에 물으면, 그 서버가 원본 정보로 IP 주소 198.51.100.10을 답한다. ⑧ 로컬 DNS 서버는 이 답을 캐시에 넣고 클라이언트에 돌려준다.",
+          "sources": ["dns.name-resolution"]
+        }
+      ],
+      "sources": ["dns.name-resolution"]
+    },
+    "query-modes": {
+      "label": "클라이언트가 로컬 DNS 서버에 보내는 재귀적 질의와, 로컬 DNS 서버가 루트·TLD·권한 있는 네임 서버에 보내는 반복적 질의에서 질의를 받은 서버가 무엇을 돌려주는지 보이는 도식",
+      "svgLabel": "루트 네임 서버, com TLD 네임 서버, example.com의 권한 있는 네임 서버를 위에서 아래로 쌓아 한쪽에 두고, 로컬 DNS 서버와 클라이언트를 따로 놓아 질의와 응답의 화살표로 잇는 그림",
+      "question": "물은 서버가 끝까지 찾아 줄까, 다음 서버를 알려 줄까?",
+      "idleCaption": "캐시가 비어 있을 때 클라이언트가 www.example.com의 IP 주소를 찾는 장면이다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 클라이언트가 보내는 재귀적 질의와 로컬 DNS 서버가 보내는 반복적 질의에서, 질의를 받은 서버가 무엇을 돌려주는지 볼 수 있다.",
+      "legend": "화살표는 질의나 응답이 가는 방향이고, 화살표 곁의 글은 질의의 방식이나 응답에 담긴 것이다.",
+      "nodes": {
+        "client": "클라이언트",
+        "local": "로컬 DNS 서버",
+        "root": "루트 네임 서버",
+        "tld": "com TLD 네임 서버",
+        "auth": "example.com의 권한 있는 네임 서버"
+      },
+      "notes": {
+        "recursive-note": "재귀적 질의",
+        "final-note": "198.51.100.10",
+        "iterative-note": "반복적 질의",
+        "root-note": "다음에 물을 서버를 알려 준다",
+        "tld-note": "다음에 물을 서버를 알려 준다",
+        "auth-note": "198.51.100.10"
+      },
+      "scenarios": [
+        {
+          "id": "recursive",
+          "label": "재귀적",
+          "caption": "클라이언트는 로컬 DNS 서버에 재귀적 질의 하나를 보내고 답을 기다린다. 로컬 DNS 서버는 필요하면 다른 서버들에 대신 물어 가며 끝까지 찾고, 다른 서버를 알려 주지 않고 최종 주소 198.51.100.10을 돌려준다.",
+          "sources": ["dns.recursive-iterative-query"]
+        },
+        {
+          "id": "iterative",
+          "label": "반복적",
+          "caption": "로컬 DNS 서버가 루트 네임 서버와 com TLD 네임 서버에 반복적 질의를 보내면, 두 서버는 다른 서버에 묻지 않고 다음에 물을 서버를 알려 준다. 그 서버에 다시 묻는 쪽은 로컬 DNS 서버이고, 마지막에 권한 있는 네임 서버가 198.51.100.10을 답한다.",
+          "sources": ["dns.recursive-iterative-query"]
+        }
+      ],
+      "sources": ["dns.recursive-iterative-query"]
+    },
+    "cache-expiry": {
+      "label": "TTL이 3600초인 www.example.com의 레코드가 로컬 DNS 서버의 캐시에 들어온 뒤, 1800초 뒤와 3600초 뒤에 남은 TTL과 캐시가 그 레코드로 하는 일을 보이는 도식",
+      "svgLabel": "로컬 DNS 서버의 캐시 상자 안에 들어온 때, 1800초 뒤, 3600초 뒤의 남은 TTL을 위에서 아래로 놓고, 상자 아래에 다시 물어 새 레코드 받기를 놓은 그림",
+      "question": "캐시에 든 DNS 답은 언제까지 쓸까?",
+      "idleCaption": "TTL이 3600초인 www.example.com의 레코드가 로컬 DNS 서버의 캐시에 들어온 뒤, 위에서 아래로 시간이 지나며 남은 TTL이 줄어드는 모습이다. TTL 값은 예로 붙인 것이다. 버튼을 고르면 시점마다 캐시가 이 레코드로 무엇을 하는지 볼 수 있다.",
+      "legend": "위에서 아래로 시간이 지나고, 상자 곁의 글은 그 시점에 캐시가 이 레코드로 하는 일이다.",
+      "nodes": {
+        "stored": "들어온 때 · 남은 TTL 3600",
+        "half": "1800초 뒤 · 남은 TTL 1800",
+        "expired": "3600초 뒤 · 남은 TTL 0",
+        "reask": "다시 물어 새 레코드 받기"
+      },
+      "groups": {
+        "cache": "로컬 DNS 서버의 캐시"
+      },
+      "notes": {
+        "stored-note": "TTL 3600과 함께 넣는다",
+        "half-note": "다시 묻지 않고 캐시로 답한다",
+        "expired-note": "레코드를 버린다"
+      },
+      "scenarios": [
+        {
+          "id": "stored",
+          "label": "저장",
+          "caption": "로컬 DNS 서버는 이름 풀이로 받아 온 레코드를 TTL 3600과 함께 캐시에 넣는다. TTL은 이 레코드를 캐시에 둘 수 있는 가장 긴 시간이라, 이 레코드는 길어야 3600초 동안 캐시에 머문다.",
+          "sources": ["dns.dns-cache-ttl"]
+        },
+        {
+          "id": "half",
+          "label": "1800초 뒤",
+          "caption": "들어온 지 1800초 뒤에는 남은 TTL이 3600에서 1800을 뺀 1800이다. TTL이 남아 있으므로 로컬 DNS 서버는 다른 서버에 묻지 않고 캐시의 레코드로 답하고, 클라이언트가 받는 레코드에도 남은 1800이 적힌다.",
+          "sources": ["dns.dns-cache-ttl"]
+        },
+        {
+          "id": "expired",
+          "label": "만료",
+          "caption": "들어온 지 3600초가 지나면 남은 TTL이 0이 되어 로컬 DNS 서버가 이 레코드를 버린다. 그 뒤 이 이름을 물으면 캐시로 답하지 못하고, 다시 물어 새 레코드를 받는다.",
+          "sources": ["dns.dns-cache-ttl"]
+        }
+      ],
+      "sources": ["dns.dns-cache-ttl"]
+    },
+    "record-types": {
+      "label": "example.com 영역의 CNAME·A·MX·NS 레코드를 이름·유형·데이터 칸으로 나눠, 유형마다 이름에 무엇을 짝지어 두는지 보이는 도식",
+      "svgLabel": "example.com 영역 상자 안에 web.example.com의 CNAME, www.example.com의 A, example.com의 MX와 NS 레코드를 맞닿은 칸 셋씩으로 놓은 그림",
+      "question": "레코드마다 이름에 무엇을 짝지어 둘까?",
+      "idleCaption": "example.com 영역에 든 레코드 넷이다. 맞닿은 칸 셋이 레코드 하나로, 이름·유형·데이터를 적었고 TTL과 클래스 칸은 빼고 그렸다. 이름과 값은 예로 붙인 것이다. 버튼을 고르면 유형마다 이름에 무엇을 짝지어 두는지 볼 수 있다.",
+      "legend": "맞닿은 칸 셋이 레코드 하나이고, 화살표는 별칭이 가리키는 정식 이름이다.",
+      "nodes": {
+        "cname-name": "web.example.com",
+        "cname-type": "CNAME",
+        "cname-data": "www.example.com",
+        "a-name": "www.example.com",
+        "a-type": "A",
+        "a-data": "198.51.100.10",
+        "mx-name": "example.com",
+        "mx-type": "MX",
+        "mx-data": "10 mail.example.com",
+        "ns-name": "example.com",
+        "ns-type": "NS",
+        "ns-data": "ns1.example.com"
+      },
+      "groups": {
+        "zone": "example.com 영역의 레코드"
+      },
+      "notes": {
+        "alias-note": "다른 이름을 가리킨다",
+        "address-note": "IPv4 주소를 짝짓는다",
+        "mx-note": "메일 서버를 알린다",
+        "ns-note": "네임 서버를 알린다"
+      },
+      "scenarios": [
+        {
+          "id": "address",
+          "label": "주소",
+          "caption": "www.example.com의 A 레코드는 이 이름에 IPv4 주소 198.51.100.10을 짝지어 둔다. 이 이름의 IP 주소를 물으면 네임 서버는 이 데이터를 답으로 돌려준다.",
+          "sources": ["dns.resource-records"]
+        },
+        {
+          "id": "alias",
+          "label": "별칭",
+          "caption": "web.example.com의 CNAME 레코드는 주소 대신 정식 이름 www.example.com을 적는다. 이 별칭의 IP 주소를 물으면 네임 서버는 정식 이름으로 다시 찾아, www.example.com의 A 레코드에서 198.51.100.10을 얻는다.",
+          "sources": ["dns.resource-records"]
+        },
+        {
+          "id": "mail-ns",
+          "label": "메일과 네임 서버",
+          "caption": "example.com 앞으로 오는 메일을 받을 서버는 MX 레코드가 mail.example.com으로 알리고, 이 영역의 이름을 물을 때 답하는 네임 서버는 NS 레코드가 ns1.example.com으로 알린다. 둘 다 데이터는 IP 주소가 아니라 서버의 이름이고, 10은 MX의 우선순위 값이다.",
+          "sources": ["dns.resource-records"]
+        }
+      ],
+      "sources": ["dns.resource-records"]
+    },
+    "soa-fields": {
+      "label": "example.com 영역의 SOA 레코드에 든 필드 일곱을 예의 값과 함께 놓고, 필드마다 무엇을 정하는지 보이는 도식",
+      "svgLabel": "MNAME·RNAME·SERIAL·REFRESH·RETRY·EXPIRE·MINIMUM 필드를 필드 이름과 값의 칸으로 놓고, RNAME 아래에 메일 주소 hostmaster@example.com을 두고, REFRESH·RETRY·EXPIRE를 보조 서버의 일정 상자로 묶은 그림",
+      "question": "SOA 레코드의 필드는 각각 무엇을 정할까?",
+      "idleCaption": "example.com 영역의 SOA 레코드에 든 필드 일곱을 데이터에 적는 차례대로 놓은 것이다. 시간은 초로 적고, 값은 예로 붙인 것이지 권하는 값이 아니다. 버튼을 고르면 필드들이 무엇을 정하는지 볼 수 있다.",
+      "legend": "왼쪽 칸이 필드 이름, 오른쪽 칸이 예의 값이고, 상자로 묶은 필드는 보조 서버가 쓴다.",
+      "nodes": {
+        "mname-name": "MNAME",
+        "mname-value": "ns1.example.com.",
+        "rname-name": "RNAME",
+        "rname-value": "hostmaster.example.com.",
+        "mail": "hostmaster@example.com",
+        "serial-name": "SERIAL",
+        "serial-value": "100",
+        "refresh-name": "REFRESH",
+        "refresh-value": "7200초 (2시간)",
+        "retry-name": "RETRY",
+        "retry-value": "600초 (10분)",
+        "expire-name": "EXPIRE",
+        "expire-value": "604800초 (7일)",
+        "minimum-name": "MINIMUM",
+        "minimum-value": "300초 (5분)"
+      },
+      "groups": {
+        "secondary": "보조 서버의 일정"
+      },
+      "notes": {
+        "rname-note": "@ 대신 점"
+      },
+      "scenarios": [
+        {
+          "id": "who",
+          "label": "서버와 책임자",
+          "caption": "MNAME에는 이 영역의 원본을 가진 주 서버의 이름 ns1.example.com.을, RNAME에는 영역 책임자의 메일 주소를 적는다. 메일 주소의 @ 자리에 점을 써서 hostmaster.example.com.으로 적고, 이것은 메일 주소 hostmaster@example.com이다.",
+          "sources": ["dns.soa-record"]
+        },
+        {
+          "id": "version",
+          "label": "판 번호",
+          "caption": "SERIAL은 영역의 판 번호인 일련번호다. 영역을 고칠 때마다 올리고, 보조 서버는 주 서버의 이 번호를 자기 사본의 번호와 견주어 영역이 바뀌었는지 안다.",
+          "sources": ["dns.soa-record"]
+        },
+        {
+          "id": "secondary",
+          "label": "보조 서버의 일정",
+          "caption": "REFRESH·RETRY·EXPIRE는 보조 서버가 따르는 일정이다. 보조 서버는 7200초를 기다렸다가 주 서버에 일련번호를 물어 견주고, 닿지 못하면 600초마다 다시 해 보며, 마지막으로 확인한 뒤 604800초가 지나도록 끝내 닿지 못하면 사본을 버리고 이 영역에 답하기를 멈춘다.",
+          "sources": ["dns.soa-record"]
+        }
+      ],
+      "sources": ["dns.soa-record"]
+    },
+    "reverse-name": {
+      "label": "IP 주소 198.51.100.10으로 호스트 이름 www.example.com을 찾는 역방향 조회에서 주소를 in-addr.arpa 아래 이름으로 바꾸는 차례와 그 이름의 PTR 레코드를, 같은 짝을 이름으로 찾는 정방향 조회와 견주어 보이는 도식",
+      "svgLabel": "정방향 조회 상자에 www.example.com과 198.51.100.10을 놓고, 역방향 조회 상자에 198.51.100.10, 10.100.51.198, 10.100.51.198.in-addr.arpa., PTR 레코드, www.example.com.을 차례로 놓은 그림",
+      "question": "IP 주소로 이름을 찾을 때는 무엇을 물을까?",
+      "idleCaption": "같은 짝 www.example.com과 198.51.100.10을, 위에서는 이름으로 주소를 찾는 정방향 조회로, 아래에서는 주소로 이름을 찾는 역방향 조회로 보인다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 조회마다 무엇을 묻는지 볼 수 있다.",
+      "legend": "화살표는 조회의 차례이고, 화살표 곁의 글은 그 단계에서 하는 일이다.",
+      "nodes": {
+        "f-name": "www.example.com",
+        "f-addr": "198.51.100.10",
+        "r-addr": "198.51.100.10",
+        "r-flip": "10.100.51.198",
+        "r-arpa": "10.100.51.198.in-addr.arpa.",
+        "r-ptr": "PTR 레코드",
+        "r-host": "www.example.com."
+      },
+      "groups": {
+        "forward": "정방향 조회",
+        "reverse": "역방향 조회"
+      },
+      "notes": {
+        "a-note": "A 레코드로 찾는다",
+        "flip-note": "네 수의 차례를 거꾸로",
+        "suffix-note": "끝에 .in-addr.arpa.를 붙인다",
+        "ask-note": "이 이름의 PTR 레코드를 묻는다",
+        "answer-note": "데이터가 호스트 이름이다"
+      },
+      "scenarios": [
+        {
+          "id": "forward",
+          "label": "정방향",
+          "caption": "이름 www.example.com을 주고, 그 이름의 A 레코드에서 IP 주소 198.51.100.10을 받는다. 이렇게 이름으로 주소를 찾는 것이 정방향 조회다.",
+          "sources": ["dns.reverse-lookup"]
+        },
+        {
+          "id": "reverse-name",
+          "label": "이름 만들기",
+          "caption": "역방향 조회는 먼저 주소를 도메인 이름 꼴로 바꾼다. 198.51.100.10의 네 수를 거꾸로 늘어놓아 10.100.51.198을 만들고, 끝에 .in-addr.arpa.를 붙여 10.100.51.198.in-addr.arpa.를 얻는다.",
+          "sources": ["dns.reverse-lookup"]
+        },
+        {
+          "id": "ptr",
+          "label": "PTR",
+          "caption": "만든 이름 10.100.51.198.in-addr.arpa.의 PTR 레코드를 물으면, 그 데이터에 적힌 호스트 이름 www.example.com.이 답으로 온다. 이 PTR 레코드는 A 레코드와 따로 적어 둔 레코드다.",
+          "sources": ["dns.reverse-lookup"]
+        }
+      ],
+      "sources": ["dns.reverse-lookup"]
+    },
+    "round-robin-answers": {
+      "label": "www.example.com에 주소가 다른 A 레코드 셋을 둔 DNS 서버가 질의 셋에 답한 차례를 나란히 보여, 질의마다 맨 앞 주소가 바뀌고 실리는 주소는 그대로인 것을 보이는 도식",
+      "svgLabel": "DNS 서버의 레코드 상자와 질의 1·2·3의 답 상자 셋에, 주소 198.51.100.10, 198.51.100.11, 198.51.100.12를 각 상자의 차례대로 놓은 그림",
+      "question": "같은 이름을 물을 때마다 답이 어떻게 바뀔까?",
+      "idleCaption": "DNS 서버에 적힌 www.example.com의 A 레코드 셋과, 이 이름을 잇달아 물은 질의 셋에 DNS 서버가 답한 차례다. 주소와 차례는 예로 붙인 것이다. 버튼을 고르면 질의마다의 답을 볼 수 있다.",
+      "legend": "상자마다 위 칸의 주소가 먼저 놓인 주소이고, 답 상자에서는 위 칸이 응답의 맨 앞이다.",
+      "nodes": {
+        "rec-10": "198.51.100.10",
+        "rec-11": "198.51.100.11",
+        "rec-12": "198.51.100.12",
+        "q1-10": "198.51.100.10",
+        "q1-11": "198.51.100.11",
+        "q1-12": "198.51.100.12",
+        "q2-11": "198.51.100.11",
+        "q2-12": "198.51.100.12",
+        "q2-10": "198.51.100.10",
+        "q3-12": "198.51.100.12",
+        "q3-10": "198.51.100.10",
+        "q3-11": "198.51.100.11"
+      },
+      "groups": {
+        "server": "DNS 서버의 레코드",
+        "q1": "질의 1의 답",
+        "q2": "질의 2의 답",
+        "q3": "질의 3의 답"
+      },
+      "scenarios": [
+        {
+          "id": "first",
+          "label": "질의 1",
+          "caption": "예로 든 첫 질의에는 198.51.100.10, 198.51.100.11, 198.51.100.12의 차례로 답한다. 이 이름에 둔 A 레코드 셋이 한 묶음으로 응답에 모두 실린다.",
+          "sources": ["dns.dns-round-robin"]
+        },
+        {
+          "id": "second",
+          "label": "질의 2",
+          "caption": "다음 질의에는 차례를 하나 돌려 198.51.100.11이 맨 앞에 온다. 응답에 실리는 세 주소는 그대로이고, 바뀌는 것은 차례뿐이다.",
+          "sources": ["dns.dns-round-robin"]
+        },
+        {
+          "id": "third",
+          "label": "질의 3",
+          "caption": "그다음 질의에는 198.51.100.12가 맨 앞에 온다. 이렇게 질의마다 맨 앞 주소가 바뀌어, 이 이름을 묻는 클라이언트들이 늘 같은 서버로만 접속하지 않고 여러 서버로 나뉜다.",
+          "sources": ["dns.dns-round-robin"]
+        }
+      ],
+      "sources": ["dns.dns-round-robin"]
+    },
+    "dns-transport": {
+      "label": "클라이언트가 로컬 DNS 서버에 이름을 물을 때 보통은 UDP로 묻고 답하지만, 응답이 잘리면 같은 질의를 TCP로 다시 묻는 차례를 보이는 도식",
+      "svgLabel": "왼쪽 클라이언트와 오른쪽 로컬 DNS 서버 두 기둥 사이에 UDP 53으로 질의, UDP로 응답, UDP로 잘린 응답, TCP 53으로 질의, TCP로 응답을 위에서 아래로 놓은 그림",
+      "question": "DNS는 언제 UDP를 쓰고 언제 TCP를 쓸까?",
+      "idleCaption": "클라이언트 192.0.2.10이 로컬 DNS 서버 192.0.2.53에 www.example.com의 IP 주소를 묻는 동안 오가는 메시지를 차례대로 위에서 아래로 놓았다. 두 주소는 예로 붙인 것이다. 버튼을 고르면 보통의 질의와, 응답이 커서 잘렸을 때를 볼 수 있다.",
+      "legend": "위의 두 노드는 클라이언트와 로컬 DNS 서버이고, 그 아래 박스에는 저마다의 IP 주소를 붙였다. 가운데 노드 하나가 메시지 하나이고, 화살표는 메시지가 가는 방향이다.",
+      "nodes": {
+        "client": "클라이언트",
+        "server": "로컬 DNS 서버",
+        "query": "UDP 53으로 질의",
+        "answer": "UDP로 응답",
+        "truncated": "UDP로 잘린 응답",
+        "tcp-query": "TCP 53으로 질의",
+        "tcp-answer": "TCP로 응답"
+      },
+      "groups": {
+        "client-side": "192.0.2.10",
+        "server-side": "192.0.2.53"
+      },
+      "notes": {
+        "answer-note": "연결을 맺지 않는다",
+        "truncated-note": "잘렸다는 표시가 켜져 있다",
+        "tcp-query-note": "연결을 맺고 다시 묻는다",
+        "tcp-answer-note": "잘리지 않고 온다"
+      },
+      "scenarios": [
+        {
+          "id": "udp",
+          "label": "보통 질의",
+          "caption": "보통의 질의는 UDP로 보낸다. 클라이언트가 로컬 DNS 서버의 UDP 53번 포트로 질의 하나를 보내면 응답 하나가 돌아오고, 그 앞에 연결을 맺느라 기다리는 단계가 없다.",
+          "sources": ["dns.dns-transport"]
+        },
+        {
+          "id": "truncated",
+          "label": "큰 응답",
+          "caption": "응답이 UDP로 보내기에 커서 잘렸다는 표시가 켜진 채 오면, 클라이언트는 그 응답을 쓰지 않는다. 로컬 DNS 서버의 TCP 53번 포트로 연결을 맺고 같은 질의를 다시 보내, 잘리지 않은 응답을 받는다.",
+          "sources": ["dns.dns-transport"]
+        }
+      ],
+      "sources": ["dns.dns-transport"]
+    },
+    "dnssec-chain": {
+      "label": "서명된 영역이 레코드에 서명을 붙여 두고, 로컬 DNS 서버가 루트까지 이어진 키로 그 서명을 확인하며, 서명이 응답의 내용을 감추지는 않는다는 것을 보이는 도식",
+      "svgLabel": "루트 영역, com 영역, example.com 영역을 위에서 아래로 이은 박스와, A 198.51.100.10과 RRSIG (서명)가 든 답 박스, 로컬 DNS 서버를 놓은 그림",
+      "question": "DNSSEC은 응답의 무엇을 확인해 줄까?",
+      "idleCaption": "www.example.com의 A 레코드를 예로, 서명된 example.com 영역과 그 위의 com·루트 영역이 이루는 사슬, 레코드와 서명이 함께 실린 답, 그 답을 받는 로컬 DNS 서버를 놓았다. 이름과 주소는 예로 붙인 것이다. 버튼을 고르면 서명을 붙이는 일, 확인하는 일, 감추지 않는 것을 볼 수 있다.",
+      "legend": "위 박스의 세 영역을 잇는 선은 위 영역과 그 아래 영역을 잇는다. 아래 박스는 응답에 함께 실린 레코드와 서명이다. 화살표는 서명을 붙이는 쪽과 답이 가는 쪽을 가리킨다.",
+      "nodes": {
+        "root": "루트 영역",
+        "com": "com 영역",
+        "example": "example.com 영역",
+        "record": "A 198.51.100.10",
+        "signature": "RRSIG (서명)",
+        "local": "로컬 DNS 서버"
+      },
+      "groups": {
+        "chain": "서명된 영역",
+        "answer": "www.example.com의 답"
+      },
+      "notes": {
+        "sign-note": "개인 키로 서명해 둔다",
+        "root-com-note": "루트가 com의 키를 보증",
+        "com-example-note": "com이 example.com의 키를 보증",
+        "local-note": "공개 키로 서명을 확인한다",
+        "visible-note": "내용은 그대로 보인다"
+      },
+      "scenarios": [
+        {
+          "id": "sign",
+          "label": "서명",
+          "caption": "example.com 영역은 www.example.com의 A 레코드에 그 영역의 개인 키로 서명해, 그 서명을 RRSIG 레코드에 담아 둔다. 응답에는 레코드와 서명이 함께 실린다.",
+          "sources": ["dns.dnssec"]
+        },
+        {
+          "id": "verify",
+          "label": "확인",
+          "caption": "로컬 DNS 서버는 example.com의 DNSKEY 레코드에 든 공개 키로 서명을 확인한다. 그 키는 com 영역이 DS 레코드로 보증하고, com의 키는 루트 영역이 보증하며, 루트 영역의 공개 키는 처음부터 믿을 키로 설정해 둔 신뢰 앵커다.",
+          "sources": ["dns.dnssec"]
+        },
+        {
+          "id": "visible",
+          "label": "감추지 않음",
+          "caption": "서명은 레코드가 바뀌지 않았는지 확인할 값을 덧붙일 뿐 내용을 감추지 않는다. 질의와 응답은 암호화되지 않아, 엿보는 사람도 www.example.com과 주소 198.51.100.10을 그대로 알아볼 수 있다.",
+          "sources": ["dns.dnssec"]
+        }
+      ],
+      "sources": ["dns.dnssec"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
