@@ -1,0 +1,76 @@
+{
+  "project": "Study Quiz",
+  "phase": "80-network-windows-ad-tools",
+  "steps": [
+    {
+      "step": 0,
+      "name": "ad-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "local-accounts-groups",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "ad-ds-domain-controller",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "forest-trust",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "ad-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "ou-domain-users",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "ds-commands-group-scopes",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "group-policy-lockout",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "admin-tools-sources",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "mmc-event-viewer",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "windows-logs-perfmon",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "resmon-powershell",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "certificate-efs",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "bitlocker-work-folders",
+      "status": "pending"
+    }
+  ]
+}

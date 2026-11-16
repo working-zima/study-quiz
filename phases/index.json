@@ -396,6 +396,10 @@
       "completed_at": "2026-11-11T20:13:28+0900"
     },
     {
+      "dir": "80-network-windows-ad-tools",
+      "status": "pending"
+    },
+    {
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"
