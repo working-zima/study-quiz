@@ -873,3 +873,32 @@ E35~는 phase 80(`windows-ad`·`windows-admin-tools`)이 더한다. phase 80 ste
   이 그룹에는 「자격시험은 ~로 본다」 줄을 두지 않는다 — 시험에서 알 수 있는 것은 「이 보기는 틀린 설명이다」뿐이라 사실처럼 옮길 시험 쪽 내용이 없고, 그 판정을 옮기면 공식 문서와 어긋난 것을 가르치게 된다.
   문항(해설 포함)은 RDS Endpoint Servers를 보기에 두지 않는다 — 이 그룹에 대한 설명을 맞는 말로도 틀린 말로도 쓰지 않는다
 - 쓰인 곳: (phase 80 step 1에서 쓰일 곳) `windows-ad.local-groups`
+
+phase 80 step 4에서 `windows-ad` 주제의 뒤 개념 여섯(조직 구성 단위, 도메인 사용자 계정, ds 명령, 그룹 종류와 범위, 그룹 정책, 암호 정책과 계정 잠금 정책)이 답을 가르는 기출 5문항을 보았다(확인한 날 2026-11-16). 다섯 모두 서로 다른 문항이고, 하나는 지문이 그림이다([기출 2026-02-01 #43]).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32·문제 해결 문서와 지난 판 명령 참조(ds 명령)다. 공식 문서와 어긋나는 곳 하나에 **E36**을 만들었다 — 근거는 `standards.md`의 「(phase 80 step 4)」 줄과 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **한 도메인 안을 부서처럼 나누어 관리하려면 OU**([기출 2025-02-23 #42]): 시험의 답 OU는 공식 문서와 맞다 — OU는 도메인 안에 그릇의 계층을 만들어 그룹 정책 적용·관리 위임 같은 관리 목적으로 개체를 묶는다(「Understanding the Active Directory Logical Model」, 「Reviewing OU Design Concepts」).
+  오답 DC·RODC는 위 「phase 80 step 0」 문단이 보았다(서버다). 오답 사이트는 빠르고 안정적인 연결로 이어진 서브넷의 묶음이라 복제와 로그온을 네트워크 위치에 맞추는 물리 쪽 구분이지 부서 나눔이 아니다(「Active Directory Replication Concepts」, 「Site functions」, 「Designing the Site Topology」).
+  다만 공식 문서는 OU 계층이 부서 계층을 그대로 따를 필요는 없고 위임·그룹 정책 같은 목적으로 만든다고 적는다 — 본문은 「OU는 부서를 나타낸다」로 단정하지 않고 「부서·지역처럼 나눠 관리하고 정책을 거는 단위」로 쓴다. 부서를 나누려고 도메인을 늘리지 않는다는 것은 「Reviewing the Domain Models」가 받친다
+- **도메인 사용자 계정 관리에 대해 맞는 말**([기출 2026-08-02 #43]): 시험이 맞는 말로 고른 보기 — 도메인 계정은 「Active Directory 사용자 및 컴퓨터」에서 만들고, 만든 계정은 보안 그룹에 구성원으로 넣는다 — 는 「Manage user accounts in Active Directory Users and Computers」(Windows Server 2016~2025 — 만드는 차례와 Member Of 탭으로 그룹에 넣는 차례)와 맞다. 오답 셋도 문서로 틀리다:
+  (1) 암호 조건은 도메인의 계정 정책이 정하고(기본 도메인 정책 GPO, DC가 강제) 복잡성 조건은 암호를 만들거나 바꿀 때 검사되므로 사용자가 임의로 정하지 못한다(「Account Policies」, 「Password must meet complexity requirements」) — 관리자가 계정 하나를 정책에서 빼는 「암호가 만료되지 않게 하기」 확인란은 있지만 그것은 사용자의 선택이 아니다.
+  (2) 계정을 만들면 그 사용자가 도메인 컴퓨터에 로그인할 수 있게 될 뿐이고, 자원에는 그 자원에 준 사용 권한에 따라 닿는다(「Manage user accounts…」 「Create a user account」, 「Active Directory accounts」). 새 도메인 계정은 기본으로 Domain Users 그룹에 들어 그 그룹이 받은 사용 권한은 받는다(「Active Directory security groups」 「Domain Users」) — 「모든 자원」이 아니라 그 그룹에 준 자원이다.
+  (3) Windows Server 2016~2025에서 도메인 사용자 계정을 만든다(같은 문서의 적용 대상). 본문은 이 셋을 문서의 사실로 쓰고, 「자격시험은」 줄은 필요 없다
+- **도메인 사용자 계정을 관리하는 명령이 아닌 것은 `net user`**([기출 2025-08-24 #38]): `dsadd`·`dsmod`·`dsrm`이 디렉터리의 사용자 개체를 더하고·고치고·지운다는 것은 지난 판 명령 참조(「Dsadd」·「Dsmod」·「Dsrm」)와 지금 판 문제 해결 문서(「Use the Directory Service command-line tools…」)와 맞다.
+  그러나 `net user`를 도메인 계정 명령이 아니라고 보는 것은 「net user」 쪽과 어긋난다 — 아래 **E36**
+- **(지문) 유니버설 그룹**([기출 2026-02-01 #43] — 지문이 그림): 지문을 볼 수 없어 무엇을 물었는지는 대조하지 못했다. 항목을 만들지 않는다. 보기 넷 — 글로벌·유니버설·도메인 로컬 그룹과 로컬 그룹 — 은 「Active Directory security groups」의 범위 셋과 한 컴퓨터의 로컬 그룹(SAM)으로 서로 갈린다는 데까지만 본다.
+  범위 셋 가운데 같은 포리스트의 어느 도메인의 계정·글로벌 그룹이든 넣을 수 있고 포리스트 어느 도메인에서나 사용 권한을 받는 것은 유니버설뿐이다. 본문은 범위의 사실만 가르치고, 문항(해설 포함)은 이 기출의 지문을 짐작해 옮기지 않는다
+- **그룹 정책으로 할 수 없는 일은 「소프트웨어를 배포할 수 없다」**([기출 2024-08-25 #34]): 시험의 답과 맞다 — 그룹 정책의 소프트웨어 설치로 프로그램을 사용자·컴퓨터에 할당하거나 사용자에게 게시한다(문제 해결 「Use Group Policy to remotely install software」, 「Group Policy processing」).
+  맞는 말로 둔 셋도 문서와 맞다 — 암호·계정 잠금 정책을 도메인에 연결된 GPO로 강제하고(「Account Policies」, 「Account Lockout Policy」), 암호 길이·복잡성 조건을 정한다(「Password Policy」).
+  로그온하는 PC가 바뀌어도 같은 환경을 쓰게 한다는 보기는 그룹 정책 자체의 기능이 아니라 **그룹 정책으로 설정하는** 폴더 리디렉션(GPO의 사용자 구성)과 로밍 사용자 프로필(계정 속성이나 GPO의 컴퓨터 구성)의 일이다(「Folder Redirection and Roaming User Profiles…」, 「Deploy Folder Redirection…」, 「Deploy roaming user profiles」).
+  답이 같아 항목을 만들지 않는다. 본문은 「그룹 정책으로 폴더 리디렉션·로밍 사용자 프로필을 설정해 어느 PC에서나 같은 파일과 설정을 쓰게 한다」로 쓴다
+
+## E36 — `net user`를 도메인 사용자 계정을 관리하는 명령이 아닌 것으로 본다
+
+- **시험**: Windows Server 2022의 Active Directory에서 도메인 사용자 계정을 만들고·고치고·지우는 명령이 아닌 것을 고르는 문항이, `dsadd`·`dsmod`·`dsrm`과 함께 둔 `net user`를 정답으로 둔다 — [기출 2025-08-24 #38]
+- **공식 문서**: 「net user」(learn.microsoft.com, `updated_at` 2026-02-16, Windows Server 2016~2025)는 이 명령이 **로컬 컴퓨터나 도메인의** 사용자 계정을 더하고·고치고·지우고·보인다고 적는다. `/domain`은 그 컴퓨터가 속한 기본 도메인의 DC에서 작업하게 하고, `/add`·`/delete`를 `/domain`과 함께 쓰면 계정을 로컬 컴퓨터가 아니라 도메인에 만들고 도메인에서 지운다.
+  문제 해결 「Redirect the users and computers containers in Active Directory domains」(2026-08-04)도 `NET USER`를 옛 API로 도메인에 사용자를 만드는 명령으로 든다(그 사용자는 기본 `CN=Users` 컨테이너에 들어간다). 곧 `/domain`을 붙인 `net user`는 도메인 사용자 계정을 다룬다. 어느 문서에도 `net user`가 도메인 계정을 다루지 못한다는 말은 없다.
+  가르는 점은 이것이다 — `/domain` 없이 실행하면 그 컴퓨터의 로컬 계정을 다루고, 개체를 고유 이름(DN)으로 가리켜 자리(OU)를 고르거나 그룹·OU·컴퓨터 같은 다른 개체까지 다루는 것은 ds 명령이다. 시험이 `net user`를 정답으로 둔 까닭을 이 차이로 짐작할 수는 있지만, 문서로 판정할 수는 없다
+- **처리**: 본문(`windows-ad.ds-commands`)은 문서대로 쓴다 — `net user`는 기본으로 그 컴퓨터의 로컬 계정을 다루고, `/domain`을 붙이면 기본 도메인의 DC에서 도메인 사용자 계정을 다룬다. 그 자리에 「자격시험은 `net user`를 도메인 사용자 계정을 관리하는 명령으로 보지 않고 `dsadd`·`dsmod`·`dsrm`과 가른다」를 한 줄 덧붙인다.
+  문항(해설 포함)은 「`net user`는 도메인 계정을 다룰 수 없다」를 맞는 말로도, 「`net user /domain`으로 도메인 계정을 만든다」를 정답을 가르는 근거로도 쓰지 않는다 — `net user`와 ds 명령의 판정이 `/domain`의 유무에 기대게 하지 않는다. 로컬 계정을 다루는 상황의 `net user`는 그대로 쓸 수 있다
+- 쓰인 곳: (phase 80 step 6에서 쓰일 곳) `windows-ad.ds-commands`

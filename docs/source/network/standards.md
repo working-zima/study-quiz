@@ -109,6 +109,11 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 지금 판 문서에 없는 말(트러스트의 종류와 방향을 정의한 문장, 기본 그룹의 옛 설명)은 지난 판 문서(`previous-versions` — Windows Server 2008·2012까지)에서 가져오고, 지금 판 문서가 같은 말을 하는지 줄마다 적는다.
 한국어판은 기계 번역이라 같은 것을 여러 이름으로 부르는 곳이 있다(trusted를 「신뢰받는」과 「신뢰할 수 있는」으로, 기본 그룹 이름을 영문 그대로와 번역으로) — 고른 이름과 그 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Windows 화면의 이름은 확인하지 못했다.**
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — Kerberos·NTLM의 인증 차례, 작업 마스터(FSMO) 역할의 일, 글로벌 카탈로그·스키마의 동작, 복제 토폴로지, 트러스트 암호와 신뢰할 수 있는 도메인 개체(TDO), 선택적 인증, RODC의 암호 복제 정책. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 4)」가 붙은 줄과 항목은 phase 80 step 4에서 `windows-ad` 주제의 뒤 개념 여섯(조직 구성 단위, 도메인 사용자 계정, ds 명령, 그룹 종류와 범위, 그룹 정책, 암호 정책과 계정 잠금 정책)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+읽은 방법은 step 0과 같다(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`·「Applies to」를 적었다). **ds 명령(`dsadd`·`dsmod`·`dsrm`·`dsquery`·`dsget`·`dsmove`)의 명령 참조는 지금 판 Windows 명령 참조에 없어**(`windows-server/administration/windows-commands/dsadd` 같은 주소가 404이고 Windows 명령 목록에도 없다)
+지난 판 명령 참조(Windows Server 2012 R2·2012 묶음, 적용 대상 Windows Server 2003~2012)를 읽고, 지금 판 문제 해결 문서(적용 대상 — 지원되는 모든 Windows Server)가 같은 명령을 쓰는지 맞춰 봤다.
+계정 정책 설정 문서(`windows/security/threat-protection/security-policy-settings/`)는 「Applies to」를 Windows 11·10으로 적지만 기본값 표에 기본 도메인 정책·DC·구성원 서버·독립 실행 서버의 값을 함께 싣는다 — 그 표의 값을 그대로 적고, 이 문서들의 한국어판은 번역되지 않아 영문 그대로라는 것도 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 그룹 정책의 상속 차단·강제·보안 필터링·WMI 필터, 세분화된 암호 정책, 글로벌 카탈로그의 동작, 사이트 링크와 복제 일정, PowerShell AD 모듈의 cmdlet 목록, `dsadd user`의 옵션 전체. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -5608,6 +5613,8 @@ https://learn.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/dd728026
 - 「net user」: 로컬 컴퓨터나 도메인의 사용자 계정을 더하고·고치고·지우고 자세한 정보를 보는 명령이다. 이름 없이 실행하면 그 로컬 컴퓨터의 사용자 계정 목록을 보인다. `/add`는 새 계정을 더하고 `/delete`는 지우는데, 둘 다 `/domain`과 함께 쓰면 로컬 컴퓨터가 아니라 도메인에서 한다.
   `/domain`은 그 컴퓨터가 속한 기본(primary) 도메인의 DC에서 작업하게 한다. `/active:{yes|no}`는 계정을 켜고 끈다(기본 yes). 사용자 이름은 20자까지다 — 「Syntax」, 「Parameters」, 「Examples」(예의 이름·암호는 옮기지 않는다)
 - (phase 80 step 1, 2026-11-16 IPv4로 다시 받아 확인) 「net user」 「Syntax」: 계정을 더하는 꼴은 `net user <UserName> {<Password> | *} /add`라서 `/add` 앞에 암호나 `*`를 적는다. `*`를 적으면 암호를 묻는 줄이 나오고, 거기 입력한 암호는 화면에 보이지 않는다 — 「Parameters」의 `<Password>`. 지우는 꼴은 `net user <UserName> /delete`다
+- (phase 80 step 4, 2026-11-16 IPv4로 다시 받아 확인) 「net user」 「Parameters」: `/add`를 `/domain`과 함께 쓰면 계정을 로컬 컴퓨터가 아니라 **도메인에** 만들고, `/delete`를 `/domain`과 함께 쓰면 도메인에서 지운다. `/domain` 없이 쓰면 그 컴퓨터의 로컬 계정을 다룬다.
+  문제 해결 문서 「Redirect the users and computers containers in Active Directory domains」도 `NET USER`를 옛 API로 도메인에 사용자를 만드는 명령으로 든다 — 그렇게 만든 사용자는 기본 `CN=Users` 컨테이너에 들어간다(아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목). **E36**의 근거다
 - 「Built-in and Account Domains」(Win32): DC가 아닌 컴퓨터마다 SAM 데이터베이스가 있다. 그 안의 **기본 제공(built-in) 도메인**(이름은 BUILTIN의 현지어 판)에는 운영 체제를 설치할 때 생기는 Administrators·Users 같은 기본 로컬 그룹이, **계정 도메인**(이름은 컴퓨터 이름)에는 Administrator 같은 사용자·그룹 계정이 든다.
   워크스테이션이나 구성원 서버의 계정 도메인에 정의한 계정은 **그 컴퓨터에 있는 자원에만** 닿는다. 네트워크 자원에 닿아야 하는 계정은 DC의 계정 도메인에 정의해야 하고, 네트워크에 속하지 않아 주 도메인이 없는 컴퓨터는 그 컴퓨터에 들어오는 모든 계정을 자기 계정 도메인에 둔다.
   **DC에는 기본 제공 도메인도 계정 도메인도 없고**, SAM 대신 Active Directory에 계정 정보를 둔다 — 두 절
@@ -5643,6 +5650,21 @@ https://learn.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/dd728026
   - **RDS Endpoint Servers**: 구성원은 사람이 아니라 **서버**다 — RemoteApp 프로그램과 개인 가상 데스크톱이 실행되는 가상 머신을 돌리고 세션을 호스트하는 서버들이다. RD 연결 브로커를 실행하는 서버에서 이 그룹을 채워야 하고, 그 배포의 RD 세션 호스트·RD 가상화 호스트 서버가 들어야 한다.
     곧 원격 데스크톱 서비스(RDS) 배포를 위한 그룹이다 — 「RDS Endpoint Servers」, S-1-5-32-576
   - **Replicator**: 구성원은 도메인 안의 파일 복제를 지원하는 **컴퓨터**이고, Windows Server는 FRS로 SYSVOL 폴더의 시스템 정책과 로그온 스크립트를 복제한다(FRS는 DFS 복제가 대신한다). 기본 구성원이 없고 사용자를 넣지 말라고 한다 — 「Replicator」, S-1-5-32-552
+- (phase 80 step 4, 2026-11-16 IPv4로 다시 받아 확인 — 「Active Directory security groups」 `updated_at` 2026-10-30, 한국어판 2026-11-05) **그룹 종류는 둘이다**. **보안 그룹**은 공유 자원의 사용 권한을 주는 데 쓰고(그룹에 사용자 권한도 줄 수 있다), **배포 그룹**은 Exchange Server 같은 메일 프로그램으로 여러 사람에게 메일을 보내는 목록으로만 쓴다.
+  배포 그룹은 보안 기능이 꺼져 있어 자원의 사용 권한 목록(DACL)에 넣을 수 없다. 거꾸로 보안 그룹은 메일을 받는 쪽으로도 쓸 수 있다 — 「How Active Directory security groups work」, 「Security groups」, 「Distribution groups」
+- 같은 문서 「Group scope」: **범위**는 그 그룹이 도메인 트리·포리스트의 어디까지 미치는지, 곧 **그 그룹에 사용 권한을 줄 수 있는 곳**이 어디인지를 정한다. 범위는 유니버설·글로벌·도메인 로컬 셋이다(Builtin 컨테이너의 기본 그룹만 범위가 Builtin Local이고 바꿀 수 없다). 표를 범위마다 이렇게 읽는다:
+  - **유니버설**: 같은 포리스트의 어느 도메인에 있는 계정·글로벌 그룹·다른 유니버설 그룹을 넣을 수 있고, 같은 포리스트의 어느 도메인(과 신뢰하는 포리스트)에서나 사용 권한을 받는다
+  - **글로벌**: **같은 도메인**의 계정과 같은 도메인의 다른 글로벌 그룹만 넣을 수 있고, 같은 포리스트의 어느 도메인(과 신뢰하는 도메인·포리스트)에서나 사용 권한을 받는다
+  - **도메인 로컬**: 어느 도메인(신뢰받는 도메인 포함)의 계정·글로벌 그룹, 같은 포리스트의 유니버설 그룹, 같은 도메인의 다른 도메인 로컬 그룹, 다른 포리스트·외부 도메인의 계정·글로벌·유니버설 그룹까지 넣을 수 있지만, 사용 권한은 **그 그룹이 있는 도메인 안에서만** 받는다
+  - 범위 바꾸기는 조건이 붙는다 — 표의 「Scope conversion」 열: 다른 유니버설 그룹의 구성원이 아닌 유니버설은 도메인 로컬로, 유니버설을 담지 않은 유니버설은 글로벌로, 다른 글로벌 그룹의 구성원이 아닌 글로벌은 유니버설로, 다른 도메인 로컬을 담지 않은 도메인 로컬은 유니버설로 바꿀 수 있다. 글로벌과 도메인 로컬 사이를 곧바로 바꾸는 칸은 없다
+    (지금 판 문제 해결 문서 「Use the Directory Service command-line tools…」도 도메인 로컬과 글로벌은 서로 바꿀 수 없다고 적는다 — 아래 「(phase 80 step 4) … 도메인 사용자 계정과 ds 명령」 항목)
+  - 같은 표의 「Possible member of」 열: 글로벌 그룹은 도메인 로컬 그룹(같은 포리스트의 어느 도메인이나 신뢰하는 도메인의 것)의 구성원이 될 수 있고, 도메인 로컬 그룹은 같은 도메인 컴퓨터의 로컬 그룹(잘 알려진 SID를 가진 기본 그룹은 빼고)에 들 수 있다.
+    **「글로벌 그룹을 도메인 로컬 그룹에 넣고 사용 권한은 도메인 로컬 그룹에 준다」를 권고로 적은 곳은 이 문서에 없다** — 권고로 쓰지 않는다
+- 같은 문서 「Domain Users」: 도메인의 **모든 사용자 계정**이 이 그룹에 들고, 도메인에 사용자 계정을 만들면 **기본으로 이 그룹에 들어간다**. 범위는 글로벌, 기본 컨테이너는 Users이고 기본으로 Users 그룹의 구성원이다. 예로, 도메인의 모든 사용자가 프린터를 쓰게 하려면 그 프린터의 사용 권한을 이 그룹에 준다 — 곧 새 도메인 계정은 처음부터 이 그룹(과 이 그룹이 든 그룹)이 받은 사용 권한을 받는다
+- **로컬 그룹과 도메인 로컬 그룹**: 로컬 그룹은 DC가 아닌 각 컴퓨터의 SAM에 있고 그 컴퓨터 자원의 권한과 사용 권한에만 쓰인다(위 「Security principals」 줄). 도메인 로컬 그룹은 AD 데이터베이스에 있는 도메인의 그룹이고 그 도메인 안의 자원에 사용 권한을 받는다(위 「Group scope」 줄). **둘을 견준 한 문장은 찾지 못했다** — 어디에 저장되고 어디까지 쓰이는지로 가른다
+- 「Active Directory Replication Concepts」(아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목): **글로벌 카탈로그** 서버는 포리스트의 모든 개체 정보를 담는 DC이고, 사용자의 유니버설 그룹 구성원 정보는 글로벌 카탈로그에서 얻는다(유니버설 그룹 구성원 캐싱을 켜면 DC가 그 정보를 캐시한다) — 「Global catalog server」, 「Universal group membership caching」. 이름과 이 한 줄만 쓰고 동작은 쓰지 않는다
+- **한국어 이름**(phase 80 step 4): 「Active Directory security groups」 한국어판은 Security groups·Distribution groups를 「보안 그룹」·「배포 그룹」, Group scope를 「그룹 범위」, Universal·Global·Domain Local을 「유니버설」·「전역」·「도메인 로컬」로 옮긴다.
+  **고른 이름**: 「보안 그룹」·「배포 그룹」, 「유니버설 그룹」·「글로벌 그룹」·「도메인 로컬 그룹」 — Global은 한국어판의 「전역」 대신 기출([기출 2026-02-01 #43]의 보기)과 guide.md가 쓰는 「글로벌」을 세우고, 처음 나오는 자리에 「전역 그룹」이라고도 부른다는 것을 한 번 적는다
 - **한국어 이름**: 「Local accounts」 한국어판은 「컴퓨터 관리」, 「로컬 사용자 및 그룹\사용자」, 「기본 로컬 사용자 계정」으로 옮긴다. 계정 절의 제목은 「관리자」·「게스트」로 번역하면서 표시 이름은 「Administrator」로 남기고, Guest의 표시 이름은 「게스트」로 번역했다.
   그룹 이름은 영문 그대로(「Administrators 그룹」)와 번역(「관리자 그룹」)이 섞인다. 「Active Directory security groups」 한국어판의 절 제목도 영문 그대로(Administrators·Guests·Users·Replicator)와 번역(「백업 운영자」·「성능 모니터 사용자」·「성능 로그 사용자 목록」·「원격 관리 사용자」·「원격 데스크톱 사용자들」·「RDS 엔드포인트 서버」·「Access Control 지원 연산자」)이 섞인다.
   user right는 「사용자 권한」(로컬 보안 정책의 「사용자 권한 할당」)과 「사용자 권리」(「사용 권한은 사용자 권리와 다릅니다」)로 갈리고, permission은 「사용 권한」으로 옮긴 곳이 많다. WMI는 「Windows 관리 계측(WMI)」으로 옮긴다.
@@ -5653,6 +5675,8 @@ https://learn.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/dd728026
 `windows-ad.local-groups`(그룹에 넣으면 그 그룹의 권한·사용 권한을 받는다, 그룹별 줄, 사용자 권한과 사용 권한, Administrators 구성원을 적게, WMI 한 줄), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단, **E35**)
 (phase 80 step 1) `windows-ad.local-accounts`(「Local accounts」 — 한 장치가 계정을 확인하는 보안 기관·그 장치 안에서만 통한다·적용 판, 기본 로컬 사용자 계정 Administrator·Guest·DefaultAccount, WDAGUtilityAccount·WSIAccount는 PC용 Windows 기능의 계정, 「컴퓨터 관리」의 「로컬 사용자 및 그룹\사용자」; 「Built-in and Account Domains」 — 그 컴퓨터의 자원에만 닿는다·네트워크 자원에 닿을 계정은 도메인에; 「net user」 — 목록·`* /add`·`/delete`), 도식 `local-user-accounts`, 문항 n256(Guest는 기본으로 꺼져 있다);
 `windows-ad.local-groups`(「Add-LocalGroupMember」·「Active Directory security groups」 — 그룹의 권한·사용 권한이 구성원에게, 사용자 권한과 사용 권한, Backup Operators의 「파일 및 디렉터리 백업」·「파일 및 디렉터리 복원」, 그룹별 줄 — 위 목록대로, Power Users는 지난 판 문서라고 밝혀 씀, RDS Endpoint Servers는 E35대로 문서의 말로 한 줄), 도식 `builtin-local-groups`, 문항 n257(Backup Operators — 오답 Administrators·Power Users·Remote Desktop Users)·n258(Administrators의 권한이 구성원에게 — 그 컴퓨터 안에서만)
+(phase 80 step 4에서 쓰일 곳) `windows-ad.group-scopes`(그룹 종류 둘, 범위 셋마다 넣을 수 있는 구성원과 사용 권한을 받는 곳, 범위 바꾸기의 조건, 로컬 그룹과 도메인 로컬 그룹, 글로벌 카탈로그 한 줄), `windows-ad.domain-user-accounts`(Domain Users — 새 도메인 계정이 기본으로 드는 그룹),
+`windows-ad.ds-commands`(`net user`의 `/domain` — **E36**), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2026-02-01 #43], [기출 2025-08-24 #38])
 
 ## (phase 80 step 0) Microsoft Learn — AD DS·도메인 컨트롤러·논리 구조: Active Directory Domain Services overview, Install Active Directory Domain Services, DNS and AD DS, Domain Controller Location, Locating domain controllers in Windows and Windows Server, Domain Name System (DNS) in Windows and Windows Server, Dynamic update, Understanding the Active Directory Logical Model, Selecting the Forest Root Domain, Planning Operations Master Role Placement, Planning Domain Controller Placement, Virtualized Domain Controller Deployment and Configuration, Join a computer to a domain, Add-Computer; Win32 — Domain Trees, Forests, Searching Domain Contents, Replication and Data Integrity
 https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
@@ -5700,6 +5724,8 @@ https://learn.microsoft.com/en-us/windows/win32/ad/replication-and-data-integrit
   **「포리스트는 보안 경계다」를 적은 지금 판 문서는 찾지 못했다** — 쓰지 않는다
 - 같은 문서 「Active Directory domain」: 도메인은 포리스트를 나눈 조각(파티션)이고, 데이터를 필요한 곳에만 복제하게 한다. 도메인이 맡는 일은 넷이다 — ① 네트워크 전체의 사용자 ID: 사용자 ID를 한 번 만들어 그 포리스트에 가입한 어느 컴퓨터에서나 쓰고, 도메인을 이루는 DC가 사용자 계정과 자격 증명(암호·인증서)을 안전하게 저장한다
   ② 인증: DC가 사용자를 인증하고, 자원 접근 제어에 쓰이는 그룹 구성원 같은 권한 부여 데이터를 준다 ③ 트러스트: 도메인은 트러스트로 자기 포리스트 밖 도메인의 사용자에게도 인증을 넓힌다 ④ 복제: 도메인 서비스에 충분한 디렉터리 파티션을 DC끼리 복제하므로 한 도메인의 DC는 모두 대등하고 한 단위로 관리된다
+- (phase 80 step 4, 2026-11-16 다시 받아 확인) 같은 문서 「Active Directory organizational units」: OU로는 **도메인 안에** 그릇의 계층을 만든다. OU는 그룹 정책을 적용하거나 권한을 위임하는 것 같은 **관리 목적**으로 개체를 묶는다. OU와 그 안 개체를 누가 다루는지는 그 OU와 개체에 붙은 ACL이 정하고,
+  위임으로 소유자가 개체의 관리 권한 전부나 일부를 다른 사용자·그룹에 넘긴다 — OU를 다룬 다른 문서는 아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목
 - Win32 **Domain Trees**: 도메인 트리는 같은 스키마와 구성을 쓰며 **연속된 이름 공간**(contiguous namespace)을 이루는 여러 도메인이고, 트리의 도메인은 트러스트로도 이어진다. AD는 트리 하나 이상의 묶음이다 — 첫머리.
   Win32 **Searching Domain Contents**: 포리스트 안에서 도메인은 계층으로 놓인 도메인 트리를 이루고, 트리는 도메인 하나일 수도 자식 도메인을 가진 도메인일 수도 있다. 연속된 이름 공간이란 **자식 도메인의 이름이 부모의 이름 계층을 이어 간다**는 뜻이다 — 첫머리(예의 이름은 옮기지 않는다)
 - Win32 **Forests**: 포리스트는 **서로 연속된 이름 공간을 이루지 않는** 도메인 트리 하나 이상의 묶음이고, 포리스트의 모든 트리는 스키마·구성·글로벌 카탈로그를 함께 쓴다. 트리와 달리 포리스트에는 따로 된 이름이 필요 없고, 트러스트 계층의 뿌리에 있는 트리의 이름이 그 포리스트를 가리킨다 — 첫머리
@@ -5722,6 +5748,7 @@ https://learn.microsoft.com/en-us/windows/win32/ad/replication-and-data-integrit
 `windows-ad.domain-controller`(「Understanding the Active Directory Logical Model」 — DC가 계정과 자격 증명을 저장하고 인증한다; 「Active Directory Domain Services overview」 — 같은 도메인의 DC는 도메인 디렉터리 전체의 사본을 갖고 바뀐 내용이 모든 DC로 복제된다; 「Planning Operations Master Role Placement」·Win32 「Replication and Data Integrity」 — 다중 마스터 복제, 일부가 멈춰도 고치는 일이 막히지 않는다, 몇몇 변경은 정해진 DC만 받는다(작업 마스터의 이름과 일은 쓰지 않는다); 「Virtualized Domain Controller Deployment and Configuration」 — DC 한 대는 단일 장애 지점, 모든 DC를 한 호스트의 가상 머신으로 두지 말라; 「Planning Domain Controller Placement」·「Active Directory security groups」 — RODC는 계정 암호를 뺀 개체를 갖고 고칠 수 없으며, 쓰기 가능한 DC에서 단방향으로 복제받고, 물리 보안이 약한 지점에 둔다; 「Local accounts」·「Built-in and Account Domains」 — DC에는 로컬 계정을 두는 자리가 없어 「로컬 사용자 및 그룹」으로 그 DC의 계정을 관리할 수 없다), 도식 `dc-replication`, 문항 n260(한 대가 멈춰도 복제로 같은 계정을 가진 다른 DC가 확인한다)
 (phase 80 step 3) `windows-ad.domain-tree-forest`(「Understanding the Active Directory Logical Model」 — 포리스트·도메인의 계층과 실제 배치와 상관없는 논리 구조, 포리스트를 나눈 조각인 도메인이 데이터를 필요한 곳에만 복제하게 한다, DC가 계정을 저장하고 인증한다, 같은 포리스트의 도메인이 함께 쓰는 스키마·구성·글로벌 카탈로그(이름과 한 줄 뜻만 — 구성은 「복제 같은 디렉터리 구성 정보」로 쓰고 사이트는 쓰지 않는다); 「Active Directory Domain Services overview」 — 스키마는 디렉터리에 드는 개체·속성의 규칙, 글로벌 카탈로그는 어느 도메인에 있든 개체를 찾게 하는 정보; Win32 「Domain Trees」·「Searching Domain Contents」 — 트리는 연속된 이름 공간을 이루는 도메인들, 자식 도메인의 이름이 부모의 이름을 이어 간다, 도메인 하나도 트리다; Win32 「Forests」 — 연속되지 않은 트리들의 묶음; 「Install Active Directory Domain Services」 — 기존 포리스트에 자식 도메인이나 새 트리의 도메인을 더한다; 「Selecting the Forest Root Domain」 — 처음 만든 도메인이 포리스트 루트 도메인; 「Locating domain controllers」 — 도메인은 DNS 이름을 갖는다; 이름의 오른쪽이 위 단계라는 것은 phase 79의 DNS 항목), 도식 `ad-forest-structure`, 문항 n261(이름이 이어지는 도메인끼리 한 트리, 이름이 다른 트리도 같은 포리스트).
   「포리스트는 보안 경계다」와 「도메인은 같은 정책을 쓰는 단위다」는 근거를 찾지 못해 쓰지 않았다 — 본문은 포리스트를 「가장 바깥의 묶음」, 도메인을 「계정을 함께 관리하는 단위」로 쓴다
+(phase 80 step 4에서 쓰일 곳) `windows-ad.organizational-unit`(「Understanding the Active Directory Logical Model」 — OU는 도메인 안의 그릇 계층이고 관리 목적(그룹 정책·위임)으로 개체를 묶는다, 실제 배치와 상관없는 논리 구조), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2025-02-23 #42])
 
 ## (phase 80 step 0) Microsoft Learn — 트러스트: netdom trust, Credentials processes in Windows authentication, How trust relationships work for forests in Active Directory(Microsoft Entra Domain Services 문서); 지난 판 Understanding Trusts, Understanding Trust Types, Understanding Trust Direction, Understanding Trust Transitivity, Understanding When to Create an External Trust
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netdom-trust
@@ -5770,3 +5797,198 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
 `windows-ad.domain-tree-forest`(트리의 도메인은 트러스트로 이어진다), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단 — [기출 2024-05-19 #34]·[기출 2025-08-24 #34], [기출 2024-08-25 #30]·[기출 2026-08-02 #36])
 (phase 80 step 3) `windows-ad.trust`(지난 판 「Understanding Trusts」·지금 판 「Credentials processes in Windows authentication」 — 한 도메인의 사용자가 다른 도메인에서 인증받게 하는 관계, 자원 쪽이 상대 도메인이 마친 인증을 받아들인다; 「netdom trust」·지난 판 「Understanding Trust Direction」 — 신뢰하는 도메인은 자원 쪽, 신뢰받는 도메인은 사용자가 로그온하는 쪽; 「Credentials processes」·Entra 문서 — 단방향은 신뢰받는 쪽 사용자가 신뢰하는 쪽 자원으로, 양방향은 서로, 양방향은 단방향 둘; 지난 판 「Understanding Trust Transitivity」·Entra 문서 — 전이적·비전이적, 방향과 전이성은 따로 정해진다, 새 도메인과 부모 사이의 양방향 전이적 트러스트가 저절로 생기고 위로 이어져 포리스트 어느 도메인의 계정이든 다른 도메인에서 인증받는다; 지난 판 「Understanding Trust Types」·Entra 문서 「Forest trusts」 — 포리스트 트러스트(포리스트 루트 도메인 사이, 전이적, 셋째 포리스트로 넓어지지 않음, 상대 포리스트의 어느 도메인 자원에나)와 외부 트러스트(포리스트 트러스트로 이어지지 않은 다른 포리스트의 도메인과, 비전이적 — 포리스트의 다른 도메인으로 흐르지 않음); 「Active Directory 도메인 및 트러스트」·Netdom; 사용 권한은 따로 준다), 도식 `domain-trust`(단방향 — 외부 트러스트로 보면 sales.example.com까지 이어지지 않음, 양방향, 전이 — 단방향 포리스트 트러스트로 sales.example.com까지),
 문항 n262(단방향 트러스트에서 신뢰받는 쪽 사용자만 신뢰하는 쪽 자원에), n263(같은 포리스트의 형제 자식 도메인끼리는 부모를 거친 전이적 트러스트로 인증이 이어진다)
+
+## (phase 80 step 4) Microsoft Learn — 조직 구성 단위와 사이트: Reviewing OU Design Concepts, Delegating Administration by Using OU Objects, Delegating Administration of Default Containers and OUs, Delegation of Control in Active Directory Domain Services, Reviewing the Domain Models, Active Directory Replication Concepts, Site functions, Designing the Site Topology; 문제 해결 — Redirect the users and computers containers in Active Directory domains
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/reviewing-ou-design-concepts
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-by-using-ou-objects
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-of-default-containers-and-ous
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/delegation-control-wizard
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/reviewing-the-domain-models
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/site-functions
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/designing-the-site-topology
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/redirect-users-computers-containers
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Reviewing OU Design Concepts」·「Delegating Administration by Using OU Objects」·「Delegating Administration of Default Containers and OUs」·「Reviewing the Domain Models」·「Active Directory Replication Concepts」·「Designing the Site Topology」 `updated_at` 2025-09-23(`ms.date` 2025-05-12),
+「Site functions」 2025-09-12(2025-05-12), 「Delegation of Control in Active Directory Domain Services」 2026-07-01(2025-07-09) — 모두 「Applies to」 Windows Server 2016~2025. 문제 해결 「Redirect the users and computers containers…」 2026-08-04(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server.
+계획(plan) 문서 몇은 본문에 Windows Server 2008 시절 문장을 그대로 남겼다(「Site functions」 첫머리, 「Designing the Site Topology」의 하드웨어 요구) — 판 표시는 지금 판이지만, 판과 상관없는 정의만 가져온다. 한국어판(`ko-kr`)도 받았다(`updated_at` 2026-07-02~2026-10-14, 기계 번역).
+
+- **OU를 만드는 목적**: OU 계층은 조직의 부서 계층을 그대로 따를 필요가 없고, 관리 위임·그룹 정책 적용·개체가 보이는 범위 제한 같은 **정해진 목적**으로 만든다. OU는 관리의 경계라서 데이터 관리자가 어디까지 다룰지를 정하게 한다.
+  예로, 한 팀이 맡은 파일·인쇄 서버의 컴퓨터 계정을 한 OU에 모으고 그 팀의 관리자만 그 OU에 접근하게 한다. 일부 사용자·자원에만 그룹 정책을 걸려면 그것들을 한 OU에 넣고 그 OU에 그룹 정책을 적용한다.
+  **OU 아래에 OU를 더 만들어(하위 트리) 위임을 더 나눌 수 있다.** 깊이에 기술적 한계는 없지만 관리하기 쉽게 10단계 이하를 권한다. OU 구조는 최종 사용자에게 보이려는 것이 아니라 관리자의 도구이고 바꾸기 쉽다 — 「Reviewing OU Design Concepts」
+- 문제 해결 「Redirect the users and computers containers…」 「More information」: 보안 주체를 조직 구조·지역 배치·관리 모델을 비추는 OU 계층으로 정리하는 것을 모범 사례로 든다. 위 줄과 함께 읽으면, **OU를 부서·지역대로 짜는 것은 흔한 쓰임이지 OU의 정의가 아니다**
+- **위임**: OU로 관리를 위임하려면 위임받을 사람을 그룹에 넣고, 다룰 개체를 OU에 넣고, 그 OU에 대한 관리 작업을 그 그룹에 맡긴다. 위임은 잘게 나눌 수 있다 — 한 그룹에는 OU 안 모든 개체의 모든 권한을, 다른 그룹에는 사용자 계정 만들기·지우기·관리만을, 또 다른 그룹에는 암호 재설정만을 줄 수 있고, 이 사용 권한을 하위 OU로 상속되게 할 수 있다 — 「Delegating Administration by Using OU Objects」
+- 「Delegation of Control in Active Directory Domain Services」: 「Active Directory 사용자 및 컴퓨터」에서 도메인이나 OU를 고르고 Action 메뉴(한국어판은 「작업」 메뉴)의 Delegate control로 **제어 위임 마법사**를 열어, 맡길 사용자·그룹과 작업을 고른다. 고를 수 있는 흔한 작업은 사용자 계정 만들기·지우기·관리, 암호 재설정과 다음 로그온 때 암호 바꾸게 하기, 그룹 구성원 바꾸기, 컴퓨터를 도메인에 가입시키기, 그룹 정책 링크 관리 같은 것이다.
+  위임은 고른 그릇 아래의 모든 개체에 미친다 — 「Delegate control」 등. 한 사람에게 맡길 범위는 도메인 전체·도메인의 모든 OU·OU 하나가 될 수 있다
+- **OU와 그룹**: 위 위임 차례가 둘을 함께 쓴다 — **그룹**에는 권한을 받을 사람을, **OU**에는 다룰 개체를 넣는다. 그룹은 공유 자원의 사용 권한을 주는 단위이고(위 「로컬 계정과 기본 그룹」 항목의 「(phase 80 step 4)」 줄),
+  그룹 정책은 사이트·도메인·OU 세 종류의 그릇에만 연결되며 사용자 개체에는 직접 연결할 수 없다(아래 「(phase 80 step 4) … 그룹 정책」 항목의 「Group Policy Management Console」·「Group Policy scope」). **OU와 그룹을 견준 한 문장은 찾지 못했다** — 이 근거들을 이어 쓴다
+- **OU와 도메인**: 가장 단순한 도메인 설계는 도메인 하나이고, 포리스트의 도메인 수는 줄일수록 좋다. 지역 도메인을 더하는 까닭은 느린 링크로 이어진 곳의 복제 트래픽을 줄이는 것이고, 도메인이 늘면 서비스 관리자 그룹·그룹 정책·접근 제어 설정을 도메인마다 따로 맞춰야 한다.
+  조직 안의 그룹처럼 자주 바뀌는 것을 기준으로 도메인을 나누면 구조를 다시 짜야 할 수 있다 — 「Reviewing the Domain Models」. 그래서 부서를 나누려고 도메인을 새로 만들 근거는 없고, 한 도메인 안의 관리 단위는 OU가 맡는다
+- **기본 컨테이너**: AD DS를 설치하면 도메인 컨테이너, Builtin 컨테이너, Users 컨테이너(도메인에 새로 만든 사용자·그룹의 기본 자리), Computers 컨테이너(DC가 아닌 새 컴퓨터의 기본 자리), Domain Controllers OU가 만들어진다.
+  **Users·Computers 컨테이너에는 그룹 정책 설정을 적용할 수 없으니**, 그룹 정책을 걸려면 새 OU를 만들고 사용자·컴퓨터 개체를 그리 옮긴다. 위임도 기본 컨테이너가 아니라 새 OU에서 한다. Domain Controllers OU에는 기본 정책이 걸려 있어 DC의 컴퓨터 개체를 거기서 빼지 말라고 한다 — 「Delegating Administration of Default Containers and OUs」
+- 문제 해결 「Redirect the users and computers containers…」: 기본 설치에서 사용자·컴퓨터·그룹 계정은 OU가 아닌 `CN=` 꼴 컨테이너(`CN=Users`·`CN=Computers`)에 들어가고, **그룹 정책은 OU에는 걸리지만 이 CN 클래스 컨테이너에는 걸리지 않는다**. 두 컨테이너는 시스템이 보호하는 개체라 지울 수 없다.
+  `NET USER`·`NET GROUP`·`NET COMPUTER`·도메인 가입 화면 같은 옛 API를 쓰는 작업이 만든 개체는 이 기본 컨테이너로 가고, 그 자리는 `redirusr`·`redircmp`로 OU로 바꿀 수 있다(이름만 — 차례는 가져오지 않는다) — 「Summary」, 「More information」. 같은 문서는 「Active Directory 사용자 및 컴퓨터」 스냅인을 `Dsa.msc`로 함께 적는다
+- **사이트**: 사이트는 매우 안정적이고 빠른 네트워크로 이어진 TCP/IP 서브넷 하나 이상을 나타내는 AD 개체이고, 관리자는 사이트 정보로 AD 접근과 복제를 실제 네트워크에 맞춘다. 포리스트의 DC는 IP 주소에 따라 한 사이트에 속하고, 한 사이트에 여러 도메인의 DC가 있을 수 있으며 한 도메인이 여러 사이트에 걸칠 수 있다.
+  **서브넷**은 논리적 IP 주소 묶음이 할당된 TCP/IP 네트워크의 한 토막이고, 컴퓨터가 네트워크에서 서로 가까운지를 나타낸다. AD의 서브넷 개체가 컴퓨터를 사이트에 맞춘다 — 「Active Directory Replication Concepts」 「Subnet」·「Site」
+- 「Site functions」: 사이트 안의 복제는 빠르게(압축 없이 바뀌는 즉시), 사이트 사이의 복제는 압축해 정한 시각에 보내 WAN 비용을 줄인다. DC는 사이트 정보로 클라이언트에게 같은 사이트나 가장 가까운 사이트의 DC를 알려 주어 로그온이 WAN을 덜 거치게 한다 — 「Routing replication」, 「Client affinity」.
+  「Designing the Site Topology」: 사이트 토폴로지는 **물리 네트워크를 논리로 나타낸 것**이고, 그 설계 전에 관리 계층·포리스트·도메인 같은 논리 구조를 먼저 설계한다 — 첫머리. (사이트 링크·브리지헤드 서버·복제 일정은 가져오지 않는다.)
+  step 0 항목의 「Understanding the Active Directory Logical Model」은 포리스트·도메인·OU를 DC 수나 네트워크 토폴로지 같은 물리적 측면과 상관없는 논리 모델이라 부른다 — 곧 **OU는 관리를 위한 논리 구분, 사이트는 네트워크 위치에 따른 물리 쪽 구분**이다
+- **한국어 이름**: 한국어판은 「조직 구성 단위」(OU), 「사이트」, 「서브넷」, 「관리 위임」, 「제어 위임 마법사」, 「기본 컨테이너」, 「Active Directory 사용자 및 컴퓨터」 스냅인(`Dsa.msc`)으로 옮긴다 — 고른 이름도 같다
+
+쓰인 곳: (phase 80 step 5에서 쓰일 곳) `windows-ad.organizational-unit`(OU는 정해진 목적으로 만드는 관리 단위 — 그룹 정책 연결과 위임, OU 안의 OU, 부서·지역대로 짜는 것은 흔한 쓰임, 위임 차례와 제어 위임 마법사, OU와 그룹, OU와 도메인, 기본 컨테이너 Users·Computers에는 그룹 정책을 걸 수 없다, 사이트와 서브넷 한 줄씩 — 물리 쪽 구분),
+`windows-ad.domain-user-accounts`(새 사용자의 기본 자리 Users 컨테이너, `Dsa.msc`), `windows-ad.ds-commands`(`NET USER`가 만든 도메인 사용자는 `CN=Users`로 — **E36**), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2025-02-23 #42])
+
+## (phase 80 step 4) Microsoft Learn — 도메인 사용자 계정과 ds 명령: Manage user accounts in Active Directory Users and Computers, Active Directory accounts, ActiveDirectory module·New-ADUser; 문제 해결 — Use the Directory Service command-line tools to manage Active Directory objects in Windows Server 2003; Win32 — Object Names and Identities, Common-Name·Organizational-Unit-Name·Domain-Component attribute; 지난 판 명령 참조 — Command-Line Reference, Dsadd, Dsadd user, Dsmod, Dsmod user, Dsrm, Dsquery, Dsget, Dsmove
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-aduser?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/directory-service-manage-objects
+https://learn.microsoft.com/en-us/windows/win32/ad/object-names-and-identities
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-cn
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-ou
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-dc
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc754340(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc753708(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731279(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732406(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732954(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731865(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732952(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc755162(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731094(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Manage user accounts in Active Directory Users and Computers」 `updated_at` 2025-07-22(`ms.date` 2025-06-30), 「Active Directory accounts」 2026-02-16(2025-06-30) — 둘 다 「Applies to」 Windows Server 2016~2025.
+「ActiveDirectory Module」·「New-ADUser」 2025-05-14(2016-12-27, `windowsserver2025-ps` 판). 문제 해결 「Use the Directory Service command-line tools…」 2026-08-04(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server(제목과 본문 예는 Windows Server 2003 시절 그대로다).
+Win32 「Object Names and Identities」 2025-04-15(2018-05-31), 스키마 특성 셋 2020-12-14(2018-05-31) — 적용 판을 적지 않는 개발자 문서다.
+**지난 판 명령 참조** 아홉은 모두 `updated_at` 2021-11-12(`ms.date` 2016-08-31, `ms.topic` archived)이고, 쪽마다 「Applies To」가 Windows Server 2003~2012·Windows 8이다(Dsadd user·Dsmod user는 Windows Server 2008·2012·Windows 8, Dsquery는 2008 R2도 적고, Command-Line Reference 자체는 Windows Server 2000~2012와 Windows XP~8까지 적는다).
+**지금 판 Windows 명령 참조에는 이 명령들의 쪽이 없다**(머리 문단). 한국어판(`ko-kr`)도 받았다 — 지금 판 문서는 `updated_at` 2026-01-09~2026-10-14(기계 번역), 지난 판 명령 참조와 PowerShell 쪽은 번역되지 않아 영문 그대로다.
+
+- **도메인 사용자 계정을 만드는 도구**: 「Active Directory 사용자 및 컴퓨터」 콘솔에서 사용자 계정 같은 보안 주체를 만들고 지우고 관리한다. 이 콘솔은 원격 서버 관리 도구(RSAT)의 AD DS·AD LDS 구성 요소가 설치된 Windows Server나 Windows 클라이언트에서 쓰고, 그 컴퓨터는 도메인에 가입해 있어야 하며 그 도메인의 계정을 관리할 권한이 있는 계정으로 써야 한다 — 첫머리, 「Prerequisites」.
+  step 0 항목의 「Install Active Directory Domain Services」: `Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools`가 AD DS 역할과 함께 이 도구 같은 관리 도구를 설치한다. 실행 이름 `Dsa.msc`는 위 「조직 구성 단위와 사이트」 항목의 문제 해결 문서가 적는다
+- 같은 문서 「Create a user account」: 사용자 계정을 더하면 그 사용자가 **도메인에 가입한 컴퓨터에 로그인할 수 있고**, 공유 폴더·프린터·응용 프로그램 같은 네트워크 자원의 사용 권한은 **그 사용자에게 따로 줄 수 있는 것**이다(계정을 만든다고 저절로 생기지 않는다). 만드는 차례:
+  콘솔에서 도메인 트리를 펼쳐 계정을 둘 **컨테이너나 OU를 고른다** → Action 메뉴(한국어판은 「작업」 메뉴)에서 「새로 만들기」 → 「사용자」 → 「새 개체 - 사용자」 첫 쪽에 이름·이니셜·성(고르기), 전체 이름(꼭), 사용자 로그온 이름(꼭) → 둘째 쪽에 암호와 그 확인, 그리고 확인란 넷 → 요약을 보고 「마침」
+- 같은 절의 확인란 넷: **다음 로그온 때 암호를 바꾸게 하기**(User must change password at next logon), **사용자가 암호를 바꾸지 못하게 하기**(User cannot change password), **암호가 만료되지 않게 하기**(Password never expires — 그 계정을 암호 정책에서 빼는 것), **계정을 사용하지 않는 상태로 만들기**(Account is disabled).
+  「Active Directory accounts」 「Settings for default local accounts in Active Directory」 표도 같은 설정을 든다 — 다음 로그온 때 바꾸게 하는 것은 그 사용자만 암호를 알게 하려는 것, 바꾸지 못하게 하는 것은 Guest나 임시 계정을 관리자가 쥐고 있으려는 것, 만료되지 않게 하는 것은 서비스 계정에 강한 암호와 함께 쓰는 것, 사용 안 함은 그 계정으로 로그인하지 못하게 하는 것이다(그 밖의 행 — 되돌릴 수 있는 암호화·스마트 카드·위임·DES·Kerberos 사전 인증 — 은 가져오지 않는다)
+- 같은 문서 「Manage group memberships」: 공유 폴더 같은 자원의 사용 권한은 사람 계정 하나하나보다 **보안 그룹**에 주는 경우가 가장 많아서, 계정이 어느 그룹에 드는지를 관리하는 것이 곧 그 계정이 닿는 자원을 관리하는 것이다. 차례: 계정을 고르고 Action(「작업」) 메뉴 → 「속성」 → Member Of 탭 → 「추가」 → 「그룹 선택」에 그룹 이름 → 「확인」.
+  같은 문서는 암호 재설정(새 암호, 다음 로그온 때 바꾸게 하기, **암호를 너무 많이 틀려 잠긴 계정 풀기** 확인란), 계정 사용 안 함·사용(사용 안 함으로 해도 이미 로그인한 사용자는 그대로지만 새로 로그인하지 못한다), 지우기(지우기 전에 먼저 사용 안 함을 권한다)도 같은 콘솔에서 한다고 적는다
+- 「Active Directory accounts」 「Default local accounts in Active Directory」: 계정은 사용자 이름과 암호 같은 자격 증명으로 그 사람을 확인(인증)하고, 확인한 뒤에는 **그 자원에 명시적으로 준 권한에 따라** 자원 접근을 허락하거나 거부한다. 한 계정을 여러 사람이 함께 쓰지 않게 한다 — 이 문서는 DC의 기본 계정(Administrator·Guest·KRBTGT)을 다루지만, 인증과 권한 부여를 가르는 이 줄은 도메인 계정 일반에 쓴다.
+  새 도메인 계정은 기본으로 Domain Users 그룹에 든다(step 0 항목 「로컬 계정과 기본 그룹」의 「(phase 80 step 4)」 줄). 그 계정의 암호는 도메인의 계정 정책을 따른다(아래 「(phase 80 step 4) … 계정 정책」 항목)
+- **로컬 계정과 도메인 계정**: step 0 항목의 「Security principals」 — 로컬 사용자 계정은 그 컴퓨터의 SAM에 저장되어 그 컴퓨터 자원에만 쓰이고, 도메인에서 만든 계정은 AD 데이터베이스에 저장되어 도메인 자원의 접근을 다루는 데 쓰인다. 「Understanding the Active Directory Logical Model」 — 도메인 계정은 한 번 만들어 그 포리스트에 가입한 어느 컴퓨터에서나 쓴다
+- **PowerShell**: ActiveDirectory 모듈의 `New-ADUser`는 AD 사용자를 만든다. `-SamAccountName`이 꼭 필요하고, `-Path`로 사용자를 둘 컨테이너나 OU를 정하며 주지 않으면 도메인의 사용자 기본 컨테이너에 만든다 — 「New-ADUser」 「Description」. 이름과 이 한 줄만 쓰고 cmdlet 목록은 가져오지 않는다.
+  **ds 명령 대신 이 모듈을 권한다는 문장은 이 step이 읽은 문서에 없다** — 「지금 권하는 도구」로 쓰지 않고, 「같은 일을 하는 PowerShell 명령도 있다」로만 쓴다
+- **ds 명령이 있는 곳과 쓰는 조건**: 지난 판 「Command-Line Reference」의 D 항목에 Dsadd·Dsget·Dsmod·Dsmove·Dsquery·Dsrm이 있다. 쪽마다 같은 말을 적는다 — Windows Server 2008에 들어 있는 명령 줄 도구이고, **AD DS 서버 역할을 설치했을 때** 쓸 수 있으며(Dsrm·Dsmove는 AD LDS 역할로도), 관리자 권한으로 연 명령 프롬프트에서 실행한다 — 각 쪽 첫머리
+- 명령마다 하는 일과 다루는 개체 — 각 쪽 첫머리와 「Commands」 표:
+  - `dsadd`: 디렉터리에 정한 종류의 개체를 **더한다** — computer·contact·group·ou·user(`dsadd user`는 사용자 하나)·quota
+  - `dsmod`: 디렉터리에 이미 있는 개체의 특성을 **고친다** — computer·contact·group·ou·server(DC의 속성)·user·quota·partition
+  - `dsrm`: 개체를 디렉터리에서 **지운다** — 종류를 가리지 않고 DN으로 가리키고, `-subtree`를 주면 그 아래 개체까지 지운다
+  - `dsquery`: 정한 조건으로 디렉터리를 **찾는다** — computer·contact·group·ou·site·server·user·quota·partition, `dsquery *`는 어느 종류든
+  - `dsget`: 개체 하나의 정한 속성을 **보인다** — computer·contact·group(구성원 포함)·ou·server·user·subnet·quota·partition
+  - `dsmove`: 개체 하나를 **도메인 안에서** 다른 자리로 옮기거나(`-newparent <새 부모 DN>`), 옮기지 않고 이름만 바꾼다(`-newname <새 RDN>`)
+- 지금 판 문제 해결 「Use the Directory Service command-line tools…」: 실행 창에 `cmd`를 입력해 연 명령 프롬프트에서 `dsadd user`로 사용자를 만들고(`-samid`, `-pwd`), `dsmod user`로 암호를 재설정하거나(`-pwd`) 다음 로그온 때 바꾸게 하거나(`-mustchpwd`) 계정을 사용 안 함·사용으로 바꾸고(`-disabled`), `dsrm`으로 사용자·그룹·OU를 지운다(OU를 지우면 그 안의 개체도 모두 지워진다).
+  `dsquery`로 사용자·그룹·컴퓨터·OU·DC를 찾고, `dsget user … -memberof`로 그 사용자가 든 그룹을 본다. `dsmod group … -secgrp {yes|no}`는 보안/배포 그룹을, `-scope {l|g|u}`는 도메인 로컬·글로벌·유니버설 범위를 바꾼다(도메인 로컬과 글로벌은 서로 바꿀 수 없다). 그룹은 OU에 두기를 권한다 — 「How to manage users」·「How to manage groups」·「How to manage organizational units」·「How to search Active Directory」
+- **고유 이름**(DN): Win32 「Object Names and Identities」 — 개체의 **상대 고유 이름**(RDN)은 그 개체 자신의 이름(대개 `cn` 특성)이고 같은 그릇 안에서만 겹치지 않으면 된다. **고유 이름**은 그 개체의 RDN 뒤에 뿌리까지 올라가는 조상마다의 RDN을 차례로 이어 붙인 문자열이라 개체의 자리를 품고, 포리스트 안에서 하나뿐이며, 개체를 옮기거나 이름을 바꾸면 바뀐다(예의 꼴: `CN=Users,DC=…,DC=com`) — 「Relative Distinguished Name」, 「Distinguished Name」.
+  Win32 스키마: `cn`(Common-Name)은 개체를 나타내는 이름, `ou`(Organizational-Unit-Name)는 OU의 이름, `dc`(Domain-Component)는 도메인 개체의 이름 특성이고 `dc=도메인이름` 꼴로 보인다 — 각 쪽 첫 줄
+- 같은 사실의 지금 판 풀이: 아래 「(phase 80 step 4) … 그룹 정책」 항목의 「Group Policy scope」 「What is a scope?」가 DN 한 줄을 조각마다 읽는다 — `CN=`은 개체의 이름(사용자면 대개 사람 이름), `OU=`는 그 개체가 든 OU(대개 부서), `DC=` 조각들은 이어서 도메인 이름을 이룬다(`DC=corp,DC=contoso,DC=com` → `corp.contoso.com`, 맨 끝 `DC=com`이 최상위).
+  같은 문서 「Linking」은 OU가 여럿인 DN을 **왼쪽부터 한 조각씩 떼어 가며** 위 그릇을 거슬러 오르는 차례를 보인다 — 왼쪽일수록 안쪽 그릇이다
+- **`dsadd user`의 꼴**(지난 판 「Dsadd user」 「Syntax」·「Parameters」·「Remarks」·「Examples」 — 예의 이름·암호는 옮기지 않는다): `dsadd user <UserDN> [-samid <SAM 이름>] [-pwd {<암호> | *}] [-memberof <그룹 DN> ...] [-mustchpwd {yes | no}] [-disabled {yes | no}] …`
+  - `<UserDN>`은 꼭 필요한 만들 사용자의 DN이다. `-samid`를 주지 않으면 DN의 CN 값 앞 20자로 SAM 계정 이름을 만든다. `-pwd *`이면 암호를 따로 묻는다. `-memberof`는 넣을 그룹의 DN이다. `-mustchpwd`는 다음 로그온 때 암호를 바꾸게 할지(기본 no)다
+  - `-disabled`는 계정을 로그온에 쓰지 못하게 둘지이고, **기본값이 yes**라서 `-disabled no`를 주지 않으면 사용 안 함 상태로 만들어진다 — 「Parameters」의 `-disabled` 행(쪽의 예들이 모두 `-disabled no`를 함께 준다)
+  - 값에 공백이 있으면 따옴표로 감싼다. 쪽의 예는 OU 안에 사용자를 만들며 `-disabled no`·`-pwd`·`-mustchpwd yes`·`-memberof <그룹 DN>`을 함께 준다
+  - 예시 값으로 바꾼 꼴(guide.md 「예시 값」): `dsadd user "CN=user01,OU=영업팀,DC=example,DC=com" -samid user01 -pwd * -memberof "CN=Sales-Users,OU=영업팀,DC=example,DC=com" -disabled no` — 그룹 `Sales-Users`가 OU `영업팀`에 있다고 둔 예이고, 그룹이 다른 자리에 있으면 그 DN을 쓴다
+- **`net user`와 ds 명령**: `net user`는 기본으로 그 컴퓨터의 로컬 계정을 다루고 `/domain`을 붙이면 기본 도메인의 DC에서 도메인 계정을 다룬다(step 0 항목 「로컬 계정과 기본 그룹」의 「net user」 줄과 「(phase 80 step 4)」 줄). `net user`가 만든 도메인 사용자는 기본 `CN=Users` 컨테이너로 가지만(위 「조직 구성 단위와 사이트」 항목),
+  ds 명령은 개체를 DN으로 가리켜 자리(OU)를 고르고, 사용자 말고도 그룹·OU·컴퓨터 같은 개체를 다룬다. **시험은 `net user`를 도메인 계정 명령으로 보지 않는다 — E36**
+- **한국어 이름**: 한국어판은 「Active Directory 사용자 및 컴퓨터」, 「새 개체 - 사용자」, 「사용자 로그온 이름」, 「보안 그룹」, 「고유 이름」(distinguished name), 「원격 서버 관리 도구」로 옮긴다. 확인란 넷은 「사용자는 다음 로그온 시 암호를 변경해야 합니다」처럼 문장으로 옮기고, Member Of 탭은 「멤버」 탭과 「구성원」 탭으로 갈려 옮긴다 — **실제 한국어 화면의 확인란·탭 이름은 확인하지 못했다**.
+  **고른 이름**: 도구는 「Active Directory 사용자 및 컴퓨터」(실행 이름 `dsa.msc`), DN은 「고유 이름」(RDN은 「상대 고유 이름」). 확인란은 하는 일을 한국어로 쓰고 영문 이름을 함께 적되 「화면에 이렇게 보인다」로 단정하지 않는다. 탭은 영문 이름 Member Of와 하는 일(그 계정이 든 그룹 목록)로 쓴다. ds 명령은 한국어 이름이 따로 없다 — 하는 일을 한국어로 세운다(guide.md 「글」의 항목 이름 규칙 (2))
+
+쓰인 곳: (phase 80 step 5에서 쓰일 곳) `windows-ad.domain-user-accounts`(「Active Directory 사용자 및 컴퓨터」와 RSAT, `dsa.msc`, 만드는 차례 — 컨테이너나 OU 고르기·새 개체 - 사용자·확인란 넷, 보안 그룹의 구성원으로 넣는 차례, 계정을 만든 것만으로 자원에 닿지 않는다 — 인증 뒤 사용 권한, Domain Users, 로컬 계정과 도메인 계정, 잠긴 계정 풀기),
+(phase 80 step 6에서 쓰일 곳) `windows-ad.ds-commands`(ds 명령 여섯의 하는 일과 개체, 쓰는 조건 — AD DS 역할·관리자 권한 명령 프롬프트, 고유 이름과 RDN, CN·OU·DC 조각, `dsadd user`의 꼴과 `-disabled` 기본값, `net user`와의 차이 — **E36**, `New-ADUser` 한 줄),
+`windows-ad.group-scopes`(`dsmod group`의 `-secgrp`·`-scope`, 도메인 로컬과 글로벌은 서로 바꿀 수 없다), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2026-08-02 #43], [기출 2025-08-24 #38])
+
+## (phase 80 step 4) Microsoft Learn — 그룹 정책: Group Policy overview for Windows Server, Group Policy processing, Group Policy scope, Group Policy Management Console, gpupdate, Folder Redirection and Roaming User Profiles in Windows and Windows Server, Deploy Folder Redirection with Offline Files, Deploy roaming user profiles; 문제 해결 — Use Group Policy to remotely install software, How to use Group Policy to add the MaxTokenSize registry entry to multiple computers
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-scope
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpupdate
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/folder-redirection-rup-overview
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/deploy-folder-redirection
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/deploy-roaming-user-profiles
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/use-group-policy-to-install-software
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/group-policy-add-maxtokensize-registry-entry
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Group Policy overview for Windows Server」 `updated_at` 2026-04-16(`ms.date` 2025-06-10), 「Group Policy processing」 2025-06-16(2025-06-16), 「Group Policy scope」 2025-09-15(2025-06-13), 「Group Policy Management Console」 2026-02-16(2025-05-14) — 넷 다 「Applies to」 Windows Server 2016~2025.
+「gpupdate」 2025-10-22(2017-10-16, Windows Server 2016~2025·Windows 11·10). 「Folder Redirection and Roaming User Profiles…」 2025-05-15(2025-05-15), 「Deploy Folder Redirection with Offline Files」 2025-04-28(2023-03-20), 「Deploy roaming user profiles」 2026-02-16(2025-05-21) — 셋 다 Windows Server 2016~2025·Windows 11·10.
+문제 해결 둘은 2026-02-18(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server. 「Use Group Policy to remotely install software」의 차례는 Windows Server 2003·Windows XP 시절 화면(「Active Directory 사용자 및 컴퓨터」에서 도메인 속성의 「그룹 정책」 탭)으로 적혀 있어, **차례가 아니라 할당·게시라는 사실만** 가져온다.
+한국어판(`ko-kr`)도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역).
+
+- **그룹 정책**: 운영 체제·응용 프로그램·사용자 설정을 한곳에서 정해 관리하는 Windows의 기능이고, Windows Server와 Windows 클라이언트 컴퓨터의 사용자·컴퓨터 설정을 다룬다 — 「Group Policy overview」 첫머리, 「What is a Group Policy」
+- 같은 절: 그룹 정책 설정은 파일 시스템에 로컬로 둘 수도 AD DS에 둘 수도 있다. AD와 함께 쓰면 설정을 **그룹 정책 개체**(GPO)에 담는다 — GPO는 정책 설정·보안 사용 권한·적용 범위를 묶은 것이고, AD 도메인 파티션의 그룹 정책 컨테이너와 각 DC의 SYSVOL 폴더에 있는 그룹 정책 템플릿 두 부분으로 되어 DC끼리 복제된다
+- 같은 절: 설정은 **컴퓨터 구성**(시스템 전체에 걸린다 — 전원 관리·방화벽 규칙 같은 것)과 **사용자 구성**(그 사용자에게만 — 폴더 리디렉션 같은 것) 두 갈래다. GPO를 사이트·도메인·OU에 **연결**하면 그곳이 적용 범위가 된다.
+  컴퓨터 설정은 컴퓨터가 시작할 때, 사용자 설정은 사용자가 로그인할 때 적용되고, 컴퓨터가 시작할 때 그룹 정책 서비스는 그 컴퓨터가 속한 사이트·도메인·OU(바로 위 OU와 그보다 위 OU들)에 연결된 GPO를 찾는다
+- 같은 절: 한 컴퓨터의 로컬 설정은 **로컬 그룹 정책 편집기**(`gpedit.msc`)로, 도메인 전체의 설정은 AD 관련 MMC 스냅인 안의 그룹 정책 개체 편집기로 만들고 관리한다
+- 같은 문서 「What is an OU」: OU는 그룹 정책 설정을 붙일 수 있는 가장 아래 단계의 AD 그릇이라 대부분의 GPO를 OU에 둔다. 도메인 단계에는 특히 **암호 정책**을 둔다. 사이트 단계에 두는 설정은 적다. 위쪽 OU에 연결한 GPO는 기본으로 아래 OU로 상속된다
+- 「Group Policy processing」 첫머리: GPO는 **로컬 GPO → 사이트에 연결된 GPO → 도메인에 연결된 GPO → OU에 연결된 GPO**(중첩된 OU면 부모 OU 다음 자식 OU) 차례로 처리되고, 나중에 적용된 정책이 앞서 적용된 같은 설정을 덮어쓸 수 있다.
+  그래서 사용자·컴퓨터에 가장 가까운 그릇의 GPO가 더 위쪽 그릇의 GPO를 이기고, AD 그릇에 연결된 GPO는 로컬 정책을 이긴다. 강제(Enforced)·상속 차단은 이 기본 동작을 바꾸는 옵션이다(이름만 — 가져오지 않는다). 한 그릇에 GPO를 여럿 연결하면 연결 순서 번호가 가장 낮은 것이 우선한다
+- 같은 문서 「How Group Policy processing works」: 처음 적용(시작·로그온) 뒤에는 배경에서 기본 90분마다(무작위로 최대 30분을 더해) 다시 적용한다. 모든 확장이 배경에서 처리되지는 않는다 — **폴더 리디렉션은 사용자가 로그온할 때만, 소프트웨어 설치 정책은 컴퓨터가 시작할 때와 사용자가 로그온할 때만** 처리된다. 스크립트 확장은 배경에서도 처리되지만 스크립트 자체는 컴퓨터 시작·종료와 사용자 로그온·로그오프 때만 실행된다
+- 「Group Policy scope」 「Linking」: GPO를 연결할 수 있는 것은 로컬(모든 Windows 컴퓨터에 하나씩 있고 가장 먼저 적용되며 도메인 기반 GPO가 덮을 수 있다), 사이트, 도메인, OU이고, **GPO를 사용자 개체에 직접 연결할 수는 없다**.
+  「What is a scope?」: 사용자·컴퓨터의 DN을 보면 그 범위를 알 수 있다 — DN의 풀이는 위 「도메인 사용자 계정과 ds 명령」 항목의 「고유 이름」 줄
+- 「Group Policy Management Console」: **그룹 정책 관리 콘솔**(GPMC)은 GPO를 한곳에서 관리하는 MMC 기반 도구이고 Windows Server와 RSAT에 들어 있다. 시작 메뉴에서 Group Policy Management를 찾아 열고, GPO를 만들고, 「편집」을 고르면 **그룹 정책 관리 편집기**가 열린다.
+  GPO를 쓰는 주된 방법은 사이트·도메인·OU 세 종류의 AD 그릇에 연결하는 것이고(GPO 하나를 여러 그릇에 연결할 수 있다), GPO 자체는 연결한 OU 안이 아니라 도메인 단위로 저장된다. 연결하려면 그 사이트·도메인·OU의 수정 사용 권한이 있어야 하고, 기본으로 Domain Admins·Enterprise Admins만 갖는다 — 「Prerequisites」·「Create an unlinked GPO」·「Edit an existing GPO」·「Link a GPO」.
+  문제 해결 「How to use Group Policy to add the MaxTokenSize registry entry…」: 실행 창에 `gpmc.msc`를 입력해 GPMC를 연다(Windows Server 2008·2008 R2 절)
+- **소프트웨어 설치**: 문제 해결 「Use Group Policy to remotely install software」 — 그룹 정책으로 프로그램을 클라이언트 컴퓨터나 사용자에게 자동으로 배포할 수 있다. **할당**(assign): 사용자에게 할당하면 그 사용자가 로그온할 때, 컴퓨터에 할당하면 컴퓨터가 시작할 때 설치된다(컴퓨터에 할당한 것은 그 컴퓨터에 로그온하는 모든 사용자가 쓴다).
+  **게시**(publish): 사용자에게 게시하면 그 사용자가 로그온했을 때 「프로그램 추가/제거」에 나타나 거기서 골라 설치한다. 먼저 Windows Installer 패키지(.msi)를 둔 공유 폴더(배포 지점)를 만들고, GPO의 컴퓨터 구성이나 사용자 구성의 소프트웨어 설정 아래 「소프트웨어 설치」에 그 패키지를 UNC 경로로 더한다 — 「Summary」·「Create a distribution point」·「Assign a package」·「Publish a package」
+- **폴더 리디렉션과 로밍 사용자 프로필**: 「Folder Redirection and Roaming User Profiles…」 첫머리 — **폴더 리디렉션**은 「문서」 같은 알려진 폴더의 경로를 손으로 또는 **그룹 정책으로** 다른 곳(대개 파일 공유)으로 바꿔, 사용자가 네트워크의 어느 컴퓨터에서나 그 폴더의 파일을 쓰게 한다.
+  **로밍 사용자 프로필**은 사용자 프로필을 파일 공유에 두어 여러 컴퓨터에서 같은 운영 체제·응용 프로그램 설정을 받게 한다 — 로그인할 때 서버의 프로필을 내려받아 로컬 프로필과 합치고, 로그아웃할 때 그동안 바뀐 것을 서버 쪽에 합친다. 보통 도메인 계정에 켠다
+- 「Deploy Folder Redirection with Offline Files」 「Step 5」: GPO의 사용자 구성 > 정책 > Windows 설정 > 폴더 리디렉션에서 리디렉션할 폴더(예: 문서)를 고른다. 「Deploy roaming user profiles」 「Step 5」·「Step 6」: 로밍 프로필 경로는 AD의 사용자 계정 속성(프로필 경로)에 넣거나,
+  GPO의 컴퓨터 구성 > 정책 > 관리 템플릿 > 시스템 > 사용자 프로필의 설정으로 컴퓨터에 건다 — 둘을 다 하면 컴퓨터 쪽 정책이 우선한다. 곧 **「어느 PC에서 로그온해도 같은 파일과 환경」은 그룹 정책 자체가 아니라 그룹 정책으로 설정하는 이 두 기능의 일**이다
+- **로그온 스크립트**: 「Site functions」(위 「조직 구성 단위와 사이트」 항목) — 각 DC의 SYSVOL에는 GPO와 함께 시작·종료 스크립트와 로그온·로그오프 스크립트가 들어 도메인 전체로 복제된다. 위 「How Group Policy processing works」 — 스크립트는 컴퓨터 시작·종료, 사용자 로그온·로그오프 때만 실행된다
+- **`gpupdate`**: 그룹 정책 설정을 새로 적용하는 명령이다. 기본으로 사용자·컴퓨터 설정 둘 다, **바뀐 설정만** 적용하고, `/force`는 바뀌지 않은 것까지 모두 다시 적용한다. `/target:{computer|user}`로 한쪽만 고른다.
+  `/logoff`·`/boot`는 배경 새로 고침에서 처리되지 않는 확장 — 사용자 대상 소프트웨어 설치·폴더 리디렉션(로그온 때), 컴퓨터 대상 소프트웨어 설치(시작 때) — 을 위해 적용 뒤 로그오프하거나 다시 시작한다(그런 확장이 없으면 아무 일도 하지 않는다) — 「Syntax」·「Parameters」·「Examples」
+- **보안 설정**: 암호 정책·계정 잠금 정책은 아래 「(phase 80 step 4) … 계정 정책」 항목
+- **한국어 이름**: 한국어판은 「그룹 정책」, 「그룹 정책 개체」(GPO), 「그룹 정책 관리 콘솔」(GPMC), 「그룹 정책 관리 편집기」, 「로컬 그룹 정책 편집기」, 「컴퓨터 구성」·「사용자 구성」, 「소프트웨어 설치」와 소프트웨어 「할당」·「게시」, 「폴더 리디렉션」, 「로밍 사용자 프로필」, GPO 「연결」로 옮긴다 — 고른 이름도 같다
+
+쓰인 곳: (phase 80 step 7에서 쓰일 곳) `windows-ad.group-policy`(그룹 정책과 GPO, 컴퓨터 구성·사용자 구성, 사이트·도메인·OU에 연결 — 사용자 개체·그룹에는 연결하지 않는다, 적용 차례 로컬 → 사이트 → 도메인 → OU와 덮어쓰기, 시작·로그온 때 적용과 90분 배경 새로 고침, 소프트웨어 설치의 할당·게시, 폴더 리디렉션·로밍 사용자 프로필, 로그온 스크립트, GPMC·`gpmc.msc`·그룹 정책 관리 편집기, `gpedit.msc`, `gpupdate`),
+`windows-ad.organizational-unit`(OU는 그룹 정책을 붙이는 가장 아래 그릇, GPO는 사이트·도메인·OU에 연결), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2024-08-25 #34])
+
+## (phase 80 step 4) Microsoft Learn — 계정 정책: Account Policies, Password Policy, Enforce password history, Maximum password age, Minimum password age, Minimum password length, Password must meet complexity requirements, Account Lockout Policy, Account lockout threshold, Account lockout duration, Reset account lockout counter after; Windows 11 security book — Advanced credential protection
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-policies
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-policy
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/enforce-password-history
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/maximum-password-age
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/minimum-password-age
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/minimum-password-length
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-policy
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-threshold
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-duration
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/reset-account-lockout-counter-after
+https://learn.microsoft.com/en-us/windows/security/book/identity-protection-advanced-credential-protection
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 계정 정책 문서 열하나는 모두 `updated_at` 2026-04-27이고 `ms.date`는 쪽마다 다르다 — Account Policies·Password Policy·Enforce password history·Maximum password age 2017-04-19, Account Lockout Policy 2018-10-11, Account lockout threshold·Reset account lockout counter after 2018-11-02, Minimum password age 2018-11-13, Account lockout duration 2021-08-16, Minimum password length 2022-03-30, Password must meet complexity requirements 2023-06-07.
+「Applies to」는 모두 Windows 11·10이지만, 쪽마다 기본값 표가 기본 도메인 정책(Default domain policy)·기본 DC 정책·독립 실행 서버·DC·구성원 서버·클라이언트의 값을 함께 싣는다(서버의 판은 따로 적지 않는다). 이 열하나의 한국어판(같은 날짜)은 **번역되지 않은 영문 그대로**다.
+「Windows 11 security book — Advanced credential protection」 2025-11-18(2025-11-13, Windows 11), 한국어판 2026-10-05.
+
+- **계정 정책이 정해지는 자리**: 「Account Policies」 — 그룹 정책으로 정하는 계정 정책(암호 정책·계정 잠금 정책·Kerberos 정책)은 **도메인 단계에서** 적용되고, 도메인의 계정 정책이 그 도메인 구성원 컴퓨터의 기본 로컬 계정 정책이 된다. **도메인마다 계정 정책은 하나뿐이다** — 기본 도메인 정책(Default Domain Policy)이나, 도메인 루트에 연결해 그보다 앞서게 한 정책에서 정해야 하고, 도메인의 DC들이 이 값을 기본 도메인 정책 GPO에서 읽어 강제한다.
+  OU에 다른 계정 정책을 두면 그 OU에 든 컴퓨터의 **로컬 계정**에만 걸린다(그 컴퓨터에 로컬로 로그인할 때) — 첫머리, Note. 「Password Policy」: 설정의 자리는 컴퓨터 구성\Windows 설정\보안 설정\계정 정책\암호 정책이고 GPMC로 연다. 그룹마다 다른 정책은 세분화된 암호 정책으로 한다(이름만 — 가져오지 않는다) — 첫머리
+- 그래서 도메인 사용자의 암호 조건은 **사용자가 고르지 않고 도메인 정책이 정한다**. 「Password must meet complexity requirements」: 복잡성 조건은 **암호를 만들거나 바꿀 때** 검사한다 — 「Reference」. (계정 하나를 이 정책에서 빼는 것은 관리자가 계정에 「암호가 만료되지 않게 하기」를 거는 일이다 — 위 「도메인 사용자 계정과 ds 명령」 항목)
+- **암호 정책 설정**(각 쪽 「Reference」·「Possible values」·「Default values」 — 기본값은 「기본 도메인 정책 / 독립 실행 서버」 순, DC와 구성원 서버의 실제 적용값은 기본 도메인 정책과 같다):
+  - **Minimum password length**: 암호가 가져야 할 가장 적은 글자 수. 0~14(0이면 암호가 없어도 된다). 기본 7자 / 0자. 8 이상을 권한다
+  - **Password must meet complexity requirements**: 켜면 암호가 (1) 계정 이름(samAccountName) 전체나 전체 이름(displayName)을 쉼표·마침표·하이픈·밑줄·공백 등으로 나눈 3자 이상 조각을 담지 않고(대소문자 가리지 않음, 계정 이름이 3자 미만이면 이 검사는 건너뛴다)
+    (2) 다섯 갈래 — 영문 대문자, 영문 소문자, 숫자 0~9, 특수 문자(통화 기호는 빼고), 대소문자가 없는 알파벳 문자(아시아 언어 글자 등) — 가운데 **셋 이상**의 글자를 담아야 한다. 켬·끔. 기본 켬 / 끔
+  - **Maximum password age**: 암호를 바꾸라고 요구하기 전까지 쓸 수 있는 날 수. 1~999일, 0이면 만료되지 않는다. 기본 42일 / 42일
+  - **Minimum password age**: 암호를 바꾼 뒤 다시 바꿀 수 있기까지 그 암호를 써야 하는 날 수. 0~998일(0이면 바로 바꿀 수 있다), 최대 사용 기간보다 짧아야 한다. 기본 1일 / 0일. 0이면 기록 기억 수만큼 잇달아 바꿔 옛 암호로 돌아갈 수 있다
+  - **Enforce password history**: 옛 암호를 다시 쓰려면 그 사이에 거쳐야 할 새 암호의 수(기억할 암호 수). 0~24. 기본 24개 / 0개
+- **계정 잠금 정책 설정**(같은 방식):
+  - **Account lockout threshold**: 계정을 잠그는 실패한 로그인 횟수. 1~999, 0이면 잠그지 않는다. 기본 0회 / 0회(곧 기본으로는 잠그지 않는다)
+  - **Account lockout duration**: 잠긴 계정이 저절로 풀리기까지의 분. 1~99,999분, **0이면 관리자가 풀 때까지 잠겨 있다**. 기본 정의 안 됨 / 해당 없음 — 임계값을 정해야 뜻이 있다
+  - **Reset account lockout counter after**: 로그인에 실패한 때부터 실패 횟수가 0으로 되돌아가기까지 지나야 하는 분. 1~99,999분. 기본 정의 안 됨 / 해당 없음
+- **셋의 관계**: 임계값이 0보다 크면 **잠금 기간 ≥ 초기화 시간**이어야 한다 — 「Account lockout threshold」·「Account lockout duration」·「Reset account lockout counter after」 「Reference」. 잠금 정책은 DC가 로그온 시도를 지켜보다가 정한 횟수만큼 틀리면 그 계정을 정한 시간 동안 쓰지 못하게 하는 것이다 — 「Account Lockout Policy」 첫머리
+- **잠긴 동안**: 잠긴 계정은 관리자가 풀거나 잠금 기간이 끝날 때까지 **쓸 수 없다** — 「Account lockout threshold」 「Reference」·「Countermeasure」. 「바른 암호를 넣어도 로그온하지 못한다」를 그 말 그대로 적은 문장은 없다 — 이 「쓸 수 없다」를 그렇게 읽는다.
+  관리자가 푸는 자리는 「Active Directory 사용자 및 컴퓨터」의 암호 재설정 대화 상자에 있는 잠긴 계정 풀기 확인란이다(위 「도메인 사용자 계정과 ds 명령」 항목)
+- **새 Windows 11 기기의 기본값**: 「Windows 11 security book」 「Account lockout policies」 — Windows 11을 새로 설치한 기기는 계정 잠금 정책이 기본으로 켜져 있다: 임계값 10회, 잠금 기간 10분, 초기화 10분, Administrator 계정 잠금 허용 켬. 위 표(기본 도메인 정책의 0회 등)와 다르므로, 본문에 기본값을 쓰면 **어느 쪽의 기본값인지 밝힌다**
+- **한국어 이름**: 위 설정 문서 열하나의 한국어판은 번역되지 않아 설정 이름을 영문으로만 보인다. learn.microsoft.com 한국어판에서 확인한 설정 이름은 「Windows 11 보안 책」의 **「계정 잠금 임계값」·「계정 잠금 기간」** 둘이고(같은 쪽이 Reset account lockout counter after를 「이후 계정 잠금 다시 설정 카운터」로 옮긴 것은 기계 번역이라 쓰지 않는다), 「계정 잠금 정책」·「암호 정책」·「기본 도메인 정책」은 「도메인 모델 검토하기」·「Windows 11 보안 책」 한국어판에 있다.
+  **나머지 설정(최소 암호 길이 등)의 한국어 화면 이름은 확인하지 못했다**. 고른 방식: 항목 이름은 영문 설정 이름을 함께 적고, 한국어 이름은 그 영문 이름의 뜻을 옮긴 말로 쓰되 「한국어 화면에 이렇게 보인다」로 단정하지 않는다
+
+쓰인 곳: (phase 80 step 7에서 쓰일 곳) `windows-ad.password-lockout-policy`(계정 정책은 도메인 단계 — 도메인마다 하나, 기본 도메인 정책, OU에 둔 계정 정책은 로컬 계정에만, 암호 정책 다섯과 잠금 정책 셋의 하는 일·값의 범위·기본값과 판, 셋의 관계, 잠긴 동안 쓸 수 없다, 새 Windows 11 기기의 기본값, 사용자는 암호 조건을 고르지 못한다),
+`windows-ad.group-policy`(암호·계정 잠금 정책은 그룹 정책의 보안 설정이고 도메인에 연결된 GPO에서 정한다), `windows-ad.domain-user-accounts`(암호는 도메인 정책을 따른다), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2024-08-25 #34], [기출 2026-08-02 #43])
