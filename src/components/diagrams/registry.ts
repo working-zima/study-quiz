@@ -28,6 +28,7 @@ import { BandwidthDiagram } from './BandwidthDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
+import { BuiltinLocalGroupsDiagram } from './BuiltinLocalGroupsDiagram'
 import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
@@ -153,6 +154,7 @@ import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { ListenPortDiagram } from './ListenPortDiagram'
+import { LocalUserAccountsDiagram } from './LocalUserAccountsDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
 import { LoginRecordsDiagram } from './LoginRecordsDiagram'
@@ -658,6 +660,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-servers.options-indexes': DirectoryListingDiagram,
   'linux-servers.limit-request-body': RequestBodyLimitDiagram,
   'linux-servers.iptables': IptablesChainsDiagram,
+  'windows-ad.local-accounts': LocalUserAccountsDiagram,
+  'windows-ad.local-groups': BuiltinLocalGroupsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

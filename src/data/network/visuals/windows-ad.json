@@ -1,0 +1,106 @@
+{
+  "diagrams": {
+    "local-user-accounts": {
+      "label": "서버 SRV01에 Windows를 설치할 때 생기는 기본 로컬 사용자 계정 Administrator·Guest·DefaultAccount의 성질과, SRV01에 만든 로컬 계정 user01이 SRV01의 자원에만 쓰이고 다른 컴퓨터 PC01에서는 쓰이지 않는 것을 보이는 도식",
+      "svgLabel": "서버 SRV01 박스 안에 계정 Administrator·Guest·DefaultAccount·user01과 SRV01의 자원이 있고, 다른 컴퓨터 PC01 박스 안에 PC01의 자원이 있는 그림",
+      "question": "로컬 계정은 어디까지 쓰일까?",
+      "idleCaption": "서버 SRV01 안에 Windows를 설치할 때 생기는 기본 계정 가운데 셋과 로컬 계정 user01, SRV01의 자원을 두고, 그와 따로 다른 컴퓨터 PC01과 그 자원을 두었다. 컴퓨터 이름과 user01은 예로 붙인 이름이다. 버튼을 고르면 기본 계정의 성질과 로컬 계정이 쓰이는 곳을 볼 수 있다.",
+      "legend": "박스 하나가 컴퓨터 한 대이고, 화살표는 계정이 쓸 수 있는 자원을 가리킨다.",
+      "nodes": {
+        "admin": "Administrator",
+        "guest": "Guest",
+        "default": "DefaultAccount",
+        "user01": "user01",
+        "srv-res": "SRV01의 자원",
+        "pc-res": "PC01의 자원"
+      },
+      "groups": {
+        "srv01": "서버 SRV01",
+        "pc01": "다른 컴퓨터 PC01"
+      },
+      "notes": {
+        "admin-note": "지우거나 잠글 수 없음",
+        "guest-note": "기본으로 꺼짐",
+        "default-note": "시스템이 관리",
+        "pc-note": "user01로 쓸 수 없음"
+      },
+      "scenarios": [
+        {
+          "id": "builtin",
+          "label": "기본 계정",
+          "caption": "Administrator·Guest·DefaultAccount는 Windows를 설치할 때 저절로 생기는 기본 로컬 사용자 계정이고 지울 수 없다. Administrator는 잠글 수도 없지만 이름을 바꾸거나 꺼 둘 수는 있고, Guest는 기본으로 꺼져 있으며, DefaultAccount는 사람이 아니라 시스템이 관리한다.",
+          "sources": [
+            "windows-ad.local-accounts"
+          ]
+        },
+        {
+          "id": "scope",
+          "label": "쓰이는 곳",
+          "caption": "user01은 SRV01에 만든 로컬 계정이라 SRV01이 직접 확인하고, 이 계정으로는 SRV01에 있는 자원만 쓸 수 있다. PC01은 이 계정을 갖고 있지 않으므로 user01로 PC01에 로그온하거나 PC01의 파일을 쓸 수 없다.",
+          "sources": [
+            "windows-ad.local-accounts"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.local-accounts"
+      ]
+    },
+    "builtin-local-groups": {
+      "label": "SRV01의 로컬 계정 user01이 기본 로컬 그룹 Users·Backup Operators·Administrators 가운데 어느 그룹의 권한을 받느냐에 따라, 일상 작업을 하거나 파일을 백업하고 복원하거나 컴퓨터 전체를 제어하게 되는 것을 보이는 도식",
+      "svgLabel": "맨 위 왼쪽에 계정 user01이 있고, 그 아래 왼쪽 박스에 기본 로컬 그룹 Users·Backup Operators·Administrators가, 오른쪽 박스에 그룹마다 할 수 있게 되는 일인 일상 작업·파일 백업과 복원·컴퓨터 전체 제어가 이어진 그림",
+      "question": "계정을 그룹에 넣으면 무엇을 할 수 있게 될까?",
+      "idleCaption": "SRV01의 기본 로컬 그룹 셋과, 그룹마다 구성원이 할 수 있게 되는 일을 이어 두었다. 컴퓨터 이름과 계정 user01은 예로 붙인 이름이다. 버튼을 고르면 user01이 어느 그룹의 권한을 받는지와 그 결과를 볼 수 있다.",
+      "legend": "아래 왼쪽 박스는 SRV01의 기본 로컬 그룹이고, 오른쪽 박스는 그 그룹의 구성원이 할 수 있게 되는 일이다. 화살표는 user01이 권한을 받는 그룹을 가리킨다.",
+      "nodes": {
+        "account": "user01",
+        "users": "Users",
+        "backup": "Backup Operators",
+        "admins": "Administrators",
+        "do-daily": "일상 작업",
+        "do-backup": "파일 백업과 복원",
+        "do-all": "컴퓨터 전체 제어"
+      },
+      "groups": {
+        "groups": "SRV01의 기본 로컬 그룹",
+        "abilities": "할 수 있게 되는 일"
+      },
+      "notes": {
+        "users-note": "로그온하면 Users의 권한을 받는다",
+        "backup-note": "Backup Operators에 넣는다",
+        "admins-note": "Administrators에 넣는다"
+      },
+      "scenarios": [
+        {
+          "id": "users",
+          "label": "Users",
+          "caption": "Windows를 설치한 직후 Users의 구성원은 로그온한 모든 사용자를 가리키는 Authenticated Users다. 그래서 어느 그룹에도 따로 넣지 않은 user01도 로그온하면 Users의 권한으로 일상 작업을 하고, 시스템 전체에 걸치는 설정은 바꾸지 못한다.",
+          "sources": [
+            "windows-ad.local-groups"
+          ]
+        },
+        {
+          "id": "backup",
+          "label": "Backup Operators",
+          "caption": "user01을 Backup Operators에 넣으면 파일마다 정해 둔 사용 권한과 관계없이 SRV01의 모든 파일을 백업하고 복원할 수 있게 된다. 그룹이 받은 사용자 권한이 구성원에게 주어지기 때문이다.",
+          "sources": [
+            "windows-ad.local-groups"
+          ]
+        },
+        {
+          "id": "admins",
+          "label": "Administrators",
+          "caption": "user01을 Administrators에 넣으면 SRV01 전체를 제한 없이 제어할 수 있게 된다. 구성원 하나하나가 무엇이든 할 수 있으므로 이 그룹에는 구성원을 되도록 적게 두라고 권한다.",
+          "sources": [
+            "windows-ad.local-groups"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.local-groups"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

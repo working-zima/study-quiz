@@ -23,6 +23,7 @@ import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.jso
 import routingVisuals from './visuals/routing.json'
 import tcpConnectionVisuals from './visuals/tcp-connection.json'
 import tcpUdpVisuals from './visuals/tcp-udp.json'
+import windowsAdVisuals from './visuals/windows-ad.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -55,6 +56,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'linux-process-boot': linuxProcessBootVisuals,
   'linux-accounts': linuxAccountsVisuals,
   'linux-servers': linuxServersVisuals,
+  'windows-ad': windowsAdVisuals,
 }
 
 export const networkSubject: Subject = {
