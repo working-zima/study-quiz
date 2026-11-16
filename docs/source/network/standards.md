@@ -1398,6 +1398,8 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - (phase 78 step 11) tracert의 옵션: `/d`는 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않게 해 결과가 빨리 나올 수 있다. `/h`는 찾을 최대 홉 수(기본 30). `/w`는 시간 초과·에코 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 받지 못하면 `*`를 찍는다 — 「Parameters」.
   경로를 찾으면서 **라우터와 링크마다의 지연과 패킷 손실**까지 보려면 pathping을 쓰라고 한다 — 「Important」 뒤 문단
 - (phase 78 step 11) 두 명령 모두 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — ping 첫머리 Note, tracert 「Important」
+- (phase 80 step 11) 2026-11-16에 IPv4로 다시 받은 판: Windows commands `updated_at` 2026-02-26(`ms.date` 2025-07-29), 한국어판 같은 날. 「Command-line shells」는 PowerShell이 명령 셸의 기능을 넓혀 cmdlet이라는 PowerShell 명령을 실행하게 만든 것이고,
+  **PowerShell에서는 Windows 명령과 PowerShell cmdlet을 모두 실행할 수 있지만 명령 셸에서는 Windows 명령만 실행되고 cmdlet은 실행되지 않는다**고 적는다 — 같은 절
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
@@ -1407,6 +1409,7 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 `diagnostic-commands.pathping`(tracert 문서가 pathping을 가리키는 문단), `exam-notes.md` 「phase 78 step 11」 문단([기출 2025-08-24 #42]의 `/a`·`/f`·`/n` 보기)과 E33
 (phase 80 step 6) `windows-ad.ds-commands`(Windows commands 「Command-line shells」 — PowerShell은 명령 셸, 곧 명령 프롬프트와 함께 Windows에 들어 있는 명령 줄 셸이고, 셸은 사용자와 운영 체제·응용 프로그램 사이를 잇는 프로그램이다 — 같은 일을 하는 PowerShell 명령 `New-ADUser` 앞에서 한 줄로 푼다)
 (phase 80 step 8에서 쓰일 곳) `windows-admin-tools.powershell`(「Command-line shells」 — Windows의 명령줄 셸은 명령 셸(명령 프롬프트)과 PowerShell 둘), `windows-admin-tools.resource-monitor`(「Task Manager」 — 작업 관리자는 응용 프로그램·프로세스의 성능과 자원 사용을 살피는 기본 도구. 리소스 모니터와의 관계는 아래 「(phase 80 step 8) … 성능 모니터·리소스 모니터」 항목)
+(phase 80 step 11) `windows-admin-tools.powershell`(명령줄 셸은 명령 프롬프트와 PowerShell 둘, PowerShell은 Windows 명령과 cmdlet을 모두 실행하고 명령 프롬프트는 cmdlet을 실행하지 못한다), 문항 n278
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -6168,6 +6171,7 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
 쓰인 곳: (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.performance-monitor`(성능 모니터의 세 자리, `perfmon`, 성능 카운터와 이름의 꼴, 데이터 수집기 집합·`.blg`·샘플 간격·일정·중지 조건),
 (phase 80 step 11에서 쓰일 곳) `windows-admin-tools.resource-monitor`(`resmon`·`perfmon /res`, CPU 탭과 평균 CPU, 성능 데이터를 쓰는 기본 도구, 탭 목록은 못 찾음, 안정성 모니터 — 기출 문제문 판정), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-05-25 #35], [기출 2024-11-03 #36], [기출 2026-02-01 #42])
 (phase 80 step 10) `windows-admin-tools.performance-monitor`(위 줄들 — MMC 스냅인 성능 모니터와 `perfmon`, 로컬로도 원격으로도, 성능 카운터의 뜻과 1초보다 자주 재지 않는다, 성능 개체·인스턴스와 카운터 이름의 꼴, 세 자리(성능 모니터·데이터 수집기 집합·보고서), 데이터 수집기 집합과 `.blg`·샘플 간격, 일정과 중지 조건의 전체 기간; 카운터 예·화면 없이 모으기·마법사의 차례는 아래 「(phase 80 step 10) … 성능 카운터 이름과 데이터 수집기 집합 만들기」 항목; perfmon의 옵션, 커널 안쪽을 보지 못한다는 것, 만료 날짜, 성능 모니터의 권한은 쓰지 않았다), 도식 `perfmon-collector`, 문항 n276
+(phase 80 step 11) `windows-admin-tools.resource-monitor`(위 줄들 — `resmon`과 CPU 탭·평균 CPU 열로 정렬하기, `perfmon /res`·`/rel`, 작업 관리자·리소스 모니터·성능 모니터가 성능 데이터를 쓰는 기본 도구라는 것, 안정성 모니터. 탭 목록과 네 자원은 아래 「(phase 80 step 11) … 리소스 모니터」 항목), 도식 `resource-monitor`, 문항 n277
 
 ## (phase 80 step 10) Microsoft Learn — 성능 카운터 이름과 데이터 수집기 집합 만들기: typeperf; Win32 — Collecting Performance Data; 지난 판 Create a Data Collector Set Manually, Create a Data Collector Set to Monitor Performance Counters
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/typeperf
@@ -6191,6 +6195,62 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
 - **한국어 이름**: 사용자 정의·직접 만들기·데이터 로그 만들기는 한국어 화면 이름을 확인하지 못했다 — 영문의 뜻을 옮긴 말이고 본문에 영문을 함께 적었다. 「데이터 수집기 집합」·「보고서」·「성능 카운터」는 위 step 8 항목
 
 쓰인 곳: (phase 80 step 10) `windows-admin-tools.performance-monitor`(CPU 사용률 카운터 `\Processor(_Total)\% Processor Time`과 모든 프로세서의 평균이라는 것·50% 예, 다른 컴퓨터의 카운터 이름 앞의 `\\컴퓨터 이름`, 인스턴스가 없는 `\Memory\Available MBytes`, 화면을 열어 두지 않아도 모으는 데이터 수집기 집합, 마법사로 만드는 차례), 도식 `perfmon-collector`, 문항 n276(밤새 화면을 열어 두지 않아도 집합이 로그 파일에 쓴다)
+
+## (phase 80 step 11) Microsoft Learn — 리소스 모니터: 지난 판 Performance and Reliability Monitoring Getting Started Guide for Windows Server 2008; Task Manager may display incorrect memory information; 같은 learn.microsoft.com의 제품 문서 — Monitoring churn patterns on virtual machines(Azure Site Recovery), Monitor replication for the Data migration toolkit(Dynamics 365)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771692(v=ws.10)
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/task-manager-display-incorrect-memory-info
+https://learn.microsoft.com/en-us/azure/site-recovery/monitoring-high-churn
+https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/monitor-replication
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 지난 판 「Performance and Reliability Monitoring Getting Started Guide for Windows Server 2008」 `updated_at` 2021-11-12(`ms.date` 2012-07-02, Applies To — Windows Server 2008. 한국어판도 같은 날이고 본문은 번역되지 않은 영문),
+「Task Manager may display incorrect memory information」 2026-02-19(2026-02-12, 적용 대상 — 지원되는 Windows Server, 한국어판 2026-10-14), 「Monitoring churn patterns on virtual machines」 2025-10-07(2020-09-09),
+「Monitor replication for the Data migration toolkit」 2026-09-01(2026-03-17). step 8이 리소스 모니터의 탭 목록을 찾지 못하고 교육 과정 페이지만 남겨 사용자 확인으로 올렸으므로, 이 step이 교육 과정 페이지를 쓰지 않고 다시 찾았다.
+지난 판 문서가 리소스 뷰를 설명하는 차례가 가장 자세해 그것을 주 근거로 쓰고, 지금 판 문서로 지금의 리소스 모니터에도 같은 자원·탭이 있는지 맞춰 봤다. 뒤의 두 문서는 Windows Server 문서가 아니라 같은 learn.microsoft.com의 Azure·Dynamics 365 제품 문서다 —
+step 8이 Windows 드라이버 문서·.NET 문서를 쓴 것과 같은 처리로, 리소스 모니터에 디스크 탭과 네트워크 탭이 있다는 것을 맞춰 보는 데만 쓴다.
+
+- **리소스 뷰**(Resource View, 지난 판 — Windows Server 2008): Windows Reliability and Performance Monitor의 첫 화면이다. CPU·디스크·네트워크·메모리 네 자원의 사용과 성능을 실시간으로 살피고, 네 자원을 펼치면 어느 프로세스가 어느 자원을 쓰는지 자세히 보인다.
+  위쪽 그래프 넷이 네 자원의 지금 사용량을 보이고, 그 아래 펼치는 절 넷에 프로세스마다의 자세한 값이 있다. 명령 프롬프트에서 `perfmon /res`를 입력하면 리소스 뷰가 따로 된 창으로 열린다 — 「Resource View」·「Scenario 1」
+- **자원마다 보이는 칸**(같은 문서 「Resource View details」 표): CPU — 이미지(그 자원을 쓰는 응용 프로그램), PID(그 응용 프로그램 인스턴스의 프로세스 ID), 스레드 수, 지금 CPU, **평균 CPU — 최근 60초 동안 그 인스턴스가 낸 CPU 부하의 평균을 CPU 전체 용량의 백분율로**.
+  디스크 — 이미지·PID, 그 인스턴스가 읽거나 쓰는 파일, 읽기·쓰기 속도(Bytes/min), I/O 우선순위, 응답 시간. 네트워크 — 이미지·PID, 이 컴퓨터가 정보를 주고받는 상대의 주소(컴퓨터 이름·IP 주소·FQDN), 보내는 양·받는 양·합계(Bytes/min).
+  메모리 — 이미지·PID, 분당 하드 폴트, 작업 집합(그 인스턴스가 지금 메모리에 올려 둔 KB), 공유할 수 있는 양, 전용 양
+- **작업 관리자와의 관계**(같은 문서 「Resource View」·「Benefits…」): 이런 프로세스별 실시간 데이터는 그 전 판의 Windows에서는 작업 관리자에서만 제한된 꼴로 볼 수 있었고, 리소스 뷰는 작업 관리자 같은 앞선 도구보다 시스템 활동과 자원 사용을 훨씬 자세히 보여 준다
+- **안정성 모니터**(같은 문서 「Reliability Monitor」·「Scenario 7」): 응용 프로그램의 설치·제거와 운영 체제 업데이트 같은 시스템의 변화와 응용 프로그램·운영 체제·하드웨어의 실패를 날짜별로 나란히 보이고, 안정성 지수를 계산한다(step 8 항목의 Win32 문서와 같은 사실)
+- **지금의 리소스 모니터**: 시작 메뉴에서 `resmon`을 입력해 열고 **CPU 탭**에서 프로세스마다 CPU 사용량을 보며 **평균 CPU 열**로 정렬한다 — step 8 항목의 「Guidance for troubleshooting high CPU usage」(한국어판 「리소스 모니터」·「CPU 탭」·「평균 CPU 열」).
+  리소스 모니터는 하드웨어 예약 메모리의 바른 값을 보여 주고 Windows 7과 그 뒤 판에 들어 있다 — 「Task Manager may display incorrect memory information」 「Workaround」. Win+R로 `resmon`을 입력해 연 리소스 모니터 창에서 **디스크 탭**으로 바꿔 프로세스마다 디스크 쓰기를 본다 — 「Monitoring churn patterns…」 「Resource Monitor」.
+  작업 관리자에서 리소스 모니터를 열고, 리소스 모니터의 **네트워크 탭**에서 프로세스로 걸러 보내는 대역폭을 본다 — 「Monitor replication…」 「Network bandwidth」
+- **리소스 뷰와 리소스 모니터**: 두 이름을 같은 화면이라고 한 문장으로 적은 문서는 찾지 못했다. 같은 화면으로 본 근거는 셋이다 — (1) 지금 판 Windows 명령 참조 「perfmon」(Windows Server 2016~2025)이 `/res`를 「리소스 뷰를 시작한다」로 적고 step 8 항목도 이 줄을 리소스 모니터 아래에 두었다,
+  (2) 지난 판의 리소스 뷰와 지금의 리소스 모니터가 같은 「평균 CPU」 열로 CPU를 많이 쓰는 프로세스를 찾는다, (3) 지금의 리소스 모니터에도 CPU·디스크·네트워크 탭과 메모리 값이 있다(위 줄). 그래서 본문은 리소스 모니터를 중심에 두고, 열 이름과 칸은 「Windows Server 2008 판 문서가 리소스 뷰를 설명하며 정리한 것」이라고 밝혔다
+- **방화벽**: 리소스 모니터가 방화벽에 대해 무엇을 보이는지(또는 보이지 않는지)를 적은 문서는 찾지 못했다 — 본문은 「방화벽은 다루지 않는다」를 쓰지 않고 리소스 모니터가 보이는 네 자원을 정확히 쓴다. [기출 2024-11-03 #36]이 방화벽을 점검할 수 없는 것으로 두는 것은 그대로 두었다
+- **쓰지 않는 것**: 교육 과정 페이지(「Use Resource Monitor to review current resource usage」)와 거기에만 있는 개요(Overview) 탭, 네트워크 탭의 수신 대기 포트·TCP 연결, 하드 폴트, 프로세스 끝내기·거르기의 조작 차례, Windows Server 2008에서 리소스 뷰를 쓰는 데 필요한 권한
+- **한국어 이름**: 「리소스 모니터」·「CPU 탭」·「평균 CPU 열」(높은 CPU 문서 한국어판), 「리소스 뷰」(perfmon 한국어판 — step 8 항목은 「리소스 보기」로 옮겼다. 이 step은 한국어판의 말을 따른다), 「안정성 모니터」(perfmon 한국어판). 디스크 탭·네트워크 탭의 한국어 화면 이름은 확인하지 못했다 — 「CPU 탭」과 같은 꼴로 쓴다
+
+쓰인 곳: (phase 80 step 11) `windows-admin-tools.resource-monitor`(네 자원과 프로세스별 실시간 보기, PID, `perfmon /res`와 리소스 뷰, CPU 탭·평균 CPU 최근 60초, 디스크 탭의 파일과 속도, 네트워크 탭의 상대 주소와 보내고 받는 양, 메모리에 올려 둔 양, 작업 관리자보다 자세히, 안정성 모니터 `perfmon /rel`),
+도식 `resource-monitor`(네 자원·프로세스별·성능 모니터와), 문항 n277(디스크 탭에서 프로세스별 읽기·쓰기 — 오답의 이벤트 뷰어·데이터 수집기 집합·감사 정책은 step 8·9·10 항목)
+
+## (phase 80 step 11) Microsoft Learn — PowerShell에서 명령 실행하기: Running commands in the shell, about_Pipelines, Get-ChildItem, Get-Service, Get-Process, Set-Location
+https://learn.microsoft.com/en-us/powershell/scripting/learn/shell/running-commands
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-location
+
+2026-11-16에 IPv4로 내려받아 읽은 판(PowerShell 7.6 판): 「Running commands in the shell」 `updated_at` 2026-07-01(`ms.date` 2026-06-29, 한국어판 2026-10-23), about_Pipelines 2026-01-02(2025-12-28), Get-ChildItem 2026-08-10(2026-08-10),
+Get-Service 2026-06-15(2026-02-04), Get-Process 2025-07-24(2025-04-15), Set-Location 2025-07-24(2022-12-12).
+
+- **명령의 세 갈래**(「Running commands in the shell」 첫머리·「Types of commands」): PowerShell은 `bash`나 Windows 명령 셸(`cmd.exe`)처럼, PowerShell 명령만이 아니라 시스템에 있는 어떤 명령이든 실행하게 해 준다. 셸의 명령은 셋이다 —
+  셸 언어 키워드(그 셸 안에만 있고 따로 된 실행 파일이 없다. `cmd.exe`의 키워드 예로 `dir`·`copy`·`move`·`if`·`echo`), 운영 체제의 네이티브 명령(운영 체제에 설치된 실행 파일이라 PowerShell 같은 어느 명령줄 셸에서나 실행된다),
+  셸 환경에만 있는 명령(PowerShell에서는 모듈이 더하는 cmdlet)
+- **네이티브 명령 실행**(같은 문서 「Running native commands」): 어느 네이티브 명령이든 PowerShell 명령줄에서 실행할 수 있고, 보통 `bash`나 `cmd.exe`에서와 똑같이 입력한다. PowerShell에서는 매개 변수가 모두 하이픈(`-`)으로 시작한다 — 「Passing arguments to native commands」
+- **`ipconfig.exe`**: PowerShell 프롬프트에서 `ipconfig.exe`를 실행해 그 출력을 cmdlet으로 넘기는 예 — about_Pipelines 「Using pipelines」(파이프라인 자체는 가져오지 않는다. `ipconfig`가 실행 파일 `ipconfig.exe`이고 PowerShell에서 실행된다는 것만 쓴다)
+- **cmdlet이 하는 일**: `Get-ChildItem`은 지정한 위치의 항목을 가져오고, 그 항목이 다른 항목을 담는 컨테이너면 그 안의 항목(child items)을 가져온다. 위치(`-Path`)의 기본값은 현재 디렉터리다 — Get-ChildItem 「Description」·「-Path」.
+  `Get-Service`는 실행 중인 것과 멈춘 것을 포함해 컴퓨터의 서비스를 나타내는 객체를 가져온다(Windows에서만) — Get-Service 「Description」. `Get-Process`는 로컬 컴퓨터의 프로세스를 가져오고, 매개 변수 없이 쓰면 모든 프로세스를 가져온다 — Get-Process 「Description」.
+  `Set-Location`은 작업 위치를 지정한 위치로 바꾼다 — Set-Location 「Description」
+- **쓰지 않는 것**: 파이프라인과 `Select-String`, 호출 연산자(`&`)와 `Start-Process`, 인자를 넘기는 규칙(`PSNativeCommandArgumentPassing`), cmdlet의 매개 변수 목록
+- **한국어 이름**: 한국어판은 「네이티브 명령」(OS 네이티브 명령)이라 부른다 — 본문은 「실행 파일로 된 명령」으로 풀어 쓴다
+
+쓰인 곳: (phase 80 step 11) `windows-admin-tools.powershell`(명령 프롬프트의 `dir`은 따로 된 실행 파일이 없는 명령이고 PowerShell의 `dir`은 별칭, 실행 파일로 된 명령은 어느 셸에서나 실행된다, `ipconfig`는 `ipconfig.exe`, 매개 변수는 하이픈으로 시작, `Get-ChildItem`·`Get-Service`·`Set-Location`이 하는 일),
+도식 `powershell-commands`, 문항 n278(`ipconfig`를 PowerShell에서 실행)·n279(`Get-Process`의 세 꼴 — 대소문자는 step 8 항목의 about_Case-Sensitivity)
 
 ## (phase 80 step 8) Microsoft Learn — PowerShell: What is PowerShell?, What is Windows PowerShell?, Migrating from Windows PowerShell 5.1 to PowerShell 7, Differences between Windows PowerShell 5.1 and PowerShell 7.x, Cmdlet Overview, Approved Verbs for PowerShell Commands, about_Aliases, about_Case-Sensitivity, about_Command_Precedence, about_Parsing, about_Scripts, about_Execution_Policies
 https://learn.microsoft.com/en-us/powershell/scripting/overview
@@ -6231,6 +6291,7 @@ https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/ab
 
 쓰인 곳: (phase 80 step 11에서 쓰일 곳) `windows-admin-tools.powershell`(셸이자 스크립트 언어, 개체, cmdlet과 동사-명사, 별칭 `dir`·`cd`, 실행 파일로 된 명령, 대소문자, `.ps1`과 대화형, 실행 정책의 Windows Server 기본값, 5.1과 7, 「DOS 명령」이라는 말을 쓰지 않음),
 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-11-03 #31]·[기출 2026-08-02 #30])
+(phase 80 step 11) `windows-admin-tools.powershell`(위 줄들 — 셸이자 스크립트 언어로 관리 작업을 자동화한다, cmdlet과 동사-명사, 결과가 객체다, 별칭 `dir` → `Get-ChildItem`·`cd` → `Set-Location`·`Get-Alias`, 이름만 적은 명령을 찾는 차례와 PATH, 대소문자, `.ps1`과 대화형, 실행 정책의 Windows Server 기본값 RemoteSigned, 5.1과 7·`powershell.exe`·`pwsh.exe`. 「DOS」라는 말은 쓰지 않았다. 네이티브 명령과 cmdlet 설명은 아래 「(phase 80 step 11) … PowerShell에서 명령 실행하기」 항목), 도식 `powershell-commands`, 문항 n278·n279
 
 ## (phase 80 step 8) Microsoft Learn — 인증서와 파일 형식: Inspect certificates and manage certificate store contents, Export a certificate with its private key in Windows Server, Request and renew certificates with Certificates MMC, Export-Certificate, Export-PfxCertificate; .NET Framework 문서 — How to: View certificates with the MMC snap-in
 https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/inspect-certificates-manage-certificate-stores

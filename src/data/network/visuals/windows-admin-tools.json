@@ -233,6 +233,125 @@
       "sources": [
         "windows-admin-tools.performance-monitor"
       ]
+    },
+    "resource-monitor": {
+      "label": "리소스 모니터가 CPU·메모리·디스크·네트워크 네 자원을 내려받는 프로그램 같은 프로세스마다 지금 얼마나 쓰는지 나눠 보여 주고, 성능 모니터는 카운터를 골라 오래 모은다는 것을 보이는 도식",
+      "svgLabel": "리소스 모니터 박스 안에 CPU·메모리·디스크·네트워크가 있고, 박스 밖에 내려받는 프로그램과 성능 모니터가 있는 그림",
+      "question": "지금 어느 프로그램이 자원을 많이 쓰는지 어디서 볼까?",
+      "idleCaption": "리소스 모니터 박스에 네 자원을 두고, 박스 밖에 예로 고른 내려받는 프로그램과 성능 모니터를 두었다. 버튼을 고르면 리소스 모니터가 무엇을 보여 주는지와 성능 모니터와 무엇이 다른지 볼 수 있다.",
+      "legend": "박스는 리소스 모니터가 나눠 보여 주는 네 자원이다. 화살표는 그 프로그램이 쓰는 자원을 가리킨다.",
+      "nodes": {
+        "process": "내려받는 프로그램",
+        "cpu": "CPU",
+        "memory": "메모리",
+        "disk": "디스크",
+        "network": "네트워크",
+        "perfmon": "성능 모니터"
+      },
+      "groups": {
+        "resmon": "리소스 모니터"
+      },
+      "notes": {
+        "now-note": "지금 이 순간을 프로세스별로 본다",
+        "collect-note": "카운터를 골라 오래 모은다"
+      },
+      "scenarios": [
+        {
+          "id": "resources",
+          "label": "네 자원",
+          "caption": "리소스 모니터는 CPU·메모리·디스크·네트워크 네 자원을 나눠, 지금 각 자원을 얼마나 쓰고 있는지 실시간으로 보여 준다. CPU 탭에서는 프로세스마다 CPU 사용량과 최근 60초의 평균인 평균 CPU를 본다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor"
+          ]
+        },
+        {
+          "id": "per-process",
+          "label": "프로세스별",
+          "caption": "자원마다 어느 프로세스가 얼마나 쓰는지 나뉘어 보인다. 내려받는 프로그램이라면 네트워크 탭에서는 그 프로세스가 받는 양이, 디스크 탭에서는 받은 내용을 쓰는 파일과 그 쓰는 속도가 보인다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor"
+          ]
+        },
+        {
+          "id": "compare",
+          "label": "성능 모니터와",
+          "caption": "리소스 모니터는 지금 이 순간 어느 프로세스가 어느 자원을 얼마나 쓰는지 바로 보여 준다. 성능 모니터는 관리자가 카운터를 골라 데이터 수집기 집합으로 정한 간격마다 오래 모아 두었다가 보고서로 보여 준다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor",
+            "windows-admin-tools.performance-monitor"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.resource-monitor"
+      ]
+    },
+    "powershell-commands": {
+      "label": "PowerShell에서 cmdlet 이름은 동사와 명사를 하이픈으로 이은 꼴이고, dir은 별칭으로 Get-ChildItem을, ipconfig는 실행 파일 ipconfig.exe를 실행하며, get-service와 Get-Service는 대소문자와 관계없이 같은 cmdlet을 실행한다는 것을 보이는 도식",
+      "svgLabel": "동사와 명사로 나눈 cmdlet 이름이 있고, 입력한 이름 박스의 이름들이 실행되는 것 박스의 cmdlet과 실행 파일로 이어지는 그림",
+      "question": "PowerShell에 적은 이름은 무엇을 실행할까?",
+      "idleCaption": "cmdlet 이름 하나를 동사와 명사로 나눠 두고, 입력한 이름과 그 이름으로 실행되는 것을 나란히 두었다. 버튼을 고르면 이름마다 무엇이 실행되는지 볼 수 있다.",
+      "legend": "화살표는 입력한 이름에서 실제로 실행되는 것을 가리킨다.",
+      "nodes": {
+        "verb": "Get",
+        "noun": "ChildItem",
+        "in-dir": "dir",
+        "in-ipconfig": "ipconfig",
+        "in-lower": "get-service",
+        "in-upper": "Get-Service",
+        "run-gci": "Get-ChildItem",
+        "run-ipconfig": "ipconfig.exe",
+        "run-gsv": "Get-Service"
+      },
+      "groups": {
+        "cmdlet-name": "cmdlet 이름",
+        "typed": "입력한 이름",
+        "runs": "실행되는 것"
+      },
+      "notes": {
+        "verb-note": "동사",
+        "noun-note": "명사",
+        "alias-note": "별칭",
+        "native-note": "실행 파일",
+        "case-note": "대소문자와 관계없다"
+      },
+      "scenarios": [
+        {
+          "id": "cmdlet",
+          "label": "cmdlet",
+          "caption": "cmdlet 이름은 동작을 나타내는 동사와 그 대상을 나타내는 명사를 하이픈으로 잇는다. Get-ChildItem은 동사 Get과 명사 ChildItem으로 되어 있어, 폴더 같은 위치를 주면 그 안의 항목을 가져온다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "alias",
+          "label": "별칭",
+          "caption": "dir은 Get-ChildItem에 붙인 다른 이름, 곧 별칭이다. PowerShell 창에 dir을 입력하면 별칭이 가리키는 cmdlet Get-ChildItem이 실행되어 지금 위치 안의 항목을 보여 준다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "native",
+          "label": "실행 파일",
+          "caption": "ipconfig는 운영 체제에 설치된 실행 파일 ipconfig.exe다. PowerShell 창에서도 명령 프롬프트에서처럼 이름을 입력하면 그 실행 파일이 실행된다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "case",
+          "label": "대소문자",
+          "caption": "Windows에서 PowerShell은 cmdlet 이름의 대소문자를 가리지 않는다. get-service로 적든 Get-Service로 적든 같은 cmdlet Get-Service가 실행되어 서비스 목록을 가져온다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.powershell"
+      ]
     }
   },
   "tables": {},

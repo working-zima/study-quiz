@@ -235,6 +235,7 @@ import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
 import { Pop3DownloadDiagram } from './Pop3DownloadDiagram'
 import { PortDemuxDiagram } from './PortDemuxDiagram'
 import { PortRangesDiagram } from './PortRangesDiagram'
+import { PowerShellCommandsDiagram } from './PowerShellCommandsDiagram'
 import { PricingCalculatorDiagram } from './PricingCalculatorDiagram'
 import { PrivateEndpointDiagram } from './PrivateEndpointDiagram'
 import { PrivateRangesDiagram } from './PrivateRangesDiagram'
@@ -261,6 +262,7 @@ import { ResolvConfDiagram } from './ResolvConfDiagram'
 import { ResourceGroupScopeDiagram } from './ResourceGroupScopeDiagram'
 import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
+import { ResourceMonitorDiagram } from './ResourceMonitorDiagram'
 import { ReverseNameDiagram } from './ReverseNameDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
@@ -690,6 +692,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
   'windows-admin-tools.performance-monitor': PerfmonCollectorDiagram,
+  'windows-admin-tools.resource-monitor': ResourceMonitorDiagram,
+  'windows-admin-tools.powershell': PowerShellCommandsDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
