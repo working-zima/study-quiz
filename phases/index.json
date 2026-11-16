@@ -396,6 +396,11 @@
       "completed_at": "2026-11-11T20:13:28+0900"
     },
     {
+      "dir": "79-network-dns-linux-servers",
+      "status": "completed",
+      "completed_at": "2026-11-13T11:50:58+0900"
+    },
+    {
       "dir": "80-network-windows-ad-tools",
       "status": "completed",
       "completed_at": "2026-11-16T18:03:43+0900"
