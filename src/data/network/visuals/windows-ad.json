@@ -404,6 +404,124 @@
       "sources": [
         "windows-ad.domain-user-accounts"
       ]
+    },
+    "ds-commands": {
+      "label": "ds 명령이 개체를 가리키는 고유 이름 CN=user01,OU=영업팀,DC=example,DC=com을 조각마다 나누어 보이고, 명령 여섯 dsadd·dsmod·dsrm·dsquery·dsget·dsmove가 하는 일을 디렉터리를 바꾸는 명령과 보기만 하는 명령으로 가르는 도식",
+      "svgLabel": "고유 이름 박스 안에 CN=user01, OU=영업팀, DC=example, DC=com 조각이 차례로 이어져 있고, ds 명령 박스 안에 dsadd·dsmod·dsrm·dsquery·dsget·dsmove와 저마다 하는 일이 짝지어 있는 그림",
+      "question": "ds 명령은 어느 개체를 어떻게 가리킬까?",
+      "idleCaption": "위 박스에는 도메인 example.com의 OU 영업팀에 둔 계정 user01의 고유 이름을 조각마다 나누어 두었고, 아래 박스에는 ds 명령 여섯과 저마다 하는 일을 짝지어 두었다. 이름은 예로 붙인 것이다. 버튼을 고르면 고유 이름을 읽는 법과 명령마다 하는 일을 볼 수 있다.",
+      "legend": "위 박스의 칸은 고유 이름을 쉼표에서 나눈 조각이다. 아래 박스의 칸은 왼쪽이 명령, 오른쪽이 그 명령이 하는 일이다.",
+      "groups": {
+        "dn": "고유 이름",
+        "commands": "ds 명령"
+      },
+      "nodes": {
+        "cn": "CN=user01",
+        "ou": "OU=영업팀",
+        "dc1": "DC=example",
+        "dc2": "DC=com",
+        "dsadd": "dsadd",
+        "add": "개체 추가",
+        "dsmod": "dsmod",
+        "mod": "개체 속성 바꾸기",
+        "dsrm": "dsrm",
+        "rm": "개체 지우기",
+        "dsquery": "dsquery",
+        "query": "개체 찾기",
+        "dsget": "dsget",
+        "get": "개체 속성 보기",
+        "dsmove": "dsmove",
+        "move": "개체 옮기기·이름 바꾸기"
+      },
+      "notes": {
+        "cn-note": "개체 자신의 이름",
+        "ou-note": "개체가 든 OU",
+        "dc-note": "이어 읽으면 example.com",
+        "change-note": "디렉터리를 바꾼다",
+        "look-note": "바꾸지 않고 보기만 한다"
+      },
+      "scenarios": [
+        {
+          "id": "dn",
+          "label": "고유 이름",
+          "caption": "ds 명령은 다룰 개체를 고유 이름으로 가리킨다. CN=user01은 개체 자신의 이름이고 OU=영업팀은 그 개체가 든 OU이며, DC=example과 DC=com을 이어 읽으면 도메인 example.com이 된다. 앞 조각일수록 안쪽 그릇이다.",
+          "sources": [
+            "windows-ad.ds-commands"
+          ]
+        },
+        {
+          "id": "change",
+          "label": "만들고 바꾸고 지우기",
+          "caption": "dsadd는 개체를 더하고, dsmod는 이미 있는 개체의 속성을 고치고, dsrm은 개체를 지운다. dsmove는 개체를 같은 도메인 안의 다른 자리로 옮기거나 이름만 바꾼다. 넷 모두 디렉터리를 바꾼다.",
+          "sources": [
+            "windows-ad.ds-commands"
+          ]
+        },
+        {
+          "id": "look",
+          "label": "찾고 보기",
+          "caption": "dsquery는 정한 조건에 맞는 개체를 찾고, dsget은 개체 하나의 속성을 보여 준다. 사용자 계정이 든 그룹의 목록도 dsget으로 본다. 둘은 디렉터리를 바꾸지 않고 보기만 한다.",
+          "sources": [
+            "windows-ad.ds-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.ds-commands"
+      ]
+    },
+    "group-scopes": {
+      "label": "도메인 example.com에 만든 도메인 로컬·글로벌·유니버설 그룹마다, example.com과 자식 도메인 sales.example.com 가운데 어느 도메인의 계정을 구성원으로 넣을 수 있고 어느 도메인의 공유 폴더에서 사용 권한을 받을 수 있는지를 보이는 도식",
+      "svgLabel": "도메인 example.com 박스 안에 계정, 도메인 로컬 그룹·글로벌 그룹·유니버설 그룹, 공유 폴더가 있고, 도메인 sales.example.com 박스 안에 계정과 공유 폴더가 있는 그림",
+      "question": "그룹 범위에 따라 누구를 넣고 어디에 쓸 수 있을까?",
+      "idleCaption": "한 포리스트의 도메인 example.com과 자식 도메인 sales.example.com에 저마다 계정과 공유 폴더가 있고, 그룹 셋은 모두 example.com에 만들었다. 도메인 로컬 그룹은 Sales-Share-Read, 글로벌 그룹은 Sales-Users, 유니버설 그룹은 All-Sales이고, 이름은 예로 붙인 것이다. 버튼을 고르면 범위마다 넣을 수 있는 구성원과 사용 권한을 받는 곳을 볼 수 있다.",
+      "legend": "위 박스는 도메인 example.com, 아래 박스는 자식 도메인 sales.example.com이다. 계정에서 그룹으로 가는 화살표는 그 그룹에 넣을 수 있는 구성원을, 그룹에서 공유 폴더로 가는 화살표는 그 그룹이 사용 권한을 받을 수 있는 곳을 가리킨다.",
+      "groups": {
+        "com": "example.com",
+        "sales": "sales.example.com"
+      },
+      "nodes": {
+        "com-account": "계정",
+        "domain-local": "도메인 로컬 그룹",
+        "global": "글로벌 그룹",
+        "universal": "유니버설 그룹",
+        "com-share": "공유 폴더",
+        "sales-account": "계정",
+        "sales-share": "공유 폴더"
+      },
+      "notes": {
+        "domain-local-note": "사용 권한을 줄 수 없음",
+        "global-note": "넣을 수 없음"
+      },
+      "scenarios": [
+        {
+          "id": "domain-local",
+          "label": "도메인 로컬",
+          "caption": "도메인 로컬 그룹 Sales-Share-Read에는 example.com의 계정도 sales.example.com의 계정도 넣을 수 있다. 하지만 이 그룹은 자기가 있는 example.com 안의 자원에서만 사용 권한을 받으므로, sales.example.com의 공유 폴더에는 이 그룹에 사용 권한을 줄 수 없다.",
+          "sources": [
+            "windows-ad.group-scopes"
+          ]
+        },
+        {
+          "id": "global",
+          "label": "글로벌",
+          "caption": "글로벌 그룹 Sales-Users에는 자기가 있는 example.com의 계정만 넣을 수 있어 sales.example.com의 계정은 넣지 못한다. 대신 이 그룹은 같은 포리스트의 어느 도메인 자원에서나 사용 권한을 받으므로, 두 도메인의 공유 폴더에 모두 쓸 수 있다.",
+          "sources": [
+            "windows-ad.group-scopes"
+          ]
+        },
+        {
+          "id": "universal",
+          "label": "유니버설",
+          "caption": "유니버설 그룹 All-Sales에는 같은 포리스트의 어느 도메인 계정이든 넣을 수 있고, 이 그룹은 포리스트 어느 도메인의 자원에서나 사용 권한을 받는다. 그래서 두 도메인의 계정을 한 그룹에 묶어 두 도메인의 공유 폴더에 함께 쓸 수 있다.",
+          "sources": [
+            "windows-ad.group-scopes"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.group-scopes"
+      ]
     }
   },
   "tables": {},

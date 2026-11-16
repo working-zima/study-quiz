@@ -80,6 +80,7 @@ import { DomainTrustDiagram } from './DomainTrustDiagram'
 import { DomainUserAccountDiagram } from './DomainUserAccountDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
+import { DsCommandsDiagram } from './DsCommandsDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
 import { EchoDiagram } from './EchoDiagram'
 import { EcsRolesDiagram } from './EcsRolesDiagram'
@@ -119,6 +120,7 @@ import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { GroupScopesDiagram } from './GroupScopesDiagram'
 import { GrubMenuDiagram } from './GrubMenuDiagram'
 import { HealthViewsDiagram } from './HealthViewsDiagram'
 import { HierarchyInheritanceDiagram } from './HierarchyInheritanceDiagram'
@@ -674,6 +676,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.trust': DomainTrustDiagram,
   'windows-ad.organizational-unit': OrganizationalUnitDiagram,
   'windows-ad.domain-user-accounts': DomainUserAccountDiagram,
+  'windows-ad.ds-commands': DsCommandsDiagram,
+  'windows-ad.group-scopes': GroupScopesDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
