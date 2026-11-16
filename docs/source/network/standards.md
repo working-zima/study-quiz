@@ -104,6 +104,21 @@ RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직�
 이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적었다. BIND 9 관리자 참조 설명서(ARM)와 명령 설명은 bind9.readthedocs.io의 안정판(`en/stable/` — 이날 9.20.30)을, Apache HTTP Server 문서는 httpd.apache.org의 2.4 문서(이날 최신 판 2.4.71)를 IPv4로 내려받아 읽었다 —
 Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이 판마다 바뀐 지시자는 문서의 Compatibility 줄대로 몇 판부터인지 적는다. netfilter.org는 프로젝트 소개 페이지 셋을 읽었다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — BIND의 `view`·ACL 문법 전체·`rndc` 명령 전체·DNS over TLS/HTTPS, Apache의 가상 호스트·모듈 전체·MPM·`.htaccess`의 세부, iptables의 `nat`·`mangle` 테이블과 연결 추적, nftables 문법, `rpm`·`yum`·`sudo`. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 0)」이 붙은 항목은 phase 80 step 0에서 `windows-ad` 주제의 앞 개념 여섯(로컬 사용자 계정, 기본 로컬 그룹, Active Directory 도메인 서비스, 도메인 컨트롤러, 도메인·트리·포리스트, 트러스트)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32 문서를 영문판과 한국어판(`ko-kr`)으로 IPv4로 내려받아 읽었다 — 항목마다 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적는다.
+지금 판 문서에 없는 말(트러스트의 종류와 방향을 정의한 문장, 기본 그룹의 옛 설명)은 지난 판 문서(`previous-versions` — Windows Server 2008·2012까지)에서 가져오고, 지금 판 문서가 같은 말을 하는지 줄마다 적는다.
+한국어판은 기계 번역이라 같은 것을 여러 이름으로 부르는 곳이 있다(trusted를 「신뢰받는」과 「신뢰할 수 있는」으로, 기본 그룹 이름을 영문 그대로와 번역으로) — 고른 이름과 그 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Windows 화면의 이름은 확인하지 못했다.**
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — Kerberos·NTLM의 인증 차례, 작업 마스터(FSMO) 역할의 일, 글로벌 카탈로그·스키마의 동작, 복제 토폴로지, 트러스트 암호와 신뢰할 수 있는 도메인 개체(TDO), 선택적 인증, RODC의 암호 복제 정책. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 4)」가 붙은 줄과 항목은 phase 80 step 4에서 `windows-ad` 주제의 뒤 개념 여섯(조직 구성 단위, 도메인 사용자 계정, ds 명령, 그룹 종류와 범위, 그룹 정책, 암호 정책과 계정 잠금 정책)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+읽은 방법은 step 0과 같다(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`·「Applies to」를 적었다). **ds 명령(`dsadd`·`dsmod`·`dsrm`·`dsquery`·`dsget`·`dsmove`)의 명령 참조는 지금 판 Windows 명령 참조에 없어**(`windows-server/administration/windows-commands/dsadd` 같은 주소가 404이고 Windows 명령 목록에도 없다)
+지난 판 명령 참조(Windows Server 2012 R2·2012 묶음, 적용 대상 Windows Server 2003~2012)를 읽고, 지금 판 문제 해결 문서(적용 대상 — 지원되는 모든 Windows Server)가 같은 명령을 쓰는지 맞춰 봤다.
+계정 정책 설정 문서(`windows/security/threat-protection/security-policy-settings/`)는 「Applies to」를 Windows 11·10으로 적지만 기본값 표에 기본 도메인 정책·DC·구성원 서버·독립 실행 서버의 값을 함께 싣는다 — 그 표의 값을 그대로 적고, 이 문서들의 한국어판은 번역되지 않아 영문 그대로라는 것도 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 그룹 정책의 상속 차단·강제·보안 필터링·WMI 필터, 세분화된 암호 정책, 글로벌 카탈로그의 동작, 사이트 링크와 복제 일정, PowerShell AD 모듈의 cmdlet 목록, `dsadd user`의 옵션 전체. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 8)」이 붙은 줄과 항목은 phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 창 명령, 이벤트 뷰어, Windows 로그, 성능 모니터, 리소스 모니터, PowerShell, 인증서와 인증서 관리자, EFS, BitLocker 드라이브 암호화, 클라우드 폴더)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+이 주제도 강의 밖 주제라 사실의 근거는 learn.microsoft.com 하나다(ADR-059). 읽은 방법은 step 0·4와 같다(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server 문서·Windows 명령 참조·Windows 보안 문서·PowerShell 문서·Win32 문서·문제 해결 문서이고,
+지금 판 문서에 없는 것(이벤트 뷰어의 로그 갈래와 이벤트 속성 표, 데이터 수집기 집합의 일정)만 지난 판 문서(Windows Server 2008 R2·2012)에서 가져왔다. 실행 창(Windows 키 + R)과 `devmgmt.msc`, 명령 줄에 `certmgr`만 적었을 때의 동작, 인증서 관리자의 한국어 이름은 같은 learn.microsoft.com의 Windows 드라이버 문서와 .NET Framework 문서에서만 찾았다 — 항목에 어느 문서인지 적는다.
+**Microsoft Learn의 교육 과정(training) 페이지는 쓰지 않았다**(업체 학습 페이지라 허용하지 않는다). 그래서 리소스 모니터의 탭 목록처럼 그 페이지에만 있는 사실은 적지 않았다 — 아래 「성능 모니터·리소스 모니터」 항목에 찾아본 곳을 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — PowerShell의 문법(변수·파이프라인·제어문)과 원격 실행, 이벤트 구독·사용자 지정 보기의 설정, 성능 카운터 목록과 데이터 수집기 집합의 경고·템플릿, 인증서 요청·자동 등록, EFS의 키 구조(FEK·DDF·DRF)와 복구 정책 설정, BitLocker 보호기 전체와 설정 절차, 클라우드 폴더의 배포 절차. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -1383,6 +1398,8 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 - (phase 78 step 11) tracert의 옵션: `/d`는 중간 라우터의 IP 주소를 이름으로 바꾸려 하지 않게 해 결과가 빨리 나올 수 있다. `/h`는 찾을 최대 홉 수(기본 30). `/w`는 시간 초과·에코 응답 하나를 기다리는 시간(ms, 기본 4000)이고 그 안에 받지 못하면 `*`를 찍는다 — 「Parameters」.
   경로를 찾으면서 **라우터와 링크마다의 지연과 패킷 손실**까지 보려면 pathping을 쓰라고 한다 — 「Important」 뒤 문단
 - (phase 78 step 11) 두 명령 모두 네트워크 어댑터 속성에 TCP/IP가 설치돼 있어야 쓸 수 있다 — ping 첫머리 Note, tracert 「Important」
+- (phase 80 step 11) 2026-11-16에 IPv4로 다시 받은 판: Windows commands `updated_at` 2026-02-26(`ms.date` 2025-07-29), 한국어판 같은 날. 「Command-line shells」는 PowerShell이 명령 셸의 기능을 넓혀 cmdlet이라는 PowerShell 명령을 실행하게 만든 것이고,
+  **PowerShell에서는 Windows 명령과 PowerShell cmdlet을 모두 실행할 수 있지만 명령 셸에서는 Windows 명령만 실행되고 cmdlet은 실행되지 않는다**고 적는다 — 같은 절
 
 쓰인 곳: `network-basics.throughput`(작업 관리자), `network-basics.packet-loss`(ping 명령),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-cache`(arp `-a`·`-s`·`-d`), `icmp.time-exceeded`(tracert — 에코 요청, TTL을 늘린다), `icmp.ping`(ping `/n`, 왕복 시간), `exam-notes.md` 앞 문단([기출 2025-08-24 #8]의 `-d` 보기)
@@ -1390,6 +1407,9 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 (phase 73 step 14) `icmp.ping`(ping — 목적지에 호스트 이름이나 IP 주소를 적는다, `/n`으로 보낼 요청 수를 정하고 기본은 4개, 받은 에코 응답을 왕복 시간과 함께 보이고 출력 예는 응답마다 `time=`(ms 단위)과 `TTL=`를 적는다). 2026-10-29 ping 문서를 다시 확인했다(Last updated 2024-11-01) — 출력 예에는 응답 줄만 있고 요약 줄은 없다
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(ping `/t`·Ctrl+Break·Ctrl+C, `/n` 기본 4, `/a`, `/l` 기본 32, 빗금 표기, 출력 예의 응답 줄), `diagnostic-commands.tracert`(출력 예의 칸 — 홉 번호·왕복 시간 셋·주소나 이름, `*`와 Request timed out, `/d`·`/h` 기본 30, 보내는 쪽에 가까운 인터페이스, 지연·손실은 pathping),
 `diagnostic-commands.pathping`(tracert 문서가 pathping을 가리키는 문단), `exam-notes.md` 「phase 78 step 11」 문단([기출 2025-08-24 #42]의 `/a`·`/f`·`/n` 보기)과 E33
+(phase 80 step 6) `windows-ad.ds-commands`(Windows commands 「Command-line shells」 — PowerShell은 명령 셸, 곧 명령 프롬프트와 함께 Windows에 들어 있는 명령 줄 셸이고, 셸은 사용자와 운영 체제·응용 프로그램 사이를 잇는 프로그램이다 — 같은 일을 하는 PowerShell 명령 `New-ADUser` 앞에서 한 줄로 푼다)
+(phase 80 step 8에서 쓰일 곳) `windows-admin-tools.powershell`(「Command-line shells」 — Windows의 명령줄 셸은 명령 셸(명령 프롬프트)과 PowerShell 둘), `windows-admin-tools.resource-monitor`(「Task Manager」 — 작업 관리자는 응용 프로그램·프로세스의 성능과 자원 사용을 살피는 기본 도구. 리소스 모니터와의 관계는 아래 「(phase 80 step 8) … 성능 모니터·리소스 모니터」 항목)
+(phase 80 step 11) `windows-admin-tools.powershell`(명령줄 셸은 명령 프롬프트와 PowerShell 둘, PowerShell은 Windows 명령과 cmdlet을 모두 실행하고 명령 프롬프트는 cmdlet을 실행하지 못한다), 문항 n278
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -4851,6 +4871,7 @@ Proposed Standard(2008-05)이고 폐기되지 않았다(RFC 3280·4325·4630을 
 - 이 체계의 구성 요소는 인증서의 주인인 끝 개체(end entity), 인증 기관(CA), 등록 기관(RA) 등이다 — §3
 
 쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3.1 — 인증서는 주인의 이름과 공개 키를 묶어 인증 기관이 서명한 것, 받는 쪽이 서명과 기간을 확인한다), `app-protocols-mgmt-security.https`
+(phase 80 step 12에서 쓰일 곳) `windows-admin-tools.certificate-manager`(§3.1 — 인증서는 공개 키를 그 주인에 묶고 인증 기관이 서명한 것, 짝인 개인 키는 주인만 갖는다 — `app-protocols-mgmt-security.tls`와 같은 뜻으로 한 줄 다시 푼다), `windows-admin-tools.efs`(EFS가 쓰는 인증서와 개인 키)
 
 ## (phase 78 step 5) RFC 7568 — Deprecating Secure Sockets Layer Version 3.0, RFC 6176 — Prohibiting Secure Sockets Layer (SSL) Version 2.0, RFC 6101 — The Secure Sockets Layer (SSL) Protocol Version 3.0 [Historic — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc7568
@@ -5564,3 +5585,832 @@ netfilter.org는 첫 화면과 프로젝트 페이지 둘을 읽었다(첫 화�
 쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.iptables`(iptables(8) — 무엇인가, 표·체인·대상·정책, `filter`와 `INPUT`·`OUTPUT`·`FORWARD`, `-A`·`-I`·`-L`·`-P`·`-p`·`-j`·`-s`·`-i`; iptables-extensions(8) — `tcp`·`udp`의 `--dport`, `REJECT`; netfilter.org — netfilter 훅, 방화벽 소프트웨어, nftables가 뒤를 잇는다),
 `linux-servers.bind-named`(방화벽에 UDP 53과 TCP 53을 함께 연다 — 규칙의 꼴), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44], [기출 2025-05-25 #42])
 (phase 79 step 14) iptables-extensions(8) 「tcp」을 2026-11-13에 IPv4로 다시 받아 확인했다(iptables 1.8.13): `--sport`는 `--source-port`의 줄임이고 **출발지 포트**(나 범위)로, `--dport`는 `--destination-port`의 줄임이고 **목적지 포트**(나 범위)로 견준다. 쓰인 곳: `linux-servers.iptables`(목적지 포트와 출발지 포트, `--sport`), 문항 n255(오답 `--sport 22` — 접속하려는 쪽이 보내는 패킷에서 22는 목적지 포트에 적힌다. 출발지·목적지 포트가 응답에서 맞바뀌는 것은 RFC 6335 §3·RFC 6056 §1 항목과 `ports.client-server-ports`대로)
+
+## (phase 80 step 0) Microsoft Learn — 로컬 계정과 기본 그룹: Local accounts, net user, Active Directory security groups, Security identifiers, Security principals, Special identity groups, Add-LocalGroupMember, Built-in and Account Domains, About WMI, Microsoft Defender Application Guard overview; 지난 판 Local and Domain Default Groups
+https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/net-user
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-principals
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-special-identities-groups
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember?view=powershell-5.1
+https://learn.microsoft.com/en-us/windows/win32/secmgmt/built-in-and-account-domains
+https://learn.microsoft.com/en-us/windows/win32/wmisdk/about-wmi
+https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/microsoft-defender-application-guard/md-app-guard-overview
+https://learn.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/dd728026(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Local accounts」 `updated_at` 2026-10-08(`ms.date` 2026-04-13, 「Applies to」 Windows 11·10, Windows Server 2016~2025), 「net user」 2026-02-16(2025-08-06, Windows Server 2016~2025·Windows 11·10),
+「Active Directory security groups」 2026-10-30(2025-07-02), 「Security identifiers」 2026-10-20(2025-06-26), 「Security principals」 2026-02-16(2025-07-08), 「Special identity groups」 2026-02-16(2025-07-08) — 넷 모두 「Applies to」 Windows Server 2016~2025.
+「Add-LocalGroupMember」 2025-07-24(2023-06-28, Windows PowerShell 5.1 판). Win32 「Built-in and Account Domains」 2025-03-12·「About WMI」 2026-04-15(둘 다 `ms.date` 2018-05-31 — 적용 판을 적지 않는 개발자 문서다). 「Microsoft Defender Application Guard overview」 2025-04-15(「Applies to」 Windows 11·10).
+지난 판 「Local and Domain Default Groups」는 `updated_at` 2022-01-21(`ms.date` 2012-05-28), 적용 대상 Windows Server 2000~2012다 — 지금 판 문서와 같은 말을 하는 줄만 근거로 쓰고, 지금 판에 없는 말은 「지난 판」이라고 밝힌다.
+한국어판(`ko-kr`)도 모두 받았다(`updated_at` 2026-01-09~2026-11-05, 기계 번역) — **용어 표기만** 참고한다(아래 「한국어 이름」 줄).
+
+- **로컬 계정**: 로컬 사용자 계정과 시스템 계정은 한 장치 안에서 정의되는 보안 주체이고, 그 장치 자신이 계정을 확인하는 보안 기관(security authority)이다. 그래서 이 계정의 권한과 사용 권한은 그 장치 안에서만 통한다 — 「Local accounts」 첫머리
+- 같은 문서: **기본 로컬 사용자 계정**은 운영 체제를 설치할 때 저절로 만들어지는 계정이고 지울 수 없다. 그 장치의 자원에 대한 권한만 있고 네트워크 자원으로 가는 길은 주지 않는다.
+  기본 계정과 관리자가 새로 만든 로컬 계정은 「컴퓨터 관리」(Computer Management — 로컬·원격 장치를 관리하는 도구를 모은 MMC)의 「로컬 사용자 및 그룹\사용자」 폴더에 있다 — 「Default local user accounts」
+- 같은 문서 **Administrator**: 시스템 관리에 쓰는 계정이고 Windows 설치 중 가장 먼저 만들어진다. 그 장치의 파일·디렉터리·서비스 같은 자원을 모두 제어하고, 다른 로컬 사용자를 만들고 사용자 권한과 사용 권한을 줄 수 있다.
+  **지우거나 잠글 수는 없지만 이름을 바꾸거나 사용하지 않도록(끄도록) 할 수는 있다**. 빈 암호를 쓸 수 없고, 기본으로 Administrators 그룹의 구성원이며 그 그룹에서 뺄 수 없다 — 「Administrator」, 「Account group membership」, 「Important」.
+  같은 절은 Windows 설치 프로그램이 이 기본 계정을 끄고 Administrators 그룹에 든 다른 로컬 계정을 따로 만든다고 적는데, **어느 제품·판의 설치 프로그램인지 가르지 않는다** — Windows Server의 설치 과정을 이 문장으로 단정하지 않는다
+- 같은 문서: Administrators 그룹의 구성원은 그 장치에 모든 권한(Full Control)을 가지므로 이 그룹에 넣는 사람의 수를 줄이라고 권한다 — 「Account group membership」
+- 같은 문서 **Guest**: 그 장치에 계정이 없는 사람이 가끔 또는 한 번 임시로 로그온할 때 쓰는 계정이고 권한이 제한된다. **기본으로 꺼져 있고 암호가 비어 있다**. 익명 접근의 통로가 될 수 있어 꼭 필요할 때가 아니면 꺼 둔 채로 두라고 권한다. 기본 Guests 그룹의 유일한 구성원이다 — 「Guest」, 「Guest account group membership」
+- 같은 문서 **DefaultAccount**(DSMA, Default System Managed Account — 시스템이 관리하는 계정): 사용 권한으로 보면 표준 사용자 계정이고, 여러 사용자를 의식하는 앱이 돌 때 쓰인다. 데스크톱 판과 「데스크톱 경험이 있는」 서버 운영 체제에서 **기본으로 꺼져 있다**.
+  컴퓨터가 처음 시작할 때 SAM 안에 만들어지고, Windows Server 2016 이후의 DC로 만든 도메인에서는 모든 DC에 로컬 계정으로 있다. 꺼 둔 기본 설정을 바꾸지 말라고 권한다 — 「DefaultAccount」
+- 같은 문서는 기본 로컬 사용자 계정 절에 **WDAGUtilityAccount**(Windows Defender Application Guard가 쓰는 계정 — 기본으로 어느 그룹에도 들지 않는다)와 **WSIAccount**(Windows 11에서 들어온 계정 — 잠금·로그인 화면에서 시작하는 웹 활동에 쓰고, Users 그룹의 구성원이다)도 든다.
+  시스템 계정 절에 함께 든 HelpAssistant는 원격 지원 세션 동안만 켜지는 계정이고, Windows Server에서 원격 지원은 기본으로 설치되지 않는 선택 구성 요소다. **문서는 기본 계정의 수를 세지 않고, 어느 계정이 어느 제품에 있는지 표로 가르지도 않는다** — 「WDAGUtilityAccount」, 「WSIAccount」, 「HelpAssistant」.
+  root라는 이름은 이 문서의 계정 목록 어디에도 없다(root는 Linux의 관리자 계정이다 — phase 76의 `linux-accounts.user-account`)
+- 「Microsoft Defender Application Guard overview」: Application Guard의 적용 대상은 Windows 11·10이고, Windows 11 24H2부터는 쓸 수 없다 — 첫머리 Note. WDAGUtilityAccount가 Windows 클라이언트 기능의 계정이라는 근거로만 쓴다
+- 「Local accounts」 「How to manage local user accounts」: **사용자 권한**(right)은 그 장치에서 어떤 작업 — 파일·폴더 백업이나 컴퓨터 끄기 같은 것 — 을 하도록 허가하는 것이고, **사용 권한**(access permission)은 파일·폴더·프린터 같은 개체에 붙어 누가 어떤 방식으로 그 개체에 접근하는지 정하는 규칙이다. 「로컬 사용자 및 그룹」으로 이 둘을 그 컴퓨터 안에서만 줄 수 있다
+- 같은 절: **DC에서는 「로컬 사용자 및 그룹」으로 그 DC의 계정을 관리할 수 없다**(원격 관리가 허락되면 DC에서 이 도구로 DC가 아닌 다른 컴퓨터는 다룰 수 있다). 로컬 사용자는 `NET.EXE USER`, 로컬 그룹은 `NET.EXE LOCALGROUP`이나 Windows PowerShell의 LocalAccounts 모듈로도 관리한다
+- 「net user」: 로컬 컴퓨터나 도메인의 사용자 계정을 더하고·고치고·지우고 자세한 정보를 보는 명령이다. 이름 없이 실행하면 그 로컬 컴퓨터의 사용자 계정 목록을 보인다. `/add`는 새 계정을 더하고 `/delete`는 지우는데, 둘 다 `/domain`과 함께 쓰면 로컬 컴퓨터가 아니라 도메인에서 한다.
+  `/domain`은 그 컴퓨터가 속한 기본(primary) 도메인의 DC에서 작업하게 한다. `/active:{yes|no}`는 계정을 켜고 끈다(기본 yes). 사용자 이름은 20자까지다 — 「Syntax」, 「Parameters」, 「Examples」(예의 이름·암호는 옮기지 않는다)
+- (phase 80 step 1, 2026-11-16 IPv4로 다시 받아 확인) 「net user」 「Syntax」: 계정을 더하는 꼴은 `net user <UserName> {<Password> | *} /add`라서 `/add` 앞에 암호나 `*`를 적는다. `*`를 적으면 암호를 묻는 줄이 나오고, 거기 입력한 암호는 화면에 보이지 않는다 — 「Parameters」의 `<Password>`. 지우는 꼴은 `net user <UserName> /delete`다
+- (phase 80 step 4, 2026-11-16 IPv4로 다시 받아 확인) 「net user」 「Parameters」: `/add`를 `/domain`과 함께 쓰면 계정을 로컬 컴퓨터가 아니라 **도메인에** 만들고, `/delete`를 `/domain`과 함께 쓰면 도메인에서 지운다. `/domain` 없이 쓰면 그 컴퓨터의 로컬 계정을 다룬다.
+  문제 해결 문서 「Redirect the users and computers containers in Active Directory domains」도 `NET USER`를 옛 API로 도메인에 사용자를 만드는 명령으로 든다 — 그렇게 만든 사용자는 기본 `CN=Users` 컨테이너에 들어간다(아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목). **E36**의 근거다
+- 「Built-in and Account Domains」(Win32): DC가 아닌 컴퓨터마다 SAM 데이터베이스가 있다. 그 안의 **기본 제공(built-in) 도메인**(이름은 BUILTIN의 현지어 판)에는 운영 체제를 설치할 때 생기는 Administrators·Users 같은 기본 로컬 그룹이, **계정 도메인**(이름은 컴퓨터 이름)에는 Administrator 같은 사용자·그룹 계정이 든다.
+  워크스테이션이나 구성원 서버의 계정 도메인에 정의한 계정은 **그 컴퓨터에 있는 자원에만** 닿는다. 네트워크 자원에 닿아야 하는 계정은 DC의 계정 도메인에 정의해야 하고, 네트워크에 속하지 않아 주 도메인이 없는 컴퓨터는 그 컴퓨터에 들어오는 모든 계정을 자기 계정 도메인에 둔다.
+  **DC에는 기본 제공 도메인도 계정 도메인도 없고**, SAM 대신 Active Directory에 계정 정보를 둔다 — 두 절
+- 「Security principals」: 로컬 사용자 계정과 보안 그룹은 로컬 컴퓨터에서 만들어 그 컴퓨터 자원의 접근을 관리하는 데 쓰고, 그 컴퓨터의 SAM이 저장·관리한다. AD 도메인에서 만든 계정과 그룹은 AD 데이터베이스에 저장되어 도메인 자원의 접근을 관리한다 — 「Accounts and security groups」.
+  **보안 그룹**은 사용자 계정·컴퓨터 계정·다른 그룹을 보안 관점에서 한 단위로 다루려고 묶은 것이고, 로컬 그룹은 DC를 뺀 모든 Windows 컴퓨터의 SAM에 있으며 그 컴퓨터 자원의 권한과 사용 권한을 다루는 데만 쓴다 — 「Security groups」
+- 「Add-LocalGroupMember」: 그룹에 준 권한과 사용 권한은 그 그룹의 모든 구성원에게 주어진다. 로컬 Administrators 그룹의 구성원은 그 컴퓨터에 모든 권한을 가지므로 구성원을 적게 두라고 권한다. 도메인에 가입한 컴퓨터는 그 도메인과 신뢰받는 도메인의 사용자·컴퓨터·그룹 계정도 로컬 그룹에 넣을 수 있다 — 「Description」
+- 「Active Directory security groups」: 사람 하나하나가 아니라 그룹 단위로 다루면 관리가 단순해진다. **사용자 권한**은 그 그룹의 구성원이 할 수 있는 일을 정하고(예: Backup Operators에 넣은 사람은 그 그룹에 자동으로 주어진 「파일 및 디렉터리 백업」·「파일 및 디렉터리 복원」 권한을 물려받는다),
+  **사용 권한**은 공유 자원에 대해 누가 어느 수준(모든 권한·읽기 등)으로 접근하는지 정한다 — 문서는 둘이 다르다고 따로 적는다. 사람을 그룹에 넣으면 그 그룹의 사용자 권한과, 그 그룹이 공유 자원에 받은 사용 권한을 모두 받는다 — 「Security groups」, 「Default security groups」.
+  도메인의 기본 그룹은 「Active Directory 사용자 및 컴퓨터」의 Builtin 컨테이너와 Users 컨테이너에 있고, Builtin 컨테이너 그룹의 범위는 「Builtin Local」이라 바꿀 수 없다 — 「Group scope」 Note. (이 문서의 그룹 설명은 도메인 기준이다. 같은 이름의 그룹이 각 컴퓨터의 로컬 그룹으로도 있다는 것은 「Built-in and Account Domains」와 「Security identifiers」의 S-1-5-32 그룹들로 확인한다)
+- 아래 그룹 줄은 「Active Directory security groups」의 그룹별 절과 「Security identifiers」의 잘 알려진 SID 표(S-1-5-32-…)를 맞춰 본 것이다:
+  - **Administrators**: 그 컴퓨터에 제한 없는 접근을 갖는다(컴퓨터를 DC로 올리면 도메인 전체에). 이름을 바꾸거나 지울 수 없다. 설치 직후 구성원은 Administrator 계정 하나이고, 도메인에 가입하면 Domain Admins 그룹이 더해진다 — 「Administrators」, S-1-5-32-544
+  - **Users**: 실수로든 일부러든 **시스템 전체에 걸친 변경을 하지 못하게 막힌다**. 대부분의 응용 프로그램을 실행하고, 로컬·네트워크 프린터를 쓰고, 컴퓨터를 끄거나 잠글 수 있다. 설치 프로그램이 사용자별 설치를 지원하면 자기만 쓰는 응용 프로그램은 설치할 수 있다.
+    설치 직후 구성원은 **Authenticated Users** 하나이고, 도메인에 가입하면 Domain Users 그룹이 더해진다 — 「Users」, S-1-5-32-545
+  - 「Special identity groups」: **Authenticated Users**는 로그온 과정을 거쳐 시스템에 들어온 모든 사용자를 나타내는 특수 그룹이고, 구성원은 운영 체제가 정해 관리자가 보거나 고칠 수 없다 — 「Authenticated Users」, 「How special identity groups work」.
+    두 문서를 이으면 새로 만든 로컬 계정도 로그온하면 Users 그룹의 권한을 받는다. **「새 계정은 Users 그룹에 넣어진다」를 한 문장으로 적은 지금 판 문서는 찾지 못했다** — 지난 판 「Local and Domain Default Groups」는 Users의 기본 구성원을 Domain Users·Authenticated Users·Interactive로 들고, 그래서 도메인에서 만든 모든 사용자 계정이 이 그룹의 구성원이 된다고 적는다(Windows Server 2012까지의 판)
+  - **Guests**: 기본 구성원은 Guest 계정 하나이고, 가끔·한 번 쓰는 사람이 제한된 권한으로 로그온하게 한다. Users와 비슷한 접근을 갖되 Guest 계정에는 제한이 더 걸린다.
+    Guests 그룹의 구성원이 로그아웃하면 프로필 전체(%userprofile% 아래 모두)가 지워지므로 손님은 **임시 프로필**로 로그온하는 셈이다. Guest 계정은 기본으로 꺼져 있고 꺼 둔 채로 두라고 권한다 — 「Guests」, S-1-5-32-546.
+    **기본으로 꺼져 있는 것은 Guest 계정이다 — Guests 그룹 자체를 켜고 끄는 설정은 문서에 없다**. 지난 판 문서도 「구성원은 로그온할 때 임시 프로필이 만들어지고 로그오프하면 지워진다」, 「Guest 계정(기본으로 꺼짐)도 기본 구성원」이라고 계정과 그룹을 갈라 적는다
+  - **Backup Operators**: 파일을 보호하는 사용 권한과 관계없이 그 컴퓨터의 모든 파일을 백업하고 복원할 수 있고, 로그온해서 컴퓨터를 끌 수도 있다. 기본 구성원이 없다 — 「Backup Operators」, S-1-5-32-551.
+    지난 판 문서는 그 까닭을 백업 권한이 모든 파일 사용 권한보다 앞서기 때문이라고 적고, 이 그룹은 보안 설정을 바꿀 수 없다고 적는다
+  - **Power Users**: 기본 구성원이 없다. 로컬 사용자와 그룹을 만들고, 자기가 만든 계정을 고치거나 지우고, Power Users·Users·Guests 그룹에서 사용자를 빼고, 프로그램을 설치하고, 로컬 프린터를 만들어 관리하고, 파일 공유를 만들고 지울 수 있다 — 「Security identifiers」 S-1-5-32-547(지금 판 「Active Directory security groups」에는 이 그룹의 절이 없다).
+    지난 판 문서는 여기에 더해 파일 소유권 가져오기, 디렉터리 백업·복원, 장치 드라이버 로드·언로드, 보안·감사 로그 관리는 **하지 못한다**고 적는다. **Administrators와 같은 권한이라는 말은 어느 문서에도 없다**.
+    **「옛 판과의 호환을 위해 남은 그룹」이라는 문장은 지금 판·지난 판 문서에서 찾지 못했다** — 문서가 이전 버전 호환용이라고 적는 그룹은 Pre–Windows 2000 Compatible Access다
+  - **Remote Management Users**: 구성원은 Windows 원격 관리(WinRM) 서비스를 거쳐 WS-Management 같은 관리 프로토콜로 **WMI**(Windows Management Instrumentation) 자원에 접근할 수 있다 — 그 사용자에게 접근을 허락한 WMI 네임스페이스에만.
+    서버 관리자(Server Manager) 콘솔로 서버를 관리하게 할 때 이 그룹을 쓰고, PowerShell 명령을 원격으로 실행하게 할 때는 WinRMRemoteWMIUsers__ 그룹을 쓴다 — 「Remote Management Users」, 「WinRMRemoteWMIUsers__」 Note, S-1-5-32-580
+  - 「About WMI」(Win32): WMI는 기업 환경에서 관리 정보에 접근하는 표준 기술(WBEM)을 Microsoft가 구현한 것이고, 시스템·응용 프로그램·네트워크·장치 같은 관리 대상을 CIM 표준으로 나타낸다. 원격 컴퓨터의 관리 정보를 얻을 수 있다는 것이 쓸모이고, 원격 연결은 DCOM이나 WinRM(WS-Management 프로토콜)으로 한다 — 첫머리, 「Managing Remote Computer Systems with WMI」
+  - **Performance Monitor Users**: 관리자나 Performance Log Users 그룹이 아니어도 로컬과 원격에서 성능 카운터를 **모니터링**할 수 있다. Users의 기능을 모두 쓰고, 성능 모니터에서 실시간 성능 데이터를 보고 보는 동안 표시 속성을 바꿀 수 있지만 **데이터 수집기 집합을 만들거나 고칠 수 없다** — 「Performance Monitor Users」, S-1-5-32-558
+  - **Performance Log Users**: 관리자가 아니어도 로컬과 원격에서 성능 카운터·로그·경고를 **관리**할 수 있고 Performance Monitor Users의 기능을 모두 쓴다(SID 표: 성능 카운터의 로깅을 원격으로 예약할 수 있다).
+    Windows Server 2016부터 이 그룹의 구성원은 데이터 수집기 집합을 새로 만들 수 없고, 로깅을 시작하거나 데이터 수집기 집합을 고치려면 그룹에 「일괄 작업으로 로그온」 사용자 권한을 먼저 줘야 한다 — 「Performance Log Users」 Note, S-1-5-32-559
+  - **Access Control Assistance Operators**: 구성원은 이 컴퓨터 자원의 **권한 부여 특성(authorization attributes)과 사용 권한을 원격으로 조회**할 수 있다 — 다른 사용자(관리자 포함)의 접근 정보가 드러날 수 있다. 이름을 바꾸거나 지울 수 없다 — 「Access Control Assistance Operators」, S-1-5-32-579.
+    **두 문서 모두 「조회」(query)라 적고 「관리」라 적지 않으며, 「인증(authentication)」이 아니라 「권한 부여(authorization)」 특성이라 적는다**
+  - **Remote Desktop Users**: RD 세션 호스트 서버에 원격으로 연결할 사용 권한을 사용자·그룹에 주는 데 쓰고(그룹 문서), 구성원은 원격으로 로그온할 권한을 받는다(SID 표) — 「Remote Desktop Users」, S-1-5-32-555
+  - **RDS Endpoint Servers**: 구성원은 사람이 아니라 **서버**다 — RemoteApp 프로그램과 개인 가상 데스크톱이 실행되는 가상 머신을 돌리고 세션을 호스트하는 서버들이다. RD 연결 브로커를 실행하는 서버에서 이 그룹을 채워야 하고, 그 배포의 RD 세션 호스트·RD 가상화 호스트 서버가 들어야 한다.
+    곧 원격 데스크톱 서비스(RDS) 배포를 위한 그룹이다 — 「RDS Endpoint Servers」, S-1-5-32-576
+  - **Replicator**: 구성원은 도메인 안의 파일 복제를 지원하는 **컴퓨터**이고, Windows Server는 FRS로 SYSVOL 폴더의 시스템 정책과 로그온 스크립트를 복제한다(FRS는 DFS 복제가 대신한다). 기본 구성원이 없고 사용자를 넣지 말라고 한다 — 「Replicator」, S-1-5-32-552
+- (phase 80 step 4, 2026-11-16 IPv4로 다시 받아 확인 — 「Active Directory security groups」 `updated_at` 2026-10-30, 한국어판 2026-11-05) **그룹 종류는 둘이다**. **보안 그룹**은 공유 자원의 사용 권한을 주는 데 쓰고(그룹에 사용자 권한도 줄 수 있다), **배포 그룹**은 Exchange Server 같은 메일 프로그램으로 여러 사람에게 메일을 보내는 목록으로만 쓴다.
+  배포 그룹은 보안 기능이 꺼져 있어 자원의 사용 권한 목록(DACL)에 넣을 수 없다. 거꾸로 보안 그룹은 메일을 받는 쪽으로도 쓸 수 있다 — 「How Active Directory security groups work」, 「Security groups」, 「Distribution groups」
+- 같은 문서 「Group scope」: **범위**는 그 그룹이 도메인 트리·포리스트의 어디까지 미치는지, 곧 **그 그룹에 사용 권한을 줄 수 있는 곳**이 어디인지를 정한다. 범위는 유니버설·글로벌·도메인 로컬 셋이다(Builtin 컨테이너의 기본 그룹만 범위가 Builtin Local이고 바꿀 수 없다). 표를 범위마다 이렇게 읽는다:
+  - **유니버설**: 같은 포리스트의 어느 도메인에 있는 계정·글로벌 그룹·다른 유니버설 그룹을 넣을 수 있고, 같은 포리스트의 어느 도메인(과 신뢰하는 포리스트)에서나 사용 권한을 받는다
+  - **글로벌**: **같은 도메인**의 계정과 같은 도메인의 다른 글로벌 그룹만 넣을 수 있고, 같은 포리스트의 어느 도메인(과 신뢰하는 도메인·포리스트)에서나 사용 권한을 받는다
+  - **도메인 로컬**: 어느 도메인(신뢰받는 도메인 포함)의 계정·글로벌 그룹, 같은 포리스트의 유니버설 그룹, 같은 도메인의 다른 도메인 로컬 그룹, 다른 포리스트·외부 도메인의 계정·글로벌·유니버설 그룹까지 넣을 수 있지만, 사용 권한은 **그 그룹이 있는 도메인 안에서만** 받는다
+  - 범위 바꾸기는 조건이 붙는다 — 표의 「Scope conversion」 열: 다른 유니버설 그룹의 구성원이 아닌 유니버설은 도메인 로컬로, 유니버설을 담지 않은 유니버설은 글로벌로, 다른 글로벌 그룹의 구성원이 아닌 글로벌은 유니버설로, 다른 도메인 로컬을 담지 않은 도메인 로컬은 유니버설로 바꿀 수 있다. 글로벌과 도메인 로컬 사이를 곧바로 바꾸는 칸은 없다
+    (지금 판 문제 해결 문서 「Use the Directory Service command-line tools…」도 도메인 로컬과 글로벌은 서로 바꿀 수 없다고 적는다 — 아래 「(phase 80 step 4) … 도메인 사용자 계정과 ds 명령」 항목)
+  - 같은 표의 「Possible member of」 열: 글로벌 그룹은 도메인 로컬 그룹(같은 포리스트의 어느 도메인이나 신뢰하는 도메인의 것)의 구성원이 될 수 있고, 도메인 로컬 그룹은 같은 도메인 컴퓨터의 로컬 그룹(잘 알려진 SID를 가진 기본 그룹은 빼고)에 들 수 있다.
+    **「글로벌 그룹을 도메인 로컬 그룹에 넣고 사용 권한은 도메인 로컬 그룹에 준다」를 권고로 적은 곳은 이 문서에 없다** — 권고로 쓰지 않는다
+- 같은 문서 「Domain Users」: 도메인의 **모든 사용자 계정**이 이 그룹에 들고, 도메인에 사용자 계정을 만들면 **기본으로 이 그룹에 들어간다**. 범위는 글로벌, 기본 컨테이너는 Users이고 기본으로 Users 그룹의 구성원이다. 예로, 도메인의 모든 사용자가 프린터를 쓰게 하려면 그 프린터의 사용 권한을 이 그룹에 준다 — 곧 새 도메인 계정은 처음부터 이 그룹(과 이 그룹이 든 그룹)이 받은 사용 권한을 받는다
+- **로컬 그룹과 도메인 로컬 그룹**: 로컬 그룹은 DC가 아닌 각 컴퓨터의 SAM에 있고 그 컴퓨터 자원의 권한과 사용 권한에만 쓰인다(위 「Security principals」 줄). 도메인 로컬 그룹은 AD 데이터베이스에 있는 도메인의 그룹이고 그 도메인 안의 자원에 사용 권한을 받는다(위 「Group scope」 줄). **둘을 견준 한 문장은 찾지 못했다** — 어디에 저장되고 어디까지 쓰이는지로 가른다
+- 「Active Directory Replication Concepts」(아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목): **글로벌 카탈로그** 서버는 포리스트의 모든 개체 정보를 담는 DC이고, 사용자의 유니버설 그룹 구성원 정보는 글로벌 카탈로그에서 얻는다(유니버설 그룹 구성원 캐싱을 켜면 DC가 그 정보를 캐시한다) — 「Global catalog server」, 「Universal group membership caching」. 이름과 이 한 줄만 쓰고 동작은 쓰지 않는다
+- **한국어 이름**(phase 80 step 4): 「Active Directory security groups」 한국어판은 Security groups·Distribution groups를 「보안 그룹」·「배포 그룹」, Group scope를 「그룹 범위」, Universal·Global·Domain Local을 「유니버설」·「전역」·「도메인 로컬」로 옮긴다.
+  **고른 이름**: 「보안 그룹」·「배포 그룹」, 「유니버설 그룹」·「글로벌 그룹」·「도메인 로컬 그룹」 — Global은 한국어판의 「전역」 대신 기출([기출 2026-02-01 #43]의 보기)과 guide.md가 쓰는 「글로벌」을 세우고, 처음 나오는 자리에 「전역 그룹」이라고도 부른다는 것을 한 번 적는다
+- **한국어 이름**: 「Local accounts」 한국어판은 「컴퓨터 관리」, 「로컬 사용자 및 그룹\사용자」, 「기본 로컬 사용자 계정」으로 옮긴다. 계정 절의 제목은 「관리자」·「게스트」로 번역하면서 표시 이름은 「Administrator」로 남기고, Guest의 표시 이름은 「게스트」로 번역했다.
+  그룹 이름은 영문 그대로(「Administrators 그룹」)와 번역(「관리자 그룹」)이 섞인다. 「Active Directory security groups」 한국어판의 절 제목도 영문 그대로(Administrators·Guests·Users·Replicator)와 번역(「백업 운영자」·「성능 모니터 사용자」·「성능 로그 사용자 목록」·「원격 관리 사용자」·「원격 데스크톱 사용자들」·「RDS 엔드포인트 서버」·「Access Control 지원 연산자」)이 섞인다.
+  user right는 「사용자 권한」(로컬 보안 정책의 「사용자 권한 할당」)과 「사용자 권리」(「사용 권한은 사용자 권리와 다릅니다」)로 갈리고, permission은 「사용 권한」으로 옮긴 곳이 많다. WMI는 「Windows 관리 계측(WMI)」으로 옮긴다.
+  **고른 이름**: 계정·그룹 이름은 **영문 그대로** 쓴다 — 한국어판의 번역이 일정하지 않고, 실제 한국어 화면의 이름은 확인하지 못했으며, 기출도 영문으로 적는다. 도구는 「컴퓨터 관리」·「로컬 사용자 및 그룹」.
+  right는 「사용자 권한」(화면 이름 「사용자 권한 할당」과 같은 말), permission은 「사용 권한」 — 한국어판이 permission을 「사용 권한」으로 옮기는 곳을 따른다
+
+쓰인 곳: (phase 80 step 1에서 쓰일 곳) `windows-ad.local-accounts`(로컬 계정과 보안 기관, 기본 로컬 사용자 계정 — Administrator·Guest·DefaultAccount와 그 성질, 다른 계정은 클라이언트 기능의 것, 「컴퓨터 관리」의 「로컬 사용자 및 그룹」, `net user`, 그 컴퓨터의 자원에만 닿는다, DC에는 로컬 계정 데이터베이스가 없다),
+`windows-ad.local-groups`(그룹에 넣으면 그 그룹의 권한·사용 권한을 받는다, 그룹별 줄, 사용자 권한과 사용 권한, Administrators 구성원을 적게, WMI 한 줄), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단, **E35**)
+(phase 80 step 1) `windows-ad.local-accounts`(「Local accounts」 — 한 장치가 계정을 확인하는 보안 기관·그 장치 안에서만 통한다·적용 판, 기본 로컬 사용자 계정 Administrator·Guest·DefaultAccount, WDAGUtilityAccount·WSIAccount는 PC용 Windows 기능의 계정, 「컴퓨터 관리」의 「로컬 사용자 및 그룹\사용자」; 「Built-in and Account Domains」 — 그 컴퓨터의 자원에만 닿는다·네트워크 자원에 닿을 계정은 도메인에; 「net user」 — 목록·`* /add`·`/delete`), 도식 `local-user-accounts`, 문항 n256(Guest는 기본으로 꺼져 있다);
+`windows-ad.local-groups`(「Add-LocalGroupMember」·「Active Directory security groups」 — 그룹의 권한·사용 권한이 구성원에게, 사용자 권한과 사용 권한, Backup Operators의 「파일 및 디렉터리 백업」·「파일 및 디렉터리 복원」, 그룹별 줄 — 위 목록대로, Power Users는 지난 판 문서라고 밝혀 씀, RDS Endpoint Servers는 E35대로 문서의 말로 한 줄), 도식 `builtin-local-groups`, 문항 n257(Backup Operators — 오답 Administrators·Power Users·Remote Desktop Users)·n258(Administrators의 권한이 구성원에게 — 그 컴퓨터 안에서만)
+(phase 80 step 4에서 쓰일 곳) `windows-ad.group-scopes`(그룹 종류 둘, 범위 셋마다 넣을 수 있는 구성원과 사용 권한을 받는 곳, 범위 바꾸기의 조건, 로컬 그룹과 도메인 로컬 그룹, 글로벌 카탈로그 한 줄), `windows-ad.domain-user-accounts`(Domain Users — 새 도메인 계정이 기본으로 드는 그룹),
+`windows-ad.ds-commands`(`net user`의 `/domain` — **E36**), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2026-02-01 #43], [기출 2025-08-24 #38])
+(phase 80 step 6) `windows-ad.group-scopes`(「Active Directory security groups」 — 그룹 종류 둘(보안 그룹은 사용 권한과 사용자 권한을 받고, 배포 그룹은 메일 목록으로만 쓰며 사용 권한 목록에 넣을 수 없다, 보안 그룹은 메일 목록으로도 쓴다), 그룹 범위의 뜻, 범위 셋마다 넣을 수 있는 구성원과 사용 권한을 받는 곳(도메인 로컬은 신뢰받는 도메인의 계정까지 넣고 자기 도메인에서만, 글로벌은 같은 도메인의 계정·글로벌 그룹만 넣고 포리스트와 신뢰하는 도메인에서, 유니버설은 같은 포리스트의 계정·글로벌·유니버설 그룹을 넣고 포리스트와 신뢰하는 포리스트에서), 「Possible member of」 — 글로벌 그룹을 도메인 로컬 그룹에 넣을 수 있다(권고로는 쓰지 않는다), 「Global」의 한국어판 이름 「전역」; 「Security principals」 — 로컬 그룹과 도메인 로컬 그룹이 저장되는 곳과 쓰이는 범위; 「Active Directory Replication Concepts」 — 유니버설 그룹 구성원 정보는 글로벌 카탈로그에서 얻는다(복제는 쓰지 않는다)), 도식 `group-scopes`, 문항 n267(두 도메인의 계정을 넣고 두 도메인의 자원에 쓰려면 유니버설 범위의 보안 그룹 — 오답의 글로벌·도메인 로컬 범위와 배포 그룹은 같은 근거);
+`windows-ad.ds-commands`(「net user」 — 따로 적지 않으면 그 컴퓨터의 로컬 계정, `/domain`을 붙이면 기본 도메인의 DC에서 도메인 사용자 계정 — **E36**대로 문서의 사실을 쓰고 「자격시험은」 한 줄을 덧붙인다. 문항은 `net user`를 쓰지 않는다)
+
+## (phase 80 step 0) Microsoft Learn — AD DS·도메인 컨트롤러·논리 구조: Active Directory Domain Services overview, Install Active Directory Domain Services, DNS and AD DS, Domain Controller Location, Locating domain controllers in Windows and Windows Server, Domain Name System (DNS) in Windows and Windows Server, Dynamic update, Understanding the Active Directory Logical Model, Selecting the Forest Root Domain, Planning Operations Master Role Placement, Planning Domain Controller Placement, Virtualized Domain Controller Deployment and Configuration, Join a computer to a domain, Add-Computer; Win32 — Domain Trees, Forests, Searching Domain Contents, Replication and Data Integrity
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services--level-100-
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/dns-and-ad-ds
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/domain-controller-location
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/dc-locator
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-overview
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dynamic-update
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/planning-operations-master-role-placement
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/planning-domain-controller-placement
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/virtualized-domain-controller-deployment-and-configuration
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/join-computer-to-domain
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-computer?view=powershell-5.1
+https://learn.microsoft.com/en-us/windows/win32/ad/domain-trees
+https://learn.microsoft.com/en-us/windows/win32/ad/forests
+https://learn.microsoft.com/en-us/windows/win32/ad/searching-domain-contents
+https://learn.microsoft.com/en-us/windows/win32/ad/replication-and-data-integrity
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Active Directory Domain Services overview」 `updated_at` 2026-02-16(`ms.date` 2025-03-10), 「Install Active Directory Domain Services」 2026-02-16(2025-04-18),
+「DNS and AD DS」·「Domain Controller Location」·「Understanding the Active Directory Logical Model」·「Selecting the Forest Root Domain」·「Planning Operations Master Role Placement」·「Planning Domain Controller Placement」·「Virtualized Domain Controller Deployment and Configuration」 2025-09-23(2025-05-12),
+「Locating domain controllers in Windows and Windows Server」 2025-07-21(2025-07-10), 「Domain Name System (DNS) in Windows and Windows Server」 2025-05-15(2025-05-15), 「Dynamic update」 2025-04-28(2025-02-13), 「Join a computer to a domain」 2025-09-15(2025-06-06) — 모두 「Applies to」 Windows Server 2016~2025.
+「Add-Computer」 2025-09-01(2024-09-25, Windows PowerShell 5.1 판). Win32 「Domain Trees」 2025-03-11, 「Forests」·「Searching Domain Contents」·「Replication and Data Integrity」 2025-03-12(넷 다 `ms.date` 2018-05-31 — 적용 판을 적지 않는 개발자 문서다).
+한국어판(`ko-kr`)도 모두 받았다(`updated_at` 2026-01-09~2026-10-23, 기계 번역) — **용어 표기만** 참고한다.
+
+- **Active Directory Domain Services overview**: **디렉터리**는 네트워크에 있는 개체의 정보를 담는 계층 구조이고, AD DS 같은 **디렉터리 서비스**는 디렉터리 데이터를 저장해 네트워크 사용자와 관리자가 쓰게 하는 방법을 준다. AD DS는 사용자 계정의 이름·암호·전화번호 같은 정보를 저장하고, 같은 네트워크의 권한 있는 사용자가 그 정보에 접근하게 한다.
+  데이터 저장소(디렉터리)에 드는 개체는 보통 서버·볼륨·프린터 같은 공유 자원과 네트워크 사용자·컴퓨터 계정이다 — 첫머리
+- 같은 문서: 보안은 **로그온 인증**과 **디렉터리 개체에 대한 접근 제어**로 AD DS에 묶인다. 네트워크 사용자 이름과 암호 하나로 관리자는 네트워크 전체의 디렉터리 데이터와 조직을 관리하고, 권한 있는 사용자는 네트워크 어디의 자원에나 접근한다. 정책 기반 관리가 복잡한 네트워크의 관리를 쉽게 한다 — 첫머리
+- 같은 문서: AD DS에는 스키마(디렉터리에 드는 개체·속성의 규칙), 글로벌 카탈로그(디렉터리의 모든 개체 정보 — 어느 도메인에 있든 찾게 한다), 질의·색인 장치, **복제 서비스**가 함께 있다. 한 도메인의 모든 DC는 복제에 참여해 **그 도메인 디렉터리 정보 전체의 사본**을 갖고, 디렉터리 데이터가 바뀌면 그 도메인의 모든 DC로 복제된다 — 첫머리 목록(스키마·글로벌 카탈로그는 이름만 가져오고 동작은 가져오지 않는다)
+- **Install Active Directory Domain Services**: 서버 관리자에서 「관리」 → 「역할 및 기능 추가」로 역할 추가 마법사를 열고 「서버 역할 선택」에서 Active Directory Domain Services를 골라 설치한 뒤, 결과 페이지에서 「이 서버를 도메인 컨트롤러로 승격」을 눌러 Active Directory Domain Services 구성 마법사를 시작한다 — 이 구성 마법사는 Windows Server 2012부터의 것이고 옛 설치 마법사(dcpromo.exe)는 그때부터 사용 중단이다.
+  PowerShell로는 `Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools`가 AD DS 서버 역할과 관리 도구(「Active Directory 사용자 및 컴퓨터」 같은 것)를 설치한다 — 「Install AD DS by using Server Manager」, 「Install AD DS by Using Windows PowerShell」.
+  구성 마법사의 「배포 구성」에서 새 포리스트 만들기, 기존 포리스트에 새 도메인(자식 도메인·트리 도메인) 더하기, 기존 도메인에 DC 더하기 가운데 고르고, 「도메인 컨트롤러 옵션」에서 새 포리스트·도메인을 만들 때 DNS 서버를 고르라고 적는다 — 같은 문서
+  (DNS 서버 옵션이 기본으로 골라져 있다는 문장은 이 문서의 RODC 계정 만들기 절에만 있다). 새 포리스트를 설치하려면 그 컴퓨터의 로컬 Administrator로 로그온해야 하고, 새 자식 도메인·새 도메인 트리는 Enterprise Admins, 기존 도메인의 추가 DC는 Domain Admins의 구성원이어야 한다 — 「Prerequisites」
+- **DNS and AD DS**·**Domain Controller Location**: AD DS는 DNS 이름 풀이로 클라이언트가 DC를 찾게 하고, DC끼리도 DNS로 서로를 찾아 복제 같은 일을 한다. 클라이언트는 로그온 요청 처리나 디렉터리 검색을 위해 DNS로 DC를 찾고, DC는 이를 돕는 여러 레코드(로케이터 레코드)를 DNS에 등록한다 — 두 문서 첫머리
+- **Domain Name System (DNS) in Windows and Windows Server**: DNS는 서버 관리자나 PowerShell로 설치하는 Windows Server의 서버 역할이고, **새 AD 포리스트와 도메인을 세울 때 AD와 함께 저절로 설치된다**. DNS는 AD DS에서 인증·업데이트·검색을 위한 DC 위치 확인 장치다.
+  예로, AD 사용자 계정으로 도메인에 로그온하면 DNS 클라이언트 서비스가 DNS 서버에 그 도메인의 DC를 묻고, 답으로 받은 DC의 IP 주소로 인증을 시작한다. AD 없이 DNS만 쓸 수도 있다 — 「Using DNS in Windows and Windows Server」
+- **Locating domain controllers**: AD 도메인은 늘 이름이 둘이다 — DNS 정규화된 도메인 이름(FQDN)과 NetBIOS 도메인 이름(15자 제한). DNS 기반 찾기에서 클라이언트는 DC가 등록한 SRV 레코드(`_ldap._tcp.<DNS 도메인 이름>` 꼴)를 묻는다 — 「Discovery process」, 「DNS-based discovery」
+- **Dynamic update**: 영역을 AD에 통합하면 Windows Server의 DNS 서버는 기본으로 **보안 동적 업데이트만 허용**하고, 파일에 둔 영역은 기본으로 동적 업데이트를 허용하지 않는다. 보안 동적 업데이트는 AD 통합 영역에서만 쓸 수 있다 — 「Secure dynamic update」, 첫머리. 기출 오답의 대조에만 쓴다
+- **Join a computer to a domain**: 서버나 클라이언트 장치를 도메인에 가입시키는 것을 조직 네트워크의 중앙 관리와 보안 향상을 위한 단계라고 적는다 — 첫머리. 「Add-Computer」: 이 cmdlet은 컴퓨터를 **도메인 또는 작업 그룹**(workgroup)에 더한다. 작업 그룹 이름의 기본값은 `WORKGROUP`이다 — 「Description」, 「-WorkgroupName」.
+  **작업 그룹 자체를 정의하거나 도메인과 견준 지금 판 문서는 찾지 못했다** — 작업 그룹 컴퓨터의 계정이 그 컴퓨터에 묶인다는 것은 앞 항목의 「Built-in and Account Domains」(네트워크 자원에 닿아야 하는 계정은 DC의 계정 도메인에, 주 도메인이 없는 컴퓨터는 모든 계정을 자기 계정 도메인에)로만 댄다
+- **Understanding the Active Directory Logical Model**: AD DS는 네트워크 자원의 정보를 저장·관리하는 분산 데이터베이스이고, 사용자·컴퓨터·장치 같은 요소를 담는 계층 구조로 정리하게 한다. **맨 위 그릇이 포리스트, 그 안에 도메인, 도메인 안에 조직 구성 단위(OU)**가 있다 — DC 수나 네트워크 토폴로지 같은 물리적 측면과 상관없어서 논리 모델이라 부른다 — 첫머리
+- 같은 문서 「Active Directory forest」: 포리스트는 AD 도메인 하나 이상의 묶음이고, 그 도메인들은 논리 구조·디렉터리 스키마(클래스·속성 정의)·디렉터리 구성(사이트·복제 정보)·글로벌 카탈로그(포리스트 전체 검색)를 함께 쓴다. **같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다**.
+  **「포리스트는 보안 경계다」를 적은 지금 판 문서는 찾지 못했다** — 쓰지 않는다
+- 같은 문서 「Active Directory domain」: 도메인은 포리스트를 나눈 조각(파티션)이고, 데이터를 필요한 곳에만 복제하게 한다. 도메인이 맡는 일은 넷이다 — ① 네트워크 전체의 사용자 ID: 사용자 ID를 한 번 만들어 그 포리스트에 가입한 어느 컴퓨터에서나 쓰고, 도메인을 이루는 DC가 사용자 계정과 자격 증명(암호·인증서)을 안전하게 저장한다
+  ② 인증: DC가 사용자를 인증하고, 자원 접근 제어에 쓰이는 그룹 구성원 같은 권한 부여 데이터를 준다 ③ 트러스트: 도메인은 트러스트로 자기 포리스트 밖 도메인의 사용자에게도 인증을 넓힌다 ④ 복제: 도메인 서비스에 충분한 디렉터리 파티션을 DC끼리 복제하므로 한 도메인의 DC는 모두 대등하고 한 단위로 관리된다
+- (phase 80 step 4, 2026-11-16 다시 받아 확인) 같은 문서 「Active Directory organizational units」: OU로는 **도메인 안에** 그릇의 계층을 만든다. OU는 그룹 정책을 적용하거나 권한을 위임하는 것 같은 **관리 목적**으로 개체를 묶는다. OU와 그 안 개체를 누가 다루는지는 그 OU와 개체에 붙은 ACL이 정하고,
+  위임으로 소유자가 개체의 관리 권한 전부나 일부를 다른 사용자·그룹에 넘긴다 — OU를 다룬 다른 문서는 아래 「(phase 80 step 4) … 조직 구성 단위와 사이트」 항목
+- Win32 **Domain Trees**: 도메인 트리는 같은 스키마와 구성을 쓰며 **연속된 이름 공간**(contiguous namespace)을 이루는 여러 도메인이고, 트리의 도메인은 트러스트로도 이어진다. AD는 트리 하나 이상의 묶음이다 — 첫머리.
+  Win32 **Searching Domain Contents**: 포리스트 안에서 도메인은 계층으로 놓인 도메인 트리를 이루고, 트리는 도메인 하나일 수도 자식 도메인을 가진 도메인일 수도 있다. 연속된 이름 공간이란 **자식 도메인의 이름이 부모의 이름 계층을 이어 간다**는 뜻이다 — 첫머리(예의 이름은 옮기지 않는다)
+- Win32 **Forests**: 포리스트는 **서로 연속된 이름 공간을 이루지 않는** 도메인 트리 하나 이상의 묶음이고, 포리스트의 모든 트리는 스키마·구성·글로벌 카탈로그를 함께 쓴다. 트리와 달리 포리스트에는 따로 된 이름이 필요 없고, 트러스트 계층의 뿌리에 있는 트리의 이름이 그 포리스트를 가리킨다 — 첫머리
+- **Selecting the Forest Root Domain**: 포리스트에 처음 배포한 도메인을 **포리스트 루트 도메인**이라 하고, 그 배포가 끝날 때까지 루트 도메인으로 남는다. Enterprise Admins·Schema Admins 그룹이 이 도메인에 있다 — 첫머리
+- **Planning Operations Master Role Placement**: AD DS는 디렉터리 데이터의 **다중 마스터 복제**를 지원한다 — 어느 DC든 디렉터리 변경을 받아 다른 모든 DC로 복제한다. 다만 스키마 변경 같은 몇몇 변경은 정해진 DC(작업 마스터)만 받는다. RODC는 데이터베이스가 읽기 전용이라 작업 마스터가 될 수 없다 — 첫머리, Note(작업 마스터 역할의 이름과 일은 가져오지 않는다).
+  Win32 「Replication and Data Integrity」: 다중 마스터 업데이트는 한 파티션의 모든 완전 복제본에 쓸 수 있다는 뜻이고, 그래서 일부 복제본이 동작하지 않아도 업데이트가 막히지 않는다. 바뀐 내용은 저절로 다른 복제본으로 퍼진다 — 첫머리
+- **Virtualized Domain Controller Deployment and Configuration**: 도메인이나 포리스트의 모든 DC를 한 하이퍼바이저 호스트에서 돌리지 말라고 한다 — 단일 장애 지점이 되어 도메인 전체에 DC를 하나만 둔 것과 다르지 않기 때문이고, **여러 플랫폼의 여러 DC가 중복성과 내결함성을 준다** — 「Virtualization safeguards」 Warning
+- **Planning Domain Controller Placement**: **RODC**(읽기 전용 도메인 컨트롤러)는 AD 데이터베이스의 읽기 전용 파티션을 갖는 DC다. 계정 암호를 뺀 모든 개체·속성을 쓰기 가능한 DC처럼 갖지만 그 데이터베이스는 고칠 수 없어서, 바꿀 일은 쓰기 가능한 DC에서 하고 RODC로 복제된다.
+  사용자가 적고 **물리 보안이 약하며** 허브와의 대역폭이 낮고 IT 인력이 적은 원격·지점에 두도록 설계됐다(Windows Server 2008에서 들어왔다) — 첫머리.
+  「Active Directory security groups」의 「Read-only Domain Controllers」: 물리 보안을 장담할 수 없는 곳(지점 등)에 DC를 쉽게 두게 하고, 기능은 읽기 전용 AD DS 데이터베이스·**단방향 복제**·자격 증명 캐싱·관리자 역할 분리·읽기 전용 DNS다. RODC 관리를 도메인 사용자·그룹에 맡길 수 있다
+- **한국어 이름**: 한국어판은 「Active Directory 도메인 서비스(AD DS)」(개요 첫 문단 — 문서 제목과 역할·마법사 이름은 「Active Directory Domain Services」를 영문 그대로 둔다), 「디렉터리」·「디렉터리 서비스」, 「도메인 컨트롤러」, 「읽기 전용 도메인 컨트롤러」·「읽기 전용 AD DS 데이터베이스」·「단방향 복제」·「자격 증명 캐싱」, 「다중 마스터 복제」,
+  「포리스트」·「도메인 트리」·「도메인」·「포리스트 루트 도메인」·「조직 구성 단위」, 「서버 관리자」·「역할 및 기능 추가」·「서버 역할 선택」·「이 서버를 도메인 컨트롤러로 승격」으로 옮기고, workgroup은 「작업 그룹」(「Add-Computer」·「Install AD DS」 한국어판), domain join은 「도메인에 컴퓨터를 가입」(「조인」도 섞인다)으로 옮긴다.
+  Win32 「Forests」 한국어판은 제목만 「숲」이고 본문은 「포리스트」다. **고른 이름**: 「Active Directory 도메인 서비스(AD DS)」, 「도메인 컨트롤러」(DC), 「읽기 전용 도메인 컨트롤러」(RODC), 「포리스트」·「트리」(도메인 트리)·「도메인」, workgroup은 **「작업 그룹」** — 한국어판이 이 말 하나로 일관되게 옮긴다(guide.md의 「워크그룹」 대신)
+
+쓰인 곳: (phase 80 step 2에서 쓰일 곳) `windows-ad.active-directory`(디렉터리와 디렉터리 서비스, 하는 일 — 로그온 인증과 디렉터리 개체의 접근 제어, 서버 관리자의 역할로 설치·DC로 승격, DNS로 DC를 찾는다·새 포리스트에서 DNS가 함께 설치된다, 작업 그룹과 도메인),
+`windows-ad.domain-controller`(DC가 사용자 계정과 자격 증명을 저장하고 인증한다, 같은 도메인의 DC끼리 복제 — 도메인 전체 사본, 다중 마스터, 여러 DC의 중복성, RODC, DC에는 「로컬 사용자 및 그룹」을 쓰지 않는다 — 앞 항목);
+(phase 80 step 3에서 쓰일 곳) `windows-ad.domain-tree-forest`(맨 위 그릇 포리스트·도메인·OU, 도메인이 맡는 일, 연속된 이름 공간의 트리, 연속되지 않은 트리들의 포리스트, 함께 쓰는 스키마·구성·글로벌 카탈로그 — 이름만, 도메인 이름은 DNS 이름, 포리스트 루트 도메인), `windows-ad.trust`(같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다);
+기출 대조(`exam-notes.md` 「phase 80 step 0」 문단);
+(phase 80 step 2) `windows-ad.active-directory`(「Add-Computer」 — 컴퓨터를 도메인이나 작업 그룹에 넣는다; 「Built-in and Account Domains」 — 주 도메인이 없는 컴퓨터는 들어오는 계정을 모두 자기 안에 둔다; 「Active Directory Domain Services overview」 — 디렉터리와 그 개체, 인증과 접근 제어, 사용자 이름과 암호 하나로 네트워크의 자원에; 「Understanding the Active Directory Logical Model」 — 데이터베이스, 계정을 한 번 만들어 가입한 어느 컴퓨터에서나, DC가 인증하고 그룹 구성원 정보를 준다; 「Join a computer to a domain」 — 도메인 가입; 「Domain Name System (DNS) in Windows and Windows Server」·「DNS and AD DS」 — 로그온할 때 DNS로 DC를 찾는다, DC끼리도 DNS로, 첫 포리스트·도메인을 세울 때 DNS가 함께 설치된다(본문은 「아직 아무 도메인도 없는 곳에 첫 도메인을 세울 때」로 쓴다); 「Install Active Directory Domain Services」 — 서버 관리자의 「관리」 → 「역할 및 기능 추가」 → 「서버 역할 선택」, 「이 서버를 도메인 컨트롤러로 승격」, 구성 마법사에서 새 도메인이나 기존 도메인의 DC를 고른다; DHCP·DNS 서버가 하는 일은 phase 74 step 5·phase 79 항목), 도식 `active-directory-auth`, 문항 n259(계정을 AD DS에 한 번 만들고 PC를 도메인에 가입시킨다 — 오답의 DHCP·DNS는 같은 항목);
+`windows-ad.domain-controller`(「Understanding the Active Directory Logical Model」 — DC가 계정과 자격 증명을 저장하고 인증한다; 「Active Directory Domain Services overview」 — 같은 도메인의 DC는 도메인 디렉터리 전체의 사본을 갖고 바뀐 내용이 모든 DC로 복제된다; 「Planning Operations Master Role Placement」·Win32 「Replication and Data Integrity」 — 다중 마스터 복제, 일부가 멈춰도 고치는 일이 막히지 않는다, 몇몇 변경은 정해진 DC만 받는다(작업 마스터의 이름과 일은 쓰지 않는다); 「Virtualized Domain Controller Deployment and Configuration」 — DC 한 대는 단일 장애 지점, 모든 DC를 한 호스트의 가상 머신으로 두지 말라; 「Planning Domain Controller Placement」·「Active Directory security groups」 — RODC는 계정 암호를 뺀 개체를 갖고 고칠 수 없으며, 쓰기 가능한 DC에서 단방향으로 복제받고, 물리 보안이 약한 지점에 둔다; 「Local accounts」·「Built-in and Account Domains」 — DC에는 로컬 계정을 두는 자리가 없어 「로컬 사용자 및 그룹」으로 그 DC의 계정을 관리할 수 없다), 도식 `dc-replication`, 문항 n260(한 대가 멈춰도 복제로 같은 계정을 가진 다른 DC가 확인한다)
+(phase 80 step 3) `windows-ad.domain-tree-forest`(「Understanding the Active Directory Logical Model」 — 포리스트·도메인의 계층과 실제 배치와 상관없는 논리 구조, 포리스트를 나눈 조각인 도메인이 데이터를 필요한 곳에만 복제하게 한다, DC가 계정을 저장하고 인증한다, 같은 포리스트의 도메인이 함께 쓰는 스키마·구성·글로벌 카탈로그(이름과 한 줄 뜻만 — 구성은 「복제 같은 디렉터리 구성 정보」로 쓰고 사이트는 쓰지 않는다); 「Active Directory Domain Services overview」 — 스키마는 디렉터리에 드는 개체·속성의 규칙, 글로벌 카탈로그는 어느 도메인에 있든 개체를 찾게 하는 정보; Win32 「Domain Trees」·「Searching Domain Contents」 — 트리는 연속된 이름 공간을 이루는 도메인들, 자식 도메인의 이름이 부모의 이름을 이어 간다, 도메인 하나도 트리다; Win32 「Forests」 — 연속되지 않은 트리들의 묶음; 「Install Active Directory Domain Services」 — 기존 포리스트에 자식 도메인이나 새 트리의 도메인을 더한다; 「Selecting the Forest Root Domain」 — 처음 만든 도메인이 포리스트 루트 도메인; 「Locating domain controllers」 — 도메인은 DNS 이름을 갖는다; 이름의 오른쪽이 위 단계라는 것은 phase 79의 DNS 항목), 도식 `ad-forest-structure`, 문항 n261(이름이 이어지는 도메인끼리 한 트리, 이름이 다른 트리도 같은 포리스트).
+  「포리스트는 보안 경계다」와 「도메인은 같은 정책을 쓰는 단위다」는 근거를 찾지 못해 쓰지 않았다 — 본문은 포리스트를 「가장 바깥의 묶음」, 도메인을 「계정을 함께 관리하는 단위」로 쓴다
+(phase 80 step 4에서 쓰일 곳) `windows-ad.organizational-unit`(「Understanding the Active Directory Logical Model」 — OU는 도메인 안의 그릇 계층이고 관리 목적(그룹 정책·위임)으로 개체를 묶는다, 실제 배치와 상관없는 논리 구조), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2025-02-23 #42])
+
+## (phase 80 step 0) Microsoft Learn — 트러스트: netdom trust, Credentials processes in Windows authentication, How trust relationships work for forests in Active Directory(Microsoft Entra Domain Services 문서); 지난 판 Understanding Trusts, Understanding Trust Types, Understanding Trust Direction, Understanding Trust Transitivity, Understanding When to Create an External Trust
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netdom-trust
+https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication
+https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731335(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc730798(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731404(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc754612(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732859(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「netdom trust」 `updated_at` 2025-10-22(`ms.date` 2025-06-09), 「Credentials processes in Windows authentication」 2026-02-16(2025-06-30) — 둘 다 「Applies to」 Windows Server 2016~2025.
+「How trust relationships work for forests in Active Directory」 2026-06-26(2025-06-30) — Microsoft Entra Domain Services 문서 묶음(`entra/identity/domain-services/`)에 있지만 본문의 앞 절들은 온프레미스 AD DS의 트러스트를 설명한다. **Entra Domain Services에만 해당하는 문장(관리형 도메인의 트러스트 방향·개수)은 쓰지 않는다**.
+**Windows Server 문서 묶음에서 트러스트의 방향·전이성·종류를 정의한 지금 판 문서는 찾지 못했다**(`windows-server/identity/ad-ds/manage/how-trusts-work` 같은 주소는 404다) — 그래서 지난 판 다섯(모두 `updated_at` 2021-11-12, `ms.date` 2012-07-03, 적용 대상 Windows Server 2008)을 쓰고, 지금 판 세 문서가 같은 말을 하는지 줄마다 적는다.
+한국어판(`ko-kr`)도 받았다(`updated_at` 2026-01-21~2026-11-07, 기계 번역 — 지난 판 다섯은 한국어판이 따로 없다).
+
+- **트러스트**: 도메인 사이에 맺는 관계이고, 한 도메인의 사용자가 **다른 도메인의 DC에게 인증받을 수 있게** 한다. 트러스트 관계는 Domain Admins 그룹의 구성원만 관리한다 — 지난 판 「Understanding Trusts」 「Trusts」, 「Trusts in Windows 2000 Server…」.
+  지금 판 「Credentials processes in Windows authentication」 「Local domains and trusted domains」가 같은 뜻을 적는다 — 두 도메인 사이에 트러스트가 있으면 각 도메인의 인증 장치는 상대 도메인에서 온 인증이 유효하다는 것에 기대고, 트러스트는 **자원 도메인(신뢰하는 도메인)**이 들어오는 인증 요청이 **신뢰받는 기관(신뢰받는 도메인)**에서 왔는지 확인해 공유 자원에 통제된 접근을 주게 돕는다 — 검증된 인증 요청만 도메인 사이를 건너게 하는 다리 구실이다
+- **신뢰하는 도메인(trusting)과 신뢰받는 도메인(trusted)**: 지금 판 「netdom trust」 — 신뢰받는 도메인은 신뢰를 받는 쪽이고, 신뢰하는 도메인은 다른 도메인(신뢰받는 도메인)을 신뢰해 **그 도메인의 사용자가 자기 자원에 접근하도록** 허락하는 쪽이다 — 「Parameters」(`/oneside`).
+  지난 판 「Understanding Trust Direction」: 신뢰하는 도메인은 사용자가 접근하려는 **자원이 있는 도메인**, 신뢰받는 도메인은 **사용자가 로그온하는 도메인**이다. 트러스트 관계에는 늘 이 두 도메인만 있고, 그림은 트러스트의 방향을 화살표로 나타낸다 — 「Trust Direction」
+- **방향**: 단방향 트러스트는 두 도메인 사이에 만든 한 방향의 인증 경로이고, 양방향 트러스트는 A가 B를, B가 A를 신뢰해 인증 요청이 두 방향으로 오가는 것이다 — 지난 판 「Understanding Trust Direction」, 지금 판 Entra 문서 「One-way and two-way trusts」(같은 내용).
+  지금 판 「Credentials processes」: 단방향은 **신뢰받는 도메인에서 신뢰하는 도메인의 자원으로** 접근을 주고, 양방향은 서로 상대 도메인의 자원으로 접근을 준다. 지금 판 Entra 문서 「Forest trusts」의 예: 포리스트 1(신뢰받는 쪽)과 포리스트 2(신뢰하는 쪽) 사이의 단방향 포리스트 트러스트에서 포리스트 1의 구성원은 포리스트 2의 자원에 접근하지만, 같은 트러스트로 포리스트 2의 구성원이 포리스트 1의 자원에 접근하지는 못한다.
+  **「트러스트의 방향과 접근의 방향이 반대다」를 한 문장으로 적은 곳은 찾지 못했다** — 위 정의와 예를 이으면 그렇게 된다(신뢰: 신뢰하는 쪽 → 신뢰받는 쪽, 접근: 신뢰받는 쪽의 사용자 → 신뢰하는 쪽의 자원).
+  두 문서의 「단방향 트러스트에서 A의 사용자가 B의 자원에 접근하고 B의 사용자는 A에 접근하지 못한다」는 문장은 A·B 가운데 어느 쪽이 신뢰하는지 말하지 않으므로 방향 규칙의 근거로 쓰지 않는다
+- **전이성**: 트러스트를 맺은 두 도메인 밖으로 트러스트를 넓힐 수 있는지를 정한다 — 전이적 트러스트는 다른 도메인으로 트러스트를 넓히는 데, 비전이적 트러스트는 다른 도메인으로 넓히지 않는 데 쓴다 — 지난 판 「Understanding Trust Transitivity」, 지금 판 Entra 문서 「Transitive and non-transitive trusts」(같은 내용).
+  지금 판 「Credentials processes」: 비전이적이면 두 파트너 도메인 사이에만 있고, 전이적이면 어느 한쪽이 신뢰하는 다른 도메인으로도 저절로 넓어진다. 지난 판 「Understanding Trusts」: 포리스트 안의 트러스트는 모두 양방향 전이적이라, A가 B를 신뢰하고 B가 C를 신뢰하면 C의 사용자도 (사용 권한을 받았을 때) A의 자원에 접근한다.
+  지난 판 「Understanding Trust Transitivity」: 비전이적 트러스트는 그 두 도메인에 묶여 포리스트의 다른 도메인으로 흐르지 않고, 기본은 단방향이며 단방향 둘로 양방향을 만들 수 있다 — 「Nontransitive trust」
+- **같은 포리스트 안에서 저절로 생기는 트러스트**: 포리스트에 새 도메인을 만들 때마다 새 도메인과 그 부모 도메인 사이에 **양방향 전이적 트러스트가 저절로** 만들어지고, 그 아래 자식 도메인이 더해지면 트러스트 경로가 도메인 계층을 따라 위로 이어져 트리의 모든 도메인 사이에 전이적 트러스트가 생긴다.
+  그래서 포리스트 어느 도메인의 계정도 포리스트의 다른 어느 도메인에서 인증받고, 적절한 사용 권한이 있으면 한 번의 로그온으로 어느 도메인의 자원에나 접근한다 — 지난 판 「Understanding Trust Transitivity」 「Transitive trust」, 지금 판 Entra 문서 「Trust relationship flows」(같은 내용), 지금 판 「Understanding the Active Directory Logical Model」(같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다 — 앞 항목).
+  지금 판 Entra 문서의 그림 설명: 두 트리의 모든 도메인이 기본으로 전이적 트러스트를 가지므로 서로의 도메인 자원에 접근한다 — **자원에 적절한 사용 권한이 주어졌을 때**. **「트리 루트 트러스트」·「부모-자식 트러스트」라는 이름은 이 step이 읽은 Windows Server 문서에 없다** — 쓰지 않는다
+- **다른 포리스트와 잇는 트러스트**: 지난 판 「Understanding Trust Types」는 새 트러스트 마법사나 Netdom으로 만드는 트러스트를 넷으로 든다 — **외부 트러스트**(비전이적, 단방향·양방향 — Windows NT 4.0 도메인이나, 포리스트 트러스트로 이어지지 않은 다른 포리스트의 도메인과 맺는다), 영역(realm) 트러스트(Windows가 아닌 Kerberos 영역과),
+  **포리스트 트러스트**(전이적, 단방향·양방향 — 포리스트 사이의 자원 공유), 바로 가기(shortcut) 트러스트(전이적 — 같은 포리스트에서 두 트리에 나뉜 도메인 사이의 로그온 시간을 줄인다). 지난 판 「Understanding When to Create an External Trust」: 외부 트러스트를 맺으면 바깥 도메인의 보안 주체가 안쪽 도메인의 자원에 접근하고, 안쪽 도메인의 도메인 로컬 그룹 구성원이 될 수 있다.
+  지금 판 Entra 문서 「Forest trusts」: 포리스트 트러스트는 두 포리스트의 **포리스트 루트 도메인 사이에만** 만들고 단방향·양방향 전이적이며, 셋째 포리스트로 저절로 넓어지지 않는다(1–2, 2–3 사이에 있어도 1과 3은 서로 신뢰하지 않는다).
+  지금 판 「netdom trust」는 포리스트 트러스트를 netdom이 아니라 「Active Directory 도메인 및 트러스트」 스냅인으로 만든다고 적고(첫머리 Note), 선택적 인증 옵션이 「나가는 포리스트 트러스트와 외부 트러스트에서만」 유효하다고 적어(「Parameters」 `/selectiveauth`) **외부 트러스트라는 종류가 지금 판에도 있음**을 보인다
+- **관리 도구**: 「Active Directory 도메인 및 트러스트」(Active Directory Domains and Trusts)는 도메인 트러스트, 도메인·포리스트 기능 수준, UPN 접미사를 관리하는 MMC이고, Netdom·Nltest 명령으로도 트러스트를 찾고·보이고·만들고·고친다 — 지금 판 Entra 문서 「Management tools」, 「netdom trust」 첫머리
+- **트러스트와 사용 권한**: 트러스트는 인증을 받아들이게 할 뿐이고, 다른 도메인의 사용자가 자원에 접근하려면 **그 자원에 사용 권한이 주어져야 한다** — 위 「적절한 사용 권한이 있으면」 줄들(지난 판 「Understanding Trusts」·「Understanding Trust Transitivity」, 지금 판 Entra 문서 「Trust relationship flows」)
+- (phase 80 step 3, 2026-11-16 Microsoft Learn에서 다시 받아 확인) 「How trust relationships work for forests in Active Directory」: 단방향 트러스트 가운데 전이적인 것도 비전이적인 것도 있고, 양방향도 마찬가지다 — 종류가 정한다(「One-way and two-way trusts」).
+  양방향 트러스트는 실제로 반대 방향의 단방향 트러스트 둘이다(「TDO password changes」). 포리스트 트러스트 예: 포리스트 2와 포리스트 1·3 사이에 포리스트 트러스트가 있으면 포리스트 2의 사용자는 포리스트 1·3의 **어느 도메인 자원에나** 접근하고, 단방향 포리스트 트러스트에서는 신뢰받는 포리스트의 구성원이 신뢰하는 포리스트의 자원에 접근한다(「Forest trusts」).
+  같은 문서의 그림 설명은 트리 1·트리 2의 모든 도메인이 기본으로 전이적 트러스트를 가져 서로의 자원에 접근한다고 적지만(「Trust relationship flows」), **새 트리의 루트 도메인이 어느 도메인과 트러스트를 맺는지는 적지 않는다** — 그래서 도식은 트리 사이의 트러스트 선을 그리지 않는다
+- **한국어 이름**: 한국어판은 「트러스트」, 「단방향 트러스트」·「양방향 트러스트」, 「전이적 트러스트」·「비 전이적 트러스트」, 「포리스트 트러스트」, 「Active Directory 도메인 및 트러스트」로 옮긴다.
+  trusting·trusted는 「신뢰하는 포리스트」·「신뢰받는 포리스트」(Entra 문서 「Forest trusts」의 예), 「신뢰받는 도메인이 신뢰하는 도메인의 리소스에 접근」(「Credentials processes」의 단방향 설명)처럼 바로 옮긴 곳과, 두 쪽을 모두 「신뢰할 수 있는 도메인」으로 옮긴 곳이 섞인다 —
+  「Credentials processes」 한국어판은 resource domain (the trusting domain)을 「리소스 도메인(신뢰할 수 있는 도메인)」으로, 「netdom trust」 한국어판은 trusting domain의 이름 매개 변수를 「신뢰할 수 있는 도메인의 이름」으로 옮겼다. 절 제목 「Local domains and trusted domains」도 「로컬 도메인 및 신뢰할 수 있는 도메인」이다.
+  **고른 이름**: **「신뢰하는 도메인」(trusting)·「신뢰받는 도메인」(trusted)** — 한국어판이 뜻을 바로 옮긴 곳의 말이고, 「신뢰할 수 있는」은 두 쪽에 다 쓰여 둘을 가르지 못한다. 전이성은 한국어판대로 「전이적 트러스트」·「비전이적 트러스트」(한국어판의 「비 전이적」을 붙여 쓴다), 도구는 「Active Directory 도메인 및 트러스트」
+
+쓰인 곳: (phase 80 step 3에서 쓰일 곳) `windows-ad.trust`(트러스트의 정의, 신뢰하는 도메인 — 자원 쪽·신뢰받는 도메인 — 계정 쪽, 단방향·양방향과 접근의 방향, 전이적·비전이적, 같은 포리스트에서 저절로 생기는 양방향 전이적 트러스트, 포리스트 트러스트·외부 트러스트 한 줄씩, 「Active Directory 도메인 및 트러스트」, 사용 권한은 따로 준다),
+`windows-ad.domain-tree-forest`(트리의 도메인은 트러스트로 이어진다), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단 — [기출 2024-05-19 #34]·[기출 2025-08-24 #34], [기출 2024-08-25 #30]·[기출 2026-08-02 #36])
+(phase 80 step 3) `windows-ad.trust`(지난 판 「Understanding Trusts」·지금 판 「Credentials processes in Windows authentication」 — 한 도메인의 사용자가 다른 도메인에서 인증받게 하는 관계, 자원 쪽이 상대 도메인이 마친 인증을 받아들인다; 「netdom trust」·지난 판 「Understanding Trust Direction」 — 신뢰하는 도메인은 자원 쪽, 신뢰받는 도메인은 사용자가 로그온하는 쪽; 「Credentials processes」·Entra 문서 — 단방향은 신뢰받는 쪽 사용자가 신뢰하는 쪽 자원으로, 양방향은 서로, 양방향은 단방향 둘; 지난 판 「Understanding Trust Transitivity」·Entra 문서 — 전이적·비전이적, 방향과 전이성은 따로 정해진다, 새 도메인과 부모 사이의 양방향 전이적 트러스트가 저절로 생기고 위로 이어져 포리스트 어느 도메인의 계정이든 다른 도메인에서 인증받는다; 지난 판 「Understanding Trust Types」·Entra 문서 「Forest trusts」 — 포리스트 트러스트(포리스트 루트 도메인 사이, 전이적, 셋째 포리스트로 넓어지지 않음, 상대 포리스트의 어느 도메인 자원에나)와 외부 트러스트(포리스트 트러스트로 이어지지 않은 다른 포리스트의 도메인과, 비전이적 — 포리스트의 다른 도메인으로 흐르지 않음); 「Active Directory 도메인 및 트러스트」·Netdom; 사용 권한은 따로 준다), 도식 `domain-trust`(단방향 — 외부 트러스트로 보면 sales.example.com까지 이어지지 않음, 양방향, 전이 — 단방향 포리스트 트러스트로 sales.example.com까지),
+문항 n262(단방향 트러스트에서 신뢰받는 쪽 사용자만 신뢰하는 쪽 자원에), n263(같은 포리스트의 형제 자식 도메인끼리는 부모를 거친 전이적 트러스트로 인증이 이어진다)
+
+## (phase 80 step 4) Microsoft Learn — 조직 구성 단위와 사이트: Reviewing OU Design Concepts, Delegating Administration by Using OU Objects, Delegating Administration of Default Containers and OUs, Delegation of Control in Active Directory Domain Services, Reviewing the Domain Models, Active Directory Replication Concepts, Site functions, Designing the Site Topology; 문제 해결 — Redirect the users and computers containers in Active Directory domains
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/reviewing-ou-design-concepts
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-by-using-ou-objects
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/delegating-administration-of-default-containers-and-ous
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/delegation-control-wizard
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/reviewing-the-domain-models
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/site-functions
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/designing-the-site-topology
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/redirect-users-computers-containers
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Reviewing OU Design Concepts」·「Delegating Administration by Using OU Objects」·「Delegating Administration of Default Containers and OUs」·「Reviewing the Domain Models」·「Active Directory Replication Concepts」·「Designing the Site Topology」 `updated_at` 2025-09-23(`ms.date` 2025-05-12),
+「Site functions」 2025-09-12(2025-05-12), 「Delegation of Control in Active Directory Domain Services」 2026-07-01(2025-07-09) — 모두 「Applies to」 Windows Server 2016~2025. 문제 해결 「Redirect the users and computers containers…」 2026-08-04(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server.
+계획(plan) 문서 몇은 본문에 Windows Server 2008 시절 문장을 그대로 남겼다(「Site functions」 첫머리, 「Designing the Site Topology」의 하드웨어 요구) — 판 표시는 지금 판이지만, 판과 상관없는 정의만 가져온다. 한국어판(`ko-kr`)도 받았다(`updated_at` 2026-07-02~2026-10-14, 기계 번역).
+
+- **OU를 만드는 목적**: OU 계층은 조직의 부서 계층을 그대로 따를 필요가 없고, 관리 위임·그룹 정책 적용·개체가 보이는 범위 제한 같은 **정해진 목적**으로 만든다. OU는 관리의 경계라서 데이터 관리자가 어디까지 다룰지를 정하게 한다.
+  예로, 한 팀이 맡은 파일·인쇄 서버의 컴퓨터 계정을 한 OU에 모으고 그 팀의 관리자만 그 OU에 접근하게 한다. 일부 사용자·자원에만 그룹 정책을 걸려면 그것들을 한 OU에 넣고 그 OU에 그룹 정책을 적용한다.
+  **OU 아래에 OU를 더 만들어(하위 트리) 위임을 더 나눌 수 있다.** 깊이에 기술적 한계는 없지만 관리하기 쉽게 10단계 이하를 권한다. OU 구조는 최종 사용자에게 보이려는 것이 아니라 관리자의 도구이고 바꾸기 쉽다 — 「Reviewing OU Design Concepts」
+- 문제 해결 「Redirect the users and computers containers…」 「More information」: 보안 주체를 조직 구조·지역 배치·관리 모델을 비추는 OU 계층으로 정리하는 것을 모범 사례로 든다. 위 줄과 함께 읽으면, **OU를 부서·지역대로 짜는 것은 흔한 쓰임이지 OU의 정의가 아니다**
+- **위임**: OU로 관리를 위임하려면 위임받을 사람을 그룹에 넣고, 다룰 개체를 OU에 넣고, 그 OU에 대한 관리 작업을 그 그룹에 맡긴다. 위임은 잘게 나눌 수 있다 — 한 그룹에는 OU 안 모든 개체의 모든 권한을, 다른 그룹에는 사용자 계정 만들기·지우기·관리만을, 또 다른 그룹에는 암호 재설정만을 줄 수 있고, 이 사용 권한을 하위 OU로 상속되게 할 수 있다 — 「Delegating Administration by Using OU Objects」
+- 「Delegation of Control in Active Directory Domain Services」: 「Active Directory 사용자 및 컴퓨터」에서 도메인이나 OU를 고르고 Action 메뉴(한국어판은 「작업」 메뉴)의 Delegate control로 **제어 위임 마법사**를 열어, 맡길 사용자·그룹과 작업을 고른다. 고를 수 있는 흔한 작업은 사용자 계정 만들기·지우기·관리, 암호 재설정과 다음 로그온 때 암호 바꾸게 하기, 그룹 구성원 바꾸기, 컴퓨터를 도메인에 가입시키기, 그룹 정책 링크 관리 같은 것이다.
+  위임은 고른 그릇 아래의 모든 개체에 미친다 — 「Delegate control」 등. 한 사람에게 맡길 범위는 도메인 전체·도메인의 모든 OU·OU 하나가 될 수 있다
+- **OU와 그룹**: 위 위임 차례가 둘을 함께 쓴다 — **그룹**에는 권한을 받을 사람을, **OU**에는 다룰 개체를 넣는다. 그룹은 공유 자원의 사용 권한을 주는 단위이고(위 「로컬 계정과 기본 그룹」 항목의 「(phase 80 step 4)」 줄),
+  그룹 정책은 사이트·도메인·OU 세 종류의 그릇에만 연결되며 사용자 개체에는 직접 연결할 수 없다(아래 「(phase 80 step 4) … 그룹 정책」 항목의 「Group Policy Management Console」·「Group Policy scope」). **OU와 그룹을 견준 한 문장은 찾지 못했다** — 이 근거들을 이어 쓴다
+- **OU와 도메인**: 가장 단순한 도메인 설계는 도메인 하나이고, 포리스트의 도메인 수는 줄일수록 좋다. 지역 도메인을 더하는 까닭은 느린 링크로 이어진 곳의 복제 트래픽을 줄이는 것이고, 도메인이 늘면 서비스 관리자 그룹·그룹 정책·접근 제어 설정을 도메인마다 따로 맞춰야 한다.
+  조직 안의 그룹처럼 자주 바뀌는 것을 기준으로 도메인을 나누면 구조를 다시 짜야 할 수 있다 — 「Reviewing the Domain Models」. 그래서 부서를 나누려고 도메인을 새로 만들 근거는 없고, 한 도메인 안의 관리 단위는 OU가 맡는다
+- **기본 컨테이너**: AD DS를 설치하면 도메인 컨테이너, Builtin 컨테이너, Users 컨테이너(도메인에 새로 만든 사용자·그룹의 기본 자리), Computers 컨테이너(DC가 아닌 새 컴퓨터의 기본 자리), Domain Controllers OU가 만들어진다.
+  **Users·Computers 컨테이너에는 그룹 정책 설정을 적용할 수 없으니**, 그룹 정책을 걸려면 새 OU를 만들고 사용자·컴퓨터 개체를 그리 옮긴다. 위임도 기본 컨테이너가 아니라 새 OU에서 한다. Domain Controllers OU에는 기본 정책이 걸려 있어 DC의 컴퓨터 개체를 거기서 빼지 말라고 한다 — 「Delegating Administration of Default Containers and OUs」
+- 문제 해결 「Redirect the users and computers containers…」: 기본 설치에서 사용자·컴퓨터·그룹 계정은 OU가 아닌 `CN=` 꼴 컨테이너(`CN=Users`·`CN=Computers`)에 들어가고, **그룹 정책은 OU에는 걸리지만 이 CN 클래스 컨테이너에는 걸리지 않는다**. 두 컨테이너는 시스템이 보호하는 개체라 지울 수 없다.
+  `NET USER`·`NET GROUP`·`NET COMPUTER`·도메인 가입 화면 같은 옛 API를 쓰는 작업이 만든 개체는 이 기본 컨테이너로 가고, 그 자리는 `redirusr`·`redircmp`로 OU로 바꿀 수 있다(이름만 — 차례는 가져오지 않는다) — 「Summary」, 「More information」. 같은 문서는 「Active Directory 사용자 및 컴퓨터」 스냅인을 `Dsa.msc`로 함께 적는다
+- **사이트**: 사이트는 매우 안정적이고 빠른 네트워크로 이어진 TCP/IP 서브넷 하나 이상을 나타내는 AD 개체이고, 관리자는 사이트 정보로 AD 접근과 복제를 실제 네트워크에 맞춘다. 포리스트의 DC는 IP 주소에 따라 한 사이트에 속하고, 한 사이트에 여러 도메인의 DC가 있을 수 있으며 한 도메인이 여러 사이트에 걸칠 수 있다.
+  **서브넷**은 논리적 IP 주소 묶음이 할당된 TCP/IP 네트워크의 한 토막이고, 컴퓨터가 네트워크에서 서로 가까운지를 나타낸다. AD의 서브넷 개체가 컴퓨터를 사이트에 맞춘다 — 「Active Directory Replication Concepts」 「Subnet」·「Site」
+- 「Site functions」: 사이트 안의 복제는 빠르게(압축 없이 바뀌는 즉시), 사이트 사이의 복제는 압축해 정한 시각에 보내 WAN 비용을 줄인다. DC는 사이트 정보로 클라이언트에게 같은 사이트나 가장 가까운 사이트의 DC를 알려 주어 로그온이 WAN을 덜 거치게 한다 — 「Routing replication」, 「Client affinity」.
+  「Designing the Site Topology」: 사이트 토폴로지는 **물리 네트워크를 논리로 나타낸 것**이고, 그 설계 전에 관리 계층·포리스트·도메인 같은 논리 구조를 먼저 설계한다 — 첫머리. (사이트 링크·브리지헤드 서버·복제 일정은 가져오지 않는다.)
+  step 0 항목의 「Understanding the Active Directory Logical Model」은 포리스트·도메인·OU를 DC 수나 네트워크 토폴로지 같은 물리적 측면과 상관없는 논리 모델이라 부른다 — 곧 **OU는 관리를 위한 논리 구분, 사이트는 네트워크 위치에 따른 물리 쪽 구분**이다
+- **한국어 이름**: 한국어판은 「조직 구성 단위」(OU), 「사이트」, 「서브넷」, 「관리 위임」, 「제어 위임 마법사」, 「기본 컨테이너」, 「Active Directory 사용자 및 컴퓨터」 스냅인(`Dsa.msc`)으로 옮긴다 — 고른 이름도 같다
+
+쓰인 곳: (phase 80 step 5에서 쓰일 곳) `windows-ad.organizational-unit`(OU는 정해진 목적으로 만드는 관리 단위 — 그룹 정책 연결과 위임, OU 안의 OU, 부서·지역대로 짜는 것은 흔한 쓰임, 위임 차례와 제어 위임 마법사, OU와 그룹, OU와 도메인, 기본 컨테이너 Users·Computers에는 그룹 정책을 걸 수 없다, 사이트와 서브넷 한 줄씩 — 물리 쪽 구분),
+`windows-ad.domain-user-accounts`(새 사용자의 기본 자리 Users 컨테이너, `Dsa.msc`), `windows-ad.ds-commands`(`NET USER`가 만든 도메인 사용자는 `CN=Users`로 — **E36**), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2025-02-23 #42])
+(phase 80 step 5) `windows-ad.organizational-unit`(「Understanding the Active Directory Logical Model」 — 도메인 안의 그릇 계층, 실제 배치와 상관없는 논리 구조; 「Reviewing OU Design Concepts」 — 관리 목적으로 만들고 부서 계층을 그대로 따를 필요가 없다, OU 안의 OU, 관리자의 도구라 사용자에게 보이려는 것이 아니고 바꾸기 쉽다, 일부에만 정책을 걸려면 한 OU에 모은다; 「Redirect the users and computers containers…」 — 부서·지역대로 짜는 것은 흔한 쓰임, 기본 컨테이너에는 그룹 정책이 걸리지 않는다; 「Delegating Administration by Using OU Objects」 — 다룰 개체를 OU에 넣고 맡을 사람(그룹)에 작업을 맡긴다, 잘게 나눈 위임; 「Delegation of Control…」 — 「Active Directory 사용자 및 컴퓨터」에서 OU를 고르고 제어 위임 마법사, 맡길 사용자·그룹, 고른 그릇 아래 모든 개체에 미친다; 「Reviewing the Domain Models」 — 도메인을 늘리면 관리자 그룹·그룹 정책·접근 설정을 도메인마다 맞춘다, 도메인은 적게, 자주 바뀌는 것으로 나누면 다시 짠다; 「Active Directory Replication Concepts」·「Site functions」 — 사이트·서브넷, IP 주소로 사이트에 맞춰진다, 사이트 안·사이트 사이 복제, 가까운 DC 안내; 「Delegating Administration of Default Containers and OUs」 — Users·Computers 기본 컨테이너의 자리와 그룹 정책·위임은 새 OU에서; 그룹 정책·GPO의 뜻과 연결·상속·도메인 단위 저장은 아래 「그룹 정책」 항목), 도식 `organizational-unit`, 문항 n264(정책과 위임을 함께 걸 단위는 OU — 오답의 사이트·그룹·기본 컨테이너는 같은 근거);
+(phase 80 step 6) `windows-ad.ds-commands`(「Redirect the users and computers containers…」 — `net user`로 만든 도메인 계정은 기본 Users 컨테이너에 들어간다)
+
+## (phase 80 step 4) Microsoft Learn — 도메인 사용자 계정과 ds 명령: Manage user accounts in Active Directory Users and Computers, Active Directory accounts, ActiveDirectory module·New-ADUser; 문제 해결 — Use the Directory Service command-line tools to manage Active Directory objects in Windows Server 2003; Win32 — Object Names and Identities, Common-Name·Organizational-Unit-Name·Domain-Component attribute; 지난 판 명령 참조 — Command-Line Reference, Dsadd, Dsadd user, Dsmod, Dsmod user, Dsrm, Dsquery, Dsget, Dsmove
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage-user-accounts-in-windows-server
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-default-user-accounts
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-aduser?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/directory-service-manage-objects
+https://learn.microsoft.com/en-us/windows/win32/ad/object-names-and-identities
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-cn
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-ou
+https://learn.microsoft.com/en-us/windows/win32/adschema/a-dc
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc754340(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc753708(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731279(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732406(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732954(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731865(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc732952(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc755162(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc731094(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Manage user accounts in Active Directory Users and Computers」 `updated_at` 2025-07-22(`ms.date` 2025-06-30), 「Active Directory accounts」 2026-02-16(2025-06-30) — 둘 다 「Applies to」 Windows Server 2016~2025.
+「ActiveDirectory Module」·「New-ADUser」 2025-05-14(2016-12-27, `windowsserver2025-ps` 판). 문제 해결 「Use the Directory Service command-line tools…」 2026-08-04(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server(제목과 본문 예는 Windows Server 2003 시절 그대로다).
+Win32 「Object Names and Identities」 2025-04-15(2018-05-31), 스키마 특성 셋 2020-12-14(2018-05-31) — 적용 판을 적지 않는 개발자 문서다.
+**지난 판 명령 참조** 아홉은 모두 `updated_at` 2021-11-12(`ms.date` 2016-08-31, `ms.topic` archived)이고, 쪽마다 「Applies To」가 Windows Server 2003~2012·Windows 8이다(Dsadd user·Dsmod user는 Windows Server 2008·2012·Windows 8, Dsquery는 2008 R2도 적고, Command-Line Reference 자체는 Windows Server 2000~2012와 Windows XP~8까지 적는다).
+**지금 판 Windows 명령 참조에는 이 명령들의 쪽이 없다**(머리 문단). 한국어판(`ko-kr`)도 받았다 — 지금 판 문서는 `updated_at` 2026-01-09~2026-10-14(기계 번역), 지난 판 명령 참조와 PowerShell 쪽은 번역되지 않아 영문 그대로다.
+
+- **도메인 사용자 계정을 만드는 도구**: 「Active Directory 사용자 및 컴퓨터」 콘솔에서 사용자 계정 같은 보안 주체를 만들고 지우고 관리한다. 이 콘솔은 원격 서버 관리 도구(RSAT)의 AD DS·AD LDS 구성 요소가 설치된 Windows Server나 Windows 클라이언트에서 쓰고, 그 컴퓨터는 도메인에 가입해 있어야 하며 그 도메인의 계정을 관리할 권한이 있는 계정으로 써야 한다 — 첫머리, 「Prerequisites」.
+  step 0 항목의 「Install Active Directory Domain Services」: `Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools`가 AD DS 역할과 함께 이 도구 같은 관리 도구를 설치한다. 실행 이름 `Dsa.msc`는 위 「조직 구성 단위와 사이트」 항목의 문제 해결 문서가 적는다
+- 같은 문서 「Create a user account」: 사용자 계정을 더하면 그 사용자가 **도메인에 가입한 컴퓨터에 로그인할 수 있고**, 공유 폴더·프린터·응용 프로그램 같은 네트워크 자원의 사용 권한은 **그 사용자에게 따로 줄 수 있는 것**이다(계정을 만든다고 저절로 생기지 않는다). 만드는 차례:
+  콘솔에서 도메인 트리를 펼쳐 계정을 둘 **컨테이너나 OU를 고른다** → Action 메뉴(한국어판은 「작업」 메뉴)에서 「새로 만들기」 → 「사용자」 → 「새 개체 - 사용자」 첫 쪽에 이름·이니셜·성(고르기), 전체 이름(꼭), 사용자 로그온 이름(꼭) → 둘째 쪽에 암호와 그 확인, 그리고 확인란 넷 → 요약을 보고 「마침」
+- 같은 절의 확인란 넷: **다음 로그온 때 암호를 바꾸게 하기**(User must change password at next logon), **사용자가 암호를 바꾸지 못하게 하기**(User cannot change password), **암호가 만료되지 않게 하기**(Password never expires — 그 계정을 암호 정책에서 빼는 것), **계정을 사용하지 않는 상태로 만들기**(Account is disabled).
+  「Active Directory accounts」 「Settings for default local accounts in Active Directory」 표도 같은 설정을 든다 — 다음 로그온 때 바꾸게 하는 것은 그 사용자만 암호를 알게 하려는 것, 바꾸지 못하게 하는 것은 Guest나 임시 계정을 관리자가 쥐고 있으려는 것, 만료되지 않게 하는 것은 서비스 계정에 강한 암호와 함께 쓰는 것, 사용 안 함은 그 계정으로 로그인하지 못하게 하는 것이다(그 밖의 행 — 되돌릴 수 있는 암호화·스마트 카드·위임·DES·Kerberos 사전 인증 — 은 가져오지 않는다)
+- 같은 문서 「Manage group memberships」: 공유 폴더 같은 자원의 사용 권한은 사람 계정 하나하나보다 **보안 그룹**에 주는 경우가 가장 많아서, 계정이 어느 그룹에 드는지를 관리하는 것이 곧 그 계정이 닿는 자원을 관리하는 것이다. 차례: 계정을 고르고 Action(「작업」) 메뉴 → 「속성」 → Member Of 탭 → 「추가」 → 「그룹 선택」에 그룹 이름 → 「확인」.
+  같은 문서는 암호 재설정(새 암호, 다음 로그온 때 바꾸게 하기, **암호를 너무 많이 틀려 잠긴 계정 풀기** 확인란), 계정 사용 안 함·사용(사용 안 함으로 해도 이미 로그인한 사용자는 그대로지만 새로 로그인하지 못한다), 지우기(지우기 전에 먼저 사용 안 함을 권한다)도 같은 콘솔에서 한다고 적는다
+- 「Active Directory accounts」 「Default local accounts in Active Directory」: 계정은 사용자 이름과 암호 같은 자격 증명으로 그 사람을 확인(인증)하고, 확인한 뒤에는 **그 자원에 명시적으로 준 권한에 따라** 자원 접근을 허락하거나 거부한다. 한 계정을 여러 사람이 함께 쓰지 않게 한다 — 이 문서는 DC의 기본 계정(Administrator·Guest·KRBTGT)을 다루지만, 인증과 권한 부여를 가르는 이 줄은 도메인 계정 일반에 쓴다.
+  새 도메인 계정은 기본으로 Domain Users 그룹에 든다(step 0 항목 「로컬 계정과 기본 그룹」의 「(phase 80 step 4)」 줄). 그 계정의 암호는 도메인의 계정 정책을 따른다(아래 「(phase 80 step 4) … 계정 정책」 항목)
+- **로컬 계정과 도메인 계정**: step 0 항목의 「Security principals」 — 로컬 사용자 계정은 그 컴퓨터의 SAM에 저장되어 그 컴퓨터 자원에만 쓰이고, 도메인에서 만든 계정은 AD 데이터베이스에 저장되어 도메인 자원의 접근을 다루는 데 쓰인다. 「Understanding the Active Directory Logical Model」 — 도메인 계정은 한 번 만들어 그 포리스트에 가입한 어느 컴퓨터에서나 쓴다
+- **PowerShell**: ActiveDirectory 모듈의 `New-ADUser`는 AD 사용자를 만든다. `-SamAccountName`이 꼭 필요하고, `-Path`로 사용자를 둘 컨테이너나 OU를 정하며 주지 않으면 도메인의 사용자 기본 컨테이너에 만든다 — 「New-ADUser」 「Description」. 이름과 이 한 줄만 쓰고 cmdlet 목록은 가져오지 않는다.
+  **ds 명령 대신 이 모듈을 권한다는 문장은 이 step이 읽은 문서에 없다** — 「지금 권하는 도구」로 쓰지 않고, 「같은 일을 하는 PowerShell 명령도 있다」로만 쓴다
+- **ds 명령이 있는 곳과 쓰는 조건**: 지난 판 「Command-Line Reference」의 D 항목에 Dsadd·Dsget·Dsmod·Dsmove·Dsquery·Dsrm이 있다. 쪽마다 같은 말을 적는다 — Windows Server 2008에 들어 있는 명령 줄 도구이고, **AD DS 서버 역할을 설치했을 때** 쓸 수 있으며(Dsrm·Dsmove는 AD LDS 역할로도), 관리자 권한으로 연 명령 프롬프트에서 실행한다 — 각 쪽 첫머리
+- 명령마다 하는 일과 다루는 개체 — 각 쪽 첫머리와 「Commands」 표:
+  - `dsadd`: 디렉터리에 정한 종류의 개체를 **더한다** — computer·contact·group·ou·user(`dsadd user`는 사용자 하나)·quota
+  - `dsmod`: 디렉터리에 이미 있는 개체의 특성을 **고친다** — computer·contact·group·ou·server(DC의 속성)·user·quota·partition
+  - `dsrm`: 개체를 디렉터리에서 **지운다** — 종류를 가리지 않고 DN으로 가리키고, `-subtree`를 주면 그 아래 개체까지 지운다
+  - `dsquery`: 정한 조건으로 디렉터리를 **찾는다** — computer·contact·group·ou·site·server·user·quota·partition, `dsquery *`는 어느 종류든
+  - `dsget`: 개체 하나의 정한 속성을 **보인다** — computer·contact·group(구성원 포함)·ou·server·user·subnet·quota·partition
+  - `dsmove`: 개체 하나를 **도메인 안에서** 다른 자리로 옮기거나(`-newparent <새 부모 DN>`), 옮기지 않고 이름만 바꾼다(`-newname <새 RDN>`)
+- 지금 판 문제 해결 「Use the Directory Service command-line tools…」: 실행 창에 `cmd`를 입력해 연 명령 프롬프트에서 `dsadd user`로 사용자를 만들고(`-samid`, `-pwd`), `dsmod user`로 암호를 재설정하거나(`-pwd`) 다음 로그온 때 바꾸게 하거나(`-mustchpwd`) 계정을 사용 안 함·사용으로 바꾸고(`-disabled`), `dsrm`으로 사용자·그룹·OU를 지운다(OU를 지우면 그 안의 개체도 모두 지워진다).
+  `dsquery`로 사용자·그룹·컴퓨터·OU·DC를 찾고, `dsget user … -memberof`로 그 사용자가 든 그룹을 본다. `dsmod group … -secgrp {yes|no}`는 보안/배포 그룹을, `-scope {l|g|u}`는 도메인 로컬·글로벌·유니버설 범위를 바꾼다(도메인 로컬과 글로벌은 서로 바꿀 수 없다). 그룹은 OU에 두기를 권한다 — 「How to manage users」·「How to manage groups」·「How to manage organizational units」·「How to search Active Directory」
+- **고유 이름**(DN): Win32 「Object Names and Identities」 — 개체의 **상대 고유 이름**(RDN)은 그 개체 자신의 이름(대개 `cn` 특성)이고 같은 그릇 안에서만 겹치지 않으면 된다. **고유 이름**은 그 개체의 RDN 뒤에 뿌리까지 올라가는 조상마다의 RDN을 차례로 이어 붙인 문자열이라 개체의 자리를 품고, 포리스트 안에서 하나뿐이며, 개체를 옮기거나 이름을 바꾸면 바뀐다(예의 꼴: `CN=Users,DC=…,DC=com`) — 「Relative Distinguished Name」, 「Distinguished Name」.
+  Win32 스키마: `cn`(Common-Name)은 개체를 나타내는 이름, `ou`(Organizational-Unit-Name)는 OU의 이름, `dc`(Domain-Component)는 도메인 개체의 이름 특성이고 `dc=도메인이름` 꼴로 보인다 — 각 쪽 첫 줄
+- 같은 사실의 지금 판 풀이: 아래 「(phase 80 step 4) … 그룹 정책」 항목의 「Group Policy scope」 「What is a scope?」가 DN 한 줄을 조각마다 읽는다 — `CN=`은 개체의 이름(사용자면 대개 사람 이름), `OU=`는 그 개체가 든 OU(대개 부서), `DC=` 조각들은 이어서 도메인 이름을 이룬다(`DC=corp,DC=contoso,DC=com` → `corp.contoso.com`, 맨 끝 `DC=com`이 최상위).
+  같은 문서 「Linking」은 OU가 여럿인 DN을 **왼쪽부터 한 조각씩 떼어 가며** 위 그릇을 거슬러 오르는 차례를 보인다 — 왼쪽일수록 안쪽 그릇이다
+- **`dsadd user`의 꼴**(지난 판 「Dsadd user」 「Syntax」·「Parameters」·「Remarks」·「Examples」 — 예의 이름·암호는 옮기지 않는다): `dsadd user <UserDN> [-samid <SAM 이름>] [-pwd {<암호> | *}] [-memberof <그룹 DN> ...] [-mustchpwd {yes | no}] [-disabled {yes | no}] …`
+  - `<UserDN>`은 꼭 필요한 만들 사용자의 DN이다. `-samid`를 주지 않으면 DN의 CN 값 앞 20자로 SAM 계정 이름을 만든다. `-pwd *`이면 암호를 따로 묻는다. `-memberof`는 넣을 그룹의 DN이다. `-mustchpwd`는 다음 로그온 때 암호를 바꾸게 할지(기본 no)다
+  - `-disabled`는 계정을 로그온에 쓰지 못하게 둘지이고, **기본값이 yes**라서 `-disabled no`를 주지 않으면 사용 안 함 상태로 만들어진다 — 「Parameters」의 `-disabled` 행(쪽의 예들이 모두 `-disabled no`를 함께 준다)
+  - 값에 공백이 있으면 따옴표로 감싼다. 쪽의 예는 OU 안에 사용자를 만들며 `-disabled no`·`-pwd`·`-mustchpwd yes`·`-memberof <그룹 DN>`을 함께 준다
+  - 예시 값으로 바꾼 꼴(guide.md 「예시 값」): `dsadd user "CN=user01,OU=영업팀,DC=example,DC=com" -samid user01 -pwd * -memberof "CN=Sales-Users,OU=영업팀,DC=example,DC=com" -disabled no` — 그룹 `Sales-Users`가 OU `영업팀`에 있다고 둔 예이고, 그룹이 다른 자리에 있으면 그 DN을 쓴다
+- (phase 80 step 6, 2026-11-16 IPv4로 다시 받아 확인) 지난 판 「Dsadd user」 「Parameters」: `-samid`는 SAM 계정 이름을 정하고, 주지 않으면 dsadd가 `<UserDN>`의 CN 값 앞 20자로 SAM 계정 이름을 만든다. 본문 예는 SAM 계정 이름을 따로 풀지 않으려고 `-samid`를 빼고 쓴다(CN 값이 `user01`이다).
+  `-pwd *`이면 dsadd가 암호를 묻는다 — 입력한 암호가 화면에 보이는지는 이 쪽에 적혀 있지 않아 쓰지 않는다
+- **`net user`와 ds 명령**: `net user`는 기본으로 그 컴퓨터의 로컬 계정을 다루고 `/domain`을 붙이면 기본 도메인의 DC에서 도메인 계정을 다룬다(step 0 항목 「로컬 계정과 기본 그룹」의 「net user」 줄과 「(phase 80 step 4)」 줄). `net user`가 만든 도메인 사용자는 기본 `CN=Users` 컨테이너로 가지만(위 「조직 구성 단위와 사이트」 항목),
+  ds 명령은 개체를 DN으로 가리켜 자리(OU)를 고르고, 사용자 말고도 그룹·OU·컴퓨터 같은 개체를 다룬다. **시험은 `net user`를 도메인 계정 명령으로 보지 않는다 — E36**
+- **한국어 이름**: 한국어판은 「Active Directory 사용자 및 컴퓨터」, 「새 개체 - 사용자」, 「사용자 로그온 이름」, 「보안 그룹」, 「고유 이름」(distinguished name), 「원격 서버 관리 도구」로 옮긴다. 확인란 넷은 「사용자는 다음 로그온 시 암호를 변경해야 합니다」처럼 문장으로 옮기고, Member Of 탭은 「멤버」 탭과 「구성원」 탭으로 갈려 옮긴다 — **실제 한국어 화면의 확인란·탭 이름은 확인하지 못했다**.
+  **고른 이름**: 도구는 「Active Directory 사용자 및 컴퓨터」(실행 이름 `dsa.msc`), DN은 「고유 이름」(RDN은 「상대 고유 이름」). 확인란은 하는 일을 한국어로 쓰고 영문 이름을 함께 적되 「화면에 이렇게 보인다」로 단정하지 않는다. 탭은 영문 이름 Member Of와 하는 일(그 계정이 든 그룹 목록)로 쓴다. ds 명령은 한국어 이름이 따로 없다 — 하는 일을 한국어로 세운다(guide.md 「글」의 항목 이름 규칙 (2))
+
+쓰인 곳: (phase 80 step 5에서 쓰일 곳) `windows-ad.domain-user-accounts`(「Active Directory 사용자 및 컴퓨터」와 RSAT, `dsa.msc`, 만드는 차례 — 컨테이너나 OU 고르기·새 개체 - 사용자·확인란 넷, 보안 그룹의 구성원으로 넣는 차례, 계정을 만든 것만으로 자원에 닿지 않는다 — 인증 뒤 사용 권한, Domain Users, 로컬 계정과 도메인 계정, 잠긴 계정 풀기),
+(phase 80 step 6에서 쓰일 곳) `windows-ad.ds-commands`(ds 명령 여섯의 하는 일과 개체, 쓰는 조건 — AD DS 역할·관리자 권한 명령 프롬프트, 고유 이름과 RDN, CN·OU·DC 조각, `dsadd user`의 꼴과 `-disabled` 기본값, `net user`와의 차이 — **E36**, `New-ADUser` 한 줄),
+`windows-ad.group-scopes`(`dsmod group`의 `-secgrp`·`-scope`, 도메인 로컬과 글로벌은 서로 바꿀 수 없다), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2026-08-02 #43], [기출 2025-08-24 #38])
+(phase 80 step 5) `windows-ad.domain-user-accounts`(「Manage user accounts in Active Directory Users and Computers」 — 도구와 RSAT·도메인 가입·관리 권한, 만드는 차례(OU 고르기 → 「작업」 → 「새로 만들기」 → 「사용자」 → 「새 개체 - 사용자」 → 암호와 확인란 넷 → 「마침」), 계정을 만들면 로그온할 수 있고 사용 권한은 따로 준다, 보안 그룹에 넣는 차례(「속성」 → Member Of → 「추가」 → 「그룹 선택」 → 「확인」), 암호 재설정·잠긴 계정 풀기·사용 안 함·지우기 전에 사용 안 함; 「Active Directory accounts」 — 확인란 넷의 쓰임, 인증 뒤 자원에 준 권한에 따라 접근; 「Redirect…」 — `Dsa.msc`; 「Security principals」·「Understanding the Active Directory Logical Model」 — 로컬 계정과 도메인 계정; Domain Users는 위 「로컬 계정과 기본 그룹」 항목, 암호 정책은 아래 「계정 정책」 항목), 도식 `domain-user-account`, 문항 n265(계정을 만든 것만으로 모든 공유 폴더가 열리지 않는다 — Domain Users와 사용 권한);
+(phase 80 step 6) `windows-ad.ds-commands`(지난 판 명령 참조 「Dsadd」·「Dsmod」·「Dsrm」·「Dsquery」·「Dsget」·「Dsmove」와 문제 해결 「Use the Directory Service command-line tools…」 — 여섯의 하는 일과 다루는 개체, AD DS 역할을 설치한 서버·관리자 권한 명령 프롬프트, `-subtree`와 OU를 지우면 안의 개체도 지워진다, `dsmod user`의 암호 재설정·다음 로그온 때 바꾸게 하기·사용 안 함, `dsget user … -memberof`와 그룹 구성원, `dsmove`의 옮기기·이름 바꾸기, 디렉터리 서비스 명령 줄 도구라는 이름, 지금 판 명령 참조에는 없고 문제 해결 문서가 다룬다; Win32 「Object Names and Identities」·스키마 특성 셋과 「Group Policy scope」 — 고유 이름의 짜임, 포리스트에서 하나뿐, 옮기거나 이름을 바꾸면 바뀐다, CN·OU·DC 조각과 왼쪽일수록 안쪽 그릇; 「Dsadd user」 — 예 한 줄(`-samid`는 뺐다), `-pwd *`, `-memberof`, `-disabled` 기본값 yes, 따옴표; 「New-ADUser」 — 같은 일을 하는 PowerShell 명령), 도식 `ds-commands`, 문항 n266(고유 이름의 OU 조각이 바뀌는 것은 개체를 옮기는 것이라 `dsmove` — 오답 `dsmod`·`dsquery`·`dsget`은 같은 근거);
+`windows-ad.group-scopes`(문제 해결 「Use the Directory Service command-line tools…」 — `dsmod group`의 `-secgrp`·`-scope`, 도메인 로컬과 글로벌은 서로 곧바로 바꾸지 못한다)
+
+## (phase 80 step 4) Microsoft Learn — 그룹 정책: Group Policy overview for Windows Server, Group Policy processing, Group Policy scope, Group Policy Management Console, gpupdate, Folder Redirection and Roaming User Profiles in Windows and Windows Server, Deploy Folder Redirection with Offline Files, Deploy roaming user profiles; 문제 해결 — Use Group Policy to remotely install software, How to use Group Policy to add the MaxTokenSize registry entry to multiple computers
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-scope
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-management-console
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/gpupdate
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/folder-redirection-rup-overview
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/deploy-folder-redirection
+https://learn.microsoft.com/en-us/windows-server/storage/folder-redirection/deploy-roaming-user-profiles
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/use-group-policy-to-install-software
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/group-policy-add-maxtokensize-registry-entry
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Group Policy overview for Windows Server」 `updated_at` 2026-04-16(`ms.date` 2025-06-10), 「Group Policy processing」 2025-06-16(2025-06-16), 「Group Policy scope」 2025-09-15(2025-06-13), 「Group Policy Management Console」 2026-02-16(2025-05-14) — 넷 다 「Applies to」 Windows Server 2016~2025.
+「gpupdate」 2025-10-22(2017-10-16, Windows Server 2016~2025·Windows 11·10). 「Folder Redirection and Roaming User Profiles…」 2025-05-15(2025-05-15), 「Deploy Folder Redirection with Offline Files」 2025-04-28(2023-03-20), 「Deploy roaming user profiles」 2026-02-16(2025-05-21) — 셋 다 Windows Server 2016~2025·Windows 11·10.
+문제 해결 둘은 2026-02-18(2026-02-12), 적용 대상 — 지원되는 모든 Windows Server. 「Use Group Policy to remotely install software」의 차례는 Windows Server 2003·Windows XP 시절 화면(「Active Directory 사용자 및 컴퓨터」에서 도메인 속성의 「그룹 정책」 탭)으로 적혀 있어, **차례가 아니라 할당·게시라는 사실만** 가져온다.
+한국어판(`ko-kr`)도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역).
+
+- **그룹 정책**: 운영 체제·응용 프로그램·사용자 설정을 한곳에서 정해 관리하는 Windows의 기능이고, Windows Server와 Windows 클라이언트 컴퓨터의 사용자·컴퓨터 설정을 다룬다 — 「Group Policy overview」 첫머리, 「What is a Group Policy」
+- 같은 절: 그룹 정책 설정은 파일 시스템에 로컬로 둘 수도 AD DS에 둘 수도 있다. AD와 함께 쓰면 설정을 **그룹 정책 개체**(GPO)에 담는다 — GPO는 정책 설정·보안 사용 권한·적용 범위를 묶은 것이고, AD 도메인 파티션의 그룹 정책 컨테이너와 각 DC의 SYSVOL 폴더에 있는 그룹 정책 템플릿 두 부분으로 되어 DC끼리 복제된다
+- 같은 절: 설정은 **컴퓨터 구성**(시스템 전체에 걸린다 — 전원 관리·방화벽 규칙 같은 것)과 **사용자 구성**(그 사용자에게만 — 폴더 리디렉션 같은 것) 두 갈래다. GPO를 사이트·도메인·OU에 **연결**하면 그곳이 적용 범위가 된다.
+  컴퓨터 설정은 컴퓨터가 시작할 때, 사용자 설정은 사용자가 로그인할 때 적용되고, 컴퓨터가 시작할 때 그룹 정책 서비스는 그 컴퓨터가 속한 사이트·도메인·OU(바로 위 OU와 그보다 위 OU들)에 연결된 GPO를 찾는다
+- 같은 절: 한 컴퓨터의 로컬 설정은 **로컬 그룹 정책 편집기**(`gpedit.msc`)로, 도메인 전체의 설정은 AD 관련 MMC 스냅인 안의 그룹 정책 개체 편집기로 만들고 관리한다
+- 같은 문서 「What is an OU」: OU는 그룹 정책 설정을 붙일 수 있는 가장 아래 단계의 AD 그릇이라 대부분의 GPO를 OU에 둔다. 도메인 단계에는 특히 **암호 정책**을 둔다. 사이트 단계에 두는 설정은 적다. 위쪽 OU에 연결한 GPO는 기본으로 아래 OU로 상속된다
+- 「Group Policy processing」 첫머리: GPO는 **로컬 GPO → 사이트에 연결된 GPO → 도메인에 연결된 GPO → OU에 연결된 GPO**(중첩된 OU면 부모 OU 다음 자식 OU) 차례로 처리되고, 나중에 적용된 정책이 앞서 적용된 같은 설정을 덮어쓸 수 있다.
+  그래서 사용자·컴퓨터에 가장 가까운 그릇의 GPO가 더 위쪽 그릇의 GPO를 이기고, AD 그릇에 연결된 GPO는 로컬 정책을 이긴다. 강제(Enforced)·상속 차단은 이 기본 동작을 바꾸는 옵션이다(이름만 — 가져오지 않는다). 한 그릇에 GPO를 여럿 연결하면 연결 순서 번호가 가장 낮은 것이 우선한다
+- 같은 문서 「How Group Policy processing works」: 처음 적용(시작·로그온) 뒤에는 배경에서 기본 90분마다(무작위로 최대 30분을 더해) 다시 적용한다. 모든 확장이 배경에서 처리되지는 않는다 — **폴더 리디렉션은 사용자가 로그온할 때만, 소프트웨어 설치 정책은 컴퓨터가 시작할 때와 사용자가 로그온할 때만** 처리된다. 스크립트 확장은 배경에서도 처리되지만 스크립트 자체는 컴퓨터 시작·종료와 사용자 로그온·로그오프 때만 실행된다
+- 「Group Policy scope」 「Linking」: GPO를 연결할 수 있는 것은 로컬(모든 Windows 컴퓨터에 하나씩 있고 가장 먼저 적용되며 도메인 기반 GPO가 덮을 수 있다), 사이트, 도메인, OU이고, **GPO를 사용자 개체에 직접 연결할 수는 없다**.
+  「What is a scope?」: 사용자·컴퓨터의 DN을 보면 그 범위를 알 수 있다 — DN의 풀이는 위 「도메인 사용자 계정과 ds 명령」 항목의 「고유 이름」 줄
+- 「Group Policy Management Console」: **그룹 정책 관리 콘솔**(GPMC)은 GPO를 한곳에서 관리하는 MMC 기반 도구이고 Windows Server와 RSAT에 들어 있다. 시작 메뉴에서 Group Policy Management를 찾아 열고, GPO를 만들고, 「편집」을 고르면 **그룹 정책 관리 편집기**가 열린다.
+  GPO를 쓰는 주된 방법은 사이트·도메인·OU 세 종류의 AD 그릇에 연결하는 것이고(GPO 하나를 여러 그릇에 연결할 수 있다), GPO 자체는 연결한 OU 안이 아니라 도메인 단위로 저장된다. 연결하려면 그 사이트·도메인·OU의 수정 사용 권한이 있어야 하고, 기본으로 Domain Admins·Enterprise Admins만 갖는다 — 「Prerequisites」·「Create an unlinked GPO」·「Edit an existing GPO」·「Link a GPO」.
+  문제 해결 「How to use Group Policy to add the MaxTokenSize registry entry…」: 실행 창에 `gpmc.msc`를 입력해 GPMC를 연다(Windows Server 2008·2008 R2 절)
+- **소프트웨어 설치**: 문제 해결 「Use Group Policy to remotely install software」 — 그룹 정책으로 프로그램을 클라이언트 컴퓨터나 사용자에게 자동으로 배포할 수 있다. **할당**(assign): 사용자에게 할당하면 그 사용자가 로그온할 때, 컴퓨터에 할당하면 컴퓨터가 시작할 때 설치된다(컴퓨터에 할당한 것은 그 컴퓨터에 로그온하는 모든 사용자가 쓴다).
+  **게시**(publish): 사용자에게 게시하면 그 사용자가 로그온했을 때 「프로그램 추가/제거」에 나타나 거기서 골라 설치한다. 먼저 Windows Installer 패키지(.msi)를 둔 공유 폴더(배포 지점)를 만들고, GPO의 컴퓨터 구성이나 사용자 구성의 소프트웨어 설정 아래 「소프트웨어 설치」에 그 패키지를 UNC 경로로 더한다 — 「Summary」·「Create a distribution point」·「Assign a package」·「Publish a package」
+- **폴더 리디렉션과 로밍 사용자 프로필**: 「Folder Redirection and Roaming User Profiles…」 첫머리 — **폴더 리디렉션**은 「문서」 같은 알려진 폴더의 경로를 손으로 또는 **그룹 정책으로** 다른 곳(대개 파일 공유)으로 바꿔, 사용자가 네트워크의 어느 컴퓨터에서나 그 폴더의 파일을 쓰게 한다.
+  **로밍 사용자 프로필**은 사용자 프로필을 파일 공유에 두어 여러 컴퓨터에서 같은 운영 체제·응용 프로그램 설정을 받게 한다 — 로그인할 때 서버의 프로필을 내려받아 로컬 프로필과 합치고, 로그아웃할 때 그동안 바뀐 것을 서버 쪽에 합친다. 보통 도메인 계정에 켠다
+- 「Deploy Folder Redirection with Offline Files」 「Step 5」: GPO의 사용자 구성 > 정책 > Windows 설정 > 폴더 리디렉션에서 리디렉션할 폴더(예: 문서)를 고른다. 「Deploy roaming user profiles」 「Step 5」·「Step 6」: 로밍 프로필 경로는 AD의 사용자 계정 속성(프로필 경로)에 넣거나,
+  GPO의 컴퓨터 구성 > 정책 > 관리 템플릿 > 시스템 > 사용자 프로필의 설정으로 컴퓨터에 건다 — 둘을 다 하면 컴퓨터 쪽 정책이 우선한다. 곧 **「어느 PC에서 로그온해도 같은 파일과 환경」은 그룹 정책 자체가 아니라 그룹 정책으로 설정하는 이 두 기능의 일**이다
+- **로그온 스크립트**: 「Site functions」(위 「조직 구성 단위와 사이트」 항목) — 각 DC의 SYSVOL에는 GPO와 함께 시작·종료 스크립트와 로그온·로그오프 스크립트가 들어 도메인 전체로 복제된다. 위 「How Group Policy processing works」 — 스크립트는 컴퓨터 시작·종료, 사용자 로그온·로그오프 때만 실행된다
+- **`gpupdate`**: 그룹 정책 설정을 새로 적용하는 명령이다. 기본으로 사용자·컴퓨터 설정 둘 다, **바뀐 설정만** 적용하고, `/force`는 바뀌지 않은 것까지 모두 다시 적용한다. `/target:{computer|user}`로 한쪽만 고른다.
+  `/logoff`·`/boot`는 배경 새로 고침에서 처리되지 않는 확장 — 사용자 대상 소프트웨어 설치·폴더 리디렉션(로그온 때), 컴퓨터 대상 소프트웨어 설치(시작 때) — 을 위해 적용 뒤 로그오프하거나 다시 시작한다(그런 확장이 없으면 아무 일도 하지 않는다) — 「Syntax」·「Parameters」·「Examples」
+- **보안 설정**: 암호 정책·계정 잠금 정책은 아래 「(phase 80 step 4) … 계정 정책」 항목
+- **한국어 이름**: 한국어판은 「그룹 정책」, 「그룹 정책 개체」(GPO), 「그룹 정책 관리 콘솔」(GPMC), 「그룹 정책 관리 편집기」, 「로컬 그룹 정책 편집기」, 「컴퓨터 구성」·「사용자 구성」, 「소프트웨어 설치」와 소프트웨어 「할당」·「게시」, 「폴더 리디렉션」, 「로밍 사용자 프로필」, GPO 「연결」로 옮긴다 — 고른 이름도 같다
+
+쓰인 곳: (phase 80 step 7에서 쓰일 곳) `windows-ad.group-policy`(그룹 정책과 GPO, 컴퓨터 구성·사용자 구성, 사이트·도메인·OU에 연결 — 사용자 개체·그룹에는 연결하지 않는다, 적용 차례 로컬 → 사이트 → 도메인 → OU와 덮어쓰기, 시작·로그온 때 적용과 90분 배경 새로 고침, 소프트웨어 설치의 할당·게시, 폴더 리디렉션·로밍 사용자 프로필, 로그온 스크립트, GPMC·`gpmc.msc`·그룹 정책 관리 편집기, `gpedit.msc`, `gpupdate`),
+`windows-ad.organizational-unit`(OU는 그룹 정책을 붙이는 가장 아래 그릇, GPO는 사이트·도메인·OU에 연결), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2024-08-25 #34])
+(phase 80 step 5) `windows-ad.organizational-unit`(「Group Policy overview」 — 그룹 정책과 GPO의 뜻, OU에 연결하면 그 안의 사용자·컴퓨터에 적용, 위쪽 OU의 GPO는 아래 OU로 상속; 「Group Policy Management Console」 — GPO는 연결한 OU 안이 아니라 도메인 단위로 저장된다; 「Group Policy scope」 — 사용자 개체에는 연결할 수 없고 연결 대상은 로컬·사이트·도메인·OU라, 본문은 「그룹이나 사용자 계정에 연결하지는 않는다」로 쓴다)
+(phase 80 step 7) `windows-ad.group-policy`(「Group Policy overview」 — 그룹 정책과 GPO, DC에 저장되어 DC끼리 복제, 컴퓨터 구성(전원 관리·방화벽 규칙)·사용자 구성(폴더 리디렉션), 시작·로그온 때 적용, 사이트·도메인·OU에 연결하면 적용 범위, 로컬 GPO; 「Group Policy processing」 — 로컬 → 사이트 → 도메인 → OU(부모 OU 다음 자식 OU) 차례와 덮어쓰기, 가까운 그릇이 이긴다, 한 그릇의 여러 GPO는 연결 순서 번호가 낮은 것이 우선, 90분(+최대 30분) 배경 새로 고침, 소프트웨어 설치·폴더 리디렉션은 시작·로그온 때만, 스크립트는 시작·종료·로그온·로그오프 때만 실행 — 본문은 로그오프를 앞 개념과 같은 말인 로그아웃으로 쓴다; 「Group Policy scope」 — 사용자 개체에는 연결하지 않는다, GPO 하나를 여러 곳에; 「Group Policy Management Console」·「MaxTokenSize」 문제 해결 — GPMC와 RSAT, 시작 메뉴의 Group Policy Management와 실행 창의 `gpmc.msc`, GPO 만들기 → 「편집」 → 그룹 정책 관리 편집기 → 연결, 연결에 필요한 사용 권한; 「Use Group Policy to remotely install software」 — `.msi` 패키지를 공유 폴더에 두고 GPO의 소프트웨어 설치에 더한다, 할당(컴퓨터는 시작할 때 — 그 컴퓨터의 모든 사용자가 쓴다, 사용자는 로그온할 때)과 게시(로그온했을 때 목록에 나타나 골라 설치 — 본문은 화면 이름 「프로그램 추가/제거」를 쓰지 않고 「설치할 수 있는 프로그램 목록」으로 쓴다); 「Folder Redirection and Roaming User Profiles…」·「Deploy Folder Redirection…」·「Deploy roaming user profiles」 — 두 기능의 하는 일, 폴더 리디렉션은 사용자 구성, 프로필 경로는 계정 속성이나 GPO의 컴퓨터 구성; 「Site functions」 — 스크립트는 GPO와 함께 SYSVOL에 저장되어 복제; 「gpupdate」 — 바뀐 설정만·`/force`·`/boot`·`/logoff`; 보안 설정은 아래 「계정 정책」 항목; 본문 예의 「켬·끔」 설정은 특정 설정이 아니라 차례를 보이려고 둔 것이다),
+도식 `group-policy-link`, 문항 n268(인사팀 OU에 GPO를 연결하고 컴퓨터 구성의 소프트웨어 설치에 할당 — 오답의 공유 폴더 읽기 사용 권한·로컬 그룹 정책 편집기·위임은 같은 근거와 위 「조직 구성 단위와 사이트」 항목)·n269(도메인 GPO 다음 OU GPO가 적용되어 OU 쪽 값이 남는다)
+(phase 80 step 8에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`(「Group Policy overview」 — 한 컴퓨터의 로컬 설정은 로컬 그룹 정책 편집기 `gpedit.msc`로 만든다)
+
+## (phase 80 step 4) Microsoft Learn — 계정 정책: Account Policies, Password Policy, Enforce password history, Maximum password age, Minimum password age, Minimum password length, Password must meet complexity requirements, Account Lockout Policy, Account lockout threshold, Account lockout duration, Reset account lockout counter after; Windows 11 security book — Advanced credential protection
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-policies
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-policy
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/enforce-password-history
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/maximum-password-age
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/minimum-password-age
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/minimum-password-length
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-policy
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-threshold
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-lockout-duration
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/reset-account-lockout-counter-after
+https://learn.microsoft.com/en-us/windows/security/book/identity-protection-advanced-credential-protection
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 계정 정책 문서 열하나는 모두 `updated_at` 2026-04-27이고 `ms.date`는 쪽마다 다르다 — Account Policies·Password Policy·Enforce password history·Maximum password age 2017-04-19, Account Lockout Policy 2018-10-11, Account lockout threshold·Reset account lockout counter after 2018-11-02, Minimum password age 2018-11-13, Account lockout duration 2021-08-16, Minimum password length 2022-03-30, Password must meet complexity requirements 2023-06-07.
+「Applies to」는 모두 Windows 11·10이지만, 쪽마다 기본값 표가 기본 도메인 정책(Default domain policy)·기본 DC 정책·독립 실행 서버·DC·구성원 서버·클라이언트의 값을 함께 싣는다(서버의 판은 따로 적지 않는다). 이 열하나의 한국어판(같은 날짜)은 **번역되지 않은 영문 그대로**다.
+「Windows 11 security book — Advanced credential protection」 2025-11-18(2025-11-13, Windows 11), 한국어판 2026-10-05.
+
+- **계정 정책이 정해지는 자리**: 「Account Policies」 — 그룹 정책으로 정하는 계정 정책(암호 정책·계정 잠금 정책·Kerberos 정책)은 **도메인 단계에서** 적용되고, 도메인의 계정 정책이 그 도메인 구성원 컴퓨터의 기본 로컬 계정 정책이 된다. **도메인마다 계정 정책은 하나뿐이다** — 기본 도메인 정책(Default Domain Policy)이나, 도메인 루트에 연결해 그보다 앞서게 한 정책에서 정해야 하고, 도메인의 DC들이 이 값을 기본 도메인 정책 GPO에서 읽어 강제한다.
+  OU에 다른 계정 정책을 두면 그 OU에 든 컴퓨터의 **로컬 계정**에만 걸린다(그 컴퓨터에 로컬로 로그인할 때) — 첫머리, Note. 「Password Policy」: 설정의 자리는 컴퓨터 구성\Windows 설정\보안 설정\계정 정책\암호 정책이고 GPMC로 연다. 그룹마다 다른 정책은 세분화된 암호 정책으로 한다(이름만 — 가져오지 않는다) — 첫머리
+- 그래서 도메인 사용자의 암호 조건은 **사용자가 고르지 않고 도메인 정책이 정한다**. 「Password must meet complexity requirements」: 복잡성 조건은 **암호를 만들거나 바꿀 때** 검사한다 — 「Reference」. (계정 하나를 이 정책에서 빼는 것은 관리자가 계정에 「암호가 만료되지 않게 하기」를 거는 일이다 — 위 「도메인 사용자 계정과 ds 명령」 항목)
+- **암호 정책 설정**(각 쪽 「Reference」·「Possible values」·「Default values」 — 기본값은 「기본 도메인 정책 / 독립 실행 서버」 순, DC와 구성원 서버의 실제 적용값은 기본 도메인 정책과 같다):
+  - **Minimum password length**: 암호가 가져야 할 가장 적은 글자 수. 0~14(0이면 암호가 없어도 된다). 기본 7자 / 0자. 8 이상을 권한다
+  - **Password must meet complexity requirements**: 켜면 암호가 (1) 계정 이름(samAccountName) 전체나 전체 이름(displayName)을 쉼표·마침표·하이픈·밑줄·공백 등으로 나눈 3자 이상 조각을 담지 않고(대소문자 가리지 않음, 계정 이름이 3자 미만이면 이 검사는 건너뛴다)
+    (2) 다섯 갈래 — 영문 대문자, 영문 소문자, 숫자 0~9, 특수 문자(통화 기호는 빼고), 대소문자가 없는 알파벳 문자(아시아 언어 글자 등) — 가운데 **셋 이상**의 글자를 담아야 한다. 켬·끔. 기본 켬 / 끔
+  - **Maximum password age**: 암호를 바꾸라고 요구하기 전까지 쓸 수 있는 날 수. 1~999일, 0이면 만료되지 않는다. 기본 42일 / 42일
+  - **Minimum password age**: 암호를 바꾼 뒤 다시 바꿀 수 있기까지 그 암호를 써야 하는 날 수. 0~998일(0이면 바로 바꿀 수 있다), 최대 사용 기간보다 짧아야 한다. 기본 1일 / 0일. 0이면 기록 기억 수만큼 잇달아 바꿔 옛 암호로 돌아갈 수 있다
+  - **Enforce password history**: 옛 암호를 다시 쓰려면 그 사이에 거쳐야 할 새 암호의 수(기억할 암호 수). 0~24. 기본 24개 / 0개
+- **계정 잠금 정책 설정**(같은 방식):
+  - **Account lockout threshold**: 계정을 잠그는 실패한 로그인 횟수. 1~999, 0이면 잠그지 않는다. 기본 0회 / 0회(곧 기본으로는 잠그지 않는다)
+  - **Account lockout duration**: 잠긴 계정이 저절로 풀리기까지의 분. 1~99,999분, **0이면 관리자가 풀 때까지 잠겨 있다**. 기본 정의 안 됨 / 해당 없음 — 임계값을 정해야 뜻이 있다
+  - **Reset account lockout counter after**: 로그인에 실패한 때부터 실패 횟수가 0으로 되돌아가기까지 지나야 하는 분. 1~99,999분. 기본 정의 안 됨 / 해당 없음
+- **셋의 관계**: 임계값이 0보다 크면 **잠금 기간 ≥ 초기화 시간**이어야 한다 — 「Account lockout threshold」·「Account lockout duration」·「Reset account lockout counter after」 「Reference」. 잠금 정책은 DC가 로그온 시도를 지켜보다가 정한 횟수만큼 틀리면 그 계정을 정한 시간 동안 쓰지 못하게 하는 것이다 — 「Account Lockout Policy」 첫머리
+- **잠긴 동안**: 잠긴 계정은 관리자가 풀거나 잠금 기간이 끝날 때까지 **쓸 수 없다** — 「Account lockout threshold」 「Reference」·「Countermeasure」. 「바른 암호를 넣어도 로그온하지 못한다」를 그 말 그대로 적은 문장은 없다 — 이 「쓸 수 없다」를 그렇게 읽는다.
+  관리자가 푸는 자리는 「Active Directory 사용자 및 컴퓨터」의 암호 재설정 대화 상자에 있는 잠긴 계정 풀기 확인란이다(위 「도메인 사용자 계정과 ds 명령」 항목)
+- (phase 80 step 7, 2026-11-16 Microsoft Learn에서 다시 받아 확인 — 「Account lockout threshold」 「Reference」·「Vulnerability」) **잠금 정책을 두는 까닭**: 무차별 대입 암호 공격은 프로그램으로 수천·수백만 개의 암호 조합을 계정에 잇달아 넣어 본다. 실패할 수 있는 로그인 횟수를 제한하면 이런 공격이 거의 통하지 않게 된다.
+  같은 쪽은 임계값을 두면 남이 일부러 계정을 잠가 버리는 서비스 거부 공격의 위험이 생긴다는 것과, 기본 제공 Administrator 계정은 이 정책에서 빠진다는 것도 적는다 — 둘은 가져오지 않는다
+- **새 Windows 11 기기의 기본값**: 「Windows 11 security book」 「Account lockout policies」 — Windows 11을 새로 설치한 기기는 계정 잠금 정책이 기본으로 켜져 있다: 임계값 10회, 잠금 기간 10분, 초기화 10분, Administrator 계정 잠금 허용 켬. 위 표(기본 도메인 정책의 0회 등)와 다르므로, 본문에 기본값을 쓰면 **어느 쪽의 기본값인지 밝힌다**
+- **한국어 이름**: 위 설정 문서 열하나의 한국어판은 번역되지 않아 설정 이름을 영문으로만 보인다. learn.microsoft.com 한국어판에서 확인한 설정 이름은 「Windows 11 보안 책」의 **「계정 잠금 임계값」·「계정 잠금 기간」** 둘이고(같은 쪽이 Reset account lockout counter after를 「이후 계정 잠금 다시 설정 카운터」로 옮긴 것은 기계 번역이라 쓰지 않는다), 「계정 잠금 정책」·「암호 정책」·「기본 도메인 정책」은 「도메인 모델 검토하기」·「Windows 11 보안 책」 한국어판에 있다.
+  **나머지 설정(최소 암호 길이 등)의 한국어 화면 이름은 확인하지 못했다**. 고른 방식: 항목 이름은 영문 설정 이름을 함께 적고, 한국어 이름은 그 영문 이름의 뜻을 옮긴 말로 쓰되 「한국어 화면에 이렇게 보인다」로 단정하지 않는다
+
+쓰인 곳: (phase 80 step 7에서 쓰일 곳) `windows-ad.password-lockout-policy`(계정 정책은 도메인 단계 — 도메인마다 하나, 기본 도메인 정책, OU에 둔 계정 정책은 로컬 계정에만, 암호 정책 다섯과 잠금 정책 셋의 하는 일·값의 범위·기본값과 판, 셋의 관계, 잠긴 동안 쓸 수 없다, 새 Windows 11 기기의 기본값, 사용자는 암호 조건을 고르지 못한다),
+`windows-ad.group-policy`(암호·계정 잠금 정책은 그룹 정책의 보안 설정이고 도메인에 연결된 GPO에서 정한다), `windows-ad.domain-user-accounts`(암호는 도메인 정책을 따른다), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2024-08-25 #34], [기출 2026-08-02 #43])
+(phase 80 step 7) `windows-ad.password-lockout-policy`(「Account Policies」·「Password Policy」·「Account Lockout Policy」 — 두 정책은 GPO 컴퓨터 구성의 보안 설정 아래 계정 정책에 있다, 도메인마다 하나·기본 도메인 정책이나 그보다 우선하게 한 도메인 GPO에 정하고 DC가 지킨다, OU에 둔 계정 정책은 로컬 계정에만; 「Account lockout threshold」 — 무차별 대입 공격을 막는 까닭; 설정 여덟의 하는 일·값의 범위·기본 도메인 정책의 기본값(최소 암호 길이 7자와 8자 이상 권고, 복잡성 켬과 두 가지 검사, 최대 42일, 최소 1일, 기억 24개, 임계값 0회, 잠금 기간·초기화 시간 정의 안 됨), 독립 실행 서버의 기본값, 새 Windows 11 기기의 기본값; 잠금 기간 ≥ 초기화 시간, 0이면 관리자가 풀 때까지, 잠긴 동안 쓸 수 없다 — 바른 암호를 넣어도 로그온할 수 없다로 쓴다; 잠긴 계정 풀기는 위 「도메인 사용자 계정과 ds 명령」 항목; 계산 예의 5회·30분·30분과 12자는 예시 값),
+도식 `account-lockout`, 문항 n270(임계값 3회·잠금 기간 20분이면 세 번째로 틀린 9시 정각부터 20분 뒤인 9시 20분에 풀린다 — 오답의 9시 3분·곧바로·관리자가 풀 때까지는 같은 근거). 설정의 한국어 이름은 위 「한국어 이름」 줄대로 「계정 잠금 임계값」·「계정 잠금 기간」만 확인된 이름이고, 나머지(최소 암호 길이·암호 복잡성 조건·최대 암호 사용 기간·최소 암호 사용 기간·최근 암호 기억·실패 횟수 초기화 시간)는 영문 이름의 뜻을 옮긴 말이다 — 본문은 영문 설정 이름을 함께 적고 화면 이름이라고 단정하지 않는다
+
+## (phase 80 step 8) Microsoft Learn — MMC와 실행 이름: What is Microsoft Management Console?, mmc, start, ADMX_WindowsExplorer Policy CSP, Configure NDES to use a domain user account, Tools to use with AppLocker, Delete saved logs from Event Viewer; Windows 드라이버 문서 — Universal Serial Bus Viewer in Windows, Look for potential memory leaks with PerfMon; .NET Framework 문서 — Certmgr.exe (Certificate Manager Tool)
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/what-is-microsoft-management-console
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mmc
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start
+https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-admx-windowsexplorer
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/create-domain-user-account-ndes-service-account
+https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/applocker/tools-to-use-with-applocker
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/system-management-components/delete-saved-log-from-event-viewer
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/usbview
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/determining-whether-a-leak-exists
+https://learn.microsoft.com/en-us/dotnet/framework/tools/certmgr-exe-certificate-manager-tool
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「What is Microsoft Management Console?」 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), 「mmc」 2026-02-16(2017-10-16)·「start」 2026-04-16(2026-04-16) — 둘 다 「Applies to」 Windows Server 2016~2025·Windows 11·10,
+「ADMX_WindowsExplorer Policy CSP」 2026-10-23(2026-10-14, Windows 10 2004 이후·Windows 11), NDES 문서 2026-04-21(2023-04-03, Windows Server 2016~2025), 「Tools to use with AppLocker」 2025-02-24(2024-09-11, Windows 11·10·Windows Server 2016~2025),
+「Delete saved logs from Event Viewer」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트), Windows 드라이버 문서 둘 2025-07-23(2025-07-11·2025-07-10), 「Certmgr.exe」 2023-05-22(2023-05-18, .NET Framework). 한국어판도 받았다(`updated_at` 2025-02~2026-10, 기계 번역).
+
+- **MMC**(Microsoft Management Console)는 관리 도구를 담는 틀이다. 하드웨어·소프트웨어·네트워크 구성 요소를 관리하는 도구 묶음을 **콘솔**이라 부르고, MMC로 콘솔을 만들고 저장하고 연다. **스냅인**은 MMC 안에 얹혀 도는 관리 도구 하나다.
+  MMC는 여러 스냅인을 한 화면에 함께 올려 여러 서비스를 한 인터페이스로 관리하게 하고, 필요한 스냅인만 골라 콘솔을 꾸밀 수 있다(로컬 컴퓨터와 원격 컴퓨터를 관리하는 도구를 함께 넣을 수도 있다) — 「What is Microsoft Management Console?」 「More information」
+- **콘솔 파일 `.msc`**: 저장한 콘솔은 확장자 `.msc` 파일이다. `mmc <경로>\<파일 이름>.msc`는 MMC를 띄워 그 콘솔을 열고, 파일을 주지 않으면 빈 새 콘솔을 연다(`/a`는 콘솔을 고치는 작성자 모드). 이런 명령 줄은 시작 메뉴의 실행(Run), 명령 프롬프트 창, 바로 가기, 배치 파일 어디에서 불러도 같게 동작한다 — 「mmc」 「Syntax」·「Parameters」·「Remarks」
+- **실행 창**: Windows 키 + R을 누르면 「실행(Run)」 대화 상자가 열리고, 거기에 실행 이름을 넣어 도구를 연다 — 「Universal Serial Bus Viewer in Windows」 「Use Device Manager to display USB information」(`devmgmt.msc`), 「Look for potential memory leaks with PerfMon」 첫머리(`perfmon`)
+- **도구와 실행 이름**(문서가 보이는 것만):
+  - **컴퓨터 관리** `compmgmt.msc` — 이벤트 뷰어·장치 관리자·디스크 관리 같은 주요 관리 도구를 한 콘솔에 모은 도구이고, 많은 기능은 관리자라야 쓸 수 있다(「ADMX_WindowsExplorer Policy CSP」 「NoManageMyComputerVerb」). 콘솔 트리의 시스템 도구 아래에 「로컬 사용자 및 그룹」이 있다(NDES 문서 「Add the NDES service account to the local IIS_IUSRS group」)
+  - **장치 관리자** `devmgmt.msc` — 실행 대화 상자에 넣는다(「Universal Serial Bus Viewer in Windows」). 컴퓨터 관리 안에도 있다(위 줄)
+  - **로컬 그룹 정책 편집기** `gpedit.msc` — 위 「(phase 80 step 4) Microsoft Learn — 그룹 정책」 항목
+  - **로컬 보안 정책** `secpol.msc` — 로컬 보안 정책 MMC 스냅인(「Tools to use with AppLocker」 1번 항목)
+  - **이벤트 뷰어** `eventvwr.msc` — 「Delete saved logs from Event Viewer」 「Symptoms」. 이벤트 뷰어가 무엇인지는 아래 「이벤트 뷰어와 로그」 항목
+  - **인증서 관리자** `certmgr.msc` — 아래 「인증서와 파일 형식」 항목
+  - **성능 모니터** `perfmon` — 실행 대화 상자에 넣는다(「Look for potential memory leaks with PerfMon」). 이 step이 읽은 Windows 문서는 성능 모니터의 실행 이름으로 `perfmon`만 보인다 — `perfmon.msc`를 보이는 Windows 문서는 찾지 못했다. 성능 모니터는 아래 「성능 모니터·리소스 모니터」 항목
+- **`.msc`를 빼고 적은 이름**: 명령 프롬프트(`Cmd.exe`)는 입력한 첫 낱말이 명령도 아니고 확장자가 붙은 기존 파일의 경로도 아니면, 환경 변수 PATHEXT에 적힌 확장자를 그 차례대로 붙여 가며 찾는다. PATHEXT의 기본값은 `.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC`라 **`.MSC`가 들어 있다** — 「start」 「Remarks」.
+  .NET Framework 문서 「Certmgr.exe」는, Certmgr.msc가 대개 Windows 시스템 디렉터리에 있고 Path 환경 변수에서 그 디렉터리가 SDK 도구의 디렉터리보다 앞서기 때문에 명령 줄에 `certmgr`만 적어도 인증서 MMC 스냅인이 열릴 수 있다고 적는다 — 「Note」.
+  `compmgmt`를 두고 이것을 말한 문서와, 실행 창(Windows 키 + R)도 PATHEXT로 확장자를 찾는지 말한 문서는 찾지 못했다 — `exam-notes.md` **E37**
+- **한국어 이름**: 「컴퓨터 관리」(ADMX_WindowsExplorer·NDES 한국어판), 「장치 관리자」(ADMX_WindowsExplorer 한국어판), 「로컬 보안 정책」(AppLocker 한국어판 — 「로컬 보안 정책 스냅인(secpol.msc)」), 「이벤트 뷰어」·「성능 모니터」(여러 한국어판), 「스냅인」(What is MMC 한국어판), MMC는 한국어판도 영문 이름.
+  실행(Run) 대화 상자는 한국어판이 「Windows 키+R을 선택하고 팝업 상자에」로 옮겨 화면 이름을 확인하지 못했다 — 고른 이름: 기출이 쓰는 「실행 창」을 쓰고, Windows 키 + R로 연다고 함께 적는다
+- (phase 80 step 9, 2026-11-16에 「start」를 IPv4로 다시 받아 확인 — `updated_at` 2026-04-16) 「start」 「Remarks」 첫 줄: 실행 파일이 아닌 파일도 그 파일 이름을 명령처럼 입력하면 그 파일 형식에 등록된 연결(file association)로 열린다 — 등록된 연결이 있는 파일 형식이면 무엇이든 그렇다. 본문은 「명령 프롬프트에 `.msc` 파일의 이름을 입력하면 MMC로 열린다」로 쓴다
+
+쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`(MMC·콘솔·스냅인, 콘솔 파일 `.msc`, 실행 창과 Windows 키 + R, 도구와 실행 이름 일곱, `.msc`를 뺀 이름과 PATHEXT — E37), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-08-24 #41], [기출 2024-08-25 #37])
+(phase 80 step 9) `windows-admin-tools.mmc-run-commands`(위 줄들 — MMC·스냅인·콘솔과 `.msc`, 실행 창 Windows 키 + R과 Enter, 명령 프롬프트에서 파일 이름을 명령처럼 입력하면 연결된 프로그램으로 열린다, 도구 일곱과 실행 이름 — 컴퓨터 관리(관리 도구를 한 콘솔에 모았다, 시스템 도구 아래 「로컬 사용자 및 그룹」, 많은 기능은 관리자만), 인증서 관리자(현재 사용자의 인증서를 보고·내보내고·가져오고·지운다, 관리자가 아니면 자기 계정의 인증서만 — 아래 「인증서와 파일 형식」 항목), 성능 모니터(`perfmon.exe`가 MMC에 스냅인을 얹어 연다 — 아래 「성능 모니터·리소스 모니터」 항목), PATHEXT와 E37 줄; 장치 관리자·로컬 보안 정책·로컬 그룹 정책 편집기의 보안 설정은 아래 「(phase 80 step 9) … 로컬 보안 정책과 장치 관리자」 항목),
+도식 `run-commands`, 문항 n271(`secpol.msc`로 여는 로컬 보안 정책에서 할 수 있는 일 — 오답의 장치 관리자·인증서 관리자·이벤트 뷰어의 보안 로그는 같은 근거와 아래 「이벤트 뷰어와 로그」 항목)·n272(컴퓨터 관리 한 콘솔에 이벤트 뷰어·장치 관리자가 함께 있다)
+
+## (phase 80 step 9) Microsoft Learn — 로컬 보안 정책과 장치 관리자: Configure security policy settings, Security policy settings; Windows 드라이버 문서 — Using Device Manager
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/how-to-configure-security-policy-settings
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/security-policy-settings
+https://learn.microsoft.com/en-us/windows-hardware/drivers/install/using-device-manager
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Configure security policy settings」 `updated_at` 2026-04-27(`ms.date` 2023-06-07)·「Security policy settings」 2026-04-27(2017-04-19) — 둘 다 「Applies to」 Windows 11·10, 한국어판(같은 날짜)은 번역되지 않은 영문 그대로다.
+「Using Device Manager」 2025-04-23(2025-04-22, Windows 드라이버 문서), 한국어판 「장치 관리자 사용」 2026-10-24(기계 번역 — 본문은 「디바이스 관리자」로 옮기고 제목만 「장치 관리자」). Windows Server를 적용 대상으로 따로 적은 지금 판 문서는 찾지 못했다 — `secpol.msc`가 Windows Server 2016~2025의 로컬 보안 정책 스냅인이라는 것은 위 「Tools to use with AppLocker」 줄이 근거다
+
+- **로컬 보안 정책**(`secpol.msc`): 콘솔 트리의 보안 설정 아래에서 계정 정책을 고르면 암호 정책과 계정 잠금 정책을, 로컬 정책을 고르면 감사 정책(Audit Policy)·사용자 권한 할당(User Rights Assignment)·보안 옵션(Security Options)을 고친다. 이렇게 하려면 그 로컬 장치의 Administrators 권한이 있어야 한다.
+  로컬 설정을 고칠 수 없게 되어 있으면 GPO가 그 설정을 정하고 있다는 뜻이다. 일부 설정은 다시 시작해야 적용되고, 사용자 권한 할당의 변경은 그 계정이 다음에 로그온할 때 적용된다 — 「Configure security policy settings」 「To configure a setting using the Local Security Policy console」
+- **로컬 그룹 정책 편집기**(`gpedit.msc`)에서는 컴퓨터 구성 > Windows 설정 > 보안 설정 아래에서 같은 계정 정책·로컬 정책을 고친다. 네트워크의 많은 장치에 보안 설정을 걸려면 그룹 정책 관리 콘솔을 쓴다 — 같은 문서 「To configure a security policy setting using the Local Group Policy Editor console」
+- 「Security policy settings」: 감사 정책은 보안 이벤트를 그 컴퓨터의 보안 로그에 남길지와 어떤 종류(성공·실패·둘 다)를 남길지 정한다. 사용자 권한 할당은 그 장치에서 로그인 권한이나 특권을 가진 사용자·그룹을 정한다 — 「Local Policies」
+- **장치 관리자**는 장치마다 장치 종류·장치 상태·제조사·장치별 속성과 그 장치의 드라이버 정보를 보여 준다. 컴퓨터를 시작하는 데 필요하지 않은 장치에 문제가 있으면 그 장치 이름 옆에 표시를 하고, 문제를 설명하는 오류 메시지도 보여 준다.
+  시작 메뉴 검색으로 열거나, 파일 탐색기의 「이 PC」에서 관리를 고르면 열리는 창의 시스템 도구 목록에서 연다 — 「Using Device Manager」(그 창이 컴퓨터 관리라는 것은 위 「ADMX_WindowsExplorer Policy CSP」 줄 — 컴퓨터 관리가 장치 관리자를 담는다). 표시의 색(노란 느낌표)은 쓰지 않는다
+- **쓰지 않는 것**: 보안 옵션 하나하나, 고급 감사 정책 구성, 보안 템플릿, 장치 관리자의 숨긴 장치·속성 탭
+- **한국어 이름**: 「로컬 보안 정책」·「사용자 권한 할당」은 위 항목들, 「계정 정책」·「암호 정책」·「계정 잠금 정책」은 위 「(phase 80 step 4) … 계정 정책」 항목. 감사 정책은 한국어판이 번역되지 않아 화면 이름을 확인하지 못했다 — 본문은 「감사 정책(Audit Policy)」으로 영문을 함께 적는다
+
+쓰인 곳: (phase 80 step 9) `windows-admin-tools.mmc-run-commands`(로컬 보안 정책 — 계정 정책의 암호 정책·계정 잠금 정책, 감사 정책, 사용자 권한 할당, 로컬 그룹 정책 편집기의 컴퓨터 구성 아래 보안 설정에도 같은 설정, 바꾸려면 관리자, 도메인 정책이 정해 두면 바꿀 수 없다; 장치 관리자 — 장치의 종류·상태·제조사와 드라이버 정보, 문제 장치의 표시와 오류 메시지, 컴퓨터 관리 안에서도 연다), 문항 n271(정답 근거와 해설의 감사 정책 줄)
+
+## (phase 80 step 8) Microsoft Learn — 이벤트 뷰어와 로그: Troubleshoot unexpected reboots using system event logs, Identify the cause of unexpected WMI shutdowns, Event ID 41(Windows 클라이언트 문서), about_Logging_Windows; Win32 — Shutdown Event Tracker, Eventlog Key, Event Types; 지난 판 Event Viewer, Event Logs, Event Properties
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-unexpected-reboots-system-event-logs
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/identify-cause-of-wmi-shutdown
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/event-id-41-restart
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows
+https://learn.microsoft.com/en-us/windows/win32/shutdown/shutdown-event-tracker
+https://learn.microsoft.com/en-us/windows/win32/eventlog/eventlog-key
+https://learn.microsoft.com/en-us/windows/win32/eventlog/event-types
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc766042(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722404(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc765981(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 문제 해결 둘(재부팅·WMI 종료) `updated_at` 2026-02-19(`ms.date` 2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), 「Event ID 41」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트), about_Logging_Windows 2026-01-19(2026-01-18, PowerShell 7.6 판),
+Win32 「Shutdown Event Tracker」 2025-03-11·「Eventlog Key」 2025-08-14·「Event Types」 2025-09-05(셋 다 `ms.date` 2018-05-31 — 뒤의 둘은 Windows Vista 이전의 이벤트 로깅 API 문서라 첫머리에 그렇게 밝힌다),
+지난 판 「Event Viewer」·「Event Logs」·「Event Properties」 2021-11-12(2013-02-22, Applies To — Windows 7·Windows Server 2008 R2·Windows Server 2012·Windows Vista). **지금 판(Windows Server 2016~2025)에서 이벤트 뷰어의 로그 갈래와 이벤트 속성을 정리한 문서는 찾지 못해** 이 지난 판 셋을 쓴다. 지난 판 셋의 한국어판은 번역되지 않은 영문 그대로다.
+
+- **이벤트 뷰어**는 이벤트 로그를 훑어보고 관리하는 MMC 스냅인이다. 할 수 있는 일: 여러 로그의 이벤트를 걸러 한꺼번에 보기, 그 거름을 사용자 지정 보기로 저장해 다시 쓰기, 어떤 이벤트가 남으면 작업이 돌게 걸기, 다른 컴퓨터의 이벤트를 모으는 구독 만들기(구독은 이름만 — 가져오지 않는다) — 지난 판 「Event Viewer」 첫머리
+- **이벤트 한 건의 속성**(지난 판 「Event Properties」 첫 표): 원본(Source — 그 이벤트를 남긴 소프트웨어. 프로그램 이름일 수도, 드라이버처럼 큰 프로그램이나 시스템의 구성 요소일 수도 있다), 이벤트 ID(이벤트의 종류를 가리키는 번호 — 예를 들어 6005는 이벤트 로그 서비스가 시작될 때의 이벤트다),
+  수준(Level — 얼마나 심각한지), 사용자, 작업 범주, 키워드, 컴퓨터, 날짜와 시간(기록된 때), 로그(기록된 로그의 이름). 원본과 이벤트 ID를 함께 보면 문제를 짚는 데 쓴다
+- **수준**(같은 표): 시스템 로그와 응용 프로그램 로그의 수준은 넷 — 정보(작업이 끝났거나 자원이 만들어졌거나 서비스가 시작된 것 같은 변화), 경고(손쓰지 않으면 서비스에 영향을 주거나 더 큰 문제가 될 수 있는 일), 오류(그 구성 요소 바깥의 기능에 영향을 줄 수 있는 문제), 위험(그 구성 요소가 스스로 되살릴 수 없는 실패)이다.
+  보안 로그의 수준은 성공 감사·실패 감사(사용자 권한을 쓰는 일이 성공했는지·실패했는지)다. Vista 이전 API 문서 「Event Types」도 오류·경고·정보·성공 감사·실패 감사 다섯을 들고, 서비스가 시작 중 로드되지 못하면 오류 이벤트가 남는다고 예를 든다
+- **종료·재부팅 기록**(「Troubleshoot unexpected reboots using system event logs」): **시스템 이벤트 로그**를 이벤트 ID로 걸러 재부팅의 이력과 까닭을 본다. 같은 번호가 원본에 따라 다른 뜻일 수 있으니 원본도 함께 거른다. 문서의 표(이벤트 ID — 원본 — 뜻):
+  - 12 — Kernel-General — 운영 체제가 시작했다 / 13 — Kernel-General — 운영 체제가 종료하는 중이다
+  - 6005 — EventLog — 이벤트 로그 서비스가 시작했다 / 6009 — EventLog — 운영 체제의 판을 남긴다
+  - **1074 — User32 — 어느 프로세스가 어느 사용자를 대신해 컴퓨터를 다시 시작하거나 껐는지와, 그 이유·이유 코드·종료 유형(다시 시작·전원 끄기)·설명**
+  - 41 — Kernel-Power — 깨끗이 종료하지 않은 채 다시 시작했다(응답이 멈췄거나 충돌했거나 전원이 갑자기 끊긴 경우) / 6008 — EventLog — 바로 앞의 종료가 예기치 않았다
+  정상적인 재부팅은 1074 다음에 13과 6009로, 예기치 않은 재부팅은 41과 6008로 알아본다 — 「Review Event IDs 12, 13, 6005, and 6009 for reboot history」·「Review Event IDs 13, 41, 1074, 6008, and 6009 to determine reboot types」
+- 「Event ID 41」(Windows 클라이언트 문서): 1074는 응용 프로그램이 끄거나 다시 시작할 때와, 사용자가 시작 메뉴나 Ctrl+Alt+Del로 끄거나 다시 시작할 때 남는다. 6006은 Windows가 제대로 꺼졌다는 이벤트다.
+  `shutdown.exe`는 꺼지기 바로 전에 시스템 로그에 원본 User32·ID 1074로 이유 코드와 설명을 남기고, 명령을 낸 사용자 이름과 날짜·시간도 남긴다 — 「More information」
+- **종료 이벤트 추적기**(Shutdown Event Tracker, Win32): 사용자나 응용 프로그램이 시스템을 끄거나 다시 시작하는 이유를 기록하게 하는 기능이다. 시작 메뉴에서 종료를 고르거나 `Shutdown.exe`를 쓰면 정보를 적으라고 묻고, 적은 내용은 이벤트 로그에 저장된다.
+  Windows Server 2003부터 기본으로 켜져 있다(Windows XP에서는 켜야 한다) — 첫머리. 지금 판 Windows Server에서도 기본으로 켜져 있다고 따로 적은 지금 판 문서는 찾지 못했다 — 본문은 「Windows Server 2003부터 기본으로 켜져 있다」까지만 쓴다
+- **로그의 두 갈래**(지난 판 「Event Logs」): 이벤트 로그는 **Windows 로그**와 **응용 프로그램 및 서비스 로그**로 나뉜다.
+  - **Windows 로그**는 시스템 전체에 걸친 이벤트와 옛 응용 프로그램의 이벤트를 담고, 다섯이다. 응용 프로그램(Application — 응용 프로그램이 남긴 이벤트, 예를 들어 데이터베이스 프로그램의 파일 오류. 무엇을 남길지는 그 프로그램을 만든 쪽이 정한다),
+    보안(Security — 올바른 로그온 시도와 잘못된 로그온 시도, 파일 같은 개체를 만들고 열고 지우는 자원 사용. 무엇을 남길지는 관리자가 정한다 — 로그온 감사를 켜면 로그온 시도가 남는다), Setup(응용 프로그램 설치와 관련된 이벤트),
+    시스템(System — Windows의 시스템 구성 요소가 남긴 이벤트, 예를 들어 시작할 때 드라이버나 구성 요소가 로드되지 못한 일. 무엇을 남길지는 Windows가 정해 두었다), ForwardedEvents(원격 컴퓨터에서 모아 온 이벤트 — 이벤트 구독을 만들어야 모인다).
+    응용 프로그램·보안·시스템은 그 앞 판부터 있었고, Setup과 ForwardedEvents가 이 판(Vista)에서 더해졌다
+  - **응용 프로그램 및 서비스 로그**는 시스템 전체에 영향을 주는 이벤트가 아니라 **응용 프로그램이나 구성 요소 하나**의 이벤트를 담는다. 하위 종류는 Admin·Operational·Analytic·Debug이고, Analytic·Debug 로그는 기본으로 숨겨지고 꺼져 있다
+  - Vista 이전 API 문서 「Eventlog Key」도 표준 로그를 응용 프로그램·보안·시스템 셋으로, 위와 같은 뜻으로 적는다
+- 응용 프로그램 및 서비스 로그 아래의 예: 「응용 프로그램 및 서비스 로그 > Microsoft > Windows > WMI-Activity」(「Identify the cause of unexpected WMI shutdowns」 「Analysis」). PowerShell 7의 로그는 이벤트 뷰어의 PowerShellCore/Operational 로그다(about_Logging_Windows — 어느 갈래인지는 그 문서에 적혀 있지 않다).
+  하드웨어 이벤트(Hardware Events)·Windows PowerShell(5.1)·Internet Explorer 로그가 어느 갈래에 드는지 적은 문서는 찾지 못했다 — 본문은 「Windows 로그는 다섯이다」로 가르고, 그 셋의 자리를 사실로 적지 않는다
+- **어느 일이 어느 로그에**: 로그온 실패 → 보안(로그온 감사가 켜져 있을 때), 시작할 때 드라이버·구성 요소가 로드되지 못함 → 시스템, 프로그램의 파일 오류 → 응용 프로그램, 종료·재부팅 → 시스템(위 1074 등) — 위 줄들
+- **한국어 이름**: 「이벤트 뷰어」(여러 한국어판), 「종료 이벤트 추적기」(Shutdown Event Tracker 한국어판 본문 — 제목은 「Shutdown 이벤트 추적기」), 「이벤트 ID」. 지금 판 한국어판은 Application을 「애플리케이션」으로 옮긴다(Event ID 41 한국어판의 「애플리케이션 및 시스템 로그」, WMI 종료 문서 한국어판의 「애플리케이션 및 서비스 로그」).
+  **실제 한국어 화면의 로그·수준 이름은 확인하지 못했다.** 고른 이름: 기출이 쓰는 「응용 프로그램」에 맞춰 「Windows 로그」·「응용 프로그램」·「보안」·「시스템」·「응용 프로그램 및 서비스 로그」로 쓰고, Setup·ForwardedEvents는 영문 이름을 세운다(한국어 이름을 화면 이름이라고 단정하지 않는다). 원본·수준과 정보·경고·오류·위험도 뜻을 옮긴 말이다
+
+쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.event-viewer`(이벤트·이벤트 로그·이벤트 뷰어, 이벤트 한 건의 속성과 수준, 종료·재부팅 기록 — 시스템 로그의 1074·6008·41·6006 등, 종료 이벤트 추적기),
+(phase 80 step 10에서 쓰일 곳) `windows-admin-tools.windows-logs`(Windows 로그 다섯과 하는 일, 응용 프로그램 및 서비스 로그, 어느 일이 어느 로그에), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-08-25 #39]·[기출 2025-11-02 #38], [기출 2025-08-24 #30])
+(phase 80 step 9) `windows-admin-tools.event-viewer`(위 줄들 — 이벤트·이벤트 로그, Windows 로그 아래 응용 프로그램·보안·시스템 로그와 이벤트마다 기록된 로그가 정해져 있다, 이벤트 뷰어는 MMC 스냅인이고 여러 로그를 걸러 본다, 이벤트 속성의 날짜와 시간·원본·이벤트 ID·수준·사용자·컴퓨터·로그와 6005 예, 원본과 함께 보는 이벤트 ID, 수준 넷과 성공 감사·실패 감사, 시스템 로그의 1074·6006·41·6008과 41이 생기는 경우, 종료 이벤트 추적기와 Windows Server 2003부터 기본으로 켜짐, `shutdown.exe`가 남기는 1074; 칸 이름의 한국어는 영문의 뜻을 옮긴 말이라고 본문에 밝혔다),
+도식 `event-viewer`, 문항 n273(주말 사이 다시 시작된 기록은 시스템 로그 — 오답의 성능 모니터·리소스 모니터는 위 「성능 모니터·리소스 모니터」 항목)·n274(이벤트 뷰어는 지난 일의 기록, CPU 사용률 그래프는 성능 모니터)
+(phase 80 step 10) `windows-admin-tools.windows-logs`(위 줄들 — 이벤트 로그의 두 갈래 Windows 로그와 응용 프로그램 및 서비스 로그, Windows 로그는 컴퓨터 전체의 이벤트와 옛 방식 프로그램의 이벤트를 담고 다섯이다, 응용 프로그램(무엇을 남길지는 만든 쪽이 정한다)·보안(로그온 시도의 성공과 실패, 파일 같은 개체를 만들고 열고 지운 일, 무엇을 남길지는 관리자가 감사 정책으로 정한다 — 감사의 뜻은 위 「(phase 80 step 9) … 로컬 보안 정책과 장치 관리자」 항목의 감사 정책 줄)·Setup(프로그램 설치)·시스템(Windows 구성 요소, 시작할 때 드라이버를 불러오지 못한 일, 무엇을 남길지는 Windows가 정한다, 종료·재부팅 기록)·ForwardedEvents(다른 컴퓨터에서 모은 이벤트, 구독이 있어야 모인다), 응용 프로그램 및 서비스 로그는 프로그램이나 구성 요소 하나의 이벤트를 담는다와 WMI-Activity 예, 어느 일이 어느 로그에 — 로그온 실패·드라이버 불러오기 실패·프로그램의 파일 오류; 하드웨어 이벤트·Windows PowerShell·Internet Explorer 로그와 PowerShell 7 로그의 자리, 응용 프로그램 및 서비스 로그의 하위 종류는 쓰지 않았다; WMI의 뜻은 위 「(phase 80 step 0) … 로컬 계정과 기본 그룹」 항목의 About WMI 줄), 도식 `windows-logs`, 문항 n275(로그온 실패는 보안 로그 — 수준은 실패 감사, 오답의 시스템·응용 프로그램·Setup 로그는 위 줄들)
+
+## (phase 80 step 8) Microsoft Learn — 성능 모니터·리소스 모니터: perfmon, Troubleshoot issues using Performance Monitor, Scenario guide: Troubleshoot performance problems in Windows, Guidance for troubleshooting high CPU usage; Win32 — About Performance Counters, Specifying a Counter Path, Performance Counters Tools, Compatibility and Reliability(Windows 7 개발자 안내서); 지난 판 Overview of Windows Performance Monitor, Creating Data Collector Sets, Schedule Data Collection in Windows Performance Monitor
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/perfmon
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/troubleshoot-issues-performance-monitor
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-performance-problems-in-windows
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-high-cpu-usage-guidance
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/about-performance-counters
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/specifying-a-counter-path
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/performance-counters-tools
+https://learn.microsoft.com/en-us/windows/win32/win7devguide/compatibility-and-reliability
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc749154(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc749337(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722312(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「perfmon」 `updated_at` 2026-02-16(`ms.date` 2018-07-25, 「Applies to」 Windows Server 2016~2025·Windows 11·10), 문제 해결 셋 2026-02-19(2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), Win32 성능 카운터 셋 2025-07-16(2025-07-14),
+「Compatibility and Reliability」 2025-03-13(2018-05-31, Windows 7 개발자 안내서), 지난 판 셋 2021-11-12(2013-02-22, Applies To — Windows 7·Windows Server 2008 R2·Windows Server 2012·Windows Vista). 데이터 수집기 집합의 일정·멈춤 조건을 정리한 지금 판 문서는 찾지 못해 지난 판을 쓴다.
+
+- **성능 모니터**(Performance Monitor)는 시스템 사용량과 여러 성능 지표를 살피는 MMC 스냅인이다. 열면 세 자리가 있다 — 성능 모니터(지표를 실시간으로 본다), 데이터 수집기 집합(정해 둔 시간 동안 데이터를 모은다), 보고서(데이터 수집기 집합이 모은 데이터를 본다).
+  커널 안쪽의 정보는 보지 못하고, 기본으로 들어 있는 가벼운 도구이며, 로컬로도 원격으로도 돌린다 — 「Troubleshoot issues using Performance Monitor」 「What is Performance Monitor (perfmon)?」·Note
+- **여는 법**: `perfmon.exe`는 MMC에 성능 모니터 스냅인을 얹어 성능 모니터·데이터 수집기 집합·보고서를 연다 — 「Performance Counters Tools」 「Data collection tools」. 실행 창에 `perfmon` — 위 「MMC와 실행 이름」 항목.
+  `perfmon`의 옵션: `/res` 리소스 보기(Resource View), `/report` 시스템 진단 데이터 수집기 집합을 돌려 결과 보고서를 보임, `/rel` 안정성 모니터(Reliability Monitor), `/sys` 성능 모니터 — 「perfmon」 「Parameters」
+- **성능 카운터**: 프로세서·메모리·디스크 사용량 같은 시스템 데이터를 한결같은 방식으로 모으게 해 주는 측정 항목이다. 관리자는 성능이나 동작의 문제를 살피는 데 쓴다. 1초에 한 번보다 자주 모으도록 만들어지지 않았다.
+  Windows에서 성능 데이터를 쓰는 기본 도구로 작업 관리자·리소스 모니터·성능 모니터·typeperf·logman·relog가 있다. 카운터를 묶은 것(counterset)을 다른 API에서는 성능 개체(performance object)라 부르고, 카운터는 이름과 종류를 가진 데이터 하나다 — 「About Performance Counters」 첫머리·「Concepts」
+- **카운터 이름의 꼴**: `\\컴퓨터\성능개체(인스턴스)\카운터`. 로컬 컴퓨터의 카운터면 컴퓨터를 뺀다. 인스턴스가 여럿일 수 있는 개체(프로세서·프로세스·스레드 같은 것)는 괄호 안에 인스턴스를 적고, `*`는 모든 인스턴스를 뜻한다 — 「Specifying a Counter Path」.
+  문서가 보이는 예: `\Processor Information(*)\% User Time`, `\Memory\Available MBytes`(메모리는 하나뿐이라 인스턴스가 없다), Processor 개체의 `_Total` 인스턴스와 `% Idle Time` 카운터 — 「Scenario guide…」 「Use Performance Monitor to record performance data」·「Introduce the 18 most important counters」. 본문의 예는 이 문서들이 보이는 이름으로 쓴다
+- **데이터 수집기 집합**: 여러 데이터 수집 지점을 하나로 묶어 기록하고 보고하는 단위다. 담을 수 있는 것은 성능 카운터, 이벤트 추적 데이터, 시스템 구성 정보(레지스트리 값)이고, 템플릿이나 성능 모니터의 지금 보기에서 만들거나 하나하나 골라 만든다 — 지난 판 「Creating Data Collector Sets」.
+  성능 카운터를 모은 데이터는 로그 파일(`.blg`)로 남는다 — 「Troubleshoot issues using Performance Monitor」 「Run Performance Monitor remotely」. 모으는 간격(샘플 간격)을 정한다 — 예를 들어 `logman`의 `-si 00:00:15`는 15초마다 모은다(「Scenario guide…」), `-si 00:00:01`은 1초마다(「Troubleshoot issues…」)
+- **일정과 멈춤 조건**(지난 판 「Schedule Data Collection in Windows Performance Monitor」): 데이터 수집기 집합의 속성에서 일정(Schedule) 탭에 시작 날짜·시간·요일을 더한다(만료 날짜는 그 뒤 새 수집이 시작되지 않게 할 뿐, 진행 중인 수집은 멈추지 않는다).
+  중지 조건(Stop Condition) 탭에서 전체 기간이나 한도(한 로그 파일의 기간·최대 크기 — 한도에 닿으면 집합을 다시 시작하게 할 수 있다)를 정한다. 전체 기간은 샘플 간격보다 길어야 보고서에 데이터가 보인다
+- 권한(지난 판 「Overview of Windows Performance Monitor」): Users 그룹은 로그 파일을 열어 볼 수만 있고, Performance Monitor Users는 실시간 데이터도 보지만 데이터 수집기 집합을 만들거나 고치지 못하며, Performance Log Users는 일괄 작업으로 로그온 권한을 받으면 만들고 고친다 — `windows-ad.local-groups`가 이미 가르친 사실과 같다(이 주제에서는 다시 쓰지 않는다)
+- **리소스 모니터**(Resource Monitor): `resmon`으로 열고, CPU 탭에서 프로세스마다 CPU 사용량을 보며 평균 CPU(Average CPU) 열로 정렬해 CPU를 많이 쓰는 프로세스를 찾는다 — 「Guidance for troubleshooting high CPU usage」 「Resource Monitor」.
+  리소스 모니터는 성능 데이터를 쓰는 Windows 기본 도구의 하나다 — 「About Performance Counters」 「Concepts」. `perfmon /res`는 리소스 보기를 연다 — 「perfmon」
+- **리소스 모니터의 탭 목록**(개요·CPU·메모리·디스크·네트워크)과 **네트워크 탭에 보이는 것**(프로세스별 네트워크 사용·연결·수신 대기 포트)은 허용한 문서에서 찾지 못했다.
+  찾아본 곳: Windows 명령 참조(perfmon·netstat), 문제 해결 문서(높은 CPU, 성능 문제 안내, 작업 관리자, 포트를 쓰는 프로그램 찾기), Win32 성능 카운터 문서, 지난 판 성능 모니터 문서 묶음(개요·데이터 수집기 집합·사용자 인터페이스·사용법), Microsoft Learn 검색(리소스 모니터의 탭·디스크·네트워크로 여러 번).
+  「CPU·디스크·네트워크·메모리 네 자원을 실시간으로 살핀다」와 개요 탭은 Microsoft Learn 교육 과정 페이지(「Use Resource Monitor to review current resource usage」)에만 있다 — 쓰지 않았다(step 8 summary 「사용자 확인」)
+- **안정성 모니터**(Reliability Monitor): Windows에 기본으로 든 신뢰성 분석 구성 요소가 시스템 사용과 안정성을 지수로 계산하고, Windows 업데이트·응용 프로그램 설치처럼 안정성에 영향을 줄 만한 변화를 기록해 둔다. 안정성 모니터 스냅인으로 그 지수의 흐름을 그런 일들과 함께 본다 — 「Compatibility and Reliability」 「Reliability Analysis Component」(Windows 7 개발자 안내서). 여는 법은 `perfmon /rel` — 「perfmon」
+- 작업 관리자는 phase 71 「Microsoft Learn — Windows commands, ping, Task Manager」 항목(응용 프로그램과 프로세스의 성능·자원 사용을 살피는 기본 도구). 리소스 모니터와 작업 관리자의 관계를 한 문장으로 적은 문서는 찾지 못했다 — 둘 다 성능 데이터를 쓰는 기본 도구라는 것(「About Performance Counters」)까지만 쓴다
+- **한국어 이름**: 「성능 모니터」·「데이터 수집기 집합」·「보고서」(Troubleshoot issues using Performance Monitor 한국어판), 「리소스 모니터」(높은 CPU 문서·About Performance Counters 한국어판), 「성능 카운터」(About Performance Counters 한국어판), 「Windows 안정성 및 성능 모니터」(perfmon 한국어판 — 옵션 표는 번역되지 않았다).
+  안정성 모니터는 perfmon 한국어판에 「안정성 모니터」로 보인다. 일정·중지 조건 탭과 평균 CPU 열의 한국어 화면 이름은 확인하지 못했다 — 뜻을 옮긴 말로 쓰고 영문 이름을 함께 적는다
+
+쓰인 곳: (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.performance-monitor`(성능 모니터의 세 자리, `perfmon`, 성능 카운터와 이름의 꼴, 데이터 수집기 집합·`.blg`·샘플 간격·일정·중지 조건),
+(phase 80 step 11에서 쓰일 곳) `windows-admin-tools.resource-monitor`(`resmon`·`perfmon /res`, CPU 탭과 평균 CPU, 성능 데이터를 쓰는 기본 도구, 탭 목록은 못 찾음, 안정성 모니터 — 기출 문제문 판정), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-05-25 #35], [기출 2024-11-03 #36], [기출 2026-02-01 #42])
+(phase 80 step 10) `windows-admin-tools.performance-monitor`(위 줄들 — MMC 스냅인 성능 모니터와 `perfmon`, 로컬로도 원격으로도, 성능 카운터의 뜻과 1초보다 자주 재지 않는다, 성능 개체·인스턴스와 카운터 이름의 꼴, 세 자리(성능 모니터·데이터 수집기 집합·보고서), 데이터 수집기 집합과 `.blg`·샘플 간격, 일정과 중지 조건의 전체 기간; 카운터 예·화면 없이 모으기·마법사의 차례는 아래 「(phase 80 step 10) … 성능 카운터 이름과 데이터 수집기 집합 만들기」 항목; perfmon의 옵션, 커널 안쪽을 보지 못한다는 것, 만료 날짜, 성능 모니터의 권한은 쓰지 않았다), 도식 `perfmon-collector`, 문항 n276
+(phase 80 step 11) `windows-admin-tools.resource-monitor`(위 줄들 — `resmon`과 CPU 탭·평균 CPU 열로 정렬하기, `perfmon /res`·`/rel`, 작업 관리자·리소스 모니터·성능 모니터가 성능 데이터를 쓰는 기본 도구라는 것, 안정성 모니터. 탭 목록과 네 자원은 아래 「(phase 80 step 11) … 리소스 모니터」 항목), 도식 `resource-monitor`, 문항 n277
+
+## (phase 80 step 10) Microsoft Learn — 성능 카운터 이름과 데이터 수집기 집합 만들기: typeperf; Win32 — Collecting Performance Data; 지난 판 Create a Data Collector Set Manually, Create a Data Collector Set to Monitor Performance Counters
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/typeperf
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/collecting-performance-data
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc766404(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722414(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「typeperf」 `updated_at` 2025-10-22(`ms.date` 2023-06-15, 「Applies to」 Windows Server 2016~2025·Windows 11·10·Azure Local 2311.2 이후), Win32 「Collecting Performance Data」 2025-07-16(2025-07-14),
+지난 판 둘 2021-11-12(「Create a Data Collector Set Manually」 `ms.date` 2012-07-03, 둘 다 Applies To — Windows Server 2008·Windows Vista). 위 「(phase 80 step 8) … 성능 모니터·리소스 모니터」 항목의 「Troubleshoot issues using Performance Monitor」와 「Scenario guide…」도 같은 날 다시 받아 아래 줄을 확인했다(둘 다 `updated_at` 2026-02-19).
+데이터 수집기 집합을 마법사로 만드는 차례를 적은 지금 판 문서는 찾지 못해 Windows Server 2008 판 문서를 쓴다 — 본문에 그 판이라고 밝혔다.
+
+- **CPU 사용률 카운터**: 「Troubleshoot issues using Performance Monitor」 「Performance counters for CPU usage」는 CPU 사용률 문제에서 먼저 볼 카운터의 첫째로 Processor 개체의 % Processor Time을 든다. step 8이 쓰기로 한 `\Processor Information(*)\% User Time`은 사용자 모드 시간이라 CPU 사용률 전체가 아니므로, 본문의 예는 아래 이름으로 쓴다
+- **`\Processor(_Total)\% Processor Time`**: 모든 프로세서 사용률의 평균이다 — 프로세서가 둘이고 하나는 100%, 다른 하나는 0%면 50%이고, 값의 범위는 0~100이다(Win32 「Collecting Performance Data」 「Understanding Multiple Processor Counters」). 「typeperf」의 첫째 예가 로컬 컴퓨터의 이 카운터를 그대로 이 꼴로 적는다
+- **카운터 이름의 전체 꼴**: `\컴퓨터\개체(인스턴스)\카운터`이고, 예로 `\\Server1\Processor(0)\% User Time`(Server1 컴퓨터의 프로세서 0 — 컴퓨터 이름 앞에는 역슬래시가 둘이다) — 「typeperf」 「Parameters」. 로컬 컴퓨터면 컴퓨터를 뺀다는 것은 위 step 8 항목의 「Specifying a Counter Path」
+- **`\Memory\Available MBytes`**: Memory 개체는 인스턴스가 없다. Available MBytes는 커널을 포함한 모든 프로그램이 쓸 수 있는 RAM의 양이다 — 「Scenario guide…」 「Use Performance Monitor to record performance data」·「Memory」
+- **화면 없이 모으기**: 「Scenario guide…」는 데이터 수집기 집합을 그래픽 화면으로도 `logman.exe` 명령으로도 만든다고 하고, 명령 프롬프트에서 `logman.exe create counter …`로 만들고 `logman.exe start …`로 시작한 집합이 15초마다(`-si 00:00:15`) 성능 데이터를 로그로 남긴다고 적는다 — 성능 모니터 화면을 열어 두지 않아도 집합이 값을 모은다는 근거다. `logman`의 이름과 옵션은 본문에 쓰지 않았다
+- **마법사로 만드는 차례**(지난 판 「Create a Data Collector Set Manually」): 탐색 창에서 데이터 수집기 집합(Data Collector Sets)을 펼쳐 사용자 정의(User Defined)를 오른쪽 클릭하고 새로 만들기 → 데이터 수집기 집합을 고르면 새 데이터 수집기 집합 만들기 마법사가 시작된다. 이름을 넣고, 직접 만들기(Create manually)를 고르고, 데이터 로그 만들기(Create data logs)에서 성능 카운터 확인란을 고른 뒤 추가(Add)로 카운터를 더한다.
+  마법사를 마칠 때 이 데이터 수집기 집합의 속성 열기(Open properties for this data collector set)를 고를 수 있고, 지금 시작(Start this data collector set now)이나 저장하고 닫기(Save and close)를 고른다. 「Create a Data Collector Set to Monitor Performance Counters」도 같은 차례로 마법사를 연다(그 문서의 경고 설정은 쓰지 않는다)
+- **샘플 간격**: 마법사의 어느 쪽에서 샘플 간격을 정하는지는 위 두 지난 판 문서에 적혀 있지 않다. 집합마다 샘플 간격이 있다는 것은 step 8 항목의 「Scenario guide…」 `-si`와 「Schedule Data Collection…」(전체 기간은 데이터를 재는 간격보다 길어야 한다)이 근거다 — 본문은 샘플 간격을 정하는 화면의 자리를 쓰지 않았다
+- **쓰지 않는 것**: typeperf·logman의 옵션, 경고(알림) 설정, 실행 계정(Run As) 설정, 루트 디렉터리, 이벤트 추적 데이터·시스템 구성 정보 수집기, 그래프에 보이는 데이터 점의 한도
+- **한국어 이름**: 사용자 정의·직접 만들기·데이터 로그 만들기는 한국어 화면 이름을 확인하지 못했다 — 영문의 뜻을 옮긴 말이고 본문에 영문을 함께 적었다. 「데이터 수집기 집합」·「보고서」·「성능 카운터」는 위 step 8 항목
+
+쓰인 곳: (phase 80 step 10) `windows-admin-tools.performance-monitor`(CPU 사용률 카운터 `\Processor(_Total)\% Processor Time`과 모든 프로세서의 평균이라는 것·50% 예, 다른 컴퓨터의 카운터 이름 앞의 `\\컴퓨터 이름`, 인스턴스가 없는 `\Memory\Available MBytes`, 화면을 열어 두지 않아도 모으는 데이터 수집기 집합, 마법사로 만드는 차례), 도식 `perfmon-collector`, 문항 n276(밤새 화면을 열어 두지 않아도 집합이 로그 파일에 쓴다)
+
+## (phase 80 step 11) Microsoft Learn — 리소스 모니터: 지난 판 Performance and Reliability Monitoring Getting Started Guide for Windows Server 2008; Task Manager may display incorrect memory information; 같은 learn.microsoft.com의 제품 문서 — Monitoring churn patterns on virtual machines(Azure Site Recovery), Monitor replication for the Data migration toolkit(Dynamics 365)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771692(v=ws.10)
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/task-manager-display-incorrect-memory-info
+https://learn.microsoft.com/en-us/azure/site-recovery/monitoring-high-churn
+https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/monitor-replication
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 지난 판 「Performance and Reliability Monitoring Getting Started Guide for Windows Server 2008」 `updated_at` 2021-11-12(`ms.date` 2012-07-02, Applies To — Windows Server 2008. 한국어판도 같은 날이고 본문은 번역되지 않은 영문),
+「Task Manager may display incorrect memory information」 2026-02-19(2026-02-12, 적용 대상 — 지원되는 Windows Server, 한국어판 2026-10-14), 「Monitoring churn patterns on virtual machines」 2025-10-07(2020-09-09),
+「Monitor replication for the Data migration toolkit」 2026-09-01(2026-03-17). step 8이 리소스 모니터의 탭 목록을 찾지 못하고 교육 과정 페이지만 남겨 사용자 확인으로 올렸으므로, 이 step이 교육 과정 페이지를 쓰지 않고 다시 찾았다.
+지난 판 문서가 리소스 뷰를 설명하는 차례가 가장 자세해 그것을 주 근거로 쓰고, 지금 판 문서로 지금의 리소스 모니터에도 같은 자원·탭이 있는지 맞춰 봤다. 뒤의 두 문서는 Windows Server 문서가 아니라 같은 learn.microsoft.com의 Azure·Dynamics 365 제품 문서다 —
+step 8이 Windows 드라이버 문서·.NET 문서를 쓴 것과 같은 처리로, 리소스 모니터에 디스크 탭과 네트워크 탭이 있다는 것을 맞춰 보는 데만 쓴다.
+
+- **리소스 뷰**(Resource View, 지난 판 — Windows Server 2008): Windows Reliability and Performance Monitor의 첫 화면이다. CPU·디스크·네트워크·메모리 네 자원의 사용과 성능을 실시간으로 살피고, 네 자원을 펼치면 어느 프로세스가 어느 자원을 쓰는지 자세히 보인다.
+  위쪽 그래프 넷이 네 자원의 지금 사용량을 보이고, 그 아래 펼치는 절 넷에 프로세스마다의 자세한 값이 있다. 명령 프롬프트에서 `perfmon /res`를 입력하면 리소스 뷰가 따로 된 창으로 열린다 — 「Resource View」·「Scenario 1」
+- **자원마다 보이는 칸**(같은 문서 「Resource View details」 표): CPU — 이미지(그 자원을 쓰는 응용 프로그램), PID(그 응용 프로그램 인스턴스의 프로세스 ID), 스레드 수, 지금 CPU, **평균 CPU — 최근 60초 동안 그 인스턴스가 낸 CPU 부하의 평균을 CPU 전체 용량의 백분율로**.
+  디스크 — 이미지·PID, 그 인스턴스가 읽거나 쓰는 파일, 읽기·쓰기 속도(Bytes/min), I/O 우선순위, 응답 시간. 네트워크 — 이미지·PID, 이 컴퓨터가 정보를 주고받는 상대의 주소(컴퓨터 이름·IP 주소·FQDN), 보내는 양·받는 양·합계(Bytes/min).
+  메모리 — 이미지·PID, 분당 하드 폴트, 작업 집합(그 인스턴스가 지금 메모리에 올려 둔 KB), 공유할 수 있는 양, 전용 양
+- **작업 관리자와의 관계**(같은 문서 「Resource View」·「Benefits…」): 이런 프로세스별 실시간 데이터는 그 전 판의 Windows에서는 작업 관리자에서만 제한된 꼴로 볼 수 있었고, 리소스 뷰는 작업 관리자 같은 앞선 도구보다 시스템 활동과 자원 사용을 훨씬 자세히 보여 준다
+- **안정성 모니터**(같은 문서 「Reliability Monitor」·「Scenario 7」): 응용 프로그램의 설치·제거와 운영 체제 업데이트 같은 시스템의 변화와 응용 프로그램·운영 체제·하드웨어의 실패를 날짜별로 나란히 보이고, 안정성 지수를 계산한다(step 8 항목의 Win32 문서와 같은 사실)
+- **지금의 리소스 모니터**: 시작 메뉴에서 `resmon`을 입력해 열고 **CPU 탭**에서 프로세스마다 CPU 사용량을 보며 **평균 CPU 열**로 정렬한다 — step 8 항목의 「Guidance for troubleshooting high CPU usage」(한국어판 「리소스 모니터」·「CPU 탭」·「평균 CPU 열」).
+  리소스 모니터는 하드웨어 예약 메모리의 바른 값을 보여 주고 Windows 7과 그 뒤 판에 들어 있다 — 「Task Manager may display incorrect memory information」 「Workaround」. Win+R로 `resmon`을 입력해 연 리소스 모니터 창에서 **디스크 탭**으로 바꿔 프로세스마다 디스크 쓰기를 본다 — 「Monitoring churn patterns…」 「Resource Monitor」.
+  작업 관리자에서 리소스 모니터를 열고, 리소스 모니터의 **네트워크 탭**에서 프로세스로 걸러 보내는 대역폭을 본다 — 「Monitor replication…」 「Network bandwidth」
+- **리소스 뷰와 리소스 모니터**: 두 이름을 같은 화면이라고 한 문장으로 적은 문서는 찾지 못했다. 같은 화면으로 본 근거는 셋이다 — (1) 지금 판 Windows 명령 참조 「perfmon」(Windows Server 2016~2025)이 `/res`를 「리소스 뷰를 시작한다」로 적고 step 8 항목도 이 줄을 리소스 모니터 아래에 두었다,
+  (2) 지난 판의 리소스 뷰와 지금의 리소스 모니터가 같은 「평균 CPU」 열로 CPU를 많이 쓰는 프로세스를 찾는다, (3) 지금의 리소스 모니터에도 CPU·디스크·네트워크 탭과 메모리 값이 있다(위 줄). 그래서 본문은 리소스 모니터를 중심에 두고, 열 이름과 칸은 「Windows Server 2008 판 문서가 리소스 뷰를 설명하며 정리한 것」이라고 밝혔다
+- **방화벽**: 리소스 모니터가 방화벽에 대해 무엇을 보이는지(또는 보이지 않는지)를 적은 문서는 찾지 못했다 — 본문은 「방화벽은 다루지 않는다」를 쓰지 않고 리소스 모니터가 보이는 네 자원을 정확히 쓴다. [기출 2024-11-03 #36]이 방화벽을 점검할 수 없는 것으로 두는 것은 그대로 두었다
+- **쓰지 않는 것**: 교육 과정 페이지(「Use Resource Monitor to review current resource usage」)와 거기에만 있는 개요(Overview) 탭, 네트워크 탭의 수신 대기 포트·TCP 연결, 하드 폴트, 프로세스 끝내기·거르기의 조작 차례, Windows Server 2008에서 리소스 뷰를 쓰는 데 필요한 권한
+- **한국어 이름**: 「리소스 모니터」·「CPU 탭」·「평균 CPU 열」(높은 CPU 문서 한국어판), 「리소스 뷰」(perfmon 한국어판 — step 8 항목은 「리소스 보기」로 옮겼다. 이 step은 한국어판의 말을 따른다), 「안정성 모니터」(perfmon 한국어판). 디스크 탭·네트워크 탭의 한국어 화면 이름은 확인하지 못했다 — 「CPU 탭」과 같은 꼴로 쓴다
+
+쓰인 곳: (phase 80 step 11) `windows-admin-tools.resource-monitor`(네 자원과 프로세스별 실시간 보기, PID, `perfmon /res`와 리소스 뷰, CPU 탭·평균 CPU 최근 60초, 디스크 탭의 파일과 속도, 네트워크 탭의 상대 주소와 보내고 받는 양, 메모리에 올려 둔 양, 작업 관리자보다 자세히, 안정성 모니터 `perfmon /rel`),
+도식 `resource-monitor`(네 자원·프로세스별·성능 모니터와), 문항 n277(디스크 탭에서 프로세스별 읽기·쓰기 — 오답의 이벤트 뷰어·데이터 수집기 집합·감사 정책은 step 8·9·10 항목)
+
+## (phase 80 step 11) Microsoft Learn — PowerShell에서 명령 실행하기: Running commands in the shell, about_Pipelines, Get-ChildItem, Get-Service, Get-Process, Set-Location
+https://learn.microsoft.com/en-us/powershell/scripting/learn/shell/running-commands
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-location
+
+2026-11-16에 IPv4로 내려받아 읽은 판(PowerShell 7.6 판): 「Running commands in the shell」 `updated_at` 2026-07-01(`ms.date` 2026-06-29, 한국어판 2026-10-23), about_Pipelines 2026-01-02(2025-12-28), Get-ChildItem 2026-08-10(2026-08-10),
+Get-Service 2026-06-15(2026-02-04), Get-Process 2025-07-24(2025-04-15), Set-Location 2025-07-24(2022-12-12).
+
+- **명령의 세 갈래**(「Running commands in the shell」 첫머리·「Types of commands」): PowerShell은 `bash`나 Windows 명령 셸(`cmd.exe`)처럼, PowerShell 명령만이 아니라 시스템에 있는 어떤 명령이든 실행하게 해 준다. 셸의 명령은 셋이다 —
+  셸 언어 키워드(그 셸 안에만 있고 따로 된 실행 파일이 없다. `cmd.exe`의 키워드 예로 `dir`·`copy`·`move`·`if`·`echo`), 운영 체제의 네이티브 명령(운영 체제에 설치된 실행 파일이라 PowerShell 같은 어느 명령줄 셸에서나 실행된다),
+  셸 환경에만 있는 명령(PowerShell에서는 모듈이 더하는 cmdlet)
+- **네이티브 명령 실행**(같은 문서 「Running native commands」): 어느 네이티브 명령이든 PowerShell 명령줄에서 실행할 수 있고, 보통 `bash`나 `cmd.exe`에서와 똑같이 입력한다. PowerShell에서는 매개 변수가 모두 하이픈(`-`)으로 시작한다 — 「Passing arguments to native commands」
+- **`ipconfig.exe`**: PowerShell 프롬프트에서 `ipconfig.exe`를 실행해 그 출력을 cmdlet으로 넘기는 예 — about_Pipelines 「Using pipelines」(파이프라인 자체는 가져오지 않는다. `ipconfig`가 실행 파일 `ipconfig.exe`이고 PowerShell에서 실행된다는 것만 쓴다)
+- **cmdlet이 하는 일**: `Get-ChildItem`은 지정한 위치의 항목을 가져오고, 그 항목이 다른 항목을 담는 컨테이너면 그 안의 항목(child items)을 가져온다. 위치(`-Path`)의 기본값은 현재 디렉터리다 — Get-ChildItem 「Description」·「-Path」.
+  `Get-Service`는 실행 중인 것과 멈춘 것을 포함해 컴퓨터의 서비스를 나타내는 객체를 가져온다(Windows에서만) — Get-Service 「Description」. `Get-Process`는 로컬 컴퓨터의 프로세스를 가져오고, 매개 변수 없이 쓰면 모든 프로세스를 가져온다 — Get-Process 「Description」.
+  `Set-Location`은 작업 위치를 지정한 위치로 바꾼다 — Set-Location 「Description」
+- **쓰지 않는 것**: 파이프라인과 `Select-String`, 호출 연산자(`&`)와 `Start-Process`, 인자를 넘기는 규칙(`PSNativeCommandArgumentPassing`), cmdlet의 매개 변수 목록
+- **한국어 이름**: 한국어판은 「네이티브 명령」(OS 네이티브 명령)이라 부른다 — 본문은 「실행 파일로 된 명령」으로 풀어 쓴다
+
+쓰인 곳: (phase 80 step 11) `windows-admin-tools.powershell`(명령 프롬프트의 `dir`은 따로 된 실행 파일이 없는 명령이고 PowerShell의 `dir`은 별칭, 실행 파일로 된 명령은 어느 셸에서나 실행된다, `ipconfig`는 `ipconfig.exe`, 매개 변수는 하이픈으로 시작, `Get-ChildItem`·`Get-Service`·`Set-Location`이 하는 일),
+도식 `powershell-commands`, 문항 n278(`ipconfig`를 PowerShell에서 실행)·n279(`Get-Process`의 세 꼴 — 대소문자는 step 8 항목의 about_Case-Sensitivity)
+
+## (phase 80 step 8) Microsoft Learn — PowerShell: What is PowerShell?, What is Windows PowerShell?, Migrating from Windows PowerShell 5.1 to PowerShell 7, Differences between Windows PowerShell 5.1 and PowerShell 7.x, Cmdlet Overview, Approved Verbs for PowerShell Commands, about_Aliases, about_Case-Sensitivity, about_Command_Precedence, about_Parsing, about_Scripts, about_Execution_Policies
+https://learn.microsoft.com/en-us/powershell/scripting/overview
+https://learn.microsoft.com/en-us/powershell/scripting/what-is-windows-powershell
+https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7
+https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell
+https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview
+https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_case-sensitivity
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+
+2026-11-16에 IPv4로 내려받아 읽은 판(페이지는 기본으로 PowerShell 7.6 판 — `view=powershell-7.6`): 「What is PowerShell?」 `updated_at` 2026-08-12(`ms.date` 2026-08-12), 「What is Windows PowerShell?」 2025-11-21(2025-11-20), 「Migrating…」 2025-04-16(2024-04-02), 「Differences…」 2026-06-16(2026-02-04),
+「Cmdlet Overview」 2026-07-13(2026-07-13), 「Approved Verbs…」 2026-03-31(2026-03-30), about_Aliases 2025-09-29(2017-11-27), about_Case-Sensitivity 2026-01-06(2026-01-06), about_Command_Precedence 2026-01-19(2026-01-18), about_Parsing 2026-07-01(2026-06-29), about_Scripts 2025-09-29(2020-10-06), about_Execution_Policies 2026-09-01(2026-08-31). 한국어판도 받았다(기계 번역).
+
+- **PowerShell**은 명령줄 셸·스크립트 언어·구성 관리 틀로 이루어진 작업 자동화 도구이고 Windows·Linux·macOS에서 돈다. 셸로서는 명령 기록, Tab 자동 완성, 명령과 매개 변수의 별칭, 명령을 잇는 파이프라인(이름만 — 가져오지 않는다), 콘솔 안의 도움말을 갖춘다.
+  대부분의 셸이 글자를 받고 글자를 내놓는 것과 달리 PowerShell은 .NET 개체를 받고 내놓는다. 스크립트 언어로서는 주로 시스템 관리를 자동화하는 데 쓴다 — 「What is PowerShell?」 「Command-line Shell」·「Scripting language」
+- **cmdlet**: PowerShell 고유의 명령을 cmdlet이라 부른다. 동작을 하나 하고 대개 .NET 개체를 다음 명령에 돌려준다 — 「Cmdlet Overview」. cmdlet 이름은 **동사-명사** 짝이다 — 동사는 하는 동작을, 명사는 그 동작의 대상을 가리킨다(예를 들어 `Get-Command`는 등록된 명령을 가져온다) — 「Approved Verbs for PowerShell Commands」 첫머리
+- **별칭**(alias): cmdlet이나 함수·스크립트·실행 파일 같은 명령에 붙인 다른 이름이고, 명령 이름 대신 쓸 수 있다. 기본으로 들어 있는 별칭으로 `cd`·`chdir` → `Set-Location`, Windows에서 `ls`·`dir` → `Get-ChildItem`이 있고, `Get-Alias`로 모든 별칭을 본다 — about_Aliases 「Long description」·「Built-in aliases」.
+  `copy` 같은 다른 별칭은 이 step에서 확인하지 않았다 — 본문은 `dir`·`cd`를 예로 쓴다
+- **실행 파일로 된 명령**: 경로를 적으면 어떤 실행 파일이든 실행하고, 경로 없이 이름만 적으면 $Env:PATH에 든 디렉터리의 것만 실행한다(현재 디렉터리의 것은 `.\`를 붙인다). 경로 없이 적은 이름은 별칭 → 함수 → cmdlet → 외부 실행 파일(PowerShell 스크립트 포함) 차례로 찾는다 — about_Command_Precedence 「Long description」.
+  PowerShell 명령이 아닌 프로그램(네이티브 명령)도 PowerShell에서 부를 수 있고, 인자는 PowerShell이 먼저 해석해 넘긴다 — 문서의 예는 `icacls.exe` — about_Parsing 「Passing arguments to native commands」. `ipconfig`·`ping`을 PowerShell에서 실행하는 예를 보이는 PowerShell 문서는 찾지 못했다
+- **대소문자**: PowerShell은 할 수 있는 곳에서는 대소문자를 가리지 않고, 적은 대로의 대소문자는 보존한다. 모든 시스템에서 가리지 않는 것 — 변수 이름, 연산자 이름, PowerShell 명령과 별칭을 찾는 일(외부 스크립트·응용 프로그램은 빼고), 매개 변수 이름과 그 별칭, 언어 키워드 등.
+  Windows는 대부분의 작업에서 대소문자를 가리지 않고, Windows가 아닌 시스템은 파일 시스템·환경 변수에서 가린다 — about_Case-Sensitivity. 그래서 `Get-Service`와 `get-service`는 같은 cmdlet을 찾는다(PowerShell 명령을 찾는 일 — 위 줄)
+- **스크립트**: 하나 이상의 PowerShell 명령을 담은 일반 텍스트 파일이고 확장자는 `.ps1`이다. 스크립트를 실행하는 것은 cmdlet을 실행하는 것과 비슷하다(경로와 파일 이름을 적고 매개 변수를 준다). 명령을 저장해 두었다가 다시 쓰고 나누게 해 준다 — about_Scripts 「Long description」.
+  같은 명령을 셸(콘솔)에 하나씩 입력해 실행할 수도 있다 — 「What is PowerShell?」(명령줄 셸)
+- **실행 정책**: PowerShell이 구성 파일을 불러오고 스크립트를 실행하는 조건을 정하는 안전 기능이다. 보안 경계가 아니라, 사용자가 모르고 규칙을 어기지 않게 돕는 장치다 — about_Execution_Policies 「Long description」.
+  **Windows Server의 기본값은 RemoteSigned**다(스크립트는 실행되지만, 인터넷에서 받은 스크립트와 구성 파일은 믿을 만한 게시자의 디지털 서명이 있어야 한다). 모든 범위가 Undefined면 실제로 걸리는 정책은 Windows 클라이언트에서 Restricted(명령은 하나씩 되지만 스크립트는 실행하지 않는다), Windows Server에서 RemoteSigned다 — 같은 문서 「RemoteSigned」·「Restricted」·「Undefined」 줄.
+  같은 문서의 「Default」 줄은 「Windows 클라이언트와 서버 모두 RemoteSigned」로, 「RemoteSigned」 줄은 「Windows 컴퓨터의 기본」으로, 「Remove the execution policy」 절은 「Restricted가 Windows 클라이언트의 기본」으로 적어 클라이언트의 기본값이 문서 안에서 갈리고, about_Scripts(2020-10-06)는 기본값을 Restricted로 적는다 — 본문은 Windows Server의 기본값(RemoteSigned)만 쓰고 클라이언트의 기본값은 단정하지 않는다. Windows가 아닌 시스템에서는 Unrestricted로 고정이다
+- **Windows PowerShell 5.1과 PowerShell 7**: 둘은 별개의 제품이다. Windows에 함께 들어 있는 판이 Windows PowerShell이고, .NET Framework 위에서 돌며 마지막 판이 5.1이다(새 기능은 더하지 않는다). PowerShell(6부터, 지금 7)은 새 .NET 위에서 돌고 Windows·Linux·macOS에서 쓴다 — 「What is Windows PowerShell?」.
+  PowerShell 7은 Windows PowerShell 5.1과 다른 디렉터리에 설치되므로 두 판을 한 컴퓨터에서 함께 쓸 수 있다. 실행 파일 이름은 Windows PowerShell이 `powershell.exe`, 6 이후가 `pwsh.exe`다 — 「Migrating from Windows PowerShell 5.1 to PowerShell 7」. 두 판 사이 언어의 차이는 적다 — 「Differences…」 첫머리
+- 명령 프롬프트와의 관계: phase 71 「Microsoft Learn — Windows commands, ping, Task Manager」 항목(Windows의 명령줄 셸은 명령 셸과 PowerShell 둘)
+- **「DOS 명령」**: 이 step이 읽은 PowerShell 문서는 「DOS」라는 말을 쓰지 않는다. 문서가 쓰는 말은 별칭(`dir`·`cd`)과 네이티브 명령(실행 파일)이다 — 본문은 이 둘로 쓴다
+- **한국어 이름**: 「별칭」(about_Aliases 한국어판), 「대/소문자」(about_Case-Sensitivity 한국어판 — 본문은 「대소문자」로 쓴다), 「실행 정책」(about_Execution_Policies 한국어판), cmdlet은 한국어판도 영문 그대로
+
+쓰인 곳: (phase 80 step 11에서 쓰일 곳) `windows-admin-tools.powershell`(셸이자 스크립트 언어, 개체, cmdlet과 동사-명사, 별칭 `dir`·`cd`, 실행 파일로 된 명령, 대소문자, `.ps1`과 대화형, 실행 정책의 Windows Server 기본값, 5.1과 7, 「DOS 명령」이라는 말을 쓰지 않음),
+기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-11-03 #31]·[기출 2026-08-02 #30])
+(phase 80 step 11) `windows-admin-tools.powershell`(위 줄들 — 셸이자 스크립트 언어로 관리 작업을 자동화한다, cmdlet과 동사-명사, 결과가 객체다, 별칭 `dir` → `Get-ChildItem`·`cd` → `Set-Location`·`Get-Alias`, 이름만 적은 명령을 찾는 차례와 PATH, 대소문자, `.ps1`과 대화형, 실행 정책의 Windows Server 기본값 RemoteSigned, 5.1과 7·`powershell.exe`·`pwsh.exe`. 「DOS」라는 말은 쓰지 않았다. 네이티브 명령과 cmdlet 설명은 아래 「(phase 80 step 11) … PowerShell에서 명령 실행하기」 항목), 도식 `powershell-commands`, 문항 n278·n279
+
+## (phase 80 step 8) Microsoft Learn — 인증서와 파일 형식: Inspect certificates and manage certificate store contents, Export a certificate with its private key in Windows Server, Request and renew certificates with Certificates MMC, Export-Certificate, Export-PfxCertificate; .NET Framework 문서 — How to: View certificates with the MMC snap-in
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/inspect-certificates-manage-certificate-stores
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/export-certificate-private-key
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/request-renew-certificates-certificates-mmc
+https://learn.microsoft.com/en-us/powershell/module/pki/export-certificate
+https://learn.microsoft.com/en-us/powershell/module/pki/export-pfxcertificate
+https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-view-certificates-with-the-mmc-snap-in
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Inspect certificates…」·「Request and renew…」 `updated_at` 2026-10-02(`ms.date` 2026-08-17), 「Export a certificate with its private key…」 2025-09-11(2025-05-14) — 셋 다 「Applies to」 Windows Server 2016~2025(첫 문서는 Windows Server 2025의 화면으로 쓴다),
+Export-Certificate·Export-PfxCertificate 2025-05-29(2016-12-20, pki 모듈), .NET Framework 문서 2026-03-30(2019-02-25). 한국어판도 받았다(`updated_at` 2026-01~2026-10, 기계 번역).
+
+- 인증서·공개 키·개인 키의 뜻은 phase 78의 「RFC 5280」 항목과 `app-protocols-mgmt-security.tls`가 쓴 그대로다 — 다시 찾지 않았다
+- **인증서 저장소**는 사용자·컴퓨터·서비스가 기대는 인증서를 Windows가 두는 자리다. 범위는 셋이다 — **현재 사용자**(로그인한 사용자에 딸린 저장소 — `certmgr.msc`로 연다), **로컬 컴퓨터**(그 컴퓨터에 딸려 그 컴퓨터의 사용자들이 쓰는 저장소 — `certlm.msc`로 연다), 서비스 계정(`mmc`에 인증서 스냅인을 더하며 고른다).
+  현재 사용자 저장소는 개인(Personal)을 빼고 로컬 컴퓨터 저장소의 내용을 물려받는다 — 「Inspect certificates…」 「Understand certificate-store scopes」·「Open the Certificates MMC snap-in」. 현재 사용자 저장소는 로그인한 사용자의 맥락에서 쓰는 인증서의 자리다 — 「Request and renew…」 「Choose the certificate store scope」
+- `certmgr.msc`로 여는 도구에서 현재 사용자의 인증서를 보고, 내보내고, 가져오고, 지운다 — .NET Framework 문서 「View certificates with the Certificate Manager tool」(실행 창에 `certmgr.msc`). 관리자가 아니면 자기 사용자 계정의 인증서만 관리한다 — 같은 문서 「View certificates in the MMC snap-in」 Note
+- **공개 인증서만 내보내는 형식**(「Inspect certificates…」 「Export a public certificate」 표 — 파일 확장자 — Export-Certificate의 형식 이름 — 담는 것):
+  - `.cer` — CERT — DER로 부호화한 공개 인증서 하나
+  - `.p7b` — P7B — PKCS #7 형식으로 담은 인증서 하나 이상
+  - `.sst` — SST — Microsoft의 직렬화된 인증서 저장소에 담은 인증서 하나 이상
+  이 셋(Export-Certificate)은 **공개 인증서만** 내보내고 개인 키는 넣지 않는다. Import-Certificate는 `.sst`·`.p7b`·`.cer` 파일을 가져오며 PFX와 개인 키는 가져오지 않는다 — 같은 절과 「Import a public certificate」
+- **PFX**(Personal Information Exchange, PKCS #12): 공개 인증서 내보내기와 달리 **개인 키까지** 담을 수 있다. Export-PfxCertificate로 PFX를 내보내려면 암호나 `-ProtectTo`(보호할 대상) 가운데 하나가 있어야 하고, 담을 개인 키가 내보낼 수 있게 되어 있을 때만 성공한다.
+  `.cer`·`.p7b`·`.sst`를 개인 키 백업으로 여기지 말라고 한다. Import-PfxCertificate는 기본으로 개인 키를 다시 내보낼 수 없게 가져온다 — 「Inspect certificates…」 「Export a PFX only when you need the private key」·「Import a PFX…」. Export-PfxCertificate는 기본으로 확장 속성과 인증 경로 전체를 함께 내보낸다 — Export-PfxCertificate 「Description」
+- **마법사로 개인 키까지 내보내기**(「Export a certificate with its private key…」, Windows Server 2016~2025): 로컬 컴퓨터의 인증서 관리 콘솔(`certlm.msc`)을 열고 → 내보낼 인증서를 오른쪽 클릭해 모든 작업 → 내보내기 → 인증서 내보내기 마법사에서 개인 키를 내보낸다고 고르고 →
+  파일 형식으로 개인 정보 교환 - PKCS #12(.PFX)를 고르고(인증 경로의 인증서를 모두 넣는 확인란이 있다) → 개인 키를 지킬 암호와 암호화 방식을 정하고 → 파일 이름을 정한다. 내보낼 개인 키가 그 저장소에 함께 설치되어 있어야 한다 — 「Prerequisites」
+- **한국어 이름**: .NET Framework 문서 한국어판은 `certmgr.msc`로 여는 도구를 「인증서 관리자 도구」로, Windows Server 문서 한국어판은 MMC의 「인증서 스냅인」으로 부른다. 「인증서 내보내기 마법사」, 「개인 정보 교환 - PKCS #12(.PFX)」(Export a certificate with its private key 한국어판).
+  한국어판은 private key를 「프라이빗 키」로 옮기지만 이 과목은 phase 78부터 「개인 키」를 쓴다. 고른 이름: 기출이 쓰는 「인증서 관리자」(`certmgr.msc`)를 세우고, MMC의 인증서 스냅인이라는 것을 한 줄로 밝힌다
+
+쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.certificate-manager`(인증서 저장소의 범위 — `certmgr.msc`·`certlm.msc`, 보고·내보내고·가져오고·지운다, 형식 넷과 개인 키를 담는지, PFX 내보내기의 조건과 마법사 차례),
+`windows-admin-tools.efs`(EFS 키를 `.pfx`로 백업), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-08-25 #37], [기출 2024-02-25 #39])
+(phase 80 step 12) `windows-admin-tools.certificate-manager` — 인증서 저장소의 범위 셋, `certmgr.msc`(인증서 스냅인, 보고·내보내고·가져오고·지운다, 관리자가 아니면 자기 계정의 인증서만)과 `certlm.msc`, 형식 넷과 개인 키를 담는지(`.pfx`는 PKCS #12·암호로 보호·개인 키가 내보낼 수 있게 되어 있을 때만), 인증서 내보내기 마법사의 차례(Windows Server 문서가 보이는 `certlm.msc`의 차례라고 밝혔다).
+  공개 키·개인 키·서명·인증 기관의 뜻은 phase 78 `app-protocols-mgmt-security.tls`의 말과 맞췄다. 도식 `certificate-files`, 문항 n280
+
+## (phase 80 step 8) Microsoft Learn — EFS·BitLocker: File Encryption(Win32), cipher, Back up the recovery agent EFS private key in Windows, Personal Data Encryption overview, Smart Card and Remote Desktop Services, BitLocker overview, BitLocker recovery overview, BitLocker FAQ, Install BitLocker on Windows Server
+https://learn.microsoft.com/en-us/windows/win32/fileio/file-encryption
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cipher
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/back-up-recovery-agent-efs-private-key
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/personal-data-encryption/
+https://learn.microsoft.com/en-us/windows/security/identity-protection/smart-cards/smart-card-and-remote-desktop-services
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/recovery-overview
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/install-server
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「File Encryption」(Win32) `updated_at` 2025-07-10(`ms.date` 2025-07-08), 「cipher」 2026-02-16(2017-10-16, 「Applies to」 Windows Server 2016~2025·Windows 11·10),
+「Back up the recovery agent EFS private key…」 2026-02-18(2026-02-12, 적용 대상 — 지원되는 모든 Windows Server. 본문의 차례는 Windows Server 2003~2008 R2의 화면이라 **차례가 아니라 키의 구조와 백업 권고만** 가져온다), 「Personal Data Encryption overview」 2025-07-21(2025-03-12, Windows 11),
+「Smart Card and Remote Desktop Services」 2026-10-08(2024-10-29, Windows 11·10·Windows Server 2016~2025), BitLocker 넷 2026-10-08(`ms.date` 개요 2026-08-24, 복구 2025-07-29, FAQ 2026-06-01, 서버 설치 2025-07-29 — 개요·복구·FAQ는 Windows 11·10·Windows Server 2016~2025, 서버 설치는 Windows Server 2016~2025). 한국어판도 받았다(`updated_at` 2026-07~2026-10, 기계 번역).
+
+- **EFS**(Encrypting File System — 「File Encryption」은 Encrypted File System으로도 적는다): NTFS 볼륨에 있는 파일을 한 개씩 공개 키 방식으로 암호화한다. 문서가 드는 쓰임: 파일과 디렉터리의 접근 제어만으로는 데이터가 든 노트북을 잃거나 도둑맞았을 때 지키기 어려우므로, 파일 자체를 암호화해 한 겹 더 지킨다 — 「File Encryption」 첫머리
+- **암호화할 수 없는 것**: 압축된 파일, 시스템 파일, 시스템 디렉터리, 루트 디렉터리, 트랜잭션(희소 파일은 된다) — 「File Encryption」 「Working with EFS」. 곧 EFS는 시스템 파일에 쓰는 기능이 아니다
+- **켜는 자리**: 파일 속성 → 일반 탭 → 고급을 누르면 고급 특성 창이 뜬다. EFS로 보호한 파일은 그 창의 자세히에서 「이 파일에 액세스할 수 있는 사용자」마다 인증서 지문이, 복구 정책이 정한 복구 인증서가 보인다. EFS는 **인증서**로 파일을 보호한다 — 「Personal Data Encryption overview」 「Differences between Personal Data Encryption and EFS」(Windows 11 문서).
+  고급 특성 창의 「내용을 암호화」 확인란 이름을 적은 지금 판 문서는 찾지 못했다 — 본문은 「속성 → 고급」의 자리와 `cipher /e`로 쓴다
+- **`cipher`**: NTFS 볼륨의 디렉터리와 파일의 암호화 상태를 보이거나 바꾼다(옵션 없이 쓰면 지금 디렉터리의 상태 — E는 암호화됨, U는 아님). `/e` 암호화(디렉터리에 걸면 그 뒤에 더한 파일도 암호화), `/d` 해독, `/k` EFS용 새 인증서와 키를 만든다,
+  **`/x` EFS 인증서와 키를 파일로 백업**(`:efsfile`을 붙이면 그 파일을 암호화한 인증서), `/r` 복구 에이전트의 키와 인증서를 만들어 `.pfx`(인증서와 개인 키)와 `.cer`(인증서만) 파일로 쓴다 — `/smartcard`를 붙이면 스마트 카드에 쓰고 `.pfx`는 만들지 않는다, `/y` 지금 EFS 인증서의 지문 — 「cipher」 「Parameters」.
+  부모 디렉터리가 암호화되지 않으면 고칠 때 파일이 풀릴 수 있으니 부모 디렉터리도 암호화하라 — 「Remarks」
+- **키와 복구**(「Back up the recovery agent EFS private key…」 「Introduction」): EFS는 파일마다 만든 암호화 키로 파일을 암호화하고, 그 키를 사용자의 EFS **공개 키**로 암호화해 파일에 붙인다. 파일을 열려면 그 공개 키와 짝인 사용자의 EFS **개인 키**가 있어야 한다.
+  개인 키를 잃으면 **복구 에이전트**로 되살린다 — 파일을 암호화할 때마다 그 파일의 키를 복구 에이전트의 공개 키로도 암호화해 붙여 두므로, 복구 에이전트의 개인 키로 열 수 있다. 복구 에이전트의 개인 키는 인증서 내보내기 마법사로 PKCS #12(.PFX) 파일로 내보내 안전한 곳에 따로 보관하라고 한다 — 「Introduction」의 내보내기 차례
+- **Windows를 다시 설치하면**: 같은 사용자 이름의 계정을 새로 만들어도 열리지 않는다고 그대로 적은 문서는 찾지 못했다. 위 줄 — 파일을 열려면 그 공개 키와 짝인 **개인 키**가 있어야 한다 — 에서 판정한다(이름이 아니라 키가 필요하다). 그래서 키를 `cipher /x`나 인증서 내보내기(`.pfx`)로 백업해 둔다
+- **스마트 카드**: EFS는 사용자의 스마트 카드 판독기에서 인증서를 찾고, 판독기나 인증서를 찾지 못하면 사용자 파일을 해독하지 못한다 — 「Smart Card and Remote Desktop Services」 첫머리 목록(Windows Server 2016~2025). 곧 EFS의 키는 스마트 카드에 둘 수 있다. 복구 에이전트의 키도 `cipher /r … /smartcard`로 스마트 카드에 쓴다(위 줄)
+- **BitLocker**: **볼륨 전체**를 암호화하는 Windows 보안 기능이고, 잃어버리거나 도둑맞거나 제대로 폐기하지 않은 기기의 데이터가 새는 것을 막는다. 잃은 기기의 데이터는 공격 도구를 돌리거나 **하드 드라이브를 다른 기기로 옮겨 붙여** 읽힐 수 있는데, BitLocker가 이를 막는다 — 「BitLocker overview」 첫머리
+- **TPM**(신뢰할 수 있는 플랫폼 모듈): Windows 기기에 흔히 들어 있는 하드웨어 부품이고, 기기가 꺼진 동안 변조되지 않았는지 BitLocker와 함께 확인한다. BitLocker는 TPM과 함께 쓸 때 가장 강하고, TPM에 더해 PIN이나 시작 키가 든 이동식 장치를 요구할 수도 있다.
+  TPM이 없으면 시작 키(이동식 드라이브에 둔 파일)나 암호로 운영 체제 드라이브를 암호화하지만 시작 전 무결성 확인은 없다 — 「BitLocker overview」 「BitLocker and TPM」
+- **복구**: 복구 암호(recovery password)는 복구 모드에 들어간 볼륨을 여는 **48자리 숫자**이고, 텍스트 파일로 저장하거나 인쇄하거나 Microsoft Entra ID·Active Directory에 저장한다. 복구 키(recovery key)는 이동식 미디어에 저장한 암호화 키다(파일 이름 `<보호기 ID>.bek`) — 「BitLocker recovery overview」의 복구 수단 목록
+- **BitLocker To Go**: 이동식 데이터 드라이브 — USB 플래시 드라이브, SD 카드, 외장 하드 디스크 — 의 BitLocker 드라이브 암호화다 — 「BitLocker FAQ」 「What is BitLocker To Go?」
+- **Windows Server**: 어느 판에도 기본으로 설치되어 있지 않고, 서버 관리자의 역할 및 기능 추가 마법사(기능에서 BitLocker 드라이브 암호화)나 PowerShell로 설치한다. 관리자 권한이 필요하다 — 「Install BitLocker on Windows Server」 첫머리·「Install BitLocker with Server Manager」
+- **EFS와 BitLocker**(「BitLocker FAQ」 「Can I use EFS with BitLocker?」): **함께 쓸 수 있다** — BitLocker로 보호한 드라이브의 파일을 EFS로 암호화할 수 있다. BitLocker는 운영 체제 드라이브 전체를 오프라인 공격(기기가 꺼진 동안의 공격)에서 지키고, EFS는 같은 컴퓨터를 쓰는 여러 사용자 사이를 가르는 사용자 단위 파일 암호화를 더한다.
+  EFS는 BitLocker로 암호화하지 않은 다른 드라이브의 파일에도 쓸 수 있다. EFS의 근본 비밀은 기본으로 운영 체제 드라이브에 있어서, 운영 체제 드라이브에 BitLocker를 켜면 다른 드라이브의 EFS 데이터도 간접으로 보호된다
+- **한국어 이름**: 「암호화 파일 시스템」(File Encryption 한국어판), 「복구 에이전트」(EFS 복구 에이전트 문서 한국어판), 「BitLocker 드라이브 암호화」·「이동식 데이터 드라이브」(BitLocker FAQ 한국어판), 「복구 키」·「복구 암호」(복구 개요 한국어판), 「TPM(신뢰할 수 있는 플랫폼 모듈)」(BitLocker 개요 한국어판).
+  고급 특성 창과 그 안의 항목, cipher 옵션 설명의 한국어 화면 이름은 확인하지 못했다 — 뜻을 옮긴 말로 쓴다
+
+쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`(NTFS·파일 단위·공개 키 방식, 노트북 분실의 예, 암호화할 수 없는 것, 속성 → 고급과 `cipher /e`, 인증서와 개인 키 — 다른 사용자는 못 연다, 키를 잃으면 못 연다와 백업 `cipher /x`·`.pfx`, 복구 에이전트, 스마트 카드),
+(phase 80 step 12) `windows-admin-tools.efs` — 위 줄의 사실 전부(NTFS 볼륨·파일 단위·공개 키 방식, 노트북 분실의 예, 암호화할 수 없는 것, 고급 특성 창과 `cipher`의 옵션 없음·`/e`·`/d`·`/x`·부모 폴더, 파일 키와 개인 키 — 다른 사용자는 못 연다, 다시 설치와 백업, 복구 에이전트, 스마트 카드), E38의 「자격시험은」 줄, BitLocker와의 차이 한 줄(「BitLocker FAQ」).
+  고급 특성 창에서 켜고 끄는 확인란의 이름(영문 화면 「Encrypt contents to secure data」)은 learn.microsoft.com 안에서도 Microsoft Q&A 답변에만 보여(2026-11-16 Microsoft Learn 검색) 쓰지 않았다 — 본문은 창의 자리와 `cipher /e`로만 쓴다. 도식 `efs-key-backup`, 문항 n281
+(phase 80 step 13에서 쓰일 곳) `windows-admin-tools.bitlocker`(볼륨 전체·도난·드라이브를 옮겨 붙이기, TPM, 복구 암호 48자리와 복구 키, BitLocker To Go, Windows Server의 기능 설치, EFS와 함께 쓰기와 차이),
+기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-02-25 #39], [기출 2024-08-25 #28])
+
+(phase 80 step 13, 2026-11-16 Microsoft Learn에서 「BitLocker FAQ」(https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq — 위 줄과 같은 판)를 다시 받고, 「BitLocker operations guide」(https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/operations-guide, Windows 11·10·Windows Server 2016~2025) 「Enable BitLocker」를 찾아 확인)
+- **읽고 쓰기**: BitLocker는 드라이브 전체를 한꺼번에 풀지 않는다 — 읽기 요청이 온 부분만 그때 풀고, 쓰는 블록은 디스크에 적기 전에 암호화하며, 보호한 드라이브에는 암호화되지 않은 데이터가 남지 않는다 — 「Does BitLocker encrypt and decrypt the entire drive all at once when reading and writing data?」
+- **TPM이 키를 내주지 않는 때**: 운영 체제 드라이브의 무결성 확인이 실패하면 TPM이 드라이브를 풀 키를 내주지 않는다. 실패하게 하는 변화의 첫째가 BitLocker로 보호한 드라이브를 새 컴퓨터로 옮기는 것이고, 시작 구성·펌웨어·부트 구성 요소를 바꾸는 것도 든다 — 「What system changes would cause the integrity check on the OS drive to fail?」.
+  TPM은 자체 펌웨어와 회로로 동작하는 하드웨어 부품이고 TPM은 그것이 든 컴퓨터마다 다르다 — 「What are the advantages of a TPM?」
+- **PIN·시작 키**: PIN은 사용자가 정해 컴퓨터를 켜거나 최대 절전에서 돌아올 때마다 넣는 값(숫자 4~20자리)이고, 시작 키는 USB 플래시 드라이브에 담아 컴퓨터를 켤 때마다 꽂는 키다. 둘 다 TPM 인증에 더하는 인증이다 — 「What is the difference between a TPM owner password, recovery password, recovery key, PIN, enhanced PIN, and startup key?」
+- **데이터 드라이브**: 데이터 드라이브를 다른 컴퓨터에 붙이면 암호나 스마트 카드로 열 수 있고, 저절로 열리게만(automatic unlock only) 해 둔 데이터 드라이브는 복구 키로 연다 — 「Can I access my BitLocker-protected drive if I insert the hard disk into a different computer?」.
+  컴퓨터 안의 데이터 드라이브(fixed data drive)가 저절로 열리게 하려면 운영 체제 드라이브도 BitLocker로 보호되어 있어야 한다 — 「Why am I unable to automatically unlock my drive?」. 데이터 드라이브는 운영 체제를 끄거나 다시 시작하면 잠긴다 — 「How do I "lock" a data drive?」
+- **복구**: BitLocker를 켤 때, 정해 둔 잠금 해제 방법을 쓸 수 없을 때(TPM이 부트 구성 요소를 확인하지 못했거나 PIN이나 암호를 잊었을 때) 복구할 방법을 정한다. 복구 암호는 **여덟 묶음으로 나뉜 48자리 숫자**, 복구 키는 USB 플래시 드라이브의 키 파일이다 — 위 질문.
+  복구는 TPM을 거치지 않으므로 TPM이 고장 나거나 빠져도 할 수 있다 — 「What causes BitLocker to start into recovery mode…?」. 복구 정보를 잃으면: BitLocker는 필요한 인증 없이는 암호화한 드라이브를 되살릴 수 없게 설계되어 있고, 복구 정보는 안전한 곳에 둔다 — 「If I lose my recovery information, will the BitLocker-protected data be unrecoverable?」.
+  복구 키를 파일로 저장할 때는 그 기기가 아닌 곳(네트워크 폴더 같은 곳)에 둔다 — 「BitLocker operations guide」 「Enable BitLocker」의 제어판 차례(차례는 가져오지 않고 이 사실만)
+- **이동식 드라이브**: BitLocker To Go로 암호화한 드라이브는 다른 컴퓨터에서 암호나 스마트 카드로 연다 — 「What is BitLocker To Go?」
+- **권한**: 운영 체제 드라이브와 컴퓨터 안의 데이터 드라이브에서 BitLocker를 켜고 끄고 설정을 바꾸려면 로컬 Administrators 그룹의 구성원이어야 하고, 이동식 데이터 드라이브는 일반 사용자도 할 수 있다 — 「What user rights are required to use BitLocker?」
+- 쓰지 않은 것: 향상된 PIN, 네트워크 잠금 해제, 일시 중단과 해독, TPM 소유자 암호, 키 구조(전체 볼륨 암호화 키·볼륨 마스터 키), 사용한 공간만 암호화, 암호화 알고리즘
+
+쓰인 곳: (phase 80 step 13) `windows-admin-tools.bitlocker` — 위 「BitLocker」·「TPM」·「복구」·「BitLocker To Go」·「Windows Server」·「EFS와 BitLocker」 줄과 이 문단의 사실 전부(읽고 쓰기, TPM이 키를 내주지 않는 때, PIN·시작 키, 데이터 드라이브의 잠금 해제·자동 잠금 해제·다시 잠김·다른 컴퓨터에서 열기, 복구 암호 여덟 묶음 48자리와 복구 키·TPM 없이 복구·잃으면 되살릴 수 없음·기기가 아닌 곳에 저장, To Go를 다른 컴퓨터에서 열기, 권한).
+  본문 예는 운영 체제 드라이브를 TPM과 함께 보호하고 `D:`를 저절로 열리게만 해 둔 서버로 썼다 — 데이터 드라이브는 TPM이 아니라 자동 잠금 해제로 열리므로, 「TPM이 `D:`를 연다」로 그리지 않으려고 운영 체제 드라이브를 거치게 했다. 도식 `bitlocker-volume`, 문항 n282
+
+## (phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders): Work Folders overview, Features Removed or No Longer Developed in Windows Server
+https://learn.microsoft.com/en-us/windows-server/storage/work-folders/work-folders-overview
+https://learn.microsoft.com/ko-kr/windows-server/storage/work-folders/work-folders-overview
+https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Work Folders overview」 `updated_at` 2025-09-22(`ms.date` 2025-04-16, 「Applies to」 Windows Server 2016~2025·Windows 11·10), 한국어판 「Work Folders 개요」 2026-01-21,
+「Features Removed or No Longer Developed in Windows Server」 2026-03-19(2025-09-24, Windows Server 2016~2025).
+
+- **클라우드 폴더**(Work Folders)는 파일 서버를 위한 Windows Server의 **역할 서비스**다. 사용자가 회사 PC뿐 아니라 개인 컴퓨터와 기기(BYOD)에서도 업무 파일을 저장하고 어디서나 쓰게 한다. 사용자 파일은 서버의 **동기화 공유**(sync share)라는 폴더에 두며, 이미 사용자 데이터가 든 폴더를 동기화 공유로 정할 수도 있다 — 「Work Folders overview」 첫머리
+- 쓰임(「Common uses」): 업무 파일에 회사·개인 PC와 기기에서 닿는 한 곳, **연결이 끊긴 동안 작업하고 다음에 인터넷이나 인트라넷에 이어지면 중앙 파일 서버와 동기화**, 폴더 리디렉션·오프라인 파일·홈 폴더와 함께 배포, 파일 분류·폴더 할당량 같은 파일 서버 관리 기술로 사용자 데이터 관리,
+  **사용자의 PC와 기기에 클라우드 폴더를 암호화하고 잠금 화면 암호를 쓰라고 하는 보안 정책**, 장애 조치 클러스터링으로 고가용성
+- **설치 자리**: 클라우드 폴더는 파일 및 스토리지 서비스(File and Storage Services) 역할의 일부다. 역할 및 기능 추가 마법사의 서버 역할 선택에서 파일 및 스토리지 서비스 → 파일 및 iSCSI 서비스를 펼쳐 고른다(또는 `Install-WindowsFeature`). 설치하면 서버 관리자에서 파일 및 스토리지 서비스 아래에 클라우드 폴더 페이지가 생기고,
+  동기화 공유를 맡는 Windows Sync Shares 서비스와 SyncShare PowerShell 모듈이 설치된다 — 「Server Manager」. 요구 사항: Windows Server 2012 R2 이상의 서버, 사용자 파일을 둘 NTFS 볼륨, 클라우드 폴더를 두는 파일 서버마다 서버 인증서 — 「Requirements for file servers and network infrastructure」.
+  클라이언트는 Windows 10·11이고 기본 위치는 `%USERPROFILE%\Work Folders`다 — 「Requirements for client computers」
+- **OneDrive와의 차이**(「Comparison with other sync technologies」 표): 클라우드 폴더는 **파일 서버에 저장된 파일**을 PC·기기와 동기화하고, 클라우드 서비스 칸이 「없음」이며 내부 네트워크의 파일 서버(Windows Server 2012 R2·2016·2019)를 쓴다.
+  OneDrive for Business는 Microsoft 365나 SharePoint에 저장된 파일을(클라우드 서비스 — Microsoft 365), OneDrive는 OneDrive에 저장된 개인 파일을(클라우드 서비스 — Microsoft OneDrive) 동기화한다. 오프라인 파일은 회사 네트워크에 닿는 PC와 파일 서버의 파일을 동기화하고 클라우드 폴더로 바꿀 수 있다
+- **지원 상태**: 「Features Removed or No Longer Developed in Windows Server」의 「Features no longer in development」·「Features removed」 두 목록에 클라우드 폴더(Work Folders)는 없다(문서 전체에서 「Work Folders」가 한 번도 나오지 않는다)
+- **한국어 이름**: 한국어판 「Work Folders 개요」는 제목만 영문이고 본문에서 「클라우드 폴더」(21번)·「작업 폴더」(9번)·「워크 폴더」(6번)를 섞어 쓴다. 기능 표의 이름 자리(클라우드 폴더 cmdlet, 디바이스용 클라우드 폴더 앱)와 설치하면 서버 관리자에 더해지는 페이지 이름은 「클라우드 폴더」이고,
+  역할 및 기능 추가 마법사에서 고르는 항목은 「작업 폴더」로 옮겼다. **실제 설치 마법사의 화면 이름은 확인하지 못했다.** 고른 이름: 「클라우드 폴더」 — 한국어판이 가장 많이 쓰고 서버 관리자의 페이지 이름 자리에 쓰며 기출([기출 2024-02-25 #43])이 쓰는 이름이다. 영문 Work Folders를 함께 적고, 「작업 폴더」로도 옮긴다는 것을 한 줄로 밝힐 수 있다.
+  이름에 「클라우드」가 붙었지만 파일은 회사 파일 서버의 동기화 공유에 있다(위 비교 표). 「동기화 공유」, 「파일 및 스토리지 서비스」(한국어판 — 이 과목의 다른 주제가 이 역할을 다루지 않아 본문은 한국어판 표기를 따른다)
+
+쓰인 곳: (phase 80 step 13에서 쓰일 곳) `windows-admin-tools.work-folders`(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 오프라인 작업 뒤 동기화, 암호화·잠금 화면 암호 정책, 설치 자리, OneDrive와의 차이, 지원 상태, 한국어 이름), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-02-25 #43])
+
+(phase 80 step 13, 2026-11-16 Microsoft Learn에서 「Work Folders overview」를 다시 받아 확인 — 위 줄과 같은 판) 클라이언트 PC에는 사용자의 클라우드 폴더 파일을 **모두 담을 만큼 빈 공간**이 로컬 NTFS 드라이브에 있어야 한다 — 「Requirements for client computers」(오프라인에서 파일을 열고 고칠 수 있는 까닭을 말할 때 쓴다).
+서버 관리자의 파일 및 스토리지 서비스는 동기화 공유를 만들고, 클라우드 폴더를 살피고, 동기화 공유와 사용자의 접근을 관리하는 자리다 — 「Features」의 「Role service in Server Manager」. OneDrive for Business가 쓰는 클라우드 서비스는 Microsoft 365다 — 「Comparison with other sync technologies」 표.
+쓰지 않은 것: 인터넷 너머 동기화의 요구 사항(역방향 프록시·AD FS), 서버 인증서, 파일 크기 한도, 장애 조치 클러스터링, 폴더 리디렉션·오프라인 파일·홈 폴더와 함께 배포
+
+쓰인 곳: (phase 80 step 13) `windows-admin-tools.work-folders` — 위 줄의 사실 전부(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 클라이언트의 기본 위치 `%USERPROFILE%\Work Folders`, 오프라인 작업 뒤 동기화와 클라이언트의 빈 공간, 암호화·잠금 화면 암호 정책, 파일 및 스토리지 서비스 아래 설치 자리와 `Install-WindowsFeature`·클라우드 폴더 페이지에서 동기화 공유와 사용자 접근 관리·NTFS 볼륨, OneDrive와 OneDrive for Business와의 차이, 지원 상태, 한국어 이름 — 「작업 폴더」로도 옮긴다는 것 한 줄).
+  설치 차례는 서버 역할 선택에서 파일 및 스토리지 서비스를 펼친 뒤 그 아래 항목에서 고른다고만 썼다 — 중간 단계 「파일 및 iSCSI 서비스」는 iSCSI를 이 주제에서 풀 근거가 없어 이름을 쓰지 않았다. 도식 `work-folders-sync`, 문항 n283

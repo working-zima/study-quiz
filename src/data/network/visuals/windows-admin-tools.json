@@ -1,0 +1,591 @@
+{
+  "diagrams": {
+    "run-commands": {
+      "label": "실행 창에 입력하는 실행 이름 compmgmt.msc·devmgmt.msc·gpedit.msc·secpol.msc·eventvwr.msc·certmgr.msc·perfmon이 저마다 컴퓨터 관리·장치 관리자·로컬 그룹 정책 편집기·로컬 보안 정책·이벤트 뷰어·인증서 관리자·성능 모니터를 여는 것을 보이는 도식",
+      "svgLabel": "왼쪽 박스에 실행 이름 일곱이 위에서 아래로 있고, 오른쪽 박스에 그 이름이 여는 관리 도구 일곱이 같은 줄에 있는 그림",
+      "question": "실행 창에 무엇을 적으면 어느 도구가 열릴까?",
+      "idleCaption": "실행 창에 입력하는 실행 이름 일곱과, 그 이름이 여는 관리 도구를 같은 줄에 두었다. 일곱 도구는 모두 MMC 안에서 열린다. 버튼을 고르면 어떤 이름이 어느 도구를 여는지 볼 수 있다.",
+      "legend": "왼쪽 박스는 실행 창에 입력하는 실행 이름이고, 오른쪽 박스는 그 이름이 여는 관리 도구다. 화살표는 실행 이름에서 그 이름이 여는 도구로 간다.",
+      "nodes": {
+        "run-compmgmt": "compmgmt.msc",
+        "run-devmgmt": "devmgmt.msc",
+        "run-gpedit": "gpedit.msc",
+        "run-secpol": "secpol.msc",
+        "run-eventvwr": "eventvwr.msc",
+        "run-certmgr": "certmgr.msc",
+        "run-perfmon": "perfmon",
+        "tool-compmgmt": "컴퓨터 관리",
+        "tool-devmgmt": "장치 관리자",
+        "tool-gpedit": "로컬 그룹 정책 편집기",
+        "tool-secpol": "로컬 보안 정책",
+        "tool-eventvwr": "이벤트 뷰어",
+        "tool-certmgr": "인증서 관리자",
+        "tool-perfmon": "성능 모니터"
+      },
+      "groups": {
+        "names": "실행 이름",
+        "tools": "MMC 안에서 열리는 관리 도구"
+      },
+      "notes": {
+        "perfmon-note": ".msc가 없어도 MMC 안에서 열린다"
+      },
+      "scenarios": [
+        {
+          "id": "system",
+          "label": "컴퓨터와 장치",
+          "caption": "compmgmt.msc는 이벤트 뷰어·장치 관리자 같은 관리 도구 여럿을 한 콘솔에 모아 둔 컴퓨터 관리를 연다. devmgmt.msc는 장치마다 종류·상태와 드라이버 정보를 보여 주는 장치 관리자를 연다.",
+          "sources": [
+            "windows-admin-tools.mmc-run-commands"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "정책",
+          "caption": "gpedit.msc는 그 컴퓨터 한 대에 걸리는 정책을 고치는 로컬 그룹 정책 편집기를 연다. secpol.msc는 암호 정책·계정 잠금 정책 같은 보안 설정을 모아 둔 로컬 보안 정책을 연다. 둘 다 여기서 바꾼 설정은 그 컴퓨터에만 걸린다.",
+          "sources": [
+            "windows-admin-tools.mmc-run-commands"
+          ]
+        },
+        {
+          "id": "records",
+          "label": "기록과 측정",
+          "caption": "eventvwr.msc는 운영 체제와 프로그램이 남긴 기록을 찾는 이벤트 뷰어를 연다. perfmon은 컴퓨터의 상태를 잰 값을 그래프로 보여 주는 성능 모니터를 연다. perfmon은 콘솔 파일이 아니라 프로그램의 이름이지만 이것도 MMC 안에서 열린다.",
+          "sources": [
+            "windows-admin-tools.mmc-run-commands"
+          ]
+        },
+        {
+          "id": "certificate",
+          "label": "인증서",
+          "caption": "certmgr.msc는 지금 로그온한 사용자의 인증서를 보고, 파일로 내보내고, 파일에서 가져오고, 지우는 인증서 관리자를 연다.",
+          "sources": [
+            "windows-admin-tools.mmc-run-commands"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.mmc-run-commands"
+      ]
+    },
+    "event-viewer": {
+      "label": "운영 체제와 프로그램이 남긴 이벤트가 응용 프로그램·보안·시스템 같은 Windows 로그에 쌓이고, 이벤트 한 건에 날짜와 시간·원본·이벤트 ID·수준이 남으며, 종료와 다시 시작의 기록은 시스템 로그에 남아 이벤트 뷰어로 찾는 것을 보이는 도식",
+      "svgLabel": "운영 체제와 프로그램, 이벤트, 이벤트 뷰어가 있고, Windows 로그 박스 안에 응용 프로그램·보안·시스템이, 이벤트 한 건의 칸 박스 안에 날짜와 시간·원본·이벤트 ID·수준이 있는 그림",
+      "question": "지난밤 서버가 왜 다시 시작됐는지 어디서 찾을까?",
+      "idleCaption": "운영 체제와 프로그램이 남긴 이벤트가 쌓이는 Windows 로그와, 이벤트 한 건에 함께 남는 칸, 로그를 보는 이벤트 뷰어를 두었다. 버튼을 고르면 기록이 쌓이는 흐름과 한 건에 남는 칸, 종료 기록을 찾는 곳을 볼 수 있다.",
+      "legend": "화살표는 이벤트가 로그에 쌓이는 흐름과, 로그에서 기록을 찾는 도구로 가는 방향을 가리킨다. 아래 박스는 이벤트 한 건에 함께 남는 칸이다.",
+      "nodes": {
+        "writer": "운영 체제와 프로그램",
+        "event": "이벤트",
+        "app-log": "응용 프로그램",
+        "security-log": "보안",
+        "system-log": "시스템",
+        "viewer": "이벤트 뷰어",
+        "field-time": "날짜와 시간",
+        "field-source": "원본",
+        "field-id": "이벤트 ID",
+        "field-level": "수준"
+      },
+      "groups": {
+        "logs": "Windows 로그",
+        "fields": "이벤트 한 건의 칸"
+      },
+      "notes": {
+        "level-note": "수준: 정보·경고·오류·위험",
+        "filter-note": "이벤트 ID 1074로 거른다"
+      },
+      "scenarios": [
+        {
+          "id": "record",
+          "label": "기록",
+          "caption": "서비스가 시작되거나 프로그램에 오류가 나는 것처럼 컴퓨터에 일이 일어나면, 운영 체제와 프로그램이 그 일을 이벤트 한 건으로 남긴다. 이벤트는 응용 프로그램·보안·시스템 같은 로그 가운데 정해진 로그에 쌓인다.",
+          "sources": [
+            "windows-admin-tools.event-viewer"
+          ]
+        },
+        {
+          "id": "fields",
+          "label": "이벤트 한 건",
+          "caption": "이벤트마다 기록된 날짜와 시간, 그 이벤트를 남긴 소프트웨어인 원본, 일의 종류를 가리키는 번호인 이벤트 ID, 얼마나 심각한지를 나타내는 수준이 함께 남는다. 이벤트 ID는 원본과 함께 본다.",
+          "sources": [
+            "windows-admin-tools.event-viewer"
+          ]
+        },
+        {
+          "id": "shutdown",
+          "label": "종료 기록",
+          "caption": "컴퓨터를 끄거나 다시 시작한 기록은 시스템 로그에 남는다. 이벤트 뷰어로 시스템 로그를 이벤트 ID 1074로 거르면 어느 프로그램이 어느 사용자를 대신해 언제 왜 다시 시작했는지 나온다. 41이나 6008은 제대로 꺼지지 못한 채 다시 시작된 기록이다.",
+          "sources": [
+            "windows-admin-tools.event-viewer"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.event-viewer"
+      ]
+    },
+    "windows-logs": {
+      "label": "이벤트 뷰어의 Windows 로그 아래에 응용 프로그램·보안·Setup·시스템·ForwardedEvents 다섯 로그가 있고, 로그온 실패는 보안 로그에, 드라이버 불러오기 실패는 시스템 로그에, 프로그램의 파일 오류는 응용 프로그램 로그에 남으며, WMI-Activity처럼 구성 요소 하나의 로그는 그 바깥의 응용 프로그램 및 서비스 로그에 있는 것을 보이는 도식",
+      "svgLabel": "일어난 일 셋과, 로그 다섯이 든 Windows 로그 박스, WMI-Activity가 든 응용 프로그램 및 서비스 로그 박스가 있는 그림",
+      "question": "어떤 일이 어느 로그에 남을까?",
+      "idleCaption": "이벤트 뷰어의 Windows 로그 아래 로그 다섯과, 그 바깥의 응용 프로그램 및 서비스 로그를 두었다. 버튼을 고르면 일어난 일이 어느 로그에 남는지와, 구성 요소 하나의 로그가 어디에 있는지 볼 수 있다.",
+      "legend": "화살표는 일어난 일에서 그 일이 남는 로그로 간다. 두 박스는 이벤트 뷰어에서 로그를 나눈 두 묶음이다.",
+      "nodes": {
+        "file-error": "프로그램의 파일 오류",
+        "logon-failure": "로그온 실패",
+        "driver-failure": "드라이버 불러오기 실패",
+        "app-log": "응용 프로그램",
+        "security-log": "보안",
+        "setup-log": "Setup",
+        "system-log": "시스템",
+        "forwarded-log": "ForwardedEvents",
+        "wmi-log": "WMI-Activity"
+      },
+      "groups": {
+        "logs": "Windows 로그",
+        "apps": "응용 프로그램 및 서비스 로그"
+      },
+      "notes": {
+        "security-note": "감사를 켜 둔 컴퓨터에서",
+        "apps-note": "Windows 로그 밖"
+      },
+      "scenarios": [
+        {
+          "id": "security",
+          "label": "보안",
+          "caption": "누군가 틀린 암호를 넣어 생긴 로그온 실패는 보안 로그에 남는다. 보안과 관련된 일을 기록으로 남기는 것을 감사라 하며, 로그온 시도를 기록하도록 감사를 켜 둔 컴퓨터에서 이 기록이 남는다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "system",
+          "label": "시스템",
+          "caption": "컴퓨터를 시작하면서 드라이버를 불러오지 못한 일은 시스템 로그에 남는다. 시스템 로그는 드라이버처럼 Windows를 이루는 구성 요소가 남긴 이벤트를 담고, 컴퓨터를 끄거나 다시 시작한 기록도 여기에 남는다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "application",
+          "label": "응용 프로그램",
+          "caption": "데이터베이스 프로그램처럼 프로그램이 파일을 다루다 낸 오류는 응용 프로그램 로그에 남는다. 이 로그에 무엇을 남길지는 그 프로그램을 만든 쪽이 정한다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "apps-services",
+          "label": "다른 묶음",
+          "caption": "WMI처럼 Windows의 구성 요소 하나가 남긴 이벤트는 Windows 로그가 아니라 응용 프로그램 및 서비스 로그 아래 그 구성 요소의 로그에 따로 담긴다. 응용 프로그램 로그와 이름이 비슷해도 다른 자리다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.windows-logs"
+      ]
+    },
+    "perfmon-collector": {
+      "label": "성능 모니터가 성능 카운터 \\Processor(_Total)\\% Processor Time의 지금 값을 실시간 그래프로 보여 주고, 데이터 수집기 집합이 그 값을 15초마다 재어 로그 파일에 쓰며, 모은 값을 나중에 보고서로 보는 것을 보이는 도식",
+      "svgLabel": "맨 위에 성능 카운터가 있고, 그 아래에 실시간 그래프와, 로그 파일이 든 데이터 수집기 집합 박스, 보고서가 있는 그림",
+      "question": "성능 모니터는 값을 어떻게 모아 둘까?",
+      "idleCaption": "성능 카운터 하나와, 그 값을 보는 두 길인 실시간 그래프와 데이터 수집기 집합, 모은 값을 보는 보고서를 두었다. 버튼을 고르면 지금 값을 보는 길과 값을 모아 두었다가 나중에 보는 길을 볼 수 있다.",
+      "legend": "화살표는 카운터의 값이 가는 곳을 가리킨다. 박스는 값을 정한 간격마다 재어 로그 파일에 쓰는 데이터 수집기 집합이다.",
+      "nodes": {
+        "counter": "\\Processor(_Total)\\% Processor Time",
+        "live": "실시간 그래프",
+        "log-file": "로그 파일",
+        "report": "보고서"
+      },
+      "groups": {
+        "collector": "데이터 수집기 집합"
+      },
+      "notes": {
+        "interval-note": "15초마다 값을 모은다"
+      },
+      "scenarios": [
+        {
+          "id": "live",
+          "label": "실시간",
+          "caption": "성능 모니터라는 이름의 자리는 고른 카운터의 지금 값을 실시간 그래프로 보여 준다. 여기서는 모든 프로세서 사용률의 평균인 \\Processor(_Total)\\% Processor Time이 시간에 따라 오르내리는 모습을 본다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        },
+        {
+          "id": "collect",
+          "label": "모으기",
+          "caption": "데이터 수집기 집합은 고른 카운터를 정한 샘플 간격마다 재어 확장자가 .blg인 로그 파일에 쓴다. 15초 간격으로 한 시간을 모으면 3,600 ÷ 15 = 240이라 값이 240개 안팎 남는다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        },
+        {
+          "id": "report",
+          "label": "보고서",
+          "caption": "보고서는 데이터 수집기 집합이 모은 값을 나중에 보여 주는 자리다. 밤새나 며칠처럼 오랫동안 모은 값은 수집이 끝난 뒤 보고서에서 연다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.performance-monitor"
+      ]
+    },
+    "resource-monitor": {
+      "label": "리소스 모니터가 CPU·메모리·디스크·네트워크 네 자원을 내려받는 프로그램 같은 프로세스마다 지금 얼마나 쓰는지 나눠 보여 주고, 성능 모니터는 카운터를 골라 오래 모은다는 것을 보이는 도식",
+      "svgLabel": "리소스 모니터 박스 안에 CPU·메모리·디스크·네트워크가 있고, 박스 밖에 내려받는 프로그램과 성능 모니터가 있는 그림",
+      "question": "지금 어느 프로그램이 자원을 많이 쓰는지 어디서 볼까?",
+      "idleCaption": "리소스 모니터 박스에 네 자원을 두고, 박스 밖에 예로 고른 내려받는 프로그램과 성능 모니터를 두었다. 버튼을 고르면 리소스 모니터가 무엇을 보여 주는지와 성능 모니터와 무엇이 다른지 볼 수 있다.",
+      "legend": "박스는 리소스 모니터가 나눠 보여 주는 네 자원이다. 화살표는 그 프로그램이 쓰는 자원을 가리킨다.",
+      "nodes": {
+        "process": "내려받는 프로그램",
+        "cpu": "CPU",
+        "memory": "메모리",
+        "disk": "디스크",
+        "network": "네트워크",
+        "perfmon": "성능 모니터"
+      },
+      "groups": {
+        "resmon": "리소스 모니터"
+      },
+      "notes": {
+        "now-note": "지금 이 순간을 프로세스별로 본다",
+        "collect-note": "카운터를 골라 오래 모은다"
+      },
+      "scenarios": [
+        {
+          "id": "resources",
+          "label": "네 자원",
+          "caption": "리소스 모니터는 CPU·메모리·디스크·네트워크 네 자원을 나눠, 지금 각 자원을 얼마나 쓰고 있는지 실시간으로 보여 준다. CPU 탭에서는 프로세스마다 CPU 사용량과 최근 60초의 평균인 평균 CPU를 본다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor"
+          ]
+        },
+        {
+          "id": "per-process",
+          "label": "프로세스별",
+          "caption": "자원마다 어느 프로세스가 얼마나 쓰는지 나뉘어 보인다. 내려받는 프로그램이라면 네트워크 탭에서는 그 프로세스가 받는 양이, 디스크 탭에서는 받은 내용을 쓰는 파일과 그 쓰는 속도가 보인다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor"
+          ]
+        },
+        {
+          "id": "compare",
+          "label": "성능 모니터와",
+          "caption": "리소스 모니터는 지금 이 순간 어느 프로세스가 어느 자원을 얼마나 쓰는지 바로 보여 준다. 성능 모니터는 관리자가 카운터를 골라 데이터 수집기 집합으로 정한 간격마다 오래 모아 두었다가 보고서로 보여 준다.",
+          "sources": [
+            "windows-admin-tools.resource-monitor",
+            "windows-admin-tools.performance-monitor"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.resource-monitor"
+      ]
+    },
+    "powershell-commands": {
+      "label": "PowerShell에서 cmdlet 이름은 동사와 명사를 하이픈으로 이은 꼴이고, dir은 별칭으로 Get-ChildItem을, ipconfig는 실행 파일 ipconfig.exe를 실행하며, get-service와 Get-Service는 대소문자와 관계없이 같은 cmdlet을 실행한다는 것을 보이는 도식",
+      "svgLabel": "동사와 명사로 나눈 cmdlet 이름이 있고, 입력한 이름 박스의 이름들이 실행되는 것 박스의 cmdlet과 실행 파일로 이어지는 그림",
+      "question": "PowerShell에 적은 이름은 무엇을 실행할까?",
+      "idleCaption": "cmdlet 이름 하나를 동사와 명사로 나눠 두고, 입력한 이름과 그 이름으로 실행되는 것을 나란히 두었다. 버튼을 고르면 이름마다 무엇이 실행되는지 볼 수 있다.",
+      "legend": "화살표는 입력한 이름에서 실제로 실행되는 것을 가리킨다.",
+      "nodes": {
+        "verb": "Get",
+        "noun": "ChildItem",
+        "in-dir": "dir",
+        "in-ipconfig": "ipconfig",
+        "in-lower": "get-service",
+        "in-upper": "Get-Service",
+        "run-gci": "Get-ChildItem",
+        "run-ipconfig": "ipconfig.exe",
+        "run-gsv": "Get-Service"
+      },
+      "groups": {
+        "cmdlet-name": "cmdlet 이름",
+        "typed": "입력한 이름",
+        "runs": "실행되는 것"
+      },
+      "notes": {
+        "verb-note": "동사",
+        "noun-note": "명사",
+        "alias-note": "별칭",
+        "native-note": "실행 파일",
+        "case-note": "대소문자와 관계없다"
+      },
+      "scenarios": [
+        {
+          "id": "cmdlet",
+          "label": "cmdlet",
+          "caption": "cmdlet 이름은 동작을 나타내는 동사와 그 대상을 나타내는 명사를 하이픈으로 잇는다. Get-ChildItem은 동사 Get과 명사 ChildItem으로 되어 있어, 폴더 같은 위치를 주면 그 안의 항목을 가져온다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "alias",
+          "label": "별칭",
+          "caption": "dir은 Get-ChildItem에 붙인 다른 이름, 곧 별칭이다. PowerShell 창에 dir을 입력하면 별칭이 가리키는 cmdlet Get-ChildItem이 실행되어 지금 위치 안의 항목을 보여 준다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "native",
+          "label": "실행 파일",
+          "caption": "ipconfig는 운영 체제에 설치된 실행 파일 ipconfig.exe다. PowerShell 창에서도 명령 프롬프트에서처럼 이름을 입력하면 그 실행 파일이 실행된다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        },
+        {
+          "id": "case",
+          "label": "대소문자",
+          "caption": "Windows에서 PowerShell은 cmdlet 이름의 대소문자를 가리지 않는다. get-service로 적든 Get-Service로 적든 같은 cmdlet Get-Service가 실행되어 서비스 목록을 가져온다.",
+          "sources": [
+            "windows-admin-tools.powershell"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.powershell"
+      ]
+    },
+    "certificate-files": {
+      "label": "인증서 관리자에 든 user01의 인증서와 개인 키를 파일로 내보낼 때, .cer·.p7b·.sst 파일에는 공개 인증서만 담기고 .pfx 파일에만 개인 키까지 담기는 것을 보이는 도식",
+      "svgLabel": "인증서 관리자 박스 안에 user01의 인증서와 개인 키가 있고, 공개 인증서만 담는 형식 박스 안에 .cer·.p7b·.sst가, 그 밖에 .pfx가 있는 그림",
+      "question": "인증서를 내보낼 때 어느 파일에 개인 키까지 담길까?",
+      "idleCaption": "인증서 관리자에 든 user01의 인증서와 개인 키, 그리고 인증서를 내보낼 수 있는 파일 형식 넷을 두었다. 버튼을 고르면 어느 형식에 무엇이 담기는지 볼 수 있다.",
+      "legend": "화살표는 인증서를 내보낼 때 그 파일에 담기는 것을 가리킨다. 박스 둘은 인증서 관리자와, 공개 인증서만 담는 형식이다.",
+      "nodes": {
+        "cert": "user01의 인증서",
+        "key": "user01의 개인 키",
+        "cer": ".cer",
+        "p7b": ".p7b",
+        "sst": ".sst",
+        "pfx": ".pfx"
+      },
+      "groups": {
+        "manager": "인증서 관리자",
+        "public": "공개 인증서만 담는 형식"
+      },
+      "notes": {
+        "cer-note": "공개 인증서 하나",
+        "p7b-note": "인증서 하나 이상",
+        "sst-note": "인증서 하나 이상",
+        "pfx-note": "개인 키까지 담는다",
+        "password-note": "암호로 보호한다"
+      },
+      "scenarios": [
+        {
+          "id": "cert-only",
+          "label": "인증서만",
+          "caption": "공개 인증서만 담는 세 형식이다. .cer 파일은 공개 인증서 하나를, .p7b 파일과 .sst 파일은 인증서 하나 이상을 담는다. 셋 모두 개인 키는 담지 않으므로 개인 키의 백업이 되지 못한다.",
+          "sources": [
+            "windows-admin-tools.certificate-manager"
+          ]
+        },
+        {
+          "id": "with-key",
+          "label": "개인 키까지",
+          "caption": "개인 정보 교환 파일인 .pfx 파일은 인증서와 함께 짝인 개인 키까지 담는다. 개인 키를 손에 넣은 사람은 주인처럼 서명하거나 데이터를 풀 수 있으므로, 내보낼 때 암호로 보호한다.",
+          "sources": [
+            "windows-admin-tools.certificate-manager"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.certificate-manager"
+      ]
+    },
+    "efs-key-backup": {
+      "label": "user01이 EFS로 암호화한 D:\\Data\\report.docx를 user01은 자기 개인 키로 열고, 같은 컴퓨터의 다른 사용자는 열 수 없으며, Windows를 다시 설치한 뒤에는 백업해 둔 user01.pfx를 가져와야 새 user01이 열 수 있다는 것을 보이는 도식",
+      "svgLabel": "지금 쓰는 Windows 박스 안에 user01·user01의 개인 키·다른 사용자가, 다시 설치한 Windows 박스 안에 새 user01이 있고, 두 박스 밖에 암호화한 파일 D:\\Data\\report.docx와 백업 파일 user01.pfx가 있는 그림",
+      "question": "EFS로 암호화한 파일은 누가 열 수 있을까?",
+      "idleCaption": "user01이 EFS로 암호화한 파일 하나와, 그 파일을 열려는 계정들을 두었다. 버튼을 고르면 누가 어느 개인 키로 이 파일을 열 수 있는지 볼 수 있다.",
+      "legend": "화살표는 계정이 어느 개인 키를 거쳐 파일을 여는지를 따라간다. 박스는 설치된 Windows 하나와 그 안의 계정·키다.",
+      "nodes": {
+        "user01": "user01",
+        "key": "user01의 개인 키",
+        "other": "다른 사용자",
+        "file": "D:\\Data\\report.docx",
+        "pfx": "user01.pfx",
+        "new-user01": "새 user01"
+      },
+      "groups": {
+        "current": "지금 쓰는 Windows",
+        "reinstalled": "다시 설치한 Windows"
+      },
+      "notes": {
+        "other-note": "열 수 없음",
+        "no-backup-note": "열 수 없음",
+        "import-note": "가져온다"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "주인",
+          "caption": "파일의 키는 user01의 공개 키로 암호화되어 파일에 붙어 있다. user01이 파일을 열면 짝인 user01의 개인 키로 그 키를 풀어 내용을 읽는다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "other-user",
+          "label": "다른 사용자",
+          "caption": "같은 컴퓨터에 자기 계정으로 로그온한 다른 사용자에게는 user01의 개인 키가 없다. 그래서 그 계정으로는 이 파일을 열 수 없다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "no-backup",
+          "label": "백업 없이 다시 설치",
+          "caption": "Windows를 다시 설치한 뒤 같은 이름으로 새로 만든 user01에게는 예전 user01의 개인 키가 없다. 계정의 이름이 같아도 짝인 개인 키가 없으면 파일을 열 수 없다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "reinstall",
+          "label": "백업을 가져오면",
+          "caption": "다시 설치하기 전에 인증서와 개인 키를 user01.pfx로 백업해 두었다면, 새 user01이 인증서 관리자에서 user01.pfx를 가져와 그 개인 키로 파일을 다시 연다.",
+          "sources": [
+            "windows-admin-tools.efs",
+            "windows-admin-tools.certificate-manager"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.efs"
+      ]
+    },
+    "bitlocker-volume": {
+      "label": "서버의 운영 체제 드라이브와 D:를 BitLocker로 암호화하면 이 서버에서는 TPM이 키를 내주어 운영 체제 드라이브가 열리고 D:도 저절로 열리지만, 디스크를 떼어 다른 컴퓨터에 옮겨 붙인 D:는 복구 암호 없이는 읽을 수 없다는 것을 EFS와 견주어 보이는 도식",
+      "svgLabel": "서버 박스 안에 TPM·운영 체제 드라이브·D:가, 다른 컴퓨터 박스 안에 옮겨 붙인 D:가 있고, 두 박스 밖에 복구 암호와 EFS로 암호화한 파일이 있는 그림",
+      "question": "디스크를 떼어 가면 BitLocker로 암호화한 데이터는 어떻게 될까?",
+      "idleCaption": "서버의 운영 체제 드라이브와 데이터 드라이브 D:를 BitLocker로 암호화해 두었다. 버튼을 고르면 이 서버에서, 디스크를 떼어 갔을 때, 복구 암호로 열 때 D:가 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 무엇이 드라이브의 잠금을 푸는지를 따라간다. 박스는 컴퓨터 한 대다.",
+      "nodes": {
+        "tpm": "TPM",
+        "os": "운영 체제 드라이브",
+        "d": "D:",
+        "moved": "옮겨 붙인 D:",
+        "recovery": "복구 암호",
+        "efs": "EFS로 암호화한 파일"
+      },
+      "groups": {
+        "server": "서버",
+        "other": "다른 컴퓨터"
+      },
+      "notes": {
+        "key-note": "키를 내준다",
+        "auto-note": "저절로 열린다",
+        "locked-note": "읽을 수 없음",
+        "digits-note": "48자리 숫자",
+        "volume-note": "볼륨 전체",
+        "file-note": "파일 하나하나"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "이 서버에서",
+          "caption": "서버를 켜면 TPM이 꺼져 있던 동안 시작에 쓰는 부분이 바뀌지 않았는지 확인하고 운영 체제 드라이브를 풀 키를 내준다. 운영 체제 드라이브가 BitLocker로 보호되어 있으므로, 저절로 열리게 해 둔 D:는 이 서버에서 저절로 열린다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "stolen",
+          "label": "떼어 갔을 때",
+          "caption": "D:가 든 디스크를 떼어 다른 컴퓨터에 붙이면 그 컴퓨터에서는 저절로 열리지 않는다. 저절로 열리게만 해 두었으므로 복구 암호나 복구 키가 없으면 옮겨 붙인 D:의 데이터를 읽을 수 없다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "recovery",
+          "label": "복구 암호",
+          "caption": "따로 보관해 둔 복구 암호 48자리를 넣으면 다른 컴퓨터에 옮겨 붙인 D:도 연다. 복구 정보까지 잃으면 BitLocker로 암호화한 드라이브의 데이터는 되살릴 수 없다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "vs-efs",
+          "label": "EFS와",
+          "caption": "BitLocker는 D: 같은 볼륨 전체를 암호화해 디스크를 떼어 가 읽는 일을 막고, EFS는 사용자가 고른 파일 하나하나를 암호화해 같은 컴퓨터의 다른 사용자가 열지 못하게 한다. 둘은 함께 쓸 수 있다.",
+          "sources": [
+            "windows-admin-tools.bitlocker",
+            "windows-admin-tools.efs"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.bitlocker"
+      ]
+    },
+    "work-folders-sync": {
+      "label": "클라우드 폴더는 업무 파일을 회사 파일 서버의 동기화 공유 D:\\SyncShare에 모으고 회사 PC·개인 노트북과 동기화하며, 오프라인에서 고친 파일도 다시 이어지면 동기화하고, OneDrive와 달리 파일을 Microsoft의 클라우드 서비스가 아니라 회사 서버에 모은다는 것을 보이는 도식",
+      "svgLabel": "회사 파일 서버 박스 안에 동기화 공유 D:\\SyncShare가 있고, 박스 밖에 회사 PC와 개인 노트북이, Microsoft의 클라우드 서비스 박스 안에 OneDrive가 있는 그림",
+      "question": "클라우드 폴더의 파일은 어디에 있고 어떻게 맞춰질까?",
+      "idleCaption": "회사 파일 서버의 동기화 공유와 직원의 회사 PC·개인 노트북, 그리고 견줄 OneDrive를 두었다. 버튼을 고르면 업무 파일이 어디에 모이고 기기들과 어떻게 맞춰지는지 볼 수 있다.",
+      "legend": "양쪽 화살표는 두 곳의 파일을 같은 내용으로 맞추는 동기화다. 박스는 파일을 모아 두는 곳이다.",
+      "nodes": {
+        "share": "D:\\SyncShare",
+        "pc": "회사 PC",
+        "laptop": "개인 노트북",
+        "onedrive": "OneDrive"
+      },
+      "groups": {
+        "server": "회사 파일 서버",
+        "cloud": "Microsoft의 클라우드 서비스"
+      },
+      "notes": {
+        "offline-note": "오프라인에서 고친 파일",
+        "policy-note": "암호화와 잠금 화면 암호"
+      },
+      "scenarios": [
+        {
+          "id": "sync",
+          "label": "동기화",
+          "caption": "업무 파일은 회사 파일 서버의 동기화 공유 D:\\SyncShare에 모이고, 회사 PC와 개인 노트북은 이 폴더와 동기화해 같은 내용을 갖는다. 그래서 직원은 어느 기기에서든 같은 업무 파일을 쓴다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "offline",
+          "label": "오프라인일 때",
+          "caption": "노트북이 네트워크에 이어지지 않은 동안에도 직원은 노트북에 맞춰 둔 파일을 고칠 수 있다. 노트북이 다시 인터넷이나 회사 네트워크에 이어지면 오프라인에서 고친 파일을 D:\\SyncShare와 동기화한다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "기기 정책",
+          "caption": "관리자는 회사의 데이터를 파일 서버에 모아 두고, 직원의 PC와 기기에 클라우드 폴더의 암호화와 잠금 화면 암호를 요구하는 보안 정책을 걸 수 있다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "vs-onedrive",
+          "label": "OneDrive와",
+          "caption": "이름에 클라우드가 붙었지만 클라우드 폴더의 파일은 회사 파일 서버에 모인다. OneDrive는 클라우드 폴더와 다른 기술로, 파일을 Microsoft의 클라우드 서비스에 모은다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.work-folders"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
