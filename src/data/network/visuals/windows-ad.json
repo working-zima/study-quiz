@@ -522,6 +522,118 @@
       "sources": [
         "windows-ad.group-scopes"
       ]
+    },
+    "group-policy-link": {
+      "label": "GPO 영업팀 PC 정책을 OU 영업팀에 연결해 그 안의 PC01과 user01에 설정을 거는 것, 로컬 GPO·사이트·도메인·OU 차례로 GPO가 적용되는 것, GPO로 할 수 있는 일을 보이는 도식",
+      "svgLabel": "로컬 GPO, 사이트, example.com, OU 영업팀과 PC01, user01, GPO 영업팀 PC 정책, GPO로 할 수 있는 일 박스(보안 설정, 소프트웨어 설치, 폴더 리디렉션, 로밍 사용자 프로필)가 있는 그림",
+      "question": "GPO는 어디에 연결하면 누구에게 걸릴까?",
+      "idleCaption": "GPO가 걸리는 자리인 로컬 GPO, 사이트, 도메인 example.com, OU 영업팀과, 영업팀 안의 PC01·user01, 영업팀에 연결할 GPO 영업팀 PC 정책, GPO로 할 수 있는 일을 두었다. 이름은 예로 붙인 것이다. 버튼을 고르면 GPO가 누구에게 걸리는지, 어떤 차례로 적용되는지, 무엇을 할 수 있는지 볼 수 있다.",
+      "legend": "번호는 GPO가 적용되는 차례다. 화살표는 GPO를 연결하는 곳, 설정이 걸리는 사용자와 컴퓨터, 적용 차례의 다음 단계, GPO로 하는 일을 가리킨다.",
+      "nodes": {
+        "local": "로컬 GPO",
+        "site": "사이트",
+        "domain": "example.com",
+        "ou": "OU 영업팀",
+        "pc": "PC01",
+        "user": "user01",
+        "gpo": "GPO 영업팀 PC 정책",
+        "security": "보안 설정",
+        "software": "소프트웨어 설치",
+        "redirect": "폴더 리디렉션",
+        "roaming": "로밍 사용자 프로필"
+      },
+      "groups": {
+        "features": "GPO로 할 수 있는 일"
+      },
+      "notes": {
+        "step-1": "①",
+        "step-2": "②",
+        "step-3": "③",
+        "step-4": "④"
+      },
+      "scenarios": [
+        {
+          "id": "link",
+          "label": "연결",
+          "caption": "GPO 영업팀 PC 정책을 OU 영업팀에 연결하면 영업팀이 그 GPO의 적용 범위가 되어, 영업팀 안의 PC01과 user01에 설정이 걸린다. GPO는 사이트·도메인·OU에 연결하고, 그룹이나 사용자 계정에는 연결하지 않는다.",
+          "sources": [
+            "windows-ad.group-policy"
+          ]
+        },
+        {
+          "id": "order",
+          "label": "적용 차례",
+          "caption": "PC01에는 PC01의 로컬 GPO, 사이트에 연결된 GPO, example.com에 연결된 GPO, 영업팀에 연결된 GPO 차례로 적용된다. 같은 설정을 GPO마다 다르게 정했으면 기본으로는 나중에 적용된 GPO의 값이 앞의 값을 덮어써, 영업팀에 연결된 GPO의 값이 남는다.",
+          "sources": [
+            "windows-ad.group-policy"
+          ]
+        },
+        {
+          "id": "features",
+          "label": "할 수 있는 일",
+          "caption": "GPO로는 암호와 계정 잠금 같은 보안 설정을 강제하고, 소프트웨어 설치로 프로그램을 배포하며, 폴더 리디렉션과 로밍 사용자 프로필로 로그온하는 PC가 바뀌어도 같은 파일과 설정을 쓰게 한다.",
+          "sources": [
+            "windows-ad.group-policy"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.group-policy"
+      ]
+    },
+    "account-lockout": {
+      "label": "계정 잠금 임계값 5회, 계정 잠금 기간 30분일 때 암호를 틀린 횟수가 쌓여 계정이 잠기고, 30분이 지나 다시 로그온할 수 있게 되는 흐름을 보이는 도식",
+      "svgLabel": "암호를 틀린 횟수 박스(1회부터 5회까지)와 계정 잠김, 다시 로그온이 있는 그림",
+      "question": "암호를 몇 번 틀리면 얼마 동안 잠길까?",
+      "idleCaption": "계정 잠금 임계값을 5회, 계정 잠금 기간을 30분으로 정했을 때 user01이 짧은 사이에 암호를 잇달아 틀리는 흐름이다. 값은 예로 정한 것이다. 버튼을 고르면 잠기기 전, 잠긴 동안, 잠금 기간이 지난 뒤를 볼 수 있다.",
+      "legend": "박스 안의 칸은 암호를 틀린 횟수다. 화살표는 계정이 잠기는 때와 잠금이 풀리는 때를 가리킨다.",
+      "nodes": {
+        "fail-1": "1회",
+        "fail-2": "2회",
+        "fail-3": "3회",
+        "fail-4": "4회",
+        "fail-5": "5회",
+        "locked": "계정 잠김",
+        "relogon": "다시 로그온"
+      },
+      "groups": {
+        "failures": "암호를 틀린 횟수"
+      },
+      "notes": {
+        "retry-note": "아직 다시 시도할 수 있다",
+        "duration-note": "30분 동안 잠김",
+        "reject-note": "바른 암호도 받지 않음",
+        "unlock-note": "30분이 지나면"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "임계값 전",
+          "caption": "틀린 횟수가 1회부터 4회까지는 계정 잠금 임계값 5회에 닿지 않아 계정이 잠기지 않는다. 그동안은 바른 암호를 넣으면 로그온할 수 있다.",
+          "sources": [
+            "windows-ad.password-lockout-policy"
+          ]
+        },
+        {
+          "id": "locked",
+          "label": "잠김",
+          "caption": "다섯 번째로 틀린 순간 틀린 횟수가 임계값 5회에 닿아 계정이 잠긴다. 잠긴 계정은 잠금 기간 30분이 끝나거나 관리자가 풀 때까지 쓸 수 없어, 그동안은 바른 암호를 넣어도 로그온할 수 없다.",
+          "sources": [
+            "windows-ad.password-lockout-policy"
+          ]
+        },
+        {
+          "id": "after",
+          "label": "기간 뒤",
+          "caption": "잠긴 때부터 계정 잠금 기간 30분이 지나면 잠금이 저절로 풀려 바른 암호로 다시 로그온할 수 있다. 잠금 기간을 0으로 정했다면 관리자가 풀어 줄 때까지 잠겨 있다.",
+          "sources": [
+            "windows-ad.password-lockout-policy"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.password-lockout-policy"
+      ]
     }
   },
   "tables": {},

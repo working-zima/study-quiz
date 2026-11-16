@@ -1,6 +1,7 @@
 import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
+import { AccountLockoutDiagram } from './AccountLockoutDiagram'
 import { AckNumbersDiagram } from './AckNumbersDiagram'
 import { ActiveDirectoryAuthDiagram } from './ActiveDirectoryAuthDiagram'
 import { AdForestStructureDiagram } from './AdForestStructureDiagram'
@@ -120,6 +121,7 @@ import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
+import { GroupPolicyLinkDiagram } from './GroupPolicyLinkDiagram'
 import { GroupScopesDiagram } from './GroupScopesDiagram'
 import { GrubMenuDiagram } from './GrubMenuDiagram'
 import { HealthViewsDiagram } from './HealthViewsDiagram'
@@ -678,6 +680,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.domain-user-accounts': DomainUserAccountDiagram,
   'windows-ad.ds-commands': DsCommandsDiagram,
   'windows-ad.group-scopes': GroupScopesDiagram,
+  'windows-ad.group-policy': GroupPolicyLinkDiagram,
+  'windows-ad.password-lockout-policy': AccountLockoutDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
