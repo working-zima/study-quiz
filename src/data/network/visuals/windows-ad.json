@@ -194,6 +194,110 @@
       "sources": [
         "windows-ad.domain-controller"
       ]
+    },
+    "ad-forest-structure": {
+      "label": "포리스트 하나에 example.com과 그 자식 도메인 sales.example.com이 이루는 트리와 example.net 하나로 된 트리가 들어 있어, 도메인·트리·포리스트가 각각 무엇을 묶는지 보이는 도식",
+      "svgLabel": "포리스트 박스 안에 example.com의 트리 박스(example.com, sales.example.com)와 example.net의 트리 박스(example.net)가 있는 그림",
+      "question": "도메인·트리·포리스트는 무엇을 묶을까?",
+      "idleCaption": "포리스트 박스 안에 트리 둘을 두었다. 첫 트리에는 포리스트 루트 도메인 example.com과 그 아래 자식 도메인 sales.example.com이, 둘째 트리에는 example.net이 있다. 도메인 이름은 예로 붙인 이름이다. 버튼을 고르면 도메인·트리·포리스트가 각각 무엇을 묶는지 볼 수 있다.",
+      "legend": "가장 바깥 박스는 포리스트, 그 안의 두 박스는 트리이고, 화살표는 부모 도메인에서 그 아래에 만든 자식 도메인을 가리킨다.",
+      "nodes": {
+        "com": "example.com",
+        "sales": "sales.example.com",
+        "net": "example.net"
+      },
+      "groups": {
+        "forest": "포리스트",
+        "tree-com": "example.com의 트리",
+        "tree-net": "example.net의 트리"
+      },
+      "notes": {
+        "domain-note": "가장 작은 묶음",
+        "tree-note": "이름이 이어진다",
+        "forest-note": "이름이 달라도 같은 포리스트"
+      },
+      "scenarios": [
+        {
+          "id": "domain",
+          "label": "도메인",
+          "caption": "도메인 example.com은 세 단계 가운데 가장 작은 묶음으로, 계정을 함께 관리하는 단위다. 이 도메인의 도메인 컨트롤러들이 디렉터리 사본을 나눠 갖고, 이 도메인의 사용자 계정을 저장하고 인증한다.",
+          "sources": [
+            "windows-ad.domain-tree-forest"
+          ]
+        },
+        {
+          "id": "tree",
+          "label": "트리",
+          "caption": "sales.example.com은 example.com 아래에 만든 자식 도메인이라 이름이 example.com으로 끝난다. 이렇게 이름이 이어지는 부모와 자식 도메인이 한 트리를 이루고, 이름이 이어지지 않는 example.net은 이 트리에 들지 않는다.",
+          "sources": [
+            "windows-ad.domain-tree-forest"
+          ]
+        },
+        {
+          "id": "forest",
+          "label": "포리스트",
+          "caption": "example.net은 example.com과 이름이 이어지지 않아 따로 된 트리를 이루지만 같은 포리스트에 든다. 포리스트는 트리를 묶는 가장 바깥의 묶음이고, 그 안의 도메인은 스키마·구성 정보·글로벌 카탈로그를 함께 쓴다.",
+          "sources": [
+            "windows-ad.domain-tree-forest"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.domain-tree-forest"
+      ]
+    },
+    "domain-trust": {
+      "label": "example.com이 다른 포리스트의 example.org를 신뢰할 때 신뢰의 방향과 사용자 접근의 방향이 반대라는 것과 양방향 트러스트, 전이적인 포리스트 트러스트가 sales.example.com까지 이어지는 것을 보이는 도식",
+      "svgLabel": "example.com이 든 포리스트 박스 안의 example.com·sales.example.com과, 다른 포리스트 박스 안의 example.org가 있는 그림",
+      "question": "트러스트를 맺으면 누가 어느 쪽 자원을 쓸까?",
+      "idleCaption": "왼쪽 박스는 example.com과 그 자식 도메인 sales.example.com이 든 포리스트이고, 오른쪽 박스는 example.org가 포리스트 루트 도메인인 다른 포리스트다. 도메인 이름은 예로 붙인 이름이다. 버튼을 고르면 트러스트의 방향에 따라 어느 도메인의 사용자가 어느 도메인의 자원에 접근하는지 볼 수 있다.",
+      "legend": "신뢰 화살표는 신뢰하는 도메인에서 신뢰받는 도메인을 가리키고, 접근 화살표는 사용자의 계정이 있는 도메인에서 그 사용자가 쓰려는 자원이 있는 도메인을 가리킨다. 양쪽 끝에 화살촉이 있으면 두 방향 모두다.",
+      "nodes": {
+        "com": "example.com",
+        "sales": "sales.example.com",
+        "org": "example.org"
+      },
+      "groups": {
+        "forest-com": "example.com이 든 포리스트",
+        "forest-org": "다른 포리스트"
+      },
+      "notes": {
+        "trust-note": "신뢰",
+        "access-note": "접근",
+        "trust-both-note": "서로 신뢰",
+        "access-both-note": "서로 접근",
+        "transitive-note": "전이적",
+        "reach-note": "접근"
+      },
+      "scenarios": [
+        {
+          "id": "one-way",
+          "label": "단방향",
+          "caption": "example.com이 example.org를 단방향으로 신뢰하면 신뢰는 example.com에서 example.org 쪽으로 향하고 접근은 그 반대다. example.org의 사용자는 사용 권한을 받은 example.com의 자원에 접근하지만, example.com의 사용자는 이 트러스트로 example.org의 자원에 접근하지 못한다. 이 트러스트가 비전이적인 외부 트러스트라면 sales.example.com까지 이어지지 않는다.",
+          "sources": [
+            "windows-ad.trust"
+          ]
+        },
+        {
+          "id": "two-way",
+          "label": "양방향",
+          "caption": "example.org도 example.com을 신뢰해 양방향 트러스트가 되면, 단방향 트러스트 둘을 반대 방향으로 맺은 것과 같아 두 도메인의 사용자가 모두 상대 도메인의 자원에 접근할 수 있다. 어느 쪽이든 그 자원에 사용 권한이 주어져 있어야 한다.",
+          "sources": [
+            "windows-ad.trust"
+          ]
+        },
+        {
+          "id": "transitive",
+          "label": "전이",
+          "caption": "example.com과 example.org는 각 포리스트의 포리스트 루트 도메인이라 둘 사이에 포리스트 트러스트를 맺을 수 있다. example.com의 포리스트가 example.org의 포리스트를 단방향으로 신뢰하면, 포리스트 트러스트는 전이적이라 example.org의 사용자가 sales.example.com의 자원에도 사용 권한이 있으면 접근한다.",
+          "sources": [
+            "windows-ad.trust"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.trust"
+      ]
     }
   },
   "tables": {},

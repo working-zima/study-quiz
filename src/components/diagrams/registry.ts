@@ -3,6 +3,7 @@ import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AckNumbersDiagram } from './AckNumbersDiagram'
 import { ActiveDirectoryAuthDiagram } from './ActiveDirectoryAuthDiagram'
+import { AdForestStructureDiagram } from './AdForestStructureDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ActivityLogDiagram } from './ActivityLogDiagram'
@@ -75,6 +76,7 @@ import { DnssecChainDiagram } from './DnssecChainDiagram'
 import { DomainControllerReplicationDiagram } from './DomainControllerReplicationDiagram'
 import { DomainServicesDiagram } from './DomainServicesDiagram'
 import { DomainTreeDiagram } from './DomainTreeDiagram'
+import { DomainTrustDiagram } from './DomainTrustDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -666,6 +668,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.local-groups': BuiltinLocalGroupsDiagram,
   'windows-ad.active-directory': ActiveDirectoryAuthDiagram,
   'windows-ad.domain-controller': DomainControllerReplicationDiagram,
+  'windows-ad.domain-tree-forest': AdForestStructureDiagram,
+  'windows-ad.trust': DomainTrustDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,
