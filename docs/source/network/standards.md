@@ -6124,6 +6124,7 @@ Win32 「Shutdown Event Tracker」 2025-03-11·「Eventlog Key」 2025-08-14·�
 (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.windows-logs`(Windows 로그 다섯과 하는 일, 응용 프로그램 및 서비스 로그, 어느 일이 어느 로그에), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-08-25 #39]·[기출 2025-11-02 #38], [기출 2025-08-24 #30])
 (phase 80 step 9) `windows-admin-tools.event-viewer`(위 줄들 — 이벤트·이벤트 로그, Windows 로그 아래 응용 프로그램·보안·시스템 로그와 이벤트마다 기록된 로그가 정해져 있다, 이벤트 뷰어는 MMC 스냅인이고 여러 로그를 걸러 본다, 이벤트 속성의 날짜와 시간·원본·이벤트 ID·수준·사용자·컴퓨터·로그와 6005 예, 원본과 함께 보는 이벤트 ID, 수준 넷과 성공 감사·실패 감사, 시스템 로그의 1074·6006·41·6008과 41이 생기는 경우, 종료 이벤트 추적기와 Windows Server 2003부터 기본으로 켜짐, `shutdown.exe`가 남기는 1074; 칸 이름의 한국어는 영문의 뜻을 옮긴 말이라고 본문에 밝혔다),
 도식 `event-viewer`, 문항 n273(주말 사이 다시 시작된 기록은 시스템 로그 — 오답의 성능 모니터·리소스 모니터는 위 「성능 모니터·리소스 모니터」 항목)·n274(이벤트 뷰어는 지난 일의 기록, CPU 사용률 그래프는 성능 모니터)
+(phase 80 step 10) `windows-admin-tools.windows-logs`(위 줄들 — 이벤트 로그의 두 갈래 Windows 로그와 응용 프로그램 및 서비스 로그, Windows 로그는 컴퓨터 전체의 이벤트와 옛 방식 프로그램의 이벤트를 담고 다섯이다, 응용 프로그램(무엇을 남길지는 만든 쪽이 정한다)·보안(로그온 시도의 성공과 실패, 파일 같은 개체를 만들고 열고 지운 일, 무엇을 남길지는 관리자가 감사 정책으로 정한다 — 감사의 뜻은 위 「(phase 80 step 9) … 로컬 보안 정책과 장치 관리자」 항목의 감사 정책 줄)·Setup(프로그램 설치)·시스템(Windows 구성 요소, 시작할 때 드라이버를 불러오지 못한 일, 무엇을 남길지는 Windows가 정한다, 종료·재부팅 기록)·ForwardedEvents(다른 컴퓨터에서 모은 이벤트, 구독이 있어야 모인다), 응용 프로그램 및 서비스 로그는 프로그램이나 구성 요소 하나의 이벤트를 담는다와 WMI-Activity 예, 어느 일이 어느 로그에 — 로그온 실패·드라이버 불러오기 실패·프로그램의 파일 오류; 하드웨어 이벤트·Windows PowerShell·Internet Explorer 로그와 PowerShell 7 로그의 자리, 응용 프로그램 및 서비스 로그의 하위 종류는 쓰지 않았다; WMI의 뜻은 위 「(phase 80 step 0) … 로컬 계정과 기본 그룹」 항목의 About WMI 줄), 도식 `windows-logs`, 문항 n275(로그온 실패는 보안 로그 — 수준은 실패 감사, 오답의 시스템·응용 프로그램·Setup 로그는 위 줄들)
 
 ## (phase 80 step 8) Microsoft Learn — 성능 모니터·리소스 모니터: perfmon, Troubleshoot issues using Performance Monitor, Scenario guide: Troubleshoot performance problems in Windows, Guidance for troubleshooting high CPU usage; Win32 — About Performance Counters, Specifying a Counter Path, Performance Counters Tools, Compatibility and Reliability(Windows 7 개발자 안내서); 지난 판 Overview of Windows Performance Monitor, Creating Data Collector Sets, Schedule Data Collection in Windows Performance Monitor
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/perfmon
@@ -6166,6 +6167,30 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
 
 쓰인 곳: (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.performance-monitor`(성능 모니터의 세 자리, `perfmon`, 성능 카운터와 이름의 꼴, 데이터 수집기 집합·`.blg`·샘플 간격·일정·중지 조건),
 (phase 80 step 11에서 쓰일 곳) `windows-admin-tools.resource-monitor`(`resmon`·`perfmon /res`, CPU 탭과 평균 CPU, 성능 데이터를 쓰는 기본 도구, 탭 목록은 못 찾음, 안정성 모니터 — 기출 문제문 판정), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-05-25 #35], [기출 2024-11-03 #36], [기출 2026-02-01 #42])
+(phase 80 step 10) `windows-admin-tools.performance-monitor`(위 줄들 — MMC 스냅인 성능 모니터와 `perfmon`, 로컬로도 원격으로도, 성능 카운터의 뜻과 1초보다 자주 재지 않는다, 성능 개체·인스턴스와 카운터 이름의 꼴, 세 자리(성능 모니터·데이터 수집기 집합·보고서), 데이터 수집기 집합과 `.blg`·샘플 간격, 일정과 중지 조건의 전체 기간; 카운터 예·화면 없이 모으기·마법사의 차례는 아래 「(phase 80 step 10) … 성능 카운터 이름과 데이터 수집기 집합 만들기」 항목; perfmon의 옵션, 커널 안쪽을 보지 못한다는 것, 만료 날짜, 성능 모니터의 권한은 쓰지 않았다), 도식 `perfmon-collector`, 문항 n276
+
+## (phase 80 step 10) Microsoft Learn — 성능 카운터 이름과 데이터 수집기 집합 만들기: typeperf; Win32 — Collecting Performance Data; 지난 판 Create a Data Collector Set Manually, Create a Data Collector Set to Monitor Performance Counters
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/typeperf
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/collecting-performance-data
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc766404(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722414(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「typeperf」 `updated_at` 2025-10-22(`ms.date` 2023-06-15, 「Applies to」 Windows Server 2016~2025·Windows 11·10·Azure Local 2311.2 이후), Win32 「Collecting Performance Data」 2025-07-16(2025-07-14),
+지난 판 둘 2021-11-12(「Create a Data Collector Set Manually」 `ms.date` 2012-07-03, 둘 다 Applies To — Windows Server 2008·Windows Vista). 위 「(phase 80 step 8) … 성능 모니터·리소스 모니터」 항목의 「Troubleshoot issues using Performance Monitor」와 「Scenario guide…」도 같은 날 다시 받아 아래 줄을 확인했다(둘 다 `updated_at` 2026-02-19).
+데이터 수집기 집합을 마법사로 만드는 차례를 적은 지금 판 문서는 찾지 못해 Windows Server 2008 판 문서를 쓴다 — 본문에 그 판이라고 밝혔다.
+
+- **CPU 사용률 카운터**: 「Troubleshoot issues using Performance Monitor」 「Performance counters for CPU usage」는 CPU 사용률 문제에서 먼저 볼 카운터의 첫째로 Processor 개체의 % Processor Time을 든다. step 8이 쓰기로 한 `\Processor Information(*)\% User Time`은 사용자 모드 시간이라 CPU 사용률 전체가 아니므로, 본문의 예는 아래 이름으로 쓴다
+- **`\Processor(_Total)\% Processor Time`**: 모든 프로세서 사용률의 평균이다 — 프로세서가 둘이고 하나는 100%, 다른 하나는 0%면 50%이고, 값의 범위는 0~100이다(Win32 「Collecting Performance Data」 「Understanding Multiple Processor Counters」). 「typeperf」의 첫째 예가 로컬 컴퓨터의 이 카운터를 그대로 이 꼴로 적는다
+- **카운터 이름의 전체 꼴**: `\컴퓨터\개체(인스턴스)\카운터`이고, 예로 `\\Server1\Processor(0)\% User Time`(Server1 컴퓨터의 프로세서 0 — 컴퓨터 이름 앞에는 역슬래시가 둘이다) — 「typeperf」 「Parameters」. 로컬 컴퓨터면 컴퓨터를 뺀다는 것은 위 step 8 항목의 「Specifying a Counter Path」
+- **`\Memory\Available MBytes`**: Memory 개체는 인스턴스가 없다. Available MBytes는 커널을 포함한 모든 프로그램이 쓸 수 있는 RAM의 양이다 — 「Scenario guide…」 「Use Performance Monitor to record performance data」·「Memory」
+- **화면 없이 모으기**: 「Scenario guide…」는 데이터 수집기 집합을 그래픽 화면으로도 `logman.exe` 명령으로도 만든다고 하고, 명령 프롬프트에서 `logman.exe create counter …`로 만들고 `logman.exe start …`로 시작한 집합이 15초마다(`-si 00:00:15`) 성능 데이터를 로그로 남긴다고 적는다 — 성능 모니터 화면을 열어 두지 않아도 집합이 값을 모은다는 근거다. `logman`의 이름과 옵션은 본문에 쓰지 않았다
+- **마법사로 만드는 차례**(지난 판 「Create a Data Collector Set Manually」): 탐색 창에서 데이터 수집기 집합(Data Collector Sets)을 펼쳐 사용자 정의(User Defined)를 오른쪽 클릭하고 새로 만들기 → 데이터 수집기 집합을 고르면 새 데이터 수집기 집합 만들기 마법사가 시작된다. 이름을 넣고, 직접 만들기(Create manually)를 고르고, 데이터 로그 만들기(Create data logs)에서 성능 카운터 확인란을 고른 뒤 추가(Add)로 카운터를 더한다.
+  마법사를 마칠 때 이 데이터 수집기 집합의 속성 열기(Open properties for this data collector set)를 고를 수 있고, 지금 시작(Start this data collector set now)이나 저장하고 닫기(Save and close)를 고른다. 「Create a Data Collector Set to Monitor Performance Counters」도 같은 차례로 마법사를 연다(그 문서의 경고 설정은 쓰지 않는다)
+- **샘플 간격**: 마법사의 어느 쪽에서 샘플 간격을 정하는지는 위 두 지난 판 문서에 적혀 있지 않다. 집합마다 샘플 간격이 있다는 것은 step 8 항목의 「Scenario guide…」 `-si`와 「Schedule Data Collection…」(전체 기간은 데이터를 재는 간격보다 길어야 한다)이 근거다 — 본문은 샘플 간격을 정하는 화면의 자리를 쓰지 않았다
+- **쓰지 않는 것**: typeperf·logman의 옵션, 경고(알림) 설정, 실행 계정(Run As) 설정, 루트 디렉터리, 이벤트 추적 데이터·시스템 구성 정보 수집기, 그래프에 보이는 데이터 점의 한도
+- **한국어 이름**: 사용자 정의·직접 만들기·데이터 로그 만들기는 한국어 화면 이름을 확인하지 못했다 — 영문의 뜻을 옮긴 말이고 본문에 영문을 함께 적었다. 「데이터 수집기 집합」·「보고서」·「성능 카운터」는 위 step 8 항목
+
+쓰인 곳: (phase 80 step 10) `windows-admin-tools.performance-monitor`(CPU 사용률 카운터 `\Processor(_Total)\% Processor Time`과 모든 프로세서의 평균이라는 것·50% 예, 다른 컴퓨터의 카운터 이름 앞의 `\\컴퓨터 이름`, 인스턴스가 없는 `\Memory\Available MBytes`, 화면을 열어 두지 않아도 모으는 데이터 수집기 집합, 마법사로 만드는 차례), 도식 `perfmon-collector`, 문항 n276(밤새 화면을 열어 두지 않아도 집합이 로그 파일에 쓴다)
 
 ## (phase 80 step 8) Microsoft Learn — PowerShell: What is PowerShell?, What is Windows PowerShell?, Migrating from Windows PowerShell 5.1 to PowerShell 7, Differences between Windows PowerShell 5.1 and PowerShell 7.x, Cmdlet Overview, Approved Verbs for PowerShell Commands, about_Aliases, about_Case-Sensitivity, about_Command_Precedence, about_Parsing, about_Scripts, about_Execution_Policies
 https://learn.microsoft.com/en-us/powershell/scripting/overview

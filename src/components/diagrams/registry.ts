@@ -220,6 +220,7 @@ import { PathResolveDiagram } from './PathResolveDiagram'
 import { PathpingStatsDiagram } from './PathpingStatsDiagram'
 import { PduNamesDiagram } from './PduNamesDiagram'
 import { PeeringScaleDiagram } from './PeeringScaleDiagram'
+import { PerfmonCollectorDiagram } from './PerfmonCollectorDiagram'
 import { PermissionClassesDiagram } from './PermissionClassesDiagram'
 import { PermissionStringDiagram } from './PermissionStringDiagram'
 import { PermissionsBoundaryDiagram } from './PermissionsBoundaryDiagram'
@@ -351,6 +352,7 @@ import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
+import { WindowsLogsDiagram } from './WindowsLogsDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
@@ -686,6 +688,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.password-lockout-policy': AccountLockoutDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
+  'windows-admin-tools.windows-logs': WindowsLogsDiagram,
+  'windows-admin-tools.performance-monitor': PerfmonCollectorDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

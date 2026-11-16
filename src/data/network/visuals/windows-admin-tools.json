@@ -122,6 +122,117 @@
       "sources": [
         "windows-admin-tools.event-viewer"
       ]
+    },
+    "windows-logs": {
+      "label": "이벤트 뷰어의 Windows 로그 아래에 응용 프로그램·보안·Setup·시스템·ForwardedEvents 다섯 로그가 있고, 로그온 실패는 보안 로그에, 드라이버 불러오기 실패는 시스템 로그에, 프로그램의 파일 오류는 응용 프로그램 로그에 남으며, WMI-Activity처럼 구성 요소 하나의 로그는 그 바깥의 응용 프로그램 및 서비스 로그에 있는 것을 보이는 도식",
+      "svgLabel": "일어난 일 셋과, 로그 다섯이 든 Windows 로그 박스, WMI-Activity가 든 응용 프로그램 및 서비스 로그 박스가 있는 그림",
+      "question": "어떤 일이 어느 로그에 남을까?",
+      "idleCaption": "이벤트 뷰어의 Windows 로그 아래 로그 다섯과, 그 바깥의 응용 프로그램 및 서비스 로그를 두었다. 버튼을 고르면 일어난 일이 어느 로그에 남는지와, 구성 요소 하나의 로그가 어디에 있는지 볼 수 있다.",
+      "legend": "화살표는 일어난 일에서 그 일이 남는 로그로 간다. 두 박스는 이벤트 뷰어에서 로그를 나눈 두 묶음이다.",
+      "nodes": {
+        "file-error": "프로그램의 파일 오류",
+        "logon-failure": "로그온 실패",
+        "driver-failure": "드라이버 불러오기 실패",
+        "app-log": "응용 프로그램",
+        "security-log": "보안",
+        "setup-log": "Setup",
+        "system-log": "시스템",
+        "forwarded-log": "ForwardedEvents",
+        "wmi-log": "WMI-Activity"
+      },
+      "groups": {
+        "logs": "Windows 로그",
+        "apps": "응용 프로그램 및 서비스 로그"
+      },
+      "notes": {
+        "security-note": "감사를 켜 둔 컴퓨터에서",
+        "apps-note": "Windows 로그 밖"
+      },
+      "scenarios": [
+        {
+          "id": "security",
+          "label": "보안",
+          "caption": "누군가 틀린 암호를 넣어 생긴 로그온 실패는 보안 로그에 남는다. 보안과 관련된 일을 기록으로 남기는 것을 감사라 하며, 로그온 시도를 기록하도록 감사를 켜 둔 컴퓨터에서 이 기록이 남는다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "system",
+          "label": "시스템",
+          "caption": "컴퓨터를 시작하면서 드라이버를 불러오지 못한 일은 시스템 로그에 남는다. 시스템 로그는 드라이버처럼 Windows를 이루는 구성 요소가 남긴 이벤트를 담고, 컴퓨터를 끄거나 다시 시작한 기록도 여기에 남는다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "application",
+          "label": "응용 프로그램",
+          "caption": "데이터베이스 프로그램처럼 프로그램이 파일을 다루다 낸 오류는 응용 프로그램 로그에 남는다. 이 로그에 무엇을 남길지는 그 프로그램을 만든 쪽이 정한다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        },
+        {
+          "id": "apps-services",
+          "label": "다른 묶음",
+          "caption": "WMI처럼 Windows의 구성 요소 하나가 남긴 이벤트는 Windows 로그가 아니라 응용 프로그램 및 서비스 로그 아래 그 구성 요소의 로그에 따로 담긴다. 응용 프로그램 로그와 이름이 비슷해도 다른 자리다.",
+          "sources": [
+            "windows-admin-tools.windows-logs"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.windows-logs"
+      ]
+    },
+    "perfmon-collector": {
+      "label": "성능 모니터가 성능 카운터 \\Processor(_Total)\\% Processor Time의 지금 값을 실시간 그래프로 보여 주고, 데이터 수집기 집합이 그 값을 15초마다 재어 로그 파일에 쓰며, 모은 값을 나중에 보고서로 보는 것을 보이는 도식",
+      "svgLabel": "맨 위에 성능 카운터가 있고, 그 아래에 실시간 그래프와, 로그 파일이 든 데이터 수집기 집합 박스, 보고서가 있는 그림",
+      "question": "성능 모니터는 값을 어떻게 모아 둘까?",
+      "idleCaption": "성능 카운터 하나와, 그 값을 보는 두 길인 실시간 그래프와 데이터 수집기 집합, 모은 값을 보는 보고서를 두었다. 버튼을 고르면 지금 값을 보는 길과 값을 모아 두었다가 나중에 보는 길을 볼 수 있다.",
+      "legend": "화살표는 카운터의 값이 가는 곳을 가리킨다. 박스는 값을 정한 간격마다 재어 로그 파일에 쓰는 데이터 수집기 집합이다.",
+      "nodes": {
+        "counter": "\\Processor(_Total)\\% Processor Time",
+        "live": "실시간 그래프",
+        "log-file": "로그 파일",
+        "report": "보고서"
+      },
+      "groups": {
+        "collector": "데이터 수집기 집합"
+      },
+      "notes": {
+        "interval-note": "15초마다 값을 모은다"
+      },
+      "scenarios": [
+        {
+          "id": "live",
+          "label": "실시간",
+          "caption": "성능 모니터라는 이름의 자리는 고른 카운터의 지금 값을 실시간 그래프로 보여 준다. 여기서는 모든 프로세서 사용률의 평균인 \\Processor(_Total)\\% Processor Time이 시간에 따라 오르내리는 모습을 본다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        },
+        {
+          "id": "collect",
+          "label": "모으기",
+          "caption": "데이터 수집기 집합은 고른 카운터를 정한 샘플 간격마다 재어 확장자가 .blg인 로그 파일에 쓴다. 15초 간격으로 한 시간을 모으면 3,600 ÷ 15 = 240이라 값이 240개 안팎 남는다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        },
+        {
+          "id": "report",
+          "label": "보고서",
+          "caption": "보고서는 데이터 수집기 집합이 모은 값을 나중에 보여 주는 자리다. 밤새나 며칠처럼 오랫동안 모은 값은 수집이 끝난 뒤 보고서에서 연다.",
+          "sources": [
+            "windows-admin-tools.performance-monitor"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.performance-monitor"
+      ]
     }
   },
   "tables": {},
