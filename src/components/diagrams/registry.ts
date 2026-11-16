@@ -35,6 +35,7 @@ import { BuiltinLocalGroupsDiagram } from './BuiltinLocalGroupsDiagram'
 import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CertificateFilesDiagram } from './CertificateFilesDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
@@ -87,6 +88,7 @@ import { EchoDiagram } from './EchoDiagram'
 import { EcsRolesDiagram } from './EcsRolesDiagram'
 import { EcsStructureDiagram } from './EcsStructureDiagram'
 import { EdgeToOriginDiagram } from './EdgeToOriginDiagram'
+import { EfsKeyBackupDiagram } from './EfsKeyBackupDiagram'
 import { EksComputeDiagram } from './EksComputeDiagram'
 import { EksScalingDiagram } from './EksScalingDiagram'
 import { EmrClusterCostDiagram } from './EmrClusterCostDiagram'
@@ -694,6 +696,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-admin-tools.performance-monitor': PerfmonCollectorDiagram,
   'windows-admin-tools.resource-monitor': ResourceMonitorDiagram,
   'windows-admin-tools.powershell': PowerShellCommandsDiagram,
+  'windows-admin-tools.certificate-manager': CertificateFilesDiagram,
+  'windows-admin-tools.efs': EfsKeyBackupDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

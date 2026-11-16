@@ -6322,6 +6322,8 @@ Export-Certificate·Export-PfxCertificate 2025-05-29(2016-12-20, pki 모듈), .N
 
 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.certificate-manager`(인증서 저장소의 범위 — `certmgr.msc`·`certlm.msc`, 보고·내보내고·가져오고·지운다, 형식 넷과 개인 키를 담는지, PFX 내보내기의 조건과 마법사 차례),
 `windows-admin-tools.efs`(EFS 키를 `.pfx`로 백업), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-08-25 #37], [기출 2024-02-25 #39])
+(phase 80 step 12) `windows-admin-tools.certificate-manager` — 인증서 저장소의 범위 셋, `certmgr.msc`(인증서 스냅인, 보고·내보내고·가져오고·지운다, 관리자가 아니면 자기 계정의 인증서만)과 `certlm.msc`, 형식 넷과 개인 키를 담는지(`.pfx`는 PKCS #12·암호로 보호·개인 키가 내보낼 수 있게 되어 있을 때만), 인증서 내보내기 마법사의 차례(Windows Server 문서가 보이는 `certlm.msc`의 차례라고 밝혔다).
+  공개 키·개인 키·서명·인증 기관의 뜻은 phase 78 `app-protocols-mgmt-security.tls`의 말과 맞췄다. 도식 `certificate-files`, 문항 n280
 
 ## (phase 80 step 8) Microsoft Learn — EFS·BitLocker: File Encryption(Win32), cipher, Back up the recovery agent EFS private key in Windows, Personal Data Encryption overview, Smart Card and Remote Desktop Services, BitLocker overview, BitLocker recovery overview, BitLocker FAQ, Install BitLocker on Windows Server
 https://learn.microsoft.com/en-us/windows/win32/fileio/file-encryption
@@ -6361,6 +6363,8 @@ https://learn.microsoft.com/en-us/windows/security/operating-system-security/dat
   고급 특성 창과 그 안의 항목, cipher 옵션 설명의 한국어 화면 이름은 확인하지 못했다 — 뜻을 옮긴 말로 쓴다
 
 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`(NTFS·파일 단위·공개 키 방식, 노트북 분실의 예, 암호화할 수 없는 것, 속성 → 고급과 `cipher /e`, 인증서와 개인 키 — 다른 사용자는 못 연다, 키를 잃으면 못 연다와 백업 `cipher /x`·`.pfx`, 복구 에이전트, 스마트 카드),
+(phase 80 step 12) `windows-admin-tools.efs` — 위 줄의 사실 전부(NTFS 볼륨·파일 단위·공개 키 방식, 노트북 분실의 예, 암호화할 수 없는 것, 고급 특성 창과 `cipher`의 옵션 없음·`/e`·`/d`·`/x`·부모 폴더, 파일 키와 개인 키 — 다른 사용자는 못 연다, 다시 설치와 백업, 복구 에이전트, 스마트 카드), E38의 「자격시험은」 줄, BitLocker와의 차이 한 줄(「BitLocker FAQ」).
+  고급 특성 창에서 켜고 끄는 확인란의 이름(영문 화면 「Encrypt contents to secure data」)은 learn.microsoft.com 안에서도 Microsoft Q&A 답변에만 보여(2026-11-16 Microsoft Learn 검색) 쓰지 않았다 — 본문은 창의 자리와 `cipher /e`로만 쓴다. 도식 `efs-key-backup`, 문항 n281
 (phase 80 step 13에서 쓰일 곳) `windows-admin-tools.bitlocker`(볼륨 전체·도난·드라이브를 옮겨 붙이기, TPM, 복구 암호 48자리와 복구 키, BitLocker To Go, Windows Server의 기능 설치, EFS와 함께 쓰기와 차이),
 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-02-25 #39], [기출 2024-08-25 #28])
 
