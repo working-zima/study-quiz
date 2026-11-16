@@ -77,6 +77,7 @@ import { DomainControllerReplicationDiagram } from './DomainControllerReplicatio
 import { DomainServicesDiagram } from './DomainServicesDiagram'
 import { DomainTreeDiagram } from './DomainTreeDiagram'
 import { DomainTrustDiagram } from './DomainTrustDiagram'
+import { DomainUserAccountDiagram } from './DomainUserAccountDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
 import { DriftScopeDiagram } from './DriftScopeDiagram'
 import { DuplexDiagram } from './DuplexDiagram'
@@ -202,6 +203,7 @@ import { NtpStratumDiagram } from './NtpStratumDiagram'
 import { OctalModeDiagram } from './OctalModeDiagram'
 import { OpeningStatesDiagram } from './OpeningStatesDiagram'
 import { OrgScpScopeDiagram } from './OrgScpScopeDiagram'
+import { OrganizationalUnitDiagram } from './OrganizationalUnitDiagram'
 import { OsiStackDiagram } from './OsiStackDiagram'
 import { PacketLossDiagram } from './PacketLossDiagram'
 import { PacketPartsDiagram } from './PacketPartsDiagram'
@@ -670,6 +672,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.domain-controller': DomainControllerReplicationDiagram,
   'windows-ad.domain-tree-forest': AdForestStructureDiagram,
   'windows-ad.trust': DomainTrustDiagram,
+  'windows-ad.organizational-unit': OrganizationalUnitDiagram,
+  'windows-ad.domain-user-accounts': DomainUserAccountDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

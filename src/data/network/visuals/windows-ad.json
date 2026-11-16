@@ -298,6 +298,112 @@
       "sources": [
         "windows-ad.trust"
       ]
+    },
+    "organizational-unit": {
+      "label": "도메인 example.com 안을 OU 영업팀과 OU 개발팀으로 나눠 계정과 PC를 담고, GPO 영업팀 PC 정책을 영업팀에 연결하거나 영업팀의 관리를 영업팀 관리 담당에게 맡기는 것을 보이는 도식",
+      "svgLabel": "도메인 example.com 박스 안에 GPO 영업팀 PC 정책과 영업팀 관리 담당이 있고, OU 영업팀 박스(user01, PC01)와 OU 개발팀 박스(개발팀 계정과 PC)가 있는 그림",
+      "question": "OU로 나누면 무엇을 따로 할 수 있을까?",
+      "idleCaption": "도메인 example.com 안을 OU 영업팀과 OU 개발팀으로 나누고, 영업팀에는 계정 user01과 PC01을 두었다. OU 밖에는 GPO 영업팀 PC 정책과 영업팀 관리 담당이 있다. 이름은 예로 붙인 것이다. 버튼을 고르면 OU에 무엇을 담고 OU마다 무엇을 따로 할 수 있는지 볼 수 있다.",
+      "legend": "가장 바깥 박스는 도메인, 그 안의 두 박스는 OU다. 화살표는 GPO를 OU에 연결하는 것과 OU의 관리를 맡기는 것을 가리킨다.",
+      "nodes": {
+        "gpo": "GPO 영업팀 PC 정책",
+        "admin": "영업팀 관리 담당",
+        "user": "user01",
+        "pc": "PC01",
+        "dev": "개발팀 계정과 PC"
+      },
+      "groups": {
+        "domain": "example.com",
+        "sales-ou": "OU 영업팀",
+        "dev-ou": "OU 개발팀"
+      },
+      "notes": {
+        "policy-note": "영업팀 안에 적용",
+        "dev-note": "정책이 걸리지 않음",
+        "delegate-note": "관리를 맡긴다"
+      },
+      "scenarios": [
+        {
+          "id": "contain",
+          "label": "나눠 담기",
+          "caption": "한 도메인 안을 OU 영업팀과 OU 개발팀으로 나누고, 계정과 PC를 저마다의 OU에 담았다. OU는 관리하려고 만드는 그릇이라 부서나 지역대로 나누는 일이 많지만, 부서 짜임을 꼭 그대로 따를 필요는 없다.",
+          "sources": [
+            "windows-ad.organizational-unit"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "정책 연결",
+          "caption": "GPO 영업팀 PC 정책을 OU 영업팀에 연결하면 그 설정은 영업팀 안의 user01과 PC01에 적용되고, 개발팀에 둔 계정과 PC에는 걸리지 않는다. GPO 자체는 도메인에 저장되고 OU에는 연결만 한다.",
+          "sources": [
+            "windows-ad.organizational-unit"
+          ]
+        },
+        {
+          "id": "delegate",
+          "label": "관리 맡기기",
+          "caption": "영업팀의 계정을 관리하는 일을 영업팀 관리 담당에게 맡기면, 영업팀 관리 담당은 영업팀 안의 계정을 다룰 수 있게 된다. 맡긴 일은 고른 OU 안의 개체에 미치므로, 이 위임으로 개발팀의 계정까지 다루게 되지는 않는다.",
+          "sources": [
+            "windows-ad.organizational-unit"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.organizational-unit"
+      ]
+    },
+    "domain-user-account": {
+      "label": "「Active Directory 사용자 및 컴퓨터」에서 OU 영업팀을 골라 user01을 만들고 보안 그룹 Sales-Users에 넣는 차례와, user01이 PC01과 다른 PC에 로그온하고 Sales-Users를 거쳐 공유 폴더에 접근하는 것을 보이는 도식",
+      "svgLabel": "Active Directory 사용자 및 컴퓨터, OU 영업팀, user01, Sales-Users와 PC01, 다른 PC, 공유 폴더가 있는 그림",
+      "question": "도메인 계정은 어떻게 만들고 어디까지 쓸 수 있을까?",
+      "idleCaption": "관리 도구 「Active Directory 사용자 및 컴퓨터」, OU 영업팀, 도메인 계정 user01, 보안 그룹 Sales-Users와, user01이 로그온하는 PC01과 다른 PC, Sales-Users에 사용 권한을 준 공유 폴더를 두었다. 이름은 예로 붙인 것이다. 버튼을 고르면 계정을 만드는 차례와 그 계정으로 할 수 있는 일을 볼 수 있다.",
+      "legend": "번호는 계정을 만드는 차례다. 화살표는 차례의 다음 단계, 계정으로 로그온하는 컴퓨터, 그룹의 구성원과 그 그룹이 받은 사용 권한을 가리킨다.",
+      "nodes": {
+        "tool": "Active Directory 사용자 및 컴퓨터",
+        "ou": "OU 영업팀",
+        "user": "user01",
+        "group": "Sales-Users",
+        "pc01": "PC01",
+        "otherpc": "다른 PC",
+        "share": "공유 폴더"
+      },
+      "notes": {
+        "step-1": "①",
+        "step-2": "②",
+        "step-3": "③",
+        "step-4": "④",
+        "member-note": "구성원",
+        "permission-note": "사용 권한"
+      },
+      "scenarios": [
+        {
+          "id": "create",
+          "label": "만들기",
+          "caption": "「Active Directory 사용자 및 컴퓨터」에서 계정을 둘 OU 영업팀을 고르고, 「작업」 메뉴의 「새로 만들기」 → 「사용자」로 user01을 만든다. 그다음 계정의 속성을 열어 Member Of 탭에서 보안 그룹 Sales-Users에 넣는다.",
+          "sources": [
+            "windows-ad.domain-user-accounts"
+          ]
+        },
+        {
+          "id": "logon",
+          "label": "로그온",
+          "caption": "user01은 도메인의 디렉터리에 만든 계정이라, PC01에서도 같은 도메인에 가입한 다른 PC에서도 같은 이름과 암호로 로그온한다. 어느 컴퓨터에서 로그온하든 도메인 컨트롤러가 이 계정으로 본인인지 확인한다.",
+          "sources": [
+            "windows-ad.domain-user-accounts"
+          ]
+        },
+        {
+          "id": "access",
+          "label": "자원 접근",
+          "caption": "이 공유 폴더의 사용 권한을 받은 것은 Sales-Users이고, user01은 그 구성원이라 폴더를 연다. 계정을 만든 것만으로 폴더가 열리는 것은 아니어서, user01에게도 그 그룹에도 사용 권한을 주지 않은 폴더는 열 수 없다.",
+          "sources": [
+            "windows-ad.domain-user-accounts"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.domain-user-accounts"
+      ]
     }
   },
   "tables": {},
