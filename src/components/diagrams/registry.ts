@@ -100,6 +100,7 @@ import { EthernetFrameDiagram } from './EthernetFrameDiagram'
 import { EthernetLayersDiagram } from './EthernetLayersDiagram'
 import { EthernetSpeedsDiagram } from './EthernetSpeedsDiagram'
 import { EventBridgeRoutingDiagram } from './EventBridgeRoutingDiagram'
+import { EventViewerDiagram } from './EventViewerDiagram'
 import { ExpectedSpeedDiagram } from './ExpectedSpeedDiagram'
 import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
@@ -268,6 +269,7 @@ import { Route53HealthDiagram } from './Route53HealthDiagram'
 import { Route53HybridDnsDiagram } from './Route53HybridDnsDiagram'
 import { RouteFailoverDiagram } from './RouteFailoverDiagram'
 import { RoutingTableDiagram } from './RoutingTableDiagram'
+import { RunCommandsDiagram } from './RunCommandsDiagram'
 import { RunlevelTargetsDiagram } from './RunlevelTargetsDiagram'
 import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
@@ -682,6 +684,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.group-scopes': GroupScopesDiagram,
   'windows-ad.group-policy': GroupPolicyLinkDiagram,
   'windows-ad.password-lockout-policy': AccountLockoutDiagram,
+  'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
+  'windows-admin-tools.event-viewer': EventViewerDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

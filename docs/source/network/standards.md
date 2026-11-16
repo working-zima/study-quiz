@@ -6051,8 +6051,30 @@ https://learn.microsoft.com/en-us/dotnet/framework/tools/certmgr-exe-certificate
   `compmgmt`를 두고 이것을 말한 문서와, 실행 창(Windows 키 + R)도 PATHEXT로 확장자를 찾는지 말한 문서는 찾지 못했다 — `exam-notes.md` **E37**
 - **한국어 이름**: 「컴퓨터 관리」(ADMX_WindowsExplorer·NDES 한국어판), 「장치 관리자」(ADMX_WindowsExplorer 한국어판), 「로컬 보안 정책」(AppLocker 한국어판 — 「로컬 보안 정책 스냅인(secpol.msc)」), 「이벤트 뷰어」·「성능 모니터」(여러 한국어판), 「스냅인」(What is MMC 한국어판), MMC는 한국어판도 영문 이름.
   실행(Run) 대화 상자는 한국어판이 「Windows 키+R을 선택하고 팝업 상자에」로 옮겨 화면 이름을 확인하지 못했다 — 고른 이름: 기출이 쓰는 「실행 창」을 쓰고, Windows 키 + R로 연다고 함께 적는다
+- (phase 80 step 9, 2026-11-16에 「start」를 IPv4로 다시 받아 확인 — `updated_at` 2026-04-16) 「start」 「Remarks」 첫 줄: 실행 파일이 아닌 파일도 그 파일 이름을 명령처럼 입력하면 그 파일 형식에 등록된 연결(file association)로 열린다 — 등록된 연결이 있는 파일 형식이면 무엇이든 그렇다. 본문은 「명령 프롬프트에 `.msc` 파일의 이름을 입력하면 MMC로 열린다」로 쓴다
 
 쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`(MMC·콘솔·스냅인, 콘솔 파일 `.msc`, 실행 창과 Windows 키 + R, 도구와 실행 이름 일곱, `.msc`를 뺀 이름과 PATHEXT — E37), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-08-24 #41], [기출 2024-08-25 #37])
+(phase 80 step 9) `windows-admin-tools.mmc-run-commands`(위 줄들 — MMC·스냅인·콘솔과 `.msc`, 실행 창 Windows 키 + R과 Enter, 명령 프롬프트에서 파일 이름을 명령처럼 입력하면 연결된 프로그램으로 열린다, 도구 일곱과 실행 이름 — 컴퓨터 관리(관리 도구를 한 콘솔에 모았다, 시스템 도구 아래 「로컬 사용자 및 그룹」, 많은 기능은 관리자만), 인증서 관리자(현재 사용자의 인증서를 보고·내보내고·가져오고·지운다, 관리자가 아니면 자기 계정의 인증서만 — 아래 「인증서와 파일 형식」 항목), 성능 모니터(`perfmon.exe`가 MMC에 스냅인을 얹어 연다 — 아래 「성능 모니터·리소스 모니터」 항목), PATHEXT와 E37 줄; 장치 관리자·로컬 보안 정책·로컬 그룹 정책 편집기의 보안 설정은 아래 「(phase 80 step 9) … 로컬 보안 정책과 장치 관리자」 항목),
+도식 `run-commands`, 문항 n271(`secpol.msc`로 여는 로컬 보안 정책에서 할 수 있는 일 — 오답의 장치 관리자·인증서 관리자·이벤트 뷰어의 보안 로그는 같은 근거와 아래 「이벤트 뷰어와 로그」 항목)·n272(컴퓨터 관리 한 콘솔에 이벤트 뷰어·장치 관리자가 함께 있다)
+
+## (phase 80 step 9) Microsoft Learn — 로컬 보안 정책과 장치 관리자: Configure security policy settings, Security policy settings; Windows 드라이버 문서 — Using Device Manager
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/how-to-configure-security-policy-settings
+https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/security-policy-settings
+https://learn.microsoft.com/en-us/windows-hardware/drivers/install/using-device-manager
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Configure security policy settings」 `updated_at` 2026-04-27(`ms.date` 2023-06-07)·「Security policy settings」 2026-04-27(2017-04-19) — 둘 다 「Applies to」 Windows 11·10, 한국어판(같은 날짜)은 번역되지 않은 영문 그대로다.
+「Using Device Manager」 2025-04-23(2025-04-22, Windows 드라이버 문서), 한국어판 「장치 관리자 사용」 2026-10-24(기계 번역 — 본문은 「디바이스 관리자」로 옮기고 제목만 「장치 관리자」). Windows Server를 적용 대상으로 따로 적은 지금 판 문서는 찾지 못했다 — `secpol.msc`가 Windows Server 2016~2025의 로컬 보안 정책 스냅인이라는 것은 위 「Tools to use with AppLocker」 줄이 근거다
+
+- **로컬 보안 정책**(`secpol.msc`): 콘솔 트리의 보안 설정 아래에서 계정 정책을 고르면 암호 정책과 계정 잠금 정책을, 로컬 정책을 고르면 감사 정책(Audit Policy)·사용자 권한 할당(User Rights Assignment)·보안 옵션(Security Options)을 고친다. 이렇게 하려면 그 로컬 장치의 Administrators 권한이 있어야 한다.
+  로컬 설정을 고칠 수 없게 되어 있으면 GPO가 그 설정을 정하고 있다는 뜻이다. 일부 설정은 다시 시작해야 적용되고, 사용자 권한 할당의 변경은 그 계정이 다음에 로그온할 때 적용된다 — 「Configure security policy settings」 「To configure a setting using the Local Security Policy console」
+- **로컬 그룹 정책 편집기**(`gpedit.msc`)에서는 컴퓨터 구성 > Windows 설정 > 보안 설정 아래에서 같은 계정 정책·로컬 정책을 고친다. 네트워크의 많은 장치에 보안 설정을 걸려면 그룹 정책 관리 콘솔을 쓴다 — 같은 문서 「To configure a security policy setting using the Local Group Policy Editor console」
+- 「Security policy settings」: 감사 정책은 보안 이벤트를 그 컴퓨터의 보안 로그에 남길지와 어떤 종류(성공·실패·둘 다)를 남길지 정한다. 사용자 권한 할당은 그 장치에서 로그인 권한이나 특권을 가진 사용자·그룹을 정한다 — 「Local Policies」
+- **장치 관리자**는 장치마다 장치 종류·장치 상태·제조사·장치별 속성과 그 장치의 드라이버 정보를 보여 준다. 컴퓨터를 시작하는 데 필요하지 않은 장치에 문제가 있으면 그 장치 이름 옆에 표시를 하고, 문제를 설명하는 오류 메시지도 보여 준다.
+  시작 메뉴 검색으로 열거나, 파일 탐색기의 「이 PC」에서 관리를 고르면 열리는 창의 시스템 도구 목록에서 연다 — 「Using Device Manager」(그 창이 컴퓨터 관리라는 것은 위 「ADMX_WindowsExplorer Policy CSP」 줄 — 컴퓨터 관리가 장치 관리자를 담는다). 표시의 색(노란 느낌표)은 쓰지 않는다
+- **쓰지 않는 것**: 보안 옵션 하나하나, 고급 감사 정책 구성, 보안 템플릿, 장치 관리자의 숨긴 장치·속성 탭
+- **한국어 이름**: 「로컬 보안 정책」·「사용자 권한 할당」은 위 항목들, 「계정 정책」·「암호 정책」·「계정 잠금 정책」은 위 「(phase 80 step 4) … 계정 정책」 항목. 감사 정책은 한국어판이 번역되지 않아 화면 이름을 확인하지 못했다 — 본문은 「감사 정책(Audit Policy)」으로 영문을 함께 적는다
+
+쓰인 곳: (phase 80 step 9) `windows-admin-tools.mmc-run-commands`(로컬 보안 정책 — 계정 정책의 암호 정책·계정 잠금 정책, 감사 정책, 사용자 권한 할당, 로컬 그룹 정책 편집기의 컴퓨터 구성 아래 보안 설정에도 같은 설정, 바꾸려면 관리자, 도메인 정책이 정해 두면 바꿀 수 없다; 장치 관리자 — 장치의 종류·상태·제조사와 드라이버 정보, 문제 장치의 표시와 오류 메시지, 컴퓨터 관리 안에서도 연다), 문항 n271(정답 근거와 해설의 감사 정책 줄)
 
 ## (phase 80 step 8) Microsoft Learn — 이벤트 뷰어와 로그: Troubleshoot unexpected reboots using system event logs, Identify the cause of unexpected WMI shutdowns, Event ID 41(Windows 클라이언트 문서), about_Logging_Windows; Win32 — Shutdown Event Tracker, Eventlog Key, Event Types; 지난 판 Event Viewer, Event Logs, Event Properties
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-unexpected-reboots-system-event-logs
@@ -6100,6 +6122,8 @@ Win32 「Shutdown Event Tracker」 2025-03-11·「Eventlog Key」 2025-08-14·�
 
 쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.event-viewer`(이벤트·이벤트 로그·이벤트 뷰어, 이벤트 한 건의 속성과 수준, 종료·재부팅 기록 — 시스템 로그의 1074·6008·41·6006 등, 종료 이벤트 추적기),
 (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.windows-logs`(Windows 로그 다섯과 하는 일, 응용 프로그램 및 서비스 로그, 어느 일이 어느 로그에), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-08-25 #39]·[기출 2025-11-02 #38], [기출 2025-08-24 #30])
+(phase 80 step 9) `windows-admin-tools.event-viewer`(위 줄들 — 이벤트·이벤트 로그, Windows 로그 아래 응용 프로그램·보안·시스템 로그와 이벤트마다 기록된 로그가 정해져 있다, 이벤트 뷰어는 MMC 스냅인이고 여러 로그를 걸러 본다, 이벤트 속성의 날짜와 시간·원본·이벤트 ID·수준·사용자·컴퓨터·로그와 6005 예, 원본과 함께 보는 이벤트 ID, 수준 넷과 성공 감사·실패 감사, 시스템 로그의 1074·6006·41·6008과 41이 생기는 경우, 종료 이벤트 추적기와 Windows Server 2003부터 기본으로 켜짐, `shutdown.exe`가 남기는 1074; 칸 이름의 한국어는 영문의 뜻을 옮긴 말이라고 본문에 밝혔다),
+도식 `event-viewer`, 문항 n273(주말 사이 다시 시작된 기록은 시스템 로그 — 오답의 성능 모니터·리소스 모니터는 위 「성능 모니터·리소스 모니터」 항목)·n274(이벤트 뷰어는 지난 일의 기록, CPU 사용률 그래프는 성능 모니터)
 
 ## (phase 80 step 8) Microsoft Learn — 성능 모니터·리소스 모니터: perfmon, Troubleshoot issues using Performance Monitor, Scenario guide: Troubleshoot performance problems in Windows, Guidance for troubleshooting high CPU usage; Win32 — About Performance Counters, Specifying a Counter Path, Performance Counters Tools, Compatibility and Reliability(Windows 7 개발자 안내서); 지난 판 Overview of Windows Performance Monitor, Creating Data Collector Sets, Schedule Data Collection in Windows Performance Monitor
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/perfmon
