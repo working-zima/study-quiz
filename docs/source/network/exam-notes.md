@@ -832,3 +832,122 @@ phase 79 step 9에서 `linux-servers` 주제(DNS 클라이언트 설정 파일, 
   「`named-checkconf`로 `named.conf`의 오류를 확인한다」는 named-checkconf(8)(설정 파일의 구문 오류를 찾는다 — 의미는 검사하지 않는다, 파일을 주지 않으면 `/etc/named.conf`)과 맞다. `rpm -qa | grep bind`는 이 phase가 다루지 않는다. 시험의 답 「UDP 53만 열면 된다」는 위 「phase 79 step 5」 문단이 보았다
 - **디렉터리 목록이 드러나는 옵션**([기출 2025-05-25 #45]): `Options`에 `Indexes`가 켜져 있으면 디렉터리를 가리키는 주소에 기본 문서가 없을 때 mod_autoindex가 목록을 만들어 돌려준다(core 「Options」, mod_dir 「DirectoryIndex」) — 시험의 답과 맞다.
   다른 보기의 `ServerAdmin`·`DocumentRoot`·`ServerRoot`는 목록과 관계없다. 보기들이 지시자와 값 사이에 `:`를 넣어 적었지만 Apache 설정은 지시자와 인자를 빈칸으로 가른다(「Configuration Files」 「Syntax」) — 본문·문항은 빈칸 꼴로 쓴다
+
+E35~는 phase 80(`windows-ad`·`windows-admin-tools`)이 더한다. phase 80 step 0에서 `windows-ad` 주제의 앞 개념 여섯(로컬 사용자 계정, 기본 로컬 그룹, Active Directory 도메인 서비스, 도메인 컨트롤러, 도메인·트리·포리스트, 트러스트)이 답을 가르는 기출 9문항과,
+오답 보기에 도메인 컨트롤러·읽기 전용 도메인 컨트롤러가 나오는 이웃 문항 하나([기출 2025-02-23 #42] — 정답 OU와 오답 사이트는 step 4가 본다)를 보았다(확인한 날 2026-11-16).
+같은 문항이 여러 회차에 다시 나와 서로 다른 문항은 일곱이다([기출 2024-05-19 #34]와 [기출 2025-08-24 #34], [기출 2024-08-25 #30]과 [기출 2026-08-02 #36]이 같다). 둘은 지문이 그림이다([기출 2024-08-25 #30]·[기출 2026-08-02 #36]).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32 문서와 지난 판 문서다. 공식 문서와 어긋나는 곳 하나에 **E35**를 만들었다 — 근거는 `standards.md`의 「(phase 80 step 0)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **Windows의 기본 로컬 사용자 계정이 아닌 것은 root**([기출 2024-11-03 #35]): 「Local accounts」의 기본 로컬 사용자 계정 절에 Administrator·Guest·DefaultAccount가 있고 root는 없다 — 시험의 답과 맞다. root는 Linux의 관리자 계정이다(`linux-accounts.user-account`).
+  다만 지문이 Windows Server 2016의 기본 계정을 「셋」이라 적는 것은 문서와 꼭 맞지 않는다 — 문서는 기본 계정의 수를 세지 않고, 같은 절에 WDAGUtilityAccount(Application Guard용 — 그 기능의 적용 대상은 Windows 10·11)와 WSIAccount(Windows 11에서 들어왔다)도 들며, 어느 계정이 어느 제품에 있는지 표로 가르지 않는다.
+  답이 같아 항목을 만들지 않는다. 본문은 「기본 계정은 셋뿐이다」로 단정하지 않고, 문항(해설 포함)은 기본 계정의 개수를 판단거리로 삼지 않는다
+- **Windows Server 2016의 로컬 그룹 설명 넷**([기출 2024-02-25 #41]): 시험의 답 「Remote Management Users는 WMI 자원에 관련된 권한의 그룹이다」는 공식 문서와 맞다(관리 프로토콜로 WMI 자원에 접근 — 「Active Directory security groups」, 「Security identifiers」).
+  틀린 말로 둔 「Power Users는 Administrator와 같은 권한」은 문서로도 틀리다 — Power Users가 할 수 있는 일은 정해진 목록(로컬 사용자·그룹 만들기, 자기가 만든 계정 고치기, 프로그램 설치, 로컬 프린터·파일 공유 등)이고, 지난 판 문서는 소유권 가져오기·백업·드라이버 로드·보안 로그 관리를 하지 못한다고 적는다.
+  틀린 말로 둔 「Performance Monitor Users는 성능 카운터·로그 등을 관리한다」도 문서로 틀리다 — 그것은 Performance Log Users의 설명이고, Performance Monitor Users는 실시간 데이터를 볼 뿐 데이터 수집기 집합을 만들거나 고치지 못한다.
+  틀린 말로 둔 「RDS Endpoint Servers는 원격 데스크톱 서비스에 관련된 권한의 그룹이다」는 문서와 어긋난다 — 아래 **E35**
+- **Windows Server 2016의 그룹 계정 설명 넷**([기출 2024-05-19 #33]): 시험의 답(틀린 말) 「Users에는 새 계정이 들고, 이 그룹은 시스템 수준을 바꾸는 권한이 있다」는 문서로도 틀리다 — Users 그룹의 구성원은 시스템 전체에 걸친 변경을 하지 못하게 막힌다.
+  맞는 말로 둔 셋 — Administrators는 제한 없는 접근을 갖고 일반 사용자를 넣으면 그 그룹의 권한을 받는다(「Add-LocalGroupMember」 — 그룹의 권한과 사용 권한은 모든 구성원에게 주어진다), Backup Operators는 사용 권한과 관계없이 파일을 백업·복원한다,
+  Guests 구성원은 로그아웃하면 프로필이 지워져 임시 프로필로 로그온하는 셈이다 — 도 문서와 맞다. 다만 지문의 「Guests 그룹은 기본으로 꺼져 있다」는 문서로는 **Guest 계정**의 성질이다(Guest 계정이 기본으로 꺼져 있다) — 그룹을 켜고 끄는 설정은 문서에 없다.
+  답이 같아 항목을 만들지 않는다. 본문은 「Guest 계정은 기본으로 꺼져 있다」로 쓰고, 문항(해설 포함)은 「Guests 그룹이 꺼져 있다」를 맞는 말로 쓰지 않는다.
+  ④의 「계정을 만들면 기본으로 드는 그룹」은 설치 직후 Users의 구성원이 Authenticated Users(로그온 과정을 거친 모든 사용자)라는 것과 이어진다 — 「새 계정은 Users 그룹에 넣어진다」를 한 문장으로 적은 지금 판 문서는 찾지 못했으므로, 본문은 그 연결(Authenticated Users를 거쳐 Users의 권한을 받는다)으로 쓴다
+- **컴퓨터 자원의 권한 부여 특성을 다루는 그룹**([기출 2025-05-25 #40]): 시험의 답 Access Control Assistance Operators는 문서와 맞다. 다만 지문의 「인증 속성의 관리」은 문서의 말과 두 군데가 다르다 — 문서는 **권한 부여**(authorization) 특성과 사용 권한을 원격으로 **조회**한다고 적는다.
+  답이 같아 항목을 만들지 않는다. 본문은 문서의 말(「권한 부여 특성과 사용 권한을 원격으로 조회」)로 쓰고, 문항(해설 포함)은 「관리한다」·「인증 속성」을 이 그룹의 설명으로 쓰지 않는다. 오답 셋 — Replicator(도메인의 파일 복제를 지원하는 컴퓨터가 드는 그룹), Power Users, Backup Operators(백업·복원) — 은 문서에서도 이 일을 하지 않는다
+- **Active Directory의 주요 역할**([기출 2026-05-17 #43]): 시험의 답 「사용자를 인증하고 디렉터리에 기대어 자원을 관리한다」는 「Active Directory Domain Services overview」(디렉터리 데이터를 저장해 사용자·관리자가 쓰게 하고, 로그온 인증과 디렉터리 개체에 대한 접근 제어로 보안을 묶는다)와 맞다.
+  오답 셋도 문서로 AD DS의 일이 아니다 — 클라이언트에 IP 주소를 자동으로 나눠 주는 것은 DHCP 서버다(`standards.md`의 「(phase 74 step 5) Microsoft Learn — … What is DHCP Server in Windows Server? …」 항목).
+  DNS 영역의 동적 업데이트를 기본으로 막는 것도 AD의 일이 아니고, 오히려 영역을 AD에 통합하면 Windows DNS 서버는 기본으로 **보안 동적 업데이트만 허용**한다(파일에 둔 영역이 기본으로 동적 업데이트를 허용하지 않는다 — 「Dynamic update」). 서버의 방화벽 규칙을 저절로 구성한다는 말은 이 step이 본 AD DS 문서에 없다.
+  다만 AD DS는 DNS로 DC를 찾고 새 포리스트를 세울 때 DNS가 함께 설치되므로(「DNS and AD DS」, 「Domain Name System (DNS) in Windows and Windows Server」), 문항(해설 포함)은 「AD DS는 DNS와 관계없다」를 맞는 말로 쓰지 않는다
+- **서로 다른 도메인 사이의 인증과 권한 부여는 트러스트**([기출 2024-05-19 #34], [기출 2025-08-24 #34] — 같은 문항): 트러스트는 한 도메인의 사용자가 다른 도메인의 DC에게 인증받게 하는 관계이고(지난 판 「Understanding Trusts」), 신뢰하는 쪽(자원 도메인)이 신뢰받는 쪽에서 온 인증을 받아들여 공유 자원에 통제된 접근을 준다(「Credentials processes in Windows authentication」) — 시험의 답과 맞다.
+  오답 도메인·트리·포리스트는 관리 단위, 이름이 이어지는 도메인의 묶음, 트리의 묶음이라 두 도메인 사이에 맺는 관계가 아니다(「Understanding the Active Directory Logical Model」, Win32 「Domain Trees」·「Forests」).
+  지문의 「권한 부여」를 트러스트가 사용 권한까지 준다는 뜻으로 읽지 않는다 — 다른 도메인의 자원에 접근하려면 그 자원에 사용 권한이 주어져야 한다(지난 판 「Understanding Trust Transitivity」, Entra 문서 「Trust relationship flows」). 본문은 「트러스트는 인증을 받아들이게 하고, 사용 권한은 자원에서 따로 준다」로 쓴다
+- **(A)에 해당하는 것은 트러스트**([기출 2024-08-25 #30], [기출 2026-08-02 #36] — 같은 문항, 지문이 그림): 지문을 볼 수 없어 무엇을 물었는지는 대조하지 못했다. 항목을 만들지 않는다. 정답 트러스트와 오답 셋(사이트·조직 구성 단위·도메인 컨트롤러)이 서로 다른 것이라는 데까지만 본다 — 도메인 컨트롤러는 디렉터리 데이터베이스를 갖고 인증하는 서버이고, 사이트·조직 구성 단위는 step 4가 본다
+- **이웃 문항 — 도메인 컨트롤러와 읽기 전용 도메인 컨트롤러**([기출 2025-02-23 #42]): 오답 DC·RODC는 서버(도메인의 디렉터리 데이터베이스를 갖고 인증하는 서버와, 그 데이터베이스를 읽기만 하는 DC)라 한 도메인 안을 부서처럼 나누는 단위가 아니다(「Understanding the Active Directory Logical Model」, 「Planning Domain Controller Placement」).
+  보기가 읽기 전용 도메인 컨트롤러를 「RDC」로 줄여 적는데, 공식 문서의 약어는 **RODC**다 — 본문·문항은 RODC로 쓴다
+
+## E35 — RDS Endpoint Servers를 「원격 데스크톱 서비스와 관련한 권한의 그룹」이 아닌 것으로 본다
+
+- **시험**: Windows Server 2016의 로컬 그룹 설명 가운데 맞는 것 하나(Remote Management Users — WMI)를 고르는 문항이, 「RDS Endpoint Servers는 원격 데스크톱 서비스에 관련된 권한의 그룹이다」을 틀린 설명으로 둔다 — [기출 2024-02-25 #41]
+- **공식 문서**: 「Active Directory security groups」(2026-10-30)와 「Security identifiers」(2026-10-20)는 RDS Endpoint Servers를, RemoteApp 프로그램과 개인 가상 데스크톱이 실행되는 가상 머신을 돌리고 세션을 호스트하는 **서버**가 드는 기본 그룹으로 적는다.
+  RD 연결 브로커를 실행하는 서버에서 이 그룹을 채워야 하고, 그 배포의 RD 세션 호스트·RD 가상화 호스트 서버가 들어야 한다 — 곧 원격 데스크톱 서비스(RDS) 배포를 위한 그룹이다. 두 문서 어디에도 이 그룹이 RDS와 관계없다는 근거는 없다.
+  시험이 이 보기를 왜 틀린 말로 보는지는 문서로 판정할 수 없다 — 구성원이 사람이 아니라 서버라는 점을 문제 삼았는지, 지문의 「권한」을 사람에게 주는 권한으로 읽었는지 알 수 없다
+- **처리**: 본문(`windows-ad.local-groups`)은 문서대로 RDS Endpoint Servers를 「원격 데스크톱 서비스 배포에서 가상 머신을 돌리고 세션을 호스트하는 서버가 드는 그룹 — 구성원은 사람이 아니라 서버다」로 한 줄 쓴다.
+  이 그룹에는 「자격시험은 ~로 본다」 줄을 두지 않는다 — 시험에서 알 수 있는 것은 「이 보기는 틀린 설명이다」뿐이라 사실처럼 옮길 시험 쪽 내용이 없고, 그 판정을 옮기면 공식 문서와 어긋난 것을 가르치게 된다.
+  문항(해설 포함)은 RDS Endpoint Servers를 보기에 두지 않는다 — 이 그룹에 대한 설명을 맞는 말로도 틀린 말로도 쓰지 않는다
+- 쓰인 곳: (phase 80 step 1에서 쓰일 곳) `windows-ad.local-groups`
+
+phase 80 step 4에서 `windows-ad` 주제의 뒤 개념 여섯(조직 구성 단위, 도메인 사용자 계정, ds 명령, 그룹 종류와 범위, 그룹 정책, 암호 정책과 계정 잠금 정책)이 답을 가르는 기출 5문항을 보았다(확인한 날 2026-11-16). 다섯 모두 서로 다른 문항이고, 하나는 지문이 그림이다([기출 2026-02-01 #43]).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32·문제 해결 문서와 지난 판 명령 참조(ds 명령)다. 공식 문서와 어긋나는 곳 하나에 **E36**을 만들었다 — 근거는 `standards.md`의 「(phase 80 step 4)」 줄과 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **한 도메인 안을 부서처럼 나누어 관리하려면 OU**([기출 2025-02-23 #42]): 시험의 답 OU는 공식 문서와 맞다 — OU는 도메인 안에 그릇의 계층을 만들어 그룹 정책 적용·관리 위임 같은 관리 목적으로 개체를 묶는다(「Understanding the Active Directory Logical Model」, 「Reviewing OU Design Concepts」).
+  오답 DC·RODC는 위 「phase 80 step 0」 문단이 보았다(서버다). 오답 사이트는 빠르고 안정적인 연결로 이어진 서브넷의 묶음이라 복제와 로그온을 네트워크 위치에 맞추는 물리 쪽 구분이지 부서 나눔이 아니다(「Active Directory Replication Concepts」, 「Site functions」, 「Designing the Site Topology」).
+  다만 공식 문서는 OU 계층이 부서 계층을 그대로 따를 필요는 없고 위임·그룹 정책 같은 목적으로 만든다고 적는다 — 본문은 「OU는 부서를 나타낸다」로 단정하지 않고 「부서·지역처럼 나눠 관리하고 정책을 거는 단위」로 쓴다. 부서를 나누려고 도메인을 늘리지 않는다는 것은 「Reviewing the Domain Models」가 받친다
+- **도메인 사용자 계정 관리에 대해 맞는 말**([기출 2026-08-02 #43]): 시험이 맞는 말로 고른 보기 — 도메인 계정은 「Active Directory 사용자 및 컴퓨터」에서 만들고, 만든 계정은 보안 그룹에 구성원으로 넣는다 — 는 「Manage user accounts in Active Directory Users and Computers」(Windows Server 2016~2025 — 만드는 차례와 Member Of 탭으로 그룹에 넣는 차례)와 맞다. 오답 셋도 문서로 틀리다:
+  (1) 암호 조건은 도메인의 계정 정책이 정하고(기본 도메인 정책 GPO, DC가 강제) 복잡성 조건은 암호를 만들거나 바꿀 때 검사되므로 사용자가 임의로 정하지 못한다(「Account Policies」, 「Password must meet complexity requirements」) — 관리자가 계정 하나를 정책에서 빼는 「암호가 만료되지 않게 하기」 확인란은 있지만 그것은 사용자의 선택이 아니다.
+  (2) 계정을 만들면 그 사용자가 도메인 컴퓨터에 로그인할 수 있게 될 뿐이고, 자원에는 그 자원에 준 사용 권한에 따라 닿는다(「Manage user accounts…」 「Create a user account」, 「Active Directory accounts」). 새 도메인 계정은 기본으로 Domain Users 그룹에 들어 그 그룹이 받은 사용 권한은 받는다(「Active Directory security groups」 「Domain Users」) — 「모든 자원」이 아니라 그 그룹에 준 자원이다.
+  (3) Windows Server 2016~2025에서 도메인 사용자 계정을 만든다(같은 문서의 적용 대상). 본문은 이 셋을 문서의 사실로 쓰고, 「자격시험은」 줄은 필요 없다
+- **도메인 사용자 계정을 관리하는 명령이 아닌 것은 `net user`**([기출 2025-08-24 #38]): `dsadd`·`dsmod`·`dsrm`이 디렉터리의 사용자 개체를 더하고·고치고·지운다는 것은 지난 판 명령 참조(「Dsadd」·「Dsmod」·「Dsrm」)와 지금 판 문제 해결 문서(「Use the Directory Service command-line tools…」)와 맞다.
+  그러나 `net user`를 도메인 계정 명령이 아니라고 보는 것은 「net user」 쪽과 어긋난다 — 아래 **E36**
+- **(지문) 유니버설 그룹**([기출 2026-02-01 #43] — 지문이 그림): 지문을 볼 수 없어 무엇을 물었는지는 대조하지 못했다. 항목을 만들지 않는다. 보기 넷 — 글로벌·유니버설·도메인 로컬 그룹과 로컬 그룹 — 은 「Active Directory security groups」의 범위 셋과 한 컴퓨터의 로컬 그룹(SAM)으로 서로 갈린다는 데까지만 본다.
+  범위 셋 가운데 같은 포리스트의 어느 도메인의 계정·글로벌 그룹이든 넣을 수 있고 포리스트 어느 도메인에서나 사용 권한을 받는 것은 유니버설뿐이다. 본문은 범위의 사실만 가르치고, 문항(해설 포함)은 이 기출의 지문을 짐작해 옮기지 않는다
+- **그룹 정책으로 할 수 없는 일은 「소프트웨어를 배포할 수 없다」**([기출 2024-08-25 #34]): 시험의 답과 맞다 — 그룹 정책의 소프트웨어 설치로 프로그램을 사용자·컴퓨터에 할당하거나 사용자에게 게시한다(문제 해결 「Use Group Policy to remotely install software」, 「Group Policy processing」).
+  맞는 말로 둔 셋도 문서와 맞다 — 암호·계정 잠금 정책을 도메인에 연결된 GPO로 강제하고(「Account Policies」, 「Account Lockout Policy」), 암호 길이·복잡성 조건을 정한다(「Password Policy」).
+  로그온하는 PC가 바뀌어도 같은 환경을 쓰게 한다는 보기는 그룹 정책 자체의 기능이 아니라 **그룹 정책으로 설정하는** 폴더 리디렉션(GPO의 사용자 구성)과 로밍 사용자 프로필(계정 속성이나 GPO의 컴퓨터 구성)의 일이다(「Folder Redirection and Roaming User Profiles…」, 「Deploy Folder Redirection…」, 「Deploy roaming user profiles」).
+  답이 같아 항목을 만들지 않는다. 본문은 「그룹 정책으로 폴더 리디렉션·로밍 사용자 프로필을 설정해 어느 PC에서나 같은 파일과 설정을 쓰게 한다」로 쓴다
+
+## E36 — `net user`를 도메인 사용자 계정을 관리하는 명령이 아닌 것으로 본다
+
+- **시험**: Windows Server 2022의 Active Directory에서 도메인 사용자 계정을 만들고·고치고·지우는 명령이 아닌 것을 고르는 문항이, `dsadd`·`dsmod`·`dsrm`과 함께 둔 `net user`를 정답으로 둔다 — [기출 2025-08-24 #38]
+- **공식 문서**: 「net user」(learn.microsoft.com, `updated_at` 2026-02-16, Windows Server 2016~2025)는 이 명령이 **로컬 컴퓨터나 도메인의** 사용자 계정을 더하고·고치고·지우고·보인다고 적는다. `/domain`은 그 컴퓨터가 속한 기본 도메인의 DC에서 작업하게 하고, `/add`·`/delete`를 `/domain`과 함께 쓰면 계정을 로컬 컴퓨터가 아니라 도메인에 만들고 도메인에서 지운다.
+  문제 해결 「Redirect the users and computers containers in Active Directory domains」(2026-08-04)도 `NET USER`를 옛 API로 도메인에 사용자를 만드는 명령으로 든다(그 사용자는 기본 `CN=Users` 컨테이너에 들어간다). 곧 `/domain`을 붙인 `net user`는 도메인 사용자 계정을 다룬다. 어느 문서에도 `net user`가 도메인 계정을 다루지 못한다는 말은 없다.
+  가르는 점은 이것이다 — `/domain` 없이 실행하면 그 컴퓨터의 로컬 계정을 다루고, 개체를 고유 이름(DN)으로 가리켜 자리(OU)를 고르거나 그룹·OU·컴퓨터 같은 다른 개체까지 다루는 것은 ds 명령이다. 시험이 `net user`를 정답으로 둔 까닭을 이 차이로 짐작할 수는 있지만, 문서로 판정할 수는 없다
+- **처리**: 본문(`windows-ad.ds-commands`)은 문서대로 쓴다 — `net user`는 기본으로 그 컴퓨터의 로컬 계정을 다루고, `/domain`을 붙이면 기본 도메인의 DC에서 도메인 사용자 계정을 다룬다. 그 자리에 「자격시험은 `net user`를 도메인 사용자 계정을 관리하는 명령으로 보지 않고 `dsadd`·`dsmod`·`dsrm`과 가른다」를 한 줄 덧붙인다.
+  문항(해설 포함)은 「`net user`는 도메인 계정을 다룰 수 없다」를 맞는 말로도, 「`net user /domain`으로 도메인 계정을 만든다」를 정답을 가르는 근거로도 쓰지 않는다 — `net user`와 ds 명령의 판정이 `/domain`의 유무에 기대게 하지 않는다. 로컬 계정을 다루는 상황의 `net user`는 그대로 쓸 수 있다
+- 쓰인 곳: (phase 80 step 6에서 쓰일 곳) `windows-ad.ds-commands`
+
+phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 창 명령, 이벤트 뷰어, Windows 로그, 성능 모니터, 리소스 모니터, PowerShell, 인증서와 인증서 관리자, EFS, BitLocker 드라이브 암호화, 클라우드 폴더)이 답을 가르는 기출 13문항을 보았다(확인한 날 2026-11-16).
+같은 문항이 두 회차에 다시 나와 서로 다른 문항은 열하나다([기출 2024-08-25 #39]와 [기출 2025-11-02 #38], [기출 2024-11-03 #31]과 [기출 2026-08-02 #30]이 같다).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 명령·Windows 보안·PowerShell·Win32·문제 해결 문서와 지난 판 문서(이벤트 뷰어·성능 모니터, Windows Server 2008 R2·2012)다. 공식 문서와 어긋나거나 공식 문서에 없는 곳 둘에 **E37**·**E38**을 만들었다 — 근거는 `standards.md`의 「(phase 80 step 8)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **실행 창 명령과 도구의 짝**([기출 2025-08-24 #41]): 맞는 짝으로 둔 셋 — `devmgmt.msc` 장치 관리자, `gpedit.msc` 로컬 그룹 정책 편집기, `perfmon` 성능 모니터 — 은 공식 문서와 맞다. 정답 「`compmgmt` – 컴퓨터 관리」(`.msc`를 뺀 이름은 실행되지 않는다)는 공식 문서와 어긋난다 — 아래 **E37**
+- **인증서 관리자를 여는 명령은 `certmgr.msc`**([기출 2024-08-25 #37]): 시험의 답과 맞다 — `certmgr.msc`는 지금 로그온한 사용자의 인증서 저장소를 열고, 거기서 인증서를 보고·내보내고·가져오고·지운다(「Inspect certificates…」, .NET Framework 문서 「How to: View certificates…」). 오답 셋은 다른 도구다 — `eventvwr.msc` 이벤트 뷰어, `compmgmt.msc` 컴퓨터 관리, `secpol.msc` 로컬 보안 정책.
+  문제문의 「백업해 둔 인증서 키를 복원한다」는 개인 키까지 담은 파일을 가져오는 일로 읽는다 — 개인 키를 담는 형식은 `.pfx`뿐이고 `.cer`·`.p7b`·`.sst`는 개인 키 백업이 아니다(「Inspect certificates…」). 로컬 컴퓨터의 저장소는 `certlm.msc`로 연다는 것도 본문에 한 줄 둔다. 항목을 만들지 않는다
+- **지난 종료·재부팅 기록을 보는 곳은 이벤트 뷰어**([기출 2024-08-25 #39], [기출 2025-11-02 #38] — 같은 문항): 시험의 답과 맞다 — 종료와 재부팅은 시스템 로그에 남고(1074는 어느 프로세스가 어느 사용자를 대신해 왜 껐는지, 6008·41은 예기치 않은 종료), 이벤트 뷰어로 그 로그를 걸러 본다(「Troubleshoot unexpected reboots using system event logs」).
+  문제문이 말하는 「끌 때마다 이유를 남기기」는 종료 이벤트 추적기의 일이고 그 내용도 이벤트 로그에 저장된다(Win32 「Shutdown Event Tracker」 — Windows Server 2003부터 기본으로 켜져 있다). 오답 셋 — 성능 모니터(성능 카운터의 값을 보고 모으는 도구), 로컬 보안 정책, 그룹 정책 편집기 — 은 지난 기록을 보이는 도구가 아니다. 항목을 만들지 않는다
+- **Windows 로그에 드는 것은 응용 프로그램**([기출 2025-08-24 #30]): 시험의 답과 맞다 — Windows 로그는 응용 프로그램·보안·Setup·시스템·ForwardedEvents 다섯이다(지난 판 「Event Logs」 — Windows Server 2012까지의 문서. 시험의 Windows Server 2022에서 같은 다섯인지 말하는 지금 판 문서는 찾지 못했다).
+  오답 셋 — 하드웨어 이벤트·인터넷 익스플로러·Windows PowerShell — 은 다섯에 들지 않는다. 그 셋이 응용 프로그램 및 서비스 로그 아래에 있다고 적은 문서는 찾지 못했으므로, 본문은 「Windows 로그는 다섯이다」로 가르고 그 셋의 자리를 사실로 적지 않는다. 항목을 만들지 않는다
+- **일정 주기로 데이터를 모으려 성능 모니터를 여는 명령은 `perfmon`**([기출 2025-05-25 #35]): 시험의 답과 맞다 — `perfmon`은 성능 모니터를 열고, 정해 둔 간격과 일정으로 카운터를 모으는 것은 데이터 수집기 집합이다(「perfmon」, 「Troubleshoot issues using Performance Monitor」, 지난 판 「Schedule Data Collection…」).
+  오답 `secpol`은 로컬 보안 정책을 가리키는 이름이고(실행 이름은 `secpol.msc` — 「Tools to use with AppLocker」), `msconfig`·`dfrg`는 이 주제가 다루지 않는다. 항목을 만들지 않는다
+- **리소스 모니터에서 점검할 수 없는 것은 방화벽**([기출 2024-11-03 #36]): 리소스 모니터가 CPU를 프로세스마다 보인다는 것은 공식 문서와 맞다(「Guidance for troubleshooting high CPU usage」 — CPU 탭). 그러나 리소스 모니터의 탭 목록(메모리·디스크·네트워크)은 허용한 문서에서 찾지 못해, 점검할 수 있는 것으로 둔 메모리·네트워크는 대조하지 못했다(step 8 summary 「사용자 확인」). 리소스 모니터가 방화벽을 다룬다고 적은 문서는 없다.
+  문제문이 리소스 모니터의 기능처럼 적은 「소프트웨어 업데이트·설치 정보와 주요 이벤트가 일어난 날짜」는 공식 문서로는 **안정성 모니터**의 일이다(Windows 업데이트·응용 프로그램 설치 같은 변화를 안정성 지수와 함께 보인다 — Win32 「Compatibility and Reliability」, 여는 법 `perfmon /rel`). 본문은 그 기능을 리소스 모니터에 붙이지 않는다.
+  「성능 모니터에 있는 리소스 모니터」는 `perfmon /res`가 리소스 보기를 연다는 것(「perfmon」)과 어긋나지 않는다. 답의 판정은 탭 목록에 달려 있어 항목은 사용자 확인 뒤에 정한다
+- **CPU·메모리·네트워크·디스크를 실시간으로 보는 도구는 Resource Monitor**([기출 2026-02-01 #42]): 리소스 모니터가 프로세스마다 CPU를 보이고(위 줄), 성능 데이터를 쓰는 Windows 기본 도구의 하나라는 것(Win32 「About Performance Counters」)까지는 문서와 맞다.
+  네 자원을 실시간으로 살핀다는 문장은 Microsoft Learn 교육 과정 페이지에만 있어 쓰지 않았다(step 8 summary 「사용자 확인」). 오답 셋 — 서버 관리자, 「System Hardware Monitor」(이 step이 읽은 문서에 그런 이름의 Windows 도구는 없다), 이벤트 뷰어(일어난 일의 기록) — 은 이 주제가 따로 다루지 않는다. 항목은 사용자 확인 뒤에 정한다
+- **PowerShell에 대해 틀린 말은 「기존 DOS 명령은 쓸 수 없다」**([기출 2024-11-03 #31], [기출 2026-08-02 #30] — 같은 문항): 시험의 답과 맞다 — `dir`·`cd` 같은 이름은 별칭으로 cmdlet에 이어지고(about_Aliases), PowerShell 명령이 아닌 실행 파일도 그대로 실행된다(about_Command_Precedence, about_Parsing).
+  맞는 말로 둔 셋도 문서와 맞다 — 셸에 명령을 입력해 대화형으로 쓴다(「What is PowerShell?」), 스크립트는 일반 텍스트 파일(`.ps1`)이다(about_Scripts), 명령 이름과 매개 변수 이름은 대소문자를 가리지 않는다(about_Case-Sensitivity).
+  다만 PowerShell 문서는 「DOS 명령」이라는 말을 쓰지 않는다. 답이 같아 항목을 만들지 않는다. 본문은 「DOS 명령」 대신 문서의 말(별칭, 실행 파일로 된 명령)로 쓰고, 문항(해설 포함)도 그 말로 쓴다
+- **EFS에 대한 옳은 설명**([기출 2024-02-25 #39]): 정답 「EFS는 인증서 파일의 확장자로 CER·P7B·PFX·SST를 지원한다」는 공식 문서에 없다 — 아래 **E38**. 틀린 말로 둔 셋은 문서로도 틀리다.
+  「Windows 시스템 파일에만 암호화를 건다」 — 오히려 시스템 파일·시스템 디렉터리는 EFS로 암호화할 수 없고, EFS는 NTFS 볼륨의 파일을 하나하나 암호화한다(Win32 「File Encryption」).
+  「개인 키를 지키는 방법은 암호뿐이다」 — EFS는 사용자의 스마트 카드에서 인증서를 찾으며(「Smart Card and Remote Desktop Services」), 복구 에이전트의 키도 `cipher /r … /smartcard`로 스마트 카드에 쓴다(「cipher」).
+  「같은 사용자면 Windows를 다시 설치해도 암호화된 파일을 연다」 — 파일을 열려면 암호화에 쓴 공개 키와 짝인 개인 키가 있어야 한다(「Back up the recovery agent EFS private key…」). 다시 설치한 경우를 그대로 적은 문서는 없어, 본문은 「이름이 아니라 키가 필요하다 — 그래서 키를 백업해 둔다」로 쓴다
+- **하드디스크 자체를 암호화하는 기술은 BitLocker**([기출 2024-08-25 #28]): 시험의 답과 맞다 — BitLocker는 볼륨 전체를 암호화하고, 하드 드라이브를 다른 기기로 옮겨 붙여 읽는 일을 막는다(「BitLocker overview」). 오답 EFS는 파일 하나하나를 암호화하고(BitLocker FAQ 「Can I use EFS with BitLocker?」 — 함께 쓸 수 있다), AD는 이 주제가 아니다(`windows-ad`). FileVault는 Microsoft 제품이 아니라 확인하지 않았다. 항목을 만들지 않는다
+- **더 많은 위치와 장치에서 데이터에 접근하는 서비스는 클라우드 폴더**([기출 2024-02-25 #43]): 시험의 답과 맞다 — 클라우드 폴더(Work Folders)는 사용자가 회사 PC와 개인 기기에서 업무 파일을 쓰게 하는 파일 서버의 역할 서비스다(「Work Folders overview」). 오답 서버 코어·VPN·DirectAccess는 이 주제가 다루지 않는다.
+  한국어판이 같은 기능을 「클라우드 폴더」·「작업 폴더」·「워크 폴더」로 섞어 부르므로 본문은 「클라우드 폴더(Work Folders)」로 세운다(`standards.md` 「클라우드 폴더」 항목의 「한국어 이름」). 항목을 만들지 않는다
+
+## E37 — `compmgmt`처럼 `.msc`를 뺀 이름은 실행되지 않는다고 본다
+
+- **시험**: Windows Server 2022의 명령 프롬프트(cmd)나 실행 창(Windows 키 + R)에 넣었을 때 실행되지 않거나 프로그램과 짝이 맞지 않는 것으로, `devmgmt.msc`·`gpedit.msc`·`perfmon`과 함께 둔 「`compmgmt` – 컴퓨터 관리」를 정답으로 둔다 — [기출 2025-08-24 #41]. 곧 `.msc`를 빼고 적으면 컴퓨터 관리가 열리지 않는다고 본다
+- **공식 문서**: 컴퓨터 관리의 실행 이름은 문서가 `compmgmt.msc`로 보인다(「ADMX_WindowsExplorer Policy CSP」, NDES 문서). 그런데 Windows 명령 참조 「start」(`updated_at` 2026-04-16, Windows Server 2016~2025)는 명령 프롬프트(`Cmd.exe`)가 확장자 없이 적은 이름에 환경 변수 PATHEXT의 확장자를 차례로 붙여 찾고, PATHEXT의 기본값에 `.MSC`가 들어 있다고 적는다.
+  .NET Framework 문서 「Certmgr.exe」도 명령 줄에 `certmgr`만 적어도 인증서 MMC 스냅인(Certmgr.msc)이 열릴 수 있다고 적는다. 곧 명령 프롬프트에서는 문서대로라면 `.msc`를 빼도 그 콘솔 파일이 찾아질 수 있어 시험의 판정과 어긋난다.
+  `compmgmt`를 두고 이것을 말한 문서와, 실행 창이 PATHEXT로 확장자를 찾는지 말한 문서는 찾지 못했다 — 실행 창 쪽은 문서로 판정할 수 없다
+- **처리**: 본문(`windows-admin-tools.mmc-run-commands`)은 문서가 보이는 실행 이름(`compmgmt.msc`처럼 `.msc`를 붙인 꼴, 성능 모니터는 `perfmon`)을 쓰고, 명령 프롬프트가 PATHEXT로 확장자를 붙여 찾는다(기본값에 `.MSC`가 있다)는 것을 한 줄로 쓴다.
+  그 자리에 「자격시험은 `compmgmt`처럼 `.msc`를 뺀 이름을 실행되지 않는 것으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 `.msc`를 뺀 이름이 열리는지·열리지 않는지를 정답이나 오답의 근거로 쓰지 않는다 — 도구와 실행 이름의 짝은 `.msc`를 붙인 꼴로만 묻는다
+- 쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`
+
+## E38 — CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다
+
+- **시험**: Windows Server 2016의 EFS에 대한 옳은 설명으로 「EFS는 인증서 파일의 확장자로 CER·P7B·PFX·SST 형식을 지원한다」를 정답으로 둔다 — [기출 2024-02-25 #39]
+- **공식 문서**: 넷은 Windows가 **인증서를 내보내고 가져오는 파일 형식**이다 — `.cer`(공개 인증서 하나)·`.p7b`(PKCS #7, 인증서 하나 이상)·`.sst`(직렬화된 인증서 저장소)는 공개 인증서만 담고(Export-Certificate), `.pfx`(PKCS #12)는 개인 키까지 담는다(Export-PfxCertificate) — 「Inspect certificates and manage certificate store contents」(`updated_at` 2026-10-02, Windows Server 2016~2025).
+  EFS 문서(Win32 「File Encryption」, 「cipher」, 「Back up the recovery agent EFS private key…」)가 EFS와 이어서 말하는 형식은 `.pfx`(인증서와 개인 키 — `cipher /x`의 백업, `cipher /r`, 복구 에이전트 키 내보내기)와 `.cer`(인증서만 — `cipher /r`)뿐이고, EFS가 이 넷을 「지원한다」고 적은 문서는 없다.
+  EFS 인증서도 사용자 인증서 저장소의 개인(Personal) 저장소에 든 인증서라(복구 에이전트 문서의 차례), 저장소의 인증서를 내보내는 방법을 그대로 쓸 수 있다 — 그래서 시험의 말을 「EFS 인증서를 그 형식들로 내보낼 수 있다」로 읽으면 틀린 말은 아니다. 다만 넷은 EFS의 기능이 아니라 인증서 내보내기의 형식이고, 암호화한 파일을 다시 열게 해 주는 것은 개인 키를 담은 `.pfx`뿐이다
+- **처리**: 본문은 문서의 사실로 쓴다 — `windows-admin-tools.certificate-manager`는 인증서를 `.cer`·`.p7b`·`.sst`·`.pfx`로 내보내고 가져오며 개인 키를 담는 것은 `.pfx`뿐이라는 것을, `windows-admin-tools.efs`는 EFS의 키를 개인 키를 담은 `.pfx`로 백업한다(`cipher /x`, 인증서 내보내기)는 것을 쓴다.
+  `efs`의 그 자리에 「자격시험은 CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 「EFS가 넷을 지원한다」를 정답의 근거로 쓰지 않고, 넷의 차이(개인 키를 담는지)를 묻는 데 쓴다
+- 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`, `windows-admin-tools.certificate-manager`
