@@ -114,6 +114,11 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 지난 판 명령 참조(Windows Server 2012 R2·2012 묶음, 적용 대상 Windows Server 2003~2012)를 읽고, 지금 판 문제 해결 문서(적용 대상 — 지원되는 모든 Windows Server)가 같은 명령을 쓰는지 맞춰 봤다.
 계정 정책 설정 문서(`windows/security/threat-protection/security-policy-settings/`)는 「Applies to」를 Windows 11·10으로 적지만 기본값 표에 기본 도메인 정책·DC·구성원 서버·독립 실행 서버의 값을 함께 싣는다 — 그 표의 값을 그대로 적고, 이 문서들의 한국어판은 번역되지 않아 영문 그대로라는 것도 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 그룹 정책의 상속 차단·강제·보안 필터링·WMI 필터, 세분화된 암호 정책, 글로벌 카탈로그의 동작, 사이트 링크와 복제 일정, PowerShell AD 모듈의 cmdlet 목록, `dsadd user`의 옵션 전체. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 8)」이 붙은 줄과 항목은 phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 창 명령, 이벤트 뷰어, Windows 로그, 성능 모니터, 리소스 모니터, PowerShell, 인증서와 인증서 관리자, EFS, BitLocker 드라이브 암호화, 클라우드 폴더)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+이 주제도 강의 밖 주제라 사실의 근거는 learn.microsoft.com 하나다(ADR-059). 읽은 방법은 step 0·4와 같다(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server 문서·Windows 명령 참조·Windows 보안 문서·PowerShell 문서·Win32 문서·문제 해결 문서이고,
+지금 판 문서에 없는 것(이벤트 뷰어의 로그 갈래와 이벤트 속성 표, 데이터 수집기 집합의 일정)만 지난 판 문서(Windows Server 2008 R2·2012)에서 가져왔다. 실행 창(Windows 키 + R)과 `devmgmt.msc`, 명령 줄에 `certmgr`만 적었을 때의 동작, 인증서 관리자의 한국어 이름은 같은 learn.microsoft.com의 Windows 드라이버 문서와 .NET Framework 문서에서만 찾았다 — 항목에 어느 문서인지 적는다.
+**Microsoft Learn의 교육 과정(training) 페이지는 쓰지 않았다**(업체 학습 페이지라 허용하지 않는다). 그래서 리소스 모니터의 탭 목록처럼 그 페이지에만 있는 사실은 적지 않았다 — 아래 「성능 모니터·리소스 모니터」 항목에 찾아본 곳을 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — PowerShell의 문법(변수·파이프라인·제어문)과 원격 실행, 이벤트 구독·사용자 지정 보기의 설정, 성능 카운터 목록과 데이터 수집기 집합의 경고·템플릿, 인증서 요청·자동 등록, EFS의 키 구조(FEK·DDF·DRF)와 복구 정책 설정, BitLocker 보호기 전체와 설정 절차, 클라우드 폴더의 배포 절차. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -1401,6 +1406,7 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/supp
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(ping `/t`·Ctrl+Break·Ctrl+C, `/n` 기본 4, `/a`, `/l` 기본 32, 빗금 표기, 출력 예의 응답 줄), `diagnostic-commands.tracert`(출력 예의 칸 — 홉 번호·왕복 시간 셋·주소나 이름, `*`와 Request timed out, `/d`·`/h` 기본 30, 보내는 쪽에 가까운 인터페이스, 지연·손실은 pathping),
 `diagnostic-commands.pathping`(tracert 문서가 pathping을 가리키는 문단), `exam-notes.md` 「phase 78 step 11」 문단([기출 2025-08-24 #42]의 `/a`·`/f`·`/n` 보기)과 E33
 (phase 80 step 6) `windows-ad.ds-commands`(Windows commands 「Command-line shells」 — PowerShell은 명령 셸, 곧 명령 프롬프트와 함께 Windows에 들어 있는 명령 줄 셸이고, 셸은 사용자와 운영 체제·응용 프로그램 사이를 잇는 프로그램이다 — 같은 일을 하는 PowerShell 명령 `New-ADUser` 앞에서 한 줄로 푼다)
+(phase 80 step 8에서 쓰일 곳) `windows-admin-tools.powershell`(「Command-line shells」 — Windows의 명령줄 셸은 명령 셸(명령 프롬프트)과 PowerShell 둘), `windows-admin-tools.resource-monitor`(「Task Manager」 — 작업 관리자는 응용 프로그램·프로세스의 성능과 자원 사용을 살피는 기본 도구. 리소스 모니터와의 관계는 아래 「(phase 80 step 8) … 성능 모니터·리소스 모니터」 항목)
 
 ## (phase 72) IEEE 802.3 — Ethernet, 4.1.2 Normal operation, 4.2.4 Frame reception model, 4.2.5 Preamble generation
 https://www.ieee802.org/3/as/public/0503/4d0_1_CMP.pdf
@@ -4862,6 +4868,7 @@ Proposed Standard(2008-05)이고 폐기되지 않았다(RFC 3280·4325·4630을 
 - 이 체계의 구성 요소는 인증서의 주인인 끝 개체(end entity), 인증 기관(CA), 등록 기관(RA) 등이다 — §3
 
 쓰인 곳: (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§3.1 — 인증서는 주인의 이름과 공개 키를 묶어 인증 기관이 서명한 것, 받는 쪽이 서명과 기간을 확인한다), `app-protocols-mgmt-security.https`
+(phase 80 step 12에서 쓰일 곳) `windows-admin-tools.certificate-manager`(§3.1 — 인증서는 공개 키를 그 주인에 묶고 인증 기관이 서명한 것, 짝인 개인 키는 주인만 갖는다 — `app-protocols-mgmt-security.tls`와 같은 뜻으로 한 줄 다시 푼다), `windows-admin-tools.efs`(EFS가 쓰는 인증서와 개인 키)
 
 ## (phase 78 step 5) RFC 7568 — Deprecating Secure Sockets Layer Version 3.0, RFC 6176 — Prohibiting Secure Sockets Layer (SSL) Version 2.0, RFC 6101 — The Secure Sockets Layer (SSL) Protocol Version 3.0 [Historic — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc7568
@@ -5963,6 +5970,7 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/group
 (phase 80 step 5) `windows-ad.organizational-unit`(「Group Policy overview」 — 그룹 정책과 GPO의 뜻, OU에 연결하면 그 안의 사용자·컴퓨터에 적용, 위쪽 OU의 GPO는 아래 OU로 상속; 「Group Policy Management Console」 — GPO는 연결한 OU 안이 아니라 도메인 단위로 저장된다; 「Group Policy scope」 — 사용자 개체에는 연결할 수 없고 연결 대상은 로컬·사이트·도메인·OU라, 본문은 「그룹이나 사용자 계정에 연결하지는 않는다」로 쓴다)
 (phase 80 step 7) `windows-ad.group-policy`(「Group Policy overview」 — 그룹 정책과 GPO, DC에 저장되어 DC끼리 복제, 컴퓨터 구성(전원 관리·방화벽 규칙)·사용자 구성(폴더 리디렉션), 시작·로그온 때 적용, 사이트·도메인·OU에 연결하면 적용 범위, 로컬 GPO; 「Group Policy processing」 — 로컬 → 사이트 → 도메인 → OU(부모 OU 다음 자식 OU) 차례와 덮어쓰기, 가까운 그릇이 이긴다, 한 그릇의 여러 GPO는 연결 순서 번호가 낮은 것이 우선, 90분(+최대 30분) 배경 새로 고침, 소프트웨어 설치·폴더 리디렉션은 시작·로그온 때만, 스크립트는 시작·종료·로그온·로그오프 때만 실행 — 본문은 로그오프를 앞 개념과 같은 말인 로그아웃으로 쓴다; 「Group Policy scope」 — 사용자 개체에는 연결하지 않는다, GPO 하나를 여러 곳에; 「Group Policy Management Console」·「MaxTokenSize」 문제 해결 — GPMC와 RSAT, 시작 메뉴의 Group Policy Management와 실행 창의 `gpmc.msc`, GPO 만들기 → 「편집」 → 그룹 정책 관리 편집기 → 연결, 연결에 필요한 사용 권한; 「Use Group Policy to remotely install software」 — `.msi` 패키지를 공유 폴더에 두고 GPO의 소프트웨어 설치에 더한다, 할당(컴퓨터는 시작할 때 — 그 컴퓨터의 모든 사용자가 쓴다, 사용자는 로그온할 때)과 게시(로그온했을 때 목록에 나타나 골라 설치 — 본문은 화면 이름 「프로그램 추가/제거」를 쓰지 않고 「설치할 수 있는 프로그램 목록」으로 쓴다); 「Folder Redirection and Roaming User Profiles…」·「Deploy Folder Redirection…」·「Deploy roaming user profiles」 — 두 기능의 하는 일, 폴더 리디렉션은 사용자 구성, 프로필 경로는 계정 속성이나 GPO의 컴퓨터 구성; 「Site functions」 — 스크립트는 GPO와 함께 SYSVOL에 저장되어 복제; 「gpupdate」 — 바뀐 설정만·`/force`·`/boot`·`/logoff`; 보안 설정은 아래 「계정 정책」 항목; 본문 예의 「켬·끔」 설정은 특정 설정이 아니라 차례를 보이려고 둔 것이다),
 도식 `group-policy-link`, 문항 n268(인사팀 OU에 GPO를 연결하고 컴퓨터 구성의 소프트웨어 설치에 할당 — 오답의 공유 폴더 읽기 사용 권한·로컬 그룹 정책 편집기·위임은 같은 근거와 위 「조직 구성 단위와 사이트」 항목)·n269(도메인 GPO 다음 OU GPO가 적용되어 OU 쪽 값이 남는다)
+(phase 80 step 8에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`(「Group Policy overview」 — 한 컴퓨터의 로컬 설정은 로컬 그룹 정책 편집기 `gpedit.msc`로 만든다)
 
 ## (phase 80 step 4) Microsoft Learn — 계정 정책: Account Policies, Password Policy, Enforce password history, Maximum password age, Minimum password age, Minimum password length, Password must meet complexity requirements, Account Lockout Policy, Account lockout threshold, Account lockout duration, Reset account lockout counter after; Windows 11 security book — Advanced credential protection
 https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/account-policies
@@ -6009,3 +6017,262 @@ https://learn.microsoft.com/en-us/windows/security/book/identity-protection-adva
 `windows-ad.group-policy`(암호·계정 잠금 정책은 그룹 정책의 보안 설정이고 도메인에 연결된 GPO에서 정한다), `windows-ad.domain-user-accounts`(암호는 도메인 정책을 따른다), 기출 대조(`exam-notes.md` 「phase 80 step 4」 문단 — [기출 2024-08-25 #34], [기출 2026-08-02 #43])
 (phase 80 step 7) `windows-ad.password-lockout-policy`(「Account Policies」·「Password Policy」·「Account Lockout Policy」 — 두 정책은 GPO 컴퓨터 구성의 보안 설정 아래 계정 정책에 있다, 도메인마다 하나·기본 도메인 정책이나 그보다 우선하게 한 도메인 GPO에 정하고 DC가 지킨다, OU에 둔 계정 정책은 로컬 계정에만; 「Account lockout threshold」 — 무차별 대입 공격을 막는 까닭; 설정 여덟의 하는 일·값의 범위·기본 도메인 정책의 기본값(최소 암호 길이 7자와 8자 이상 권고, 복잡성 켬과 두 가지 검사, 최대 42일, 최소 1일, 기억 24개, 임계값 0회, 잠금 기간·초기화 시간 정의 안 됨), 독립 실행 서버의 기본값, 새 Windows 11 기기의 기본값; 잠금 기간 ≥ 초기화 시간, 0이면 관리자가 풀 때까지, 잠긴 동안 쓸 수 없다 — 바른 암호를 넣어도 로그온할 수 없다로 쓴다; 잠긴 계정 풀기는 위 「도메인 사용자 계정과 ds 명령」 항목; 계산 예의 5회·30분·30분과 12자는 예시 값),
 도식 `account-lockout`, 문항 n270(임계값 3회·잠금 기간 20분이면 세 번째로 틀린 9시 정각부터 20분 뒤인 9시 20분에 풀린다 — 오답의 9시 3분·곧바로·관리자가 풀 때까지는 같은 근거). 설정의 한국어 이름은 위 「한국어 이름」 줄대로 「계정 잠금 임계값」·「계정 잠금 기간」만 확인된 이름이고, 나머지(최소 암호 길이·암호 복잡성 조건·최대 암호 사용 기간·최소 암호 사용 기간·최근 암호 기억·실패 횟수 초기화 시간)는 영문 이름의 뜻을 옮긴 말이다 — 본문은 영문 설정 이름을 함께 적고 화면 이름이라고 단정하지 않는다
+
+## (phase 80 step 8) Microsoft Learn — MMC와 실행 이름: What is Microsoft Management Console?, mmc, start, ADMX_WindowsExplorer Policy CSP, Configure NDES to use a domain user account, Tools to use with AppLocker, Delete saved logs from Event Viewer; Windows 드라이버 문서 — Universal Serial Bus Viewer in Windows, Look for potential memory leaks with PerfMon; .NET Framework 문서 — Certmgr.exe (Certificate Manager Tool)
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/what-is-microsoft-management-console
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mmc
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start
+https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-admx-windowsexplorer
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/create-domain-user-account-ndes-service-account
+https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/applocker/tools-to-use-with-applocker
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/system-management-components/delete-saved-log-from-event-viewer
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/usbview
+https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/determining-whether-a-leak-exists
+https://learn.microsoft.com/en-us/dotnet/framework/tools/certmgr-exe-certificate-manager-tool
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「What is Microsoft Management Console?」 `updated_at` 2026-02-19(`ms.date` 2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), 「mmc」 2026-02-16(2017-10-16)·「start」 2026-04-16(2026-04-16) — 둘 다 「Applies to」 Windows Server 2016~2025·Windows 11·10,
+「ADMX_WindowsExplorer Policy CSP」 2026-10-23(2026-10-14, Windows 10 2004 이후·Windows 11), NDES 문서 2026-04-21(2023-04-03, Windows Server 2016~2025), 「Tools to use with AppLocker」 2025-02-24(2024-09-11, Windows 11·10·Windows Server 2016~2025),
+「Delete saved logs from Event Viewer」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트), Windows 드라이버 문서 둘 2025-07-23(2025-07-11·2025-07-10), 「Certmgr.exe」 2023-05-22(2023-05-18, .NET Framework). 한국어판도 받았다(`updated_at` 2025-02~2026-10, 기계 번역).
+
+- **MMC**(Microsoft Management Console)는 관리 도구를 담는 틀이다. 하드웨어·소프트웨어·네트워크 구성 요소를 관리하는 도구 묶음을 **콘솔**이라 부르고, MMC로 콘솔을 만들고 저장하고 연다. **스냅인**은 MMC 안에 얹혀 도는 관리 도구 하나다.
+  MMC는 여러 스냅인을 한 화면에 함께 올려 여러 서비스를 한 인터페이스로 관리하게 하고, 필요한 스냅인만 골라 콘솔을 꾸밀 수 있다(로컬 컴퓨터와 원격 컴퓨터를 관리하는 도구를 함께 넣을 수도 있다) — 「What is Microsoft Management Console?」 「More information」
+- **콘솔 파일 `.msc`**: 저장한 콘솔은 확장자 `.msc` 파일이다. `mmc <경로>\<파일 이름>.msc`는 MMC를 띄워 그 콘솔을 열고, 파일을 주지 않으면 빈 새 콘솔을 연다(`/a`는 콘솔을 고치는 작성자 모드). 이런 명령 줄은 시작 메뉴의 실행(Run), 명령 프롬프트 창, 바로 가기, 배치 파일 어디에서 불러도 같게 동작한다 — 「mmc」 「Syntax」·「Parameters」·「Remarks」
+- **실행 창**: Windows 키 + R을 누르면 「실행(Run)」 대화 상자가 열리고, 거기에 실행 이름을 넣어 도구를 연다 — 「Universal Serial Bus Viewer in Windows」 「Use Device Manager to display USB information」(`devmgmt.msc`), 「Look for potential memory leaks with PerfMon」 첫머리(`perfmon`)
+- **도구와 실행 이름**(문서가 보이는 것만):
+  - **컴퓨터 관리** `compmgmt.msc` — 이벤트 뷰어·장치 관리자·디스크 관리 같은 주요 관리 도구를 한 콘솔에 모은 도구이고, 많은 기능은 관리자라야 쓸 수 있다(「ADMX_WindowsExplorer Policy CSP」 「NoManageMyComputerVerb」). 콘솔 트리의 시스템 도구 아래에 「로컬 사용자 및 그룹」이 있다(NDES 문서 「Add the NDES service account to the local IIS_IUSRS group」)
+  - **장치 관리자** `devmgmt.msc` — 실행 대화 상자에 넣는다(「Universal Serial Bus Viewer in Windows」). 컴퓨터 관리 안에도 있다(위 줄)
+  - **로컬 그룹 정책 편집기** `gpedit.msc` — 위 「(phase 80 step 4) Microsoft Learn — 그룹 정책」 항목
+  - **로컬 보안 정책** `secpol.msc` — 로컬 보안 정책 MMC 스냅인(「Tools to use with AppLocker」 1번 항목)
+  - **이벤트 뷰어** `eventvwr.msc` — 「Delete saved logs from Event Viewer」 「Symptoms」. 이벤트 뷰어가 무엇인지는 아래 「이벤트 뷰어와 로그」 항목
+  - **인증서 관리자** `certmgr.msc` — 아래 「인증서와 파일 형식」 항목
+  - **성능 모니터** `perfmon` — 실행 대화 상자에 넣는다(「Look for potential memory leaks with PerfMon」). 이 step이 읽은 Windows 문서는 성능 모니터의 실행 이름으로 `perfmon`만 보인다 — `perfmon.msc`를 보이는 Windows 문서는 찾지 못했다. 성능 모니터는 아래 「성능 모니터·리소스 모니터」 항목
+- **`.msc`를 빼고 적은 이름**: 명령 프롬프트(`Cmd.exe`)는 입력한 첫 낱말이 명령도 아니고 확장자가 붙은 기존 파일의 경로도 아니면, 환경 변수 PATHEXT에 적힌 확장자를 그 차례대로 붙여 가며 찾는다. PATHEXT의 기본값은 `.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC`라 **`.MSC`가 들어 있다** — 「start」 「Remarks」.
+  .NET Framework 문서 「Certmgr.exe」는, Certmgr.msc가 대개 Windows 시스템 디렉터리에 있고 Path 환경 변수에서 그 디렉터리가 SDK 도구의 디렉터리보다 앞서기 때문에 명령 줄에 `certmgr`만 적어도 인증서 MMC 스냅인이 열릴 수 있다고 적는다 — 「Note」.
+  `compmgmt`를 두고 이것을 말한 문서와, 실행 창(Windows 키 + R)도 PATHEXT로 확장자를 찾는지 말한 문서는 찾지 못했다 — `exam-notes.md` **E37**
+- **한국어 이름**: 「컴퓨터 관리」(ADMX_WindowsExplorer·NDES 한국어판), 「장치 관리자」(ADMX_WindowsExplorer 한국어판), 「로컬 보안 정책」(AppLocker 한국어판 — 「로컬 보안 정책 스냅인(secpol.msc)」), 「이벤트 뷰어」·「성능 모니터」(여러 한국어판), 「스냅인」(What is MMC 한국어판), MMC는 한국어판도 영문 이름.
+  실행(Run) 대화 상자는 한국어판이 「Windows 키+R을 선택하고 팝업 상자에」로 옮겨 화면 이름을 확인하지 못했다 — 고른 이름: 기출이 쓰는 「실행 창」을 쓰고, Windows 키 + R로 연다고 함께 적는다
+
+쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`(MMC·콘솔·스냅인, 콘솔 파일 `.msc`, 실행 창과 Windows 키 + R, 도구와 실행 이름 일곱, `.msc`를 뺀 이름과 PATHEXT — E37), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-08-24 #41], [기출 2024-08-25 #37])
+
+## (phase 80 step 8) Microsoft Learn — 이벤트 뷰어와 로그: Troubleshoot unexpected reboots using system event logs, Identify the cause of unexpected WMI shutdowns, Event ID 41(Windows 클라이언트 문서), about_Logging_Windows; Win32 — Shutdown Event Tracker, Eventlog Key, Event Types; 지난 판 Event Viewer, Event Logs, Event Properties
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-unexpected-reboots-system-event-logs
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/identify-cause-of-wmi-shutdown
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/event-id-41-restart
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows
+https://learn.microsoft.com/en-us/windows/win32/shutdown/shutdown-event-tracker
+https://learn.microsoft.com/en-us/windows/win32/eventlog/eventlog-key
+https://learn.microsoft.com/en-us/windows/win32/eventlog/event-types
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc766042(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722404(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc765981(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 문제 해결 둘(재부팅·WMI 종료) `updated_at` 2026-02-19(`ms.date` 2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), 「Event ID 41」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트), about_Logging_Windows 2026-01-19(2026-01-18, PowerShell 7.6 판),
+Win32 「Shutdown Event Tracker」 2025-03-11·「Eventlog Key」 2025-08-14·「Event Types」 2025-09-05(셋 다 `ms.date` 2018-05-31 — 뒤의 둘은 Windows Vista 이전의 이벤트 로깅 API 문서라 첫머리에 그렇게 밝힌다),
+지난 판 「Event Viewer」·「Event Logs」·「Event Properties」 2021-11-12(2013-02-22, Applies To — Windows 7·Windows Server 2008 R2·Windows Server 2012·Windows Vista). **지금 판(Windows Server 2016~2025)에서 이벤트 뷰어의 로그 갈래와 이벤트 속성을 정리한 문서는 찾지 못해** 이 지난 판 셋을 쓴다. 지난 판 셋의 한국어판은 번역되지 않은 영문 그대로다.
+
+- **이벤트 뷰어**는 이벤트 로그를 훑어보고 관리하는 MMC 스냅인이다. 할 수 있는 일: 여러 로그의 이벤트를 걸러 한꺼번에 보기, 그 거름을 사용자 지정 보기로 저장해 다시 쓰기, 어떤 이벤트가 남으면 작업이 돌게 걸기, 다른 컴퓨터의 이벤트를 모으는 구독 만들기(구독은 이름만 — 가져오지 않는다) — 지난 판 「Event Viewer」 첫머리
+- **이벤트 한 건의 속성**(지난 판 「Event Properties」 첫 표): 원본(Source — 그 이벤트를 남긴 소프트웨어. 프로그램 이름일 수도, 드라이버처럼 큰 프로그램이나 시스템의 구성 요소일 수도 있다), 이벤트 ID(이벤트의 종류를 가리키는 번호 — 예를 들어 6005는 이벤트 로그 서비스가 시작될 때의 이벤트다),
+  수준(Level — 얼마나 심각한지), 사용자, 작업 범주, 키워드, 컴퓨터, 날짜와 시간(기록된 때), 로그(기록된 로그의 이름). 원본과 이벤트 ID를 함께 보면 문제를 짚는 데 쓴다
+- **수준**(같은 표): 시스템 로그와 응용 프로그램 로그의 수준은 넷 — 정보(작업이 끝났거나 자원이 만들어졌거나 서비스가 시작된 것 같은 변화), 경고(손쓰지 않으면 서비스에 영향을 주거나 더 큰 문제가 될 수 있는 일), 오류(그 구성 요소 바깥의 기능에 영향을 줄 수 있는 문제), 위험(그 구성 요소가 스스로 되살릴 수 없는 실패)이다.
+  보안 로그의 수준은 성공 감사·실패 감사(사용자 권한을 쓰는 일이 성공했는지·실패했는지)다. Vista 이전 API 문서 「Event Types」도 오류·경고·정보·성공 감사·실패 감사 다섯을 들고, 서비스가 시작 중 로드되지 못하면 오류 이벤트가 남는다고 예를 든다
+- **종료·재부팅 기록**(「Troubleshoot unexpected reboots using system event logs」): **시스템 이벤트 로그**를 이벤트 ID로 걸러 재부팅의 이력과 까닭을 본다. 같은 번호가 원본에 따라 다른 뜻일 수 있으니 원본도 함께 거른다. 문서의 표(이벤트 ID — 원본 — 뜻):
+  - 12 — Kernel-General — 운영 체제가 시작했다 / 13 — Kernel-General — 운영 체제가 종료하는 중이다
+  - 6005 — EventLog — 이벤트 로그 서비스가 시작했다 / 6009 — EventLog — 운영 체제의 판을 남긴다
+  - **1074 — User32 — 어느 프로세스가 어느 사용자를 대신해 컴퓨터를 다시 시작하거나 껐는지와, 그 이유·이유 코드·종료 유형(다시 시작·전원 끄기)·설명**
+  - 41 — Kernel-Power — 깨끗이 종료하지 않은 채 다시 시작했다(응답이 멈췄거나 충돌했거나 전원이 갑자기 끊긴 경우) / 6008 — EventLog — 바로 앞의 종료가 예기치 않았다
+  정상적인 재부팅은 1074 다음에 13과 6009로, 예기치 않은 재부팅은 41과 6008로 알아본다 — 「Review Event IDs 12, 13, 6005, and 6009 for reboot history」·「Review Event IDs 13, 41, 1074, 6008, and 6009 to determine reboot types」
+- 「Event ID 41」(Windows 클라이언트 문서): 1074는 응용 프로그램이 끄거나 다시 시작할 때와, 사용자가 시작 메뉴나 Ctrl+Alt+Del로 끄거나 다시 시작할 때 남는다. 6006은 Windows가 제대로 꺼졌다는 이벤트다.
+  `shutdown.exe`는 꺼지기 바로 전에 시스템 로그에 원본 User32·ID 1074로 이유 코드와 설명을 남기고, 명령을 낸 사용자 이름과 날짜·시간도 남긴다 — 「More information」
+- **종료 이벤트 추적기**(Shutdown Event Tracker, Win32): 사용자나 응용 프로그램이 시스템을 끄거나 다시 시작하는 이유를 기록하게 하는 기능이다. 시작 메뉴에서 종료를 고르거나 `Shutdown.exe`를 쓰면 정보를 적으라고 묻고, 적은 내용은 이벤트 로그에 저장된다.
+  Windows Server 2003부터 기본으로 켜져 있다(Windows XP에서는 켜야 한다) — 첫머리. 지금 판 Windows Server에서도 기본으로 켜져 있다고 따로 적은 지금 판 문서는 찾지 못했다 — 본문은 「Windows Server 2003부터 기본으로 켜져 있다」까지만 쓴다
+- **로그의 두 갈래**(지난 판 「Event Logs」): 이벤트 로그는 **Windows 로그**와 **응용 프로그램 및 서비스 로그**로 나뉜다.
+  - **Windows 로그**는 시스템 전체에 걸친 이벤트와 옛 응용 프로그램의 이벤트를 담고, 다섯이다. 응용 프로그램(Application — 응용 프로그램이 남긴 이벤트, 예를 들어 데이터베이스 프로그램의 파일 오류. 무엇을 남길지는 그 프로그램을 만든 쪽이 정한다),
+    보안(Security — 올바른 로그온 시도와 잘못된 로그온 시도, 파일 같은 개체를 만들고 열고 지우는 자원 사용. 무엇을 남길지는 관리자가 정한다 — 로그온 감사를 켜면 로그온 시도가 남는다), Setup(응용 프로그램 설치와 관련된 이벤트),
+    시스템(System — Windows의 시스템 구성 요소가 남긴 이벤트, 예를 들어 시작할 때 드라이버나 구성 요소가 로드되지 못한 일. 무엇을 남길지는 Windows가 정해 두었다), ForwardedEvents(원격 컴퓨터에서 모아 온 이벤트 — 이벤트 구독을 만들어야 모인다).
+    응용 프로그램·보안·시스템은 그 앞 판부터 있었고, Setup과 ForwardedEvents가 이 판(Vista)에서 더해졌다
+  - **응용 프로그램 및 서비스 로그**는 시스템 전체에 영향을 주는 이벤트가 아니라 **응용 프로그램이나 구성 요소 하나**의 이벤트를 담는다. 하위 종류는 Admin·Operational·Analytic·Debug이고, Analytic·Debug 로그는 기본으로 숨겨지고 꺼져 있다
+  - Vista 이전 API 문서 「Eventlog Key」도 표준 로그를 응용 프로그램·보안·시스템 셋으로, 위와 같은 뜻으로 적는다
+- 응용 프로그램 및 서비스 로그 아래의 예: 「응용 프로그램 및 서비스 로그 > Microsoft > Windows > WMI-Activity」(「Identify the cause of unexpected WMI shutdowns」 「Analysis」). PowerShell 7의 로그는 이벤트 뷰어의 PowerShellCore/Operational 로그다(about_Logging_Windows — 어느 갈래인지는 그 문서에 적혀 있지 않다).
+  하드웨어 이벤트(Hardware Events)·Windows PowerShell(5.1)·Internet Explorer 로그가 어느 갈래에 드는지 적은 문서는 찾지 못했다 — 본문은 「Windows 로그는 다섯이다」로 가르고, 그 셋의 자리를 사실로 적지 않는다
+- **어느 일이 어느 로그에**: 로그온 실패 → 보안(로그온 감사가 켜져 있을 때), 시작할 때 드라이버·구성 요소가 로드되지 못함 → 시스템, 프로그램의 파일 오류 → 응용 프로그램, 종료·재부팅 → 시스템(위 1074 등) — 위 줄들
+- **한국어 이름**: 「이벤트 뷰어」(여러 한국어판), 「종료 이벤트 추적기」(Shutdown Event Tracker 한국어판 본문 — 제목은 「Shutdown 이벤트 추적기」), 「이벤트 ID」. 지금 판 한국어판은 Application을 「애플리케이션」으로 옮긴다(Event ID 41 한국어판의 「애플리케이션 및 시스템 로그」, WMI 종료 문서 한국어판의 「애플리케이션 및 서비스 로그」).
+  **실제 한국어 화면의 로그·수준 이름은 확인하지 못했다.** 고른 이름: 기출이 쓰는 「응용 프로그램」에 맞춰 「Windows 로그」·「응용 프로그램」·「보안」·「시스템」·「응용 프로그램 및 서비스 로그」로 쓰고, Setup·ForwardedEvents는 영문 이름을 세운다(한국어 이름을 화면 이름이라고 단정하지 않는다). 원본·수준과 정보·경고·오류·위험도 뜻을 옮긴 말이다
+
+쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.event-viewer`(이벤트·이벤트 로그·이벤트 뷰어, 이벤트 한 건의 속성과 수준, 종료·재부팅 기록 — 시스템 로그의 1074·6008·41·6006 등, 종료 이벤트 추적기),
+(phase 80 step 10에서 쓰일 곳) `windows-admin-tools.windows-logs`(Windows 로그 다섯과 하는 일, 응용 프로그램 및 서비스 로그, 어느 일이 어느 로그에), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-08-25 #39]·[기출 2025-11-02 #38], [기출 2025-08-24 #30])
+
+## (phase 80 step 8) Microsoft Learn — 성능 모니터·리소스 모니터: perfmon, Troubleshoot issues using Performance Monitor, Scenario guide: Troubleshoot performance problems in Windows, Guidance for troubleshooting high CPU usage; Win32 — About Performance Counters, Specifying a Counter Path, Performance Counters Tools, Compatibility and Reliability(Windows 7 개발자 안내서); 지난 판 Overview of Windows Performance Monitor, Creating Data Collector Sets, Schedule Data Collection in Windows Performance Monitor
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/perfmon
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/troubleshoot-issues-performance-monitor
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-performance-problems-in-windows
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-high-cpu-usage-guidance
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/about-performance-counters
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/specifying-a-counter-path
+https://learn.microsoft.com/en-us/windows/win32/perfctrs/performance-counters-tools
+https://learn.microsoft.com/en-us/windows/win32/win7devguide/compatibility-and-reliability
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc749154(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc749337(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc722312(v=ws.11)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「perfmon」 `updated_at` 2026-02-16(`ms.date` 2018-07-25, 「Applies to」 Windows Server 2016~2025·Windows 11·10), 문제 해결 셋 2026-02-19(2026-02-12, 적용 대상 — 지원되는 모든 Windows Server), Win32 성능 카운터 셋 2025-07-16(2025-07-14),
+「Compatibility and Reliability」 2025-03-13(2018-05-31, Windows 7 개발자 안내서), 지난 판 셋 2021-11-12(2013-02-22, Applies To — Windows 7·Windows Server 2008 R2·Windows Server 2012·Windows Vista). 데이터 수집기 집합의 일정·멈춤 조건을 정리한 지금 판 문서는 찾지 못해 지난 판을 쓴다.
+
+- **성능 모니터**(Performance Monitor)는 시스템 사용량과 여러 성능 지표를 살피는 MMC 스냅인이다. 열면 세 자리가 있다 — 성능 모니터(지표를 실시간으로 본다), 데이터 수집기 집합(정해 둔 시간 동안 데이터를 모은다), 보고서(데이터 수집기 집합이 모은 데이터를 본다).
+  커널 안쪽의 정보는 보지 못하고, 기본으로 들어 있는 가벼운 도구이며, 로컬로도 원격으로도 돌린다 — 「Troubleshoot issues using Performance Monitor」 「What is Performance Monitor (perfmon)?」·Note
+- **여는 법**: `perfmon.exe`는 MMC에 성능 모니터 스냅인을 얹어 성능 모니터·데이터 수집기 집합·보고서를 연다 — 「Performance Counters Tools」 「Data collection tools」. 실행 창에 `perfmon` — 위 「MMC와 실행 이름」 항목.
+  `perfmon`의 옵션: `/res` 리소스 보기(Resource View), `/report` 시스템 진단 데이터 수집기 집합을 돌려 결과 보고서를 보임, `/rel` 안정성 모니터(Reliability Monitor), `/sys` 성능 모니터 — 「perfmon」 「Parameters」
+- **성능 카운터**: 프로세서·메모리·디스크 사용량 같은 시스템 데이터를 한결같은 방식으로 모으게 해 주는 측정 항목이다. 관리자는 성능이나 동작의 문제를 살피는 데 쓴다. 1초에 한 번보다 자주 모으도록 만들어지지 않았다.
+  Windows에서 성능 데이터를 쓰는 기본 도구로 작업 관리자·리소스 모니터·성능 모니터·typeperf·logman·relog가 있다. 카운터를 묶은 것(counterset)을 다른 API에서는 성능 개체(performance object)라 부르고, 카운터는 이름과 종류를 가진 데이터 하나다 — 「About Performance Counters」 첫머리·「Concepts」
+- **카운터 이름의 꼴**: `\\컴퓨터\성능개체(인스턴스)\카운터`. 로컬 컴퓨터의 카운터면 컴퓨터를 뺀다. 인스턴스가 여럿일 수 있는 개체(프로세서·프로세스·스레드 같은 것)는 괄호 안에 인스턴스를 적고, `*`는 모든 인스턴스를 뜻한다 — 「Specifying a Counter Path」.
+  문서가 보이는 예: `\Processor Information(*)\% User Time`, `\Memory\Available MBytes`(메모리는 하나뿐이라 인스턴스가 없다), Processor 개체의 `_Total` 인스턴스와 `% Idle Time` 카운터 — 「Scenario guide…」 「Use Performance Monitor to record performance data」·「Introduce the 18 most important counters」. 본문의 예는 이 문서들이 보이는 이름으로 쓴다
+- **데이터 수집기 집합**: 여러 데이터 수집 지점을 하나로 묶어 기록하고 보고하는 단위다. 담을 수 있는 것은 성능 카운터, 이벤트 추적 데이터, 시스템 구성 정보(레지스트리 값)이고, 템플릿이나 성능 모니터의 지금 보기에서 만들거나 하나하나 골라 만든다 — 지난 판 「Creating Data Collector Sets」.
+  성능 카운터를 모은 데이터는 로그 파일(`.blg`)로 남는다 — 「Troubleshoot issues using Performance Monitor」 「Run Performance Monitor remotely」. 모으는 간격(샘플 간격)을 정한다 — 예를 들어 `logman`의 `-si 00:00:15`는 15초마다 모은다(「Scenario guide…」), `-si 00:00:01`은 1초마다(「Troubleshoot issues…」)
+- **일정과 멈춤 조건**(지난 판 「Schedule Data Collection in Windows Performance Monitor」): 데이터 수집기 집합의 속성에서 일정(Schedule) 탭에 시작 날짜·시간·요일을 더한다(만료 날짜는 그 뒤 새 수집이 시작되지 않게 할 뿐, 진행 중인 수집은 멈추지 않는다).
+  중지 조건(Stop Condition) 탭에서 전체 기간이나 한도(한 로그 파일의 기간·최대 크기 — 한도에 닿으면 집합을 다시 시작하게 할 수 있다)를 정한다. 전체 기간은 샘플 간격보다 길어야 보고서에 데이터가 보인다
+- 권한(지난 판 「Overview of Windows Performance Monitor」): Users 그룹은 로그 파일을 열어 볼 수만 있고, Performance Monitor Users는 실시간 데이터도 보지만 데이터 수집기 집합을 만들거나 고치지 못하며, Performance Log Users는 일괄 작업으로 로그온 권한을 받으면 만들고 고친다 — `windows-ad.local-groups`가 이미 가르친 사실과 같다(이 주제에서는 다시 쓰지 않는다)
+- **리소스 모니터**(Resource Monitor): `resmon`으로 열고, CPU 탭에서 프로세스마다 CPU 사용량을 보며 평균 CPU(Average CPU) 열로 정렬해 CPU를 많이 쓰는 프로세스를 찾는다 — 「Guidance for troubleshooting high CPU usage」 「Resource Monitor」.
+  리소스 모니터는 성능 데이터를 쓰는 Windows 기본 도구의 하나다 — 「About Performance Counters」 「Concepts」. `perfmon /res`는 리소스 보기를 연다 — 「perfmon」
+- **리소스 모니터의 탭 목록**(개요·CPU·메모리·디스크·네트워크)과 **네트워크 탭에 보이는 것**(프로세스별 네트워크 사용·연결·수신 대기 포트)은 허용한 문서에서 찾지 못했다.
+  찾아본 곳: Windows 명령 참조(perfmon·netstat), 문제 해결 문서(높은 CPU, 성능 문제 안내, 작업 관리자, 포트를 쓰는 프로그램 찾기), Win32 성능 카운터 문서, 지난 판 성능 모니터 문서 묶음(개요·데이터 수집기 집합·사용자 인터페이스·사용법), Microsoft Learn 검색(리소스 모니터의 탭·디스크·네트워크로 여러 번).
+  「CPU·디스크·네트워크·메모리 네 자원을 실시간으로 살핀다」와 개요 탭은 Microsoft Learn 교육 과정 페이지(「Use Resource Monitor to review current resource usage」)에만 있다 — 쓰지 않았다(step 8 summary 「사용자 확인」)
+- **안정성 모니터**(Reliability Monitor): Windows에 기본으로 든 신뢰성 분석 구성 요소가 시스템 사용과 안정성을 지수로 계산하고, Windows 업데이트·응용 프로그램 설치처럼 안정성에 영향을 줄 만한 변화를 기록해 둔다. 안정성 모니터 스냅인으로 그 지수의 흐름을 그런 일들과 함께 본다 — 「Compatibility and Reliability」 「Reliability Analysis Component」(Windows 7 개발자 안내서). 여는 법은 `perfmon /rel` — 「perfmon」
+- 작업 관리자는 phase 71 「Microsoft Learn — Windows commands, ping, Task Manager」 항목(응용 프로그램과 프로세스의 성능·자원 사용을 살피는 기본 도구). 리소스 모니터와 작업 관리자의 관계를 한 문장으로 적은 문서는 찾지 못했다 — 둘 다 성능 데이터를 쓰는 기본 도구라는 것(「About Performance Counters」)까지만 쓴다
+- **한국어 이름**: 「성능 모니터」·「데이터 수집기 집합」·「보고서」(Troubleshoot issues using Performance Monitor 한국어판), 「리소스 모니터」(높은 CPU 문서·About Performance Counters 한국어판), 「성능 카운터」(About Performance Counters 한국어판), 「Windows 안정성 및 성능 모니터」(perfmon 한국어판 — 옵션 표는 번역되지 않았다).
+  안정성 모니터는 perfmon 한국어판에 「안정성 모니터」로 보인다. 일정·중지 조건 탭과 평균 CPU 열의 한국어 화면 이름은 확인하지 못했다 — 뜻을 옮긴 말로 쓰고 영문 이름을 함께 적는다
+
+쓰인 곳: (phase 80 step 10에서 쓰일 곳) `windows-admin-tools.performance-monitor`(성능 모니터의 세 자리, `perfmon`, 성능 카운터와 이름의 꼴, 데이터 수집기 집합·`.blg`·샘플 간격·일정·중지 조건),
+(phase 80 step 11에서 쓰일 곳) `windows-admin-tools.resource-monitor`(`resmon`·`perfmon /res`, CPU 탭과 평균 CPU, 성능 데이터를 쓰는 기본 도구, 탭 목록은 못 찾음, 안정성 모니터 — 기출 문제문 판정), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2025-05-25 #35], [기출 2024-11-03 #36], [기출 2026-02-01 #42])
+
+## (phase 80 step 8) Microsoft Learn — PowerShell: What is PowerShell?, What is Windows PowerShell?, Migrating from Windows PowerShell 5.1 to PowerShell 7, Differences between Windows PowerShell 5.1 and PowerShell 7.x, Cmdlet Overview, Approved Verbs for PowerShell Commands, about_Aliases, about_Case-Sensitivity, about_Command_Precedence, about_Parsing, about_Scripts, about_Execution_Policies
+https://learn.microsoft.com/en-us/powershell/scripting/overview
+https://learn.microsoft.com/en-us/powershell/scripting/what-is-windows-powershell
+https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7
+https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell
+https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview
+https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_case-sensitivity
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+
+2026-11-16에 IPv4로 내려받아 읽은 판(페이지는 기본으로 PowerShell 7.6 판 — `view=powershell-7.6`): 「What is PowerShell?」 `updated_at` 2026-08-12(`ms.date` 2026-08-12), 「What is Windows PowerShell?」 2025-11-21(2025-11-20), 「Migrating…」 2025-04-16(2024-04-02), 「Differences…」 2026-06-16(2026-02-04),
+「Cmdlet Overview」 2026-07-13(2026-07-13), 「Approved Verbs…」 2026-03-31(2026-03-30), about_Aliases 2025-09-29(2017-11-27), about_Case-Sensitivity 2026-01-06(2026-01-06), about_Command_Precedence 2026-01-19(2026-01-18), about_Parsing 2026-07-01(2026-06-29), about_Scripts 2025-09-29(2020-10-06), about_Execution_Policies 2026-09-01(2026-08-31). 한국어판도 받았다(기계 번역).
+
+- **PowerShell**은 명령줄 셸·스크립트 언어·구성 관리 틀로 이루어진 작업 자동화 도구이고 Windows·Linux·macOS에서 돈다. 셸로서는 명령 기록, Tab 자동 완성, 명령과 매개 변수의 별칭, 명령을 잇는 파이프라인(이름만 — 가져오지 않는다), 콘솔 안의 도움말을 갖춘다.
+  대부분의 셸이 글자를 받고 글자를 내놓는 것과 달리 PowerShell은 .NET 개체를 받고 내놓는다. 스크립트 언어로서는 주로 시스템 관리를 자동화하는 데 쓴다 — 「What is PowerShell?」 「Command-line Shell」·「Scripting language」
+- **cmdlet**: PowerShell 고유의 명령을 cmdlet이라 부른다. 동작을 하나 하고 대개 .NET 개체를 다음 명령에 돌려준다 — 「Cmdlet Overview」. cmdlet 이름은 **동사-명사** 짝이다 — 동사는 하는 동작을, 명사는 그 동작의 대상을 가리킨다(예를 들어 `Get-Command`는 등록된 명령을 가져온다) — 「Approved Verbs for PowerShell Commands」 첫머리
+- **별칭**(alias): cmdlet이나 함수·스크립트·실행 파일 같은 명령에 붙인 다른 이름이고, 명령 이름 대신 쓸 수 있다. 기본으로 들어 있는 별칭으로 `cd`·`chdir` → `Set-Location`, Windows에서 `ls`·`dir` → `Get-ChildItem`이 있고, `Get-Alias`로 모든 별칭을 본다 — about_Aliases 「Long description」·「Built-in aliases」.
+  `copy` 같은 다른 별칭은 이 step에서 확인하지 않았다 — 본문은 `dir`·`cd`를 예로 쓴다
+- **실행 파일로 된 명령**: 경로를 적으면 어떤 실행 파일이든 실행하고, 경로 없이 이름만 적으면 $Env:PATH에 든 디렉터리의 것만 실행한다(현재 디렉터리의 것은 `.\`를 붙인다). 경로 없이 적은 이름은 별칭 → 함수 → cmdlet → 외부 실행 파일(PowerShell 스크립트 포함) 차례로 찾는다 — about_Command_Precedence 「Long description」.
+  PowerShell 명령이 아닌 프로그램(네이티브 명령)도 PowerShell에서 부를 수 있고, 인자는 PowerShell이 먼저 해석해 넘긴다 — 문서의 예는 `icacls.exe` — about_Parsing 「Passing arguments to native commands」. `ipconfig`·`ping`을 PowerShell에서 실행하는 예를 보이는 PowerShell 문서는 찾지 못했다
+- **대소문자**: PowerShell은 할 수 있는 곳에서는 대소문자를 가리지 않고, 적은 대로의 대소문자는 보존한다. 모든 시스템에서 가리지 않는 것 — 변수 이름, 연산자 이름, PowerShell 명령과 별칭을 찾는 일(외부 스크립트·응용 프로그램은 빼고), 매개 변수 이름과 그 별칭, 언어 키워드 등.
+  Windows는 대부분의 작업에서 대소문자를 가리지 않고, Windows가 아닌 시스템은 파일 시스템·환경 변수에서 가린다 — about_Case-Sensitivity. 그래서 `Get-Service`와 `get-service`는 같은 cmdlet을 찾는다(PowerShell 명령을 찾는 일 — 위 줄)
+- **스크립트**: 하나 이상의 PowerShell 명령을 담은 일반 텍스트 파일이고 확장자는 `.ps1`이다. 스크립트를 실행하는 것은 cmdlet을 실행하는 것과 비슷하다(경로와 파일 이름을 적고 매개 변수를 준다). 명령을 저장해 두었다가 다시 쓰고 나누게 해 준다 — about_Scripts 「Long description」.
+  같은 명령을 셸(콘솔)에 하나씩 입력해 실행할 수도 있다 — 「What is PowerShell?」(명령줄 셸)
+- **실행 정책**: PowerShell이 구성 파일을 불러오고 스크립트를 실행하는 조건을 정하는 안전 기능이다. 보안 경계가 아니라, 사용자가 모르고 규칙을 어기지 않게 돕는 장치다 — about_Execution_Policies 「Long description」.
+  **Windows Server의 기본값은 RemoteSigned**다(스크립트는 실행되지만, 인터넷에서 받은 스크립트와 구성 파일은 믿을 만한 게시자의 디지털 서명이 있어야 한다). 모든 범위가 Undefined면 실제로 걸리는 정책은 Windows 클라이언트에서 Restricted(명령은 하나씩 되지만 스크립트는 실행하지 않는다), Windows Server에서 RemoteSigned다 — 같은 문서 「RemoteSigned」·「Restricted」·「Undefined」 줄.
+  같은 문서의 「Default」 줄은 「Windows 클라이언트와 서버 모두 RemoteSigned」로, 「RemoteSigned」 줄은 「Windows 컴퓨터의 기본」으로, 「Remove the execution policy」 절은 「Restricted가 Windows 클라이언트의 기본」으로 적어 클라이언트의 기본값이 문서 안에서 갈리고, about_Scripts(2020-10-06)는 기본값을 Restricted로 적는다 — 본문은 Windows Server의 기본값(RemoteSigned)만 쓰고 클라이언트의 기본값은 단정하지 않는다. Windows가 아닌 시스템에서는 Unrestricted로 고정이다
+- **Windows PowerShell 5.1과 PowerShell 7**: 둘은 별개의 제품이다. Windows에 함께 들어 있는 판이 Windows PowerShell이고, .NET Framework 위에서 돌며 마지막 판이 5.1이다(새 기능은 더하지 않는다). PowerShell(6부터, 지금 7)은 새 .NET 위에서 돌고 Windows·Linux·macOS에서 쓴다 — 「What is Windows PowerShell?」.
+  PowerShell 7은 Windows PowerShell 5.1과 다른 디렉터리에 설치되므로 두 판을 한 컴퓨터에서 함께 쓸 수 있다. 실행 파일 이름은 Windows PowerShell이 `powershell.exe`, 6 이후가 `pwsh.exe`다 — 「Migrating from Windows PowerShell 5.1 to PowerShell 7」. 두 판 사이 언어의 차이는 적다 — 「Differences…」 첫머리
+- 명령 프롬프트와의 관계: phase 71 「Microsoft Learn — Windows commands, ping, Task Manager」 항목(Windows의 명령줄 셸은 명령 셸과 PowerShell 둘)
+- **「DOS 명령」**: 이 step이 읽은 PowerShell 문서는 「DOS」라는 말을 쓰지 않는다. 문서가 쓰는 말은 별칭(`dir`·`cd`)과 네이티브 명령(실행 파일)이다 — 본문은 이 둘로 쓴다
+- **한국어 이름**: 「별칭」(about_Aliases 한국어판), 「대/소문자」(about_Case-Sensitivity 한국어판 — 본문은 「대소문자」로 쓴다), 「실행 정책」(about_Execution_Policies 한국어판), cmdlet은 한국어판도 영문 그대로
+
+쓰인 곳: (phase 80 step 11에서 쓰일 곳) `windows-admin-tools.powershell`(셸이자 스크립트 언어, 개체, cmdlet과 동사-명사, 별칭 `dir`·`cd`, 실행 파일로 된 명령, 대소문자, `.ps1`과 대화형, 실행 정책의 Windows Server 기본값, 5.1과 7, 「DOS 명령」이라는 말을 쓰지 않음),
+기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-11-03 #31]·[기출 2026-08-02 #30])
+
+## (phase 80 step 8) Microsoft Learn — 인증서와 파일 형식: Inspect certificates and manage certificate store contents, Export a certificate with its private key in Windows Server, Request and renew certificates with Certificates MMC, Export-Certificate, Export-PfxCertificate; .NET Framework 문서 — How to: View certificates with the MMC snap-in
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/inspect-certificates-manage-certificate-stores
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/export-certificate-private-key
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/request-renew-certificates-certificates-mmc
+https://learn.microsoft.com/en-us/powershell/module/pki/export-certificate
+https://learn.microsoft.com/en-us/powershell/module/pki/export-pfxcertificate
+https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-view-certificates-with-the-mmc-snap-in
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Inspect certificates…」·「Request and renew…」 `updated_at` 2026-10-02(`ms.date` 2026-08-17), 「Export a certificate with its private key…」 2025-09-11(2025-05-14) — 셋 다 「Applies to」 Windows Server 2016~2025(첫 문서는 Windows Server 2025의 화면으로 쓴다),
+Export-Certificate·Export-PfxCertificate 2025-05-29(2016-12-20, pki 모듈), .NET Framework 문서 2026-03-30(2019-02-25). 한국어판도 받았다(`updated_at` 2026-01~2026-10, 기계 번역).
+
+- 인증서·공개 키·개인 키의 뜻은 phase 78의 「RFC 5280」 항목과 `app-protocols-mgmt-security.tls`가 쓴 그대로다 — 다시 찾지 않았다
+- **인증서 저장소**는 사용자·컴퓨터·서비스가 기대는 인증서를 Windows가 두는 자리다. 범위는 셋이다 — **현재 사용자**(로그인한 사용자에 딸린 저장소 — `certmgr.msc`로 연다), **로컬 컴퓨터**(그 컴퓨터에 딸려 그 컴퓨터의 사용자들이 쓰는 저장소 — `certlm.msc`로 연다), 서비스 계정(`mmc`에 인증서 스냅인을 더하며 고른다).
+  현재 사용자 저장소는 개인(Personal)을 빼고 로컬 컴퓨터 저장소의 내용을 물려받는다 — 「Inspect certificates…」 「Understand certificate-store scopes」·「Open the Certificates MMC snap-in」. 현재 사용자 저장소는 로그인한 사용자의 맥락에서 쓰는 인증서의 자리다 — 「Request and renew…」 「Choose the certificate store scope」
+- `certmgr.msc`로 여는 도구에서 현재 사용자의 인증서를 보고, 내보내고, 가져오고, 지운다 — .NET Framework 문서 「View certificates with the Certificate Manager tool」(실행 창에 `certmgr.msc`). 관리자가 아니면 자기 사용자 계정의 인증서만 관리한다 — 같은 문서 「View certificates in the MMC snap-in」 Note
+- **공개 인증서만 내보내는 형식**(「Inspect certificates…」 「Export a public certificate」 표 — 파일 확장자 — Export-Certificate의 형식 이름 — 담는 것):
+  - `.cer` — CERT — DER로 부호화한 공개 인증서 하나
+  - `.p7b` — P7B — PKCS #7 형식으로 담은 인증서 하나 이상
+  - `.sst` — SST — Microsoft의 직렬화된 인증서 저장소에 담은 인증서 하나 이상
+  이 셋(Export-Certificate)은 **공개 인증서만** 내보내고 개인 키는 넣지 않는다. Import-Certificate는 `.sst`·`.p7b`·`.cer` 파일을 가져오며 PFX와 개인 키는 가져오지 않는다 — 같은 절과 「Import a public certificate」
+- **PFX**(Personal Information Exchange, PKCS #12): 공개 인증서 내보내기와 달리 **개인 키까지** 담을 수 있다. Export-PfxCertificate로 PFX를 내보내려면 암호나 `-ProtectTo`(보호할 대상) 가운데 하나가 있어야 하고, 담을 개인 키가 내보낼 수 있게 되어 있을 때만 성공한다.
+  `.cer`·`.p7b`·`.sst`를 개인 키 백업으로 여기지 말라고 한다. Import-PfxCertificate는 기본으로 개인 키를 다시 내보낼 수 없게 가져온다 — 「Inspect certificates…」 「Export a PFX only when you need the private key」·「Import a PFX…」. Export-PfxCertificate는 기본으로 확장 속성과 인증 경로 전체를 함께 내보낸다 — Export-PfxCertificate 「Description」
+- **마법사로 개인 키까지 내보내기**(「Export a certificate with its private key…」, Windows Server 2016~2025): 로컬 컴퓨터의 인증서 관리 콘솔(`certlm.msc`)을 열고 → 내보낼 인증서를 오른쪽 클릭해 모든 작업 → 내보내기 → 인증서 내보내기 마법사에서 개인 키를 내보낸다고 고르고 →
+  파일 형식으로 개인 정보 교환 - PKCS #12(.PFX)를 고르고(인증 경로의 인증서를 모두 넣는 확인란이 있다) → 개인 키를 지킬 암호와 암호화 방식을 정하고 → 파일 이름을 정한다. 내보낼 개인 키가 그 저장소에 함께 설치되어 있어야 한다 — 「Prerequisites」
+- **한국어 이름**: .NET Framework 문서 한국어판은 `certmgr.msc`로 여는 도구를 「인증서 관리자 도구」로, Windows Server 문서 한국어판은 MMC의 「인증서 스냅인」으로 부른다. 「인증서 내보내기 마법사」, 「개인 정보 교환 - PKCS #12(.PFX)」(Export a certificate with its private key 한국어판).
+  한국어판은 private key를 「프라이빗 키」로 옮기지만 이 과목은 phase 78부터 「개인 키」를 쓴다. 고른 이름: 기출이 쓰는 「인증서 관리자」(`certmgr.msc`)를 세우고, MMC의 인증서 스냅인이라는 것을 한 줄로 밝힌다
+
+쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.certificate-manager`(인증서 저장소의 범위 — `certmgr.msc`·`certlm.msc`, 보고·내보내고·가져오고·지운다, 형식 넷과 개인 키를 담는지, PFX 내보내기의 조건과 마법사 차례),
+`windows-admin-tools.efs`(EFS 키를 `.pfx`로 백업), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-08-25 #37], [기출 2024-02-25 #39])
+
+## (phase 80 step 8) Microsoft Learn — EFS·BitLocker: File Encryption(Win32), cipher, Back up the recovery agent EFS private key in Windows, Personal Data Encryption overview, Smart Card and Remote Desktop Services, BitLocker overview, BitLocker recovery overview, BitLocker FAQ, Install BitLocker on Windows Server
+https://learn.microsoft.com/en-us/windows/win32/fileio/file-encryption
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cipher
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/back-up-recovery-agent-efs-private-key
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/personal-data-encryption/
+https://learn.microsoft.com/en-us/windows/security/identity-protection/smart-cards/smart-card-and-remote-desktop-services
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/recovery-overview
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/install-server
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「File Encryption」(Win32) `updated_at` 2025-07-10(`ms.date` 2025-07-08), 「cipher」 2026-02-16(2017-10-16, 「Applies to」 Windows Server 2016~2025·Windows 11·10),
+「Back up the recovery agent EFS private key…」 2026-02-18(2026-02-12, 적용 대상 — 지원되는 모든 Windows Server. 본문의 차례는 Windows Server 2003~2008 R2의 화면이라 **차례가 아니라 키의 구조와 백업 권고만** 가져온다), 「Personal Data Encryption overview」 2025-07-21(2025-03-12, Windows 11),
+「Smart Card and Remote Desktop Services」 2026-10-08(2024-10-29, Windows 11·10·Windows Server 2016~2025), BitLocker 넷 2026-10-08(`ms.date` 개요 2026-08-24, 복구 2025-07-29, FAQ 2026-06-01, 서버 설치 2025-07-29 — 개요·복구·FAQ는 Windows 11·10·Windows Server 2016~2025, 서버 설치는 Windows Server 2016~2025). 한국어판도 받았다(`updated_at` 2026-07~2026-10, 기계 번역).
+
+- **EFS**(Encrypting File System — 「File Encryption」은 Encrypted File System으로도 적는다): NTFS 볼륨에 있는 파일을 한 개씩 공개 키 방식으로 암호화한다. 문서가 드는 쓰임: 파일과 디렉터리의 접근 제어만으로는 데이터가 든 노트북을 잃거나 도둑맞았을 때 지키기 어려우므로, 파일 자체를 암호화해 한 겹 더 지킨다 — 「File Encryption」 첫머리
+- **암호화할 수 없는 것**: 압축된 파일, 시스템 파일, 시스템 디렉터리, 루트 디렉터리, 트랜잭션(희소 파일은 된다) — 「File Encryption」 「Working with EFS」. 곧 EFS는 시스템 파일에 쓰는 기능이 아니다
+- **켜는 자리**: 파일 속성 → 일반 탭 → 고급을 누르면 고급 특성 창이 뜬다. EFS로 보호한 파일은 그 창의 자세히에서 「이 파일에 액세스할 수 있는 사용자」마다 인증서 지문이, 복구 정책이 정한 복구 인증서가 보인다. EFS는 **인증서**로 파일을 보호한다 — 「Personal Data Encryption overview」 「Differences between Personal Data Encryption and EFS」(Windows 11 문서).
+  고급 특성 창의 「내용을 암호화」 확인란 이름을 적은 지금 판 문서는 찾지 못했다 — 본문은 「속성 → 고급」의 자리와 `cipher /e`로 쓴다
+- **`cipher`**: NTFS 볼륨의 디렉터리와 파일의 암호화 상태를 보이거나 바꾼다(옵션 없이 쓰면 지금 디렉터리의 상태 — E는 암호화됨, U는 아님). `/e` 암호화(디렉터리에 걸면 그 뒤에 더한 파일도 암호화), `/d` 해독, `/k` EFS용 새 인증서와 키를 만든다,
+  **`/x` EFS 인증서와 키를 파일로 백업**(`:efsfile`을 붙이면 그 파일을 암호화한 인증서), `/r` 복구 에이전트의 키와 인증서를 만들어 `.pfx`(인증서와 개인 키)와 `.cer`(인증서만) 파일로 쓴다 — `/smartcard`를 붙이면 스마트 카드에 쓰고 `.pfx`는 만들지 않는다, `/y` 지금 EFS 인증서의 지문 — 「cipher」 「Parameters」.
+  부모 디렉터리가 암호화되지 않으면 고칠 때 파일이 풀릴 수 있으니 부모 디렉터리도 암호화하라 — 「Remarks」
+- **키와 복구**(「Back up the recovery agent EFS private key…」 「Introduction」): EFS는 파일마다 만든 암호화 키로 파일을 암호화하고, 그 키를 사용자의 EFS **공개 키**로 암호화해 파일에 붙인다. 파일을 열려면 그 공개 키와 짝인 사용자의 EFS **개인 키**가 있어야 한다.
+  개인 키를 잃으면 **복구 에이전트**로 되살린다 — 파일을 암호화할 때마다 그 파일의 키를 복구 에이전트의 공개 키로도 암호화해 붙여 두므로, 복구 에이전트의 개인 키로 열 수 있다. 복구 에이전트의 개인 키는 인증서 내보내기 마법사로 PKCS #12(.PFX) 파일로 내보내 안전한 곳에 따로 보관하라고 한다 — 「Introduction」의 내보내기 차례
+- **Windows를 다시 설치하면**: 같은 사용자 이름의 계정을 새로 만들어도 열리지 않는다고 그대로 적은 문서는 찾지 못했다. 위 줄 — 파일을 열려면 그 공개 키와 짝인 **개인 키**가 있어야 한다 — 에서 판정한다(이름이 아니라 키가 필요하다). 그래서 키를 `cipher /x`나 인증서 내보내기(`.pfx`)로 백업해 둔다
+- **스마트 카드**: EFS는 사용자의 스마트 카드 판독기에서 인증서를 찾고, 판독기나 인증서를 찾지 못하면 사용자 파일을 해독하지 못한다 — 「Smart Card and Remote Desktop Services」 첫머리 목록(Windows Server 2016~2025). 곧 EFS의 키는 스마트 카드에 둘 수 있다. 복구 에이전트의 키도 `cipher /r … /smartcard`로 스마트 카드에 쓴다(위 줄)
+- **BitLocker**: **볼륨 전체**를 암호화하는 Windows 보안 기능이고, 잃어버리거나 도둑맞거나 제대로 폐기하지 않은 기기의 데이터가 새는 것을 막는다. 잃은 기기의 데이터는 공격 도구를 돌리거나 **하드 드라이브를 다른 기기로 옮겨 붙여** 읽힐 수 있는데, BitLocker가 이를 막는다 — 「BitLocker overview」 첫머리
+- **TPM**(신뢰할 수 있는 플랫폼 모듈): Windows 기기에 흔히 들어 있는 하드웨어 부품이고, 기기가 꺼진 동안 변조되지 않았는지 BitLocker와 함께 확인한다. BitLocker는 TPM과 함께 쓸 때 가장 강하고, TPM에 더해 PIN이나 시작 키가 든 이동식 장치를 요구할 수도 있다.
+  TPM이 없으면 시작 키(이동식 드라이브에 둔 파일)나 암호로 운영 체제 드라이브를 암호화하지만 시작 전 무결성 확인은 없다 — 「BitLocker overview」 「BitLocker and TPM」
+- **복구**: 복구 암호(recovery password)는 복구 모드에 들어간 볼륨을 여는 **48자리 숫자**이고, 텍스트 파일로 저장하거나 인쇄하거나 Microsoft Entra ID·Active Directory에 저장한다. 복구 키(recovery key)는 이동식 미디어에 저장한 암호화 키다(파일 이름 `<보호기 ID>.bek`) — 「BitLocker recovery overview」의 복구 수단 목록
+- **BitLocker To Go**: 이동식 데이터 드라이브 — USB 플래시 드라이브, SD 카드, 외장 하드 디스크 — 의 BitLocker 드라이브 암호화다 — 「BitLocker FAQ」 「What is BitLocker To Go?」
+- **Windows Server**: 어느 판에도 기본으로 설치되어 있지 않고, 서버 관리자의 역할 및 기능 추가 마법사(기능에서 BitLocker 드라이브 암호화)나 PowerShell로 설치한다. 관리자 권한이 필요하다 — 「Install BitLocker on Windows Server」 첫머리·「Install BitLocker with Server Manager」
+- **EFS와 BitLocker**(「BitLocker FAQ」 「Can I use EFS with BitLocker?」): **함께 쓸 수 있다** — BitLocker로 보호한 드라이브의 파일을 EFS로 암호화할 수 있다. BitLocker는 운영 체제 드라이브 전체를 오프라인 공격(기기가 꺼진 동안의 공격)에서 지키고, EFS는 같은 컴퓨터를 쓰는 여러 사용자 사이를 가르는 사용자 단위 파일 암호화를 더한다.
+  EFS는 BitLocker로 암호화하지 않은 다른 드라이브의 파일에도 쓸 수 있다. EFS의 근본 비밀은 기본으로 운영 체제 드라이브에 있어서, 운영 체제 드라이브에 BitLocker를 켜면 다른 드라이브의 EFS 데이터도 간접으로 보호된다
+- **한국어 이름**: 「암호화 파일 시스템」(File Encryption 한국어판), 「복구 에이전트」(EFS 복구 에이전트 문서 한국어판), 「BitLocker 드라이브 암호화」·「이동식 데이터 드라이브」(BitLocker FAQ 한국어판), 「복구 키」·「복구 암호」(복구 개요 한국어판), 「TPM(신뢰할 수 있는 플랫폼 모듈)」(BitLocker 개요 한국어판).
+  고급 특성 창과 그 안의 항목, cipher 옵션 설명의 한국어 화면 이름은 확인하지 못했다 — 뜻을 옮긴 말로 쓴다
+
+쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`(NTFS·파일 단위·공개 키 방식, 노트북 분실의 예, 암호화할 수 없는 것, 속성 → 고급과 `cipher /e`, 인증서와 개인 키 — 다른 사용자는 못 연다, 키를 잃으면 못 연다와 백업 `cipher /x`·`.pfx`, 복구 에이전트, 스마트 카드),
+(phase 80 step 13에서 쓰일 곳) `windows-admin-tools.bitlocker`(볼륨 전체·도난·드라이브를 옮겨 붙이기, TPM, 복구 암호 48자리와 복구 키, BitLocker To Go, Windows Server의 기능 설치, EFS와 함께 쓰기와 차이),
+기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-02-25 #39], [기출 2024-08-25 #28])
+
+## (phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders): Work Folders overview, Features Removed or No Longer Developed in Windows Server
+https://learn.microsoft.com/en-us/windows-server/storage/work-folders/work-folders-overview
+https://learn.microsoft.com/ko-kr/windows-server/storage/work-folders/work-folders-overview
+https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Work Folders overview」 `updated_at` 2025-09-22(`ms.date` 2025-04-16, 「Applies to」 Windows Server 2016~2025·Windows 11·10), 한국어판 「Work Folders 개요」 2026-01-21,
+「Features Removed or No Longer Developed in Windows Server」 2026-03-19(2025-09-24, Windows Server 2016~2025).
+
+- **클라우드 폴더**(Work Folders)는 파일 서버를 위한 Windows Server의 **역할 서비스**다. 사용자가 회사 PC뿐 아니라 개인 컴퓨터와 기기(BYOD)에서도 업무 파일을 저장하고 어디서나 쓰게 한다. 사용자 파일은 서버의 **동기화 공유**(sync share)라는 폴더에 두며, 이미 사용자 데이터가 든 폴더를 동기화 공유로 정할 수도 있다 — 「Work Folders overview」 첫머리
+- 쓰임(「Common uses」): 업무 파일에 회사·개인 PC와 기기에서 닿는 한 곳, **연결이 끊긴 동안 작업하고 다음에 인터넷이나 인트라넷에 이어지면 중앙 파일 서버와 동기화**, 폴더 리디렉션·오프라인 파일·홈 폴더와 함께 배포, 파일 분류·폴더 할당량 같은 파일 서버 관리 기술로 사용자 데이터 관리,
+  **사용자의 PC와 기기에 클라우드 폴더를 암호화하고 잠금 화면 암호를 쓰라고 하는 보안 정책**, 장애 조치 클러스터링으로 고가용성
+- **설치 자리**: 클라우드 폴더는 파일 및 스토리지 서비스(File and Storage Services) 역할의 일부다. 역할 및 기능 추가 마법사의 서버 역할 선택에서 파일 및 스토리지 서비스 → 파일 및 iSCSI 서비스를 펼쳐 고른다(또는 `Install-WindowsFeature`). 설치하면 서버 관리자에서 파일 및 스토리지 서비스 아래에 클라우드 폴더 페이지가 생기고,
+  동기화 공유를 맡는 Windows Sync Shares 서비스와 SyncShare PowerShell 모듈이 설치된다 — 「Server Manager」. 요구 사항: Windows Server 2012 R2 이상의 서버, 사용자 파일을 둘 NTFS 볼륨, 클라우드 폴더를 두는 파일 서버마다 서버 인증서 — 「Requirements for file servers and network infrastructure」.
+  클라이언트는 Windows 10·11이고 기본 위치는 `%USERPROFILE%\Work Folders`다 — 「Requirements for client computers」
+- **OneDrive와의 차이**(「Comparison with other sync technologies」 표): 클라우드 폴더는 **파일 서버에 저장된 파일**을 PC·기기와 동기화하고, 클라우드 서비스 칸이 「없음」이며 내부 네트워크의 파일 서버(Windows Server 2012 R2·2016·2019)를 쓴다.
+  OneDrive for Business는 Microsoft 365나 SharePoint에 저장된 파일을(클라우드 서비스 — Microsoft 365), OneDrive는 OneDrive에 저장된 개인 파일을(클라우드 서비스 — Microsoft OneDrive) 동기화한다. 오프라인 파일은 회사 네트워크에 닿는 PC와 파일 서버의 파일을 동기화하고 클라우드 폴더로 바꿀 수 있다
+- **지원 상태**: 「Features Removed or No Longer Developed in Windows Server」의 「Features no longer in development」·「Features removed」 두 목록에 클라우드 폴더(Work Folders)는 없다(문서 전체에서 「Work Folders」가 한 번도 나오지 않는다)
+- **한국어 이름**: 한국어판 「Work Folders 개요」는 제목만 영문이고 본문에서 「클라우드 폴더」(21번)·「작업 폴더」(9번)·「워크 폴더」(6번)를 섞어 쓴다. 기능 표의 이름 자리(클라우드 폴더 cmdlet, 디바이스용 클라우드 폴더 앱)와 설치하면 서버 관리자에 더해지는 페이지 이름은 「클라우드 폴더」이고,
+  역할 및 기능 추가 마법사에서 고르는 항목은 「작업 폴더」로 옮겼다. **실제 설치 마법사의 화면 이름은 확인하지 못했다.** 고른 이름: 「클라우드 폴더」 — 한국어판이 가장 많이 쓰고 서버 관리자의 페이지 이름 자리에 쓰며 기출([기출 2024-02-25 #43])이 쓰는 이름이다. 영문 Work Folders를 함께 적고, 「작업 폴더」로도 옮긴다는 것을 한 줄로 밝힐 수 있다.
+  이름에 「클라우드」가 붙었지만 파일은 회사 파일 서버의 동기화 공유에 있다(위 비교 표). 「동기화 공유」, 「파일 및 스토리지 서비스」(한국어판 — 이 과목의 다른 주제가 이 역할을 다루지 않아 본문은 한국어판 표기를 따른다)
+
+쓰인 곳: (phase 80 step 13에서 쓰일 곳) `windows-admin-tools.work-folders`(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 오프라인 작업 뒤 동기화, 암호화·잠금 화면 암호 정책, 설치 자리, OneDrive와의 차이, 지원 상태, 한국어 이름), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-02-25 #43])

@@ -902,3 +902,52 @@ phase 80 step 4에서 `windows-ad` 주제의 뒤 개념 여섯(조직 구성 단
 - **처리**: 본문(`windows-ad.ds-commands`)은 문서대로 쓴다 — `net user`는 기본으로 그 컴퓨터의 로컬 계정을 다루고, `/domain`을 붙이면 기본 도메인의 DC에서 도메인 사용자 계정을 다룬다. 그 자리에 「자격시험은 `net user`를 도메인 사용자 계정을 관리하는 명령으로 보지 않고 `dsadd`·`dsmod`·`dsrm`과 가른다」를 한 줄 덧붙인다.
   문항(해설 포함)은 「`net user`는 도메인 계정을 다룰 수 없다」를 맞는 말로도, 「`net user /domain`으로 도메인 계정을 만든다」를 정답을 가르는 근거로도 쓰지 않는다 — `net user`와 ds 명령의 판정이 `/domain`의 유무에 기대게 하지 않는다. 로컬 계정을 다루는 상황의 `net user`는 그대로 쓸 수 있다
 - 쓰인 곳: (phase 80 step 6에서 쓰일 곳) `windows-ad.ds-commands`
+
+phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 창 명령, 이벤트 뷰어, Windows 로그, 성능 모니터, 리소스 모니터, PowerShell, 인증서와 인증서 관리자, EFS, BitLocker 드라이브 암호화, 클라우드 폴더)이 답을 가르는 기출 13문항을 보았다(확인한 날 2026-11-16).
+같은 문항이 두 회차에 다시 나와 서로 다른 문항은 열하나다([기출 2024-08-25 #39]와 [기출 2025-11-02 #38], [기출 2024-11-03 #31]과 [기출 2026-08-02 #30]이 같다).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 명령·Windows 보안·PowerShell·Win32·문제 해결 문서와 지난 판 문서(이벤트 뷰어·성능 모니터, Windows Server 2008 R2·2012)다. 공식 문서와 어긋나거나 공식 문서에 없는 곳 둘에 **E37**·**E38**을 만들었다 — 근거는 `standards.md`의 「(phase 80 step 8)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **실행 창 명령과 도구의 짝**([기출 2025-08-24 #41]): 맞는 짝으로 둔 셋 — `devmgmt.msc` 장치 관리자, `gpedit.msc` 로컬 그룹 정책 편집기, `perfmon` 성능 모니터 — 은 공식 문서와 맞다. 정답 「`compmgmt` – 컴퓨터 관리」(`.msc`를 뺀 이름은 실행되지 않는다)는 공식 문서와 어긋난다 — 아래 **E37**
+- **인증서 관리자를 여는 명령은 `certmgr.msc`**([기출 2024-08-25 #37]): 시험의 답과 맞다 — `certmgr.msc`는 지금 로그온한 사용자의 인증서 저장소를 열고, 거기서 인증서를 보고·내보내고·가져오고·지운다(「Inspect certificates…」, .NET Framework 문서 「How to: View certificates…」). 오답 셋은 다른 도구다 — `eventvwr.msc` 이벤트 뷰어, `compmgmt.msc` 컴퓨터 관리, `secpol.msc` 로컬 보안 정책.
+  문제문의 「백업해 둔 인증서 키를 복원한다」는 개인 키까지 담은 파일을 가져오는 일로 읽는다 — 개인 키를 담는 형식은 `.pfx`뿐이고 `.cer`·`.p7b`·`.sst`는 개인 키 백업이 아니다(「Inspect certificates…」). 로컬 컴퓨터의 저장소는 `certlm.msc`로 연다는 것도 본문에 한 줄 둔다. 항목을 만들지 않는다
+- **지난 종료·재부팅 기록을 보는 곳은 이벤트 뷰어**([기출 2024-08-25 #39], [기출 2025-11-02 #38] — 같은 문항): 시험의 답과 맞다 — 종료와 재부팅은 시스템 로그에 남고(1074는 어느 프로세스가 어느 사용자를 대신해 왜 껐는지, 6008·41은 예기치 않은 종료), 이벤트 뷰어로 그 로그를 걸러 본다(「Troubleshoot unexpected reboots using system event logs」).
+  문제문이 말하는 「끌 때마다 이유를 남기기」는 종료 이벤트 추적기의 일이고 그 내용도 이벤트 로그에 저장된다(Win32 「Shutdown Event Tracker」 — Windows Server 2003부터 기본으로 켜져 있다). 오답 셋 — 성능 모니터(성능 카운터의 값을 보고 모으는 도구), 로컬 보안 정책, 그룹 정책 편집기 — 은 지난 기록을 보이는 도구가 아니다. 항목을 만들지 않는다
+- **Windows 로그에 드는 것은 응용 프로그램**([기출 2025-08-24 #30]): 시험의 답과 맞다 — Windows 로그는 응용 프로그램·보안·Setup·시스템·ForwardedEvents 다섯이다(지난 판 「Event Logs」 — Windows Server 2012까지의 문서. 시험의 Windows Server 2022에서 같은 다섯인지 말하는 지금 판 문서는 찾지 못했다).
+  오답 셋 — 하드웨어 이벤트·인터넷 익스플로러·Windows PowerShell — 은 다섯에 들지 않는다. 그 셋이 응용 프로그램 및 서비스 로그 아래에 있다고 적은 문서는 찾지 못했으므로, 본문은 「Windows 로그는 다섯이다」로 가르고 그 셋의 자리를 사실로 적지 않는다. 항목을 만들지 않는다
+- **일정 주기로 데이터를 모으려 성능 모니터를 여는 명령은 `perfmon`**([기출 2025-05-25 #35]): 시험의 답과 맞다 — `perfmon`은 성능 모니터를 열고, 정해 둔 간격과 일정으로 카운터를 모으는 것은 데이터 수집기 집합이다(「perfmon」, 「Troubleshoot issues using Performance Monitor」, 지난 판 「Schedule Data Collection…」).
+  오답 `secpol`은 로컬 보안 정책을 가리키는 이름이고(실행 이름은 `secpol.msc` — 「Tools to use with AppLocker」), `msconfig`·`dfrg`는 이 주제가 다루지 않는다. 항목을 만들지 않는다
+- **리소스 모니터에서 점검할 수 없는 것은 방화벽**([기출 2024-11-03 #36]): 리소스 모니터가 CPU를 프로세스마다 보인다는 것은 공식 문서와 맞다(「Guidance for troubleshooting high CPU usage」 — CPU 탭). 그러나 리소스 모니터의 탭 목록(메모리·디스크·네트워크)은 허용한 문서에서 찾지 못해, 점검할 수 있는 것으로 둔 메모리·네트워크는 대조하지 못했다(step 8 summary 「사용자 확인」). 리소스 모니터가 방화벽을 다룬다고 적은 문서는 없다.
+  문제문이 리소스 모니터의 기능처럼 적은 「소프트웨어 업데이트·설치 정보와 주요 이벤트가 일어난 날짜」는 공식 문서로는 **안정성 모니터**의 일이다(Windows 업데이트·응용 프로그램 설치 같은 변화를 안정성 지수와 함께 보인다 — Win32 「Compatibility and Reliability」, 여는 법 `perfmon /rel`). 본문은 그 기능을 리소스 모니터에 붙이지 않는다.
+  「성능 모니터에 있는 리소스 모니터」는 `perfmon /res`가 리소스 보기를 연다는 것(「perfmon」)과 어긋나지 않는다. 답의 판정은 탭 목록에 달려 있어 항목은 사용자 확인 뒤에 정한다
+- **CPU·메모리·네트워크·디스크를 실시간으로 보는 도구는 Resource Monitor**([기출 2026-02-01 #42]): 리소스 모니터가 프로세스마다 CPU를 보이고(위 줄), 성능 데이터를 쓰는 Windows 기본 도구의 하나라는 것(Win32 「About Performance Counters」)까지는 문서와 맞다.
+  네 자원을 실시간으로 살핀다는 문장은 Microsoft Learn 교육 과정 페이지에만 있어 쓰지 않았다(step 8 summary 「사용자 확인」). 오답 셋 — 서버 관리자, 「System Hardware Monitor」(이 step이 읽은 문서에 그런 이름의 Windows 도구는 없다), 이벤트 뷰어(일어난 일의 기록) — 은 이 주제가 따로 다루지 않는다. 항목은 사용자 확인 뒤에 정한다
+- **PowerShell에 대해 틀린 말은 「기존 DOS 명령은 쓸 수 없다」**([기출 2024-11-03 #31], [기출 2026-08-02 #30] — 같은 문항): 시험의 답과 맞다 — `dir`·`cd` 같은 이름은 별칭으로 cmdlet에 이어지고(about_Aliases), PowerShell 명령이 아닌 실행 파일도 그대로 실행된다(about_Command_Precedence, about_Parsing).
+  맞는 말로 둔 셋도 문서와 맞다 — 셸에 명령을 입력해 대화형으로 쓴다(「What is PowerShell?」), 스크립트는 일반 텍스트 파일(`.ps1`)이다(about_Scripts), 명령 이름과 매개 변수 이름은 대소문자를 가리지 않는다(about_Case-Sensitivity).
+  다만 PowerShell 문서는 「DOS 명령」이라는 말을 쓰지 않는다. 답이 같아 항목을 만들지 않는다. 본문은 「DOS 명령」 대신 문서의 말(별칭, 실행 파일로 된 명령)로 쓰고, 문항(해설 포함)도 그 말로 쓴다
+- **EFS에 대한 옳은 설명**([기출 2024-02-25 #39]): 정답 「EFS는 인증서 파일의 확장자로 CER·P7B·PFX·SST를 지원한다」는 공식 문서에 없다 — 아래 **E38**. 틀린 말로 둔 셋은 문서로도 틀리다.
+  「Windows 시스템 파일에만 암호화를 건다」 — 오히려 시스템 파일·시스템 디렉터리는 EFS로 암호화할 수 없고, EFS는 NTFS 볼륨의 파일을 하나하나 암호화한다(Win32 「File Encryption」).
+  「개인 키를 지키는 방법은 암호뿐이다」 — EFS는 사용자의 스마트 카드에서 인증서를 찾으며(「Smart Card and Remote Desktop Services」), 복구 에이전트의 키도 `cipher /r … /smartcard`로 스마트 카드에 쓴다(「cipher」).
+  「같은 사용자면 Windows를 다시 설치해도 암호화된 파일을 연다」 — 파일을 열려면 암호화에 쓴 공개 키와 짝인 개인 키가 있어야 한다(「Back up the recovery agent EFS private key…」). 다시 설치한 경우를 그대로 적은 문서는 없어, 본문은 「이름이 아니라 키가 필요하다 — 그래서 키를 백업해 둔다」로 쓴다
+- **하드디스크 자체를 암호화하는 기술은 BitLocker**([기출 2024-08-25 #28]): 시험의 답과 맞다 — BitLocker는 볼륨 전체를 암호화하고, 하드 드라이브를 다른 기기로 옮겨 붙여 읽는 일을 막는다(「BitLocker overview」). 오답 EFS는 파일 하나하나를 암호화하고(BitLocker FAQ 「Can I use EFS with BitLocker?」 — 함께 쓸 수 있다), AD는 이 주제가 아니다(`windows-ad`). FileVault는 Microsoft 제품이 아니라 확인하지 않았다. 항목을 만들지 않는다
+- **더 많은 위치와 장치에서 데이터에 접근하는 서비스는 클라우드 폴더**([기출 2024-02-25 #43]): 시험의 답과 맞다 — 클라우드 폴더(Work Folders)는 사용자가 회사 PC와 개인 기기에서 업무 파일을 쓰게 하는 파일 서버의 역할 서비스다(「Work Folders overview」). 오답 서버 코어·VPN·DirectAccess는 이 주제가 다루지 않는다.
+  한국어판이 같은 기능을 「클라우드 폴더」·「작업 폴더」·「워크 폴더」로 섞어 부르므로 본문은 「클라우드 폴더(Work Folders)」로 세운다(`standards.md` 「클라우드 폴더」 항목의 「한국어 이름」). 항목을 만들지 않는다
+
+## E37 — `compmgmt`처럼 `.msc`를 뺀 이름은 실행되지 않는다고 본다
+
+- **시험**: Windows Server 2022의 명령 프롬프트(cmd)나 실행 창(Windows 키 + R)에 넣었을 때 실행되지 않거나 프로그램과 짝이 맞지 않는 것으로, `devmgmt.msc`·`gpedit.msc`·`perfmon`과 함께 둔 「`compmgmt` – 컴퓨터 관리」를 정답으로 둔다 — [기출 2025-08-24 #41]. 곧 `.msc`를 빼고 적으면 컴퓨터 관리가 열리지 않는다고 본다
+- **공식 문서**: 컴퓨터 관리의 실행 이름은 문서가 `compmgmt.msc`로 보인다(「ADMX_WindowsExplorer Policy CSP」, NDES 문서). 그런데 Windows 명령 참조 「start」(`updated_at` 2026-04-16, Windows Server 2016~2025)는 명령 프롬프트(`Cmd.exe`)가 확장자 없이 적은 이름에 환경 변수 PATHEXT의 확장자를 차례로 붙여 찾고, PATHEXT의 기본값에 `.MSC`가 들어 있다고 적는다.
+  .NET Framework 문서 「Certmgr.exe」도 명령 줄에 `certmgr`만 적어도 인증서 MMC 스냅인(Certmgr.msc)이 열릴 수 있다고 적는다. 곧 명령 프롬프트에서는 문서대로라면 `.msc`를 빼도 그 콘솔 파일이 찾아질 수 있어 시험의 판정과 어긋난다.
+  `compmgmt`를 두고 이것을 말한 문서와, 실행 창이 PATHEXT로 확장자를 찾는지 말한 문서는 찾지 못했다 — 실행 창 쪽은 문서로 판정할 수 없다
+- **처리**: 본문(`windows-admin-tools.mmc-run-commands`)은 문서가 보이는 실행 이름(`compmgmt.msc`처럼 `.msc`를 붙인 꼴, 성능 모니터는 `perfmon`)을 쓰고, 명령 프롬프트가 PATHEXT로 확장자를 붙여 찾는다(기본값에 `.MSC`가 있다)는 것을 한 줄로 쓴다.
+  그 자리에 「자격시험은 `compmgmt`처럼 `.msc`를 뺀 이름을 실행되지 않는 것으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 `.msc`를 뺀 이름이 열리는지·열리지 않는지를 정답이나 오답의 근거로 쓰지 않는다 — 도구와 실행 이름의 짝은 `.msc`를 붙인 꼴로만 묻는다
+- 쓰인 곳: (phase 80 step 9에서 쓰일 곳) `windows-admin-tools.mmc-run-commands`
+
+## E38 — CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다
+
+- **시험**: Windows Server 2016의 EFS에 대한 옳은 설명으로 「EFS는 인증서 파일의 확장자로 CER·P7B·PFX·SST 형식을 지원한다」를 정답으로 둔다 — [기출 2024-02-25 #39]
+- **공식 문서**: 넷은 Windows가 **인증서를 내보내고 가져오는 파일 형식**이다 — `.cer`(공개 인증서 하나)·`.p7b`(PKCS #7, 인증서 하나 이상)·`.sst`(직렬화된 인증서 저장소)는 공개 인증서만 담고(Export-Certificate), `.pfx`(PKCS #12)는 개인 키까지 담는다(Export-PfxCertificate) — 「Inspect certificates and manage certificate store contents」(`updated_at` 2026-10-02, Windows Server 2016~2025).
+  EFS 문서(Win32 「File Encryption」, 「cipher」, 「Back up the recovery agent EFS private key…」)가 EFS와 이어서 말하는 형식은 `.pfx`(인증서와 개인 키 — `cipher /x`의 백업, `cipher /r`, 복구 에이전트 키 내보내기)와 `.cer`(인증서만 — `cipher /r`)뿐이고, EFS가 이 넷을 「지원한다」고 적은 문서는 없다.
+  EFS 인증서도 사용자 인증서 저장소의 개인(Personal) 저장소에 든 인증서라(복구 에이전트 문서의 차례), 저장소의 인증서를 내보내는 방법을 그대로 쓸 수 있다 — 그래서 시험의 말을 「EFS 인증서를 그 형식들로 내보낼 수 있다」로 읽으면 틀린 말은 아니다. 다만 넷은 EFS의 기능이 아니라 인증서 내보내기의 형식이고, 암호화한 파일을 다시 열게 해 주는 것은 개인 키를 담은 `.pfx`뿐이다
+- **처리**: 본문은 문서의 사실로 쓴다 — `windows-admin-tools.certificate-manager`는 인증서를 `.cer`·`.p7b`·`.sst`·`.pfx`로 내보내고 가져오며 개인 키를 담는 것은 `.pfx`뿐이라는 것을, `windows-admin-tools.efs`는 EFS의 키를 개인 키를 담은 `.pfx`로 백업한다(`cipher /x`, 인증서 내보내기)는 것을 쓴다.
+  `efs`의 그 자리에 「자격시험은 CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 「EFS가 넷을 지원한다」를 정답의 근거로 쓰지 않고, 넷의 차이(개인 키를 담는지)를 묻는 데 쓴다
+- 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`, `windows-admin-tools.certificate-manager`
