@@ -352,6 +352,117 @@
       "sources": [
         "windows-admin-tools.powershell"
       ]
+    },
+    "certificate-files": {
+      "label": "인증서 관리자에 든 user01의 인증서와 개인 키를 파일로 내보낼 때, .cer·.p7b·.sst 파일에는 공개 인증서만 담기고 .pfx 파일에만 개인 키까지 담기는 것을 보이는 도식",
+      "svgLabel": "인증서 관리자 박스 안에 user01의 인증서와 개인 키가 있고, 공개 인증서만 담는 형식 박스 안에 .cer·.p7b·.sst가, 그 밖에 .pfx가 있는 그림",
+      "question": "인증서를 내보낼 때 어느 파일에 개인 키까지 담길까?",
+      "idleCaption": "인증서 관리자에 든 user01의 인증서와 개인 키, 그리고 인증서를 내보낼 수 있는 파일 형식 넷을 두었다. 버튼을 고르면 어느 형식에 무엇이 담기는지 볼 수 있다.",
+      "legend": "화살표는 인증서를 내보낼 때 그 파일에 담기는 것을 가리킨다. 박스 둘은 인증서 관리자와, 공개 인증서만 담는 형식이다.",
+      "nodes": {
+        "cert": "user01의 인증서",
+        "key": "user01의 개인 키",
+        "cer": ".cer",
+        "p7b": ".p7b",
+        "sst": ".sst",
+        "pfx": ".pfx"
+      },
+      "groups": {
+        "manager": "인증서 관리자",
+        "public": "공개 인증서만 담는 형식"
+      },
+      "notes": {
+        "cer-note": "공개 인증서 하나",
+        "p7b-note": "인증서 하나 이상",
+        "sst-note": "인증서 하나 이상",
+        "pfx-note": "개인 키까지 담는다",
+        "password-note": "암호로 보호한다"
+      },
+      "scenarios": [
+        {
+          "id": "cert-only",
+          "label": "인증서만",
+          "caption": "공개 인증서만 담는 세 형식이다. .cer 파일은 공개 인증서 하나를, .p7b 파일과 .sst 파일은 인증서 하나 이상을 담는다. 셋 모두 개인 키는 담지 않으므로 개인 키의 백업이 되지 못한다.",
+          "sources": [
+            "windows-admin-tools.certificate-manager"
+          ]
+        },
+        {
+          "id": "with-key",
+          "label": "개인 키까지",
+          "caption": "개인 정보 교환 파일인 .pfx 파일은 인증서와 함께 짝인 개인 키까지 담는다. 개인 키를 손에 넣은 사람은 그 키로 지킨 데이터를 볼 수 있으므로, 내보낼 때 암호로 보호한다.",
+          "sources": [
+            "windows-admin-tools.certificate-manager"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.certificate-manager"
+      ]
+    },
+    "efs-key-backup": {
+      "label": "user01이 EFS로 암호화한 D:\\Data\\report.docx를 user01은 자기 개인 키로 열고, 같은 컴퓨터의 다른 사용자는 열 수 없으며, Windows를 다시 설치한 뒤에는 백업해 둔 user01.pfx를 가져와야 새 user01이 열 수 있다는 것을 보이는 도식",
+      "svgLabel": "지금 쓰는 Windows 박스 안에 user01·user01의 개인 키·다른 사용자가, 다시 설치한 Windows 박스 안에 새 user01이 있고, 박스 밖에 user01.pfx와 암호화한 파일 D:\\Data\\report.docx가 있는 그림",
+      "question": "EFS로 암호화한 파일은 누가 열 수 있을까?",
+      "idleCaption": "user01이 EFS로 암호화한 파일 하나와, 그 파일을 열려는 계정들을 두었다. 버튼을 고르면 누가 어느 개인 키로 이 파일을 열 수 있는지 볼 수 있다.",
+      "legend": "화살표는 계정이 어느 개인 키로 파일을 여는지를 따라간다. 박스는 설치된 Windows 하나와 그 안에 있는 계정·키다.",
+      "nodes": {
+        "user01": "user01",
+        "key": "user01의 개인 키",
+        "other": "다른 사용자",
+        "new-user01": "새 user01",
+        "pfx": "user01.pfx",
+        "file": "D:\\Data\\report.docx"
+      },
+      "groups": {
+        "current": "지금 쓰는 Windows",
+        "reinstalled": "다시 설치한 Windows"
+      },
+      "notes": {
+        "owner-note": "자기 개인 키로 연다",
+        "other-note": "열 수 없음",
+        "no-backup-note": "열 수 없음",
+        "import-note": "가져온다",
+        "open-note": "개인 키로 연다"
+      },
+      "scenarios": [
+        {
+          "id": "owner",
+          "label": "주인",
+          "caption": "파일의 키는 user01의 공개 키로 암호화되어 파일에 붙어 있다. user01이 열면 짝인 user01의 개인 키로 그 키를 풀어 내용이 그대로 보인다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "other-user",
+          "label": "다른 사용자",
+          "caption": "같은 컴퓨터에 자기 계정으로 로그온한 다른 사용자에게는 user01의 개인 키가 없다. 그래서 그 계정으로는 이 파일을 열 수 없다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "no-backup",
+          "label": "백업 없이 다시 설치",
+          "caption": "Windows를 다시 설치한 뒤 같은 이름으로 새로 만든 user01에게는 예전 user01의 개인 키가 없다. 계정의 이름이 같아도 짝인 개인 키가 없으면 파일을 열 수 없다.",
+          "sources": [
+            "windows-admin-tools.efs"
+          ]
+        },
+        {
+          "id": "reinstall",
+          "label": "백업을 가져오면",
+          "caption": "다시 설치하기 전에 인증서와 개인 키를 user01.pfx로 백업해 두었다면, 새 user01의 인증서 관리자에서 user01.pfx를 가져와 그 개인 키로 파일을 다시 연다.",
+          "sources": [
+            "windows-admin-tools.efs",
+            "windows-admin-tools.certificate-manager"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.efs"
+      ]
     }
   },
   "tables": {},
