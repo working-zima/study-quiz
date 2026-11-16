@@ -2,6 +2,7 @@ import { AbacTagDiagram } from './AbacTagDiagram'
 import { AccessTierDiagram } from './AccessTierDiagram'
 import { AccountIdsDiagram } from './AccountIdsDiagram'
 import { AckNumbersDiagram } from './AckNumbersDiagram'
+import { ActiveDirectoryAuthDiagram } from './ActiveDirectoryAuthDiagram'
 import { AddressAssignmentDiagram } from './AddressAssignmentDiagram'
 import { AddressClassesDiagram } from './AddressClassesDiagram'
 import { ActivityLogDiagram } from './ActivityLogDiagram'
@@ -71,6 +72,7 @@ import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
 import { DistanceVectorDiagram } from './DistanceVectorDiagram'
 import { DnsTransportDiagram } from './DnsTransportDiagram'
 import { DnssecChainDiagram } from './DnssecChainDiagram'
+import { DomainControllerReplicationDiagram } from './DomainControllerReplicationDiagram'
 import { DomainServicesDiagram } from './DomainServicesDiagram'
 import { DomainTreeDiagram } from './DomainTreeDiagram'
 import { DrChoiceDiagram } from './DrChoiceDiagram'
@@ -662,6 +664,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'linux-servers.iptables': IptablesChainsDiagram,
   'windows-ad.local-accounts': LocalUserAccountsDiagram,
   'windows-ad.local-groups': BuiltinLocalGroupsDiagram,
+  'windows-ad.active-directory': ActiveDirectoryAuthDiagram,
+  'windows-ad.domain-controller': DomainControllerReplicationDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

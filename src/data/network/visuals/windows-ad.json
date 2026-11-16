@@ -99,6 +99,101 @@
       "sources": [
         "windows-ad.local-groups"
       ]
+    },
+    "active-directory-auth": {
+      "label": "작업 그룹에서는 PC01과 다른 PC가 저마다 자기 안의 로컬 계정 user01로 로그온을 확인하고, 도메인에서는 두 PC 모두 도메인 컨트롤러가 디렉터리의 같은 user01로 확인하는 것을 보이는 도식",
+      "svgLabel": "PC01 박스와 다른 PC 박스에 저마다 로컬 계정 user01과 user01로 로그온이 있고, 도메인 컨트롤러 박스에 디렉터리의 user01이 있는 그림",
+      "question": "로그온할 때 계정은 누가 확인할까?",
+      "idleCaption": "PC 두 대에 저마다 로컬 계정 user01과 그 PC에서 하는 로그온을 두고, 그와 따로 도메인 컨트롤러와 그 디렉터리에 만든 계정 user01을 두었다. PC01과 user01은 예로 붙인 이름이다. 버튼을 고르면 작업 그룹과 도메인에서 로그온할 때 누가 계정을 확인하는지 볼 수 있다.",
+      "legend": "박스 하나가 컴퓨터 한 대이고, 화살표는 로그온할 때 계정을 확인하는 곳을 가리킨다.",
+      "nodes": {
+        "pc01-local": "로컬 계정 user01",
+        "pc01-logon": "user01로 로그온",
+        "other-local": "로컬 계정 user01",
+        "other-logon": "user01로 로그온",
+        "directory": "디렉터리의 user01"
+      },
+      "groups": {
+        "pc01": "PC01",
+        "other": "다른 PC",
+        "dc": "도메인 컨트롤러"
+      },
+      "notes": {
+        "pc01-note": "PC01이 확인",
+        "other-note": "다른 PC가 확인",
+        "dc-note": "같은 계정으로 확인"
+      },
+      "scenarios": [
+        {
+          "id": "workgroup",
+          "label": "작업 그룹",
+          "caption": "작업 그룹에서는 계정이 PC마다 그 안에 따로 있고, 로그온할 때 그 PC가 자기 안의 로컬 계정으로 직접 확인한다. 두 PC의 user01은 이름만 같은 서로 다른 계정이라, 두 PC를 다 쓰려면 PC마다 만들어야 하고 암호도 PC마다 바꿔야 한다.",
+          "sources": [
+            "windows-ad.active-directory"
+          ]
+        },
+        {
+          "id": "domain",
+          "label": "도메인",
+          "caption": "도메인에서는 계정이 도메인 컨트롤러의 디렉터리 한곳에 있다. 어느 PC에서 user01로 로그온하든 그 PC는 도메인 컨트롤러에 확인을 맡기고, 도메인 컨트롤러가 디렉터리의 같은 user01로 확인한다.",
+          "sources": [
+            "windows-ad.active-directory"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.active-directory"
+      ]
+    },
+    "dc-replication": {
+      "label": "도메인 example.com의 도메인 컨트롤러 DC01·DC02가 바뀐 내용을 서로 복제해 같은 디렉터리를 갖고, DC01이 멈춰도 PC01의 로그온을 DC02가 확인하며, 읽기 전용 도메인 컨트롤러는 한 방향으로 복제받기만 하는 것을 보이는 도식",
+      "svgLabel": "PC01과, example.com의 도메인 컨트롤러 박스 안의 DC01·DC02·읽기 전용 도메인 컨트롤러가 있는 그림",
+      "question": "도메인 컨트롤러 한 대가 멈추면 로그온은 어떻게 될까?",
+      "idleCaption": "도메인 example.com에 도메인 컨트롤러 DC01·DC02와 읽기 전용 도메인 컨트롤러를 두고, 박스 밖에 로그온하는 PC01을 두었다. 도메인 이름과 컴퓨터 이름은 예로 붙인 이름이다. 버튼을 고르면 복제와 한 대가 멈출 때의 로그온, 읽기 전용 도메인 컨트롤러가 복제받는 방향을 볼 수 있다.",
+      "legend": "박스 안은 example.com의 도메인 컨트롤러이고, 화살표는 바뀐 내용이 복제되는 방향이나 로그온을 확인받는 곳을 가리킨다.",
+      "nodes": {
+        "pc01": "PC01",
+        "dc01": "DC01",
+        "dc02": "DC02",
+        "rodc": "읽기 전용 도메인 컨트롤러"
+      },
+      "groups": {
+        "dcs": "example.com의 도메인 컨트롤러"
+      },
+      "notes": {
+        "copy-note": "복제",
+        "stop-note": "멈춤",
+        "oneway-note": "한 방향으로만 받는다"
+      },
+      "scenarios": [
+        {
+          "id": "replicate",
+          "label": "복제",
+          "caption": "관리자가 DC01에서 user01의 암호를 바꾸면 그 바뀐 내용이 DC02로 복제되어 두 서버가 같은 디렉터리를 갖는다. 디렉터리를 고치는 일은 대부분 어느 도메인 컨트롤러에서 해도 되고, 그 일을 받은 서버가 다른 도메인 컨트롤러로 복제한다.",
+          "sources": [
+            "windows-ad.domain-controller"
+          ]
+        },
+        {
+          "id": "failover",
+          "label": "한 대가 멈출 때",
+          "caption": "DC01이 고장으로 멈춰도 DC02가 복제로 같은 내용을 갖고 있으므로, PC01에서 user01로 로그온하면 DC02가 확인해 준다. 도메인 컨트롤러를 한 대만 두면 그 서버가 멈출 때 도메인 계정을 확인해 줄 서버가 없어진다.",
+          "sources": [
+            "windows-ad.domain-controller"
+          ]
+        },
+        {
+          "id": "rodc",
+          "label": "읽기 전용",
+          "caption": "읽기 전용 도메인 컨트롤러는 디렉터리를 고칠 수 없어, 바꿀 일은 DC02처럼 고칠 수 있는 도메인 컨트롤러에서 하고 그 내용을 한 방향으로 복제받기만 한다. 물리 보안을 장담하기 어려운 지점 사무실에 도메인 컨트롤러를 둘 때 쓴다.",
+          "sources": [
+            "windows-ad.domain-controller"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-ad.domain-controller"
+      ]
     }
   },
   "tables": {},
