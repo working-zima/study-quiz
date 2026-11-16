@@ -28,6 +28,7 @@ import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BitLockerVolumeDiagram } from './BitLockerVolumeDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
@@ -357,6 +358,7 @@ import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
+import { WorkFoldersSyncDiagram } from './WorkFoldersSyncDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
@@ -698,6 +700,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-admin-tools.powershell': PowerShellCommandsDiagram,
   'windows-admin-tools.certificate-manager': CertificateFilesDiagram,
   'windows-admin-tools.efs': EfsKeyBackupDiagram,
+  'windows-admin-tools.bitlocker': BitLockerVolumeDiagram,
+  'windows-admin-tools.work-folders': WorkFoldersSyncDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

@@ -6368,6 +6368,23 @@ https://learn.microsoft.com/en-us/windows/security/operating-system-security/dat
 (phase 80 step 13에서 쓰일 곳) `windows-admin-tools.bitlocker`(볼륨 전체·도난·드라이브를 옮겨 붙이기, TPM, 복구 암호 48자리와 복구 키, BitLocker To Go, Windows Server의 기능 설치, EFS와 함께 쓰기와 차이),
 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단과 E38 — [기출 2024-02-25 #39], [기출 2024-08-25 #28])
 
+(phase 80 step 13, 2026-11-16 Microsoft Learn에서 「BitLocker FAQ」(https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq — 위 줄과 같은 판)를 다시 받고, 「BitLocker operations guide」(https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/operations-guide, Windows 11·10·Windows Server 2016~2025) 「Enable BitLocker」를 찾아 확인)
+- **읽고 쓰기**: BitLocker는 드라이브 전체를 한꺼번에 풀지 않는다 — 읽기 요청이 온 부분만 그때 풀고, 쓰는 블록은 디스크에 적기 전에 암호화하며, 보호한 드라이브에는 암호화되지 않은 데이터가 남지 않는다 — 「Does BitLocker encrypt and decrypt the entire drive all at once when reading and writing data?」
+- **TPM이 키를 내주지 않는 때**: 운영 체제 드라이브의 무결성 확인이 실패하면 TPM이 드라이브를 풀 키를 내주지 않는다. 실패하게 하는 변화의 첫째가 BitLocker로 보호한 드라이브를 새 컴퓨터로 옮기는 것이고, 시작 구성·펌웨어·부트 구성 요소를 바꾸는 것도 든다 — 「What system changes would cause the integrity check on the OS drive to fail?」.
+  TPM은 자체 펌웨어와 회로로 동작하는 하드웨어 부품이고 TPM은 그것이 든 컴퓨터마다 다르다 — 「What are the advantages of a TPM?」
+- **PIN·시작 키**: PIN은 사용자가 정해 컴퓨터를 켜거나 최대 절전에서 돌아올 때마다 넣는 값(숫자 4~20자리)이고, 시작 키는 USB 플래시 드라이브에 담아 컴퓨터를 켤 때마다 꽂는 키다. 둘 다 TPM 인증에 더하는 인증이다 — 「What is the difference between a TPM owner password, recovery password, recovery key, PIN, enhanced PIN, and startup key?」
+- **데이터 드라이브**: 데이터 드라이브를 다른 컴퓨터에 붙이면 암호나 스마트 카드로 열 수 있고, 저절로 열리게만(automatic unlock only) 해 둔 데이터 드라이브는 복구 키로 연다 — 「Can I access my BitLocker-protected drive if I insert the hard disk into a different computer?」.
+  컴퓨터 안의 데이터 드라이브(fixed data drive)가 저절로 열리게 하려면 운영 체제 드라이브도 BitLocker로 보호되어 있어야 한다 — 「Why am I unable to automatically unlock my drive?」. 데이터 드라이브는 운영 체제를 끄거나 다시 시작하면 잠긴다 — 「How do I "lock" a data drive?」
+- **복구**: BitLocker를 켤 때, 정해 둔 잠금 해제 방법을 쓸 수 없을 때(TPM이 부트 구성 요소를 확인하지 못했거나 PIN이나 암호를 잊었을 때) 복구할 방법을 정한다. 복구 암호는 **여덟 묶음으로 나뉜 48자리 숫자**, 복구 키는 USB 플래시 드라이브의 키 파일이다 — 위 질문.
+  복구는 TPM을 거치지 않으므로 TPM이 고장 나거나 빠져도 할 수 있다 — 「What causes BitLocker to start into recovery mode…?」. 복구 정보를 잃으면: BitLocker는 필요한 인증 없이는 암호화한 드라이브를 되살릴 수 없게 설계되어 있고, 복구 정보는 안전한 곳에 둔다 — 「If I lose my recovery information, will the BitLocker-protected data be unrecoverable?」.
+  복구 키를 파일로 저장할 때는 그 기기가 아닌 곳(네트워크 폴더 같은 곳)에 둔다 — 「BitLocker operations guide」 「Enable BitLocker」의 제어판 차례(차례는 가져오지 않고 이 사실만)
+- **이동식 드라이브**: BitLocker To Go로 암호화한 드라이브는 다른 컴퓨터에서 암호나 스마트 카드로 연다 — 「What is BitLocker To Go?」
+- **권한**: 운영 체제 드라이브와 컴퓨터 안의 데이터 드라이브에서 BitLocker를 켜고 끄고 설정을 바꾸려면 로컬 Administrators 그룹의 구성원이어야 하고, 이동식 데이터 드라이브는 일반 사용자도 할 수 있다 — 「What user rights are required to use BitLocker?」
+- 쓰지 않은 것: 향상된 PIN, 네트워크 잠금 해제, 일시 중단과 해독, TPM 소유자 암호, 키 구조(전체 볼륨 암호화 키·볼륨 마스터 키), 사용한 공간만 암호화, 암호화 알고리즘
+
+쓰인 곳: (phase 80 step 13) `windows-admin-tools.bitlocker` — 위 「BitLocker」·「TPM」·「복구」·「BitLocker To Go」·「Windows Server」·「EFS와 BitLocker」 줄과 이 문단의 사실 전부(읽고 쓰기, TPM이 키를 내주지 않는 때, PIN·시작 키, 데이터 드라이브의 잠금 해제·자동 잠금 해제·다시 잠김·다른 컴퓨터에서 열기, 복구 암호 여덟 묶음 48자리와 복구 키·TPM 없이 복구·잃으면 되살릴 수 없음·기기가 아닌 곳에 저장, To Go를 다른 컴퓨터에서 열기, 권한).
+  본문 예는 운영 체제 드라이브를 TPM과 함께 보호하고 `D:`를 저절로 열리게만 해 둔 서버로 썼다 — 데이터 드라이브는 TPM이 아니라 자동 잠금 해제로 열리므로, 「TPM이 `D:`를 연다」로 그리지 않으려고 운영 체제 드라이브를 거치게 했다. 도식 `bitlocker-volume`, 문항 n282
+
 ## (phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders): Work Folders overview, Features Removed or No Longer Developed in Windows Server
 https://learn.microsoft.com/en-us/windows-server/storage/work-folders/work-folders-overview
 https://learn.microsoft.com/ko-kr/windows-server/storage/work-folders/work-folders-overview
@@ -6390,3 +6407,10 @@ https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-
   이름에 「클라우드」가 붙었지만 파일은 회사 파일 서버의 동기화 공유에 있다(위 비교 표). 「동기화 공유」, 「파일 및 스토리지 서비스」(한국어판 — 이 과목의 다른 주제가 이 역할을 다루지 않아 본문은 한국어판 표기를 따른다)
 
 쓰인 곳: (phase 80 step 13에서 쓰일 곳) `windows-admin-tools.work-folders`(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 오프라인 작업 뒤 동기화, 암호화·잠금 화면 암호 정책, 설치 자리, OneDrive와의 차이, 지원 상태, 한국어 이름), 기출 대조(`exam-notes.md` 「phase 80 step 8」 문단 — [기출 2024-02-25 #43])
+
+(phase 80 step 13, 2026-11-16 Microsoft Learn에서 「Work Folders overview」를 다시 받아 확인 — 위 줄과 같은 판) 클라이언트 PC에는 사용자의 클라우드 폴더 파일을 **모두 담을 만큼 빈 공간**이 로컬 NTFS 드라이브에 있어야 한다 — 「Requirements for client computers」(오프라인에서 파일을 열고 고칠 수 있는 까닭을 말할 때 쓴다).
+서버 관리자의 파일 및 스토리지 서비스는 동기화 공유를 만들고, 클라우드 폴더를 살피고, 동기화 공유와 사용자의 접근을 관리하는 자리다 — 「Features」의 「Role service in Server Manager」. OneDrive for Business가 쓰는 클라우드 서비스는 Microsoft 365다 — 「Comparison with other sync technologies」 표.
+쓰지 않은 것: 인터넷 너머 동기화의 요구 사항(역방향 프록시·AD FS), 서버 인증서, 파일 크기 한도, 장애 조치 클러스터링, 폴더 리디렉션·오프라인 파일·홈 폴더와 함께 배포
+
+쓰인 곳: (phase 80 step 13) `windows-admin-tools.work-folders` — 위 줄의 사실 전부(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 클라이언트의 기본 위치 `%USERPROFILE%\Work Folders`, 오프라인 작업 뒤 동기화와 클라이언트의 빈 공간, 암호화·잠금 화면 암호 정책, 파일 및 스토리지 서비스 아래 설치 자리와 `Install-WindowsFeature`·클라우드 폴더 페이지에서 동기화 공유와 사용자 접근 관리·NTFS 볼륨, OneDrive와 OneDrive for Business와의 차이, 지원 상태, 한국어 이름 — 「작업 폴더」로도 옮긴다는 것 한 줄).
+  설치 차례는 서버 역할 선택에서 파일 및 스토리지 서비스를 펼친 뒤 그 아래 항목에서 고른다고만 썼다 — 중간 단계 「파일 및 iSCSI 서비스」는 iSCSI를 이 주제에서 풀 근거가 없어 이름을 쓰지 않았다. 도식 `work-folders-sync`, 문항 n283

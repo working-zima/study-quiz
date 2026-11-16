@@ -461,6 +461,129 @@
       "sources": [
         "windows-admin-tools.efs"
       ]
+    },
+    "bitlocker-volume": {
+      "label": "서버의 운영 체제 드라이브와 D:를 BitLocker로 암호화하면 이 서버에서는 TPM이 키를 내주어 운영 체제 드라이브가 열리고 D:도 저절로 열리지만, 디스크를 떼어 다른 컴퓨터에 옮겨 붙인 D:는 복구 암호 없이는 읽을 수 없다는 것을 EFS와 견주어 보이는 도식",
+      "svgLabel": "서버 박스 안에 TPM·운영 체제 드라이브·D:가, 다른 컴퓨터 박스 안에 옮겨 붙인 D:가 있고, 두 박스 밖에 복구 암호와 EFS로 암호화한 파일이 있는 그림",
+      "question": "디스크를 떼어 가면 BitLocker로 암호화한 데이터는 어떻게 될까?",
+      "idleCaption": "서버의 운영 체제 드라이브와 데이터 드라이브 D:를 BitLocker로 암호화해 두었다. 버튼을 고르면 이 서버에서, 디스크를 떼어 갔을 때, 복구 암호로 열 때 D:가 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 무엇이 드라이브의 잠금을 푸는지를 따라간다. 박스는 컴퓨터 한 대다.",
+      "nodes": {
+        "tpm": "TPM",
+        "os": "운영 체제 드라이브",
+        "d": "D:",
+        "moved": "옮겨 붙인 D:",
+        "recovery": "복구 암호",
+        "efs": "EFS로 암호화한 파일"
+      },
+      "groups": {
+        "server": "서버",
+        "other": "다른 컴퓨터"
+      },
+      "notes": {
+        "key-note": "키를 내준다",
+        "auto-note": "저절로 열린다",
+        "locked-note": "읽을 수 없음",
+        "digits-note": "48자리 숫자",
+        "volume-note": "볼륨 전체",
+        "file-note": "파일 하나하나"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "이 서버에서",
+          "caption": "서버를 켜면 TPM이 꺼져 있던 동안 시작에 쓰는 부분이 바뀌지 않았는지 확인하고 운영 체제 드라이브를 풀 키를 내준다. 운영 체제 드라이브가 BitLocker로 보호되어 있으므로, 저절로 열리게 해 둔 D:는 이 서버에서 저절로 열린다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "stolen",
+          "label": "떼어 갔을 때",
+          "caption": "D:가 든 디스크를 떼어 다른 컴퓨터에 붙이면 그 컴퓨터에서는 저절로 열리지 않는다. 저절로 열리게만 해 두었으므로 복구 암호나 복구 키가 없으면 옮겨 붙인 D:의 데이터를 읽을 수 없다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "recovery",
+          "label": "복구 암호",
+          "caption": "따로 보관해 둔 복구 암호 48자리를 넣으면 다른 컴퓨터에 옮겨 붙인 D:도 연다. 복구 정보까지 잃으면 BitLocker로 암호화한 드라이브의 데이터는 되살릴 수 없다.",
+          "sources": [
+            "windows-admin-tools.bitlocker"
+          ]
+        },
+        {
+          "id": "vs-efs",
+          "label": "EFS와",
+          "caption": "BitLocker는 D: 같은 볼륨 전체를 암호화해 디스크를 떼어 가 읽는 일을 막고, EFS는 사용자가 고른 파일 하나하나를 암호화해 같은 컴퓨터의 다른 사용자가 열지 못하게 한다. 둘은 함께 쓸 수 있다.",
+          "sources": [
+            "windows-admin-tools.bitlocker",
+            "windows-admin-tools.efs"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.bitlocker"
+      ]
+    },
+    "work-folders-sync": {
+      "label": "클라우드 폴더는 업무 파일을 회사 파일 서버의 동기화 공유 D:\\SyncShare에 모으고 회사 PC·개인 노트북과 동기화하며, 오프라인에서 고친 파일도 다시 이어지면 동기화하고, OneDrive와 달리 파일을 Microsoft의 클라우드 서비스가 아니라 회사 서버에 모은다는 것을 보이는 도식",
+      "svgLabel": "회사 파일 서버 박스 안에 동기화 공유 D:\\SyncShare가 있고, 박스 밖에 회사 PC와 개인 노트북이, Microsoft의 클라우드 서비스 박스 안에 OneDrive가 있는 그림",
+      "question": "클라우드 폴더의 파일은 어디에 있고 어떻게 맞춰질까?",
+      "idleCaption": "회사 파일 서버의 동기화 공유와 직원의 회사 PC·개인 노트북, 그리고 견줄 OneDrive를 두었다. 버튼을 고르면 업무 파일이 어디에 모이고 기기들과 어떻게 맞춰지는지 볼 수 있다.",
+      "legend": "양쪽 화살표는 두 곳의 파일을 같은 내용으로 맞추는 동기화다. 박스는 파일을 모아 두는 곳이다.",
+      "nodes": {
+        "share": "D:\\SyncShare",
+        "pc": "회사 PC",
+        "laptop": "개인 노트북",
+        "onedrive": "OneDrive"
+      },
+      "groups": {
+        "server": "회사 파일 서버",
+        "cloud": "Microsoft의 클라우드 서비스"
+      },
+      "notes": {
+        "offline-note": "오프라인에서 고친 파일",
+        "policy-note": "암호화와 잠금 화면 암호"
+      },
+      "scenarios": [
+        {
+          "id": "sync",
+          "label": "동기화",
+          "caption": "업무 파일은 회사 파일 서버의 동기화 공유 D:\\SyncShare에 모이고, 회사 PC와 개인 노트북은 이 폴더와 동기화해 같은 내용을 갖는다. 그래서 직원은 어느 기기에서든 같은 업무 파일을 쓴다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "offline",
+          "label": "오프라인일 때",
+          "caption": "노트북이 네트워크에 이어지지 않은 동안에도 직원은 노트북에 맞춰 둔 파일을 고칠 수 있다. 노트북이 다시 인터넷이나 회사 네트워크에 이어지면 오프라인에서 고친 파일을 D:\\SyncShare와 동기화한다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "policy",
+          "label": "기기 정책",
+          "caption": "관리자는 회사의 데이터를 파일 서버에 모아 두고, 직원의 PC와 기기에 클라우드 폴더의 암호화와 잠금 화면 암호를 요구하는 보안 정책을 걸 수 있다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        },
+        {
+          "id": "vs-onedrive",
+          "label": "OneDrive와",
+          "caption": "이름에 클라우드가 붙었지만 클라우드 폴더의 파일은 회사 파일 서버에 모인다. OneDrive는 클라우드 폴더와 다른 기술로, 파일을 Microsoft의 클라우드 서비스에 모은다.",
+          "sources": [
+            "windows-admin-tools.work-folders"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-admin-tools.work-folders"
+      ]
     }
   },
   "tables": {},
