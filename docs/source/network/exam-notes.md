@@ -832,3 +832,44 @@ phase 79 step 9에서 `linux-servers` 주제(DNS 클라이언트 설정 파일, 
   「`named-checkconf`로 `named.conf`의 오류를 확인한다」는 named-checkconf(8)(설정 파일의 구문 오류를 찾는다 — 의미는 검사하지 않는다, 파일을 주지 않으면 `/etc/named.conf`)과 맞다. `rpm -qa | grep bind`는 이 phase가 다루지 않는다. 시험의 답 「UDP 53만 열면 된다」는 위 「phase 79 step 5」 문단이 보았다
 - **디렉터리 목록이 드러나는 옵션**([기출 2025-05-25 #45]): `Options`에 `Indexes`가 켜져 있으면 디렉터리를 가리키는 주소에 기본 문서가 없을 때 mod_autoindex가 목록을 만들어 돌려준다(core 「Options」, mod_dir 「DirectoryIndex」) — 시험의 답과 맞다.
   다른 보기의 `ServerAdmin`·`DocumentRoot`·`ServerRoot`는 목록과 관계없다. 보기들이 지시자와 값 사이에 `:`를 넣어 적었지만 Apache 설정은 지시자와 인자를 빈칸으로 가른다(「Configuration Files」 「Syntax」) — 본문·문항은 빈칸 꼴로 쓴다
+
+E35~는 phase 80(`windows-ad`·`windows-admin-tools`)이 더한다. phase 80 step 0에서 `windows-ad` 주제의 앞 개념 여섯(로컬 사용자 계정, 기본 로컬 그룹, Active Directory 도메인 서비스, 도메인 컨트롤러, 도메인·트리·포리스트, 트러스트)이 답을 가르는 기출 9문항과,
+오답 보기에 도메인 컨트롤러·읽기 전용 도메인 컨트롤러가 나오는 이웃 문항 하나([기출 2025-02-23 #42] — 정답 OU와 오답 사이트는 step 4가 본다)를 보았다(확인한 날 2026-11-16).
+같은 문항이 여러 회차에 다시 나와 서로 다른 문항은 일곱이다([기출 2024-05-19 #34]와 [기출 2025-08-24 #34], [기출 2024-08-25 #30]과 [기출 2026-08-02 #36]이 같다). 둘은 지문이 그림이다([기출 2024-08-25 #30]·[기출 2026-08-02 #36]).
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32 문서와 지난 판 문서다. 공식 문서와 어긋나는 곳 하나에 **E35**를 만들었다 — 근거는 `standards.md`의 「(phase 80 step 0)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **Windows의 기본 로컬 사용자 계정이 아닌 것은 root**([기출 2024-11-03 #35]): 「Local accounts」의 기본 로컬 사용자 계정 절에 Administrator·Guest·DefaultAccount가 있고 root는 없다 — 시험의 답과 맞다. root는 Linux의 관리자 계정이다(`linux-accounts.user-account`).
+  다만 지문이 Windows Server 2016의 기본 계정을 「셋」이라 적는 것은 문서와 꼭 맞지 않는다 — 문서는 기본 계정의 수를 세지 않고, 같은 절에 WDAGUtilityAccount(Application Guard용 — 그 기능의 적용 대상은 Windows 10·11)와 WSIAccount(Windows 11에서 들어왔다)도 들며, 어느 계정이 어느 제품에 있는지 표로 가르지 않는다.
+  답이 같아 항목을 만들지 않는다. 본문은 「기본 계정은 셋뿐이다」로 단정하지 않고, 문항(해설 포함)은 기본 계정의 개수를 판단거리로 삼지 않는다
+- **Windows Server 2016의 로컬 그룹 설명 넷**([기출 2024-02-25 #41]): 시험의 답 「Remote Management Users는 WMI 자원에 관련된 권한의 그룹이다」는 공식 문서와 맞다(관리 프로토콜로 WMI 자원에 접근 — 「Active Directory security groups」, 「Security identifiers」).
+  틀린 말로 둔 「Power Users는 Administrator와 같은 권한」은 문서로도 틀리다 — Power Users가 할 수 있는 일은 정해진 목록(로컬 사용자·그룹 만들기, 자기가 만든 계정 고치기, 프로그램 설치, 로컬 프린터·파일 공유 등)이고, 지난 판 문서는 소유권 가져오기·백업·드라이버 로드·보안 로그 관리를 하지 못한다고 적는다.
+  틀린 말로 둔 「Performance Monitor Users는 성능 카운터·로그 등을 관리한다」도 문서로 틀리다 — 그것은 Performance Log Users의 설명이고, Performance Monitor Users는 실시간 데이터를 볼 뿐 데이터 수집기 집합을 만들거나 고치지 못한다.
+  틀린 말로 둔 「RDS Endpoint Servers는 원격 데스크톱 서비스에 관련된 권한의 그룹이다」는 문서와 어긋난다 — 아래 **E35**
+- **Windows Server 2016의 그룹 계정 설명 넷**([기출 2024-05-19 #33]): 시험의 답(틀린 말) 「Users에는 새 계정이 들고, 이 그룹은 시스템 수준을 바꾸는 권한이 있다」는 문서로도 틀리다 — Users 그룹의 구성원은 시스템 전체에 걸친 변경을 하지 못하게 막힌다.
+  맞는 말로 둔 셋 — Administrators는 제한 없는 접근을 갖고 일반 사용자를 넣으면 그 그룹의 권한을 받는다(「Add-LocalGroupMember」 — 그룹의 권한과 사용 권한은 모든 구성원에게 주어진다), Backup Operators는 사용 권한과 관계없이 파일을 백업·복원한다,
+  Guests 구성원은 로그아웃하면 프로필이 지워져 임시 프로필로 로그온하는 셈이다 — 도 문서와 맞다. 다만 지문의 「Guests 그룹은 기본으로 꺼져 있다」는 문서로는 **Guest 계정**의 성질이다(Guest 계정이 기본으로 꺼져 있다) — 그룹을 켜고 끄는 설정은 문서에 없다.
+  답이 같아 항목을 만들지 않는다. 본문은 「Guest 계정은 기본으로 꺼져 있다」로 쓰고, 문항(해설 포함)은 「Guests 그룹이 꺼져 있다」를 맞는 말로 쓰지 않는다.
+  ④의 「계정을 만들면 기본으로 드는 그룹」은 설치 직후 Users의 구성원이 Authenticated Users(로그온 과정을 거친 모든 사용자)라는 것과 이어진다 — 「새 계정은 Users 그룹에 넣어진다」를 한 문장으로 적은 지금 판 문서는 찾지 못했으므로, 본문은 그 연결(Authenticated Users를 거쳐 Users의 권한을 받는다)으로 쓴다
+- **컴퓨터 자원의 권한 부여 특성을 다루는 그룹**([기출 2025-05-25 #40]): 시험의 답 Access Control Assistance Operators는 문서와 맞다. 다만 지문의 「인증 속성의 관리」은 문서의 말과 두 군데가 다르다 — 문서는 **권한 부여**(authorization) 특성과 사용 권한을 원격으로 **조회**한다고 적는다.
+  답이 같아 항목을 만들지 않는다. 본문은 문서의 말(「권한 부여 특성과 사용 권한을 원격으로 조회」)로 쓰고, 문항(해설 포함)은 「관리한다」·「인증 속성」을 이 그룹의 설명으로 쓰지 않는다. 오답 셋 — Replicator(도메인의 파일 복제를 지원하는 컴퓨터가 드는 그룹), Power Users, Backup Operators(백업·복원) — 은 문서에서도 이 일을 하지 않는다
+- **Active Directory의 주요 역할**([기출 2026-05-17 #43]): 시험의 답 「사용자를 인증하고 디렉터리에 기대어 자원을 관리한다」는 「Active Directory Domain Services overview」(디렉터리 데이터를 저장해 사용자·관리자가 쓰게 하고, 로그온 인증과 디렉터리 개체에 대한 접근 제어로 보안을 묶는다)와 맞다.
+  오답 셋도 문서로 AD DS의 일이 아니다 — 클라이언트에 IP 주소를 자동으로 나눠 주는 것은 DHCP 서버다(`standards.md`의 「(phase 74 step 5) Microsoft Learn — … What is DHCP Server in Windows Server? …」 항목).
+  DNS 영역의 동적 업데이트를 기본으로 막는 것도 AD의 일이 아니고, 오히려 영역을 AD에 통합하면 Windows DNS 서버는 기본으로 **보안 동적 업데이트만 허용**한다(파일에 둔 영역이 기본으로 동적 업데이트를 허용하지 않는다 — 「Dynamic update」). 서버의 방화벽 규칙을 저절로 구성한다는 말은 이 step이 본 AD DS 문서에 없다.
+  다만 AD DS는 DNS로 DC를 찾고 새 포리스트를 세울 때 DNS가 함께 설치되므로(「DNS and AD DS」, 「Domain Name System (DNS) in Windows and Windows Server」), 문항(해설 포함)은 「AD DS는 DNS와 관계없다」를 맞는 말로 쓰지 않는다
+- **서로 다른 도메인 사이의 인증과 권한 부여는 트러스트**([기출 2024-05-19 #34], [기출 2025-08-24 #34] — 같은 문항): 트러스트는 한 도메인의 사용자가 다른 도메인의 DC에게 인증받게 하는 관계이고(지난 판 「Understanding Trusts」), 신뢰하는 쪽(자원 도메인)이 신뢰받는 쪽에서 온 인증을 받아들여 공유 자원에 통제된 접근을 준다(「Credentials processes in Windows authentication」) — 시험의 답과 맞다.
+  오답 도메인·트리·포리스트는 관리 단위, 이름이 이어지는 도메인의 묶음, 트리의 묶음이라 두 도메인 사이에 맺는 관계가 아니다(「Understanding the Active Directory Logical Model」, Win32 「Domain Trees」·「Forests」).
+  지문의 「권한 부여」를 트러스트가 사용 권한까지 준다는 뜻으로 읽지 않는다 — 다른 도메인의 자원에 접근하려면 그 자원에 사용 권한이 주어져야 한다(지난 판 「Understanding Trust Transitivity」, Entra 문서 「Trust relationship flows」). 본문은 「트러스트는 인증을 받아들이게 하고, 사용 권한은 자원에서 따로 준다」로 쓴다
+- **(A)에 해당하는 것은 트러스트**([기출 2024-08-25 #30], [기출 2026-08-02 #36] — 같은 문항, 지문이 그림): 지문을 볼 수 없어 무엇을 물었는지는 대조하지 못했다. 항목을 만들지 않는다. 정답 트러스트와 오답 셋(사이트·조직 구성 단위·도메인 컨트롤러)이 서로 다른 것이라는 데까지만 본다 — 도메인 컨트롤러는 디렉터리 데이터베이스를 갖고 인증하는 서버이고, 사이트·조직 구성 단위는 step 4가 본다
+- **이웃 문항 — 도메인 컨트롤러와 읽기 전용 도메인 컨트롤러**([기출 2025-02-23 #42]): 오답 DC·RODC는 서버(도메인의 디렉터리 데이터베이스를 갖고 인증하는 서버와, 그 데이터베이스를 읽기만 하는 DC)라 한 도메인 안을 부서처럼 나누는 단위가 아니다(「Understanding the Active Directory Logical Model」, 「Planning Domain Controller Placement」).
+  보기가 읽기 전용 도메인 컨트롤러를 「RDC」로 줄여 적는데, 공식 문서의 약어는 **RODC**다 — 본문·문항은 RODC로 쓴다
+
+## E35 — RDS Endpoint Servers를 「원격 데스크톱 서비스와 관련한 권한의 그룹」이 아닌 것으로 본다
+
+- **시험**: Windows Server 2016의 로컬 그룹 설명 가운데 맞는 것 하나(Remote Management Users — WMI)를 고르는 문항이, 「RDS Endpoint Servers는 원격 데스크톱 서비스에 관련된 권한의 그룹이다」을 틀린 설명으로 둔다 — [기출 2024-02-25 #41]
+- **공식 문서**: 「Active Directory security groups」(2026-10-30)와 「Security identifiers」(2026-10-20)는 RDS Endpoint Servers를, RemoteApp 프로그램과 개인 가상 데스크톱이 실행되는 가상 머신을 돌리고 세션을 호스트하는 **서버**가 드는 기본 그룹으로 적는다.
+  RD 연결 브로커를 실행하는 서버에서 이 그룹을 채워야 하고, 그 배포의 RD 세션 호스트·RD 가상화 호스트 서버가 들어야 한다 — 곧 원격 데스크톱 서비스(RDS) 배포를 위한 그룹이다. 두 문서 어디에도 이 그룹이 RDS와 관계없다는 근거는 없다.
+  시험이 이 보기를 왜 틀린 말로 보는지는 문서로 판정할 수 없다 — 구성원이 사람이 아니라 서버라는 점을 문제 삼았는지, 지문의 「권한」을 사람에게 주는 권한으로 읽었는지 알 수 없다
+- **처리**: 본문(`windows-ad.local-groups`)은 문서대로 RDS Endpoint Servers를 「원격 데스크톱 서비스 배포에서 가상 머신을 돌리고 세션을 호스트하는 서버가 드는 그룹 — 구성원은 사람이 아니라 서버다」로 한 줄 쓴다.
+  이 그룹에는 「자격시험은 ~로 본다」 줄을 두지 않는다 — 시험에서 알 수 있는 것은 「이 보기는 틀린 설명이다」뿐이라 사실처럼 옮길 시험 쪽 내용이 없고, 그 판정을 옮기면 공식 문서와 어긋난 것을 가르치게 된다.
+  문항(해설 포함)은 RDS Endpoint Servers를 보기에 두지 않는다 — 이 그룹에 대한 설명을 맞는 말로도 틀린 말로도 쓰지 않는다
+- 쓰인 곳: (phase 80 step 1에서 쓰일 곳) `windows-ad.local-groups`

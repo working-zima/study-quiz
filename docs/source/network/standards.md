@@ -104,6 +104,11 @@ RFC는 step 0과 같은 방법(텍스트판을 IPv4로 내려받아 절을 직�
 이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). man7.org는 페이지를 IPv4로 내려받아 COLOPHON과 바닥줄의 프로젝트·판·날짜를 적었다. BIND 9 관리자 참조 설명서(ARM)와 명령 설명은 bind9.readthedocs.io의 안정판(`en/stable/` — 이날 9.20.30)을, Apache HTTP Server 문서는 httpd.apache.org의 2.4 문서(이날 최신 판 2.4.71)를 IPv4로 내려받아 읽었다 —
 Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이 판마다 바뀐 지시자는 문서의 Compatibility 줄대로 몇 판부터인지 적는다. netfilter.org는 프로젝트 소개 페이지 셋을 읽었다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — BIND의 `view`·ACL 문법 전체·`rndc` 명령 전체·DNS over TLS/HTTPS, Apache의 가상 호스트·모듈 전체·MPM·`.htaccess`의 세부, iptables의 `nat`·`mangle` 테이블과 연결 추적, nftables 문법, `rpm`·`yum`·`sudo`. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 80 step 0)」이 붙은 항목은 phase 80 step 0에서 `windows-ad` 주제의 앞 개념 여섯(로컬 사용자 계정, 기본 로컬 그룹, Active Directory 도메인 서비스, 도메인 컨트롤러, 도메인·트리·포리스트, 트러스트)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-16).
+이 주제는 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). learn.microsoft.com의 Windows Server·Windows 보안·PowerShell·Win32 문서를 영문판과 한국어판(`ko-kr`)으로 IPv4로 내려받아 읽었다 — 항목마다 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적는다.
+지금 판 문서에 없는 말(트러스트의 종류와 방향을 정의한 문장, 기본 그룹의 옛 설명)은 지난 판 문서(`previous-versions` — Windows Server 2008·2012까지)에서 가져오고, 지금 판 문서가 같은 말을 하는지 줄마다 적는다.
+한국어판은 기계 번역이라 같은 것을 여러 이름으로 부르는 곳이 있다(trusted를 「신뢰받는」과 「신뢰할 수 있는」으로, 기본 그룹 이름을 영문 그대로와 번역으로) — 고른 이름과 그 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Windows 화면의 이름은 확인하지 못했다.**
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — Kerberos·NTLM의 인증 차례, 작업 마스터(FSMO) 역할의 일, 글로벌 카탈로그·스키마의 동작, 복제 토폴로지, 트러스트 암호와 신뢰할 수 있는 도메인 개체(TDO), 선택적 인증, RODC의 암호 복제 정책. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -5564,3 +5569,192 @@ netfilter.org는 첫 화면과 프로젝트 페이지 둘을 읽었다(첫 화�
 쓰인 곳: (phase 79 step 9에서 쓰일 곳) `linux-servers.iptables`(iptables(8) — 무엇인가, 표·체인·대상·정책, `filter`와 `INPUT`·`OUTPUT`·`FORWARD`, `-A`·`-I`·`-L`·`-P`·`-p`·`-j`·`-s`·`-i`; iptables-extensions(8) — `tcp`·`udp`의 `--dport`, `REJECT`; netfilter.org — netfilter 훅, 방화벽 소프트웨어, nftables가 뒤를 잇는다),
 `linux-servers.bind-named`(방화벽에 UDP 53과 TCP 53을 함께 연다 — 규칙의 꼴), 기출 대조(`exam-notes.md` 「phase 79 step 9」 문단 — [기출 2024-05-19 #44], [기출 2025-05-25 #42])
 (phase 79 step 14) iptables-extensions(8) 「tcp」을 2026-11-13에 IPv4로 다시 받아 확인했다(iptables 1.8.13): `--sport`는 `--source-port`의 줄임이고 **출발지 포트**(나 범위)로, `--dport`는 `--destination-port`의 줄임이고 **목적지 포트**(나 범위)로 견준다. 쓰인 곳: `linux-servers.iptables`(목적지 포트와 출발지 포트, `--sport`), 문항 n255(오답 `--sport 22` — 접속하려는 쪽이 보내는 패킷에서 22는 목적지 포트에 적힌다. 출발지·목적지 포트가 응답에서 맞바뀌는 것은 RFC 6335 §3·RFC 6056 §1 항목과 `ports.client-server-ports`대로)
+
+## (phase 80 step 0) Microsoft Learn — 로컬 계정과 기본 그룹: Local accounts, net user, Active Directory security groups, Security identifiers, Security principals, Special identity groups, Add-LocalGroupMember, Built-in and Account Domains, About WMI, Microsoft Defender Application Guard overview; 지난 판 Local and Domain Default Groups
+https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/net-user
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-principals
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-special-identities-groups
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.localaccounts/add-localgroupmember?view=powershell-5.1
+https://learn.microsoft.com/en-us/windows/win32/secmgmt/built-in-and-account-domains
+https://learn.microsoft.com/en-us/windows/win32/wmisdk/about-wmi
+https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/microsoft-defender-application-guard/md-app-guard-overview
+https://learn.microsoft.com/en-us/previous-versions/orphan-topics/ws.10/dd728026(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Local accounts」 `updated_at` 2026-10-08(`ms.date` 2026-04-13, 「Applies to」 Windows 11·10, Windows Server 2016~2025), 「net user」 2026-02-16(2025-08-06, Windows Server 2016~2025·Windows 11·10),
+「Active Directory security groups」 2026-10-30(2025-07-02), 「Security identifiers」 2026-10-20(2025-06-26), 「Security principals」 2026-02-16(2025-07-08), 「Special identity groups」 2026-02-16(2025-07-08) — 넷 모두 「Applies to」 Windows Server 2016~2025.
+「Add-LocalGroupMember」 2025-07-24(2023-06-28, Windows PowerShell 5.1 판). Win32 「Built-in and Account Domains」 2025-03-12·「About WMI」 2026-04-15(둘 다 `ms.date` 2018-05-31 — 적용 판을 적지 않는 개발자 문서다). 「Microsoft Defender Application Guard overview」 2025-04-15(「Applies to」 Windows 11·10).
+지난 판 「Local and Domain Default Groups」는 `updated_at` 2022-01-21(`ms.date` 2012-05-28), 적용 대상 Windows Server 2000~2012다 — 지금 판 문서와 같은 말을 하는 줄만 근거로 쓰고, 지금 판에 없는 말은 「지난 판」이라고 밝힌다.
+한국어판(`ko-kr`)도 모두 받았다(`updated_at` 2026-01-09~2026-11-05, 기계 번역) — **용어 표기만** 참고한다(아래 「한국어 이름」 줄).
+
+- **로컬 계정**: 로컬 사용자 계정과 시스템 계정은 한 장치 안에서 정의되는 보안 주체이고, 그 장치 자신이 계정을 확인하는 보안 기관(security authority)이다. 그래서 이 계정의 권한과 사용 권한은 그 장치 안에서만 통한다 — 「Local accounts」 첫머리
+- 같은 문서: **기본 로컬 사용자 계정**은 운영 체제를 설치할 때 저절로 만들어지는 계정이고 지울 수 없다. 그 장치의 자원에 대한 권한만 있고 네트워크 자원으로 가는 길은 주지 않는다.
+  기본 계정과 관리자가 새로 만든 로컬 계정은 「컴퓨터 관리」(Computer Management — 로컬·원격 장치를 관리하는 도구를 모은 MMC)의 「로컬 사용자 및 그룹\사용자」 폴더에 있다 — 「Default local user accounts」
+- 같은 문서 **Administrator**: 시스템 관리에 쓰는 계정이고 Windows 설치 중 가장 먼저 만들어진다. 그 장치의 파일·디렉터리·서비스 같은 자원을 모두 제어하고, 다른 로컬 사용자를 만들고 사용자 권한과 사용 권한을 줄 수 있다.
+  **지우거나 잠글 수는 없지만 이름을 바꾸거나 사용하지 않도록(끄도록) 할 수는 있다**. 빈 암호를 쓸 수 없고, 기본으로 Administrators 그룹의 구성원이며 그 그룹에서 뺄 수 없다 — 「Administrator」, 「Account group membership」, 「Important」.
+  같은 절은 Windows 설치 프로그램이 이 기본 계정을 끄고 Administrators 그룹에 든 다른 로컬 계정을 따로 만든다고 적는데, **어느 제품·판의 설치 프로그램인지 가르지 않는다** — Windows Server의 설치 과정을 이 문장으로 단정하지 않는다
+- 같은 문서: Administrators 그룹의 구성원은 그 장치에 모든 권한(Full Control)을 가지므로 이 그룹에 넣는 사람의 수를 줄이라고 권한다 — 「Account group membership」
+- 같은 문서 **Guest**: 그 장치에 계정이 없는 사람이 가끔 또는 한 번 임시로 로그온할 때 쓰는 계정이고 권한이 제한된다. **기본으로 꺼져 있고 암호가 비어 있다**. 익명 접근의 통로가 될 수 있어 꼭 필요할 때가 아니면 꺼 둔 채로 두라고 권한다. 기본 Guests 그룹의 유일한 구성원이다 — 「Guest」, 「Guest account group membership」
+- 같은 문서 **DefaultAccount**(DSMA, Default System Managed Account — 시스템이 관리하는 계정): 사용 권한으로 보면 표준 사용자 계정이고, 여러 사용자를 의식하는 앱이 돌 때 쓰인다. 데스크톱 판과 「데스크톱 경험이 있는」 서버 운영 체제에서 **기본으로 꺼져 있다**.
+  컴퓨터가 처음 시작할 때 SAM 안에 만들어지고, Windows Server 2016 이후의 DC로 만든 도메인에서는 모든 DC에 로컬 계정으로 있다. 꺼 둔 기본 설정을 바꾸지 말라고 권한다 — 「DefaultAccount」
+- 같은 문서는 기본 로컬 사용자 계정 절에 **WDAGUtilityAccount**(Windows Defender Application Guard가 쓰는 계정 — 기본으로 어느 그룹에도 들지 않는다)와 **WSIAccount**(Windows 11에서 들어온 계정 — 잠금·로그인 화면에서 시작하는 웹 활동에 쓰고, Users 그룹의 구성원이다)도 든다.
+  시스템 계정 절에 함께 든 HelpAssistant는 원격 지원 세션 동안만 켜지는 계정이고, Windows Server에서 원격 지원은 기본으로 설치되지 않는 선택 구성 요소다. **문서는 기본 계정의 수를 세지 않고, 어느 계정이 어느 제품에 있는지 표로 가르지도 않는다** — 「WDAGUtilityAccount」, 「WSIAccount」, 「HelpAssistant」.
+  root라는 이름은 이 문서의 계정 목록 어디에도 없다(root는 Linux의 관리자 계정이다 — phase 76의 `linux-accounts.user-account`)
+- 「Microsoft Defender Application Guard overview」: Application Guard의 적용 대상은 Windows 11·10이고, Windows 11 24H2부터는 쓸 수 없다 — 첫머리 Note. WDAGUtilityAccount가 Windows 클라이언트 기능의 계정이라는 근거로만 쓴다
+- 「Local accounts」 「How to manage local user accounts」: **사용자 권한**(right)은 그 장치에서 어떤 작업 — 파일·폴더 백업이나 컴퓨터 끄기 같은 것 — 을 하도록 허가하는 것이고, **사용 권한**(access permission)은 파일·폴더·프린터 같은 개체에 붙어 누가 어떤 방식으로 그 개체에 접근하는지 정하는 규칙이다. 「로컬 사용자 및 그룹」으로 이 둘을 그 컴퓨터 안에서만 줄 수 있다
+- 같은 절: **DC에서는 「로컬 사용자 및 그룹」으로 그 DC의 계정을 관리할 수 없다**(원격 관리가 허락되면 DC에서 이 도구로 DC가 아닌 다른 컴퓨터는 다룰 수 있다). 로컬 사용자는 `NET.EXE USER`, 로컬 그룹은 `NET.EXE LOCALGROUP`이나 Windows PowerShell의 LocalAccounts 모듈로도 관리한다
+- 「net user」: 로컬 컴퓨터나 도메인의 사용자 계정을 더하고·고치고·지우고 자세한 정보를 보는 명령이다. 이름 없이 실행하면 그 로컬 컴퓨터의 사용자 계정 목록을 보인다. `/add`는 새 계정을 더하고 `/delete`는 지우는데, 둘 다 `/domain`과 함께 쓰면 로컬 컴퓨터가 아니라 도메인에서 한다.
+  `/domain`은 그 컴퓨터가 속한 기본(primary) 도메인의 DC에서 작업하게 한다. `/active:{yes|no}`는 계정을 켜고 끈다(기본 yes). 사용자 이름은 20자까지다 — 「Syntax」, 「Parameters」, 「Examples」(예의 이름·암호는 옮기지 않는다)
+- 「Built-in and Account Domains」(Win32): DC가 아닌 컴퓨터마다 SAM 데이터베이스가 있다. 그 안의 **기본 제공(built-in) 도메인**(이름은 BUILTIN의 현지어 판)에는 운영 체제를 설치할 때 생기는 Administrators·Users 같은 기본 로컬 그룹이, **계정 도메인**(이름은 컴퓨터 이름)에는 Administrator 같은 사용자·그룹 계정이 든다.
+  워크스테이션이나 구성원 서버의 계정 도메인에 정의한 계정은 **그 컴퓨터에 있는 자원에만** 닿는다. 네트워크 자원에 닿아야 하는 계정은 DC의 계정 도메인에 정의해야 하고, 네트워크에 속하지 않아 주 도메인이 없는 컴퓨터는 그 컴퓨터에 들어오는 모든 계정을 자기 계정 도메인에 둔다.
+  **DC에는 기본 제공 도메인도 계정 도메인도 없고**, SAM 대신 Active Directory에 계정 정보를 둔다 — 두 절
+- 「Security principals」: 로컬 사용자 계정과 보안 그룹은 로컬 컴퓨터에서 만들어 그 컴퓨터 자원의 접근을 관리하는 데 쓰고, 그 컴퓨터의 SAM이 저장·관리한다. AD 도메인에서 만든 계정과 그룹은 AD 데이터베이스에 저장되어 도메인 자원의 접근을 관리한다 — 「Accounts and security groups」.
+  **보안 그룹**은 사용자 계정·컴퓨터 계정·다른 그룹을 보안 관점에서 한 단위로 다루려고 묶은 것이고, 로컬 그룹은 DC를 뺀 모든 Windows 컴퓨터의 SAM에 있으며 그 컴퓨터 자원의 권한과 사용 권한을 다루는 데만 쓴다 — 「Security groups」
+- 「Add-LocalGroupMember」: 그룹에 준 권한과 사용 권한은 그 그룹의 모든 구성원에게 주어진다. 로컬 Administrators 그룹의 구성원은 그 컴퓨터에 모든 권한을 가지므로 구성원을 적게 두라고 권한다. 도메인에 가입한 컴퓨터는 그 도메인과 신뢰받는 도메인의 사용자·컴퓨터·그룹 계정도 로컬 그룹에 넣을 수 있다 — 「Description」
+- 「Active Directory security groups」: 사람 하나하나가 아니라 그룹 단위로 다루면 관리가 단순해진다. **사용자 권한**은 그 그룹의 구성원이 할 수 있는 일을 정하고(예: Backup Operators에 넣은 사람은 그 그룹에 자동으로 주어진 「파일 및 디렉터리 백업」·「파일 및 디렉터리 복원」 권한을 물려받는다),
+  **사용 권한**은 공유 자원에 대해 누가 어느 수준(모든 권한·읽기 등)으로 접근하는지 정한다 — 문서는 둘이 다르다고 따로 적는다. 사람을 그룹에 넣으면 그 그룹의 사용자 권한과, 그 그룹이 공유 자원에 받은 사용 권한을 모두 받는다 — 「Security groups」, 「Default security groups」.
+  도메인의 기본 그룹은 「Active Directory 사용자 및 컴퓨터」의 Builtin 컨테이너와 Users 컨테이너에 있고, Builtin 컨테이너 그룹의 범위는 「Builtin Local」이라 바꿀 수 없다 — 「Group scope」 Note. (이 문서의 그룹 설명은 도메인 기준이다. 같은 이름의 그룹이 각 컴퓨터의 로컬 그룹으로도 있다는 것은 「Built-in and Account Domains」와 「Security identifiers」의 S-1-5-32 그룹들로 확인한다)
+- 아래 그룹 줄은 「Active Directory security groups」의 그룹별 절과 「Security identifiers」의 잘 알려진 SID 표(S-1-5-32-…)를 맞춰 본 것이다:
+  - **Administrators**: 그 컴퓨터에 제한 없는 접근을 갖는다(컴퓨터를 DC로 올리면 도메인 전체에). 이름을 바꾸거나 지울 수 없다. 설치 직후 구성원은 Administrator 계정 하나이고, 도메인에 가입하면 Domain Admins 그룹이 더해진다 — 「Administrators」, S-1-5-32-544
+  - **Users**: 실수로든 일부러든 **시스템 전체에 걸친 변경을 하지 못하게 막힌다**. 대부분의 응용 프로그램을 실행하고, 로컬·네트워크 프린터를 쓰고, 컴퓨터를 끄거나 잠글 수 있다. 설치 프로그램이 사용자별 설치를 지원하면 자기만 쓰는 응용 프로그램은 설치할 수 있다.
+    설치 직후 구성원은 **Authenticated Users** 하나이고, 도메인에 가입하면 Domain Users 그룹이 더해진다 — 「Users」, S-1-5-32-545
+  - 「Special identity groups」: **Authenticated Users**는 로그온 과정을 거쳐 시스템에 들어온 모든 사용자를 나타내는 특수 그룹이고, 구성원은 운영 체제가 정해 관리자가 보거나 고칠 수 없다 — 「Authenticated Users」, 「How special identity groups work」.
+    두 문서를 이으면 새로 만든 로컬 계정도 로그온하면 Users 그룹의 권한을 받는다. **「새 계정은 Users 그룹에 넣어진다」를 한 문장으로 적은 지금 판 문서는 찾지 못했다** — 지난 판 「Local and Domain Default Groups」는 Users의 기본 구성원을 Domain Users·Authenticated Users·Interactive로 들고, 그래서 도메인에서 만든 모든 사용자 계정이 이 그룹의 구성원이 된다고 적는다(Windows Server 2012까지의 판)
+  - **Guests**: 기본 구성원은 Guest 계정 하나이고, 가끔·한 번 쓰는 사람이 제한된 권한으로 로그온하게 한다. Users와 비슷한 접근을 갖되 Guest 계정에는 제한이 더 걸린다.
+    Guests 그룹의 구성원이 로그아웃하면 프로필 전체(%userprofile% 아래 모두)가 지워지므로 손님은 **임시 프로필**로 로그온하는 셈이다. Guest 계정은 기본으로 꺼져 있고 꺼 둔 채로 두라고 권한다 — 「Guests」, S-1-5-32-546.
+    **기본으로 꺼져 있는 것은 Guest 계정이다 — Guests 그룹 자체를 켜고 끄는 설정은 문서에 없다**. 지난 판 문서도 「구성원은 로그온할 때 임시 프로필이 만들어지고 로그오프하면 지워진다」, 「Guest 계정(기본으로 꺼짐)도 기본 구성원」이라고 계정과 그룹을 갈라 적는다
+  - **Backup Operators**: 파일을 보호하는 사용 권한과 관계없이 그 컴퓨터의 모든 파일을 백업하고 복원할 수 있고, 로그온해서 컴퓨터를 끌 수도 있다. 기본 구성원이 없다 — 「Backup Operators」, S-1-5-32-551.
+    지난 판 문서는 그 까닭을 백업 권한이 모든 파일 사용 권한보다 앞서기 때문이라고 적고, 이 그룹은 보안 설정을 바꿀 수 없다고 적는다
+  - **Power Users**: 기본 구성원이 없다. 로컬 사용자와 그룹을 만들고, 자기가 만든 계정을 고치거나 지우고, Power Users·Users·Guests 그룹에서 사용자를 빼고, 프로그램을 설치하고, 로컬 프린터를 만들어 관리하고, 파일 공유를 만들고 지울 수 있다 — 「Security identifiers」 S-1-5-32-547(지금 판 「Active Directory security groups」에는 이 그룹의 절이 없다).
+    지난 판 문서는 여기에 더해 파일 소유권 가져오기, 디렉터리 백업·복원, 장치 드라이버 로드·언로드, 보안·감사 로그 관리는 **하지 못한다**고 적는다. **Administrators와 같은 권한이라는 말은 어느 문서에도 없다**.
+    **「옛 판과의 호환을 위해 남은 그룹」이라는 문장은 지금 판·지난 판 문서에서 찾지 못했다** — 문서가 이전 버전 호환용이라고 적는 그룹은 Pre–Windows 2000 Compatible Access다
+  - **Remote Management Users**: 구성원은 Windows 원격 관리(WinRM) 서비스를 거쳐 WS-Management 같은 관리 프로토콜로 **WMI**(Windows Management Instrumentation) 자원에 접근할 수 있다 — 그 사용자에게 접근을 허락한 WMI 네임스페이스에만.
+    서버 관리자(Server Manager) 콘솔로 서버를 관리하게 할 때 이 그룹을 쓰고, PowerShell 명령을 원격으로 실행하게 할 때는 WinRMRemoteWMIUsers__ 그룹을 쓴다 — 「Remote Management Users」, 「WinRMRemoteWMIUsers__」 Note, S-1-5-32-580
+  - 「About WMI」(Win32): WMI는 기업 환경에서 관리 정보에 접근하는 표준 기술(WBEM)을 Microsoft가 구현한 것이고, 시스템·응용 프로그램·네트워크·장치 같은 관리 대상을 CIM 표준으로 나타낸다. 원격 컴퓨터의 관리 정보를 얻을 수 있다는 것이 쓸모이고, 원격 연결은 DCOM이나 WinRM(WS-Management 프로토콜)으로 한다 — 첫머리, 「Managing Remote Computer Systems with WMI」
+  - **Performance Monitor Users**: 관리자나 Performance Log Users 그룹이 아니어도 로컬과 원격에서 성능 카운터를 **모니터링**할 수 있다. Users의 기능을 모두 쓰고, 성능 모니터에서 실시간 성능 데이터를 보고 보는 동안 표시 속성을 바꿀 수 있지만 **데이터 수집기 집합을 만들거나 고칠 수 없다** — 「Performance Monitor Users」, S-1-5-32-558
+  - **Performance Log Users**: 관리자가 아니어도 로컬과 원격에서 성능 카운터·로그·경고를 **관리**할 수 있고 Performance Monitor Users의 기능을 모두 쓴다(SID 표: 성능 카운터의 로깅을 원격으로 예약할 수 있다).
+    Windows Server 2016부터 이 그룹의 구성원은 데이터 수집기 집합을 새로 만들 수 없고, 로깅을 시작하거나 데이터 수집기 집합을 고치려면 그룹에 「일괄 작업으로 로그온」 사용자 권한을 먼저 줘야 한다 — 「Performance Log Users」 Note, S-1-5-32-559
+  - **Access Control Assistance Operators**: 구성원은 이 컴퓨터 자원의 **권한 부여 특성(authorization attributes)과 사용 권한을 원격으로 조회**할 수 있다 — 다른 사용자(관리자 포함)의 접근 정보가 드러날 수 있다. 이름을 바꾸거나 지울 수 없다 — 「Access Control Assistance Operators」, S-1-5-32-579.
+    **두 문서 모두 「조회」(query)라 적고 「관리」라 적지 않으며, 「인증(authentication)」이 아니라 「권한 부여(authorization)」 특성이라 적는다**
+  - **Remote Desktop Users**: RD 세션 호스트 서버에 원격으로 연결할 사용 권한을 사용자·그룹에 주는 데 쓰고(그룹 문서), 구성원은 원격으로 로그온할 권한을 받는다(SID 표) — 「Remote Desktop Users」, S-1-5-32-555
+  - **RDS Endpoint Servers**: 구성원은 사람이 아니라 **서버**다 — RemoteApp 프로그램과 개인 가상 데스크톱이 실행되는 가상 머신을 돌리고 세션을 호스트하는 서버들이다. RD 연결 브로커를 실행하는 서버에서 이 그룹을 채워야 하고, 그 배포의 RD 세션 호스트·RD 가상화 호스트 서버가 들어야 한다.
+    곧 원격 데스크톱 서비스(RDS) 배포를 위한 그룹이다 — 「RDS Endpoint Servers」, S-1-5-32-576
+  - **Replicator**: 구성원은 도메인 안의 파일 복제를 지원하는 **컴퓨터**이고, Windows Server는 FRS로 SYSVOL 폴더의 시스템 정책과 로그온 스크립트를 복제한다(FRS는 DFS 복제가 대신한다). 기본 구성원이 없고 사용자를 넣지 말라고 한다 — 「Replicator」, S-1-5-32-552
+- **한국어 이름**: 「Local accounts」 한국어판은 「컴퓨터 관리」, 「로컬 사용자 및 그룹\사용자」, 「기본 로컬 사용자 계정」으로 옮긴다. 계정 절의 제목은 「관리자」·「게스트」로 번역하면서 표시 이름은 「Administrator」로 남기고, Guest의 표시 이름은 「게스트」로 번역했다.
+  그룹 이름은 영문 그대로(「Administrators 그룹」)와 번역(「관리자 그룹」)이 섞인다. 「Active Directory security groups」 한국어판의 절 제목도 영문 그대로(Administrators·Guests·Users·Replicator)와 번역(「백업 운영자」·「성능 모니터 사용자」·「성능 로그 사용자 목록」·「원격 관리 사용자」·「원격 데스크톱 사용자들」·「RDS 엔드포인트 서버」·「Access Control 지원 연산자」)이 섞인다.
+  user right는 「사용자 권한」(로컬 보안 정책의 「사용자 권한 할당」)과 「사용자 권리」(「사용 권한은 사용자 권리와 다릅니다」)로 갈리고, permission은 「사용 권한」으로 옮긴 곳이 많다. WMI는 「Windows 관리 계측(WMI)」으로 옮긴다.
+  **고른 이름**: 계정·그룹 이름은 **영문 그대로** 쓴다 — 한국어판의 번역이 일정하지 않고, 실제 한국어 화면의 이름은 확인하지 못했으며, 기출도 영문으로 적는다. 도구는 「컴퓨터 관리」·「로컬 사용자 및 그룹」.
+  right는 「사용자 권한」(화면 이름 「사용자 권한 할당」과 같은 말), permission은 「사용 권한」 — 한국어판이 permission을 「사용 권한」으로 옮기는 곳을 따른다
+
+쓰인 곳: (phase 80 step 1에서 쓰일 곳) `windows-ad.local-accounts`(로컬 계정과 보안 기관, 기본 로컬 사용자 계정 — Administrator·Guest·DefaultAccount와 그 성질, 다른 계정은 클라이언트 기능의 것, 「컴퓨터 관리」의 「로컬 사용자 및 그룹」, `net user`, 그 컴퓨터의 자원에만 닿는다, DC에는 로컬 계정 데이터베이스가 없다),
+`windows-ad.local-groups`(그룹에 넣으면 그 그룹의 권한·사용 권한을 받는다, 그룹별 줄, 사용자 권한과 사용 권한, Administrators 구성원을 적게, WMI 한 줄), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단, **E35**)
+
+## (phase 80 step 0) Microsoft Learn — AD DS·도메인 컨트롤러·논리 구조: Active Directory Domain Services overview, Install Active Directory Domain Services, DNS and AD DS, Domain Controller Location, Locating domain controllers in Windows and Windows Server, Domain Name System (DNS) in Windows and Windows Server, Dynamic update, Understanding the Active Directory Logical Model, Selecting the Forest Root Domain, Planning Operations Master Role Placement, Planning Domain Controller Placement, Virtualized Domain Controller Deployment and Configuration, Join a computer to a domain, Add-Computer; Win32 — Domain Trees, Forests, Searching Domain Contents, Replication and Data Integrity
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/install-active-directory-domain-services--level-100-
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/dns-and-ad-ds
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/domain-controller-location
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/dc-locator
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-overview
+https://learn.microsoft.com/en-us/windows-server/networking/dns/dynamic-update
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/understanding-the-active-directory-logical-model
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/selecting-the-forest-root-domain
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/planning-operations-master-role-placement
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/planning-domain-controller-placement
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/virtualized-domain-controller-deployment-and-configuration
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/join-computer-to-domain
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-computer?view=powershell-5.1
+https://learn.microsoft.com/en-us/windows/win32/ad/domain-trees
+https://learn.microsoft.com/en-us/windows/win32/ad/forests
+https://learn.microsoft.com/en-us/windows/win32/ad/searching-domain-contents
+https://learn.microsoft.com/en-us/windows/win32/ad/replication-and-data-integrity
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「Active Directory Domain Services overview」 `updated_at` 2026-02-16(`ms.date` 2025-03-10), 「Install Active Directory Domain Services」 2026-02-16(2025-04-18),
+「DNS and AD DS」·「Domain Controller Location」·「Understanding the Active Directory Logical Model」·「Selecting the Forest Root Domain」·「Planning Operations Master Role Placement」·「Planning Domain Controller Placement」·「Virtualized Domain Controller Deployment and Configuration」 2025-09-23(2025-05-12),
+「Locating domain controllers in Windows and Windows Server」 2025-07-21(2025-07-10), 「Domain Name System (DNS) in Windows and Windows Server」 2025-05-15(2025-05-15), 「Dynamic update」 2025-04-28(2025-02-13), 「Join a computer to a domain」 2025-09-15(2025-06-06) — 모두 「Applies to」 Windows Server 2016~2025.
+「Add-Computer」 2025-09-01(2024-09-25, Windows PowerShell 5.1 판). Win32 「Domain Trees」 2025-03-11, 「Forests」·「Searching Domain Contents」·「Replication and Data Integrity」 2025-03-12(넷 다 `ms.date` 2018-05-31 — 적용 판을 적지 않는 개발자 문서다).
+한국어판(`ko-kr`)도 모두 받았다(`updated_at` 2026-01-09~2026-10-23, 기계 번역) — **용어 표기만** 참고한다.
+
+- **Active Directory Domain Services overview**: **디렉터리**는 네트워크에 있는 개체의 정보를 담는 계층 구조이고, AD DS 같은 **디렉터리 서비스**는 디렉터리 데이터를 저장해 네트워크 사용자와 관리자가 쓰게 하는 방법을 준다. AD DS는 사용자 계정의 이름·암호·전화번호 같은 정보를 저장하고, 같은 네트워크의 권한 있는 사용자가 그 정보에 접근하게 한다.
+  데이터 저장소(디렉터리)에 드는 개체는 보통 서버·볼륨·프린터 같은 공유 자원과 네트워크 사용자·컴퓨터 계정이다 — 첫머리
+- 같은 문서: 보안은 **로그온 인증**과 **디렉터리 개체에 대한 접근 제어**로 AD DS에 묶인다. 네트워크 사용자 이름과 암호 하나로 관리자는 네트워크 전체의 디렉터리 데이터와 조직을 관리하고, 권한 있는 사용자는 네트워크 어디의 자원에나 접근한다. 정책 기반 관리가 복잡한 네트워크의 관리를 쉽게 한다 — 첫머리
+- 같은 문서: AD DS에는 스키마(디렉터리에 드는 개체·속성의 규칙), 글로벌 카탈로그(디렉터리의 모든 개체 정보 — 어느 도메인에 있든 찾게 한다), 질의·색인 장치, **복제 서비스**가 함께 있다. 한 도메인의 모든 DC는 복제에 참여해 **그 도메인 디렉터리 정보 전체의 사본**을 갖고, 디렉터리 데이터가 바뀌면 그 도메인의 모든 DC로 복제된다 — 첫머리 목록(스키마·글로벌 카탈로그는 이름만 가져오고 동작은 가져오지 않는다)
+- **Install Active Directory Domain Services**: 서버 관리자에서 「관리」 → 「역할 및 기능 추가」로 역할 추가 마법사를 열고 「서버 역할 선택」에서 Active Directory Domain Services를 골라 설치한 뒤, 결과 페이지에서 「이 서버를 도메인 컨트롤러로 승격」을 눌러 Active Directory Domain Services 구성 마법사를 시작한다 — 이 구성 마법사는 Windows Server 2012부터의 것이고 옛 설치 마법사(dcpromo.exe)는 그때부터 사용 중단이다.
+  PowerShell로는 `Install-WindowsFeature -name AD-Domain-Services -IncludeManagementTools`가 AD DS 서버 역할과 관리 도구(「Active Directory 사용자 및 컴퓨터」 같은 것)를 설치한다 — 「Install AD DS by using Server Manager」, 「Install AD DS by Using Windows PowerShell」.
+  구성 마법사의 「배포 구성」에서 새 포리스트 만들기, 기존 포리스트에 새 도메인(자식 도메인·트리 도메인) 더하기, 기존 도메인에 DC 더하기 가운데 고르고, 「도메인 컨트롤러 옵션」에서 새 포리스트·도메인을 만들 때 DNS 서버를 고르라고 적는다 — 같은 문서
+  (DNS 서버 옵션이 기본으로 골라져 있다는 문장은 이 문서의 RODC 계정 만들기 절에만 있다). 새 포리스트를 설치하려면 그 컴퓨터의 로컬 Administrator로 로그온해야 하고, 새 자식 도메인·새 도메인 트리는 Enterprise Admins, 기존 도메인의 추가 DC는 Domain Admins의 구성원이어야 한다 — 「Prerequisites」
+- **DNS and AD DS**·**Domain Controller Location**: AD DS는 DNS 이름 풀이로 클라이언트가 DC를 찾게 하고, DC끼리도 DNS로 서로를 찾아 복제 같은 일을 한다. 클라이언트는 로그온 요청 처리나 디렉터리 검색을 위해 DNS로 DC를 찾고, DC는 이를 돕는 여러 레코드(로케이터 레코드)를 DNS에 등록한다 — 두 문서 첫머리
+- **Domain Name System (DNS) in Windows and Windows Server**: DNS는 서버 관리자나 PowerShell로 설치하는 Windows Server의 서버 역할이고, **새 AD 포리스트와 도메인을 세울 때 AD와 함께 저절로 설치된다**. DNS는 AD DS에서 인증·업데이트·검색을 위한 DC 위치 확인 장치다.
+  예로, AD 사용자 계정으로 도메인에 로그온하면 DNS 클라이언트 서비스가 DNS 서버에 그 도메인의 DC를 묻고, 답으로 받은 DC의 IP 주소로 인증을 시작한다. AD 없이 DNS만 쓸 수도 있다 — 「Using DNS in Windows and Windows Server」
+- **Locating domain controllers**: AD 도메인은 늘 이름이 둘이다 — DNS 정규화된 도메인 이름(FQDN)과 NetBIOS 도메인 이름(15자 제한). DNS 기반 찾기에서 클라이언트는 DC가 등록한 SRV 레코드(`_ldap._tcp.<DNS 도메인 이름>` 꼴)를 묻는다 — 「Discovery process」, 「DNS-based discovery」
+- **Dynamic update**: 영역을 AD에 통합하면 Windows Server의 DNS 서버는 기본으로 **보안 동적 업데이트만 허용**하고, 파일에 둔 영역은 기본으로 동적 업데이트를 허용하지 않는다. 보안 동적 업데이트는 AD 통합 영역에서만 쓸 수 있다 — 「Secure dynamic update」, 첫머리. 기출 오답의 대조에만 쓴다
+- **Join a computer to a domain**: 서버나 클라이언트 장치를 도메인에 가입시키는 것을 조직 네트워크의 중앙 관리와 보안 향상을 위한 단계라고 적는다 — 첫머리. 「Add-Computer」: 이 cmdlet은 컴퓨터를 **도메인 또는 작업 그룹**(workgroup)에 더한다. 작업 그룹 이름의 기본값은 `WORKGROUP`이다 — 「Description」, 「-WorkgroupName」.
+  **작업 그룹 자체를 정의하거나 도메인과 견준 지금 판 문서는 찾지 못했다** — 작업 그룹 컴퓨터의 계정이 그 컴퓨터에 묶인다는 것은 앞 항목의 「Built-in and Account Domains」(네트워크 자원에 닿아야 하는 계정은 DC의 계정 도메인에, 주 도메인이 없는 컴퓨터는 모든 계정을 자기 계정 도메인에)로만 댄다
+- **Understanding the Active Directory Logical Model**: AD DS는 네트워크 자원의 정보를 저장·관리하는 분산 데이터베이스이고, 사용자·컴퓨터·장치 같은 요소를 담는 계층 구조로 정리하게 한다. **맨 위 그릇이 포리스트, 그 안에 도메인, 도메인 안에 조직 구성 단위(OU)**가 있다 — DC 수나 네트워크 토폴로지 같은 물리적 측면과 상관없어서 논리 모델이라 부른다 — 첫머리
+- 같은 문서 「Active Directory forest」: 포리스트는 AD 도메인 하나 이상의 묶음이고, 그 도메인들은 논리 구조·디렉터리 스키마(클래스·속성 정의)·디렉터리 구성(사이트·복제 정보)·글로벌 카탈로그(포리스트 전체 검색)를 함께 쓴다. **같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다**.
+  **「포리스트는 보안 경계다」를 적은 지금 판 문서는 찾지 못했다** — 쓰지 않는다
+- 같은 문서 「Active Directory domain」: 도메인은 포리스트를 나눈 조각(파티션)이고, 데이터를 필요한 곳에만 복제하게 한다. 도메인이 맡는 일은 넷이다 — ① 네트워크 전체의 사용자 ID: 사용자 ID를 한 번 만들어 그 포리스트에 가입한 어느 컴퓨터에서나 쓰고, 도메인을 이루는 DC가 사용자 계정과 자격 증명(암호·인증서)을 안전하게 저장한다
+  ② 인증: DC가 사용자를 인증하고, 자원 접근 제어에 쓰이는 그룹 구성원 같은 권한 부여 데이터를 준다 ③ 트러스트: 도메인은 트러스트로 자기 포리스트 밖 도메인의 사용자에게도 인증을 넓힌다 ④ 복제: 도메인 서비스에 충분한 디렉터리 파티션을 DC끼리 복제하므로 한 도메인의 DC는 모두 대등하고 한 단위로 관리된다
+- Win32 **Domain Trees**: 도메인 트리는 같은 스키마와 구성을 쓰며 **연속된 이름 공간**(contiguous namespace)을 이루는 여러 도메인이고, 트리의 도메인은 트러스트로도 이어진다. AD는 트리 하나 이상의 묶음이다 — 첫머리.
+  Win32 **Searching Domain Contents**: 포리스트 안에서 도메인은 계층으로 놓인 도메인 트리를 이루고, 트리는 도메인 하나일 수도 자식 도메인을 가진 도메인일 수도 있다. 연속된 이름 공간이란 **자식 도메인의 이름이 부모의 이름 계층을 이어 간다**는 뜻이다 — 첫머리(예의 이름은 옮기지 않는다)
+- Win32 **Forests**: 포리스트는 **서로 연속된 이름 공간을 이루지 않는** 도메인 트리 하나 이상의 묶음이고, 포리스트의 모든 트리는 스키마·구성·글로벌 카탈로그를 함께 쓴다. 트리와 달리 포리스트에는 따로 된 이름이 필요 없고, 트러스트 계층의 뿌리에 있는 트리의 이름이 그 포리스트를 가리킨다 — 첫머리
+- **Selecting the Forest Root Domain**: 포리스트에 처음 배포한 도메인을 **포리스트 루트 도메인**이라 하고, 그 배포가 끝날 때까지 루트 도메인으로 남는다. Enterprise Admins·Schema Admins 그룹이 이 도메인에 있다 — 첫머리
+- **Planning Operations Master Role Placement**: AD DS는 디렉터리 데이터의 **다중 마스터 복제**를 지원한다 — 어느 DC든 디렉터리 변경을 받아 다른 모든 DC로 복제한다. 다만 스키마 변경 같은 몇몇 변경은 정해진 DC(작업 마스터)만 받는다. RODC는 데이터베이스가 읽기 전용이라 작업 마스터가 될 수 없다 — 첫머리, Note(작업 마스터 역할의 이름과 일은 가져오지 않는다).
+  Win32 「Replication and Data Integrity」: 다중 마스터 업데이트는 한 파티션의 모든 완전 복제본에 쓸 수 있다는 뜻이고, 그래서 일부 복제본이 동작하지 않아도 업데이트가 막히지 않는다. 바뀐 내용은 저절로 다른 복제본으로 퍼진다 — 첫머리
+- **Virtualized Domain Controller Deployment and Configuration**: 도메인이나 포리스트의 모든 DC를 한 하이퍼바이저 호스트에서 돌리지 말라고 한다 — 단일 장애 지점이 되어 도메인 전체에 DC를 하나만 둔 것과 다르지 않기 때문이고, **여러 플랫폼의 여러 DC가 중복성과 내결함성을 준다** — 「Virtualization safeguards」 Warning
+- **Planning Domain Controller Placement**: **RODC**(읽기 전용 도메인 컨트롤러)는 AD 데이터베이스의 읽기 전용 파티션을 갖는 DC다. 계정 암호를 뺀 모든 개체·속성을 쓰기 가능한 DC처럼 갖지만 그 데이터베이스는 고칠 수 없어서, 바꿀 일은 쓰기 가능한 DC에서 하고 RODC로 복제된다.
+  사용자가 적고 **물리 보안이 약하며** 허브와의 대역폭이 낮고 IT 인력이 적은 원격·지점에 두도록 설계됐다(Windows Server 2008에서 들어왔다) — 첫머리.
+  「Active Directory security groups」의 「Read-only Domain Controllers」: 물리 보안을 장담할 수 없는 곳(지점 등)에 DC를 쉽게 두게 하고, 기능은 읽기 전용 AD DS 데이터베이스·**단방향 복제**·자격 증명 캐싱·관리자 역할 분리·읽기 전용 DNS다. RODC 관리를 도메인 사용자·그룹에 맡길 수 있다
+- **한국어 이름**: 한국어판은 「Active Directory 도메인 서비스(AD DS)」(개요 첫 문단 — 문서 제목과 역할·마법사 이름은 「Active Directory Domain Services」를 영문 그대로 둔다), 「디렉터리」·「디렉터리 서비스」, 「도메인 컨트롤러」, 「읽기 전용 도메인 컨트롤러」·「읽기 전용 AD DS 데이터베이스」·「단방향 복제」·「자격 증명 캐싱」, 「다중 마스터 복제」,
+  「포리스트」·「도메인 트리」·「도메인」·「포리스트 루트 도메인」·「조직 구성 단위」, 「서버 관리자」·「역할 및 기능 추가」·「서버 역할 선택」·「이 서버를 도메인 컨트롤러로 승격」으로 옮기고, workgroup은 「작업 그룹」(「Add-Computer」·「Install AD DS」 한국어판), domain join은 「도메인에 컴퓨터를 가입」(「조인」도 섞인다)으로 옮긴다.
+  Win32 「Forests」 한국어판은 제목만 「숲」이고 본문은 「포리스트」다. **고른 이름**: 「Active Directory 도메인 서비스(AD DS)」, 「도메인 컨트롤러」(DC), 「읽기 전용 도메인 컨트롤러」(RODC), 「포리스트」·「트리」(도메인 트리)·「도메인」, workgroup은 **「작업 그룹」** — 한국어판이 이 말 하나로 일관되게 옮긴다(guide.md의 「워크그룹」 대신)
+
+쓰인 곳: (phase 80 step 2에서 쓰일 곳) `windows-ad.active-directory`(디렉터리와 디렉터리 서비스, 하는 일 — 로그온 인증과 디렉터리 개체의 접근 제어, 서버 관리자의 역할로 설치·DC로 승격, DNS로 DC를 찾는다·새 포리스트에서 DNS가 함께 설치된다, 작업 그룹과 도메인),
+`windows-ad.domain-controller`(DC가 사용자 계정과 자격 증명을 저장하고 인증한다, 같은 도메인의 DC끼리 복제 — 도메인 전체 사본, 다중 마스터, 여러 DC의 중복성, RODC, DC에는 「로컬 사용자 및 그룹」을 쓰지 않는다 — 앞 항목);
+(phase 80 step 3에서 쓰일 곳) `windows-ad.domain-tree-forest`(맨 위 그릇 포리스트·도메인·OU, 도메인이 맡는 일, 연속된 이름 공간의 트리, 연속되지 않은 트리들의 포리스트, 함께 쓰는 스키마·구성·글로벌 카탈로그 — 이름만, 도메인 이름은 DNS 이름, 포리스트 루트 도메인), `windows-ad.trust`(같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다);
+기출 대조(`exam-notes.md` 「phase 80 step 0」 문단)
+
+## (phase 80 step 0) Microsoft Learn — 트러스트: netdom trust, Credentials processes in Windows authentication, How trust relationships work for forests in Active Directory(Microsoft Entra Domain Services 문서); 지난 판 Understanding Trusts, Understanding Trust Types, Understanding Trust Direction, Understanding Trust Transitivity, Understanding When to Create an External Trust
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netdom-trust
+https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication
+https://learn.microsoft.com/en-us/entra/identity/domain-services/concepts-forest-trust
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731335(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc730798(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc731404(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc754612(v=ws.10)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732859(v=ws.10)
+
+2026-11-16에 IPv4로 내려받아 읽은 판: 「netdom trust」 `updated_at` 2025-10-22(`ms.date` 2025-06-09), 「Credentials processes in Windows authentication」 2026-02-16(2025-06-30) — 둘 다 「Applies to」 Windows Server 2016~2025.
+「How trust relationships work for forests in Active Directory」 2026-06-26(2025-06-30) — Microsoft Entra Domain Services 문서 묶음(`entra/identity/domain-services/`)에 있지만 본문의 앞 절들은 온프레미스 AD DS의 트러스트를 설명한다. **Entra Domain Services에만 해당하는 문장(관리형 도메인의 트러스트 방향·개수)은 쓰지 않는다**.
+**Windows Server 문서 묶음에서 트러스트의 방향·전이성·종류를 정의한 지금 판 문서는 찾지 못했다**(`windows-server/identity/ad-ds/manage/how-trusts-work` 같은 주소는 404다) — 그래서 지난 판 다섯(모두 `updated_at` 2021-11-12, `ms.date` 2012-07-03, 적용 대상 Windows Server 2008)을 쓰고, 지금 판 세 문서가 같은 말을 하는지 줄마다 적는다.
+한국어판(`ko-kr`)도 받았다(`updated_at` 2026-01-21~2026-11-07, 기계 번역 — 지난 판 다섯은 한국어판이 따로 없다).
+
+- **트러스트**: 도메인 사이에 맺는 관계이고, 한 도메인의 사용자가 **다른 도메인의 DC에게 인증받을 수 있게** 한다. 트러스트 관계는 Domain Admins 그룹의 구성원만 관리한다 — 지난 판 「Understanding Trusts」 「Trusts」, 「Trusts in Windows 2000 Server…」.
+  지금 판 「Credentials processes in Windows authentication」 「Local domains and trusted domains」가 같은 뜻을 적는다 — 두 도메인 사이에 트러스트가 있으면 각 도메인의 인증 장치는 상대 도메인에서 온 인증이 유효하다는 것에 기대고, 트러스트는 **자원 도메인(신뢰하는 도메인)**이 들어오는 인증 요청이 **신뢰받는 기관(신뢰받는 도메인)**에서 왔는지 확인해 공유 자원에 통제된 접근을 주게 돕는다 — 검증된 인증 요청만 도메인 사이를 건너게 하는 다리 구실이다
+- **신뢰하는 도메인(trusting)과 신뢰받는 도메인(trusted)**: 지금 판 「netdom trust」 — 신뢰받는 도메인은 신뢰를 받는 쪽이고, 신뢰하는 도메인은 다른 도메인(신뢰받는 도메인)을 신뢰해 **그 도메인의 사용자가 자기 자원에 접근하도록** 허락하는 쪽이다 — 「Parameters」(`/oneside`).
+  지난 판 「Understanding Trust Direction」: 신뢰하는 도메인은 사용자가 접근하려는 **자원이 있는 도메인**, 신뢰받는 도메인은 **사용자가 로그온하는 도메인**이다. 트러스트 관계에는 늘 이 두 도메인만 있고, 그림은 트러스트의 방향을 화살표로 나타낸다 — 「Trust Direction」
+- **방향**: 단방향 트러스트는 두 도메인 사이에 만든 한 방향의 인증 경로이고, 양방향 트러스트는 A가 B를, B가 A를 신뢰해 인증 요청이 두 방향으로 오가는 것이다 — 지난 판 「Understanding Trust Direction」, 지금 판 Entra 문서 「One-way and two-way trusts」(같은 내용).
+  지금 판 「Credentials processes」: 단방향은 **신뢰받는 도메인에서 신뢰하는 도메인의 자원으로** 접근을 주고, 양방향은 서로 상대 도메인의 자원으로 접근을 준다. 지금 판 Entra 문서 「Forest trusts」의 예: 포리스트 1(신뢰받는 쪽)과 포리스트 2(신뢰하는 쪽) 사이의 단방향 포리스트 트러스트에서 포리스트 1의 구성원은 포리스트 2의 자원에 접근하지만, 같은 트러스트로 포리스트 2의 구성원이 포리스트 1의 자원에 접근하지는 못한다.
+  **「트러스트의 방향과 접근의 방향이 반대다」를 한 문장으로 적은 곳은 찾지 못했다** — 위 정의와 예를 이으면 그렇게 된다(신뢰: 신뢰하는 쪽 → 신뢰받는 쪽, 접근: 신뢰받는 쪽의 사용자 → 신뢰하는 쪽의 자원).
+  두 문서의 「단방향 트러스트에서 A의 사용자가 B의 자원에 접근하고 B의 사용자는 A에 접근하지 못한다」는 문장은 A·B 가운데 어느 쪽이 신뢰하는지 말하지 않으므로 방향 규칙의 근거로 쓰지 않는다
+- **전이성**: 트러스트를 맺은 두 도메인 밖으로 트러스트를 넓힐 수 있는지를 정한다 — 전이적 트러스트는 다른 도메인으로 트러스트를 넓히는 데, 비전이적 트러스트는 다른 도메인으로 넓히지 않는 데 쓴다 — 지난 판 「Understanding Trust Transitivity」, 지금 판 Entra 문서 「Transitive and non-transitive trusts」(같은 내용).
+  지금 판 「Credentials processes」: 비전이적이면 두 파트너 도메인 사이에만 있고, 전이적이면 어느 한쪽이 신뢰하는 다른 도메인으로도 저절로 넓어진다. 지난 판 「Understanding Trusts」: 포리스트 안의 트러스트는 모두 양방향 전이적이라, A가 B를 신뢰하고 B가 C를 신뢰하면 C의 사용자도 (사용 권한을 받았을 때) A의 자원에 접근한다.
+  지난 판 「Understanding Trust Transitivity」: 비전이적 트러스트는 그 두 도메인에 묶여 포리스트의 다른 도메인으로 흐르지 않고, 기본은 단방향이며 단방향 둘로 양방향을 만들 수 있다 — 「Nontransitive trust」
+- **같은 포리스트 안에서 저절로 생기는 트러스트**: 포리스트에 새 도메인을 만들 때마다 새 도메인과 그 부모 도메인 사이에 **양방향 전이적 트러스트가 저절로** 만들어지고, 그 아래 자식 도메인이 더해지면 트러스트 경로가 도메인 계층을 따라 위로 이어져 트리의 모든 도메인 사이에 전이적 트러스트가 생긴다.
+  그래서 포리스트 어느 도메인의 계정도 포리스트의 다른 어느 도메인에서 인증받고, 적절한 사용 권한이 있으면 한 번의 로그온으로 어느 도메인의 자원에나 접근한다 — 지난 판 「Understanding Trust Transitivity」 「Transitive trust」, 지금 판 Entra 문서 「Trust relationship flows」(같은 내용), 지금 판 「Understanding the Active Directory Logical Model」(같은 포리스트의 도메인은 양방향 전이적 트러스트로 저절로 이어진다 — 앞 항목).
+  지금 판 Entra 문서의 그림 설명: 두 트리의 모든 도메인이 기본으로 전이적 트러스트를 가지므로 서로의 도메인 자원에 접근한다 — **자원에 적절한 사용 권한이 주어졌을 때**. **「트리 루트 트러스트」·「부모-자식 트러스트」라는 이름은 이 step이 읽은 Windows Server 문서에 없다** — 쓰지 않는다
+- **다른 포리스트와 잇는 트러스트**: 지난 판 「Understanding Trust Types」는 새 트러스트 마법사나 Netdom으로 만드는 트러스트를 넷으로 든다 — **외부 트러스트**(비전이적, 단방향·양방향 — Windows NT 4.0 도메인이나, 포리스트 트러스트로 이어지지 않은 다른 포리스트의 도메인과 맺는다), 영역(realm) 트러스트(Windows가 아닌 Kerberos 영역과),
+  **포리스트 트러스트**(전이적, 단방향·양방향 — 포리스트 사이의 자원 공유), 바로 가기(shortcut) 트러스트(전이적 — 같은 포리스트에서 두 트리에 나뉜 도메인 사이의 로그온 시간을 줄인다). 지난 판 「Understanding When to Create an External Trust」: 외부 트러스트를 맺으면 바깥 도메인의 보안 주체가 안쪽 도메인의 자원에 접근하고, 안쪽 도메인의 도메인 로컬 그룹 구성원이 될 수 있다.
+  지금 판 Entra 문서 「Forest trusts」: 포리스트 트러스트는 두 포리스트의 **포리스트 루트 도메인 사이에만** 만들고 단방향·양방향 전이적이며, 셋째 포리스트로 저절로 넓어지지 않는다(1–2, 2–3 사이에 있어도 1과 3은 서로 신뢰하지 않는다).
+  지금 판 「netdom trust」는 포리스트 트러스트를 netdom이 아니라 「Active Directory 도메인 및 트러스트」 스냅인으로 만든다고 적고(첫머리 Note), 선택적 인증 옵션이 「나가는 포리스트 트러스트와 외부 트러스트에서만」 유효하다고 적어(「Parameters」 `/selectiveauth`) **외부 트러스트라는 종류가 지금 판에도 있음**을 보인다
+- **관리 도구**: 「Active Directory 도메인 및 트러스트」(Active Directory Domains and Trusts)는 도메인 트러스트, 도메인·포리스트 기능 수준, UPN 접미사를 관리하는 MMC이고, Netdom·Nltest 명령으로도 트러스트를 찾고·보이고·만들고·고친다 — 지금 판 Entra 문서 「Management tools」, 「netdom trust」 첫머리
+- **트러스트와 사용 권한**: 트러스트는 인증을 받아들이게 할 뿐이고, 다른 도메인의 사용자가 자원에 접근하려면 **그 자원에 사용 권한이 주어져야 한다** — 위 「적절한 사용 권한이 있으면」 줄들(지난 판 「Understanding Trusts」·「Understanding Trust Transitivity」, 지금 판 Entra 문서 「Trust relationship flows」)
+- **한국어 이름**: 한국어판은 「트러스트」, 「단방향 트러스트」·「양방향 트러스트」, 「전이적 트러스트」·「비 전이적 트러스트」, 「포리스트 트러스트」, 「Active Directory 도메인 및 트러스트」로 옮긴다.
+  trusting·trusted는 「신뢰하는 포리스트」·「신뢰받는 포리스트」(Entra 문서 「Forest trusts」의 예), 「신뢰받는 도메인이 신뢰하는 도메인의 리소스에 접근」(「Credentials processes」의 단방향 설명)처럼 바로 옮긴 곳과, 두 쪽을 모두 「신뢰할 수 있는 도메인」으로 옮긴 곳이 섞인다 —
+  「Credentials processes」 한국어판은 resource domain (the trusting domain)을 「리소스 도메인(신뢰할 수 있는 도메인)」으로, 「netdom trust」 한국어판은 trusting domain의 이름 매개 변수를 「신뢰할 수 있는 도메인의 이름」으로 옮겼다. 절 제목 「Local domains and trusted domains」도 「로컬 도메인 및 신뢰할 수 있는 도메인」이다.
+  **고른 이름**: **「신뢰하는 도메인」(trusting)·「신뢰받는 도메인」(trusted)** — 한국어판이 뜻을 바로 옮긴 곳의 말이고, 「신뢰할 수 있는」은 두 쪽에 다 쓰여 둘을 가르지 못한다. 전이성은 한국어판대로 「전이적 트러스트」·「비전이적 트러스트」(한국어판의 「비 전이적」을 붙여 쓴다), 도구는 「Active Directory 도메인 및 트러스트」
+
+쓰인 곳: (phase 80 step 3에서 쓰일 곳) `windows-ad.trust`(트러스트의 정의, 신뢰하는 도메인 — 자원 쪽·신뢰받는 도메인 — 계정 쪽, 단방향·양방향과 접근의 방향, 전이적·비전이적, 같은 포리스트에서 저절로 생기는 양방향 전이적 트러스트, 포리스트 트러스트·외부 트러스트 한 줄씩, 「Active Directory 도메인 및 트러스트」, 사용 권한은 따로 준다),
+`windows-ad.domain-tree-forest`(트리의 도메인은 트러스트로 이어진다), 기출 대조(`exam-notes.md` 「phase 80 step 0」 문단 — [기출 2024-05-19 #34]·[기출 2025-08-24 #34], [기출 2024-08-25 #30]·[기출 2026-08-02 #36])
