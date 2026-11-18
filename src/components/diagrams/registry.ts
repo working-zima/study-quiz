@@ -142,6 +142,7 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
+import { HypervisorLayersDiagram } from './HypervisorLayersDiagram'
 import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
@@ -358,6 +359,7 @@ import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
 import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
 import { VirtualDirectoryDiagram } from './VirtualDirectoryDiagram'
+import { VirtualHardDiskDiagram } from './VirtualHardDiskDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -720,6 +722,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.ftp-server': IisFtpSiteDiagram,
   'windows-server-roles.remote-access': RemoteAccessServicesDiagram,
   'windows-server-roles.web-application-proxy': WebAppProxyDiagram,
+  'windows-hyperv.hyper-v': HypervisorLayersDiagram,
+  'windows-hyperv.virtual-machines': VirtualHardDiskDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

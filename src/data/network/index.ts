@@ -25,6 +25,7 @@ import tcpConnectionVisuals from './visuals/tcp-connection.json'
 import tcpUdpVisuals from './visuals/tcp-udp.json'
 import windowsAdVisuals from './visuals/windows-ad.json'
 import windowsAdminToolsVisuals from './visuals/windows-admin-tools.json'
+import windowsHypervVisuals from './visuals/windows-hyperv.json'
 import windowsServerRolesVisuals from './visuals/windows-server-roles.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
@@ -60,6 +61,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'linux-servers': linuxServersVisuals,
   'windows-ad': windowsAdVisuals,
   'windows-server-roles': windowsServerRolesVisuals,
+  'windows-hyperv': windowsHypervVisuals,
   'windows-admin-tools': windowsAdminToolsVisuals,
 }
 

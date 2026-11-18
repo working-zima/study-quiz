@@ -1,0 +1,100 @@
+{
+  "diagrams": {
+    "hypervisor-layers": {
+      "label": "호스트 HV01의 물리 하드웨어 위에 하이퍼바이저 Hyper-V가 놓이고, 그 위의 칸들에서 HV01의 Windows Server와 가상 컴퓨터 VM01·VM02의 게스트 운영 체제가 함께 실행되는 것을 보이는 도식",
+      "svgLabel": "HV01 박스 안에 아래부터 물리 하드웨어(CPU·메모리·디스크), 하이퍼바이저(Hyper-V)를 쌓고, 맨 위 줄에 Windows Server와 VM01·VM02를 나란히 그린 그림",
+      "question": "물리 서버 한 대에서 운영 체제 여럿이 어떻게 함께 실행될까?",
+      "idleCaption": "호스트 HV01 안의 층을 아래부터 쌓아 두었다. HV01·VM01·VM02는 예로 붙인 이름이다. 버튼을 고르면 호스트와 게스트가 무엇인지와, 두 가상 컴퓨터가 하드웨어를 어떻게 나눠 쓰는지 볼 수 있다.",
+      "legend": "아래 줄은 HV01의 물리 하드웨어, 가운데 줄은 하이퍼바이저인 Hyper-V이고, 맨 위 줄의 셋은 하이퍼바이저가 내준 칸에서 실행된다. 화살표는 가상 컴퓨터가 하이퍼바이저를 거쳐 하드웨어를 나눠 쓰는 것을 가리킨다.",
+      "nodes": {
+        "host-os": "Windows Server",
+        "vm01": "VM01",
+        "vm02": "VM02",
+        "hypervisor": "하이퍼바이저(Hyper-V)",
+        "hardware": "물리 하드웨어(CPU·메모리·디스크)"
+      },
+      "groups": {
+        "host": "HV01"
+      },
+      "notes": {
+        "guest-note": "자기 운영 체제를 실행한다",
+        "share-note": "하드웨어를 나눠 준다",
+        "host-note": "가상 컴퓨터를 실행하는 물리 컴퓨터"
+      },
+      "scenarios": [
+        {
+          "id": "host",
+          "label": "호스트",
+          "caption": "호스트 HV01은 가상 컴퓨터를 실행하는 물리 컴퓨터다. 하드웨어 바로 위에 하이퍼바이저인 Hyper-V가 놓이고, HV01에 설치한 Windows Server는 그 위의 한 칸에서 실행되며 Hyper-V 관리자로 가상 컴퓨터를 관리한다.",
+          "sources": [
+            "windows-hyperv.hyper-v"
+          ]
+        },
+        {
+          "id": "guest",
+          "label": "게스트",
+          "caption": "VM01과 VM02 안의 운영 체제가 게스트다. 두 게스트는 하이퍼바이저가 내준 서로 다른 칸에서 실행되어, 저마다 자기 컴퓨터를 가진 것처럼 따로 운영 체제를 실행한다.",
+          "sources": [
+            "windows-hyperv.hyper-v"
+          ]
+        },
+        {
+          "id": "share",
+          "label": "하드웨어 나눠 쓰기",
+          "caption": "두 가상 컴퓨터가 쓰는 CPU·메모리·디스크는 모두 HV01의 하드웨어이고, 하이퍼바이저가 그것을 두 가상 컴퓨터에 나눠 준다. 그래서 서버 여러 대의 일을 HV01 한 대에 모으면 HV01의 하드웨어가 더 많이 쓰인다.",
+          "sources": [
+            "windows-hyperv.hyper-v"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.hyper-v"
+      ]
+    },
+    "virtual-hard-disk": {
+      "label": "가상 컴퓨터 VM01이 갖는 가상 장치(가상 프로세서·가상 네트워크 어댑터·메모리·가상 하드 디스크)와, 그 가상 하드 디스크가 호스트 HV01에 놓인 파일 D:\\VMs\\VM01.vhdx 하나라는 것을 보이는 도식",
+      "svgLabel": "HV01 박스 안에 VM01 박스를 두고, VM01 박스 안에 가상 프로세서·가상 네트워크 어댑터·메모리·가상 하드 디스크를 두 줄로, VM01 박스 밖 HV01 박스 안에 파일 D:\\VMs\\VM01.vhdx를 그린 그림",
+      "question": "가상 컴퓨터의 디스크는 실제로 어디에 있을까?",
+      "idleCaption": "호스트 HV01에서 실행되는 가상 컴퓨터 VM01과, HV01에 놓인 파일 하나를 그려 두었다. 이름과 경로는 예로 붙인 것이다. 버튼을 고르면 VM01이 갖는 가상 장치와, 그 디스크가 실제로 어디에 있는지 볼 수 있다.",
+      "legend": "바깥 박스는 호스트 HV01, 안쪽 박스는 가상 컴퓨터 VM01이다. 화살표는 VM01의 가상 하드 디스크에서, 그 내용이 실제로 적히는 HV01의 파일로 간다.",
+      "nodes": {
+        "vcpu": "가상 프로세서",
+        "vnic": "가상 네트워크 어댑터",
+        "memory": "메모리",
+        "vdisk": "가상 하드 디스크",
+        "file": "D:\\VMs\\VM01.vhdx"
+      },
+      "groups": {
+        "host": "HV01",
+        "vm": "VM01"
+      },
+      "notes": {
+        "devices-note": "소프트웨어로 흉내 낸 가상 장치",
+        "file-note": "호스트에 놓인 파일 하나"
+      },
+      "scenarios": [
+        {
+          "id": "devices",
+          "label": "가상 장치",
+          "caption": "VM01도 실제 컴퓨터처럼 CPU·메모리·디스크·네트워크 연결을 갖지만, 모두 소프트웨어로 흉내 낸 가상 장치다. 이 장치들이 일을 하려면 결국 HV01의 실제 하드웨어를 써야 한다.",
+          "sources": [
+            "windows-hyperv.virtual-machines"
+          ]
+        },
+        {
+          "id": "file",
+          "label": "디스크 파일",
+          "caption": "VM01의 가상 하드 디스크는 HV01의 D: 드라이브에 놓인 파일 VM01.vhdx 하나다. 파일 이름이 .vhdx로 끝나 VHDX 형식이고, VM01의 게스트가 디스크에 저장하는 내용은 모두 이 파일 안에 적힌다.",
+          "sources": [
+            "windows-hyperv.virtual-machines"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.virtual-machines"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
