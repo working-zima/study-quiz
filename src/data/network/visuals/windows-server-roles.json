@@ -95,6 +95,99 @@
       "sources": [
         "windows-server-roles.server-static-ip"
       ]
+    },
+    "smb-share-access": {
+      "label": "PC01이 \\\\SRV01\\Data로 SRV01의 공유 폴더 Data를 열 때와 SRV01이 공유한 프린터로 인쇄할 때, 두 컴퓨터 사이의 요청이 TCP/IP 위에서 동작하는 SMB로 오가는 것을 보이는 도식",
+      "svgLabel": "PC01과 SRV01 박스 사이에 SMB 칸과 그 아래 TCP/IP 칸을 쌓고, SRV01 박스 안에 공유 폴더 Data와 공유 프린터를 그린 그림",
+      "question": "다른 PC는 서버의 공유 폴더와 프린터를 어떻게 쓸까?",
+      "idleCaption": "PC01이 SRV01의 공유 자원을 쓸 때 두 컴퓨터 사이에 쓰는 통신 규칙을 SMB와 그 아래 TCP/IP로 쌓아 두었다. PC01·SRV01과 공유 이름 Data는 예로 붙인 이름이다. 버튼을 고르면 PC01의 요청이 어느 공유에 닿는지 볼 수 있다.",
+      "legend": "SMB 칸이 TCP/IP 칸 위에 놓인 것은 SMB가 TCP/IP 위에서 동작한다는 뜻이다. SRV01 박스 안의 둘은 SRV01이 공유한 자원이고, 화살표는 PC01의 요청이 가는 길이다.",
+      "nodes": {
+        "pc01": "PC01",
+        "smb": "SMB",
+        "tcpip": "TCP/IP",
+        "share-data": "공유 폴더 Data",
+        "printer": "공유 프린터"
+      },
+      "groups": {
+        "server": "SRV01"
+      },
+      "notes": {
+        "unc-note": "\\\\SRV01\\Data",
+        "port-note": "TCP 445번",
+        "print-note": "공유 프린터로 인쇄"
+      },
+      "scenarios": [
+        {
+          "id": "file",
+          "label": "공유 폴더",
+          "caption": "PC01에서 \\\\SRV01\\Data를 열면 PC01의 SMB 클라이언트가 SRV01의 TCP 445번 포트로 연결을 맺는다. SMB가 TCP/IP 위에서 요청과 응답을 주고받으므로, PC01은 공유 폴더 Data의 파일을 열어 고치고 그 자리에 저장한다.",
+          "sources": [
+            "windows-server-roles.file-print-services"
+          ]
+        },
+        {
+          "id": "print",
+          "label": "공유 프린터",
+          "caption": "SRV01이 자기에게 이어진 프린터를 공유하면 PC01도 같은 SMB로 그 공유 프린터에 이어 인쇄한다. SRV01에 인쇄 서버 역할 서비스가 있으면 SRV01은 그 프린터의 인쇄 대기열을 살피다가, 인쇄 작업을 처리하지 못하게 되면 알려 준다.",
+          "sources": [
+            "windows-server-roles.file-print-services"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.file-print-services"
+      ]
+    },
+    "dhcp-scope-range": {
+      "label": "SRV01의 범위 192.0.2.100~192.0.2.199 가운데 제외 범위 192.0.2.100~192.0.2.109의 10개는 어느 클라이언트에게도 주지 않고, 나머지 192.0.2.110~192.0.2.199의 90개 가운데 하나를 PC01에게 임대 기간 3일 동안 빌려주는 것을 보이는 도식",
+      "svgLabel": "SRV01의 범위 박스 안에 제외 범위 192.0.2.100~192.0.2.109 칸과 나머지 192.0.2.110~192.0.2.199 칸을 그리고, 박스 밖에 PC01을 그린 그림",
+      "question": "범위를 만들면 어느 주소가 클라이언트에게 갈까?",
+      "idleCaption": "SRV01에 만든 범위 하나를 제외 범위와 나머지로 나눠 두었다. SRV01과 PC01은 예로 붙인 이름이고, 두 구간과 임대 기간 3일은 예로 고른 값이다. 버튼을 고르면 범위·제외 범위·나눠 주는 주소가 저마다 무엇인지 볼 수 있다.",
+      "legend": "큰 박스가 SRV01의 범위이고, 그 안의 두 칸은 범위를 제외 범위와 나머지로 나눈 것이다. 화살표는 SRV01이 나머지 칸의 주소 하나를 PC01에게 빌려주는 방향이다.",
+      "nodes": {
+        "excluded": "192.0.2.100~192.0.2.109",
+        "leasable": "192.0.2.110~192.0.2.199",
+        "pc01": "PC01"
+      },
+      "groups": {
+        "scope": "SRV01의 범위 · 192.0.2.100~192.0.2.199"
+      },
+      "notes": {
+        "range-note": "100개",
+        "excl-note": "주지 않는 10개",
+        "lease-note": "나눠 주는 90개",
+        "term-note": "3일 동안 빌려준다"
+      },
+      "scenarios": [
+        {
+          "id": "range",
+          "label": "범위",
+          "caption": "범위는 SRV01이 한 서브넷의 클라이언트에게 나눠 줄 주소의 구간이다. 이 예에서는 192.0.2.100부터 192.0.2.199까지 끊김 없이 이어진 100개이고, 199 − 100 + 1로 센다. 제외할 주소도 이 구간 안에서 고른다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        },
+        {
+          "id": "exclude",
+          "label": "제외 범위",
+          "caption": "제외 범위 192.0.2.100~192.0.2.109의 10개는 범위 안에 있지만 SRV01이 어느 클라이언트에게도 주지 않는다. 관리자가 장치에 손으로 넣는 고정 IP 주소를 이 구간에서 고르면 DHCP가 나눠 주는 주소와 겹치지 않는다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        },
+        {
+          "id": "lease",
+          "label": "나눠 주는 주소",
+          "caption": "범위 100개에서 제외 범위 10개를 빼면 나눠 줄 수 있는 주소는 192.0.2.110~192.0.2.199의 90개다. 새로 이어진 PC01은 이 가운데 아직 빌려주지 않은 주소 하나를 임대 기간 3일 동안 빌려 쓴다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-server-role"
+      ]
     }
   },
   "tables": {},

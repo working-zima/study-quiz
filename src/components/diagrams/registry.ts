@@ -70,6 +70,7 @@ import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DhcpScopeRangeDiagram } from './DhcpScopeRangeDiagram'
 import { DirectoryListingDiagram } from './DirectoryListingDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
@@ -296,6 +297,7 @@ import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SipCallDiagram } from './SipCallDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
+import { SmbShareAccessDiagram } from './SmbShareAccessDiagram'
 import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
 import { SnmpPollTrapDiagram } from './SnmpPollTrapDiagram'
 import { SnmpRolesDiagram } from './SnmpRolesDiagram'
@@ -696,6 +698,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.password-lockout-policy': AccountLockoutDiagram,
   'windows-server-roles.server-roles-features': RoleServiceFeatureDiagram,
   'windows-server-roles.server-static-ip': ServerStaticIpDiagram,
+  'windows-server-roles.file-print-services': SmbShareAccessDiagram,
+  'windows-server-roles.dhcp-server-role': DhcpScopeRangeDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
