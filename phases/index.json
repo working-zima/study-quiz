@@ -406,6 +406,10 @@
       "completed_at": "2026-11-16T18:03:43+0900"
     },
     {
+      "dir": "81-network-windows-server-roles-hyperv",
+      "status": "pending"
+    },
+    {
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"

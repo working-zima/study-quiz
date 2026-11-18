@@ -1,0 +1,81 @@
+{
+  "project": "Study Quiz",
+  "phase": "81-network-windows-server-roles-hyperv",
+  "steps": [
+    {
+      "step": 0,
+      "name": "roles-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "roles-features-static-ip",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "file-print-dhcp-scope",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "dhcp-reservation-failover",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "roles-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "iis-sites-bindings",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "home-directory-request-filtering",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "iis-logging-ftp",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "remote-access-wap",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "hyperv-sources",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "hyperv-vms",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "virtual-switch-checkpoints",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "live-storage-migration",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "replica-containers",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "base-images-readthrough",
+      "status": "pending"
+    }
+  ]
+}
