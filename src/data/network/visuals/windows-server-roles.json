@@ -1,0 +1,654 @@
+{
+  "diagrams": {
+    "role-service-feature": {
+      "label": "서버 SRV01에 설치하는 서버 역할(웹 서버(IIS)와 그 안의 역할 서비스 FTP 서버, DHCP 서버)과 기능(BitLocker 드라이브 암호화)이 무엇이 다른지와, 역할 및 기능 추가 마법사와 Install-WindowsFeature가 같은 설치를 하는 것을 보이는 도식",
+      "svgLabel": "위에 설치하는 두 자리인 역할 및 기능 추가 마법사와 Install-WindowsFeature를, 그 아래 SRV01 박스 안에 서버 역할 박스(웹 서버(IIS)와 그 아래의 FTP 서버, DHCP 서버)와 기능 박스(BitLocker 드라이브 암호화)를 그린 그림",
+      "question": "서버에 무엇을 설치하면 어떤 일을 맡게 될까?",
+      "idleCaption": "SRV01에 설치할 수 있는 구성 요소를 서버 역할과 기능으로 나눠 두었다. SRV01은 예로 붙인 이름이다. 버튼을 고르면 역할과 역할 서비스, 기능이 저마다 무엇을 맡는지와 설치하는 두 자리를 볼 수 있다.",
+      "legend": "SRV01 박스 안의 위 박스는 서버 역할이고, 웹 서버(IIS)에서 선으로 이어진 FTP 서버는 그 역할 안에서 고르는 역할 서비스다. 아래 박스는 기능이다. 화살표는 설치하는 자리에서 SRV01로 간다.",
+      "nodes": {
+        "wizard": "역할 및 기능 추가 마법사",
+        "cmdlet": "Install-WindowsFeature",
+        "role-iis": "웹 서버(IIS)",
+        "role-dhcp": "DHCP 서버",
+        "svc-ftp": "FTP 서버",
+        "feat-bitlocker": "BitLocker 드라이브 암호화"
+      },
+      "groups": {
+        "server": "SRV01",
+        "roles": "서버 역할",
+        "features": "기능"
+      },
+      "notes": {
+        "role-note": "다른 컴퓨터에게 해 주는 일",
+        "svc-note": "역할 안에서 고른다",
+        "feature-note": "서버 자신의 일을 돕는다",
+        "install-note": "같은 일을 한다"
+      },
+      "scenarios": [
+        {
+          "id": "role",
+          "label": "역할",
+          "caption": "서버 역할은 서버가 네트워크의 다른 컴퓨터에게 해 주는 주된 일이다. DHCP 서버는 장치들에게 IP 주소를 나눠 주고 웹 서버(IIS)는 웹 페이지를 보내 준다. FTP 서버는 웹 서버(IIS) 역할 안에서 골라 넣는 역할 서비스다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        },
+        {
+          "id": "feature",
+          "label": "기능",
+          "caption": "BitLocker 드라이브 암호화는 어느 역할에도 속하지 않는 기능이다. 서버의 저장 공간을 통째로 암호화해 디스크를 떼어 가도 데이터를 읽지 못하게 하는 식으로, 서버 자신의 일을 돕는다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        },
+        {
+          "id": "install",
+          "label": "설치하는 자리",
+          "caption": "역할 및 기능 추가 마법사에서 고르든, PowerShell에서 Install-WindowsFeature 뒤에 설치 이름을 적든 SRV01에는 같은 것이 설치된다. 다만 이 cmdlet은 -IncludeManagementTools를 붙여야 관리 도구도 함께 설치한다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.server-roles-features"
+      ]
+    },
+    "server-static-ip": {
+      "label": "SRV01에 고정 IP 주소 192.0.2.10을 넣으면 그 주소가 그대로 남아 PC01이 계속 그 주소로 찾아오고, ipconfig /renew를 입력하면 DHCP 서버가 정한 주소를 다시 받을 뿐인 것을 견주는 도식",
+      "svgLabel": "위에 SRV01이 있고, 왼쪽 아래에 고정 주소 192.0.2.10과 그 주소로 찾아오는 PC01이, 오른쪽 아래에 DHCP 서버와 DHCP 서버가 정한 주소가 있는 그림",
+      "question": "서버의 주소는 왜 바뀌지 않게 두어야 할까?",
+      "idleCaption": "SRV01이 주소를 갖는 두 길을 왼쪽과 오른쪽에 나눠 두었다. SRV01과 PC01은 예로 붙인 이름이고, 192.0.2.10은 문서의 예로 쓰라고 남겨 둔 주소다. 버튼을 고르면 각 길에서 SRV01의 주소가 어떻게 되는지 볼 수 있다.",
+      "legend": "왼쪽은 관리자가 주소를 직접 넣는 길이고, 오른쪽은 ipconfig /renew를 입력하는 길이다. 화살표 옆의 곁말이 그 화살표가 하는 일을 말한다.",
+      "nodes": {
+        "server": "SRV01",
+        "static-ip": "고정 주소 · 192.0.2.10",
+        "pc01": "PC01",
+        "dhcp-server": "DHCP 서버",
+        "renew-ip": "DHCP 서버가 정한 주소"
+      },
+      "notes": {
+        "set-note": "다음 IP 주소 사용",
+        "find-note": "이 주소로 찾아온다",
+        "request-note": "ipconfig /renew",
+        "give-note": "다시 준다"
+      },
+      "scenarios": [
+        {
+          "id": "static",
+          "label": "고정 주소",
+          "caption": "SRV01의 「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」에서 「다음 IP 주소 사용」을 골라 192.0.2.10을 넣으면, 관리자가 바꾸지 않는 한 SRV01의 주소는 그대로다. 그래서 이 주소를 「기본 설정 DNS 서버」 칸에 적어 둔 PC01이 계속 SRV01을 찾아온다.",
+          "sources": [
+            "windows-server-roles.server-static-ip"
+          ]
+        },
+        {
+          "id": "renew",
+          "label": "ipconfig /renew",
+          "caption": "SRV01에서 ipconfig /renew를 입력하면 DHCP 서버에게서 주소와 설정 값을 다시 받을 뿐이다. 어떤 주소를 줄지는 DHCP 서버가 정하고, SRV01은 여전히 DHCP로 주소를 받는 상태로 남아 고정 IP 주소가 되지 않는다.",
+          "sources": [
+            "windows-server-roles.server-static-ip"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.server-static-ip"
+      ]
+    },
+    "smb-share-access": {
+      "label": "PC01이 \\\\SRV01\\Data로 SRV01의 공유 폴더 Data를 열 때와 SRV01이 공유한 프린터로 인쇄할 때, 두 컴퓨터 사이의 요청이 TCP/IP 위에서 동작하는 SMB로 오가는 것을 보이는 도식",
+      "svgLabel": "PC01과 SRV01 박스 사이에 SMB 칸과 그 아래 TCP/IP 칸을 쌓고, SRV01 박스 안에 공유 폴더 Data와 공유 프린터를 그린 그림",
+      "question": "다른 PC는 서버의 공유 폴더와 프린터를 어떻게 쓸까?",
+      "idleCaption": "PC01이 SRV01의 공유 자원을 쓸 때 두 컴퓨터 사이에 쓰는 통신 규칙을 SMB와 그 아래 TCP/IP로 쌓아 두었다. PC01·SRV01과 공유 이름 Data는 예로 붙인 이름이다. 버튼을 고르면 PC01의 요청이 어느 공유에 닿는지 볼 수 있다.",
+      "legend": "SMB 칸이 TCP/IP 칸 위에 놓인 것은 SMB가 TCP/IP 위에서 동작한다는 뜻이다. SRV01 박스 안의 둘은 SRV01이 공유한 자원이고, 화살표는 PC01의 요청이 가는 길이다.",
+      "nodes": {
+        "pc01": "PC01",
+        "smb": "SMB",
+        "tcpip": "TCP/IP",
+        "share-data": "공유 폴더 Data",
+        "printer": "공유 프린터"
+      },
+      "groups": {
+        "server": "SRV01"
+      },
+      "notes": {
+        "unc-note": "\\\\SRV01\\Data",
+        "port-note": "TCP 445번",
+        "print-note": "공유 프린터로 인쇄"
+      },
+      "scenarios": [
+        {
+          "id": "file",
+          "label": "공유 폴더",
+          "caption": "PC01에서 \\\\SRV01\\Data를 열면 PC01의 SMB 클라이언트가 SRV01의 TCP 445번 포트로 연결을 맺는다. SMB가 TCP/IP 위에서 요청과 응답을 주고받으므로, PC01은 공유 폴더 Data의 파일을 열어 고치고 그 자리에 저장한다.",
+          "sources": [
+            "windows-server-roles.file-print-services"
+          ]
+        },
+        {
+          "id": "print",
+          "label": "공유 프린터",
+          "caption": "SRV01이 자기에게 이어진 프린터를 공유하면 PC01도 같은 SMB로 그 공유 프린터에 이어 인쇄한다. SRV01에 인쇄 서버 역할 서비스가 있으면 SRV01은 그 프린터의 인쇄 대기열을 살피다가, 인쇄 작업을 처리하지 못하게 되면 알려 준다.",
+          "sources": [
+            "windows-server-roles.file-print-services"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.file-print-services"
+      ]
+    },
+    "dhcp-scope-range": {
+      "label": "SRV01의 범위 192.0.2.100~192.0.2.199 가운데 제외 범위 192.0.2.100~192.0.2.109의 10개는 어느 클라이언트에게도 주지 않고, 나머지 192.0.2.110~192.0.2.199의 90개 가운데 하나를 PC01에게 임대 기간 3일 동안 빌려주는 것을 보이는 도식",
+      "svgLabel": "SRV01의 범위 박스 안에 제외 범위 192.0.2.100~192.0.2.109 칸과 나머지 192.0.2.110~192.0.2.199 칸을 그리고, 박스 밖에 PC01을 그린 그림",
+      "question": "범위를 만들면 어느 주소가 클라이언트에게 갈까?",
+      "idleCaption": "SRV01에 만든 범위 하나를 제외 범위와 나머지로 나눠 두었다. SRV01과 PC01은 예로 붙인 이름이고, 두 구간과 임대 기간 3일은 예로 고른 값이다. 버튼을 고르면 범위·제외 범위·나눠 주는 주소가 저마다 무엇인지 볼 수 있다.",
+      "legend": "큰 박스가 SRV01의 범위이고, 그 안의 두 칸은 범위를 제외 범위와 나머지로 나눈 것이다. 화살표는 SRV01이 나머지 칸의 주소 하나를 PC01에게 빌려주는 방향이다.",
+      "nodes": {
+        "excluded": "192.0.2.100~192.0.2.109",
+        "leasable": "192.0.2.110~192.0.2.199",
+        "pc01": "PC01"
+      },
+      "groups": {
+        "scope": "SRV01의 범위 · 192.0.2.100~192.0.2.199"
+      },
+      "notes": {
+        "range-note": "100개",
+        "excl-note": "주지 않는 10개",
+        "lease-note": "나눠 주는 90개",
+        "term-note": "3일 동안 빌려준다"
+      },
+      "scenarios": [
+        {
+          "id": "range",
+          "label": "범위",
+          "caption": "범위는 SRV01이 한 서브넷의 클라이언트에게 나눠 줄 주소의 구간이다. 이 예에서는 192.0.2.100부터 192.0.2.199까지 끊김 없이 이어진 100개이고, 199 − 100 + 1로 센다. 제외할 주소도 이 구간 안에서 고른다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        },
+        {
+          "id": "exclude",
+          "label": "제외 범위",
+          "caption": "제외 범위 192.0.2.100~192.0.2.109의 10개는 범위 안에 있지만 SRV01이 어느 클라이언트에게도 주지 않는다. 관리자가 장치에 손으로 넣는 고정 IP 주소를 이 구간에서 고르면 DHCP가 나눠 주는 주소와 겹치지 않는다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        },
+        {
+          "id": "lease",
+          "label": "나눠 주는 주소",
+          "caption": "범위 100개에서 제외 범위 10개를 빼면 나눠 줄 수 있는 주소는 192.0.2.110~192.0.2.199의 90개다. 새로 이어진 PC01은 이 가운데 아직 빌려주지 않은 주소 하나를 임대 기간 3일 동안 빌려 쓴다.",
+          "sources": [
+            "windows-server-roles.dhcp-server-role"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-server-role"
+      ]
+    },
+    "dhcp-reservation": {
+      "label": "SRV01의 범위 192.0.2.100~192.0.2.199에서 MAC 주소가 00-00-5E-00-53-01인 프린터는 예약한 192.0.2.150을 늘 받고, 예약이 없는 PC01은 남은 89개 가운데 하나를 받는 것을 보이는 도식",
+      "svgLabel": "SRV01의 범위 박스 안에 MAC 주소 00-00-5E-00-53-01 칸과 예약 주소 192.0.2.150 칸, 192.0.2.110~192.0.2.199 칸을 그리고, 박스 밖에 프린터와 PC01을 그린 그림",
+      "question": "예약한 장치는 어떻게 늘 같은 주소를 받을까?",
+      "idleCaption": "SRV01의 범위에 프린터의 몫으로 192.0.2.150을 예약해 두었다. 00-00-5E-00-53-01은 문서의 예로 쓰라고 남겨 둔 MAC 주소이고, 192.0.2.150은 예로 고른 주소다. 버튼을 고르면 예약한 장치와 다른 장치가 저마다 어느 주소를 받는지 볼 수 있다.",
+      "legend": "큰 박스가 SRV01의 범위이고, 위 줄은 MAC 주소와 그 MAC 주소에 예약한 주소, 아래 칸은 나눠 줄 수 있는 주소다. MAC 주소에서 예약한 주소로 가는 화살표는 예약을 찾는 것이고, 프린터나 PC01로 가는 화살표는 SRV01이 주소를 주는 방향이다.",
+      "nodes": {
+        "mac": "00-00-5E-00-53-01",
+        "reserved": "192.0.2.150",
+        "pool": "192.0.2.110~192.0.2.199",
+        "printer": "프린터",
+        "pc01": "PC01"
+      },
+      "groups": {
+        "scope": "SRV01의 범위 · 192.0.2.100~192.0.2.199"
+      },
+      "notes": {
+        "reserved-note": "늘 192.0.2.150",
+        "other-note": "남은 89개 가운데 하나"
+      },
+      "scenarios": [
+        {
+          "id": "reserved",
+          "label": "예약한 장치",
+          "caption": "프린터가 주소를 청하면 SRV01은 요청에 든 MAC 주소 00-00-5E-00-53-01로 예약을 찾아, 비어 있는 주소 가운데 아무것이나 고르지 않고 예약한 192.0.2.150을 준다. 프린터는 주소를 자동으로 받도록 둔 채라 이 주소도 DHCP로 받는다.",
+          "sources": [
+            "windows-server-roles.dhcp-reservation"
+          ]
+        },
+        {
+          "id": "other",
+          "label": "다른 장치",
+          "caption": "예약이 없는 PC01은 나눠 줄 수 있는 192.0.2.110~192.0.2.199 가운데 아직 빌려주지 않은 주소 하나를 받는다. 192.0.2.150은 프린터의 몫이라 PC01에게 가지 않으므로, 남은 주소는 90개에서 하나 줄어든 89개다.",
+          "sources": [
+            "windows-server-roles.dhcp-reservation"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-reservation"
+      ]
+    },
+    "dhcp-failover": {
+      "label": "SRV01과 SRV02가 부하 분산 방식으로 한 범위를 함께 맡다가 SRV01이 멈추면, SRV02가 SRV01의 몫이던 PC01의 임대를 임대 기간 3일이 아니라 MCLT 1시간만 늘려 15:30까지 쓰게 하는 것을 보이는 도식",
+      "svgLabel": "SRV01과 SRV02, 두 서버 사이의 화살표 둘, PC01, 그리고 MCLT 1시간 · 15:30까지라고 적은 임시 임대 칸을 그린 그림",
+      "question": "DHCP 서버 한 대가 멈추면 클라이언트의 임대는 어떻게 될까?",
+      "idleCaption": "SRV01과 SRV02가 한 범위를 부하 분산 방식의 장애 조치로 함께 맡고, PC01은 SRV01의 몫인 클라이언트다. SRV01·SRV02·PC01은 예로 붙인 이름이고, MCLT는 기본값 1시간, 임대 기간 3일과 시각들은 예로 고른 값이다. 버튼을 고르면 평소와 한 대가 멈췄을 때를 견줄 수 있다.",
+      "legend": "두 서버 사이의 두 화살표는 임대 정보를 서로 나눠 갖는 것이고, PC01로 가는 화살표는 주소를 빌려주는 방향이다. 한 대가 멈췄을 때는 PC01의 갱신 요청이 SRV02로 가고, SRV02가 내준 임시 임대가 맨 아래 칸이다.",
+      "nodes": {
+        "srv01": "SRV01",
+        "srv02": "SRV02",
+        "pc01": "PC01",
+        "result": "MCLT 1시간 · 15:30까지"
+      },
+      "notes": {
+        "sync-note": "임대 정보를 나눠 갖는다",
+        "down-note": "멈춤",
+        "request-note": "14:30 요청"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "평소에는 SRV01과 SRV02가 부하 분산 방식으로 한 범위를 함께 맡고, 빌려준 임대의 정보까지 서로 나눠 갖는다. 클라이언트는 MAC 주소로 두 서버의 몫에 나뉘고, PC01은 SRV01의 몫이라 SRV01에게서 주소를 빌린다.",
+          "sources": [
+            "windows-server-roles.dhcp-failover"
+          ]
+        },
+        {
+          "id": "partner-down",
+          "label": "한 대가 멈춤",
+          "caption": "14:00에 SRV01이 멈춘 뒤 14:30에 PC01의 갱신 요청이 SRV02에 닿으면, SRV02는 PC01이 쓰던 주소를 임대 기간 3일이 아니라 MCLT 1시간만 늘려 준다. 그래서 이 임시 임대는 14:30 + 1시간 = 15:30에 끝난다.",
+          "sources": [
+            "windows-server-roles.dhcp-failover"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-failover"
+      ]
+    },
+    "iis-site-pool": {
+      "label": "SRV01에 웹 서버(IIS)를 설치하면 생기는 Default Web Site와 새로 만든 사이트 www.example.com이 응용 프로그램 풀 DefaultAppPool을 함께 쓰고, 웹 브라우저의 요청은 사이트가 받아 풀의 작업자 프로세스가 처리하며, 관리자는 IIS 관리자로 이를 설정하는 것을 보이는 도식",
+      "svgLabel": "위에 웹 브라우저와 IIS 관리자를, 아래 SRV01 박스 안에 사이트 www.example.com과 Default Web Site를 한 줄로, 그 아래 응용 프로그램 풀 DefaultAppPool을 그린 그림",
+      "question": "IIS에서 사이트와 응용 프로그램 풀은 어떻게 이어질까?",
+      "idleCaption": "SRV01의 IIS에 사이트 둘과 응용 프로그램 풀 하나를 두었다. SRV01과 www.example.com은 예로 붙인 이름이고, Default Web Site와 DefaultAppPool은 IIS를 설치하면 생긴다. 버튼을 고르면 요청을 누가 받고 처리하는지, 관리자가 어디서 설정하는지 볼 수 있다.",
+      "legend": "SRV01 박스 안의 위 줄은 사이트이고 아래 칸은 응용 프로그램 풀이다. 사이트에서 풀로 가는 화살표는 그 사이트를 맡은 풀을 가리킨다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "manager": "IIS 관리자",
+        "www-site": "www.example.com",
+        "default-site": "Default Web Site",
+        "pool": "DefaultAppPool"
+      },
+      "groups": {
+        "server": "SRV01"
+      },
+      "notes": {
+        "request-note": "www.example.com 요청",
+        "worker-note": "작업자 프로세스가 처리한다",
+        "manage-note": "사이트와 풀을 설정한다"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "요청",
+          "caption": "웹 브라우저가 www.example.com을 요청하면 바인딩이 그 요청에 맞는 사이트 www.example.com이 요청을 받는다. 이 사이트를 맡은 응용 프로그램 풀 DefaultAppPool의 작업자 프로세스가 그 요청을 처리한다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        },
+        {
+          "id": "shared",
+          "label": "같은 풀",
+          "caption": "Default Web Site와 www.example.com이 모두 DefaultAppPool을 쓰면 풀 하나가 두 사이트를 맡아, 그 풀의 작업자 프로세스가 두 사이트의 요청을 함께 처리한다. 사이트마다 풀을 따로 두면 한 풀의 문제가 다른 풀의 사이트에 번지지 않는다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        },
+        {
+          "id": "manage",
+          "label": "관리",
+          "caption": "관리자는 실행 창에 inetmgr를 적어 IIS 관리자를 열고, SRV01에 사이트를 더하고 바인딩을 정하며, 응용 프로그램 풀을 만들고 사이트를 어느 풀에 맡길지 고른다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis"
+      ]
+    },
+    "site-bindings": {
+      "label": "같은 서버의 사이트 www.example.com과 shop.example.com이 바인딩의 형식 http·IP 주소 *·포트 80을 같이 쓰고 호스트 이름만 달라, Host 헤더가 다른 두 요청이 호스트 이름이 맞는 사이트로 넘겨지는 것을 보이는 도식",
+      "svgLabel": "사이트 박스 둘에 바인딩의 형식·IP 주소·포트·호스트 이름을 칸 이름과 값으로 적고, Host 헤더가 다른 요청 둘을 각 사이트 박스로 잇는 그림",
+      "question": "같은 주소와 포트로 온 요청을 IIS는 어느 사이트로 보낼까?",
+      "idleCaption": "한 IIS 서버에 둔 두 사이트의 바인딩 네 값을 「칸 이름: 값」으로 적었다. www.example.com과 shop.example.com은 문서의 예로 쓰라고 남겨 둔 이름 아래에 붙인 예다. 버튼을 고르면 Host 헤더가 다른 두 요청이 어느 사이트로 가는지 볼 수 있다.",
+      "legend": "IP 주소의 *는 할당되지 않은 모든 항목, 곧 서버의 어느 IP 주소로 온 요청이든 받는다는 뜻이다. 화살표는 IIS가 요청을 넘기는 사이트를 가리킨다.",
+      "nodes": {
+        "www-type": "형식: http",
+        "www-ip": "IP 주소: *",
+        "www-port": "포트: 80",
+        "www-host": "호스트 이름: www.example.com",
+        "req-www": "Host: www.example.com",
+        "req-shop": "Host: shop.example.com",
+        "shop-type": "형식: http",
+        "shop-ip": "IP 주소: *",
+        "shop-port": "포트: 80",
+        "shop-host": "호스트 이름: shop.example.com"
+      },
+      "groups": {
+        "www-site": "www.example.com 사이트",
+        "shop-site": "shop.example.com 사이트"
+      },
+      "notes": {
+        "www-key": "가르는 값",
+        "shop-key": "가르는 값"
+      },
+      "scenarios": [
+        {
+          "id": "www",
+          "label": "www 요청",
+          "caption": "웹 브라우저가 http://www.example.com/을 요청하면 요청에 Host: www.example.com이 적혀 온다. 형식 http, IP 주소, 포트 80은 두 사이트가 같으므로, IIS는 호스트 이름이 Host 헤더의 이름과 같은 www.example.com 사이트에 요청을 넘긴다.",
+          "sources": [
+            "windows-server-roles.iis-site-bindings"
+          ]
+        },
+        {
+          "id": "shop",
+          "label": "shop 요청",
+          "caption": "같은 서버의 같은 80번 포트로 온 요청이라도 Host: shop.example.com이 적혀 있으면, IIS는 호스트 이름이 shop.example.com인 사이트에 넘긴다. 그래서 서버의 IP 주소가 하나여도 호스트 이름을 다르게 정하면 http 사이트 여럿을 함께 운영할 수 있다.",
+          "sources": [
+            "windows-server-roles.iis-site-bindings"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis-site-bindings"
+      ]
+    },
+    "virtual-directory": {
+      "label": "URL http://www.example.com/docs/guide.html의 호스트 이름은 사이트를 골라 그 사이트의 실제 경로로 이어지고, 가상 디렉터리의 별칭 docs는 실제 경로 밖의 폴더 D:\\Docs로 이어져 D:\\Docs\\guide.html이 열리는 것을 보이는 도식",
+      "svgLabel": "URL의 조각 셋을 위 줄에, 사이트의 실제 경로와 D:\\Docs, D:\\Docs\\guide.html을 아래에 두고 조각에서 폴더와 파일로 화살표를 잇는 그림",
+      "question": "URL의 한 조각은 서버의 어느 폴더로 이어질까?",
+      "idleCaption": "URL http://www.example.com/docs/guide.html의 호스트 이름과 경로 조각을 위에 두고, 서버의 폴더와 파일을 아래에 두었다. 별칭 docs와 폴더 D:\\Docs는 예로 붙인 값이다. 버튼을 고르면 각 조각이 어느 폴더로 이어지는지 볼 수 있다.",
+      "legend": "위 상자는 URL의 조각이고, 아래 상자는 서버의 폴더와 파일이다. 화살표는 URL의 조각이 서버의 어느 폴더나 파일로 이어지는지 가리킨다.",
+      "nodes": {
+        "host": "www.example.com",
+        "docs": "docs",
+        "guide": "guide.html",
+        "root": "%SystemDrive%\\inetpub\\wwwroot",
+        "folder": "D:\\Docs",
+        "file": "D:\\Docs\\guide.html"
+      },
+      "groups": {
+        "url": "URL http://www.example.com/docs/guide.html"
+      },
+      "notes": {
+        "site-key": "사이트를 고른다",
+        "root-key": "실제 경로",
+        "alias-key": "별칭",
+        "folder-key": "실제 경로 밖의 폴더"
+      },
+      "scenarios": [
+        {
+          "id": "site",
+          "label": "사이트 경로",
+          "caption": "호스트 이름 www.example.com은 요청을 받을 사이트를 고르는 데 쓰이고 파일 경로에는 들어가지 않는다. 이 예에서 그 사이트의 실제 경로는 %SystemDrive%\\inetpub\\wwwroot이고, 별칭이 아닌 경로는 모두 이 폴더 아래에서 찾는다.",
+          "sources": [
+            "windows-server-roles.iis-home-directory"
+          ]
+        },
+        {
+          "id": "alias",
+          "label": "가상 디렉터리",
+          "caption": "경로의 첫 조각 docs는 가상 디렉터리의 별칭이라, IIS는 사이트의 실제 경로 대신 별칭에 이어 둔 D:\\Docs를 출발점으로 삼는다. 남은 조각 guide.html을 그 뒤에 붙인 D:\\Docs\\guide.html을 웹 브라우저에 보낸다.",
+          "sources": [
+            "windows-server-roles.iis-home-directory"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis-home-directory"
+      ]
+    },
+    "request-filtering": {
+      "label": "확장자 .bak을 거부하도록 정한 IIS에서, /docs/guide.html 요청은 요청 필터링을 지나 www.example.com 사이트가 처리하고 /db.bak 요청은 사이트에 닿지 않고 HTTP 404 오류로 답을 받는 것을 보이는 도식",
+      "svgLabel": "사이트로 온 요청 둘을 위에, 요청 필터링을 가운데에, 사이트와 HTTP 404 오류를 아래에 두고 요청마다 넘어가는 곳을 화살표로 잇는 그림",
+      "question": "요청 필터링은 어떤 요청을 사이트까지 보내지 않을까?",
+      "idleCaption": "www.example.com으로 온 요청 둘과, 그 요청을 먼저 살피는 요청 필터링, 그 뒤의 사이트와 오류 응답을 그렸다. 거부 목록에 넣은 확장자 .bak은 예로 든 값이다. 버튼을 고르면 각 요청이 어디까지 가는지 볼 수 있다.",
+      "legend": "위 상자 안의 값은 요청한 URL의 경로다. 화살표는 요청이 넘어가는 곳을 가리킨다.",
+      "nodes": {
+        "req-ok": "/docs/guide.html",
+        "req-bak": "/db.bak",
+        "filter": "요청 필터링",
+        "site": "www.example.com 사이트",
+        "blocked": "HTTP 404 오류"
+      },
+      "groups": {
+        "requests": "www.example.com으로 온 요청"
+      },
+      "notes": {
+        "ok-key": "평소대로 처리한다",
+        "bak-key": "확장자 .bak 거부",
+        "log-key": "로그에는 404.7"
+      },
+      "scenarios": [
+        {
+          "id": "allowed",
+          "label": "통과",
+          "caption": "/docs/guide.html 요청은 확장자 .html이 거부 목록에 없으므로 요청 필터링을 지나, www.example.com 사이트가 평소대로 처리한다.",
+          "sources": [
+            "windows-server-roles.request-filtering"
+          ]
+        },
+        {
+          "id": "denied",
+          "label": "거부",
+          "caption": "/db.bak 요청은 확장자 .bak이 거부 목록에 있으므로, 사이트의 실제 경로에 그 파일이 있더라도 IIS가 사이트에 넘기지 않고 HTTP 404 오류로 답한다. 로그에는 막은 까닭인 404.7이 적힌다.",
+          "sources": [
+            "windows-server-roles.request-filtering"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.request-filtering"
+      ]
+    },
+    "iis-log-rollover": {
+      "label": "사이트 www.example.com이 받은 요청을 로그 디렉터리 D:\\Logs 아래의 파일에 적고 하루가 지나면 새 로그 파일을 여는 것을, 기본 로그 디렉터리 %SystemDrive%\\inetpub\\logs\\LogFiles와 함께 보이는 도식",
+      "svgLabel": "위에 웹 브라우저와 사이트를, 가운데에 바꾼 로그 디렉터리와 그 안의 날마다의 로그 파일 둘을, 아래에 기본 로그 디렉터리를 두고 요청이 적히는 곳과 새 파일로 넘어가는 차례를 화살표로 잇는 그림",
+      "question": "IIS는 요청 기록을 어디에, 언제 새 파일로 남길까?",
+      "idleCaption": "웹 브라우저가 사이트 www.example.com에 보낸 요청을 IIS가 로그 파일에 적는 곳을 그렸다. 위 상자는 「디렉터리」를 바꾼 로그 폴더 D:\\Logs이고, 아래 상자는 기본 로그 폴더다. D:\\Logs는 예로 붙인 폴더 이름이다. 버튼을 고르면 기록이 적히는 곳과 새 파일을 여는 때를 볼 수 있다.",
+      "legend": "상자 위의 이름은 로그 파일을 두는 폴더다. 화살표는 요청이 적히는 곳과, 일정이 지나 새 파일로 넘어가는 차례를 가리킨다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "site": "www.example.com 사이트",
+        "day1": "첫째 날 파일",
+        "day2": "둘째 날 파일",
+        "default-file": "로그 파일"
+      },
+      "groups": {
+        "new-dir": "D:\\Logs",
+        "default-dir": "%SystemDrive%\\inetpub\\logs\\LogFiles"
+      },
+      "notes": {
+        "new-key": "바꾼 디렉터리",
+        "default-key": "기본 디렉터리",
+        "keep-key": "앞 파일은 그대로 남는다",
+        "next-key": "하루가 지나면 새 파일"
+      },
+      "scenarios": [
+        {
+          "id": "directory",
+          "label": "저장 위치",
+          "caption": "「로깅」 페이지의 「디렉터리」에 기본값 대신 D:\\Logs를 넣으면, 그 뒤로 www.example.com 사이트가 받은 요청은 D:\\Logs 아래의 로그 파일에 한 줄씩 적힌다. 기본 디렉터리는 %SystemDrive%\\inetpub\\logs\\LogFiles다.",
+          "sources": [
+            "windows-server-roles.iis-logging"
+          ]
+        },
+        {
+          "id": "rollover",
+          "label": "롤오버",
+          "caption": "「로그 파일 롤오버」의 「일정」을 기본값인 매일로 두면, 날이 바뀔 때 IIS가 새 로그 파일을 열어 그날의 요청을 적는다. 첫째 날 파일은 지워지지 않고 그대로 남으므로, 오래된 파일은 관리자가 따로 정리한다.",
+          "sources": [
+            "windows-server-roles.iis-logging"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis-logging"
+      ]
+    },
+    "iis-ftp-site": {
+      "label": "서버 SRV01의 웹 서버(IIS) 역할 안에 FTP 서버 역할 서비스와 FTP 사이트 ftp.example.com(포트 21, 실제 경로 D:\\Ftp)을 두고, FTP 클라이언트는 FTPS로 이 사이트에 접속하며 SFTP 클라이언트는 IIS가 아니라 OpenSSH에 접속하는 것을 보이는 도식",
+      "svgLabel": "위에 SRV01의 웹 서버(IIS) 역할 상자와 그 안의 FTP 서버 역할 서비스와 FTP 사이트 상자를, 그 바깥에 OpenSSH를, 아래에 FTP 클라이언트와 SFTP 클라이언트를 두고 클라이언트가 접속하는 곳을 화살표로 잇는 그림",
+      "question": "Windows Server에서 FTP 서버는 어디에 설치되고 어떻게 지킬까?",
+      "idleCaption": "서버 SRV01의 웹 서버(IIS) 역할 안에 FTP 서버 역할 서비스와 FTP 사이트 ftp.example.com을 그렸다. 역할 바깥의 OpenSSH와 아래의 두 클라이언트도 함께 그렸다. ftp.example.com과 D:\\Ftp는 예로 붙인 이름이다. 버튼을 고르면 설치하는 자리와 각 클라이언트가 접속하는 곳을 볼 수 있다.",
+      "legend": "바깥 상자는 웹 서버(IIS) 역할이고, 안쪽 상자는 FTP 사이트다. 화살표는 클라이언트가 접속하는 곳을 가리킨다.",
+      "nodes": {
+        "ftp-service": "FTP 서버 역할 서비스",
+        "port": "포트: 21",
+        "dir": "실제 경로: D:\\Ftp",
+        "openssh": "OpenSSH",
+        "client": "FTP 클라이언트",
+        "sftp-client": "SFTP 클라이언트"
+      },
+      "groups": {
+        "iis-role": "SRV01의 웹 서버(IIS) 역할",
+        "ftp-site": "FTP 사이트 ftp.example.com"
+      },
+      "notes": {
+        "install-key": "역할 서비스로 설치한다",
+        "ftps-key": "SSL/TLS로 암호화",
+        "sftp-key": "SSH로 암호화"
+      },
+      "scenarios": [
+        {
+          "id": "install",
+          "label": "설치 자리",
+          "caption": "FTP 서버는 웹 서버(IIS) 역할 안의 FTP 서버 역할 서비스로 설치한다. 설치한 뒤 IIS 관리자에서 FTP 사이트 ftp.example.com을 더해 포트 21과 실제 경로 D:\\Ftp를 정한다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        },
+        {
+          "id": "secure",
+          "label": "보안 연결",
+          "caption": "FTPS를 지원하는 FTP 클라이언트가 21번 포트로 연결을 열고, 그 연결에서 SSL/TLS로 암호화를 시작한 뒤 D:\\Ftp의 파일을 주고받는다. IIS의 FTP 서버에서 고를 수 있는 보안 연결은 FTPS다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        },
+        {
+          "id": "sftp",
+          "label": "SFTP",
+          "caption": "SFTP는 SSH의 암호화한 통로 위에서 파일을 주고받는 다른 프로토콜이라, Windows에서는 IIS의 FTP 서버가 아니라 OpenSSH가 맡는다. 그래서 SFTP 클라이언트의 연결은 FTP 사이트에 닿지 않는다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.ftp-server"
+      ]
+    },
+    "remote-access-services": {
+      "label": "회사 네트워크 가장자리의 원격 액세스 서버가, 집에 있는 PC01은 VPN 터널로 회사 네트워크에 이어 SRV01의 공유 Data를 쓰게 하고, 인터넷 사용자의 요청은 게시한 내부 웹 응용 프로그램에만 넘기는 것을 보이는 도식",
+      "svgLabel": "회사 네트워크 상자 밖에 PC01과 인터넷 사용자를, 상자 안에 원격 액세스 서버와 SRV01의 공유 Data, 내부 웹 응용 프로그램을 두고 역할 서비스마다 데이터가 지나는 길을 화살표로 잇는 그림",
+      "question": "원격 액세스 역할은 바깥에서 무엇을 쓰게 해 줄까?",
+      "idleCaption": "회사 네트워크 밖의 PC01과 인터넷 사용자, 회사 네트워크의 가장자리에서 DirectAccess 및 VPN(RAS)과 웹 응용 프로그램 프록시를 함께 설치한 원격 액세스 서버, 회사 안의 SRV01과 내부 웹 응용 프로그램을 그렸다. 버튼을 고르면 역할 서비스마다 바깥에서 어디까지 닿는지 볼 수 있다.",
+      "legend": "큰 상자는 회사 네트워크다. 화살표는 데이터가 넘어가는 곳을 가리킨다.",
+      "nodes": {
+        "pc01": "PC01",
+        "user": "인터넷 사용자",
+        "ras": "원격 액세스 서버",
+        "srv01": "SRV01의 공유 Data",
+        "webapp": "내부 웹 응용 프로그램"
+      },
+      "groups": {
+        "company": "회사 네트워크"
+      },
+      "notes": {
+        "tunnel-key": "터널을 지난다",
+        "publish-key": "게시한 것에만 전달된다"
+      },
+      "scenarios": [
+        {
+          "id": "vpn",
+          "label": "VPN",
+          "caption": "집에 있는 PC01의 VPN 클라이언트가 원격 액세스 서버와 터널을 맺는다. 서버가 연결해 온 쪽을 확인한 뒤로는 PC01이 회사 네트워크에 이어져, \\\\SRV01\\Data를 사무실에서처럼 연다.",
+          "sources": [
+            "windows-server-roles.remote-access"
+          ]
+        },
+        {
+          "id": "wap",
+          "label": "웹 응용 프로그램 프록시",
+          "caption": "인터넷 사용자의 요청은 원격 액세스 서버의 웹 응용 프로그램 프록시가 받아 게시한 내부 웹 응용 프로그램으로만 넘긴다. 사용자의 컴퓨터는 회사 네트워크에 이어지지 않아 SRV01에는 닿지 않는다.",
+          "sources": [
+            "windows-server-roles.remote-access"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.remote-access"
+      ]
+    },
+    "web-app-proxy": {
+      "label": "인터넷 사용자가 https://app.example.com/으로 보낸 요청을 웹 응용 프로그램 프록시가 받아 SRV03의 웹 응용 프로그램으로 넘기고 그 응답을 돌려주며, 게시하지 않은 SRV01로 가는 길은 없는 것을 보이는 도식",
+      "svgLabel": "회사 네트워크 상자 밖에 인터넷 사용자를, 상자 안에 웹 응용 프로그램 프록시와 SRV03의 웹 응용 프로그램, SRV01을 두고 요청과 응답이 오가는 길을 화살표로 잇는 그림",
+      "question": "웹 응용 프로그램 프록시를 거친 요청은 어디까지 갈까?",
+      "idleCaption": "회사 네트워크 밖의 인터넷 사용자, 회사 네트워크의 가장자리에 둔 웹 응용 프로그램 프록시, 회사 안의 SRV03과 SRV01을 그렸다. SRV03의 웹 응용 프로그램은 https://app.example.com/으로 게시했다. 버튼을 고르면 요청과 응답이 오가는 길과 닿지 않는 곳을 볼 수 있다.",
+      "legend": "큰 상자는 회사 네트워크다. 화살표는 요청이나 응답이 넘어가는 방향을 가리킨다.",
+      "nodes": {
+        "user": "인터넷 사용자",
+        "proxy": "웹 응용 프로그램 프록시",
+        "srv03": "SRV03의 웹 응용 프로그램",
+        "srv01": "SRV01"
+      },
+      "groups": {
+        "company": "회사 네트워크"
+      },
+      "notes": {
+        "url-key": "https://app.example.com/",
+        "fwd-key": "요청을 넘긴다",
+        "back-key": "응답을 돌려준다",
+        "none-key": "이어지는 길이 없다"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "요청",
+          "caption": "인터넷 사용자의 웹 브라우저가 https://app.example.com/으로 보낸 요청은 웹 응용 프로그램 프록시에 닿고, 프록시가 그 요청을 SRV03의 웹 응용 프로그램으로 넘긴다.",
+          "sources": [
+            "windows-server-roles.web-application-proxy"
+          ]
+        },
+        {
+          "id": "response",
+          "label": "응답",
+          "caption": "SRV03이 만든 응답은 웹 응용 프로그램 프록시가 받아 인터넷 사용자에게 돌려준다. 웹 브라우저가 요청을 보내고 응답을 받는 상대는 SRV03이 아니라 프록시다.",
+          "sources": [
+            "windows-server-roles.web-application-proxy"
+          ]
+        },
+        {
+          "id": "boundary",
+          "label": "닿지 않는 곳",
+          "caption": "게시하지 않은 SRV01로 이어지는 길은 없다. 인터넷 사용자의 컴퓨터는 회사 네트워크에 이어지지 않고, 게시한 응용 프로그램에만 닿는다.",
+          "sources": [
+            "windows-server-roles.web-application-proxy"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.web-application-proxy"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
