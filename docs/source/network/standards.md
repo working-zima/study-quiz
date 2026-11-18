@@ -4694,6 +4694,10 @@ https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_
 - PowerShell에서 `ssh domain\username@servername` 꼴로 접속한다. 처음 접속하면 그 호스트가 진짜인지 확인할 수 없다는 말과 **호스트 키의 지문(SHA256)**을 보이고 **계속 접속할지(yes/no)** 묻는다.
   `yes`를 입력하면 그 서버가 클라이언트의 알려진 SSH 호스트 목록에 들어가고, 이어서 암호를 묻는다(입력하는 글자는 화면에 보이지 않는다) — Get started 「Connect to OpenSSH Server」
 
+- (phase 81 step 7, 2026-11-18 IPv4로 다시 받아 읽음 — overview는 위와 같은 판(`updated_at` 2025-05-01, `ms.date` 2025-02-20, 한국어판 `updated_at` 2026-01-21), 적용 대상 Windows Server 2025·2022·2019, Windows 11·10) **`sftp`**: overview의 들어 있는 명령 목록은 `sftp`를 SFTP(Secure File Transfer Protocol)를 제공하고 SSH 위에서 동작하는 것으로, `scp`를 SSH 위에서 동작하는 파일 복사 도구로 적는다(한국어판은 「보안 파일 전송 프로토콜」).
+  문제 해결 문서 「Troubleshoot common SFTP issues when using OpenSSH」(https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/troubleshoot-sftp-issues-using-openssh — `ms.date` 2026-02-12, `updated_at` 2026-02-19, 한국어판 `updated_at` 2026-10-14, 적용 대상: 지원되는 Windows Server·Windows 클라이언트)는 Windows의 OpenSSH가 SFTP 기능을 준다고 적고,
+  OpenSSH 서버의 설정 파일 `sshd_config`의 `Subsystem sftp sftp-server.exe` 줄과 「OpenSSH SSH Server」 서비스를 다시 시작하는 차례로 SFTP 문제를 다룬다 — 그러니 Windows에서 SFTP 연결을 받는 쪽은 OpenSSH 서버다. 위 「(phase 81 step 4) … IIS의 FTP 서버」 항목의 SFTP 줄(IIS의 FTP 서비스는 SFTP를 내놓지 않는다)과 이어, 본문은 「Windows에서 SFTP는 IIS가 아니라 OpenSSH가 맡는다」로 쓴다(두 문서를 이은 말)
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.ftp-server`(SFTP의 뜻과 이름, OpenSSH의 `sftp`와 OpenSSH 서버가 SFTP를 맡는다), 문항 n297의 해설, 도식 `iis-ftp-site`의 SFTP 시나리오
 쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(overview — Windows에도 OpenSSH가 들어 있다, Get started — 처음 접속할 때 지문을 보이고 계속할지 묻는다·TCP 22), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 Linux·Unix만의 것이 아니다)
 
 ## (phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7, FTP Firewall Support `<firewallSupport>`
@@ -6808,6 +6812,13 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/create-
   `<logFile>`의 속성(디렉터리·켜기·형식·필드·롤오버 주기·크기·버퍼 등)에 보존 기간이나 삭제를 정하는 것은 없다 — 「Attributes」. 그러니 IIS가 오래된 로그를 스스로 지우지 않는다는 것은 두 문서에서 이어서 나오는 말이다(그것을 한 문장으로 적은 문서는 찾지 못했다)
 - **로그는 요청 즉시 파일에 쓰이지 않는다**: W3C 로그는 사건을 버퍼에 모았다가 로그 파일에 쓴다. `flushByEntryCountW3CLog`는 몇 개를 모은 뒤 쓸지 정하고, 0(기본)이면 최대치인 64k가 찼을 때 쓴다 — 줄이면 더 빨리 쓰지만 디스크 작업이 늘고, 실시간에 가깝게 문제를 살피려면 줄이라고 한다 — `<logFile>` 「Attributes」(IIS 8.5에서 더해졌다).
   IIS가 로그를 디스크에 쓰는 데 시간이 걸려 관리자가 로그 정보를 실시간으로 보지 못하고 글자 로그 파일은 실시간으로 갱신되지 않는다 — 그래서 IIS 8.5부터 로그를 ETW(Windows 이벤트 추적)로도 보낼 수 있게 했다 — 「Logging to Event Tracing for Windows in IIS 8.5」 「Problem」·「Solution」. 파일 로그는 HTTP.sys가 요청 처리를 마친 뒤 글자 로그 파일에 적는다 — `<logFile>` `logTargetW3C`
+- (phase 81 step 7, 2026-11-18 영문판을 IPv4로 다시 받아 읽음 — 「Configure Logging in IIS」 `updated_at` 2024-04-11(`ms.date` 2013-04-14, 차례는 Windows Server 2012·Windows 8로 적는다)) 이 step이 본문에 쓰려고 다시 본 것:
+  **사이트 수준의 차례** — IIS 관리자 「연결」 트리에서 사이트를 고르고 「로깅」을 두 번 클릭 → 「로깅」 페이지 「로그 파일」 칸의 「형식」에서 형식을 고른다 → 「디렉터리」에 경로 → 「로그 파일 롤오버」에서 셋 가운데 하나 → 「파일 이름 지정 및 롤오버에 현지 시간 사용」(고르지 않으면 UTC로 센다) → 「작업」 창의 「적용」 — 「Configure Logging at the Site Level」 1~8.
+  이 선택과 상관없이 파일 안에 적히는 시각은 형식을 따른다(NCSA·W3C 형식의 시각 표시는 UTC 꼴) — 같은 절 7의 Note. 형식마다 필드를 가르는 기호와 시각: IIS 형식은 쉼표·현지 시각, NCSA 형식은 공백·현지 시각에 UTC와의 차이, W3C 형식은 공백·UTC — 같은 절 4.
+  **W3C 필드를 고르는 자리** — 「로깅」 페이지 「로그 파일」 칸의 「필드 선택」 → 「W3C 로깅 필드」 대화 상자에서 고른다. 사용자 에이전트(`cs(User-Agent)`)는 클라이언트가 쓴 브라우저의 종류, 걸린 시간(`time-taken`)은 동작에 걸린 시간을 밀리초로 적는다 — 「Select W3C Fields to Log」.
+  「새 로그 파일을 만들지 않음」은 파일 하나가 계속 커지므로, 로그 분석 도구에는 편하지만 큰 파일이 서버 전체의 성능에 영향을 줄 수 있다 — 「Configure Log File Rollover Options」.
+  **UTC** — 본문은 UTC(Coordinated Universal Time, 협정 세계시)를 「나라마다 다른 현지 시각이 아니라 세계가 함께 쓰는 기준 시각」으로 한 줄 푼다. 이름 풀이는 위 문서가 쓰는 이름(Coordinated Universal Time) 그대로이고, 뜻풀이는 일반 용어의 풀이다.
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.iis-logging`(로그 형식 넷·필드를 고르는 형식, 필드를 가르는 기호와 시각, 디렉터리 기본값과 바꾸는 차례, 롤오버 셋·기본 매일·UTC 기준, 오래된 로그와 스크립트, 버퍼에 모았다 쓴다), 문항 n296, 도식 `iis-log-rollover`
 - (phase 81 step 6, 2026-11-18 영문판을 IPv4로 다시 받아 확인 — 위와 같은 판) **기본 문서는 사이트 안의 폴더마다 쓰인다**: `<defaultDocument>` 「Overview」의 Note는 목록의 차례가 성능에 주는 영향을 설명하며 사이트의 **모든 폴더**에서 홈 페이지로 쓸 파일을 목록 맨 아래에 두는 예를 든다 — 그러니 기본 문서는 사이트 루트만이 아니라 `/docs/`처럼 폴더를 가리킨 요청에도 쓰인다(이 Note와 「Overview」를 이은 말).
   `<virtualDirectory>` 「Overview」는 응용 프로그램마다 루트 가상 디렉터리가 있어 응용 프로그램을 그 내용이 든 실제 디렉터리에 잇는다고 하고, 가상 디렉터리의 이름이 URL의 일부가 되어 사용자가 그 URL로 실제 디렉터리의 내용(웹 페이지나 그 아래 디렉터리·파일의 목록)에 닿는다고 한다 —
   그러니 별칭이 아닌 URL 경로는 사이트 루트의 실제 경로 아래에서, 별칭으로 시작하는 경로는 그 별칭의 실제 경로 아래에서 찾는다(두 정의를 이은 말 — 위 KB 글의 표와 같다)
@@ -6847,6 +6858,13 @@ FTP 자체·두 데이터 연결 모드·포트 21은 위 「(phase 77) RFC 959 
   RFC에 따른 FTPS 구현이라 다른 회사의 FTP 클라이언트와도 쓸 수 있고, 제어 채널·데이터 채널·둘 다를 암호화하게 정할 수 있다 — 「What's New…」 「Security and Support for new Internet standards」
 - **SFTP**: 「What's New for Microsoft and FTP in IIS 7?」(IIS 7.0 때 글)는 FTP 트래픽을 지키는 방법으로 이름이 비슷한 FTPS와 SFTP 둘이 있다고 가른 뒤, **Microsoft는 FTPS를 제공하고 SFTP(이 글은 「FTP over SSH」라 부른다)로 FTP 트래픽을 지키는 방법은 제공하지 않는다**고 적는다 — 「Introduction」. 지금 판 IIS 문서에서 IIS의 FTP 서버가 SFTP를 지원한다고 한 곳은 찾지 못했다.
   SFTP는 SSH 위에서 동작하는 파일 전송이고(위 「(phase 77) RFC 4251 …, RFC 4253 …」·「(phase 78 step 0) OpenSSH — ssh(1)」 항목), Windows의 OpenSSH에 `sftp` 도구가 들어 있다(위 「(phase 78 step 0) Microsoft Learn — OpenSSH for Windows overview …」 항목) — IIS의 FTP 서비스와는 다른 구성 요소다. 「지원하지 않는다」는 IIS 7.0 때 글의 말이라, 본문에 쓸 때는 그 판을 밝힌다
+- (phase 81 step 7, 2026-11-18 영문판을 IPv4로 다시 받아 읽음 — 「Scenario: Build an FTP Site on IIS」 `updated_at` 2024-04-11(`ms.date` 2013-04-14, 차례는 Windows Server 2012·Windows 8로 적는다), 「What's New for Microsoft and FTP in IIS 7?」 `updated_at` 2025-12-20(`ms.date` 2008-01-15)) 이 step이 본문에 쓰려고 다시 본 것:
+  **FTP 사이트를 더하는 자리** — IIS 관리자 「연결」 창에서 서버를 펼쳐 「사이트」를 고르고 「작업」 창의 「FTP 사이트 추가」로 마법사를 연다 — 「Scenario」 「Step 2」 1~3. 설치 차례는 「서버 역할 선택」에서 웹 서버(IIS)를 펼치고 그 아래 FTP 서버를 펼쳐 「FTP 서버」·「FTP 서비스」 확인란을 고른 뒤 「기능 선택」을 지나 「설치 선택 확인」에서 「설치」 — 같은 문서 「Step 1」 6~9.
+  **인증 둘** — 익명은 사용자 이름 `anonymous`(또는 `ftp`)만으로 내용에 닿게 하고, 기본은 올바른 사용자 이름과 암호를 요구하는데 **암호를 암호화하지 않고 네트워크로 보내므로** 클라이언트와 FTP 서버 사이의 연결이 SSL처럼 안전할 때만 쓰라고 한다 — 같은 절 14. 권한 부여의 「다음에 액세스 허용」과 권한 「읽기」·「쓰기」 — 같은 절 15~16(한국어 화면 이름은 확인하지 못해 본문은 하는 일만 쓴다).
+  **SSL 허용과 SSL 필요** — 「SSL 허용」은 FTP 서버가 클라이언트와 SSL 연결과 SSL이 아닌 연결을 모두 받게 하고, 「SSL 필요」는 FTP 서버와 클라이언트 사이의 통신에 SSL 암호화를 요구한다 — 같은 절 12.
+  **FTP 확장성이 쓰이는 인증** — 「What's New…」 「Authentication for Non-Windows Accounts」는 Windows 계정이 아닌 계정으로 FTP 사용자를 인증하는 두 방식(IIS 관리자 인증과 .NET 멤버 자격 인증)을 든다. 위 「FTP 서버 역할 서비스」 줄(그 두 인증을 쓰려면 「FTP 확장성」도 고른다)과 이어 보면, FTP 확장성은 Windows 사용자 계정이 아닌 계정으로 FTP 사용자를 확인하는 인증을 쓸 때 더 고르는 것이다(두 문서를 이은 말).
+  **SFTP 문장의 꼴** — 같은 「Introduction」의 「Security and Support…」 절은 업계가 FTP를 지키는 방법이 여럿이고 이름이 비슷한 FTPS와 SFTP가 있다고 한 뒤, Microsoft가 내놓은 것은 FTPS이고 SFTP(이 글은 「FTP over SSH」라 부른다)로 FTP를 지키는 방법은 내놓지 않았다고 적는다. 본문은 이 말을 IIS 7.0 때 글의 말이라고 판을 밝혀 쓴다(위 SFTP 줄과 같다).
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.ftp-server`(설치 차례, FTP 사이트를 더하는 자리, 세 페이지의 칸, 익명·기본 인증과 기본 인증은 SSL로 지킬 때만, SSL 허용·필요, FTP 확장성, IIS 7.0 때 글의 SFTP 말), 문항 n297, 도식 `iis-ftp-site`
 - **한국어 이름**: 한국어판은 「FTP 서버」·「FTP 서비스」·「FTP 확장성」, 「FTP 사이트 추가」 마법사, 「사이트 정보」·「바인딩 및 SSL 설정」·「인증 및 권한 부여 정보」 페이지, 「FTP 사이트 이름」·「실제 경로」·「가상 호스트」, 「SSL 없음」·「SSL 허용」·「SSL 필요」·「SSL 인증서」, 「할당되지 않은 모든 항목」, 「암시적 FTPS」로 옮긴다.
   **고른 이름**: 위 한국어판 표기 그대로, 「FTPS(FTP over SSL)」, 「명시적 FTPS」·「암시적 FTPS」. **실제 한국어 화면의 이름은 확인하지 못했다**
 

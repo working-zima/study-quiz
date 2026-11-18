@@ -456,6 +456,104 @@
       "sources": [
         "windows-server-roles.request-filtering"
       ]
+    },
+    "iis-log-rollover": {
+      "label": "사이트 www.example.com이 받은 요청을 로그 디렉터리 D:\\Logs 아래의 파일에 적고 하루가 지나면 새 로그 파일을 여는 것을, 기본 로그 디렉터리 %SystemDrive%\\inetpub\\logs\\LogFiles와 함께 보이는 도식",
+      "svgLabel": "위에 웹 브라우저와 사이트를, 가운데에 바꾼 로그 디렉터리와 그 안의 날마다의 로그 파일 둘을, 아래에 기본 로그 디렉터리를 두고 요청이 적히는 곳과 새 파일로 넘어가는 차례를 화살표로 잇는 그림",
+      "question": "IIS는 요청 기록을 어디에, 언제 새 파일로 남길까?",
+      "idleCaption": "웹 브라우저가 사이트 www.example.com에 보낸 요청을 IIS가 로그 파일에 적는 곳을 그렸다. 위 상자는 「디렉터리」를 바꾼 로그 폴더 D:\\Logs이고, 아래 상자는 기본 로그 폴더다. D:\\Logs는 예로 붙인 폴더 이름이다. 버튼을 고르면 기록이 적히는 곳과 새 파일을 여는 때를 볼 수 있다.",
+      "legend": "상자 위의 이름은 로그 파일을 두는 폴더다. 화살표는 요청이 적히는 곳과, 일정이 지나 새 파일로 넘어가는 차례를 가리킨다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "site": "www.example.com 사이트",
+        "day1": "첫째 날 파일",
+        "day2": "둘째 날 파일",
+        "default-file": "로그 파일"
+      },
+      "groups": {
+        "new-dir": "D:\\Logs",
+        "default-dir": "%SystemDrive%\\inetpub\\logs\\LogFiles"
+      },
+      "notes": {
+        "new-key": "바꾼 디렉터리",
+        "default-key": "기본 디렉터리",
+        "keep-key": "앞 파일은 그대로 남는다",
+        "next-key": "하루가 지나면 새 파일"
+      },
+      "scenarios": [
+        {
+          "id": "directory",
+          "label": "저장 위치",
+          "caption": "「로깅」 페이지의 「디렉터리」에 기본값 대신 D:\\Logs를 넣으면, 그 뒤로 www.example.com 사이트가 받은 요청은 D:\\Logs 아래의 로그 파일에 한 줄씩 적힌다. 기본 디렉터리는 %SystemDrive%\\inetpub\\logs\\LogFiles다.",
+          "sources": [
+            "windows-server-roles.iis-logging"
+          ]
+        },
+        {
+          "id": "rollover",
+          "label": "롤오버",
+          "caption": "「로그 파일 롤오버」의 「일정」을 기본값인 매일로 두면, 날이 바뀔 때 IIS가 새 로그 파일을 열어 그날의 요청을 적는다. 첫째 날 파일은 지워지지 않고 그대로 남으므로, 오래된 파일은 관리자가 따로 정리한다.",
+          "sources": [
+            "windows-server-roles.iis-logging"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis-logging"
+      ]
+    },
+    "iis-ftp-site": {
+      "label": "서버 SRV01의 웹 서버(IIS) 역할 안에 FTP 서버 역할 서비스와 FTP 사이트 ftp.example.com(포트 21, 실제 경로 D:\\Ftp)을 두고, FTP 클라이언트는 FTPS로 이 사이트에 접속하며 SFTP 클라이언트는 IIS가 아니라 OpenSSH에 접속하는 것을 보이는 도식",
+      "svgLabel": "위에 SRV01의 웹 서버(IIS) 역할 상자와 그 안의 FTP 서버 역할 서비스와 FTP 사이트 상자를, 그 바깥에 OpenSSH를, 아래에 FTP 클라이언트와 SFTP 클라이언트를 두고 클라이언트가 접속하는 곳을 화살표로 잇는 그림",
+      "question": "Windows Server에서 FTP 서버는 어디에 설치되고 어떻게 지킬까?",
+      "idleCaption": "서버 SRV01의 웹 서버(IIS) 역할 안에 FTP 서버 역할 서비스와 FTP 사이트 ftp.example.com을 그렸다. 역할 바깥의 OpenSSH와 아래의 두 클라이언트도 함께 그렸다. ftp.example.com과 D:\\Ftp는 예로 붙인 이름이다. 버튼을 고르면 설치하는 자리와 각 클라이언트가 접속하는 곳을 볼 수 있다.",
+      "legend": "바깥 상자는 웹 서버(IIS) 역할이고, 안쪽 상자는 FTP 사이트다. 화살표는 클라이언트가 접속하는 곳을 가리킨다.",
+      "nodes": {
+        "ftp-service": "FTP 서버 역할 서비스",
+        "port": "포트: 21",
+        "dir": "실제 경로: D:\\Ftp",
+        "openssh": "OpenSSH",
+        "client": "FTP 클라이언트",
+        "sftp-client": "SFTP 클라이언트"
+      },
+      "groups": {
+        "iis-role": "SRV01의 웹 서버(IIS) 역할",
+        "ftp-site": "FTP 사이트 ftp.example.com"
+      },
+      "notes": {
+        "install-key": "역할 서비스로 설치한다",
+        "ftps-key": "SSL/TLS로 암호화",
+        "sftp-key": "SSH로 암호화"
+      },
+      "scenarios": [
+        {
+          "id": "install",
+          "label": "설치 자리",
+          "caption": "FTP 서버는 웹 서버(IIS) 역할 안의 FTP 서버 역할 서비스로 설치한다. 설치한 뒤 IIS 관리자에서 FTP 사이트 ftp.example.com을 더해 포트 21과 실제 경로 D:\\Ftp를 정한다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        },
+        {
+          "id": "secure",
+          "label": "보안 연결",
+          "caption": "FTPS를 지원하는 FTP 클라이언트가 21번 포트로 연결을 열고, 그 연결에서 SSL/TLS로 암호화를 시작한 뒤 D:\\Ftp의 파일을 주고받는다. IIS의 FTP 서버에서 고를 수 있는 보안 연결은 FTPS다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        },
+        {
+          "id": "sftp",
+          "label": "SFTP",
+          "caption": "SFTP는 SSH의 암호화한 통로 위에서 파일을 주고받는 다른 프로토콜이라, Windows에서는 IIS의 FTP 서버가 아니라 OpenSSH가 맡는다. 그래서 SFTP 클라이언트의 연결은 FTP 사이트에 닿지 않는다.",
+          "sources": [
+            "windows-server-roles.ftp-server"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.ftp-server"
+      ]
     }
   },
   "tables": {},

@@ -147,6 +147,8 @@ import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
+import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
 import { IisSitePoolDiagram } from './IisSitePoolDiagram'
 import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
@@ -712,6 +714,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.iis-site-bindings': SiteBindingsDiagram,
   'windows-server-roles.iis-home-directory': VirtualDirectoryDiagram,
   'windows-server-roles.request-filtering': RequestFilteringDiagram,
+  'windows-server-roles.iis-logging': IisLogRolloverDiagram,
+  'windows-server-roles.ftp-server': IisFtpSiteDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
