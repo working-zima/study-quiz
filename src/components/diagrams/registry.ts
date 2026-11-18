@@ -53,6 +53,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
 import { ConnectionCloseDiagram } from './ConnectionCloseDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
+import { ContainerIsolationDiagram } from './ContainerIsolationDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
@@ -143,6 +144,7 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
+import { HyperVReplicaDiagram } from './HyperVReplicaDiagram'
 import { HypervisorLayersDiagram } from './HypervisorLayersDiagram'
 import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
@@ -732,6 +734,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-hyperv.checkpoints': CheckpointApplyDiagram,
   'windows-hyperv.live-migration': LiveMigrationDiagram,
   'windows-hyperv.storage-migration': StorageMigrationDiagram,
+  'windows-hyperv.hyper-v-replica': HyperVReplicaDiagram,
+  'windows-hyperv.windows-containers': ContainerIsolationDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

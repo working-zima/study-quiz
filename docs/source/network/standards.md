@@ -7153,6 +7153,11 @@ https://learn.microsoft.com/en-us/previous-versions/windows-server/it-pro/window
   지금 판 「Features Removed…」의 Windows Server 2019 탭도 Nano Server는 설치할 수 있는 호스트 운영 체제가 아니라 컨테이너 운영 체제로만 나온다고 적는다(위 「(phase 81 step 0)」 줄 — 이 step에서 같은 판 `updated_at` 2026-11-17을 다시 받아 확인했다)
 - **한국어 이름**: 한국어판은 「Windows 컨테이너」, 「컨테이너 이미지」, 「기본 이미지」, 「격리 모드」·「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 호스트」로 옮긴다. 기본 이미지의 이름은 「Windows Server Core」, 「Nano 서버」, 「윈도우즈」, 「Windows Server (윈도우 서버)」로 들쭉날쭉 옮긴다(기계 번역).
   **고른 이름**: 「컨테이너」·「컨테이너 이미지」·「기본 이미지」, 「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 런타임」, 기본 이미지 이름은 영문 그대로 **Nano Server·Server Core·Windows·Windows Server**(제품·이미지 이름이고 MCR 저장소 이름과 맞춘다 — 기출도 「Nano Server」·「NanoServer」로 쓴다)
+- (phase 81 step 13, 2026-11-19 Microsoft Learn에서 다시 읽어 확인 — 「Isolation modes」 같은 판) **격리 방식 예 — 호스트에서 보이는 프로세스**(「Isolation examples」 「Isolation explanation」): 같은 기본 이미지(`mcr.microsoft.com/windows/servercore:ltsc2019`)로 프로세스 격리 컨테이너 하나와 Hyper-V 격리 컨테이너 하나를 실행해 두 방식을 견준다 —
+  프로세스 격리 컨테이너 안에서 실행한 프로그램은 컨테이너 안에서 본 프로세스 번호와 같은 번호로 **호스트에서도 같은 프로세스로 보인다**. Hyper-V 격리 컨테이너 안에서 실행한 같은 프로그램은 호스트에서 찾으면 **보이지 않고**, 그 컨테이너를 감싼 가상 컴퓨터를 실행하는 프로세스(`vmwp`)만 보인다.
+  같은 절은 Docker로 Hyper-V 격리 컨테이너를 다루는 법이 프로세스 격리 컨테이너와 거의 같고, 실행할 때 `--isolation=hyperv`나 `--isolation=process`로 고른다고 적는다. 같은 문서 첫머리는 두 방식이 같은 컨테이너 이미지를 쓴다고 적는다(위 「두 격리 방식」 줄) — 이 예도 같은 이미지로 컨테이너 둘을 실행한다.
+  두 방식 가운데 어느 쪽이 자원을 더 쓰는지나 시작 시간을 견준 문장은 이 문서와 「Containers vs. virtual machines」 어디에도 없다 — 본문·문항은 두 방식을 커널을 누구와 함께 쓰는가와 떨어진 정도로만 가른다.
+  쓰인 곳: `windows-hyperv.windows-containers`(「프로세스 격리와 Hyper-V 격리」 문단의 호스트에서 보이는 프로세스, 같은 이미지로 컨테이너 여럿, `--isolation`), 문항 n310·n311의 해설
 
 쓰인 곳: (phase 81 step 13·14에서 쓰일 곳) `windows-hyperv.windows-containers`(정의, 커널을 함께 씀과 떨어진 모습, 이미지에서 만든다, VM과의 차이, 두 격리 방식과 기본값, 판 호환 한 줄, 「컨테이너」 기능과 런타임), `windows-hyperv.container-base-images`(넷의 이름·쓰임·크기 차이, Nano Server와 Server Core의 차이, MCR과 이름 꼴, 프로세스 격리의 판 일치, Nano Server의 지금 자리와 판),
 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])

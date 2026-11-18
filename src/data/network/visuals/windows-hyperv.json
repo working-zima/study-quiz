@@ -295,6 +295,93 @@
       "sources": [
         "windows-hyperv.storage-migration"
       ]
+    },
+    "hyper-v-replica": {
+      "label": "주 서버 HV01에서 실행 중인 가상 컴퓨터 VM01을 Hyper-V 복제본으로 복제본 서버 HV02에 5분마다 복제하다가, 10:05에 복제가 끝나고 10:08에 HV01이 멈췄을 때 복제본에 어느 때까지의 변경이 있는지 보이는 도식",
+      "svgLabel": "왼쪽에 HV01 박스, 오른쪽에 HV02 박스를 나란히 두어 박스마다 VM01과 VM01 복제본을 두고, 그 아래에 10:05와 10:08 두 시각을 왼쪽에서 오른쪽으로 둔 그림",
+      "question": "주 서버가 멈추면 복제본에는 어느 때까지의 변경이 남아 있을까?",
+      "idleCaption": "주 서버 HV01의 가상 컴퓨터 VM01을 복제본 서버 HV02에 복제하는 경우를 그려 두었다. HV01·HV02·VM01과 복제 빈도 5분, 시각 10:05·10:08은 예로 고른 이름과 값이다. 버튼을 고르면 복제가 이루어질 때와 HV01이 멈춘 뒤를 볼 수 있다.",
+      "legend": "왼쪽 박스는 주 서버 HV01, 오른쪽 박스는 복제본 서버 HV02다. 두 박스 사이의 화살표는 바뀐 내용이 복제되어 가는 방향을, 아래 두 상자 사이의 화살표는 시각이 흐르는 방향을 가리킨다.",
+      "nodes": {
+        "vm-primary": "VM01",
+        "vm-replica": "VM01 복제본",
+        "t-replicated": "10:05 복제 끝",
+        "t-stopped": "10:08 HV01 멈춤"
+      },
+      "groups": {
+        "hv01": "HV01 · 주 서버",
+        "hv02": "HV02 · 복제본 서버"
+      },
+      "notes": {
+        "replicate-note": "5분마다 바뀐 내용을 보낸다",
+        "stopped-note": "멈춤",
+        "replica-note": "10:05까지의 변경",
+        "lost-note": "10:05~10:08의 변경은 없다"
+      },
+      "scenarios": [
+        {
+          "id": "replicate",
+          "label": "복제",
+          "caption": "HV01에서 실행 중인 VM01의 바뀐 내용이 복제 빈도인 5분마다 HV02의 VM01 복제본으로 간다. 10:05에 그때까지 쌓인 변경을 보내 복제본에 적용하는 복제가 한 번 끝났고, 그동안에도 VM01은 HV01에서 그대로 일한다.",
+          "sources": [
+            "windows-hyperv.hyper-v-replica"
+          ]
+        },
+        {
+          "id": "failover",
+          "label": "장애 조치",
+          "caption": "10:08에 HV01이 멈추자 관리자가 HV02에서 계획되지 않은 장애 조치를 시작해 VM01 복제본을 켜고 이어 쓴다. 다음 복제인 10:10이 오기 전에 멈췄으므로, 복제본에는 10:05까지의 변경만 있고 10:05부터 10:08까지 3분 동안의 변경은 없다.",
+          "sources": [
+            "windows-hyperv.hyper-v-replica"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.hyper-v-replica"
+      ]
+    },
+    "container-isolation": {
+      "label": "호스트 HV01에서 같은 컨테이너 이미지로 실행한 컨테이너 셋 가운데, 프로세스 격리로 실행한 컨테이너 1·2는 HV01의 커널을 함께 쓰고 Hyper-V 격리로 실행한 컨테이너 3은 자기를 감싼 가상 컴퓨터 안의 자기 커널로 실행되는 것을 보이는 도식",
+      "svgLabel": "HV01 박스 안 왼쪽에 컨테이너 1과 컨테이너 2를 위아래로, 오른쪽 가상 컴퓨터 박스 안에 컨테이너 3과 자기 커널을 위아래로 두고, 맨 아래에 HV01의 커널을 넓게 둔 그림",
+      "question": "격리 방식에 따라 컨테이너는 어느 커널로 실행될까?",
+      "idleCaption": "호스트 HV01에서 같은 컨테이너 이미지로 컨테이너 셋을 실행하는 경우를 그려 두었다. HV01과 컨테이너 1·2·3은 예로 붙인 이름이다. 버튼을 고르면 두 격리 방식에서 컨테이너가 어느 커널로 실행되는지 볼 수 있다.",
+      "legend": "큰 박스는 호스트 HV01이고, 오른쪽 작은 박스는 컨테이너 3 하나를 감싼 가상 컴퓨터다. 아래로 향하는 화살표는 컨테이너가 쓰는 커널을 가리킨다.",
+      "nodes": {
+        "container-1": "컨테이너 1",
+        "container-2": "컨테이너 2",
+        "container-3": "컨테이너 3",
+        "vm-kernel": "자기 커널",
+        "host-kernel": "HV01의 커널"
+      },
+      "groups": {
+        "host": "HV01",
+        "vm": "감싼 가상 컴퓨터"
+      },
+      "notes": {
+        "process-note": "호스트의 커널을 함께 쓴다",
+        "hyperv-note": "자기 커널로 실행된다"
+      },
+      "scenarios": [
+        {
+          "id": "process",
+          "label": "프로세스 격리",
+          "caption": "프로세스 격리로 실행한 컨테이너 1과 컨테이너 2는 자기 커널 없이 HV01의 커널을 함께 쓴다. 파일 시스템과 레지스트리 같은 것은 컨테이너마다 떼어 놓아, 컨테이너 1 안에서 바꾼 파일은 컨테이너 2에서 보이지 않는다.",
+          "sources": [
+            "windows-hyperv.windows-containers"
+          ]
+        },
+        {
+          "id": "hyperv",
+          "label": "Hyper-V 격리",
+          "caption": "Hyper-V 격리로 실행한 컨테이너 3은 자기를 감싼 가상 컴퓨터 안에서 그 가상 컴퓨터의 커널로 실행되고, HV01의 커널을 함께 쓰지 않는다. 감싼 가상 컴퓨터가 있어 다른 컨테이너와 HV01에게서 하드웨어 수준으로 떨어진다.",
+          "sources": [
+            "windows-hyperv.windows-containers"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.windows-containers"
+      ]
     }
   },
   "tables": {},
