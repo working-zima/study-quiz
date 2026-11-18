@@ -37,6 +37,7 @@ import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
+import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
@@ -360,6 +361,7 @@ import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
 import { VirtualDirectoryDiagram } from './VirtualDirectoryDiagram'
 import { VirtualHardDiskDiagram } from './VirtualHardDiskDiagram'
+import { VirtualSwitchTypesDiagram } from './VirtualSwitchTypesDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -724,6 +726,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.web-application-proxy': WebAppProxyDiagram,
   'windows-hyperv.hyper-v': HypervisorLayersDiagram,
   'windows-hyperv.virtual-machines': VirtualHardDiskDiagram,
+  'windows-hyperv.virtual-switch': VirtualSwitchTypesDiagram,
+  'windows-hyperv.checkpoints': CheckpointApplyDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

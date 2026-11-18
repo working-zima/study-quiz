@@ -93,6 +93,106 @@
       "sources": [
         "windows-hyperv.virtual-machines"
       ]
+    },
+    "virtual-switch-types": {
+      "label": "호스트 HV01에서 가상 컴퓨터 VM01·VM02를 가상 스위치 Switch01에 이었을 때, 스위치의 종류(외부·내부·프라이빗)에 따라 두 가상 컴퓨터가 호스트의 Windows Server와 물리 네트워크까지 통신하는지를 보이는 도식",
+      "svgLabel": "HV01 박스 안 맨 위 줄에 Windows Server와 VM01·VM02를, 그 아래에 가상 스위치 Switch01을, 그 아래에 물리 네트워크 어댑터를 두고, HV01 박스 밖에 물리 네트워크를 그린 그림",
+      "question": "가상 스위치의 종류에 따라 가상 컴퓨터는 누구와 통신할까?",
+      "idleCaption": "호스트 HV01 안에서 VM01과 VM02를 가상 스위치 Switch01에 이었다. Windows Server는 HV01에 설치한 운영 체제다. HV01·VM01·VM02·Switch01은 예로 붙인 이름이다. 버튼으로 스위치의 종류를 고르면 두 가상 컴퓨터가 어디까지 통신하는지 볼 수 있다.",
+      "legend": "바깥 박스는 호스트 HV01이고, 맨 위 줄의 Windows Server는 HV01에 설치한 운영 체제다. 화살표는 가상 컴퓨터가 보낸 데이터가 가상 스위치를 거쳐 닿을 수 있는 곳을 가리킨다.",
+      "nodes": {
+        "host-os": "Windows Server",
+        "vm01": "VM01",
+        "vm02": "VM02",
+        "switch": "가상 스위치 Switch01",
+        "adapter": "물리 네트워크 어댑터",
+        "network": "물리 네트워크"
+      },
+      "groups": {
+        "host": "HV01"
+      },
+      "notes": {
+        "external-note": "물리 네트워크까지",
+        "internal-note": "호스트까지",
+        "private-note": "가상 컴퓨터끼리만"
+      },
+      "scenarios": [
+        {
+          "id": "external",
+          "label": "외부",
+          "caption": "외부 스위치는 HV01의 물리 네트워크 어댑터에 묶여, VM01과 VM02가 서로는 물론 물리 네트워크의 다른 컴퓨터와도 통신한다. HV01의 Windows Server도 이 어댑터를 함께 쓰도록 허용해 두면, 호스트도 같은 스위치와 어댑터를 쓴다.",
+          "sources": [
+            "windows-hyperv.virtual-switch"
+          ]
+        },
+        {
+          "id": "internal",
+          "label": "내부",
+          "caption": "내부 스위치에 이은 VM01과 VM02는 서로 통신하고 HV01의 Windows Server와도 통신하지만, 물리 네트워크와는 통신하지 않는다.",
+          "sources": [
+            "windows-hyperv.virtual-switch"
+          ]
+        },
+        {
+          "id": "private",
+          "label": "프라이빗",
+          "caption": "프라이빗 스위치에 이은 VM01과 VM02는 서로만 통신한다. HV01의 Windows Server와도, 물리 네트워크와도 통신하지 않는다.",
+          "sources": [
+            "windows-hyperv.virtual-switch"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.virtual-switch"
+      ]
+    },
+    "checkpoint-apply": {
+      "label": "가상 컴퓨터 VM01에 업데이트를 설치하기 전에 검사점을 만들고, 업데이트 뒤 문제가 생기자 그 검사점을 적용해 업데이트 전 상태로 되돌리는 차례를 보이는 도식",
+      "svgLabel": "업데이트 전 VM01, 그 상태를 저장한 검사점, 업데이트 뒤 VM01, 적용 뒤 VM01을 두고 단계마다 화살표로 이은 그림",
+      "question": "검사점을 적용하면 가상 컴퓨터는 어느 때로 돌아갈까?",
+      "idleCaption": "VM01에 업데이트를 설치하기 전에 검사점을 만든 경우를 그려 두었다. VM01은 예로 붙인 이름이다. 버튼을 차례로 고르면 검사점을 만들고, 업데이트를 설치하고, 검사점을 적용하는 단계마다 무엇이 일어나는지 볼 수 있다.",
+      "legend": "업데이트 전 VM01, 업데이트 뒤 VM01, 적용 뒤 VM01은 한 가상 컴퓨터의 때마다 다른 상태다. 화살표는 단계마다 무엇에서 무엇이 생기는지를 가리킨다.",
+      "nodes": {
+        "before": "업데이트 전 VM01",
+        "checkpoint": "검사점",
+        "after": "업데이트 뒤 VM01",
+        "restored": "적용 뒤 VM01"
+      },
+      "notes": {
+        "create-note": "그 순간의 상태를 저장한다",
+        "update-note": "문제가 생겼다",
+        "apply-note": "검사점을 적용한다",
+        "restored-note": "업데이트 전 상태로 돌아간다"
+      },
+      "scenarios": [
+        {
+          "id": "create",
+          "label": "만들기",
+          "caption": "업데이트를 설치하기 전에 VM01을 오른쪽 클릭해 「검사점」을 누르면, Hyper-V가 VM01의 그 순간의 상태를 저장하고 「검사점」 칸에 새 검사점이 나타난다.",
+          "sources": [
+            "windows-hyperv.checkpoints"
+          ]
+        },
+        {
+          "id": "update",
+          "label": "업데이트",
+          "caption": "검사점을 만든 뒤 VM01에 업데이트를 설치했더니, 업데이트 뒤 VM01에서 프로그램 하나가 실행되지 않는 문제가 생겼다.",
+          "sources": [
+            "windows-hyperv.checkpoints"
+          ]
+        },
+        {
+          "id": "apply",
+          "label": "적용",
+          "caption": "검사점을 적용하면 VM01은 검사점을 만든 순간의 상태로 돌아가고, 그 뒤에 설치한 업데이트는 남지 않는다. 처음 정해진 프로덕션 검사점이면 적용 뒤 VM01이 꺼진 상태가 되고, 다시 켜면 업데이트 전 상태로 돌아간다.",
+          "sources": [
+            "windows-hyperv.checkpoints"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.checkpoints"
+      ]
     }
   },
   "tables": {},

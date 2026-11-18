@@ -7008,6 +7008,12 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
   virtual machine은 한국어판 대부분이 「가상 머신」으로 옮기고(개요 23번·만들기 55번·검사점 43번), 「가상 머신 내보내기 및 가져오기」 본문과 「1세대 또는 2세대」 문서는 「가상 컴퓨터」를 섞어 쓴다(본문 6번·20번). 만들기 문서 한국어판은 마법사 이름을 「새 Virtual Machine 마법사」로 반만 옮긴다.
   **고른 이름**: 「가상 컴퓨터」(virtual machine) — guide.md가 정한 이름이고 기출이 Hyper-V 문항 셋([기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33])에서 쓰는 이름이며 한국어판도 쓴다. 본문은 처음 쓸 때 「가상 머신(VM)이라고도 부른다」를 한 줄 밝히고, 화면 이름은 문서가 보이는 「새 가상 머신 마법사」·「가상 머신 연결」처럼 한국어판의 표기를 쓴다.
   「가상 스위치」, 스위치 종류는 「외부」·「내부」·「프라이빗」(guide.md의 「개인」 대신 — 한국어판 어디에도 「개인」이 없다), 「가상 하드 디스크」, 「호스트」·「게스트」. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 11, 2026-11-19 IPv4로 다시 받아 확인 — 「Plan for Hyper-V networking in Windows Server」 `updated_at` 2026-02-16·한국어판 2026-07-17, 「Create and configure a virtual switch with Hyper-V」 2026-02-16·한국어판 2026-02-16) **가상 스위치와 가상 네트워크 어댑터**(「Plan…」 「Hyper-V networking basics」):
+  가상 스위치는 이더넷 네트워크에 이어지고 가상 네트워크 어댑터는 가상 스위치의 포트에 이어져 VM이 네트워크를 쓰게 한다. VM을 만들어 가상 스위치에 이으면 가상 네트워크 어댑터가 저절로 더해진다. 가상 스위치는 모두 Hyper-V 호스트에 딸리고, 가상 네트워크 어댑터 하나는 VM 하나에만 딸린다.
+  **관리 운영 체제의 어댑터 공유**(「Plan…」 「Virtual switch options」의 설정 「Allow management operating system to share this network adapter」, 「Create and configure…」 「Management Operating System sharing」): 외부 가상 스위치는 VM을 외부 네트워크에 잇고, 이 설정을 켜면 Hyper-V 호스트(관리 운영 체제)도 그 가상 스위치와 NIC를 VM과 함께 쓴다.
+  Hyper-V 관리자 「가상 스위치 관리자」에서 스위치를 골라 이 확인란을 켜거나 `Set-VMSwitch -Name <이름> -AllowManagementOS $true`로 켠다. 기본으로 켜져 있는지는 두 문서에 없다 — 본문은 「허용할 수 있다」까지만 쓴다.
+  한국어판은 이 설정을 「이 네트워크 어댑터를 공유하는 관리 운영 체제 허용」(「Plan…」)과 「관리 운영 체제에서 이 네트워크 어댑터를 공유하도록 허용」(「Create and configure…」)으로 달리 옮긴다 — 본문은 화면 이름을 인용하지 않고 하는 일로 쓴다.
+  쓰인 곳: `windows-hyperv.virtual-switch`(소개 문단의 어댑터·스위치 관계, 「네트워킹 구성」에서 스위치를 고르면 저절로 더해지는 어댑터, 외부 스위치에서 호스트도 어댑터를 함께 쓰는 것), 도식 `virtual-switch-types`의 「외부」 시나리오에서 호스트가 선명한 근거
 
 쓰인 곳: (phase 81 step 10·11에서 쓰일 곳) `windows-hyperv.hyper-v`(Hyper-V의 정의, 하이퍼바이저·파티션, 호스트와 게스트, 설치 두 자리와 하드웨어 요구 한 줄, Hyper-V 관리자와 `virtmgmt.msc`, 쓰면 얻는 것), `windows-hyperv.virtual-machines`(새 가상 머신 마법사가 정하는 것, 가상 장치, 한 호스트 1,024개, VHD·VHDX와 최대 크기·확장자, 세대 한 줄),
 `windows-hyperv.virtual-switch`(세 종류와 잇는 범위, 가상 스위치 관리자, `New-VMSwitch`), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33]·[기출 2025-02-23 #30]·[기출 2026-05-17 #45])
@@ -7040,6 +7046,9 @@ https://learn.microsoft.com/en-us/powershell/module/hyper-v/checkpoint-vm?view=w
   「타임머신」·「새로 고침」이라는 이름의 Hyper-V 기능은 이 항목과 이 step의 다른 항목에서 읽은 Hyper-V 문서 어디에도 없다
 - **한국어 이름**: 한국어판은 「검사점」(「검사점 사용」 한국어판에서 119번 — 「체크포인트」는 내보내기 문서 한국어판에 한 번), 「표준 검사점」·「프로덕션 검사점」, 「적용」·「검사점 만들기 및 적용」, 옛 이름은 「스냅샷」, 「내보내기」·「가져오기」·「가상 머신 가져오기」(같은 문서 본문은 「가상 컴퓨터 내보내기」·「가상 컴퓨터 가져오기」로도 옮긴다)로 옮긴다.
   **고른 이름**: 「검사점」(checkpoint — 한국어판의 표기이고 기출 둘이 쓰는 이름), 「표준 검사점」·「프로덕션 검사점」, 「적용」, 「내보내기」·「가져오기」. 옛 이름은 한국어판 표기 「스냅샷」(snapshot — guide.md의 「스냅숏」 대신, 한국어판의 표기다). **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 11, 2026-11-19 다시 받아 확인 — 같은 판) **적용 뒤의 변경**(「Use checkpoints」 「Applying checkpoints」·「Using standard checkpoints」·「Using production checkpoints」): 「검사점 만들기 및 적용」은 앞 검사점을 적용하기 전에 VM의 새 검사점을 하나 만든다.
+  두 실습 모두 검사점을 만든 뒤 VM 바탕 화면의 텍스트 파일을 지우고 검사점을 적용하면 그 파일이 다시 있음을 보인다 — 적용하면 검사점 뒤의 변경이 남지 않는다는 것은 이 실습과 첫머리(검사점을 만든 때의 상태로 VM을 되돌린다)에서 이어서 나오는 말이다.
+  쓰인 곳: `windows-hyperv.checkpoints`(적용 문단, 예시의 넷째 단계), 도식 `checkpoint-apply`의 「적용」 시나리오와 캡션
 
 쓰인 곳: (phase 81 step 11에서 쓰일 곳) `windows-hyperv.checkpoints`(정의, 두 종류와 기본값·판, 종류 바꾸기, 만들기·적용과 대화 상자, 두 종류를 적용했을 때의 차이, `.avhdx`, 전체 백업이 아니라는 것, 옛 이름, 내보내기·가져오기와의 차이), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2026-05-17 #45]·[기출 2026-08-02 #45])
 
