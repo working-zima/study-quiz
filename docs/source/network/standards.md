@@ -124,6 +124,11 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 지금 판 문서에 정의 문장이 없는 것(역할·역할 서비스·기능의 정의, MCLT의 정의, 파일 및 저장소 서비스의 기본 설치, 인쇄 및 문서 서비스의 역할 설명)만 지금 판 문서가 링크하는 지난 판 문서(Windows Server 2008 R2·2012·2012 R2)에서 가져왔다 — 줄마다 그 판과, 지금 판 문서에서 같은 말을 찾아본 결과를 적는다.
 **마법사·대화 상자의 한국어 이름은 한국어판 문서(기계 번역)의 표기로만 확인했고 실제 한국어 Windows 화면으로는 확인하지 못했다.** Microsoft Q&A에만 있는 사실(DHCP 콘솔의 실행 이름 `dhcpmgmt.msc`, 동적 주소로 DNS 서버 역할을 설치할 때 마법사가 보이는 경고의 꼴)은 쓰지 않는다 — 항목에 찾아본 곳을 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 서버 관리자의 원격 관리·서버 그룹·오프라인 VHD에 설치, 기능 주문형(Features on Demand), SMB의 버전별 기능·서명·암호화·다중 채널·QUIC의 설정, 저장소 공간·DFS·데이터 중복 제거, 인쇄 관리 콘솔, DHCP의 IPv6·정책·필터·DNS 동적 업데이트·분할 범위의 배포, IPAM, 장애 조치 관계의 복제·클러스터 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 4)」가 붙은 줄과 항목은 phase 81 step 4에서 `windows-server-roles` 주제의 뒤 개념 여덟(IIS 웹 서버, 사이트 바인딩과 연결 제한, 홈 디렉터리와 가상 디렉터리, 요청 필터링, IIS 로그, FTP 서버, 원격 액세스 역할, 웹 응용 프로그램 프록시)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+읽은 방법은 step 0과 같다(learn.microsoft.com의 영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 IIS 문서(`iis/…` — 구성 참조 `iis/configuration/…` 포함)·Windows Server 원격 액세스 문서·Windows 보안 문서·문제 해결 문서다.
+**IIS 문서는 대부분 IIS 7.0 때(2007~2008년) 쓴 글이고**, 화면 차례도 Windows Server 2008~2012 R2까지만 적는다. 그래서 같은 사실이 지금 판(IIS 10.0 — Windows Server 2016 이후)에서도 그대로인지 구성 참조의 「Compatibility」 표에 「IIS 10.0에서 바뀌지 않았다」는 줄이 있는지로 맞춰 보고, 항목마다 그 결과를 적는다.
+IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 번역) 화면 이름은 그 번역으로만 확인했고 **실제 한국어 IIS 관리자 화면으로는 확인하지 못했다**. 한국어판은 application을 줄곧 「애플리케이션」으로 옮긴다(「애플리케이션 풀」·「웹 애플리케이션 프록시」) — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — IIS의 인증 방식 전체·URL 재작성·ASP.NET 구성·공유 구성·출력 캐시·모듈 목록, 요청 필터링의 사용자 지정 규칙과 헤더 제한, 로그의 사용자 지정 필드·ETW 설정, FTP 사용자 격리·방화벽 설정 전체, VPN·DirectAccess의 배포 절차와 인증서·Always On VPN의 구성, AD FS의 동작과 신뢰 당사자 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -6447,6 +6452,9 @@ https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-
 - 이웃 줄 — 「Features removed」의 Windows Server 2025 탭에 IIS 6 관리 콘솔(2019부터 더 개발하지 않음), Windows Server 2019 탭에 Server Core 설치 옵션의 인쇄 구성 요소(다시 기본으로 꺼져 있고 `Install-WindowsFeature Print-Server`로 켠다)
 - 클라우드 폴더(Work Folders)는 이 판에서도 두 절 어디에도 없다
 
+(phase 81 step 4, 2026-11-18 IPv4로 다시 받아 확인 — 위 「(phase 81 step 0)」 줄과 같은 판, `updated_at` 2026-11-17) 웹 응용 프로그램 프록시(Web Application Proxy)는 여전히 두 절 어디에도 없고, DirectAccess·PPTP와 L2TP를 통한 원격 액세스 줄(「Features removed」의 Windows Server 2028(Preview) 탭)도 위 줄 그대로다.
+IIS 쪽으로는 IIS 6 관리 호환성 구성 요소(IIS 6 메타베이스 호환성·IIS 6 관리 콘솔 등)와 IIS 다이제스트 인증이 목록에 있다 — 이 phase의 개념(IIS 관리자·사이트·요청 필터링·로그·FTP)이 쓰는 구성 요소는 아니어서 탭을 따로 적지 않는다. 근거로 쓴 곳은 아래 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목
+
 쓰인 곳: (phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(WINS의 지원 상태 — 2022부터 더 개발하지 않음, 2028 Preview에서 제거), `windows-server-roles.file-print-services`(Server Core의 인쇄 구성 요소 줄 — 쓸 때만),
 `windows-server-roles.remote-access`·`windows-server-roles.web-application-proxy`(DirectAccess·PPTP/L2TP는 2028 Preview에서 제거, 웹 응용 프로그램 프록시는 목록에 없음 — step 4가 그 주제의 문서와 함께 다시 본다), `windows-hyperv`(Hyper-V 줄·Nano Server 줄 — step 9가 다시 본다)
 
@@ -6642,3 +6650,229 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-serve
 
 쓰인 곳: (phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-failover`(장애 조치의 뜻, 관계는 두 서버·DHCPv4만, 두 방식과 기본값 — 부하 분산이 기본·50:50, 핫 대기의 예약 비율 5%, MCLT의 정의와 쓰임·기본 1시간, 파트너 다운 뒤 MCLT만큼 기다린다, 공유 비밀은 메시지 인증, 통신 중단에서 파트너 다운으로 넘어가는 시간과 기본으로는 저절로 넘어가지 않는다, TCP 647);
 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2026-05-17 #42]). DHCPDISCOVER를 다시 보내는 것은 클라이언트의 동작이라는 것은 이미 있는 「(phase 73 step 1) RFC 951 …, RFC 2131 …」 항목으로 댄다
+
+## (phase 81 step 4) Microsoft Learn — IIS·IIS 관리자·사이트·바인딩·연결 제한·응용 프로그램 풀: Install the Web Server WEB1, Introduction to IIS Architectures, Getting Started with the IIS Manager in IIS, IIS Modules Overview, Export a Package through IIS Manager, How to Create a Simple IIS Manager Module, Remote Manager for Windows 2003, XP and Vista SP1, Understanding Sites, Applications, and Virtual Directories on IIS 7, Sites <sites>, Binding <binding>, Limits for a Web Site <limits>, Configuring Step 4: Configure Application Security, Build a Static Website on IIS, How to Set Up SSL on IIS 7 or later, FastCGI <fastCgi>, Application Pools <applicationPools>, Adding Application Pools <add>, Application Pool Identities; 문제 해결 — Event 115 when you connect HTTPS website, Enable SSL for all customers; Windows 드라이버 문서 — Serial Controller Driver Design Guide; 기출 오답의 도구 — Windows Firewall Tools, Advanced AD DS Management Using Active Directory Administrative Center (Level 200), Windows startup issues troubleshooting
+https://learn.microsoft.com/en-us/windows-server/networking/core-network-guide/cncg/server-certs/install-the-web-server-web1
+https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture
+https://learn.microsoft.com/en-us/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8
+https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/iis-modules-overview
+https://learn.microsoft.com/en-us/iis/publish/using-web-deploy/export-a-package-through-iis-manager
+https://learn.microsoft.com/en-us/iis/develop/extending-the-management-ui/how-to-create-a-simple-iis-manager-module
+https://learn.microsoft.com/en-us/iis/manage/remote-administration/remote-manager-for-windows-2003-xp-and-vista-sp1
+https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/bindings/binding
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/limits
+https://learn.microsoft.com/en-us/iis/application-frameworks/scenario-build-an-aspnet-website-on-iis/configuring-step-4-configure-application-security
+https://learn.microsoft.com/en-us/iis/manage/creating-websites/scenario-build-a-static-website-on-iis
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/fastcgi/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/application-pool-identities
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/www-administration-management/event-115-connect-https-website
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/www-authentication-authorization/enable-ssl-all-customers
+https://learn.microsoft.com/en-us/windows-hardware/drivers/serports/
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/tools
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/adac/advanced-ad-ds-management-using-active-directory-administrative-center--level-200-
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Install the Web Server WEB1」 `updated_at` 2025-09-22(`ms.date` 2020-08-07, 「Applies to」 Windows Server 2016~2025).
+IIS 문서는 「Applies to」 줄이 없고 「Compatibility」 표에 IIS 판을 적는다 — 「Introduction to IIS Architectures」 2023-02-17(2007-11-16, IIS 7.0 이후), 「Getting Started with the IIS Manager in IIS」 2025-12-20(2007-11-16, 스스로 Windows Server 2008용으로 썼다고 적는다), 「IIS Modules Overview」 2024-04-11(2007-11-22),
+「Export a Package through IIS Manager」 2025-12-20(2008-10-29), 「How to Create a Simple IIS Manager Module」 2025-12-20(2007-12-18), 「Remote Manager for Windows 2003, XP and Vista SP1」 2022-03-23(2008-03-10), 「Understanding Sites, Applications, and Virtual Directories on IIS 7」 2023-02-17(2007-11-23),
+「Configuring Step 4…」 2020-05-09(2013-04-14), 「Build a Static Website on IIS」 2024-04-11(2013-04-14), 「How to Set Up SSL on IIS 7 or later」 2025-12-20(2007-11-22), 「Application Pool Identities」 2025-12-20(2014-03-28).
+구성 참조(`ms.date` 모두 2016-09-26) — `<sites>`·`<binding>` 2025-12-20, `<limits>`·`<applicationPools>`·`<add>` 2022-04-06, `<fastCgi>` 2024-04-11. **여섯 다 「Compatibility」 표가 IIS 10.0에서 바뀌지 않았다고 적는다**(`<binding>`은 IIS 8.0에서 `sslFlags`가 더해졌다).
+문제 해결 「Event 115…」 2025-02-11(2020-03-23)·「Enable SSL for all customers」 2025-02-11(2020-03-24) — 둘 다 원래 판을 「Internet Information Services」로만 적는다. 드라이버 문서 「Serial Controller Driver Design Guide」 2025-07-18(2022-03-13).
+「Windows Firewall Tools」 2026-10-08(2025-04-07, Windows 11·10·Windows Server 2016~2025), 「Advanced AD DS Management…(Level 200)」 2025-09-23(2025-06-26, Windows Server 2016~2025), 「Windows startup issues troubleshooting」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트).
+한국어판도 받았다(Vista 원격 관리 도구 글과 「Enable SSL…」은 빼고 — `updated_at` 2026-01-21~2026-11-13, IIS 문서는 2026-10-27 무렵, 기계 번역).
+
+- **IIS**(Internet Information Services): Windows Server의 서버 역할 「웹 서버(IIS)」가 IIS다. 웹 사이트·서비스·응용 프로그램을 올려 두고 인터넷·인트라넷·엑스트라넷의 사용자에게 내주는 데 쓰고, 필요한 구성 요소만 골라 넣는 모듈 구조다. 문서는 IIS를 IIS·ASP.NET·FTP 서비스·PHP·WCF를 한데 묶은 웹 플랫폼으로 소개한다 — 「Install the Web Server WEB1」 첫머리.
+  설치는 서버 관리자 「관리」 → 「역할 및 기능 추가」 → 「서버 역할」에서 웹 서버(IIS)를 고르거나 `Install-WindowsFeature Web-Server -IncludeManagementTools` — 같은 문서(설치 이름 `Web-Server`는 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표와 같다)
+- **요청을 처리하는 차례**(IIS 7.0 이후): 커널 모드의 HTTP.sys가 HTTP 요청을 받아 큐에 둔다. WAS(Windows Process Activation Service)가 응용 프로그램 풀의 설정과 작업자 프로세스를 관리해, 요청이 온 풀에 작업자 프로세스가 없으면 하나 시작한다. 작업자 프로세스가 요청을 처리해 응답을 HTTP.sys에 돌려준다 — 「Introduction to IIS Architectures」 「Hypertext Transfer Protocol Stack (HTTP.sys)」·「Process Management」·「HTTP Request Processing in IIS」.
+  IIS의 기능은 모듈로 나뉘고, 요청 필터링(`RequestFilteringModule` — 허용할 동사·확장자, 길이 한도, 나쁜 문자열 검사)과 로그(`HttpLoggingModule` — 로그에 적을 정보를 HTTP.sys에 넘긴다)도 모듈이다 — 같은 문서 「Security Modules」·「Logging and Diagnostics Modules」 표
+- **IIS 관리자**(IIS Manager): IIS 7.0부터 쓰는 IIS의 그래픽 관리 도구다. IIS 6.0에서는 사이트를 오른쪽 클릭해 「All Properties」를 고르면 탭이 여럿 달린 속성 대화 상자가 열렸고, IIS 7.0의 IIS 관리자는 이것을 제어판처럼 늘어놓은 기능 목록으로 바꿨다 — 「Getting Started with the IIS Manager in IIS」 「Introduction」. 서버 연결로는 컴퓨터 관리자만 관리할 수 있다 — 같은 문서 「Server, Site and Application Connections」
+- **IIS 관리자를 여는 방법**: 시작 → 실행(Run)에 `inetmgr`를 넣는다(「Export a Package through IIS Manager」 2단계), 시작의 검색 상자에 `inetmgr`를 넣고 Enter(「IIS Modules Overview」 「Querying, Adding and Removing Modules Using the IIS Manager」), Windows Server 2012·2012 R2는 서버 관리자 「도구」 → 「IIS(인터넷 정보 서비스) 관리자」(구성 참조 페이지마다의 「How To」 — 차례를 Windows Server 2012 R2까지만 적는다).
+  실행 파일은 `\windows\system32\inetsrv\inetmgr.exe`다(「How to Create a Simple IIS Manager Module」 「Task 1」 — 디버깅할 외부 프로그램으로 이 파일을 고른다). Vista에 원격 관리 도구를 넣는 글은 시작의 검색 상자에 `inetmgr.exe`를 넣으라고 한다(「Remote Manager for Windows 2003, XP and Vista SP1」 「Installing on Windows Vista」).
+  실행 창에 `.exe`까지 붙여 넣는 차례를 지금 판 문서에서 따로 찾지는 못했지만, `inetmgr.exe`는 IIS 관리자 실행 파일의 이름 그대로다. 명령 프롬프트는 확장자를 뺀 이름에 PATHEXT의 `.EXE`를 붙여 찾는다(위 「(phase 80 step 8) … MMC와 실행 이름」 항목의 `start` 줄)
+- **기출 오답의 실행 이름**([기출 2024-11-03 #40] 대조용): `wf.msc`는 고급 보안이 포함된 Windows Defender 방화벽(MMC 스냅인)을 연다(「Windows Firewall Tools」 「Windows Defender Firewall with Advanced Security」). `dsac.exe`는 Active Directory 관리 센터의 실행 파일이다(「Advanced AD DS Management…(Level 200)」 — 실행 창에 `dsac.exe`, `runas /user:<도메인\사용자> dsac`).
+  `msconfig`는 시스템 구성 도구로, 서비스를 골라 켠 채 시작해 문제를 찾는 데 쓴다(「Windows startup issues troubleshooting」 「Troubleshoot issues in the Kernel phase」). 셋 다 IIS 관리자가 아니다
+- **사이트·응용 프로그램·가상 디렉터리**(IIS 7 이후의 짜임): 세 단이 겹쳐 있다 — 사이트 안에 응용 프로그램이, 응용 프로그램 안에 가상 디렉터리가 들고, 가상 디렉터리 하나는 컴퓨터의 실제 디렉터리 하나를 가리킨다. 사이트마다 적어도 루트 응용 프로그램 하나, 응용 프로그램마다 적어도 루트 가상 디렉터리 하나가 있고, 클라이언트는 사이트에 붙인 바인딩(하나 이상, 사이트끼리 겹치지 않는)으로 사이트를 찾아온다.
+  사이트에 딸린 설정으로 제한(대역폭·연결 수·연결 시간)과 로그가 있다 — 「Understanding Sites…」 「About Sites, Applications, and Virtual Directories in IIS 7 and Above」·「Sites」
+- **Default Web Site**(한국어판 「기본 웹 사이트」): IIS를 설치하면 `ApplicationHost.config`(`%windir%\system32\inetsrv\config\`)에 사이트가 하나 들어 있다 — 이름 `Default Web Site`, id 1, 루트 가상 디렉터리의 실제 경로 `%SystemDrive%\inetpub\wwwroot`, 바인딩은 형식 `http`·`*:80:`(모든 IP 주소의 80번, 호스트 이름 없음).
+  같은 기본 구성에 사이트 기본값으로 로그 형식 W3C와 로그 디렉터리 `%SystemDrive%\inetpub\logs\LogFiles`가, 응용 프로그램 기본값으로 응용 프로그램 풀 `DefaultAppPool`이 들어 있다 — 「Understanding Sites…」 「IIS Configuration: <sites> Section」(Windows Server 2008에 설치한 뒤의 내용), `<sites>` 「Configuration Sample」(IIS 10.0에서 바뀌지 않았다).
+  `*`가 모든 IP 주소라는 것은 「Build a Static Website on IIS」 「Step 2: Add a Website」(`http/*:85:`는 모든 IP 주소의 85번으로 오는 HTTP 요청을 받는다)
+- **새 사이트 만들기**: IIS 관리자 「연결」 창에서 서버를 펼쳐 「사이트」를 고르고 「작업」 창 「웹 사이트 추가...」 → 「웹 사이트 추가」 대화 상자에 적어도 「사이트 이름」과 「실제 경로」를 넣는다. 기본 웹 사이트를 계속 쓴다면 새 사이트의 바인딩을 달리 해야 해서, 포트를 바꾸거나 호스트 이름을 넣는다 — `<sites>` 「How To」
+- **사이트 바인딩**: 클라이언트가 사이트와 통신할 때 쓰는 프로토콜(`http`·`https` — 바인딩 프로토콜)과 사이트에 닿는 정보(사이트의 IP 주소 — 또는 지정하지 않은 IP 주소, 포트 번호, 선택으로 호스트 헤더 — 바인딩 정보)의 짝이다. 사이트 하나가 바인딩을 여럿 가질 수 있고(예: HTTP와 HTTPS를 함께), 인터넷에서 보이려면 HTTP나 HTTPS 바인딩이 적어도 하나 있어야 한다 — `<binding>` 「Overview」·「Configuration」·「Attributes」, 「Understanding Sites…」 「Sites」.
+  IIS 관리자에서는 사이트를 고르고 「작업」 창 「바인딩...」 → 「사이트 바인딩」 대화 상자 「추가...」 → 「사이트 바인딩 추가」에 넣는다 — `<binding>` 「How To」. 「사이트 바인딩 추가」의 칸은 「형식」(https 등)·「IP 주소」(목록에서 「All Unassigned」 — 쓸 특정 주소가 없으면)·「포트」(https면 기본 443)·「호스트 이름」·「SSL 인증서」다 — 「Configuring Step 4…」 「4.5. TLS/SSL Communication」.
+  구성 예: `192.168.0.1:80:www.contoso.com`(그 주소·80번·그 호스트 이름), `*:443:`(모든 주소의 443번) — `<binding>` 「Configuration Sample」
+- **한 서버의 여러 사이트**: IIS에 사이트를 여럿 두려면 사이트마다 IP 주소나 포트 번호나 호스트 헤더가 달라야 한다. 같은 문서는 IP 주소·TCP 포트가 같고 호스트 헤더만 다른 두 사이트를 들어, HTTP 쪽은 맞는 설정이지만 HTTPS(SSL) 쪽은 호스트 헤더로 가를 수 없어 둘째 사이트의 443번이 시작하지 못한다고 하고, IIS 8부터 SNI(서버 이름 표시)로 이 문제를 푼다고 적는다 — 「Event 115…」 「Workaround 1」.
+  그러니 HTTP 사이트는 IP 주소·포트가 같아도 호스트 이름으로 가를 수 있다 — 같은 절과 `<sites>` 「How To」에서 이어서 나오는 말
+- **연결 제한**(사이트의 `<limits>`): 사이트로 오는 클라이언트 요청의 대역폭·연결 수·연결 시간을 제한한다 — 「Overview」. `maxBandwidth` — 사이트가 쓸 네트워크 대역폭의 상한(초당 바이트), 기본 4294967295. `maxConnections` — 사이트에 동시에 이어질 수 있는 클라이언트 연결 수의 상한, 기본 4294967295.
+  `connectionTimeout` — 쉬고 있다고(비활성으로) 판단한 연결을 끊기 전에 IIS가 기다리는 시간(초), 기본 2분(`00:02:00`). (`maxUrlSegments` — URL 세그먼트 수의 상한, 기본 32 — 쓰지 않는다.) 이 셋은 IIS 6.0 메타베이스의 ConnectionTimeout·MaxBandwidth·MaxConnections를 대신한다 — 「Attributes」·「Compatibility」.
+  IIS 관리자에서는 사이트를 고르고 「작업」 창 「고급 설정...」 → 「고급 설정」 대화 상자에서 「제한」을 펼쳐 정한다 — 「How To」. 칸의 화면 이름은 문서의 그림에만 있어 확인하지 못했다
+- **HTTPS**: IIS에서 HTTPS를 쓰려면 인증서를 얻고(IIS 관리자의 서버 노드 「서버 인증서」 — 자체 서명 인증서 만들기도 있다), 사이트에 형식 `https` 바인딩을 더해 그 인증서를 고른다. 새 바인딩의 기본은 HTTP·80번이라 형식에서 https를 고른다 — 「How to Set Up SSL on IIS 7 or later」 「Introduction」·「IIS Manager」
+- **PHP와 FastCGI**: IIS에는 FastCGI 구성 요소가 들어 있어 PHP 같은 웹 응용 프로그램 프레임워크를 IIS에서 실행할 수 있다. 쓰려면 CGI 역할 서비스(서버 역할 → 웹 서버(IIS) → 웹 서버 → 응용 프로그램 개발 → CGI)를 설치하고, FastCGI 응용 프로그램으로 PHP 실행 파일의 경로를 정해 둔다 — `<fastCgi>` 「Overview」·「Setup」·「How To」(IIS 10.0에서 바뀌지 않았다). 「Install the Web Server WEB1」도 IIS가 묶는 것에 PHP를 든다
+- **응용 프로그램 풀**(application pool): 같은 설정을 쓰는 작업자 프로세스 하나 이상의 묶음이고, 그 풀에 맡긴 **응용 프로그램 하나 이상**의 요청을 처리한다. 작업자 프로세스마다 프로세스 경계로 떨어져 있어, 한 풀의 응용 프로그램에 문제가 생겨도 다른 풀의 사이트·응용 프로그램에 번지지 않는다. 풀은 필요한 만큼 만들 수 있다(많으면 성능에 영향) — `<applicationPools>` 「Overview」(IIS 10.0에서 바뀌지 않았다).
+  응용 프로그램은 사이트에 속하면서 풀에도 속하고, 풀이 그 응용 프로그램을 다른 풀의 응용 프로그램과 떼어 놓는다 — 「Understanding Sites…」 「Applications」. 새 풀에 꼭 정할 것은 고유한 이름이다 — `<add>` 「Overview」. IIS를 설치하면 `DefaultAppPool`이 있고 구성 파일의 응용 프로그램 기본값이 이 풀이다(위 Default Web Site 줄).
+  작업자 프로세스는 `w3wp.exe`이고, 풀마다 그 풀 이름을 딴 계정(응용 프로그램 풀 ID)으로 실행된다 — 「Application Pool Identities」 첫머리
+- **시리얼 포트**(serial port, 직렬 포트): 직렬 컨트롤러(16550 UART나 호환 장치)에 달린 하드웨어 통신 인터페이스이고 주변 장치가 거기에 이어진다. 옛 Windows에서는 PC 케이스에 이름 붙은 COM 포트였다 — 「Serial Controller Driver Design Guide」 첫머리. 사이트 바인딩의 포트는 이것이 아니라 TCP 포트 번호다(위 바인딩 줄, 「(phase 77) RFC 6335 …」 같은 포트 항목들) — 이어서 나오는 말
+- **IIS 6.0 꼴의 사이트 속성**: 문제 해결 「Enable SSL for all customers」는 사이트의 「속성」 대화 상자 「웹 사이트」 탭에서 SSL 포트를 확인하고, 「고급」에서 그 사이트의 IP 주소·포트 짝 목록(「Multiple identities for this web site」)에 443번을 더하는 차례를 보인다 — 「Enforce SSL connections」. 위 「Getting Started with the IIS Manager」 줄의 탭 달린 속성 대화 상자 꼴이고, 지금 판에서는 이 값들이 바인딩과 「고급 설정」으로 옮겨 왔다
+- **한국어 이름**: 한국어판은 「웹 서버(IIS)」, 「IIS(인터넷 정보 서비스) 관리자」, 「기본 웹 사이트」, 「연결」 창·「작업」 창, 「웹 사이트 추가」·「사이트 이름」·「실제 경로」·「호스트 이름」, 「바인딩...」·「사이트 바인딩」·「사이트 바인딩 추가」·「바인딩 편집」, 「할당되지 않은 모든 항목」(All Unassigned — 구성 참조 한국어판은 속성 설명에서 「지정되지 않은 IP 주소」로도 옮긴다), 「고급 설정」 → 「제한」,
+  `<limits>` 속성 설명의 「최대 대역폭」·「최대 연결 수」·「연결 제한 시간」, 「애플리케이션 풀」·「작업자 프로세스」·「서버 인증서」로 옮긴다.
+  **고른 이름**: 「IIS 관리자」, 「사이트」, 「Default Web Site」(이름이라 영문 그대로 쓰고 「기본 웹 사이트」로도 옮긴다는 것을 한 번 밝힌다 — guide.md와 같다), 「사이트 바인딩」과 그 네 값 「형식」·「IP 주소」·「포트」·「호스트 이름」, 「할당되지 않은 모든 항목」(All Unassigned — guide.md의 「지정하지 않은 모든 IP」 대신, 한국어판 문서가 대화 상자 차례에서 쓰는 표기),
+  연결 제한 셋은 화면 이름을 확인하지 못해 영문 속성 이름을 함께 적는다 — 「연결 제한 시간」(`connectionTimeout`, 기출은 「연결 시간 제한」)·「최대 연결 수」(`maxConnections`, 기출은 「연결 수 제한」)·「최대 대역폭」(`maxBandwidth`),
+  「응용 프로그램 풀」(guide.md와 기출 [기출 2025-11-02 #41]의 표기 — 한국어판 문서는 「애플리케이션 풀」로만 옮긴다는 것을 본문에서 한 번 밝힌다), 「작업자 프로세스」. **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis`(IIS와 웹 서버(IIS) 역할·설치, IIS 관리자와 여는 방법·실행 파일 `inetmgr.exe`, 사이트와 Default Web Site의 이름·바인딩·실제 경로, HTTPS 바인딩과 서버 인증서, CGI 역할 서비스와 FastCGI로 PHP, 응용 프로그램 풀의 뜻·격리·응용 프로그램 하나 이상·`DefaultAppPool`·`w3wp.exe`, 사이트와 응용 프로그램 풀의 차이),
+`windows-server-roles.iis-site-bindings`(바인딩의 네 값과 「사이트 바인딩 추가」의 칸, `*`와 「할당되지 않은 모든 항목」, 한 서버의 여러 사이트는 IP·포트·호스트 이름 가운데 하나가 달라야 하고 HTTP는 호스트 이름으로 가른다, 연결 제한 셋의 뜻과 기본값과 「고급 설정」의 「제한」, 포트 번호와 시리얼 포트의 차이);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2024-11-03 #40], [기출 2025-11-02 #41], [기출 2025-02-23 #28]과 **E40**)
+
+## (phase 81 step 4) Microsoft Learn — IIS의 실제 경로·기본 문서·디렉터리 검색·가상 디렉터리·요청 필터링·로그: Create a Web Site, Compatibility and Feature Requirements for Windows Vista, Virtual Directory <virtualDirectory>, Default Document <defaultDocument>, Directory Browse <directoryBrowse>, Request Filtering <requestFiltering>, File Name Extensions <fileExtensions>, Request Limits <requestLimits>, Use Request Filtering, Log Files for a Web Site <logFile>, Configure Logging in IIS, Managing IIS Log File Storage, Logging to Event Tracing for Windows in IIS 8.5; 문제 해결 — How to create a virtual directory on an existing Web site to a folder that resides on a remote computer
+https://learn.microsoft.com/en-us/iis/get-started/getting-started-with-iis/create-a-web-site
+https://learn.microsoft.com/en-us/iis/install/installing-iis-7/compatibility-and-feature-requirements-for-windows-vista
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/virtualdirectory
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/defaultdocument/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/directorybrowse
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/fileextensions/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/requestlimits/
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/use-request-filtering
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/logfile/
+https://learn.microsoft.com/en-us/iis/manage/provisioning-and-managing-iis/configure-logging-in-iis
+https://learn.microsoft.com/en-us/iis/manage/provisioning-and-managing-iis/managing-iis-log-file-storage
+https://learn.microsoft.com/en-us/iis/get-started/whats-new-in-iis-85/logging-to-etw-in-iis-85
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/create-virtual-directory-folder-remote-computer
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Create a Web Site」 `updated_at` 2023-02-17(`ms.date` 2009-11-15), 「Compatibility and Feature Requirements for Windows Vista」 2024-04-11(2007-11-22, IIS 7.0 때 글), 「Use Request Filtering」 2020-05-14(2007-11-22),
+「Configure Logging in IIS」 2024-04-11(2013-04-14 — 갖출 것으로 Windows Server 2012·Windows 8을 적는다), 「Managing IIS Log File Storage」 2025-12-20(2014-05-30), 「Logging to Event Tracing for Windows in IIS 8.5」 2022-06-14(2013-07-11).
+구성 참조(`ms.date` 모두 2016-09-26) — `<virtualDirectory>`·`<directoryBrowse>` 2022-03-21, `<defaultDocument>`·`<fileExtensions>` 2022-04-06, `<requestFiltering>`·`<requestLimits>`·`<logFile>` 2025-12-20. 「Compatibility」 표: `<virtualDirectory>`·`<defaultDocument>`·`<directoryBrowse>`·`<requestLimits>`·`<logFile>`는 IIS 10.0에서 바뀌지 않았고,
+`<requestFiltering>`은 IIS 10.0에서 서버 헤더를 숨기는 설정만 더해졌다(`<logFile>`은 IIS 8.5에서 버퍼·ETW·줄 길이·사용자 지정 필드 설정이 더해졌다).
+문제 해결 「How to create a virtual directory … remote computer」 2026-02-19(2026-02-12, 「Applies to」 지원되는 Windows Server, 원래 KB 308150 — 본문의 차례는 옛 관리 도구 「Internet Services Manager」로 적었다). 한국어판도 모두 받았다(`updated_at` 2026-10-14~2026-10-27, 기계 번역).
+
+- **실제 경로**(physical path): 새 사이트에 꼭 정할 둘(「사이트 이름」과 함께) 가운데 하나이고, 사이트의 루트 가상 디렉터리가 이어지는 컴퓨터의 폴더다(위 「(phase 81 step 4) … IIS·IIS 관리자 …」 항목의 `<sites>` 「How To」와 「Understanding Sites…」).
+  IIS를 설치하면 기본 웹 사이트의 구성이 `\Inetpub\Wwwroot` 디렉터리에 만들어지는데, 웹 콘텐츠는 이 기본 디렉터리에 두어도 되고 파일 시스템의 원하는 곳에 디렉터리를 만들어 써도 된다 — 「Create a Web Site」 「Introduction」.
+  IIS 설치는 `\inetpub`을 늘 `%SystemDrive%\inetpub`에 두지만, 설치 뒤에 그 폴더를 옮기고 기본 웹 사이트가 새 위치를 가리키게 바꿀 수 있다 — 「Compatibility and Feature Requirements for Windows Vista」 「Changing the Location of Web Root During Installation」
+- **「홈 디렉터리」라는 이름**: 지금 판 IIS 문서(IIS 7 이후의 개념 글·구성 참조)는 웹 사이트의 내용 폴더를 「physical path(실제 경로)」라 부르고 「home directory」를 쓰지 않는다 — 그 말은 FTP 사용자 격리의 사용자별 홈 디렉터리에 나온다(이 phase는 FTP 사용자 격리를 다루지 않는다).
+  웹 사이트의 내용 폴더를 「home directory」라 부르는 것은 옛 관리 도구로 차례를 적은 옛 KB 글이다 — 「How to create a virtual directory … remote computer」 첫머리: 원격 가상 디렉터리는 웹 사이트의 홈 디렉터리 안에 있지 않지만 브라우저에는 그 안에 있는 것처럼 보이는 디렉터리이고,
+  표의 예에서 `C:\WWWroot`가 별칭 없는 홈 디렉터리(`http://Sales`), `\\RemoteServer\SalesData\ProdCustomers`가 별칭 `Customers`(`http://Sales/Customers`)다. 한국어판도 「홈 디렉터리」로 옮긴다
+- **기본 문서**(default document): 사이트나 응용 프로그램의 루트 디렉터리로 요청이 오면 IIS가 돌려줄 파일 이름의 목록이다. 기본으로 켜져 있고(`enabled` 기본 true), 서버 전체의 기본 목록은 차례대로 `Default.htm`·`Default.asp`·`Index.htm`·`Index.html`·`Iisstart.htm`이다(ASP.NET을 설치하면 `Default.aspx`가 더해진다).
+  IIS는 목록의 차례대로 그 파일이 있는지 보고 처음 있는 것을 브라우저에 보낸다. 목록 아래쪽 파일은 위의 파일을 모두 확인한 뒤에야 찾으므로 차례가 성능에 영향을 준다 — `<defaultDocument>` 「Overview」(IIS 10.0에서 바뀌지 않았다).
+  IIS 관리자: 사이트·응용 프로그램을 고르고 「기본 문서」 두 번 클릭 → 「작업」 창 「추가...」 → 「기본 문서 추가」 대화 상자의 「이름」에 파일 이름을 넣는다. 「위로 이동」·「아래로 이동」으로 차례를 바꾸고 「제거」로 뺀다 — 「How To」
+- **디렉터리 검색**(directory browsing): 켜 두면 디렉터리를 가리킨 요청에 그 디렉터리의 목록을 돌려준다. `enabled` **기본 false(꺼짐)**. `showFlags`는 목록에 항목마다 보일 정보를 고른다 — `Date`(마지막으로 고친 날짜)·`Time`(그 시각)·`Size`(파일 크기)·`Extension`(파일 이름 확장자)·`LongDate`(날짜를 긴 꼴로)·`None`(이름만), 기본은 `Date, Time, Size, Extension` — `<directoryBrowse>` 「Overview」·「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  역할 서비스 「디렉터리 검색」(웹 서버 → 일반 HTTP 기능)은 IIS 기본 설치에 들어 있다 — 「Setup」. IIS 관리자: 사이트·응용 프로그램·디렉터리를 고르고 「디렉터리 검색」 두 번 클릭 → 「작업」 창 「사용」 → 보일 정보를 고르고 「적용」 — 「How To」
+- **기본 문서와 디렉터리 검색의 차례**: 루트 디렉터리로 요청이 오면 IIS는 기본 문서 목록에서 처음 있는 파일을 보낸다. 기본 문서를 끄고 디렉터리 검색을 켜 두면 디렉터리 목록을 보내고, 둘 다 끄면 「HTTP 404 파일이 없다」 오류를 보낸다 — `<defaultDocument>` 「Overview」 끝 두 문단.
+  그러니 디렉터리 목록은 보낼 기본 문서가 없을 때의 답이다 — 이어서 나오는 말(기본 문서가 켜져 있되 목록의 파일이 하나도 없을 때 디렉터리 검색이 켜져 있으면 목록을 보낸다고 한 문장으로 적은 곳은 찾지 못했다).
+  Apache의 `DirectoryIndex`(디렉터리 요청에 찾을 파일 목록)·`Options Indexes`(그 파일이 없으면 목록을 만든다)와 같은 짝이다 — 위 「(phase 79 step 9) Apache …」 항목과 이 항목의 정의를 나란히 둔 말
+- **가상 디렉터리**(virtual directory): IIS에 정하는 디렉터리 이름(경로)이고 로컬이나 원격 서버의 실제 디렉터리에 이어진다. 그 이름이 응용 프로그램 URL의 일부가 되어, 사용자가 브라우저로 그 URL을 요청하면 실제 디렉터리의 내용(웹 페이지나 파일 목록)에 닿는다.
+  실제 디렉터리와 다른 이름을 주면 URL이 사이트 루트에 그대로 대응하지 않아 서버의 실제 파일 구조를 알아내기 어렵다. 쓰임의 예: 응용 프로그램에 파일 시스템의 다른 곳에 있는 그림을 넣되 그 파일을 루트 가상 디렉터리의 폴더로 옮기고 싶지 않을 때 — `<virtualDirectory>` 「Overview」, 「Understanding Sites…」 「Virtual Directories」.
+  IIS 관리자: 사이트를 고르고 「작업」 창 「가상 디렉터리 보기」 → 「가상 디렉터리 추가...」 → 「가상 디렉터리 추가」 대화 상자에 적어도 「별칭」과 「실제 경로」를 넣는다 — `<virtualDirectory>` 「How To」. 속성 `path`(가상 경로)·`physicalPath`(실제 경로) — 「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  별칭이 URL 경로가 되고 그 아래 요청이 실제 경로의 파일로 이어진다는 대응은 위 KB 글의 표(별칭 `Customers` → `http://Sales/Customers` → 원격 공유 폴더)와 같다
+- **요청 필터링**(Request Filtering): IIS 7.0부터 들어 있는 보안 기능이고 IIS 6.0의 추가 도구 UrlScan이 하던 일을 대부분 대신한다. 거르는 기준 — URL에 든 문자열(`denyUrlSequences`, 공격자가 노릴 URL 조각), 파일 이름 확장자의 허용·거부 목록(`fileExtensions`, 예: `web.config` 요청 막기), 탐색할 수 없게 할 URL 구간(`hiddenSegments`, 예: ASP.NET의 `App_Code` 폴더),
+  요청 크기 한도(`requestLimits` — 내용·URL·쿼리 문자열의 길이, 헤더 길이), HTTP 동사의 허용·거부(`verbs`, 예: TRACE 막기). IIS 7.5에서 늘 허용할 URL·쿼리 문자열, 거부할 쿼리 문자열, 사용자 지정 규칙이 더해졌다 — `<requestFiltering>` 「Overview」·「New in IIS 7.5」.
+  IIS 기본 설치에 요청 필터링 역할 서비스(웹 서버 → 보안 → 요청 필터링)가 들어 있다 — 「Setup」
+- **막힌 요청에 돌려주는 상태 코드**: 요청 필터링이 요청을 막으면 클라이언트에 HTTP 404 오류를 보내고, 막은 까닭을 가르는 하위 상태와 함께 로그에 적는다 — 404.5 URL 문자열 거부, 404.6 동사 거부, 404.7 파일 이름 확장자 거부, 404.8 숨겨진 구간, 404.11 이중 이스케이프, 404.12 상위 비트 문자, 404.14 URL이 너무 김, 404.15 쿼리 문자열이 너무 김, 404.18 쿼리 문자열 거부, 404.19 사용자 지정 규칙, 그리고 **413.1 내용이 너무 큼**, 431 요청 헤더가 너무 김.
+  관리자는 이 하위 상태로 IIS 로그에서 위협을 가려낸다 — `<requestFiltering>` 「HTTP 404 Error Substatus Codes」. 내용 길이만 413.1이라는 것은 「Use Request Filtering」 「Filter Based on Request Limits」도 같다
+- **요청 크기 한도의 기본값**(`<requestLimits>`): `maxAllowedContentLength` 요청 내용의 최대 길이(바이트) 기본 30000000(약 28.6MB), `maxUrl` URL 최대 길이(바이트) 기본 4096, `maxQueryString` 쿼리 문자열 최대 길이(바이트) 기본 2048 — 「Attributes」.
+  Apache의 `LimitRequestBody`(요청 본문에 허락하는 바이트 수, 위 「(phase 79 step 9) Apache …」 항목)와 같은 자리의 설정이다 — 두 정의를 나란히 둔 말
+- **확장자를 거부하는 차례**: IIS 관리자에서 사이트·응용 프로그램·디렉터리를 고르고 「요청 필터링」 두 번 클릭 → 「파일 이름 확장명」 탭 → 「작업」 창 「파일 이름 확장명 거부...」 → 막을 확장자를 넣는다(문서의 예는 `.inc` 파일을 막으려고 `inc`를 넣는다) — `<fileExtensions>` 「How To」.
+  `allowUnlisted`(기본 true)는 목록에 없는 확장자를 처리할지 정한다 — true면 막을 확장자를, false면 허용할 확장자를 모두 적어야 한다 — 「Attributes」. 확장자로 막힌 요청은 404.7로 적힌다 — 「Use Request Filtering」 「Filter Based on File Extensions」
+- **요청 필터링과 방화벽**: 둘을 견주는 문서는 찾지 못했다. 개념 step은 각 정의를 나란히 두는 데까지 쓴다 — 요청 필터링은 IIS가 받은 HTTP 요청의 URL·확장자·동사·길이로 거르고(이 항목), 방화벽은 들어오는 연결을 포트 같은 기준으로 거른다(위 「(phase 77) RFC 6335 …」의 「방화벽이 걸러 내는 기준이 되는 것」 줄, 「(phase 78 step 0) RFC 1579 …」)
+- **IIS 로그**: 사이트의 로그를 켜고 끄고, 로그 파일 형식과 적을 정보의 갈래와 로그 파일 디렉터리를 정하고, 새 로그 파일을 언제(파일 크기나 시간 간격) 만들지 정한다 — `<logFile>` 「Overview」. 기본으로 켜져 있다(`enabled` 기본 true — ASP·ODBC 오류는 IIS 로그에 적지 않는다) — 「Attributes」
+- **로그 파일 형식**(`logFormat`, **기본 W3C**): **W3C**(W3C 확장 로그 파일 형식 — 적을 필드를 고를 수 있는 ASCII 글자 형식, 필드는 공백으로 가르고 시각은 UTC), **IIS**(Microsoft IIS 로그 파일 형식 — 필드가 정해진 ASCII 글자 형식, 쉼표로 가르고 시각은 현지 시각), **NCSA**(NCSA 공통 로그 파일 형식 — 필드가 정해진 ASCII 글자 형식, 공백으로 가르고 현지 시각에 UTC와의 차이를 붙인다),
+  **Custom**(사용자 지정 로깅 모듈의 형식 — 고르면 IIS 관리자의 「로깅」 페이지로는 더 구성하지 못한다). 앞의 셋은 HTTP.sys가 다룬다 — `<logFile>` 「Overview」·`logFormat`, 「Configure Logging in IIS」 「Configure Logging at the Site Level」 4단계
+- **W3C 형식의 기본 필드**(`logExtFileFlags`): 날짜·시각·클라이언트 IP·사용자 이름·서버 IP·메서드·URI 줄기(경로)·URI 쿼리·걸린 시간·HTTP 상태·Win32 상태·서버 포트·사용자 에이전트·HTTP 하위 상태·참조 페이지(Referer) — 「Attributes」. IIS 관리자에서는 「로깅」 페이지의 「필드 선택」으로 고른다 — 「Configure Logging in IIS」
+- **로그 디렉터리**(`directory`): 로그 파일과 로그 관련 파일을 두는 곳이고 기본은 `%SystemDrive%\inetpub\logs\LogFiles` — `<logFile>` 「Attributes」. IIS 관리자 「로깅」 페이지의 「디렉터리」에 경로를 넣어 바꾼다(실패한 요청 추적 로그 같은 로그 파일은 `%systemroot%`가 아닌 디렉터리에 두라고 권한다) — 「Configure Logging in IIS」 5단계.
+  디스크가 모자라면 다른 서버에 공유 폴더를 만들고 「디렉터리」에 그 UNC 경로를 넣어 옮길 수도 있다 — 「Managing IIS Log File Storage」 「Move the Log Folder to a Remote System」
+- **롤오버**(「로그 파일 롤오버」 — 새 로그 파일을 여는 때): 「일정」 — 매시간·매일·매주·매월 새 로그 파일, 「최대 파일 크기(바이트)」 — 파일이 그 크기에 이르면 새 로그 파일(최소 1048576바이트), 「새 로그 파일을 만들지 않음」 — 파일 하나가 계속 커진다. 「파일 이름 지정 및 롤오버에 현지 시간 사용」을 고르지 않으면 UTC로 — 「Configure Logging in IIS」 「Configure Log File Rollover Options」.
+  구성 속성으로는 `period`(`Hourly`·`Daily`·`Weekly`·`Monthly`·`MaxSize`, **기본 Daily**)와 `truncateSize`(`MaxSize`일 때의 크기, 기본 20971520바이트) — `<logFile>` 「Attributes」. 최대 크기에 이르러 하는 일은 **새 파일을 만드는 것**이고, 옛 파일을 지운다는 말은 두 문서 어디에도 없다
+- **오래된 로그를 지우는 일**: IIS 로그는 시간이 지나면 디스크를 많이 차지해 하드 드라이브를 채울 수도 있다. 문서가 드는 대책은 폴더 압축, 로그 폴더를 원격 서버로 옮기기, **정한 날수보다 오래된 로그 파일을 지우는 스크립트를 예약 작업으로 실행하기**다 — 「Managing IIS Log File Storage」 「Overview」·「Delete Old Log Files by Script」·「Run the script as a scheduled task」.
+  `<logFile>`의 속성(디렉터리·켜기·형식·필드·롤오버 주기·크기·버퍼 등)에 보존 기간이나 삭제를 정하는 것은 없다 — 「Attributes」. 그러니 IIS가 오래된 로그를 스스로 지우지 않는다는 것은 두 문서에서 이어서 나오는 말이다(그것을 한 문장으로 적은 문서는 찾지 못했다)
+- **로그는 요청 즉시 파일에 쓰이지 않는다**: W3C 로그는 사건을 버퍼에 모았다가 로그 파일에 쓴다. `flushByEntryCountW3CLog`는 몇 개를 모은 뒤 쓸지 정하고, 0(기본)이면 최대치인 64k가 찼을 때 쓴다 — 줄이면 더 빨리 쓰지만 디스크 작업이 늘고, 실시간에 가깝게 문제를 살피려면 줄이라고 한다 — `<logFile>` 「Attributes」(IIS 8.5에서 더해졌다).
+  IIS가 로그를 디스크에 쓰는 데 시간이 걸려 관리자가 로그 정보를 실시간으로 보지 못하고 글자 로그 파일은 실시간으로 갱신되지 않는다 — 그래서 IIS 8.5부터 로그를 ETW(Windows 이벤트 추적)로도 보낼 수 있게 했다 — 「Logging to Event Tracing for Windows in IIS 8.5」 「Problem」·「Solution」. 파일 로그는 HTTP.sys가 요청 처리를 마친 뒤 글자 로그 파일에 적는다 — `<logFile>` `logTargetW3C`
+- **한국어 이름**: 한국어판은 「실제 경로」, 「홈 디렉터리」(KB 글), 「기본 문서」·「기본 문서 추가」·「추가...」·「위로 이동」·「아래로 이동」, 「디렉터리 검색」(한 곳은 「디렉터리 브라우징」)·「사용」, 「가상 디렉터리 보기」·「가상 디렉터리 추가」·「별칭」, 「요청 필터링」·「파일 이름 확장명」 탭·「파일 이름 확장명 거부」,
+  「로깅」·「로그 파일」·「형식」·「디렉터리」·「필드 선택」·「로그 파일 롤오버」·「일정」(매시간·매일·매주·매월)·「최대 파일 크기(바이트)」·「새 로그 파일을 만들지 마세요」·「파일 이름 지정 및 롤오버에 현지 시간 사용」으로 옮긴다.
+  **고른 이름**: 「실제 경로」(physical path — 개념 이름 「홈 디렉터리와 가상 디렉터리」는 guide.md 그대로 두고, 본문은 「홈 디렉터리」를 옛 문서와 기출이 쓰는 이름으로 소개한 뒤 「실제 경로」를 세운다), 「기본 문서」, 「디렉터리 검색」(기출과 같다), 「가상 디렉터리」·「별칭」, 「요청 필터링」, 「파일 이름 확장명」,
+  「로그 파일 형식」, 「롤오버」(한국어판도 「롤오버」), 「새 로그 파일을 만들지 않음」(한국어판의 「…마세요」는 명령꼴 번역이라 이름꼴로 고친다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 6에서 쓰일 곳) `windows-server-roles.iis-home-directory`(실제 경로와 기본값·바꿀 수 있다, 「홈 디렉터리」라는 이름의 자리, 기본 문서의 뜻·기본 목록·차례·추가, 디렉터리 검색의 뜻·기본 꺼짐·보일 정보, 기본 문서가 먼저이고 둘 다 끄면 404, 가상 디렉터리·별칭과 URL·경로의 대응, Apache와의 짝),
+`windows-server-roles.request-filtering`(요청 필터링의 뜻·기본 설치·거르는 기준, 막힌 요청의 404 하위 상태와 413.1, 요청 크기 한도의 기본값, 확장자 거부 차례, Apache `LimitRequestBody`와의 짝, 방화벽과의 차이를 정의로만);
+(phase 81 step 7에서 쓰일 곳) `windows-server-roles.iis-logging`(로그 형식 넷과 기본 W3C·기본 필드, 디렉터리 기본값과 바꾸기, 롤오버 셋과 기본 매일, 최대 크기는 새 파일, 오래된 로그는 스스로 지우지 않고 스크립트로, 버퍼에 모았다 쓴다);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2026-08-02 #29], [기출 2025-11-02 #41], [기출 2026-02-01 #45])
+
+## (phase 81 step 4) Microsoft Learn — IIS의 FTP 서버: FTP Site-level Settings <ftpServer>, FTP over SSL <ssl>, Scenario: Build an FTP Site on IIS, Creating a New FTP Site in IIS 7, Using FTP Over SSL in IIS 7, What's New for Microsoft and FTP in IIS 7?
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/ftpserver/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/ftpserver/security/ssl
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/scenario-build-an-ftp-site-on-iis
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/creating-a-new-ftp-site-in-iis-7
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/using-ftp-over-ssl-in-iis-7
+https://learn.microsoft.com/en-us/iis/get-started/whats-new-in-iis-7/what39s-new-for-microsoft-and-ftp-in-iis-7
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 구성 참조 `<ftpServer>`·FTP over SSL `<ssl>` 둘 다 `updated_at` 2025-12-20(`ms.date` 2016-09-26) — 「Compatibility」 표가 둘 다 IIS 10.0에서 바뀌지 않았다고 적는다. 「Scenario: Build an FTP Site on IIS」 2024-04-11(2013-04-14 — 차례를 Windows Server 2012·Windows 8로 적는다).
+「Creating a New FTP Site in IIS 7」·「Using FTP Over SSL in IIS 7」·「What's New for Microsoft and FTP in IIS 7?」 셋 다 2025-12-20(2008-01-15) — IIS 7.0 때 쓴 글이고, 앞의 둘은 「Compatibility」에 FTP 7.5가 Windows Server 2008 R2·Windows 7의 IIS 7.5 기능으로 들어 있고 IIS 7.0 때는 따로 내려받아 설치했다고 적는다. 한국어판도 모두 받았다(`updated_at` 2026-10-27, 기계 번역).
+FTP 자체·두 데이터 연결 모드·포트 21은 위 「(phase 77) RFC 959 …」와 「(phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7 …」 항목, 설치 이름은 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표에 있다 — 여기서는 IIS의 FTP 서버를 설치하고 사이트를 만드는 자리와 보안 연결만 적는다.
+
+- **FTP 서버 역할 서비스**: 웹 서버에서 FTP 게시를 하려면 FTP 서비스를 설치한다 — 서버 관리자 「관리」 → 「역할 및 기능 추가」 → 「서버 역할」에서 웹 서버(IIS)를 펼쳐 「FTP 서버」를 고르고, 그 아래 「FTP 서비스」를 고른다. ASP.NET 멤버 자격 인증이나 IIS 관리자 인증을 쓰려면 「FTP 확장성」도 고른다 — `<ftpServer>` 「Setup」, 「Scenario: Build an FTP Site on IIS」 「Step 1: Install FTP on an Existing IIS Web Server」(「FTP 서버」 확인란과 「FTP 서비스」 확인란).
+  설치 이름은 `Web-Ftp-Server`(FTP 서버)·`Web-Ftp-Service`(FTP 서비스)·`Web-Ftp-Ext`(FTP 확장성)이고 셋 다 기본으로 설치되지 않는다(Server Core 표). 역할 서비스도 `Install-WindowsFeature`로 설치하고(같은 step 0 항목 — 이름을 쉼표로 여럿 줄 수 있고, `-IncludeAllSubFeature`는 하위 역할 서비스까지 넣는다),
+  FTP 서버를 설치하는 줄 그대로를 보인 문서는 찾지 못했다 — 개념 step은 「설치 이름 + `Install-WindowsFeature`」라는 문서의 두 사실을 합쳐 보이고, 그렇게 합친 꼴이라고 밝힌다
+- **IIS에 들어간 FTP**: FTP 7.5부터 FTP 서비스는 Windows Server 2008 R2의 IIS 7.5 기능으로 들어 있어 따로 내려받지 않는다 — 「Creating a New FTP Site in IIS 7」 「Compatibility」. FTP 서비스가 IIS에 통합되어 IIS 관리자·AppCmd·PowerShell 같은 IIS 관리 도구로 관리하고, 기존 웹 사이트에 FTP 바인딩을 더해 한 사이트에서 웹과 FTP를 함께 낼 수도 있다 — 「What's New for Microsoft and FTP in IIS 7?」 「Introduction」.
+  FTP 설정도 웹 사이트 설정과 같은 `ApplicationHost.config`의 `<site>` 안에 들어간다 — `<ftpServer>` 「Overview」
+- **FTP 사이트를 더하는 차례**: IIS 관리자 「연결」 창에서 「사이트」를 고르고 「작업」 창 「FTP 사이트 추가」 → 「FTP 사이트 추가」 마법사:
+  ① 「사이트 정보」 페이지 — 「FTP 사이트 이름」, 「실제 경로」(내용 폴더 — 문서의 예는 `%SystemDrive%\inetpub\ftproot`이고 환경 변수를 쓸 수 있다) →
+  ② 「바인딩 및 SSL 설정」 페이지 — 「IP 주소」(기본 「All Unassigned」), 「포트」(FTP 사이트와 클라이언트는 기본으로 21번, 암시적 FTPS는 990번), 「가상 호스트」(한 IP 주소에 FTP 사이트 여럿을 둘 때 넣는 호스트 이름), 「FTP 사이트 자동 시작」, SSL 선택 — 「SSL 없음」·「SSL 허용」(클라이언트가 SSL을 쓸지 고른다)·「SSL 필요」(늘 SSL), 허용·필요면 「SSL 인증서」를 고른다 →
+  ③ 「인증 및 권한 부여 정보」 페이지 — 인증 방식(예: 익명·기본), 권한 부여(누구에게 — 예: 익명 사용자), 권한(읽기·쓰기) → 「마침」 — 「Scenario: Build an FTP Site on IIS」 「Step 2: Add an FTP Site」, `<ftpServer>` 「How To」(익명 읽기 사이트 예). 세 페이지의 이름은 「Creating a New FTP Site in IIS 7」의 그림 설명과 같다
+- **FTPS**(FTP over SSL): IIS의 FTP 서비스(FTP 7.0부터)는 FTP 클라이언트와 서버 사이의 세션을 암호화하는 FTP over SSL을 지원한다 — 「Using FTP Over SSL in IIS 7」 「Introduction」. IIS 6.0의 FTP 서비스는 FTP over SSL을 지원하지 않았다 — FTP over SSL `<ssl>` 「Compatibility」.
+  HTTPS가 보안 통신에 따로 포트·연결을 쓰는 것과 달리, FTPS는 보안 없는 통신과 같은 포트를 쓴다. 두 꼴이 있다 — **명시적 FTPS**(제어 채널은 기본 21번이고, 클라이언트가 제어 채널이나 데이터 채널에 SSL/TLS를 쓸지 서버와 협상한다 — 990이 아닌 포트에 FTPS를 켜면 이 꼴), **암시적 FTPS**(옛 꼴 — 클라이언트가 FTP 명령을 보내기 전에 SSL 핸드셰이크를 먼저 하고 세션 전체를 암호화한다 — 990번에 FTPS를 켜면 이 꼴) — FTP over SSL `<ssl>` 「Overview」.
+  RFC에 따른 FTPS 구현이라 다른 회사의 FTP 클라이언트와도 쓸 수 있고, 제어 채널·데이터 채널·둘 다를 암호화하게 정할 수 있다 — 「What's New…」 「Security and Support for new Internet standards」
+- **SFTP**: 「What's New for Microsoft and FTP in IIS 7?」(IIS 7.0 때 글)는 FTP 트래픽을 지키는 방법으로 이름이 비슷한 FTPS와 SFTP 둘이 있다고 가른 뒤, **Microsoft는 FTPS를 제공하고 SFTP(이 글은 「FTP over SSH」라 부른다)로 FTP 트래픽을 지키는 방법은 제공하지 않는다**고 적는다 — 「Introduction」. 지금 판 IIS 문서에서 IIS의 FTP 서버가 SFTP를 지원한다고 한 곳은 찾지 못했다.
+  SFTP는 SSH 위에서 동작하는 파일 전송이고(위 「(phase 77) RFC 4251 …, RFC 4253 …」·「(phase 78 step 0) OpenSSH — ssh(1)」 항목), Windows의 OpenSSH에 `sftp` 도구가 들어 있다(위 「(phase 78 step 0) Microsoft Learn — OpenSSH for Windows overview …」 항목) — IIS의 FTP 서비스와는 다른 구성 요소다. 「지원하지 않는다」는 IIS 7.0 때 글의 말이라, 본문에 쓸 때는 그 판을 밝힌다
+- **한국어 이름**: 한국어판은 「FTP 서버」·「FTP 서비스」·「FTP 확장성」, 「FTP 사이트 추가」 마법사, 「사이트 정보」·「바인딩 및 SSL 설정」·「인증 및 권한 부여 정보」 페이지, 「FTP 사이트 이름」·「실제 경로」·「가상 호스트」, 「SSL 없음」·「SSL 허용」·「SSL 필요」·「SSL 인증서」, 「할당되지 않은 모든 항목」, 「암시적 FTPS」로 옮긴다.
+  **고른 이름**: 위 한국어판 표기 그대로, 「FTPS(FTP over SSL)」, 「명시적 FTPS」·「암시적 FTPS」. **실제 한국어 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 7에서 쓰일 곳) `windows-server-roles.ftp-server`(웹 서버(IIS) 아래 FTP 서버 역할 서비스와 FTP 서비스·FTP 확장성, 설치 이름과 `Install-WindowsFeature`, IIS 관리자로 관리, FTP 사이트 추가 마법사의 세 페이지와 칸, 포트 21·암시적 FTPS 990, FTPS의 두 꼴, SFTP는 SSH 위의 다른 프로토콜이고 IIS FTP가 제공하지 않는다(IIS 7.0 때 글));
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2026-05-17 #44]의 SFTP 보기. 나머지 보기는 「phase 81 step 0」 문단)
+
+## (phase 81 step 4) Microsoft Learn — 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시: Remote Access, Virtual Private Networking (VPN), Configure VPN protocols in Routing and Remote Access on Windows Server, DirectAccess, VPN connection types, Web Application Proxy in Windows Server, Publishing Applications using AD FS Preauthentication, Publishing Applications with SharePoint, Exchange and RDG; Win32 — Web Application Proxy (Windows 8 cookbook)
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/remote-access
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/vpn/vpn-top
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/configure-vpn-protocols
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/directaccess/directaccess
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/vpn/vpn-connection-type
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/web-app-proxy-windows-server
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/publishing-applications-using-ad-fs-preauthentication
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/publishing-applications-with-sharepoint,-exchange-and-rdg
+https://learn.microsoft.com/en-us/windows/win32/w8cookbook/web-application-proxy
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Remote Access」 `updated_at` 2026-02-16(`ms.date` 2022-09-28), 「Virtual Private Networking (VPN)」 2026-02-16(2018-11-05), 「Configure VPN protocols…」 2026-02-16(2024-06-07), 「DirectAccess」 2026-10-12(2022-11-16), 「Web Application Proxy in Windows Server」 2026-04-20(2026-04-16),
+「Publishing Applications using AD FS Preauthentication」 2026-02-16(2016-07-13), 「Publishing Applications with SharePoint, Exchange and RDG」 2025-11-18(2018-04-30) — 일곱 다 「Applies to」 Windows Server 2016~2025·Windows 11·10.
+Windows 보안 「VPN connection types」 2026-10-08(2025-01-27, Windows 11·10 — 클라이언트 쪽 문서). Win32 「Web Application Proxy」(Windows 8 호환성 안내) 2025-03-13(2018-05-31, 플랫폼 Windows Server 2012 R2). 한국어판도 모두 받았다(`updated_at` 2025-07-03~2026-10-17, 기계 번역).
+「Features Removed or No Longer Developed in Windows Server」도 다시 받았다 — 위 「(phase 80 step 8) … 클라우드 폴더…」 항목의 「(phase 81 step 0)」 줄과 같은 판(`updated_at` 2026-11-17)이다.
+
+- **원격 액세스**(Remote Access) 역할: 역할 및 기능 추가 마법사나 PowerShell로 이 역할을 설치할 때 역할 서비스 셋 가운데 하나 이상을 고른다 — **DirectAccess 및 VPN(RAS)**, **라우팅**(Routing), **웹 응용 프로그램 프록시**(Web Application Proxy). 셋은 따로 설치해도 같은 서버에 함께 설치해도 된다 — 「Remote Access」 첫머리.
+  Windows Server 2016 글은 이 역할을 서로 관련된 네트워크 액세스 기술(원격 액세스 서비스(RAS)·라우팅·웹 응용 프로그램 프록시)을 논리적으로 묶은 것이라 하고, DirectAccess 및 VPN(RAS)을 설치하면 RAS 게이트웨이(VPN 서버로 쓸 수 있다)를 배포하는 것이라고 한다 — 「Virtual Private Networking (VPN)」 「RAS Gateway as a Single Tenant VPN Server」.
+  설치 이름은 역할 `RemoteAccess`, 역할 서비스 `DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`이고 기본으로 설치되지 않는다(위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표)
+- **VPN(RAS)**: VPN 서비스는 인터넷 연결에 터널링과 데이터 암호화 기술을 함께 써서 원격 클라이언트와 원격 사무실을 잇는다 — 「Remote Access」 「VPN (RAS)」. Windows 클라이언트 문서의 설명: VPN 클라이언트가 터널링 프로토콜(TCP/IP나 UDP를 쓰는 특별한 프로토콜)로 인터넷 너머의 원격 액세스 서버(VPN 서버)와 가상의 지점 간 연결을 맺으면,
+  서버는 연결해 온 쪽을 인증하고 그 뒤로 그 클라이언트와 조직의 사설 네트워크 사이에서 데이터를 날라 준다 — 「VPN connection types」 첫머리
+- **Windows VPN 서버가 받는 터널링 프로토콜**: 라우팅 및 원격 액세스 서비스(RRAS)는 원격 사용자 연결이나 사이트 간 연결을 VPN이나 전화 접속으로 받고, VPN 연결은 PPTP·L2TP·SSTP·IKEv2 같은 프로토콜로 받는다. RRAS를 기본 구성으로 설치하면 넷 다 켜져 있다.
+  **Windows Server 2025부터 새로 구성한 RRAS는 PPTP·L2TP 연결을 받지 않는다**(필요하면 켤 수 있고, 그 앞 판에서 제자리 업그레이드한 구성은 그대로 받는다 — Windows 클라이언트에는 영향이 없다). SSTP·IKEv2는 그대로 받는다. 보안 기능이 모자라 L2TP·PPTP는 권하지 않고 IKEv2나 SSTP를 쓰라고 한다 — 「Configure VPN protocols…」 「Enable VPN protocols」.
+  Windows 내장 VPN 클라이언트가 쓰는 터널링 프로토콜도 IKEv2·L2TP·PPTP·SSTP이고, 「자동」은 가장 안전한 것부터 차례로 시도한다 — 「VPN connection types」 「Built-in VPN client」.
+  풀네임은 「Features Removed or No Longer Developed」의 줄이 적는다 — Point-to-Point Tunneling Protocol(PPTP)·Layer 2 Tunneling Protocol(L2TP)을 통한 원격 액세스는 Windows Server 2028(Preview)에서 빠지니 Internet Key Exchange version 2(IKEv2)나 Secure Socket Tunneling Protocol(SSTP)로 옮기라는 것(위 「(phase 81 step 0)」 줄과 같다)
+- **DirectAccess**: 원격 사용자를 조직 네트워크의 자원에 잇되 VPN 연결을 쓰지 않는 방식이다. VPN은 사용자가 연결을 열고 닫아야 하지만, DirectAccess의 원격 클라이언트 컴퓨터는 켜져서 인터넷에 이어져 있는 동안 늘 조직에 이어져 있고, 그동안 IT 관리자가 그 컴퓨터를 관리할 수 있다 — 「Remote Access」 「DirectAccess」, 「DirectAccess」 첫머리.
+  도메인에 가입했고 운영 체제가 DirectAccess를 지원하는 클라이언트만 지원한다(Windows 11 Enterprise·Windows 10 Enterprise 등) — 「DirectAccess」. **새 배포에는 DirectAccess 대신 Always On VPN을 쓰라고 강하게 권하고**, Windows 10 이후 클라이언트는 Always On VPN으로 잇고 DirectAccess는 Windows 10보다 앞선 클라이언트에만 쓰라고 한다 — 「DirectAccess」, 「Remote Access」 「DirectAccess」의 Important.
+  Always On VPN은 Windows 10 클라이언트가 손으로 연결하지 않아도 내부 네트워크의 공유 자원·인트라넷 웹 사이트·응용 프로그램에 안전하게 닿게 한다 — 「Remote Access」 「VPN (RAS)」. DirectAccess는 Windows Server 2028(Preview)에서 빠진다(「Features Removed…」 — 위 「(phase 81 step 0)」 줄)
+- **라우팅** 역할 서비스: LAN의 서브넷 사이에 네트워크 트래픽을 라우팅한다. NAT 라우터, BGP를 쓰는 LAN 라우터, RIP, IGMP를 쓰는 멀티캐스트 라우터, 요구 시 연결(demand-dial) 라우팅, 유니캐스트 IP 라우팅을 지원하고, 물리 컴퓨터나 Hyper-V의 가상 컴퓨터에 둘 수 있다.
+  LAN 라우터로 설치하려면 마법사에서 원격 액세스 역할과 라우팅 역할 서비스를 고르거나 `Install-RemoteAccess -VpnType RoutingOnly` — 「Remote Access」 「Routing service」. 서버 관리자 「도구」 → 「라우팅 및 원격 액세스」 콘솔에서 VPN 서버의 포트·프로토콜을 관리한다 — 「Configure VPN protocols…」
+- **웹 응용 프로그램 프록시**(Web Application Proxy): 원격 액세스 역할의 역할 서비스다. 회사 네트워크 가장자리에서 **역방향 프록시**로 일해, 내부 서버에 둔 웹 응용 프로그램·서비스를 회사 밖 사용자가 쓸 수 있게 내놓는다. 게시 방식은 둘 — AD FS(Active Directory Federation Services)로 사용자를 먼저 인증받게 해 인증된 사람만 들이는 AD FS 사전 인증과, 그 인증 없이 넘기는 통과(pass-through)다 — 「Web Application Proxy in Windows Server」 첫머리.
+  「Remote Access」 「Web Application Proxy service」도 회사 네트워크 안의 웹 응용 프로그램에 역방향 프록시 기능을 주어 어느 기기의 사용자든 밖에서 닿게 하고, AD FS로 사전 인증하며 AD FS 프록시 노릇도 한다고 적는다. 설치: 마법사에서 원격 액세스 역할과 웹 응용 프로그램 프록시 역할 서비스를 고른다 — 같은 절
+- Windows Server 2012 R2에서 원격 액세스 역할 아래 새로 생긴 서비스이고, 응용 프로그램을 밖에 게시하며 역방향 프록시이자 AD FS 프록시로 동작한다. Windows Server 2012의 AD FS 프록시 서비스(AD FS 역할 아래)를 대신해, 그것에 응용 프로그램을 게시하는 역방향 프록시 기능을 더한 것이다 — Win32 「Web Application Proxy」 「Description」·「Manifestation」
+- **사전 인증과 통과**: AD FS 사전 인증으로 게시하면 — 클라이언트가 게시된 응용 프로그램의 공개 URL(웹 응용 프로그램 프록시가 HTTPS 요청을 기다리는 주소)로 요청하면, 프록시가 그 요청을 AD FS 서버로 돌려보낸다. AD FS가 사용자를 인증해 보안 토큰(edge token)을 담아 돌려보내면, 프록시가 토큰을 확인한 뒤 요청을 내부의 게시된 웹 응용 프로그램(백엔드 서버)으로 HTTP나 HTTPS로 넘긴다 — 「Publishing Applications using AD FS Preauthentication」 첫 절.
+  사전 인증 없이 게시할 수도 있고(통과 인증 — 프록시가 먼저 사용자를 인증하지 않는다), 사전 인증을 지원하지 않는 클라이언트(예: 원격 데스크톱 연결 앱)는 통과 인증으로 게시해야 한다 — 「Publishing Applications with SharePoint, Exchange and RDG」 「Publishing Remote Desktop Gateway through Web Application Proxy」.
+  외부 URL과 백엔드 서버 URL에는 IP 주소가 아니라 FQDN을 넣으라고 한다 — 「Publishing Applications using AD FS Preauthentication」 Important. AD FS 자체의 동작은 이 phase가 다루지 않는다 — 위 문서들에서 AD FS는 사용자를 인증해 토큰을 내주는 서버로만 나온다
+- **VPN·DirectAccess와 무엇이 다른가**: 웹 응용 프로그램 프록시가 원격 컴퓨터를 네트워크에 잇지 않는다고 한 문장으로 적은 지금 판 문서는 찾지 못했다. 문서의 정의로 가를 수 있는 데까지 — VPN(RAS)·DirectAccess는 원격 클라이언트(컴퓨터)를 조직 네트워크에 잇는 것이고, 웹 응용 프로그램 프록시는 안의 웹 응용 프로그램을 밖에 게시하는 역방향 프록시라 바깥 사용자는 게시된 응용 프로그램의 공개 URL로 그 응용 프로그램에만 닿는다 — 위 줄들에서 이어서 나오는 말
+- **지금 판의 상태**: 웹 응용 프로그램 프록시는 「Features Removed or No Longer Developed in Windows Server」(`updated_at` 2026-11-17 판)의 두 절 어디에도 없고, 「Web Application Proxy in Windows Server」의 「Applies to」는 Windows Server 2016~2025다. 이 문서 머리는 온프레미스 웹 응용 프로그램 프록시의 내용이라고 밝히고, 클라우드를 거쳐 온프레미스 응용 프로그램에 안전하게 닿게 하려면 Microsoft Entra 응용 프로그램 프록시를 보라고 적는다
+- **한국어 이름**: 한국어판은 「원격 액세스」, 「RAS(직접 액세스 및 VPN) 서비스」(Server Core 표 한국어판은 「DirectAccess 및 VPN(RAS)」), 「라우팅 서비스」, 「웹 애플리케이션 프록시」(본문이 영문 「Web Application Proxy」를 그대로 두기도 한다), 「역방향 프록시」, 「사전 인증」·「통과 사전 인증」, 「터널링」, 「DirectAccess」로 옮긴다.
+  **고른 이름**: 「원격 액세스」, 「DirectAccess 및 VPN(RAS)」, 「라우팅」, 「웹 응용 프로그램 프록시」(guide.md가 개념 이름으로 정한 표기 — 한국어판 문서는 「웹 애플리케이션 프록시」로만 옮긴다는 것을 본문에서 한 번 밝힌다), 「역방향 프록시」, 「사전 인증」·「통과」(pass-through), 「터널링 프로토콜」, 프로토콜 이름은 약어 그대로(PPTP·L2TP·SSTP·IKEv2 — 풀네임은 위 줄).
+  **실제 한국어 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 8에서 쓰일 곳) `windows-server-roles.remote-access`(역할 서비스 셋과 설치 이름, VPN의 뜻·터널링과 암호화, Windows VPN 서버의 터널링 프로토콜 넷과 Windows Server 2025의 기본 동작·권고, DirectAccess의 뜻과 VPN과의 차이·Always On VPN 권고·2028(Preview) 제거, 라우팅 역할 서비스가 하는 일),
+`windows-server-roles.web-application-proxy`(역방향 프록시로 내부 웹 응용 프로그램을 밖에 게시, AD FS 사전 인증과 통과, AD FS 프록시 노릇, Windows Server 2012 R2에서 생김, VPN·DirectAccess와의 차이를 정의로, 지금 판의 상태);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2024-08-25 #38]=[기출 2025-05-25 #39])

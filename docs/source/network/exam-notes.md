@@ -983,3 +983,40 @@ E39~는 phase 81(`windows-server-roles`·`windows-hyperv`)이 더한다. phase 8
 - **처리**: 본문(`windows-server-roles.file-print-services`)은 문서의 사실을 쓴다 — 파일·프린터 공유는 SMB로 하고, SMB는 TCP/IP 위에서 동작하며 TCP 445를 쓰고(문서가 다른 전송도 든다는 것은 쓸 때 한 줄), TCP/IP는 Windows에 처음부터 들어 있다. 그 자리에 「자격시험은 파일·프린터 서버를 쓰려면 TCP/IP를 반드시 설치해야 한다고 본다」를 한 줄 덧붙인다.
   문항(해설 포함)은 「TCP/IP를 따로 설치해야 한다」를 맞는 말로 쓰지 않는다 — SMB가 어느 통신 규칙 위에서 동작하는지, SNMP·SMTP·IGMP와 무엇이 다른지로 묻는다
 - 쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.file-print-services`
+
+phase 81 step 4에서 `windows-server-roles` 주제의 뒤 개념 여덟(IIS 웹 서버, 사이트 바인딩과 연결 제한, 홈 디렉터리와 가상 디렉터리, 요청 필터링, IIS 로그, FTP 서버, 원격 액세스 역할, 웹 응용 프로그램 프록시)이 답을 가르는 기출 8문항을 보았다(확인한 날 2026-11-18).
+[기출 2024-08-25 #38]과 [기출 2025-05-25 #39]가 같은 문항이라 서로 다른 문항은 일곱이다. [기출 2026-05-17 #44](FTP 서버 설치)는 step 0이 설치하는 자리를 보았고, 이 step은 SFTP 보기를 본다.
+아래의 「공식 문서」는 learn.microsoft.com의 IIS 문서(구성 참조 포함)·Windows Server 원격 액세스 문서·Windows 보안 문서·문제 해결 문서다. 공식 문서와 어긋나는 곳 하나에 **E40**을 만들었다 — 근거는 `standards.md`의 「(phase 81 step 4)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **IIS 관리자를 여는 명령은 `inetmgr.exe`**([기출 2024-11-03 #40]): 문서는 실행 창이나 시작의 검색 상자에 `inetmgr`를 넣어 IIS 관리자를 열고, 그 실행 파일이 `system32\inetsrv\inetmgr.exe`이며, Vista 글은 검색 상자에 `inetmgr.exe`를 넣는다 — 시험의 답과 맞다.
+  오답 셋은 다른 도구다 — `wf.msc`는 고급 보안이 포함된 Windows Defender 방화벽, `msconfig`는 시스템 구성, `dsac.exe`는 Active Directory 관리 센터(「Windows Firewall Tools」, 「Windows startup issues troubleshooting」, 「Advanced AD DS Management…(Level 200)」). 항목을 만들지 않는다.
+  본문(`windows-server-roles.iis`)은 `inetmgr`를 실행 이름으로 세우고 실행 파일 이름 `inetmgr.exe`를 함께 적는다
+- **IIS 기본 웹 사이트의 등록 정보에서 옳지 않은 것은 「TCP 포트 = 웹 서버의 물리적인 시리얼 포트 번호」**([기출 2025-02-23 #28]): 사이트 바인딩의 포트는 사이트가 요청을 받는 TCP 포트 번호이고(Default Web Site는 80번 — `<binding>`·`<sites>`), 시리얼 포트는 직렬 컨트롤러에 달린 하드웨어 통신 인터페이스(옛 PC의 COM 포트)다(「Serial Controller Driver Design Guide」) — 시험의 답과 맞다.
+  시험이 맞는 말로 둔 셋 가운데 「연결 수 제한」(동시에 이어질 수 있는 클라이언트 연결 수의 상한 — `maxConnections`)과 「연결 시간 제한」(쉬고 있는 연결을 끊기 전에 기다리는 시간 — `connectionTimeout`, 기본 2분)은 `<limits>`와 맞는다. 「IP 주소 — IP가 둘 이상이면 접속 순서를 정한다」는 문서와 맞지 않는다 — 아래 **E40**.
+  이 문항이 그리는 꼴(한 「등록 정보」 대화 상자에 IP 주소·TCP 포트·연결 제한 칸이 함께 있다)은 IIS 6.0까지의 탭 달린 속성 대화 상자에 가깝고(「Getting Started with the IIS Manager in IIS」, 「Enable SSL for all customers」), IIS 7.0 이후에는 바인딩(「사이트 바인딩」)과 「고급 설정」의 「제한」으로 나뉘어 있다(`<binding>`·`<limits>`의 「How To」) — 시험은 Windows Server 2016이라고 적는다.
+  본문(`windows-server-roles.iis-site-bindings`)은 지금 판의 자리로 쓴다. 옛 대화 상자 꼴은 「자격시험은 ~로 본다」로 덧붙이지 않는다 — 시험의 답(포트 ≠ 시리얼 포트)은 판과 상관없이 같다
+- **IIS가 제공하는 기능은 요청 필터링**([기출 2025-11-02 #41]): 요청 필터링은 IIS 7.0부터 들어 있는 보안 기능이고 기본 설치에 포함된다(`<requestFiltering>`) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서로 틀리다 — 「HTTPS를 지원하지 않는다」: 사이트에 `https` 바인딩을 더하고 서버 인증서를 고르면 된다(「How to Set Up SSL on IIS 7 or later」).
+  「PHP 스크립트를 실행할 수 없다」: CGI 역할 서비스를 설치하면 FastCGI로 PHP를 실행한다(`<fastCgi>`, 「Install the Web Server WEB1」). 「응용 프로그램 풀은 웹 사이트 하나만 호스트한다」: 풀은 그 풀에 맡긴 응용 프로그램 하나 이상의 요청을 처리한다(`<applicationPools>`). 항목을 만들지 않는다
+- **IIS 로그 설정의 옳은 설명은 「로그 파일의 저장 위치를 바꿀 수 있다」**([기출 2026-02-01 #45]): 로그 디렉터리는 기본 `%SystemDrive%\inetpub\logs\LogFiles`이고 IIS 관리자 「로깅」 페이지의 「디렉터리」에서 바꾼다(`<logFile>`, 「Configure Logging in IIS」) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서와 맞게 틀리다.
+  「W3C 형식만 지원한다」: W3C(기본)·IIS·NCSA·사용자 지정 넷이다. 「기본적으로 실시간으로 갱신된다」: 사건을 버퍼에 모았다가 쓰고(기본은 64k가 찼을 때), IIS 8.5 글은 글자 로그 파일이 실시간으로 갱신되지 않아 ETW로 보내는 길을 더했다고 쓴다(`<logFile>`의 `flushByEntryCountW3CLog`, 「Logging to Event Tracing for Windows in IIS 8.5」).
+  「크기가 최대치에 이르면 이전 로그를 저절로 지운다」: 최대 크기에 이르면 새 로그 파일을 만들고, 오래된 로그는 스크립트를 예약 작업으로 실행해 지우라고 안내한다(「Configure Logging in IIS」, `<logFile>`, 「Managing IIS Log File Storage」) — IIS가 스스로 지우지 않는다는 것을 한 문장으로 적은 문서는 없고 이 문서들에서 이어서 나오는 말이다.
+  항목을 만들지 않는다. 본문(`windows-server-roles.iis-logging`)은 버퍼와 삭제를 위 근거의 범위로만 쓴다
+- **IIS 관리자 기능의 옳지 않은 설명은 「기본 웹 사이트의 홈 디렉터리는 반드시 그 폴더로 정해야 한다」**([기출 2026-08-02 #29]): 기본 웹 사이트의 폴더는 `\Inetpub\Wwwroot`에 만들어지지만 다른 폴더를 써도 되고, 설치 뒤에 `\inetpub`을 옮겨 기본 웹 사이트가 새 위치를 가리키게 할 수 있다(「Create a Web Site」, 「Compatibility and Feature Requirements for Windows Vista」) — 시험의 답과 맞다.
+  문항의 경로 표기는 옮기지 않는다(지금 문서의 기본값은 `%SystemDrive%\inetpub\wwwroot`). 맞는 말로 둔 셋도 문서와 맞다 — 기본 문서는 「작업」 창 「추가...」로 더한다(`<defaultDocument>`), 보낼 기본 문서가 없을 때 디렉터리 검색을 켜면 목록을 보이고 날짜·시각·크기·확장자 가운데 보일 정보를 고른다(`<defaultDocument>`·`<directoryBrowse>`), 「가상 디렉터리 추가」에서 별칭과 실제 경로를 넣는다(`<virtualDirectory>`).
+  「홈 디렉터리」라는 이름은 지금 판 IIS 문서가 웹 사이트 폴더에 쓰지 않고 옛 KB 글(KB 308150)이 쓴다(`standards.md` 같은 항목) — 본문(`windows-server-roles.iis-home-directory`)은 그 이름을 옛 문서와 기출이 쓰는 이름으로 소개하고 「실제 경로」를 세운다. 이름의 차이일 뿐 시험의 답과 어긋나는 사실이 아니어서 항목을 만들지 않는다
+- **FTP 서버 설치 — SFTP 보기**([기출 2026-05-17 #44]): 틀린 말로 둔 「IIS의 FTP 서버 기능만으로 SSH 기반 SFTP를 구성할 수 있다」 — IIS의 FTP 서비스가 지원하는 보안 연결은 FTPS(FTP over SSL — 명시적·암시적)이고, IIS 7.0 때 글은 Microsoft가 FTPS를 제공하고 SFTP로 FTP 트래픽을 지키는 방법은 제공하지 않는다고 적는다(「Using FTP Over SSL in IIS 7」, FTP over SSL `<ssl>`, 「What's New for Microsoft and FTP in IIS 7?」).
+  지금 판 IIS 문서에서 IIS FTP가 SFTP를 지원한다고 한 곳은 찾지 못했다 — 시험의 판정과 맞다. Windows에서 SFTP 도구(`sftp`)는 IIS가 아니라 OpenSSH에 들어 있다(phase 78의 OpenSSH 항목). 나머지 보기는 「phase 81 step 0」 문단이 판정했다. 항목을 만들지 않는다.
+  본문(`windows-server-roles.ftp-server`)은 IIS FTP 서버의 보안 연결은 FTPS이고 SFTP는 SSH 위의 다른 프로토콜이라는 것을 위 근거대로 쓰고, 「제공하지 않는다」는 IIS 7.0 때 글의 말이라고 판을 밝힌다
+- **원격 컴퓨터를 잇지 않고 내부 웹 자원을 인터넷에 게시하는 원격 액세스 기능은 WAP**([기출 2024-08-25 #38]=[기출 2025-05-25 #39]): 웹 응용 프로그램 프록시는 원격 액세스 역할의 역할 서비스이고, 역방향 프록시로 회사 밖의 사용자가 내부 서버의 웹 응용 프로그램에 닿게 한다(「Web Application Proxy in Windows Server」, 「Remote Access」) — 시험의 답과 맞다.
+  문제문의 「DirectAccess나 VPN과 달리 원격 컴퓨터를 네트워크에 잇지 않는다」를 한 문장으로 적은 문서는 없지만, VPN(RAS)·DirectAccess가 원격 클라이언트를 조직 네트워크에 잇는다는 정의(「Remote Access」)와 맞다. 오답 셋 PPTP·L2TP·SSTP는 Windows VPN 서버(RRAS)가 VPN 연결을 받는 터널링 프로토콜이다(「Configure VPN protocols…」 — Windows Server 2025부터 새 구성은 PPTP·L2TP를 기본으로 받지 않는다).
+  시험은 Windows Server 2016을 적고, 웹 응용 프로그램 프록시는 지금 판 「Features Removed or No Longer Developed」에 없어 판에 따른 차이가 없다 — 본문(`windows-server-roles.web-application-proxy`)은 지금 판의 상태를 판과 함께 한 줄로 쓴다. 항목을 만들지 않는다
+
+## E40 — IIS 사이트의 IP 주소 칸이 「IP가 여럿일 때의 접속 순서」를 정한다고 본다
+
+- **시험**: Windows Server 2016 IIS 기본 웹 사이트 등록 정보의 필드 설명에서 옳지 않은 것을 고르는 문항이, IP 주소 칸이 사이트가 쓸 IP 주소를 적고 한 컴퓨터에 IP 주소가 둘 이상이면 그 접속 순서를 정한다는 설명을 맞는 말로 둔다(정답은 TCP 포트를 시리얼 포트로 쓴 보기) — [기출 2025-02-23 #28]
+- **공식 문서**: 사이트 바인딩의 IP 주소는 서버의 어느 주소로 온 요청을 이 사이트가 받을지 정하는 값이다 — 특정 주소 하나를 고르거나 「All Unassigned」(지정하지 않은 모든 주소, 구성 값 `*`)를 고르고, 바인딩 정보는 IP 주소·포트·(선택) 호스트 헤더의 짝이다(`<binding>` 「Overview」·「Attributes」, 「Configuring Step 4…」, 「Build a Static Website on IIS」).
+  사이트가 주소 여럿으로 요청을 받으려면 바인딩을 여럿 둔다(「Understanding Sites…」 — 사이트는 하나 이상의 바인딩을 갖는다). IP 주소들의 「접속 순서」를 정하는 칸이나 속성은 구성 참조(`<binding>`·`<bindings>`·`<site>`·`<sites>`)와 IIS 관리자 문서에서 찾지 못했다(order·priority·sequence로 찾아봤다).
+  옛 IIS 6.0 꼴의 속성 대화 상자를 보이는 문제 해결 문서도 「고급」에서 IP 주소·포트 짝을 더하는 데까지만 보인다(「Enable SSL for all customers」)
+- **처리**: 이 항목은 위 「처리」 규칙과 다르다(E10과 같은 쪽) — 시험의 답(TCP 포트는 시리얼 포트가 아니다)은 문서와 맞고, 이 항목은 시험이 맞는 말로 둔 보기 하나에 대한 것이다. 처리는 phase 81 step 4 문서가 정한 대로다. 본문(`windows-server-roles.iis-site-bindings`)은 바인딩의 IP 주소를 문서대로 「이 사이트가 받을 요청이 도착한 서버 주소 — 특정 주소나 할당되지 않은 모든 항목」으로 쓰고, 「접속 순서」를 가르치지 않으며 「자격시험은」 줄도 덧붙이지 않는다 — 덧붙이면 문서에 없는 기능을 가르치게 된다.
+  문항(해설 포함)은 「IP 주소 칸이 여러 주소의 접속 순서를 정한다」를 맞는 말로 쓰지 않고, 기출의 보기 묶음을 쓰지 않는다
+- 쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`
