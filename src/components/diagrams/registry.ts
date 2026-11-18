@@ -28,6 +28,7 @@ import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BaseImageChoiceDiagram } from './BaseImageChoiceDiagram'
 import { BitLockerVolumeDiagram } from './BitLockerVolumeDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
@@ -37,6 +38,7 @@ import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
+import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { ChownChangeDiagram } from './ChownChangeDiagram'
 import { CidrBoundaryDiagram } from './CidrBoundaryDiagram'
@@ -52,6 +54,7 @@ import { CompositeSlaDiagram } from './CompositeSlaDiagram'
 import { ConditionalAccessDiagram } from './ConditionalAccessDiagram'
 import { ConnectionCloseDiagram } from './ConnectionCloseDiagram'
 import { ContainerImageDiagram } from './ContainerImageDiagram'
+import { ContainerIsolationDiagram } from './ContainerIsolationDiagram'
 import { ControlTimingDiagram } from './ControlTimingDiagram'
 import { CostAnalysisDiagram } from './CostAnalysisDiagram'
 import { CostFactorsDiagram } from './CostFactorsDiagram'
@@ -69,7 +72,10 @@ import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
+import { DhcpFailoverDiagram } from './DhcpFailoverDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DhcpReservationDiagram } from './DhcpReservationDiagram'
+import { DhcpScopeRangeDiagram } from './DhcpScopeRangeDiagram'
 import { DirectoryListingDiagram } from './DirectoryListingDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
 import { DiskDeviceNameDiagram } from './DiskDeviceNameDiagram'
@@ -139,11 +145,16 @@ import { HubRepeatDiagram } from './HubRepeatDiagram'
 import { HybridBenefitDiagram } from './HybridBenefitDiagram'
 import { HybridCloudDiagram } from './HybridCloudDiagram'
 import { HybridPathsDiagram } from './HybridPathsDiagram'
+import { HyperVReplicaDiagram } from './HyperVReplicaDiagram'
+import { HypervisorLayersDiagram } from './HypervisorLayersDiagram'
 import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
+import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
+import { IisSitePoolDiagram } from './IisSitePoolDiagram'
 import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
@@ -167,6 +178,7 @@ import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { ListenPortDiagram } from './ListenPortDiagram'
+import { LiveMigrationDiagram } from './LiveMigrationDiagram'
 import { LocalUserAccountsDiagram } from './LocalUserAccountsDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
@@ -258,7 +270,9 @@ import { RecordTypesDiagram } from './RecordTypesDiagram'
 import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
+import { RemoteAccessServicesDiagram } from './RemoteAccessServicesDiagram'
 import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
+import { RequestFilteringDiagram } from './RequestFilteringDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
 import { ResolvConfDiagram } from './ResolvConfDiagram'
@@ -268,6 +282,7 @@ import { ResourceManagerDiagram } from './ResourceManagerDiagram'
 import { ResourceMonitorDiagram } from './ResourceMonitorDiagram'
 import { ReverseNameDiagram } from './ReverseNameDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
+import { RoleServiceFeatureDiagram } from './RoleServiceFeatureDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { RoundRobinAnswersDiagram } from './RoundRobinAnswersDiagram'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -283,6 +298,7 @@ import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
+import { ServerStaticIpDiagram } from './ServerStaticIpDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -292,8 +308,10 @@ import { ShellLayerDiagram } from './ShellLayerDiagram'
 import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SipCallDiagram } from './SipCallDiagram'
+import { SiteBindingsDiagram } from './SiteBindingsDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
+import { SmbShareAccessDiagram } from './SmbShareAccessDiagram'
 import { SmtpDialogueDiagram } from './SmtpDialogueDiagram'
 import { SnmpPollTrapDiagram } from './SnmpPollTrapDiagram'
 import { SnmpRolesDiagram } from './SnmpRolesDiagram'
@@ -309,6 +327,7 @@ import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { StorageAccountDiagram } from './StorageAccountDiagram'
+import { StorageMigrationDiagram } from './StorageMigrationDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
@@ -345,6 +364,9 @@ import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
 import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
+import { VirtualDirectoryDiagram } from './VirtualDirectoryDiagram'
+import { VirtualHardDiskDiagram } from './VirtualHardDiskDiagram'
+import { VirtualSwitchTypesDiagram } from './VirtualSwitchTypesDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -356,6 +378,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
 import { WorkFoldersSyncDiagram } from './WorkFoldersSyncDiagram'
@@ -692,6 +715,29 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.group-scopes': GroupScopesDiagram,
   'windows-ad.group-policy': GroupPolicyLinkDiagram,
   'windows-ad.password-lockout-policy': AccountLockoutDiagram,
+  'windows-server-roles.server-roles-features': RoleServiceFeatureDiagram,
+  'windows-server-roles.server-static-ip': ServerStaticIpDiagram,
+  'windows-server-roles.file-print-services': SmbShareAccessDiagram,
+  'windows-server-roles.dhcp-server-role': DhcpScopeRangeDiagram,
+  'windows-server-roles.dhcp-reservation': DhcpReservationDiagram,
+  'windows-server-roles.dhcp-failover': DhcpFailoverDiagram,
+  'windows-server-roles.iis': IisSitePoolDiagram,
+  'windows-server-roles.iis-site-bindings': SiteBindingsDiagram,
+  'windows-server-roles.iis-home-directory': VirtualDirectoryDiagram,
+  'windows-server-roles.request-filtering': RequestFilteringDiagram,
+  'windows-server-roles.iis-logging': IisLogRolloverDiagram,
+  'windows-server-roles.ftp-server': IisFtpSiteDiagram,
+  'windows-server-roles.remote-access': RemoteAccessServicesDiagram,
+  'windows-server-roles.web-application-proxy': WebAppProxyDiagram,
+  'windows-hyperv.hyper-v': HypervisorLayersDiagram,
+  'windows-hyperv.virtual-machines': VirtualHardDiskDiagram,
+  'windows-hyperv.virtual-switch': VirtualSwitchTypesDiagram,
+  'windows-hyperv.checkpoints': CheckpointApplyDiagram,
+  'windows-hyperv.live-migration': LiveMigrationDiagram,
+  'windows-hyperv.storage-migration': StorageMigrationDiagram,
+  'windows-hyperv.hyper-v-replica': HyperVReplicaDiagram,
+  'windows-hyperv.windows-containers': ContainerIsolationDiagram,
+  'windows-hyperv.container-base-images': BaseImageChoiceDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

@@ -951,3 +951,92 @@ phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 �
 - **처리**: 본문은 문서의 사실로 쓴다 — `windows-admin-tools.certificate-manager`는 인증서를 `.cer`·`.p7b`·`.sst`·`.pfx`로 내보내고 가져오며 개인 키를 담는 것은 `.pfx`뿐이라는 것을, `windows-admin-tools.efs`는 EFS의 키를 개인 키를 담은 `.pfx`로 백업한다(`cipher /x`, 인증서 내보내기)는 것을 쓴다.
   `efs`의 그 자리에 「자격시험은 CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 「EFS가 넷을 지원한다」를 정답의 근거로 쓰지 않고, 넷의 차이(개인 키를 담는지)를 묻는 데 쓴다
 - 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`, `windows-admin-tools.certificate-manager`
+
+E39~는 phase 81(`windows-server-roles`·`windows-hyperv`)이 더한다. phase 81 step 0에서 `windows-server-roles` 주제의 앞 개념 여섯(서버 역할과 기능, 서버의 고정 IP 주소, 파일 서버와 프린트 서버, DHCP 서버 역할, DHCP 예약, DHCP 장애 조치)이 답을 가르는 기출 6문항을 보았다(확인한 날 2026-11-18).
+[기출 2025-02-23 #44]와 [기출 2026-08-02 #32]가 같은 문항이라 서로 다른 문항은 다섯이다. 둘은 지문이 그림이라 보기만 남았다([기출 2025-05-25 #43]의 문제 화면, [기출 2026-05-17 #42]의 「운영 상황」). [기출 2026-05-17 #44](FTP 서버 설치)는 설치하는 자리만 보고, FTP 서버 자체와 SFTP 보기는 step 4가 본다.
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·PowerShell·Win32·문제 해결 문서와 지난 판 문서다. 공식 문서와 어긋나는 곳 하나에 **E39**를 만들었다 — 근거는 `standards.md`의 「(phase 81 step 0)」 줄과 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **파일·프린터 서버로 쓰려면 있어야 하는 통신 규칙은 TCP/IP**([기출 2024-11-03 #30]): 답 TCP/IP는 문서와 맞다 — Windows에서 파일·프린터 공유를 맡는 SMB는 TCP/IP 위에서 동작하고 TCP 445를 쓴다(「What is SMB File Sharing…」, 「Secure SMB traffic」, 「Service overview and network port requirements」).
+  오답 셋은 파일·프린터 공유의 통신 규칙이 아니다 — SNMP는 네트워크 장비를 살피고 관리하는 규약, SMTP는 전자 우편을 보내는 규약, IGMP는 호스트가 멀티캐스트 그룹에 든 것을 라우터에 알리는 규약이다(phase 73·78의 표준 항목). 다만 「반드시 설치해야 하는」이라는 말은 문서와 어긋난다 — 아래 **E39**
+- **DNS 서버를 설치하다 생긴 문제를 고치는 방법으로 알맞지 않은 것은 `ipconfig /renew`**([기출 2025-05-25 #43] — 문제 화면이 그림이라 빠졌다): 무슨 문제였는지는 대조하지 못했다. 보기 넷이 모두 주소를 고정하는 쪽의 손질이라 서버가 DHCP로 주소를 받은 데서 온 문제로 보이지만, 그렇게 단정할 근거는 없다.
+  문서로 판정할 수 있는 데까지 — DNS 서버를 설치하기 전에 갖출 것에 고정 IP가 있고(DNS 서버 빠른 시작), 라우터·DHCP 서버·DNS 서버는 고정 IP 주소로 구성해야 한다(「Core network components」). 맞는 말로 둔 셋(주소를 고정 할당으로 바꾸기, 「다음 IP 주소 사용」을 골라 주소 넣기, 「다음 DNS 서버 주소 사용」을 골라 DNS 서버 주소 넣기)은 문서의 고정 주소 차례와 맞는다(「Core network components」, DirectAccess 시험 랩 「STEP 6」, 「How to change the IP address of a network adapter」).
+  정답 `ipconfig /renew`는 주소를 자동으로 받는 어댑터에서만 쓰고 그 어댑터의 DHCP 설정을 다시 받을 뿐이라(ipconfig 페이지) 어댑터를 고정 주소로 바꾸지 않는다 — 시험의 답과 맞다. 항목을 만들지 않는다.
+  본문(`windows-server-roles.server-static-ip`)은 고정 주소를 쓰라는 문서의 말과 `/renew`가 하는 일만 쓰고, 마법사가 보이는 경고의 꼴은 쓰지 않는다(허용한 문서에서 찾지 못했다 — DHCP 서버에는 동적 주소를 알리는 이벤트 1144가 있다). 문항(해설 포함)은 이 기출의 문제 화면을 「동적 주소 경고」라고 단정해 다시 만들지 않는다
+- **DHCP 구성의 옳은 설명은 「주소를 나눠 줄 때 적용할 지연 시간은 밀리초 단위」**([기출 2025-02-23 #44], [기출 2026-08-02 #32] — 같은 문항): 새 범위 마법사의 「제외 및 지연 추가」 페이지에서 지연을 정하고(DHCP 서버 빠른 시작), 그 지연은 DISCOVER를 받은 뒤 OFFER를 보내기까지 늦추는 시간이며 단위가 밀리초다(Win32 `DhcpSetSubnetDelayOffer` — 0~1000, 기본 0, `Add-DhcpServerv4Scope`의 `-Delay`) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서로 틀리다.
+  ① 「임대 기간을 일·시간·분·초 단위로」 — 마법사의 「임대 기간」 페이지는 일·시간·분이다(「Core network components」, 작업 그룹 DHCP 문서). 다만 PowerShell `Add-DhcpServerv4Scope`의 `-LeaseDuration`은 `일.시:분:초` 꼴이라 초까지 적힌다 — 시험의 「새 범위 구성」을 새 범위 마법사로 읽으면 시험의 판정과 맞는다. 항목을 만들지 않는다.
+  본문은 「마법사에서는 임대 기간을 일·시간·분으로 정한다」로 쓰고, PowerShell 쪽은 쓸 때 판을 밝혀 한 줄로 쓴다. 문항(해설 포함)은 「임대 기간은 초 단위로 정할 수 없다」를 마법사에 한정하지 않은 채 맞는 말로 쓰지 않는다.
+  ② 「새 범위에서 더 이상 WINS 서버를 구성하지 않는다」 — 지금 판 DHCP 서버 빠른 시작(2025-04-17)의 새 범위 마법사에 「WINS 서버」 페이지가 있고, `Set-DhcpServerv4OptionValue`에 `-WinsServer`가 있다. WINS는 Windows Server 2022부터 더 개발하지 않고 2028(Preview)에서 WINS 서버 역할이 빠진다(「Features Removed or No Longer Developed」) — 그 뒤의 마법사는 문서에 없으므로 본문은 판을 밝혀 「지금 판 마법사에는 WINS 서버 페이지가 있다」로 쓴다.
+  ③ 「새 예약이 지원하는 유형은 BOOTP 없이 DHCP만」 — 예약의 유형은 DHCP·BootP·Both이고 기본이 Both다(`Add-DhcpServerv4Reservation`, Win32 `DHCP_IP_RESERVATION_INFO`). 새 예약 대화 상자의 칸 이름은 문서에서 확인하지 못했다
+- **MCLT의 역할은 「장애 조치 파트너 DHCP 서버가 기존 임대를 임시로 갱신할 수 있는 최대 시간」**([기출 2026-05-17 #42] — 「운영 상황」이 그림이라 빠졌다): 지금 판 개요는 파트너와 연락이 끊긴 서버가 파트너의 클라이언트가 청하는 갱신을 같은 주소로 MCLT 동안만 임시로 해 준다고 쓰고, 지난 판(2012)은 MCLT를 한 서버가 파트너 서버가 아는 시각을 넘어 임대를 늘려 줄 수 있는 최대 시간으로 정의한다 — 시험의 답과 맞다.
+  시험의 말은 정의(파트너가 아는 것을 넘어 늘릴 수 있는 한도)를 그 쓰임(연락이 끊겼을 때의 임시 갱신)으로 바꿔 말한 것이고, 문서는 MCLT를 파트너 다운 상태에서 주소 풀 전체를 맡기 전에 기다리는 시간으로도 쓴다 — 본문은 정의와 두 쓰임을 함께 쓴다. 항목을 만들지 않는다.
+  오답 셋은 MCLT가 아니다 — 「두 서버 사이 인증에 쓰는 최대 시간」: 두 서버 사이 메시지의 인증은 공유 비밀(메시지 다이제스트 인증)이 맡고 시간 값이 아니다(`Add-DhcpServerv4Failover`). 「DISCOVER 재전송 간격」: DISCOVER를 다시 보내는 것은 OFFER를 받지 못한 클라이언트의 동작이다(RFC 2131 §3.1, phase 74의 표준 항목).
+  「장애 조치 뒤 범위를 끄는 유예 시간」: 그런 값은 문서에 없다 — 장애 조치 관계가 갖는 시간 값은 MCLT와, 통신 중단 상태에서 파트너 다운 상태로 넘어가기까지의 시간(`StateSwitchInterval`)이다
+- **FTP 서버를 설치하는 자리**([기출 2026-05-17 #44]): 맞는 말로 둔 「서버 관리자의 역할 및 기능 추가에서 웹 서버(IIS)의 FTP 서버 역할 서비스를 골라 설치한다」는 문서와 맞다 — FTP 서버는 웹 서버(IIS) 역할 아래의 역할 서비스(`Web-Ftp-Server`)이고, 역할 서비스는 서버 관리자의 역할 및 기능 추가 마법사로 설치한다(Server Core 표, 「Add or remove roles and features in Windows Server」).
+  틀린 말로 둔 「서드파티 소프트웨어를 써야 한다」는 FTP 서버가 Windows Server의 역할 서비스로 들어 있으니 틀리고, 「PowerShell로는 설치할 수 없다」는 `Install-WindowsFeature`가 역할·역할 서비스·기능을 설치하므로 틀리다(`Install-WindowsFeature` 「Description」). 항목을 만들지 않는다. 「IIS의 FTP 서버만으로 SSH 기반 SFTP를 구성할 수 있다」는 step 4가 FTP 문서와 함께 판정한다
+
+## E39 — 파일·프린터 서버를 쓰려면 TCP/IP를 「반드시 설치해야」 한다고 본다
+
+- **시험**: Windows Server 2016에서 파일 및 프린터 서버를 쓸 수 있게 하려면 반드시 설치해야 하는 통신 프로토콜로 TCP/IP를 고른다(오답 SNMP·SMTP·IGMP) — [기출 2024-11-03 #30]
+- **공식 문서**: Windows에서 파일·프린터 공유는 SMB가 맡고, SMB는 **TCP/IP 위나 다른 프로토콜 위에서** 동작하는 네트워크 파일 공유 프로토콜이다(「What is SMB File Sharing for Windows and Windows Server?」, `ms.date` 2026-11-10). 전송으로는 TCP(445)를 흔히 쓰고 QUIC·RDMA도 쓴다(같은 문서, 「Secure SMB traffic」, 「Service overview and network port requirements」). 그래서 TCP/IP가 파일·프린터 공유의 바탕이라는 데까지는 시험의 답과 맞다.
+  그러나 TCP/IP는 따로 설치하는 구성 요소로 적혀 있지 않다 — Windows Server 2003 글이 TCP/IP와 Microsoft 네트워크용 파일 및 프린터 공유가 기본으로 설치된다고 적고(KB 325860), `netsh int ip reset`은 TCP/IP를 지웠다가 다시 설치한 것과 같은 효과를 낸다(TCP/IP 다시 설정 문서), Windows 10 1803 이후에는 프로토콜을 지우는 것 자체를 지원하지 않는다(KB 4340181).
+  지금 판 Windows Server 문서에서 「TCP/IP를 설치한다」는 단계는 찾지 못했다. 「반드시」도 문서의 「TCP/IP나 다른 프로토콜 위에서」보다 강한 말이다
+- **처리**: 본문(`windows-server-roles.file-print-services`)은 문서의 사실을 쓴다 — 파일·프린터 공유는 SMB로 하고, SMB는 TCP/IP 위에서 동작하며 TCP 445를 쓰고(문서가 다른 전송도 든다는 것은 쓸 때 한 줄), TCP/IP는 Windows에 처음부터 들어 있다. 그 자리에 「자격시험은 파일·프린터 서버를 쓰려면 TCP/IP를 반드시 설치해야 한다고 본다」를 한 줄 덧붙인다.
+  문항(해설 포함)은 「TCP/IP를 따로 설치해야 한다」를 맞는 말로 쓰지 않는다 — SMB가 어느 통신 규칙 위에서 동작하는지, SNMP·SMTP·IGMP와 무엇이 다른지로 묻는다
+- 쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.file-print-services`
+
+phase 81 step 4에서 `windows-server-roles` 주제의 뒤 개념 여덟(IIS 웹 서버, 사이트 바인딩과 연결 제한, 홈 디렉터리와 가상 디렉터리, 요청 필터링, IIS 로그, FTP 서버, 원격 액세스 역할, 웹 응용 프로그램 프록시)이 답을 가르는 기출 8문항을 보았다(확인한 날 2026-11-18).
+[기출 2024-08-25 #38]과 [기출 2025-05-25 #39]가 같은 문항이라 서로 다른 문항은 일곱이다. [기출 2026-05-17 #44](FTP 서버 설치)는 step 0이 설치하는 자리를 보았고, 이 step은 SFTP 보기를 본다.
+아래의 「공식 문서」는 learn.microsoft.com의 IIS 문서(구성 참조 포함)·Windows Server 원격 액세스 문서·Windows 보안 문서·문제 해결 문서다. 공식 문서와 어긋나는 곳 하나에 **E40**을 만들었다 — 근거는 `standards.md`의 「(phase 81 step 4)」 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **IIS 관리자를 여는 명령은 `inetmgr.exe`**([기출 2024-11-03 #40]): 문서는 실행 창이나 시작의 검색 상자에 `inetmgr`를 넣어 IIS 관리자를 열고, 그 실행 파일이 `system32\inetsrv\inetmgr.exe`이며, Vista 글은 검색 상자에 `inetmgr.exe`를 넣는다 — 시험의 답과 맞다.
+  오답 셋은 다른 도구다 — `wf.msc`는 고급 보안이 포함된 Windows Defender 방화벽, `msconfig`는 시스템 구성, `dsac.exe`는 Active Directory 관리 센터(「Windows Firewall Tools」, 「Windows startup issues troubleshooting」, 「Advanced AD DS Management…(Level 200)」). 항목을 만들지 않는다.
+  본문(`windows-server-roles.iis`)은 `inetmgr`를 실행 이름으로 세우고 실행 파일 이름 `inetmgr.exe`를 함께 적는다
+- **IIS 기본 웹 사이트의 등록 정보에서 옳지 않은 것은 「TCP 포트 = 웹 서버의 물리적인 시리얼 포트 번호」**([기출 2025-02-23 #28]): 사이트 바인딩의 포트는 사이트가 요청을 받는 TCP 포트 번호이고(Default Web Site는 80번 — `<binding>`·`<sites>`), 시리얼 포트는 직렬 컨트롤러에 달린 하드웨어 통신 인터페이스(옛 PC의 COM 포트)다(「Serial Controller Driver Design Guide」) — 시험의 답과 맞다.
+  시험이 맞는 말로 둔 셋 가운데 「연결 수 제한」(동시에 이어질 수 있는 클라이언트 연결 수의 상한 — `maxConnections`)과 「연결 시간 제한」(쉬고 있는 연결을 끊기 전에 기다리는 시간 — `connectionTimeout`, 기본 2분)은 `<limits>`와 맞는다. 「IP 주소 — IP가 둘 이상이면 접속 순서를 정한다」는 문서와 맞지 않는다 — 아래 **E40**.
+  이 문항이 그리는 꼴(한 「등록 정보」 대화 상자에 IP 주소·TCP 포트·연결 제한 칸이 함께 있다)은 IIS 6.0까지의 탭 달린 속성 대화 상자에 가깝고(「Getting Started with the IIS Manager in IIS」, 「Enable SSL for all customers」), IIS 7.0 이후에는 바인딩(「사이트 바인딩」)과 「고급 설정」의 「제한」으로 나뉘어 있다(`<binding>`·`<limits>`의 「How To」) — 시험은 Windows Server 2016이라고 적는다.
+  본문(`windows-server-roles.iis-site-bindings`)은 지금 판의 자리로 쓴다. 옛 대화 상자 꼴은 「자격시험은 ~로 본다」로 덧붙이지 않는다 — 시험의 답(포트 ≠ 시리얼 포트)은 판과 상관없이 같다
+- **IIS가 제공하는 기능은 요청 필터링**([기출 2025-11-02 #41]): 요청 필터링은 IIS 7.0부터 들어 있는 보안 기능이고 기본 설치에 포함된다(`<requestFiltering>`) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서로 틀리다 — 「HTTPS를 지원하지 않는다」: 사이트에 `https` 바인딩을 더하고 서버 인증서를 고르면 된다(「How to Set Up SSL on IIS 7 or later」).
+  「PHP 스크립트를 실행할 수 없다」: CGI 역할 서비스를 설치하면 FastCGI로 PHP를 실행한다(`<fastCgi>`, 「Install the Web Server WEB1」). 「응용 프로그램 풀은 웹 사이트 하나만 호스트한다」: 풀은 그 풀에 맡긴 응용 프로그램 하나 이상의 요청을 처리한다(`<applicationPools>`). 항목을 만들지 않는다
+- **IIS 로그 설정의 옳은 설명은 「로그 파일의 저장 위치를 바꿀 수 있다」**([기출 2026-02-01 #45]): 로그 디렉터리는 기본 `%SystemDrive%\inetpub\logs\LogFiles`이고 IIS 관리자 「로깅」 페이지의 「디렉터리」에서 바꾼다(`<logFile>`, 「Configure Logging in IIS」) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서와 맞게 틀리다.
+  「W3C 형식만 지원한다」: W3C(기본)·IIS·NCSA·사용자 지정 넷이다. 「기본적으로 실시간으로 갱신된다」: 사건을 버퍼에 모았다가 쓰고(기본은 64k가 찼을 때), IIS 8.5 글은 글자 로그 파일이 실시간으로 갱신되지 않아 ETW로 보내는 길을 더했다고 쓴다(`<logFile>`의 `flushByEntryCountW3CLog`, 「Logging to Event Tracing for Windows in IIS 8.5」).
+  「크기가 최대치에 이르면 이전 로그를 저절로 지운다」: 최대 크기에 이르면 새 로그 파일을 만들고, 오래된 로그는 스크립트를 예약 작업으로 실행해 지우라고 안내한다(「Configure Logging in IIS」, `<logFile>`, 「Managing IIS Log File Storage」) — IIS가 스스로 지우지 않는다는 것을 한 문장으로 적은 문서는 없고 이 문서들에서 이어서 나오는 말이다.
+  항목을 만들지 않는다. 본문(`windows-server-roles.iis-logging`)은 버퍼와 삭제를 위 근거의 범위로만 쓴다
+- **IIS 관리자 기능의 옳지 않은 설명은 「기본 웹 사이트의 홈 디렉터리는 반드시 그 폴더로 정해야 한다」**([기출 2026-08-02 #29]): 기본 웹 사이트의 폴더는 `\Inetpub\Wwwroot`에 만들어지지만 다른 폴더를 써도 되고, 설치 뒤에 `\inetpub`을 옮겨 기본 웹 사이트가 새 위치를 가리키게 할 수 있다(「Create a Web Site」, 「Compatibility and Feature Requirements for Windows Vista」) — 시험의 답과 맞다.
+  문항의 경로 표기는 옮기지 않는다(지금 문서의 기본값은 `%SystemDrive%\inetpub\wwwroot`). 맞는 말로 둔 셋도 문서와 맞다 — 기본 문서는 「작업」 창 「추가...」로 더한다(`<defaultDocument>`), 보낼 기본 문서가 없을 때 디렉터리 검색을 켜면 목록을 보이고 날짜·시각·크기·확장자 가운데 보일 정보를 고른다(`<defaultDocument>`·`<directoryBrowse>`), 「가상 디렉터리 추가」에서 별칭과 실제 경로를 넣는다(`<virtualDirectory>`).
+  「홈 디렉터리」라는 이름은 지금 판 IIS 문서가 웹 사이트 폴더에 쓰지 않고 옛 KB 글(KB 308150)이 쓴다(`standards.md` 같은 항목) — 본문(`windows-server-roles.iis-home-directory`)은 그 이름을 옛 문서와 기출이 쓰는 이름으로 소개하고 「실제 경로」를 세운다. 이름의 차이일 뿐 시험의 답과 어긋나는 사실이 아니어서 항목을 만들지 않는다
+- **FTP 서버 설치 — SFTP 보기**([기출 2026-05-17 #44]): 틀린 말로 둔 「IIS의 FTP 서버 기능만으로 SSH 기반 SFTP를 구성할 수 있다」 — IIS의 FTP 서비스가 지원하는 보안 연결은 FTPS(FTP over SSL — 명시적·암시적)이고, IIS 7.0 때 글은 Microsoft가 FTPS를 제공하고 SFTP로 FTP 트래픽을 지키는 방법은 제공하지 않는다고 적는다(「Using FTP Over SSL in IIS 7」, FTP over SSL `<ssl>`, 「What's New for Microsoft and FTP in IIS 7?」).
+  지금 판 IIS 문서에서 IIS FTP가 SFTP를 지원한다고 한 곳은 찾지 못했다 — 시험의 판정과 맞다. Windows에서 SFTP 도구(`sftp`)는 IIS가 아니라 OpenSSH에 들어 있다(phase 78의 OpenSSH 항목). 나머지 보기는 「phase 81 step 0」 문단이 판정했다. 항목을 만들지 않는다.
+  본문(`windows-server-roles.ftp-server`)은 IIS FTP 서버의 보안 연결은 FTPS이고 SFTP는 SSH 위의 다른 프로토콜이라는 것을 위 근거대로 쓰고, 「제공하지 않는다」는 IIS 7.0 때 글의 말이라고 판을 밝힌다
+- **원격 컴퓨터를 잇지 않고 내부 웹 자원을 인터넷에 게시하는 원격 액세스 기능은 WAP**([기출 2024-08-25 #38]=[기출 2025-05-25 #39]): 웹 응용 프로그램 프록시는 원격 액세스 역할의 역할 서비스이고, 역방향 프록시로 회사 밖의 사용자가 내부 서버의 웹 응용 프로그램에 닿게 한다(「Web Application Proxy in Windows Server」, 「Remote Access」) — 시험의 답과 맞다.
+  문제문의 「DirectAccess나 VPN과 달리 원격 컴퓨터를 네트워크에 잇지 않는다」를 한 문장으로 적은 문서는 없지만, VPN(RAS)·DirectAccess가 원격 클라이언트를 조직 네트워크에 잇는다는 정의(「Remote Access」)와 맞다. 오답 셋 PPTP·L2TP·SSTP는 Windows VPN 서버(RRAS)가 VPN 연결을 받는 터널링 프로토콜이다(「Configure VPN protocols…」 — Windows Server 2025부터 새 구성은 PPTP·L2TP를 기본으로 받지 않는다).
+  시험은 Windows Server 2016을 적고, 웹 응용 프로그램 프록시는 지금 판 「Features Removed or No Longer Developed」에 없어 판에 따른 차이가 없다 — 본문(`windows-server-roles.web-application-proxy`)은 지금 판의 상태를 판과 함께 한 줄로 쓴다. 항목을 만들지 않는다
+
+## E40 — IIS 사이트의 IP 주소 칸이 「IP가 여럿일 때의 접속 순서」를 정한다고 본다
+
+- **시험**: Windows Server 2016 IIS 기본 웹 사이트 등록 정보의 필드 설명에서 옳지 않은 것을 고르는 문항이, IP 주소 칸이 사이트가 쓸 IP 주소를 적고 한 컴퓨터에 IP 주소가 둘 이상이면 그 접속 순서를 정한다는 설명을 맞는 말로 둔다(정답은 TCP 포트를 시리얼 포트로 쓴 보기) — [기출 2025-02-23 #28]
+- **공식 문서**: 사이트 바인딩의 IP 주소는 서버의 어느 주소로 온 요청을 이 사이트가 받을지 정하는 값이다 — 특정 주소 하나를 고르거나 「All Unassigned」(지정하지 않은 모든 주소, 구성 값 `*`)를 고르고, 바인딩 정보는 IP 주소·포트·(선택) 호스트 헤더의 짝이다(`<binding>` 「Overview」·「Attributes」, 「Configuring Step 4…」, 「Build a Static Website on IIS」).
+  사이트가 주소 여럿으로 요청을 받으려면 바인딩을 여럿 둔다(「Understanding Sites…」 — 사이트는 하나 이상의 바인딩을 갖는다). IP 주소들의 「접속 순서」를 정하는 칸이나 속성은 구성 참조(`<binding>`·`<bindings>`·`<site>`·`<sites>`)와 IIS 관리자 문서에서 찾지 못했다(order·priority·sequence로 찾아봤다).
+  옛 IIS 6.0 꼴의 속성 대화 상자를 보이는 문제 해결 문서도 「고급」에서 IP 주소·포트 짝을 더하는 데까지만 보인다(「Enable SSL for all customers」)
+- **처리**: 이 항목은 위 「처리」 규칙과 다르다(E10과 같은 쪽) — 시험의 답(TCP 포트는 시리얼 포트가 아니다)은 문서와 맞고, 이 항목은 시험이 맞는 말로 둔 보기 하나에 대한 것이다. 처리는 phase 81 step 4 문서가 정한 대로다. 본문(`windows-server-roles.iis-site-bindings`)은 바인딩의 IP 주소를 문서대로 「이 사이트가 받을 요청이 도착한 서버 주소 — 특정 주소나 할당되지 않은 모든 항목」으로 쓰고, 「접속 순서」를 가르치지 않으며 「자격시험은」 줄도 덧붙이지 않는다 — 덧붙이면 문서에 없는 기능을 가르치게 된다.
+  문항(해설 포함)은 「IP 주소 칸이 여러 주소의 접속 순서를 정한다」를 맞는 말로 쓰지 않고, 기출의 보기 묶음을 쓰지 않는다
+- 쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`
+
+phase 81 step 9에서 `windows-hyperv` 주제의 개념 아홉(Hyper-V, 가상 컴퓨터와 가상 하드 디스크, 가상 스위치, 검사점, 실시간 마이그레이션, 저장소 마이그레이션, Hyper-V 복제본, Windows 컨테이너, 컨테이너 기본 이미지)이 답을 가르는 기출 9문항을 보았다(확인한 날 2026-11-18).
+[기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33]이 같은 문항(보기 넷이 같다)이고, Windows 컨테이너 셋([기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])도 보기와 정답이 같은 꼴이라 서로 다른 문항은 다섯이다.
+다섯 문항(컨테이너 셋, 검사점 둘)은 지문이 그림이라 빠졌다 — 정답이 그 기능의 이름이라는 것과 보기 넷이 무엇인지만 판정하고, 지문이 무엇을 묘사했는지 지어내지 않는다.
+아래의 「공식 문서」는 learn.microsoft.com의 Hyper-V 문서·Windows 컨테이너 문서·Hyper-V PowerShell 모듈 문서와 지난 판 문서다. **공식 문서와 어긋나는 곳이 없어 E 항목을 만들지 않았다** — 근거는 `standards.md`의 「(phase 81 step 9)」 항목들이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **Hyper-V의 옳은 특징은 「가상 하드 디스크를 실행 중에도 다른 저장소로 옮길 수 있다」**([기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33] — 시험은 앞의 것이 Windows Server 2016, 뒤의 둘이 2022라고 적는다): 저장소 마이그레이션은 VM의 저장소 파일(가상 하드 디스크 같은 것)을 가동 중지 없이 다른 위치로 옮기고 Windows Server의 Hyper-V에만 있다(「Hyper-V features and terminology」 「Storage migration」, `Move-VMStorage`),
+  지난 판 문서는 Windows Server 2012의 Hyper-V부터 VM이 실행되는 채로 저장소를 옮긴다고 쓴다(「Virtual Machine Storage Migration Overview」) — 시험의 답과 맞다. 2016·2022 모두 지금 판 문서(「Applies to」 Windows Server 2016~2025)의 범위다.
+  틀린 말로 둔 셋도 문서로 틀리다 — 「다른 서버로 복제할 수 없다」: Hyper-V 복제본이 VM을 다른 Hyper-V 호스트(복제본 서버)에 비동기로 복제한다(「Hyper-V Replica overview」). 「물리 서버 하나에 가상 컴퓨터 하나만」: 호스트 하나에서 동시에 실행할 수 있는 VM은 1,024개까지다(「Hyper-V maximum scale limits」, 네 판 모두).
+  「가상 컴퓨터를 쓸수록 물리 서버의 하드웨어 사용률이 낮아진다」: 개요는 가상화로 하드웨어 사용률을 최대로 높이고 서버를 통합한다고 쓴다(「Hyper-V virtualization…」 첫머리·「Benefits」) — 이 말을 반박하는 문장이 따로 있지는 않고, 통합으로 사용률을 높인다는 말에서 이어서 나오는 판정이다. 항목을 만들지 않는다
+- **Hyper-V의 설명으로 옳지 않은 것은 「서버 가용성이 줄어든다」**([기출 2025-02-23 #30] — Windows Server 2016): 개요의 「Benefits of Hyper-V」는 고가용성 기능으로 가동 중지 시간을 줄이고 Hyper-V 복제본·실시간 마이그레이션으로 업무 연속성을 지킨다고 쓴다(「복원력 향상」) — 시험의 답과 맞다.
+  맞는 말로 둔 셋도 같은 문서와 맞다 — 「하드웨어 사용률을 높인다」(첫머리 — 하드웨어 사용률을 최대로), 「유지 비용을 줄일 수 있다」(「비용 최적화」 — 서버 통합으로 하드웨어 구입과 **유지 관리 비용**을 줄이고 공간·전력·냉각 요구를 낮춘다), 「개발·테스트의 효율을 높인다」(「개발 가속」, 첫머리의 개발·테스트 환경).
+  미리 걱정한 「유지 비용」은 문서가 maintenance costs라는 말로 직접 쓰므로 차이가 없다. 항목을 만들지 않는다
+- **지문의 괄호에 들어갈 것은 Windows 컨테이너**([기출 2024-02-25 #44] — Windows Server 2016, [기출 2025-05-25 #38] — 2016, [기출 2026-05-17 #29] — 2022, 지문이 그림이라 빠졌다): 지문을 대조하지 못했다. 판정할 수 있는 데까지 — 보기 넷은 문서에서 서로 다른 것이다.
+  Windows 컨테이너는 호스트 운영 체제의 커널을 함께 쓰며 떨어진 공간에서 앱을 실행하는 기술이고 컨테이너 이미지에서 만든다(「About Windows containers」). 가상 컴퓨터(Hyper-V·Virtual Machine 보기)는 커널을 포함한 운영 체제 전체를 실행한다(「Containers vs. virtual machines」).
+  IIS(Internet Information Services 보기)는 웹 서버(IIS) 역할이다(`standards.md`의 「(phase 81 step 4) … IIS」 항목). Nano Server는 Windows Server 2016에서 설치 옵션으로 나왔다가 1709부터 컨테이너 기본 OS 이미지로만 나온다(지난 판 「Install Nano Server」, 「Features Removed…」 Windows Server 2019 탭) — 컨테이너를 만드는 바탕 이미지 가운데 하나이지 컨테이너 기술의 이름이 아니다.
+  정답 「Windows 컨테이너」(Windows Containers)는 문서의 기능 이름 그대로다. 항목을 만들지 않는다. 문항(해설 포함)은 이 기출의 지문이 무엇이었는지 지어 다시 만들지 않는다
+- **지문의 괄호에 들어갈 것은 검사점**([기출 2026-05-17 #45], [기출 2026-08-02 #45] — 지문이 그림이라 빠졌다): 검사점은 VM의 한 시점 상태를 붙잡아 두고 그 상태로 되돌리게 하는 Hyper-V 기능이다(「Use checkpoints」, 「Hyper-V features and terminology」 「Checkpoints」) — 정답이 그 기능의 이름이라는 데까지 문서와 맞다.
+  오답 — 가상 스위치는 VM을 서로·호스트·물리 네트워크와 잇는 소프트웨어 스위치이고(「Hyper-V features and terminology」 「Virtual switch」), 내보내기(가상 머신 내보내기, Export)는 가상 하드 디스크·구성·검사점 파일을 한 단위로 모아 VM을 옮기거나 복사하는 것이다(「Export and import virtual machines」).
+  롤백(Rollback)은 문서가 검사점으로 되돌아가는 일을 말할 때 쓰는 낱말일 뿐 기능 이름이 아니고, 새로 고침·타임머신(Time Machine)이라는 이름의 Hyper-V 기능은 이 step에서 읽은 Hyper-V 문서에 없다. 항목을 만들지 않는다

@@ -119,6 +119,22 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 지금 판 문서에 없는 것(이벤트 뷰어의 로그 갈래와 이벤트 속성 표, 데이터 수집기 집합의 일정)만 지난 판 문서(Windows Server 2008 R2·2012)에서 가져왔다. 실행 창(Windows 키 + R)과 `devmgmt.msc`, 명령 줄에 `certmgr`만 적었을 때의 동작, 인증서 관리자의 한국어 이름은 같은 learn.microsoft.com의 Windows 드라이버 문서와 .NET Framework 문서에서만 찾았다 — 항목에 어느 문서인지 적는다.
 **Microsoft Learn의 교육 과정(training) 페이지는 쓰지 않았다**(업체 학습 페이지라 허용하지 않는다). 그래서 리소스 모니터의 탭 목록처럼 그 페이지에만 있는 사실은 적지 않았다 — 아래 「성능 모니터·리소스 모니터」 항목에 찾아본 곳을 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — PowerShell의 문법(변수·파이프라인·제어문)과 원격 실행, 이벤트 구독·사용자 지정 보기의 설정, 성능 카운터 목록과 데이터 수집기 집합의 경고·템플릿, 인증서 요청·자동 등록, EFS의 키 구조(FEK·DDF·DRF)와 복구 정책 설정, BitLocker 보호기 전체와 설정 절차, 클라우드 폴더의 배포 절차. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 0)」이 붙은 줄과 항목은 phase 81 step 0에서 `windows-server-roles` 주제의 앞 개념 여섯(서버 역할과 기능, 서버의 고정 IP 주소, 파일 서버와 프린트 서버, DHCP 서버 역할, DHCP 예약, DHCP 장애 조치)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+이 주제는 강의 밖 주제라 사실의 근거는 learn.microsoft.com 하나다(ADR-059). 읽은 방법은 phase 80과 같다(영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server 문서·PowerShell 모듈 문서(`?view=windowsserver2025-ps` 판)·Win32 문서·문제 해결 문서이고,
+지금 판 문서에 정의 문장이 없는 것(역할·역할 서비스·기능의 정의, MCLT의 정의, 파일 및 저장소 서비스의 기본 설치, 인쇄 및 문서 서비스의 역할 설명)만 지금 판 문서가 링크하는 지난 판 문서(Windows Server 2008 R2·2012·2012 R2)에서 가져왔다 — 줄마다 그 판과, 지금 판 문서에서 같은 말을 찾아본 결과를 적는다.
+**마법사·대화 상자의 한국어 이름은 한국어판 문서(기계 번역)의 표기로만 확인했고 실제 한국어 Windows 화면으로는 확인하지 못했다.** Microsoft Q&A에만 있는 사실(DHCP 콘솔의 실행 이름 `dhcpmgmt.msc`, 동적 주소로 DNS 서버 역할을 설치할 때 마법사가 보이는 경고의 꼴)은 쓰지 않는다 — 항목에 찾아본 곳을 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 서버 관리자의 원격 관리·서버 그룹·오프라인 VHD에 설치, 기능 주문형(Features on Demand), SMB의 버전별 기능·서명·암호화·다중 채널·QUIC의 설정, 저장소 공간·DFS·데이터 중복 제거, 인쇄 관리 콘솔, DHCP의 IPv6·정책·필터·DNS 동적 업데이트·분할 범위의 배포, IPAM, 장애 조치 관계의 복제·클러스터 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 4)」가 붙은 줄과 항목은 phase 81 step 4에서 `windows-server-roles` 주제의 뒤 개념 여덟(IIS 웹 서버, 사이트 바인딩과 연결 제한, 홈 디렉터리와 가상 디렉터리, 요청 필터링, IIS 로그, FTP 서버, 원격 액세스 역할, 웹 응용 프로그램 프록시)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+읽은 방법은 step 0과 같다(learn.microsoft.com의 영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 IIS 문서(`iis/…` — 구성 참조 `iis/configuration/…` 포함)·Windows Server 원격 액세스 문서·Windows 보안 문서·문제 해결 문서다.
+**IIS 문서는 대부분 IIS 7.0 때(2007~2008년) 쓴 글이고**, 화면 차례도 Windows Server 2008~2012 R2까지만 적는다. 그래서 같은 사실이 지금 판(IIS 10.0 — Windows Server 2016 이후)에서도 그대로인지 구성 참조의 「Compatibility」 표에 「IIS 10.0에서 바뀌지 않았다」는 줄이 있는지로 맞춰 보고, 항목마다 그 결과를 적는다.
+IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 번역) 화면 이름은 그 번역으로만 확인했고 **실제 한국어 IIS 관리자 화면으로는 확인하지 못했다**. 한국어판은 application을 줄곧 「애플리케이션」으로 옮긴다(「애플리케이션 풀」·「웹 애플리케이션 프록시」) — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — IIS의 인증 방식 전체·URL 재작성·ASP.NET 구성·공유 구성·출력 캐시·모듈 목록, 요청 필터링의 사용자 지정 규칙과 헤더 제한, 로그의 사용자 지정 필드·ETW 설정, FTP 사용자 격리·방화벽 설정 전체, VPN·DirectAccess의 배포 절차와 인증서·Always On VPN의 구성, AD FS의 동작과 신뢰 당사자 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 9)」가 붙은 줄과 항목은 phase 81 step 9에서 `windows-hyperv` 주제의 개념 아홉(Hyper-V, 가상 컴퓨터와 가상 하드 디스크, 가상 스위치, 검사점, 실시간 마이그레이션, 저장소 마이그레이션, Hyper-V 복제본, Windows 컨테이너, 컨테이너 기본 이미지)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+읽은 방법은 step 0·4와 같다(learn.microsoft.com의 영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server의 Hyper-V 문서(`windows-server/virtualization/hyper-v/…`)·Windows 컨테이너 문서(`virtualization/windowscontainers/…`)·Hyper-V PowerShell 모듈 문서(`?view=windowsserver2025-ps` 판)이고,
+지금 판 문서에 없는 것(실행 중인 가상 컴퓨터의 저장소를 옮기는 차례, VHDX가 처음 나온 판, Nano Server 설치 옵션의 끝)만 지난 판 문서(Windows Server 2012 R2·2012, Windows Server 2016)에서 가져왔다 — 줄마다 그 판과, 지금 판 문서에서 같은 말을 찾아본 결과를 적는다.
+**Hyper-V 문서의 한국어판은 virtual machine을 대부분 「가상 머신」으로 옮기고, 몇 문서(내보내기·가져오기, 세대 선택)만 「가상 컴퓨터」로 옮긴다** — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다.**
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 장애 조치 클러스터와 클러스터 공유 볼륨, 동적 메모리·스마트 페이징, 중첩 가상화, 차폐된 가상 컴퓨터, 세대 1과 2의 차이 전체, 가상 네트워크 어댑터의 설정 전체, 실시간 마이그레이션의 인증(CredSSP·Kerberos 제한된 위임)과 성능 옵션,
+복제본의 인증서·확장 복제·추가 복구 지점·테스트 장애 조치의 차례, Dockerfile 문법, 컨테이너 런타임의 설치 차례, 오케스트레이터(Kubernetes)·컨테이너 네트워크 드라이버. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -963,9 +979,11 @@ https://www.rfc-editor.org/rfc/rfc3986
 - (phase 77) authority는 `[사용자 정보 "@"] 호스트 [":" 포트]` 꼴이다 — 호스트(이름이나 IP 주소) 뒤에 쌍점(`:`) 하나를 두고 십진수 포트 번호를 붙일 수 있다 — §3.2, §3.2.3
 - (phase 77) 스킴(scheme)은 기본 포트를 정할 수 있다. 예로 `http` 스킴은 기본 포트를 80(그 스킴에 남겨 둔 TCP 포트 번호)으로 정한다. 포트 번호가 TCP·UDP 가운데 어느 것의 포트인지는 스킴이 정한다.
   포트가 비었거나 기본 포트와 같으면 주소를 만드는 쪽은 포트와 그 앞의 `:`를 빼는 것이 좋다 — §3.2.3
+- (phase 81 step 6, 2026-11-18 rfc-editor.org 원문 텍스트판을 IPv4로 받아 읽음) URL(Uniform Resource Locator)은 URI 가운데 자원을 가리키는 데 더해, 그 자원에 닿는 주된 방법(네트워크의 「위치」 같은 것)을 적어 자원을 찾아가게 하는 것을 이른다 — §1.1.3
 
 쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
 (phase 77에서 쓰일 곳) `ports.port-number`(§3.2·§3.2.3 — 주소 뒤에 `:포트`를 붙여 적는 꼴), `ports.well-known-ports`(§3.2.3 — 기본 포트는 스킴이 정하고, 다른 포트는 주소에 적는다)
+(phase 81 step 6) `windows-server-roles.iis-home-directory`(§1.1.3 — URL이 무엇인지 한 줄)
 
 ## MDN — What is a URL?
 https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL
@@ -1075,6 +1093,9 @@ https://www.rfc-editor.org/rfc/rfc9110
 - (phase 78 step 5) `https`에서 서버가 그 주소에 대해 답할 자격은, 클라이언트가 믿을 만하다고 보는 인증서의 짝인 개인 키를 서버가 쓸 수 있는지로 가린다. 클라이언트는 보통 미리 정해 둔 신뢰의 출발점(trust anchor)에서 이어지는 신뢰 사슬로 그 인증서를 믿을지 정한다 — §4.3.3
 - (phase 78 step 5) **인증서 확인**: 안전한 연결을 맺으려면 클라이언트는 서버가 내민 신원이 주소의 원 서버와 맞는지 **반드시 확인해야 한다**(MUST). 이 확인은 경로 가운데 끼어든 공격자나 이름 풀이를 조작한 공격자가 서버를 흉내 내는 것을 막으려는 것이다.
   주소의 호스트가 IP 주소면 IP 주소로, 이름이면 DNS 이름으로 견준다. 인증서가 그 주소에 맞지 않으면 웹 브라우저 같은 사용자 에이전트는 사용자에게 계속할지 확인을 받거나, 잘못된 인증서라는 오류로 연결을 끝내야 한다 — §4.3.4
+- (phase 81 step 5, 2026-11-18 rfc-editor.org 원문 — 위와 같은 판) 요청의 **Host 헤더 필드**는 대상 URI의 호스트와 포트 정보를 담아, 원 서버가 여러 호스트 이름의 요청을 맡을 때 자원을 가를 수 있게 한다. 꼴은 `Host = uri-host [ ":" port ]`로 포트는 적을 때만 붙는다.
+  사용자 에이전트(웹 브라우저 같은 것)는 이 정보를 `:authority` 가상 헤더 필드로 보내는 경우가 아니면 요청에 Host 헤더 필드를 만들어 넣어야 한다(MUST). HTTP/2·HTTP/3에서는 Host 대신 요청의 제어 데이터에 든 `:authority`가 그 일을 맡기도 한다. 예로 `http://www.example.org/pub/WWW/`을 GET으로 요청하면 요청은 `GET /pub/WWW/ HTTP/1.1` 다음 줄에 `Host: www.example.org`로 시작한다 — §7.2
+  (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`(웹 브라우저가 주소의 이름을 Host 헤더에 담아 보내고, 서버가 그 이름으로 여러 이름의 사이트를 가른다, `Host: shop.example.com`의 꼴)
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
@@ -2710,10 +2731,18 @@ DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지�
 - (phase 78 step 11) **Windows ping의 요약 줄**: 네트워크 어댑터 확인 문서의 출력 예는 응답 넷(`Reply from <주소>: bytes=… time<1ms TTL=…`) 뒤에 요약을 둔다 — 「`Ping statistics for <주소>:`」 다음에 보낸 수(Sent)·받은 수(Received)·잃은 수(Lost)와 그 백분율, 이어 「대략의 왕복 시간(ms)」의 가장 짧은 값(Minimum)·가장 긴 값(Maximum)·평균(Average)이다.
   셋 다 요청 4개를 보내 4개를 받은(0% 손실) 예다 — 「Use Ping.exe to Check Your Hardware」 1~3단계의 예. 손실이 있는 예는 이 문서에 없다
 - (phase 78 step 11) 자동 주소 지정 문서는 APIPA를 쓰는지 볼 때 `ipconfig /all`의 「Autoconfiguration Enabled」 줄과 「Autoconfiguration IP Address」를 보라고 한다 — 다만 이 대목은 Windows 2000·XP·Server 2003의 방법으로 적혀 있다 — 「More Information」(위 둘째 줄과 같은 대목)
+- (phase 81 step 0) 2026-11-18에 IPv4로 다시 내려받아 읽은 판: DHCP Server 문서 `updated_at` 2025-05-14(`ms.date` 2025-05-13), DHCP scopes 2025-04-28(2023-08-11) — 위 줄과 같은 판이고, 둘 다 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후다.
+  한국어판(「Windows Server의 DHCP(동적 호스트 구성 프로토콜) 서버란?」·「DHCP 범위」, `updated_at` 2026-01-21)도 받았다 — 용어 표기만 참고한다
+- (phase 81 step 0) DHCP Server 문서가 Windows Server의 DHCP 서버 기능으로 드는 것 가운데 둘: **DHCP 서버 권한 부여** — AD에 권한을 받은 서버만 클라이언트에게 주소를 주게 해, 권한 없는 서버가 주소를 나눠 주는 일을 막는다. **DHCP 장애 조치** — DHCP 서버 두 대가 범위 하나를 함께 맡아 한쪽이 멈출 때를 대비하고(중복성) 요청을 나눠 받는다(부하 분산) — 「DHCP Server features」.
+  둘의 자세한 사실은 아래 「(phase 81 step 0) Microsoft Learn — DHCP 서버 역할·범위·예약 …」·「(phase 81 step 0) Microsoft Learn — DHCP 장애 조치 …」 항목
+- (phase 81 step 0) DHCP scopes: 서브넷 하나에는 범위를 하나만 둘 수 있고 그 범위는 이어진 주소 구간 하나다. 한 서브넷에서 떨어진 구간 여럿을 쓰려면 먼저 범위를 정한 뒤 필요한 제외 범위를 둔다 — 「Define a DHCP scope」.
+  **제외 범위**(exclusion range)는 범위의 주소 구간 **안에 있는** 이어진 주소 구간으로, DHCP 서버가 클라이언트에게 주지 못하게 막아 둔 곳이다. 그래서 그 주소를 손으로 장치에 넣어도 주소가 부딪치지 않는다. 손으로 고정 주소를 넣은 장치의 주소를 모두 넣고, 앞으로 늘어날 장치를 위해 여유 주소를 더 넣어 두라고 권한다 — 「Exclusion ranges」(위 「Exclusion ranges」 줄에 정의를 더한다)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
 `ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Windows ping 요약 줄의 꼴 — 보낸 수·받은 수·잃은 수와 백분율, 왕복 시간의 최소·최대·평균), `diagnostic-commands.ipconfig`(`/all`에 자동 구성 줄이 있다 — 옛 판의 방법으로 적힌 대목)
+(phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(권한 부여·장애 조치가 DHCP 서버 기능이다, 서브넷 하나에 범위 하나·이어진 구간 하나, 제외 범위의 정의), `windows-server-roles.dhcp-reservation`(위 「Reservations」 줄 — MAC 주소로 늘 같은 주소, 장치가 DHCP를 지원해야 하고 DHCP 서버에 기댄다),
+`windows-server-roles.server-static-ip`(위 「Exclusion ranges」 줄 — 손으로 고정 주소를 넣은 장치는 제외 범위에), `windows-server-roles.dhcp-failover`(장애 조치가 무엇인지 한 줄)
 
 ## (phase 74 step 11) RFC 1930 — Guidelines for creation, selection, and registration of an Autonomous System (AS)
 https://www.rfc-editor.org/rfc/rfc1930
@@ -4671,6 +4700,10 @@ https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_
 - PowerShell에서 `ssh domain\username@servername` 꼴로 접속한다. 처음 접속하면 그 호스트가 진짜인지 확인할 수 없다는 말과 **호스트 키의 지문(SHA256)**을 보이고 **계속 접속할지(yes/no)** 묻는다.
   `yes`를 입력하면 그 서버가 클라이언트의 알려진 SSH 호스트 목록에 들어가고, 이어서 암호를 묻는다(입력하는 글자는 화면에 보이지 않는다) — Get started 「Connect to OpenSSH Server」
 
+- (phase 81 step 7, 2026-11-18 IPv4로 다시 받아 읽음 — overview는 위와 같은 판(`updated_at` 2025-05-01, `ms.date` 2025-02-20, 한국어판 `updated_at` 2026-01-21), 적용 대상 Windows Server 2025·2022·2019, Windows 11·10) **`sftp`**: overview의 들어 있는 명령 목록은 `sftp`를 SFTP(Secure File Transfer Protocol)를 제공하고 SSH 위에서 동작하는 것으로, `scp`를 SSH 위에서 동작하는 파일 복사 도구로 적는다(한국어판은 「보안 파일 전송 프로토콜」).
+  문제 해결 문서 「Troubleshoot common SFTP issues when using OpenSSH」(https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/troubleshoot-sftp-issues-using-openssh — `ms.date` 2026-02-12, `updated_at` 2026-02-19, 한국어판 `updated_at` 2026-10-14, 적용 대상: 지원되는 Windows Server·Windows 클라이언트)는 Windows의 OpenSSH가 SFTP 기능을 준다고 적고,
+  OpenSSH 서버의 설정 파일 `sshd_config`의 `Subsystem sftp sftp-server.exe` 줄과 「OpenSSH SSH Server」 서비스를 다시 시작하는 차례로 SFTP 문제를 다룬다 — 그러니 Windows에서 SFTP 연결을 받는 쪽은 OpenSSH 서버다. 위 「(phase 81 step 4) … IIS의 FTP 서버」 항목의 SFTP 줄(IIS의 FTP 서비스는 SFTP를 내놓지 않는다)과 이어, 본문은 「Windows에서 SFTP는 IIS가 아니라 OpenSSH가 맡는다」로 쓴다(두 문서를 이은 말)
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.ftp-server`(SFTP의 뜻과 이름, OpenSSH의 `sftp`와 OpenSSH 서버가 SFTP를 맡는다), 문항 n297의 해설, 도식 `iis-ftp-site`의 SFTP 시나리오
 쓰인 곳: (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.ssh`(overview — Windows에도 OpenSSH가 들어 있다, Get started — 처음 접속할 때 지문을 보이고 계속할지 묻는다·TCP 22), 기출 대조(`exam-notes.md` 「phase 78 step 0」 문단 — SSH는 Linux·Unix만의 것이 아니다)
 
 ## (phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7, FTP Firewall Support `<firewallSupport>`
@@ -4975,6 +5008,7 @@ ipconfig·pathping 페이지는 옵션을 빗금(`/all`, `/q`)으로 적고, nsl
 `diagnostic-commands.ipconfig-options`(`/release` — DHCPRELEASE·주소 설정을 버림·TCP/IP가 꺼짐, `/renew` — 자동으로 받는 어댑터에서만, `/displaydns` — Hosts 항목과 최근 레코드·DNS 서버보다 먼저, `/flushdns` — 비우기와 부정 응답, `/setclassid`, nslookup — 이름이나 주소를 DNS 서버에 묻는다),
 `diagnostic-commands.pathping`(tracert처럼 경로를 찾은 뒤 라우터마다 일정 시간 여러 번, 노드·링크 손실, `/q` 100·`/p` 250ms, 출력의 세 부분과 칸, 대략 90초·125초 계산, 링크 손실과 라우터 손실의 뜻), `exam-notes.md` 「phase 78 step 11」 문단과 E33
 (phase 79 step 0에서 쓰일 곳) `dns.dns-cache-ttl`(`/displaydns` — DNS 클라이언트 리졸버 캐시에 Hosts 파일의 항목과 최근 레코드가 함께 든다, DNS 서버에 묻기 전에 캐시로 푼다. 강의 p351 화면의 항목 이름은 데이터 이름·데이터 유형·TTL(Time To Live)·데이터 길이·섹션·레코드 줄이다 — 이 페이지는 출력 예를 보이지 않는다), `dns.hosts-file`(`/displaydns` — Hosts 파일의 항목이 캐시에 미리 실린다)
+(phase 81 step 0에서 쓰일 곳 — 2026-11-18에 다시 받은 ipconfig 페이지는 위 줄과 같은 판이다) `windows-server-roles.server-static-ip`(`/renew` — 주소를 자동으로 받는 어댑터에서만 쓰고 그 어댑터의 DHCP 설정을 다시 받는다. 「실행한 뒤에도 그 어댑터는 DHCP로 주소를 받는 어댑터로 남는다 — 고정 주소로 바꾸지 않는다」는 이 페이지에 한 문장으로 적혀 있지 않고 위 `/renew` 줄에서 이어서 나오는 말이다), 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
 
 ## (phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서(DNS 클라이언트, 네트워크 어댑터의 IP 주소 바꾸기, 공유 프린터, IPv6 설치, TCP/IP 통신, DHCP)
 https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client
@@ -4998,9 +5032,14 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/trouble
 - (phase 78 step 15) **어느 프로그램이 TCP 포트를 쓰는지 알아내기**(https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/determine-which-program-use-block-tcp-ports — 2026-11-11에 IPv4로 내려받아 읽음, `updated_at` 2026-02-19, `ms.date` 2026-02-12, 「Applies to」 Windows Server 2003): `-o`는 연결마다 그 연결과 이어진 프로세스 ID를 보이고, 그것으로 어느 프로세스(프로그램)가 어느 포트에서 기다리는지 알 수 있다고 한다.
   `netstat -ano`의 출력 예가 머리줄을 **Proto · Local Address · Foreign Address · State · PID** 차례로 적고 그 아래 줄도 같은 차례(프로토콜, 로컬 주소, 외부 주소, 상태, PID)다 — 곧 **PID 칸은 상태 칸 뒤의 마지막 칸**이다. 작업 관리자의 프로세스 탭에서 PID로 프로그램을 찾는다 — 「Summary」·「How to match the process ID to a program」.
   **Windows Server 2003의 글**이라 화면의 꼴은 지금 판과 다를 수 있다 — 칸의 차례만 가져오고 화면을 그대로 옮기지 않는다. 원격 데스크톱 문제 해결 문서(https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/remote-desktop-disconnected — 2026-11-11 Microsoft Learn 검색으로 읽음)도 `netstat -a -o`의 결과에서 포트를 쓰는 프로세스의 PID가 PID 칸에 나온다고 쓴다(위 「Windows netstat의 결과 칸」 줄은 `-o`의 PID가 어느 칸에 놓이는지 적혀 있지 않다고 했다 — 이 문서로 메운다)
+- (phase 81 step 0) **IP 주소 바꾸기 문서를 2026-11-18에 IPv4로 다시 받았다** — `updated_at` 2026-02-19(`ms.date` 2026-02-12), 「Applies to」 지원되는 Windows Server, 원래 KB 323444. 한국어판(「네트워크 어댑터의 IP 주소를 변경하는 방법」, `updated_at` 2026-10-14)도 받았다.
+  주소를 손으로 정하는 차례(「How to Specify an IP Address」): 「다음 IP 주소 사용」(Use the following IP address)을 고르고, IP 주소 칸에 그 네트워크에서 쓸 수 있는 주소 가운데 **겹치지 않는** 것을, 서브넷 마스크 칸에 그 네트워크의 마스크를, 기본 게이트웨이 칸에 이 네트워크를 다른 네트워크나 인터넷에 잇는 장치의 주소를 넣는다. 「기본 설정 DNS 서버」(Preferred DNS server) 칸에 이름을 주소로 바꿔 주는 컴퓨터의 주소를, 「대체 DNS 서버」(Alternate DNS server) 칸에 기본 설정 DNS 서버를 쓸 수 없을 때 쓸 DNS 서버의 주소를 넣는다.
+  반대로 주소를 자동으로 받게 할 때(「How to automatically obtain an IP Address」)는 「자동으로 IP 주소 가져오기」(Obtain an IP address automatically)와, DNS 서버 주소를 직접 정하지 않으려면 「자동으로 DNS 서버 주소 가져오기」(Obtain DNS server address automatically)를 고른다(DHCP 서버가 있어야 한다). 이름은 한국어판의 표기다. 문제 해결(「Troubleshooting」): 이미 쓰이는 주소를 넣으면 그 고정 주소가 이미 네트워크에서 쓰인다는 오류가 나오고, 서브넷 마스크를 잘못 넣으면 사실상 다른 네트워크에 놓여 같은 네트워크의 컴퓨터와 통신하지 못하며, DNS 서버 주소가 틀리면 이름으로는 다른 컴퓨터에 닿지 못한다(주소로는 닿는다).
+  이 문서도 옛 판의 꼴이다(「Local Area Connection」, 「Internet Protocol (TCP/IP)」) — 지금 판의 메뉴 이름은 아래 「(phase 81 step 0) Microsoft Learn — 서버의 고정 IP 주소 …」 항목의 「Core network components」·DirectAccess 시험 랩 문서에서 확인한다
 
 쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(`/all` 출력의 항목 — 호스트 이름·IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버·연결별 DNS 접미사, 옛 판의 꼴), `diagnostic-commands.ipconfig-options`(`/release` 다음 `/renew`의 차례와 그 결과, `/displaydns`·`/flushdns`로 부정 응답 캐시를 찾고 비우기),
 `diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임; (phase 78 step 15) `netstat -ano`의 PID 칸이 상태 칸 뒤의 마지막 칸이다 — 본문·도식·n224), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+(phase 81 step 0에서 쓰일 곳) `windows-server-roles.server-static-ip`(IP 주소 바꾸기 문서 — 주소를 손으로 정하는 칸과 그 뜻, 자동으로 받기와 `ipconfig /release`·`/renew`의 차례, 겹치는 주소·틀린 마스크·틀린 DNS 서버 주소의 결과), 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
 
 ## (phase 78 step 11) Linux man-pages — ip-address(8), termios(3)
 https://man7.org/linux/man-pages/man8/ip-address.8.html
@@ -6414,3 +6453,723 @@ https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-
 
 쓰인 곳: (phase 80 step 13) `windows-admin-tools.work-folders` — 위 줄의 사실 전부(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 클라이언트의 기본 위치 `%USERPROFILE%\Work Folders`, 오프라인 작업 뒤 동기화와 클라이언트의 빈 공간, 암호화·잠금 화면 암호 정책, 파일 및 스토리지 서비스 아래 설치 자리와 `Install-WindowsFeature`·클라우드 폴더 페이지에서 동기화 공유와 사용자 접근 관리·NTFS 볼륨, OneDrive와 OneDrive for Business와의 차이, 지원 상태, 한국어 이름 — 「작업 폴더」로도 옮긴다는 것 한 줄).
   설치 차례는 서버 역할 선택에서 파일 및 스토리지 서비스를 펼친 뒤 그 아래 항목에서 고른다고만 썼다 — 중간 단계 「파일 및 iSCSI 서비스」는 iSCSI를 이 주제에서 풀 근거가 없어 이름을 쓰지 않았다. 도식 `work-folders-sync`, 문항 n283
+
+(phase 81 step 0, 2026-11-18 Microsoft Learn에서 IPv4로 다시 받아 확인) 「Features Removed or No Longer Developed in Windows Server」는 위 줄 뒤에 판이 바뀌었다 — `updated_at` 2026-11-17(`ms.date` 2026-11-16), 「Applies to」 Windows Server 2028 Preview·2025·2022·2019·2016, 한국어판 `updated_at` 2026-11-17.
+두 절(「Features no longer in development」, 「Features removed」)이 판마다 탭으로 나뉜다 — 줄마다 어느 탭에 있는지는 페이지 HTML의 탭 id(`tabpanel_1_ws22`처럼 절 번호와 판)로 확인했다. 두 절의 첫 문단이 둘을 가른다 — **더 개발하지 않음**(deprecated)은 더는 새로 개발하지 않고 다음 판에서 뺄 수 있지만 아직 제품에 들어 있고 운영에 지원되며 보안·품질 업데이트를 받는 것이고,
+**제거됨**(removed)은 그 판의 설치 이미지에서 빠져 더는 쓸 수 없는 것이다. Windows Server 2028은 Preview라 목록이 바뀔 수 있다고 탭마다 적는다. 이 phase의 두 주제에 걸린 줄:
+- **WINS**(Windows Internet Name Service): 「Features no longer in development」의 **Windows Server 2022** 탭 — 옛(레거시) 컴퓨터 이름 등록·풀이 서비스이니 DNS로 바꾸라. 「Features removed」의 **Windows Server 2028(Preview)** 탭 — WINS 서버 역할은 2022부터 더 개발하지 않다가 2028에서 빠진다. WINS에 기대는 클라이언트와 서비스를 DNS 이름 풀이로 옮기라
+- **DirectAccess**: 「Features removed」의 **Windows Server 2028(Preview)** 탭 — 2028에서 빠지니 Always On VPN으로 옮기라. 「Features no longer in development」의 어느 탭에도 없다
+- **PPTP·L2TP를 통한 원격 액세스**: 「Features removed」의 **Windows Server 2028(Preview)** 탭 — 2028에서 빠지니 IKEv2나 SSTP로 옮기라
+- **웹 응용 프로그램 프록시**(Web Application Proxy): 두 절 어디에도 나오지 않는다
+- **Hyper-V 쪽 줄**: 「Features no longer in development」 — Windows Server 2022 탭에 LBFO 팀에 묶는 Hyper-V 가상 스위치(대신 SET로 묶는다)와 Guarded Fabric·차폐된 VM, Windows Server 2019 탭에 Hyper-V의 Key Storage Drive와 WFP 경량 필터 스위치 확장.
+  「Features removed」 — Windows Server 2028(Preview) 탭에 레거시 BIOS 지원(2028을 게스트로 쓰는 VM은 2세대 Hyper-V VM이어야 한다 — 옛 게스트 운영 체제를 1세대 VM에서 실행하는 지원은 그대로다)과 차폐된 VM, Windows Server 2019 탭에 Hyper-V 네트워크 가상화(HNV — SDN에 들어갔다)
+- **Nano Server**: 「Features removed」의 **Windows Server 2019** 탭 — Nano Server 설치 옵션. 설치할 수 있는 호스트 운영 체제로는 더 나오지 않고 컨테이너 운영 체제로만 나온다(Windows 컨테이너 기본 이미지 문서를 가리킨다)
+- 이웃 줄 — 「Features removed」의 Windows Server 2025 탭에 IIS 6 관리 콘솔(2019부터 더 개발하지 않음), Windows Server 2019 탭에 Server Core 설치 옵션의 인쇄 구성 요소(다시 기본으로 꺼져 있고 `Install-WindowsFeature Print-Server`로 켠다)
+- 클라우드 폴더(Work Folders)는 이 판에서도 두 절 어디에도 없다
+
+(phase 81 step 4, 2026-11-18 IPv4로 다시 받아 확인 — 위 「(phase 81 step 0)」 줄과 같은 판, `updated_at` 2026-11-17) 웹 응용 프로그램 프록시(Web Application Proxy)는 여전히 두 절 어디에도 없고, DirectAccess·PPTP와 L2TP를 통한 원격 액세스 줄(「Features removed」의 Windows Server 2028(Preview) 탭)도 위 줄 그대로다.
+IIS 쪽으로는 IIS 6 관리 호환성 구성 요소(IIS 6 메타베이스 호환성·IIS 6 관리 콘솔 등)와 IIS 다이제스트 인증이 목록에 있다 — 이 phase의 개념(IIS 관리자·사이트·요청 필터링·로그·FTP)이 쓰는 구성 요소는 아니어서 탭을 따로 적지 않는다. 근거로 쓴 곳은 아래 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목
+
+(phase 81 step 9, 2026-11-18 IPv4로 다시 받아 확인 — 위 「(phase 81 step 0)」 줄과 같은 판, `updated_at` 2026-11-17) Hyper-V 쪽 줄과 Nano Server 줄은 위 「(phase 81 step 0)」 줄 그대로다 — Nano Server 설치 옵션은 「Features removed」의 Windows Server 2019 탭(페이지 HTML의 탭 id `tabpanel_2_ws19`)에 있고, 설치할 수 있는 호스트 운영 체제가 아니라 컨테이너 운영 체제로만 나온다며 Windows 컨테이너 기본 이미지 문서를 가리킨다.
+실시간 마이그레이션·저장소 마이그레이션·검사점·Windows 컨테이너는 두 절 어디에도 없다. Hyper-V 복제본은 이름만 한 번 나온다 — 「Features removed」의 Windows Server 2028(Preview) 탭에서 차폐된 VM을 대신할 신뢰할 수 있는 VM의 미리 보기가 장애 조치 클러스터와 Hyper-V 복제본을 아직 지원하지 않는다는 말이고, 복제본 기능 자체가 빠지거나 개발이 멈춘다는 줄은 아니다. 근거로 쓴 곳은 아래 「(phase 81 step 9)」 항목들
+
+쓰인 곳: (phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(WINS의 지원 상태 — 2022부터 더 개발하지 않음, 2028 Preview에서 제거), `windows-server-roles.file-print-services`(Server Core의 인쇄 구성 요소 줄 — 쓸 때만),
+`windows-server-roles.remote-access`·`windows-server-roles.web-application-proxy`(DirectAccess·PPTP/L2TP는 2028 Preview에서 제거, 웹 응용 프로그램 프록시는 목록에 없음 — step 4가 그 주제의 문서와 함께 다시 본다), `windows-hyperv`(Hyper-V 줄·Nano Server 줄 — step 9가 다시 본다)
+
+## (phase 81 step 0) Microsoft Learn — 서버 역할과 기능: Add or remove roles and features in Windows Server, Install-WindowsFeature, Get-WindowsFeature, Roles, Role Services, and Features included in Windows Server - Server Core, Commands by Server role, Server Manager, Manage Multiple, Remote Servers with Server Manager; Win32 — Server Feature Provider; 지난 판 Roles, Role Services, and Features (Windows Server 2008 R2)
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/install-or-uninstall-roles-role-services-or-features
+https://learn.microsoft.com/en-us/powershell/module/servermanager/install-windowsfeature?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/servermanager/get-windowsfeature?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/administration/server-core/server-core-roles-and-services
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/commands-by-server-role
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/server-manager
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/manage-multiple-remote-servers-with-server-manager
+https://learn.microsoft.com/en-us/windows/win32/wmisdk/server-feature-provider
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754923(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Add or remove roles and features in Windows Server」 `updated_at` 2026-02-16(`ms.date` 2025-06-09, 「Last updated on」 2025-06-13), 「Roles, Role Services, and Features included in Windows Server - Server Core」 2026-02-16(2025-03-12) — 둘 다 「Applies to」 Windows Server 2016~2025·Windows 11·10.
+「Commands by Server role」 2025-10-22(2017-10-16, Windows Server 2016~2025·Windows 11·10·Azure Local 2311.2 이후), 「Server Manager」 2025-10-15(2025-06-16), 「Manage Multiple, Remote Servers with Server Manager」 2025-05-19(2017-10-16) — 둘 다 Windows Server 2016~2025·Windows 11·10.
+`Install-WindowsFeature`·`Get-WindowsFeature` 2024-02-07(2021-09-08, ServerManager 모듈 — 페이지가 `windowsserver2025-ps` 판을 가리킨다). Win32 「Server Feature Provider」 2025-03-11(2018-05-31 — 적용 판을 적지 않는 개발자 문서).
+지난 판 「Roles, Role Services, and Features」 2021-11-12(`ms.date` 2009-11-17, 「Applies To」 Windows Server 2008 R2) — **지금 판 「Manage Multiple, Remote Servers with Server Manager」가 역할·역할 서비스·기능의 정의로 이 문서를 링크한다**(「Tasks that you can perform in Server Manager」 표). 지금 판 문서에서 셋을 정의한 문장은 찾지 못했다.
+한국어판도 모두 받았다(`updated_at` 2026-01-21~2026-07-17, 기계 번역). PowerShell 두 페이지와 지난 판 문서의 한국어판은 번역되지 않아 영문 그대로다.
+
+- **서버 역할**(server role, 지난 판 정의): 설치하고 알맞게 구성하면 컴퓨터가 네트워크의 여러 사용자나 다른 컴퓨터를 위해 정해진 일을 하게 하는 소프트웨어 프로그램 묶음이다. 대개 — 그 컴퓨터의 주된 일·쓰임을 나타내고(한 컴퓨터가 많이 쓰이는 역할 하나만 맡거나, 적게 쓰이는 역할 여럿을 함께 맡는다), 조직의 사용자가 다른 컴퓨터가 관리하는 웹 사이트·프린터·파일 같은 자원에 닿게 하며,
+  요청을 쌓아 두거나 네트워크 사용자·컴퓨터에 관한 정보를 적는 자기 데이터베이스를 갖고(예: AD DS), 설치·구성을 마치면 사람이 거의 손대지 않아도 스스로 일한다 — 「Roles」
+- 지금 판 「Commands by Server role」: 서버 역할은 서버의 주된 일을 나타내고, 서버 한 대를 역할 하나에 다 쓰거나 한 컴퓨터에 서버 역할과 하위 역할 여럿을 설치할 수 있다. 역할에 따라 명령줄 도구가 함께 설치된다 — 첫 문단. Win32 「Server Feature Provider」: 서버 역할은 인쇄·파일·도메인 제어처럼 한 영역의 일을 하는 구성 요소 묶음이다 — 첫머리
+- **역할 서비스**(role service, 지난 판 정의): 역할의 일을 실제로 해 주는 프로그램이다. 역할을 설치할 때 그 역할이 다른 사용자·컴퓨터에게 어떤 역할 서비스를 제공할지 고른다. DNS 서버처럼 하는 일이 하나뿐인 역할에는 고를 역할 서비스가 없고, 원격 데스크톱 서비스처럼 여럿인 역할도 있다.
+  역할은 서로 밀접한 역할 서비스의 묶음으로 볼 수 있고, 역할을 설치한다는 것은 대개 그 역할 서비스를 하나 이상 설치한다는 뜻이다 — 「Role services」
+- **기능**(feature, 지난 판 정의): 역할을 이루는 부분은 아니지만, 역할 하나 이상의 일을 돕거나 넓히거나, 어떤 역할을 설치했든 상관없이 서버 자체의 일을 좋게 하는 프로그램이다. 예: 장애 조치 클러스터링(파일 서비스·DHCP 서버 같은 역할을 서버 클러스터에 넣어 중복성과 성능을 높인다), 텔넷 클라이언트(서버가 쓸 수 있는 통신 수단을 넓힌다) — 「Features」
+- **어디에 무엇이 드는지**(지금 판 「Roles, Role Services, and Features included in Windows Server - Server Core」 — Server Core 설치 옵션의 표, 열은 이름·설치 이름·기본 설치 여부): 역할 표에 DHCP 서버(`DHCP`), DNS 서버(`DNS`), 파일 및 스토리지 서비스(`FileAndStorage-Services`), Hyper-V(`Hyper-V`), 인쇄 및 문서 서비스(`Print-Services`), 원격 액세스(`RemoteAccess`), 웹 서버(IIS)(`Web-Server`).
+  역할 서비스 표에 — 파일 및 스토리지 서비스 아래 파일 및 iSCSI 서비스(`File-Services`)·파일 서버(`FS-FileServer`)·스토리지 서비스(`Storage-Services`), 인쇄 및 문서 서비스 아래 인쇄 서버(`Print-Server`), 원격 액세스 아래 DirectAccess 및 VPN(RAS)(`DirectAccess-VPN`)·라우팅(`Routing`)·웹 애플리케이션 프록시(`Web-Application-Proxy`), 웹 서버(IIS) 아래 웹 서버(`Web-WebServer`)·FTP 서버(`Web-Ftp-Server`)와 그 아래 FTP 서비스(`Web-Ftp-Service`)·FTP 확장성(`Web-Ftp-Ext`).
+  기능 표에 — BitLocker 드라이브 암호화(`BitLocker`), 컨테이너(`Containers`), WINS 서버(`WINS`). phase 80의 `windows-admin-tools.bitlocker`가 「기능 목록에서 고른다」고 쓴 것과 맞다(위 「(phase 80 step 8) … EFS·BitLocker」 항목의 「Install BitLocker on Windows Server」)
+- **기본으로 설치된 것**: 같은 표에서 기본 설치가 「Y」인 역할은 파일 및 스토리지 서비스 하나이고, 그 역할 서비스 가운데 「Y」는 스토리지 서비스 하나다(파일 서버는 「N」). 나머지 역할(DHCP 서버·DNS 서버·Hyper-V·인쇄 및 문서 서비스·원격 액세스·웹 서버(IIS))은 모두 「N」이다.
+  **이 표는 Server Core 설치 옵션의 것이다** — 데스크톱 경험이 있는 설치의 기본 상태는 아래 「(phase 81 step 0) … 파일 서버·SMB·인쇄 서버」 항목의 지난 판 「File and Storage Services Overview」(2012 R2·2012)가 같은 말을 한다
+- **설치하는 자리 — 서버 관리자**(「Add or remove roles and features in Windows Server」, 탭 「Roles and Features Wizard」): 서버 관리자 콘솔과 서버 관리자용 PowerShell cmdlet으로 로컬 서버·서버 관리자에 더한 원격 서버·오프라인 VHD에 역할과 기능을 더하고, 여럿을 한 번에 더할 수 있다 — 첫머리. 관리자 계정이 필요하다 — 「Prerequisites」.
+  차례: 시작 메뉴에서 서버 관리자를 연다 → 오른쪽 위 「관리」 → 「역할 및 기능 추가」 → **역할 및 기능 추가 마법사** → 「시작하기 전에」 → 「설치 유형」에서 「역할 기반 또는 기능 기반 설치」(원격 데스크톱 서비스를 뺀 모든 역할·기능에 쓴다) → 「서버 선택」(로컬 서버나 서버 관리자에 더한 원격 서버, 또는 VHD) →
+  「서버 역할」(더할 역할을 고른다 — 기능만 더할 때는 고르지 않아도 된다. 고른 역할에 필요한 다른 역할·기능이 있으면 더하라고 묻고, 대상 서버에 충돌이 있으면 알린다. 역할의 **관리 도구는 기본으로 함께 더해진다** — 다른 서버에서 원격으로 관리할 때는 빼도 된다) → 「기능」(역할만 더할 때는 고르지 않아도 된다) → 「확인」(고른 것을 보고 「설치」 — 설치 뒤 다시 시작해야 하는 역할·기능이 있고, 「필요한 경우 대상 서버를 자동으로 다시 시작」을 고를 수 있다) → 끝나면 「닫기」. 마법사 한 번에 대상 서버는 하나다 — 「Add roles and features on multiple servers」
+- **설치하는 자리 — PowerShell**(같은 문서, 탭 「Windows PowerShell」): 관리자 PowerShell에서 `Get-WindowsFeature`로 설치할 수 있는 역할·기능 전체를 보고(`-ComputerName`으로 원격 서버도), `Install-WindowsFeature`에 역할·기능 이름을 하나 이상 주어 설치한다. 예: `Install-WindowsFeature -Name DNS,DHCP -IncludeManagementTools`(로컬 서버에 DNS와 DHCP 역할을 관리 도구와 함께 — 결과 표에 Success·Restart Needed·Exit Code·Feature Result 칸이 나온다).
+  설치된 것만 보려면 `Get-WindowsFeature | ? Installed -eq $true`. 역할의 관리 도구와 스냅인은 **기본으로 들어가지 않아** `-IncludeManagementTools`를 붙인다. Server Core 설치 옵션에서는 그래도 GUI 관리 도구는 설치되지 않고 명령줄·PowerShell 관리 도구만 설치된다. 다시 시작이 필요하면 `-Restart`로 묻지 않고 다시 시작한다 — 같은 탭의 차례와 Tip
+- `Install-WindowsFeature`(「Description」·매개 변수): 로컬이나 원격 Windows Server(또는 오프라인 VHD)에 **역할·역할 서비스·기능** 하나 이상을 설치한다. 서버 관리자의 설치와 비슷하게 동작하지만 기능의 관리 도구를 기본으로 설치하지 않는 것이 다르다. 관리자 권한(관리자로 연 PowerShell)이 필요하다.
+  `-IncludeAllSubFeature`는 이름으로 준 역할·역할 서비스·기능 아래의 하위 역할 서비스·하위 기능까지 모두 설치한다. 예 1·2: `Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature …`는 웹 서버(IIS)를 모든 역할 서비스와 함께 설치한다. 예 3: 역할 및 기능 추가 마법사의 확인 페이지에서 「구성 설정 내보내기」로 만든 XML 파일로 설치할 수 있다
+- `Get-WindowsFeature`(「Description」·예): 설치할 수 있는 것과 이미 설치된 것을 함께 보인다. 예 4는 `Get-WindowsFeature -ComputerName Server01 | Where Installed`로 설치된 것만 보인다. 예 3처럼 `-Name AD*, Web*`으로 이름(명령 ID)의 앞부분을 걸러 볼 수 있다
+- **서버 관리자**(「Server Manager」): 로컬·원격 Windows Server를 한곳에서 갖추고 관리하는 콘솔이다 — 첫머리. Administrators 그룹 구성원이 로그온하면 기본으로 저절로 시작한다(「서버 관리자 속성」 대화 상자의 「로그온 시 서버 관리자를 자동으로 시작 안 함」 확인란이나 같은 뜻의 그룹 정책으로 끈다) — 「Start Server Manager」. 표준 사용자는 역할 서비스를 더하거나 빼지 못한다 — 「Tasks that you can perform in Server Manager」 표
+- **한국어 이름**: 한국어판은 「서버 관리자」, 「역할 및 기능 추가」·「역할 및 기능 추가 마법사」, 「역할 서비스」(Server Core 표 한국어판의 열 머리), 「기능」(마법사 단계 이름), 「역할 기반 또는 기능 기반 설치」, 마법사 단계를 「시작하기 전에」·「설치 유형」·「서버 선택」·「서버 역할」·「기능」·「확인」으로 옮긴다
+  (DNS 서버·DHCP 서버 빠른 시작 한국어판은 같은 페이지를 「설치 유형 선택」·「대상 서버 선택」·「서버 역할 선택」·「기능 선택」·「설치 선택 확인」으로 옮긴다 — 아래 항목들). 역할·역할 서비스 이름은 Server Core 표 한국어판의 「DHCP 서버」·「DNS 서버」·「파일 및 스토리지 서비스」·「스토리지 서비스」·「파일 서버」·「인쇄 및 문서 서비스」·「인쇄 서버」·「원격 액세스」·「DirectAccess 및 VPN(RAS)」·「웹 애플리케이션 프록시」·「웹 서버(IIS)」·「FTP 서버」, 기능 이름은 「BitLocker 드라이브 암호화」.
+  **고른 이름**: 「서버 역할」·「역할 서비스」·「기능」, 「서버 관리자」, 「역할 및 기능 추가 마법사」(그 안 페이지는 「서버 역할 선택」처럼 빠른 시작 한국어판 꼴 — phase 80의 AD DS 항목과 같다), 「파일 및 스토리지 서비스」(guide.md의 「파일 및 저장소 서비스」 대신 — 한국어판의 표기이고 phase 80 `windows-admin-tools.work-folders`가 이미 쓴다), 「인쇄 및 문서 서비스」·「인쇄 서버」, 「웹 서버(IIS)」. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 1에서 쓰일 곳) `windows-server-roles.server-roles-features`(역할·역할 서비스·기능의 정의와 차이 — 지난 판 정의, 지금 판의 「서버의 주된 일」, 어느 이름이 역할이고 역할 서비스이고 기능인지(Server Core 표), 기본 설치(파일 및 스토리지 서비스·스토리지 서비스), 서버 관리자 마법사의 차례와 페이지 이름, `Install-WindowsFeature`·`-IncludeManagementTools`·`Get-WindowsFeature`, 관리 도구가 마법사에서는 기본으로 들어가고 cmdlet에서는 아니라는 차이);
+(phase 81 step 2·7에서 쓰일 곳) `windows-server-roles.file-print-services`(파일 서버·인쇄 서버 역할 서비스 이름과 기본 설치), `windows-server-roles.ftp-server`(웹 서버(IIS) 아래 FTP 서버 역할 서비스와 설치 이름 `Web-Ftp-Server` — step 4가 FTP 문서와 함께 다시 본다); 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2026-05-17 #44])
+
+## (phase 81 step 0) Microsoft Learn — 서버의 고정 IP 주소: Quickstart: Install and configure DNS Server on Windows Server, Core network components, DHCP server events, New-NetIPAddress, Set-DnsClientServerAddress, STEP 6 Install and Configure 2-DC1(DirectAccess 다중 사이트 시험 랩); 문제 해결 — How To Install and Configure a DHCP Server in a Workgroup
+https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server
+https://learn.microsoft.com/en-us/windows-server/networking/core-network-guide/core-network-guide
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-server-events
+https://learn.microsoft.com/en-us/powershell/module/nettcpip/new-netipaddress?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/directaccess/tlg-multisite/step-6-install-and-configure-2-dc1
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/install-configure-dhcp-server-workgroup
+
+2026-11-18에 IPv4로 내려받아 읽은 판: DNS 서버 빠른 시작 `updated_at` 2025-06-11(`ms.date` 2025-06-11), 「Core network components」 2025-09-22(2023-02-06), 「DHCP server events」 2025-09-15(2025-03-12) — 셋 다 「Applies to」 Windows Server 2016~2025(이벤트 문서는 Azure Local 2311.2 이후도).
+`New-NetIPAddress`·`Set-DnsClientServerAddress` 2025-05-14(2016-12-20, `windowsserver2025-ps` 판). DirectAccess 시험 랩 「STEP 6」 2026-02-16(2020-08-07, Windows Server 2016~2025·Windows 11·10).
+작업 그룹 DHCP 문제 해결 문서 2026-02-19(2026-02-12, 「Applies to」 지원되는 Windows Server, 원래 KB 323416) — **본문은 Windows Server 2003에 DHCP 서버를 세우는 글**이라 줄의 사실만 가져오고 차례·화면은 가져오지 않는다.
+한국어판도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역) — 용어 표기만 참고한다. AD DS 설치 문서 둘(「Install Active Directory Domain Services」, 「Active Directory Domain Services configuration wizard page descriptions」, 2026-02-16)도 다시 받아 찾아봤지만 고정 IP 주소에 관한 말은 없다.
+
+- **DNS 서버 빠른 시작**(「Prerequisites」): DNS 서버를 설치하고 구성하기 전에 갖출 것으로 지원되는 Windows Server를 실행하는 컴퓨터, **고정 IP**, Administrators 그룹 구성원(이나 같은 권한의) 계정을 든다. 설치는 관리자 PowerShell의 `Install-WindowsFeature -Name DNS`(다시 시작이 필요 없다)나 서버 관리자의 역할 및 기능 추가 마법사(「서버 역할 선택」에서 DNS 서버를 고르고 필요한 기능을 더한다)로 한다 — 「Install DNS Server」.
+  AD DS를 설치 마법사로 설치하면 DNS 서버를 함께 설치·구성하는 선택지가 있다 — 같은 절의 Tip
+- DHCP 서버 빠른 시작(「Prerequisites」, 아래 「DHCP 서버 역할·범위·예약」 항목): 갖출 것에 **고정 IPv4 주소**가 있다
+- **Core network components** — 「Planning TCP/IP static configuration」: **라우터·DHCP 서버·DNS 서버 같은 장치는 고정 IP 주소로 구성해야 한다.** 프린터처럼 늘 같은 주소를 쓰게 하고 싶은 장치도 있다. 서브넷마다 이렇게 고정으로 구성할 장치를 적고, DHCP 서버가 그 주소를 임대하지 않도록 쓸 제외 범위를 계획하라.
+  「Static TCP/IP configurations」: 이 안내의 배포에서는 서버를 고정 IPv4 주소로 구성하고 클라이언트 컴퓨터는 기본 설정대로 DHCP 서버에서 주소를 임대받는다. 「Planning exclusion ranges」: 범위의 주소 구간 안에서 일부 서버·장치에 손으로 고정 주소를 넣으면, 사람과 DHCP 서버가 같은 주소를 서로 다른 장치에 주는 주소 충돌이 날 수 있고 — 그래서 제외 범위를 만든다
+- 같은 문서 「Configure a static IP address」(Windows Server 2016·2012 R2·2012의 차례): 작업 표시줄의 네트워크 아이콘 오른쪽 클릭 → 「네트워크 및 공유 센터 열기」 → 「어댑터 설정 변경」(네트워크 연결 폴더) → 설정할 연결 오른쪽 클릭 → 「속성」 → 「이 연결에서는 다음 항목을 사용」에서 「인터넷 프로토콜 버전 4(TCP/IPv4)」를 고르고 「속성」 →
+  「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」의 「일반」 탭에서 「다음 IP 주소 사용」 → 「IP 주소」 입력 → Tab을 누르면 「서브넷 마스크」에 기본값이 채워지고 그대로 두거나 고친다 → 「기본 게이트웨이」(라우터의 LAN 쪽 인터페이스와 같은 주소여야 한다) → 「기본 설정 DNS 서버」(이 컴퓨터를 DNS 서버로 쓰려면 이 컴퓨터의 주소) → 「대체 DNS 서버」(있으면) → 「확인」·「닫기」.
+  같은 일을 PowerShell로는 `New-NetIPAddress -IPAddress <주소> -InterfaceAlias "Ethernet" -DefaultGateway <게이트웨이> -AddressFamily IPv4 -PrefixLength 24`와 `Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses <DNS 서버 주소>`로 한다 — 같은 절의 Note(문서의 예는 DNS 서버 주소에 127.0.0.1을 넣는다)
+- **DirectAccess 시험 랩 「STEP 6」**(「Configure TCP/IP properties」): 같은 속성 창에서 「다음 IP 주소 사용」으로 주소·마스크·기본 게이트웨이를 넣은 뒤 **「다음 DNS 서버 주소 사용」**(Use the following DNS server addresses)을 고르고 「기본 설정 DNS 서버」·「대체 DNS 서버」를 넣는다 — 이 단계의 이름이 지금 판 Windows Server 문서에 보이는 곳이다(「Core network components」의 차례는 이 고르기를 따로 적지 않는다)
+- `New-NetIPAddress`(「Description」·예 1): IP 주소를 만들고 구성한다. 접두사 길이(서브넷 마스크)와 기본 게이트웨이를 함께 정하라고 권한다. **이미 DHCP가 켜진 인터페이스에 이 cmdlet으로 주소를 더하면 DHCP가 저절로 꺼진다.** 접두사 길이 24는 255.255.255.0이고, 기본 게이트웨이는 더하는 IPv4 주소와 같은 서브넷에 있어야 한다
+- `Set-DnsClientServerAddress`(「Description」): 인터페이스의 TCP/IP 속성에 DNS 서버 주소를 **고정으로** 넣고, 이렇게 넣은 DNS 서버는 그 인터페이스의 DHCP 설정보다 앞선다
+- **DHCP server events**(「DHCP server administrative events」 표): 이벤트 1144(EVENT_SERVER_NEED_STATIC_IP) — 이 컴퓨터에 동적으로 받은 IP 주소가 하나 이상 있으니, DHCP 서버가 믿을 만하게 동작하려면 고정 IP 주소만 쓰라는 내용이다. **DHCP 서버의 이벤트다** — DNS 서버 역할에 같은 이벤트·경고가 있다는 문서는 찾지 못했다
+- **작업 그룹 DHCP 문서**(Windows Server 2003 글, 「How to Create a New Scope」 5단계): 범위에서 뺄 주소는 이미 여러 컴퓨터에 고정으로 준 주소이고, 대개 **도메인 컨트롤러·웹 서버·DHCP 서버·DNS 서버** 같은 서버가 고정 주소를 쓴다고 적는다. 지금 판 문서에서 「도메인 컨트롤러는 고정 IP 주소를 써야 한다」를 한 문장으로 적은 곳은 찾지 못했다 — 「Core network components」가 DC1(AD DS와 DNS 서버를 함께 둔 서버)을 고정 주소로 구성하는 차례를 보이는 데까지다
+- **찾지 못한 것**: DHCP로 주소를 받은 서버에 DNS 서버 역할을 설치할 때 마법사가 보이는 경고의 꼴(검색 — dynamically assigned, static IP warning, Add Roles and Features validation — 에 Microsoft Q&A 글만 나왔다). 「서버가 왜 고정 주소여야 하는가」를 한 문장으로 적은 문장도 찾지 못했다 —
+  클라이언트가 DNS 서버의 주소를 「기본 설정 DNS 서버」 칸에 적어 두거나(위 차례) DHCP의 DNS 서버·라우터 옵션으로 받는다(아래 「DHCP 서버 역할·범위·예약」 항목)는 사실과, 주소가 바뀌면 적어 둔 그 값이 맞지 않게 된다는 것은 이어서 나오는 말이다
+- **한국어 이름**: 한국어판은 「고정 IP 주소」(「Core network components」·이벤트 1144)와 「정적 IP 주소」·「정적 IPv4 주소」(같은 문서의 절 제목, DHCP 빠른 시작)를 섞어 쓰고, DNS 빠른 시작은 「고정 IP」다. 메뉴는 「네트워크 및 공유 센터 열기」·「어댑터 설정 변경」·「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」·「일반」 탭·「다음 IP 주소 사용」·「다음 DNS 서버 주소 사용」(시험 랩 한국어판)·「기본 설정 DNS 서버」·「대체 DNS 서버」로 옮긴다.
+  **고른 이름**: 「고정 IP 주소」(정적 IP 주소라고도 부른다는 것은 한 줄), 메뉴 이름은 위 한국어판 그대로. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 1에서 쓰일 곳) `windows-server-roles.server-static-ip`(DNS 서버·DHCP 서버를 설치하기 전에 고정 주소, 라우터·DHCP 서버·DNS 서버는 고정 주소여야 한다, 서버는 고정·클라이언트는 DHCP, 고정 주소와 제외 범위의 관계, TCP/IPv4 속성의 차례와 이름, `New-NetIPAddress`가 DHCP를 끈다·`Set-DnsClientServerAddress`, DHCP 서버의 이벤트 1144, 도메인 컨트롤러는 2003 글과 DC1 차례로만 — 위 「(phase 78 step 11) … ipconfig」의 `/renew` 줄과 함께);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
+
+## (phase 81 step 0) Microsoft Learn — 파일 서버·SMB·인쇄 서버: What is SMB File Sharing for Windows and Windows Server?, Secure SMB traffic in Windows Server, Service overview and network port requirements for Windows, How to install and configure a file and print server, How to reset TCP/IP by using the NetShell utility, Error 0x80071779 when removing network components in Windows 10; 지난 판 File and Storage Services Overview, Print and Document Services Overview
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-secure-traffic
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/printing/install-configure-file-print-server
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/reset-tcp-ip-net-shell
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/cannot-uninstall-client-for-microsoft-networks
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831487(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831468(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「What is SMB File Sharing for Windows and Windows Server?」 `updated_at` 2026-11-17(`ms.date` 2026-11-10, 「Applies to」 Windows Server 2028 Preview·2025~2016·Windows 11·10·Azure Local), 「Secure SMB traffic in Windows Server」 2025-04-28(2024-10-25, Windows Server 2016~2025·Windows 11·10·Azure Local).
+문제 해결 문서 넷은 모두 2026-02-19(2026-02-12) — 포트 요구 문서·TCP/IP 다시 설정 문서는 「Applies to」 지원되는 Windows Server, 파일·인쇄 서버 문서는 같은 머리에 본문이 「Applies to: Windows Server 2003」(원래 KB 325860)인 **Windows Server 2003 글**, 네트워크 구성 요소 제거 오류 문서는 지원되는 Windows 클라이언트(본문은 Windows 10 모든 판, KB 4340181).
+지난 판 「File and Storage Services Overview」 2021-11-12(`ms.date` 2016-12-29, Windows Server 2012 R2·2012 — 지금 판 「Manage the Local Server and the Server Manager Console」이 파일 및 스토리지 서비스의 안내로 링크한다), 「Print and Document Services Overview」 2021-11-12(2016-08-31, Windows Server 2012).
+한국어판도 받았다(`updated_at` 2026-01-21~2026-11-17, 기계 번역 — 지난 판 둘은 영문 그대로).
+
+- **SMB**(Server Message Block, 「What is SMB File Sharing…」 첫머리): 네트워크로 파일을 공유하는 프로토콜이다. **TCP/IP 위나 다른 프로토콜 위에서** 네트워크 너머의 파일을 읽고 쓰게 하고, 응용 프로그램(이나 그 사용자)이 원격 서버의 파일·자원에 닿아 읽고 만들고 고치게 한다.
+  「SMB features」의 네트워킹 갈래: 전송으로 흔히 쓰는 TCP, VPN 없이 인터넷으로 닿게 하는 QUIC, 데이터 센터의 RDMA를 든다(이름만 — 설정은 가져오지 않는다)
+- 같은 문서 「SMB components」: **SMB 서버**는 자원(파일·프린터·명명된 파이프)을 공유하고 SMB 클라이언트의 요청에 답하는 구성 요소다 — 컴퓨터에 파일 공유를 만들면 그 컴퓨터의 SMB 서버가 들어오는 연결과 파일 접근 요청을 처리한다. **SMB 클라이언트**는 원격 공유에 이어 SMB 서버로 요청을 보내는 구성 요소다 — 네트워크 드라이브를 연결하거나 **`\\server\share` 같은 UNC 경로**로 닿으면 그 컴퓨터의 SMB 클라이언트가 연결을 시작하고 맡는다.
+  두 이름은 프로토콜 안에서의 역할이지 Windows 판 이름이 아니고, Windows Server와 Windows 클라이언트 모두 두 구성 요소를 갖는다(Windows 11도 공유를 열어 SMB 서버가 된다)
+- **포트**: 「Secure SMB traffic」은 회사 방화벽에서 인터넷에서 들어오는 **TCP 445**와 인터넷으로 나가는 TCP 445를 막으라고 권한다 — 「Block TCP port 445 …」 두 절. 「Updated firewall rules」: Windows 11 24H2·Windows Server 2025부터 기본 방화벽 규칙에 SMB의 NetBIOS 포트가 없다 —
+  그 전 판에서는 공유를 만들면 「파일 및 프린터 공유」 그룹의 규칙이 인바운드 NetBIOS 포트 137~139를 저절로 열었다. SMB2 이후로 만든 공유는 137~139를 쓰지 않고, SMB1 서버가 꼭 필요하면 그 포트를 손으로 연다
+- 「Service overview and network port requirements」의 **Server** 시스템 서비스(서비스 이름 `lanmanserver`): 네트워크로 파일 공유·인쇄 공유·명명된 파이프 공유와 RPC 지원을 한다. 디스크·프린터 같은 로컬 자원을 공유해 네트워크의 다른 사용자가 쓰게 한다. 포트 — SMB는 **TCP 445**, NetBIOS 세션 서비스 TCP 139, NetBIOS 이름 풀이 UDP 137, NetBIOS 데이터그램 서비스 UDP 138. **NetBIOS 포트는 선택이고** Windows 2000 이후 클라이언트는 445만으로 일한다 — 「System services ports」의 「Server」
+- **TCP/IP는 Windows에 처음부터 들어 있다**: 파일·인쇄 서버 문서(Windows Server 2003 글)는 Windows Server 2003 컴퓨터에 **Microsoft 네트워크용 클라이언트, Microsoft 네트워크용 파일 및 프린터 공유, TCP/IP가 기본으로 설치된다**고 적는다(로컬 영역 연결 속성에서 보인다) — 「Install File and Printer Sharing」. 이 문서의 서버 구성 마법사 차례는 지금 판에 없는 도구라 가져오지 않는다.
+  「How to reset TCP/IP …」: `netsh int ip reset`은 TCP/IP가 쓰는 레지스트리 키를 다시 쓰고, 그것은 **TCP/IP를 지웠다가 다시 설치한 것과 같은 효과**다 — 「Manually reset TCP/IP」. 「Error 0x80071779 …」(Windows 10 1803 이후 클라이언트): Microsoft 네트워크용 클라이언트 같은 네트워크 구성 요소를 지울 수 없는 것은 설계대로이고, 그 화면이나 `netcfg`로 프로토콜·기본 드라이버를 지우는 것을 지원하지 않는다 — 대신 어댑터에서 바인딩을 끈다(`Disable-NetAdapterBinding`) — 「Resolution」.
+  「지금 판 Windows Server에서 TCP/IP가 기본으로 설치되어 있다」를 한 문장으로 적은 지금 판 문서는 찾지 못했다 — 위 셋으로 댄다
+- **파일 서버**(지난 판 「File and Storage Services Overview」, 2012 R2·2012): 파일 및 스토리지 서비스는 **파일 서버** — 네트워크에서 파일을 한곳에 저장하고 사용자와 공유하게 하는 서버 — 를 하나 이상 세우고 관리하는 기술을 담는다. 사용자가 같은 파일에 닿아야 하거나 백업·파일 관리를 한곳에서 해야 하면 이 역할과 알맞은 역할 서비스를 설치해 파일 서버를 세운다 — 첫머리.
+  **이 역할과 스토리지 서비스 역할 서비스는 기본으로 설치되지만 다른 역할 서비스는 없다** — 서버 관리자·PowerShell로 저장소를 관리하는 기본 기능뿐이고, 파일 서버를 세우거나 관리하려면 역할 및 기능 추가 마법사나 `Install-WindowsFeature`로 역할 서비스를 더 설치한다 — 같은 곳. 역할 서비스 표의 「File Server」: 파일 공유를 관리하고 사용자가 네트워크에서 이 컴퓨터의 파일에 닿게 한다(SMB 공유).
+  지금 판 Server Core 표(위 「서버 역할과 기능」 항목)가 같은 기본 상태(파일 및 스토리지 서비스·스토리지 서비스 「Y」, 파일 서버 「N」)를 보인다
+- **인쇄 서버**(지난 판 「Print and Document Services Overview」, Windows Server 2012): 인쇄 및 문서 서비스 역할은 인쇄 서버와 네트워크 프린터에 관한 일을 한곳에서 하게 한다(네트워크 스캐너의 문서를 받아 보내는 일도 하지만 가져오지 않는다) — 「Role description」. 인쇄 서버(Print Server)는 인쇄 대기열을 살피고 대기열이 인쇄 작업을 처리하지 않게 되면 알려 주며, 그룹 정책으로 프린터 연결을 배포하게 한다 — 「Practical applications」.
+  지금 판 Server Core 표: 인쇄 및 문서 서비스(`Print-Services`) 아래 인쇄 서버(`Print-Server`), 기본 설치 「N」. 「프린트 서버는 인쇄 작업을 받아 프린터로 보낸다」를 한 문장으로 정의한 지금 판 문서는 찾지 못했다 — 위 SMB 서버(프린터를 공유한다)·Server 서비스(프린터를 공유해 다른 사용자가 쓰게 한다)·인쇄 대기열의 줄로 댄다
+- **한국어 이름**: 한국어판은 「SMB(서버 메시지 블록)」, 「SMB 서버」·「SMB 클라이언트」, 「UNC 경로」, 「파일 및 프린터 공유」(방화벽 규칙 그룹), 「Microsoft 네트워크용 파일 및 프린터 공유」(파일·인쇄 서버 문서), 「파일 서버」·「인쇄 서버」·「인쇄 및 문서 서비스」(Server Core 표)로 옮긴다. 지난 판 둘은 번역되지 않았다.
+  **고른 이름**: 「SMB」(Server Message Block — 한국어판의 「서버 메시지 블록」을 한 줄), 「파일 서버」, 「인쇄 서버」(guide.md의 개념 이름 「프린트 서버」는 일반 명사로 쓰고, 역할 서비스 이름은 「인쇄 서버」라고 밝힌다), 「UNC 경로」. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.file-print-services`(SMB의 뜻 — 파일 공유 프로토콜이고 TCP/IP나 다른 전송 위에서 동작, SMB 서버가 파일·프린터를 공유하고 SMB 클라이언트가 `\\server\share`로 닿는다, TCP 445와 선택인 NetBIOS 포트, TCP/IP가 처음부터 들어 있다, 파일 서버·인쇄 서버의 뜻과 역할 서비스 이름·기본 설치, 인쇄 대기열);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단과 **E39** — [기출 2024-11-03 #30]). 오답 SNMP·SMTP·IGMP의 뜻은 이미 있는 「(phase 78 step 5) RFC 3411 …」·「(phase 78 step 0) RFC 5598 …」·「(phase 73 step 1) RFC 2236 …, RFC 9776 …」 항목으로 댄다
+
+## (phase 81 step 0) Microsoft Learn — DHCP 서버 역할·범위·예약: Quickstart: Install and configure DHCP Server, Deploy DHCP Using Windows PowerShell, Add-DhcpServerInDC, Add-DhcpServerv4Scope, Add-DhcpServerv4ExclusionRange, Set-DhcpServerv4OptionValue, Add-DhcpServerv4Reservation, Windows Internet Name Service (WINS); Win32 — DhcpSetSubnetDelayOffer, DHCP_IP_RESERVATION_INFO
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/quickstart-install-configure-dhcp-server
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-deploy-wps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverindc?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4scope?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4exclusionrange?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/set-dhcpserverv4optionvalue?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4reservation?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/wins/wins-top
+https://learn.microsoft.com/en-us/windows/win32/api/dhcpsapi/nf-dhcpsapi-dhcpsetsubnetdelayoffer
+https://learn.microsoft.com/en-us/windows/win32/api/dhcpsapi/ns-dhcpsapi-dhcp_ip_reservation_info
+
+2026-11-18에 IPv4로 내려받아 읽은 판: DHCP 서버 빠른 시작 `updated_at` 2026-02-16(`ms.date` 2025-04-17, 「Last updated on」 2025-04-21), 「Deploy DHCP Using Windows PowerShell」 2025-09-22(2021-01-04), WINS 2026-02-16(2020-08-07) — 셋 다 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후.
+DhcpServer 모듈 cmdlet 다섯은 모두 2025-05-14(2016-12-20, `windowsserver2025-ps` 판). Win32 둘은 2024-02-22(2018-12-05 — 「Minimum supported server」 `DhcpSetSubnetDelayOffer`는 Windows Server 2008 R2, `DHCP_IP_RESERVATION_INFO`는 Windows Server 2012).
+마법사의 옛 페이지 이름과 임대 기간의 단위는 위 「서버의 고정 IP 주소」 항목의 「Core network components」(2016~2025)와 작업 그룹 DHCP 문서(Windows Server 2003 글)에서 가져온다. 한국어판도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역 — cmdlet·Win32 페이지는 영문 그대로).
+
+- **DHCP 서버 역할 설치**(빠른 시작 「Prerequisites」·「Install the DHCP Server role」): 갖출 것 — 지원되는 Windows Server, **고정 IPv4 주소**, 범위에 쓸 IP 주소 구간, Administrators 계정. 관리자 PowerShell에서 `Install-WindowsFeature DHCP -IncludeManagementTools`(다시 시작 필요 없음), 또는 서버 관리자 마법사의 「서버 역할 선택」에서 DHCP 서버를 고르고 필요한 기능을 더한다(뒤에 「DHCP 서버」 페이지에서 역할 설명을 본다)
+- **관리 도구 — DHCP 콘솔**: 빠른 시작은 시작 메뉴 「Windows 관리 도구」 → 「DHCP」로, 「Deploy DHCP Using Windows PowerShell」은 서버 관리자 「도구」 → 「DHCP」로 연다(「Verify Server Functionality」). **실행 이름 `dhcpmgmt.msc`는 허용한 문서에서 찾지 못했다** — learn.microsoft.com 검색과 MCP 문서 검색 모두 Microsoft Q&A 글에만 나왔다. 쓰지 않는다
+- **권한 부여**(빠른 시작 「Authorize the DHCP server in Active Directory」): 도메인 환경에 DHCP를 설치하면 서버가 도메인에서 동작하도록 AD에서 권한을 줘야 한다. AD 도메인에 설치한 **권한 없는 DHCP 서버는 제대로 동작하지 못하고 클라이언트에게 주소를 임대하지 않는다** — 권한 없는 서버가 잘못된 주소를 나눠 주는 일을 막는 보안 기능이다.
+  PowerShell `Add-DhcpServerInDC -DnsName <서버 이름> -IPAddress <주소>`(도메인 환경이 아니면 실행하지 않는다)와 확인 `Get-DhcpServerInDC`, 또는 DHCP 콘솔에서 서버 이름을 오른쪽 클릭 → 「권한 부여」 → 몇 초 뒤 서버 목록을 새로 고쳐 확인한다. `Add-DhcpServerInDC` 「Description」: 도메인에 가입한 컴퓨터의 DHCP 서버는 AD에서 권한을 받아야 네트워크에서 주소 임대를 시작할 수 있다
+- **범위와 새 범위 마법사**(빠른 시작 「Configure an IPv4 scope」, 탭 「GUI」): 범위는 DHCP 서버와 그 클라이언트가 쓸 IP 주소 구간을 정한다. DHCP 콘솔에서 서버 이름을 펼쳐 「IPv4」 오른쪽 클릭 → 「새 범위」 → **새 범위 마법사**: 「범위 이름」(이름) → 「IP 주소 범위」(클라이언트에게 줄 주소 구간과 서브넷 마스크) → **「제외 및 지연 추가」**(Add Exclusions and Delay — 서버가 나눠 주지 않을 주소나 주소 구간) →
+  「임대 기간」(클라이언트에게 준 주소의 수명) → 「DHCP 옵션 구성」(「예, 지금 이러한 옵션을 구성하겠습니다」 — 라우터(기본 게이트웨이)·DNS 서버·WINS 설정 같은 흔한 옵션을 이어서 정하고, **적어도 라우터와 DNS 서버는 정해야 한다**) → 「라우터(기본 게이트웨이)」(클라이언트가 쓸 게이트웨이 주소를 넣고 「추가」) →
+  「도메인 이름 및 DNS 서버」(클라이언트가 이름 풀이에 쓸 도메인 이름과 DNS 서버의 호스트 이름이나 주소) → **「WINS 서버」**(쓰는 WINS 서버의 이름과 주소 — 없으면 「다음」으로 건너뛴다) → 「범위 활성화」(「예, 이 범위를 활성화하겠습니다」를 고르면 곧바로 주소를 주기 시작하고, 「아니요, 이 범위를 나중에 활성화 하겠습니다」로 나중에 켤 수도 있다) → 「마침」.
+  PowerShell 탭: `Add-DhcpServerv4Scope -Name <이름> -StartRange <시작> -EndRange <끝> -SubnetMask <마스크>`
+- 같은 마법사(「Core network components」의 「To create and activate a new DHCP scope」 — 2016~2025 문서의 차례): 「IP 주소 범위」에서 시작 IP 주소와 끝 IP 주소를 넣으면 **길이와 서브넷 마스크가 시작 주소를 보고 저절로 채워지고**, 필요하면 고친다. 이 문서는 다음 페이지를 「제외 추가」(Add Exclusions — 시작·끝 IP 주소를 넣고 「추가」)라 부른다.
+  **「임대 기간」에서 일·시간·분(Days, Hours, Minutes)의 기본값을 고친다.** 작업 그룹 DHCP 문서(2003 글)도 임대가 끝나기까지의 일·시간·분을 넣는다고 적는다. 마법사가 보이는 임대 기간의 기본값 숫자는 지금 판 문서에서 찾지 못했다
+- `Add-DhcpServerv4Scope`(매개 변수): `-LeaseDuration` — 이 범위의 클라이언트에게 주소를 임대할 기간, **`일.시:분:초` 꼴**(TimeSpan), **기본값 `8.00:00:00`(8일)** — 곧 PowerShell로는 초까지 적는 꼴이다. `-Delay` — 클라이언트 요청에 답하기 전에 DHCP 서버가 기다릴 **밀리초** 수(UInt16, 기본 0)이고, 그 범위가 분할 범위 배포의 일부이고 이 서버가 그 범위의 보조 서버로 일할 때 정한다.
+  `-State` — Active·Inactive, **활성 범위만 클라이언트 요청에 답한다**(기본 Active). `-Type` — DHCP·BootP·Both, 그 범위가 DHCP 클라이언트·BOOTP 클라이언트·둘 다 가운데 누구의 요청에 답할지(기본 DHCP)
+- Win32 `DhcpSetSubnetDelayOffer`: 범위마다 **DISCOVER 메시지를 받은 뒤 OFFER 메시지를 보내기까지 늦출 시간**을 정한다 — 단위 밀리초, 0~1000, 기본 0(Windows Server 2008 R2부터) — 「Parameters」. 마법사 「제외 및 지연 추가」 페이지에서 이 값을 넣는 칸의 이름(「서브넷 지연」 같은)은 지금 판 문서에서 찾지 못했다 — 페이지 이름의 「지연」과 위 두 문서로만 댄다
+- **제외 범위**: 빠른 시작 「Manage exclusions」 — DHCP 콘솔 트리에서 범위의 「주소 풀」 → 「작업」 메뉴 「새 제외 범위」 → 「제외 추가」 대화 상자의 시작 IP 주소(주소 하나만 빼면 이것만), 둘 이상이면 끝 IP 주소 → 「추가」. PowerShell `Add-DhcpServerv4ExclusionRange -ScopeId <범위 ID> -StartRange <시작> -EndRange <끝>`.
+  `Add-DhcpServerv4ExclusionRange` 「Description」: 제외한 주소는 DHCP 서버가 **어떤 클라이언트에게도 임대하지 않는다 — 유일한 예외가 예약이다. 예약한 주소는 제외 범위 안에 있어도 지정한 클라이언트에게 임대된다.** 제외 범위의 정의는 위 「(phase 74 step 5) Microsoft Learn …」 항목의 DHCP scopes 줄
+- **범위 옵션**: 빠른 시작 「Manage scope options」 — 콘솔에서 범위를 펼쳐 「범위 옵션」 오른쪽 클릭 → 「옵션 구성」, PowerShell `Set-DhcpServerv4OptionValue`. 「Description」: 옵션 값을 서버·범위·예약 수준에서 정한다(`-ReservedIP`만 주면 예약, `-ScopeId`만 주면 범위, 둘 다 없으면 서버 수준). 매개 변수 `-Router`(라우터·기본 게이트웨이 옵션), `-DnsServer`(DNS 서버 옵션), `-DnsDomain`(DNS 도메인 옵션), **`-WinsServer`**(WINS 서버 옵션, IPv4 주소)
+- **예약**: 빠른 시작 「Manage reservations」 — 클라이언트 예약으로 DHCP 클라이언트가 계속 쓸 IP 주소를 예약한다. 예약은 **NIC의 MAC 주소로 저장되고, DHCP 서버가 정한 IP 주소를 정한 MAC 주소에게만 임대하게 한다**. 콘솔: 범위의 「예약」 노드 오른쪽 클릭 → 「새 예약」 → 예약 이름, IP 주소, 그 호스트의 NIC에 묶인 MAC 주소를 넣는다. 이미 있는 임대는 「주소 임대」 노드에서 오른쪽 클릭 → 「예약에 추가」로 예약으로 바꾼다.
+  `Add-DhcpServerv4Reservation` 「Description」·매개 변수: **범위 안의** 정한 IPv4 주소를 클라이언트를 위해 예약하고, 그 뒤 그 주소는 그 클라이언트 ID의 클라이언트에게만 임대된다. `-ClientId` — 클라이언트의 고유 ID이고 **Windows 클라이언트는 MAC 주소를 클라이언트 ID로 쓴다**. **`-Type` — 그 주소를 예약해 둘 클라이언트 요청의 종류, DHCP·BootP·Both, 기본 Both.** `-Description`(예 1은 프린터용 예약이라는 설명을 단다)
+- Win32 `DHCP_IP_RESERVATION_INFO`(「Members」): IPv4 예약이 담는 것 — 예약한 IP 주소, 예약을 가진 클라이언트의 하드웨어 주소(MAC 주소), 예약 클라이언트의 컴퓨터 이름, 설명, 허용하는 클라이언트 유형(DHCP만 1, BOOTP만 2, DHCPv4와 BOOTP 둘 다 3). 새 예약 대화 상자에서 유형을 고르는 칸의 이름(「지원되는 유형」 같은)은 지금 판 문서에서 찾지 못했다 — 유형 셋은 cmdlet과 이 구조체로 댄다
+- **예약 주소와 범위**: cmdlet이 「범위 안의 주소를 예약한다」고 쓰고(`-ScopeId`), 콘솔도 범위의 「예약」 노드에서 만든다. 범위의 주소 구간 밖 주소를 넣으면 어떻게 되는지 적은 문서는 찾지 못했다
+- **WINS**(「Windows Internet Name Service (WINS)」 첫머리): 컴퓨터의 **NetBIOS 이름을 IP 주소에 짝짓는** 옛(레거시) 컴퓨터 이름 등록·풀이 서비스다. 아직 배포하지 않았다면 WINS 대신 DNS를 배포하라(DNS도 이름 등록·풀이를 하고 AD DS와 묶이는 것 같은 이점이 더 있다), 이미 있다면 DNS를 배포한 뒤 WINS를 거두라.
+  지원 상태: 위 「Features Removed …」 줄(2022부터 더 개발하지 않음, 2028 Preview에서 WINS 서버 역할 제거). Server Core 표에서 WINS 서버는 **기능**이다(위 「서버 역할과 기능」 항목). **지금 판 새 범위 마법사에는 「WINS 서버」 페이지가 있다**(빠른 시작 2025-04-17판) — 2028에서도 남는지는 문서에 없다
+- **한국어 이름**: 한국어판은 「권한 부여」, 「범위」, 「새 범위」·「새 범위 마법사」, 「범위 이름」, 「IP 주소 범위」, 「제외 및 지연 추가」(「Core network components」 한국어판은 「제외 추가」), 「임대 기간」(「일, 시간 및 분」), 「DHCP 옵션 구성」, 「라우터(기본 게이트웨이)」, 「도메인 이름 및 DNS 서버」, 「WINS 서버」, 「범위 활성화」, 「범위 옵션」·「옵션 구성」,
+  「예약」·「새 예약」·「주소 임대」·「예약에 추가」·「클라이언트 예약」, 「주소 풀」·「새 제외 범위」·「제외 추가」·「제외 범위」, 「Windows 관리 도구」, 「WINS(Windows 인터넷 이름 서비스)」로 옮긴다. **고른 이름**: 위 한국어판 표기 그대로이고, 「지연」은 「제외 및 지연 추가」 페이지에서 정하는 「지연 시간」(밀리초)으로 쓴다(「서브넷 지연」은 문서에서 확인한 이름이 아니다). **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(설치·고정 IPv4 주소, DHCP 콘솔을 여는 자리 — 실행 이름은 쓰지 않는다, 권한 부여, 범위의 뜻, 새 범위 마법사의 차례와 이름, 시작·끝 주소에서 마스크가 채워진다, 임대 기간의 단위(마법사는 일·시간·분, cmdlet은 `일.시:분:초`)와 cmdlet 기본값 8일, 지연 시간의 뜻·밀리초·0~1000·분할 범위의 보조 서버, 활성 범위만 답한다, 제외 범위와 그 예외, 범위 옵션, WINS의 뜻과 지원 상태);
+(phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-reservation`(예약의 뜻 — MAC 주소·클라이언트 ID, 새 예약에 넣는 것, 유형 셋과 기본 Both, BOOTP 클라이언트, 제외 범위 안에서도 예약은 나간다, 범위 안의 주소, 예약 수준 옵션); 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-02-23 #44], [기출 2026-08-02 #32]).
+BOOTP가 무엇인지는 이미 있는 「(phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 …」 항목으로 댄다
+- (phase 81 step 3) `Add-DhcpServerv4Reservation`을 2026-11-18에 다시 받아 읽었다 — `updated_at` 2025-05-14(`ms.date` 2016-12-20, `windowsserver2025-ps` 판, 위 줄과 같은 판). 「Syntax」: `-ScopeId`(위치 1, 필수 — 예약을 만들 범위의 ID)·`-IPAddress`(위치 2, 필수 — 클라이언트에게 예약할 IPv4 주소)·`-ClientId`(위치 3, 필수)·`-Name`·`-Description`·`-Type`.
+  `-Name`은 만든 예약의 이름이고, 클라이언트의 호스트 이름이나 DHCP 서버에서 그 예약을 알아볼 이름을 쓴다. 「Example 1」은 `Add-DhcpServerv4Reservation -ScopeId 10.10.10.0 -IPAddress 10.10.10.8 -ClientId "F0-DE-F1-7A-00-5E" -Description "…"` 꼴이다 — **범위 ID를 그 범위가 나눠 주는 서브넷의 주소(`10.10.10.0`)로 적고, MAC 주소를 두 자리씩 하이픈으로 이어 적는다.** 「Example 4」도 「the scope 10.10.10.0」이라 부르고,
+  같은 판 `Add-DhcpServerv4Scope`(2025-05-14)의 예 1은 `-StartRange 10.10.10.1 -EndRange 10.10.10.254 -SubnetMask 255.255.255.0`이 「10.10.10.0/24 서브넷의 범위」를 만든다고 적는다. 「Example 3」은 `Get-DhcpServerv4Lease`로 얻은 임대를 이 cmdlet에 넘겨 예약으로 바꾼다(콘솔의 「예약에 추가」와 같은 일)
+  쓰인 곳: (phase 81 step 3) `windows-server-roles.dhcp-reservation`(예 — `Add-DhcpServerv4Reservation -ScopeId 192.0.2.0 -IPAddress 192.0.2.150 -ClientId "00-00-5E-00-53-01"`, 범위 ID는 서브넷 주소, `-Type`을 적지 않으면 Both, 예약 이름의 뜻)
+
+## (phase 81 step 0) Microsoft Learn — DHCP 장애 조치: DHCP failover overview, Add-DhcpServerv4Failover, Set-DhcpServerv4Failover; 지난 판 Step-by-Step: Configure DHCP for Failover (Windows Server 2012)
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-failover
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4failover?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/set-dhcpserverv4failover?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831385(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「DHCP failover overview」 `updated_at` 2026-02-16(`ms.date` 2025-03-11, 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후), 한국어판 「DHCP 장애 조치(failover) 개요」 2026-02-16. cmdlet 둘은 2025-05-14(2016-12-20, `windowsserver2025-ps` 판, 한국어판은 영문 그대로).
+지난 판 「Step-by-Step: Configure DHCP for Failover」 2021-11-12(`ms.date` 2016-08-31, 「Applies To」 Windows Server 2012) — **지금 판 개요가 서버 관리자로 장애 조치를 구성하는 안내(「step-by-step guide」)로 링크한다.** MCLT를 한 문장으로 정의한 곳은 이 지난 판 문서뿐이다(지금 판 개요는 MCLT의 쓰임만 적는다).
+
+- **DHCP 장애 조치**(개요 첫머리·「Introduction to DHCP failover」): Microsoft DHCP 서버 두 대가 가용성 정보를 나눠 갖게 하는 것 — 주 서버와 그 장애 조치 파트너 사이에 IP 주소 임대와 설정을 복제해 고가용성을 준다. **활성 임대를 포함한 범위 정보를 모두 나누므로 한 서버를 쓸 수 없게 되면 다른 서버가 그 DHCP 클라이언트를 맡을 수 있다.**
+  DHCPv4 범위를 주 서버에서 파트너로 복제하고, 장애 조치를 켠 범위를 나눠 맡는 두 서버를 **장애 조치 파트너**라 부른다. Microsoft의 구현은 IETF의 DHCP Failover Protocol 초안을 바탕으로 한다. 범위와 설정은 **DHCP 장애 조치 관계**(failover relationship)라는 개체로 나누고, 관계는 언제나 DHCP 서버 **두 대** 사이다(서버 하나가 여러 관계를 맺을 수는 있다). 장애 조치를 켠 범위를 고치면 그 바뀐 것을 파트너로 손으로 복제해야 한다
+- 「DHCP failover specifications」: 한 범위의 장애 조치에 DHCP 서버를 셋 이상 넣을 수 없다. **DHCPv4 범위만** 지원하고 DHCPv6 범위는 장애 조치를 켤 수 없다(「DHCP failover and IPv6」). 클라이언트는 두 파트너와 직접이나 DHCP 릴레이로 통신할 수 있어야 하고, 임대를 처음 준 서버가 아닌 서버가 그 임대를 갱신할 수 있다. 두 서버는 동기화된 임대 데이터베이스를 각자 따로 가진다.
+  두 서버는 다른 서브넷에 있어도 된다. 두 파트너는 Windows Server 2016 이상을 실행해야 한다(문서의 말). 두 서버는 늘 이어진 TCP/IP 연결을 유지하려 하고 서로의 DHCP 서비스 상태를 안다. 서로 통신하지 못하면 같은 주소를 서로 다른 두 클라이언트에게 주지 않도록 조심한다. 장애 조치 메시지는 **TCP 647**로 주고받는다(「Windows Firewall」). 두 서버의 시각 차가 1분을 넘으면 구성이 멈춘다(「Time synchronization」 — 가져오지 않아도 된다)
+- **두 방식**(「DHCP failover modes」): 관계를 만들 때 고르고, 한 범위에는 한 번에 한 방식만 쓴다(서버 하나가 관계를 여럿 맺으면 두 방식을 함께 쓸 수 있다).
+  **핫 대기 모드**(hot standby, 「Hot standby mode」): 활성 서버가 그 범위·서브넷의 모든 클라이언트에게 주소와 설정을 임대하고, 파트너는 **대기 서버**로서 활성 서버를 쓸 수 없을 때만 임대한다 — 중복성을 위한 방식. 기본으로는 관계를 만든 서버가 활성 서버다. 활성 서버가 답하지 않을 때 대기 서버가 쓰도록 남겨 둘 주소의 비율(**예약 비율**, 기본 **5%**)을 정하고, 이 비율은 새 임대에 쓰인다.
+  **부하 분산 모드**(load balance, 「Load balance mode」): **기본 방식**이다. 두 서버가 같은 서브넷의 클라이언트에게 동시에 주소와 옵션을 주고 요청을 나눈다. **기본 비율은 50:50**이고 0~100%로 바꿀 수 있다. RFC 3074대로 클라이언트 요청에 든 MAC 주소로 해시를 계산하고, 해시 값의 구간(해시 버킷)을 비율대로 두 서버에 나눠 각자 자기 구간의 클라이언트에게 답한다. 두 서버가 같은 곳에 있을 때 알맞다
+- **MCLT가 쓰이는 곳**(지금 판 개요): 핫 대기에서 클라이언트가 활성 서버에 닿지 못하는 대기 서버에게 임대 갱신을 청하면, 대기 서버는 그 클라이언트가 전에 받은 **같은 주소를 갱신해 주되 범위의 임대 기간 전체가 아니라 MCLT(최대 클라이언트 리드 타임) 동안의 임시 임대**를 준다. 대기 서버가 MCLT가 끝나기 전에 예약 비율의 주소를 새 클라이언트에게 다 주면 새 임대를 거부하고 기존 임대만 갱신하며, MCLT가 끝나면 남은 주소 풀 전체를 새 임대에 쓸 수 있다(통신 중단 상태로 남아 있으면 그렇게 하지 않는다).
+  부하 분산에서 파트너와 연락이 끊긴 서버는 모든 클라이언트에게 임대를 주기 시작하고, **파트너에게 배정됐던 클라이언트가 갱신을 청하면 같은 주소를 MCLT 동안만 임시로 갱신**해 준다. 처음 오는 클라이언트에게는 자기 빈 주소에서, 그것이 다하면 파트너의 빈 주소에서 준다. **파트너 다운 상태**(partner down)에 들어가면 MCLT만큼 기다린 뒤 주소 풀 100%를 맡는다
+- **MCLT의 정의**(지난 판 2012 「Configure a failover relationship」의 Important): MCLT(Maximum Client Lead Time)는 DHCP 임대가 끝난 뒤 클라이언트에게 더 주어지는 시간이고, 주 서버가 CONNECT 메시지로 보조 서버에 알린다. **한 서버가 파트너 서버가 알고 있는 시각을 넘어 클라이언트의 임대를 늘려 줄 수 있는 최대 시간**이다. 그 시험 랩은 1분을 쓰지만 실제 환경에서는 1시간처럼 더 길게 두라고 한다.
+  같은 문서의 장애 조치 구성 차례: DHCP 콘솔에서 범위 오른쪽 클릭 「Configure failover」 → 「Configure Failover」 마법사 → 파트너 서버 → 새 장애 조치 관계(관계 이름, Shared Secret, Maximum Client Lead Time(시간·분), Mode — Load balance나 Hot standby, 기본 Load balance) → 마침
+- **매개 변수와 기본값**(`Add-DhcpServerv4Failover`): 부하 분산이나 핫 대기 방식으로 새 IPv4 장애 조치 관계를 만들고, 그 관계를 **두 DHCP 서버 모두에** 만든다(로컬의 범위를 파트너에도 똑같이 만든다). `-MaxClientLeadTime` — 그 관계의 최대 클라이언트 리드 타임, **기본 1시간**. `-LoadBalancePercent` — 로컬 서버가 맡을 클라이언트 요청의 비율, 나머지는 파트너, **기본 50%**. `-ReservePercent` — 대기 서버에 남겨 둘 빈 주소의 비율, 장애가 나면 이 주소를 새 클라이언트에게 준다, **기본 5**.
+  `-ServerRole` — 핫 대기에서 로컬의 역할 Active·Standby, 기본 Active(파트너가 대기). **`-SharedSecret` — 메시지 다이제스트 인증에 쓰는 공유 비밀**이고, 정하면 그 관계의 메시지 다이제스트 인증이 저절로 켜지고 정하지 않으면 꺼진다. **`-StateSwitchInterval` — DHCP 서버가 COMMUNICATION INTERRUPTED(통신 중단) 상태로 있다가 PARTNER DOWN(파트너 다운) 상태로 넘어가기까지의 시간**(TimeSpan, 기본값 없음).
+  `-AutoStateTransition` — 그 타이머가 끝나면 통신 중단에서 파트너 다운으로 **저절로** 넘어갈지, 기본 False이고 `-StateSwitchInterval`을 주면 True가 된다(곧 기본으로는 저절로 넘어가지 않는다 — 이어서 나오는 말). `Set-DhcpServerv4Failover`: 이 값들을 고친다. `-SharedSecret`을 비우면 인증이 꺼지고 주면 켜진다
+- **한국어 이름**: 한국어판 개요는 「DHCP 장애 조치(failover)」, 「장애 조치(failover) 파트너」, 「장애 조치 관계」, 「핫 대기 모드」(한 곳은 「활성 대기」), 「부하 분산 모드」, 「활성 서버」·「대기 서버」, 「예약 비율」, 「MCLT(최대 클라이언트 리드 타임)」, 「공유 비밀」, 「통신 중단 상태」·「파트너 다운 상태」로 옮긴다.
+  **고른 이름**: 「DHCP 장애 조치」, 「장애 조치 파트너」, 「핫 대기」(guide.md의 「상시 대기」 대신 — 한국어판이 절 제목과 본문에서 이 말을 쓰고 「상시 대기」는 한 번도 쓰지 않는다), 「부하 분산」, 「MCLT(최대 클라이언트 리드 타임)」(guide.md의 「최대 클라이언트 선행 시간」 대신 — 한국어판의 표기), 「공유 비밀」(guide.md의 「공유 암호」 대신), 「상태 전환 간격」은 한국어판에 없는 이름이라 「통신 중단 상태에서 파트너 다운 상태로 넘어가기까지의 시간」으로 풀어 쓰고 영문 `StateSwitchInterval`·state switchover interval을 함께 적는다. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-failover`(장애 조치의 뜻, 관계는 두 서버·DHCPv4만, 두 방식과 기본값 — 부하 분산이 기본·50:50, 핫 대기의 예약 비율 5%, MCLT의 정의와 쓰임·기본 1시간, 파트너 다운 뒤 MCLT만큼 기다린다, 공유 비밀은 메시지 인증, 통신 중단에서 파트너 다운으로 넘어가는 시간과 기본으로는 저절로 넘어가지 않는다, TCP 647);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2026-05-17 #42]). DHCPDISCOVER를 다시 보내는 것은 클라이언트의 동작이라는 것은 이미 있는 「(phase 73 step 1) RFC 951 …, RFC 2131 …」 항목으로 댄다
+
+## (phase 81 step 4) Microsoft Learn — IIS·IIS 관리자·사이트·바인딩·연결 제한·응용 프로그램 풀: Install the Web Server WEB1, Introduction to IIS Architectures, Getting Started with the IIS Manager in IIS, IIS Modules Overview, Export a Package through IIS Manager, How to Create a Simple IIS Manager Module, Remote Manager for Windows 2003, XP and Vista SP1, Understanding Sites, Applications, and Virtual Directories on IIS 7, Sites <sites>, Binding <binding>, Limits for a Web Site <limits>, Configuring Step 4: Configure Application Security, Build a Static Website on IIS, How to Set Up SSL on IIS 7 or later, FastCGI <fastCgi>, Application Pools <applicationPools>, Adding Application Pools <add>, Application Pool Identities; 문제 해결 — Event 115 when you connect HTTPS website, Enable SSL for all customers; Windows 드라이버 문서 — Serial Controller Driver Design Guide; 기출 오답의 도구 — Windows Firewall Tools, Advanced AD DS Management Using Active Directory Administrative Center (Level 200), Windows startup issues troubleshooting
+https://learn.microsoft.com/en-us/windows-server/networking/core-network-guide/cncg/server-certs/install-the-web-server-web1
+https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture
+https://learn.microsoft.com/en-us/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8
+https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/iis-modules-overview
+https://learn.microsoft.com/en-us/iis/publish/using-web-deploy/export-a-package-through-iis-manager
+https://learn.microsoft.com/en-us/iis/develop/extending-the-management-ui/how-to-create-a-simple-iis-manager-module
+https://learn.microsoft.com/en-us/iis/manage/remote-administration/remote-manager-for-windows-2003-xp-and-vista-sp1
+https://learn.microsoft.com/en-us/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/bindings/binding
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/limits
+https://learn.microsoft.com/en-us/iis/application-frameworks/scenario-build-an-aspnet-website-on-iis/configuring-step-4-configure-application-security
+https://learn.microsoft.com/en-us/iis/manage/creating-websites/scenario-build-a-static-website-on-iis
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/fastcgi/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/application-pool-identities
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/www-administration-management/event-115-connect-https-website
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/www-authentication-authorization/enable-ssl-all-customers
+https://learn.microsoft.com/en-us/windows-hardware/drivers/serports/
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/tools
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/adac/advanced-ad-ds-management-using-active-directory-administrative-center--level-200-
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Install the Web Server WEB1」 `updated_at` 2025-09-22(`ms.date` 2020-08-07, 「Applies to」 Windows Server 2016~2025).
+IIS 문서는 「Applies to」 줄이 없고 「Compatibility」 표에 IIS 판을 적는다 — 「Introduction to IIS Architectures」 2023-02-17(2007-11-16, IIS 7.0 이후), 「Getting Started with the IIS Manager in IIS」 2025-12-20(2007-11-16, 스스로 Windows Server 2008용으로 썼다고 적는다), 「IIS Modules Overview」 2024-04-11(2007-11-22),
+「Export a Package through IIS Manager」 2025-12-20(2008-10-29), 「How to Create a Simple IIS Manager Module」 2025-12-20(2007-12-18), 「Remote Manager for Windows 2003, XP and Vista SP1」 2022-03-23(2008-03-10), 「Understanding Sites, Applications, and Virtual Directories on IIS 7」 2023-02-17(2007-11-23),
+「Configuring Step 4…」 2020-05-09(2013-04-14), 「Build a Static Website on IIS」 2024-04-11(2013-04-14), 「How to Set Up SSL on IIS 7 or later」 2025-12-20(2007-11-22), 「Application Pool Identities」 2025-12-20(2014-03-28).
+구성 참조(`ms.date` 모두 2016-09-26) — `<sites>`·`<binding>` 2025-12-20, `<limits>`·`<applicationPools>`·`<add>` 2022-04-06, `<fastCgi>` 2024-04-11. **여섯 다 「Compatibility」 표가 IIS 10.0에서 바뀌지 않았다고 적는다**(`<binding>`은 IIS 8.0에서 `sslFlags`가 더해졌다).
+문제 해결 「Event 115…」 2025-02-11(2020-03-23)·「Enable SSL for all customers」 2025-02-11(2020-03-24) — 둘 다 원래 판을 「Internet Information Services」로만 적는다. 드라이버 문서 「Serial Controller Driver Design Guide」 2025-07-18(2022-03-13).
+「Windows Firewall Tools」 2026-10-08(2025-04-07, Windows 11·10·Windows Server 2016~2025), 「Advanced AD DS Management…(Level 200)」 2025-09-23(2025-06-26, Windows Server 2016~2025), 「Windows startup issues troubleshooting」 2026-02-19(2026-02-12, 지원되는 Windows 클라이언트).
+한국어판도 받았다(Vista 원격 관리 도구 글과 「Enable SSL…」은 빼고 — `updated_at` 2026-01-21~2026-11-13, IIS 문서는 2026-10-27 무렵, 기계 번역).
+
+- **IIS**(Internet Information Services): Windows Server의 서버 역할 「웹 서버(IIS)」가 IIS다. 웹 사이트·서비스·응용 프로그램을 올려 두고 인터넷·인트라넷·엑스트라넷의 사용자에게 내주는 데 쓰고, 필요한 구성 요소만 골라 넣는 모듈 구조다. 문서는 IIS를 IIS·ASP.NET·FTP 서비스·PHP·WCF를 한데 묶은 웹 플랫폼으로 소개한다 — 「Install the Web Server WEB1」 첫머리.
+  설치는 서버 관리자 「관리」 → 「역할 및 기능 추가」 → 「서버 역할」에서 웹 서버(IIS)를 고르거나 `Install-WindowsFeature Web-Server -IncludeManagementTools` — 같은 문서(설치 이름 `Web-Server`는 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표와 같다)
+- **요청을 처리하는 차례**(IIS 7.0 이후): 커널 모드의 HTTP.sys가 HTTP 요청을 받아 큐에 둔다. WAS(Windows Process Activation Service)가 응용 프로그램 풀의 설정과 작업자 프로세스를 관리해, 요청이 온 풀에 작업자 프로세스가 없으면 하나 시작한다. 작업자 프로세스가 요청을 처리해 응답을 HTTP.sys에 돌려준다 — 「Introduction to IIS Architectures」 「Hypertext Transfer Protocol Stack (HTTP.sys)」·「Process Management」·「HTTP Request Processing in IIS」.
+  IIS의 기능은 모듈로 나뉘고, 요청 필터링(`RequestFilteringModule` — 허용할 동사·확장자, 길이 한도, 나쁜 문자열 검사)과 로그(`HttpLoggingModule` — 로그에 적을 정보를 HTTP.sys에 넘긴다)도 모듈이다 — 같은 문서 「Security Modules」·「Logging and Diagnostics Modules」 표
+- **IIS 관리자**(IIS Manager): IIS 7.0부터 쓰는 IIS의 그래픽 관리 도구다. IIS 6.0에서는 사이트를 오른쪽 클릭해 「All Properties」를 고르면 탭이 여럿 달린 속성 대화 상자가 열렸고, IIS 7.0의 IIS 관리자는 이것을 제어판처럼 늘어놓은 기능 목록으로 바꿨다 — 「Getting Started with the IIS Manager in IIS」 「Introduction」. 서버 연결로는 컴퓨터 관리자만 관리할 수 있다 — 같은 문서 「Server, Site and Application Connections」
+- **IIS 관리자를 여는 방법**: 시작 → 실행(Run)에 `inetmgr`를 넣는다(「Export a Package through IIS Manager」 2단계), 시작의 검색 상자에 `inetmgr`를 넣고 Enter(「IIS Modules Overview」 「Querying, Adding and Removing Modules Using the IIS Manager」), Windows Server 2012·2012 R2는 서버 관리자 「도구」 → 「IIS(인터넷 정보 서비스) 관리자」(구성 참조 페이지마다의 「How To」 — 차례를 Windows Server 2012 R2까지만 적는다).
+  실행 파일은 `\windows\system32\inetsrv\inetmgr.exe`다(「How to Create a Simple IIS Manager Module」 「Task 1」 — 디버깅할 외부 프로그램으로 이 파일을 고른다). Vista에 원격 관리 도구를 넣는 글은 시작의 검색 상자에 `inetmgr.exe`를 넣으라고 한다(「Remote Manager for Windows 2003, XP and Vista SP1」 「Installing on Windows Vista」).
+  실행 창에 `.exe`까지 붙여 넣는 차례를 지금 판 문서에서 따로 찾지는 못했지만, `inetmgr.exe`는 IIS 관리자 실행 파일의 이름 그대로다. 명령 프롬프트는 확장자를 뺀 이름에 PATHEXT의 `.EXE`를 붙여 찾는다(위 「(phase 80 step 8) … MMC와 실행 이름」 항목의 `start` 줄)
+- **기출 오답의 실행 이름**([기출 2024-11-03 #40] 대조용): `wf.msc`는 고급 보안이 포함된 Windows Defender 방화벽(MMC 스냅인)을 연다(「Windows Firewall Tools」 「Windows Defender Firewall with Advanced Security」). `dsac.exe`는 Active Directory 관리 센터의 실행 파일이다(「Advanced AD DS Management…(Level 200)」 — 실행 창에 `dsac.exe`, `runas /user:<도메인\사용자> dsac`).
+  `msconfig`는 시스템 구성 도구로, 서비스를 골라 켠 채 시작해 문제를 찾는 데 쓴다(「Windows startup issues troubleshooting」 「Troubleshoot issues in the Kernel phase」). 셋 다 IIS 관리자가 아니다
+- **사이트·응용 프로그램·가상 디렉터리**(IIS 7 이후의 짜임): 세 단이 겹쳐 있다 — 사이트 안에 응용 프로그램이, 응용 프로그램 안에 가상 디렉터리가 들고, 가상 디렉터리 하나는 컴퓨터의 실제 디렉터리 하나를 가리킨다. 사이트마다 적어도 루트 응용 프로그램 하나, 응용 프로그램마다 적어도 루트 가상 디렉터리 하나가 있고, 클라이언트는 사이트에 붙인 바인딩(하나 이상, 사이트끼리 겹치지 않는)으로 사이트를 찾아온다.
+  사이트에 딸린 설정으로 제한(대역폭·연결 수·연결 시간)과 로그가 있다 — 「Understanding Sites…」 「About Sites, Applications, and Virtual Directories in IIS 7 and Above」·「Sites」
+- **Default Web Site**(한국어판 「기본 웹 사이트」): IIS를 설치하면 `ApplicationHost.config`(`%windir%\system32\inetsrv\config\`)에 사이트가 하나 들어 있다 — 이름 `Default Web Site`, id 1, 루트 가상 디렉터리의 실제 경로 `%SystemDrive%\inetpub\wwwroot`, 바인딩은 형식 `http`·`*:80:`(모든 IP 주소의 80번, 호스트 이름 없음).
+  같은 기본 구성에 사이트 기본값으로 로그 형식 W3C와 로그 디렉터리 `%SystemDrive%\inetpub\logs\LogFiles`가, 응용 프로그램 기본값으로 응용 프로그램 풀 `DefaultAppPool`이 들어 있다 — 「Understanding Sites…」 「IIS Configuration: <sites> Section」(Windows Server 2008에 설치한 뒤의 내용), `<sites>` 「Configuration Sample」(IIS 10.0에서 바뀌지 않았다).
+  `*`가 모든 IP 주소라는 것은 「Build a Static Website on IIS」 「Step 2: Add a Website」(`http/*:85:`는 모든 IP 주소의 85번으로 오는 HTTP 요청을 받는다)
+- **새 사이트 만들기**: IIS 관리자 「연결」 창에서 서버를 펼쳐 「사이트」를 고르고 「작업」 창 「웹 사이트 추가...」 → 「웹 사이트 추가」 대화 상자에 적어도 「사이트 이름」과 「실제 경로」를 넣는다. 기본 웹 사이트를 계속 쓴다면 새 사이트의 바인딩을 달리 해야 해서, 포트를 바꾸거나 호스트 이름을 넣는다 — `<sites>` 「How To」
+- **사이트 바인딩**: 클라이언트가 사이트와 통신할 때 쓰는 프로토콜(`http`·`https` — 바인딩 프로토콜)과 사이트에 닿는 정보(사이트의 IP 주소 — 또는 지정하지 않은 IP 주소, 포트 번호, 선택으로 호스트 헤더 — 바인딩 정보)의 짝이다. 사이트 하나가 바인딩을 여럿 가질 수 있고(예: HTTP와 HTTPS를 함께), 인터넷에서 보이려면 HTTP나 HTTPS 바인딩이 적어도 하나 있어야 한다 — `<binding>` 「Overview」·「Configuration」·「Attributes」, 「Understanding Sites…」 「Sites」.
+  IIS 관리자에서는 사이트를 고르고 「작업」 창 「바인딩...」 → 「사이트 바인딩」 대화 상자 「추가...」 → 「사이트 바인딩 추가」에 넣는다 — `<binding>` 「How To」. 「사이트 바인딩 추가」의 칸은 「형식」(https 등)·「IP 주소」(목록에서 「All Unassigned」 — 쓸 특정 주소가 없으면)·「포트」(https면 기본 443)·「호스트 이름」·「SSL 인증서」다 — 「Configuring Step 4…」 「4.5. TLS/SSL Communication」.
+  구성 예: `192.168.0.1:80:www.contoso.com`(그 주소·80번·그 호스트 이름), `*:443:`(모든 주소의 443번) — `<binding>` 「Configuration Sample」
+- **한 서버의 여러 사이트**: IIS에 사이트를 여럿 두려면 사이트마다 IP 주소나 포트 번호나 호스트 헤더가 달라야 한다. 같은 문서는 IP 주소·TCP 포트가 같고 호스트 헤더만 다른 두 사이트를 들어, HTTP 쪽은 맞는 설정이지만 HTTPS(SSL) 쪽은 호스트 헤더로 가를 수 없어 둘째 사이트의 443번이 시작하지 못한다고 하고, IIS 8부터 SNI(서버 이름 표시)로 이 문제를 푼다고 적는다 — 「Event 115…」 「Workaround 1」.
+  그러니 HTTP 사이트는 IP 주소·포트가 같아도 호스트 이름으로 가를 수 있다 — 같은 절과 `<sites>` 「How To」에서 이어서 나오는 말
+- **연결 제한**(사이트의 `<limits>`): 사이트로 오는 클라이언트 요청의 대역폭·연결 수·연결 시간을 제한한다 — 「Overview」. `maxBandwidth` — 사이트가 쓸 네트워크 대역폭의 상한(초당 바이트), 기본 4294967295. `maxConnections` — 사이트에 동시에 이어질 수 있는 클라이언트 연결 수의 상한, 기본 4294967295.
+  `connectionTimeout` — 쉬고 있다고(비활성으로) 판단한 연결을 끊기 전에 IIS가 기다리는 시간(초), 기본 2분(`00:02:00`). (`maxUrlSegments` — URL 세그먼트 수의 상한, 기본 32 — 쓰지 않는다.) 이 셋은 IIS 6.0 메타베이스의 ConnectionTimeout·MaxBandwidth·MaxConnections를 대신한다 — 「Attributes」·「Compatibility」.
+  IIS 관리자에서는 사이트를 고르고 「작업」 창 「고급 설정...」 → 「고급 설정」 대화 상자에서 「제한」을 펼쳐 정한다 — 「How To」. 칸의 화면 이름은 문서의 그림에만 있어 확인하지 못했다
+- **HTTPS**: IIS에서 HTTPS를 쓰려면 인증서를 얻고(IIS 관리자의 서버 노드 「서버 인증서」 — 자체 서명 인증서 만들기도 있다), 사이트에 형식 `https` 바인딩을 더해 그 인증서를 고른다. 새 바인딩의 기본은 HTTP·80번이라 형식에서 https를 고른다 — 「How to Set Up SSL on IIS 7 or later」 「Introduction」·「IIS Manager」
+- **PHP와 FastCGI**: IIS에는 FastCGI 구성 요소가 들어 있어 PHP 같은 웹 응용 프로그램 프레임워크를 IIS에서 실행할 수 있다. 쓰려면 CGI 역할 서비스(서버 역할 → 웹 서버(IIS) → 웹 서버 → 응용 프로그램 개발 → CGI)를 설치하고, FastCGI 응용 프로그램으로 PHP 실행 파일의 경로를 정해 둔다 — `<fastCgi>` 「Overview」·「Setup」·「How To」(IIS 10.0에서 바뀌지 않았다). 「Install the Web Server WEB1」도 IIS가 묶는 것에 PHP를 든다
+- **응용 프로그램 풀**(application pool): 같은 설정을 쓰는 작업자 프로세스 하나 이상의 묶음이고, 그 풀에 맡긴 **응용 프로그램 하나 이상**의 요청을 처리한다. 작업자 프로세스마다 프로세스 경계로 떨어져 있어, 한 풀의 응용 프로그램에 문제가 생겨도 다른 풀의 사이트·응용 프로그램에 번지지 않는다. 풀은 필요한 만큼 만들 수 있다(많으면 성능에 영향) — `<applicationPools>` 「Overview」(IIS 10.0에서 바뀌지 않았다).
+  응용 프로그램은 사이트에 속하면서 풀에도 속하고, 풀이 그 응용 프로그램을 다른 풀의 응용 프로그램과 떼어 놓는다 — 「Understanding Sites…」 「Applications」. 새 풀에 꼭 정할 것은 고유한 이름이다 — `<add>` 「Overview」. IIS를 설치하면 `DefaultAppPool`이 있고 구성 파일의 응용 프로그램 기본값이 이 풀이다(위 Default Web Site 줄).
+  작업자 프로세스는 `w3wp.exe`이고, 풀마다 그 풀 이름을 딴 계정(응용 프로그램 풀 ID)으로 실행된다 — 「Application Pool Identities」 첫머리
+- **시리얼 포트**(serial port, 직렬 포트): 직렬 컨트롤러(16550 UART나 호환 장치)에 달린 하드웨어 통신 인터페이스이고 주변 장치가 거기에 이어진다. 옛 Windows에서는 PC 케이스에 이름 붙은 COM 포트였다 — 「Serial Controller Driver Design Guide」 첫머리. 사이트 바인딩의 포트는 이것이 아니라 TCP 포트 번호다(위 바인딩 줄, 「(phase 77) RFC 6335 …」 같은 포트 항목들) — 이어서 나오는 말
+- **IIS 6.0 꼴의 사이트 속성**: 문제 해결 「Enable SSL for all customers」는 사이트의 「속성」 대화 상자 「웹 사이트」 탭에서 SSL 포트를 확인하고, 「고급」에서 그 사이트의 IP 주소·포트 짝 목록(「Multiple identities for this web site」)에 443번을 더하는 차례를 보인다 — 「Enforce SSL connections」. 위 「Getting Started with the IIS Manager」 줄의 탭 달린 속성 대화 상자 꼴이고, 지금 판에서는 이 값들이 바인딩과 「고급 설정」으로 옮겨 왔다
+- **한국어 이름**: 한국어판은 「웹 서버(IIS)」, 「IIS(인터넷 정보 서비스) 관리자」, 「기본 웹 사이트」, 「연결」 창·「작업」 창, 「웹 사이트 추가」·「사이트 이름」·「실제 경로」·「호스트 이름」, 「바인딩...」·「사이트 바인딩」·「사이트 바인딩 추가」·「바인딩 편집」, 「할당되지 않은 모든 항목」(All Unassigned — 구성 참조 한국어판은 속성 설명에서 「지정되지 않은 IP 주소」로도 옮긴다), 「고급 설정」 → 「제한」,
+  `<limits>` 속성 설명의 「최대 대역폭」·「최대 연결 수」·「연결 제한 시간」, 「애플리케이션 풀」·「작업자 프로세스」·「서버 인증서」로 옮긴다.
+  **고른 이름**: 「IIS 관리자」, 「사이트」, 「Default Web Site」(이름이라 영문 그대로 쓰고 「기본 웹 사이트」로도 옮긴다는 것을 한 번 밝힌다 — guide.md와 같다), 「사이트 바인딩」과 그 네 값 「형식」·「IP 주소」·「포트」·「호스트 이름」, 「할당되지 않은 모든 항목」(All Unassigned — guide.md의 「지정하지 않은 모든 IP」 대신, 한국어판 문서가 대화 상자 차례에서 쓰는 표기),
+  연결 제한 셋은 화면 이름을 확인하지 못해 영문 속성 이름을 함께 적는다 — 「연결 제한 시간」(`connectionTimeout`, 기출은 「연결 시간 제한」)·「최대 연결 수」(`maxConnections`, 기출은 「연결 수 제한」)·「최대 대역폭」(`maxBandwidth`),
+  「응용 프로그램 풀」(guide.md와 기출 [기출 2025-11-02 #41]의 표기 — 한국어판 문서는 「애플리케이션 풀」로만 옮긴다는 것을 본문에서 한 번 밝힌다), 「작업자 프로세스」. **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 5, 2026-11-18 IPv4로 내려받아 읽음) 이 step이 더 본 문서 넷:
+  https://learn.microsoft.com/en-us/iis/extensions/planning-for-arr/overview-of-shared-hosting-deployment-using-application-request-routing-20 (`updated_at` 2022-03-21, `ms.date` 2008-07-02, 한국어판 `updated_at` 2026-10-27),
+  https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/ (`updated_at` 2022-04-06, `ms.date` 2016-09-26),
+  https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/ 의 「How To」(위에서 「Overview」만 쓴 같은 문서, `updated_at` 2022-04-06, 한국어판도 받음),
+  https://learn.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables (`updated_at` 2025-06-04, `ms.date` 2025-01-29)
+- (phase 81 step 5) **호스트 이름으로 사이트를 가르는 차례**: ARR 2.0의 공유 호스팅 개요는 흔한 공유 호스팅 배치를 이렇게 그린다 — 사용자가 `www.site2.com`을 요청하고, DNS에 그 이름을 물어 IP 주소를 받고, 브라우저가 그 IP 주소로 요청을 보내면, **호스트 이름에 따라 요청이 해당 사이트로 간다** — 「Common Shared Hosting Deployment」 1~6.
+  웹 브라우저가 이름을 요청에 담아 보내는 자리는 위 「RFC 9110」 항목의 「(phase 81 step 5)」 줄(Host 헤더)이다. HTTPS 쪽(SNI)은 쓰지 않으므로 본문은 이 규칙을 `http` 사이트에 한정해 쓴다(위 「한 서버의 여러 사이트」 줄)
+- (phase 81 step 5) **응용 프로그램과 풀의 연결**: IIS 7 이후의 응용 프로그램은 HTTP 같은 프로토콜로 내용을 내주거나 서비스를 하는 파일의 묶음이고, 응용 프로그램을 만들면 그 경로가 사이트 URL의 일부가 된다. 사이트마다 루트 응용 프로그램이 하나 있어야 한다.
+  `<application>`의 `applicationPool` 속성은 그 응용 프로그램이 **맡겨진 응용 프로그램 풀**을 정한다(기본값 없음 — 위 Default Web Site 줄의 `applicationDefaults`가 `DefaultAppPool`을 준다) — `<application>` 「Overview」·「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  그러니 두 사이트의 루트 응용 프로그램이 같은 풀을 가리키면 그 풀 하나가 두 사이트의 요청을 처리한다 — 풀이 「맡긴 응용 프로그램 하나 이상」을 처리한다는 위 응용 프로그램 풀 줄과 이어서 나오는 말
+- (phase 81 step 5) **풀을 만들고 사이트에 고르는 차례**(`<add>` 「How To」 — IIS 관리자를 여는 차례는 Windows Server 2012 R2까지 적는다): 「연결」 창에서 서버 이름을 펼치고 「응용 프로그램 풀」을 고른 뒤 「작업」 창 「응용 프로그램 풀 추가...」 → 「응용 프로그램 풀 추가」 대화 상자의 「이름」에 풀 이름을 넣는다.
+  있는 사이트의 풀을 바꾸려면 「연결」 창에서 「사이트」를 펼쳐 그 사이트를 고르고 「작업」 창 「고급 설정...」 → 「고급 설정」 대화 상자 「일반」의 「응용 프로그램 풀」 항목 → 줄임표 단추 → 「응용 프로그램 풀 선택」 대화 상자에서 풀을 고른다. 한국어판은 「애플리케이션 풀」·「애플리케이션 풀 추가」·「애플리케이션 풀 선택」·「고급 설정」·「일반」으로 옮긴다
+- (phase 81 step 5) **`%SystemDrive%`**: Windows 폴더가 들어 있는 드라이브이고 값은 `C:`처럼 드라이브 이름이다 — 「Recognized environment variables」 표(SYSTEMDRIVE). 그러니 Default Web Site의 `%SystemDrive%\inetpub\wwwroot`는 Windows가 들어 있는 드라이브의 `inetpub\wwwroot` 폴더다
+- (phase 81 step 5) 쓰인 곳: `windows-server-roles.iis`(응용 프로그램의 뜻, 사이트를 풀에 맡기는 값과 IIS 관리자의 차례, 한 풀이 두 사이트를 맡는 예, Default Web Site 폴더가 놓이는 드라이브), `windows-server-roles.iis-site-bindings`(호스트 이름에 따라 요청이 사이트로 간다), 문항 n292·n293
+
+쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis`(IIS와 웹 서버(IIS) 역할·설치, IIS 관리자와 여는 방법·실행 파일 `inetmgr.exe`, 사이트와 Default Web Site의 이름·바인딩·실제 경로, HTTPS 바인딩과 서버 인증서, CGI 역할 서비스와 FastCGI로 PHP, 응용 프로그램 풀의 뜻·격리·응용 프로그램 하나 이상·`DefaultAppPool`·`w3wp.exe`, 사이트와 응용 프로그램 풀의 차이),
+`windows-server-roles.iis-site-bindings`(바인딩의 네 값과 「사이트 바인딩 추가」의 칸, `*`와 「할당되지 않은 모든 항목」, 한 서버의 여러 사이트는 IP·포트·호스트 이름 가운데 하나가 달라야 하고 HTTP는 호스트 이름으로 가른다, 연결 제한 셋의 뜻과 기본값과 「고급 설정」의 「제한」, 포트 번호와 시리얼 포트의 차이);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2024-11-03 #40], [기출 2025-11-02 #41], [기출 2025-02-23 #28]과 **E40**)
+
+## (phase 81 step 4) Microsoft Learn — IIS의 실제 경로·기본 문서·디렉터리 검색·가상 디렉터리·요청 필터링·로그: Create a Web Site, Compatibility and Feature Requirements for Windows Vista, Virtual Directory <virtualDirectory>, Default Document <defaultDocument>, Directory Browse <directoryBrowse>, Request Filtering <requestFiltering>, File Name Extensions <fileExtensions>, Request Limits <requestLimits>, Use Request Filtering, Log Files for a Web Site <logFile>, Configure Logging in IIS, Managing IIS Log File Storage, Logging to Event Tracing for Windows in IIS 8.5; 문제 해결 — How to create a virtual directory on an existing Web site to a folder that resides on a remote computer
+https://learn.microsoft.com/en-us/iis/get-started/getting-started-with-iis/create-a-web-site
+https://learn.microsoft.com/en-us/iis/install/installing-iis-7/compatibility-and-feature-requirements-for-windows-vista
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/virtualdirectory
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/defaultdocument/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/directorybrowse
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/fileextensions/
+https://learn.microsoft.com/en-us/iis/configuration/system.webserver/security/requestfiltering/requestlimits/
+https://learn.microsoft.com/en-us/iis/manage/configuring-security/use-request-filtering
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/logfile/
+https://learn.microsoft.com/en-us/iis/manage/provisioning-and-managing-iis/configure-logging-in-iis
+https://learn.microsoft.com/en-us/iis/manage/provisioning-and-managing-iis/managing-iis-log-file-storage
+https://learn.microsoft.com/en-us/iis/get-started/whats-new-in-iis-85/logging-to-etw-in-iis-85
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/create-virtual-directory-folder-remote-computer
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Create a Web Site」 `updated_at` 2023-02-17(`ms.date` 2009-11-15), 「Compatibility and Feature Requirements for Windows Vista」 2024-04-11(2007-11-22, IIS 7.0 때 글), 「Use Request Filtering」 2020-05-14(2007-11-22),
+「Configure Logging in IIS」 2024-04-11(2013-04-14 — 갖출 것으로 Windows Server 2012·Windows 8을 적는다), 「Managing IIS Log File Storage」 2025-12-20(2014-05-30), 「Logging to Event Tracing for Windows in IIS 8.5」 2022-06-14(2013-07-11).
+구성 참조(`ms.date` 모두 2016-09-26) — `<virtualDirectory>`·`<directoryBrowse>` 2022-03-21, `<defaultDocument>`·`<fileExtensions>` 2022-04-06, `<requestFiltering>`·`<requestLimits>`·`<logFile>` 2025-12-20. 「Compatibility」 표: `<virtualDirectory>`·`<defaultDocument>`·`<directoryBrowse>`·`<requestLimits>`·`<logFile>`는 IIS 10.0에서 바뀌지 않았고,
+`<requestFiltering>`은 IIS 10.0에서 서버 헤더를 숨기는 설정만 더해졌다(`<logFile>`은 IIS 8.5에서 버퍼·ETW·줄 길이·사용자 지정 필드 설정이 더해졌다).
+문제 해결 「How to create a virtual directory … remote computer」 2026-02-19(2026-02-12, 「Applies to」 지원되는 Windows Server, 원래 KB 308150 — 본문의 차례는 옛 관리 도구 「Internet Services Manager」로 적었다). 한국어판도 모두 받았다(`updated_at` 2026-10-14~2026-10-27, 기계 번역).
+
+- **실제 경로**(physical path): 새 사이트에 꼭 정할 둘(「사이트 이름」과 함께) 가운데 하나이고, 사이트의 루트 가상 디렉터리가 이어지는 컴퓨터의 폴더다(위 「(phase 81 step 4) … IIS·IIS 관리자 …」 항목의 `<sites>` 「How To」와 「Understanding Sites…」).
+  IIS를 설치하면 기본 웹 사이트의 구성이 `\Inetpub\Wwwroot` 디렉터리에 만들어지는데, 웹 콘텐츠는 이 기본 디렉터리에 두어도 되고 파일 시스템의 원하는 곳에 디렉터리를 만들어 써도 된다 — 「Create a Web Site」 「Introduction」.
+  IIS 설치는 `\inetpub`을 늘 `%SystemDrive%\inetpub`에 두지만, 설치 뒤에 그 폴더를 옮기고 기본 웹 사이트가 새 위치를 가리키게 바꿀 수 있다 — 「Compatibility and Feature Requirements for Windows Vista」 「Changing the Location of Web Root During Installation」
+- **「홈 디렉터리」라는 이름**: 지금 판 IIS 문서(IIS 7 이후의 개념 글·구성 참조)는 웹 사이트의 내용 폴더를 「physical path(실제 경로)」라 부르고 「home directory」를 쓰지 않는다 — 그 말은 FTP 사용자 격리의 사용자별 홈 디렉터리에 나온다(이 phase는 FTP 사용자 격리를 다루지 않는다).
+  웹 사이트의 내용 폴더를 「home directory」라 부르는 것은 옛 관리 도구로 차례를 적은 옛 KB 글이다 — 「How to create a virtual directory … remote computer」 첫머리: 원격 가상 디렉터리는 웹 사이트의 홈 디렉터리 안에 있지 않지만 브라우저에는 그 안에 있는 것처럼 보이는 디렉터리이고,
+  표의 예에서 `C:\WWWroot`가 별칭 없는 홈 디렉터리(`http://Sales`), `\\RemoteServer\SalesData\ProdCustomers`가 별칭 `Customers`(`http://Sales/Customers`)다. 한국어판도 「홈 디렉터리」로 옮긴다
+- **기본 문서**(default document): 사이트나 응용 프로그램의 루트 디렉터리로 요청이 오면 IIS가 돌려줄 파일 이름의 목록이다. 기본으로 켜져 있고(`enabled` 기본 true), 서버 전체의 기본 목록은 차례대로 `Default.htm`·`Default.asp`·`Index.htm`·`Index.html`·`Iisstart.htm`이다(ASP.NET을 설치하면 `Default.aspx`가 더해진다).
+  IIS는 목록의 차례대로 그 파일이 있는지 보고 처음 있는 것을 브라우저에 보낸다. 목록 아래쪽 파일은 위의 파일을 모두 확인한 뒤에야 찾으므로 차례가 성능에 영향을 준다 — `<defaultDocument>` 「Overview」(IIS 10.0에서 바뀌지 않았다).
+  IIS 관리자: 사이트·응용 프로그램을 고르고 「기본 문서」 두 번 클릭 → 「작업」 창 「추가...」 → 「기본 문서 추가」 대화 상자의 「이름」에 파일 이름을 넣는다. 「위로 이동」·「아래로 이동」으로 차례를 바꾸고 「제거」로 뺀다 — 「How To」
+- **디렉터리 검색**(directory browsing): 켜 두면 디렉터리를 가리킨 요청에 그 디렉터리의 목록을 돌려준다. `enabled` **기본 false(꺼짐)**. `showFlags`는 목록에 항목마다 보일 정보를 고른다 — `Date`(마지막으로 고친 날짜)·`Time`(그 시각)·`Size`(파일 크기)·`Extension`(파일 이름 확장자)·`LongDate`(날짜를 긴 꼴로)·`None`(이름만), 기본은 `Date, Time, Size, Extension` — `<directoryBrowse>` 「Overview」·「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  역할 서비스 「디렉터리 검색」(웹 서버 → 일반 HTTP 기능)은 IIS 기본 설치에 들어 있다 — 「Setup」. IIS 관리자: 사이트·응용 프로그램·디렉터리를 고르고 「디렉터리 검색」 두 번 클릭 → 「작업」 창 「사용」 → 보일 정보를 고르고 「적용」 — 「How To」
+- **기본 문서와 디렉터리 검색의 차례**: 루트 디렉터리로 요청이 오면 IIS는 기본 문서 목록에서 처음 있는 파일을 보낸다. 기본 문서를 끄고 디렉터리 검색을 켜 두면 디렉터리 목록을 보내고, 둘 다 끄면 「HTTP 404 파일이 없다」 오류를 보낸다 — `<defaultDocument>` 「Overview」 끝 두 문단.
+  그러니 디렉터리 목록은 보낼 기본 문서가 없을 때의 답이다 — 이어서 나오는 말(기본 문서가 켜져 있되 목록의 파일이 하나도 없을 때 디렉터리 검색이 켜져 있으면 목록을 보낸다고 한 문장으로 적은 곳은 찾지 못했다).
+  Apache의 `DirectoryIndex`(디렉터리 요청에 찾을 파일 목록)·`Options Indexes`(그 파일이 없으면 목록을 만든다)와 같은 짝이다 — 위 「(phase 79 step 9) Apache …」 항목과 이 항목의 정의를 나란히 둔 말
+- **가상 디렉터리**(virtual directory): IIS에 정하는 디렉터리 이름(경로)이고 로컬이나 원격 서버의 실제 디렉터리에 이어진다. 그 이름이 응용 프로그램 URL의 일부가 되어, 사용자가 브라우저로 그 URL을 요청하면 실제 디렉터리의 내용(웹 페이지나 파일 목록)에 닿는다.
+  실제 디렉터리와 다른 이름을 주면 URL이 사이트 루트에 그대로 대응하지 않아 서버의 실제 파일 구조를 알아내기 어렵다. 쓰임의 예: 응용 프로그램에 파일 시스템의 다른 곳에 있는 그림을 넣되 그 파일을 루트 가상 디렉터리의 폴더로 옮기고 싶지 않을 때 — `<virtualDirectory>` 「Overview」, 「Understanding Sites…」 「Virtual Directories」.
+  IIS 관리자: 사이트를 고르고 「작업」 창 「가상 디렉터리 보기」 → 「가상 디렉터리 추가...」 → 「가상 디렉터리 추가」 대화 상자에 적어도 「별칭」과 「실제 경로」를 넣는다 — `<virtualDirectory>` 「How To」. 속성 `path`(가상 경로)·`physicalPath`(실제 경로) — 「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  별칭이 URL 경로가 되고 그 아래 요청이 실제 경로의 파일로 이어진다는 대응은 위 KB 글의 표(별칭 `Customers` → `http://Sales/Customers` → 원격 공유 폴더)와 같다
+- **요청 필터링**(Request Filtering): IIS 7.0부터 들어 있는 보안 기능이고 IIS 6.0의 추가 도구 UrlScan이 하던 일을 대부분 대신한다. 거르는 기준 — URL에 든 문자열(`denyUrlSequences`, 공격자가 노릴 URL 조각), 파일 이름 확장자의 허용·거부 목록(`fileExtensions`, 예: `web.config` 요청 막기), 탐색할 수 없게 할 URL 구간(`hiddenSegments`, 예: ASP.NET의 `App_Code` 폴더),
+  요청 크기 한도(`requestLimits` — 내용·URL·쿼리 문자열의 길이, 헤더 길이), HTTP 동사의 허용·거부(`verbs`, 예: TRACE 막기). IIS 7.5에서 늘 허용할 URL·쿼리 문자열, 거부할 쿼리 문자열, 사용자 지정 규칙이 더해졌다 — `<requestFiltering>` 「Overview」·「New in IIS 7.5」.
+  IIS 기본 설치에 요청 필터링 역할 서비스(웹 서버 → 보안 → 요청 필터링)가 들어 있다 — 「Setup」
+- **막힌 요청에 돌려주는 상태 코드**: 요청 필터링이 요청을 막으면 클라이언트에 HTTP 404 오류를 보내고, 막은 까닭을 가르는 하위 상태와 함께 로그에 적는다 — 404.5 URL 문자열 거부, 404.6 동사 거부, 404.7 파일 이름 확장자 거부, 404.8 숨겨진 구간, 404.11 이중 이스케이프, 404.12 상위 비트 문자, 404.14 URL이 너무 김, 404.15 쿼리 문자열이 너무 김, 404.18 쿼리 문자열 거부, 404.19 사용자 지정 규칙, 그리고 **413.1 내용이 너무 큼**, 431 요청 헤더가 너무 김.
+  관리자는 이 하위 상태로 IIS 로그에서 위협을 가려낸다 — `<requestFiltering>` 「HTTP 404 Error Substatus Codes」. 내용 길이만 413.1이라는 것은 「Use Request Filtering」 「Filter Based on Request Limits」도 같다
+- **요청 크기 한도의 기본값**(`<requestLimits>`): `maxAllowedContentLength` 요청 내용의 최대 길이(바이트) 기본 30000000(약 28.6MB), `maxUrl` URL 최대 길이(바이트) 기본 4096, `maxQueryString` 쿼리 문자열 최대 길이(바이트) 기본 2048 — 「Attributes」.
+  Apache의 `LimitRequestBody`(요청 본문에 허락하는 바이트 수, 위 「(phase 79 step 9) Apache …」 항목)와 같은 자리의 설정이다 — 두 정의를 나란히 둔 말
+- **확장자를 거부하는 차례**: IIS 관리자에서 사이트·응용 프로그램·디렉터리를 고르고 「요청 필터링」 두 번 클릭 → 「파일 이름 확장명」 탭 → 「작업」 창 「파일 이름 확장명 거부...」 → 막을 확장자를 넣는다(문서의 예는 `.inc` 파일을 막으려고 `inc`를 넣는다) — `<fileExtensions>` 「How To」.
+  `allowUnlisted`(기본 true)는 목록에 없는 확장자를 처리할지 정한다 — true면 막을 확장자를, false면 허용할 확장자를 모두 적어야 한다 — 「Attributes」. 확장자로 막힌 요청은 404.7로 적힌다 — 「Use Request Filtering」 「Filter Based on File Extensions」
+- **요청 필터링과 방화벽**: 둘을 견주는 문서는 찾지 못했다. 개념 step은 각 정의를 나란히 두는 데까지 쓴다 — 요청 필터링은 IIS가 받은 HTTP 요청의 URL·확장자·동사·길이로 거르고(이 항목), 방화벽은 들어오는 연결을 포트 같은 기준으로 거른다(위 「(phase 77) RFC 6335 …」의 「방화벽이 걸러 내는 기준이 되는 것」 줄, 「(phase 78 step 0) RFC 1579 …」)
+- **IIS 로그**: 사이트의 로그를 켜고 끄고, 로그 파일 형식과 적을 정보의 갈래와 로그 파일 디렉터리를 정하고, 새 로그 파일을 언제(파일 크기나 시간 간격) 만들지 정한다 — `<logFile>` 「Overview」. 기본으로 켜져 있다(`enabled` 기본 true — ASP·ODBC 오류는 IIS 로그에 적지 않는다) — 「Attributes」
+- **로그 파일 형식**(`logFormat`, **기본 W3C**): **W3C**(W3C 확장 로그 파일 형식 — 적을 필드를 고를 수 있는 ASCII 글자 형식, 필드는 공백으로 가르고 시각은 UTC), **IIS**(Microsoft IIS 로그 파일 형식 — 필드가 정해진 ASCII 글자 형식, 쉼표로 가르고 시각은 현지 시각), **NCSA**(NCSA 공통 로그 파일 형식 — 필드가 정해진 ASCII 글자 형식, 공백으로 가르고 현지 시각에 UTC와의 차이를 붙인다),
+  **Custom**(사용자 지정 로깅 모듈의 형식 — 고르면 IIS 관리자의 「로깅」 페이지로는 더 구성하지 못한다). 앞의 셋은 HTTP.sys가 다룬다 — `<logFile>` 「Overview」·`logFormat`, 「Configure Logging in IIS」 「Configure Logging at the Site Level」 4단계
+- **W3C 형식의 기본 필드**(`logExtFileFlags`): 날짜·시각·클라이언트 IP·사용자 이름·서버 IP·메서드·URI 줄기(경로)·URI 쿼리·걸린 시간·HTTP 상태·Win32 상태·서버 포트·사용자 에이전트·HTTP 하위 상태·참조 페이지(Referer) — 「Attributes」. IIS 관리자에서는 「로깅」 페이지의 「필드 선택」으로 고른다 — 「Configure Logging in IIS」
+- **로그 디렉터리**(`directory`): 로그 파일과 로그 관련 파일을 두는 곳이고 기본은 `%SystemDrive%\inetpub\logs\LogFiles` — `<logFile>` 「Attributes」. IIS 관리자 「로깅」 페이지의 「디렉터리」에 경로를 넣어 바꾼다(실패한 요청 추적 로그 같은 로그 파일은 `%systemroot%`가 아닌 디렉터리에 두라고 권한다) — 「Configure Logging in IIS」 5단계.
+  디스크가 모자라면 다른 서버에 공유 폴더를 만들고 「디렉터리」에 그 UNC 경로를 넣어 옮길 수도 있다 — 「Managing IIS Log File Storage」 「Move the Log Folder to a Remote System」
+- **롤오버**(「로그 파일 롤오버」 — 새 로그 파일을 여는 때): 「일정」 — 매시간·매일·매주·매월 새 로그 파일, 「최대 파일 크기(바이트)」 — 파일이 그 크기에 이르면 새 로그 파일(최소 1048576바이트), 「새 로그 파일을 만들지 않음」 — 파일 하나가 계속 커진다. 「파일 이름 지정 및 롤오버에 현지 시간 사용」을 고르지 않으면 UTC로 — 「Configure Logging in IIS」 「Configure Log File Rollover Options」.
+  구성 속성으로는 `period`(`Hourly`·`Daily`·`Weekly`·`Monthly`·`MaxSize`, **기본 Daily**)와 `truncateSize`(`MaxSize`일 때의 크기, 기본 20971520바이트) — `<logFile>` 「Attributes」. 최대 크기에 이르러 하는 일은 **새 파일을 만드는 것**이고, 옛 파일을 지운다는 말은 두 문서 어디에도 없다
+- **오래된 로그를 지우는 일**: IIS 로그는 시간이 지나면 디스크를 많이 차지해 하드 드라이브를 채울 수도 있다. 문서가 드는 대책은 폴더 압축, 로그 폴더를 원격 서버로 옮기기, **정한 날수보다 오래된 로그 파일을 지우는 스크립트를 예약 작업으로 실행하기**다 — 「Managing IIS Log File Storage」 「Overview」·「Delete Old Log Files by Script」·「Run the script as a scheduled task」.
+  `<logFile>`의 속성(디렉터리·켜기·형식·필드·롤오버 주기·크기·버퍼 등)에 보존 기간이나 삭제를 정하는 것은 없다 — 「Attributes」. 그러니 IIS가 오래된 로그를 스스로 지우지 않는다는 것은 두 문서에서 이어서 나오는 말이다(그것을 한 문장으로 적은 문서는 찾지 못했다)
+- **로그는 요청 즉시 파일에 쓰이지 않는다**: W3C 로그는 사건을 버퍼에 모았다가 로그 파일에 쓴다. `flushByEntryCountW3CLog`는 몇 개를 모은 뒤 쓸지 정하고, 0(기본)이면 최대치인 64k가 찼을 때 쓴다 — 줄이면 더 빨리 쓰지만 디스크 작업이 늘고, 실시간에 가깝게 문제를 살피려면 줄이라고 한다 — `<logFile>` 「Attributes」(IIS 8.5에서 더해졌다).
+  IIS가 로그를 디스크에 쓰는 데 시간이 걸려 관리자가 로그 정보를 실시간으로 보지 못하고 글자 로그 파일은 실시간으로 갱신되지 않는다 — 그래서 IIS 8.5부터 로그를 ETW(Windows 이벤트 추적)로도 보낼 수 있게 했다 — 「Logging to Event Tracing for Windows in IIS 8.5」 「Problem」·「Solution」. 파일 로그는 HTTP.sys가 요청 처리를 마친 뒤 글자 로그 파일에 적는다 — `<logFile>` `logTargetW3C`
+- (phase 81 step 7, 2026-11-18 영문판을 IPv4로 다시 받아 읽음 — 「Configure Logging in IIS」 `updated_at` 2024-04-11(`ms.date` 2013-04-14, 차례는 Windows Server 2012·Windows 8로 적는다)) 이 step이 본문에 쓰려고 다시 본 것:
+  **사이트 수준의 차례** — IIS 관리자 「연결」 트리에서 사이트를 고르고 「로깅」을 두 번 클릭 → 「로깅」 페이지 「로그 파일」 칸의 「형식」에서 형식을 고른다 → 「디렉터리」에 경로 → 「로그 파일 롤오버」에서 셋 가운데 하나 → 「파일 이름 지정 및 롤오버에 현지 시간 사용」(고르지 않으면 UTC로 센다) → 「작업」 창의 「적용」 — 「Configure Logging at the Site Level」 1~8.
+  이 선택과 상관없이 파일 안에 적히는 시각은 형식을 따른다(NCSA·W3C 형식의 시각 표시는 UTC 꼴) — 같은 절 7의 Note. 형식마다 필드를 가르는 기호와 시각: IIS 형식은 쉼표·현지 시각, NCSA 형식은 공백·현지 시각에 UTC와의 차이, W3C 형식은 공백·UTC — 같은 절 4.
+  **W3C 필드를 고르는 자리** — 「로깅」 페이지 「로그 파일」 칸의 「필드 선택」 → 「W3C 로깅 필드」 대화 상자에서 고른다. 사용자 에이전트(`cs(User-Agent)`)는 클라이언트가 쓴 브라우저의 종류, 걸린 시간(`time-taken`)은 동작에 걸린 시간을 밀리초로 적는다 — 「Select W3C Fields to Log」.
+  「새 로그 파일을 만들지 않음」은 파일 하나가 계속 커지므로, 로그 분석 도구에는 편하지만 큰 파일이 서버 전체의 성능에 영향을 줄 수 있다 — 「Configure Log File Rollover Options」.
+  **UTC** — 본문은 UTC(Coordinated Universal Time, 협정 세계시)를 「나라마다 다른 현지 시각이 아니라 세계가 함께 쓰는 기준 시각」으로 한 줄 푼다. 이름 풀이는 위 문서가 쓰는 이름(Coordinated Universal Time) 그대로이고, 뜻풀이는 일반 용어의 풀이다.
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.iis-logging`(로그 형식 넷·필드를 고르는 형식, 필드를 가르는 기호와 시각, 디렉터리 기본값과 바꾸는 차례, 롤오버 셋·기본 매일·UTC 기준, 오래된 로그와 스크립트, 버퍼에 모았다 쓴다), 문항 n296, 도식 `iis-log-rollover`
+- (phase 81 step 6, 2026-11-18 영문판을 IPv4로 다시 받아 확인 — 위와 같은 판) **기본 문서는 사이트 안의 폴더마다 쓰인다**: `<defaultDocument>` 「Overview」의 Note는 목록의 차례가 성능에 주는 영향을 설명하며 사이트의 **모든 폴더**에서 홈 페이지로 쓸 파일을 목록 맨 아래에 두는 예를 든다 — 그러니 기본 문서는 사이트 루트만이 아니라 `/docs/`처럼 폴더를 가리킨 요청에도 쓰인다(이 Note와 「Overview」를 이은 말).
+  `<virtualDirectory>` 「Overview」는 응용 프로그램마다 루트 가상 디렉터리가 있어 응용 프로그램을 그 내용이 든 실제 디렉터리에 잇는다고 하고, 가상 디렉터리의 이름이 URL의 일부가 되어 사용자가 그 URL로 실제 디렉터리의 내용(웹 페이지나 그 아래 디렉터리·파일의 목록)에 닿는다고 한다 —
+  그러니 별칭이 아닌 URL 경로는 사이트 루트의 실제 경로 아래에서, 별칭으로 시작하는 경로는 그 별칭의 실제 경로 아래에서 찾는다(두 정의를 이은 말 — 위 KB 글의 표와 같다)
+- **한국어 이름**: 한국어판은 「실제 경로」, 「홈 디렉터리」(KB 글), 「기본 문서」·「기본 문서 추가」·「추가...」·「위로 이동」·「아래로 이동」, 「디렉터리 검색」(한 곳은 「디렉터리 브라우징」)·「사용」, 「가상 디렉터리 보기」·「가상 디렉터리 추가」·「별칭」, 「요청 필터링」·「파일 이름 확장명」 탭·「파일 이름 확장명 거부」,
+  「로깅」·「로그 파일」·「형식」·「디렉터리」·「필드 선택」·「로그 파일 롤오버」·「일정」(매시간·매일·매주·매월)·「최대 파일 크기(바이트)」·「새 로그 파일을 만들지 마세요」·「파일 이름 지정 및 롤오버에 현지 시간 사용」으로 옮긴다.
+  **고른 이름**: 「실제 경로」(physical path — 개념 이름 「홈 디렉터리와 가상 디렉터리」는 guide.md 그대로 두고, 본문은 「홈 디렉터리」를 옛 문서와 기출이 쓰는 이름으로 소개한 뒤 「실제 경로」를 세운다), 「기본 문서」, 「디렉터리 검색」(기출과 같다), 「가상 디렉터리」·「별칭」, 「요청 필터링」, 「파일 이름 확장명」,
+  「로그 파일 형식」, 「롤오버」(한국어판도 「롤오버」), 「새 로그 파일을 만들지 않음」(한국어판의 「…마세요」는 명령꼴 번역이라 이름꼴로 고친다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 6에서 쓰일 곳) `windows-server-roles.iis-home-directory`(실제 경로와 기본값·바꿀 수 있다, 「홈 디렉터리」라는 이름의 자리, 기본 문서의 뜻·기본 목록·차례·추가, 디렉터리 검색의 뜻·기본 꺼짐·보일 정보, 기본 문서가 먼저이고 둘 다 끄면 404, 가상 디렉터리·별칭과 URL·경로의 대응, Apache와의 짝),
+`windows-server-roles.request-filtering`(요청 필터링의 뜻·기본 설치·거르는 기준, 막힌 요청의 404 하위 상태와 413.1, 요청 크기 한도의 기본값, 확장자 거부 차례, Apache `LimitRequestBody`와의 짝, 방화벽과의 차이를 정의로만);
+(phase 81 step 7에서 쓰일 곳) `windows-server-roles.iis-logging`(로그 형식 넷과 기본 W3C·기본 필드, 디렉터리 기본값과 바꾸기, 롤오버 셋과 기본 매일, 최대 크기는 새 파일, 오래된 로그는 스스로 지우지 않고 스크립트로, 버퍼에 모았다 쓴다);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2026-08-02 #29], [기출 2025-11-02 #41], [기출 2026-02-01 #45])
+
+## (phase 81 step 4) Microsoft Learn — IIS의 FTP 서버: FTP Site-level Settings <ftpServer>, FTP over SSL <ssl>, Scenario: Build an FTP Site on IIS, Creating a New FTP Site in IIS 7, Using FTP Over SSL in IIS 7, What's New for Microsoft and FTP in IIS 7?
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/ftpserver/
+https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/ftpserver/security/ssl
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/scenario-build-an-ftp-site-on-iis
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/creating-a-new-ftp-site-in-iis-7
+https://learn.microsoft.com/en-us/iis/publish/using-the-ftp-service/using-ftp-over-ssl-in-iis-7
+https://learn.microsoft.com/en-us/iis/get-started/whats-new-in-iis-7/what39s-new-for-microsoft-and-ftp-in-iis-7
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 구성 참조 `<ftpServer>`·FTP over SSL `<ssl>` 둘 다 `updated_at` 2025-12-20(`ms.date` 2016-09-26) — 「Compatibility」 표가 둘 다 IIS 10.0에서 바뀌지 않았다고 적는다. 「Scenario: Build an FTP Site on IIS」 2024-04-11(2013-04-14 — 차례를 Windows Server 2012·Windows 8로 적는다).
+「Creating a New FTP Site in IIS 7」·「Using FTP Over SSL in IIS 7」·「What's New for Microsoft and FTP in IIS 7?」 셋 다 2025-12-20(2008-01-15) — IIS 7.0 때 쓴 글이고, 앞의 둘은 「Compatibility」에 FTP 7.5가 Windows Server 2008 R2·Windows 7의 IIS 7.5 기능으로 들어 있고 IIS 7.0 때는 따로 내려받아 설치했다고 적는다. 한국어판도 모두 받았다(`updated_at` 2026-10-27, 기계 번역).
+FTP 자체·두 데이터 연결 모드·포트 21은 위 「(phase 77) RFC 959 …」와 「(phase 78 step 0) Microsoft Learn — Configuring FTP Firewall Settings in IIS 7 …」 항목, 설치 이름은 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표에 있다 — 여기서는 IIS의 FTP 서버를 설치하고 사이트를 만드는 자리와 보안 연결만 적는다.
+
+- **FTP 서버 역할 서비스**: 웹 서버에서 FTP 게시를 하려면 FTP 서비스를 설치한다 — 서버 관리자 「관리」 → 「역할 및 기능 추가」 → 「서버 역할」에서 웹 서버(IIS)를 펼쳐 「FTP 서버」를 고르고, 그 아래 「FTP 서비스」를 고른다. ASP.NET 멤버 자격 인증이나 IIS 관리자 인증을 쓰려면 「FTP 확장성」도 고른다 — `<ftpServer>` 「Setup」, 「Scenario: Build an FTP Site on IIS」 「Step 1: Install FTP on an Existing IIS Web Server」(「FTP 서버」 확인란과 「FTP 서비스」 확인란).
+  설치 이름은 `Web-Ftp-Server`(FTP 서버)·`Web-Ftp-Service`(FTP 서비스)·`Web-Ftp-Ext`(FTP 확장성)이고 셋 다 기본으로 설치되지 않는다(Server Core 표). 역할 서비스도 `Install-WindowsFeature`로 설치하고(같은 step 0 항목 — 이름을 쉼표로 여럿 줄 수 있고, `-IncludeAllSubFeature`는 하위 역할 서비스까지 넣는다),
+  FTP 서버를 설치하는 줄 그대로를 보인 문서는 찾지 못했다 — 개념 step은 「설치 이름 + `Install-WindowsFeature`」라는 문서의 두 사실을 합쳐 보이고, 그렇게 합친 꼴이라고 밝힌다
+- **IIS에 들어간 FTP**: FTP 7.5부터 FTP 서비스는 Windows Server 2008 R2의 IIS 7.5 기능으로 들어 있어 따로 내려받지 않는다 — 「Creating a New FTP Site in IIS 7」 「Compatibility」. FTP 서비스가 IIS에 통합되어 IIS 관리자·AppCmd·PowerShell 같은 IIS 관리 도구로 관리하고, 기존 웹 사이트에 FTP 바인딩을 더해 한 사이트에서 웹과 FTP를 함께 낼 수도 있다 — 「What's New for Microsoft and FTP in IIS 7?」 「Introduction」.
+  FTP 설정도 웹 사이트 설정과 같은 `ApplicationHost.config`의 `<site>` 안에 들어간다 — `<ftpServer>` 「Overview」
+- **FTP 사이트를 더하는 차례**: IIS 관리자 「연결」 창에서 「사이트」를 고르고 「작업」 창 「FTP 사이트 추가」 → 「FTP 사이트 추가」 마법사:
+  ① 「사이트 정보」 페이지 — 「FTP 사이트 이름」, 「실제 경로」(내용 폴더 — 문서의 예는 `%SystemDrive%\inetpub\ftproot`이고 환경 변수를 쓸 수 있다) →
+  ② 「바인딩 및 SSL 설정」 페이지 — 「IP 주소」(기본 「All Unassigned」), 「포트」(FTP 사이트와 클라이언트는 기본으로 21번, 암시적 FTPS는 990번), 「가상 호스트」(한 IP 주소에 FTP 사이트 여럿을 둘 때 넣는 호스트 이름), 「FTP 사이트 자동 시작」, SSL 선택 — 「SSL 없음」·「SSL 허용」(클라이언트가 SSL을 쓸지 고른다)·「SSL 필요」(늘 SSL), 허용·필요면 「SSL 인증서」를 고른다 →
+  ③ 「인증 및 권한 부여 정보」 페이지 — 인증 방식(예: 익명·기본), 권한 부여(누구에게 — 예: 익명 사용자), 권한(읽기·쓰기) → 「마침」 — 「Scenario: Build an FTP Site on IIS」 「Step 2: Add an FTP Site」, `<ftpServer>` 「How To」(익명 읽기 사이트 예). 세 페이지의 이름은 「Creating a New FTP Site in IIS 7」의 그림 설명과 같다
+- **FTPS**(FTP over SSL): IIS의 FTP 서비스(FTP 7.0부터)는 FTP 클라이언트와 서버 사이의 세션을 암호화하는 FTP over SSL을 지원한다 — 「Using FTP Over SSL in IIS 7」 「Introduction」. IIS 6.0의 FTP 서비스는 FTP over SSL을 지원하지 않았다 — FTP over SSL `<ssl>` 「Compatibility」.
+  HTTPS가 보안 통신에 따로 포트·연결을 쓰는 것과 달리, FTPS는 보안 없는 통신과 같은 포트를 쓴다. 두 꼴이 있다 — **명시적 FTPS**(제어 채널은 기본 21번이고, 클라이언트가 제어 채널이나 데이터 채널에 SSL/TLS를 쓸지 서버와 협상한다 — 990이 아닌 포트에 FTPS를 켜면 이 꼴), **암시적 FTPS**(옛 꼴 — 클라이언트가 FTP 명령을 보내기 전에 SSL 핸드셰이크를 먼저 하고 세션 전체를 암호화한다 — 990번에 FTPS를 켜면 이 꼴) — FTP over SSL `<ssl>` 「Overview」.
+  RFC에 따른 FTPS 구현이라 다른 회사의 FTP 클라이언트와도 쓸 수 있고, 제어 채널·데이터 채널·둘 다를 암호화하게 정할 수 있다 — 「What's New…」 「Security and Support for new Internet standards」
+- **SFTP**: 「What's New for Microsoft and FTP in IIS 7?」(IIS 7.0 때 글)는 FTP 트래픽을 지키는 방법으로 이름이 비슷한 FTPS와 SFTP 둘이 있다고 가른 뒤, **Microsoft는 FTPS를 제공하고 SFTP(이 글은 「FTP over SSH」라 부른다)로 FTP 트래픽을 지키는 방법은 제공하지 않는다**고 적는다 — 「Introduction」. 지금 판 IIS 문서에서 IIS의 FTP 서버가 SFTP를 지원한다고 한 곳은 찾지 못했다.
+  SFTP는 SSH 위에서 동작하는 파일 전송이고(위 「(phase 77) RFC 4251 …, RFC 4253 …」·「(phase 78 step 0) OpenSSH — ssh(1)」 항목), Windows의 OpenSSH에 `sftp` 도구가 들어 있다(위 「(phase 78 step 0) Microsoft Learn — OpenSSH for Windows overview …」 항목) — IIS의 FTP 서비스와는 다른 구성 요소다. 「지원하지 않는다」는 IIS 7.0 때 글의 말이라, 본문에 쓸 때는 그 판을 밝힌다
+- (phase 81 step 7, 2026-11-18 영문판을 IPv4로 다시 받아 읽음 — 「Scenario: Build an FTP Site on IIS」 `updated_at` 2024-04-11(`ms.date` 2013-04-14, 차례는 Windows Server 2012·Windows 8로 적는다), 「What's New for Microsoft and FTP in IIS 7?」 `updated_at` 2025-12-20(`ms.date` 2008-01-15)) 이 step이 본문에 쓰려고 다시 본 것:
+  **FTP 사이트를 더하는 자리** — IIS 관리자 「연결」 창에서 서버를 펼쳐 「사이트」를 고르고 「작업」 창의 「FTP 사이트 추가」로 마법사를 연다 — 「Scenario」 「Step 2」 1~3. 설치 차례는 「서버 역할 선택」에서 웹 서버(IIS)를 펼치고 그 아래 FTP 서버를 펼쳐 「FTP 서버」·「FTP 서비스」 확인란을 고른 뒤 「기능 선택」을 지나 「설치 선택 확인」에서 「설치」 — 같은 문서 「Step 1」 6~9.
+  **인증 둘** — 익명은 사용자 이름 `anonymous`(또는 `ftp`)만으로 내용에 닿게 하고, 기본은 올바른 사용자 이름과 암호를 요구하는데 **암호를 암호화하지 않고 네트워크로 보내므로** 클라이언트와 FTP 서버 사이의 연결이 SSL처럼 안전할 때만 쓰라고 한다 — 같은 절 14. 권한 부여의 「다음에 액세스 허용」과 권한 「읽기」·「쓰기」 — 같은 절 15~16(한국어 화면 이름은 확인하지 못해 본문은 하는 일만 쓴다).
+  **SSL 허용과 SSL 필요** — 「SSL 허용」은 FTP 서버가 클라이언트와 SSL 연결과 SSL이 아닌 연결을 모두 받게 하고, 「SSL 필요」는 FTP 서버와 클라이언트 사이의 통신에 SSL 암호화를 요구한다 — 같은 절 12.
+  **FTP 확장성이 쓰이는 인증** — 「What's New…」 「Authentication for Non-Windows Accounts」는 Windows 계정이 아닌 계정으로 FTP 사용자를 인증하는 두 방식(IIS 관리자 인증과 .NET 멤버 자격 인증)을 든다. 위 「FTP 서버 역할 서비스」 줄(그 두 인증을 쓰려면 「FTP 확장성」도 고른다)과 이어 보면, FTP 확장성은 Windows 사용자 계정이 아닌 계정으로 FTP 사용자를 확인하는 인증을 쓸 때 더 고르는 것이다(두 문서를 이은 말).
+  **SFTP 문장의 꼴** — 같은 「Introduction」의 「Security and Support…」 절은 업계가 FTP를 지키는 방법이 여럿이고 이름이 비슷한 FTPS와 SFTP가 있다고 한 뒤, Microsoft가 내놓은 것은 FTPS이고 SFTP(이 글은 「FTP over SSH」라 부른다)로 FTP를 지키는 방법은 내놓지 않았다고 적는다. 본문은 이 말을 IIS 7.0 때 글의 말이라고 판을 밝혀 쓴다(위 SFTP 줄과 같다).
+  (phase 81 step 7) 쓰인 곳: `windows-server-roles.ftp-server`(설치 차례, FTP 사이트를 더하는 자리, 세 페이지의 칸, 익명·기본 인증과 기본 인증은 SSL로 지킬 때만, SSL 허용·필요, FTP 확장성, IIS 7.0 때 글의 SFTP 말), 문항 n297, 도식 `iis-ftp-site`
+- **한국어 이름**: 한국어판은 「FTP 서버」·「FTP 서비스」·「FTP 확장성」, 「FTP 사이트 추가」 마법사, 「사이트 정보」·「바인딩 및 SSL 설정」·「인증 및 권한 부여 정보」 페이지, 「FTP 사이트 이름」·「실제 경로」·「가상 호스트」, 「SSL 없음」·「SSL 허용」·「SSL 필요」·「SSL 인증서」, 「할당되지 않은 모든 항목」, 「암시적 FTPS」로 옮긴다.
+  **고른 이름**: 위 한국어판 표기 그대로, 「FTPS(FTP over SSL)」, 「명시적 FTPS」·「암시적 FTPS」. **실제 한국어 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 7에서 쓰일 곳) `windows-server-roles.ftp-server`(웹 서버(IIS) 아래 FTP 서버 역할 서비스와 FTP 서비스·FTP 확장성, 설치 이름과 `Install-WindowsFeature`, IIS 관리자로 관리, FTP 사이트 추가 마법사의 세 페이지와 칸, 포트 21·암시적 FTPS 990, FTPS의 두 꼴, SFTP는 SSH 위의 다른 프로토콜이고 IIS FTP가 제공하지 않는다(IIS 7.0 때 글));
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2026-05-17 #44]의 SFTP 보기. 나머지 보기는 「phase 81 step 0」 문단)
+
+## (phase 81 step 4) Microsoft Learn — 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시: Remote Access, Virtual Private Networking (VPN), Configure VPN protocols in Routing and Remote Access on Windows Server, DirectAccess, VPN connection types, Web Application Proxy in Windows Server, Publishing Applications using AD FS Preauthentication, Publishing Applications with SharePoint, Exchange and RDG; Win32 — Web Application Proxy (Windows 8 cookbook)
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/remote-access
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/vpn/vpn-top
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/configure-vpn-protocols
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/directaccess/directaccess
+https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/vpn/vpn-connection-type
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/web-app-proxy-windows-server
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/publishing-applications-using-ad-fs-preauthentication
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/web-application-proxy/publishing-applications-with-sharepoint,-exchange-and-rdg
+https://learn.microsoft.com/en-us/windows/win32/w8cookbook/web-application-proxy
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Remote Access」 `updated_at` 2026-02-16(`ms.date` 2022-09-28), 「Virtual Private Networking (VPN)」 2026-02-16(2018-11-05), 「Configure VPN protocols…」 2026-02-16(2024-06-07), 「DirectAccess」 2026-10-12(2022-11-16), 「Web Application Proxy in Windows Server」 2026-04-20(2026-04-16),
+「Publishing Applications using AD FS Preauthentication」 2026-02-16(2016-07-13), 「Publishing Applications with SharePoint, Exchange and RDG」 2025-11-18(2018-04-30) — 일곱 다 「Applies to」 Windows Server 2016~2025·Windows 11·10.
+Windows 보안 「VPN connection types」 2026-10-08(2025-01-27, Windows 11·10 — 클라이언트 쪽 문서). Win32 「Web Application Proxy」(Windows 8 호환성 안내) 2025-03-13(2018-05-31, 플랫폼 Windows Server 2012 R2). 한국어판도 모두 받았다(`updated_at` 2025-07-03~2026-10-17, 기계 번역).
+「Features Removed or No Longer Developed in Windows Server」도 다시 받았다 — 위 「(phase 80 step 8) … 클라우드 폴더…」 항목의 「(phase 81 step 0)」 줄과 같은 판(`updated_at` 2026-11-17)이다.
+
+- **원격 액세스**(Remote Access) 역할: 역할 및 기능 추가 마법사나 PowerShell로 이 역할을 설치할 때 역할 서비스 셋 가운데 하나 이상을 고른다 — **DirectAccess 및 VPN(RAS)**, **라우팅**(Routing), **웹 응용 프로그램 프록시**(Web Application Proxy). 셋은 따로 설치해도 같은 서버에 함께 설치해도 된다 — 「Remote Access」 첫머리.
+  Windows Server 2016 글은 이 역할을 서로 관련된 네트워크 액세스 기술(원격 액세스 서비스(RAS)·라우팅·웹 응용 프로그램 프록시)을 논리적으로 묶은 것이라 하고, DirectAccess 및 VPN(RAS)을 설치하면 RAS 게이트웨이(VPN 서버로 쓸 수 있다)를 배포하는 것이라고 한다 — 「Virtual Private Networking (VPN)」 「RAS Gateway as a Single Tenant VPN Server」.
+  설치 이름은 역할 `RemoteAccess`, 역할 서비스 `DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`이고 기본으로 설치되지 않는다(위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표)
+- **VPN(RAS)**: VPN 서비스는 인터넷 연결에 터널링과 데이터 암호화 기술을 함께 써서 원격 클라이언트와 원격 사무실을 잇는다 — 「Remote Access」 「VPN (RAS)」. Windows 클라이언트 문서의 설명: VPN 클라이언트가 터널링 프로토콜(TCP/IP나 UDP를 쓰는 특별한 프로토콜)로 인터넷 너머의 원격 액세스 서버(VPN 서버)와 가상의 지점 간 연결을 맺으면,
+  서버는 연결해 온 쪽을 인증하고 그 뒤로 그 클라이언트와 조직의 사설 네트워크 사이에서 데이터를 날라 준다 — 「VPN connection types」 첫머리
+- **Windows VPN 서버가 받는 터널링 프로토콜**: 라우팅 및 원격 액세스 서비스(RRAS)는 원격 사용자 연결이나 사이트 간 연결을 VPN이나 전화 접속으로 받고, VPN 연결은 PPTP·L2TP·SSTP·IKEv2 같은 프로토콜로 받는다. RRAS를 기본 구성으로 설치하면 넷 다 켜져 있다.
+  **Windows Server 2025부터 새로 구성한 RRAS는 PPTP·L2TP 연결을 받지 않는다**(필요하면 켤 수 있고, 그 앞 판에서 제자리 업그레이드한 구성은 그대로 받는다 — Windows 클라이언트에는 영향이 없다). SSTP·IKEv2는 그대로 받는다. 보안 기능이 모자라 L2TP·PPTP는 권하지 않고 IKEv2나 SSTP를 쓰라고 한다 — 「Configure VPN protocols…」 「Enable VPN protocols」.
+  Windows 내장 VPN 클라이언트가 쓰는 터널링 프로토콜도 IKEv2·L2TP·PPTP·SSTP이고, 「자동」은 가장 안전한 것부터 차례로 시도한다 — 「VPN connection types」 「Built-in VPN client」.
+  풀네임은 「Features Removed or No Longer Developed」의 줄이 적는다 — Point-to-Point Tunneling Protocol(PPTP)·Layer 2 Tunneling Protocol(L2TP)을 통한 원격 액세스는 Windows Server 2028(Preview)에서 빠지니 Internet Key Exchange version 2(IKEv2)나 Secure Socket Tunneling Protocol(SSTP)로 옮기라는 것(위 「(phase 81 step 0)」 줄과 같다)
+- **DirectAccess**: 원격 사용자를 조직 네트워크의 자원에 잇되 VPN 연결을 쓰지 않는 방식이다. VPN은 사용자가 연결을 열고 닫아야 하지만, DirectAccess의 원격 클라이언트 컴퓨터는 켜져서 인터넷에 이어져 있는 동안 늘 조직에 이어져 있고, 그동안 IT 관리자가 그 컴퓨터를 관리할 수 있다 — 「Remote Access」 「DirectAccess」, 「DirectAccess」 첫머리.
+  도메인에 가입했고 운영 체제가 DirectAccess를 지원하는 클라이언트만 지원한다(Windows 11 Enterprise·Windows 10 Enterprise 등) — 「DirectAccess」. **새 배포에는 DirectAccess 대신 Always On VPN을 쓰라고 강하게 권하고**, Windows 10 이후 클라이언트는 Always On VPN으로 잇고 DirectAccess는 Windows 10보다 앞선 클라이언트에만 쓰라고 한다 — 「DirectAccess」, 「Remote Access」 「DirectAccess」의 Important.
+  Always On VPN은 Windows 10 클라이언트가 손으로 연결하지 않아도 내부 네트워크의 공유 자원·인트라넷 웹 사이트·응용 프로그램에 안전하게 닿게 한다 — 「Remote Access」 「VPN (RAS)」. DirectAccess는 Windows Server 2028(Preview)에서 빠진다(「Features Removed…」 — 위 「(phase 81 step 0)」 줄)
+- **라우팅** 역할 서비스: LAN의 서브넷 사이에 네트워크 트래픽을 라우팅한다. NAT 라우터, BGP를 쓰는 LAN 라우터, RIP, IGMP를 쓰는 멀티캐스트 라우터, 요구 시 연결(demand-dial) 라우팅, 유니캐스트 IP 라우팅을 지원하고, 물리 컴퓨터나 Hyper-V의 가상 컴퓨터에 둘 수 있다.
+  LAN 라우터로 설치하려면 마법사에서 원격 액세스 역할과 라우팅 역할 서비스를 고르거나 `Install-RemoteAccess -VpnType RoutingOnly` — 「Remote Access」 「Routing service」. 서버 관리자 「도구」 → 「라우팅 및 원격 액세스」 콘솔에서 VPN 서버의 포트·프로토콜을 관리한다 — 「Configure VPN protocols…」
+- **웹 응용 프로그램 프록시**(Web Application Proxy): 원격 액세스 역할의 역할 서비스다. 회사 네트워크 가장자리에서 **역방향 프록시**로 일해, 내부 서버에 둔 웹 응용 프로그램·서비스를 회사 밖 사용자가 쓸 수 있게 내놓는다. 게시 방식은 둘 — AD FS(Active Directory Federation Services)로 사용자를 먼저 인증받게 해 인증된 사람만 들이는 AD FS 사전 인증과, 그 인증 없이 넘기는 통과(pass-through)다 — 「Web Application Proxy in Windows Server」 첫머리.
+  「Remote Access」 「Web Application Proxy service」도 회사 네트워크 안의 웹 응용 프로그램에 역방향 프록시 기능을 주어 어느 기기의 사용자든 밖에서 닿게 하고, AD FS로 사전 인증하며 AD FS 프록시 노릇도 한다고 적는다. 설치: 마법사에서 원격 액세스 역할과 웹 응용 프로그램 프록시 역할 서비스를 고른다 — 같은 절
+- Windows Server 2012 R2에서 원격 액세스 역할 아래 새로 생긴 서비스이고, 응용 프로그램을 밖에 게시하며 역방향 프록시이자 AD FS 프록시로 동작한다. Windows Server 2012의 AD FS 프록시 서비스(AD FS 역할 아래)를 대신해, 그것에 응용 프로그램을 게시하는 역방향 프록시 기능을 더한 것이다 — Win32 「Web Application Proxy」 「Description」·「Manifestation」
+- **사전 인증과 통과**: AD FS 사전 인증으로 게시하면 — 클라이언트가 게시된 응용 프로그램의 공개 URL(웹 응용 프로그램 프록시가 HTTPS 요청을 기다리는 주소)로 요청하면, 프록시가 그 요청을 AD FS 서버로 돌려보낸다. AD FS가 사용자를 인증해 보안 토큰(edge token)을 담아 돌려보내면, 프록시가 토큰을 확인한 뒤 요청을 내부의 게시된 웹 응용 프로그램(백엔드 서버)으로 HTTP나 HTTPS로 넘긴다 — 「Publishing Applications using AD FS Preauthentication」 첫 절.
+  사전 인증 없이 게시할 수도 있고(통과 인증 — 프록시가 먼저 사용자를 인증하지 않는다), 사전 인증을 지원하지 않는 클라이언트(예: 원격 데스크톱 연결 앱)는 통과 인증으로 게시해야 한다 — 「Publishing Applications with SharePoint, Exchange and RDG」 「Publishing Remote Desktop Gateway through Web Application Proxy」.
+  외부 URL과 백엔드 서버 URL에는 IP 주소가 아니라 FQDN을 넣으라고 한다 — 「Publishing Applications using AD FS Preauthentication」 Important. AD FS 자체의 동작은 이 phase가 다루지 않는다 — 위 문서들에서 AD FS는 사용자를 인증해 토큰을 내주는 서버로만 나온다
+- **VPN·DirectAccess와 무엇이 다른가**: 웹 응용 프로그램 프록시가 원격 컴퓨터를 네트워크에 잇지 않는다고 한 문장으로 적은 지금 판 문서는 찾지 못했다. 문서의 정의로 가를 수 있는 데까지 — VPN(RAS)·DirectAccess는 원격 클라이언트(컴퓨터)를 조직 네트워크에 잇는 것이고, 웹 응용 프로그램 프록시는 안의 웹 응용 프로그램을 밖에 게시하는 역방향 프록시라 바깥 사용자는 게시된 응용 프로그램의 공개 URL로 그 응용 프로그램에만 닿는다 — 위 줄들에서 이어서 나오는 말
+- **지금 판의 상태**: 웹 응용 프로그램 프록시는 「Features Removed or No Longer Developed in Windows Server」(`updated_at` 2026-11-17 판)의 두 절 어디에도 없고, 「Web Application Proxy in Windows Server」의 「Applies to」는 Windows Server 2016~2025다. 이 문서 머리는 온프레미스 웹 응용 프로그램 프록시의 내용이라고 밝히고, 클라우드를 거쳐 온프레미스 응용 프로그램에 안전하게 닿게 하려면 Microsoft Entra 응용 프로그램 프록시를 보라고 적는다
+- **한국어 이름**: 한국어판은 「원격 액세스」, 「RAS(직접 액세스 및 VPN) 서비스」(Server Core 표 한국어판은 「DirectAccess 및 VPN(RAS)」), 「라우팅 서비스」, 「웹 애플리케이션 프록시」(본문이 영문 「Web Application Proxy」를 그대로 두기도 한다), 「역방향 프록시」, 「사전 인증」·「통과 사전 인증」, 「터널링」, 「DirectAccess」로 옮긴다.
+  **고른 이름**: 「원격 액세스」, 「DirectAccess 및 VPN(RAS)」, 「라우팅」, 「웹 응용 프로그램 프록시」(guide.md가 개념 이름으로 정한 표기 — 한국어판 문서는 「웹 애플리케이션 프록시」로만 옮긴다는 것을 본문에서 한 번 밝힌다), 「역방향 프록시」, 「사전 인증」·「통과」(pass-through), 「터널링 프로토콜」, 프로토콜 이름은 약어 그대로(PPTP·L2TP·SSTP·IKEv2 — 풀네임은 위 줄).
+  **실제 한국어 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 8에서 쓰일 곳) `windows-server-roles.remote-access`(역할 서비스 셋과 설치 이름, VPN의 뜻·터널링과 암호화, Windows VPN 서버의 터널링 프로토콜 넷과 Windows Server 2025의 기본 동작·권고, DirectAccess의 뜻과 VPN과의 차이·Always On VPN 권고·2028(Preview) 제거, 라우팅 역할 서비스가 하는 일),
+`windows-server-roles.web-application-proxy`(역방향 프록시로 내부 웹 응용 프로그램을 밖에 게시, AD FS 사전 인증과 통과, AD FS 프록시 노릇, Windows Server 2012 R2에서 생김, VPN·DirectAccess와의 차이를 정의로, 지금 판의 상태);
+기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2024-08-25 #38]=[기출 2025-05-25 #39])
+
+(phase 81 step 8, 2026-11-18 IPv4로 다시 받아 확인) 「Virtual Private Networking (VPN)」(`updated_at` 2026-02-16)은 RAS의 풀이를 Remote Access Service (RAS)로 적고, RAS Gateway를 single tenant RAS Gateway virtual private network (VPN) server로 배포할 수 있다고 적는다 — 본문의 「RAS는 원격 액세스 서비스(Remote Access Service)를 줄인 말」과 「VPN(virtual private network)」의 근거다.
+「VPN connection types」(`updated_at` 2026-10-08)는 VPN 연결을 인터넷 같은 사설·공용 네트워크를 지나는 지점 간(point-to-point) 연결로 적는다 — 본문의 「두 지점만 잇는 가상의 연결」.
+「Remote Access」(`updated_at` 2026-02-16)는 VPN(RAS)이 터널링과 데이터 암호화 기술을 함께 써서 원격 클라이언트와 원격 사무실을 잇는다고 적는다(위 줄과 같다) — 본문의 「멀리 떨어진 사무실의 네트워크끼리 잇는 데도 VPN을 쓴다」.
+
+(phase 81 step 8) **역방향 프록시가 응답을 돌려주는 길** — 위 줄들은 웹 응용 프로그램 프록시가 역방향 프록시로 일하고 요청을 백엔드 서버로 넘긴다는 데까지 적고, 응답이 어디로 가는지는 적지 않는다. 그래서 IIS 문서에서 역방향 프록시의 정의를 확인했다.
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/creating-a-forward-proxy-using-application-request-routing
+「Creating a Forward Proxy Using Application Request Routing」(IIS 확장 Application Request Routing 문서) `updated_at` 2023-03-10(`ms.date` 2014-06-11), 한국어판 `updated_at` 2026-10-27(기계 번역)을 2026-11-18에 IPv4로 받아 읽었다. 「Overview」 절:
+- 프록시 서버는 요청하는 쪽이나 응답하는 쪽을 대신하는 한 접점이다. 클라이언트 쪽의 요청을 받아 인터넷으로 넘기고 만들어진 응답을 클라이언트에게 돌려주는 것이 정방향 프록시(forward proxy)이고, **인터넷에서 들어온 요청을 받아 안쪽(백엔드)의 작업자에게 넘기고 그 응답을 인터넷 쪽으로 돌려주는 것이 역방향 프록시(reverse proxy)다**.
+- 역방향 프록시를 쓰면 인터넷 쪽에서는 요청을 처리하고 응답을 만든 것이 안쪽 작업자가 아니라 프록시 서버 자신인 것처럼 보인다.
+- 두 프록시 모두 사설 네트워크를 인터넷과 떼어 놓아 보안을 높이는 조치를 할 수 있게 한다.
+- 한국어판은 「역방향 프록시」로 옮긴다.
+쓰지 않은 것: 정방향 프록시의 쓰임, ARR의 캐싱·압축과 URL 다시 쓰기(웹 응용 프로그램 프록시 문서에는 그런 동작이 적혀 있지 않다).
+
+쓰인 곳: (phase 81 step 8) `windows-server-roles.remote-access` — 위 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목의 역할 서비스 셋과 설치 이름(`RemoteAccess`·`DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`, 기본 미설치), VPN의 뜻(터널링과 암호화, VPN 클라이언트가 VPN 서버와 지점 간 연결을 맺고 서버가 확인 뒤 데이터를 나른다, 원격 사무실),
+터널링 프로토콜 넷과 풀네임·Windows 내장 VPN 클라이언트·PPTP와 L2TP 비권장·Windows Server 2025의 새 구성 기본 동작·2028(Preview) 제거, 「라우팅 및 원격 액세스」 콘솔, DirectAccess의 뜻(늘 이어짐·관리자가 관리·도메인 가입 컴퓨터만)·Always On VPN 권고·Windows 10보다 앞선 클라이언트에만·2028(Preview) 제거, 라우팅 역할 서비스(서브넷 사이 라우팅·NAT 라우터), 웹 응용 프로그램 프록시가 원격 컴퓨터를 잇지 않는다는 것(위 「VPN·DirectAccess와 무엇이 다른가」 줄, 이어서 나오는 말).
+VPN과 DirectAccess의 차이는 「DirectAccess」 첫머리의 견줌(VPN은 사용자가 연결을 열고 닫는다)대로 쓰고, Always On VPN이 그 견줌의 예외라는 것은 「Remote Access」 「VPN (RAS)」 줄(손으로 연결하지 않아도)에서 이어서 나오는 말로 썼다. 예의 「원격 액세스 서버」는 이 글에서 붙인 이름표다. 도식 `remote-access-services`, 문항 n298.
+`windows-server-roles.web-application-proxy` — 같은 항목의 웹 응용 프로그램 프록시 줄 전부(역방향 프록시로 내부 웹 응용 프로그램을 게시, 한국어판 이름, Windows Server 2012 R2에서 생김, 마법사에서 설치, 외부 URL과 백엔드 서버 URL·IP 주소가 아니라 FQDN, HTTPS 요청을 기다렸다가 백엔드로 HTTP나 HTTPS로 넘김, AD FS 사전 인증과 통과·원격 데스크톱 연결 앱, 지금 판의 상태)와 위 「역방향 프록시가 응답을 돌려주는 길」 줄(응답이 프록시를 거쳐 돌아간다, 인터넷 쪽에서는 프록시와 주고받는 것처럼 보인다, 사설 네트워크를 떼어 놓는다).
+AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge token)이고, 그 밖의 AD FS 동작은 쓰지 않았다. 「Microsoft Entra 응용 프로그램 프록시」는 쓰지 않았다. 도식 `web-app-proxy`, 문항 n299·n300
+
+## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/features-terminology
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/architecture
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/host-hardware-requirements
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/remotely-manage-hyper-v-hosts
+https://learn.microsoft.com/en-us/windows-server/get-started/server-core-app-compatibility-feature-on-demand
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/maximum-scale-limits
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/plan-hyper-v-networking-in-windows-server
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831446(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」를 따로 적지 않은 것은 Windows Server 2025·2022·2019·2016·Windows 11·10·Azure Local 2311.2 이후):
+「Hyper-V virtualization in Windows Server and Windows」 `updated_at` 2026-02-24(`ms.date` 2025-07-28 — 옛 주소 `hyper-v-overview`·`hyper-v-technology-overview`가 이리로 넘어온다), 「Hyper-V features and terminology」 2026-02-16(2025-08-06), 「Hyper-V architecture」 2026-01-21(2026-01-21),
+「Install Hyper-V」 2026-02-16(2025-05-23), 「Hardware requirements for Hyper-V」 2025-10-28(2025-06-26 — 옛 주소 `system-requirements-for-hyper-v-on-windows`가 이리로 넘어온다), 「Remotely manage Hyper-V hosts with Hyper-V Manager」 2026-02-16(2025-06-30),
+「Install Server Core Application Compatibility Feature on Demand」 2026-02-16(2025-07-01, Windows Server 2025·2022·2019), 「Create a virtual machine in Hyper-V」 2025-11-27(2025-11-27), 「Should I create a generation 1 or 2 virtual machine…」 2026-02-16(2025-06-18),
+「Hyper-V maximum scale limits in Windows Server」 2026-02-16(2025-10-17, Windows Server 2025~2016·Azure Local — 판마다 탭), 「Create and configure a virtual switch with Hyper-V」 2026-02-16(2025-01-29), 「Plan for Hyper-V networking in Windows Server」 2026-02-16(2026-01-21),
+`New-VHD`·`New-VMSwitch` 2025-05-14(2016-12-20, Hyper-V 모듈). 지난 판 「Hyper-V Virtual Hard Disk Format Overview」 2021-11-12(`ms.date` 2016-10-25, 「Applies To」 Windows Server 2012 R2·2012).
+한국어판도 모두 받았다(`updated_at` 2026-01-21~2026-07-17, 기계 번역). `New-VHD`·`New-VMSwitch`와 지난 판 문서의 한국어판은 번역되지 않아 영문 그대로다.
+
+- **Hyper-V**(「Hyper-V virtualization…」 첫머리): Microsoft가 만든 하이퍼바이저로, 따로 내려받지 않아도 Windows Server와 Windows 안에 있다. 이것으로 가상 머신(VM)을 여럿 만들어 돌리고 관리한다(하드웨어 가상화). 운영 체제 위가 아니라 하드웨어 위에 바로 놓이는 1형(type-1) 하이퍼바이저다.
+  게스트 VM으로 여러 판의 Windows·Linux·FreeBSD를 돌릴 수 있다. Windows Server의 Hyper-V는 실시간 마이그레이션·고가용성·재해 복구 같은 기능을 갖춘 기업용이고, Windows의 Hyper-V는 개발·테스트에 맞는 가벼운 쪽이다
+- **하이퍼바이저**(「Hyper-V architecture」 첫머리와 「Glossary」): 물리 하드웨어 바로 위, 운영 체제들 아래에 자리 잡는 소프트웨어다. 운영 체제마다 남과 섞이지 않는 실행 칸인 **파티션**을 내주고, 그 칸들이 아래 하드웨어를 어떻게 쓸지 가운데서 정한다. 그래서 운영 체제 여럿이 서로 떨어진 채 하드웨어 한 벌을 나눠 쓴다.
+  **루트 파티션**(부모 파티션)은 Windows가 돌고 물리 메모리와 장치에 직접 닿는 유일한 파티션이며 가상화 관리 기능이 여기서 돈다. 루트 파티션이 만드는 **자식 파티션**에 **게스트 운영 체제**가 들고, 자식 파티션은 실제 하드웨어 대신 가상 장치를 본다 — 장치 요청은 VMBus나 하이퍼바이저를 거쳐 루트 파티션의 장치로 넘어간다(「Root and child partitions」).
+  자식 파티션은 물리 프로세서를 직접 쓰지 않고 가상 프로세서와 자기만의 가상 메모리 주소 영역에서 돈다(「Interrupt and memory handling」). 프로세서에 하드웨어 지원 가상화(Intel VT나 AMD-V)가 있어야 한다
+- **호스트와 게스트**: 문서들은 VM을 실행하는 물리 컴퓨터를 「Hyper-V 호스트」(Hyper-V host)로, VM 안의 운영 체제를 「게스트 운영 체제」(guest operating system)로 부른다 — 「Install Hyper-V」·「Create a virtual machine」·「Hyper-V architecture」, 「Hyper-V features and terminology」 「Integration Services」(호스트와 게스트 운영 체제의 시계를 맞추기, 호스트가 게스트 운영 체제가 답하는지 살피기).
+  호스트에는 호스트 자신과 함께 돌릴 VM 모두에 넉넉한 메모리가 있어야 한다(「Hardware requirements」 「General requirements」). **호스트·게스트를 한 문장으로 정의한 곳은 찾지 못했다** — 위 쓰임과 파티션 설명에서 이어서 나오는 말로 쓴다
+- **설치**(「Install Hyper-V」, 탭 「PowerShell」·「GUI」): Windows Server에서 Hyper-V 역할을 서버 관리자나 `Install-WindowsFeature`로 설치해야 VM을 만들고 실행할 수 있다. 관리자 PowerShell에서 `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`(원격 서버면 `-ComputerName`) → 설치가 끝나면 컴퓨터가 다시 시작된다 → `Get-WindowsFeature Hyper-V`로 설치를 확인한다.
+  Server Core 설치에서 `-IncludeManagementTools`를 주면 PowerShell용 Hyper-V 모듈만 설치되고, Hyper-V 관리자는 다른 컴퓨터에서 원격으로 쓴다. 서버 관리자 차례: 「관리」 → 「역할 및 기능 추가」 → 「시작하기 전에」 → 「설치 유형 선택」(역할 기반 또는 기능 기반) → 「대상 서버 선택」 → 「서버 역할 선택」에서 Hyper-V를 고르고 「기능 추가」 →
+  「기능 선택」 → **「가상 스위치 만들기」·「가상 머신 마이그레이션」·「기본 저장소」** 페이지에서 환경에 맞는 값 → 「설치 선택 확인」에서 「필요한 경우 대상 서버를 자동으로 다시 시작」 → 「설치」. Hyper-V는 Windows Server 2025의 모든 에디션에서 서버 역할로 쓸 수 있다(「Hyper-V virtualization…」 「Get started」). Windows 11·10은 Pro·Enterprise(·Education)에서 선택적 기능으로 켠다(Home에는 설치할 수 없다).
+  Server Core 표(위 「(phase 81 step 0) … 서버 역할과 기능」 항목)에서 Hyper-V는 역할(`Hyper-V`)이고 기본 설치는 「N」이다
+- **하드웨어 요구**(「Hardware requirements for Hyper-V」 「General requirements」): 2단계 주소 변환(SLAT)이 있는 64비트 프로세서, VM 모니터 모드 확장, 넉넉한 메모리(적어도 4GB), BIOS나 UEFI에서 켠 하드웨어 지원 가상화(Intel VT·AMD-V)와 하드웨어 데이터 실행 방지(Intel XD 비트·AMD NX 비트).
+  SLAT은 하이퍼바이저를 설치할 때만 필요하고 Hyper-V 관리 도구만 설치할 때는 필요 없다. 명령 프롬프트에서 `Systeminfo.exe`를 실행해 「Hyper-V 요구 사항」 부분이 모두 「예」인지 본다(「How to check for Hyper-V requirements」). Windows Server 2016 이후 Hyper-V에는 SLAT이 필요하다(「Hyper-V architecture」 Note)
+- **관리 도구**: **Hyper-V 관리자**(Hyper-V Manager)는 Hyper-V 호스트와 VM을 관리하는 그래픽 도구로 VM을 만들고 설정하고 돌보게 한다(「Hyper-V features and terminology」 「Management」 — 같은 절이 PowerShell, Windows Admin Center, System Center Virtual Machine Manager도 든다). 서버 관리자 「도구」 → 「Hyper-V 관리자」로 연다(「Set up hosts for live migration…」·「Use live migration…」 — 아래 항목), 시작에서 이름으로 찾아 열 수도 있다(「Create a virtual machine」).
+  **파일 이름은 `virtmgmt.msc`다** — Server Core에 더하는 앱 호환성 기능 주문형(FOD)의 구성 요소 표에 「Hyper-V 관리자 — `virtmgmt.msc` — Windows Server 2022부터」로 있다(「Install Server Core Application Compatibility Feature on Demand」). 실행 창에 이 이름을 넣어 여는 차례를 적은 문서는 찾지 못했다 — `.msc` 콘솔 파일을 실행 창에서 여는 일반 규칙은 위 「(phase 80 step 8) … MMC와 실행 이름」 항목이다.
+  Hyper-V 관리자는 Hyper-V 관리 도구를 설치할 때 함께 들어가고(역할 전체를 설치하든 도구만 설치하든), Windows Server에서 도구만 설치하려면 「기능 선택」의 원격 서버 관리 도구 → 역할 관리 도구 → Hyper-V 관리 도구를 고른다. 처음에는 로컬 컴퓨터도 목록에 없어, 왼쪽 창의 「Hyper-V 관리자」를 오른쪽 클릭 → 「서버에 연결」 → 「로컬 컴퓨터」를 고른다(「Remotely manage Hyper-V hosts…」)
+- **쓰면 얻는 것**(「Hyper-V virtualization…」 첫머리와 「Benefits of Hyper-V」): 첫머리는 가상화로 **하드웨어 사용률을 최대로 높이고**, IT 운영을 간소화하고, **업무 연속성**을 높인다고 하고, 서버 통합과 개발·테스트 환경을 쓰임으로 든다. 「Benefits」의 항목 —
+  **비용 최적화**(서버 통합으로 하드웨어 구입·**유지 관리 비용**(maintenance costs)을 줄이고 데이터 센터 공간·전력·냉각 요구를 낮춘다, Windows Server·Windows에 들어 있어 하이퍼바이저 라이선스 비용이 따로 들지 않는다), 운영 효율성, 비즈니스 민첩성, 보안 강화(작업을 서로 떼어 놓는다),
+  **복원력 향상**(고가용성 기능으로 가동 중지 시간을 줄이고, Hyper-V 복제본으로 재해 복구를 하고, 실시간 마이그레이션으로 업무 연속성을 지킨다), **개발 가속**(개발·테스트 환경을 빨리 만든다), 규정 준수 간소화. 「Benefits for developers and IT professionals」: 하드웨어를 따로 두지 않고 여러 운영 체제에서 시험하고, 바꾸기 전에 VM의 스냅샷을 떠 두면 실험과 되돌리기의 안전망이 된다
+- **가상 컴퓨터를 만드는 차례와 갖는 것**(「Create a virtual machine in Hyper-V」): 갖출 것 — Hyper-V를 켠 컴퓨터, 로컬 Administrators나 Hyper-V Administrators 그룹, VM에 나눠 줄 호스트의 물리 메모리, VM 구성 파일과 가상 하드 디스크를 둘 디스크 공간, (네트워크가 필요하면) 가상 스위치.
+  Hyper-V 관리자에서 서버를 고르고 「작업」 창 「새로 만들기」 → 「가상 머신」 → **새 가상 머신 마법사**: 「이름 및 위치 지정」(VM 이름과 구성 파일 위치) → 「세대 지정」 → 「메모리 할당」(시작할 때 줄 메모리) → 「네트워킹 구성」(VM을 이을 가상 스위치) → 「가상 하드 디스크 연결」(새로 만들기·기존 `.vhd`/`.vhdx` 쓰기·나중에 연결) → 「설치 옵션」(운영 체제를 나중에, 또는 `.iso` 같은 부팅 이미지에서) → 「요약」 → 「마침」.
+  PowerShell은 `New-VM`(`-MemoryStartupBytes`·`-VHDPath`나 `-NewVHDPath`·`-Generation`·`-Switch` 같은 매개 변수 — 문서 예: 메모리 4GB, `.vhdx`, 2세대, 외부 스위치). 만든 뒤 VM을 오른쪽 클릭 → 「연결」 → 가상 머신 연결 창에서 「시작」. 가상 네트워크 어댑터는 VM을 가상 스위치에 잇는 가상화한 NIC다(「Hyper-V features and terminology」 「Virtual network adapter」)
+- **한 호스트의 여러 VM**(「Hyper-V maximum scale limits」 「Maximums for Hyper-V hosts」): 서버 하나에서 **동시에 실행할 수 있는 VM은 1,024개까지**다 — Windows Server 2025·2022·2019·2016 탭이 모두 같은 값이다. 가상 스위치 수는 Hyper-V가 한도를 두지 않는다.
+  「가상 컴퓨터를 많이 쓸수록 물리 서버의 하드웨어 사용률이 낮아진다」를 반박하는 문장은 따로 없다 — 위 「쓰면 얻는 것」(통합으로 사용률을 높인다)에서 이어서 나오는 말로 쓴다
+- **가상 하드 디스크**(「Hyper-V features and terminology」 「Virtual hard disks」): VM의 하드 드라이브 노릇을 하는 **파일**이다. 형식은 둘 — **VHD**(원래 형식)와 **VHDX**(새 형식 — 더 큰 용량, 더 나은 성능, 데이터 손상 보호, VM이 켜진 채 크기 바꾸기, 4KB 논리 섹터, 자동 정렬). 차이 디스크(부모 디스크를 바탕으로 바뀐 것만 따로 담아 부모를 그대로 두는 디스크)도 있다.
+  **최대 크기**: 「Hyper-V maximum scale limits」의 VM 표는 **VHDX 64 TB, VHD 2,040 GB**로 적고(네 판 모두), 「Hyper-V features and terminology」는 VHD를 「2TB까지」로 적는다 — 두 문서가 VHD의 값을 달리 적으므로 본문은 표의 2,040 GB를 쓴다(2TB라는 말도 문서에 있다는 것은 쓸 때 한 줄).
+  `New-VHD`는 VHD나 VHDX 형식의 새 가상 하드 디스크를 만들고, **파일 이름의 확장자(`.vhd`·`.vhdx`)가 형식을 정한다**(「Description」). 지난 판 「Hyper-V Virtual Hard Disk Format Overview」(2012 R2·2012): VHDX는 Windows Server 2012의 Hyper-V에서 처음 나온 VHD의 새 판이고 64 TB까지 담으며 정전 때 데이터 손상을 막는다 — 지금 판의 위 줄과 맞다
+- **세대**(「Should I create a generation 1 or 2…」, 「Hyper-V features and terminology」 「Virtual machine generations」): 1세대는 레거시 BIOS 펌웨어로 옛 하드웨어 흉내(IDE 컨트롤러 등)를 쓰고, 2세대는 UEFI 펌웨어로 보안 부팅·SCSI 부팅 같은 기능을 쓴다. 특별한 까닭이 없으면 2세대를 권하고, **만든 뒤에는 세대를 바꿀 수 없다**.
+  부팅 볼륨 최대 — 2세대 64 TB(.VHDX), 1세대 .VHDX 2 TB·.VHD 2040 GB. 「Create a virtual machine」의 `-Generation` 설명은 VHD에는 1세대, VHDX에는 2세대를 쓰라고 한다. 지금 판 「Features Removed…」의 Windows Server 2028(Preview) 탭 — 2028을 게스트로 쓰는 VM은 2세대여야 한다(위 「(phase 81 step 0)」 줄)
+- **가상 스위치**(「Hyper-V features and terminology」 「Virtual switch」, 「Plan for Hyper-V networking…」): VM끼리, 그리고 VM과 바깥 네트워크가 통신하게 하는 **소프트웨어로 된 네트워크 스위치**다. 종류는 셋 —
+  **외부**(External — 호스트의 물리 네트워크 어댑터에 묶여 VM을 유선 물리 네트워크에 잇는다), **내부**(Internal — 그 스위치가 있는 호스트에서 도는 VM끼리, 그리고 호스트와 VM 사이만 잇고 바깥 네트워크와는 잇지 않는다), **프라이빗**(Private — 같은 호스트의 VM끼리만 잇고, 호스트와 VM 사이도 바깥 네트워크도 잇지 않는다).
+  만드는 자리(「Create and configure a virtual switch…」): Hyper-V 관리자 「작업」 창 → **「가상 스위치 관리자」** → 스위치 종류를 고르고 「가상 스위치 만들기」 → 이름을 넣고, 외부면 쓸 네트워크 어댑터(NIC)를 골라 「확인」(네트워크 연결이 잠시 끊길 수 있다는 경고에 「예」), 내부·프라이빗이면 「확인」. Hyper-V 역할을 설치할 때 함께 만들 수도 있다(위 설치 마법사의 「가상 스위치 만들기」 페이지).
+  외부 스위치는 관리 운영 체제(호스트)가 같은 네트워크 어댑터를 함께 쓰게 할 수 있다(「Management Operating System sharing」). PowerShell: `New-VMSwitch -Name <이름> -NetAdapterName <어댑터 이름>`이 외부 스위치를, `New-VMSwitch -Name <이름> -SwitchType Internal`(또는 `Private`)이 내부·프라이빗 스위치를 만든다 — `-SwitchType`이 받는 값은 Internal과 Private뿐이고, 외부 스위치는 `-NetAdapterName`(또는 `-NetAdapterInterfaceDescription`)을 주면 그것으로 정해진다(`New-VMSwitch` 「-SwitchType」).
+  스위치의 뜻은 phase 72의 `hub-switch-vlan` 항목(IEEE 802.1D 등)과 맞춘다
+- **한국어 이름**: 한국어판은 「Hyper-V 관리자」, 「하이퍼바이저」, 「루트 파티션」·「자식 파티션」, 「게스트 운영 체제」·「호스트 운영 체제」, 「가상 스위치 관리자」, 「가상 스위치 만들기」, 스위치 종류 「외부」·「내부」·「프라이빗」(「Create and configure a virtual switch…」 한국어판은 한 곳에서 「비공개」로도 옮긴다), 마법사 페이지 「이름 및 위치 지정」·「메모리 할당」·「네트워킹 구성」·「가상 하드 디스크 연결」·「설치 옵션」·「요약」으로 옮긴다.
+  virtual machine은 한국어판 대부분이 「가상 머신」으로 옮기고(개요 23번·만들기 55번·검사점 43번), 「가상 머신 내보내기 및 가져오기」 본문과 「1세대 또는 2세대」 문서는 「가상 컴퓨터」를 섞어 쓴다(본문 6번·20번). 만들기 문서 한국어판은 마법사 이름을 「새 Virtual Machine 마법사」로 반만 옮긴다.
+  **고른 이름**: 「가상 컴퓨터」(virtual machine) — guide.md가 정한 이름이고 기출이 Hyper-V 문항 셋([기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33])에서 쓰는 이름이며 한국어판도 쓴다. 본문은 처음 쓸 때 「가상 머신(VM)이라고도 부른다」를 한 줄 밝히고, 화면 이름은 문서가 보이는 「새 가상 머신 마법사」·「가상 머신 연결」처럼 한국어판의 표기를 쓴다.
+  「가상 스위치」, 스위치 종류는 「외부」·「내부」·「프라이빗」(guide.md의 「개인」 대신 — 한국어판 어디에도 「개인」이 없다), 「가상 하드 디스크」, 「호스트」·「게스트」. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 11, 2026-11-19 IPv4로 다시 받아 확인 — 「Plan for Hyper-V networking in Windows Server」 `updated_at` 2026-02-16·한국어판 2026-07-17, 「Create and configure a virtual switch with Hyper-V」 2026-02-16·한국어판 2026-02-16) **가상 스위치와 가상 네트워크 어댑터**(「Plan…」 「Hyper-V networking basics」):
+  가상 스위치는 이더넷 네트워크에 이어지고 가상 네트워크 어댑터는 가상 스위치의 포트에 이어져 VM이 네트워크를 쓰게 한다. VM을 만들어 가상 스위치에 이으면 가상 네트워크 어댑터가 저절로 더해진다. 가상 스위치는 모두 Hyper-V 호스트에 딸리고, 가상 네트워크 어댑터 하나는 VM 하나에만 딸린다.
+  **관리 운영 체제의 어댑터 공유**(「Plan…」 「Virtual switch options」의 설정 「Allow management operating system to share this network adapter」, 「Create and configure…」 「Management Operating System sharing」): 외부 가상 스위치는 VM을 외부 네트워크에 잇고, 이 설정을 켜면 Hyper-V 호스트(관리 운영 체제)도 그 가상 스위치와 NIC를 VM과 함께 쓴다.
+  Hyper-V 관리자 「가상 스위치 관리자」에서 스위치를 골라 이 확인란을 켜거나 `Set-VMSwitch -Name <이름> -AllowManagementOS $true`로 켠다. 기본으로 켜져 있는지는 두 문서에 없다 — 본문은 「허용할 수 있다」까지만 쓴다.
+  한국어판은 이 설정을 「이 네트워크 어댑터를 공유하는 관리 운영 체제 허용」(「Plan…」)과 「관리 운영 체제에서 이 네트워크 어댑터를 공유하도록 허용」(「Create and configure…」)으로 달리 옮긴다 — 본문은 화면 이름을 인용하지 않고 하는 일로 쓴다.
+  쓰인 곳: `windows-hyperv.virtual-switch`(소개 문단의 어댑터·스위치 관계, 「네트워킹 구성」에서 스위치를 고르면 저절로 더해지는 어댑터, 외부 스위치에서 호스트도 어댑터를 함께 쓰는 것), 도식 `virtual-switch-types`의 「외부」 시나리오에서 호스트가 선명한 근거
+
+쓰인 곳: (phase 81 step 10·11에서 쓰일 곳) `windows-hyperv.hyper-v`(Hyper-V의 정의, 하이퍼바이저·파티션, 호스트와 게스트, 설치 두 자리와 하드웨어 요구 한 줄, Hyper-V 관리자와 `virtmgmt.msc`, 쓰면 얻는 것), `windows-hyperv.virtual-machines`(새 가상 머신 마법사가 정하는 것, 가상 장치, 한 호스트 1,024개, VHD·VHDX와 최대 크기·확장자, 세대 한 줄),
+`windows-hyperv.virtual-switch`(세 종류와 잇는 범위, 가상 스위치 관리자, `New-VMSwitch`), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33]·[기출 2025-02-23 #30]·[기출 2026-05-17 #45])
+
+## (phase 81 step 9) Microsoft Learn — 검사점·내보내기와 가져오기: Use checkpoints, Export and import virtual machines, Checkpoint-VM
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/checkpoints
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/checkpoint-vm?view=windowsserver2025-ps
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Use checkpoints」 `updated_at` 2025-09-22(`ms.date` 2024-07-31, 「Applies to」 Windows Server 2025~2016·Windows 11·10·Azure Local 2311.2 이후) — guide.md가 든 옛 주소(`manage/choose-between-standard-or-production-checkpoints-in-hyper-v`, `manage/enable-or-disable-checkpoints-in-hyper-v`, `virtualization/hyper-v-on-windows/user-guide/checkpoints`)는 모두 이 문서로 넘어온다.
+「Export and import virtual machines」 2025-09-22(2015-05-14, 같은 판들), `Checkpoint-VM` 2025-05-14(2016-12-20). 한국어판 「검사점 사용」 2026-01-21, 「가상 머신 내보내기 및 가져오기」 2026-01-21. 검사점의 두 종류는 위 항목의 「Hyper-V features and terminology」 「Checkpoints」에도 있다.
+
+- **검사점**(checkpoint): 만든 순간의 VM 상태를 기록해 두었다가, 뒤에 그 기록을 써서 VM을 그 순간으로 돌려놓는 기능이다 — 시험·개발과 문제가 생긴 뒤의 복구에 쓴다(「Hyper-V features and terminology」 「Checkpoints」). 쓰는 때는 설정 변경, 업데이트 적용, 새 소프트웨어 설치처럼 VM을 바꾸기 직전이다 — 바꾼 뒤 문제가 생기면 검사점 시점으로 VM을 되돌린다(「Use checkpoints」 첫머리)
+- **두 종류**(「Use checkpoints」 첫머리, 「Hyper-V features and terminology」): **표준 검사점**(Standard) — 검사점을 시작한 때의 VM과 **VM 메모리 상태**의 스냅샷을 뜬다(켜져 있든 꺼져 있든 메모리·디스크·장치 상태를 붙잡는다). 응용 프로그램이 일관된 상태를 보장하지 않아 테스트·개발에 맞다.
+  **프로덕션 검사점**(Production) — Windows 게스트에서는 볼륨 섀도 복사본 서비스(VSS), Linux 게스트에서는 파일 시스템 고정(File System Freeze)을 써서 데이터가 맞는 상태의 백업을 만들고, **메모리 상태는 스냅샷하지 않는다**. 실제 운영 환경에 맞다.
+  **기본값은 프로덕션 검사점**이고 Hyper-V 관리자나 PowerShell로 바꾼다. 판: Windows 10보다 앞선 Hyper-V는 표준 검사점(옛 이름 스냅샷)만 제공했다 — 문서 문장은 「Windows 10·11의 Hyper-V에 두 종류가 있다」로 쓰지만 같은 페이지의 「Applies to」는 Windows Server 2016~2025를 든다. 이 문서와 지금 판 문서에서 「Windows Server 2016부터」라고 판을 적은 문장은 찾지 못했다
+- **종류 바꾸기**: Hyper-V 관리자 → VM 오른쪽 클릭 → 「설정」 → 「관리」 아래 「검사점」 → 종류를 고른다. PowerShell `Set-VM -Name <VM 이름> -CheckpointType Standard`(표준), `Production`(프로덕션 — 실패하면 표준 검사점을 대신 만든다), `ProductionOnly`(프로덕션 — 실패하면 만들지 않는다). 같은 설정 화면의 「검사점 사용」 확인란은 기본으로 켜져 있다(「Enable or disable checkpoints」).
+  자동 검사점(VM을 시작할 때 저절로 만들고 멈출 때 병합한다)은 고를 수 있는 기능이다(「Hyper-V features and terminology」)
+- **만들기**: Hyper-V 관리자에서 VM 이름을 오른쪽 클릭 → **「검사점」** → 끝나면 Hyper-V 관리자의 「검사점」 칸에 나타난다. PowerShell `Checkpoint-VM -Name <VM 이름>`, 목록은 `Get-VMCheckpoint -VMName <VM 이름>`. 기본 이름은 VM 이름에 만든 날짜·시각을 붙인 것이다(「Renaming checkpoints」 — 100자까지)
+- **되돌리기 — 적용**(「Applying checkpoints」): 「가상 머신」에서 VM을 고르고 「검사점」 칸의 검사점을 오른쪽 클릭 → **「적용」** → 대화 상자의 셋 가운데 — 「검사점 만들기 및 적용」(앞 검사점을 적용하기 전에 지금 상태로 새 검사점을 하나 더 만든다), 「적용」(고른 검사점만 적용하고 되돌릴 수 없다), 「취소」.
+  PowerShell `Restore-VMCheckpoint -Name <검사점 이름> -VMName <VM 이름> -Confirm:$false`. 문서의 실습: **표준 검사점을 적용하면** 검사점을 만든 때와 똑같은 상태로 돌아와, 그때 열려 있던 메모장과 저장하지 않은 글까지 그대로 있다. **프로덕션 검사점을 적용하면** VM이 꺼진 상태가 되고, 켜서 들어가면 저장했던 파일은 돌아와 있지만 메모장은 열려 있지 않다
+- **파일**(「Deleting checkpoints」·「Configure checkpoint location」): 검사점은 VM의 `.vhdx` 파일과 같은 곳에 **`.avhdx` 파일**로 저장된다. 검사점을 지우면 Hyper-V가 `.avhdx`와 `.vhdx`를 병합하고 `.avhdx`를 지운다 — `.avhdx`를 직접 지우지 마라. 검사점을 지우면 호스트의 공간을 되찾는다.
+  검사점 구성 파일·저장 상태 파일의 위치는 검사점이 없을 때 「검사점 파일 위치」에서 바꿀 수 있다
+- **백업과의 관계**: 스냅샷(표준 검사점)은 **전체 백업이 아니며**, Active Directory처럼 노드 사이에 데이터를 복제하는 시스템에서는 데이터가 어긋나는 문제를 일으킬 수 있다(「Use checkpoints」 첫머리의 표준 검사점 줄). 검사점을 **내보내면** VM으로 묶여 다른 위치로 옮겨지고, 가져오면 VM으로 복원되며, 내보낸 검사점은 백업에 쓸 수 있다(「Exporting checkpoints」)
+- **옛 이름 스냅샷**: Windows 10보다 앞선 Hyper-V의 표준 검사점을 스냅샷이라고 불렀다(위 줄). Hyper-V PowerShell 모듈에는 별칭이 있어 checkpoint와 snapshot을 서로 바꿔 쓸 수 있다(「Use checkpoints」 Note)
+- **내보내기**(export, 「Export and import virtual machines」): VM을 옮기거나 복사하는 빠른 방법이다. 내보내기는 필요한 파일 — **가상 하드 디스크 파일, VM 구성 파일, 검사점 파일** — 을 한 단위로 모은다. VM이 켜져 있어도 꺼져 있어도 할 수 있다. Hyper-V 관리자에서 VM 오른쪽 클릭 → 「내보내기」 → 저장할 위치 → 「내보내기」, PowerShell `Export-VM -Name <VM 이름> -Path <경로>`
+- **가져오기**(import): 내보낸 VM을 Hyper-V 호스트에 등록해 그 호스트에서 쓰게 한다 — 원래 호스트로도 새 호스트로도 가져올 수 있다. 「작업」 메뉴 「가상 머신 가져오기」 → 내보낸 파일이 든 폴더 → 가져올 VM → **가져오기 형식** — 제자리에 등록(파일을 지금 있는 곳에서 그대로 쓰고 ID를 지킨다)·VM 복원(고른 위치로 복사하고 ID를 지킨다)·VM 복사(고른 위치로 복사하고 **새 ID**를 준다 — 같은 호스트에 여러 번 가져올 수 있다) → 「마침」. PowerShell `Import-VM`.
+  VM 구성에는 판 번호가 있어 더 새 Hyper-V에서 만든 VM을 옛 Hyper-V로 가져올 수는 없다
+- **기출 오답의 이름**: 「롤백」은 개요 문서(위 항목 「Benefits for developers…」)가 스냅샷의 쓰임(실험과 되돌리기)을, 「Hyper-V features and terminology」가 검사점으로 그 시점에 되돌아가는 일(roll back)을 말할 때 쓰는 낱말일 뿐 Hyper-V 기능의 이름이 아니다.
+  「타임머신」·「새로 고침」이라는 이름의 Hyper-V 기능은 이 항목과 이 step의 다른 항목에서 읽은 Hyper-V 문서 어디에도 없다
+- **한국어 이름**: 한국어판은 「검사점」(「검사점 사용」 한국어판에서 119번 — 「체크포인트」는 내보내기 문서 한국어판에 한 번), 「표준 검사점」·「프로덕션 검사점」, 「적용」·「검사점 만들기 및 적용」, 옛 이름은 「스냅샷」, 「내보내기」·「가져오기」·「가상 머신 가져오기」(같은 문서 본문은 「가상 컴퓨터 내보내기」·「가상 컴퓨터 가져오기」로도 옮긴다)로 옮긴다.
+  **고른 이름**: 「검사점」(checkpoint — 한국어판의 표기이고 기출 둘이 쓰는 이름), 「표준 검사점」·「프로덕션 검사점」, 「적용」, 「내보내기」·「가져오기」. 옛 이름은 한국어판 표기 「스냅샷」(snapshot — guide.md의 「스냅숏」 대신, 한국어판의 표기다). **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 11, 2026-11-19 다시 받아 확인 — 같은 판) **적용 뒤의 변경**(「Use checkpoints」 「Applying checkpoints」·「Using standard checkpoints」·「Using production checkpoints」): 「검사점 만들기 및 적용」은 앞 검사점을 적용하기 전에 VM의 새 검사점을 하나 만든다.
+  두 실습 모두 검사점을 만든 뒤 VM 바탕 화면의 텍스트 파일을 지우고 검사점을 적용하면 그 파일이 다시 있음을 보인다 — 적용하면 검사점 뒤의 변경이 남지 않는다는 것은 이 실습과 첫머리(검사점을 만든 때의 상태로 VM을 되돌린다)에서 이어서 나오는 말이다.
+  쓰인 곳: `windows-hyperv.checkpoints`(적용 문단, 예시의 넷째 단계), 도식 `checkpoint-apply`의 「적용」 시나리오와 캡션
+
+쓰인 곳: (phase 81 step 11에서 쓰일 곳) `windows-hyperv.checkpoints`(정의, 두 종류와 기본값·판, 종류 바꾸기, 만들기·적용과 대화 상자, 두 종류를 적용했을 때의 차이, `.avhdx`, 전체 백업이 아니라는 것, 옛 이름, 내보내기·가져오기와의 차이), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2026-05-17 #45]·[기출 2026-08-02 #45])
+
+## (phase 81 step 9) Microsoft Learn — 실시간 마이그레이션·저장소 마이그레이션·Hyper-V 복제본: Live Migration Overview, Set up hosts for live migration without Failover Clustering, Use live migration without Failover Clustering to move a virtual machine, Move-VM, Move-VMStorage, Hyper-V Replica overview, Enable Hyper-V Replica on a single host, Replicate a virtual machine with Hyper-V Replica, Enable-VMReplication; 지난 판 Virtual Machine Storage Migration Overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/live-migration-overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/set-up-hosts-for-live-migration-without-failover-clustering
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/use-live-migration-without-failover-clustering-to-move-a-virtual-machine
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/move-vm?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/move-vmstorage?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/replication-overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/configure-replication-single-host
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/replication-virtual-machines
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/enable-vmreplication?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831656(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」는 모두 Windows Server 2025~2016·Azure Local 2311.2 이후 — Windows 11·10이 없다): 「Live Migration Overview」 `updated_at` 2025-09-22(`ms.date` 2017-06-27), 「Set up hosts for live migration…」 2025-10-28(2025-08-14), 「Use live migration…」 2025-09-22(2025-02-19),
+「Hyper-V Replica overview」 2026-02-16(2025-11-10 — 옛 주소 `manage/set-up-hyper-v-replica`가 이리로 넘어온다), 「Enable Hyper-V Replica on a single host」·「Replicate a virtual machine with Hyper-V Replica」 2026-11-16(2026-04-28), `Move-VM`·`Move-VMStorage`·`Enable-VMReplication` 2025-05-14(2016-12-20).
+지난 판 「Virtual Machine Storage Migration Overview」 2021-11-12(`ms.date` 2016-10-25, 「Applies To」 Windows Server 2012 R2·2012). 한국어판도 받았다(「실시간 마이그레이션 개요」 2026-01-21, 「Hyper-V 복제본 개요」 2026-02-16 등 — 지난 판과 PowerShell 문서는 영문 그대로). 위 첫 항목의 「Hyper-V features and terminology」 「Live migration」·「Storage migration」·「Replication」 절도 함께 썼다.
+
+- **실시간 마이그레이션**(live migration, 「Live Migration Overview」 첫머리): Windows Server의 Hyper-V 기능이고, **실행 중인 VM을 한 Hyper-V 호스트에서 다른 호스트로, 사용자가 느낄 만한 가동 중지 없이** 옮긴다. 가장 큰 이점은 실행 중인 VM이 한 호스트에 묶이지 않는다는 것 — 호스트를 폐기하거나 업그레이드하기 전에 그 호스트의 VM을 모두 다른 호스트로 비울 수 있다. 장애 조치 클러스터와 함께 쓰면 고가용성 시스템을 만든다.
+  「Hyper-V features and terminology」 「Live migration」: 부하 분산·하드웨어 점검·재해 복구에 쓰고, 네트워크(SMB나 TCP/IP, RDMA)로 옮기며, **Windows Server의 Hyper-V에만 있다**. 같은 클러스터의 호스트 사이나 독립 실행형 호스트 사이로 옮긴다. 개요 「High availability…」: 서비스를 멈추지 않고 계획된 점검을 하게 한다. Windows Server 2016부터 장애 조치 클러스터 없이도 쓴다(「Live Migration in Windows Server 2016」)
+- **공유 없는 실시간 마이그레이션**(shared nothing live migration, 개요 「High availability…」): 공유 저장소 없이 VM을 호스트 사이로 옮긴다 — 저장소 구성이 다른 호스트 사이나 멀리 떨어진 사이트 사이에서. `Move-VM`은 VM을 새 Hyper-V 호스트로 옮기고(「Description」), `Move-VM LMTest TestServer02 -IncludeStorage -DestinationStoragePath D:\LMTest`는 VM을 대상 서버로 옮기면서 가상 하드 디스크와 검사점·스마트 페이징 파일 같은 다른 파일도 대상 서버의 그 폴더로 옮긴다(「Use live migration…」 PowerShell 예)
+- **옮기는 차례**(「Use live migration…」): 서버 관리자 「도구」 → 「Hyper-V 관리자」 → 서버를 고른다 → 「가상 머신」 창에서 VM 오른쪽 클릭 → **「이동」** → **이동 마법사** → 이동 종류·대상 서버·옵션을 고른다 → 「요약」 → 「마침」. **마법사가 보이는 이동 종류의 화면 이름은 이 문서와 Microsoft Learn 검색 어디에서도 찾지 못했다** — 본문은 「이동 마법사에서 이동 종류를 고른다」까지만 쓴다
+- **요구**(「Set up hosts for live migration…」 「Requirements…」, 「Use live migration…」): 원본·대상 서버 모두 Hyper-V 역할, 같은 Active Directory 도메인이나 서로 트러스트하는 도메인, 양쪽 서버의 로컬 Hyper-V Administrators나 Administrators 그룹, Windows Server 2012 R2 이후 호스트 사이. 실시간 마이그레이션 트래픽은 **암호화하지 않고** 보내므로 믿을 수 있는 사설 네트워크로 떼어 두라고 권한다.
+  설정 자리는 Hyper-V 관리자 「작업」 창 「Hyper-V 설정」 → 「실시간 마이그레이션」(위 첫 항목의 설치 마법사 「가상 머신 마이그레이션」 페이지에서도 정한다). 프로세서: 프로세서 호환성 모드를 켜면 **같은 제조사 계열 안에서** 프로세서 모델이 다른 호스트 사이로 옮길 수 있다(「Hyper-V features and terminology」 「Processor compatibility」) —
+  호환성을 켜지 않은 VM에 스냅샷이 있으면 프로세서 판이 다른 호스트로 옮기기가 실패한다(「Use live migration…」 문제 해결). 인증 방식(CredSSP·Kerberos 제한된 위임)과 성능 옵션은 쓰지 않는다
+- **저장소 마이그레이션**(storage migration, 「Hyper-V features and terminology」 「Storage migration」): **VM의 저장소 파일(가상 하드 디스크 같은 것)을 가동 중지 없이 한 위치에서 다른 위치로** 옮긴다. 다른 저장 장치로 옮기기, 저장 성능 다듬기, 저장소 다시 배치에 쓰고, **Windows Server의 Hyper-V에만 있다**. 개요 「High availability…」: 서로 다른 저장소 배열 사이로 가동 중지 없이 옮겨 저장소 업그레이드와 부하 분산을 돕는다.
+  `Move-VMStorage`는 **VM의 저장소를 옮긴다**(「Description」) — `-DestinationStoragePath`(VM의 모든 저장소를 한 경로로), `-VirtualMachinePath`(구성 파일과 그에 딸린 메모리 파일), `-SnapshotFilePath`(스냅샷 파일), `-SmartPagingFilePath`, `-Vhds`(가상 하드 디스크마다 따로 정한 위치). 예 1: `Move-VMStorage "Test VM" -DestinationStoragePath D:\TestVM`은 그 VM에 딸린 모든 파일을 `D:\TestVM`으로 옮긴다.
+  **VM은 같은 호스트에 남는다** — `Move-VMStorage`에는 대상 호스트를 정하는 매개 변수가 없고(`Move-VM`의 `-DestinationHost`와 견준다), 지난 판 개요가 실행 중인 VM을 새 저장소로 옮긴다고 쓴다. 한 문장으로 「같은 호스트에 남는다」를 적은 곳은 찾지 못했다 — 이 둘에서 이어서 나오는 말이다.
+  Hyper-V 관리자에서는 VM 오른쪽 클릭 → 「이동」(이동 마법사)에서 이동 종류를 고르는 데까지만 문서가 보인다(위 줄)
+- **지난 판 「Virtual Machine Storage Migration Overview」(Windows Server 2012 R2·2012)**: Windows Server 2008 R2에서는 실시간 마이그레이션으로 실행 중인 VM을 옮길 수 있었지만 VM이 실행 중일 때 저장소는 옮길 수 없었다. **Windows Server 2012의 Hyper-V부터 VM이 실행되는 채로 저장소를 옮긴다** — Hyper-V 관리자의 마법사나 PowerShell cmdlet으로. 가장 흔한 까닭은 Hyper-V가 쓰는 물리 저장소를 새로 바꾸는 것이고, 저장소 처리량의 병목으로 성능이 떨어질 때 실행 중에 다른 장치로 옮기기도 한다.
+  요구: VM이 가상 하드 디스크만 저장소로 쓸 것(물리 디스크에 직접 붙은 저장소가 있으면 옮길 수 없다). **옮기는 차례**: 옮기는 동안 대부분의 디스크 읽기·쓰기는 원본 가상 하드 디스크로 간다 → 그동안 디스크 내용을 대상의 새 가상 하드 디스크로 복사한다 → 첫 복사가 끝나면 디스크 쓰기를 원본과 대상 둘 다에 거울처럼 쓰면서 남은 변경을 옮긴다 → 둘이 완전히 같아지면 VM이 대상 디스크를 쓰도록 바뀐다 → 원본 디스크를 지운다.
+  지금 판 문서에서 이 차례를 적은 곳은 찾지 못했고, 지금 판(「Hyper-V features and terminology」)은 같은 기능을 「가동 중지 없이」로 말한다
+- **Hyper-V 복제본**(Hyper-V Replica, 「Hyper-V Replica overview」 첫머리): Windows Server의 Hyper-V에 들어 있는 기능으로, 업무 연속성·재해 복구(BCDR)를 위해 Hyper-V 호스트 사이에 VM을 복제한다. 보조 호스트(세 번째 호스트까지 넓힐 수 있다)에 VM의 **오프라인 사본**을 만들어 두고 맞춰 두다가, 주 호스트가 실패하면 장애 조치에 쓴다. **Windows 클라이언트의 Hyper-V에는 없다**.
+  하나의 VM이 서로 다른 호스트에 두 개로 있다 — 활발히 실행되는 **주 VM**(primary VM)과 그 오프라인 사본인 **복제본 VM**(replica VM)(「How Hyper-V Replica works」). 장애 조치 클러스터와 다르다 — 클러스터는 공유 저장소의 VM을 다른 노드에서 다시 시작해 로컬 고가용성을 주고, 복제본은 다른 호스트에 VM 저장소의 비동기 사본을 둔다(첫머리 둘째 문단)
+- **복제본 서버와 주 서버**(「Enable Hyper-V Replica on a single host」): 복제를 **받는 쪽** 호스트를 구성한다 — Hyper-V 관리자에서 그 호스트를 고르고 「작업」 → 「Hyper-V 설정」 → 「복제 구성」 → **「이 컴퓨터를 복제본 서버로 사용」** 확인란 → 인증과 포트(Kerberos(HTTP, 기본 80번)나 인증서 기반(HTTPS, 기본 443번)) → 권한 부여와 저장소(인증에 성공한 모든 주 서버에서 받기, 또는 정한 주 서버에서만 받기 — 복제된 가상 하드 디스크를 둘 위치).
+  Hyper-V 역할을 설치하면 Windows 방화벽에 HTTP(80)·HTTPS(443) 예외가 만들어지지만 기본으로 켜져 있지는 않다
+- **복제 켜기와 복제 빈도**(「Replicate a virtual machine with Hyper-V Replica」): 주 호스트의 Hyper-V 관리자에서 VM 오른쪽 클릭 → **「복제 사용」** → 「복제본 서버 지정」 → 연결 매개 변수 → 「복제 VHD 선택」(빼 둘 디스크) → **「복제 빈도 구성」 — 30초·5분·15분 가운데 하나** → 「추가 복구 지점 구성」(최신 복구 지점만, 또는 시간마다 추가 복구 지점) → 「초기 복제 선택」(네트워크로 첫 사본 보내기가 기본, 외부 미디어, 복제본 서버의 기존 VM) → 요약 → 「마침」.
+  PowerShell `Enable-VMReplication`의 `-ReplicationFrequencySec`는 복제본 서버로 변경을 보내는 간격을 **초**로 정한다(「-ReplicationFrequencySec」 — 매개 변수 표의 기본값 칸은 None). 같은 문서의 PowerShell 예는 「복제 빈도 5분의 기본 설정」으로 복제를 켜고, 출력의 `FrequencySec`가 300이다 — **기본 복제 빈도가 5분이라는 것은 이 예에서만 확인했다**.
+  확장 복제(세 번째 호스트로)는 5분·15분만 고를 수 있다. 복구 지점은 기본이 최신 하나이고 시간마다 최대 24개까지 둔다(개요 「Plan for Hyper-V Replica」 표)
+- **복제가 동작하는 차례**(개요 「How Hyper-V Replica works」): 복제를 켜면 보조 호스트에 VM의 첫 사본을 만든다(네트워크나 외부 미디어로) → Hyper-V가 주 VM의 가상 하드 디스크에 생기는 변경을 따라가 같은 위치의 `.hrl` 파일에 적는다 → **정한 복제 간격(30초·5분·15분)마다** 변경을 보조 호스트로 보낸다 — **비동기**라 주 VM은 복제하는 동안 그대로 일한다 → 보조 호스트가 받은 변경을 복제본 VM의 가상 하드 디스크에 적용한다 →
+  주 호스트가 실패하면 복제본 VM으로 **장애 조치**(failover)를 시작해 복제본 VM이 새 주 VM이 된다(손으로나 스크립트로) → 주 호스트를 되살리면 **역방향 복제**로 그동안의 변경을 원래 주 VM에 돌려보낸다. 개요 「High availability…」(위 첫 항목의 「Hyper-V virtualization…」): 복구 시점 목표(RPO)를 30초까지 낮출 수 있다
+- **장애 조치의 두 갈래**(개요 「Key features」): **계획된 장애 조치**(planned failover) — 주 VM을 정상 종료하고 남은 변경을 복제한 뒤 복제본으로 넘어간다. **계획되지 않은 장애 조치**(unplanned failover) — 주 VM을 끄지 않고 복제본 VM을 시작하므로 **데이터 일부를 잃을 수 있다**.
+  「마지막 복제 뒤의 변경을 잃는다」를 한 문장으로 적은 곳은 찾지 못했다 — 복제가 정한 간격마다 비동기로 간다는 것과 계획되지 않은 장애 조치의 데이터 손실에서 이어서 나오는 말이다. 테스트 장애 조치의 차례는 쓰지 않는다
+- **한국어 이름**: 한국어판은 「실시간 마이그레이션」(「실시간 마이그레이션 개요」 제목 — 「Use live migration…」 한국어판은 「라이브 마이그레이션」으로 옮긴다), 「이동」·「이동 마법사」, 「스토리지 마이그레이션」(「Hyper-V features and terminology」 한국어판의 절 제목 — 지난 판 저장소 마이그레이션 문서의 한국어판은 번역되지 않았다), 「Hyper-V 복제본」·「주 VM」·「복제본 VM」·「복제본 서버」·「주 서버」,
+  「장애 조치(failover)」·「계획된 장애 조치」·「계획되지 않은 장애 조치」, 「복제 사용」, 「복제 빈도 구성」, 「복제 구성」, 「이 컴퓨터를 복제본 서버로 사용」으로 옮긴다.
+  **고른 이름**: 「실시간 마이그레이션」(live migration), 「저장소 마이그레이션」(storage migration — guide.md가 정한 개념 이름이고 기출이 「다른 저장소로 이동」이라는 낱말을 쓴다. 한국어판은 「스토리지 마이그레이션」으로 옮긴다는 것을 본문에서 한 줄 밝힌다), 「Hyper-V 복제본」(Hyper-V Replica), 「주 서버」·「복제본 서버」, 「복제 빈도」, 「장애 조치」·「계획된 장애 조치」·「계획되지 않은 장애 조치」. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 12, 2026-11-19 Microsoft Learn에서 다시 읽어 확인) **실시간 마이그레이션이 옮기는 것과 그 차례** — 지난 판 「Virtual Machine Live Migration Overview」(https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831435(v=ws.11), 「Applies To」 Windows Server 2012 R2·2012) 「Technical overview」:
+  옮기는 VM의 메모리를 대상 서버에 먼저 복사해 두는 방식이라 옮기는 시간이 짧고, 게스트 운영 체제는 자기가 옮겨지는 줄 모르므로 게스트에 따로 설정할 것이 없다. 차례는 여섯 단계로 적혀 있다 —
+  ① 원본 서버가 대상 서버와 연결을 맺고 VM의 구성 데이터를 넘기면, 대상 서버에 뼈대만 있는 VM이 세워지고 메모리가 마련된다 ② VM이 원본에서 계속 실행되는 동안 그 VM에 준 메모리를 네트워크로 대상에 복사하고, 그사이 VM이 바꾼 메모리 쪽(한 쪽은 4KB)을 표시해 두었다가 다시 보내는 일을 여러 번 되풀이한다(되풀이할수록 보낼 쪽이 준다)
+  ③ 남은 바뀐 쪽을 마저 보내고 VM의 CPU 상태와 장치 상태를 대상으로 넘긴다(이 단계 전에는 언제든 취소할 수 있다) ④ 가상 하드 디스크 같은 저장소를 다루는 권한을 대상 서버로 넘긴다 ⑤ 대상 서버에서 VM을 이어서 실행한다 ⑥ 네트워크 스위치에 메시지를 보내, VM으로 오가는 데이터가 맞는 스위치 포트로 가게 한다.
+  같은 문서 첫머리는 사용자가 VM을 쓰는 데 영향 없이 옮긴다고 하고, 「Requirements」는 두 서버가 하드웨어 가상화를 지원하고 **같은 제조사의 프로세서**(예: 모두 AMD나 모두 Intel)를 쓰며 같은 Active Directory 도메인이나 서로 트러스트하는 도메인에 속할 것, VM이 가상 하드 디스크(나 가상 Fibre Channel 디스크)만 쓸 것을 든다.
+  「shared nothing」 문단: 공유 저장소 없이 로컬 저장소만 쓰는 VM도 옮길 수 있고, 이때 VM의 저장소를 네트워크로 대상 서버에 맞춰 둔 뒤 VM을 옮기며 그동안 VM은 계속 실행되어 네트워크 서비스를 낸다. 끝나면 원본 서버의 파일을 지운다(같은 문서 끝의 다섯 단계 — 위 저장소 마이그레이션의 차례와 같은 꼴로 디스크를 먼저 맞춘다).
+  **지금 판에서 같은 차례를 적은 곳은 찾지 못했다.** 지금 판 「Set up hosts for live migration without Failover Clustering」(`updated_at` 2025-10-28) 「Step 2」의 성능 옵션 표는 TCP/IP·압축(기본)·SMB 세 옵션을 모두 **VM의 메모리를 대상 서버로 복사하는 방법**으로 적는다(압축은 메모리 내용을 압축한 뒤 TCP/IP로 복사) — 「메모리를 대상으로 복사한다」는 지금 판에서도 맞다. 인증 방식·성능 옵션을 고르는 법은 쓰지 않는다.
+  **전원을 끄고 옮기기와의 차이**는 이 문서들이 한 문장으로 견주지 않는다 — VM을 끄면 그 안의 게스트 운영 체제와 프로그램이 실행되지 않는다는 데서, 그리고 VM이 파일로 이루어져 옮기고 복사할 수 있다는 위 「(phase 81 step 9)」 첫 항목과 `windows-hyperv.virtual-machines` 본문에서 이어서 나오는 말이다.
+  `Move-VM`·`Move-VMStorage`의 예는 VM 이름(과 `Move-VM`은 대상 호스트 이름)을 매개 변수 이름 없이 앞에 적는다(위 줄의 `Move-VM LMTest TestServer02 …`, `Move-VMStorage "Test VM" -DestinationStoragePath D:TestVM`) — 본문의 `Move-VM VM01 HV02 -IncludeStorage -DestinationStoragePath D:VMs`와 `Move-VMStorage VM01 -DestinationStoragePath E:VMs`는 이 꼴에 예시 값을 넣은 것이다.
+  쓰인 곳: `windows-hyperv.live-migration`(정의 문단의 게스트가 모른다는 말, 옮기는 차례 문단, 요구 한 줄, 전원을 끄고 옮기기와의 차이, 예시의 둘째·셋째 단계), `windows-hyperv.storage-migration`(두 명령의 꼴), 도식 `live-migration`의 「옮기는 중」·「옮긴 뒤」 캡션
+
+쓰인 곳: (phase 81 step 12·13에서 쓰일 곳) `windows-hyperv.live-migration`(정의, 쓰는 때, Windows Server에만, 공유 없는 실시간 마이그레이션과 `Move-VM -IncludeStorage`, 이동 마법사, 요구 한 줄과 프로세서 제조사 계열), `windows-hyperv.storage-migration`(정의, 쓰는 때, 옮기는 파일과 `Move-VMStorage`, 같은 호스트에 남는다, Windows Server 2012부터와 옮기는 차례 — 지난 판),
+`windows-hyperv.hyper-v-replica`(정의, 주 VM·복제본 VM·복제본 서버, 복제 빈도 30초·5분·15분과 기본 5분, 비동기와 차례, 계획된·계획되지 않은 장애 조치, 장애 조치 클러스터와의 차이), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33])
+
+## (phase 81 step 9) Microsoft Learn — Windows 컨테이너·격리 모드·기본 이미지: About Windows containers, Containers vs. virtual machines, Isolation modes, Prepare Windows operating system containers, Overview of Windows Container Base Images, Windows container version compatibility; 지난 판 Install Nano Server (Windows Server 2016)
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
+https://learn.microsoft.com/en-us/previous-versions/windows-server/it-pro/windows-server-2016/get-started/getting-started-with-nano-server
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」는 모두 Windows Server 2025·2022·2019·2016): 「About Windows containers」 `updated_at` 2025-11-28(`ms.date` 2025-11-28), 「Containers vs. virtual machines」 2025-09-17(2025-01-22), 「Isolation modes」 2025-09-17(2025-01-23),
+「Prepare Windows operating system containers」 2025-09-17(2025-03-19 — 본문이 Windows 11·10에도 적용된다고 적는다), 「Overview of Windows Container Base Images」 2025-11-28(2025-11-28), 「Windows container version compatibility」 2025-09-17(2025-01-23).
+지난 판 「Install Nano Server」 2024-07-01(`ms.date` 2017-09-06, 「Applies to」 Windows Server 2016 — 옛 주소 `windows-server/get-started/getting-started-with-nano-server`가 이리로 넘어온다). 한국어판(`updated_at` 2026-10-21, 기계 번역)도 받았다.
+
+- **컨테이너**(「About Windows containers」 첫머리와 「How containers work」): Windows·Linux 앱을 꾸러미로 묶어, 회사 안 서버에서든 클라우드에서든 똑같이 돌게 하는 기술이다. 앱마다 가볍고 남과 떨어진 실행 공간을 주므로 앱을 만들고 내놓고 돌보는 일이 쉬워진다. 켜고 끄는 데 오래 걸리지 않아(**빨리 시작하고 멈춘다**) 수요가 바뀔 때 바로 늘리고 줄이기 좋고, 가벼우니 같은 장비에 더 많이 올려 장비를 알차게 쓴다.
+  컨테이너는 **호스트 운영 체제의 커널 위에서 돌며** 커널을 함께 쓰지만, 마음대로 닿지는 못하고 떨어진(경우에 따라 가상화된) 시스템 모습을 본다 — 예: 파일 시스템과 레지스트리의 가상화된 모습에 닿고, 바꾼 것은 그 컨테이너에만 미치며 **컨테이너가 멈추면 버려진다**(남기려면 파일 공유 같은 영구 저장소를 붙인다).
+  커널이 주지 않는 API·서비스(사용자 모드의 시스템 파일·라이브러리)는 컨테이너가 자기 사본을 가져야 하고, 이 파일들을 묶은 것이 **기본 이미지**다. Windows 10 1607 이후나 Windows Server 2016 이후에서 돈다(「Containers for developers」)
+- **커널**: 이 문서들은 커널을 「운영 체제의 땅속 배관」에 빗대는 데 그치고 정의하지 않는다 — 커널의 뜻은 phase 76의 Linux 항목(`linux-process-boot`)과 뜻을 맞춘다
+- **컨테이너 이미지**(「Container images」): **모든 컨테이너는 컨테이너 이미지에서 만든다**. 컨테이너 이미지는 겹겹이 쌓인 층(layer)으로 짜인 파일 묶음이고, 로컬 컴퓨터나 원격 컨테이너 레지스트리에 있다. 앱이 도는 데 필요한 사용자 모드 운영 체제 파일과 앱의 런타임·의존 항목·구성 파일을 담는다.
+  층으로 되어 있어 기본 이미지 대신 필요한 프레임워크를 이미 담은 다른 이미지(예: .NET 이미지)를 바탕으로 쓸 수 있다
+- **컨테이너와 VM**(「Containers vs. virtual machines」 표, 「About…」 「Containers vs. virtual machines」): VM은 **커널을 포함한 운영 체제 전체**를 돌려 CPU·메모리·저장소를 더 쓰고, 컨테이너는 운영 체제의 **사용자 모드 부분만** 돌려(앱에 필요한 서비스만 담을 수 있다) 자원을 덜 쓴다.
+  격리 — VM은 호스트와 다른 VM에서 완전히 떨어져 강한 보안 경계가 필요할 때 맞고, 컨테이너는 보통 가볍게 떨어질 뿐 VM만큼 강한 경계는 아니다(Hyper-V 격리로 높일 수 있다). 게스트 호환 — VM 안에는 거의 어떤 운영 체제든 돌고, 컨테이너는 호스트와 같은 판의 운영 체제에서 돈다(Hyper-V 격리면 같은 운영 체제의 이전 판도).
+  배포 — VM은 Windows Admin Center·Hyper-V 관리자(여럿이면 PowerShell·SCVMM), 컨테이너는 명령 줄의 Docker(여럿이면 오케스트레이터). 영구 저장소 — VM은 가상 하드 디스크(VHD), 컨테이너는 Azure 디스크·파일 공유. 부하 분산 — VM은 실행 중인 VM을 장애 조치 클러스터의 다른 서버로 옮기고, 컨테이너는 옮기지 않고 오케스트레이터가 노드에서 시작·중지한다.
+  컨테이너를 VM 안에서 돌리는 배포도 많다(클라우드에서 특히). 「시작 시간」·「크기」를 VM과 숫자로 견준 문장은 없다 — 컨테이너가 빨리 시작하고 멈춘다(위 첫 줄)와 VM이 자원을 더 쓴다(이 줄)까지만 쓴다
+- **두 격리 방식**(「Isolation modes」): Windows 컨테이너의 런타임 격리는 **프로세스 격리**와 **Hyper-V 격리** 둘이다. 두 방식의 컨테이너는 만들고 관리하고 동작하는 법이 같고 **같은 컨테이너 이미지**를 쓰며, 다른 것은 컨테이너·호스트 운영 체제·같은 호스트의 다른 컨테이너 사이를 얼마나 떼어 놓느냐다.
+  **프로세스 격리**(process isolation)는 전통적인 방식이다 — 여러 컨테이너가 한 호스트에서 동시에 돌며 네임스페이스·자원 제어 같은 프로세스 격리 기술로 떨어지고, **컨테이너가 호스트와 서로와 같은 커널을 함께 쓴다**(Linux 컨테이너와 거의 같다). 컨테이너마다 떼어 놓는 네임스페이스는 파일 시스템, 레지스트리, 네트워크 포트, 프로세스·스레드 ID 공간, 개체 관리자 네임스페이스다.
+  **Hyper-V 격리**(Hyper-V isolation)는 보안을 높이고 호스트와 컨테이너의 판 호환을 넓힌다 — 컨테이너마다 **고도로 최적화한 VM 안에서 돌며 사실상 자기 커널을 갖고**, VM이 있어 컨테이너끼리와 컨테이너 호스트 사이가 하드웨어 수준으로 떨어진다.
+  **기본값**: Windows Server에서 도는 Windows 컨테이너는 **프로세스 격리**가 기본이고, Windows 10 Pro·Enterprise에서는 **Hyper-V 격리**가 기본이다(Windows 10 October 2018 업데이트부터는 `--isolation=process`로 프로세스 격리를 직접 청할 수 있다 — 개발·테스트용). Docker로는 `docker run … --isolation=hyperv`·`--isolation=process`로 고른다
+- **판 호환**(「Windows container version compatibility」): Windows Server 2016과 Windows 10 기념일 업데이트(둘 다 14393)가 Windows Server 컨테이너를 만들고 실행한 첫 판이다. Windows Server 2022 컨테이너와 Windows 11 호스트를 빼면, **컨테이너 호스트와 컨테이너 이미지의 빌드 번호가 다르면 Windows Server 컨테이너는 시작되지 않는다**(예: 호스트 Windows Server 2016(10.0.14393)에서 1709(10.0.16299) 이미지 — 판 불일치 오류).
+  판이 맞지 않을 때 **Hyper-V 격리**로 돌리면 맞는 커널 파일을 컨테이너에게 주어 호스트 판에 기대지 않는다. Windows Server 2016 기반 컨테이너는 수정 번호까지 같아야 한다
+- **Windows Server의 「컨테이너」 기능과 컨테이너 런타임**(「Prepare Windows operating system containers」): 컨테이너를 쓰려면 알맞은 **컨테이너 런타임**을 먼저 갖춰야 한다. Windows에서 지금 지원하는 런타임은 **Moby, Mirantis Container Runtime(옛 Docker EE), containerd**이고, 문서의 설치 스크립트가 컨테이너에 필요한 운영 체제 기능을 켠 뒤 런타임을 설치한다. Windows 10·11 Pro·Enterprise에서는 Docker Desktop을 쓴다.
+  Windows Server의 기능 이름 「컨테이너」(`Containers`)는 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표(기능 표, 기본 설치 「N」)에 있다. 런타임의 설치 차례는 쓰지 않는다
+- **기본 이미지**(「Overview of Windows Container Base Images」, 「About…」 「Container images」): Microsoft가 내놓는, 자기 컨테이너 이미지를 만드는 출발점 이미지이고 **넷**이다 — 저마다 Windows나 Windows Server의 다른 종류이며 디스크 크기와 Windows API 범위가 다르다.
+  - **Windows Server Core**(Server Core): 전통적인 .NET Framework 앱을 지원한다, 중간 크기, 기존 Windows Server 앱을 거의 그대로 옮겨 오기(lift and shift)에 좋다. 서버 역할 대부분을 담는다(팩스 서버처럼 빠진 것도 있다)
+  - **Nano Server**: .NET Core 앱을 위해 만들었다, **가장 작은** 이미지로 새 앱 개발에 맞다. Server Core보다 API 범위가 좁아 **PowerShell·WMI·Windows 서비스 스택이 없다**(「Windows Server Core vs Nano Server」)
+  - **Windows**: Windows API 전체, **가장 큰** 이미지(3.4 GB). Windows Server 2025용은 없다
+  - **Windows Server**: Windows API 전체, Windows 이미지보다 조금 작다(3.1 GB), GPU 지원·IIS 연결 수 제한 없음, 최신판은 Windows Server 2025 호스트가 있어야 한다
+  대부분의 사용자에게는 Server Core와 Nano Server가 알맞다. 고르는 지침 — 전체 .NET Framework가 필요하면 Server Core, .NET Core 앱이면 Nano Server, Server Core에 없는 의존 항목이 있으면 Windows, GPU 가속이 필요하면 Windows Server
+- **받는 곳과 이름 꼴**(「Image discovery」): 기본 이미지는 **Microsoft Container Registry(MCR, `mcr.microsoft.com`)**에서 오고, 찾아보기는 Docker Hub에서 한다 — 예: `docker pull mcr.microsoft.com/windows/servercore:ltsc2025`. 문서가 보이는 꼴: `mcr.microsoft.com/windows/servercore:ltsc2019`(「Isolation modes」), `mcr.microsoft.com/windows/nanoserver:1809`(「version compatibility」 — 태그로 기본 이미지의 판을 정한다),
+  인사이더 저장소 `mcr.microsoft.com/windows/nanoserver/insider`·`…/windows/server/insider`·`…/windows/insider`
+- **Nano Server의 자리**: 지난 판 「Install Nano Server」(Windows Server 2016) — Windows Server 2016은 Nano Server를 **새 설치 옵션**으로 내놓았다(원격으로 관리하는 서버 운영 체제, Server Core와 비슷하지만 훨씬 작고 로컬 로그온이 없다). **Nano Server 설치 옵션의 지원은 2018년 10월 9일에 끝났고, Windows Server 1709부터 Nano Server는 컨테이너 기본 OS 이미지로만 나온다**(머리의 Important).
+  지금 판 「Features Removed…」의 Windows Server 2019 탭도 Nano Server는 설치할 수 있는 호스트 운영 체제가 아니라 컨테이너 운영 체제로만 나온다고 적는다(위 「(phase 81 step 0)」 줄 — 이 step에서 같은 판 `updated_at` 2026-11-17을 다시 받아 확인했다)
+- **한국어 이름**: 한국어판은 「Windows 컨테이너」, 「컨테이너 이미지」, 「기본 이미지」, 「격리 모드」·「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 호스트」로 옮긴다. 기본 이미지의 이름은 「Windows Server Core」, 「Nano 서버」, 「윈도우즈」, 「Windows Server (윈도우 서버)」로 들쭉날쭉 옮긴다(기계 번역).
+  **고른 이름**: 「컨테이너」·「컨테이너 이미지」·「기본 이미지」, 「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 런타임」, 기본 이미지 이름은 영문 그대로 **Nano Server·Server Core·Windows·Windows Server**(제품·이미지 이름이고 MCR 저장소 이름과 맞춘다 — 기출도 「Nano Server」·「NanoServer」로 쓴다)
+- (phase 81 step 13, 2026-11-19 Microsoft Learn에서 다시 읽어 확인 — 「Isolation modes」 같은 판) **격리 방식 예 — 호스트에서 보이는 프로세스**(「Isolation examples」 「Isolation explanation」): 같은 기본 이미지(`mcr.microsoft.com/windows/servercore:ltsc2019`)로 프로세스 격리 컨테이너 하나와 Hyper-V 격리 컨테이너 하나를 실행해 두 방식을 견준다 —
+  프로세스 격리 컨테이너 안에서 실행한 프로그램은 컨테이너 안에서 본 프로세스 번호와 같은 번호로 **호스트에서도 같은 프로세스로 보인다**. Hyper-V 격리 컨테이너 안에서 실행한 같은 프로그램은 호스트에서 찾으면 **보이지 않고**, 그 컨테이너를 감싼 가상 컴퓨터를 실행하는 프로세스(`vmwp`)만 보인다.
+  같은 절은 Docker로 Hyper-V 격리 컨테이너를 다루는 법이 프로세스 격리 컨테이너와 거의 같고, 실행할 때 `--isolation=hyperv`나 `--isolation=process`로 고른다고 적는다. 같은 문서 첫머리는 두 방식이 같은 컨테이너 이미지를 쓴다고 적는다(위 「두 격리 방식」 줄) — 이 예도 같은 이미지로 컨테이너 둘을 실행한다.
+  두 방식 가운데 어느 쪽이 자원을 더 쓰는지나 시작 시간을 견준 문장은 이 문서와 「Containers vs. virtual machines」 어디에도 없다 — 본문·문항은 두 방식을 커널을 누구와 함께 쓰는가와 떨어진 정도로만 가른다.
+  쓰인 곳: `windows-hyperv.windows-containers`(「프로세스 격리와 Hyper-V 격리」 문단의 호스트에서 보이는 프로세스, 같은 이미지로 컨테이너 여럿, `--isolation`), 문항 n310·n311의 해설
+- (phase 81 step 14, 2026-11-19 Microsoft Learn에서 다시 읽어 확인 — 「Overview of Windows Container Base Images」·「Windows container version compatibility」, 「Applies to」 Windows Server 2025·2022·2019·2016) **기본 이미지를 고르는 말과 판 맞추기**:
+  「Overview…」 — 기본 이미지는 저마다 다른 종류의 Windows나 Windows Server이고 디스크에서 차지하는 크기와 Windows API 범위가 다르다(위 「기본 이미지」 줄 그대로). Nano Server는 새 앱 개발을 위한 아주 가벼운 이미지, Server Core는 중간 크기로 기존 Windows Server 앱을 옮겨 오기(lift and shift)에 좋은 이미지, Windows는 가장 큰 이미지로 Windows API 전체, Windows Server는 Windows 이미지보다 조금 작고 Windows API 전체.
+  고르는 지침 — 앱이 전체 .NET Framework를 필요로 하면 Server Core, .NET Core 기반이면 Nano Server, Server Core에 앱이 필요로 하는 의존 항목이 없으면 Windows, 컨테이너 작업에 GPU 가속이 필요하면 Windows Server. 「Windows Server Core vs Nano Server」 — Nano Server는 .NET Core나 그 밖의 새 오픈 소스 프레임워크에 기대는 앱을 실행할 만큼만 API를 담고, 그 대가로 크기가 다른 기본 이미지보다 작으며, **필요하면 Nano Server 위에 층을 더 얹을 수 있다**.
+  이미지 크기의 수치(3.1 GB·3.4 GB)와 Windows Server 2025 관련 판 조건은 쓰지 않는다 — 판마다 바뀐다(step 14 금지사항). 이미지 크기는 「가장 작다·중간·가장 크다·Windows보다 조금 작다」라는 문서의 비교만 쓴다
+  「version compatibility」 — Windows의 판은 major·minor·build·revision 넷으로 적고, **빌드 번호는 새 판의 Windows가 나올 때만 바뀐다**. WS2022 + Windows 11 조합을 빼면 컨테이너 호스트와 컨테이너 이미지의 빌드 번호가 다를 때 Windows Server 컨테이너는 시작되지 못한다(판 불일치 오류).
+  같은 문서의 호환 표는 이것보다 넓게 적는다 — 예: Windows Server 2025 호스트는 Windows Server 2022 이미지를 프로세스 격리로도 실행하고, Windows Server 2022 호스트는 Windows Server 2019 이미지를 **Hyper-V 격리로만** 실행하며, Windows Server 2019 호스트는 더 새 Windows Server 2022 이미지를 어느 격리로도 실행하지 못한다.
+  그래서 본문은 「몇몇 조합을 빼고는 막는다」로 쓰고, 오류를 푸는 길 셋 가운데 **「호스트가 더 새 판이면 `--isolation=hyperv`로 실행한다」**를 쓴다 — Hyper-V 격리는 컨테이너에 맞는 커널을 따로 주므로 호스트 판에 기대지 않는다. 위 「(phase 81 step 9)」 「판 호환」 줄의 「Hyper-V 격리면 호스트 판에 기대지 않는다」는 호스트가 이미지보다 새 판일 때의 말이다(표에서 옛 호스트가 새 이미지를 실행하는 칸은 모두 안 된다).
+  **태그**: `FROM mcr.microsoft.com/windows/nanoserver:1809` — Windows Server 1809 판의 기본 이미지를 쓰려면 태그 `1809`를 적는다(태그로 어느 판인지 정한다). `FROM mcr.microsoft.com/windows/servercore:ltsc2019` — Server Core 이미지의 컨테이너 운영 체제를 Windows Server 2019로 하려면 LTSC 태그 `ltsc2019`를 적는다. 2019년 4월 16일부터 `latest` 태그를 내지 않아 태그를 꼭 적는다는 줄은 쓰지 않는다
+- (phase 81 step 14, 2026-11-19 Microsoft Learn 검색으로 확인) **.NET Framework와 .NET Core의 한 줄 풀이**: 「Overview of .NET Framework」(https://learn.microsoft.com/en-us/dotnet/framework/get-started/overview) — .NET Framework는 Windows 앱과 웹 서비스를 만들고 실행하게 해 주는 기술이고, 새로 개발할 때는 .NET Framework 대신 .NET을 쓰라고 권한다.
+  「Introduction to .NET」(https://learn.microsoft.com/en-us/dotnet/core/introduction) — .NET은 무료이고 여러 플랫폼에서 도는 오픈 소스 개발 플랫폼이다. 기본 이미지 문서는 Server Core를 「전통적인 .NET Framework 앱」에, Nano Server를 「.NET Core나 그 밖의 새 오픈 소스 프레임워크」에 짝짓는다.
+  본문은 .NET Core를 「응용 프로그램을 만들고 실행하는 데 바탕이 되는 Microsoft의 기술 가운데 새로 나온 쪽」, .NET Framework를 「같은 일을 하는 기술 가운데 예전부터 Windows에서 써 온 쪽」으로만 푼다 — .NET Core와 .NET의 이름 관계, 판 번호는 쓰지 않는다
+  쓰인 곳: `windows-hyperv.container-base-images`(항목 넷의 크기와 쓰임, Nano Server와 Server Core의 차이, 층을 더 얹을 수 있다, 판 맞추기와 Hyper-V 격리, MCR과 태그 `ltsc2019`·`1809`, 예), 문항 n312의 해설
+
+쓰인 곳: (phase 81 step 13·14에서 쓰일 곳) `windows-hyperv.windows-containers`(정의, 커널을 함께 씀과 떨어진 모습, 이미지에서 만든다, VM과의 차이, 두 격리 방식과 기본값, 판 호환 한 줄, 「컨테이너」 기능과 런타임), `windows-hyperv.container-base-images`(넷의 이름·쓰임·크기 차이, Nano Server와 Server Core의 차이, MCR과 이름 꼴, 프로세스 격리의 판 일치, Nano Server의 지금 자리와 판),
+기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])
