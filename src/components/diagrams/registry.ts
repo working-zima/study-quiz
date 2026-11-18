@@ -268,6 +268,7 @@ import { ResourceManagerDiagram } from './ResourceManagerDiagram'
 import { ResourceMonitorDiagram } from './ResourceMonitorDiagram'
 import { ReverseNameDiagram } from './ReverseNameDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
+import { RoleServiceFeatureDiagram } from './RoleServiceFeatureDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
 import { RoundRobinAnswersDiagram } from './RoundRobinAnswersDiagram'
 import { Route53AliasDiagram } from './Route53AliasDiagram'
@@ -283,6 +284,7 @@ import { ScaleSetDiagram } from './ScaleSetDiagram'
 import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
+import { ServerStaticIpDiagram } from './ServerStaticIpDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -692,6 +694,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-ad.group-scopes': GroupScopesDiagram,
   'windows-ad.group-policy': GroupPolicyLinkDiagram,
   'windows-ad.password-lockout-policy': AccountLockoutDiagram,
+  'windows-server-roles.server-roles-features': RoleServiceFeatureDiagram,
+  'windows-server-roles.server-static-ip': ServerStaticIpDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

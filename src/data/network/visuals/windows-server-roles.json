@@ -1,0 +1,102 @@
+{
+  "diagrams": {
+    "role-service-feature": {
+      "label": "서버 SRV01에 설치하는 서버 역할(웹 서버(IIS)와 그 안의 역할 서비스 FTP 서버, DHCP 서버)과 기능(BitLocker 드라이브 암호화)이 무엇이 다른지와, 역할 및 기능 추가 마법사와 Install-WindowsFeature가 같은 설치를 하는 것을 보이는 도식",
+      "svgLabel": "위에 설치하는 두 자리인 역할 및 기능 추가 마법사와 Install-WindowsFeature를, 그 아래 SRV01 박스 안에 서버 역할 박스(웹 서버(IIS)와 그 아래의 FTP 서버, DHCP 서버)와 기능 박스(BitLocker 드라이브 암호화)를 그린 그림",
+      "question": "서버에 무엇을 설치하면 어떤 일을 맡게 될까?",
+      "idleCaption": "SRV01에 설치할 수 있는 구성 요소를 서버 역할과 기능으로 나눠 두었다. SRV01은 예로 붙인 이름이다. 버튼을 고르면 역할과 역할 서비스, 기능이 저마다 무엇을 맡는지와 설치하는 두 자리를 볼 수 있다.",
+      "legend": "SRV01 박스 안의 위 박스는 서버 역할이고, 웹 서버(IIS)에서 선으로 이어진 FTP 서버는 그 역할 안에서 고르는 역할 서비스다. 아래 박스는 기능이다. 화살표는 설치하는 자리에서 SRV01로 간다.",
+      "nodes": {
+        "wizard": "역할 및 기능 추가 마법사",
+        "cmdlet": "Install-WindowsFeature",
+        "role-iis": "웹 서버(IIS)",
+        "role-dhcp": "DHCP 서버",
+        "svc-ftp": "FTP 서버",
+        "feat-bitlocker": "BitLocker 드라이브 암호화"
+      },
+      "groups": {
+        "server": "SRV01",
+        "roles": "서버 역할",
+        "features": "기능"
+      },
+      "notes": {
+        "role-note": "다른 컴퓨터에게 해 주는 일",
+        "svc-note": "역할 안에서 고른다",
+        "feature-note": "서버 자신의 일을 돕는다",
+        "install-note": "같은 일을 한다"
+      },
+      "scenarios": [
+        {
+          "id": "role",
+          "label": "역할",
+          "caption": "서버 역할은 서버가 네트워크의 다른 컴퓨터에게 해 주는 주된 일이다. DHCP 서버는 장치들에게 IP 주소를 나눠 주고 웹 서버(IIS)는 웹 페이지를 보내 준다. FTP 서버는 웹 서버(IIS) 역할 안에서 골라 넣는 역할 서비스다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        },
+        {
+          "id": "feature",
+          "label": "기능",
+          "caption": "BitLocker 드라이브 암호화는 어느 역할에도 속하지 않는 기능이다. 서버의 저장 공간을 통째로 암호화해 디스크를 떼어 가도 데이터를 읽지 못하게 하는 식으로, 서버 자신의 일을 돕는다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        },
+        {
+          "id": "install",
+          "label": "설치하는 자리",
+          "caption": "역할 및 기능 추가 마법사에서 고르든, PowerShell에서 Install-WindowsFeature 뒤에 설치 이름을 적든 SRV01에는 같은 것이 설치된다. 다만 이 cmdlet은 -IncludeManagementTools를 붙여야 관리 도구도 함께 설치한다.",
+          "sources": [
+            "windows-server-roles.server-roles-features"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.server-roles-features"
+      ]
+    },
+    "server-static-ip": {
+      "label": "SRV01에 고정 IP 주소 192.0.2.10을 넣으면 그 주소가 그대로 남아 PC01이 계속 그 주소로 찾아오고, ipconfig /renew를 입력하면 DHCP 서버가 정한 주소를 다시 받을 뿐인 것을 견주는 도식",
+      "svgLabel": "위에 SRV01이 있고, 왼쪽 아래에 고정 주소 192.0.2.10과 그 주소로 찾아오는 PC01이, 오른쪽 아래에 DHCP 서버와 DHCP 서버가 정한 주소가 있는 그림",
+      "question": "서버의 주소는 왜 바뀌지 않게 두어야 할까?",
+      "idleCaption": "SRV01이 주소를 갖는 두 길을 왼쪽과 오른쪽에 나눠 두었다. SRV01과 PC01은 예로 붙인 이름이고, 192.0.2.10은 문서의 예로 쓰라고 남겨 둔 주소다. 버튼을 고르면 각 길에서 SRV01의 주소가 어떻게 되는지 볼 수 있다.",
+      "legend": "왼쪽은 관리자가 주소를 직접 넣는 길이고, 오른쪽은 ipconfig /renew를 입력하는 길이다. 화살표 옆의 곁말이 그 화살표가 하는 일을 말한다.",
+      "nodes": {
+        "server": "SRV01",
+        "static-ip": "고정 주소 · 192.0.2.10",
+        "pc01": "PC01",
+        "dhcp-server": "DHCP 서버",
+        "renew-ip": "DHCP 서버가 정한 주소"
+      },
+      "notes": {
+        "set-note": "다음 IP 주소 사용",
+        "find-note": "이 주소로 찾아온다",
+        "request-note": "ipconfig /renew",
+        "give-note": "다시 준다"
+      },
+      "scenarios": [
+        {
+          "id": "static",
+          "label": "고정 주소",
+          "caption": "SRV01의 「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」에서 「다음 IP 주소 사용」을 골라 192.0.2.10을 넣으면, 관리자가 바꾸지 않는 한 SRV01의 주소는 그대로다. 그래서 이 주소를 「기본 설정 DNS 서버」 칸에 적어 둔 PC01이 계속 SRV01을 찾아온다.",
+          "sources": [
+            "windows-server-roles.server-static-ip"
+          ]
+        },
+        {
+          "id": "renew",
+          "label": "ipconfig /renew",
+          "caption": "SRV01에서 ipconfig /renew를 입력하면 DHCP 서버에게서 주소와 설정 값을 다시 받을 뿐이다. 어떤 주소를 줄지는 DHCP 서버가 정하고, SRV01은 여전히 DHCP로 주소를 받는 상태로 남아 고정 IP 주소가 되지 않는다.",
+          "sources": [
+            "windows-server-roles.server-static-ip"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.server-static-ip"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
