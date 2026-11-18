@@ -119,6 +119,11 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 지금 판 문서에 없는 것(이벤트 뷰어의 로그 갈래와 이벤트 속성 표, 데이터 수집기 집합의 일정)만 지난 판 문서(Windows Server 2008 R2·2012)에서 가져왔다. 실행 창(Windows 키 + R)과 `devmgmt.msc`, 명령 줄에 `certmgr`만 적었을 때의 동작, 인증서 관리자의 한국어 이름은 같은 learn.microsoft.com의 Windows 드라이버 문서와 .NET Framework 문서에서만 찾았다 — 항목에 어느 문서인지 적는다.
 **Microsoft Learn의 교육 과정(training) 페이지는 쓰지 않았다**(업체 학습 페이지라 허용하지 않는다). 그래서 리소스 모니터의 탭 목록처럼 그 페이지에만 있는 사실은 적지 않았다 — 아래 「성능 모니터·리소스 모니터」 항목에 찾아본 곳을 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — PowerShell의 문법(변수·파이프라인·제어문)과 원격 실행, 이벤트 구독·사용자 지정 보기의 설정, 성능 카운터 목록과 데이터 수집기 집합의 경고·템플릿, 인증서 요청·자동 등록, EFS의 키 구조(FEK·DDF·DRF)와 복구 정책 설정, BitLocker 보호기 전체와 설정 절차, 클라우드 폴더의 배포 절차. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 0)」이 붙은 줄과 항목은 phase 81 step 0에서 `windows-server-roles` 주제의 앞 개념 여섯(서버 역할과 기능, 서버의 고정 IP 주소, 파일 서버와 프린트 서버, DHCP 서버 역할, DHCP 예약, DHCP 장애 조치)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+이 주제는 강의 밖 주제라 사실의 근거는 learn.microsoft.com 하나다(ADR-059). 읽은 방법은 phase 80과 같다(영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server 문서·PowerShell 모듈 문서(`?view=windowsserver2025-ps` 판)·Win32 문서·문제 해결 문서이고,
+지금 판 문서에 정의 문장이 없는 것(역할·역할 서비스·기능의 정의, MCLT의 정의, 파일 및 저장소 서비스의 기본 설치, 인쇄 및 문서 서비스의 역할 설명)만 지금 판 문서가 링크하는 지난 판 문서(Windows Server 2008 R2·2012·2012 R2)에서 가져왔다 — 줄마다 그 판과, 지금 판 문서에서 같은 말을 찾아본 결과를 적는다.
+**마법사·대화 상자의 한국어 이름은 한국어판 문서(기계 번역)의 표기로만 확인했고 실제 한국어 Windows 화면으로는 확인하지 못했다.** Microsoft Q&A에만 있는 사실(DHCP 콘솔의 실행 이름 `dhcpmgmt.msc`, 동적 주소로 DNS 서버 역할을 설치할 때 마법사가 보이는 경고의 꼴)은 쓰지 않는다 — 항목에 찾아본 곳을 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 서버 관리자의 원격 관리·서버 그룹·오프라인 VHD에 설치, 기능 주문형(Features on Demand), SMB의 버전별 기능·서명·암호화·다중 채널·QUIC의 설정, 저장소 공간·DFS·데이터 중복 제거, 인쇄 관리 콘솔, DHCP의 IPv6·정책·필터·DNS 동적 업데이트·분할 범위의 배포, IPAM, 장애 조치 관계의 복제·클러스터 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -2710,10 +2715,18 @@ DHCP 두 문서는 Windows Server 2016~2025를, 어댑터 확인 문서는 지�
 - (phase 78 step 11) **Windows ping의 요약 줄**: 네트워크 어댑터 확인 문서의 출력 예는 응답 넷(`Reply from <주소>: bytes=… time<1ms TTL=…`) 뒤에 요약을 둔다 — 「`Ping statistics for <주소>:`」 다음에 보낸 수(Sent)·받은 수(Received)·잃은 수(Lost)와 그 백분율, 이어 「대략의 왕복 시간(ms)」의 가장 짧은 값(Minimum)·가장 긴 값(Maximum)·평균(Average)이다.
   셋 다 요청 4개를 보내 4개를 받은(0% 손실) 예다 — 「Use Ping.exe to Check Your Hardware」 1~3단계의 예. 손실이 있는 예는 이 문서에 없다
 - (phase 78 step 11) 자동 주소 지정 문서는 APIPA를 쓰는지 볼 때 `ipconfig /all`의 「Autoconfiguration Enabled」 줄과 「Autoconfiguration IP Address」를 보라고 한다 — 다만 이 대목은 Windows 2000·XP·Server 2003의 방법으로 적혀 있다 — 「More Information」(위 둘째 줄과 같은 대목)
+- (phase 81 step 0) 2026-11-18에 IPv4로 다시 내려받아 읽은 판: DHCP Server 문서 `updated_at` 2025-05-14(`ms.date` 2025-05-13), DHCP scopes 2025-04-28(2023-08-11) — 위 줄과 같은 판이고, 둘 다 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후다.
+  한국어판(「Windows Server의 DHCP(동적 호스트 구성 프로토콜) 서버란?」·「DHCP 범위」, `updated_at` 2026-01-21)도 받았다 — 용어 표기만 참고한다
+- (phase 81 step 0) DHCP Server 문서가 Windows Server의 DHCP 서버 기능으로 드는 것 가운데 둘: **DHCP 서버 권한 부여** — AD에 권한을 받은 서버만 클라이언트에게 주소를 주게 해, 권한 없는 서버가 주소를 나눠 주는 일을 막는다. **DHCP 장애 조치** — DHCP 서버 두 대가 범위 하나를 함께 맡아 한쪽이 멈출 때를 대비하고(중복성) 요청을 나눠 받는다(부하 분산) — 「DHCP Server features」.
+  둘의 자세한 사실은 아래 「(phase 81 step 0) Microsoft Learn — DHCP 서버 역할·범위·예약 …」·「(phase 81 step 0) Microsoft Learn — DHCP 장애 조치 …」 항목
+- (phase 81 step 0) DHCP scopes: 서브넷 하나에는 범위를 하나만 둘 수 있고 그 범위는 이어진 주소 구간 하나다. 한 서브넷에서 떨어진 구간 여럿을 쓰려면 먼저 범위를 정한 뒤 필요한 제외 범위를 둔다 — 「Define a DHCP scope」.
+  **제외 범위**(exclusion range)는 범위의 주소 구간 **안에 있는** 이어진 주소 구간으로, DHCP 서버가 클라이언트에게 주지 못하게 막아 둔 곳이다. 그래서 그 주소를 손으로 장치에 넣어도 주소가 부딪치지 않는다. 손으로 고정 주소를 넣은 장치의 주소를 모두 넣고, 앞으로 늘어날 장치를 위해 여유 주소를 더 넣어 두라고 권한다 — 「Exclusion ranges」(위 「Exclusion ranges」 줄에 정의를 더한다)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.reserved-addresses`(169.254 — Windows는 DHCP 서버를 찾지 못하면 이 주소를 스스로 정한다, APIPA), `ip-address-types.loopback`(127.0.0.1로 ping해 자기 컴퓨터의 TCP/IP를 확인한다),
 `ip-address-types.static-dynamic-address`(서버·프린터 같은 장치는 고정 주소가 필요할 수 있고, DHCP 예약으로도 늘 같은 주소를 줄 수 있다), `ip-address-types.dhcp`(주소와 설정의 자동 배정, 임대, 기본 게이트웨이 = 라우터 옵션), `exam-notes.md` 「phase 74 step 5」 문단
 (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ping-options`(Windows ping 요약 줄의 꼴 — 보낸 수·받은 수·잃은 수와 백분율, 왕복 시간의 최소·최대·평균), `diagnostic-commands.ipconfig`(`/all`에 자동 구성 줄이 있다 — 옛 판의 방법으로 적힌 대목)
+(phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(권한 부여·장애 조치가 DHCP 서버 기능이다, 서브넷 하나에 범위 하나·이어진 구간 하나, 제외 범위의 정의), `windows-server-roles.dhcp-reservation`(위 「Reservations」 줄 — MAC 주소로 늘 같은 주소, 장치가 DHCP를 지원해야 하고 DHCP 서버에 기댄다),
+`windows-server-roles.server-static-ip`(위 「Exclusion ranges」 줄 — 손으로 고정 주소를 넣은 장치는 제외 범위에), `windows-server-roles.dhcp-failover`(장애 조치가 무엇인지 한 줄)
 
 ## (phase 74 step 11) RFC 1930 — Guidelines for creation, selection, and registration of an Autonomous System (AS)
 https://www.rfc-editor.org/rfc/rfc1930
@@ -4975,6 +4988,7 @@ ipconfig·pathping 페이지는 옵션을 빗금(`/all`, `/q`)으로 적고, nsl
 `diagnostic-commands.ipconfig-options`(`/release` — DHCPRELEASE·주소 설정을 버림·TCP/IP가 꺼짐, `/renew` — 자동으로 받는 어댑터에서만, `/displaydns` — Hosts 항목과 최근 레코드·DNS 서버보다 먼저, `/flushdns` — 비우기와 부정 응답, `/setclassid`, nslookup — 이름이나 주소를 DNS 서버에 묻는다),
 `diagnostic-commands.pathping`(tracert처럼 경로를 찾은 뒤 라우터마다 일정 시간 여러 번, 노드·링크 손실, `/q` 100·`/p` 250ms, 출력의 세 부분과 칸, 대략 90초·125초 계산, 링크 손실과 라우터 손실의 뜻), `exam-notes.md` 「phase 78 step 11」 문단과 E33
 (phase 79 step 0에서 쓰일 곳) `dns.dns-cache-ttl`(`/displaydns` — DNS 클라이언트 리졸버 캐시에 Hosts 파일의 항목과 최근 레코드가 함께 든다, DNS 서버에 묻기 전에 캐시로 푼다. 강의 p351 화면의 항목 이름은 데이터 이름·데이터 유형·TTL(Time To Live)·데이터 길이·섹션·레코드 줄이다 — 이 페이지는 출력 예를 보이지 않는다), `dns.hosts-file`(`/displaydns` — Hosts 파일의 항목이 캐시에 미리 실린다)
+(phase 81 step 0에서 쓰일 곳 — 2026-11-18에 다시 받은 ipconfig 페이지는 위 줄과 같은 판이다) `windows-server-roles.server-static-ip`(`/renew` — 주소를 자동으로 받는 어댑터에서만 쓰고 그 어댑터의 DHCP 설정을 다시 받는다. 「실행한 뒤에도 그 어댑터는 DHCP로 주소를 받는 어댑터로 남는다 — 고정 주소로 바꾸지 않는다」는 이 페이지에 한 문장으로 적혀 있지 않고 위 `/renew` 줄에서 이어서 나오는 말이다), 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
 
 ## (phase 78 step 11) Microsoft Learn — Windows Server 문제 해결 문서(DNS 클라이언트, 네트워크 어댑터의 IP 주소 바꾸기, 공유 프린터, IPv6 설치, TCP/IP 통신, DHCP)
 https://learn.microsoft.com/en-us/windows-server/networking/dns/troubleshoot/troubleshoot-dns-client
@@ -4998,9 +5012,14 @@ https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/trouble
 - (phase 78 step 15) **어느 프로그램이 TCP 포트를 쓰는지 알아내기**(https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/determine-which-program-use-block-tcp-ports — 2026-11-11에 IPv4로 내려받아 읽음, `updated_at` 2026-02-19, `ms.date` 2026-02-12, 「Applies to」 Windows Server 2003): `-o`는 연결마다 그 연결과 이어진 프로세스 ID를 보이고, 그것으로 어느 프로세스(프로그램)가 어느 포트에서 기다리는지 알 수 있다고 한다.
   `netstat -ano`의 출력 예가 머리줄을 **Proto · Local Address · Foreign Address · State · PID** 차례로 적고 그 아래 줄도 같은 차례(프로토콜, 로컬 주소, 외부 주소, 상태, PID)다 — 곧 **PID 칸은 상태 칸 뒤의 마지막 칸**이다. 작업 관리자의 프로세스 탭에서 PID로 프로그램을 찾는다 — 「Summary」·「How to match the process ID to a program」.
   **Windows Server 2003의 글**이라 화면의 꼴은 지금 판과 다를 수 있다 — 칸의 차례만 가져오고 화면을 그대로 옮기지 않는다. 원격 데스크톱 문제 해결 문서(https://learn.microsoft.com/en-us/troubleshoot/windows-server/remote/remote-desktop-disconnected — 2026-11-11 Microsoft Learn 검색으로 읽음)도 `netstat -a -o`의 결과에서 포트를 쓰는 프로세스의 PID가 PID 칸에 나온다고 쓴다(위 「Windows netstat의 결과 칸」 줄은 `-o`의 PID가 어느 칸에 놓이는지 적혀 있지 않다고 했다 — 이 문서로 메운다)
+- (phase 81 step 0) **IP 주소 바꾸기 문서를 2026-11-18에 IPv4로 다시 받았다** — `updated_at` 2026-02-19(`ms.date` 2026-02-12), 「Applies to」 지원되는 Windows Server, 원래 KB 323444. 한국어판(「네트워크 어댑터의 IP 주소를 변경하는 방법」, `updated_at` 2026-10-14)도 받았다.
+  주소를 손으로 정하는 차례(「How to Specify an IP Address」): 「다음 IP 주소 사용」(Use the following IP address)을 고르고, IP 주소 칸에 그 네트워크에서 쓸 수 있는 주소 가운데 **겹치지 않는** 것을, 서브넷 마스크 칸에 그 네트워크의 마스크를, 기본 게이트웨이 칸에 이 네트워크를 다른 네트워크나 인터넷에 잇는 장치의 주소를 넣는다. 「기본 설정 DNS 서버」(Preferred DNS server) 칸에 이름을 주소로 바꿔 주는 컴퓨터의 주소를, 「대체 DNS 서버」(Alternate DNS server) 칸에 기본 설정 DNS 서버를 쓸 수 없을 때 쓸 DNS 서버의 주소를 넣는다.
+  반대로 주소를 자동으로 받게 할 때(「How to automatically obtain an IP Address」)는 「자동으로 IP 주소 가져오기」(Obtain an IP address automatically)와, DNS 서버 주소를 직접 정하지 않으려면 「자동으로 DNS 서버 주소 가져오기」(Obtain DNS server address automatically)를 고른다(DHCP 서버가 있어야 한다). 이름은 한국어판의 표기다. 문제 해결(「Troubleshooting」): 이미 쓰이는 주소를 넣으면 그 고정 주소가 이미 네트워크에서 쓰인다는 오류가 나오고, 서브넷 마스크를 잘못 넣으면 사실상 다른 네트워크에 놓여 같은 네트워크의 컴퓨터와 통신하지 못하며, DNS 서버 주소가 틀리면 이름으로는 다른 컴퓨터에 닿지 못한다(주소로는 닿는다).
+  이 문서도 옛 판의 꼴이다(「Local Area Connection」, 「Internet Protocol (TCP/IP)」) — 지금 판의 메뉴 이름은 아래 「(phase 81 step 0) Microsoft Learn — 서버의 고정 IP 주소 …」 항목의 「Core network components」·DirectAccess 시험 랩 문서에서 확인한다
 
 쓰인 곳: (phase 78 step 11에서 쓰일 곳) `diagnostic-commands.ipconfig`(`/all` 출력의 항목 — 호스트 이름·IP 주소·서브넷 마스크·기본 게이트웨이·DNS 서버·연결별 DNS 접미사, 옛 판의 꼴), `diagnostic-commands.ipconfig-options`(`/release` 다음 `/renew`의 차례와 그 결과, `/displaydns`·`/flushdns`로 부정 응답 캐시를 찾고 비우기),
 `diagnostic-commands.ping-options`(하이픈 표기 `ping -6`), `diagnostic-commands.netstat`(열린 포트가 기다리는 상태인지 netstat으로 본다), `diagnostic-commands.netstat-windows-options`(`-nato`·`-anb`처럼 이어 쓴 꼴과 쓰임; (phase 78 step 15) `netstat -ano`의 PID 칸이 상태 칸 뒤의 마지막 칸이다 — 본문·도식·n224), `exam-notes.md` 「phase 78 step 11」 문단과 E33
+(phase 81 step 0에서 쓰일 곳) `windows-server-roles.server-static-ip`(IP 주소 바꾸기 문서 — 주소를 손으로 정하는 칸과 그 뜻, 자동으로 받기와 `ipconfig /release`·`/renew`의 차례, 겹치는 주소·틀린 마스크·틀린 DNS 서버 주소의 결과), 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
 
 ## (phase 78 step 11) Linux man-pages — ip-address(8), termios(3)
 https://man7.org/linux/man-pages/man8/ip-address.8.html
@@ -6414,3 +6433,208 @@ https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-
 
 쓰인 곳: (phase 80 step 13) `windows-admin-tools.work-folders` — 위 줄의 사실 전부(역할 서비스, 회사·개인 기기와 BYOD, 동기화 공유, 클라이언트의 기본 위치 `%USERPROFILE%\Work Folders`, 오프라인 작업 뒤 동기화와 클라이언트의 빈 공간, 암호화·잠금 화면 암호 정책, 파일 및 스토리지 서비스 아래 설치 자리와 `Install-WindowsFeature`·클라우드 폴더 페이지에서 동기화 공유와 사용자 접근 관리·NTFS 볼륨, OneDrive와 OneDrive for Business와의 차이, 지원 상태, 한국어 이름 — 「작업 폴더」로도 옮긴다는 것 한 줄).
   설치 차례는 서버 역할 선택에서 파일 및 스토리지 서비스를 펼친 뒤 그 아래 항목에서 고른다고만 썼다 — 중간 단계 「파일 및 iSCSI 서비스」는 iSCSI를 이 주제에서 풀 근거가 없어 이름을 쓰지 않았다. 도식 `work-folders-sync`, 문항 n283
+
+(phase 81 step 0, 2026-11-18 Microsoft Learn에서 IPv4로 다시 받아 확인) 「Features Removed or No Longer Developed in Windows Server」는 위 줄 뒤에 판이 바뀌었다 — `updated_at` 2026-11-17(`ms.date` 2026-11-16), 「Applies to」 Windows Server 2028 Preview·2025·2022·2019·2016, 한국어판 `updated_at` 2026-11-17.
+두 절(「Features no longer in development」, 「Features removed」)이 판마다 탭으로 나뉜다 — 줄마다 어느 탭에 있는지는 페이지 HTML의 탭 id(`tabpanel_1_ws22`처럼 절 번호와 판)로 확인했다. 두 절의 첫 문단이 둘을 가른다 — **더 개발하지 않음**(deprecated)은 더는 새로 개발하지 않고 다음 판에서 뺄 수 있지만 아직 제품에 들어 있고 운영에 지원되며 보안·품질 업데이트를 받는 것이고,
+**제거됨**(removed)은 그 판의 설치 이미지에서 빠져 더는 쓸 수 없는 것이다. Windows Server 2028은 Preview라 목록이 바뀔 수 있다고 탭마다 적는다. 이 phase의 두 주제에 걸린 줄:
+- **WINS**(Windows Internet Name Service): 「Features no longer in development」의 **Windows Server 2022** 탭 — 옛(레거시) 컴퓨터 이름 등록·풀이 서비스이니 DNS로 바꾸라. 「Features removed」의 **Windows Server 2028(Preview)** 탭 — WINS 서버 역할은 2022부터 더 개발하지 않다가 2028에서 빠진다. WINS에 기대는 클라이언트와 서비스를 DNS 이름 풀이로 옮기라
+- **DirectAccess**: 「Features removed」의 **Windows Server 2028(Preview)** 탭 — 2028에서 빠지니 Always On VPN으로 옮기라. 「Features no longer in development」의 어느 탭에도 없다
+- **PPTP·L2TP를 통한 원격 액세스**: 「Features removed」의 **Windows Server 2028(Preview)** 탭 — 2028에서 빠지니 IKEv2나 SSTP로 옮기라
+- **웹 응용 프로그램 프록시**(Web Application Proxy): 두 절 어디에도 나오지 않는다
+- **Hyper-V 쪽 줄**: 「Features no longer in development」 — Windows Server 2022 탭에 LBFO 팀에 묶는 Hyper-V 가상 스위치(대신 SET로 묶는다)와 Guarded Fabric·차폐된 VM, Windows Server 2019 탭에 Hyper-V의 Key Storage Drive와 WFP 경량 필터 스위치 확장.
+  「Features removed」 — Windows Server 2028(Preview) 탭에 레거시 BIOS 지원(2028을 게스트로 쓰는 VM은 2세대 Hyper-V VM이어야 한다 — 옛 게스트 운영 체제를 1세대 VM에서 실행하는 지원은 그대로다)과 차폐된 VM, Windows Server 2019 탭에 Hyper-V 네트워크 가상화(HNV — SDN에 들어갔다)
+- **Nano Server**: 「Features removed」의 **Windows Server 2019** 탭 — Nano Server 설치 옵션. 설치할 수 있는 호스트 운영 체제로는 더 나오지 않고 컨테이너 운영 체제로만 나온다(Windows 컨테이너 기본 이미지 문서를 가리킨다)
+- 이웃 줄 — 「Features removed」의 Windows Server 2025 탭에 IIS 6 관리 콘솔(2019부터 더 개발하지 않음), Windows Server 2019 탭에 Server Core 설치 옵션의 인쇄 구성 요소(다시 기본으로 꺼져 있고 `Install-WindowsFeature Print-Server`로 켠다)
+- 클라우드 폴더(Work Folders)는 이 판에서도 두 절 어디에도 없다
+
+쓰인 곳: (phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(WINS의 지원 상태 — 2022부터 더 개발하지 않음, 2028 Preview에서 제거), `windows-server-roles.file-print-services`(Server Core의 인쇄 구성 요소 줄 — 쓸 때만),
+`windows-server-roles.remote-access`·`windows-server-roles.web-application-proxy`(DirectAccess·PPTP/L2TP는 2028 Preview에서 제거, 웹 응용 프로그램 프록시는 목록에 없음 — step 4가 그 주제의 문서와 함께 다시 본다), `windows-hyperv`(Hyper-V 줄·Nano Server 줄 — step 9가 다시 본다)
+
+## (phase 81 step 0) Microsoft Learn — 서버 역할과 기능: Add or remove roles and features in Windows Server, Install-WindowsFeature, Get-WindowsFeature, Roles, Role Services, and Features included in Windows Server - Server Core, Commands by Server role, Server Manager, Manage Multiple, Remote Servers with Server Manager; Win32 — Server Feature Provider; 지난 판 Roles, Role Services, and Features (Windows Server 2008 R2)
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/install-or-uninstall-roles-role-services-or-features
+https://learn.microsoft.com/en-us/powershell/module/servermanager/install-windowsfeature?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/servermanager/get-windowsfeature?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/administration/server-core/server-core-roles-and-services
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/commands-by-server-role
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/server-manager
+https://learn.microsoft.com/en-us/windows-server/administration/server-manager/manage-multiple-remote-servers-with-server-manager
+https://learn.microsoft.com/en-us/windows/win32/wmisdk/server-feature-provider
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754923(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Add or remove roles and features in Windows Server」 `updated_at` 2026-02-16(`ms.date` 2025-06-09, 「Last updated on」 2025-06-13), 「Roles, Role Services, and Features included in Windows Server - Server Core」 2026-02-16(2025-03-12) — 둘 다 「Applies to」 Windows Server 2016~2025·Windows 11·10.
+「Commands by Server role」 2025-10-22(2017-10-16, Windows Server 2016~2025·Windows 11·10·Azure Local 2311.2 이후), 「Server Manager」 2025-10-15(2025-06-16), 「Manage Multiple, Remote Servers with Server Manager」 2025-05-19(2017-10-16) — 둘 다 Windows Server 2016~2025·Windows 11·10.
+`Install-WindowsFeature`·`Get-WindowsFeature` 2024-02-07(2021-09-08, ServerManager 모듈 — 페이지가 `windowsserver2025-ps` 판을 가리킨다). Win32 「Server Feature Provider」 2025-03-11(2018-05-31 — 적용 판을 적지 않는 개발자 문서).
+지난 판 「Roles, Role Services, and Features」 2021-11-12(`ms.date` 2009-11-17, 「Applies To」 Windows Server 2008 R2) — **지금 판 「Manage Multiple, Remote Servers with Server Manager」가 역할·역할 서비스·기능의 정의로 이 문서를 링크한다**(「Tasks that you can perform in Server Manager」 표). 지금 판 문서에서 셋을 정의한 문장은 찾지 못했다.
+한국어판도 모두 받았다(`updated_at` 2026-01-21~2026-07-17, 기계 번역). PowerShell 두 페이지와 지난 판 문서의 한국어판은 번역되지 않아 영문 그대로다.
+
+- **서버 역할**(server role, 지난 판 정의): 설치하고 알맞게 구성하면 컴퓨터가 네트워크의 여러 사용자나 다른 컴퓨터를 위해 정해진 일을 하게 하는 소프트웨어 프로그램 묶음이다. 대개 — 그 컴퓨터의 주된 일·쓰임을 나타내고(한 컴퓨터가 많이 쓰이는 역할 하나만 맡거나, 적게 쓰이는 역할 여럿을 함께 맡는다), 조직의 사용자가 다른 컴퓨터가 관리하는 웹 사이트·프린터·파일 같은 자원에 닿게 하며,
+  요청을 쌓아 두거나 네트워크 사용자·컴퓨터에 관한 정보를 적는 자기 데이터베이스를 갖고(예: AD DS), 설치·구성을 마치면 사람이 거의 손대지 않아도 스스로 일한다 — 「Roles」
+- 지금 판 「Commands by Server role」: 서버 역할은 서버의 주된 일을 나타내고, 서버 한 대를 역할 하나에 다 쓰거나 한 컴퓨터에 서버 역할과 하위 역할 여럿을 설치할 수 있다. 역할에 따라 명령줄 도구가 함께 설치된다 — 첫 문단. Win32 「Server Feature Provider」: 서버 역할은 인쇄·파일·도메인 제어처럼 한 영역의 일을 하는 구성 요소 묶음이다 — 첫머리
+- **역할 서비스**(role service, 지난 판 정의): 역할의 일을 실제로 해 주는 프로그램이다. 역할을 설치할 때 그 역할이 다른 사용자·컴퓨터에게 어떤 역할 서비스를 제공할지 고른다. DNS 서버처럼 하는 일이 하나뿐인 역할에는 고를 역할 서비스가 없고, 원격 데스크톱 서비스처럼 여럿인 역할도 있다.
+  역할은 서로 밀접한 역할 서비스의 묶음으로 볼 수 있고, 역할을 설치한다는 것은 대개 그 역할 서비스를 하나 이상 설치한다는 뜻이다 — 「Role services」
+- **기능**(feature, 지난 판 정의): 역할을 이루는 부분은 아니지만, 역할 하나 이상의 일을 돕거나 넓히거나, 어떤 역할을 설치했든 상관없이 서버 자체의 일을 좋게 하는 프로그램이다. 예: 장애 조치 클러스터링(파일 서비스·DHCP 서버 같은 역할을 서버 클러스터에 넣어 중복성과 성능을 높인다), 텔넷 클라이언트(서버가 쓸 수 있는 통신 수단을 넓힌다) — 「Features」
+- **어디에 무엇이 드는지**(지금 판 「Roles, Role Services, and Features included in Windows Server - Server Core」 — Server Core 설치 옵션의 표, 열은 이름·설치 이름·기본 설치 여부): 역할 표에 DHCP 서버(`DHCP`), DNS 서버(`DNS`), 파일 및 스토리지 서비스(`FileAndStorage-Services`), Hyper-V(`Hyper-V`), 인쇄 및 문서 서비스(`Print-Services`), 원격 액세스(`RemoteAccess`), 웹 서버(IIS)(`Web-Server`).
+  역할 서비스 표에 — 파일 및 스토리지 서비스 아래 파일 및 iSCSI 서비스(`File-Services`)·파일 서버(`FS-FileServer`)·스토리지 서비스(`Storage-Services`), 인쇄 및 문서 서비스 아래 인쇄 서버(`Print-Server`), 원격 액세스 아래 DirectAccess 및 VPN(RAS)(`DirectAccess-VPN`)·라우팅(`Routing`)·웹 애플리케이션 프록시(`Web-Application-Proxy`), 웹 서버(IIS) 아래 웹 서버(`Web-WebServer`)·FTP 서버(`Web-Ftp-Server`)와 그 아래 FTP 서비스(`Web-Ftp-Service`)·FTP 확장성(`Web-Ftp-Ext`).
+  기능 표에 — BitLocker 드라이브 암호화(`BitLocker`), 컨테이너(`Containers`), WINS 서버(`WINS`). phase 80의 `windows-admin-tools.bitlocker`가 「기능 목록에서 고른다」고 쓴 것과 맞다(위 「(phase 80 step 8) … EFS·BitLocker」 항목의 「Install BitLocker on Windows Server」)
+- **기본으로 설치된 것**: 같은 표에서 기본 설치가 「Y」인 역할은 파일 및 스토리지 서비스 하나이고, 그 역할 서비스 가운데 「Y」는 스토리지 서비스 하나다(파일 서버는 「N」). 나머지 역할(DHCP 서버·DNS 서버·Hyper-V·인쇄 및 문서 서비스·원격 액세스·웹 서버(IIS))은 모두 「N」이다.
+  **이 표는 Server Core 설치 옵션의 것이다** — 데스크톱 경험이 있는 설치의 기본 상태는 아래 「(phase 81 step 0) … 파일 서버·SMB·인쇄 서버」 항목의 지난 판 「File and Storage Services Overview」(2012 R2·2012)가 같은 말을 한다
+- **설치하는 자리 — 서버 관리자**(「Add or remove roles and features in Windows Server」, 탭 「Roles and Features Wizard」): 서버 관리자 콘솔과 서버 관리자용 PowerShell cmdlet으로 로컬 서버·서버 관리자에 더한 원격 서버·오프라인 VHD에 역할과 기능을 더하고, 여럿을 한 번에 더할 수 있다 — 첫머리. 관리자 계정이 필요하다 — 「Prerequisites」.
+  차례: 시작 메뉴에서 서버 관리자를 연다 → 오른쪽 위 「관리」 → 「역할 및 기능 추가」 → **역할 및 기능 추가 마법사** → 「시작하기 전에」 → 「설치 유형」에서 「역할 기반 또는 기능 기반 설치」(원격 데스크톱 서비스를 뺀 모든 역할·기능에 쓴다) → 「서버 선택」(로컬 서버나 서버 관리자에 더한 원격 서버, 또는 VHD) →
+  「서버 역할」(더할 역할을 고른다 — 기능만 더할 때는 고르지 않아도 된다. 고른 역할에 필요한 다른 역할·기능이 있으면 더하라고 묻고, 대상 서버에 충돌이 있으면 알린다. 역할의 **관리 도구는 기본으로 함께 더해진다** — 다른 서버에서 원격으로 관리할 때는 빼도 된다) → 「기능」(역할만 더할 때는 고르지 않아도 된다) → 「확인」(고른 것을 보고 「설치」 — 설치 뒤 다시 시작해야 하는 역할·기능이 있고, 「필요한 경우 대상 서버를 자동으로 다시 시작」을 고를 수 있다) → 끝나면 「닫기」. 마법사 한 번에 대상 서버는 하나다 — 「Add roles and features on multiple servers」
+- **설치하는 자리 — PowerShell**(같은 문서, 탭 「Windows PowerShell」): 관리자 PowerShell에서 `Get-WindowsFeature`로 설치할 수 있는 역할·기능 전체를 보고(`-ComputerName`으로 원격 서버도), `Install-WindowsFeature`에 역할·기능 이름을 하나 이상 주어 설치한다. 예: `Install-WindowsFeature -Name DNS,DHCP -IncludeManagementTools`(로컬 서버에 DNS와 DHCP 역할을 관리 도구와 함께 — 결과 표에 Success·Restart Needed·Exit Code·Feature Result 칸이 나온다).
+  설치된 것만 보려면 `Get-WindowsFeature | ? Installed -eq $true`. 역할의 관리 도구와 스냅인은 **기본으로 들어가지 않아** `-IncludeManagementTools`를 붙인다. Server Core 설치 옵션에서는 그래도 GUI 관리 도구는 설치되지 않고 명령줄·PowerShell 관리 도구만 설치된다. 다시 시작이 필요하면 `-Restart`로 묻지 않고 다시 시작한다 — 같은 탭의 차례와 Tip
+- `Install-WindowsFeature`(「Description」·매개 변수): 로컬이나 원격 Windows Server(또는 오프라인 VHD)에 **역할·역할 서비스·기능** 하나 이상을 설치한다. 서버 관리자의 설치와 비슷하게 동작하지만 기능의 관리 도구를 기본으로 설치하지 않는 것이 다르다. 관리자 권한(관리자로 연 PowerShell)이 필요하다.
+  `-IncludeAllSubFeature`는 이름으로 준 역할·역할 서비스·기능 아래의 하위 역할 서비스·하위 기능까지 모두 설치한다. 예 1·2: `Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature …`는 웹 서버(IIS)를 모든 역할 서비스와 함께 설치한다. 예 3: 역할 및 기능 추가 마법사의 확인 페이지에서 「구성 설정 내보내기」로 만든 XML 파일로 설치할 수 있다
+- `Get-WindowsFeature`(「Description」·예): 설치할 수 있는 것과 이미 설치된 것을 함께 보인다. 예 4는 `Get-WindowsFeature -ComputerName Server01 | Where Installed`로 설치된 것만 보인다. 예 3처럼 `-Name AD*, Web*`으로 이름(명령 ID)의 앞부분을 걸러 볼 수 있다
+- **서버 관리자**(「Server Manager」): 로컬·원격 Windows Server를 한곳에서 갖추고 관리하는 콘솔이다 — 첫머리. Administrators 그룹 구성원이 로그온하면 기본으로 저절로 시작한다(「서버 관리자 속성」 대화 상자의 「로그온 시 서버 관리자를 자동으로 시작 안 함」 확인란이나 같은 뜻의 그룹 정책으로 끈다) — 「Start Server Manager」. 표준 사용자는 역할 서비스를 더하거나 빼지 못한다 — 「Tasks that you can perform in Server Manager」 표
+- **한국어 이름**: 한국어판은 「서버 관리자」, 「역할 및 기능 추가」·「역할 및 기능 추가 마법사」, 「역할 서비스」(Server Core 표 한국어판의 열 머리), 「기능」(마법사 단계 이름), 「역할 기반 또는 기능 기반 설치」, 마법사 단계를 「시작하기 전에」·「설치 유형」·「서버 선택」·「서버 역할」·「기능」·「확인」으로 옮긴다
+  (DNS 서버·DHCP 서버 빠른 시작 한국어판은 같은 페이지를 「설치 유형 선택」·「대상 서버 선택」·「서버 역할 선택」·「기능 선택」·「설치 선택 확인」으로 옮긴다 — 아래 항목들). 역할·역할 서비스 이름은 Server Core 표 한국어판의 「DHCP 서버」·「DNS 서버」·「파일 및 스토리지 서비스」·「스토리지 서비스」·「파일 서버」·「인쇄 및 문서 서비스」·「인쇄 서버」·「원격 액세스」·「DirectAccess 및 VPN(RAS)」·「웹 애플리케이션 프록시」·「웹 서버(IIS)」·「FTP 서버」, 기능 이름은 「BitLocker 드라이브 암호화」.
+  **고른 이름**: 「서버 역할」·「역할 서비스」·「기능」, 「서버 관리자」, 「역할 및 기능 추가 마법사」(그 안 페이지는 「서버 역할 선택」처럼 빠른 시작 한국어판 꼴 — phase 80의 AD DS 항목과 같다), 「파일 및 스토리지 서비스」(guide.md의 「파일 및 저장소 서비스」 대신 — 한국어판의 표기이고 phase 80 `windows-admin-tools.work-folders`가 이미 쓴다), 「인쇄 및 문서 서비스」·「인쇄 서버」, 「웹 서버(IIS)」. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 1에서 쓰일 곳) `windows-server-roles.server-roles-features`(역할·역할 서비스·기능의 정의와 차이 — 지난 판 정의, 지금 판의 「서버의 주된 일」, 어느 이름이 역할이고 역할 서비스이고 기능인지(Server Core 표), 기본 설치(파일 및 스토리지 서비스·스토리지 서비스), 서버 관리자 마법사의 차례와 페이지 이름, `Install-WindowsFeature`·`-IncludeManagementTools`·`Get-WindowsFeature`, 관리 도구가 마법사에서는 기본으로 들어가고 cmdlet에서는 아니라는 차이);
+(phase 81 step 2·7에서 쓰일 곳) `windows-server-roles.file-print-services`(파일 서버·인쇄 서버 역할 서비스 이름과 기본 설치), `windows-server-roles.ftp-server`(웹 서버(IIS) 아래 FTP 서버 역할 서비스와 설치 이름 `Web-Ftp-Server` — step 4가 FTP 문서와 함께 다시 본다); 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2026-05-17 #44])
+
+## (phase 81 step 0) Microsoft Learn — 서버의 고정 IP 주소: Quickstart: Install and configure DNS Server on Windows Server, Core network components, DHCP server events, New-NetIPAddress, Set-DnsClientServerAddress, STEP 6 Install and Configure 2-DC1(DirectAccess 다중 사이트 시험 랩); 문제 해결 — How To Install and Configure a DHCP Server in a Workgroup
+https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server
+https://learn.microsoft.com/en-us/windows-server/networking/core-network-guide/core-network-guide
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-server-events
+https://learn.microsoft.com/en-us/powershell/module/nettcpip/new-netipaddress?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dnsclient/set-dnsclientserveraddress?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/remote/remote-access/directaccess/tlg-multisite/step-6-install-and-configure-2-dc1
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/install-configure-dhcp-server-workgroup
+
+2026-11-18에 IPv4로 내려받아 읽은 판: DNS 서버 빠른 시작 `updated_at` 2025-06-11(`ms.date` 2025-06-11), 「Core network components」 2025-09-22(2023-02-06), 「DHCP server events」 2025-09-15(2025-03-12) — 셋 다 「Applies to」 Windows Server 2016~2025(이벤트 문서는 Azure Local 2311.2 이후도).
+`New-NetIPAddress`·`Set-DnsClientServerAddress` 2025-05-14(2016-12-20, `windowsserver2025-ps` 판). DirectAccess 시험 랩 「STEP 6」 2026-02-16(2020-08-07, Windows Server 2016~2025·Windows 11·10).
+작업 그룹 DHCP 문제 해결 문서 2026-02-19(2026-02-12, 「Applies to」 지원되는 Windows Server, 원래 KB 323416) — **본문은 Windows Server 2003에 DHCP 서버를 세우는 글**이라 줄의 사실만 가져오고 차례·화면은 가져오지 않는다.
+한국어판도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역) — 용어 표기만 참고한다. AD DS 설치 문서 둘(「Install Active Directory Domain Services」, 「Active Directory Domain Services configuration wizard page descriptions」, 2026-02-16)도 다시 받아 찾아봤지만 고정 IP 주소에 관한 말은 없다.
+
+- **DNS 서버 빠른 시작**(「Prerequisites」): DNS 서버를 설치하고 구성하기 전에 갖출 것으로 지원되는 Windows Server를 실행하는 컴퓨터, **고정 IP**, Administrators 그룹 구성원(이나 같은 권한의) 계정을 든다. 설치는 관리자 PowerShell의 `Install-WindowsFeature -Name DNS`(다시 시작이 필요 없다)나 서버 관리자의 역할 및 기능 추가 마법사(「서버 역할 선택」에서 DNS 서버를 고르고 필요한 기능을 더한다)로 한다 — 「Install DNS Server」.
+  AD DS를 설치 마법사로 설치하면 DNS 서버를 함께 설치·구성하는 선택지가 있다 — 같은 절의 Tip
+- DHCP 서버 빠른 시작(「Prerequisites」, 아래 「DHCP 서버 역할·범위·예약」 항목): 갖출 것에 **고정 IPv4 주소**가 있다
+- **Core network components** — 「Planning TCP/IP static configuration」: **라우터·DHCP 서버·DNS 서버 같은 장치는 고정 IP 주소로 구성해야 한다.** 프린터처럼 늘 같은 주소를 쓰게 하고 싶은 장치도 있다. 서브넷마다 이렇게 고정으로 구성할 장치를 적고, DHCP 서버가 그 주소를 임대하지 않도록 쓸 제외 범위를 계획하라.
+  「Static TCP/IP configurations」: 이 안내의 배포에서는 서버를 고정 IPv4 주소로 구성하고 클라이언트 컴퓨터는 기본 설정대로 DHCP 서버에서 주소를 임대받는다. 「Planning exclusion ranges」: 범위의 주소 구간 안에서 일부 서버·장치에 손으로 고정 주소를 넣으면, 사람과 DHCP 서버가 같은 주소를 서로 다른 장치에 주는 주소 충돌이 날 수 있고 — 그래서 제외 범위를 만든다
+- 같은 문서 「Configure a static IP address」(Windows Server 2016·2012 R2·2012의 차례): 작업 표시줄의 네트워크 아이콘 오른쪽 클릭 → 「네트워크 및 공유 센터 열기」 → 「어댑터 설정 변경」(네트워크 연결 폴더) → 설정할 연결 오른쪽 클릭 → 「속성」 → 「이 연결에서는 다음 항목을 사용」에서 「인터넷 프로토콜 버전 4(TCP/IPv4)」를 고르고 「속성」 →
+  「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」의 「일반」 탭에서 「다음 IP 주소 사용」 → 「IP 주소」 입력 → Tab을 누르면 「서브넷 마스크」에 기본값이 채워지고 그대로 두거나 고친다 → 「기본 게이트웨이」(라우터의 LAN 쪽 인터페이스와 같은 주소여야 한다) → 「기본 설정 DNS 서버」(이 컴퓨터를 DNS 서버로 쓰려면 이 컴퓨터의 주소) → 「대체 DNS 서버」(있으면) → 「확인」·「닫기」.
+  같은 일을 PowerShell로는 `New-NetIPAddress -IPAddress <주소> -InterfaceAlias "Ethernet" -DefaultGateway <게이트웨이> -AddressFamily IPv4 -PrefixLength 24`와 `Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses <DNS 서버 주소>`로 한다 — 같은 절의 Note(문서의 예는 DNS 서버 주소에 127.0.0.1을 넣는다)
+- **DirectAccess 시험 랩 「STEP 6」**(「Configure TCP/IP properties」): 같은 속성 창에서 「다음 IP 주소 사용」으로 주소·마스크·기본 게이트웨이를 넣은 뒤 **「다음 DNS 서버 주소 사용」**(Use the following DNS server addresses)을 고르고 「기본 설정 DNS 서버」·「대체 DNS 서버」를 넣는다 — 이 단계의 이름이 지금 판 Windows Server 문서에 보이는 곳이다(「Core network components」의 차례는 이 고르기를 따로 적지 않는다)
+- `New-NetIPAddress`(「Description」·예 1): IP 주소를 만들고 구성한다. 접두사 길이(서브넷 마스크)와 기본 게이트웨이를 함께 정하라고 권한다. **이미 DHCP가 켜진 인터페이스에 이 cmdlet으로 주소를 더하면 DHCP가 저절로 꺼진다.** 접두사 길이 24는 255.255.255.0이고, 기본 게이트웨이는 더하는 IPv4 주소와 같은 서브넷에 있어야 한다
+- `Set-DnsClientServerAddress`(「Description」): 인터페이스의 TCP/IP 속성에 DNS 서버 주소를 **고정으로** 넣고, 이렇게 넣은 DNS 서버는 그 인터페이스의 DHCP 설정보다 앞선다
+- **DHCP server events**(「DHCP server administrative events」 표): 이벤트 1144(EVENT_SERVER_NEED_STATIC_IP) — 이 컴퓨터에 동적으로 받은 IP 주소가 하나 이상 있으니, DHCP 서버가 믿을 만하게 동작하려면 고정 IP 주소만 쓰라는 내용이다. **DHCP 서버의 이벤트다** — DNS 서버 역할에 같은 이벤트·경고가 있다는 문서는 찾지 못했다
+- **작업 그룹 DHCP 문서**(Windows Server 2003 글, 「How to Create a New Scope」 5단계): 범위에서 뺄 주소는 이미 여러 컴퓨터에 고정으로 준 주소이고, 대개 **도메인 컨트롤러·웹 서버·DHCP 서버·DNS 서버** 같은 서버가 고정 주소를 쓴다고 적는다. 지금 판 문서에서 「도메인 컨트롤러는 고정 IP 주소를 써야 한다」를 한 문장으로 적은 곳은 찾지 못했다 — 「Core network components」가 DC1(AD DS와 DNS 서버를 함께 둔 서버)을 고정 주소로 구성하는 차례를 보이는 데까지다
+- **찾지 못한 것**: DHCP로 주소를 받은 서버에 DNS 서버 역할을 설치할 때 마법사가 보이는 경고의 꼴(검색 — dynamically assigned, static IP warning, Add Roles and Features validation — 에 Microsoft Q&A 글만 나왔다). 「서버가 왜 고정 주소여야 하는가」를 한 문장으로 적은 문장도 찾지 못했다 —
+  클라이언트가 DNS 서버의 주소를 「기본 설정 DNS 서버」 칸에 적어 두거나(위 차례) DHCP의 DNS 서버·라우터 옵션으로 받는다(아래 「DHCP 서버 역할·범위·예약」 항목)는 사실과, 주소가 바뀌면 적어 둔 그 값이 맞지 않게 된다는 것은 이어서 나오는 말이다
+- **한국어 이름**: 한국어판은 「고정 IP 주소」(「Core network components」·이벤트 1144)와 「정적 IP 주소」·「정적 IPv4 주소」(같은 문서의 절 제목, DHCP 빠른 시작)를 섞어 쓰고, DNS 빠른 시작은 「고정 IP」다. 메뉴는 「네트워크 및 공유 센터 열기」·「어댑터 설정 변경」·「인터넷 프로토콜 버전 4(TCP/IPv4) 속성」·「일반」 탭·「다음 IP 주소 사용」·「다음 DNS 서버 주소 사용」(시험 랩 한국어판)·「기본 설정 DNS 서버」·「대체 DNS 서버」로 옮긴다.
+  **고른 이름**: 「고정 IP 주소」(정적 IP 주소라고도 부른다는 것은 한 줄), 메뉴 이름은 위 한국어판 그대로. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 1에서 쓰일 곳) `windows-server-roles.server-static-ip`(DNS 서버·DHCP 서버를 설치하기 전에 고정 주소, 라우터·DHCP 서버·DNS 서버는 고정 주소여야 한다, 서버는 고정·클라이언트는 DHCP, 고정 주소와 제외 범위의 관계, TCP/IPv4 속성의 차례와 이름, `New-NetIPAddress`가 DHCP를 끈다·`Set-DnsClientServerAddress`, DHCP 서버의 이벤트 1144, 도메인 컨트롤러는 2003 글과 DC1 차례로만 — 위 「(phase 78 step 11) … ipconfig」의 `/renew` 줄과 함께);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-05-25 #43])
+
+## (phase 81 step 0) Microsoft Learn — 파일 서버·SMB·인쇄 서버: What is SMB File Sharing for Windows and Windows Server?, Secure SMB traffic in Windows Server, Service overview and network port requirements for Windows, How to install and configure a file and print server, How to reset TCP/IP by using the NetShell utility, Error 0x80071779 when removing network components in Windows 10; 지난 판 File and Storage Services Overview, Print and Document Services Overview
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview
+https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-secure-traffic
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/printing/install-configure-file-print-server
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/reset-tcp-ip-net-shell
+https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/cannot-uninstall-client-for-microsoft-networks
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831487(v=ws.11)
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831468(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「What is SMB File Sharing for Windows and Windows Server?」 `updated_at` 2026-11-17(`ms.date` 2026-11-10, 「Applies to」 Windows Server 2028 Preview·2025~2016·Windows 11·10·Azure Local), 「Secure SMB traffic in Windows Server」 2025-04-28(2024-10-25, Windows Server 2016~2025·Windows 11·10·Azure Local).
+문제 해결 문서 넷은 모두 2026-02-19(2026-02-12) — 포트 요구 문서·TCP/IP 다시 설정 문서는 「Applies to」 지원되는 Windows Server, 파일·인쇄 서버 문서는 같은 머리에 본문이 「Applies to: Windows Server 2003」(원래 KB 325860)인 **Windows Server 2003 글**, 네트워크 구성 요소 제거 오류 문서는 지원되는 Windows 클라이언트(본문은 Windows 10 모든 판, KB 4340181).
+지난 판 「File and Storage Services Overview」 2021-11-12(`ms.date` 2016-12-29, Windows Server 2012 R2·2012 — 지금 판 「Manage the Local Server and the Server Manager Console」이 파일 및 스토리지 서비스의 안내로 링크한다), 「Print and Document Services Overview」 2021-11-12(2016-08-31, Windows Server 2012).
+한국어판도 받았다(`updated_at` 2026-01-21~2026-11-17, 기계 번역 — 지난 판 둘은 영문 그대로).
+
+- **SMB**(Server Message Block, 「What is SMB File Sharing…」 첫머리): 네트워크로 파일을 공유하는 프로토콜이다. **TCP/IP 위나 다른 프로토콜 위에서** 네트워크 너머의 파일을 읽고 쓰게 하고, 응용 프로그램(이나 그 사용자)이 원격 서버의 파일·자원에 닿아 읽고 만들고 고치게 한다.
+  「SMB features」의 네트워킹 갈래: 전송으로 흔히 쓰는 TCP, VPN 없이 인터넷으로 닿게 하는 QUIC, 데이터 센터의 RDMA를 든다(이름만 — 설정은 가져오지 않는다)
+- 같은 문서 「SMB components」: **SMB 서버**는 자원(파일·프린터·명명된 파이프)을 공유하고 SMB 클라이언트의 요청에 답하는 구성 요소다 — 컴퓨터에 파일 공유를 만들면 그 컴퓨터의 SMB 서버가 들어오는 연결과 파일 접근 요청을 처리한다. **SMB 클라이언트**는 원격 공유에 이어 SMB 서버로 요청을 보내는 구성 요소다 — 네트워크 드라이브를 연결하거나 **`\\server\share` 같은 UNC 경로**로 닿으면 그 컴퓨터의 SMB 클라이언트가 연결을 시작하고 맡는다.
+  두 이름은 프로토콜 안에서의 역할이지 Windows 판 이름이 아니고, Windows Server와 Windows 클라이언트 모두 두 구성 요소를 갖는다(Windows 11도 공유를 열어 SMB 서버가 된다)
+- **포트**: 「Secure SMB traffic」은 회사 방화벽에서 인터넷에서 들어오는 **TCP 445**와 인터넷으로 나가는 TCP 445를 막으라고 권한다 — 「Block TCP port 445 …」 두 절. 「Updated firewall rules」: Windows 11 24H2·Windows Server 2025부터 기본 방화벽 규칙에 SMB의 NetBIOS 포트가 없다 —
+  그 전 판에서는 공유를 만들면 「파일 및 프린터 공유」 그룹의 규칙이 인바운드 NetBIOS 포트 137~139를 저절로 열었다. SMB2 이후로 만든 공유는 137~139를 쓰지 않고, SMB1 서버가 꼭 필요하면 그 포트를 손으로 연다
+- 「Service overview and network port requirements」의 **Server** 시스템 서비스(서비스 이름 `lanmanserver`): 네트워크로 파일 공유·인쇄 공유·명명된 파이프 공유와 RPC 지원을 한다. 디스크·프린터 같은 로컬 자원을 공유해 네트워크의 다른 사용자가 쓰게 한다. 포트 — SMB는 **TCP 445**, NetBIOS 세션 서비스 TCP 139, NetBIOS 이름 풀이 UDP 137, NetBIOS 데이터그램 서비스 UDP 138. **NetBIOS 포트는 선택이고** Windows 2000 이후 클라이언트는 445만으로 일한다 — 「System services ports」의 「Server」
+- **TCP/IP는 Windows에 처음부터 들어 있다**: 파일·인쇄 서버 문서(Windows Server 2003 글)는 Windows Server 2003 컴퓨터에 **Microsoft 네트워크용 클라이언트, Microsoft 네트워크용 파일 및 프린터 공유, TCP/IP가 기본으로 설치된다**고 적는다(로컬 영역 연결 속성에서 보인다) — 「Install File and Printer Sharing」. 이 문서의 서버 구성 마법사 차례는 지금 판에 없는 도구라 가져오지 않는다.
+  「How to reset TCP/IP …」: `netsh int ip reset`은 TCP/IP가 쓰는 레지스트리 키를 다시 쓰고, 그것은 **TCP/IP를 지웠다가 다시 설치한 것과 같은 효과**다 — 「Manually reset TCP/IP」. 「Error 0x80071779 …」(Windows 10 1803 이후 클라이언트): Microsoft 네트워크용 클라이언트 같은 네트워크 구성 요소를 지울 수 없는 것은 설계대로이고, 그 화면이나 `netcfg`로 프로토콜·기본 드라이버를 지우는 것을 지원하지 않는다 — 대신 어댑터에서 바인딩을 끈다(`Disable-NetAdapterBinding`) — 「Resolution」.
+  「지금 판 Windows Server에서 TCP/IP가 기본으로 설치되어 있다」를 한 문장으로 적은 지금 판 문서는 찾지 못했다 — 위 셋으로 댄다
+- **파일 서버**(지난 판 「File and Storage Services Overview」, 2012 R2·2012): 파일 및 스토리지 서비스는 **파일 서버** — 네트워크에서 파일을 한곳에 저장하고 사용자와 공유하게 하는 서버 — 를 하나 이상 세우고 관리하는 기술을 담는다. 사용자가 같은 파일에 닿아야 하거나 백업·파일 관리를 한곳에서 해야 하면 이 역할과 알맞은 역할 서비스를 설치해 파일 서버를 세운다 — 첫머리.
+  **이 역할과 스토리지 서비스 역할 서비스는 기본으로 설치되지만 다른 역할 서비스는 없다** — 서버 관리자·PowerShell로 저장소를 관리하는 기본 기능뿐이고, 파일 서버를 세우거나 관리하려면 역할 및 기능 추가 마법사나 `Install-WindowsFeature`로 역할 서비스를 더 설치한다 — 같은 곳. 역할 서비스 표의 「File Server」: 파일 공유를 관리하고 사용자가 네트워크에서 이 컴퓨터의 파일에 닿게 한다(SMB 공유).
+  지금 판 Server Core 표(위 「서버 역할과 기능」 항목)가 같은 기본 상태(파일 및 스토리지 서비스·스토리지 서비스 「Y」, 파일 서버 「N」)를 보인다
+- **인쇄 서버**(지난 판 「Print and Document Services Overview」, Windows Server 2012): 인쇄 및 문서 서비스 역할은 인쇄 서버와 네트워크 프린터에 관한 일을 한곳에서 하게 한다(네트워크 스캐너의 문서를 받아 보내는 일도 하지만 가져오지 않는다) — 「Role description」. 인쇄 서버(Print Server)는 인쇄 대기열을 살피고 대기열이 인쇄 작업을 처리하지 않게 되면 알려 주며, 그룹 정책으로 프린터 연결을 배포하게 한다 — 「Practical applications」.
+  지금 판 Server Core 표: 인쇄 및 문서 서비스(`Print-Services`) 아래 인쇄 서버(`Print-Server`), 기본 설치 「N」. 「프린트 서버는 인쇄 작업을 받아 프린터로 보낸다」를 한 문장으로 정의한 지금 판 문서는 찾지 못했다 — 위 SMB 서버(프린터를 공유한다)·Server 서비스(프린터를 공유해 다른 사용자가 쓰게 한다)·인쇄 대기열의 줄로 댄다
+- **한국어 이름**: 한국어판은 「SMB(서버 메시지 블록)」, 「SMB 서버」·「SMB 클라이언트」, 「UNC 경로」, 「파일 및 프린터 공유」(방화벽 규칙 그룹), 「Microsoft 네트워크용 파일 및 프린터 공유」(파일·인쇄 서버 문서), 「파일 서버」·「인쇄 서버」·「인쇄 및 문서 서비스」(Server Core 표)로 옮긴다. 지난 판 둘은 번역되지 않았다.
+  **고른 이름**: 「SMB」(Server Message Block — 한국어판의 「서버 메시지 블록」을 한 줄), 「파일 서버」, 「인쇄 서버」(guide.md의 개념 이름 「프린트 서버」는 일반 명사로 쓰고, 역할 서비스 이름은 「인쇄 서버」라고 밝힌다), 「UNC 경로」. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.file-print-services`(SMB의 뜻 — 파일 공유 프로토콜이고 TCP/IP나 다른 전송 위에서 동작, SMB 서버가 파일·프린터를 공유하고 SMB 클라이언트가 `\\server\share`로 닿는다, TCP 445와 선택인 NetBIOS 포트, TCP/IP가 처음부터 들어 있다, 파일 서버·인쇄 서버의 뜻과 역할 서비스 이름·기본 설치, 인쇄 대기열);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단과 **E39** — [기출 2024-11-03 #30]). 오답 SNMP·SMTP·IGMP의 뜻은 이미 있는 「(phase 78 step 5) RFC 3411 …」·「(phase 78 step 0) RFC 5598 …」·「(phase 73 step 1) RFC 2236 …, RFC 9776 …」 항목으로 댄다
+
+## (phase 81 step 0) Microsoft Learn — DHCP 서버 역할·범위·예약: Quickstart: Install and configure DHCP Server, Deploy DHCP Using Windows PowerShell, Add-DhcpServerInDC, Add-DhcpServerv4Scope, Add-DhcpServerv4ExclusionRange, Set-DhcpServerv4OptionValue, Add-DhcpServerv4Reservation, Windows Internet Name Service (WINS); Win32 — DhcpSetSubnetDelayOffer, DHCP_IP_RESERVATION_INFO
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/quickstart-install-configure-dhcp-server
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-deploy-wps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverindc?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4scope?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4exclusionrange?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/set-dhcpserverv4optionvalue?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4reservation?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/wins/wins-top
+https://learn.microsoft.com/en-us/windows/win32/api/dhcpsapi/nf-dhcpsapi-dhcpsetsubnetdelayoffer
+https://learn.microsoft.com/en-us/windows/win32/api/dhcpsapi/ns-dhcpsapi-dhcp_ip_reservation_info
+
+2026-11-18에 IPv4로 내려받아 읽은 판: DHCP 서버 빠른 시작 `updated_at` 2026-02-16(`ms.date` 2025-04-17, 「Last updated on」 2025-04-21), 「Deploy DHCP Using Windows PowerShell」 2025-09-22(2021-01-04), WINS 2026-02-16(2020-08-07) — 셋 다 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후.
+DhcpServer 모듈 cmdlet 다섯은 모두 2025-05-14(2016-12-20, `windowsserver2025-ps` 판). Win32 둘은 2024-02-22(2018-12-05 — 「Minimum supported server」 `DhcpSetSubnetDelayOffer`는 Windows Server 2008 R2, `DHCP_IP_RESERVATION_INFO`는 Windows Server 2012).
+마법사의 옛 페이지 이름과 임대 기간의 단위는 위 「서버의 고정 IP 주소」 항목의 「Core network components」(2016~2025)와 작업 그룹 DHCP 문서(Windows Server 2003 글)에서 가져온다. 한국어판도 받았다(`updated_at` 2026-01-21~2026-10-14, 기계 번역 — cmdlet·Win32 페이지는 영문 그대로).
+
+- **DHCP 서버 역할 설치**(빠른 시작 「Prerequisites」·「Install the DHCP Server role」): 갖출 것 — 지원되는 Windows Server, **고정 IPv4 주소**, 범위에 쓸 IP 주소 구간, Administrators 계정. 관리자 PowerShell에서 `Install-WindowsFeature DHCP -IncludeManagementTools`(다시 시작 필요 없음), 또는 서버 관리자 마법사의 「서버 역할 선택」에서 DHCP 서버를 고르고 필요한 기능을 더한다(뒤에 「DHCP 서버」 페이지에서 역할 설명을 본다)
+- **관리 도구 — DHCP 콘솔**: 빠른 시작은 시작 메뉴 「Windows 관리 도구」 → 「DHCP」로, 「Deploy DHCP Using Windows PowerShell」은 서버 관리자 「도구」 → 「DHCP」로 연다(「Verify Server Functionality」). **실행 이름 `dhcpmgmt.msc`는 허용한 문서에서 찾지 못했다** — learn.microsoft.com 검색과 MCP 문서 검색 모두 Microsoft Q&A 글에만 나왔다. 쓰지 않는다
+- **권한 부여**(빠른 시작 「Authorize the DHCP server in Active Directory」): 도메인 환경에 DHCP를 설치하면 서버가 도메인에서 동작하도록 AD에서 권한을 줘야 한다. AD 도메인에 설치한 **권한 없는 DHCP 서버는 제대로 동작하지 못하고 클라이언트에게 주소를 임대하지 않는다** — 권한 없는 서버가 잘못된 주소를 나눠 주는 일을 막는 보안 기능이다.
+  PowerShell `Add-DhcpServerInDC -DnsName <서버 이름> -IPAddress <주소>`(도메인 환경이 아니면 실행하지 않는다)와 확인 `Get-DhcpServerInDC`, 또는 DHCP 콘솔에서 서버 이름을 오른쪽 클릭 → 「권한 부여」 → 몇 초 뒤 서버 목록을 새로 고쳐 확인한다. `Add-DhcpServerInDC` 「Description」: 도메인에 가입한 컴퓨터의 DHCP 서버는 AD에서 권한을 받아야 네트워크에서 주소 임대를 시작할 수 있다
+- **범위와 새 범위 마법사**(빠른 시작 「Configure an IPv4 scope」, 탭 「GUI」): 범위는 DHCP 서버와 그 클라이언트가 쓸 IP 주소 구간을 정한다. DHCP 콘솔에서 서버 이름을 펼쳐 「IPv4」 오른쪽 클릭 → 「새 범위」 → **새 범위 마법사**: 「범위 이름」(이름) → 「IP 주소 범위」(클라이언트에게 줄 주소 구간과 서브넷 마스크) → **「제외 및 지연 추가」**(Add Exclusions and Delay — 서버가 나눠 주지 않을 주소나 주소 구간) →
+  「임대 기간」(클라이언트에게 준 주소의 수명) → 「DHCP 옵션 구성」(「예, 지금 이러한 옵션을 구성하겠습니다」 — 라우터(기본 게이트웨이)·DNS 서버·WINS 설정 같은 흔한 옵션을 이어서 정하고, **적어도 라우터와 DNS 서버는 정해야 한다**) → 「라우터(기본 게이트웨이)」(클라이언트가 쓸 게이트웨이 주소를 넣고 「추가」) →
+  「도메인 이름 및 DNS 서버」(클라이언트가 이름 풀이에 쓸 도메인 이름과 DNS 서버의 호스트 이름이나 주소) → **「WINS 서버」**(쓰는 WINS 서버의 이름과 주소 — 없으면 「다음」으로 건너뛴다) → 「범위 활성화」(「예, 이 범위를 활성화하겠습니다」를 고르면 곧바로 주소를 주기 시작하고, 「아니요, 이 범위를 나중에 활성화 하겠습니다」로 나중에 켤 수도 있다) → 「마침」.
+  PowerShell 탭: `Add-DhcpServerv4Scope -Name <이름> -StartRange <시작> -EndRange <끝> -SubnetMask <마스크>`
+- 같은 마법사(「Core network components」의 「To create and activate a new DHCP scope」 — 2016~2025 문서의 차례): 「IP 주소 범위」에서 시작 IP 주소와 끝 IP 주소를 넣으면 **길이와 서브넷 마스크가 시작 주소를 보고 저절로 채워지고**, 필요하면 고친다. 이 문서는 다음 페이지를 「제외 추가」(Add Exclusions — 시작·끝 IP 주소를 넣고 「추가」)라 부른다.
+  **「임대 기간」에서 일·시간·분(Days, Hours, Minutes)의 기본값을 고친다.** 작업 그룹 DHCP 문서(2003 글)도 임대가 끝나기까지의 일·시간·분을 넣는다고 적는다. 마법사가 보이는 임대 기간의 기본값 숫자는 지금 판 문서에서 찾지 못했다
+- `Add-DhcpServerv4Scope`(매개 변수): `-LeaseDuration` — 이 범위의 클라이언트에게 주소를 임대할 기간, **`일.시:분:초` 꼴**(TimeSpan), **기본값 `8.00:00:00`(8일)** — 곧 PowerShell로는 초까지 적는 꼴이다. `-Delay` — 클라이언트 요청에 답하기 전에 DHCP 서버가 기다릴 **밀리초** 수(UInt16, 기본 0)이고, 그 범위가 분할 범위 배포의 일부이고 이 서버가 그 범위의 보조 서버로 일할 때 정한다.
+  `-State` — Active·Inactive, **활성 범위만 클라이언트 요청에 답한다**(기본 Active). `-Type` — DHCP·BootP·Both, 그 범위가 DHCP 클라이언트·BOOTP 클라이언트·둘 다 가운데 누구의 요청에 답할지(기본 DHCP)
+- Win32 `DhcpSetSubnetDelayOffer`: 범위마다 **DISCOVER 메시지를 받은 뒤 OFFER 메시지를 보내기까지 늦출 시간**을 정한다 — 단위 밀리초, 0~1000, 기본 0(Windows Server 2008 R2부터) — 「Parameters」. 마법사 「제외 및 지연 추가」 페이지에서 이 값을 넣는 칸의 이름(「서브넷 지연」 같은)은 지금 판 문서에서 찾지 못했다 — 페이지 이름의 「지연」과 위 두 문서로만 댄다
+- **제외 범위**: 빠른 시작 「Manage exclusions」 — DHCP 콘솔 트리에서 범위의 「주소 풀」 → 「작업」 메뉴 「새 제외 범위」 → 「제외 추가」 대화 상자의 시작 IP 주소(주소 하나만 빼면 이것만), 둘 이상이면 끝 IP 주소 → 「추가」. PowerShell `Add-DhcpServerv4ExclusionRange -ScopeId <범위 ID> -StartRange <시작> -EndRange <끝>`.
+  `Add-DhcpServerv4ExclusionRange` 「Description」: 제외한 주소는 DHCP 서버가 **어떤 클라이언트에게도 임대하지 않는다 — 유일한 예외가 예약이다. 예약한 주소는 제외 범위 안에 있어도 지정한 클라이언트에게 임대된다.** 제외 범위의 정의는 위 「(phase 74 step 5) Microsoft Learn …」 항목의 DHCP scopes 줄
+- **범위 옵션**: 빠른 시작 「Manage scope options」 — 콘솔에서 범위를 펼쳐 「범위 옵션」 오른쪽 클릭 → 「옵션 구성」, PowerShell `Set-DhcpServerv4OptionValue`. 「Description」: 옵션 값을 서버·범위·예약 수준에서 정한다(`-ReservedIP`만 주면 예약, `-ScopeId`만 주면 범위, 둘 다 없으면 서버 수준). 매개 변수 `-Router`(라우터·기본 게이트웨이 옵션), `-DnsServer`(DNS 서버 옵션), `-DnsDomain`(DNS 도메인 옵션), **`-WinsServer`**(WINS 서버 옵션, IPv4 주소)
+- **예약**: 빠른 시작 「Manage reservations」 — 클라이언트 예약으로 DHCP 클라이언트가 계속 쓸 IP 주소를 예약한다. 예약은 **NIC의 MAC 주소로 저장되고, DHCP 서버가 정한 IP 주소를 정한 MAC 주소에게만 임대하게 한다**. 콘솔: 범위의 「예약」 노드 오른쪽 클릭 → 「새 예약」 → 예약 이름, IP 주소, 그 호스트의 NIC에 묶인 MAC 주소를 넣는다. 이미 있는 임대는 「주소 임대」 노드에서 오른쪽 클릭 → 「예약에 추가」로 예약으로 바꾼다.
+  `Add-DhcpServerv4Reservation` 「Description」·매개 변수: **범위 안의** 정한 IPv4 주소를 클라이언트를 위해 예약하고, 그 뒤 그 주소는 그 클라이언트 ID의 클라이언트에게만 임대된다. `-ClientId` — 클라이언트의 고유 ID이고 **Windows 클라이언트는 MAC 주소를 클라이언트 ID로 쓴다**. **`-Type` — 그 주소를 예약해 둘 클라이언트 요청의 종류, DHCP·BootP·Both, 기본 Both.** `-Description`(예 1은 프린터용 예약이라는 설명을 단다)
+- Win32 `DHCP_IP_RESERVATION_INFO`(「Members」): IPv4 예약이 담는 것 — 예약한 IP 주소, 예약을 가진 클라이언트의 하드웨어 주소(MAC 주소), 예약 클라이언트의 컴퓨터 이름, 설명, 허용하는 클라이언트 유형(DHCP만 1, BOOTP만 2, DHCPv4와 BOOTP 둘 다 3). 새 예약 대화 상자에서 유형을 고르는 칸의 이름(「지원되는 유형」 같은)은 지금 판 문서에서 찾지 못했다 — 유형 셋은 cmdlet과 이 구조체로 댄다
+- **예약 주소와 범위**: cmdlet이 「범위 안의 주소를 예약한다」고 쓰고(`-ScopeId`), 콘솔도 범위의 「예약」 노드에서 만든다. 범위의 주소 구간 밖 주소를 넣으면 어떻게 되는지 적은 문서는 찾지 못했다
+- **WINS**(「Windows Internet Name Service (WINS)」 첫머리): 컴퓨터의 **NetBIOS 이름을 IP 주소에 짝짓는** 옛(레거시) 컴퓨터 이름 등록·풀이 서비스다. 아직 배포하지 않았다면 WINS 대신 DNS를 배포하라(DNS도 이름 등록·풀이를 하고 AD DS와 묶이는 것 같은 이점이 더 있다), 이미 있다면 DNS를 배포한 뒤 WINS를 거두라.
+  지원 상태: 위 「Features Removed …」 줄(2022부터 더 개발하지 않음, 2028 Preview에서 WINS 서버 역할 제거). Server Core 표에서 WINS 서버는 **기능**이다(위 「서버 역할과 기능」 항목). **지금 판 새 범위 마법사에는 「WINS 서버」 페이지가 있다**(빠른 시작 2025-04-17판) — 2028에서도 남는지는 문서에 없다
+- **한국어 이름**: 한국어판은 「권한 부여」, 「범위」, 「새 범위」·「새 범위 마법사」, 「범위 이름」, 「IP 주소 범위」, 「제외 및 지연 추가」(「Core network components」 한국어판은 「제외 추가」), 「임대 기간」(「일, 시간 및 분」), 「DHCP 옵션 구성」, 「라우터(기본 게이트웨이)」, 「도메인 이름 및 DNS 서버」, 「WINS 서버」, 「범위 활성화」, 「범위 옵션」·「옵션 구성」,
+  「예약」·「새 예약」·「주소 임대」·「예약에 추가」·「클라이언트 예약」, 「주소 풀」·「새 제외 범위」·「제외 추가」·「제외 범위」, 「Windows 관리 도구」, 「WINS(Windows 인터넷 이름 서비스)」로 옮긴다. **고른 이름**: 위 한국어판 표기 그대로이고, 「지연」은 「제외 및 지연 추가」 페이지에서 정하는 「지연 시간」(밀리초)으로 쓴다(「서브넷 지연」은 문서에서 확인한 이름이 아니다). **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(설치·고정 IPv4 주소, DHCP 콘솔을 여는 자리 — 실행 이름은 쓰지 않는다, 권한 부여, 범위의 뜻, 새 범위 마법사의 차례와 이름, 시작·끝 주소에서 마스크가 채워진다, 임대 기간의 단위(마법사는 일·시간·분, cmdlet은 `일.시:분:초`)와 cmdlet 기본값 8일, 지연 시간의 뜻·밀리초·0~1000·분할 범위의 보조 서버, 활성 범위만 답한다, 제외 범위와 그 예외, 범위 옵션, WINS의 뜻과 지원 상태);
+(phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-reservation`(예약의 뜻 — MAC 주소·클라이언트 ID, 새 예약에 넣는 것, 유형 셋과 기본 Both, BOOTP 클라이언트, 제외 범위 안에서도 예약은 나간다, 범위 안의 주소, 예약 수준 옵션); 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-02-23 #44], [기출 2026-08-02 #32]).
+BOOTP가 무엇인지는 이미 있는 「(phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 …」 항목으로 댄다
+
+## (phase 81 step 0) Microsoft Learn — DHCP 장애 조치: DHCP failover overview, Add-DhcpServerv4Failover, Set-DhcpServerv4Failover; 지난 판 Step-by-Step: Configure DHCP for Failover (Windows Server 2012)
+https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-failover
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4failover?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/dhcpserver/set-dhcpserverv4failover?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831385(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「DHCP failover overview」 `updated_at` 2026-02-16(`ms.date` 2025-03-11, 「Applies to」 Windows Server 2016~2025·Azure Local 2311.2 이후), 한국어판 「DHCP 장애 조치(failover) 개요」 2026-02-16. cmdlet 둘은 2025-05-14(2016-12-20, `windowsserver2025-ps` 판, 한국어판은 영문 그대로).
+지난 판 「Step-by-Step: Configure DHCP for Failover」 2021-11-12(`ms.date` 2016-08-31, 「Applies To」 Windows Server 2012) — **지금 판 개요가 서버 관리자로 장애 조치를 구성하는 안내(「step-by-step guide」)로 링크한다.** MCLT를 한 문장으로 정의한 곳은 이 지난 판 문서뿐이다(지금 판 개요는 MCLT의 쓰임만 적는다).
+
+- **DHCP 장애 조치**(개요 첫머리·「Introduction to DHCP failover」): Microsoft DHCP 서버 두 대가 가용성 정보를 나눠 갖게 하는 것 — 주 서버와 그 장애 조치 파트너 사이에 IP 주소 임대와 설정을 복제해 고가용성을 준다. **활성 임대를 포함한 범위 정보를 모두 나누므로 한 서버를 쓸 수 없게 되면 다른 서버가 그 DHCP 클라이언트를 맡을 수 있다.**
+  DHCPv4 범위를 주 서버에서 파트너로 복제하고, 장애 조치를 켠 범위를 나눠 맡는 두 서버를 **장애 조치 파트너**라 부른다. Microsoft의 구현은 IETF의 DHCP Failover Protocol 초안을 바탕으로 한다. 범위와 설정은 **DHCP 장애 조치 관계**(failover relationship)라는 개체로 나누고, 관계는 언제나 DHCP 서버 **두 대** 사이다(서버 하나가 여러 관계를 맺을 수는 있다). 장애 조치를 켠 범위를 고치면 그 바뀐 것을 파트너로 손으로 복제해야 한다
+- 「DHCP failover specifications」: 한 범위의 장애 조치에 DHCP 서버를 셋 이상 넣을 수 없다. **DHCPv4 범위만** 지원하고 DHCPv6 범위는 장애 조치를 켤 수 없다(「DHCP failover and IPv6」). 클라이언트는 두 파트너와 직접이나 DHCP 릴레이로 통신할 수 있어야 하고, 임대를 처음 준 서버가 아닌 서버가 그 임대를 갱신할 수 있다. 두 서버는 동기화된 임대 데이터베이스를 각자 따로 가진다.
+  두 서버는 다른 서브넷에 있어도 된다. 두 파트너는 Windows Server 2016 이상을 실행해야 한다(문서의 말). 두 서버는 늘 이어진 TCP/IP 연결을 유지하려 하고 서로의 DHCP 서비스 상태를 안다. 서로 통신하지 못하면 같은 주소를 서로 다른 두 클라이언트에게 주지 않도록 조심한다. 장애 조치 메시지는 **TCP 647**로 주고받는다(「Windows Firewall」). 두 서버의 시각 차가 1분을 넘으면 구성이 멈춘다(「Time synchronization」 — 가져오지 않아도 된다)
+- **두 방식**(「DHCP failover modes」): 관계를 만들 때 고르고, 한 범위에는 한 번에 한 방식만 쓴다(서버 하나가 관계를 여럿 맺으면 두 방식을 함께 쓸 수 있다).
+  **핫 대기 모드**(hot standby, 「Hot standby mode」): 활성 서버가 그 범위·서브넷의 모든 클라이언트에게 주소와 설정을 임대하고, 파트너는 **대기 서버**로서 활성 서버를 쓸 수 없을 때만 임대한다 — 중복성을 위한 방식. 기본으로는 관계를 만든 서버가 활성 서버다. 활성 서버가 답하지 않을 때 대기 서버가 쓰도록 남겨 둘 주소의 비율(**예약 비율**, 기본 **5%**)을 정하고, 이 비율은 새 임대에 쓰인다.
+  **부하 분산 모드**(load balance, 「Load balance mode」): **기본 방식**이다. 두 서버가 같은 서브넷의 클라이언트에게 동시에 주소와 옵션을 주고 요청을 나눈다. **기본 비율은 50:50**이고 0~100%로 바꿀 수 있다. RFC 3074대로 클라이언트 요청에 든 MAC 주소로 해시를 계산하고, 해시 값의 구간(해시 버킷)을 비율대로 두 서버에 나눠 각자 자기 구간의 클라이언트에게 답한다. 두 서버가 같은 곳에 있을 때 알맞다
+- **MCLT가 쓰이는 곳**(지금 판 개요): 핫 대기에서 클라이언트가 활성 서버에 닿지 못하는 대기 서버에게 임대 갱신을 청하면, 대기 서버는 그 클라이언트가 전에 받은 **같은 주소를 갱신해 주되 범위의 임대 기간 전체가 아니라 MCLT(최대 클라이언트 리드 타임) 동안의 임시 임대**를 준다. 대기 서버가 MCLT가 끝나기 전에 예약 비율의 주소를 새 클라이언트에게 다 주면 새 임대를 거부하고 기존 임대만 갱신하며, MCLT가 끝나면 남은 주소 풀 전체를 새 임대에 쓸 수 있다(통신 중단 상태로 남아 있으면 그렇게 하지 않는다).
+  부하 분산에서 파트너와 연락이 끊긴 서버는 모든 클라이언트에게 임대를 주기 시작하고, **파트너에게 배정됐던 클라이언트가 갱신을 청하면 같은 주소를 MCLT 동안만 임시로 갱신**해 준다. 처음 오는 클라이언트에게는 자기 빈 주소에서, 그것이 다하면 파트너의 빈 주소에서 준다. **파트너 다운 상태**(partner down)에 들어가면 MCLT만큼 기다린 뒤 주소 풀 100%를 맡는다
+- **MCLT의 정의**(지난 판 2012 「Configure a failover relationship」의 Important): MCLT(Maximum Client Lead Time)는 DHCP 임대가 끝난 뒤 클라이언트에게 더 주어지는 시간이고, 주 서버가 CONNECT 메시지로 보조 서버에 알린다. **한 서버가 파트너 서버가 알고 있는 시각을 넘어 클라이언트의 임대를 늘려 줄 수 있는 최대 시간**이다. 그 시험 랩은 1분을 쓰지만 실제 환경에서는 1시간처럼 더 길게 두라고 한다.
+  같은 문서의 장애 조치 구성 차례: DHCP 콘솔에서 범위 오른쪽 클릭 「Configure failover」 → 「Configure Failover」 마법사 → 파트너 서버 → 새 장애 조치 관계(관계 이름, Shared Secret, Maximum Client Lead Time(시간·분), Mode — Load balance나 Hot standby, 기본 Load balance) → 마침
+- **매개 변수와 기본값**(`Add-DhcpServerv4Failover`): 부하 분산이나 핫 대기 방식으로 새 IPv4 장애 조치 관계를 만들고, 그 관계를 **두 DHCP 서버 모두에** 만든다(로컬의 범위를 파트너에도 똑같이 만든다). `-MaxClientLeadTime` — 그 관계의 최대 클라이언트 리드 타임, **기본 1시간**. `-LoadBalancePercent` — 로컬 서버가 맡을 클라이언트 요청의 비율, 나머지는 파트너, **기본 50%**. `-ReservePercent` — 대기 서버에 남겨 둘 빈 주소의 비율, 장애가 나면 이 주소를 새 클라이언트에게 준다, **기본 5**.
+  `-ServerRole` — 핫 대기에서 로컬의 역할 Active·Standby, 기본 Active(파트너가 대기). **`-SharedSecret` — 메시지 다이제스트 인증에 쓰는 공유 비밀**이고, 정하면 그 관계의 메시지 다이제스트 인증이 저절로 켜지고 정하지 않으면 꺼진다. **`-StateSwitchInterval` — DHCP 서버가 COMMUNICATION INTERRUPTED(통신 중단) 상태로 있다가 PARTNER DOWN(파트너 다운) 상태로 넘어가기까지의 시간**(TimeSpan, 기본값 없음).
+  `-AutoStateTransition` — 그 타이머가 끝나면 통신 중단에서 파트너 다운으로 **저절로** 넘어갈지, 기본 False이고 `-StateSwitchInterval`을 주면 True가 된다(곧 기본으로는 저절로 넘어가지 않는다 — 이어서 나오는 말). `Set-DhcpServerv4Failover`: 이 값들을 고친다. `-SharedSecret`을 비우면 인증이 꺼지고 주면 켜진다
+- **한국어 이름**: 한국어판 개요는 「DHCP 장애 조치(failover)」, 「장애 조치(failover) 파트너」, 「장애 조치 관계」, 「핫 대기 모드」(한 곳은 「활성 대기」), 「부하 분산 모드」, 「활성 서버」·「대기 서버」, 「예약 비율」, 「MCLT(최대 클라이언트 리드 타임)」, 「공유 비밀」, 「통신 중단 상태」·「파트너 다운 상태」로 옮긴다.
+  **고른 이름**: 「DHCP 장애 조치」, 「장애 조치 파트너」, 「핫 대기」(guide.md의 「상시 대기」 대신 — 한국어판이 절 제목과 본문에서 이 말을 쓰고 「상시 대기」는 한 번도 쓰지 않는다), 「부하 분산」, 「MCLT(최대 클라이언트 리드 타임)」(guide.md의 「최대 클라이언트 선행 시간」 대신 — 한국어판의 표기), 「공유 비밀」(guide.md의 「공유 암호」 대신), 「상태 전환 간격」은 한국어판에 없는 이름이라 「통신 중단 상태에서 파트너 다운 상태로 넘어가기까지의 시간」으로 풀어 쓰고 영문 `StateSwitchInterval`·state switchover interval을 함께 적는다. **실제 한국어 Windows 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-failover`(장애 조치의 뜻, 관계는 두 서버·DHCPv4만, 두 방식과 기본값 — 부하 분산이 기본·50:50, 핫 대기의 예약 비율 5%, MCLT의 정의와 쓰임·기본 1시간, 파트너 다운 뒤 MCLT만큼 기다린다, 공유 비밀은 메시지 인증, 통신 중단에서 파트너 다운으로 넘어가는 시간과 기본으로는 저절로 넘어가지 않는다, TCP 647);
+기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2026-05-17 #42]). DHCPDISCOVER를 다시 보내는 것은 클라이언트의 동작이라는 것은 이미 있는 「(phase 73 step 1) RFC 951 …, RFC 2131 …」 항목으로 댄다

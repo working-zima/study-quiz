@@ -951,3 +951,35 @@ phase 80 step 8에서 `windows-admin-tools` 주제의 개념 열(MMC와 실행 �
 - **처리**: 본문은 문서의 사실로 쓴다 — `windows-admin-tools.certificate-manager`는 인증서를 `.cer`·`.p7b`·`.sst`·`.pfx`로 내보내고 가져오며 개인 키를 담는 것은 `.pfx`뿐이라는 것을, `windows-admin-tools.efs`는 EFS의 키를 개인 키를 담은 `.pfx`로 백업한다(`cipher /x`, 인증서 내보내기)는 것을 쓴다.
   `efs`의 그 자리에 「자격시험은 CER·P7B·PFX·SST를 EFS가 지원하는 인증서 파일 형식으로 본다」를 한 줄 덧붙인다. 문항(해설 포함)은 「EFS가 넷을 지원한다」를 정답의 근거로 쓰지 않고, 넷의 차이(개인 키를 담는지)를 묻는 데 쓴다
 - 쓰인 곳: (phase 80 step 12에서 쓰일 곳) `windows-admin-tools.efs`, `windows-admin-tools.certificate-manager`
+
+E39~는 phase 81(`windows-server-roles`·`windows-hyperv`)이 더한다. phase 81 step 0에서 `windows-server-roles` 주제의 앞 개념 여섯(서버 역할과 기능, 서버의 고정 IP 주소, 파일 서버와 프린트 서버, DHCP 서버 역할, DHCP 예약, DHCP 장애 조치)이 답을 가르는 기출 6문항을 보았다(확인한 날 2026-11-18).
+[기출 2025-02-23 #44]와 [기출 2026-08-02 #32]가 같은 문항이라 서로 다른 문항은 다섯이다. 둘은 지문이 그림이라 보기만 남았다([기출 2025-05-25 #43]의 문제 화면, [기출 2026-05-17 #42]의 「운영 상황」). [기출 2026-05-17 #44](FTP 서버 설치)는 설치하는 자리만 보고, FTP 서버 자체와 SFTP 보기는 step 4가 본다.
+아래의 「공식 문서」는 learn.microsoft.com의 Windows Server·PowerShell·Win32·문제 해결 문서와 지난 판 문서다. 공식 문서와 어긋나는 곳 하나에 **E39**를 만들었다 — 근거는 `standards.md`의 「(phase 81 step 0)」 줄과 항목이다. 기출 해설집의 해설(풀이한 사람이 쓴 글)은 출처로 쓰지 않았다.
+
+- **파일·프린터 서버로 쓰려면 있어야 하는 통신 규칙은 TCP/IP**([기출 2024-11-03 #30]): 답 TCP/IP는 문서와 맞다 — Windows에서 파일·프린터 공유를 맡는 SMB는 TCP/IP 위에서 동작하고 TCP 445를 쓴다(「What is SMB File Sharing…」, 「Secure SMB traffic」, 「Service overview and network port requirements」).
+  오답 셋은 파일·프린터 공유의 통신 규칙이 아니다 — SNMP는 네트워크 장비를 살피고 관리하는 규약, SMTP는 전자 우편을 보내는 규약, IGMP는 호스트가 멀티캐스트 그룹에 든 것을 라우터에 알리는 규약이다(phase 73·78의 표준 항목). 다만 「반드시 설치해야 하는」이라는 말은 문서와 어긋난다 — 아래 **E39**
+- **DNS 서버를 설치하다 생긴 문제를 고치는 방법으로 알맞지 않은 것은 `ipconfig /renew`**([기출 2025-05-25 #43] — 문제 화면이 그림이라 빠졌다): 무슨 문제였는지는 대조하지 못했다. 보기 넷이 모두 주소를 고정하는 쪽의 손질이라 서버가 DHCP로 주소를 받은 데서 온 문제로 보이지만, 그렇게 단정할 근거는 없다.
+  문서로 판정할 수 있는 데까지 — DNS 서버를 설치하기 전에 갖출 것에 고정 IP가 있고(DNS 서버 빠른 시작), 라우터·DHCP 서버·DNS 서버는 고정 IP 주소로 구성해야 한다(「Core network components」). 맞는 말로 둔 셋(주소를 고정 할당으로 바꾸기, 「다음 IP 주소 사용」을 골라 주소 넣기, 「다음 DNS 서버 주소 사용」을 골라 DNS 서버 주소 넣기)은 문서의 고정 주소 차례와 맞는다(「Core network components」, DirectAccess 시험 랩 「STEP 6」, 「How to change the IP address of a network adapter」).
+  정답 `ipconfig /renew`는 주소를 자동으로 받는 어댑터에서만 쓰고 그 어댑터의 DHCP 설정을 다시 받을 뿐이라(ipconfig 페이지) 어댑터를 고정 주소로 바꾸지 않는다 — 시험의 답과 맞다. 항목을 만들지 않는다.
+  본문(`windows-server-roles.server-static-ip`)은 고정 주소를 쓰라는 문서의 말과 `/renew`가 하는 일만 쓰고, 마법사가 보이는 경고의 꼴은 쓰지 않는다(허용한 문서에서 찾지 못했다 — DHCP 서버에는 동적 주소를 알리는 이벤트 1144가 있다). 문항(해설 포함)은 이 기출의 문제 화면을 「동적 주소 경고」라고 단정해 다시 만들지 않는다
+- **DHCP 구성의 옳은 설명은 「주소를 나눠 줄 때 적용할 지연 시간은 밀리초 단위」**([기출 2025-02-23 #44], [기출 2026-08-02 #32] — 같은 문항): 새 범위 마법사의 「제외 및 지연 추가」 페이지에서 지연을 정하고(DHCP 서버 빠른 시작), 그 지연은 DISCOVER를 받은 뒤 OFFER를 보내기까지 늦추는 시간이며 단위가 밀리초다(Win32 `DhcpSetSubnetDelayOffer` — 0~1000, 기본 0, `Add-DhcpServerv4Scope`의 `-Delay`) — 시험의 답과 맞다. 틀린 말로 둔 셋도 문서로 틀리다.
+  ① 「임대 기간을 일·시간·분·초 단위로」 — 마법사의 「임대 기간」 페이지는 일·시간·분이다(「Core network components」, 작업 그룹 DHCP 문서). 다만 PowerShell `Add-DhcpServerv4Scope`의 `-LeaseDuration`은 `일.시:분:초` 꼴이라 초까지 적힌다 — 시험의 「새 범위 구성」을 새 범위 마법사로 읽으면 시험의 판정과 맞는다. 항목을 만들지 않는다.
+  본문은 「마법사에서는 임대 기간을 일·시간·분으로 정한다」로 쓰고, PowerShell 쪽은 쓸 때 판을 밝혀 한 줄로 쓴다. 문항(해설 포함)은 「임대 기간은 초 단위로 정할 수 없다」를 마법사에 한정하지 않은 채 맞는 말로 쓰지 않는다.
+  ② 「새 범위에서 더 이상 WINS 서버를 구성하지 않는다」 — 지금 판 DHCP 서버 빠른 시작(2025-04-17)의 새 범위 마법사에 「WINS 서버」 페이지가 있고, `Set-DhcpServerv4OptionValue`에 `-WinsServer`가 있다. WINS는 Windows Server 2022부터 더 개발하지 않고 2028(Preview)에서 WINS 서버 역할이 빠진다(「Features Removed or No Longer Developed」) — 그 뒤의 마법사는 문서에 없으므로 본문은 판을 밝혀 「지금 판 마법사에는 WINS 서버 페이지가 있다」로 쓴다.
+  ③ 「새 예약이 지원하는 유형은 BOOTP 없이 DHCP만」 — 예약의 유형은 DHCP·BootP·Both이고 기본이 Both다(`Add-DhcpServerv4Reservation`, Win32 `DHCP_IP_RESERVATION_INFO`). 새 예약 대화 상자의 칸 이름은 문서에서 확인하지 못했다
+- **MCLT의 역할은 「장애 조치 파트너 DHCP 서버가 기존 임대를 임시로 갱신할 수 있는 최대 시간」**([기출 2026-05-17 #42] — 「운영 상황」이 그림이라 빠졌다): 지금 판 개요는 파트너와 연락이 끊긴 서버가 파트너의 클라이언트가 청하는 갱신을 같은 주소로 MCLT 동안만 임시로 해 준다고 쓰고, 지난 판(2012)은 MCLT를 한 서버가 파트너 서버가 아는 시각을 넘어 임대를 늘려 줄 수 있는 최대 시간으로 정의한다 — 시험의 답과 맞다.
+  시험의 말은 정의(파트너가 아는 것을 넘어 늘릴 수 있는 한도)를 그 쓰임(연락이 끊겼을 때의 임시 갱신)으로 바꿔 말한 것이고, 문서는 MCLT를 파트너 다운 상태에서 주소 풀 전체를 맡기 전에 기다리는 시간으로도 쓴다 — 본문은 정의와 두 쓰임을 함께 쓴다. 항목을 만들지 않는다.
+  오답 셋은 MCLT가 아니다 — 「두 서버 사이 인증에 쓰는 최대 시간」: 두 서버 사이 메시지의 인증은 공유 비밀(메시지 다이제스트 인증)이 맡고 시간 값이 아니다(`Add-DhcpServerv4Failover`). 「DISCOVER 재전송 간격」: DISCOVER를 다시 보내는 것은 OFFER를 받지 못한 클라이언트의 동작이다(RFC 2131 §3.1, phase 74의 표준 항목).
+  「장애 조치 뒤 범위를 끄는 유예 시간」: 그런 값은 문서에 없다 — 장애 조치 관계가 갖는 시간 값은 MCLT와, 통신 중단 상태에서 파트너 다운 상태로 넘어가기까지의 시간(`StateSwitchInterval`)이다
+- **FTP 서버를 설치하는 자리**([기출 2026-05-17 #44]): 맞는 말로 둔 「서버 관리자의 역할 및 기능 추가에서 웹 서버(IIS)의 FTP 서버 역할 서비스를 골라 설치한다」는 문서와 맞다 — FTP 서버는 웹 서버(IIS) 역할 아래의 역할 서비스(`Web-Ftp-Server`)이고, 역할 서비스는 서버 관리자의 역할 및 기능 추가 마법사로 설치한다(Server Core 표, 「Add or remove roles and features in Windows Server」).
+  틀린 말로 둔 「서드파티 소프트웨어를 써야 한다」는 FTP 서버가 Windows Server의 역할 서비스로 들어 있으니 틀리고, 「PowerShell로는 설치할 수 없다」는 `Install-WindowsFeature`가 역할·역할 서비스·기능을 설치하므로 틀리다(`Install-WindowsFeature` 「Description」). 항목을 만들지 않는다. 「IIS의 FTP 서버만으로 SSH 기반 SFTP를 구성할 수 있다」는 step 4가 FTP 문서와 함께 판정한다
+
+## E39 — 파일·프린터 서버를 쓰려면 TCP/IP를 「반드시 설치해야」 한다고 본다
+
+- **시험**: Windows Server 2016에서 파일 및 프린터 서버를 쓸 수 있게 하려면 반드시 설치해야 하는 통신 프로토콜로 TCP/IP를 고른다(오답 SNMP·SMTP·IGMP) — [기출 2024-11-03 #30]
+- **공식 문서**: Windows에서 파일·프린터 공유는 SMB가 맡고, SMB는 **TCP/IP 위나 다른 프로토콜 위에서** 동작하는 네트워크 파일 공유 프로토콜이다(「What is SMB File Sharing for Windows and Windows Server?」, `ms.date` 2026-11-10). 전송으로는 TCP(445)를 흔히 쓰고 QUIC·RDMA도 쓴다(같은 문서, 「Secure SMB traffic」, 「Service overview and network port requirements」). 그래서 TCP/IP가 파일·프린터 공유의 바탕이라는 데까지는 시험의 답과 맞다.
+  그러나 TCP/IP는 따로 설치하는 구성 요소로 적혀 있지 않다 — Windows Server 2003 글이 TCP/IP와 Microsoft 네트워크용 파일 및 프린터 공유가 기본으로 설치된다고 적고(KB 325860), `netsh int ip reset`은 TCP/IP를 지웠다가 다시 설치한 것과 같은 효과를 낸다(TCP/IP 다시 설정 문서), Windows 10 1803 이후에는 프로토콜을 지우는 것 자체를 지원하지 않는다(KB 4340181).
+  지금 판 Windows Server 문서에서 「TCP/IP를 설치한다」는 단계는 찾지 못했다. 「반드시」도 문서의 「TCP/IP나 다른 프로토콜 위에서」보다 강한 말이다
+- **처리**: 본문(`windows-server-roles.file-print-services`)은 문서의 사실을 쓴다 — 파일·프린터 공유는 SMB로 하고, SMB는 TCP/IP 위에서 동작하며 TCP 445를 쓰고(문서가 다른 전송도 든다는 것은 쓸 때 한 줄), TCP/IP는 Windows에 처음부터 들어 있다. 그 자리에 「자격시험은 파일·프린터 서버를 쓰려면 TCP/IP를 반드시 설치해야 한다고 본다」를 한 줄 덧붙인다.
+  문항(해설 포함)은 「TCP/IP를 따로 설치해야 한다」를 맞는 말로 쓰지 않는다 — SMB가 어느 통신 규칙 위에서 동작하는지, SNMP·SMTP·IGMP와 무엇이 다른지로 묻는다
+- 쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.file-print-services`
