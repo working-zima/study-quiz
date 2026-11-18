@@ -264,6 +264,7 @@ import { RecordTypesDiagram } from './RecordTypesDiagram'
 import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
+import { RemoteAccessServicesDiagram } from './RemoteAccessServicesDiagram'
 import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
 import { RequestFilteringDiagram } from './RequestFilteringDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -368,6 +369,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
 import { WorkFoldersSyncDiagram } from './WorkFoldersSyncDiagram'
@@ -716,6 +718,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.request-filtering': RequestFilteringDiagram,
   'windows-server-roles.iis-logging': IisLogRolloverDiagram,
   'windows-server-roles.ftp-server': IisFtpSiteDiagram,
+  'windows-server-roles.remote-access': RemoteAccessServicesDiagram,
+  'windows-server-roles.web-application-proxy': WebAppProxyDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

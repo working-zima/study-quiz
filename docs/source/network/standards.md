@@ -6916,3 +6916,22 @@ Windows 보안 「VPN connection types」 2026-10-08(2025-01-27, Windows 11·10 
 쓰인 곳: (phase 81 step 8에서 쓰일 곳) `windows-server-roles.remote-access`(역할 서비스 셋과 설치 이름, VPN의 뜻·터널링과 암호화, Windows VPN 서버의 터널링 프로토콜 넷과 Windows Server 2025의 기본 동작·권고, DirectAccess의 뜻과 VPN과의 차이·Always On VPN 권고·2028(Preview) 제거, 라우팅 역할 서비스가 하는 일),
 `windows-server-roles.web-application-proxy`(역방향 프록시로 내부 웹 응용 프로그램을 밖에 게시, AD FS 사전 인증과 통과, AD FS 프록시 노릇, Windows Server 2012 R2에서 생김, VPN·DirectAccess와의 차이를 정의로, 지금 판의 상태);
 기출 대조(`exam-notes.md` 「phase 81 step 4」 문단 — [기출 2024-08-25 #38]=[기출 2025-05-25 #39])
+
+(phase 81 step 8, 2026-11-18 IPv4로 다시 받아 확인) 「Virtual Private Networking (VPN)」(`updated_at` 2026-02-16)은 RAS의 풀이를 Remote Access Service (RAS)로 적고, RAS Gateway를 single tenant RAS Gateway virtual private network (VPN) server로 배포할 수 있다고 적는다 — 본문의 「RAS는 원격 액세스 서비스(Remote Access Service)를 줄인 말」과 「VPN(virtual private network)」의 근거다.
+「VPN connection types」(`updated_at` 2026-10-08)는 VPN 연결을 인터넷 같은 사설·공용 네트워크를 지나는 지점 간(point-to-point) 연결로 적는다 — 본문의 「두 지점만 잇는 가상의 연결」.
+「Remote Access」(`updated_at` 2026-02-16)는 VPN(RAS)이 터널링과 데이터 암호화 기술을 함께 써서 원격 클라이언트와 원격 사무실을 잇는다고 적는다(위 줄과 같다) — 본문의 「멀리 떨어진 사무실의 네트워크끼리 잇는 데도 VPN을 쓴다」.
+
+(phase 81 step 8) **역방향 프록시가 응답을 돌려주는 길** — 위 줄들은 웹 응용 프로그램 프록시가 역방향 프록시로 일하고 요청을 백엔드 서버로 넘긴다는 데까지 적고, 응답이 어디로 가는지는 적지 않는다. 그래서 IIS 문서에서 역방향 프록시의 정의를 확인했다.
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/creating-a-forward-proxy-using-application-request-routing
+「Creating a Forward Proxy Using Application Request Routing」(IIS 확장 Application Request Routing 문서) `updated_at` 2023-03-10(`ms.date` 2014-06-11), 한국어판 `updated_at` 2026-10-27(기계 번역)을 2026-11-18에 IPv4로 받아 읽었다. 「Overview」 절:
+- 프록시 서버는 요청하는 쪽이나 응답하는 쪽을 대신하는 한 접점이다. 클라이언트 쪽의 요청을 받아 인터넷으로 넘기고 만들어진 응답을 클라이언트에게 돌려주는 것이 정방향 프록시(forward proxy)이고, **인터넷에서 들어온 요청을 받아 안쪽(백엔드)의 작업자에게 넘기고 그 응답을 인터넷 쪽으로 돌려주는 것이 역방향 프록시(reverse proxy)다**.
+- 역방향 프록시를 쓰면 인터넷 쪽에서는 요청을 처리하고 응답을 만든 것이 안쪽 작업자가 아니라 프록시 서버 자신인 것처럼 보인다.
+- 두 프록시 모두 사설 네트워크를 인터넷과 떼어 놓아 보안을 높이는 조치를 할 수 있게 한다.
+- 한국어판은 「역방향 프록시」로 옮긴다.
+쓰지 않은 것: 정방향 프록시의 쓰임, ARR의 캐싱·압축과 URL 다시 쓰기(웹 응용 프로그램 프록시 문서에는 그런 동작이 적혀 있지 않다).
+
+쓰인 곳: (phase 81 step 8) `windows-server-roles.remote-access` — 위 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목의 역할 서비스 셋과 설치 이름(`RemoteAccess`·`DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`, 기본 미설치), VPN의 뜻(터널링과 암호화, VPN 클라이언트가 VPN 서버와 지점 간 연결을 맺고 서버가 확인 뒤 데이터를 나른다, 원격 사무실),
+터널링 프로토콜 넷과 풀네임·Windows 내장 VPN 클라이언트·PPTP와 L2TP 비권장·Windows Server 2025의 새 구성 기본 동작·2028(Preview) 제거, 「라우팅 및 원격 액세스」 콘솔, DirectAccess의 뜻(늘 이어짐·관리자가 관리·도메인 가입 컴퓨터만)·Always On VPN 권고·Windows 10보다 앞선 클라이언트에만·2028(Preview) 제거, 라우팅 역할 서비스(서브넷 사이 라우팅·NAT 라우터), 웹 응용 프로그램 프록시가 원격 컴퓨터를 잇지 않는다는 것(위 「VPN·DirectAccess와 무엇이 다른가」 줄, 이어서 나오는 말).
+VPN과 DirectAccess의 차이는 「DirectAccess」 첫머리의 견줌(VPN은 사용자가 연결을 열고 닫는다)대로 쓰고, Always On VPN이 그 견줌의 예외라는 것은 「Remote Access」 「VPN (RAS)」 줄(손으로 연결하지 않아도)에서 이어서 나오는 말로 썼다. 예의 「원격 액세스 서버」는 이 글에서 붙인 이름표다. 도식 `remote-access-services`, 문항 n298.
+`windows-server-roles.web-application-proxy` — 같은 항목의 웹 응용 프로그램 프록시 줄 전부(역방향 프록시로 내부 웹 응용 프로그램을 게시, 한국어판 이름, Windows Server 2012 R2에서 생김, 마법사에서 설치, 외부 URL과 백엔드 서버 URL·IP 주소가 아니라 FQDN, HTTPS 요청을 기다렸다가 백엔드로 HTTP나 HTTPS로 넘김, AD FS 사전 인증과 통과·원격 데스크톱 연결 앱, 지금 판의 상태)와 위 「역방향 프록시가 응답을 돌려주는 길」 줄(응답이 프록시를 거쳐 돌아간다, 인터넷 쪽에서는 프록시와 주고받는 것처럼 보인다, 사설 네트워크를 떼어 놓는다).
+AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge token)이고, 그 밖의 AD FS 동작은 쓰지 않았다. 「Microsoft Entra 응용 프로그램 프록시」는 쓰지 않았다. 도식 `web-app-proxy`, 문항 n299·n300
