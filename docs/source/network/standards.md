@@ -1085,6 +1085,9 @@ https://www.rfc-editor.org/rfc/rfc9110
 - (phase 78 step 5) `https`에서 서버가 그 주소에 대해 답할 자격은, 클라이언트가 믿을 만하다고 보는 인증서의 짝인 개인 키를 서버가 쓸 수 있는지로 가린다. 클라이언트는 보통 미리 정해 둔 신뢰의 출발점(trust anchor)에서 이어지는 신뢰 사슬로 그 인증서를 믿을지 정한다 — §4.3.3
 - (phase 78 step 5) **인증서 확인**: 안전한 연결을 맺으려면 클라이언트는 서버가 내민 신원이 주소의 원 서버와 맞는지 **반드시 확인해야 한다**(MUST). 이 확인은 경로 가운데 끼어든 공격자나 이름 풀이를 조작한 공격자가 서버를 흉내 내는 것을 막으려는 것이다.
   주소의 호스트가 IP 주소면 IP 주소로, 이름이면 DNS 이름으로 견준다. 인증서가 그 주소에 맞지 않으면 웹 브라우저 같은 사용자 에이전트는 사용자에게 계속할지 확인을 받거나, 잘못된 인증서라는 오류로 연결을 끝내야 한다 — §4.3.4
+- (phase 81 step 5, 2026-11-18 rfc-editor.org 원문 — 위와 같은 판) 요청의 **Host 헤더 필드**는 대상 URI의 호스트와 포트 정보를 담아, 원 서버가 여러 호스트 이름의 요청을 맡을 때 자원을 가를 수 있게 한다. 꼴은 `Host = uri-host [ ":" port ]`로 포트는 적을 때만 붙는다.
+  사용자 에이전트(웹 브라우저 같은 것)는 이 정보를 `:authority` 가상 헤더 필드로 보내는 경우가 아니면 요청에 Host 헤더 필드를 만들어 넣어야 한다(MUST). HTTP/2·HTTP/3에서는 Host 대신 요청의 제어 데이터에 든 `:authority`가 그 일을 맡기도 한다. 예로 `http://www.example.org/pub/WWW/`을 GET으로 요청하면 요청은 `GET /pub/WWW/ HTTP/1.1` 다음 줄에 `Host: www.example.org`로 시작한다 — §7.2
+  (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`(웹 브라우저가 주소의 이름을 Host 헤더에 담아 보내고, 서버가 그 이름으로 여러 이름의 사이트를 가른다, `Host: shop.example.com`의 꼴)
 
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
@@ -6722,6 +6725,20 @@ IIS 문서는 「Applies to」 줄이 없고 「Compatibility」 표에 IIS 판�
   **고른 이름**: 「IIS 관리자」, 「사이트」, 「Default Web Site」(이름이라 영문 그대로 쓰고 「기본 웹 사이트」로도 옮긴다는 것을 한 번 밝힌다 — guide.md와 같다), 「사이트 바인딩」과 그 네 값 「형식」·「IP 주소」·「포트」·「호스트 이름」, 「할당되지 않은 모든 항목」(All Unassigned — guide.md의 「지정하지 않은 모든 IP」 대신, 한국어판 문서가 대화 상자 차례에서 쓰는 표기),
   연결 제한 셋은 화면 이름을 확인하지 못해 영문 속성 이름을 함께 적는다 — 「연결 제한 시간」(`connectionTimeout`, 기출은 「연결 시간 제한」)·「최대 연결 수」(`maxConnections`, 기출은 「연결 수 제한」)·「최대 대역폭」(`maxBandwidth`),
   「응용 프로그램 풀」(guide.md와 기출 [기출 2025-11-02 #41]의 표기 — 한국어판 문서는 「애플리케이션 풀」로만 옮긴다는 것을 본문에서 한 번 밝힌다), 「작업자 프로세스」. **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+- (phase 81 step 5, 2026-11-18 IPv4로 내려받아 읽음) 이 step이 더 본 문서 넷:
+  https://learn.microsoft.com/en-us/iis/extensions/planning-for-arr/overview-of-shared-hosting-deployment-using-application-request-routing-20 (`updated_at` 2022-03-21, `ms.date` 2008-07-02, 한국어판 `updated_at` 2026-10-27),
+  https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/ (`updated_at` 2022-04-06, `ms.date` 2016-09-26),
+  https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/ 의 「How To」(위에서 「Overview」만 쓴 같은 문서, `updated_at` 2022-04-06, 한국어판도 받음),
+  https://learn.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables (`updated_at` 2025-06-04, `ms.date` 2025-01-29)
+- (phase 81 step 5) **호스트 이름으로 사이트를 가르는 차례**: ARR 2.0의 공유 호스팅 개요는 흔한 공유 호스팅 배치를 이렇게 그린다 — 사용자가 `www.site2.com`을 요청하고, DNS에 그 이름을 물어 IP 주소를 받고, 브라우저가 그 IP 주소로 요청을 보내면, **호스트 이름에 따라 요청이 해당 사이트로 간다** — 「Common Shared Hosting Deployment」 1~6.
+  웹 브라우저가 이름을 요청에 담아 보내는 자리는 위 「RFC 9110」 항목의 「(phase 81 step 5)」 줄(Host 헤더)이다. HTTPS 쪽(SNI)은 쓰지 않으므로 본문은 이 규칙을 `http` 사이트에 한정해 쓴다(위 「한 서버의 여러 사이트」 줄)
+- (phase 81 step 5) **응용 프로그램과 풀의 연결**: IIS 7 이후의 응용 프로그램은 HTTP 같은 프로토콜로 내용을 내주거나 서비스를 하는 파일의 묶음이고, 응용 프로그램을 만들면 그 경로가 사이트 URL의 일부가 된다. 사이트마다 루트 응용 프로그램이 하나 있어야 한다.
+  `<application>`의 `applicationPool` 속성은 그 응용 프로그램이 **맡겨진 응용 프로그램 풀**을 정한다(기본값 없음 — 위 Default Web Site 줄의 `applicationDefaults`가 `DefaultAppPool`을 준다) — `<application>` 「Overview」·「Attributes」(IIS 10.0에서 바뀌지 않았다).
+  그러니 두 사이트의 루트 응용 프로그램이 같은 풀을 가리키면 그 풀 하나가 두 사이트의 요청을 처리한다 — 풀이 「맡긴 응용 프로그램 하나 이상」을 처리한다는 위 응용 프로그램 풀 줄과 이어서 나오는 말
+- (phase 81 step 5) **풀을 만들고 사이트에 고르는 차례**(`<add>` 「How To」 — IIS 관리자를 여는 차례는 Windows Server 2012 R2까지 적는다): 「연결」 창에서 서버 이름을 펼치고 「응용 프로그램 풀」을 고른 뒤 「작업」 창 「응용 프로그램 풀 추가...」 → 「응용 프로그램 풀 추가」 대화 상자의 「이름」에 풀 이름을 넣는다.
+  있는 사이트의 풀을 바꾸려면 「연결」 창에서 「사이트」를 펼쳐 그 사이트를 고르고 「작업」 창 「고급 설정...」 → 「고급 설정」 대화 상자 「일반」의 「응용 프로그램 풀」 항목 → 줄임표 단추 → 「응용 프로그램 풀 선택」 대화 상자에서 풀을 고른다. 한국어판은 「애플리케이션 풀」·「애플리케이션 풀 추가」·「애플리케이션 풀 선택」·「고급 설정」·「일반」으로 옮긴다
+- (phase 81 step 5) **`%SystemDrive%`**: Windows 폴더가 들어 있는 드라이브이고 값은 `C:`처럼 드라이브 이름이다 — 「Recognized environment variables」 표(SYSTEMDRIVE). 그러니 Default Web Site의 `%SystemDrive%inetpubwwwroot`는 Windows가 들어 있는 드라이브의 `inetpubwwwroot` 폴더다
+- (phase 81 step 5) 쓰인 곳: `windows-server-roles.iis`(응용 프로그램의 뜻, 사이트를 풀에 맡기는 값과 IIS 관리자의 차례, 한 풀이 두 사이트를 맡는 예, Default Web Site 폴더가 놓이는 드라이브), `windows-server-roles.iis-site-bindings`(호스트 이름에 따라 요청이 사이트로 간다), 문항 n292·n293
 
 쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis`(IIS와 웹 서버(IIS) 역할·설치, IIS 관리자와 여는 방법·실행 파일 `inetmgr.exe`, 사이트와 Default Web Site의 이름·바인딩·실제 경로, HTTPS 바인딩과 서버 인증서, CGI 역할 서비스와 FastCGI로 PHP, 응용 프로그램 풀의 뜻·격리·응용 프로그램 하나 이상·`DefaultAppPool`·`w3wp.exe`, 사이트와 응용 프로그램 풀의 차이),
 `windows-server-roles.iis-site-bindings`(바인딩의 네 값과 「사이트 바인딩 추가」의 칸, `*`와 「할당되지 않은 모든 항목」, 한 서버의 여러 사이트는 IP·포트·호스트 이름 가운데 하나가 달라야 하고 HTTP는 호스트 이름으로 가른다, 연결 제한 셋의 뜻과 기본값과 「고급 설정」의 「제한」, 포트 번호와 시리얼 포트의 차이);

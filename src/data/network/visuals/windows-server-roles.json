@@ -269,6 +269,105 @@
       "sources": [
         "windows-server-roles.dhcp-failover"
       ]
+    },
+    "iis-site-pool": {
+      "label": "SRV01에 웹 서버(IIS)를 설치하면 생기는 Default Web Site와 새로 만든 사이트 www.example.com이 응용 프로그램 풀 DefaultAppPool을 함께 쓰고, 웹 브라우저의 요청은 사이트가 받아 풀의 작업자 프로세스가 처리하며, 관리자는 IIS 관리자로 이를 설정하는 것을 보이는 도식",
+      "svgLabel": "위에 웹 브라우저와 IIS 관리자를, 아래 SRV01 박스 안에 사이트 www.example.com과 Default Web Site를 한 줄로, 그 아래 응용 프로그램 풀 DefaultAppPool을 그린 그림",
+      "question": "IIS에서 사이트와 응용 프로그램 풀은 어떻게 이어질까?",
+      "idleCaption": "SRV01의 IIS에 사이트 둘과 응용 프로그램 풀 하나를 두었다. SRV01과 www.example.com은 예로 붙인 이름이고, Default Web Site와 DefaultAppPool은 IIS를 설치하면 생긴다. 버튼을 고르면 요청을 누가 받고 처리하는지, 관리자가 어디서 설정하는지 볼 수 있다.",
+      "legend": "SRV01 박스 안의 위 줄은 사이트이고 아래 칸은 응용 프로그램 풀이다. 사이트에서 풀로 가는 화살표는 그 사이트를 맡은 풀을 가리킨다.",
+      "nodes": {
+        "browser": "웹 브라우저",
+        "manager": "IIS 관리자",
+        "www-site": "www.example.com",
+        "default-site": "Default Web Site",
+        "pool": "DefaultAppPool"
+      },
+      "groups": {
+        "server": "SRV01"
+      },
+      "notes": {
+        "request-note": "www.example.com 요청",
+        "worker-note": "작업자 프로세스가 처리한다",
+        "manage-note": "사이트와 풀을 설정한다"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "요청",
+          "caption": "웹 브라우저가 www.example.com을 요청하면 바인딩이 그 요청에 맞는 사이트 www.example.com이 요청을 받는다. 이 사이트를 맡은 응용 프로그램 풀 DefaultAppPool의 작업자 프로세스가 그 요청을 처리한다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        },
+        {
+          "id": "shared",
+          "label": "같은 풀",
+          "caption": "Default Web Site와 www.example.com이 모두 DefaultAppPool을 쓰면 풀 하나가 두 사이트를 맡아, 그 풀의 작업자 프로세스가 두 사이트의 요청을 함께 처리한다. 사이트마다 풀을 따로 두면 한 풀의 문제가 다른 풀의 사이트에 번지지 않는다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        },
+        {
+          "id": "manage",
+          "label": "관리",
+          "caption": "관리자는 실행 창에 inetmgr를 적어 IIS 관리자를 열고, SRV01에 사이트를 더하고 바인딩을 정하며, 응용 프로그램 풀을 만들고 사이트를 어느 풀에 맡길지 고른다.",
+          "sources": [
+            "windows-server-roles.iis"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis"
+      ]
+    },
+    "site-bindings": {
+      "label": "같은 서버의 사이트 www.example.com과 shop.example.com이 바인딩의 형식 http·IP 주소 *·포트 80을 같이 쓰고 호스트 이름만 달라, Host 헤더가 다른 두 요청이 호스트 이름이 맞는 사이트로 넘겨지는 것을 보이는 도식",
+      "svgLabel": "사이트 박스 둘에 바인딩의 형식·IP 주소·포트·호스트 이름을 칸 이름과 값으로 적고, Host 헤더가 다른 요청 둘을 각 사이트 박스로 잇는 그림",
+      "question": "같은 주소와 포트로 온 요청을 IIS는 어느 사이트로 보낼까?",
+      "idleCaption": "한 IIS 서버에 둔 두 사이트의 바인딩 네 값을 「칸 이름: 값」으로 적었다. www.example.com과 shop.example.com은 문서의 예로 쓰라고 남겨 둔 이름 아래에 붙인 예다. 버튼을 고르면 Host 헤더가 다른 두 요청이 어느 사이트로 가는지 볼 수 있다.",
+      "legend": "IP 주소의 *는 할당되지 않은 모든 항목, 곧 서버의 어느 IP 주소로 온 요청이든 받는다는 뜻이다. 화살표는 IIS가 요청을 넘기는 사이트를 가리킨다.",
+      "nodes": {
+        "www-type": "형식: http",
+        "www-ip": "IP 주소: *",
+        "www-port": "포트: 80",
+        "www-host": "호스트 이름: www.example.com",
+        "req-www": "Host: www.example.com",
+        "req-shop": "Host: shop.example.com",
+        "shop-type": "형식: http",
+        "shop-ip": "IP 주소: *",
+        "shop-port": "포트: 80",
+        "shop-host": "호스트 이름: shop.example.com"
+      },
+      "groups": {
+        "www-site": "www.example.com 사이트",
+        "shop-site": "shop.example.com 사이트"
+      },
+      "notes": {
+        "www-key": "가르는 값",
+        "shop-key": "가르는 값"
+      },
+      "scenarios": [
+        {
+          "id": "www",
+          "label": "www 요청",
+          "caption": "웹 브라우저가 http://www.example.com/을 요청하면 요청에 Host: www.example.com이 적혀 온다. 형식 http, IP 주소, 포트 80은 두 사이트가 같으므로, IIS는 호스트 이름이 Host 헤더의 이름과 같은 www.example.com 사이트에 요청을 넘긴다.",
+          "sources": [
+            "windows-server-roles.iis-site-bindings"
+          ]
+        },
+        {
+          "id": "shop",
+          "label": "shop 요청",
+          "caption": "같은 서버의 같은 80번 포트로 온 요청이라도 Host: shop.example.com이 적혀 있으면, IIS는 호스트 이름이 shop.example.com인 사이트에 넘긴다. 그래서 서버의 IP 주소가 하나여도 호스트 이름을 다르게 정하면 http 사이트 여럿을 함께 운영할 수 있다.",
+          "sources": [
+            "windows-server-roles.iis-site-bindings"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.iis-site-bindings"
+      ]
     }
   },
   "tables": {},

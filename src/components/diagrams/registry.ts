@@ -147,6 +147,7 @@ import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
+import { IisSitePoolDiagram } from './IisSitePoolDiagram'
 import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
@@ -297,6 +298,7 @@ import { ShellLayerDiagram } from './ShellLayerDiagram'
 import { ShutdownCommandsDiagram } from './ShutdownCommandsDiagram'
 import { SingleSignOnDiagram } from './SingleSignOnDiagram'
 import { SipCallDiagram } from './SipCallDiagram'
+import { SiteBindingsDiagram } from './SiteBindingsDiagram'
 import { SiteToSiteVpnDiagram } from './SiteToSiteVpnDiagram'
 import { SlaacDiagram } from './SlaacDiagram'
 import { SmbShareAccessDiagram } from './SmbShareAccessDiagram'
@@ -704,6 +706,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.dhcp-server-role': DhcpScopeRangeDiagram,
   'windows-server-roles.dhcp-reservation': DhcpReservationDiagram,
   'windows-server-roles.dhcp-failover': DhcpFailoverDiagram,
+  'windows-server-roles.iis': IisSitePoolDiagram,
+  'windows-server-roles.iis-site-bindings': SiteBindingsDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
