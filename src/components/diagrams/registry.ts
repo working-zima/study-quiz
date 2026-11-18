@@ -69,7 +69,9 @@ import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
+import { DhcpFailoverDiagram } from './DhcpFailoverDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
+import { DhcpReservationDiagram } from './DhcpReservationDiagram'
 import { DhcpScopeRangeDiagram } from './DhcpScopeRangeDiagram'
 import { DirectoryListingDiagram } from './DirectoryListingDiagram'
 import { DirectoryTreeDiagram } from './DirectoryTreeDiagram'
@@ -700,6 +702,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.server-static-ip': ServerStaticIpDiagram,
   'windows-server-roles.file-print-services': SmbShareAccessDiagram,
   'windows-server-roles.dhcp-server-role': DhcpScopeRangeDiagram,
+  'windows-server-roles.dhcp-reservation': DhcpReservationDiagram,
+  'windows-server-roles.dhcp-failover': DhcpFailoverDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

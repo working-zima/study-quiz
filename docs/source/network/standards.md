@@ -6609,6 +6609,10 @@ DhcpServer 모듈 cmdlet 다섯은 모두 2025-05-14(2016-12-20, `windowsserver2
 쓰인 곳: (phase 81 step 2에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(설치·고정 IPv4 주소, DHCP 콘솔을 여는 자리 — 실행 이름은 쓰지 않는다, 권한 부여, 범위의 뜻, 새 범위 마법사의 차례와 이름, 시작·끝 주소에서 마스크가 채워진다, 임대 기간의 단위(마법사는 일·시간·분, cmdlet은 `일.시:분:초`)와 cmdlet 기본값 8일, 지연 시간의 뜻·밀리초·0~1000·분할 범위의 보조 서버, 활성 범위만 답한다, 제외 범위와 그 예외, 범위 옵션, WINS의 뜻과 지원 상태);
 (phase 81 step 3에서 쓰일 곳) `windows-server-roles.dhcp-reservation`(예약의 뜻 — MAC 주소·클라이언트 ID, 새 예약에 넣는 것, 유형 셋과 기본 Both, BOOTP 클라이언트, 제외 범위 안에서도 예약은 나간다, 범위 안의 주소, 예약 수준 옵션); 기출 대조(`exam-notes.md` 「phase 81 step 0」 문단 — [기출 2025-02-23 #44], [기출 2026-08-02 #32]).
 BOOTP가 무엇인지는 이미 있는 「(phase 73 step 1) RFC 951 — Bootstrap Protocol (BOOTP), RFC 2131 …」 항목으로 댄다
+- (phase 81 step 3) `Add-DhcpServerv4Reservation`을 2026-11-18에 다시 받아 읽었다 — `updated_at` 2025-05-14(`ms.date` 2016-12-20, `windowsserver2025-ps` 판, 위 줄과 같은 판). 「Syntax」: `-ScopeId`(위치 1, 필수 — 예약을 만들 범위의 ID)·`-IPAddress`(위치 2, 필수 — 클라이언트에게 예약할 IPv4 주소)·`-ClientId`(위치 3, 필수)·`-Name`·`-Description`·`-Type`.
+  `-Name`은 만든 예약의 이름이고, 클라이언트의 호스트 이름이나 DHCP 서버에서 그 예약을 알아볼 이름을 쓴다. 「Example 1」은 `Add-DhcpServerv4Reservation -ScopeId 10.10.10.0 -IPAddress 10.10.10.8 -ClientId "F0-DE-F1-7A-00-5E" -Description "…"` 꼴이다 — **범위 ID를 그 범위가 나눠 주는 서브넷의 주소(`10.10.10.0`)로 적고, MAC 주소를 두 자리씩 하이픈으로 이어 적는다.** 「Example 4」도 「the scope 10.10.10.0」이라 부르고,
+  같은 판 `Add-DhcpServerv4Scope`(2025-05-14)의 예 1은 `-StartRange 10.10.10.1 -EndRange 10.10.10.254 -SubnetMask 255.255.255.0`이 「10.10.10.0/24 서브넷의 범위」를 만든다고 적는다. 「Example 3」은 `Get-DhcpServerv4Lease`로 얻은 임대를 이 cmdlet에 넘겨 예약으로 바꾼다(콘솔의 「예약에 추가」와 같은 일)
+  쓰인 곳: (phase 81 step 3) `windows-server-roles.dhcp-reservation`(예 — `Add-DhcpServerv4Reservation -ScopeId 192.0.2.0 -IPAddress 192.0.2.150 -ClientId "00-00-5E-00-53-01"`, 범위 ID는 서브넷 주소, `-Type`을 적지 않으면 Both, 예약 이름의 뜻)
 
 ## (phase 81 step 0) Microsoft Learn — DHCP 장애 조치: DHCP failover overview, Add-DhcpServerv4Failover, Set-DhcpServerv4Failover; 지난 판 Step-by-Step: Configure DHCP for Failover (Windows Server 2012)
 https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-failover

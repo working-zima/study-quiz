@@ -188,6 +188,87 @@
       "sources": [
         "windows-server-roles.dhcp-server-role"
       ]
+    },
+    "dhcp-reservation": {
+      "label": "SRV01의 범위 192.0.2.100~192.0.2.199에서 MAC 주소가 00-00-5E-00-53-01인 프린터는 예약한 192.0.2.150을 늘 받고, 예약이 없는 PC01은 남은 89개 가운데 하나를 받는 것을 보이는 도식",
+      "svgLabel": "SRV01의 범위 박스 안에 MAC 주소 00-00-5E-00-53-01 칸과 예약 주소 192.0.2.150 칸, 192.0.2.110~192.0.2.199 칸을 그리고, 박스 밖에 프린터와 PC01을 그린 그림",
+      "question": "예약한 장치는 어떻게 늘 같은 주소를 받을까?",
+      "idleCaption": "SRV01의 범위에 프린터의 몫으로 192.0.2.150을 예약해 두었다. 00-00-5E-00-53-01은 문서의 예로 쓰라고 남겨 둔 MAC 주소이고, 192.0.2.150은 예로 고른 주소다. 버튼을 고르면 예약한 장치와 다른 장치가 저마다 어느 주소를 받는지 볼 수 있다.",
+      "legend": "큰 박스가 SRV01의 범위이고, 위 줄은 MAC 주소와 그 MAC 주소에 예약한 주소, 아래 칸은 나눠 줄 수 있는 주소다. MAC 주소에서 예약한 주소로 가는 화살표는 예약을 찾는 것이고, 프린터나 PC01로 가는 화살표는 SRV01이 주소를 주는 방향이다.",
+      "nodes": {
+        "mac": "00-00-5E-00-53-01",
+        "reserved": "192.0.2.150",
+        "pool": "192.0.2.110~192.0.2.199",
+        "printer": "프린터",
+        "pc01": "PC01"
+      },
+      "groups": {
+        "scope": "SRV01의 범위 · 192.0.2.100~192.0.2.199"
+      },
+      "notes": {
+        "reserved-note": "늘 192.0.2.150",
+        "other-note": "남은 89개 가운데 하나"
+      },
+      "scenarios": [
+        {
+          "id": "reserved",
+          "label": "예약한 장치",
+          "caption": "프린터가 주소를 청하면 SRV01은 요청에 든 MAC 주소 00-00-5E-00-53-01로 예약을 찾아, 비어 있는 주소 가운데 아무것이나 고르지 않고 예약한 192.0.2.150을 준다. 프린터는 주소를 자동으로 받도록 둔 채라 이 주소도 DHCP로 받는다.",
+          "sources": [
+            "windows-server-roles.dhcp-reservation"
+          ]
+        },
+        {
+          "id": "other",
+          "label": "다른 장치",
+          "caption": "예약이 없는 PC01은 나눠 줄 수 있는 192.0.2.110~192.0.2.199 가운데 아직 빌려주지 않은 주소 하나를 받는다. 192.0.2.150은 프린터의 몫이라 PC01에게 가지 않으므로, 남은 주소는 90개에서 하나 줄어든 89개다.",
+          "sources": [
+            "windows-server-roles.dhcp-reservation"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-reservation"
+      ]
+    },
+    "dhcp-failover": {
+      "label": "SRV01과 SRV02가 부하 분산 방식으로 한 범위를 함께 맡다가 SRV01이 멈추면, SRV02가 SRV01의 몫이던 PC01의 임대를 임대 기간 3일이 아니라 MCLT 1시간만 늘려 15:30까지 쓰게 하는 것을 보이는 도식",
+      "svgLabel": "SRV01과 SRV02, 두 서버 사이의 화살표 둘, PC01, 그리고 MCLT 1시간 · 15:30까지라고 적은 임시 임대 칸을 그린 그림",
+      "question": "DHCP 서버 한 대가 멈추면 클라이언트의 임대는 어떻게 될까?",
+      "idleCaption": "SRV01과 SRV02가 한 범위를 부하 분산 방식의 장애 조치로 함께 맡고, PC01은 SRV01의 몫인 클라이언트다. SRV01·SRV02·PC01은 예로 붙인 이름이고, MCLT는 기본값 1시간, 임대 기간 3일과 시각들은 예로 고른 값이다. 버튼을 고르면 평소와 한 대가 멈췄을 때를 견줄 수 있다.",
+      "legend": "두 서버 사이의 두 화살표는 임대 정보를 서로 나눠 갖는 것이고, PC01로 가는 화살표는 주소를 빌려주는 방향이다. 한 대가 멈췄을 때는 PC01의 갱신 요청이 SRV02로 가고, SRV02가 내준 임시 임대가 맨 아래 칸이다.",
+      "nodes": {
+        "srv01": "SRV01",
+        "srv02": "SRV02",
+        "pc01": "PC01",
+        "result": "MCLT 1시간 · 15:30까지"
+      },
+      "notes": {
+        "sync-note": "임대 정보를 나눠 갖는다",
+        "down-note": "멈춤",
+        "request-note": "14:30 요청"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "평소에는 SRV01과 SRV02가 부하 분산 방식으로 한 범위를 함께 맡고, 빌려준 임대의 정보까지 서로 나눠 갖는다. 클라이언트는 MAC 주소로 두 서버의 몫에 나뉘고, PC01은 SRV01의 몫이라 SRV01에게서 주소를 빌린다.",
+          "sources": [
+            "windows-server-roles.dhcp-failover"
+          ]
+        },
+        {
+          "id": "partner-down",
+          "label": "한 대가 멈춤",
+          "caption": "14:00에 SRV01이 멈춘 뒤 14:30에 PC01의 갱신 요청이 SRV02에 닿으면, SRV02는 PC01이 쓰던 주소를 임대 기간 3일이 아니라 MCLT 1시간만 늘려 준다. 그래서 이 임시 임대는 14:30 + 1시간 = 15:30에 끝난다.",
+          "sources": [
+            "windows-server-roles.dhcp-failover"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-server-roles.dhcp-failover"
+      ]
     }
   },
   "tables": {},
