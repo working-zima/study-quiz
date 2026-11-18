@@ -263,6 +263,7 @@ import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
+import { RequestFilteringDiagram } from './RequestFilteringDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
 import { ResolutionStepsDiagram } from './ResolutionStepsDiagram'
 import { ResolvConfDiagram } from './ResolvConfDiagram'
@@ -353,6 +354,7 @@ import { UseraddOptionsDiagram } from './UseraddOptionsDiagram'
 import { ViColonCommandsDiagram } from './ViColonCommandsDiagram'
 import { ViEditCommandsDiagram } from './ViEditCommandsDiagram'
 import { ViModesDiagram } from './ViModesDiagram'
+import { VirtualDirectoryDiagram } from './VirtualDirectoryDiagram'
 import { VlanMembershipDiagram } from './VlanMembershipDiagram'
 import { VlanSplitDiagram } from './VlanSplitDiagram'
 import { VlanTrunkDiagram } from './VlanTrunkDiagram'
@@ -708,6 +710,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-server-roles.dhcp-failover': DhcpFailoverDiagram,
   'windows-server-roles.iis': IisSitePoolDiagram,
   'windows-server-roles.iis-site-bindings': SiteBindingsDiagram,
+  'windows-server-roles.iis-home-directory': VirtualDirectoryDiagram,
+  'windows-server-roles.request-filtering': RequestFilteringDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
