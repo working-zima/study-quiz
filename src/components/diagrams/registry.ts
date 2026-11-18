@@ -175,6 +175,7 @@ import { LeftoverResourcesDiagram } from './LeftoverResourcesDiagram'
 import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { ListenPortDiagram } from './ListenPortDiagram'
+import { LiveMigrationDiagram } from './LiveMigrationDiagram'
 import { LocalUserAccountsDiagram } from './LocalUserAccountsDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
@@ -323,6 +324,7 @@ import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { StorageAccountDiagram } from './StorageAccountDiagram'
+import { StorageMigrationDiagram } from './StorageMigrationDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
 import { SubnettingDiagram } from './SubnettingDiagram'
@@ -728,6 +730,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-hyperv.virtual-machines': VirtualHardDiskDiagram,
   'windows-hyperv.virtual-switch': VirtualSwitchTypesDiagram,
   'windows-hyperv.checkpoints': CheckpointApplyDiagram,
+  'windows-hyperv.live-migration': LiveMigrationDiagram,
+  'windows-hyperv.storage-migration': StorageMigrationDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,
