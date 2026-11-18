@@ -129,6 +129,12 @@ Apache는 페이지마다 응답 머리의 Last-Modified를 적고, 기본값이
 **IIS 문서는 대부분 IIS 7.0 때(2007~2008년) 쓴 글이고**, 화면 차례도 Windows Server 2008~2012 R2까지만 적는다. 그래서 같은 사실이 지금 판(IIS 10.0 — Windows Server 2016 이후)에서도 그대로인지 구성 참조의 「Compatibility」 표에 「IIS 10.0에서 바뀌지 않았다」는 줄이 있는지로 맞춰 보고, 항목마다 그 결과를 적는다.
 IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 번역) 화면 이름은 그 번역으로만 확인했고 **실제 한국어 IIS 관리자 화면으로는 확인하지 못했다**. 한국어판은 application을 줄곧 「애플리케이션」으로 옮긴다(「애플리케이션 풀」·「웹 애플리케이션 프록시」) — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — IIS의 인증 방식 전체·URL 재작성·ASP.NET 구성·공유 구성·출력 캐시·모듈 목록, 요청 필터링의 사용자 지정 규칙과 헤더 제한, 로그의 사용자 지정 필드·ETW 설정, FTP 사용자 격리·방화벽 설정 전체, VPN·DirectAccess의 배포 절차와 인증서·Always On VPN의 구성, AD FS의 동작과 신뢰 당사자 구성. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 81 step 9)」가 붙은 줄과 항목은 phase 81 step 9에서 `windows-hyperv` 주제의 개념 아홉(Hyper-V, 가상 컴퓨터와 가상 하드 디스크, 가상 스위치, 검사점, 실시간 마이그레이션, 저장소 마이그레이션, Hyper-V 복제본, Windows 컨테이너, 컨테이너 기본 이미지)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-18).
+읽은 방법은 step 0·4와 같다(learn.microsoft.com의 영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`와 「Applies to」를 적었다). 근거는 Windows Server의 Hyper-V 문서(`windows-server/virtualization/hyper-v/…`)·Windows 컨테이너 문서(`virtualization/windowscontainers/…`)·Hyper-V PowerShell 모듈 문서(`?view=windowsserver2025-ps` 판)이고,
+지금 판 문서에 없는 것(실행 중인 가상 컴퓨터의 저장소를 옮기는 차례, VHDX가 처음 나온 판, Nano Server 설치 옵션의 끝)만 지난 판 문서(Windows Server 2012 R2·2012, Windows Server 2016)에서 가져왔다 — 줄마다 그 판과, 지금 판 문서에서 같은 말을 찾아본 결과를 적는다.
+**Hyper-V 문서의 한국어판은 virtual machine을 대부분 「가상 머신」으로 옮기고, 몇 문서(내보내기·가져오기, 세대 선택)만 「가상 컴퓨터」로 옮긴다** — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다.**
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 장애 조치 클러스터와 클러스터 공유 볼륨, 동적 메모리·스마트 페이징, 중첩 가상화, 차폐된 가상 컴퓨터, 세대 1과 2의 차이 전체, 가상 네트워크 어댑터의 설정 전체, 실시간 마이그레이션의 인증(CredSSP·Kerberos 제한된 위임)과 성능 옵션,
+복제본의 인증서·확장 복제·추가 복구 지점·테스트 장애 조치의 차례, Dockerfile 문법, 컨테이너 런타임의 설치 차례, 오케스트레이터(Kubernetes)·컨테이너 네트워크 드라이버. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
 
 ---
 
@@ -6464,6 +6470,9 @@ https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-
 (phase 81 step 4, 2026-11-18 IPv4로 다시 받아 확인 — 위 「(phase 81 step 0)」 줄과 같은 판, `updated_at` 2026-11-17) 웹 응용 프로그램 프록시(Web Application Proxy)는 여전히 두 절 어디에도 없고, DirectAccess·PPTP와 L2TP를 통한 원격 액세스 줄(「Features removed」의 Windows Server 2028(Preview) 탭)도 위 줄 그대로다.
 IIS 쪽으로는 IIS 6 관리 호환성 구성 요소(IIS 6 메타베이스 호환성·IIS 6 관리 콘솔 등)와 IIS 다이제스트 인증이 목록에 있다 — 이 phase의 개념(IIS 관리자·사이트·요청 필터링·로그·FTP)이 쓰는 구성 요소는 아니어서 탭을 따로 적지 않는다. 근거로 쓴 곳은 아래 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목
 
+(phase 81 step 9, 2026-11-18 IPv4로 다시 받아 확인 — 위 「(phase 81 step 0)」 줄과 같은 판, `updated_at` 2026-11-17) Hyper-V 쪽 줄과 Nano Server 줄은 위 「(phase 81 step 0)」 줄 그대로다 — Nano Server 설치 옵션은 「Features removed」의 Windows Server 2019 탭(페이지 HTML의 탭 id `tabpanel_2_ws19`)에 있고, 설치할 수 있는 호스트 운영 체제가 아니라 컨테이너 운영 체제로만 나온다며 Windows 컨테이너 기본 이미지 문서를 가리킨다.
+실시간 마이그레이션·저장소 마이그레이션·검사점·Windows 컨테이너는 두 절 어디에도 없다. Hyper-V 복제본은 이름만 한 번 나온다 — 「Features removed」의 Windows Server 2028(Preview) 탭에서 차폐된 VM을 대신할 신뢰할 수 있는 VM의 미리 보기가 장애 조치 클러스터와 Hyper-V 복제본을 아직 지원하지 않는다는 말이고, 복제본 기능 자체가 빠지거나 개발이 멈춘다는 줄은 아니다. 근거로 쓴 곳은 아래 「(phase 81 step 9)」 항목들
+
 쓰인 곳: (phase 81 step 0에서 쓰일 곳) `windows-server-roles.dhcp-server-role`(WINS의 지원 상태 — 2022부터 더 개발하지 않음, 2028 Preview에서 제거), `windows-server-roles.file-print-services`(Server Core의 인쇄 구성 요소 줄 — 쓸 때만),
 `windows-server-roles.remote-access`·`windows-server-roles.web-application-proxy`(DirectAccess·PPTP/L2TP는 2028 Preview에서 제거, 웹 응용 프로그램 프록시는 목록에 없음 — step 4가 그 주제의 문서와 함께 다시 본다), `windows-hyperv`(Hyper-V 줄·Nano Server 줄 — step 9가 다시 본다)
 
@@ -6935,3 +6944,196 @@ https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request
 VPN과 DirectAccess의 차이는 「DirectAccess」 첫머리의 견줌(VPN은 사용자가 연결을 열고 닫는다)대로 쓰고, Always On VPN이 그 견줌의 예외라는 것은 「Remote Access」 「VPN (RAS)」 줄(손으로 연결하지 않아도)에서 이어서 나오는 말로 썼다. 예의 「원격 액세스 서버」는 이 글에서 붙인 이름표다. 도식 `remote-access-services`, 문항 n298.
 `windows-server-roles.web-application-proxy` — 같은 항목의 웹 응용 프로그램 프록시 줄 전부(역방향 프록시로 내부 웹 응용 프로그램을 게시, 한국어판 이름, Windows Server 2012 R2에서 생김, 마법사에서 설치, 외부 URL과 백엔드 서버 URL·IP 주소가 아니라 FQDN, HTTPS 요청을 기다렸다가 백엔드로 HTTP나 HTTPS로 넘김, AD FS 사전 인증과 통과·원격 데스크톱 연결 앱, 지금 판의 상태)와 위 「역방향 프록시가 응답을 돌려주는 길」 줄(응답이 프록시를 거쳐 돌아간다, 인터넷 쪽에서는 프록시와 주고받는 것처럼 보인다, 사설 네트워크를 떼어 놓는다).
 AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge token)이고, 그 밖의 AD FS 동작은 쓰지 않았다. 「Microsoft Entra 응용 프로그램 프록시」는 쓰지 않았다. 도식 `web-app-proxy`, 문항 n299·n300
+
+## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/features-terminology
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/architecture
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/install-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/host-hardware-requirements
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/remotely-manage-hyper-v-hosts
+https://learn.microsoft.com/en-us/windows-server/get-started/server-core-app-compatibility-feature-on-demand
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-machine-in-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/maximum-scale-limits
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/new-vhd?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/plan-hyper-v-networking-in-windows-server
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/new-vmswitch?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831446(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」를 따로 적지 않은 것은 Windows Server 2025·2022·2019·2016·Windows 11·10·Azure Local 2311.2 이후):
+「Hyper-V virtualization in Windows Server and Windows」 `updated_at` 2026-02-24(`ms.date` 2025-07-28 — 옛 주소 `hyper-v-overview`·`hyper-v-technology-overview`가 이리로 넘어온다), 「Hyper-V features and terminology」 2026-02-16(2025-08-06), 「Hyper-V architecture」 2026-01-21(2026-01-21),
+「Install Hyper-V」 2026-02-16(2025-05-23), 「Hardware requirements for Hyper-V」 2025-10-28(2025-06-26 — 옛 주소 `system-requirements-for-hyper-v-on-windows`가 이리로 넘어온다), 「Remotely manage Hyper-V hosts with Hyper-V Manager」 2026-02-16(2025-06-30),
+「Install Server Core Application Compatibility Feature on Demand」 2026-02-16(2025-07-01, Windows Server 2025·2022·2019), 「Create a virtual machine in Hyper-V」 2025-11-27(2025-11-27), 「Should I create a generation 1 or 2 virtual machine…」 2026-02-16(2025-06-18),
+「Hyper-V maximum scale limits in Windows Server」 2026-02-16(2025-10-17, Windows Server 2025~2016·Azure Local — 판마다 탭), 「Create and configure a virtual switch with Hyper-V」 2026-02-16(2025-01-29), 「Plan for Hyper-V networking in Windows Server」 2026-02-16(2026-01-21),
+`New-VHD`·`New-VMSwitch` 2025-05-14(2016-12-20, Hyper-V 모듈). 지난 판 「Hyper-V Virtual Hard Disk Format Overview」 2021-11-12(`ms.date` 2016-10-25, 「Applies To」 Windows Server 2012 R2·2012).
+한국어판도 모두 받았다(`updated_at` 2026-01-21~2026-07-17, 기계 번역). `New-VHD`·`New-VMSwitch`와 지난 판 문서의 한국어판은 번역되지 않아 영문 그대로다.
+
+- **Hyper-V**(「Hyper-V virtualization…」 첫머리): Microsoft가 만든 하이퍼바이저로, 따로 내려받지 않아도 Windows Server와 Windows 안에 있다. 이것으로 가상 머신(VM)을 여럿 만들어 돌리고 관리한다(하드웨어 가상화). 운영 체제 위가 아니라 하드웨어 위에 바로 놓이는 1형(type-1) 하이퍼바이저다.
+  게스트 VM으로 여러 판의 Windows·Linux·FreeBSD를 돌릴 수 있다. Windows Server의 Hyper-V는 실시간 마이그레이션·고가용성·재해 복구 같은 기능을 갖춘 기업용이고, Windows의 Hyper-V는 개발·테스트에 맞는 가벼운 쪽이다
+- **하이퍼바이저**(「Hyper-V architecture」 첫머리와 「Glossary」): 물리 하드웨어 바로 위, 운영 체제들 아래에 자리 잡는 소프트웨어다. 운영 체제마다 남과 섞이지 않는 실행 칸인 **파티션**을 내주고, 그 칸들이 아래 하드웨어를 어떻게 쓸지 가운데서 정한다. 그래서 운영 체제 여럿이 서로 떨어진 채 하드웨어 한 벌을 나눠 쓴다.
+  **루트 파티션**(부모 파티션)은 Windows가 돌고 물리 메모리와 장치에 직접 닿는 유일한 파티션이며 가상화 관리 기능이 여기서 돈다. 루트 파티션이 만드는 **자식 파티션**에 **게스트 운영 체제**가 들고, 자식 파티션은 실제 하드웨어 대신 가상 장치를 본다 — 장치 요청은 VMBus나 하이퍼바이저를 거쳐 루트 파티션의 장치로 넘어간다(「Root and child partitions」).
+  자식 파티션은 물리 프로세서를 직접 쓰지 않고 가상 프로세서와 자기만의 가상 메모리 주소 영역에서 돈다(「Interrupt and memory handling」). 프로세서에 하드웨어 지원 가상화(Intel VT나 AMD-V)가 있어야 한다
+- **호스트와 게스트**: 문서들은 VM을 실행하는 물리 컴퓨터를 「Hyper-V 호스트」(Hyper-V host)로, VM 안의 운영 체제를 「게스트 운영 체제」(guest operating system)로 부른다 — 「Install Hyper-V」·「Create a virtual machine」·「Hyper-V architecture」, 「Hyper-V features and terminology」 「Integration Services」(호스트와 게스트 운영 체제의 시계를 맞추기, 호스트가 게스트 운영 체제가 답하는지 살피기).
+  호스트에는 호스트 자신과 함께 돌릴 VM 모두에 넉넉한 메모리가 있어야 한다(「Hardware requirements」 「General requirements」). **호스트·게스트를 한 문장으로 정의한 곳은 찾지 못했다** — 위 쓰임과 파티션 설명에서 이어서 나오는 말로 쓴다
+- **설치**(「Install Hyper-V」, 탭 「PowerShell」·「GUI」): Windows Server에서 Hyper-V 역할을 서버 관리자나 `Install-WindowsFeature`로 설치해야 VM을 만들고 실행할 수 있다. 관리자 PowerShell에서 `Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart`(원격 서버면 `-ComputerName`) → 설치가 끝나면 컴퓨터가 다시 시작된다 → `Get-WindowsFeature Hyper-V`로 설치를 확인한다.
+  Server Core 설치에서 `-IncludeManagementTools`를 주면 PowerShell용 Hyper-V 모듈만 설치되고, Hyper-V 관리자는 다른 컴퓨터에서 원격으로 쓴다. 서버 관리자 차례: 「관리」 → 「역할 및 기능 추가」 → 「시작하기 전에」 → 「설치 유형 선택」(역할 기반 또는 기능 기반) → 「대상 서버 선택」 → 「서버 역할 선택」에서 Hyper-V를 고르고 「기능 추가」 →
+  「기능 선택」 → **「가상 스위치 만들기」·「가상 머신 마이그레이션」·「기본 저장소」** 페이지에서 환경에 맞는 값 → 「설치 선택 확인」에서 「필요한 경우 대상 서버를 자동으로 다시 시작」 → 「설치」. Hyper-V는 Windows Server 2025의 모든 에디션에서 서버 역할로 쓸 수 있다(「Hyper-V virtualization…」 「Get started」). Windows 11·10은 Pro·Enterprise(·Education)에서 선택적 기능으로 켠다(Home에는 설치할 수 없다).
+  Server Core 표(위 「(phase 81 step 0) … 서버 역할과 기능」 항목)에서 Hyper-V는 역할(`Hyper-V`)이고 기본 설치는 「N」이다
+- **하드웨어 요구**(「Hardware requirements for Hyper-V」 「General requirements」): 2단계 주소 변환(SLAT)이 있는 64비트 프로세서, VM 모니터 모드 확장, 넉넉한 메모리(적어도 4GB), BIOS나 UEFI에서 켠 하드웨어 지원 가상화(Intel VT·AMD-V)와 하드웨어 데이터 실행 방지(Intel XD 비트·AMD NX 비트).
+  SLAT은 하이퍼바이저를 설치할 때만 필요하고 Hyper-V 관리 도구만 설치할 때는 필요 없다. 명령 프롬프트에서 `Systeminfo.exe`를 실행해 「Hyper-V 요구 사항」 부분이 모두 「예」인지 본다(「How to check for Hyper-V requirements」). Windows Server 2016 이후 Hyper-V에는 SLAT이 필요하다(「Hyper-V architecture」 Note)
+- **관리 도구**: **Hyper-V 관리자**(Hyper-V Manager)는 Hyper-V 호스트와 VM을 관리하는 그래픽 도구로 VM을 만들고 설정하고 돌보게 한다(「Hyper-V features and terminology」 「Management」 — 같은 절이 PowerShell, Windows Admin Center, System Center Virtual Machine Manager도 든다). 서버 관리자 「도구」 → 「Hyper-V 관리자」로 연다(「Set up hosts for live migration…」·「Use live migration…」 — 아래 항목), 시작에서 이름으로 찾아 열 수도 있다(「Create a virtual machine」).
+  **파일 이름은 `virtmgmt.msc`다** — Server Core에 더하는 앱 호환성 기능 주문형(FOD)의 구성 요소 표에 「Hyper-V 관리자 — `virtmgmt.msc` — Windows Server 2022부터」로 있다(「Install Server Core Application Compatibility Feature on Demand」). 실행 창에 이 이름을 넣어 여는 차례를 적은 문서는 찾지 못했다 — `.msc` 콘솔 파일을 실행 창에서 여는 일반 규칙은 위 「(phase 80 step 8) … MMC와 실행 이름」 항목이다.
+  Hyper-V 관리자는 Hyper-V 관리 도구를 설치할 때 함께 들어가고(역할 전체를 설치하든 도구만 설치하든), Windows Server에서 도구만 설치하려면 「기능 선택」의 원격 서버 관리 도구 → 역할 관리 도구 → Hyper-V 관리 도구를 고른다. 처음에는 로컬 컴퓨터도 목록에 없어, 왼쪽 창의 「Hyper-V 관리자」를 오른쪽 클릭 → 「서버에 연결」 → 「로컬 컴퓨터」를 고른다(「Remotely manage Hyper-V hosts…」)
+- **쓰면 얻는 것**(「Hyper-V virtualization…」 첫머리와 「Benefits of Hyper-V」): 첫머리는 가상화로 **하드웨어 사용률을 최대로 높이고**, IT 운영을 간소화하고, **업무 연속성**을 높인다고 하고, 서버 통합과 개발·테스트 환경을 쓰임으로 든다. 「Benefits」의 항목 —
+  **비용 최적화**(서버 통합으로 하드웨어 구입·**유지 관리 비용**(maintenance costs)을 줄이고 데이터 센터 공간·전력·냉각 요구를 낮춘다, Windows Server·Windows에 들어 있어 하이퍼바이저 라이선스 비용이 따로 들지 않는다), 운영 효율성, 비즈니스 민첩성, 보안 강화(작업을 서로 떼어 놓는다),
+  **복원력 향상**(고가용성 기능으로 가동 중지 시간을 줄이고, Hyper-V 복제본으로 재해 복구를 하고, 실시간 마이그레이션으로 업무 연속성을 지킨다), **개발 가속**(개발·테스트 환경을 빨리 만든다), 규정 준수 간소화. 「Benefits for developers and IT professionals」: 하드웨어를 따로 두지 않고 여러 운영 체제에서 시험하고, 바꾸기 전에 VM의 스냅샷을 떠 두면 실험과 되돌리기의 안전망이 된다
+- **가상 컴퓨터를 만드는 차례와 갖는 것**(「Create a virtual machine in Hyper-V」): 갖출 것 — Hyper-V를 켠 컴퓨터, 로컬 Administrators나 Hyper-V Administrators 그룹, VM에 나눠 줄 호스트의 물리 메모리, VM 구성 파일과 가상 하드 디스크를 둘 디스크 공간, (네트워크가 필요하면) 가상 스위치.
+  Hyper-V 관리자에서 서버를 고르고 「작업」 창 「새로 만들기」 → 「가상 머신」 → **새 가상 머신 마법사**: 「이름 및 위치 지정」(VM 이름과 구성 파일 위치) → 「세대 지정」 → 「메모리 할당」(시작할 때 줄 메모리) → 「네트워킹 구성」(VM을 이을 가상 스위치) → 「가상 하드 디스크 연결」(새로 만들기·기존 `.vhd`/`.vhdx` 쓰기·나중에 연결) → 「설치 옵션」(운영 체제를 나중에, 또는 `.iso` 같은 부팅 이미지에서) → 「요약」 → 「마침」.
+  PowerShell은 `New-VM`(`-MemoryStartupBytes`·`-VHDPath`나 `-NewVHDPath`·`-Generation`·`-Switch` 같은 매개 변수 — 문서 예: 메모리 4GB, `.vhdx`, 2세대, 외부 스위치). 만든 뒤 VM을 오른쪽 클릭 → 「연결」 → 가상 머신 연결 창에서 「시작」. 가상 네트워크 어댑터는 VM을 가상 스위치에 잇는 가상화한 NIC다(「Hyper-V features and terminology」 「Virtual network adapter」)
+- **한 호스트의 여러 VM**(「Hyper-V maximum scale limits」 「Maximums for Hyper-V hosts」): 서버 하나에서 **동시에 실행할 수 있는 VM은 1,024개까지**다 — Windows Server 2025·2022·2019·2016 탭이 모두 같은 값이다. 가상 스위치 수는 Hyper-V가 한도를 두지 않는다.
+  「가상 컴퓨터를 많이 쓸수록 물리 서버의 하드웨어 사용률이 낮아진다」를 반박하는 문장은 따로 없다 — 위 「쓰면 얻는 것」(통합으로 사용률을 높인다)에서 이어서 나오는 말로 쓴다
+- **가상 하드 디스크**(「Hyper-V features and terminology」 「Virtual hard disks」): VM의 하드 드라이브 노릇을 하는 **파일**이다. 형식은 둘 — **VHD**(원래 형식)와 **VHDX**(새 형식 — 더 큰 용량, 더 나은 성능, 데이터 손상 보호, VM이 켜진 채 크기 바꾸기, 4KB 논리 섹터, 자동 정렬). 차이 디스크(부모 디스크를 바탕으로 바뀐 것만 따로 담아 부모를 그대로 두는 디스크)도 있다.
+  **최대 크기**: 「Hyper-V maximum scale limits」의 VM 표는 **VHDX 64 TB, VHD 2,040 GB**로 적고(네 판 모두), 「Hyper-V features and terminology」는 VHD를 「2TB까지」로 적는다 — 두 문서가 VHD의 값을 달리 적으므로 본문은 표의 2,040 GB를 쓴다(2TB라는 말도 문서에 있다는 것은 쓸 때 한 줄).
+  `New-VHD`는 VHD나 VHDX 형식의 새 가상 하드 디스크를 만들고, **파일 이름의 확장자(`.vhd`·`.vhdx`)가 형식을 정한다**(「Description」). 지난 판 「Hyper-V Virtual Hard Disk Format Overview」(2012 R2·2012): VHDX는 Windows Server 2012의 Hyper-V에서 처음 나온 VHD의 새 판이고 64 TB까지 담으며 정전 때 데이터 손상을 막는다 — 지금 판의 위 줄과 맞다
+- **세대**(「Should I create a generation 1 or 2…」, 「Hyper-V features and terminology」 「Virtual machine generations」): 1세대는 레거시 BIOS 펌웨어로 옛 하드웨어 흉내(IDE 컨트롤러 등)를 쓰고, 2세대는 UEFI 펌웨어로 보안 부팅·SCSI 부팅 같은 기능을 쓴다. 특별한 까닭이 없으면 2세대를 권하고, **만든 뒤에는 세대를 바꿀 수 없다**.
+  부팅 볼륨 최대 — 2세대 64 TB(.VHDX), 1세대 .VHDX 2 TB·.VHD 2040 GB. 「Create a virtual machine」의 `-Generation` 설명은 VHD에는 1세대, VHDX에는 2세대를 쓰라고 한다. 지금 판 「Features Removed…」의 Windows Server 2028(Preview) 탭 — 2028을 게스트로 쓰는 VM은 2세대여야 한다(위 「(phase 81 step 0)」 줄)
+- **가상 스위치**(「Hyper-V features and terminology」 「Virtual switch」, 「Plan for Hyper-V networking…」): VM끼리, 그리고 VM과 바깥 네트워크가 통신하게 하는 **소프트웨어로 된 네트워크 스위치**다. 종류는 셋 —
+  **외부**(External — 호스트의 물리 네트워크 어댑터에 묶여 VM을 유선 물리 네트워크에 잇는다), **내부**(Internal — 그 스위치가 있는 호스트에서 도는 VM끼리, 그리고 호스트와 VM 사이만 잇고 바깥 네트워크와는 잇지 않는다), **프라이빗**(Private — 같은 호스트의 VM끼리만 잇고, 호스트와 VM 사이도 바깥 네트워크도 잇지 않는다).
+  만드는 자리(「Create and configure a virtual switch…」): Hyper-V 관리자 「작업」 창 → **「가상 스위치 관리자」** → 스위치 종류를 고르고 「가상 스위치 만들기」 → 이름을 넣고, 외부면 쓸 네트워크 어댑터(NIC)를 골라 「확인」(네트워크 연결이 잠시 끊길 수 있다는 경고에 「예」), 내부·프라이빗이면 「확인」. Hyper-V 역할을 설치할 때 함께 만들 수도 있다(위 설치 마법사의 「가상 스위치 만들기」 페이지).
+  외부 스위치는 관리 운영 체제(호스트)가 같은 네트워크 어댑터를 함께 쓰게 할 수 있다(「Management Operating System sharing」). PowerShell: `New-VMSwitch -Name <이름> -NetAdapterName <어댑터 이름>`이 외부 스위치를, `New-VMSwitch -Name <이름> -SwitchType Internal`(또는 `Private`)이 내부·프라이빗 스위치를 만든다 — `-SwitchType`이 받는 값은 Internal과 Private뿐이고, 외부 스위치는 `-NetAdapterName`(또는 `-NetAdapterInterfaceDescription`)을 주면 그것으로 정해진다(`New-VMSwitch` 「-SwitchType」).
+  스위치의 뜻은 phase 72의 `hub-switch-vlan` 항목(IEEE 802.1D 등)과 맞춘다
+- **한국어 이름**: 한국어판은 「Hyper-V 관리자」, 「하이퍼바이저」, 「루트 파티션」·「자식 파티션」, 「게스트 운영 체제」·「호스트 운영 체제」, 「가상 스위치 관리자」, 「가상 스위치 만들기」, 스위치 종류 「외부」·「내부」·「프라이빗」(「Create and configure a virtual switch…」 한국어판은 한 곳에서 「비공개」로도 옮긴다), 마법사 페이지 「이름 및 위치 지정」·「메모리 할당」·「네트워킹 구성」·「가상 하드 디스크 연결」·「설치 옵션」·「요약」으로 옮긴다.
+  virtual machine은 한국어판 대부분이 「가상 머신」으로 옮기고(개요 23번·만들기 55번·검사점 43번), 「가상 머신 내보내기 및 가져오기」 본문과 「1세대 또는 2세대」 문서는 「가상 컴퓨터」를 섞어 쓴다(본문 6번·20번). 만들기 문서 한국어판은 마법사 이름을 「새 Virtual Machine 마법사」로 반만 옮긴다.
+  **고른 이름**: 「가상 컴퓨터」(virtual machine) — guide.md가 정한 이름이고 기출이 Hyper-V 문항 셋([기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33])에서 쓰는 이름이며 한국어판도 쓴다. 본문은 처음 쓸 때 「가상 머신(VM)이라고도 부른다」를 한 줄 밝히고, 화면 이름은 문서가 보이는 「새 가상 머신 마법사」·「가상 머신 연결」처럼 한국어판의 표기를 쓴다.
+  「가상 스위치」, 스위치 종류는 「외부」·「내부」·「프라이빗」(guide.md의 「개인」 대신 — 한국어판 어디에도 「개인」이 없다), 「가상 하드 디스크」, 「호스트」·「게스트」. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 10·11에서 쓰일 곳) `windows-hyperv.hyper-v`(Hyper-V의 정의, 하이퍼바이저·파티션, 호스트와 게스트, 설치 두 자리와 하드웨어 요구 한 줄, Hyper-V 관리자와 `virtmgmt.msc`, 쓰면 얻는 것), `windows-hyperv.virtual-machines`(새 가상 머신 마법사가 정하는 것, 가상 장치, 한 호스트 1,024개, VHD·VHDX와 최대 크기·확장자, 세대 한 줄),
+`windows-hyperv.virtual-switch`(세 종류와 잇는 범위, 가상 스위치 관리자, `New-VMSwitch`), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33]·[기출 2025-02-23 #30]·[기출 2026-05-17 #45])
+
+## (phase 81 step 9) Microsoft Learn — 검사점·내보내기와 가져오기: Use checkpoints, Export and import virtual machines, Checkpoint-VM
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/checkpoints
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/checkpoint-vm?view=windowsserver2025-ps
+
+2026-11-18에 IPv4로 내려받아 읽은 판: 「Use checkpoints」 `updated_at` 2025-09-22(`ms.date` 2024-07-31, 「Applies to」 Windows Server 2025~2016·Windows 11·10·Azure Local 2311.2 이후) — guide.md가 든 옛 주소(`manage/choose-between-standard-or-production-checkpoints-in-hyper-v`, `manage/enable-or-disable-checkpoints-in-hyper-v`, `virtualization/hyper-v-on-windows/user-guide/checkpoints`)는 모두 이 문서로 넘어온다.
+「Export and import virtual machines」 2025-09-22(2015-05-14, 같은 판들), `Checkpoint-VM` 2025-05-14(2016-12-20). 한국어판 「검사점 사용」 2026-01-21, 「가상 머신 내보내기 및 가져오기」 2026-01-21. 검사점의 두 종류는 위 항목의 「Hyper-V features and terminology」 「Checkpoints」에도 있다.
+
+- **검사점**(checkpoint): 만든 순간의 VM 상태를 기록해 두었다가, 뒤에 그 기록을 써서 VM을 그 순간으로 돌려놓는 기능이다 — 시험·개발과 문제가 생긴 뒤의 복구에 쓴다(「Hyper-V features and terminology」 「Checkpoints」). 쓰는 때는 설정 변경, 업데이트 적용, 새 소프트웨어 설치처럼 VM을 바꾸기 직전이다 — 바꾼 뒤 문제가 생기면 검사점 시점으로 VM을 되돌린다(「Use checkpoints」 첫머리)
+- **두 종류**(「Use checkpoints」 첫머리, 「Hyper-V features and terminology」): **표준 검사점**(Standard) — 검사점을 시작한 때의 VM과 **VM 메모리 상태**의 스냅샷을 뜬다(켜져 있든 꺼져 있든 메모리·디스크·장치 상태를 붙잡는다). 응용 프로그램이 일관된 상태를 보장하지 않아 테스트·개발에 맞다.
+  **프로덕션 검사점**(Production) — Windows 게스트에서는 볼륨 섀도 복사본 서비스(VSS), Linux 게스트에서는 파일 시스템 고정(File System Freeze)을 써서 데이터가 맞는 상태의 백업을 만들고, **메모리 상태는 스냅샷하지 않는다**. 실제 운영 환경에 맞다.
+  **기본값은 프로덕션 검사점**이고 Hyper-V 관리자나 PowerShell로 바꾼다. 판: Windows 10보다 앞선 Hyper-V는 표준 검사점(옛 이름 스냅샷)만 제공했다 — 문서 문장은 「Windows 10·11의 Hyper-V에 두 종류가 있다」로 쓰지만 같은 페이지의 「Applies to」는 Windows Server 2016~2025를 든다. 이 문서와 지금 판 문서에서 「Windows Server 2016부터」라고 판을 적은 문장은 찾지 못했다
+- **종류 바꾸기**: Hyper-V 관리자 → VM 오른쪽 클릭 → 「설정」 → 「관리」 아래 「검사점」 → 종류를 고른다. PowerShell `Set-VM -Name <VM 이름> -CheckpointType Standard`(표준), `Production`(프로덕션 — 실패하면 표준 검사점을 대신 만든다), `ProductionOnly`(프로덕션 — 실패하면 만들지 않는다). 같은 설정 화면의 「검사점 사용」 확인란은 기본으로 켜져 있다(「Enable or disable checkpoints」).
+  자동 검사점(VM을 시작할 때 저절로 만들고 멈출 때 병합한다)은 고를 수 있는 기능이다(「Hyper-V features and terminology」)
+- **만들기**: Hyper-V 관리자에서 VM 이름을 오른쪽 클릭 → **「검사점」** → 끝나면 Hyper-V 관리자의 「검사점」 칸에 나타난다. PowerShell `Checkpoint-VM -Name <VM 이름>`, 목록은 `Get-VMCheckpoint -VMName <VM 이름>`. 기본 이름은 VM 이름에 만든 날짜·시각을 붙인 것이다(「Renaming checkpoints」 — 100자까지)
+- **되돌리기 — 적용**(「Applying checkpoints」): 「가상 머신」에서 VM을 고르고 「검사점」 칸의 검사점을 오른쪽 클릭 → **「적용」** → 대화 상자의 셋 가운데 — 「검사점 만들기 및 적용」(앞 검사점을 적용하기 전에 지금 상태로 새 검사점을 하나 더 만든다), 「적용」(고른 검사점만 적용하고 되돌릴 수 없다), 「취소」.
+  PowerShell `Restore-VMCheckpoint -Name <검사점 이름> -VMName <VM 이름> -Confirm:$false`. 문서의 실습: **표준 검사점을 적용하면** 검사점을 만든 때와 똑같은 상태로 돌아와, 그때 열려 있던 메모장과 저장하지 않은 글까지 그대로 있다. **프로덕션 검사점을 적용하면** VM이 꺼진 상태가 되고, 켜서 들어가면 저장했던 파일은 돌아와 있지만 메모장은 열려 있지 않다
+- **파일**(「Deleting checkpoints」·「Configure checkpoint location」): 검사점은 VM의 `.vhdx` 파일과 같은 곳에 **`.avhdx` 파일**로 저장된다. 검사점을 지우면 Hyper-V가 `.avhdx`와 `.vhdx`를 병합하고 `.avhdx`를 지운다 — `.avhdx`를 직접 지우지 마라. 검사점을 지우면 호스트의 공간을 되찾는다.
+  검사점 구성 파일·저장 상태 파일의 위치는 검사점이 없을 때 「검사점 파일 위치」에서 바꿀 수 있다
+- **백업과의 관계**: 스냅샷(표준 검사점)은 **전체 백업이 아니며**, Active Directory처럼 노드 사이에 데이터를 복제하는 시스템에서는 데이터가 어긋나는 문제를 일으킬 수 있다(「Use checkpoints」 첫머리의 표준 검사점 줄). 검사점을 **내보내면** VM으로 묶여 다른 위치로 옮겨지고, 가져오면 VM으로 복원되며, 내보낸 검사점은 백업에 쓸 수 있다(「Exporting checkpoints」)
+- **옛 이름 스냅샷**: Windows 10보다 앞선 Hyper-V의 표준 검사점을 스냅샷이라고 불렀다(위 줄). Hyper-V PowerShell 모듈에는 별칭이 있어 checkpoint와 snapshot을 서로 바꿔 쓸 수 있다(「Use checkpoints」 Note)
+- **내보내기**(export, 「Export and import virtual machines」): VM을 옮기거나 복사하는 빠른 방법이다. 내보내기는 필요한 파일 — **가상 하드 디스크 파일, VM 구성 파일, 검사점 파일** — 을 한 단위로 모은다. VM이 켜져 있어도 꺼져 있어도 할 수 있다. Hyper-V 관리자에서 VM 오른쪽 클릭 → 「내보내기」 → 저장할 위치 → 「내보내기」, PowerShell `Export-VM -Name <VM 이름> -Path <경로>`
+- **가져오기**(import): 내보낸 VM을 Hyper-V 호스트에 등록해 그 호스트에서 쓰게 한다 — 원래 호스트로도 새 호스트로도 가져올 수 있다. 「작업」 메뉴 「가상 머신 가져오기」 → 내보낸 파일이 든 폴더 → 가져올 VM → **가져오기 형식** — 제자리에 등록(파일을 지금 있는 곳에서 그대로 쓰고 ID를 지킨다)·VM 복원(고른 위치로 복사하고 ID를 지킨다)·VM 복사(고른 위치로 복사하고 **새 ID**를 준다 — 같은 호스트에 여러 번 가져올 수 있다) → 「마침」. PowerShell `Import-VM`.
+  VM 구성에는 판 번호가 있어 더 새 Hyper-V에서 만든 VM을 옛 Hyper-V로 가져올 수는 없다
+- **기출 오답의 이름**: 「롤백」은 개요 문서(위 항목 「Benefits for developers…」)가 스냅샷의 쓰임(실험과 되돌리기)을, 「Hyper-V features and terminology」가 검사점으로 그 시점에 되돌아가는 일(roll back)을 말할 때 쓰는 낱말일 뿐 Hyper-V 기능의 이름이 아니다.
+  「타임머신」·「새로 고침」이라는 이름의 Hyper-V 기능은 이 항목과 이 step의 다른 항목에서 읽은 Hyper-V 문서 어디에도 없다
+- **한국어 이름**: 한국어판은 「검사점」(「검사점 사용」 한국어판에서 119번 — 「체크포인트」는 내보내기 문서 한국어판에 한 번), 「표준 검사점」·「프로덕션 검사점」, 「적용」·「검사점 만들기 및 적용」, 옛 이름은 「스냅샷」, 「내보내기」·「가져오기」·「가상 머신 가져오기」(같은 문서 본문은 「가상 컴퓨터 내보내기」·「가상 컴퓨터 가져오기」로도 옮긴다)로 옮긴다.
+  **고른 이름**: 「검사점」(checkpoint — 한국어판의 표기이고 기출 둘이 쓰는 이름), 「표준 검사점」·「프로덕션 검사점」, 「적용」, 「내보내기」·「가져오기」. 옛 이름은 한국어판 표기 「스냅샷」(snapshot — guide.md의 「스냅숏」 대신, 한국어판의 표기다). **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 11에서 쓰일 곳) `windows-hyperv.checkpoints`(정의, 두 종류와 기본값·판, 종류 바꾸기, 만들기·적용과 대화 상자, 두 종류를 적용했을 때의 차이, `.avhdx`, 전체 백업이 아니라는 것, 옛 이름, 내보내기·가져오기와의 차이), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2026-05-17 #45]·[기출 2026-08-02 #45])
+
+## (phase 81 step 9) Microsoft Learn — 실시간 마이그레이션·저장소 마이그레이션·Hyper-V 복제본: Live Migration Overview, Set up hosts for live migration without Failover Clustering, Use live migration without Failover Clustering to move a virtual machine, Move-VM, Move-VMStorage, Hyper-V Replica overview, Enable Hyper-V Replica on a single host, Replicate a virtual machine with Hyper-V Replica, Enable-VMReplication; 지난 판 Virtual Machine Storage Migration Overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/live-migration-overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/set-up-hosts-for-live-migration-without-failover-clustering
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/use-live-migration-without-failover-clustering-to-move-a-virtual-machine
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/move-vm?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/move-vmstorage?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/replication-overview
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/configure-replication-single-host
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/replication-virtual-machines
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/enable-vmreplication?view=windowsserver2025-ps
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831656(v=ws.11)
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」는 모두 Windows Server 2025~2016·Azure Local 2311.2 이후 — Windows 11·10이 없다): 「Live Migration Overview」 `updated_at` 2025-09-22(`ms.date` 2017-06-27), 「Set up hosts for live migration…」 2025-10-28(2025-08-14), 「Use live migration…」 2025-09-22(2025-02-19),
+「Hyper-V Replica overview」 2026-02-16(2025-11-10 — 옛 주소 `manage/set-up-hyper-v-replica`가 이리로 넘어온다), 「Enable Hyper-V Replica on a single host」·「Replicate a virtual machine with Hyper-V Replica」 2026-11-16(2026-04-28), `Move-VM`·`Move-VMStorage`·`Enable-VMReplication` 2025-05-14(2016-12-20).
+지난 판 「Virtual Machine Storage Migration Overview」 2021-11-12(`ms.date` 2016-10-25, 「Applies To」 Windows Server 2012 R2·2012). 한국어판도 받았다(「실시간 마이그레이션 개요」 2026-01-21, 「Hyper-V 복제본 개요」 2026-02-16 등 — 지난 판과 PowerShell 문서는 영문 그대로). 위 첫 항목의 「Hyper-V features and terminology」 「Live migration」·「Storage migration」·「Replication」 절도 함께 썼다.
+
+- **실시간 마이그레이션**(live migration, 「Live Migration Overview」 첫머리): Windows Server의 Hyper-V 기능이고, **실행 중인 VM을 한 Hyper-V 호스트에서 다른 호스트로, 사용자가 느낄 만한 가동 중지 없이** 옮긴다. 가장 큰 이점은 실행 중인 VM이 한 호스트에 묶이지 않는다는 것 — 호스트를 폐기하거나 업그레이드하기 전에 그 호스트의 VM을 모두 다른 호스트로 비울 수 있다. 장애 조치 클러스터와 함께 쓰면 고가용성 시스템을 만든다.
+  「Hyper-V features and terminology」 「Live migration」: 부하 분산·하드웨어 점검·재해 복구에 쓰고, 네트워크(SMB나 TCP/IP, RDMA)로 옮기며, **Windows Server의 Hyper-V에만 있다**. 같은 클러스터의 호스트 사이나 독립 실행형 호스트 사이로 옮긴다. 개요 「High availability…」: 서비스를 멈추지 않고 계획된 점검을 하게 한다. Windows Server 2016부터 장애 조치 클러스터 없이도 쓴다(「Live Migration in Windows Server 2016」)
+- **공유 없는 실시간 마이그레이션**(shared nothing live migration, 개요 「High availability…」): 공유 저장소 없이 VM을 호스트 사이로 옮긴다 — 저장소 구성이 다른 호스트 사이나 멀리 떨어진 사이트 사이에서. `Move-VM`은 VM을 새 Hyper-V 호스트로 옮기고(「Description」), `Move-VM LMTest TestServer02 -IncludeStorage -DestinationStoragePath D:\LMTest`는 VM을 대상 서버로 옮기면서 가상 하드 디스크와 검사점·스마트 페이징 파일 같은 다른 파일도 대상 서버의 그 폴더로 옮긴다(「Use live migration…」 PowerShell 예)
+- **옮기는 차례**(「Use live migration…」): 서버 관리자 「도구」 → 「Hyper-V 관리자」 → 서버를 고른다 → 「가상 머신」 창에서 VM 오른쪽 클릭 → **「이동」** → **이동 마법사** → 이동 종류·대상 서버·옵션을 고른다 → 「요약」 → 「마침」. **마법사가 보이는 이동 종류의 화면 이름은 이 문서와 Microsoft Learn 검색 어디에서도 찾지 못했다** — 본문은 「이동 마법사에서 이동 종류를 고른다」까지만 쓴다
+- **요구**(「Set up hosts for live migration…」 「Requirements…」, 「Use live migration…」): 원본·대상 서버 모두 Hyper-V 역할, 같은 Active Directory 도메인이나 서로 트러스트하는 도메인, 양쪽 서버의 로컬 Hyper-V Administrators나 Administrators 그룹, Windows Server 2012 R2 이후 호스트 사이. 실시간 마이그레이션 트래픽은 **암호화하지 않고** 보내므로 믿을 수 있는 사설 네트워크로 떼어 두라고 권한다.
+  설정 자리는 Hyper-V 관리자 「작업」 창 「Hyper-V 설정」 → 「실시간 마이그레이션」(위 첫 항목의 설치 마법사 「가상 머신 마이그레이션」 페이지에서도 정한다). 프로세서: 프로세서 호환성 모드를 켜면 **같은 제조사 계열 안에서** 프로세서 모델이 다른 호스트 사이로 옮길 수 있다(「Hyper-V features and terminology」 「Processor compatibility」) —
+  호환성을 켜지 않은 VM에 스냅샷이 있으면 프로세서 판이 다른 호스트로 옮기기가 실패한다(「Use live migration…」 문제 해결). 인증 방식(CredSSP·Kerberos 제한된 위임)과 성능 옵션은 쓰지 않는다
+- **저장소 마이그레이션**(storage migration, 「Hyper-V features and terminology」 「Storage migration」): **VM의 저장소 파일(가상 하드 디스크 같은 것)을 가동 중지 없이 한 위치에서 다른 위치로** 옮긴다. 다른 저장 장치로 옮기기, 저장 성능 다듬기, 저장소 다시 배치에 쓰고, **Windows Server의 Hyper-V에만 있다**. 개요 「High availability…」: 서로 다른 저장소 배열 사이로 가동 중지 없이 옮겨 저장소 업그레이드와 부하 분산을 돕는다.
+  `Move-VMStorage`는 **VM의 저장소를 옮긴다**(「Description」) — `-DestinationStoragePath`(VM의 모든 저장소를 한 경로로), `-VirtualMachinePath`(구성 파일과 그에 딸린 메모리 파일), `-SnapshotFilePath`(스냅샷 파일), `-SmartPagingFilePath`, `-Vhds`(가상 하드 디스크마다 따로 정한 위치). 예 1: `Move-VMStorage "Test VM" -DestinationStoragePath D:\TestVM`은 그 VM에 딸린 모든 파일을 `D:\TestVM`으로 옮긴다.
+  **VM은 같은 호스트에 남는다** — `Move-VMStorage`에는 대상 호스트를 정하는 매개 변수가 없고(`Move-VM`의 `-DestinationHost`와 견준다), 지난 판 개요가 실행 중인 VM을 새 저장소로 옮긴다고 쓴다. 한 문장으로 「같은 호스트에 남는다」를 적은 곳은 찾지 못했다 — 이 둘에서 이어서 나오는 말이다.
+  Hyper-V 관리자에서는 VM 오른쪽 클릭 → 「이동」(이동 마법사)에서 이동 종류를 고르는 데까지만 문서가 보인다(위 줄)
+- **지난 판 「Virtual Machine Storage Migration Overview」(Windows Server 2012 R2·2012)**: Windows Server 2008 R2에서는 실시간 마이그레이션으로 실행 중인 VM을 옮길 수 있었지만 VM이 실행 중일 때 저장소는 옮길 수 없었다. **Windows Server 2012의 Hyper-V부터 VM이 실행되는 채로 저장소를 옮긴다** — Hyper-V 관리자의 마법사나 PowerShell cmdlet으로. 가장 흔한 까닭은 Hyper-V가 쓰는 물리 저장소를 새로 바꾸는 것이고, 저장소 처리량의 병목으로 성능이 떨어질 때 실행 중에 다른 장치로 옮기기도 한다.
+  요구: VM이 가상 하드 디스크만 저장소로 쓸 것(물리 디스크에 직접 붙은 저장소가 있으면 옮길 수 없다). **옮기는 차례**: 옮기는 동안 대부분의 디스크 읽기·쓰기는 원본 가상 하드 디스크로 간다 → 그동안 디스크 내용을 대상의 새 가상 하드 디스크로 복사한다 → 첫 복사가 끝나면 디스크 쓰기를 원본과 대상 둘 다에 거울처럼 쓰면서 남은 변경을 옮긴다 → 둘이 완전히 같아지면 VM이 대상 디스크를 쓰도록 바뀐다 → 원본 디스크를 지운다.
+  지금 판 문서에서 이 차례를 적은 곳은 찾지 못했고, 지금 판(「Hyper-V features and terminology」)은 같은 기능을 「가동 중지 없이」로 말한다
+- **Hyper-V 복제본**(Hyper-V Replica, 「Hyper-V Replica overview」 첫머리): Windows Server의 Hyper-V에 들어 있는 기능으로, 업무 연속성·재해 복구(BCDR)를 위해 Hyper-V 호스트 사이에 VM을 복제한다. 보조 호스트(세 번째 호스트까지 넓힐 수 있다)에 VM의 **오프라인 사본**을 만들어 두고 맞춰 두다가, 주 호스트가 실패하면 장애 조치에 쓴다. **Windows 클라이언트의 Hyper-V에는 없다**.
+  하나의 VM이 서로 다른 호스트에 두 개로 있다 — 활발히 실행되는 **주 VM**(primary VM)과 그 오프라인 사본인 **복제본 VM**(replica VM)(「How Hyper-V Replica works」). 장애 조치 클러스터와 다르다 — 클러스터는 공유 저장소의 VM을 다른 노드에서 다시 시작해 로컬 고가용성을 주고, 복제본은 다른 호스트에 VM 저장소의 비동기 사본을 둔다(첫머리 둘째 문단)
+- **복제본 서버와 주 서버**(「Enable Hyper-V Replica on a single host」): 복제를 **받는 쪽** 호스트를 구성한다 — Hyper-V 관리자에서 그 호스트를 고르고 「작업」 → 「Hyper-V 설정」 → 「복제 구성」 → **「이 컴퓨터를 복제본 서버로 사용」** 확인란 → 인증과 포트(Kerberos(HTTP, 기본 80번)나 인증서 기반(HTTPS, 기본 443번)) → 권한 부여와 저장소(인증에 성공한 모든 주 서버에서 받기, 또는 정한 주 서버에서만 받기 — 복제된 가상 하드 디스크를 둘 위치).
+  Hyper-V 역할을 설치하면 Windows 방화벽에 HTTP(80)·HTTPS(443) 예외가 만들어지지만 기본으로 켜져 있지는 않다
+- **복제 켜기와 복제 빈도**(「Replicate a virtual machine with Hyper-V Replica」): 주 호스트의 Hyper-V 관리자에서 VM 오른쪽 클릭 → **「복제 사용」** → 「복제본 서버 지정」 → 연결 매개 변수 → 「복제 VHD 선택」(빼 둘 디스크) → **「복제 빈도 구성」 — 30초·5분·15분 가운데 하나** → 「추가 복구 지점 구성」(최신 복구 지점만, 또는 시간마다 추가 복구 지점) → 「초기 복제 선택」(네트워크로 첫 사본 보내기가 기본, 외부 미디어, 복제본 서버의 기존 VM) → 요약 → 「마침」.
+  PowerShell `Enable-VMReplication`의 `-ReplicationFrequencySec`는 복제본 서버로 변경을 보내는 간격을 **초**로 정한다(「-ReplicationFrequencySec」 — 매개 변수 표의 기본값 칸은 None). 같은 문서의 PowerShell 예는 「복제 빈도 5분의 기본 설정」으로 복제를 켜고, 출력의 `FrequencySec`가 300이다 — **기본 복제 빈도가 5분이라는 것은 이 예에서만 확인했다**.
+  확장 복제(세 번째 호스트로)는 5분·15분만 고를 수 있다. 복구 지점은 기본이 최신 하나이고 시간마다 최대 24개까지 둔다(개요 「Plan for Hyper-V Replica」 표)
+- **복제가 동작하는 차례**(개요 「How Hyper-V Replica works」): 복제를 켜면 보조 호스트에 VM의 첫 사본을 만든다(네트워크나 외부 미디어로) → Hyper-V가 주 VM의 가상 하드 디스크에 생기는 변경을 따라가 같은 위치의 `.hrl` 파일에 적는다 → **정한 복제 간격(30초·5분·15분)마다** 변경을 보조 호스트로 보낸다 — **비동기**라 주 VM은 복제하는 동안 그대로 일한다 → 보조 호스트가 받은 변경을 복제본 VM의 가상 하드 디스크에 적용한다 →
+  주 호스트가 실패하면 복제본 VM으로 **장애 조치**(failover)를 시작해 복제본 VM이 새 주 VM이 된다(손으로나 스크립트로) → 주 호스트를 되살리면 **역방향 복제**로 그동안의 변경을 원래 주 VM에 돌려보낸다. 개요 「High availability…」(위 첫 항목의 「Hyper-V virtualization…」): 복구 시점 목표(RPO)를 30초까지 낮출 수 있다
+- **장애 조치의 두 갈래**(개요 「Key features」): **계획된 장애 조치**(planned failover) — 주 VM을 정상 종료하고 남은 변경을 복제한 뒤 복제본으로 넘어간다. **계획되지 않은 장애 조치**(unplanned failover) — 주 VM을 끄지 않고 복제본 VM을 시작하므로 **데이터 일부를 잃을 수 있다**.
+  「마지막 복제 뒤의 변경을 잃는다」를 한 문장으로 적은 곳은 찾지 못했다 — 복제가 정한 간격마다 비동기로 간다는 것과 계획되지 않은 장애 조치의 데이터 손실에서 이어서 나오는 말이다. 테스트 장애 조치의 차례는 쓰지 않는다
+- **한국어 이름**: 한국어판은 「실시간 마이그레이션」(「실시간 마이그레이션 개요」 제목 — 「Use live migration…」 한국어판은 「라이브 마이그레이션」으로 옮긴다), 「이동」·「이동 마법사」, 「스토리지 마이그레이션」(「Hyper-V features and terminology」 한국어판의 절 제목 — 지난 판 저장소 마이그레이션 문서의 한국어판은 번역되지 않았다), 「Hyper-V 복제본」·「주 VM」·「복제본 VM」·「복제본 서버」·「주 서버」,
+  「장애 조치(failover)」·「계획된 장애 조치」·「계획되지 않은 장애 조치」, 「복제 사용」, 「복제 빈도 구성」, 「복제 구성」, 「이 컴퓨터를 복제본 서버로 사용」으로 옮긴다.
+  **고른 이름**: 「실시간 마이그레이션」(live migration), 「저장소 마이그레이션」(storage migration — guide.md가 정한 개념 이름이고 기출이 「다른 저장소로 이동」이라는 낱말을 쓴다. 한국어판은 「스토리지 마이그레이션」으로 옮긴다는 것을 본문에서 한 줄 밝힌다), 「Hyper-V 복제본」(Hyper-V Replica), 「주 서버」·「복제본 서버」, 「복제 빈도」, 「장애 조치」·「계획된 장애 조치」·「계획되지 않은 장애 조치」. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 81 step 12·13에서 쓰일 곳) `windows-hyperv.live-migration`(정의, 쓰는 때, Windows Server에만, 공유 없는 실시간 마이그레이션과 `Move-VM -IncludeStorage`, 이동 마법사, 요구 한 줄과 프로세서 제조사 계열), `windows-hyperv.storage-migration`(정의, 쓰는 때, 옮기는 파일과 `Move-VMStorage`, 같은 호스트에 남는다, Windows Server 2012부터와 옮기는 차례 — 지난 판),
+`windows-hyperv.hyper-v-replica`(정의, 주 VM·복제본 VM·복제본 서버, 복제 빈도 30초·5분·15분과 기본 5분, 비동기와 차례, 계획된·계획되지 않은 장애 조치, 장애 조치 클러스터와의 차이), 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-08-25 #43]·[기출 2025-11-02 #29]·[기출 2026-02-01 #33])
+
+## (phase 81 step 9) Microsoft Learn — Windows 컨테이너·격리 모드·기본 이미지: About Windows containers, Containers vs. virtual machines, Isolation modes, Prepare Windows operating system containers, Overview of Windows Container Base Images, Windows container version compatibility; 지난 판 Install Nano Server (Windows Server 2016)
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
+https://learn.microsoft.com/en-us/previous-versions/windows-server/it-pro/windows-server-2016/get-started/getting-started-with-nano-server
+
+2026-11-18에 IPv4로 내려받아 읽은 판(「Applies to」는 모두 Windows Server 2025·2022·2019·2016): 「About Windows containers」 `updated_at` 2025-11-28(`ms.date` 2025-11-28), 「Containers vs. virtual machines」 2025-09-17(2025-01-22), 「Isolation modes」 2025-09-17(2025-01-23),
+「Prepare Windows operating system containers」 2025-09-17(2025-03-19 — 본문이 Windows 11·10에도 적용된다고 적는다), 「Overview of Windows Container Base Images」 2025-11-28(2025-11-28), 「Windows container version compatibility」 2025-09-17(2025-01-23).
+지난 판 「Install Nano Server」 2024-07-01(`ms.date` 2017-09-06, 「Applies to」 Windows Server 2016 — 옛 주소 `windows-server/get-started/getting-started-with-nano-server`가 이리로 넘어온다). 한국어판(`updated_at` 2026-10-21, 기계 번역)도 받았다.
+
+- **컨테이너**(「About Windows containers」 첫머리와 「How containers work」): Windows·Linux 앱을 꾸러미로 묶어, 회사 안 서버에서든 클라우드에서든 똑같이 돌게 하는 기술이다. 앱마다 가볍고 남과 떨어진 실행 공간을 주므로 앱을 만들고 내놓고 돌보는 일이 쉬워진다. 켜고 끄는 데 오래 걸리지 않아(**빨리 시작하고 멈춘다**) 수요가 바뀔 때 바로 늘리고 줄이기 좋고, 가벼우니 같은 장비에 더 많이 올려 장비를 알차게 쓴다.
+  컨테이너는 **호스트 운영 체제의 커널 위에서 돌며** 커널을 함께 쓰지만, 마음대로 닿지는 못하고 떨어진(경우에 따라 가상화된) 시스템 모습을 본다 — 예: 파일 시스템과 레지스트리의 가상화된 모습에 닿고, 바꾼 것은 그 컨테이너에만 미치며 **컨테이너가 멈추면 버려진다**(남기려면 파일 공유 같은 영구 저장소를 붙인다).
+  커널이 주지 않는 API·서비스(사용자 모드의 시스템 파일·라이브러리)는 컨테이너가 자기 사본을 가져야 하고, 이 파일들을 묶은 것이 **기본 이미지**다. Windows 10 1607 이후나 Windows Server 2016 이후에서 돈다(「Containers for developers」)
+- **커널**: 이 문서들은 커널을 「운영 체제의 땅속 배관」에 빗대는 데 그치고 정의하지 않는다 — 커널의 뜻은 phase 76의 Linux 항목(`linux-process-boot`)과 뜻을 맞춘다
+- **컨테이너 이미지**(「Container images」): **모든 컨테이너는 컨테이너 이미지에서 만든다**. 컨테이너 이미지는 겹겹이 쌓인 층(layer)으로 짜인 파일 묶음이고, 로컬 컴퓨터나 원격 컨테이너 레지스트리에 있다. 앱이 도는 데 필요한 사용자 모드 운영 체제 파일과 앱의 런타임·의존 항목·구성 파일을 담는다.
+  층으로 되어 있어 기본 이미지 대신 필요한 프레임워크를 이미 담은 다른 이미지(예: .NET 이미지)를 바탕으로 쓸 수 있다
+- **컨테이너와 VM**(「Containers vs. virtual machines」 표, 「About…」 「Containers vs. virtual machines」): VM은 **커널을 포함한 운영 체제 전체**를 돌려 CPU·메모리·저장소를 더 쓰고, 컨테이너는 운영 체제의 **사용자 모드 부분만** 돌려(앱에 필요한 서비스만 담을 수 있다) 자원을 덜 쓴다.
+  격리 — VM은 호스트와 다른 VM에서 완전히 떨어져 강한 보안 경계가 필요할 때 맞고, 컨테이너는 보통 가볍게 떨어질 뿐 VM만큼 강한 경계는 아니다(Hyper-V 격리로 높일 수 있다). 게스트 호환 — VM 안에는 거의 어떤 운영 체제든 돌고, 컨테이너는 호스트와 같은 판의 운영 체제에서 돈다(Hyper-V 격리면 같은 운영 체제의 이전 판도).
+  배포 — VM은 Windows Admin Center·Hyper-V 관리자(여럿이면 PowerShell·SCVMM), 컨테이너는 명령 줄의 Docker(여럿이면 오케스트레이터). 영구 저장소 — VM은 가상 하드 디스크(VHD), 컨테이너는 Azure 디스크·파일 공유. 부하 분산 — VM은 실행 중인 VM을 장애 조치 클러스터의 다른 서버로 옮기고, 컨테이너는 옮기지 않고 오케스트레이터가 노드에서 시작·중지한다.
+  컨테이너를 VM 안에서 돌리는 배포도 많다(클라우드에서 특히). 「시작 시간」·「크기」를 VM과 숫자로 견준 문장은 없다 — 컨테이너가 빨리 시작하고 멈춘다(위 첫 줄)와 VM이 자원을 더 쓴다(이 줄)까지만 쓴다
+- **두 격리 방식**(「Isolation modes」): Windows 컨테이너의 런타임 격리는 **프로세스 격리**와 **Hyper-V 격리** 둘이다. 두 방식의 컨테이너는 만들고 관리하고 동작하는 법이 같고 **같은 컨테이너 이미지**를 쓰며, 다른 것은 컨테이너·호스트 운영 체제·같은 호스트의 다른 컨테이너 사이를 얼마나 떼어 놓느냐다.
+  **프로세스 격리**(process isolation)는 전통적인 방식이다 — 여러 컨테이너가 한 호스트에서 동시에 돌며 네임스페이스·자원 제어 같은 프로세스 격리 기술로 떨어지고, **컨테이너가 호스트와 서로와 같은 커널을 함께 쓴다**(Linux 컨테이너와 거의 같다). 컨테이너마다 떼어 놓는 네임스페이스는 파일 시스템, 레지스트리, 네트워크 포트, 프로세스·스레드 ID 공간, 개체 관리자 네임스페이스다.
+  **Hyper-V 격리**(Hyper-V isolation)는 보안을 높이고 호스트와 컨테이너의 판 호환을 넓힌다 — 컨테이너마다 **고도로 최적화한 VM 안에서 돌며 사실상 자기 커널을 갖고**, VM이 있어 컨테이너끼리와 컨테이너 호스트 사이가 하드웨어 수준으로 떨어진다.
+  **기본값**: Windows Server에서 도는 Windows 컨테이너는 **프로세스 격리**가 기본이고, Windows 10 Pro·Enterprise에서는 **Hyper-V 격리**가 기본이다(Windows 10 October 2018 업데이트부터는 `--isolation=process`로 프로세스 격리를 직접 청할 수 있다 — 개발·테스트용). Docker로는 `docker run … --isolation=hyperv`·`--isolation=process`로 고른다
+- **판 호환**(「Windows container version compatibility」): Windows Server 2016과 Windows 10 기념일 업데이트(둘 다 14393)가 Windows Server 컨테이너를 만들고 실행한 첫 판이다. Windows Server 2022 컨테이너와 Windows 11 호스트를 빼면, **컨테이너 호스트와 컨테이너 이미지의 빌드 번호가 다르면 Windows Server 컨테이너는 시작되지 않는다**(예: 호스트 Windows Server 2016(10.0.14393)에서 1709(10.0.16299) 이미지 — 판 불일치 오류).
+  판이 맞지 않을 때 **Hyper-V 격리**로 돌리면 맞는 커널 파일을 컨테이너에게 주어 호스트 판에 기대지 않는다. Windows Server 2016 기반 컨테이너는 수정 번호까지 같아야 한다
+- **Windows Server의 「컨테이너」 기능과 컨테이너 런타임**(「Prepare Windows operating system containers」): 컨테이너를 쓰려면 알맞은 **컨테이너 런타임**을 먼저 갖춰야 한다. Windows에서 지금 지원하는 런타임은 **Moby, Mirantis Container Runtime(옛 Docker EE), containerd**이고, 문서의 설치 스크립트가 컨테이너에 필요한 운영 체제 기능을 켠 뒤 런타임을 설치한다. Windows 10·11 Pro·Enterprise에서는 Docker Desktop을 쓴다.
+  Windows Server의 기능 이름 「컨테이너」(`Containers`)는 위 「(phase 81 step 0) … 서버 역할과 기능」 항목의 Server Core 표(기능 표, 기본 설치 「N」)에 있다. 런타임의 설치 차례는 쓰지 않는다
+- **기본 이미지**(「Overview of Windows Container Base Images」, 「About…」 「Container images」): Microsoft가 내놓는, 자기 컨테이너 이미지를 만드는 출발점 이미지이고 **넷**이다 — 저마다 Windows나 Windows Server의 다른 종류이며 디스크 크기와 Windows API 범위가 다르다.
+  - **Windows Server Core**(Server Core): 전통적인 .NET Framework 앱을 지원한다, 중간 크기, 기존 Windows Server 앱을 거의 그대로 옮겨 오기(lift and shift)에 좋다. 서버 역할 대부분을 담는다(팩스 서버처럼 빠진 것도 있다)
+  - **Nano Server**: .NET Core 앱을 위해 만들었다, **가장 작은** 이미지로 새 앱 개발에 맞다. Server Core보다 API 범위가 좁아 **PowerShell·WMI·Windows 서비스 스택이 없다**(「Windows Server Core vs Nano Server」)
+  - **Windows**: Windows API 전체, **가장 큰** 이미지(3.4 GB). Windows Server 2025용은 없다
+  - **Windows Server**: Windows API 전체, Windows 이미지보다 조금 작다(3.1 GB), GPU 지원·IIS 연결 수 제한 없음, 최신판은 Windows Server 2025 호스트가 있어야 한다
+  대부분의 사용자에게는 Server Core와 Nano Server가 알맞다. 고르는 지침 — 전체 .NET Framework가 필요하면 Server Core, .NET Core 앱이면 Nano Server, Server Core에 없는 의존 항목이 있으면 Windows, GPU 가속이 필요하면 Windows Server
+- **받는 곳과 이름 꼴**(「Image discovery」): 기본 이미지는 **Microsoft Container Registry(MCR, `mcr.microsoft.com`)**에서 오고, 찾아보기는 Docker Hub에서 한다 — 예: `docker pull mcr.microsoft.com/windows/servercore:ltsc2025`. 문서가 보이는 꼴: `mcr.microsoft.com/windows/servercore:ltsc2019`(「Isolation modes」), `mcr.microsoft.com/windows/nanoserver:1809`(「version compatibility」 — 태그로 기본 이미지의 판을 정한다),
+  인사이더 저장소 `mcr.microsoft.com/windows/nanoserver/insider`·`…/windows/server/insider`·`…/windows/insider`
+- **Nano Server의 자리**: 지난 판 「Install Nano Server」(Windows Server 2016) — Windows Server 2016은 Nano Server를 **새 설치 옵션**으로 내놓았다(원격으로 관리하는 서버 운영 체제, Server Core와 비슷하지만 훨씬 작고 로컬 로그온이 없다). **Nano Server 설치 옵션의 지원은 2018년 10월 9일에 끝났고, Windows Server 1709부터 Nano Server는 컨테이너 기본 OS 이미지로만 나온다**(머리의 Important).
+  지금 판 「Features Removed…」의 Windows Server 2019 탭도 Nano Server는 설치할 수 있는 호스트 운영 체제가 아니라 컨테이너 운영 체제로만 나온다고 적는다(위 「(phase 81 step 0)」 줄 — 이 step에서 같은 판 `updated_at` 2026-11-17을 다시 받아 확인했다)
+- **한국어 이름**: 한국어판은 「Windows 컨테이너」, 「컨테이너 이미지」, 「기본 이미지」, 「격리 모드」·「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 호스트」로 옮긴다. 기본 이미지의 이름은 「Windows Server Core」, 「Nano 서버」, 「윈도우즈」, 「Windows Server (윈도우 서버)」로 들쭉날쭉 옮긴다(기계 번역).
+  **고른 이름**: 「컨테이너」·「컨테이너 이미지」·「기본 이미지」, 「프로세스 격리」·「Hyper-V 격리」, 「컨테이너 런타임」, 기본 이미지 이름은 영문 그대로 **Nano Server·Server Core·Windows·Windows Server**(제품·이미지 이름이고 MCR 저장소 이름과 맞춘다 — 기출도 「Nano Server」·「NanoServer」로 쓴다)
+
+쓰인 곳: (phase 81 step 13·14에서 쓰일 곳) `windows-hyperv.windows-containers`(정의, 커널을 함께 씀과 떨어진 모습, 이미지에서 만든다, VM과의 차이, 두 격리 방식과 기본값, 판 호환 한 줄, 「컨테이너」 기능과 런타임), `windows-hyperv.container-base-images`(넷의 이름·쓰임·크기 차이, Nano Server와 Server Core의 차이, MCR과 이름 꼴, 프로세스 격리의 판 일치, Nano Server의 지금 자리와 판),
+기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])
