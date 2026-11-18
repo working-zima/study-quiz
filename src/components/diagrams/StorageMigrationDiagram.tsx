@@ -66,7 +66,7 @@ const widePaths: Record<string, string> = {
 
 const wideNotes: Note[] = [
   { id: 'stay-note', x: 24, y: 44, anchor: 'start' },
-  { id: 'before-note', x: 126, y: 100, anchor: 'middle' },
+  { id: 'before-note', x: 126, y: 110, anchor: 'middle' },
   { id: 'copy-note', x: 280, y: 112, anchor: 'middle' },
   { id: 'after-note', x: 300, y: 144, anchor: 'middle' },
 ]

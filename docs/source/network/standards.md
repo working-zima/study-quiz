@@ -6752,7 +6752,7 @@ IIS 문서는 「Applies to」 줄이 없고 「Compatibility」 표에 IIS 판�
   그러니 두 사이트의 루트 응용 프로그램이 같은 풀을 가리키면 그 풀 하나가 두 사이트의 요청을 처리한다 — 풀이 「맡긴 응용 프로그램 하나 이상」을 처리한다는 위 응용 프로그램 풀 줄과 이어서 나오는 말
 - (phase 81 step 5) **풀을 만들고 사이트에 고르는 차례**(`<add>` 「How To」 — IIS 관리자를 여는 차례는 Windows Server 2012 R2까지 적는다): 「연결」 창에서 서버 이름을 펼치고 「응용 프로그램 풀」을 고른 뒤 「작업」 창 「응용 프로그램 풀 추가...」 → 「응용 프로그램 풀 추가」 대화 상자의 「이름」에 풀 이름을 넣는다.
   있는 사이트의 풀을 바꾸려면 「연결」 창에서 「사이트」를 펼쳐 그 사이트를 고르고 「작업」 창 「고급 설정...」 → 「고급 설정」 대화 상자 「일반」의 「응용 프로그램 풀」 항목 → 줄임표 단추 → 「응용 프로그램 풀 선택」 대화 상자에서 풀을 고른다. 한국어판은 「애플리케이션 풀」·「애플리케이션 풀 추가」·「애플리케이션 풀 선택」·「고급 설정」·「일반」으로 옮긴다
-- (phase 81 step 5) **`%SystemDrive%`**: Windows 폴더가 들어 있는 드라이브이고 값은 `C:`처럼 드라이브 이름이다 — 「Recognized environment variables」 표(SYSTEMDRIVE). 그러니 Default Web Site의 `%SystemDrive%inetpubwwwroot`는 Windows가 들어 있는 드라이브의 `inetpubwwwroot` 폴더다
+- (phase 81 step 5) **`%SystemDrive%`**: Windows 폴더가 들어 있는 드라이브이고 값은 `C:`처럼 드라이브 이름이다 — 「Recognized environment variables」 표(SYSTEMDRIVE). 그러니 Default Web Site의 `%SystemDrive%\inetpub\wwwroot`는 Windows가 들어 있는 드라이브의 `inetpub\wwwroot` 폴더다
 - (phase 81 step 5) 쓰인 곳: `windows-server-roles.iis`(응용 프로그램의 뜻, 사이트를 풀에 맡기는 값과 IIS 관리자의 차례, 한 풀이 두 사이트를 맡는 예, Default Web Site 폴더가 놓이는 드라이브), `windows-server-roles.iis-site-bindings`(호스트 이름에 따라 요청이 사이트로 간다), 문항 n292·n293
 
 쓰인 곳: (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis`(IIS와 웹 서버(IIS) 역할·설치, IIS 관리자와 여는 방법·실행 파일 `inetmgr.exe`, 사이트와 Default Web Site의 이름·바인딩·실제 경로, HTTPS 바인딩과 서버 인증서, CGI 역할 서비스와 FastCGI로 PHP, 응용 프로그램 풀의 뜻·격리·응용 프로그램 하나 이상·`DefaultAppPool`·`w3wp.exe`, 사이트와 응용 프로그램 풀의 차이),
