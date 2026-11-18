@@ -28,6 +28,7 @@ import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
+import { BaseImageChoiceDiagram } from './BaseImageChoiceDiagram'
 import { BitLockerVolumeDiagram } from './BitLockerVolumeDiagram'
 import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
@@ -736,6 +737,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-hyperv.storage-migration': StorageMigrationDiagram,
   'windows-hyperv.hyper-v-replica': HyperVReplicaDiagram,
   'windows-hyperv.windows-containers': ContainerIsolationDiagram,
+  'windows-hyperv.container-base-images': BaseImageChoiceDiagram,
   'windows-admin-tools.mmc-run-commands': RunCommandsDiagram,
   'windows-admin-tools.event-viewer': EventViewerDiagram,
   'windows-admin-tools.windows-logs': WindowsLogsDiagram,

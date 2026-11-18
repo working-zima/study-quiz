@@ -382,6 +382,68 @@
       "sources": [
         "windows-hyperv.windows-containers"
       ]
+    },
+    "base-image-choice": {
+      "label": "기본 이미지 넷 가운데 하나를 골라 그 위에 응용 프로그램 층을 얹어 컨테이너 이미지를 만들고, 그 이미지로 컨테이너를 실행하는 것을 보이는 도식",
+      "svgLabel": "아래 기본 이미지 박스 안에 Nano Server·Server Core·Windows·Windows Server를 두고, 그 위에 응용 프로그램 층, 맨 위에 컨테이너를 둔 그림",
+      "question": "컨테이너 이미지는 어떤 기본 이미지 위에 만들까?",
+      "idleCaption": "기본 이미지 넷 가운데 하나를 골라 그 위에 응용 프로그램 층을 얹고, 그렇게 만든 이미지로 컨테이너를 실행하는 차례를 그려 두었다. 버튼을 고르면 기본 이미지마다 크기와 어떤 응용 프로그램에 맞는지 볼 수 있다.",
+      "legend": "아래 박스의 기본 이미지 넷 가운데 하나만 골라 그 위에 응용 프로그램 층을 얹는다. 위로 향하는 화살표는 기본 이미지 위에 층을 얹는 차례와, 만든 이미지로 컨테이너를 실행하는 차례를 가리킨다.",
+      "nodes": {
+        "container": "컨테이너",
+        "app-layer": "응용 프로그램 층",
+        "nano": "Nano Server",
+        "servercore": "Server Core",
+        "windows": "Windows",
+        "windows-server": "Windows Server"
+      },
+      "groups": {
+        "base": "기본 이미지"
+      },
+      "notes": {
+        "run-note": "이미지로 실행한다",
+        "nano-note": "가장 작은 기본 이미지",
+        "servercore-note": "중간 크기의 기본 이미지",
+        "windows-note": "가장 큰 기본 이미지",
+        "windows-server-note": "Windows 이미지보다 조금 작다"
+      },
+      "scenarios": [
+        {
+          "id": "nano",
+          "label": "Nano Server",
+          "caption": "Nano Server는 가장 작은 기본 이미지로, .NET Core로 새로 만드는 응용 프로그램에 맞는다. 그 위에 응용 프로그램 층을 얹어 컨테이너 이미지를 만들고, 그 이미지로 컨테이너를 실행한다.",
+          "sources": [
+            "windows-hyperv.container-base-images"
+          ]
+        },
+        {
+          "id": "servercore",
+          "label": "Server Core",
+          "caption": "Server Core는 중간 크기의 기본 이미지로, .NET Framework로 만든 기존 응용 프로그램을 거의 고치지 않고 컨테이너로 옮겨 올 때 맞는다. 그 위에 응용 프로그램 층을 얹는 차례는 Nano Server와 같다.",
+          "sources": [
+            "windows-hyperv.container-base-images"
+          ]
+        },
+        {
+          "id": "windows",
+          "label": "Windows",
+          "caption": "Windows는 Windows API 전체를 담은 가장 큰 기본 이미지로, 응용 프로그램이 필요로 하는 것이 Server Core에 빠져 있을 때 고른다.",
+          "sources": [
+            "windows-hyperv.container-base-images"
+          ]
+        },
+        {
+          "id": "windows-server",
+          "label": "Windows Server",
+          "caption": "Windows Server도 Windows API 전체를 담지만 Windows 이미지보다 조금 작고, 그래픽 처리 장치(GPU)로 처리를 빠르게 하는 기능이 필요할 때 고른다.",
+          "sources": [
+            "windows-hyperv.container-base-images"
+          ]
+        }
+      ],
+      "sources": [
+        "windows-hyperv.container-base-images"
+      ]
     }
   },
   "tables": {},
