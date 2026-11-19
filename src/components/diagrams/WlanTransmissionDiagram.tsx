@@ -7,7 +7,7 @@ const text = visualsByTopicId['wireless-lan'].diagrams['wlan-transmission']
 
 // 세로형은 맨 위 줄에 802.11b와 802.11a·g를, 가운데 줄에 대역 확산 박스로 묶은 FHSS·DSSS와 박스 밖의 OFDM을,
 // 맨 아래 줄에 802.11-1997과 적외선을 둔다. 802.11b는 DSSS 바로 위에, 802.11a·g는 OFDM 바로 위에 세워 화살표를 곧게 둔다.
-// 화살표는 802.11의 판에서 그 판이 쓰는 전송 방식으로 간다. 노드는 모두 회색이다.
+// 화살표는 802.11의 처음 판·개정에서 그것이 쓰는 전송 방식으로 간다. 노드는 모두 회색이다.
 const nodes = [
   { id: 'std11b', x: 104, y: 16, width: 72 },
   { id: 'std11ag', x: 200, y: 16, width: 72 },

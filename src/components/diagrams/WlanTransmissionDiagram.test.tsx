@@ -33,7 +33,7 @@ const noteIds = Object.keys(noteLabels)
 const methodIds = ['fhss', 'dsss', 'ofdm', 'ir']
 // 대역 확산 박스 안에는 FHSS와 DSSS만 있다.
 const insideSpreadIds = ['fhss', 'dsss']
-// 화살표는 802.11의 판에서 그 판이 쓰는 전송 방식으로 간다.
+// 화살표는 802.11의 처음 판·개정에서 그것이 쓰는 전송 방식으로 간다.
 const pathEnds: Record<string, [string, string]> = {
   '11b-dsss': ['std11b', 'dsss'],
   '11ag-ofdm': ['std11ag', 'ofdm'],
@@ -57,10 +57,10 @@ const widePaths: Record<string, string> = {
 }
 
 const question = '무선 LAN은 신호를 어떤 방법으로 실어 보낼까?'
-const figureName = '802.11의 판(802.11-1997·802.11b·802.11a·g)과 그 판이 쓰는 전송 방식(FHSS·DSSS·OFDM·적외선)을 잇고, FHSS와 DSSS를 대역 확산으로 묶어 보이는 도식'
+const figureName = '802.11의 처음 판(802.11-1997)과 개정(802.11b·802.11a·g)을 그것이 쓰는 전송 방식(FHSS·DSSS·OFDM·적외선)과 잇고, FHSS와 DSSS를 대역 확산으로 묶어 보이는 도식'
 const svgName = '맨 위 줄에 802.11b와 802.11a·g를, 가운데 줄에 대역 확산 박스로 묶은 FHSS·DSSS와 OFDM을, 맨 아래 줄에 802.11-1997과 적외선을 둔 그림'
-const idleCaption = '802.11-1997·802.11b·802.11a·g는 무선 LAN 표준 802.11의 판이고, FHSS·DSSS·OFDM·적외선은 그 판이 정한 전송 방식이다. 버튼으로 방식을 고르면 그 방식이 신호를 어떻게 싣는지와 어느 판이 쓰는지 볼 수 있다.'
-const legend = '「대역 확산」 박스는 FHSS와 DSSS를 묶는 이름이다. 화살표는 802.11의 판에서 그 판이 쓰는 전송 방식으로 간다.'
+const idleCaption = '802.11-1997은 무선 LAN 표준 802.11의 처음 판이고 802.11b·802.11a·g는 그 뒤의 개정이며, FHSS·DSSS·OFDM·적외선은 그것들이 정한 전송 방식이다. 버튼으로 방식을 고르면 그 방식이 신호를 어떻게 싣는지와 어느 판·개정이 쓰는지 볼 수 있다.'
+const legend = '「대역 확산」 박스는 FHSS와 DSSS를 묶는 이름이다. 화살표는 802.11의 처음 판·개정에서 그것이 쓰는 전송 방식으로 간다.'
 const expectedScenarios = [
   {
     id: 'spread', label: '대역 확산',
@@ -279,7 +279,7 @@ function layoutTests(wide: boolean) {
     expect(svg().querySelector('[class*="green"], [class*="red"], [class*="amber"], [class*="orange"], [class*="diagram-"]')).toBeNull()
   })
 
-  it('화살표는 판 노드의 변에서 시작해 방식 노드의 변에서 끝나고, 노드 안이나 그룹 라벨을 지나지 않는다', () => {
+  it('화살표는 판·개정 노드의 변에서 시작해 방식 노드의 변에서 끝나고, 노드 안이나 그룹 라벨을 지나지 않는다', () => {
     render(<WlanTransmissionDiagram />)
     expect(new Set(Object.keys(paths))).toEqual(new Set(Object.keys(pathEnds)))
     for (const [id, d] of Object.entries(paths)) {
