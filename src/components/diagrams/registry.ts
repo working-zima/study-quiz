@@ -75,6 +75,7 @@ import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
+import { DeviceLayersDiagram } from './DeviceLayersDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpFailoverDiagram } from './DhcpFailoverDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
@@ -278,6 +279,7 @@ import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { RemoteAccessServicesDiagram } from './RemoteAccessServicesDiagram'
+import { RepeaterRegenerateDiagram } from './RepeaterRegenerateDiagram'
 import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
 import { RequestFilteringDiagram } from './RequestFilteringDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -658,6 +660,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
   'app-protocols-mgmt-security.https': HttpsStackDiagram,
   'app-protocols-mgmt-security.sip': SipCallDiagram,
+  'network-devices.device-layers': DeviceLayersDiagram,
+  'network-devices.repeater': RepeaterRegenerateDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

@@ -18,6 +18,7 @@ import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
 import linuxServersVisuals from './visuals/linux-servers.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
+import networkDevicesVisuals from './visuals/network-devices.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import routingVisuals from './visuals/routing.json'
@@ -54,6 +55,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'dns': dnsVisuals,
   'app-protocols-mail-file': appProtocolsMailFileVisuals,
   'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
+  'network-devices': networkDevicesVisuals,
   'diagnostic-commands': diagnosticCommandsVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
