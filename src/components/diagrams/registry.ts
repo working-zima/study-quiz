@@ -377,6 +377,7 @@ import { TracertHopsDiagram } from './TracertHopsDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { TunnelEncapsulationDiagram } from './TunnelEncapsulationDiagram'
 import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
 import { UdpHeaderDiagram } from './UdpHeaderDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
@@ -398,6 +399,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { VpnSiteTypesDiagram } from './VpnSiteTypesDiagram'
 import { WafInspectionDiagram } from './WafInspectionDiagram'
 import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
@@ -686,6 +688,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-security.ids-ips': IdsIpsPlacementDiagram,
   'network-security.waf': WafInspectionDiagram,
   'network-security.nac': NacAdmissionDiagram,
+  'network-security.vpn': VpnSiteTypesDiagram,
+  'network-security.tunneling': TunnelEncapsulationDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

@@ -153,6 +153,91 @@
         }
       ],
       "sources": ["network-security.nac"]
+    },
+    "vpn-site-types": {
+      "label": "본사 네트워크 10.1.0.0/24와 지사 네트워크 10.2.0.0/24의 VPN 게이트웨이 VPNGW1·VPNGW2가 인터넷 너머로 VPN 연결을 맺는 사이트 간 VPN과, 출장 중인 노트북이 인터넷 너머 VPNGW1과 VPN 연결을 맺는 원격 접속 VPN을 보이는 도식",
+      "svgLabel": "본사 박스(VPNGW1 192.0.2.1), 지사 박스(VPNGW2 203.0.113.1), 인터넷, 출장 중인 노트북을 둔 그림",
+      "question": "VPN은 어디와 어디를 이어 줄까?",
+      "idleCaption": "본사 네트워크와 지사 네트워크가 인터넷과 만나는 경계에 VPN 게이트웨이 VPNGW1과 VPNGW2가 있고, 출장 중인 노트북도 인터넷에 이어져 있다. 버튼을 고르면 VPN 연결이 무엇과 무엇을 잇는지 볼 수 있다.",
+      "legend": "화살표는 VPN 연결이 지나는 길을 한 방향으로 그린 것이고, 데이터는 같은 길로 양쪽으로 오간다. 10.1.0.0/24·10.2.0.0/24는 사설 주소이고, 192.0.2.1·203.0.113.1은 문서의 예로 쓰라고 남겨 둔 주소다. VPNGW1·VPNGW2는 예로 붙인 이름표다.",
+      "nodes": {
+        "vpngw1": "VPNGW1 192.0.2.1",
+        "laptop": "출장 중인 노트북",
+        "internet": "인터넷",
+        "vpngw2": "VPNGW2 203.0.113.1"
+      },
+      "groups": {
+        "hq": "본사 10.1.0.0/24",
+        "branch": "지사 10.2.0.0/24"
+      },
+      "notes": {
+        "site-note": "두 네트워크를 한 네트워크처럼 잇는다",
+        "remote-note": "노트북이 VPNGW1과 VPN 연결을 맺는다"
+      },
+      "scenarios": [
+        {
+          "id": "site",
+          "label": "사이트 간",
+          "caption": "본사의 VPNGW1과 지사의 VPNGW2가 인터넷 너머로 VPN 연결을 맺어, 본사 네트워크와 지사 네트워크를 한 회사 네트워크처럼 잇는다. 두 사무실의 컴퓨터에는 VPN 프로그램을 깔거나 설정을 바꾸지 않아도 된다.",
+          "sources": ["network-security.vpn"]
+        },
+        {
+          "id": "remote",
+          "label": "원격 접속",
+          "caption": "출장지에서 인터넷에 이어진 노트북이 VPN 클라이언트로 본사의 VPNGW1과 VPN 연결을 맺는다. VPNGW1이 사용자를 인증하고 나면 노트북은 본사 네트워크의 서버를 쓸 수 있다.",
+          "sources": ["network-security.vpn"]
+        }
+      ],
+      "sources": ["network-security.vpn"]
+    },
+    "tunnel-encapsulation": {
+      "label": "본사의 10.1.0.5가 지사의 10.2.0.7에 보낸 패킷을 VPNGW1이 바깥 IP 헤더 192.0.2.1 → 203.0.113.1로 감싸 인터넷 너머로 보내고, VPNGW2가 바깥 헤더를 떼어 원래 패킷을 꺼내는 차례를 보이는 도식",
+      "svgLabel": "본사 박스(원래 패킷), VPNGW1, 인터넷 박스(감싼 패킷), VPNGW2, 지사 박스(꺼낸 패킷)를 둔 그림",
+      "question": "터널을 지나는 패킷은 어떻게 감싸일까?",
+      "idleCaption": "본사 네트워크의 10.1.0.5가 지사 네트워크의 10.2.0.7에 패킷을 보낸다. 두 네트워크 사이에는 VPNGW1과 VPNGW2가 인터넷 너머로 맺은 터널이 있다. 버튼을 고르면 패킷이 터널에 담기고 꺼내지는 차례를 볼 수 있다.",
+      "legend": "칸 하나가 패킷의 한 부분이고, 「출발지 → 목적지」는 그 IP 헤더에 적힌 두 주소다. 바깥 IP 헤더는 원래 패킷 앞에 붙는데, 좁은 화면의 그림에서는 그 칸을 원래 패킷 위에 그렸다. 이 예의 터널은 패킷을 담기만 하고 암호화하지 않는다.",
+      "nodes": {
+        "orig-inner": "10.1.0.5 → 10.2.0.7",
+        "orig-data": "데이터",
+        "vpngw1": "VPNGW1 192.0.2.1",
+        "wrap-outer": "192.0.2.1 → 203.0.113.1",
+        "wrap-inner": "10.1.0.5 → 10.2.0.7",
+        "wrap-data": "데이터",
+        "vpngw2": "VPNGW2 203.0.113.1",
+        "out-inner": "10.1.0.5 → 10.2.0.7",
+        "out-data": "데이터"
+      },
+      "groups": {
+        "hq": "본사 10.1.0.0/24",
+        "internet": "인터넷",
+        "branch": "지사 10.2.0.0/24"
+      },
+      "notes": {
+        "wrap-note": "바깥 IP 헤더를 붙인다",
+        "cross-note": "바깥 헤더를 보고 넘긴다",
+        "unwrap-note": "바깥 IP 헤더를 뗀다"
+      },
+      "scenarios": [
+        {
+          "id": "wrap",
+          "label": "감싸기",
+          "caption": "본사의 10.1.0.5가 보낸 패킷이 VPNGW1에 닿으면, 터널의 입구인 VPNGW1이 그 패킷을 통째로 담고 앞에 바깥 IP 헤더를 붙인다. 바깥 헤더에는 터널 양 끝의 주소, 곧 출발지 192.0.2.1과 목적지 203.0.113.1이 적힌다.",
+          "sources": ["network-security.tunneling"]
+        },
+        {
+          "id": "cross",
+          "label": "인터넷 지나기",
+          "caption": "감싼 패킷이 인터넷을 지나는 동안 라우터들은 바깥 헤더의 목적지 203.0.113.1을 보고 패킷을 VPNGW2 쪽으로 넘긴다. 안쪽 헤더의 사설 주소 10.1.0.5와 10.2.0.7은 바뀌지 않고 그대로 실려 간다.",
+          "sources": ["network-security.tunneling"]
+        },
+        {
+          "id": "unwrap",
+          "label": "꺼내기",
+          "caption": "터널의 출구인 VPNGW2가 바깥 헤더를 떼어 원래 패킷을 꺼내고, 안쪽 헤더의 목적지 10.2.0.7에 전한다. 10.2.0.7이 받은 패킷의 출발지는 처음 보낸 10.1.0.5 그대로다.",
+          "sources": ["network-security.tunneling"]
+        }
+      ],
+      "sources": ["network-security.tunneling"]
     }
   },
   "tables": {},

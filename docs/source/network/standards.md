@@ -527,6 +527,9 @@ https://www.rfc-editor.org/rfc/rfc1918
 - (phase 74 step 5) 사설 출발지·목적지 주소를 담은 패킷은 조직 사이 링크로 넘기지 않는 것이 좋고, 사설 주소를 쓰지 않는 망의 라우터, 특히 ISP의 라우터는 사설망의 라우팅 정보를 걸러 내도록 설정한다 — §3
 - (phase 74 step 5) 이점: 전역에서 하나뿐일 필요가 없는 곳에 전역 주소를 쓰지 않아 그 주소를 아낀다 — §4
 - (phase 74 step 5) 이 문서는 주소 변환(NAT)을 말하지 않는다. 사설 주소로 인터넷에 나가려면 주소를 바꿔야 한다는 근거는 RFC 3022 §1·§2.1이다(그 예가 안쪽에 이 문서의 10.0.0.0/8을 쓴다 — 위 RFC 3022 항목)
+- (phase 82 step 18, 2026-11-20 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 phase 74 줄과 같다) 사설 주소 공간을 서로 맞춘(겹치지 않게 나눈) 두 곳도 공용 네트워크 너머로 서로 통신할 수 있다. 그러려면 공용 네트워크와 만나는 경계에서 캡슐화를 써서, 사설 주소를 사설로 남겨 두어야 한다 — §5
+  (phase 82 step 18) 쓰인 곳: `network-security.vpn` 문단 0(사설 주소의 뜻, 인터넷의 라우터는 사설 주소로 가는 경로 정보를 걸러 내고 사설 주소가 적힌 패킷을 조직 밖으로 넘기지 않는다 — §3), 문단 6(본사·지사 주소는 사설 주소이고 겹치지 않게 골랐다 — §5),
+  `network-security.tunneling` 문단 2(두 사무실이 사설 주소를 겹치지 않게 맞추고 경계에서 캡슐화하면 사설 주소를 바꾸지 않고 통신한다 — §5), 문항 n347·n348·n349 해설
 
 쓰인 곳: 강의 수정 이력 L8
 (phase 74에서 쓰일 곳) `ip-address-types.private-address`(§3 — 세 블록과 끝 주소, 조직 안에서만 하나뿐, 바깥과 IP로 이어지지 못한다, 라우팅 정보를 걸러 낸다, §4 — 전역 주소를 아낀다), `ip-address-types.public-address`(§2 — ISP가 등록 기관에서 받은 블록을 고객에게 나눠 준다, §3 — 전역 주소는 등록 기관에서 받는다),
@@ -1458,6 +1461,9 @@ https://www.rfc-editor.org/rfc/rfc4949
   `network-security.ipsec`(IPsec·AH·ESP·두 모드·보안 게이트웨이·IKE), `network-security.nac`(EAP·RADIUS 한 줄), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
   (phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 1·5(방화벽이 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 주소·포트를 본다 — 「firewall」·「filtering router」), `network-security.ids-ips` 문단 0(침입의 뜻 — 「intrusion」)
   (phase 82 step 17) 쓰인 곳: `network-security.nac` 문단 4(인증자와 인증 서버 사이에서 자격 증명과 확인 결과를 흔히 RADIUS로 나른다 — 「Remote Authentication Dial-In User Service (RADIUS)」), 문항 n345 해설
+  (phase 82 step 18) 쓰인 곳: `network-security.vpn` 문단 1(비교적 공용인 실제 네트워크의 자원 위에 지은, 쓰는 사람이 제한된 네트워크 — 「가상」·「사설」의 풀이, 전용 실제 네트워크보다 대개 비용이 적다 — 「virtual private network」), 문단 2(흔히 암호화와 터널링으로 만든다),
+  `network-security.tunneling` 문단 1(터널은 한 프로토콜의 패킷을 다른 프로토콜에 담아 만든 통신 채널이고 흔히 논리적 지점 간 링크다 — 본문은 「두 곳이 한 구간으로 바로 이어진 것처럼」으로 쓴다), 문단 2(터널링은 두 곳을 잇는 네트워크가 그 패킷을 그대로 나르지 못할 때 쓴다 — 「tunnel」의 Tutorial),
+  문단 7(PPTP·L2TP는 보안 서비스를 스스로 정하지 않는다 — 이름만)
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -7121,6 +7127,8 @@ AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge toke
 (phase 82 step 15) 쓰일 곳: (phase 82 step 18·19) `network-security.vpn`(VPN(RAS)이 인터넷 연결에 터널링과 데이터 암호화를 함께 써서 원격 클라이언트와 원격 사무실을 잇는다는 「Remote Access」 줄 — VPN의 뜻을 `windows-server-roles.remote-access`와 맞춘다),
 `network-security.vpn-protocols`(PPTP·L2TP의 풀네임, 보안 기능이 모자라 권하지 않는다·Windows Server 2025의 새 RRAS 구성은 기본으로 받지 않는다·2028(Preview)에서 빠진다는 줄 — 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1」 항목 §8.5의 「쓰면 안 된다」와 같은 방향이다).
 이 step은 이 문서를 다시 받지 않았다 — 위 줄들의 판(2026-11-18 받은 것)을 그대로 쓴다
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`은 Windows의 원격 액세스를 다시 쓰지 않고, VPN의 뜻(여러 사람이 함께 쓰는 네트워크 위에 회사만 쓰는 통로, 원격 컴퓨터와 멀리 떨어진 사무실을 잇는다, 흔히 암호화한다)만 `windows-server-roles.remote-access` 문단 4와 맞췄다.
+사이트 간 VPN의 영문 이름 site-to-site는 이 항목의 Microsoft 문서가 쓰는 이름이다(NIST의 이름 gateway-to-gateway는 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
 
 ## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
 https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
@@ -8144,6 +8152,8 @@ https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf
 (phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 1 — WAF는 웹 서버 앞에 놓인 특수한 응용 방화벽이고, HTTP를 악용하는(보는 사람의 컴퓨터에 악성 코드를 심거나 사람을 속여 개인 정보를 내놓게 하는) 공격의 상당수를 찾아낼 수 있으며, 흔히 전통적인 방화벽과 매우 다른 것으로 본다 §2.1.9 /
 문단 8 — 주소·포트로 거르는 방화벽이 보는 것은 헤더의 주소·포트와 연결의 상태까지다 §2.1.1·§2.1.2), `network-security.nac`(문단 1·2 — 자격 증명과 보안 상태 점검으로 접근을 정한다, 원격 사용자의 연결을 방화벽이 들일지 정하는 기능, 점검 항목 넷, 점검용 프로그램이 있어야 한다,
 점검을 통과하지 못하면 고칠 수 있게 제한된 접근만 준다 §2.1.7 / 문단 8 — 일부 방화벽이 갖춘 기능 부록 A·§4.3), 문항 n343·n344 해설(상태 검사는 내용을 보지 않는다, 방화벽은 주소·포트로 거른다), n346 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`(문단 2 — VPN은 트래픽을 암호화하고 사용자 인증과 무결성 검사를 하며, 원격 사용자마다 닿을 자원을 정한다 §2.1.6 / 문단 3 — VPN 게이트웨이는 흔히 방화벽·라우터 같은 장비의 일부다 §2.1.6 /
+문단 5 — 원격 접속 VPN에서 관리자가 사용자·그룹마다 닿을 수 있는 자원을 정한다 §2.1.6), `network-security.tunneling` 문단 7(암호화하지 않은 터널 트래픽이 있다 §2.3 — 「터널링만으로는 내용을 지키지 않는다」의 근거 가운데 하나)
 
 ## (phase 82 step 15) NIST SP 800-94 — Guide to Intrusion Detection and Prevention Systems (IDPS)
 https://csrc.nist.gov/pubs/sp/800/94/final
@@ -8208,6 +8218,7 @@ https://csrc.nist.gov/glossary/term/virtual_private_network
 (phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 2 — 해석한 HTTP 요청의 헤더마다·본문에 정책을 걸고 응용 프로그램이 처리하기 전에 위험을 줄인다 / 문단 3 — SQL 삽입의 뜻(용어집, NISTIR 7682)과 WAF가 SQL 삽입처럼 보이는 내용을 찾는다 / 문단 4 — 흔히 요청의 암호를 처음 푸는 부하 분산 장치에 함께 둔다 /
 문단 5 — 예 `WAF01`이 암호를 푼 요청을 본다는 전제 / 문단 6 — 알려진 시그니처에 기대 새 공격·가린 공격에 약하고, 최신 시그니처와 조직에 맞춘 규칙이 필요하며, 요청마다 해석해 지연과 계산 비용이 크다 / 문단 7 — 따로 운영한다 §4.4.1), 문항 n343·n344 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션과 범례.
 크로스 사이트 스크립팅은 WAF가 막는다는 근거가 없어 쓰지 않았다(step 15 판정 그대로) — guide·step 문서의 n343 방향(검색 칸에 스크립트를 넣는 공격)을 SQL 삽입 장면으로 바꿨다
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 1(한 프로토콜의 패킷을 다른 프로토콜 패킷의 데이터로 담는다 — 「tunneling」), `network-security.vpn` 문단 2(VPN의 정의가 출처마다 갈려, 공식 문서들은 VPN의 수단을 하나의 목록으로 묶지 않는다 — E45의 처리)
 
 ## (phase 82 step 15) NIST SP 800-77 Rev. 1 — Guide to IPsec VPNs; NIST SP 800-113 — Guide to SSL VPNs
 https://csrc.nist.gov/pubs/sp/800/77/r1/final
@@ -8248,6 +8259,10 @@ SP 800-113은 2008년 글이라 SSL VPN의 뜻과 두 꼴만 가져오고, 지�
   「VPN 게이트웨이」, 「SSL VPN」(TLS VPN이라고도 한다), 「SSL 포털 VPN」·「SSL 터널 VPN」(이름만), 「L2TP/IPsec」, 「분할 터널」(이름만)
 쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn`(정의, 전용 회선보다 싸다, 주는 보호 넷, 사이트 간·원격 접속 VPN의 뜻과 보호 범위), `network-security.vpn-protocols`(계층으로 묶되 경계가 늘 분명하지는 않다, SSL VPN — TLS·DTLS, PPTP·L2TP는 쓰면 안 되고 PPTP는 평문으로 보라, L2TP는 IPsec에 기댄다·L2TP/IPsec, SSL VPN의 두 꼴),
 `network-security.ipsec`(네트워크 계층 보안, IKE로 협상, ESP·AH, 두 모드와 쓰이는 곳), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`(문단 1 — 전용 회선보다 대개 싸다 §2.3 / 문단 2 — 기밀성(암호화)·무결성·공유 키 수립(엿듣는 쪽이 알 수 없는 키를 두 끝이 함께 정한다)·상대 인증 §2.3.1~2.3.4 / 문단 3 — VPN 게이트웨이는 VPN만 하는 전용 장비이거나 방화벽·라우터 같은 장비의 일부 §2.4.1 /
+문단 4 — 사이트 간 VPN: 라우팅을 맞춰 두면 트래픽이 저절로 VPN 연결을 지나고, 사용자 컴퓨터에 VPN 클라이언트를 깔거나 설정을 바꿀 필요가 없으며, 지켜지는 구간은 두 게이트웨이 사이이고 지사를 본사에 잇는 데 가장 흔히 쓴다 §2.4.1 /
+문단 5 — 원격 접속 VPN: 연결 전에 게이트웨이가 인증을 요구하고 직접 하거나 따로 둔 인증 서버에 묻는다, 지켜지는 구간은 사용자 호스트와 게이트웨이 사이, 출장 중인 직원을 잇는 데 가장 흔히 쓴다 §2.4.2 / 문단 7·8 — 예와 「사이트 간 VPN과 원격 접속 VPN」 4절),
+`network-security.tunneling` 문단 7(IPsec ESP 터널 모드는 원래 패킷 전체를 암호화하고 새 IP 헤더를 붙인다 §4.1.1), 문항 n347 해설, 도식 `VpnSiteTypesDiagram`(`vpn-site-types`)의 캡션
 
 ## (phase 82 step 15) RFC 4301 — Security Architecture for the Internet Protocol, RFC 4302 — IP Authentication Header, RFC 4303 — IP Encapsulating Security Payload (ESP), RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)
 https://www.rfc-editor.org/rfc/rfc4301
@@ -8282,6 +8297,7 @@ RFC 7296(IKEv2)은 Internet Standard(2014-10)로 RFC 5996을 대체했고 RFC 74
   「보안 연관(SA)」(이름만), 「IKE(인터넷 키 교환)」, 「재전송 방지」, 「무결성」·「기밀성」·「출발지 인증」
 쓰인 곳: (phase 82 step 19에서 쓰일 곳) `network-security.ipsec`(정의와 구성 요소, AH와 ESP, 두 모드, 바깥·안쪽 헤더의 차례, 게이트웨이 사이는 터널 모드, IKE), `network-security.vpn-protocols`(IPsec 항목 — IP 계층),
 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2025-11-02 #22]·[기출 2026-08-02 #24])
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(IPsec은 IP 계층에서 패킷을 지키는 프로토콜 묶음이고, 터널 모드는 원래 IP 패킷 전체를 보호하고 바깥 IP 헤더를 붙인다 — RFC 4301 §1.1·§4.1, RFC 4303 §3.1.2), 문항 n348 해설(IPsec(IP Security) 한 줄)
 
 ## (phase 82 step 15) RFC 2637 — Point-to-Point Tunneling Protocol (PPTP), RFC 2661 — Layer Two Tunneling Protocol "L2TP", RFC 3931 — Layer Two Tunneling Protocol - Version 3 (L2TPv3), RFC 3193 — Securing L2TP using IPsec
 https://www.rfc-editor.org/rfc/rfc2637
@@ -8309,6 +8325,7 @@ RFC 3193은 Proposed Standard(2001-11)이고 고친 RFC가 없다. 넷 다 폐�
   Windows 문서의 이름과 지금 Windows의 상태는 위 「(phase 81 step 4) … 원격 액세스」 항목에 있다(Windows Server 2025의 새 RRAS 구성은 PPTP·L2TP 연결을 기본으로 받지 않고, 2028(Preview)에서 빠진다)
 쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn-protocols`(PPTP — TCP 제어 연결과 GRE로 감싼 PPP, 보안은 PPP에 맡기고 GRE 패킷은 보호되지 않는다, L2TP — PPP 프레임을 UDP 1701로 나르는 터널, 스스로 보호하지 않아 IPsec ESP 전송 모드와 함께 쓴다, PPP, 「PPTP와 L2TP」 4절),
 `network-security.tunneling`(터널링 자체는 보호가 아니다 — PPTP의 GRE, L2TP), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E46)
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(VPN에 쓰이는 터널링 프로토콜 가운데 PPTP와 L2TP도 스스로는 터널을 지키지 않는다 — RFC 2637 §5·RFC 2661 §9.2·RFC 3193 §1, 이름만)
 
 ## (phase 82 step 15) RFC 2003 — IP Encapsulation within IP
 https://www.rfc-editor.org/rfc/rfc2003
@@ -8319,6 +8336,10 @@ https://www.rfc-editor.org/rfc/rfc2003
 - 모양: 원래 IP 헤더 앞에 **바깥 IP 헤더**를 하나 넣는다. 바깥 헤더의 출발지·목적지 주소는 터널의 두 끝점을, 안쪽 IP 헤더의 출발지·목적지 주소는 그 데이터그램을 처음 보낸 쪽과 받을 쪽을 가리킨다. 안쪽 헤더는 TTL을 줄이는 것 말고는 바뀌지 않고, 필요하면 IP 인증 헤더 같은 다른 헤더를 바깥과 안쪽 헤더 사이에 넣을 수 있다 — §3
 - **캡슐화는 그 자체로 보호가 아니다**: IP 캡슐화는 오히려 인터넷의 보안을 떨어뜨릴 수 있다 — 감싼 뒤에는 원래의 출발지·목적지 주소, 프로토콜, 포트 번호가 제자리에 없어 경계 라우터가 헤더로 거르기 어렵다. 인증이 없는 캡슐화 패킷은 큰 보안 위험이 될 수 있고, 캡슐화에 암호화를 더한 경우는 따로 다룬다 — §6·§6.1
 쓰인 곳: (phase 82 step 18에서 쓰일 곳) `network-security.tunneling`(터널링의 뜻, 입구와 출구, 바깥 헤더와 안쪽 헤더가 가리키는 것, 캡슐화 자체는 보호가 아니다), 기출 대조(`exam-notes.md` E46)
+- (phase 82 step 18, 2026-11-20 같은 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 판 줄과 같다) **캡슐화는 라우팅을 바꾼다**: 캡슐화는 원래 IP 헤더의 목적지 주소로는 고르지 않았을 중간 목적지(터널의 출구)로 데이터그램을 보내, IP의 보통 라우팅을 바꾸는 방법으로 제안된 것이다. 출구에 닿으면 꺼내져 원래 목적지 주소로 전해진다 — §1.
+  그래서 터널을 지나는 동안 라우터는 바깥 헤더의 목적지(출구)를 보고 넘기고, 안쪽 헤더의 목적지는 출구에서 꺼낸 뒤에 쓰인다 — §1·§3에서 이어서 나오는 말이다. 안쪽 헤더는 TTL 말고는 바뀌지 않으므로(§3) 본문은 「안쪽 헤더의 주소는 바뀌지 않는다」로만 쓴다
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling`(문단 1 — 터널링·터널·입구·출구 §1 / 문단 3 — 바깥 헤더는 터널의 두 끝점을, 안쪽 헤더는 처음 보낸 쪽과 받을 쪽을 가리키고 안쪽 주소는 바뀌지 않는다 §3 / 문단 4 — 라우터는 바깥 헤더의 목적지로 넘기고 출구에서 꺼내 안쪽 목적지로 전한다, 역캡슐화 §1 /
+문단 6 — 예의 둘째~넷째 단계 / 문단 7 — 감싼 패킷은 원래 주소가 제자리에 없어 경계에서 거르기 어렵다 §6), 문항 n348·n349 해설, 도식 `TunnelEncapsulationDiagram`(`tunnel-encapsulation`)의 캡션
 
 ## (phase 82 step 15) IEEE 802.1X-2020 — Port-Based Network Access Control: 표준 개요 페이지, 802.1 작업 그룹의 802.1X 페이지; RFC 3580 — IEEE 802.1X Remote Authentication Dial In User Service (RADIUS) Usage Guidelines
 https://standards.ieee.org/ieee/802.1X/7345/
