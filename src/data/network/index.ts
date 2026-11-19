@@ -27,6 +27,7 @@ import windowsAdVisuals from './visuals/windows-ad.json'
 import windowsAdminToolsVisuals from './visuals/windows-admin-tools.json'
 import windowsHypervVisuals from './visuals/windows-hyperv.json'
 import windowsServerRolesVisuals from './visuals/windows-server-roles.json'
+import wirelessLanVisuals from './visuals/wireless-lan.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -40,6 +41,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'protocols-encapsulation': protocolsEncapsulationVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
+  'wireless-lan': wirelessLanVisuals,
   'ip-protocol': ipProtocolVisuals,
   'arp': arpVisuals,
   'icmp': icmpVisuals,

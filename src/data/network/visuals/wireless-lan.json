@@ -1,0 +1,98 @@
+{
+  "diagrams": {
+    "wlan-modes": {
+      "label": "노트북 LAPTOP01·LAPTOP02와 AP01(SSID OfficeNet), 유선 LAN을 두고, 인프라스트럭처 모드와 애드혹 모드에서 LAPTOP01이 보낸 프레임이 어디를 거쳐 가는지 보이는 도식",
+      "svgLabel": "맨 위에 유선 LAN을, 그 아래 줄 가운데에 AP01을, AP01의 양옆에 LAPTOP01과 LAPTOP02를 둔 그림",
+      "question": "무선 LAN의 장치들은 누구를 거쳐 통신할까?",
+      "idleCaption": "사무실에 AP01을 두고 SSID를 OfficeNet으로 정했다. LAPTOP01·LAPTOP02·AP01·OfficeNet은 예로 붙인 이름이다. 버튼으로 무선 LAN의 두 구성을 고르면 LAPTOP01이 보낸 프레임이 어디를 거쳐 가는지 볼 수 있다.",
+      "legend": "화살표는 LAPTOP01이 보낸 프레임이 지나가는 길이다. AP01 아래의 SSID OfficeNet은 AP01이 주변에 알리는 무선 LAN의 이름이다.",
+      "nodes": {
+        "wired": "유선 LAN",
+        "laptop01": "LAPTOP01",
+        "ap01": "AP01",
+        "laptop02": "LAPTOP02"
+      },
+      "notes": {
+        "ssid-note": "SSID OfficeNet",
+        "infra-note": "AP01을 거쳐 간다",
+        "adhoc-note": "AP 없이 직접"
+      },
+      "scenarios": [
+        {
+          "id": "infra",
+          "label": "인프라스트럭처 모드",
+          "caption": "인프라스트럭처 모드에서는 LAPTOP01이 LAPTOP02에게 보내는 프레임도 대개 AP01을 거쳐 간다. AP01은 자기에게 연결된 두 노트북을 서로 잇고, 케이블로 이어진 유선 LAN과도 잇는다.",
+          "sources": [
+            "wireless-lan.wireless-lan"
+          ]
+        },
+        {
+          "id": "adhoc",
+          "label": "애드혹 모드",
+          "caption": "애드혹 모드에서는 AP 없이 LAPTOP01과 LAPTOP02가 서로 직접 프레임을 주고받는다. AP가 없으니 유선 LAN으로 가는 길이 없고, 두 노트북의 전파가 서로 닿는 범위에서 통신한다.",
+          "sources": [
+            "wireless-lan.wireless-lan"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-lan"
+      ]
+    },
+    "wlan-transmission": {
+      "label": "802.11의 판(802.11-1997·802.11b·802.11a·g)과 그 판이 쓰는 전송 방식(FHSS·DSSS·OFDM·적외선)을 잇고, FHSS와 DSSS를 대역 확산으로 묶어 보이는 도식",
+      "svgLabel": "맨 위 줄에 802.11b와 802.11a·g를, 가운데 줄에 대역 확산 박스로 묶은 FHSS·DSSS와 OFDM을, 맨 아래 줄에 802.11-1997과 적외선을 둔 그림",
+      "question": "무선 LAN은 신호를 어떤 방법으로 실어 보낼까?",
+      "idleCaption": "802.11-1997·802.11b·802.11a·g는 무선 LAN 표준 802.11의 판이고, FHSS·DSSS·OFDM·적외선은 그 판이 정한 전송 방식이다. 버튼으로 방식을 고르면 그 방식이 신호를 어떻게 싣는지와 어느 판이 쓰는지 볼 수 있다.",
+      "legend": "「대역 확산」 박스는 FHSS와 DSSS를 묶는 이름이다. 화살표는 802.11의 판에서 그 판이 쓰는 전송 방식으로 간다.",
+      "nodes": {
+        "std11b": "802.11b",
+        "std11ag": "802.11a·g",
+        "fhss": "FHSS",
+        "dsss": "DSSS",
+        "ofdm": "OFDM",
+        "std1997": "802.11-1997",
+        "ir": "적외선"
+      },
+      "groups": {
+        "spread": "대역 확산"
+      },
+      "notes": {
+        "spread-note": "넓은 범위에 펼친다",
+        "ofdm-note": "부반송파에 나눠 싣는다",
+        "infrared-note": "전파 대신 빛"
+      },
+      "scenarios": [
+        {
+          "id": "spread",
+          "label": "대역 확산",
+          "caption": "FHSS는 2.4GHz 대역의 좁은 채널들을 정해진 순서에 따라 옮겨 다니며 보내고, DSSS는 채널 하나에 머물며 신호를 넓은 폭에 퍼뜨려 보낸다. 둘 다 802.11-1997에 있었고, 802.11b는 DSSS를 넓힌 고속 DSSS를 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        },
+        {
+          "id": "ofdm",
+          "label": "OFDM",
+          "caption": "OFDM은 채널 하나를 좁은 주파수인 부반송파 여럿으로 나누고, 데이터를 그 부반송파에 나눠 싣는다. 5GHz 대역을 쓰는 802.11a가 들여왔고, 2.4GHz 대역을 쓰는 802.11g도 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        },
+        {
+          "id": "infrared",
+          "label": "적외선",
+          "caption": "적외선 방식은 전파 대신 눈에 보이지 않는 빛인 적외선으로 신호를 보낸다. 802.11-1997의 세 방식 가운데 하나이고, 닿는 거리가 10m 안팎이며 건물 안에서만 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wlan-transmission"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

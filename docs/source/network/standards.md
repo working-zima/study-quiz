@@ -7335,6 +7335,11 @@ RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정
 - RFC 9119 §3.1.2: 유선은 대개 정해진 속도로 보내지만 Wi-Fi의 전송률은 스테이션이 AP에 얼마나 가까운지에 따라 바뀐다. **MIMO 시스템의 공간 다중화**처럼 주파수를 더 알뜰히 쓰는 기법은 받는 쪽이 둘 이상인 전송(멀티캐스트)에는 쓸 수 없다 — §3.1.2. §3.1.3: 더 센 전력으로 보내면 다른 전파 사용자와 간섭하는 범위가 넓어진다 — §3.1.3
 - **한국어 이름**: SSID → **SSID**(service set identifier, 서비스 세트 식별자 — 기출·업계가 약어로 쓴다), BSSID → BSSID, beacon → 비컨, probe → 프로브, contention window → 경쟁 윈도(CW), interframe space → **프레임 사이 간격**(phase 72가 802.3의 interFrameSpacing에 쓴 이름), slot time → 슬롯 시간,
   acknowledgement → **ACK**(확인 응답 — 처음 쓸 때 「잘 받았다는 확인 프레임」으로 푼다), spatial multiplexing → 공간 다중화, channel selection → 채널 선택, dynamic channel selection → 동적 채널 선택
+- (phase 82 step 1, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인) **스테이션의 MAC 주소**: RFC 5416 §6.13 「IEEE 802.11 Station」 메시지 요소는 연결된 스테이션 하나를 알리며 「스테이션의 MAC 주소」 칸(6옥텟)을 담고,
+  §6.23 「IEEE 802.11 WTP Radio Configuration」은 BSSID를 그 무선 장치의 기본 MAC 주소라고 적는다 — 곧 802.11 스테이션과 AP의 무선 장치도 이더넷 장치처럼 MAC 주소를 가진다.
+  802.11 프레임의 주소 칸 구성은 이 RFC들이 적지 않아 쓰지 않는다(본문은 「무선 LAN의 장치도 저마다 MAC 주소를 가지고, 데이터를 프레임에 담아 주고받는다」까지 쓴다 — 프레임을 주고받는다는 것은 위 1996년 튜토리얼의 ACK·RTS/CTS 항목과 RFC 4118 §1.1).
+  RFC 9542 §2.1은 48비트 MAC 주소를 이더넷 인터페이스 식별자로만 들고 802.11을 따로 말하지 않는다.
+  쓰인 곳: `wireless-lan.wireless-lan`(무선 LAN의 장치도 저마다 MAC 주소를 가진다)
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
 `wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
