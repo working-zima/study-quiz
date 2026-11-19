@@ -502,6 +502,7 @@ https://www.rfc-editor.org/rfc/rfc3022
 - (phase 82 step 15) **이름**: NAT의 풀이는 Network Address Translator(이 문서와 아래 「(phase 74 step 5) RFC 2663」의 제목)이고, NIST SP 800-41 Rev. 1 부록 A는 Network Address Translation이라 적으며 NAT를 방화벽 기술이 아니라 라우팅 기술로 본다(§2.1·§2.4 — 아래 「(phase 82 step 15) NIST SP 800-41 Rev. 1」 항목).
   기출 보기가 적은 「Network Access Translation」([기출 2025-02-23 #49] — `exam-notes.md` 「phase 82 step 15」 문단)이라는 풀이는 두 문서 어디에도 없다 — 본문·문항에 쓰지 않는다.
   쓰일 곳: (phase 82 step 17) `network-security.nac`(「NAC와 NAT」 4절 — 이름은 비슷하지만 NAC는 들어오는 장치의 접속을 허락하는 것이고 NAT는 IP 헤더의 주소를 바꾸는 것이다 — `ip-address-types.nat`과 뜻을 맞춘다)
+  (phase 82 step 17) 쓰인 곳: `network-security.nac` 문단 7(NAT는 경계의 라우터가 나가는 패킷의 출발지 사설 주소를 공인 주소로 바꾼다 — §1·§2, `ip-address-types.nat`과 같은 뜻), 문항 n346 해설(응답의 목적지 주소를 다시 사설 주소로 바꾼다 — §2.1)
 
 ## RFC 1631 — The IP Network Address Translator (NAT) [폐기, RFC 3022로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1631
@@ -1456,6 +1457,7 @@ https://www.rfc-editor.org/rfc/rfc4949
   `network-security.vpn`(VPN의 정의 — 흔히 암호화와 터널링, 전용망보다 싸다, 방화벽 사이를 암호화한 터널로 잇는 예), `network-security.tunneling`(터널의 정의, 논리적 지점 간 링크, 터널링 프로토콜이 끼는 자리), `network-security.vpn-protocols`(PPTP·L2TP가 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다, PPP),
   `network-security.ipsec`(IPsec·AH·ESP·두 모드·보안 게이트웨이·IKE), `network-security.nac`(EAP·RADIUS 한 줄), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
   (phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 1·5(방화벽이 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 주소·포트를 본다 — 「firewall」·「filtering router」), `network-security.ids-ips` 문단 0(침입의 뜻 — 「intrusion」)
+  (phase 82 step 17) 쓰인 곳: `network-security.nac` 문단 4(인증자와 인증 서버 사이에서 자격 증명과 확인 결과를 흔히 RADIUS로 나른다 — 「Remote Authentication Dial-In User Service (RADIUS)」), 문항 n345 해설
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -8139,6 +8141,9 @@ https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf
 (phase 82 step 16) 쓰인 곳: `network-security.firewall`(문단 1 — 정의, 경계에 두는 자리, 민감한 내부 네트워크 앞, 두 방향에 거는 정책 §2·§2.1 / 문단 2 — 규칙의 조건과 할 일, 처음 맞는 규칙, 기본 거부와 들어오는 트래픽에 쓰라는 권고 §2.1.1·§5.2.2·§4·§4.1.3 /
 문단 5~8 — 패킷 필터링(필터링 라우터), 상태 검사(상태 표, UDP의 DNS 응답 예), 응용 계층 방화벽(응용 방화벽과 응용 프록시 게이트웨이를 묶은 이름)과 앞의 두 방식의 차이 §2.1.1~§2.1.4 / 문단 9 — 내부 호스트끼리의 트래픽·모든 공격을 알아보지 못함·호스트마다 두는 방화벽·암호화된 트래픽 §2.2·§2.3),
 `network-security.ids-ips`(문단 7 — 상태 검사·프로토콜 분석을 갖춘 방화벽도 온전한 IDPS가 아니다 §2.1.3, IPS 기능을 담은 방화벽 §2.1), 문항 n341 해설, 도식 `FirewallRulesDiagram`(`firewall-rules`)의 캡션
+(phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 1 — WAF는 웹 서버 앞에 놓인 특수한 응용 방화벽이고, HTTP를 악용하는(보는 사람의 컴퓨터에 악성 코드를 심거나 사람을 속여 개인 정보를 내놓게 하는) 공격의 상당수를 찾아낼 수 있으며, 흔히 전통적인 방화벽과 매우 다른 것으로 본다 §2.1.9 /
+문단 8 — 주소·포트로 거르는 방화벽이 보는 것은 헤더의 주소·포트와 연결의 상태까지다 §2.1.1·§2.1.2), `network-security.nac`(문단 1·2 — 자격 증명과 보안 상태 점검으로 접근을 정한다, 원격 사용자의 연결을 방화벽이 들일지 정하는 기능, 점검 항목 넷, 점검용 프로그램이 있어야 한다,
+점검을 통과하지 못하면 고칠 수 있게 제한된 접근만 준다 §2.1.7 / 문단 8 — 일부 방화벽이 갖춘 기능 부록 A·§4.3), 문항 n343·n344 해설(상태 검사는 내용을 보지 않는다, 방화벽은 주소·포트로 거른다), n346 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션
 
 ## (phase 82 step 15) NIST SP 800-94 — Guide to Intrusion Detection and Prevention Systems (IDPS)
 https://csrc.nist.gov/pubs/sp/800/94/final
@@ -8200,6 +8205,9 @@ https://csrc.nist.gov/glossary/term/virtual_private_network
 쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.waf`(WAF는 해석한 HTTP 요청의 헤더·본문을 본다, SQL 삽입의 뜻과 WAF가 그것을 찾는다, 알려진 시그니처에 기댄다, 흔히 부하 분산 장치에 두어 암호를 푼 요청을 본다), `network-security.ids-ips`(IPS의 정의),
 `network-security.nac`, `network-security.tunneling`(용어집의 정의), `network-security.vpn`(정의가 출처마다 갈린다), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45)
 (phase 82 step 16) 쓰인 곳: `network-security.ids-ips` 문단 6(IPS는 공격이 대상에 닿기 전에 멈출 수 있다 — 용어집의 IPS 정의)
+(phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 2 — 해석한 HTTP 요청의 헤더마다·본문에 정책을 걸고 응용 프로그램이 처리하기 전에 위험을 줄인다 / 문단 3 — SQL 삽입의 뜻(용어집, NISTIR 7682)과 WAF가 SQL 삽입처럼 보이는 내용을 찾는다 / 문단 4 — 흔히 요청의 암호를 처음 푸는 부하 분산 장치에 함께 둔다 /
+문단 5 — 예 `WAF01`이 암호를 푼 요청을 본다는 전제 / 문단 6 — 알려진 시그니처에 기대 새 공격·가린 공격에 약하고, 최신 시그니처와 조직에 맞춘 규칙이 필요하며, 요청마다 해석해 지연과 계산 비용이 크다 / 문단 7 — 따로 운영한다 §4.4.1), 문항 n343·n344 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션과 범례.
+크로스 사이트 스크립팅은 WAF가 막는다는 근거가 없어 쓰지 않았다(step 15 판정 그대로) — guide·step 문서의 n343 방향(검색 칸에 스크립트를 넣는 공격)을 SQL 삽입 장면으로 바꿨다
 
 ## (phase 82 step 15) NIST SP 800-77 Rev. 1 — Guide to IPsec VPNs; NIST SP 800-113 — Guide to SSL VPNs
 https://csrc.nist.gov/pubs/sp/800/77/r1/final
@@ -8334,3 +8342,6 @@ RFC 3580은 Informational(2003-09)이고 RFC 7268이 고쳤으며 폐기되지 �
   **정책을 지키지 않은 장치를 제한된 네트워크로 보낸다는 것의 근거는 802.1X 쪽 문서가 아니라 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.7(점검을 통과하지 못하면 고칠 수 있게 제한된 접근만)이다**
 - **한국어 이름**: 고른 이름 「포트 기반 네트워크 접근 제어」, 「신청자」(supplicant), 「인증자」(authenticator), 「인증 서버」(authentication server), 「제어 포트」·「비제어 포트」(이름만), 「EAP」·「EAPOL」(이름만), 「RADIUS」(이름만 — 인증 서버의 예)
 쓰인 곳: (phase 82 step 17에서 쓰일 곳) `network-security.nac`(802.1X의 뜻과 표준 상태, 세 역할, 인증 서버의 예 RADIUS, 인증 결과로 VLAN에 넣기, 인증 전의 포트 — 이어서 나오는 말), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2024-02-25 #20]·[기출 2025-02-23 #49])
+(phase 82 step 17) 쓰인 곳: `network-security.nac`(문단 3 — 장치가 LAN에 닿는 자리(포트)를 인증·인가된 장치만 쓰게 묶는 포트 기반 네트워크 접근 제어, 신원을 확인하지 못했거나 허락받지 않은 쪽의 송수신을 막는다, 무선 AP의 연결도 그 자리다 — 개요 페이지·작업 그룹 페이지·RFC 3580 §1.1 /
+문단 4 — 세 역할, 인증 서버를 꼭 두지는 않는다, 한곳에서 관리하려면 인증자가 인증 서버의 클라이언트가 된다 — RFC 3580 §1.1·§1 / 문단 5 — 인증 전의 포트에서는 인증 메시지만 오간다(제어 포트·비제어 포트에서 이어서 나오는 말, 이름은 쓰지 않았다) / 문단 6 — 예의 네 단계 / 문단 8 — 인증을 받지 못한 장치는 처음 붙은 포트에서부터 막힌다),
+문항 n345(무선 AP가 인증자 — RFC 3580 §1.1)·n346 해설, 도식 `NacAdmissionDiagram`(`nac-admission`)의 캡션. 인증 결과로 VLAN에 넣는 것(§3.31)과 EAP·EAPOL의 이름은 새 낱말을 줄이려고 쓰지 않았다

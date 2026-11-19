@@ -83,6 +83,76 @@
         }
       ],
       "sources": ["network-security.ids-ips"]
+    },
+    "waf-inspection": {
+      "label": "웹 사이트 www.example.com 앞의 WAF01이 TCP 443으로 온 두 요청 가운데, 여느 로그인 요청은 웹 서버로 넘기고 SQL 문장을 섞은 요청은 막는 모습을 보이는 도식",
+      "svgLabel": "TCP 443으로 온 요청 박스(여느 로그인 요청·SQL 문장을 섞은 요청), WAF01, 웹 서버 www.example.com을 둔 그림",
+      "question": "WAF는 웹 요청의 무엇을 보고 막을까?",
+      "idleCaption": "두 요청은 모두 웹 서버의 TCP 443번 포트로 온다. 주소와 포트로는 둘이 같아 보이지만, WAF01은 요청을 풀어 읽고 헤더와 본문을 정책과 견준다. 버튼을 고르면 요청마다 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 쪽이다. WAF01은 예로 붙인 이름표이고 www.example.com은 문서의 예로 쓰라고 남겨 둔 이름이다. WAF01은 암호를 푼 요청을 본다고 했고, 암호를 푸는 장비는 그리지 않았다.",
+      "nodes": {
+        "normal": "여느 로그인 요청",
+        "attack": "SQL 문장을 섞은 요청",
+        "waf01": "WAF01",
+        "web": "웹 서버 www.example.com"
+      },
+      "groups": {
+        "tcp443": "TCP 443으로 온 요청"
+      },
+      "notes": {
+        "normal-note": "걸리는 것이 없어 넘긴다",
+        "attack-note": "SQL 삽입으로 보여 막는다"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "여느 요청",
+          "caption": "한 사용자가 로그인 칸에 이름과 비밀번호를 넣어 보낸 요청이다. WAF01은 요청의 헤더와 본문을 정책과 견주어 걸리는 것이 없으므로 웹 서버로 넘기고, 웹 서버는 로그인을 처리한다.",
+          "sources": ["network-security.waf"]
+        },
+        {
+          "id": "attack",
+          "label": "공격 요청",
+          "caption": "공격자가 비밀번호 칸에 SQL 문장 조각을 섞어 보낸 요청이다. 같은 포트로 왔어도 WAF01은 요청에서 SQL 삽입처럼 보이는 내용을 찾아 넘기지 않고 막으므로, 웹 서버는 이 요청을 받지 못한다.",
+          "sources": ["network-security.waf"]
+        }
+      ],
+      "sources": ["network-security.waf"]
+    },
+    "nac-admission": {
+      "label": "노트북 LAPTOP03이 스위치 SW01의 포트에 꽂힌 뒤, 인증 전에는 인증 메시지만 SW01을 거쳐 인증 서버 AUTH01로 가고, 인증 뒤에야 사내 네트워크와 통신하는 모습을 보이는 도식",
+      "svgLabel": "LAPTOP03(신청자), SW01(인증자), AUTH01(인증 서버), 사내 네트워크를 둔 그림",
+      "question": "NAC는 장치를 언제 네트워크에 들여보낼까?",
+      "idleCaption": "노트북 LAPTOP03을 802.1X가 켜진 스위치 SW01의 포트에 꽂았다. LAPTOP03은 신청자, SW01은 인증자, AUTH01은 인증 서버다. 버튼을 고르면 인증 전과 뒤에 무엇이 오가는지 볼 수 있다.",
+      "legend": "화살표는 LAPTOP03이 보낸 것이 가는 쪽이고, 답은 같은 길을 거꾸로 온다. LAPTOP03과 SW01 사이의 두 선은 같은 포트로 오가는 인증 메시지와 데이터를 따로 그린 것이다. LAPTOP03·SW01·AUTH01은 예로 붙인 이름표다.",
+      "nodes": {
+        "laptop03": "LAPTOP03",
+        "sw01": "SW01",
+        "auth01": "AUTH01",
+        "internal": "사내 네트워크"
+      },
+      "notes": {
+        "supplicant": "신청자",
+        "authenticator": "인증자",
+        "auth-server": "인증 서버",
+        "before-note": "인증 메시지만 통과시킨다",
+        "after-note": "사내 네트워크와 통신한다"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "인증 전",
+          "caption": "포트에 꽂힌 LAPTOP03은 아직 인증 전이라 이 포트로는 인증 메시지만 오간다. SW01이 인증을 요구하면 LAPTOP03이 자격 증명을 보내고, SW01은 그것을 AUTH01에 넘겨 신원이 맞는지 확인받는다.",
+          "sources": ["network-security.nac"]
+        },
+        {
+          "id": "after",
+          "label": "인증 뒤",
+          "caption": "AUTH01이 신원을 확인해 결과를 돌려주면, SW01은 그 포트로 LAPTOP03이 사내 네트워크와 통신하게 한다. 확인에 실패했다면 포트는 계속 인증 메시지만 통과시킨다.",
+          "sources": ["network-security.nac"]
+        }
+      ],
+      "sources": ["network-security.nac"]
     }
   },
   "tables": {},

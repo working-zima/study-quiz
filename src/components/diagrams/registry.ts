@@ -215,6 +215,7 @@ import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NacAdmissionDiagram } from './NacAdmissionDiagram'
 import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
 import { NamedFilesDiagram } from './NamedFilesDiagram'
@@ -397,6 +398,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { WafInspectionDiagram } from './WafInspectionDiagram'
 import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
@@ -682,6 +684,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-devices.pxe': PxeBootDiagram,
   'network-security.firewall': FirewallRulesDiagram,
   'network-security.ids-ips': IdsIpsPlacementDiagram,
+  'network-security.waf': WafInspectionDiagram,
+  'network-security.nac': NacAdmissionDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
