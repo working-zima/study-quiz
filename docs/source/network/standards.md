@@ -499,6 +499,9 @@ https://www.rfc-editor.org/rfc/rfc3022
 쓰인 곳: 강의 수정 이력 L7, (phase 73) 아래 「RFC 7857·RFC 8512」 항목이 NAT44를 이 문서 §2.1의 기본 NAT로 가리킨다
 (phase 74에서 쓰일 곳) `ip-address-types.nat`(§1·§2 — 경계 라우터가 안쪽 주소를 바꾼다, §2.1 — 동적·고정 대응, §3.1 — 대응 표, §4.1 — IP 헤더의 주소를 바꾼다, §6.1 — 실제 주소가 바깥에 보이지 않는다), `ip-address-types.napt`(§1·§2.2·§3.1·§4.1 — 포트까지 바꿔 주소 하나를 함께 쓴다),
 `ip-address-types.private-address`(§1·§2.1 — 사설 주소로 바깥에 닿게 하는 것이 주소 변환이다), `exam-notes.md` E15
+- (phase 82 step 15) **이름**: NAT의 풀이는 Network Address Translator(이 문서와 아래 「(phase 74 step 5) RFC 2663」의 제목)이고, NIST SP 800-41 Rev. 1 부록 A는 Network Address Translation이라 적으며 NAT를 방화벽 기술이 아니라 라우팅 기술로 본다(§2.1·§2.4 — 아래 「(phase 82 step 15) NIST SP 800-41 Rev. 1」 항목).
+  기출 보기가 적은 「Network Access Translation」([기출 2025-02-23 #49] — `exam-notes.md` 「phase 82 step 15」 문단)이라는 풀이는 두 문서 어디에도 없다 — 본문·문항에 쓰지 않는다.
+  쓰일 곳: (phase 82 step 17) `network-security.nac`(「NAC와 NAT」 4절 — 이름은 비슷하지만 NAC는 들어오는 장치의 접속을 허락하는 것이고 NAT는 IP 헤더의 주소를 바꾸는 것이다 — `ip-address-types.nat`과 뜻을 맞춘다)
 
 ## RFC 1631 — The IP Network Address Translator (NAT) [폐기, RFC 3022로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1631
@@ -1440,7 +1443,7 @@ https://www.rfc-editor.org/rfc/rfc4949
   - **ESP**: IP 데이터그램에 기밀성과 그 밖의 보안 서비스(출발지 인증·무결성·재전송 방지 등)를 주는 프로토콜(RFC 4303)이다. ESP 헤더는 IP 헤더 안에 담기고, 위 계층 프로토콜의 헤더를 감싸거나(전송 모드) IP 헤더를 감싼다(터널 모드) — §4 「Encapsulating Security Payload (ESP)」
   - **터널 모드·전송 모드**: IPsec 프로토콜(AH·ESP)을 적용하는 두 방법이다. 터널 모드는 IP 패킷을 감싸 보호하고, 전송 모드는 IP 바로 위에 실리는 전송 계층 프로토콜(TCP·UDP)의 패킷을 감싸 보호한다. 전송 모드의 보안 연관은 늘 두 호스트 사이이고, **어느 한쪽이 보안 게이트웨이면 터널 모드여야 한다** — §4 「tunnel mode」·「transport mode」.
     **보안 게이트웨이**: 신뢰하는 쪽의 호스트와 신뢰하지 않는 쪽을 가르는 게이트웨이이고(1), IPsec 문맥에서는 IPsec 프로토콜을 구현한 중간 시스템이다(2) — §4 「security gateway」
-  - **IKE**: AH·ESP의 보안 연관에 쓸, 인증을 거친 키 재료를 마련하는 IPsec의 키 수립 프로토콜이다 — §4 「Internet Key Exchange (IKE)」(RFC 4306을 가리키는 2007년 글 — 지금 판은 아래 「(phase 82 step 15) RFC 4301·4302·4303·7296」 항목의 RFC 7296)
+  - **IKE**: AH·ESP의 보안 연관에 쓸, 인증을 거친 키 재료를 마련하는 IPsec의 키 수립 프로토콜이다 — §4 「Internet Key Exchange (IKE)」(RFC 4306을 가리키는 2007년 글 — 지금 판은 아래 「(phase 82 step 15) RFC 4301 … RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)」 항목)
   - **PPTP**: 전화 접속 사용자가 PPP를 IP 위로 터널링해, 전화 접속 링크를 네트워크 너머로 가상으로 늘리게 하는 클라이언트-서버 프로토콜이다(RFC 2637, 처음에 Ascend와 Microsoft가 만들었다). **PPTP는 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Point-to-Point Tunneling Protocol (PPTP)」
   - **L2TP**: PPTP와 L2F를 합친 클라이언트-서버 프로토콜로, PPP를 IP 네트워크나 프레임 릴레이 같은 교환망 위로 터널링한다. **L2TP도 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Layer 2 Tunneling Protocol (L2TP)」
   - **PPP**: 두 상대 사이의 2계층 링크로 3계층 프로토콜 패킷을 캡슐화해 양방향으로 동시에 나르고, 같은 링크에 여러 3계층 프로토콜을 섞어 나르는 인터넷 표준 프로토콜(RFC 1661)이다. 3계층 데이터를 주고받기 전에 상대를 인증할 프로토콜을 골라 쓰는 협상을 선택으로 둔다 — §4 「Point-to-Point Protocol (PPP)」
@@ -7111,6 +7114,9 @@ https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request
 VPN과 DirectAccess의 차이는 「DirectAccess」 첫머리의 견줌(VPN은 사용자가 연결을 열고 닫는다)대로 쓰고, Always On VPN이 그 견줌의 예외라는 것은 「Remote Access」 「VPN (RAS)」 줄(손으로 연결하지 않아도)에서 이어서 나오는 말로 썼다. 예의 「원격 액세스 서버」는 이 글에서 붙인 이름표다. 도식 `remote-access-services`, 문항 n298.
 `windows-server-roles.web-application-proxy` — 같은 항목의 웹 응용 프로그램 프록시 줄 전부(역방향 프록시로 내부 웹 응용 프로그램을 게시, 한국어판 이름, Windows Server 2012 R2에서 생김, 마법사에서 설치, 외부 URL과 백엔드 서버 URL·IP 주소가 아니라 FQDN, HTTPS 요청을 기다렸다가 백엔드로 HTTP나 HTTPS로 넘김, AD FS 사전 인증과 통과·원격 데스크톱 연결 앱, 지금 판의 상태)와 위 「역방향 프록시가 응답을 돌려주는 길」 줄(응답이 프록시를 거쳐 돌아간다, 인터넷 쪽에서는 프록시와 주고받는 것처럼 보인다, 사설 네트워크를 떼어 놓는다).
 AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge token)이고, 그 밖의 AD FS 동작은 쓰지 않았다. 「Microsoft Entra 응용 프로그램 프록시」는 쓰지 않았다. 도식 `web-app-proxy`, 문항 n299·n300
+(phase 82 step 15) 쓰일 곳: (phase 82 step 18·19) `network-security.vpn`(VPN(RAS)이 인터넷 연결에 터널링과 데이터 암호화를 함께 써서 원격 클라이언트와 원격 사무실을 잇는다는 「Remote Access」 줄 — VPN의 뜻을 `windows-server-roles.remote-access`와 맞춘다),
+`network-security.vpn-protocols`(PPTP·L2TP의 풀네임, 보안 기능이 모자라 권하지 않는다·Windows Server 2025의 새 RRAS 구성은 기본으로 받지 않는다·2028(Preview)에서 빠진다는 줄 — 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1」 항목 §8.5의 「쓰면 안 된다」와 같은 방향이다).
+이 step은 이 문서를 다시 받지 않았다 — 위 줄들의 판(2026-11-18 받은 것)을 그대로 쓴다
 
 ## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
 https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
@@ -8090,3 +8096,231 @@ https://learn.microsoft.com/en-us/windows/win32/debug/pe-format
 
 - (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 0 — 한국어판 이름 「사전 부팅 실행 환경」, 문단 3 — DHCP 서버와 부팅 서버는 한 컴퓨터가 함께 맡을 수도 있다 — 「Prerequisites」, 문단 5 — 실행한 부팅 파일이 다음 파일들을 TFTP로 받아 Windows PE를 시작하고, Windows PE의 도구로 디스크를 준비해 네트워크의 Windows 이미지로 설치한다 — 「PXE boot process summary」, 문단 6 — WDS의 PXE 서버·TFTP 서버, Windows Server 2025 다음 판부터 더 이상 개발하지 않는다는 예고와 Configuration Manager로 옮기기 권고, 문단 7 — PnP·PE와 Windows PE), 도식 `pxe-boot`(실행 시나리오의 캡션), 문항 n340 해설(설치는 부팅 파일을 실행한 뒤의 일)
 쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE 부팅의 차례 — DHCP로 부팅 서버·부팅 파일 이름 → TFTP로 내려받기 → 실행, 네트워크로 운영 체제를 설치하는 쓰임, WDS의 PXE·TFTP 서버와 지금 상태, PnP·PE를 한 줄로 가를 근거 — 4절은 「PXE와 PoE」), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
+
+## (phase 82 step 15) NIST SP 800-41 Rev. 1 — Guidelines on Firewalls and Firewall Policy
+https://csrc.nist.gov/pubs/sp/800/41/r1/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf
+
+판: 2009년 9월 발행, SP 800-41(2002-01)을 대체한다. 2026-11-20에 csrc 문서 페이지를 확인했다 — Planning Note·철회 표시가 없고 뒤를 잇는 판이 없다(지금 판이다).
+2009년 글이라 제품의 모습(개인 방화벽이 도는 운영 체제의 이름 같은 것)은 낡았다 — 방화벽의 종류와 정책의 원칙만 가져온다. 한국어판이 없다.
+
+- **방화벽**: 보안 수준(security posture)이 서로 다른 네트워크 사이나 호스트 사이에서 네트워크 트래픽의 흐름을 통제하는 장치나 프로그램이다. 인터넷 연결에서 흔히 말하지만, 회사 안에서 민감한 일(회계·인사)을 하는 내부 네트워크로 드나드는 연결을 제한해 무단 접근을 막는 데도 쓴다 — §2 첫머리, 부록 A 「Firewall」
+- 방화벽마다 TCP/IP의 어느 계층까지 살필 수 있는지가 다르다. 기본 방화벽은 아래 계층 한두 개만 보고, 고급 방화벽은 응용 계층까지 본다 — 볼 수 있는 계층이 많을수록 더 세밀하게 판단하고, 응용 계층을 아는 방화벽은 사용자를 인증하고 사용자별로 기록할 수 있다.
+  데이터 링크 계층(MAC 주소)은 방화벽 정책이 거의 다루지 않는다 — §2
+- 방화벽은 대개 네트워크 경계에 놓이고 바깥쪽·안쪽 인터페이스를 가진다. 정책은 두 방향 모두에 걸 수 있다(예: 안에서 밖으로 실행 코드가 나가는 것을 막는다). NAT는 방화벽 기술로 여겨지기도 하지만 라우팅 기술이다. 일부 방화벽은 IPS 기술을 함께 담는다 — §2.1, §2.4
+- **패킷 필터링**(packet filtering): 방화벽의 가장 기본 기능이다. 규칙 집합(ruleset)으로 통과를 정하고, 패킷의 내용(content)은 보지 않는다. 흐름마다의 상태를 기억하지 않아(stateless inspection) 한 세션 안의 여러 요청을 서로 잇지 못한다. 대표 예는 접근 제어 목록(ACL)을 쓰는 라우터다.
+  보는 값: 출발지 IP 주소, 목적지 IP 주소, 쓰는 프로토콜(TCP·UDP·ICMP 등), (경우에 따라) 출발지·목적지 포트, 패킷이 지나는 인터페이스와 방향. 들어오는 쪽을 거르는 것을 ingress filtering, 나가는 쪽을 egress filtering이라 한다 — §2.1.1
+- **상태 검사**(stateful inspection): 패킷 필터에 더해 연결의 상태를 상태 표(state table — 출발지·목적지 IP 주소, 포트, 연결 상태)에 기억하고, 기대한 상태에서 벗어난 패킷을 막는다. 이미 맺은 연결의 일부인 것처럼 꾸민 패킷이 오면 상태 표에 그 연결이 있는지부터 본다.
+  안에서 밖으로 연결을 시작하면 규칙에 맞는지 본 뒤 상태 표에 「시작됨」으로 적고, 세 방향 핸드셰이크를 마치면 「맺음」이 되어 그 연결의 뒤 패킷이 지난다. UDP는 연결 과정이 없어 주소·포트만 기억한다 — 안에서 보낸 DNS 질의가 있었을 때만 밖의 DNS 응답을 들이는 식이다 — §2.1.2, 부록 A 「Stateful Inspection」
+- **응용 계층 방화벽**: NIST는 둘로 나눈다. **응용 방화벽**(application firewall)은 상태 검사에 응용 계층 프로토콜을 분석하는 기능(상태 기반 프로토콜 분석 — 판매사에 따라 deep packet inspection이라 부른다)을 더해, 응용 프로그램이 네트워크에서 어떻게 쓰이는지로 허용·거부한다
+  (예: 허용하지 않는 종류의 메일 첨부 파일, 80번 포트로 오가는 메신저, FTP의 쓰기 명령). HTTP·데이터베이스(SQL)·메일 같은 프로토콜용이 있다 — §2.1.3.
+  **응용 프록시 게이트웨이**(application-proxy gateway)는 두 호스트를 직접 잇지 않고 클라이언트–프록시, 프록시–목적지의 연결 두 개를 만들며, 응용 계층에서 트래픽의 내용을 살펴 허용·거부한다 — §2.1.4
+- 상태 검사와 프로토콜 분석을 갖춘 방화벽도 온전한 IDPS는 아니다 — IDPS는 시그니처 기반·이상 기반 분석으로 훨씬 넓게 탐지하고 막는다 — §2.1.3
+- **VPN**(§2.1.6): 경계의 방화벽이 보호하는 네트워크와 바깥 사이의 특정 트래픽을 암호화·복호화하기도 하는데, 그것은 거의 늘 VPN이다. VPN은 트래픽을 암호화하고 사용자 인증과 무결성 검사를 하는 프로토콜을 더 쓴다. 믿을 수 없는 네트워크 너머로 안전하게 통신하려고 쓰고, 흔한 선택은 IPsec과 SSL/TLS다.
+  가장 흔한 두 구조는 **gateway-to-gateway**(VPN 게이트웨이끼리 이어 지사와 본사 같은 고정된 곳을 공용 회선 너머로 잇는다 — 사용자는 연결을 의식하지 않는다. VPN 게이트웨이는 흔히 방화벽·라우터 같은 장비의 일부다)와
+  **host-to-gateway**(조직 밖에 있는 사용자 한 사람의 컴퓨터가 조직의 VPN 게이트웨이와 안전한 연결을 맺는다)다. 원격 접속 VPN에서는 관리자가 사용자·그룹마다 닿을 수 있는 자원을 정하고(접근 제어), VPN은 RADIUS 같은 인증 프로토콜에 기댄다
+- **NAC**(network access control, §2.1.7): 경계의 방화벽이 원격 사용자에게서 들어오는 연결을 검사해 들일지 정하는 것이다. 사용자의 자격 증명과 그 컴퓨터의 **보안 상태 점검**(health check) 결과로 접근을 정한다 — 점검 항목은 악성 코드 방지·개인 방화벽 소프트웨어의 최신 업데이트와 설정,
+  마지막 악성 코드 검사 뒤 지난 시간, 운영 체제·응용 프로그램의 패치 수준, 보안 설정이다. 점검하려면 방화벽이 통제하는 소프트웨어가 사용자 컴퓨터에 있어야 한다. **자격 증명은 맞는데 점검을 통과하지 못하면, 고칠 수 있게 내부 네트워크에 제한된 접근만 받을 수 있다**.
+  부록 A는 NAC를 일부 방화벽이 주는 기능(원격 근무 단말에 한 점검)으로 정의하고, §4.3은 NAC를 방화벽이 사용자마다 자원 접근을 허용·거부하는 흔한 방법으로 든다
+- **웹 응용 프로그램 방화벽**(web application firewall, §2.1.9): 웹 서버가 쓰는 HTTP는 웹을 보는 사람의 컴퓨터에 악성 소프트웨어를 심거나 사람을 속여 개인 정보를 내놓게 하는 등 여러 방식으로 악용된다. 그런 공격의 상당수를 **웹 서버 앞에 놓인** 특수한 응용 방화벽인 WAF가 탐지할 수 있다.
+  서버를 노리는 공격을 막으려고 웹 서버 앞에 두므로 흔히 전통적인 방화벽과 매우 다른 것으로 본다. 다른 방화벽 기술보다 새로운 기술이라 막는 위협의 종류가 아직 자주 바뀐다
+- **방화벽이 못 하는 것**: 네트워크 경계의 방화벽은 모든 공격을 알아보지 못하고, **내부 호스트에서 다른 내부 호스트로 가는 공격은 아예 그 방화벽을 지나지 않을 수 있다** — 그래서 호스트 기반 방화벽을 더한다(§2.2). 한 호스트 안의 가상 머신끼리 오가는 트래픽은 바깥 방화벽이 보지 못한다(§2.1.10).
+  방화벽은 살필 수 있는 트래픽에만 제대로 일한다 — 암호화된 트래픽(IPsec·TLS·SSH 등)의 내용은 읽지 못하고, 암호화하지 않았어도 모르는 방식으로 터널링한 트래픽(예: IPv4 안에 담은 IPv6)은 해석하지 못한다. 이해하지 못하는 트래픽을 어떻게 할지는 규칙이 정한다(§2.3)
+- 개인 방화벽 가운데는 허락한 응용 프로그램의 목록으로 통신을 허용하는 것도 있다(포트가 아니라 실행한 응용 프로그램으로 판단한다) — §2.2.1
+- **방화벽 정책과 기본 거부**: 방화벽 정책은 IP 주소·주소 범위, 프로토콜, 응용 프로그램, 콘텐츠 종류마다 트래픽을 어떻게 다룰지 정한다. 정책이 명시해 허용하지 않은, 들어오고 나가는 트래픽을 모두 막는 것을 **기본 거부**(deny by default)라 하고, 명시해 금지하지 않은 것을 모두 허용하는 쪽보다 안전하다 — §4 첫머리, 부록 A 「Deny by Default」.
+  들어오는 TCP·UDP 트래픽에는 기본 거부를 쓰고, 나가는 쪽은 대개 덜 엄격하다 — §4.1.3. 규칙 집합을 다루는 법은 제품마다 다르다 — 많은 방화벽은 규칙을 위에서부터 차례로 맞춰 보다가 처음 맞는 규칙을 쓰고, 「거부」 규칙부터 보는 것도 있다 — §5.2.2.
+  규칙 집합(ruleset)은 방화벽의 접근 제어를 다스리는 지시의 묶음이다 — 부록 A 「Ruleset」
+- **한국어 이름**: 고른 이름 「방화벽」, 「규칙」(ruleset을 말할 때는 「규칙 집합」), 「기본 거부」, 「패킷 필터링」, 「상태 검사」, 「응용 계층 방화벽」(NIST의 응용 방화벽과 응용 프록시 게이트웨이를 묶어 부를 때 — 둘 다 응용 계층의 내용까지 본다), 「상태 기반 프로토콜 분석」(이름만),
+  「웹 응용 프로그램 방화벽(WAF)」, 「네트워크 접근 제어(NAC)」, 「보안 상태 점검」(health check — 부하 분산 장치의 「상태 확인」(`network-devices.load-balancing`)과 다른 것이라 이름을 달리 한다), 「사이트 간 VPN」·「원격 접속 VPN」(아래 「NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
+쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.firewall`(정의, 계층마다 보는 값, 패킷 필터링·상태 검사·응용 계층 방화벽, 기본 거부와 규칙의 차례, 못 하는 것), `network-security.ids-ips`(방화벽과 IDPS의 차이 — §2.1.3, 일부 방화벽은 IPS를 담는다 — §2.1), `network-security.waf`(§2.1.9),
+`network-security.nac`(§2.1.7·§4.3·부록 A), `network-security.vpn`(§2.1.6), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단)
+
+## (phase 82 step 15) NIST SP 800-94 — Guide to Intrusion Detection and Prevention Systems (IDPS)
+https://csrc.nist.gov/pubs/sp/800/94/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf
+
+판: 2007년 2월 발행, SP 800-31(2001-11)을 대체한다. csrc 문서 페이지의 Planning Note(2022-07-15)는 2012년에 낸 Rev. 1 초안이 최종판이 되지 못하고 거둬들여졌으며, IDS/IPS의 새 지침은 작업을 시작하면 알리겠다고 적는다 — 지금 판은 이 2007년 판이다(2026-11-20 확인).
+오래된 글이라 IDS·IPS의 뜻, 탐지 방법의 이름, 센서를 두는 자리만 가져온다. 한국어판이 없다.
+
+- **침입 탐지**: 컴퓨터 시스템이나 네트워크에서 일어나는 사건을 지켜보고, 보안 정책 위반이나 그 임박한 위협(사고)의 징후를 분석하는 일이다. 사고의 원인은 악성 코드, 인터넷 너머의 무단 접근, 권한을 남용하는 내부 사용자 등이고, 주소를 잘못 쳐서 다른 시스템에 닿는 것처럼 악의 없는 것도 있다 — §2.1
+- **IDS**(intrusion detection system)는 이 탐지를 자동으로 하는 소프트웨어이고, **IPS**(intrusion prevention system)는 IDS의 기능을 다 갖고 사고를 멈추려고도 하는 소프트웨어다. 둘을 함께 IDPS라 부른다 — IPS 제품의 차단 기능을 끄면 IDS처럼 동작한다 — §2.1
+- IDPS가 공통으로 하는 일: 관찰한 사건 기록, 중요한 사건을 관리자에게 알림(경보 — alert), 보고서. **IPS가 IDS와 다른 점은 하나** — 탐지한 위협이 성공하지 못하게 대응한다. 대응은 세 갈래다 — 공격 자체를 멈춘다(공격에 쓰인 연결·사용자 세션을 끊는다, 공격자의 계정·IP 주소에서 오는 접근을 막는다, 대상 호스트·서비스로의 접근을 막는다),
+  보안 환경을 바꾼다(방화벽·라우터·스위치의 설정을 바꿔 막는다), 공격의 내용을 바꾼다(감염된 첨부 파일을 떼어 내고 메일을 넘긴다) — §2.2
+- IDPS의 탐지는 완벽하지 않다 — 정상 활동을 악성으로 보는 오탐(false positive)과 악성 활동을 놓치는 미탐(false negative)이 있다 — §2.2(이름만 쓸 수 있다)
+- **탐지 방법**(§2.3): 대부분의 IDPS는 여러 방법을 함께 쓴다.
+  - **시그니처 기반 탐지**(signature-based detection): 알려진 위협에 대응하는 무늬(시그니처)를 관찰한 사건과 견준다. 알려진 위협에 매우 효과적이고, 처음 보는 위협·회피 기법으로 가린 위협·알려진 위협의 여러 변형에는 거의 효과가 없다. 각주는 이 방법을 오용 탐지(misuse detection)라고도 부르지만 이 문서는 그 말을 쓰지 않는다고 적는다 — §2.3.1
+  - **이상 기반 탐지**(anomaly-based detection): 사용자·호스트·네트워크 연결·응용 프로그램의 평소 행동을 프로필로 만들어 두고, 관찰한 사건이 그것에서 크게 벗어나는지 본다. 처음 보는 위협에 매우 효과적일 수 있지만, 평소와 다른 정상 활동 때문에 오탐이 많다 — §2.3.2
+  - **상태 기반 프로토콜 분석**(stateful protocol analysis): 프로토콜의 상태마다 정상 활동의 정의를 미리 정해 두고 관찰한 사건과 견준다 — §2.3.3(이름만)
+- **종류**(§2.4): 네트워크 기반(네트워크 구간의 트래픽을 지켜보며, 흔히 경계의 방화벽·라우터·VPN 서버 가까이에 둔다), 무선, 네트워크 행동 분석(NBA), 호스트 기반(한 호스트 안의 사건 — 그 호스트의 트래픽·시스템 로그·실행 중인 프로세스·파일 접근 등)
+- **센서를 두는 자리**(§4.2.2): **인라인**(inline) 센서는 지켜보는 트래픽이 그 센서를 지나가게 둔다 — 방화벽과 같은 흐름이다. 인라인으로 두는 주된 까닭은 트래픽을 막아 공격을 멈추기 위해서이고, 방화벽과 IDPS를 합친 장비도 있다.
+  **패시브**(passive) 센서는 실제 트래픽의 사본을 지켜보고, 트래픽이 센서를 지나지 않는다 — 스위치의 스패닝 포트·네트워크 탭 등으로 사본을 받는다. 사본을 보므로 트래픽이 목적지에 닿는 것을 믿을 만하게 막을 방법이 거의 없어, **막는 기능을 쓰면 인라인, 쓰지 않으면 패시브**로 두라고 권한다
+- **방화벽과 무엇이 다른가**(§8.3.3): 방화벽(네트워크·호스트 기반)과 라우터는 출발지·목적지 IP 주소, 전송 계층 프로토콜, 포트 번호·ICMP 유형 같은 TCP/IP의 특성으로 트래픽을 거르고 막은 연결을 기록한다. 방화벽은 IDPS를 보완하고, 많은 IDPS는 방화벽·라우터의 설정을 바꿔 공격을 막게 한다.
+  위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.3도 상태 검사·프로토콜 분석을 갖춘 방화벽이 온전한 IDPS는 아니라고 적는다
+- **한국어 이름**: 고른 이름 「침입」(RFC 4949 「intrusion」 — 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄), 「침입 탐지 시스템(IDS)」, 「침입 방지 시스템(IPS)」, 「시그니처 기반 탐지」, 「이상 기반 탐지」(RFC 4949의 「이상 탐지」와 같은 것),
+  「상태 기반 프로토콜 분석」(이름만), 「인라인」, 「패시브」(트래픽의 사본을 보는 자리), 「오탐」·「미탐」(이름만)
+쓰인 곳: (phase 82 step 16에서 쓰일 곳) `network-security.ids-ips`(침입 탐지·IDS·IPS의 뜻, IPS의 대응, 탐지 방법 둘, 인라인과 패시브, 방화벽과의 차이), WAF·NAC 기출의 오답 IDS·IPS(`exam-notes.md` 「phase 82 step 15」 문단)
+
+## (phase 82 step 15) NIST SP 800-228(2026-03-13 갱신판) — Guidelines for API Protection for Cloud-Native Systems §4.4.1; NIST 용어집 — SQL injection, cross-site scripting, intrusion prevention system, network access control, tunneling, virtual private network
+https://csrc.nist.gov/pubs/sp/800/228/upd1/final
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-228-upd1.pdf
+https://csrc.nist.gov/glossary/term/sql_injection
+https://csrc.nist.gov/glossary/term/cross_site_scripting
+https://csrc.nist.gov/glossary/term/intrusion_prevention_system
+https://csrc.nist.gov/glossary/term/network_access_control
+https://csrc.nist.gov/glossary/term/tunneling
+https://csrc.nist.gov/glossary/term/virtual_private_network
+
+판: SP 800-228은 2025년 6월 발행이고, 2026-03-13 갱신판(upd1 — 부록 D·E를 더했다)이 처음 판(2025-06-27)을 대체한다(2026-11-20 csrc 문서 페이지 확인). API 보호 지침이라 WAF는 한 절(§4.4.1)뿐이고, 그 절에서 WAF가 무엇을 보는지만 가져온다.
+용어집은 2026-11-20에 받았고 정의마다 용어집이 밝힌 출처 문서를 적는다. `csrc.nist.gov/glossary/term/web_application_firewall`에는 정의가 없다(용어집에 그 항목이 없다).
+
+- **WAF가 보는 것**: WAF는 응용 계층에서 일하며, 해석(파싱)한 HTTP 요청을 다룬다 — 헤더마다, 요청 본문에 정책을 걸 수 있다. 응용 프로그램이 끼지 않아도 요청의 메타데이터와 본문에서 오는 위험을 줄인다. **SQL 삽입 공격처럼 보이는 내용을 요청에서 찾아낼 수 있지만**,
+  API 수준의 검사(어떤 칸이 100자를 넘지 않는 문자열인지 같은 것)는 하지 못한다 — 그래서 좋은 첫걸음이지 완전한 해법은 아니다 — §4.4.1
+- WAF의 약점 둘: 요청마다 해석하고 여러 검사를 하므로 지연과 계산 비용이 크다 — 그래서 흔히 따로 운영하며 **요청의 암호를 처음 푸는 곳인 부하 분산 장치의 일부로** 두고, 그 결과 정책이 흔히 경계에서만 걸린다. 그리고 **알려진 공격 시그니처와 요청을 맞춰 보는** 방식이라 처음 보는 공격에는 거의 효과가 없고,
+  가린 공격을 놓칠 수 있다 — 최신 시그니처와 조직에 맞춘 규칙이 필요하다 — §4.4.1
+- 같은 절은 OWASP의 규칙 묶음(Core Rule Set)을 WAF 정책의 출발점으로 권하지만, OWASP 문서는 이 과목의 허용 출처가 아니라 그 규칙의 내용은 가져오지 않는다
+- **SQL 삽입**(SQL injection): 사용자 입력을 충분히 처리하지 않고 뒤의 데이터베이스로 넘기는 웹 사이트를 노리는 공격이다 — 용어집(출처 NISTIR 7682)
+- **크로스 사이트 스크립팅**(cross-site scripting, XSS): 공격자가 정상 웹 사이트에 악성 코드를 끼워 넣게 하는 취약점이다 — 그 스크립트가 사이트가 만든 스크립트와 같은 권한을 얻어, 사이트와 사용자 사이에 오가는 데이터의 기밀성·무결성을 해친다. 요청·양식으로 받은 사용자 데이터를 실행되지 않게 처리하지 않고 보여 주는 사이트가 취약하다 — 용어집(출처 SP 800-63-4).
+  NISTIR 7711은 허락받지 않은 쪽이 웹 응용 프로그램의 다른 사용자 쪽에서 스크립트를 실행시키는 결함이라 적는다 — 같은 용어집. **WAF가 XSS를 막는다고 적은 허용 출처는 찾지 못했다** — 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.9는 WAF가 막는 공격을 「웹을 보는 사람의 컴퓨터에 악성 소프트웨어를 심는 것」처럼 넓게만 적고, SP 800-228 §4.4.1의 예는 SQL 삽입 하나다
+- **IPS**(용어집): 침입 활동을 탐지하고, 그 활동이 대상에 닿기 전에 멈추려고 하는 시스템이다 — 출처 SP 800-82r3·NISTIR 7711
+- **NAC**(용어집): 일부 방화벽이 주는 기능으로, 사용자의 자격 증명과 원격 근무 단말에 한 보안 상태 점검 결과로 접근을 허용한다 — 출처 SP 800-41 Rev. 1(위 항목과 같다)
+- **터널링**(용어집): 한 프로토콜의 패킷을 다른 프로토콜 패킷의 데이터(payload) 안에 담는 것이고, 이것으로 한 네트워크가 다른 네트워크의 연결을 거쳐 자기 데이터를 보낼 수 있다 — 출처 CNSSI 4009-2022(ISO/IEC 14908-4:2012에서)
+- **VPN**(용어집): 출처마다 정의가 갈린다 — SP 800-77 Rev. 1(기존 물리 네트워크 위에 지은 가상 네트워크로, 네트워크 사이나 같은 네트워크의 노드 사이에 안전한 통신 수단을 준다), SP 800-113(네트워크 사이),
+  RFC 4949를 고친 정의(흔히 암호화나 터널링으로 실제 네트워크의 자원 위에 지은, 쓰는 사람이 제한된 논리 네트워크), CNSSI 4009-2022(터널링·보안 통제·끝점 주소 변환으로 전용선처럼 보이게 하는 보호된 연결).
+  **어느 정의도 VPN을 이루는 기술을 「터널링·인증·암호화·접근 제어」 넷으로 묶지 않는다** — `exam-notes.md` E45
+- **한국어 이름**: 「SQL 삽입」(SQL injection), 「크로스 사이트 스크립팅(XSS)」. 한국어판이 없다
+쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.waf`(WAF는 해석한 HTTP 요청의 헤더·본문을 본다, SQL 삽입의 뜻과 WAF가 그것을 찾는다, 알려진 시그니처에 기댄다, 흔히 부하 분산 장치에 두어 암호를 푼 요청을 본다), `network-security.ids-ips`(IPS의 정의),
+`network-security.nac`, `network-security.tunneling`(용어집의 정의), `network-security.vpn`(정의가 출처마다 갈린다), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45)
+
+## (phase 82 step 15) NIST SP 800-77 Rev. 1 — Guide to IPsec VPNs; NIST SP 800-113 — Guide to SSL VPNs
+https://csrc.nist.gov/pubs/sp/800/77/r1/final
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-77r1.pdf
+https://csrc.nist.gov/pubs/sp/800/113/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-113.pdf
+
+판: SP 800-77 Rev. 1은 2020년 6월 발행, SP 800-77(2005-12)을 대체한다. SP 800-113은 2008년 7월 발행이고 뒤를 잇는 판이 없다. 두 문서 페이지 모두 Planning Note·철회 표시가 없다(2026-11-20 확인).
+SP 800-113은 2008년 글이라 SSL VPN의 뜻과 두 꼴만 가져오고, 지금의 권고는 SP 800-77 Rev. 1을 따른다(SSL VPN은 이제 SSL이 아니라 TLS를 쓴다 — §8.2). 한국어판이 없다.
+
+- **VPN**: 기존의 물리 네트워크 위에 지은 가상 네트워크로, 네트워크 사이나 한 네트워크 안의 노드 사이에서 오가는 데이터와 IP 정보에 안전한 통신 수단을 준다. 인터넷 같은 기존 네트워크 위에서 쓸 수 있어 공용 네트워크 너머로 민감한 데이터를 안전하게 옮길 수 있고,
+  **조직이나 지사 사이를 전용 회선으로 잇는 것보다 대개 싸다** — SP 800-77r1 §2.3. SP 800-113의 요약도 같은 뜻(두 끝점 사이)으로 적는다
+- **VPN이 주는 보호**(SP 800-77r1 §2.3.1~2.3.4): **기밀성**(대칭 암호로 명령·데이터 채널을 암호화한다), **무결성**(메시지 인증 코드(MAC)로 바뀌었는지 확인하고, 바뀌었으면 버린다), **공유 키 수립**(디피-헬먼 키 교환으로 엿듣는 쪽이 알 수 없는 키를 두 끝이 함께 계산한다),
+  **상대 인증**(디지털 서명이나 미리 나눈 키(PSK)로 상대가 기대한 쪽인지 확인한다)
+- **VPN 구조**(SP 800-77r1 §2.4): IPsec VPN의 주된 구조는 넷이다 — gateway-to-gateway, remote access, host-to-host, mesh.
+  - **gateway-to-gateway**(§2.4.1): 두 네트워크에 VPN 게이트웨이를 하나씩 두고 둘 사이에 VPN 연결을 맺는다. 두 네트워크 사이에서 보호할 트래픽은 그 연결 안으로 지나가고, 게이트웨이는 VPN만 하는 전용 장비이거나 방화벽·라우터 같은 장비의 일부다. 라우팅을 맞춰 두면 한쪽 호스트가 다른 쪽 호스트와 통신할 때 트래픽이 저절로 IPsec 연결로 간다.
+    **보호되는 것은 두 게이트웨이 사이뿐**이고, 각 게이트웨이와 그 안쪽 호스트 사이는 이 구조가 보호하지 않는다. 지사를 인터넷 너머로 본사에 잇는 데 가장 흔히 쓰고, 사용자에게 드러나지 않아 사용자 컴퓨터에 VPN 클라이언트를 깔거나 설정을 바꿀 필요가 없다
+  - **remote access**(§2.4.2): 조직이 VPN 게이트웨이를 두고, 원격 사용자가 자기 기기(호스트)와 그 게이트웨이 사이에 VPN 연결을 맺는다. 연결 전에 게이트웨이가 사용자에게 신원 인증을 요구하는 것이 보통이고, 게이트웨이가 직접 하거나 따로 둔 인증 서버에 묻는다. 보호되는 것은 사용자 호스트와 게이트웨이 사이다.
+    출장 중인 직원을 인터넷 너머로 본사에 잇는 데 가장 흔히 쓰고, 쓰기 전에 인증해야 하므로 사용자에게 드러난다. 조직으로 갈 트래픽만 VPN으로 보내는 것을 분할 터널(split tunnel)이라 한다(이름만)
+  - 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.6은 같은 둘을 gateway-to-gateway와 host-to-gateway라 부르고 가장 흔한 두 구조로 든다
+- **IPsec**(§2.2): 통신을 보호하는 네트워크 계층 보안 통제 가운데 가장 흔히 쓰이고, IP 네트워크에서 사적인 통신을 보장하는 개방형 표준의 틀이다. IPsec의 매개변수와 암호 키는 IKE로 안전하게 협상한다. 설정에 따라 기밀성, 무결성, 상대 인증, 재전송 방지, 트래픽 분석 방지(터널 모드) 등을 준다.
+  IPsec을 가장 흔히 쓰는 곳이 VPN이다 — §2.3
+- **계층마다의 보호**(SP 800-77r1 §2.1): 네트워크 계층 통제(IPsec)는 응용 프로그램을 고치지 않고 두 호스트·네트워크 사이의 모든 통신을 보호하고, 그 계층에서 IP 정보가 붙으므로 데이터와 각 패킷의 IP 정보까지 보호한다. 전송 계층 통제(TLS·DTLS)는 두 호스트 사이의 한 세션을 보호하고 IP 정보는 보호하지 못한다.
+  TLS·DTLS를 모든 IP 트래픽을 보호하는 VPN으로 쓰는 것을 흔히 SSL VPN이라 부르고, 이것은 네트워크 계층에서 일하지만 전송 계층의 응용 프로그램을 쓴다. 데이터 링크 계층 통제는 특정 물리 링크 하나에만 걸려 인터넷 너머의 VPN에는 잘 맞지 않는다
+- **IPsec 밖의 VPN 프로토콜**(§8): 이 절은 VPN 프로토콜을 일하는 계층으로 묶되 **계층의 경계가 늘 분명하지는 않다**고 밝힌다.
+  - 데이터 링크 계층 VPN(L2VPN, §8.1): 네트워크 계층 아래에서 일해 IP가 아닌 프로토콜도 나를 수 있다(IPsec은 이름처럼 IP만 보호한다)
+  - **전송 계층 VPN(SSL VPN, §8.2)**: 호스트가 새 가상 인터페이스와 IP 주소를 받고, 그 인터페이스로 드나드는 패킷을 전송 계층 프로토콜로 안전하게 감싸 VPN 반대쪽 끝으로 보낸다. IPsec의 가장 흔한 대안이고, 이름은 SSL VPN이지만 지금은 SSL이 아니라 TLS(TCP 위)나 DTLS(UDP 위)를 쓴다.
+    흔히 443번(HTTPS) 포트로 보내 막히기 어렵다. Microsoft의 SSTP도 SSL VPN의 한 꼴로, SSL/TLS 위에서 PPP 세션을 돌린다(§8.2.1)
+  - **폐기·비권장 VPN 프로토콜**(§8.5): 전화 접속(모뎀) 시절의 PPP 위에 만든 초기 VPN 프로토콜은 구조와 암호 모두 지금 쓰기에 맞지 않아, **이 절의 프로토콜은 쓰면 안 된다**고 적는다.
+    **PPTP**(§8.5.1)는 GRE(IP 프로토콜 번호 47)로 PPP 패킷을 보내는 터널을 만들고 제어에 TCP 1723번 포트를 쓰며, 암호화는 PPP 층의 MPPE(쓰지 않게 된 RC4 알고리즘)에 기댄다. 인증 방식(MS-CHAP)과 PPTP 자체에서 심각한 약점이 드러났다 — **쓰지 말고, 쓰더라도 기밀성·무결성 보호가 없는 평문 프로토콜로 보라**고 한다.
+    **L2TP**(§8.5.2)는 PPTP의 뒤를 이은 것으로, GRE 대신 UDP 1701번 포트 안에 PPP 패킷을 담고 데이터의 기밀성·무결성은 IPsec에 기댄다. **IPsec 없는 L2TP는 VPN이 아니고**, L2TP VPN은 모두 IPsec을 전송 모드로 써서 흔히 L2TP/IPsec이라 부른다. L2TP/IPsec은 IKEv2 기반 IPsec VPN보다 나은 점이 없어 그쪽으로 옮기라고 권한다
+- **ESP와 AH**(SP 800-77r1 §4): ESP가 IPsec의 핵심 보안 프로토콜로 암호화와 무결성을 준다. **터널 모드**는 원래 IP 헤더와 그 내용을 ESP 헤더·트레일러로 감싸 암호화하고 무결성 값(ICV)을 붙인 뒤, 맨 앞에 터널 끝점(예: 두 IPsec 게이트웨이)을 출발지·목적지로 적은 **새 IP 헤더**를 붙인다 — 원래 헤더까지 암호화되므로 실제 출발지·목적지·프로토콜·포트가 가려진다.
+  ESP 터널 모드는 gateway-to-gateway·remote access VPN에 쓰이고 NAT를 지날 때도 필요하다. **전송 모드**는 원래 IP 헤더를 그대로 쓰고 그 뒤를 암호화하며 IP 헤더의 무결성은 보호하지 않는다 — NAT가 없는 데이터 센터·로컬 네트워크의 호스트끼리 흔히 쓴다 — §4.1.1.
+  AH는 무결성만 주고 기밀성은 주지 않는다. NIST는 AH를 권하지 않고, 암호화가 필요 없으면 ESP의 null 암호화를 쓰라고 한다 — §4.4
+- **SSL VPN의 뜻과 두 꼴**(SP 800-113 요약): SSL VPN은 사용자가 웹 브라우저로 접속하는 VPN 장비로 이루어지고, 브라우저와 그 장비 사이를 SSL이나 그 뒤를 이은 TLS로 암호화한다(TLS VPN이라고도 한다). 원격 사용자가 웹 응용 프로그램·클라이언트/서버 응용 프로그램과 내부 네트워크에 닿게 하고, 표준 웹 브라우저에 SSL이 들어 있어 보통 따로 설정할 것이 없다.
+  **SSL 포털 VPN**은 웹 사이트 하나에 SSL 연결 하나로 접속해 여러 서비스로 가는 문(포털) 페이지를 받는 꼴이고, **SSL 터널 VPN**은 웹 브라우저로 SSL 아래에서 도는 터널을 거쳐 웹이 아닌 응용 프로그램·프로토콜에도 닿는 꼴이다. SSL VPN이 IPsec VPN을 대신하려는 것은 아니고 둘은 서로 보완한다고 적는다
+- **한국어 이름**: 고른 이름 「가상 사설망(VPN)」, 「사이트 간 VPN」(NIST의 gateway-to-gateway — 위 「(phase 81 step 4) … 원격 액세스」 항목의 Microsoft 문서가 쓰는 site-to-site와 같은 꼴), 「원격 접속 VPN」(NIST의 remote access·host-to-gateway), 「호스트 간 VPN」(host-to-host — 이름만),
+  「VPN 게이트웨이」, 「SSL VPN」(TLS VPN이라고도 한다), 「SSL 포털 VPN」·「SSL 터널 VPN」(이름만), 「L2TP/IPsec」, 「분할 터널」(이름만)
+쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn`(정의, 전용 회선보다 싸다, 주는 보호 넷, 사이트 간·원격 접속 VPN의 뜻과 보호 범위), `network-security.vpn-protocols`(계층으로 묶되 경계가 늘 분명하지는 않다, SSL VPN — TLS·DTLS, PPTP·L2TP는 쓰면 안 되고 PPTP는 평문으로 보라, L2TP는 IPsec에 기댄다·L2TP/IPsec, SSL VPN의 두 꼴),
+`network-security.ipsec`(네트워크 계층 보안, IKE로 협상, ESP·AH, 두 모드와 쓰이는 곳), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
+
+## (phase 82 step 15) RFC 4301 — Security Architecture for the Internet Protocol, RFC 4302 — IP Authentication Header, RFC 4303 — IP Encapsulating Security Payload (ESP), RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)
+https://www.rfc-editor.org/rfc/rfc4301
+https://www.rfc-editor.org/rfc/rfc4302
+https://www.rfc-editor.org/rfc/rfc4303
+https://www.rfc-editor.org/rfc/rfc7296
+
+판(rfc-editor 상태, 2026-11-20): RFC 4301은 Proposed Standard(2005-12)로 RFC 2401을 폐기·대체했고 RFC 6040·7619가 고쳤다. RFC 4302(AH)·RFC 4303(ESP)은 Proposed Standard(2005-12)로 각각 RFC 2402·2406을 대체했고 고친 RFC가 없다.
+RFC 7296(IKEv2)은 Internet Standard(2014-10)로 RFC 5996을 대체했고 RFC 7427·7670·8247·8983·9370·9827이 고쳤다. 넷 다 폐기되지 않았다. 한국어판이 없다.
+
+- **IPsec**: IPv4·IPv6 환경에서 **IP 계층**의 트래픽에 보안 서비스를 주는 구조다. 구성 요소는 넷 — 보안 프로토콜(AH·ESP), 보안 연관(SA), 키 관리(손으로 넣는 것과 자동 — IKE), 인증·암호화 알고리즘. 인터넷 전체의 보안 구조가 아니라 IP 계층의 보안만 다룬다.
+  표기는 「IPsec」을 권하고 IPSEC·IPSec 같은 다른 표기는 쓰지 않는다 — RFC 4301 §1.1
+- IPsec은 보호하는 쪽과 보호하지 않는 쪽 인터페이스 사이에 경계를 만들고, 그 경계를 지나는 트래픽에 관리자가 정한 접근 통제를 건다 — 패킷을 그대로 지나게 하거나, AH·ESP로 보호하거나, 버린다. 보호하는 길은 셋 — 호스트 한 쌍 사이, 보안 게이트웨이 한 쌍 사이, 보안 게이트웨이와 호스트 사이다 — RFC 4301 §3.1
+- **AH와 ESP**(RFC 4301 §3.2): IPsec 구현은 ESP를 반드시 지원하고 AH는 골라 지원한다(ESP로 안 되는 경우가 드물어서). **AH**는 무결성과 출발지 인증(과 받는 쪽이 고르는 재전송 방지)을 주고, **ESP**는 같은 서비스에 **기밀성**까지 준다. 무결성 없이 기밀성만 쓰는 ESP는 권하지 않는다.
+  둘 다 키 배분과 트래픽 흐름 관리로 접근 통제를 건다. 대부분의 보안 요구는 ESP 하나로 채운다
+- **AH**(RFC 4302 §1): IP 데이터그램에 연결 없는 무결성과 출발지 인증(둘을 묶어 「무결성」이라 부른다)을 주고, 재전송 방지를 고를 수 있다. IP 헤더도 가능한 만큼 인증하지만 지나는 길에 바뀌는 칸은 보호하지 못해 IP 헤더 보호는 부분적이다.
+  ESP는 AH와 같은 재전송 방지·무결성에 **기밀성(암호화)**을 더하고, 둘의 무결성은 덮는 범위가 다르다 — ESP는 (터널 모드처럼) ESP가 감싸지 않은 IP 헤더 칸을 보호하지 않는다
+- **ESP**(RFC 4303 §1): ESP 헤더는 IP 헤더 뒤, 다음 계층 프로토콜 헤더 앞(전송 모드)이나 감싼 IP 헤더 앞(터널 모드)에 들어간다. 기밀성, 출발지 인증, 연결 없는 무결성, 재전송 방지, (제한된) 트래픽 흐름 기밀성을 줄 수 있고, 어떤 서비스를 줄지는 SA를 맺을 때 정한다. 무결성만 주는 ESP도 반드시 고를 수 있어야 한다
+- **두 모드**(RFC 4301 §3.2·§4.1, RFC 4303 §3.1): AH와 ESP 모두 **전송 모드**와 **터널 모드**를 지원한다. 전송 모드는 주로 다음 계층 프로토콜(TCP·UDP 등)을 보호하고, 터널 모드는 터널로 보내는 IP 패킷에 적용한다.
+  - 전송 모드: 대개 호스트 한 쌍 사이에서 끝에서 끝까지의 보안에 쓴다. 보안 프로토콜 헤더가 IP 헤더(와 옵션) 바로 뒤, 다음 계층 프로토콜 앞에 들어간다. ESP 전송 모드는 다음 계층 프로토콜만 보호하고 그 앞의 IP 헤더는 보호하지 않는다(AH는 IP 헤더의 일부도 덮는다).
+    RFC 4303 §3.1.1의 그림: 원래 IP 헤더 | ESP 헤더 | TCP | 데이터 | ESP 트레일러 | ESP ICV — 암호화되는 것은 TCP부터 ESP 트레일러까지다. 「전송」이라는 이름이 TCP·UDP에만 쓴다는 뜻은 아니다
+  - 터널 모드: 바깥(outer) IP 헤더가 IPsec 처리의 출발지·목적지(예: 보안 게이트웨이들의 주소)를, 안쪽(inner) IP 헤더가 패킷의 실제 출발지·목적지를 적고, 보안 프로토콜 헤더는 둘 사이에 들어간다. ESP는 안쪽 IP 헤더를 포함한 **안쪽 패킷 전체**를 보호하고 바깥 헤더는 보호하지 않는다(AH는 바깥 헤더의 일부도 덮는다).
+    안쪽과 바깥의 IP 판이 달라도 된다(IPv6 안에 IPv4 등) — RFC 4301 §4.1, RFC 4303 §3.1.2. RFC 4303 §3.1.2의 그림: 새 IP 헤더 | ESP | 원래 IP 헤더 | TCP | 데이터 | ESP 트레일러 | ESP ICV
+  - **SA의 어느 한쪽 끝이 보안 게이트웨이면 터널 모드여야 한다**(예외 둘 — 게이트웨이 자신에게 오는 관리 트래픽, 경로 위 중간 시스템 사이의 보호). 그래서 두 보안 게이트웨이 사이, 호스트와 보안 게이트웨이 사이의 SA는 대개 터널 모드다. 호스트 구현은 두 모드를 모두, 보안 게이트웨이는 터널 모드를 반드시 지원한다 — RFC 4301 §4.1
+  - 두 보안 게이트웨이 사이에 터널 모드 ESP를 쓰면 안쪽 IP 헤더가 암호화되어 실제 출발지·목적지가 가려진다(부분적인 트래픽 흐름 기밀성) — RFC 4301 §4.1
+  - 두 보안 게이트웨이 사이의 모든 트래픽을 암호화한 터널 하나로 나를 수도, 그 사이를 오가는 호스트 쌍의 TCP 연결마다 따로 터널을 만들 수도 있다 — RFC 4301 §3.2
+- **SA**(security association — 이름만): 그것이 나르는 트래픽에 보안 서비스를 주는 한 방향의 「연결」이다. 한 SA에는 AH나 ESP 하나만 쓰고, 양방향 통신에는 방향마다 하나씩 SA 한 쌍이 필요하며 IKE가 그 쌍을 만든다. 전송 모드 SA와 터널 모드 SA가 있다 — RFC 4301 §4.1
+- **IKE**(RFC 7296 §1, RFC 4301 §3.2): IPsec의 서비스(어떤 서비스를 줄지, 어떤 암호 알고리즘과 키를 쓸지)는 보내는 쪽과 받는 쪽이 함께 가진 상태(SA)로 주어진다. 이것을 손으로 맞추면 규모가 커질 때 감당할 수 없어서, 그 상태를 자동으로 맺는 프로토콜이 **IKE**(Internet Key Exchange)다.
+  IKE는 두 쪽이 서로를 인증하고 IKE SA를 맺은 뒤, 거기서 나온 공유 비밀로 ESP·AH의 SA(Child SA)와 쓸 암호 알고리즘을 정한다. 지금 판은 IKEv2(RFC 7296)이고 IKEv1(RFC 2407~2409)을 대체했다.
+  RFC 4301은 키를 손으로 넣는 방법과 자동으로 배분하는 방법을 모두 지원하라고 하고, 자동 방법으로 IKEv2를 정한다. 메시지 교환의 차례는 가져오지 않는다
+- **한국어 이름**: 고른 이름 「IPsec」, 「AH(인증 헤더, Authentication Header)」, 「ESP(캡슐화 보안 페이로드, Encapsulating Security Payload)」, 「전송 모드」, 「터널 모드」, 「바깥 IP 헤더」·「안쪽 IP 헤더」, 「보안 게이트웨이」(RFC 4949 — 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄),
+  「보안 연관(SA)」(이름만), 「IKE(인터넷 키 교환)」, 「재전송 방지」, 「무결성」·「기밀성」·「출발지 인증」
+쓰인 곳: (phase 82 step 19에서 쓰일 곳) `network-security.ipsec`(정의와 구성 요소, AH와 ESP, 두 모드, 바깥·안쪽 헤더의 차례, 게이트웨이 사이는 터널 모드, IKE), `network-security.vpn-protocols`(IPsec 항목 — IP 계층),
+기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2025-11-02 #22]·[기출 2026-08-02 #24])
+
+## (phase 82 step 15) RFC 2637 — Point-to-Point Tunneling Protocol (PPTP), RFC 2661 — Layer Two Tunneling Protocol "L2TP", RFC 3931 — Layer Two Tunneling Protocol - Version 3 (L2TPv3), RFC 3193 — Securing L2TP using IPsec
+https://www.rfc-editor.org/rfc/rfc2637
+https://www.rfc-editor.org/rfc/rfc2661
+https://www.rfc-editor.org/rfc/rfc3931
+https://www.rfc-editor.org/rfc/rfc3193
+
+판(rfc-editor 상태, 2026-11-20): RFC 2637은 Informational(1999-07 — 머리에 인터넷 표준이 아니라고 밝힌다. Ascend·Microsoft 등이 썼다)이고 고친 RFC가 없다. RFC 2661은 Proposed Standard(1999-08)이고 RFC 9601이 고쳤다. RFC 3931은 Proposed Standard(2005-03)이고 RFC 5641·9601이 고쳤다.
+RFC 3193은 Proposed Standard(2001-11)이고 고친 RFC가 없다. 넷 다 폐기되지 않았다. 한국어판이 없다.
+
+- **PPTP**(RFC 2637 §1·§1.1·§1.3): 전화 접속 망의 네트워크 접근 서버(NAS)가 하던 일을 PAC(전화 접속 쪽)와 PNS(사설 네트워크 쪽)로 나누고, 둘 사이에서 PPP 데이터와 호 제어를 나르는 프로토콜이다. PPP 세션을 IP 네트워크 너머로 터널링하는 데도 쓸 수 있고, 인터넷 서비스 제공자가 사설 네트워크 고객들에게 VPN을 만들어 줄 수 있다.
+  구성은 둘 — PAC·PNS 사이의 **TCP 위 제어 연결**과, 사용자 세션의 **GRE로 감싼 PPP 패킷**을 나르는 IP 터널이다(GRE를 늘린 판을 쓴다). 그래서 IP만 나르는 망 너머로 AppleTalk·IPX 같은 IP가 아닌 프로토콜도 터널로 나를 수 있다
+- PPTP의 보안(RFC 2637 §5): 터널로 나르는 PPP 연결의 사용자 데이터 보안과 PPP 상대의 인증은 **PPP가 맡는다**. 제어 메시지는 인증도 무결성 보호도 없어 밑의 TCP 연결을 가로채이거나 메시지가 위조·변조될 수 있고, **터널을 이루는 GRE 패킷은 암호로 보호되지 않는다** — 터널 안의 PPP 협상을 엿듣고 바꿀 수 있다
+- **L2TP**(RFC 2661 §1.0): PPP는 2계층 지점 간 링크로 여러 프로토콜의 패킷을 나르는 캡슐화 방법을 정한다. 보통 사용자는 NAS에 2계층 연결을 맺고 그 위에 PPP를 돌려 2계층 끝점과 PPP 끝점이 한 장치(NAS)에 있다. L2TP는 이 둘을 패킷 교환망으로 이어진 서로 다른 장치에 둘 수 있게 해,
+  접속 집선 장치가 PPP 프레임 하나하나를 NAS로 **터널링**한다 — 프레임 릴레이나 인터넷 같은 공유 기반 위로 PPP 세션을 늘인다. 이 문서는 두 노드 사이에 필요할 때 터널을 만드는 제어 프로토콜과, 터널로 보낸 여러 PPP 세션을 다중화하는 캡슐화를 정한다.
+  PPP 프레임은 L2TP 헤더로 감싼 뒤 UDP·프레임 릴레이·ATM 같은 패킷 전송에 실리고(§3.0), IP 위에서는 **UDP 1701번 포트**를 쓴다(§8.1)
+- L2TP의 보안(RFC 2661 §9): 터널 양 끝은 터널을 세울 때만 CHAP과 같은 방식으로 서로를 인증할 수 있고, 그 뒤의 패킷을 지켜 주지는 않는다(§9.1). **L2TP를 지키려면 아래의 전송이 모든 L2TP 트래픽에 암호화·무결성·인증을 주어야 한다**(§9.2).
+  IP 위에서는 IPsec(ESP·AH)이 그 패킷 수준의 보안을 준다(§9.4). 터널 구간의 보호는 통신하는 두 호스트 사이의 끝에서 끝까지의 보안을 대신하지 않는다(§9.3)
+- **L2TPv3**(RFC 3931 §1): L2TP는 2계층 「회선」을 IP 같은 패킷 망 너머로 터널링하는 동적인 방법이다. RFC 2661의 L2TP(L2TPv2)는 PPP 세션을 터널링하는 표준 방법이었고, 그 뒤 다른 2계층 프로토콜(이더넷·프레임 릴레이 등)도 나르게 되어 L2TPv3는 나르는 2계층 내용과 상관없는 기본 프로토콜을 정한다. L2F를 버전 1로 친다
+- **L2TP/IPsec**(RFC 3193 §1·§2·§2.1): L2TP는 PPP를 감싸므로 PPP 인증과 PPP 암호화 제어(ECP)를 물려받고 터널 끝점 인증도 지원하지만, **터널을 보호하는 방법은 정하지 않는다**. L2TP의 제어·데이터 패킷은 엿듣기·변조·가로채기·서비스 거부에 노출된다.
+  L2TP 자체의 인증과 PPP의 인증·암호화로는 패킷마다의 인증·무결성·재전송 방지를 채우지 못하므로, L2TP 보안을 따르는 구현은 L2TP의 제어·데이터 패킷을 지키려고 **IPsec ESP를 반드시 구현**하고, **전송 모드는 반드시, 터널 모드는 골라** 지원한다. 키 관리는 IKE를 권한다
+- **PPP**(RFC 2661 §1.0): 2계층 지점 간 링크로 여러 프로토콜의 패킷을 나르는 캡슐화를 정한다. 정의는 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄에 있다(RFC 1661 — 2026-11-20 rfc-editor 상태로 Internet Standard, RFC 2153이 고쳤고 폐기되지 않았다)
+- **터널을 만드는 계층**: PPTP와 L2TP는 PPP 프레임(2계층)을 IP 위로(PPTP는 GRE, L2TP는 UDP) 나르는 터널이다 — RFC 4949 「tunnel」의 Tutorial(터널은 대개 2계층 프로토콜을 전송·인터넷 계층 프로토콜이나 다른 2계층 프로토콜에 담아 만든 논리적 지점 간 링크이고, L2TP 같은 터널링 프로토콜이 끼기도 한다)과 위 사실에서 이어서 나오는 말이다
+- **한국어 이름**: 고른 이름 「PPTP(지점 간 터널링 프로토콜)」, 「L2TP(2계층 터널링 프로토콜)」, 「L2TPv3」(이름만), 「L2TP/IPsec」, 「PPP(지점 간 프로토콜)」, 「GRE」(이름만), 「제어 연결」.
+  Windows 문서의 이름과 지금 Windows의 상태는 위 「(phase 81 step 4) … 원격 액세스」 항목에 있다(Windows Server 2025의 새 RRAS 구성은 PPTP·L2TP 연결을 기본으로 받지 않고, 2028(Preview)에서 빠진다)
+쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn-protocols`(PPTP — TCP 제어 연결과 GRE로 감싼 PPP, 보안은 PPP에 맡기고 GRE 패킷은 보호되지 않는다, L2TP — PPP 프레임을 UDP 1701로 나르는 터널, 스스로 보호하지 않아 IPsec ESP 전송 모드와 함께 쓴다, PPP, 「PPTP와 L2TP」 4절),
+`network-security.tunneling`(터널링 자체는 보호가 아니다 — PPTP의 GRE, L2TP), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E46)
+
+## (phase 82 step 15) RFC 2003 — IP Encapsulation within IP
+https://www.rfc-editor.org/rfc/rfc2003
+
+판(rfc-editor 상태, 2026-11-20): Proposed Standard(1996-10)이고 RFC 3168·6864가 고쳤으며 폐기되지 않았다. 모바일 IP를 위해 나온 IP-in-IP 캡슐화 문서라, 터널의 일반 모양(입구·출구, 바깥·안쪽 헤더)과 캡슐화의 보안 주의만 가져온다. 한국어판이 없다.
+
+- IP 데이터그램을 다른 IP 데이터그램의 데이터(payload)로 담아 나르는 방법이다. 담긴 데이터그램은 중간 목적지에 닿으면 꺼내져(decapsulate) 원래 헤더의 목적지로 전해진다. 이렇게 감싸고 꺼내는 것을 흔히 그 데이터그램을 **터널링**한다고 하고, 감싸는 노드와 꺼내는 노드를 터널의 **끝점**이라 한다 — 감싸는 쪽이 터널의 **입구**, 꺼내는 쪽이 **출구**다 — §1
+- 모양: 원래 IP 헤더 앞에 **바깥 IP 헤더**를 하나 넣는다. 바깥 헤더의 출발지·목적지 주소는 터널의 두 끝점을, 안쪽 IP 헤더의 출발지·목적지 주소는 그 데이터그램을 처음 보낸 쪽과 받을 쪽을 가리킨다. 안쪽 헤더는 TTL을 줄이는 것 말고는 바뀌지 않고, 필요하면 IP 인증 헤더 같은 다른 헤더를 바깥과 안쪽 헤더 사이에 넣을 수 있다 — §3
+- **캡슐화는 그 자체로 보호가 아니다**: IP 캡슐화는 오히려 인터넷의 보안을 떨어뜨릴 수 있다 — 감싼 뒤에는 원래의 출발지·목적지 주소, 프로토콜, 포트 번호가 제자리에 없어 경계 라우터가 헤더로 거르기 어렵다. 인증이 없는 캡슐화 패킷은 큰 보안 위험이 될 수 있고, 캡슐화에 암호화를 더한 경우는 따로 다룬다 — §6·§6.1
+쓰인 곳: (phase 82 step 18에서 쓰일 곳) `network-security.tunneling`(터널링의 뜻, 입구와 출구, 바깥 헤더와 안쪽 헤더가 가리키는 것, 캡슐화 자체는 보호가 아니다), 기출 대조(`exam-notes.md` E46)
+
+## (phase 82 step 15) IEEE 802.1X-2020 — Port-Based Network Access Control: 표준 개요 페이지, 802.1 작업 그룹의 802.1X 페이지; RFC 3580 — IEEE 802.1X Remote Authentication Dial In User Service (RADIUS) Usage Guidelines
+https://standards.ieee.org/ieee/802.1X/7345/
+https://1.ieee802.org/security/802-1x/
+https://www.rfc-editor.org/rfc/rfc3580
+
+판: IEEE 802.1X-2020 — 「Active Standard」, 이사회 승인 2020-01-30, 발행 2020-02-28, 802.1X-2010을 대체한다. 정오표 802.1X-2020/Cor 1-2026이 있고, 개정 작업 P802.1X-2020-Rev가 진행 중이다(2026-11-20 두 페이지 확인).
+802.1 작업 그룹 페이지는 표준을 IEEE GET 프로그램에서 무료로 받을 수 있다고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이라 **본문은 열지 못했다** — 두 페이지가 적은 만큼만 쓴다.
+RFC 3580은 Informational(2003-09)이고 RFC 7268이 고쳤으며 폐기되지 않았다 — 802.1X 본문이 아니라 802.1X 인증자가 RADIUS를 어떻게 쓸지 적은 안내다(802.1X 표준이 이 내용을 규범이 아닌 부록으로 담았다고 적는다). 한국어판이 없다.
+
+- **포트 기반 네트워크 접근 제어**(port-based network access control): 네트워크 관리자가 IEEE 802 LAN의 서비스 접근점(포트)을 인증·인가된 장치 사이의 안전한 통신에만 쓰게 제한하는 것이다. 802.1X는 같은 LAN에 붙은 포트의 클라이언트끼리 서로 인증하는 구조·기능 요소·프로토콜과,
+  포트 사이의 통신을 지키는 데 필요한 것(802.1AE MAC 보안의 보안 연관을 찾고 맺는 프로토콜)을 정한다 — 표준 개요 페이지
+- 신원이 확인되지 않았거나 허락받지 않은 쪽이 보내고 받는 것을 막아, 네트워크 방해·서비스 도용·데이터 손실을 막는다. 끝단 장치나 브리지의 포트 위에 **제어 포트**(controlled port — 접근이 통제된 안전한 통신)와 **비제어 포트**(uncontrolled port — 인증·키 관리 프로토콜이 제어 포트의 통신을 시작하려고 쓰는 것)를 둔다.
+  제어 포트로 통신하려는 두 시스템은 서로를 인증해야 하고, 그 인증에 **EAP**(RFC 3748)와 그것을 LAN 위로 나르는 **EAPOL**을 쓴다 — 802.1 작업 그룹 페이지.
+  **「인증을 마치기 전에는 포트로 인증 메시지만 오간다」는 문장 자체는 두 페이지에 없다** — 제어 포트는 접근이 통제되고 인증 프로토콜은 비제어 포트로 오간다는 두 사실에서 이어서 나오는 말이다(RFC 3580 §2.1은 관리자가 포트를 「인증되지 않은 상태(unauthorized state)」로 돌리는 경우를 적는다)
+- **세 역할**(RFC 3580 §1.1): **신청자**(supplicant — 인증자에게서 인증을 받는 쪽), **인증자**(authenticator — 신청자에게 인증을 요구하는 쪽. 지점 간 LAN 구간이나 802.11 무선 링크의 반대쪽 끝에 이어진다),
+  **인증 서버**(authentication server — 인증자에게 인증 서비스를 주는 쪽. 신청자가 낸 자격 증명으로 신청자가 내세운 신원이 맞는지 확인한다)
+- 802.1X는 이더넷·토큰 링·802.11 무선 LAN 같은 IEEE 802 매체에 인증된 접근을 준다. 뒤에 인증 서버를 꼭 두지는 않아 혼자 서는 브리지·AP로도 쓸 수 있고, 인증을 한곳에서 관리하려면 인증 서버를 두고 802.1X 인증자가 그 서버의 클라이언트(흔히 RADIUS 클라이언트)가 된다 — RFC 3580 §1.
+  RADIUS의 뜻은 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄에 있다
+- 인증 결과에 따라 포트를 특정 VLAN에 넣을 수 있다 — RADIUS 서버가 접근 허락(Access-Accept) 메시지에 터널 속성으로 VLAN을 알려 준다 — RFC 3580 §3.31.
+  **정책을 지키지 않은 장치를 제한된 네트워크로 보낸다는 것의 근거는 802.1X 쪽 문서가 아니라 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.7(점검을 통과하지 못하면 고칠 수 있게 제한된 접근만)이다**
+- **한국어 이름**: 고른 이름 「포트 기반 네트워크 접근 제어」, 「신청자」(supplicant), 「인증자」(authenticator), 「인증 서버」(authentication server), 「제어 포트」·「비제어 포트」(이름만), 「EAP」·「EAPOL」(이름만), 「RADIUS」(이름만 — 인증 서버의 예)
+쓰인 곳: (phase 82 step 17에서 쓰일 곳) `network-security.nac`(802.1X의 뜻과 표준 상태, 세 역할, 인증 서버의 예 RADIUS, 인증 결과로 VLAN에 넣기, 인증 전의 포트 — 이어서 나오는 말), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2024-02-25 #20]·[기출 2025-02-23 #49])
