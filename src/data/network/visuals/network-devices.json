@@ -167,6 +167,84 @@
         }
       ],
       "sources": ["network-devices.proxy-server"]
+    },
+    "load-balancer-pool": {
+      "label": "로드 밸런서 LB01이 가상 주소 192.0.2.100으로 받은 요청을 서버 풀의 WEB01·WEB02·WEB03에 나눠 보내다가, 상태 확인에 응답하지 않는 WEB02를 빼고 나누는 모습을 보이는 도식",
+      "svgLabel": "클라이언트와 로드 밸런서 LB01, 서버 풀 박스 안의 웹 서버 WEB01·WEB02·WEB03을 차례로 둔 그림",
+      "question": "로드 밸런서는 멈춘 서버를 어떻게 다룰까?",
+      "idleCaption": "클라이언트는 로드 밸런서 LB01의 가상 주소 192.0.2.100으로 접속하고, LB01 뒤의 서버 풀에는 웹 서버 WEB01·WEB02·WEB03이 있다. 버튼을 고르면 LB01이 요청을 어느 서버로 보내는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 쪽이다. 192.0.2.100은 서버 풀 전체를 대표하는 가상 주소이고 문서의 예로 쓰라고 남겨 둔 주소다. LB01과 WEB01~WEB03은 예로 붙인 이름표다.",
+      "nodes": {
+        "client": "클라이언트",
+        "lb01": "LB01",
+        "web01": "WEB01",
+        "web02": "WEB02",
+        "web03": "WEB03"
+      },
+      "groups": {
+        "pool": "서버 풀"
+      },
+      "notes": {
+        "address-note": "가상 주소 192.0.2.100",
+        "spread-note": "요청을 서버 셋에 나눈다",
+        "health-note": "멈춘 WEB02에는 보내지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "spread",
+          "label": "나눠 보내기",
+          "caption": "클라이언트는 서버마다의 주소가 아니라 LB01의 가상 주소 192.0.2.100으로 접속하고, LB01이 요청마다 서버 풀의 WEB01·WEB02·WEB03 가운데 하나를 골라 넘긴다. 클라이언트는 어느 서버가 요청을 처리하는지 알 필요가 없다.",
+          "sources": ["network-devices.load-balancing"]
+        },
+        {
+          "id": "health",
+          "label": "서버가 멈췄을 때",
+          "caption": "WEB02가 멈춰 상태 확인에 응답하지 않자, LB01은 그 뒤로 들어오는 새 요청을 WEB01과 WEB03에만 나눠 보낸다. 클라이언트는 여전히 192.0.2.100으로 접속하므로 서버 한 대가 빠진 것을 알지 못한다.",
+          "sources": ["network-devices.load-balancing"]
+        }
+      ],
+      "sources": ["network-devices.load-balancing"]
+    },
+    "balancing-methods": {
+      "label": "라운드 로빈으로 요청 1~6이 웹 서버 WEB01·WEB02·WEB03에 차례로 가는 모습과, 최소 연결로 새 연결이 지금 연결이 가장 적은 WEB02로 가는 모습을 견주는 도식",
+      "svgLabel": "요청 1~6과 새 연결 노드, 웹 서버 WEB01·WEB02·WEB03을 둔 그림",
+      "question": "로드 밸런서는 새 요청을 어느 서버로 보낼까?",
+      "idleCaption": "웹 서버 WEB01·WEB02·WEB03 앞의 로드 밸런서가 들어오는 요청을 나눈다. 버튼으로 부하 분산 방식을 고르면 요청이 어느 서버로 가는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 서버를 가리킨다. 요청 1~3은 첫 바퀴, 요청 4~6은 둘째 바퀴다. 요청 수와 연결 수는 예로 든 값이다.",
+      "nodes": {
+        "rr1": "요청 1",
+        "rr2": "요청 2",
+        "rr3": "요청 3",
+        "rr4": "요청 4",
+        "rr5": "요청 5",
+        "rr6": "요청 6",
+        "newconn": "새 연결",
+        "web01": "WEB01",
+        "web02": "WEB02",
+        "web03": "WEB03"
+      },
+      "notes": {
+        "rr-note": "서버마다 2개씩 받는다",
+        "web01-count": "연결 4개",
+        "web02-count": "연결 1개",
+        "web03-count": "연결 3개",
+        "lc-note": "연결이 가장 적은 WEB02로"
+      },
+      "scenarios": [
+        {
+          "id": "round-robin",
+          "label": "라운드 로빈",
+          "caption": "요청 1은 WEB01, 요청 2는 WEB02, 요청 3은 WEB03으로 가고, 요청 4부터 다시 WEB01부터 차례로 간다. 서버가 얼마나 바쁜지는 보지 않으므로 세 서버가 요청을 2개씩 받는다.",
+          "sources": ["network-devices.balancing-methods"]
+        },
+        {
+          "id": "least-conn",
+          "label": "최소 연결",
+          "caption": "지금 맡고 있는 연결이 WEB01 4개, WEB02 1개, WEB03 3개라서, 새 연결은 연결이 가장 적은 WEB02로 간다. 차례가 아니라 서버마다 맡고 있는 연결 수를 보고 고른다.",
+          "sources": ["network-devices.balancing-methods"]
+        }
+      ],
+      "sources": ["network-devices.balancing-methods"]
     }
   },
   "tables": {},

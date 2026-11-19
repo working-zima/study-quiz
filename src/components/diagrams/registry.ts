@@ -27,6 +27,7 @@ import { AzureArcDiagram } from './AzureArcDiagram'
 import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
+import { BalancingMethodsDiagram } from './BalancingMethodsDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BaseImageChoiceDiagram } from './BaseImageChoiceDiagram'
 import { BitLockerVolumeDiagram } from './BitLockerVolumeDiagram'
@@ -186,6 +187,7 @@ import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { ListenPortDiagram } from './ListenPortDiagram'
 import { LiveMigrationDiagram } from './LiveMigrationDiagram'
+import { LoadBalancerPoolDiagram } from './LoadBalancerPoolDiagram'
 import { LocalUserAccountsDiagram } from './LocalUserAccountsDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
@@ -666,6 +668,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-devices.repeater': RepeaterRegenerateDiagram,
   'network-devices.gateway': GatewayTranslateDiagram,
   'network-devices.proxy-server': ProxyDirectionDiagram,
+  'network-devices.load-balancing': LoadBalancerPoolDiagram,
+  'network-devices.balancing-methods': BalancingMethodsDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

@@ -5385,6 +5385,7 @@ Informational(1995-04)이고 폐기·개정 관계가 없다(rfc-editor 상태, 
 - (phase 82 step 8) 위 §2 줄(A 레코드의 차례를 돌려 내주는 「Round Robin」, 대상 기계의 실제 부하는 따지지 않는다)이 기출의 라운드 로빈 지문([기출 2025-08-24 #45]·[기출 2026-05-17 #41] — DNS 서버가 질의 순서에 따라 웹 서버들의 IP 주소를 번갈아 답한다)과 맞는다.
   아래 「(phase 82 step 8) RFC 2391 …」 항목의 라운드 로빈(로드 밸런서가 서버를 차례대로 고르는 것)과 같은 이름·같은 생각의 방식이다 — 새로 가져온 사실은 없다
   쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(DNS 라운드 로빈과 로드 밸런서 — DNS 라운드 로빈은 부하를 보지 않는다, `dns.dns-round-robin`과 뜻을 맞춘다), `network-devices.balancing-methods`(기출의 라운드 로빈 지문이 DNS 쪽 예를 든다)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 8 — DNS 서버는 서버마다의 부하와 멈춤을 보지 않아 멈춘 서버의 주소도 알려 줄 수 있다 — §2와 §2 (C)), `network-devices.balancing-methods`(마지막 문단 — DNS 라운드 로빈도 서버를 차례대로 돌아가며 내놓는다), 문항 n333 해설
 쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-round-robin`(역사 한 줄, 한계 — 부하를 보지 않는다, 멈춘 기계의 주소도 알려질 수 있다, 받는 쪽이 차례를 다시 정할 수 있다)
 
 ## (phase 79 step 5) RFC 6891 — Extension Mechanisms for DNS (EDNS(0))
@@ -7710,6 +7711,7 @@ https://www.rfc-editor.org/rfc/rfc3234
   이 절의 분류 칸은 **응용 계층**이고, 패킷을 돌리는 로드 밸런서(§2.8)의 분류 칸은 **여러 계층(multi-layer)**이다. 본문은 「목적지 포트 번호로 나누기도 하고, 응용 계층까지 풀어 HTTP 요청의 URL로 나누기도 한다」까지 쓰고, URL로 나누는 방법의 세부는 step 12·13이 본다
   쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(부하 분산 장치 항목, 도식 `device-layers`의 「부하 분산 장치」 — 전송 계층 칸과 응용 계층 칸 둘로 가는 화살표), 문항 n327 해설(포트 번호와 URL은 부하 분산 장치가 보는 정보)
 - (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 프록시가 클라이언트와의 연결을 받고 서버와 새로 연결한다, 문단 2 — 보통 클라이언트 설정에 어느 프록시를 쓸지 적어 둔다), 문항 n330 해설(§2.11 — FTP와 다른 파일 전송 프로토콜 사이의 게이트웨이도 만들어졌다)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 2 — 로드 밸런서는 서버들 사이에 부하를 나눈다, 문단 3 — 한 연결에 속한 데이터는 끝날 때까지 처음 고른 서버로만 간다 — §2.8)
 
 쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
 (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
@@ -7744,6 +7746,11 @@ https://www.rfc-editor.org/rfc/rfc2391
   server pool → **서버 풀**(영문을 그대로 읽는 이름 — 아래 ARR 한국어판의 「서버 팜」은 같은 것을 가리키는 다른 이름), round-robin → **라운드 로빈**(기출·phase 79), Least Load first → **최소 연결**(기출의 이름 — 문서의 이름은 「가장 적은 부하 먼저」이고 세는 것은 묶인 세션 수다),
   Least Weighted Load first → **가중 최소 연결**(기출의 이름 — 문서의 이름과 계산은 위 4), 응답 시간으로 고르는 방식 → **최소 응답 시간**(기출의 이름 — 문서는 이름을 붙이지 않는다), dead host detection → 죽은 서버 감지(본문은 아래 ARR의 「상태 확인」으로 쓴다)
 
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 0 — 같거나 비슷한 일을 하는 서버 묶음에 나눈다, 문단 2 — 가상 주소는 서버 묶음을 대표하는 IP 주소 하나이고 클라이언트는 그 주소로 접속한다,
+  문단 3 — 같은 클라이언트의 요청도 그때의 부하에 따라 다른 서버로 갈 수 있고, 한 연결은 끝날 때까지 처음 고른 서버가 맡으며, 서버를 더하고 빼도 클라이언트는 알 필요가 없다, 문단 4 — 응답하지 않는 서버에는 새 요청을 맡기지 않는다,
+  문단 7 — 가상 주소로 온 패킷의 목적지 주소를 고른 서버의 주소로 바꾼다(NAT), 문단 8 — DNS로 나누는 방식은 서버들의 실시간 부하를 보지 못한다),
+  `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간 항목, 가중 최소 연결의 계산 예 — 문서의 계산(서버에 맡긴 세션 부하를 가중치로 더한 값 ÷ 서버의 가중치)에 연결 하나의 부하를 1로 친 값을 넣었다,
+  상태를 보는 방식과 보지 않는 방식), 문항 n332·n333·n335 해설, 도식 `load-balancer-pool`·`balancing-methods`의 캡션
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산이 필요한 까닭과 정의, 세션 부하와 시스템 부하, 가상 주소와 서버 풀, 클라이언트는 가상 주소로 접속하고 로드 밸런서가 고른 서버로 돌린다, 서버를 더하고 빼도 클라이언트는 모른다, DNS 방식은 실시간 부하를 보지 못한다, 죽은 서버에는 새 세션을 맡기지 않는다),
 `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간의 정의, 부하를 보지 않는 방식과 보는 방식), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-11-03 #46]과 분산 방식 다섯 문항)
 
@@ -7761,6 +7768,7 @@ https://www.rfc-editor.org/rfc/rfc7098
   - 3·4계층 로드 밸런서 가운데 **상태를 두지 않는 것**은 패킷마다 출발지 주소나 포트처럼 찾기 쉬운 정보를 **해시해 서버 번호로 바꾸어** 서버를 고르고, 상태를 두는 것은 세션의 처음 패킷에서 정한 방향을 그 세션의 모든 패킷에 지킨다 — §3 넷째 항목.
     기출의 「IP 해시」(IP Hash)에 해당하는 근거다(그 이름은 문서에 없다). 같은 출발지 주소면 같은 서버 번호가 나와 같은 서버로 간다는 것은 지속성과 이 줄에서 이어서 나오는 말이다
 - 쓰지 않는 것: 흐름 레이블, 직접 서버 반환·ECMP 같은 전달 기법, SSL 역방향 프록시 팜, 전역 부하 분산
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 7 — 역방향 프록시가 요청을 대신 받아 안쪽 서버 하나에 보낸다, DNS로 나누기), `network-devices.balancing-methods`(해시 항목 — 클라이언트의 IP 주소 같은 값을 계산해 서버를 정하고, 같은 값이면 같은 서버로 간다)
 - **한국어 이름**: server farm → **서버 팜**(아래 ARR 한국어판과 같다 — 본문은 「서버 풀」과 같은 것을 가리킨다고 한 번 밝힌다), persistence → 지속성(이름만), hash → **해시**(기출의 「IP 해시」 — 본문은 「주소 같은 값으로 계산해 서버를 정한다」로 풀어 쓴다)
 
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻 — 일을 여러 서버에 나눠 성능을 최적으로, DNS 방식과 역방향 프록시 방식 — 역방향 프록시가 IP 주소 하나를 내보이고 세션마다 서버를 고른다), `network-devices.balancing-methods`(해시 — 출발지 주소 같은 값을 서버 번호로 바꾼다),
@@ -7803,6 +7811,11 @@ https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/health-diag
 - 상태 확인의 결과: 서버 하나에서 사이트를 멈추면 다음 상태 확인 뒤로 **모든 요청이 건강한 서버로만** 가고, 멈춘 사이트를 다시 켜면 다음 상태 확인 뒤로 다시 고르게 나뉜다 — 상태 확인은 **나빠졌던 서버가 다시 좋아진 것을 알아채는 데에도** 쓰인다.
   예의 시험 간격 30초는 그 안내에서 둔 값이다(기본값으로 쓰지 않는다) — 「HTTP Load Balancing …」 Step 2의 9~10과 그 뒤 확인 차례
 - 클라이언트 선호도(client affinity — 쿠키로 한 클라이언트의 요청을 한 서버로 묶는다)는 있다는 것만 적는다 — 세션 유지의 구현은 가져오지 않는다(「Using …」 「Features」 4)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 1 — 과부하를 피하고 처리량을 늘리고 응답 시간을 줄이며 자원을 알맞게 쓴다, 문단 2 — 서버 팜이라는 다른 이름, 문단 3 — 서버를 더하고 빼서 수요에 맞춘다,
+  문단 4 — 상태 확인의 두 방법(실제로 오가는 요청과 정해 둔 URL로 보내는 요청), 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다, health check를 그대로 읽은 「헬스 체크」라는 이름, 문단 5 — 가용성을 높인다),
+  `network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다음 서버로 넘어가 요청 수가 고르게 나뉜다), 문항 n332·n334 해설, 도식 `load-balancer-pool`
+- (phase 82 step 11, 2026-11-20 learn.microsoft.com 검색으로 다시 확인) 가중 라운드 로빈에서 가중치를 서로 다르게 주었을 때 몫이 어떻게 나뉘는지는 IIS 문서(위 여섯과 「Configuring Step 3: Configure IIS Web Farm Load Balancing」)에 여전히 없다.
+  같은 사이트의 Azure Application Gateway 문서에만 있어 쓰지 않았다. 그래서 `network-devices.balancing-methods`는 가중 라운드 로빈을 항목으로 두지 않고, guide의 계산 예(가중치 3·1로 요청 8개가 6개·2개)를 최소 연결의 예로 바꿨다
 - **한국어 이름**: 한국어판(기계 번역)은 Application Request Routing을 「애플리케이션 요청 라우팅」, server farm을 「서버 팜」, load balancing을 「부하 분산」, Load balance algorithm을 「부하 분산 알고리즘」, Weighted round robin을 「가중 라운드 로빈」, round robin을 「라운드 로빈」,
   Health Test(화면)를 「상태 테스트」, health check(본문)를 「상태 검사」, hardware load balancer를 「하드웨어 부하 분산 장치」(목차의 문서 제목은 「하드웨어 부하 분산기」)로 옮긴다. **고른 이름**: 「응용 프로그램 요청 라우팅(ARR)」(phase 81이 application을 「응용 프로그램」으로 옮긴 것과 맞춘다 — 한국어판의 「애플리케이션 요청 라우팅」을 한 번 밝힌다), 「서버 팜」, 「부하 분산」, 「가중 라운드 로빈」,
   「상태 확인」(guide의 이름 — health check를 옮긴 말. 기출은 「헬스 체크(Health Check)」로 쓰고 한국어판은 「상태 검사」로 옮긴다는 것을 본문에서 한 번 밝힐 수 있다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
