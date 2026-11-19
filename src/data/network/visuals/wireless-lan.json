@@ -91,6 +91,93 @@
       "sources": [
         "wireless-lan.wlan-transmission"
       ]
+    },
+    "channel-overlap": {
+      "label": "AP01과 옆 사무실 AP02가 쓰는 채널을 주파수 순서로 놓고, AP02가 채널 3을 쓸 때와 채널 6을 쓸 때 AP01의 채널 1과 겹치는지 보이는 도식",
+      "svgLabel": "맨 위에 AP01과 AP02를 두고, 그 아래 줄에 채널 3을, 맨 아래 줄에 채널 1과 채널 6을 주파수 순서대로 둔 그림",
+      "question": "이웃한 두 AP는 왜 채널을 떨어뜨려 고를까?",
+      "idleCaption": "AP01은 채널 1을 쓰고, 옆 사무실의 AP02는 채널 3이나 채널 6을 쓴다. AP01·AP02와 이 채널 번호들은 예로 고른 것이다. 버튼으로 AP02의 채널을 고르면 AP01의 채널 1과 겹치는지 볼 수 있다.",
+      "legend": "채널 상자의 가로 길이는 802.11b의 고속 DSSS 신호가 채널 하나에서 차지하는 폭 22MHz이고, 오른쪽으로 갈수록 주파수가 높다. 화살표는 AP가 쓰는 채널을 가리킨다.",
+      "nodes": {
+        "ap01": "AP01",
+        "ap02": "AP02",
+        "ch3": "채널 3",
+        "ch1": "채널 1",
+        "ch6": "채널 6"
+      },
+      "notes": {
+        "overlap-note": "겹쳐서 간섭한다",
+        "apart-note": "겹치지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "overlap",
+          "label": "겹치는 채널",
+          "caption": "AP02가 채널 3을 쓰면 두 채널의 중심 주파수가 10MHz만 떨어져, 신호의 폭 22MHz보다 가깝다. 두 신호가 12MHz를 함께 써서, 한쪽 AP가 보낸 전파가 다른 쪽이 받는 신호에 섞이는 간섭이 생긴다.",
+          "sources": [
+            "wireless-lan.wireless-channel"
+          ]
+        },
+        {
+          "id": "apart",
+          "label": "겹치지 않는 채널",
+          "caption": "AP02가 채널 6을 쓰면 두 채널의 중심 주파수가 25MHz 떨어져, 신호의 폭 22MHz보다 멀다. 채널 1의 위쪽 끝과 채널 6의 아래쪽 끝 사이가 3MHz 비어, 두 AP의 신호가 서로의 채널에 섞이지 않는다.",
+          "sources": [
+            "wireless-lan.wireless-channel"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-channel"
+      ]
+    },
+    "csma-ca-sequence": {
+      "label": "LAPTOP01이 AP01에 데이터 프레임 하나를 보내기 전에 거치는 차례와 오가는 프레임을, RTS/CTS를 쓰지 않을 때와 쓸 때로 나눠 보이는 도식",
+      "svgLabel": "맨 위 박스에 LAPTOP01이 보내기 전에 거치는 채널 듣기·정해 둔 시간·백오프를 차례로 두고, 그 아래 첫 줄에 LAPTOP01·AP01·LAPTOP02를, 둘째 줄에 LAPTOP01·AP01을 둔 그림",
+      "question": "무선 LAN의 스테이션은 보내기 전에 무엇을 기다릴까?",
+      "idleCaption": "노트북 LAPTOP01이 AP01에 데이터 프레임 하나를 보내려 한다. LAPTOP02는 AP01의 전파는 듣지만 LAPTOP01의 전파는 듣지 못하는 자리에 있다. 버튼으로 RTS/CTS를 쓰지 않을 때와 쓸 때를 고르면 어떤 차례로 무엇이 오가는지 볼 수 있다.",
+      "legend": "맨 위 박스 안의 화살표는 LAPTOP01이 보내기 전에 거치는 차례이고, 그 아래 화살표는 장치 사이를 오가는 프레임이다. 「정해 둔 시간」은 채널이 줄곧 비어 있어야 하는 시간이고, 「백오프」는 그 뒤 무작위로 고른 만큼 더 기다리는 시간이다.",
+      "nodes": {
+        "listen": "채널 듣기",
+        "fixed-wait": "정해 둔 시간",
+        "backoff": "백오프",
+        "laptop01-rts": "LAPTOP01",
+        "ap01-rts": "AP01",
+        "laptop02": "LAPTOP02",
+        "laptop01-data": "LAPTOP01",
+        "ap01-data": "AP01"
+      },
+      "groups": {
+        "before-send": "LAPTOP01이 보내기 전에"
+      },
+      "notes": {
+        "rts-note": "RTS",
+        "cts-note": "CTS",
+        "hold-note": "CTS를 듣고 보내지 않는다",
+        "data-note": "데이터 프레임",
+        "ack-note": "ACK"
+      },
+      "scenarios": [
+        {
+          "id": "basic",
+          "label": "기본 차례",
+          "caption": "LAPTOP01은 채널을 들어 보고, 정해 둔 시간 동안 채널이 줄곧 비어 있어도 무작위로 고른 시간만큼 더 기다린 뒤 데이터 프레임을 보낸다. 프레임을 오류 없이 받은 AP01은 곧바로 ACK를 보내고, LAPTOP01은 ACK를 보고 프레임이 전해졌음을 안다.",
+          "sources": [
+            "wireless-lan.csma-ca"
+          ]
+        },
+        {
+          "id": "rtscts",
+          "label": "RTS/CTS",
+          "caption": "백오프를 마친 LAPTOP01은 데이터 프레임 대신 RTS를 보내고, AP01이 CTS로 답한다. LAPTOP02는 LAPTOP01의 RTS는 듣지 못해도 AP01의 CTS는 들으므로 CTS에 적힌 시간 동안 보내지 않는다. 그동안 데이터 프레임과 ACK가 오간다.",
+          "sources": [
+            "wireless-lan.csma-ca"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.csma-ca"
+      ]
     }
   },
   "tables": {},

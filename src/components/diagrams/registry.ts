@@ -38,6 +38,7 @@ import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
+import { ChannelOverlapDiagram } from './ChannelOverlapDiagram'
 import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { ChownChangeDiagram } from './ChownChangeDiagram'
@@ -61,6 +62,7 @@ import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CronScheduleDiagram } from './CronScheduleDiagram'
 import { CrontabFieldsDiagram } from './CrontabFieldsDiagram'
 import { CrontabOptionsDiagram } from './CrontabOptionsDiagram'
+import { CsmaCaSequenceDiagram } from './CsmaCaSequenceDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
@@ -538,6 +540,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
   'wireless-lan.wireless-lan': WirelessLanModesDiagram,
   'wireless-lan.wlan-transmission': WlanTransmissionDiagram,
+  'wireless-lan.wireless-channel': ChannelOverlapDiagram,
+  'wireless-lan.csma-ca': CsmaCaSequenceDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,
