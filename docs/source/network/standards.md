@@ -151,6 +151,11 @@ CSA·Bluetooth SIG 페이지에서는 기술을 설명하는 문장만 가져왔
 부하 분산의 쓰임·상태 확인·분산 방식의 이름은 learn.microsoft.com의 IIS 응용 프로그램 요청 라우팅(ARR) 문서(영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`를 적었다)에서 가져왔다. learn.microsoft.com 가운데 Azure 서비스 문서(Application Gateway 등)는 검색에 걸려도 쓰지 않았다.
 **ARR 문서의 글은 부하 분산 알고리즘이 여섯 가지라는 데까지만 적고, 글로 나오는 이름은 「Weighted round robin」 하나다** — 그래서 분산 방식마다의 정의는 RFC 2391 §5.1과 RFC 7098 §3에서 가져왔고, 가중 라운드 로빈에서 가중치가 몫을 어떻게 나누는지(예: 3:1)는 허용한 출처에서 찾지 못했다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 세션 유지(클라이언트 선호도·쿠키)의 구현, SSL 오프로드, 전역 부하 분산, 장애 조치 클러스터, Windows Server 네트워크 부하 분산(NLB)의 설정, ARR의 캐시·URL 다시 쓰기, 프록시의 인증·로그 형식. L4·L7 스위치(RFC 3234 §2.18 포함)·PoE·PXE는 step 12가 본다.
+「(phase 82 step 12)」가 붙은 줄과 항목은 phase 82 step 12에서 `network-devices` 주제의 뒤 개념 넷(L4 스위치, L7 스위치, PoE, PXE)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. 「L4 스위치」·「L7 스위치」·「PoE 스위치」 같은 이름은 rfc-editor.org의 사이트 검색으로 RFC 전체의 본문에서 찾았다 — 그 검색이 본문까지 보는지는 RFC 2816 §8.7의 「Layer 3 switches」가 걸리는 것으로 먼저 확인했다.
+IEEE 802.3의 PoE 사실은 `standards.ieee.org`의 표준 개요 페이지(802.3af·802.3at·802.3bt·802.3-2022)와 `ieee802.org/3`의 태스크 포스 페이지(PAR·목표·요구 사항 문서·5대 기준·4쌍 PoE 관심 요청(CFI) 발표 자료)에서 가져왔다. **IEEE 802.3 본문은 열지 못했다**(개요 페이지가 IEEE GET 프로그램으로 받으라고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이다) — 태스크 포스 문서는 표준 본문이 아니므로 항목마다 어떤 문서인지 적는다.
+PXE·WDS·PnP·PE와 L7 쪽의 IIS ARR은 learn.microsoft.com의 문서(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`를 적었다)에서 가져왔다. 같은 사이트의 Configuration Manager 문제 해결 문서와 Azure 문서(Application Gateway·Front Door)는 검색에 걸려도 쓰지 않았고, Intel의 PXE 사양과 업체의 L4·L7 스위치 제품 문서는 허용 목록 밖이라 열지 않았다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 부하 분산 장치의 제품별 기능·SSL 오프로드·직접 서버 반환 같은 전달 기법, PoE의 전력 등급표 전체·전압과 쌍 배치의 세부·LLDP 전력 협상, PXE 펌웨어 구현·UEFI 네트워크 부팅의 세부·DHCPv6 네트워크 부팅, WDS 설치 절차.
 
 ---
 
@@ -1131,6 +1136,8 @@ https://www.rfc-editor.org/rfc/rfc9110
   쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(프록시는 클라이언트가 고른 중계자, 역방향 프록시는 원 서버처럼 보이며 안쪽 서버로 넘기고 HTTP 문서는 게이트웨이라고도 부른다, 캐시의 뜻과 얻는 것), (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(역방향 프록시가 HTTP 서비스를 여러 기계로 나누는 데 쓰인다 — 한 줄),
   기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
 - (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 요청과 응답이 연결 두 개를 거친다, 문단 2 — HTTP 표준 문서는 정방향 프록시를 그냥 프록시라 부르고 클라이언트 쪽이 골라 쓰며 보통 클라이언트 설정에 적는다, 문단 5 — 역방향 프록시는 원래 서버처럼 보이고 응답을 캐시해 서버의 일을 덜며 여러 서버에 요청을 나누는 데 쓰인다, 문단 6 — HTTP 문서는 역방향 프록시를 게이트웨이라고도 부르고 넓은 뜻의 게이트웨이와 쓰임이 다르다), 도식 `proxy-direction`의 「역방향 프록시」 캡션, 문항 n331 해설
+- (phase 82 step 12) 쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(§3.7 — 게이트웨이(역방향 프록시)는 바깥 연결에 대해 원 서버처럼 동작하므로 클라이언트가 맺은 연결은 그 장치에서 끝나고, 장치는 받은 요청을 안쪽 서버로 넘기며, HTTP 서비스의 부하 분산에 흔히 쓰인다 — 위 「(phase 82 step 8)」 줄),
+  기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
@@ -1341,6 +1348,7 @@ https://www.rfc-editor.org/rfc/rfc1123
   **스텁 리졸버**는 같은 네트워크나 가까운 네트워크의 재귀 네임 서버에 맡기는 리졸버로, PC 같은 작은 호스트에 알맞고 여러 컴퓨터가 재귀 서버의 캐시를 함께 써서 바깥으로 나가는 질의를 줄인다. 스텁 리졸버는 여분의 재귀 네임 서버들에 요청을 보낼 수 있어야 하고, 재귀 네임 서버는 받아 줄 요청의 출처를 제한할 수 있다 — §6.1.3.1
 - (phase 79 step 0) DNS 자체는 이름 문법을 넓게 정한다 — 레이블마다 8비트 옥텟 63개까지, 점으로 나누고 전체 255옥텟까지. DNS를 쓰는 응용마다 이름 문법을 더 좁힐 수 있다 — §6.1.3.5 DISCUSSION
 - (phase 79 step 0) **로컬 호스트 테이블**: 호스트는 로컬 호스트 테이블을 DNS의 예비나 보충으로 쓸 수 있다. 그러면 DNS와 호스트 테이블 가운데 무엇을 앞세울지가 문제인데, **가장 유연한 방법은 그것을 설정으로 정하게 하는 것**이다 — §6.1.3.8 DISCUSSION
+- (phase 82 step 12) 쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(§4.2.1 — TFTP의 가장 중요한 쓰임은 LAN에서 호스트를 부팅하는 일이고, 작고 단순해 EPROM에 넣기 쉽다 — 위 「(phase 78 step 0)」 줄)
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
@@ -1369,6 +1377,8 @@ https://www.rfc-editor.org/rfc/rfc1350
   마지막 데이터 패킷의 확인 응답을 끝내 받지 못한 채 보내는 쪽이 재전송을 그만두면, 전송이 성공했는지 실패했는지 알 수 없는 채로 연결이 닫힌다 — §6.
   **이 문서는 잃은 블록을 빼놓은 채 전송을 마친다고 하지 않는다** — 다시 보내 채우거나, 전송 자체가 끝나 버린다
 - (phase 78 step 0) 이 문서는 TFTP가 어디에 쓰이는지 말하지 않는다 — 쓰임(LAN에서 호스트를 부팅하는 일)은 위 RFC 1123 §4.2.1
+- (phase 82 step 12) 네트워크 부팅의 차례에서 TFTP가 맡는 자리 — 주소와 부팅 파일 이름을 먼저 받고(BOOTP·DHCP) 그 파일을 TFTP로 받는다 — 는 이 문서가 아니라 RFC 951 §2와 RFC 2131 §1.2·§2가 적는다(아래 「(phase 73 step 1) RFC 951 — …, RFC 2131 — …」 항목의 「(phase 82 step 12)」 줄).
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(부팅 파일을 TFTP로 받는다 — `app-protocols-mail-file.tftp`와 뜻을 맞춘다)
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
@@ -2529,6 +2539,11 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
 - (phase 74 step 5) **포트**: DHCP는 UDP를 쓰고, 클라이언트 → 서버 메시지는 서버 포트 67로, 서버 → 클라이언트 메시지는 클라이언트 포트 68로 보낸다 — RFC 2131 §4.1(포트 번호의 IANA 이름은 아래 「(phase 74 step 5) IANA — Service Name and Transport Protocol Port Number Registry」 항목)
 - (phase 74 step 5) **갱신**: 클라이언트는 두 시각 T1·T2를 둔다. T1(기본값 임대 기간의 0.5)이 되면 주소를 준 서버에게 **유니캐스트로** DHCPREQUEST를 보내 임대를 늘린다(RENEWING). T2(기본값 0.875)까지 ACK가 없으면 **브로드캐스트로** DHCPREQUEST를 보내 아무 서버에게나 늘려 달라고 한다(REBINDING).
   T1 전에 늘려 달라고 해도 된다(MAY). ACK 없이 임대가 끝나면 그 주소로 하던 네트워크 처리를 곧 멈추고 처음부터 주소를 다시 받는다 — RFC 2131 §4.4.5. 필요 없어진 주소는 DHCPRELEASE로 돌려준다 — §4.4.6
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 둘 다 Draft Standard 그대로) **네트워크 부팅의 두 단계**: BOOTP는 디스크 없는 클라이언트가 자기 IP 주소, 서버의 주소, **메모리에 올려 실행할 파일의 이름**을 알아내게 하는 프로토콜이다.
+  부팅은 두 단계로 볼 수 있다 — 첫 단계(주소 정하기와 부팅 파일 고르기)를 BOOTP가 맡고, 그 정보를 얻은 뒤 둘째 단계에서 파일을 옮겨 받는데 **보통 TFTP를 쓴다**. 두 단계 모두 클라이언트의 PROM(읽기 전용 메모리)에 들어가도록 만든 것이다 — RFC 951 §2
+- (phase 82 step 12) DHCP 문서도 TFTP를 **부팅 서버에서 부팅 이미지를 옮겨 받는** 프로토콜로 든다 — RFC 2131 §1.2. DHCP 메시지에는 부팅의 다음 단계에서 쓸 서버의 IP 주소 칸(`siaddr`)과 **부팅 파일 이름** 칸(`file`)이 있고,
+  서버는 OFFER·ACK에 `siaddr`를 담는다(운영 체제 실행 이미지 같은 다음 부팅 서비스를 자기가 줄 수 있으면 자기 주소를 넣는다) — RFC 2131 §2(Table 1과 그 앞 설명)
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(DHCP로 주소와 부팅 서버·부팅 파일 이름을 받고 → TFTP로 그 파일을 받고 → 실행한다 — `ip-address-types.dhcp`·`app-protocols-mail-file.tftp`와 뜻을 맞춘다)
 
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
@@ -2738,6 +2753,9 @@ Draft Standard이고 RFC 1533을 대체했으며 RFC 3442·3942·4361·4833·549
 - IP 주소 임대 시간 옵션(코드 51) — 클라이언트가 원하는 임대 시간을 요청하거나 서버가 제안하는 임대 시간을 적는다. 단위는 초 — §9.2
 - DHCP 메시지 종류 옵션(코드 53) — 1 DHCPDISCOVER, 2 DHCPOFFER, 3 DHCPREQUEST, 4 DHCPDECLINE, 5 DHCPACK, 6 DHCPNAK, 7 DHCPRELEASE, 8 DHCPINFORM — §9.6
 - 서버 식별자 옵션(코드 54) — 고른 서버의 IP 주소. 서버는 OFFER에 넣어 클라이언트가 제안들을 가르게 하고, 클라이언트는 REQUEST에 넣어 어느 제안을 받아들이는지 알린다 — §9.7
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — Draft Standard 그대로) **부팅에 쓰는 옵션 둘**: TFTP 서버 이름 옵션(코드 66) — DHCP 헤더의 서버 이름 칸(`sname`)을 다른 옵션에 내준 경우 TFTP 서버를 알린다 — §9.4.
+  부팅 파일 이름 옵션(코드 67) — 헤더의 `file` 칸을 다른 옵션에 내준 경우 부팅 파일을 알린다 — §9.5. 아래 「(phase 82 step 12) Microsoft Learn — PXE와 WDS …」 항목의 Windows PE 안내는 PXE 클라이언트가 이 두 옵션으로 부팅 서버와 부팅 파일 이름을 받는다고 적는다
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(부팅 서버와 부팅 파일 이름을 DHCP 옵션으로 받는다 — 옵션 번호는 본문에 쓰지 않아도 된다)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(주소와 함께 주는 설정 — 서브넷 마스크·기본 게이트웨이(라우터)·DNS 서버, 임대 시간), `ip-address-types.dhcp-messages`(메시지 종류, 서버 식별자로 고른 서버를 알린다)
 (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§3.8 — 로컬 DNS 서버의 주소를 DHCP로 자동으로 받는다. 누가 DHCP 서버인지(ISP 쪽 장비인지 공유기인지)는 이 문서가 말하지 않는다), 강의 수정 이력 「phase 79 step 0」 문단(p345)
@@ -7712,6 +7730,13 @@ https://www.rfc-editor.org/rfc/rfc3234
   쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(부하 분산 장치 항목, 도식 `device-layers`의 「부하 분산 장치」 — 전송 계층 칸과 응용 계층 칸 둘로 가는 화살표), 문항 n327 해설(포트 번호와 URL은 부하 분산 장치가 보는 정보)
 - (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 프록시가 클라이언트와의 연결을 받고 서버와 새로 연결한다, 문단 2 — 보통 클라이언트 설정에 어느 프록시를 쓸지 적어 둔다), 문항 n330 해설(§2.11 — FTP와 다른 파일 전송 프로토콜 사이의 게이트웨이도 만들어졌다)
 - (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 2 — 로드 밸런서는 서버들 사이에 부하를 나눈다, 문단 3 — 한 연결에 속한 데이터는 끝날 때까지 처음 고른 서버로만 간다 — §2.8)
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **패킷을 돌리는 로드 밸런서**(§2.8) 다시 보기: 목적지 포트 번호에 따라 응용을 서버들로 나누는 일을 「목적지 포트 번호를 보는 IP 라우팅」으로 적는다 — IP 주소만 보는 보통의 라우팅이 아니라 포트 번호까지 본다.
+  같은 응용 세션의 패킷이 모두 같은 물리 서버로 가야 하므로 상태를 지닌다. 분류 칸은 **여러 계층**(multi-layer)이다 — §2.8. **URL을 돌리는 로드 밸런서**(§2.18)는 따로 적힌 장치이고 분류 칸이 **응용 계층**이다.
+  응용 계층의 정보로 판단하는 **응용 방화벽**도 따로 적힌 장치다(§2.10 — 보안은 `network-security` 주제의 몫). 곧 이 문서는 포트로 나누는 장치, HTTP 요청·URL로 나누는 장치, 응용 계층의 보안 장치를 서로 다른 칸에 둔다
+- (phase 82 step 12) rfc-editor.org 사이트 검색(RFC 전체 본문)으로 「layer 4 switch(es)」·「layer-4 switch」·「layer 7 switch(es)」·「layer-7 switch」·「L7 switch(es)」·「L1 switch」·「layer 1 switch」를 찾아 하나도 없었다.
+  「L4 switch」는 RFC 3143 하나, 「L4-L7 switch」는 RFC 3466 하나, 「layer 1 switches」는 RFC 5253 §3.1 하나(전달망의 TDM 스위치·광 교차 연결 장치를 가리킨다 — LAN 장비가 아니다)에 나온다 — 아래 「(phase 82 step 12) RFC 3143·RFC 3466」 항목
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(포트 번호까지 보는 로드 밸런서는 세션 상태를 지닌다, 분류는 여러 계층), `network-devices.l7-switch`(HTTP 요청·URL로 나누는 장치는 응용 계층 — 4절),
+  `exam-notes.md` E43·E44, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 「응용 계층의 보안 기능」)
 
 쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
 (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
@@ -7751,6 +7776,17 @@ https://www.rfc-editor.org/rfc/rfc2391
   문단 7 — 가상 주소로 온 패킷의 목적지 주소를 고른 서버의 주소로 바꾼다(NAT), 문단 8 — DNS로 나누는 방식은 서버들의 실시간 부하를 보지 못한다),
   `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간 항목, 가중 최소 연결의 계산 예 — 문서의 계산(서버에 맡긴 세션 부하를 가중치로 더한 값 ÷ 서버의 가중치)에 연결 하나의 부하를 1로 친 값을 넣었다,
   상태를 보는 방식과 보지 않는 방식), 문항 n332·n333·n335 해설, 도식 `load-balancer-pool`·`balancing-methods`의 캡션
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **주소를 바꾸는 차례**(L4 스위치가 하는 NAT의 근거):
+  - 보통의 NAT는 안쪽에서 바깥으로 나가는 세션에서 주소를 바꾸기 시작하지만, LSNAT는 **바깥에서 들어오는 세션**에서 시작한다. 들어오는 세션 하나를 (클라이언트 주소, 클라이언트 포트, 가상 서버 주소, 서버 포트)의 묶음으로 가리고, 그 세션을 그때의 부하로 고른 서버 하나에 묶는다 — §3
+  - TCP·UDP 세션의 패킷은 (출발지 IP 주소, 출발지 포트, 목적지 IP 주소, 목적지 포트)의 묶음으로 가려진다 — §2.2. TCP 세션의 첫 패킷은 SYN이 켜지고 ACK가 꺼진 패킷이라 알아볼 수 있다 — §2.3
+  - **세션 묶기**(session binding): 들어오는 세션을 서버 풀의 한 서버 주소에 짝짓는 단계이고, 이때 정한 것이 그 세션의 뒤따르는 모든 패킷의 바꾸기 값이 된다. 고정된 짝이 아니면 세션마다 부하 분산 알고리즘으로 서버를 정한다 — §4.1
+  - **주소 찾기와 바꾸기**: 짝이 정해지면 같은 연결의 뒤 패킷은 모두 그 짝을 찾아 바꾼다. 서버 쪽으로 **들어가는 패킷은 목적지 IP 주소(TCP·UDP면 목적지 포트도)**를, 서버에서 **나오는 패킷은 출발지 IP 주소(와 출발지 포트)**를 바꾸고,
+    IP·TCP·UDP·ICMP 헤더의 체크섬 같은 관련 칸도 함께 고친다 — §4.2. 세션이 끝난 것을 알면 짝을 푼다 — §4.3
+  - 예(§3.1·그림 1): 클라이언트가 가상 서버 주소의 80번 포트로 HTTP 세션을 열면, LSNAT 라우터가 서버 S1을 골라 그 세션 패킷의 목적지 주소를 S1의 주소로 바꿔 넘기고(포트는 80 그대로), 돌아오는 패킷도 같은 방식으로 바꾼다.
+    클라이언트와 서버는 고칠 것이 없고 설정은 LSNAT 라우터에만 한다. 예의 주소는 옮기지 않는다 — 본문은 RFC 5737의 문서용 주소(guide의 `192.0.2.100`·`192.0.2.11`)로 쓴다
+  - 이 문서는 이 장치를 「LSNAT 라우터」라 부른다 — 「L4 스위치」라는 이름은 없다(전문 검색)
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(가상 주소로 들어온 세션을 고른 서버에 묶고, 들어가는 패킷은 목적지 주소를, 나오는 패킷은 출발지 주소를 바꾼다, 한 연결의 뒤 패킷은 모두 같은 서버로, 클라이언트·서버는 그대로),
+  `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 NAT)
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산이 필요한 까닭과 정의, 세션 부하와 시스템 부하, 가상 주소와 서버 풀, 클라이언트는 가상 주소로 접속하고 로드 밸런서가 고른 서버로 돌린다, 서버를 더하고 빼도 클라이언트는 모른다, DNS 방식은 실시간 부하를 보지 못한다, 죽은 서버에는 새 세션을 맡기지 않는다),
 `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간의 정의, 부하를 보지 않는 방식과 보는 방식), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-11-03 #46]과 분산 방식 다섯 문항)
 
@@ -7770,6 +7806,12 @@ https://www.rfc-editor.org/rfc/rfc7098
 - 쓰지 않는 것: 흐름 레이블, 직접 서버 반환·ECMP 같은 전달 기법, SSL 역방향 프록시 팜, 전역 부하 분산
 - (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 7 — 역방향 프록시가 요청을 대신 받아 안쪽 서버 하나에 보낸다, DNS로 나누기), `network-devices.balancing-methods`(해시 항목 — 클라이언트의 IP 주소 같은 값을 계산해 서버를 정하고, 같은 값이면 같은 서버로 간다)
 - **한국어 이름**: server farm → **서버 팜**(아래 ARR 한국어판과 같다 — 본문은 「서버 풀」과 같은 것을 가리킨다고 한 번 밝힌다), persistence → 지속성(이름만), hash → **해시**(기출의 「IP 해시」 — 본문은 「주소 같은 값으로 계산해 서버를 정한다」로 풀어 쓴다)
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **7계층 역방향 프록시**(§3 둘째 항목): HTTP 서버 묶음 앞에 두는 7계층 역방향 프록시는 바깥에 IP 주소 하나를 내보이고,
+  **새 클라이언트 세션 — 들어오는 TCP 연결과 그 위의 HTTP 요청 — 마다** 서버 하나를 골라 그 세션을 중계한다. 세션 동안 TCP 상태와 프록시 상태를 지녀야 한다. 곧 7계층 장치는 클라이언트의 TCP 연결을 스스로 받아들인 뒤에야 HTTP 요청을 보고 서버를 고를 수 있다
+- (phase 82 step 12) **3·4계층 로드 밸런서**(§3 넷째 항목) 다시 보기: 전용 장치일 수도 있고 **일부 네트워크 스위치나 라우터의 표준 기능**일 수도 있다. 그 장치의 IP 주소가 서비스의 대표 주소로 공개되고 **모든 클라이언트 세션이 이 장치를 지난다**.
+  새 세션을 실제 응용 서버들에, 또는 7계층 프록시 묶음에 나눠 맡긴다 — 3·4계층 장치를 7계층 장치들 앞에 둘 수도 있다. 들어오는 패킷마다 빨리 가려 대상 서버를 정해야 하므로 패킷마다 들여다본다 — §3 넷째 항목. 이 문서도 이 장치를 「스위치」라는 이름으로 부르지 않는다
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(바깥 요청이 모두 이 장치를 지난다, 스위치·라우터에 기능으로 들어 있기도 하다, 지속성), `network-devices.l7-switch`(TCP 연결을 받아들이고 HTTP 요청마다 서버를 골라 중계한다, 3·4계층 장치를 그 앞에 둘 수도 있다),
+  `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-08-24 #50]·[기출 2026-08-02 #46]의 「외부 요청은 모두 거쳐 간다」)
 
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻 — 일을 여러 서버에 나눠 성능을 최적으로, DNS 방식과 역방향 프록시 방식 — 역방향 프록시가 IP 주소 하나를 내보이고 세션마다 서버를 고른다), `network-devices.balancing-methods`(해시 — 출발지 주소 같은 값을 서버 번호로 바꾼다),
 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — 분산 방식의 오답 「IP 해시」)
@@ -7819,6 +7861,164 @@ https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/health-diag
 - **한국어 이름**: 한국어판(기계 번역)은 Application Request Routing을 「애플리케이션 요청 라우팅」, server farm을 「서버 팜」, load balancing을 「부하 분산」, Load balance algorithm을 「부하 분산 알고리즘」, Weighted round robin을 「가중 라운드 로빈」, round robin을 「라운드 로빈」,
   Health Test(화면)를 「상태 테스트」, health check(본문)를 「상태 검사」, hardware load balancer를 「하드웨어 부하 분산 장치」(목차의 문서 제목은 「하드웨어 부하 분산기」)로 옮긴다. **고른 이름**: 「응용 프로그램 요청 라우팅(ARR)」(phase 81이 application을 「응용 프로그램」으로 옮긴 것과 맞춘다 — 한국어판의 「애플리케이션 요청 라우팅」을 한 번 밝힌다), 「서버 팜」, 「부하 분산」, 「가중 라운드 로빈」,
   「상태 확인」(guide의 이름 — health check를 옮긴 말. 기출은 「헬스 체크(Health Check)」로 쓰고 한국어판은 「상태 검사」로 옮긴다는 것을 본문에서 한 번 밝힐 수 있다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+- (phase 82 step 12, 2026-11-20 IPv4로 다시 받아 읽음 — 「Using the Application Request Routing Module」 `updated_at` 2024-04-11 그대로, 한국어판 2026-10-27) **응용 수준의 판단**: ARR은 IIS 7 이상에서 쓰는 **프록시 기반**의 라우팅 모듈로, HTTP 헤더·서버 변수·부하 분산 알고리즘에 따라 HTTP 요청을 콘텐츠 서버로 넘긴다.
+  들어오는 HTTP 요청을 살피는 일은 **URL 다시 쓰기(URL Rewrite) 모듈**에 맡기므로 그 모듈이 있어야 ARR이 동작한다 — Introduction. IP 수준에서 판단하는 하드웨어 부하 분산 장치와 달리 ARR은 응용 수준에서 판단하고, URL 다시 쓰기 모듈과 함께 HTTP 헤더·서버 변수에 바탕한 라우팅 규칙을 쓸 수 있다 — 「Features」 1.
+  같은 ARR이 부하 분산 알고리즘(여섯 가지)과 서버 상태 확인(실제로 오가는 요청과 URL 시험)도 한다 — 「Features」 2·3(위 「(phase 82 step 8)」 줄)
+- (phase 82 step 12) **URL로 나누는 예**:
+  https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/configure-3-tier-deployment-architecture-using-application-request-routing
+  https://learn.microsoft.com/en-us/iis/extensions/url-rewrite-module/iis-url-rewriting-and-aspnet-routing
+  판(2026-11-20 IPv4로 내려받음): 「Configure 3-tier deployment architecture using Application Request Routing」 `updated_at` 2024-04-11(`ms.date` 2008-07-02, IIS 7.0 이상과 ARR 버전 1 전제 — Prerequisites), 「IIS URL Rewriting and ASP.NET Routing」 2022-08-23(2008-09-04). 한국어판은 둘 다 2026-10-27
+  - 3계층 배포 안내: URL 다시 쓰기 규칙이 요청의 파일 확장자(.jpg·.css)나 URL 경로(/images/)를 살펴, 그런 정적 요청은 ARR 서버가 직접 내주고 **나머지 요청은 ARR 서버 뒤의 응용 서버로 넘긴다** — 「Step 1」. 이 안내는 ARR을 **역방향 프록시**로 쓰는 경우라고 끝에 적는다 — 「Summary」
+  - URL 다시 쓰기 문서: 동적 콘텐츠와 정적 콘텐츠를 서로 다른 서버에 두었을 때, URL 다시 쓰기 모듈과 ARR로 **정적 파일 요청을 모두 다른 서버로 넘기고** 동적 페이지 요청은 지금 서버가 맡게 할 수 있다(이미지 확장자로 끝나는 URL을 정적 파일 서버로 다시 쓰는 규칙이 예로 나온다) — 「Which Option Should You Use?」
+  - 곧 URL의 경로 하나로 요청을 서로 다른 서버(들)에 나눌 수 있다 — guide의 예(`www.example.com/images/`로 시작하는 요청은 `IMG01`로, 나머지는 `WEB01`로)는 이 두 문서의 동작을 이름표로 옮긴 것이다(예의 이름은 문서에 없다)
+  - **한국어 이름**: 한국어판(기계 번역)은 URL Rewrite를 「URL 다시 쓰기」, 3-tier를 「3계층」, reverse proxy를 「역방향 프록시」로 옮긴다
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(응용 수준에서 HTTP 헤더·URL로 판단한다, IP 수준의 장치와 다르다, 알고리즘·상태 확인도 한다, URL 경로로 서버를 나누는 예, 역방향 프록시로 동작한다), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
 
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻과 목적 — 자원 사용·처리량·응답 시간·과부하, 로드 밸런서는 프록시 기반일 수 있다, 서버 팜, 가용성과 서버를 더하고 빼기, 상태 확인의 두 방법과 결과 — 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다),
 `network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다른 서버, 「가중 라운드 로빈」이라는 이름, 알고리즘은 여럿이고 정의는 RFC 2391·7098에서), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #47]·[기출 2025-05-25 #47]·[기출 2026-05-17 #49])
+
+## (phase 82 step 12) RFC 9569 — The Application-Layer Traffic Optimization (ALTO) Transport Information Publication Service (TIPS)
+https://www.rfc-editor.org/rfc/rfc9569
+
+판(rfc-editor.org 텍스트판과 `…/rfc9569.json`, 2026-11-20): 2024-09, Proposed Standard, 폐기·개정 없음. 주제는 ALTO라는 다른 프로토콜이다 — 부하 분산의 두 방식을 가르는 §8.1의 말만 가져온다.
+
+- **4계층 부하 분산**(Layer 4 load balancing)은 요청을 **TCP 5-tuple**로 나누는 방식이라고 괄호로 풀어 적는다. 그래서 같은 정보에 대한 요청이라도 다른 TCP 연결로 오면 다른 서버로 갈 수 있다(이 문서는 그것이 문제가 되는 경우를 든다) — §8.1
+- **7계층 로드 밸런서**(Layer 7 load balancers)는 요청을 **URI의 한 부분(경로)**으로 나눌 수 있어, 같은 정보에 대한 요청을 늘 같은 서버로 가게 설정할 수 있다 — §8.1. 서로 다른 경로의 요청을 서로 다른 물리 서버로 보내는 것도 7계층 부하 분산으로 한다 — 부록 A
+- 곧 이 문서는 **4계층과 7계층을 「무엇을 보고 나누는가」로 가른다** — 연결의 주소·포트(5-tuple)인가, 요청의 URI인가. 「스위치」라는 이름은 쓰지 않는다
+- 「Layer 4 load balancer」라는 말은 RFC 7609(2015-08, Informational — 클러스터의 가상 IP 주소를 지니고 들어오는 TCP 연결을 서버들에 나누는 장치)와 RFC 8684(2020-03, Proposed Standard — 지나가며)에도 나온다(rfc-editor.org 사이트 검색). 본문의 근거로는 이 문서의 §8.1이면 충분하다
+- 5-tuple이 무엇인지는 이 문서가 풀지 않는다 — 아래 RFC 6437 항목
+- **한국어 이름**: Layer 4 load balancing → 4계층 부하 분산, Layer 7 load balancer → 7계층 로드 밸런서(본문은 「전송 계층 정보로 나누는 부하 분산 장치」·「응용 계층 정보로 나누는 부하 분산 장치」로 풀어 쓰고 표준의 이름을 한 번 밝힌다)
+
+쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(5-tuple로 나눈다), `network-devices.l7-switch`(URI의 경로로 나눈다, L4·L7이 무엇을 보고 나누는가로 갈린다 — 4절), `exam-notes.md` E43·E44
+
+## (phase 82 step 12) RFC 6437 — IPv6 Flow Label Specification
+https://www.rfc-editor.org/rfc/rfc6437
+
+판(rfc-editor.org 텍스트판과 `…/rfc6437.json`, 2026-11-20): 2011-11, Proposed Standard, 폐기·개정 없음. 흐름 레이블 이야기는 가져오지 않는다 — 「5-tuple」이 무엇인지만 가져온다.
+
+- 흐름을 가르는 장치들은 전통적으로 **출발지 주소·목적지 주소·출발지 포트·목적지 포트·전송 프로토콜의 종류** 다섯 값(5-tuple)을 써 왔다 — §1. 흐름을 흔히 이 5-tuple이 같은 패킷들의 묶음으로 정의한다 — §3
+- **한국어 이름**: 5-tuple → 「주소·포트·프로토콜의 다섯 값」으로 풀어 쓴다(이름 「5-tuple」은 한 번 밝힐 수 있다)
+
+쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(L4 스위치가 보는 값 — 출발지·목적지 IP 주소, 출발지·목적지 포트 번호, 프로토콜), 위 RFC 9569 항목
+
+## (phase 82 step 12) RFC 3143·RFC 3466 — 「L4 switch」·「L4-L7 switch」라는 이름이 나오는 곳
+https://www.rfc-editor.org/rfc/rfc3143
+https://www.rfc-editor.org/rfc/rfc3466
+
+판(rfc-editor.org 텍스트판과 json, 2026-11-20): RFC 3143은 2001-06, Informational, 폐기·개정 없음. **RFC 3466은 2003년(문서 머리 2003-02, json 2003-03), Informational이고 RFC 7336으로 폐기됐다** — 역사 기록으로만 쓴다. 대체한 RFC 7336(2014-08, Informational)에는 서버 팜·스위치의 설명이 없다(전문 검색).
+
+- RFC 3143은 웹 프록시·캐시의 알려진 문제를 늘어놓은 문서다. 가로채기 프록시가 IP 주소에 기댄 인증을 깨뜨린다는 문제의 우회책으로, 가로채는 장치에서 IP 필터를 걸어 그런 서버로 가는 요청은 비켜 가게 하라고 적으면서 그 장치를 괄호로 「L4 switch」라 부른다 — §2.2.3.
+  여기서 「L4 switch」는 웹 요청을 가로채 캐시로 돌리는 장치를 가리킬 뿐이고, 정의하지 않으며 서버 부하 분산 장치를 가리키지도 않는다
+- RFC 3466 §2.3(서버 팜)은 서버 팜이 흔히 OSI 4~7계층의 정보를 쓰는 「지능형」·「콘텐츠」 스위치를 쓰고 그 스위치가 요청을 살펴 서버 묶음에 나눈다고 적는다. 서버 팜의 목표로 서버 여럿을 원 사이트 하나처럼 보이게 하기, 요청을 서버 모두에 고르게 나누기, 고장 난 서버를 피해 보내기,
+  한 사용자 에이전트의 세션을 같은 서버로 보내기를 들고, 그림에서 그 장치를 「L4-L7 switch」라 이름 붙인다 — §2.3. 폐기된 문서라 본문의 근거로 쓰지 않는다 — 이런 이름이 IETF 문서에 나온 적이 있다는 기록으로만 둔다
+- 「layer 4 switch」·「layer-4 switch」·「layer 7 switch」·「L7 switch」는 RFC 어디에도 없다(위 RFC 3234 항목의 「(phase 82 step 12)」 줄)
+- **판단**: 시험의 「L4 스위치」·「L7 스위치」는 표준이 정의한 이름이 아니다 — `exam-notes.md` E43
+
+쓰인 곳: `exam-notes.md` E43(이름의 처리), (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`·`network-devices.l7-switch`(「자격시험은 … 라 부른다」 한 줄의 근거)
+
+## (phase 82 step 12) IEEE 802.3af·802.3at·802.3bt — PoE(Power over Ethernet): 표준 개요 페이지, 태스크 포스 문서(PAR·목표·요구 사항·5대 기준), 4쌍 PoE 관심 요청(CFI) 발표
+https://standards.ieee.org/ieee/802.3af/1090/
+https://standards.ieee.org/ieee/802.3at/4553/
+https://standards.ieee.org/ieee/802.3bt/6749/
+https://standards.ieee.org/ieee/802.3/10422/
+https://www.ieee802.org/3/af/index.html
+https://www.ieee802.org/3/af/PAR-802-3af.pdf
+https://www.ieee802.org/3/af/objectives.pdf
+https://www.ieee802.org/3/af/requirements.pdf
+https://www.ieee802.org/3/at/index.html
+https://www.ieee802.org/3/at/P802d3at_PAR.pdf
+https://www.ieee802.org/3/at/objectives.html
+https://www.ieee802.org/3/bt/index.html
+https://www.ieee802.org/3/bt/P802d3bt_PAR.pdf
+https://www.ieee802.org/3/bt/P802d3bt_objectives.pdf
+https://www.ieee802.org/3/4PPOE/5Criteria.pdf
+https://www.ieee802.org/3/cfi/0313_2/CFI_02_0313.pdf
+
+판(2026-11-20 IPv4로 내려받음):
+- 개요 페이지 — 802.3af-2003(이사회 승인 2003-06-12, 발행 2003-06-17), 802.3at-2009(승인 2009-09-11, 발행 2009-10-30), 802.3bt-2018(승인 2018-09-27, 발행 2019-01-31) 셋 다 **「Superseded」**(뒤 판의 IEEE Std 802.3에 합쳐졌다).
+  지금 판은 **IEEE 802.3-2022**(Active, 2022-05-13 승인, 802.3da-2026 같은 개정이 붙어 있다)이고, 개요가 「정해진 꼬임 쌍선 물리 계층 위에서 전원을 공급하는 일」을 다루는 기능으로 든다. 다음 판(P802.3)은 PAR 단계(2025-12-10 승인)다
+- 태스크 포스 문서는 **표준 본문이 아니다** — 802.3af PAR(2000-01-30 승인), 802.3af 목표(1999-11 연구 그룹), **802.3af 요구 사항 문서(2000-11 — 「승인되지 않은 작업 문서」라고 스스로 적는다)**, 802.3at PAR·목표(2008-11 갱신),
+  802.3bt PAR·목표(2013-05·07 채택, 2017-03 갱신), 4쌍 PoE 연구 그룹의 5대 기준(2013-07), 4쌍 PoE CFI(2013-03 — 회원들의 발표 자료)
+- 본문의 자리: 802.3af·802.3at의 PoE는 802.3의 **Clause 33**이다(4쌍 PoE 5대 기준 — 「Clause 33, 유일한 DTE Power via MDI(PoE) 절」, CFI — 「IEEE Std 802.3-2012 Clause 33」). 802.3bt의 4쌍 PoE는 2017-01 결정으로 **따로 된 새 절**로 옮겨졌다(802.3bt 목표 3쪽). 새 절의 번호는 이 문서들에서 확인하지 못했다
+
+- **PoE가 무엇인가**: 802.3 인터페이스를 가진 장치에 **평형 케이블(꼬임 쌍선)로 전원을 공급하는 방법**을 정한다 — 802.3af PAR 「Scope」. 목적은 전력을 적게 쓰고 LAN에 이어지는 새 종류의 장치에 전원을 주는 것이다 — 802.3af PAR 「Purpose」.
+  10BASE-T·100BASE-TX(1000BASE-T도 검토) 장치 하나에 꼬임 쌍선 링크 구간으로 경제적으로 전원을 주는 것이 처음 목표였다 — 802.3af 목표 (1). 처음 표준의 이름은 「MDI를 통한 DTE 전원(DTE Power via MDI)」이고, 「Power over Ethernet(PoE)」라는 이름은 802.3bt의 제목·개요와 4쌍 PoE 5대 기준이 쓴다
+- **PSE와 PD**: 전원을 주는 쪽은 **PSE**(Power Sourcing Equipment), 받는 쪽은 **PD**(Powered Device)다. PSE는 링크의 끝에 있을 수도, MDI들 사이의 중간(미드스팬)에 따로 있을 수도 있고, 링크 구간을 거쳐 PD에 전원을 준다 — 802.3af 개요
+- **검출**: PSE는 **검출 절차로 호환되는 PD를 호환되지 않는 장치와 가려**, 호환되지 않는 장치에는 전원을 넣지 않아 망가뜨리지 않는다. 전원을 넣은 뒤에도 PD가 전원을 계속 원한다는 신호를 살펴, 더는 필요 없으면 전원을 끊는다 — 802.3af 개요.
+  전원이 있는 장치와 없는 장치 모두에서 동작하는 검출 기능은 처음부터의 목표였다 — 802.3af 목표 (4). 작업 문서는 저항으로 상대를 알아보는 방식을 골랐다고 적는다 — 요구 사항 16(2000-11 작업 문서)
+- **분류**: PD가 쓸 전력의 등급을 PSE에 알리는 분류가 있다 — 802.3at 목표 9(PoE Plus 모드로 분류를 넓힌다), 802.3bt 개요(협상 때 주고받는 전력 분류 정보를 넓혀 전력 관리를 쓸모 있게 한다). 등급표는 가져오지 않는다
+- **전원과 전압**: 직류(DC) 전원을 보낸다 — 802.3af 요구 사항 8. PSE의 출력 전압을 **44~57V 직류 범위**로 하자는 결정이 적혀 있다 — 요구 사항 18(2000-11 작업 문서 — 승인된 표준 본문의 값이 아니다).
+  4쌍 PoE CFI의 손실 계산 예는 PD 쪽 전압 48V를 예로 쓴다(CFI 10쪽 — 계산을 위한 예). **「표준 전압은 48V」라는 문장은 찾지 못했다**
+- **쌍**: 802.3af·802.3at(Clause 33)는 네 쌍 가운데 **두 쌍**(1-2·3-6 또는 4-5·7-8)으로 전원을 보내고 둘 중 한 배치만 쓴다 — CFI 7쪽 「Definitions」, 요구 사항 1·12. 802.3bt는 **네 쌍을 모두 써서** PD가 받을 수 있는 최대 전력을 늘렸다 — 802.3bt 개요·PAR 「Scope」
+- **규격마다의 전력(문서가 보이는 값만 — 모두 PD 쪽 값이다)**:
+  - 802.3af: 802.3at의 목표 표가 802.3af PSE로 동작하는 PD의 경계를 **12.95W**로 둔다 — 그보다 적게 쓰는 PoE Plus PD는 802.3af PSE에서 동작하고, 더 쓰는 PD는 802.3af PSE에 이으면 사용자에게 알려야 한다(802.3at 목표 14, 2008-11).
+    곧 802.3af로 PD가 받는 전력은 12.95W까지다(표에서 나오는 말 — 「802.3af는 12.95W」라는 문장 자체는 없다)
+  - 802.3at: PoE Plus(802.3at)는 PD에서 **적어도 24W**를 목표로 했다(목표 6 — 2008-03에 30W를 지우고 24W로 바꿨다). 그 결과가 합쳐진 IEEE Std 802.3-2012 Clause 33의 **PD 최대 전력은 25.5W**다 — 4쌍 PoE CFI 11쪽(2013-03 회원 발표)
+  - 802.3bt: PD에서 **적어도 49W**를 목표로 했다 — 802.3bt 목표 2쪽(2013-07). **표준이 정한 최종 값은 이 step이 읽은 공개 문서에서 찾지 못했다**(태스크 포스 회의 자료 목록의 「Type 3·Type 4」 발표들은 진행 중의 제안이라 쓰지 않았다)
+  - PSE 쪽에서 포트가 내보내는 전력의 값은 찾지 못했다
+- **쓰는 장치와 까닭**: IP 전화기 규격을 만들던 TIA가 쓸 전원 규격을 802.3에 청한 것이 802.3af의 계기다 — 802.3af PAR 9. 802.3at은 여러 대역의 무선 AP와 제어할 수 있는(controllable) 보안 카메라처럼 802.3af보다 많은 전력이 필요한 장치 때문에(PAR 5.5),
+  802.3bt는 씬 클라이언트·여러 무선을 쓰는 AP·상하좌우로 움직이고 확대하는(PTZ) 카메라·디지털 사이니지·빌딩 자동화·산업용 센서처럼 더 많은 전력이 필요한 장치 때문에 만들었다(PAR 5.5). 4쌍 PoE 5대 기준은 **어떤 곳에서는 교류(AC) 전원을 따로 마련하는 비용이 LAN을 쓰는 데 걸림돌**이라고 적는다
+- 유형(Type) 1~4라는 이름은 802.3bt 태스크 포스 발표 제목(예: 「Type 3/4 PSE … Type 1/2 PD」)에만 보인다 — 어느 유형이 어느 규격의 것인지 정한 문장은 찾지 못해 쓰지 않는다
+- **한국어 이름**: Power over Ethernet → **PoE**(풀어 쓰면 「이더넷 케이블로 전원 보내기」), Power Sourcing Equipment → **PSE**(전원을 주는 장치), Powered Device → **PD**(전원을 받는 장치), mid-span → 미드스팬(이름만 — 「링크 중간에 끼우는 전원 장치」로 풀어 쓴다),
+  detection → **검출**, classification → 분류(이름만), Maintain Power Signature → 이름은 쓰지 않는다(「전원을 계속 원한다는 신호」로 풀어 쓴다)
+
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PoE의 뜻과 목적, PSE·PD, 미드스팬, 검출과 전원 끊기, 직류, 두 쌍과 네 쌍, 규격 셋의 해와 PD 쪽 전력, 쓰는 장치, 교류 전원을 마련하기 어려운 곳), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2024-05-19 #50]·[기출 2025-11-02 #50])
+
+## (phase 82 step 12) RFC 3621 — Power Ethernet MIB, RFC 7603 — Energy Management (EMAN) Applicability Statement
+https://www.rfc-editor.org/rfc/rfc3621
+https://www.rfc-editor.org/rfc/rfc7603
+
+판(rfc-editor.org 텍스트판과 json, 2026-11-20): RFC 3621은 2003-12 Proposed Standard, RFC 7603은 2015-08 Proposed Standard, 둘 다 폐기·개정 없음.
+
+- RFC 3621은 802.3af의 PSE를 관리하는 MIB다. IP 전화가 데이터와 같은 기반 시설 위에서 돌게 되면서 **신호를 보내는 바로 그 케이블로 전화기에 전원도 주는 일**을 802.3 작업 그룹이 표준으로 만들기 시작했다고 적는다 — §3.
+  약어 PSE(Power Sourcing Equipment)·PD(Powered Device)는 802.3af가 정한 것을 그대로 쓴다 — §3. PSE 장치의 예로 **전원 이더넷을 지원하는 이더넷 스위치**와 미드스팬 상자를 든다 — §4
+- 포트마다의 검출 상태 값으로 꺼짐·찾는 중(searching)·전원 공급 중(deliveringPower)·고장 등을 두고(§5 `pethPsePortDetectionStatus` — 802.3af의 PSE 상태도를 따른다), 올바르지 않은 신호를 만난 횟수를 센다(§5 `pethPsePortInvalidSignatureCounter`).
+  분류는 단말을 전력 소비에 따라 꼬리표 붙이는 방법이고, IP 전화·무선 LAN AP 같은 장치를 전력 요구에 따라 나눈다 — §5 `pethPsePortPowerClassifications`(등급의 뜻은 IEEE 규격이 정한다고 적는다)
+- RFC 7603 §2.2: PSE 장치(**예: PoE 스위치**)는 USB나 이더넷 같은 매체로 PD(예: 탁상용 전화기)에 전원을 준다. 포트마다 전원을 켜고 끌 수 있고 대개 실제로 준 전력을 잰다. PD는 **연결 하나로 네트워크 연결과 전원을 함께 받는다**.
+  대상 장치로 IP 전화·무선 AP·IP 카메라를 들고, PoE 장치는 전원을 주는 스위치 포트에 이어진다고 적는다 — §2.2. 일부 PoE 스위치는 이어진 장치의 소비 전력을 잴 수 있다 — §1.3
+- 「PoE 스위치」라는 이름은 이 표준 문서(RFC 7603)에 PSE의 예로 나온다 — 시험의 이름과 맞으므로 E 항목을 만들지 않는다. RFC 6988(2013-10, Informational)도 포트마다 전원을 주는 장비의 흔한 예로 PoE 스위치를 든다
+- **한국어 이름**: PoE switch → **PoE 스위치**(PoE로 전원을 주는 스위치 — PSE 노릇을 한다), Power over LAN·power Ethernet → 이름은 쓰지 않는다(PoE로 통일한다)
+
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PSE·PD의 예, PoE 스위치, 연결 하나로 데이터와 전원, IP 전화·무선 AP·IP 카메라, 포트마다 전원을 켜고 끈다 — 4절 「PoE 스위치와 일반 스위치」의 근거), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단)
+
+## (phase 82 step 12) RFC 4578 — Dynamic Host Configuration Protocol (DHCP) Options for the Intel Preboot eXecution Environment (PXE)
+https://www.rfc-editor.org/rfc/rfc4578
+
+판(rfc-editor.org 텍스트판과 `…/rfc4578.json`, 2026-11-20): 2006-11, Informational, 폐기·개정 없음. IANA가 옵션 93·94·97과 128~135를 이 문서에 이어 두었다 — §4.
+
+- PXE는 **Intel이 정한 사양**이다 — 이 문서는 Intel의 PXE 사양과 EFI 사양이 정한 DHCP 옵션을 IETF에 기록해 두려고 적은 것이다 — §1. 제목도 「Intel Preboot eXecution Environment(PXE)」다. Intel의 사양 자체는 허용 목록 밖이라 열지 않았다
+- PXE를 따르는 클라이언트는 DHCP 옵션으로 **부팅하는 기계와 운영 체제가 올라오기 전의 실행 환경**을 알려, DHCP 서버나 PXE 부팅 서버가 그 기계에 맞는 **운영 체제 부팅 이미지(또는 부팅 전 응용)의 이름과 서버**를 돌려주게 한다 — Abstract, §1
+- 옵션 셋 — 클라이언트 시스템 구조의 종류(93 — 예: x86 PC, EFI x86-64), 클라이언트 네트워크 인터페이스 식별자(94 — 지금 정한 종류는 UNDI 하나이고, 그 판으로 1·2세대 **PXE 부팅 ROM**을 가른다), 클라이언트 기계 식별자(97 — GUID).
+  셋 모두 PXE 클라이언트·서버가 보내는 DHCP·PXE 패킷에 반드시 들어간다 — §2.1~§2.3
+- 이 문서는 부팅 파일을 무엇으로 받는지 말하지 않는다 — TFTP는 위 「(phase 73 step 1) RFC 951 — …, RFC 2131 — …」 항목과 아래 Microsoft Learn 항목
+- **한국어 이름**: Preboot Execution Environment → **PXE**(Microsoft 한국어판은 「사전 부팅 실행 환경(PXE)」 — 아래 항목), boot ROM → 부팅 ROM(이름만), bootstrap image → 부팅 이미지
+
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE는 Intel이 정한 사양, PXE 클라이언트가 DHCP로 자기 구조를 알리고 맞는 부팅 이미지의 이름과 서버를 받는다, 네트워크 인터페이스의 부팅 ROM), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
+
+## (phase 82 step 12) Microsoft Learn — PXE와 WDS: Configure a PXE server to load Windows PE, About the Windows Deployment Services API, Windows Deployment Services (WDS) boot.wim support, Features removed or no longer developed in Windows Server; PnP·PE: Introduction to Plug and Play, PE Format
+https://learn.microsoft.com/en-us/windows/deployment/configure-a-pxe-server-to-load-windows-pe
+https://learn.microsoft.com/en-us/windows/win32/wds/about-the-windows-deployment-services-api
+https://learn.microsoft.com/en-us/windows/deployment/wds-boot-support
+https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server
+https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-plug-and-play
+https://learn.microsoft.com/en-us/windows/win32/debug/pe-format
+
+2026-11-20에 IPv4로 내려받아 읽은 판: 「Configure a PXE server to load Windows PE」 `updated_at` 2025-06-04(`ms.date` 2022-11-23, 적용 대상 Windows 10), 「About the Windows Deployment Services API」 2025-03-11(2018-05-31), 「WDS boot.wim support」 2026-09-21(2026-09-18),
+「Features removed or no longer developed in Windows Server」 2026-11-17(2026-11-16), 「Introduction to Plug and Play」 2025-05-01(2025-04-23), 「PE Format」 2026-09-10(2026-09-10). 한국어판(기계 번역)도 받았다(`updated_at` 2026-07-06~2026-11-17).
+같은 사이트의 「Understand PXE boot in Configuration Manager」는 같은 차례를 더 자세히 적지만 Windows Server·Windows 문서가 아니라 쓰지 않았다.
+
+- **PXE 부팅의 차례**(「Configure a PXE server …」 「PXE boot process summary」): 클라이언트가 PXE 서버에 닿으면(다른 서브넷이면 라우터·스위치의 IP 헬퍼가 요청을 넘겨 준다) PXE 서버가 DHCP 옵션 60(클라이언트 식별자 PXEClient)·66(부팅 서버 호스트 이름)·67(부팅 파일 이름)을 보낸다.
+  클라이언트는 옵션 67의 부팅 파일(네트워크 부팅 프로그램)을 **TFTP 서버에서 내려받아** 실행하고, 그 프로그램이 부팅 관리자와 부팅 설정 파일을, 부팅 관리자가 다시 Windows PE 이미지를 TFTP 서버의 같은 폴더에서 내려받아 Windows PE를 시작한다. 그 뒤 Windows PE의 도구로 디스크를 준비하고 네트워크의 Windows 이미지로 운영 체제를 설치한다.
+  필요한 것은 PXE 클라이언트 요청에 답하도록 설정한 DHCP 서버(또는 DHCP 프록시), 부팅 파일을 두는 TFTP 서비스를 돌리는 PXE 서버, 파일 서버이고, 셋을 한 컴퓨터에 둘 수도 있다 — 「Prerequisites」. 이 안내의 목적은 **클라이언트 컴퓨터를 네트워크에서 부팅해 네트워크로 Windows를 설치하는 것**이다 — 도입부
+- **WDS**(Windows 배포 서비스): 네트워크로 Windows 운영 체제를 배포하는 구성 요소 묶음이다. 서버 쪽 구성 요소에 **PXE 서버와 TFTP 서버**가 있어 컴퓨터를 네트워크에서 부팅해 운영 체제를 올리고 설치하게 하고, 클라이언트 쪽은 Windows PE(Windows 사전 설치 환경) 안에서 돌며 설치할 이미지를 고르는 화면이다 — 「About the WDS API」
+- **WDS의 지금 상태**: 「Features removed …」는 WDS 서버 역할(역할 서비스·관리 도구·**WDS가 주는 PXE 기능** 포함)을 **Windows Server 2028부터 더 이상 개발하지 않는(deprecated) 기능**으로 올렸다 — 그 판은 아직 미리 보기이고 계획이 바뀔 수 있다고 함께 적는다.
+  이 문서에서 「더 이상 개발하지 않음」은 기능이 아직 Windows Server에 들어 있고 운영에 지원되며 보안·품질 업데이트를 받지만, 뒤 판에서 빠질 수 있다는 뜻이다. 대신 Configuration Manager로 옮기기를 권한다.
+  「WDS boot.wim support」도 Windows Server 2025 다음 판부터 WDS(역할·서비스·도구·PXE 부팅 기능)를 더 이상 개발하지 않는다고 적는다. 설치 미디어의 `boot.wim`으로 Windows 설치를 WDS 모드로 돌리는 방식은 Windows 11과 Windows Server 2025부터 막혔지만 **WDS의 PXE 부팅 자체는 영향을 받지 않는다**(직접 만든 부팅 이미지로는 여전히 PXE 부팅할 수 있다)고 적는다.
+  곧 Windows Server 2025까지는 WDS가 들어 있다 — 본문은 「Windows Server에는 PXE 부팅으로 운영 체제를 설치하게 하는 WDS 역할이 있고, 다음 판부터 더 이상 개발하지 않는다고 예고됐다」까지 한 줄로 쓸 수 있다
+- **PnP**(플러그 앤 플레이): 사용자가 거의 손대지 않아도 컴퓨터가 하드웨어의 바뀜에 맞추게 하는 Windows의 부분이다 — 장치를 붙이거나 떼도 손으로 설정할 필요가 없다(예: 노트북을 도킹 스테이션에 꽂으면 거기 이어진 키보드·마우스·모니터를 바로 쓴다). 장치 하드웨어·시스템 소프트웨어·드라이버가 함께 받쳐야 한다 — 「Introduction to Plug and Play」. 네트워크 부팅과 상관이 없다
+- **PE**(Portable Executable): Windows 계열 운영 체제의 **실행 파일(이미지 파일) 형식**의 이름이다(목적 파일 형식은 COFF). 「이식 가능」은 그 형식이 특정 프로세서 구조에 묶이지 않는다는 뜻이다 — 「PE Format」. 네트워크 부팅과 상관이 없다.
+  이름이 비슷한 **Windows PE**(Windows 사전 설치 환경 — 위 PXE 차례에서 내려받아 시작하는 작은 Windows)와는 다른 것이다. 시험의 오답 「PE(Portable Executable)」는 실행 파일 형식 쪽이다
+- **한국어 이름**: 한국어판은 Windows Deployment Services를 「Windows 배포 서비스(WDS)」, Preboot Execution Environment를 「사전 부팅 실행 환경(PXE)」, Windows PE를 「Windows PE(Windows 사전 설치 환경)」, Plug and Play를 「PnP(플러그 앤 플레이)」, Portable Executable을 「PE(이식 가능한 실행 파일)」, boot file name을 「부팅 파일 이름」으로 옮긴다.
+  **고른 이름**: 「PXE(사전 부팅 실행 환경)」 — 본문은 「네트워크 부팅」으로 풀어 쓴다, 「Windows 배포 서비스(WDS)」, 「PnP(플러그 앤 플레이)」, 「PE(Portable Executable — 실행 파일 형식)」
+
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE 부팅의 차례 — DHCP로 부팅 서버·부팅 파일 이름 → TFTP로 내려받기 → 실행, 네트워크로 운영 체제를 설치하는 쓰임, WDS의 PXE·TFTP 서버와 지금 상태, PnP·PE를 한 줄로 가를 근거 — 4절은 「PXE와 PoE」), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
