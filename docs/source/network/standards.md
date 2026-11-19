@@ -162,6 +162,10 @@ RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽�
 그래서 신청자·인증자·인증 서버라는 세 역할은 802.1X를 RADIUS와 함께 쓰는 법을 적은 RFC 3580(Informational)의 용어 정의에서 가져왔다. **OWASP와 보안 업체의 학습 페이지·제품 문서는 허용 목록 밖이라 열지 않았다**(NIST SP 800-228-upd1이 OWASP를 이름으로 드는 것은 적지만, OWASP의 문서를 근거로 쓰지 않는다).
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — IDS의 탐지 기법 세부(상태 기반 프로토콜 분석의 동작·프로파일 학습·튜닝)·센서 배치의 세부, IPsec의 SA·SPD·SAD 구조와 처리 차례·암호 알고리즘 목록·IKE 메시지 교환·NAT 통과,
 PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 전체·MACsec·RADIUS 속성, 방화벽 제품의 기능·DMZ 설계·방화벽 정책의 프로토콜별 권고, SSL VPN의 포털 설계·끝점 보안 점검의 세부, WireGuard·OpenVPN 같은 제품·구현.
+「(phase 82 보충)」이 붙은 줄과 항목은 phase 82가 끝난 뒤(2026-11-20) 메인 세션이 더했다. 802.11 작업 그룹 문서 서버(`mentor.ieee.org`)는 사용자 결정(2026-11-19)으로 허용 목록에 들었지만 자동 내려받기를 막아(HTTP 418),
+사용자가 브라우저로 받아 둔 파일 셋 — 802.11 문서 11-15/0132r17·11-09/0992r21과 CSA의 Zigbee 사양 R23.2 — 을 저장소 밖에서 글자만 뽑아 읽었다(Zigbee 사양도 step 4 때는 Cloudflare가 막아 못 읽었던 것이다).
+**두 802.11 문서는 작업반이 초안을 쓰기 전에 합의한 내용을 모은 사양 틀(specification framework)이지 표준 본문이 아니다** — 그래서 본문은 「작업반의 사양 틀은 ~로 정했다」로 쓰고, 최종 표준에서 바뀌었을 수 있는 세부(묶음 크기의 짝 전체, 신호 칸의 비트 수)는 가져오지 않았다.
+개정마다의 최대 데이터 전송률은 두 문서 어디에도 합한 값으로 적혀 있지 않아 쓰지 않았다.
 
 ---
 
@@ -7645,6 +7649,7 @@ https://www.ieee802.org/802_tutorials/2009-11/15-09-0770-00-0000-smartgrid-tutor
 - FAQ 「What markets are served by Zigbee?」: 주거(스마트 홈)·상업 건물·전력 사업(스마트 미터와 가정 영역 네트워크)에 쓰인다 — 회사·제품 이름은 옮기지 않는다
 - **장치 역할(코디네이터·라우터·엔드 디바이스)의 정의는 찾지 못했다** — 사양 본문에만 있을 것이고 읽지 못했다. FAQ는 「네트워크 코디네이터」 여럿을 이어 아주 큰 네트워크를 만들 수 있다고만 적는다(「How many nodes or devices can a Zigbee network support?」).
   802.15.4 쪽에서는 코디네이터가 네트워크를 자동으로 세운다(위 「IEEE 802.15」 항목의 TG4 줄). 본문은 「코디네이터가 네트워크를 세운다」까지만 쓰고, 라우터·엔드 디바이스라는 이름과 그 일은 지어내지 않는다
+- (phase 82 보충) 사양 본문(R23.2)을 사용자가 받아 둔 PDF로 읽었다 — 장치 역할의 정의와 네트워크 모양은 아래 「(phase 82 보충) CSA — Zigbee 사양 R23.2」 항목에 있다
 - **Zigbee와 BLE를 직접 견준 문장은 없다** — 각각의 사실만 쓴다: Zigbee는 802.15.4 위(DSSS·CSMA-CA, 2.4 GHz와 1 GHz 아래 대역, 메시), BLE는 Bluetooth SIG 사양의 LE(2.4 GHz 채널 40개·FHSS, 점대점·브로드캐스트·메시 — 위 「Bluetooth SIG」 항목)
 - 쓰지 않는 것: 홍보 문구(「유일한 완전한 IoT 해법」, 칩 출하량, 채택 회사), 응용 프로파일·보안 방식(AES-128 등)·Zigbee Direct·Matter와의 관계, 노드 수, 인증 프로그램
 - **한국어 이름**: Zigbee → **Zigbee**(CSA의 지금 표기 — 기출은 「Zigbee」와 「ZigBee」를 쓴다), Connectivity Standards Alliance → **CSA**(Zigbee를 정하는 업계 단체 — 이름 그대로), coordinator → 코디네이터, mesh → **메시**, self-healing → 「장애에서 회복해 스스로 고친다」로 풀어 쓴다
@@ -8385,3 +8390,36 @@ RFC 3580은 Informational(2003-09)이고 RFC 7268이 고쳤으며 폐기되지 �
 (phase 82 step 17) 쓰인 곳: `network-security.nac`(문단 3 — 장치가 LAN에 닿는 자리(포트)를 인증·인가된 장치만 쓰게 묶는 포트 기반 네트워크 접근 제어, 신원을 확인하지 못했거나 허락받지 않은 쪽의 송수신을 막는다, 무선 AP의 연결도 그 자리다 — 개요 페이지·작업 그룹 페이지·RFC 3580 §1.1 /
 문단 4 — 세 역할, 인증 서버를 꼭 두지는 않는다, 한곳에서 관리하려면 인증자가 인증 서버의 클라이언트가 된다 — RFC 3580 §1.1·§1 / 문단 5 — 인증 전의 포트에서는 인증 메시지만 오간다(제어 포트·비제어 포트에서 이어서 나오는 말, 이름은 쓰지 않았다) / 문단 6 — 예의 네 단계 / 문단 8 — 인증을 받지 못한 장치는 처음 붙은 포트에서부터 막힌다),
 문항 n345(무선 AP가 인증자 — RFC 3580 §1.1)·n346 해설, 도식 `NacAdmissionDiagram`(`nac-admission`)의 캡션. 인증 결과로 VLAN에 넣는 것(§3.31)과 EAP·EAPOL의 이름은 새 낱말을 줄이려고 쓰지 않았다
+
+## (phase 82 보충) IEEE 802.11 작업 그룹 문서 — 802.11ax 사양 틀(11-15/0132r17), 802.11ac 사양 틀(11-09/0992r21)
+허용 목록의 「IEEE 802.11 작업 그룹 문서」 — 사용자 결정(2026-11-19)으로 더함. 서버가 자동 내려받기를 막아 사용자가 2026-11-20 브라우저로 받아 둔 파일을 읽었다.
+https://mentor.ieee.org/802.11/dcn/15/11-15-0132-17-00ax-spec-framework.docx
+https://mentor.ieee.org/802.11/dcn/09/11-09-0992-21-00ac-proposed-specification-framework-for-tgac.doc
+
+판: 11-15/0132r17 「Specification Framework for TGax」(2016-05-25, 작업반 TGax의 합의를 편집자가 모은 문서), 11-09/0992r21 「TGac Spec Framework」(2011-01, 작업반 TGac의 합의를 모은 문서). 둘 다 초안을 쓰기 전의 사양 틀이고 표준 본문이 아니다.
+
+- 802.11ax 장치는 하향·상향 OFDMA(MU-MIMO가 아닌 것)를 반드시 지원한다 — 0132r17 「High Efficiency (HE) Physical Layer — General」
+- OFDMA의 기본 묶음: 20 MHz에서 부반송파(tone) 26개·52개·106개짜리, 40 MHz에서 242개짜리, 80 MHz에서 484개짜리가 더해진다. 한 OFDMA 전송 안에 크기가 다른 묶음을 섞을 수 있다 — 0132r17 「Resource unit, edge and DC tones」.
+  이 묶음을 자원 단위(Resource Unit, RU)라 부르고, 하향 OFDMA에서는 신호 칸(HE-SIG-B)이 RU 배정과 스테이션마다의 변조·부호 방식을 알린다 — 0132r17 「HE-SIG-B」
+- 하향·상향 OFDMA는 서로 다른 스테이션의 프레임을 주파수 영역에서, 하향·상향 MU-MIMO는 공간 영역에서 나눠 싣는다. 상향 MU 전송은 AP가 보낸 트리거 프레임에 대한 응답으로 보낸다 — 0132r17 「Multi-user (MU) features — General」
+- 하향·상향 MU-MIMO로 공간에서 함께 다루는 사용자는 한 RU에서 8명까지다 — 0132r17 「HE PHY — General」의 MU-MIMO 줄
+- MU-MIMO의 정의: 안테나를 여럿 가질 수 있는 여러 스테이션이 서로 독립인 데이터 흐름을 같은 때 보내거나 받는 기법. 하향 MU-MIMO는 보내는 스테이션 하나와 받는 스테이션 여럿이다 — 0992r21 §1 「Definitions」
+- 공간 스트림은 1개부터 8개까지이고(0992r21 R3.2.1.D), 하향 MU-MIMO 한 번의 사용자는 4명까지다(0992r21 「VHT-SIG-A」의 MU 줄)
+- 찾지 못한 것: 개정마다의 최대 데이터 전송률(0992r21은 BCC 부호기 하나가 600 Mbps까지라고만 적는다), 공간 스트림을 정의한 문장
+- **한국어 이름**: specification framework → **사양 틀**(작업반이 초안 전에 합의를 모은 문서 — 이름 그대로 옮김), resource unit → **자원 단위(RU)**, tone → **부반송파**(같은 주제의 `wlan-transmission`과 같게)
+
+쓰인 곳: `wireless-lan.mimo`(문단 4 — MU-MIMO의 정의, 공간 스트림 8개, 하향 MU-MIMO 4대, 802.11ax의 8대), `wireless-lan.ieee-80211-standards`(문단 7 — OFDMA와 RU, 26·52·106개 묶음, 하향·상향 OFDMA, 주파수와 공간의 가름)
+
+## (phase 82 보충) CSA — Zigbee 사양 R23.2(Zigbee Document 05-3474-23)
+허용 목록의 「무선 업체 연합 기술」. 사양 내려받기 페이지의 「Zigbee Core」에서 사용자가 2026-11-20 받아 둔 PDF를 읽었다.
+https://csa-iot.org/developer-resource/specifications-download-request/
+
+판: Zigbee Specification Revision 23.2(1.0), Zigbee Document 05-3474-23, 2025-11-10, CSA 이사회가 공개를 승인한 판(표지). step 4가 적은 최신판(R23.1)보다 뒤의 판이다.
+
+- 네트워크 계층은 별 모양과 메시를 지원한다. 별 모양에서는 Zigbee 코디네이터 하나가 네트워크를 다스리며 장치들을 받아들이고 유지하고, 다른 장치(엔드 디바이스)는 코디네이터와 직접 통신한다.
+  메시에서는 코디네이터가 네트워크를 시작하고 주요 설정 값을 고르며, 네트워크는 Zigbee 라우터로 넓힌다. 메시는 장치끼리 대등하게 통신하게 한다 — §1.1.4 「Network Topology」(40쪽)
+- Zigbee 코디네이터는 802.15.4의 PAN 코디네이터다. Zigbee 라우터는 코디네이터가 아니면서 장치 사이의 메시지를 전달하고(라우팅) 다른 장치의 연결을 받아 주는 802.15.4 장치(FFD)다. Zigbee 엔드 디바이스는 코디네이터도 라우터도 아닌 장치(802.15.4의 RFD나 FFD)다 — 정의 절(55쪽)
+- 쓰지 않는 것: FFD·RFD의 뜻과 차이, 비컨, 응용 계층(APS·ZDO)의 구조, 보안
+- **한국어 이름**: coordinator → 코디네이터, router → 라우터(이 주제에서는 Zigbee의 역할 이름이다 — 네트워크 계층 장비인 라우터와 이름만 같다), end device → 엔드 디바이스, star topology → 별 모양
+
+쓰인 곳: `wireless-lan.zigbee`(문단 2 — 세 역할과 별 모양, 문단 3 — 예의 LIGHT01·SENSOR01의 역할)
