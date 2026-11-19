@@ -256,6 +256,7 @@ import { PingOptionsDiagram } from './PingOptionsDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
+import { PoePowerDiagram } from './PoePowerDiagram'
 import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
@@ -276,6 +277,7 @@ import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
+import { PxeBootDiagram } from './PxeBootDiagram'
 import { QueryModesDiagram } from './QueryModesDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
@@ -674,6 +676,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-devices.balancing-methods': BalancingMethodsDiagram,
   'network-devices.l4-switch': L4SwitchNatDiagram,
   'network-devices.l7-switch': L7SwitchUrlDiagram,
+  'network-devices.poe': PoePowerDiagram,
+  'network-devices.pxe': PxeBootDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

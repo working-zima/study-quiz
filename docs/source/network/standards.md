@@ -1357,6 +1357,7 @@ https://www.rfc-editor.org/rfc/rfc1123
 - (phase 79 step 0) DNS 자체는 이름 문법을 넓게 정한다 — 레이블마다 8비트 옥텟 63개까지, 점으로 나누고 전체 255옥텟까지. DNS를 쓰는 응용마다 이름 문법을 더 좁힐 수 있다 — §6.1.3.5 DISCUSSION
 - (phase 79 step 0) **로컬 호스트 테이블**: 호스트는 로컬 호스트 테이블을 DNS의 예비나 보충으로 쓸 수 있다. 그러면 DNS와 호스트 테이블 가운데 무엇을 앞세울지가 문제인데, **가장 유연한 방법은 그것을 설정으로 정하게 하는 것**이다 — §6.1.3.8 DISCUSSION
 - (phase 82 step 12) 쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(§4.2.1 — TFTP의 가장 중요한 쓰임은 LAN에서 호스트를 부팅하는 일이고, 작고 단순해 EPROM에 넣기 쉽다 — 위 「(phase 78 step 0)」 줄)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 2 — TFTP는 작고 단순해 읽기 전용 메모리에 넣기 쉽고, 좁은 지역의 네트워크에서 컴퓨터를 부팅할 때 가장 많이 쓰인다 — §4.2.1. 「가장 많이 쓰이는 곳」은 `app-protocols-mail-file.tftp`가 쓴 말을 따랐다)
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
@@ -2553,6 +2554,7 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
 - (phase 82 step 12) DHCP 문서도 TFTP를 **부팅 서버에서 부팅 이미지를 옮겨 받는** 프로토콜로 든다 — RFC 2131 §1.2. DHCP 메시지에는 부팅의 다음 단계에서 쓸 서버의 IP 주소 칸(`siaddr`)과 **부팅 파일 이름** 칸(`file`)이 있고,
   서버는 OFFER·ACK에 `siaddr`를 담는다(운영 체제 실행 이미지 같은 다음 부팅 서비스를 자기가 줄 수 있으면 자기 주소를 넣는다) — RFC 2131 §2(Table 1과 그 앞 설명)
   쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(DHCP로 주소와 부팅 서버·부팅 파일 이름을 받고 → TFTP로 그 파일을 받고 → 실행한다 — `ip-address-types.dhcp`·`app-protocols-mail-file.tftp`와 뜻을 맞춘다)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 3·4 — DHCP로 주소와 부팅 서버·부팅 파일 이름을 받고, 그 서버에서 TFTP로 부팅 파일을 받아 실행하는 세 단계 — RFC 951 §2·RFC 2131 §1.2·§2), 도식 `pxe-boot`(1·2 시나리오), 문항 n340 해설
 
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
@@ -2765,6 +2767,7 @@ Draft Standard이고 RFC 1533을 대체했으며 RFC 3442·3942·4361·4833·549
 - (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — Draft Standard 그대로) **부팅에 쓰는 옵션 둘**: TFTP 서버 이름 옵션(코드 66) — DHCP 헤더의 서버 이름 칸(`sname`)을 다른 옵션에 내준 경우 TFTP 서버를 알린다 — §9.4.
   부팅 파일 이름 옵션(코드 67) — 헤더의 `file` 칸을 다른 옵션에 내준 경우 부팅 파일을 알린다 — §9.5. 아래 「(phase 82 step 12) Microsoft Learn — PXE와 WDS …」 항목의 Windows PE 안내는 PXE 클라이언트가 이 두 옵션으로 부팅 서버와 부팅 파일 이름을 받는다고 적는다
   쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(부팅 서버와 부팅 파일 이름을 DHCP 옵션으로 받는다 — 옵션 번호는 본문에 쓰지 않아도 된다)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 3·4 — 부팅 서버와 부팅 파일 이름을 DHCP로 받는다. 옵션 번호는 본문에 쓰지 않았다)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(주소와 함께 주는 설정 — 서브넷 마스크·기본 게이트웨이(라우터)·DNS 서버, 임대 시간), `ip-address-types.dhcp-messages`(메시지 종류, 서버 식별자로 고른 서버를 알린다)
 (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§3.8 — 로컬 DNS 서버의 주소를 DHCP로 자동으로 받는다. 누가 DHCP 서버인지(ISP 쪽 장비인지 공유기인지)는 이 문서가 말하지 않는다), 강의 수정 이력 「phase 79 step 0」 문단(p345)
@@ -7987,6 +7990,7 @@ https://www.ieee802.org/3/cfi/0313_2/CFI_02_0313.pdf
 - **한국어 이름**: Power over Ethernet → **PoE**(풀어 쓰면 「이더넷 케이블로 전원 보내기」), Power Sourcing Equipment → **PSE**(전원을 주는 장치), Powered Device → **PD**(전원을 받는 장치), mid-span → 미드스팬(이름만 — 「링크 중간에 끼우는 전원 장치」로 풀어 쓴다),
   detection → **검출**, classification → 분류(이름만), Maintain Power Signature → 이름은 쓰지 않는다(「전원을 계속 원한다는 신호」로 풀어 쓴다)
 
+- (phase 82 step 14) 쓰인 곳: `network-devices.poe`(문단 0 — 꼬임 쌍선으로 장치에 전원을 보내 케이블 하나로 네트워크 연결과 전원을 함께 받는다, 직류 — PAR 「Scope」·요구 사항 8. 케이블 이름은 `ethernet` 주제가 쓴 「트위스티드 페어(twisted pair)」를 따랐다, 문단 1 — 802.3af·802.3at·802.3bt의 승인 해, IP 전화기에 쓸 전원 규격 요청이 802.3af의 계기, 802.3at은 더 많은 전력이 필요한 장치 때문, PoE Plus, 두 쌍과 네 쌍, 세 개정이 뒤 판의 802.3에 합쳐짐, 문단 2 — PSE·PD와 미드스팬, 문단 3 — 검출과 전원 끊기, 문단 4 — PD 쪽 전력 12.95W·25.5W와 802.3bt의 49W 이상 목표(PSE 쪽 값은 쓰지 않았다), 문단 5 — 장치마다 전원을 따로 마련하는 비용이 걸림돌 — 4쌍 PoE 5대 기준, 문단 6 — 예의 검출 차례), 도식 `poe-power`(전원 시나리오 — PD인 장치에만 같은 랜선으로 전원을 보낸다), 문항 n339 해설(PSE·PD·검출). 「표준 전압 48V」·분류 등급·유형(Type)은 쓰지 않았다
 쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PoE의 뜻과 목적, PSE·PD, 미드스팬, 검출과 전원 끊기, 직류, 두 쌍과 네 쌍, 규격 셋의 해와 PD 쪽 전력, 쓰는 장치, 교류 전원을 마련하기 어려운 곳), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2024-05-19 #50]·[기출 2025-11-02 #50])
 
 ## (phase 82 step 12) RFC 3621 — Power Ethernet MIB, RFC 7603 — Energy Management (EMAN) Applicability Statement
@@ -8004,6 +8008,7 @@ https://www.rfc-editor.org/rfc/rfc7603
 - 「PoE 스위치」라는 이름은 이 표준 문서(RFC 7603)에 PSE의 예로 나온다 — 시험의 이름과 맞으므로 E 항목을 만들지 않는다. RFC 6988(2013-10, Informational)도 포트마다 전원을 주는 장비의 흔한 예로 PoE 스위치를 든다
 - **한국어 이름**: PoE switch → **PoE 스위치**(PoE로 전원을 주는 스위치 — PSE 노릇을 한다), Power over LAN·power Ethernet → 이름은 쓰지 않는다(PoE로 통일한다)
 
+- (phase 82 step 14) 쓰인 곳: `network-devices.poe`(문단 2 — PSE의 예 PoE 스위치, PD의 예 IP 전화기·무선 AP·IP 카메라 — RFC 7603 §2.2·RFC 3621 §4, 문단 3·7 — PoE 스위치는 포트마다 전원을 켜고 끈다 — RFC 7603 §2.2, 문단 5 — PD는 연결 하나로 네트워크 연결과 전원을 함께 받는다 — §2.2), 도식 `poe-power`(노드 이름 「PoE 스위치 SW01」, 역할 곁말 PSE·PD), 문항 n339
 쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PSE·PD의 예, PoE 스위치, 연결 하나로 데이터와 전원, IP 전화·무선 AP·IP 카메라, 포트마다 전원을 켜고 끈다 — 4절 「PoE 스위치와 일반 스위치」의 근거), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단)
 
 ## (phase 82 step 12) RFC 4578 — Dynamic Host Configuration Protocol (DHCP) Options for the Intel Preboot eXecution Environment (PXE)
@@ -8018,6 +8023,7 @@ https://www.rfc-editor.org/rfc/rfc4578
 - 이 문서는 부팅 파일을 무엇으로 받는지 말하지 않는다 — TFTP는 위 「(phase 73 step 1) RFC 951 — …, RFC 2131 — …」 항목과 아래 Microsoft Learn 항목
 - **한국어 이름**: Preboot Execution Environment → **PXE**(Microsoft 한국어판은 「사전 부팅 실행 환경(PXE)」 — 아래 항목), boot ROM → 부팅 ROM(이름만), bootstrap image → 부팅 이미지
 
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 0 — 운영 체제가 올라오기 전의 실행 환경이라는 이름의 뜻, Intel이 정한 사양 — §1, 문단 1 — PXE를 지원하는 네트워크 카드에 PXE로 부팅을 시작하는 프로그램이 ROM에 들어 있다 — §2.2의 「PXE 부팅 ROM」과 RFC 951 §2의 PROM, 문단 3 — 어떤 종류의 컴퓨터인지 알려 그 컴퓨터에 맞는 부팅 파일을 받는다 — §2.1), 문항 n340 해설
 쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE는 Intel이 정한 사양, PXE 클라이언트가 DHCP로 자기 구조를 알리고 맞는 부팅 이미지의 이름과 서버를 받는다, 네트워크 인터페이스의 부팅 ROM), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
 
 ## (phase 82 step 12) Microsoft Learn — PXE와 WDS: Configure a PXE server to load Windows PE, About the Windows Deployment Services API, Windows Deployment Services (WDS) boot.wim support, Features removed or no longer developed in Windows Server; PnP·PE: Introduction to Plug and Play, PE Format
@@ -8046,4 +8052,5 @@ https://learn.microsoft.com/en-us/windows/win32/debug/pe-format
 - **한국어 이름**: 한국어판은 Windows Deployment Services를 「Windows 배포 서비스(WDS)」, Preboot Execution Environment를 「사전 부팅 실행 환경(PXE)」, Windows PE를 「Windows PE(Windows 사전 설치 환경)」, Plug and Play를 「PnP(플러그 앤 플레이)」, Portable Executable을 「PE(이식 가능한 실행 파일)」, boot file name을 「부팅 파일 이름」으로 옮긴다.
   **고른 이름**: 「PXE(사전 부팅 실행 환경)」 — 본문은 「네트워크 부팅」으로 풀어 쓴다, 「Windows 배포 서비스(WDS)」, 「PnP(플러그 앤 플레이)」, 「PE(Portable Executable — 실행 파일 형식)」
 
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 0 — 한국어판 이름 「사전 부팅 실행 환경」, 문단 3 — DHCP 서버와 부팅 서버는 한 컴퓨터가 함께 맡을 수도 있다 — 「Prerequisites」, 문단 5 — 실행한 부팅 파일이 다음 파일들을 TFTP로 받아 Windows PE를 시작하고, Windows PE의 도구로 디스크를 준비해 네트워크의 Windows 이미지로 설치한다 — 「PXE boot process summary」, 문단 6 — WDS의 PXE 서버·TFTP 서버, Windows Server 2025 다음 판부터 더 이상 개발하지 않는다는 예고와 Configuration Manager로 옮기기 권고, 문단 7 — PnP·PE와 Windows PE), 도식 `pxe-boot`(실행 시나리오의 캡션), 문항 n340 해설(설치는 부팅 파일을 실행한 뒤의 일)
 쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE 부팅의 차례 — DHCP로 부팅 서버·부팅 파일 이름 → TFTP로 내려받기 → 실행, 네트워크로 운영 체제를 설치하는 쓰임, WDS의 PXE·TFTP 서버와 지금 상태, PnP·PE를 한 줄로 가를 근거 — 4절은 「PXE와 PoE」), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
