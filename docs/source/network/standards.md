@@ -140,6 +140,12 @@ IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 �
 `standards.ieee.org`의 표준 개요 페이지(제목·초록·상태·승인일), `ieee802.org/11`의 작업 그룹 페이지(작업 그룹 소개·작업반 보고·개정 연표·PAR 사본·1990~2000년 문서 보관소·1996년 튜토리얼), 802.11을 풀이한 IETF RFC(RFC 4118·5416·8325·9119·9956), 802 플레너리 튜토리얼(`ieee802.org/802_tutorials`).
 **작업 그룹 문서는 표준 본문이 아니다** — 1996년 튜토리얼은 승인 전 초안을 옮긴 것이고(슬라이드마다 「unapproved draft, subject to change」), 작업반 보고·회원 발표는 그때의 진행 기록이다. 항목마다 어떤 문서인지와 그 한계를 적는다.
 802.11 작업 그룹의 문서 서버(`mentor.ieee.org`)는 허용한 곳(`ieee802.org`·`standards.ieee.org`)이 아니라 쓰지 않았다. **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 프레임 형식·관리 프레임 전체, 변조 방식과 전송률 표 전체, 무선 보안(WEP·WPA), 전력 관리, 로밍 절차.
+「(phase 82 step 4)」가 붙은 줄과 항목은 phase 82 step 4에서 `wireless-lan` 주제의 뒤 개념 다섯(WPAN, Zigbee, 무선 메시 네트워크, 핸드오프, 인지 무선)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+근거는 step 0과 같은 IEEE 802 자료(표준 개요 페이지와 802.15·802.21·802.22 작업 그룹 페이지, 802 플레너리 튜토리얼)에 더해, ITU-T 권고(G.9959, Q.1001, Q.1706/Y.2801 — `itu.int`에서 무료 PDF를 받아 읽었다), IETF RFC(2501·8376),
+그리고 허용 목록의 「무선 업체 연합 기술」인 CSA(`csa-iot.org`)·Bluetooth SIG(`bluetooth.com`)의 기술 설명 페이지와 사양이다. IEEE 802.15·802.21·802.22·1900.1 본문도 무료로 열리지 않아 읽지 않았다(개요 페이지가 IEEE GET 프로그램으로 받으라고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이다).
+**CSA의 Zigbee 사양 PDF(R23.1·R22)는 Cloudflare가 자동 내려받기를 막아(HTTP 403·검사 페이지) 읽지 못했다** — Zigbee 항목은 CSA의 FAQ·소개 페이지와 `ieee802.org`에 올라온 2009년 튜토리얼로만 썼고, 사양에만 있을 사실(장치 역할의 정의 등)은 「찾지 못했다」로 남긴다.
+CSA·Bluetooth SIG 페이지에서는 기술을 설명하는 문장만 가져왔다 — 「유일한 완전한 IoT 해법」 같은 홍보 문구, 판매량·채택 회사, 보도 자료는 사실로 옮기지 않았다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — Bluetooth 프로파일·페어링, Zigbee의 응용 프로파일·보안, 802.11s의 보안·프레임 형식, 셀룰러(LTE·5G)의 절차와 LTE-M·NB-IoT의 세부, 802.22의 물리 계층.
 
 ---
 
@@ -7305,6 +7311,10 @@ https://www.ieee802.org/11/Documents/DocumentArchives/2000_docs/ (00114r38S- HRb
     §5.3: 802.11n보다 높은 처리율을 내려면 802.11n의 MIMO 기능이 필요할 것이다(위 줄과 같다)
   - 쓰지 않는 것: 802.11n의 최대 전송률(합동 제안의 600 Mbps는 표준 본문의 값이 아니다), 채널 폭을 묶는 방법, 802.11ad의 빠른 세션 전환 절차
   쓰인 곳: `wireless-lan.ieee-80211-standards`(802.11n은 2.4GHz·5GHz, 802.11ax는 2.4GHz·5GHz를 중심으로 1~7.125GHz, 802.11ac는 2.4GHz를 뺀 5GHz), `wireless-lan.mimo`(802.11ac의 MU-MIMO가 여러 스테이션과 동시에 통신하는 데 쓰인다)
+- (phase 82 step 4, 2026-11-19 802.11ah 개요 페이지 https://standards.ieee.org/ieee/802.11ah/4960/ 와 작업 그룹 홈페이지 https://www.ieee802.org/11/ , TGah 보고 https://www.ieee802.org/11/Reports/tgah_update.htm 를 IPv4로 다시 받아 확인) **802.11ah와 「Wi-Fi HaLow」**:
+  - 802.11ah-2016(개정 2, 「1 GHz 아래 면허 없이 쓰는 동작」, 표준 위원회 승인은 위 표, 상태 대체됨): 802.11의 물리 계층과 MAC을 고쳐 TV 화이트 스페이스 대역을 뺀 1 GHz 아래 대역에서 면허 없이 802.11 무선 네트워크를 쓰게 하고, 닿는 거리 1 km까지·최소 데이터 전송률 100 kb/s 이상을 정한다 — 개요 초록(위 표의 줄과 같다)
+  - **「Wi-Fi HaLow」라는 이름은 세 페이지 어디에도 없다.** 누가 붙인 이름인지도 허용한 출처에서 확인하지 못했다(Wi-Fi Alliance의 페이지는 허용한 출처가 아니라 읽지 않았다) — 본문은 「802.11ah」로만 쓰고 「Wi-Fi HaLow」라는 이름을 쓰지 않는다([기출 2026-02-01 #9]의 오답 보기 이름)
+  쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(오답 보기 802.11ah를 앞 개념 `ieee-80211-standards`의 한 줄과 같은 뜻으로 가른다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wlan-transmission`(802.11b는 DSSS를 넓힌 고속 DSSS, 802.11a·g는 OFDM, OFDM의 부반송파), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(고속 DSSS 전송이 22 MHz 채널을 차지한다, 802.11a의 채널 간격 20 MHz),
 (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(802.11n의 MIMO, MU-MIMO 하향 802.11ac·상향 802.11ax, OFDM과의 차이), `wireless-lan.ieee-80211-standards`(위 표, 802.11ah·be 한 줄씩, ac와 ad, a와 b), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
@@ -7358,6 +7368,229 @@ RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정
     여러 스테이션의 답을 동시에 받아 지연을 줄일 수도 있다 — §4.7. 곧 하향 MU-MIMO는 AP가 여러 스테이션에게 저마다의 프레임을 함께 보내는 데, 상향 MU-MIMO는 여러 스테이션이 보내는 것을 AP가 함께 받는 데 쓰인다(위 「개정 규격」 항목의 P802.11ac 「여러 통신을 동시에」와 맞는다)
   - 쓰지 않는 것: MU-MIMO가 신호를 어떻게 스테이션마다 나누는지(빔포밍·사용자마다의 피드백 — TGac·TGax 문서 제목에만 있다), 한 번에 함께 보낼 수 있는 스테이션·스트림의 수, 수신 쪽 안테나 수의 조건
   쓰인 곳: `wireless-lan.mimo`(공간 다중화·공간 스트림·스트림마다의 전송률, 받는 쪽이 둘 이상인 같은 프레임에는 공간 다중화를 쓸 수 없다, 하향·상향 MU-MIMO가 여러 스테이션과 함께 주고받는 데 쓰인다)
+- (phase 82 step 4, 2026-11-19 rfc-editor.org 텍스트판 RFC 4118을 IPv4로 다시 받아 확인) **재연결(reassociation)**:
+  - RFC 4118 §1.1: 802.11이 정하는 서비스 가운데 **재연결**은 스테이션과 AP 사이에 맺어 둔 연결을 다른 AP(또는 같은 AP)로 옮기는 서비스다. 연결 해제(disassociation)는 맺어 둔 연결을 없앤다 — §1.1.
+    같은 절은 스테이션이 한 BSS에서 다른 BSS로 옮겨 갈(roam) 때 AP들에게 알리는 AP 사이 프로토콜(IAPP, 권고 관행 802.11F)을 802.11이 만들던 기술로 든다 — §1.1. 곧 무선 LAN에서 스테이션이 다른 AP의 셀로 옮겨 붙는 일은 재연결로 이루어진다
+  - 쓰지 않는 것: 재연결 프레임의 형식과 차례, IAPP의 동작, 빠른 로밍(802.11r)
+  쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(무선 LAN에서 스테이션이 다른 AP로 옮겨 붙는 것 — 재연결 한 줄)
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
 `wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
+
+## (phase 82 step 4) IEEE 802.15 — WPAN: 작업 그룹 페이지(홈·소개·TG1·TG3·TG4·802.15.1의 5대 기준)와 표준 개요 페이지(802.15.1-2002·2005, 802.15.3-2003·2016·2023, 802.15.4-2003·2006·2024, 802.15.5-2009)
+https://www.ieee802.org/15/
+https://www.ieee802.org/15/about.html
+https://www.ieee802.org/15/pub/TG1.html
+https://www.ieee802.org/15/pub/par/5C.html (페이지 바닥줄의 주소는 `ieee802.org/15/pub/TG1-5C.html` — 802.15 WPAN 연구 그룹이 1999-03-18에 낸 5대 기준 응답)
+https://www.ieee802.org/15/pub/TG3.html
+https://www.ieee802.org/15/pub/TG4.html
+https://standards.ieee.org/ieee/802.15.1/1180/
+https://standards.ieee.org/ieee/802.15.1/3513/
+https://standards.ieee.org/ieee/802.15.3/1182/
+https://standards.ieee.org/ieee/802.15.3/6211/
+https://standards.ieee.org/ieee/802.15.3/10801/
+https://standards.ieee.org/ieee/802.15.4/3388/
+https://standards.ieee.org/ieee/802.15.4/3582/
+https://standards.ieee.org/ieee/802.15.4/11041/
+https://standards.ieee.org/ieee/802.15.5/3572/
+
+판: IEEE 802.15.1-2002(승인 2002-04-15, 발행 2002-06-14, 대체됨 — 802.15.1-2005), IEEE 802.15.1-2005(승인 2005-02-14, 재확인 2010-09-30, **철회 2018-05-07 — Inactive-Withdrawn**),
+IEEE 802.15.3-2003(승인 2003-06-12, 대체됨), IEEE 802.15.3-2016(승인 2016-05-15, 대체됨), **IEEE 802.15.3-2023(승인 2023-09-21, 발행 2024-02-22, Active — 지금 판)**,
+IEEE 802.15.4-2003(승인 2003-05-12, 대체됨), IEEE 802.15.4-2006(승인 2006-06-08, 대체됨), **IEEE 802.15.4-2024(승인 2024-09-26, 발행 2024-12-12, Active — 지금 판)**, IEEE 802.15.5-2009(권고 관행, 승인 2009-03-19, 2020-03-05 비활성).
+작업 그룹 홈페이지는 2026-10-25에 고친 판, TG1 페이지는 2004-02-09, TG3 페이지는 2009-06-09에 고친 판이다(페이지 머리와 바닥줄). TG 페이지들은 그 표준을 만들던 때의 기록이라 지금 판과 다를 수 있다 — 줄마다 어느 때의 말인지 적는다.
+
+- 작업 그룹: 802.15는 처음에 **WPAN(무선 개인 영역 네트워크) 작업 그룹**이었고(TG1·TG3·TG4 페이지와 5대 기준의 머리), 지금은 이름을 Wireless Specialty Networks로 바꿔 사물 인터넷(IoT) 장치의 무선 네트워크·광 무선 통신 같은 표준을 맡는다.
+  홈페이지는 작업 그룹 사이트가 새 주소(`ieee802-15.org`)로 옮겼다고 알린다 — 그 주소는 허용한 곳(`ieee802.org`)이 아니라 읽지 않았다 — 홈페이지·소개 페이지 「ABOUT」.
+  이 이름의 줄임말 WSN은 [기출 2025-02-23 #26]·[기출 2026-05-17 #24]의 오답 보기 「Wireless sensor networks」와 다른 말이다(본문에 쓰지 않는다)
+- **WPAN이 무엇을 노리는가** — 5대 기준(1999): 몸에 지니거나 손에 드는 컴퓨팅·통신 장치와 그 주변기기(컴퓨터·PDA·프린터·마이크·스피커·바코드 판독기·센서·디스플레이·호출기·휴대 전화 등)를 무선으로 잇는 것이다.
+  802.11은 처리율·거리·로밍에 맞춰 만들지만 WPAN은 작은 크기에서 **낮은 비용과 낮은 전력 소비**에 맞춘다. WLAN과 달리 거리와 대역폭을 서로 맞바꿀 여지가 크고, 요구 성능이 낮아 WLAN보다 훨씬 싸게 만들 수 있다. 2.4 GHz 대역을 쓰므로 그 대역의 WLAN과 함께 동작하는 일(공존)을 핵심 조건으로 든다 —
+  5대 기준 「1. BROAD MARKET POTENTIAL」·「3. DISTINCT IDENTITY」·「4. TECHNICAL FEASIBILITY」·「5. ECONOMIC FEASIBILITY」·「6. STRATEGY FOR WPAN COEXISTENCE IN THE 2.4GHz BAND」
+- **WPAN이 몇 미터 안을 잇는지 수치는 이 항목의 어느 문서에도 없다** — 문서들은 「짧은 거리(short-range)」로만 적는다(802.15.1-2002 개요의 Bluetooth 설명, 802.15.4-2003 개요). 본문은 수치 없이 「짧은 거리」로 쓴다 — `exam-notes.md` **E42**
+- **802.15.1**: Bluetooth 무선 기술의 아래 전송 계층(L2CAP·LMP·베이스밴드·무선)을 정한다 — Bluetooth 사양 1.1판의 MAC(L2CAP·LMP·베이스밴드)과 물리 계층(무선)을 IEEE가 검토해 표준으로 옮긴 것이다. 개요는 Bluetooth를 휴대용 개인 장치를 위한 짧은 거리 무선(RF) 연결의 업계 사양이라 적는다 —
+  802.15.1-2002 개요 초록, TG1 페이지 「IEEE 802.15.1 OVERVIEW」. 그 개정판 802.15.1-2005는 **2018-05-07에 철회됐다** — 802.15.1-2005 개요 페이지. 지금 Bluetooth를 정하는 사양은 Bluetooth SIG의 Core Specification이다(아래 「Bluetooth SIG」 항목)
+- **802.15.3**: TG3는 **고속 WPAN**(20 Mbit/s 이상)을 맡아, 낮은 전력·낮은 비용으로 휴대용 디지털 영상·멀티미디어 응용을 받치는 표준을 만들었다(그때의 특징: 11·22·33·44·55 Mbps, 애드혹 피어 투 피어 네트워킹, QoS) — TG3 페이지 「Overview」·「TG3 MAC & PHY Features」.
+  802.15.3-2003 개요: 2.4 GHz 전파로 WPAN 안의 데이터·멀티미디어 장비를 잇는 프로토콜을 정한다. 지금 판 802.15.3-2023은 제목이 「무선 멀티미디어 네트워크(Wireless Multimedia Networks)」이고 2.4·60·300 GHz 전파를 쓴다 — 두 개요 초록
+- **802.15.4**: TG4는 배터리를 몇 달에서 몇 년 쓰고 아주 단순한 **저속** 해법을 맡았고, 면허 없이 쓰는 국제 대역에서 동작한다. 쓰임의 예로 센서·장난감·스마트 배지·리모컨·홈 오토메이션을 든다 — TG4 페이지 머리.
+  그때(802.15.4-2003)의 특징: 250·40·20 kbps, 16비트 짧은 주소와 64비트 IEEE 주소, CSMA-CA 채널 접근, **코디네이터가 네트워크를 자동으로 세움**, 주고받기를 확인하는 전송, 저전력을 위한 전력 관리, 2.4 GHz ISM 대역 채널 16개·915 MHz 대역 10개·868 MHz 대역 1개 — TG4 페이지 「IEEE 802.15 TG4 FEATURES」.
+  802.15.4-2003 개요: 낮은 데이터 전송률·낮은 전력·낮은 복잡도의 짧은 거리 무선 전송으로 WPAN 장치를 잇는 프로토콜을 정했다. 지금 판 802.15.4-2024는 제목이 「저속 무선 네트워크(Low-Rate Wireless Networks)」이고, 배터리가 없거나 아주 적게 써야 하는 고정·휴대·이동 장치의 저속 무선 연결을 위한 **물리 계층과 MAC 부계층**을 정한다 — 두 개요 초록.
+  802.15.4 위에 다른 기술(Zigbee)이 선다는 것은 이 IEEE 페이지들이 아니라 CSA 쪽 문서가 말한다(아래 「CSA — Zigbee」 항목)
+- **802.15.5-2009**: WPAN 장치가 서로 통하는 안정된 무선 메시 모양(메시 토폴로지)을 이루게 하는 구조를 정한 권고 관행이다 — 개요 초록. 같은 작업반의 2006년 튜토리얼은 아래 「IEEE 802.11s — 메시」 항목
+- 그 밖의 802.15 규격(802.15.2·.6·.7 등)은 기출이 묻지 않아 이름만 보았다
+- **한국어 이름**: WPAN → **WPAN**(wireless personal area network, 무선 개인 영역 네트워크 — 기출이 영문 약어로 쓰고 풀어 쓴 이름도 함께 쓴다), High Rate WPAN → **고속 WPAN**, Low Rate WPAN → **저속 WPAN**, coordinator → **코디네이터**(영문 읽기),
+  Wireless Multimedia Networks → 무선 멀티미디어 네트워크, withdrawn → **철회**(Inactive-Withdrawn), superseded → 대체됨(step 0과 같다), recommended practice → 권고 관행
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(WPAN이 노리는 것, 802.15.1·.3·.4가 정한 것과 판·상태, WPAN과 무선 LAN — 802.11은 처리율·거리·로밍, WPAN은 낮은 비용·낮은 전력), `wireless-lan.zigbee`(802.15.4의 특징, 코디네이터), (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(802.15.5 WPAN 메시),
+기출 대조(`exam-notes.md` 「phase 82 step 4」 문단·E42)
+
+## (phase 82 step 4) Bluetooth SIG — Bluetooth·BLE: Bluetooth Core Specification 6.3(Vol 1 Part A Architecture), Bluetooth Technology Overview
+허용 목록의 「무선 업체 연합 기술」 — phase 82 설계에서 더함(사용자 결정 2026-11-19).
+https://www.bluetooth.com/specifications/specs/core-specification-6-3/
+https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/architecture,-change-history,-and-conventions/architecture.html
+https://www.bluetooth.com/learn-about-bluetooth/tech-overview/
+
+판: **Bluetooth Core Specification 6.3**(상태 Adopted, 사양 페이지의 게시일 2026-05-05). 공개된 HTML판의 Vol 1 Part A 「Architecture」(머리 표기 vAtlanta r00)를 읽었다. 기술 개요 페이지는 2026-11-19에 받은 판이다.
+
+- Core Specification 6.3: 서로 통하는 Bluetooth 장치를 만드는 데 필요한 기술을 정한다 — 사양 페이지
+- Vol 1 Part A §1 「General description」: Bluetooth 무선 기술은 휴대용·고정 전자 장치를 잇는 케이블을 대신하려는 **짧은 거리 통신 시스템**이고, 튼튼함·낮은 전력 소비·낮은 비용을 핵심 특징으로 든다.
+  시스템은 두 형태다 — **Basic Rate(BR)**(선택 확장 Enhanced Data Rate, EDR을 포함)와 **Low Energy(LE)**. 둘 다 장치 찾기와 연결 맺기를 갖춘다. **LE는 BR/EDR보다 전류 소비·복잡도·비용이 낮아야 하는 제품을 위해 설계했고**, 데이터 전송률과 듀티 사이클(보내는 시간의 비율)이 낮은 쓰임에 맞춘다.
+  두 형태를 모두 구현한 장치는 둘 다 구현한 장치와도, 어느 하나만 구현한 장치와도 통신할 수 있다 — §1
+- Vol 1 Part A §1.1: BR/EDR 무선(물리 계층)은 2.4 GHz ISM 대역에서 **주파수 도약** 송수신기로 간섭과 페이딩에 맞선다 — §1.1(앞 개념 `wlan-transmission`의 FHSS와 같은 갈래)
+- 기술 개요 페이지 「Bluetooth® Classic」·「Bluetooth® LE」와 비교표: **Bluetooth Classic**(= BR/EDR)은 2.4 GHz ISM 대역의 채널 79개(1 MHz 간격)로 데이터를 보내고, 점대점 통신을 지원하며 주로 무선 오디오(스피커·헤드폰·차량)에 쓰인다.
+  **Bluetooth LE**는 아주 낮은 전력으로 동작하도록 설계했고 2.4 GHz 대역의 채널 40개(2 MHz 간격)를 쓴다. **점대점·브로드캐스트·메시** 토폴로지를 지원하고, 장치의 위치를 찾는 데에도 쓰인다. 두 형태 모두 채널을 FHSS로 쓴다
+- 802.15.1과의 관계: 802.15.1-2002는 Bluetooth 사양 1.1판의 아래 계층을 IEEE 표준으로 옮긴 것이고 2005년 개정판은 2018년에 철회됐다(위 「IEEE 802.15」 항목). 지금 판의 Bluetooth(6.3)는 Bluetooth SIG가 정한다. **LE가 802.15.1에 들어 있었는지는 확인하지 못했다** — 본문은 「802.15.1은 Bluetooth 1.1판의 아래 계층을 옮긴 IEEE 표준」까지 쓰고 BLE와 802.15.1을 잇지 않는다
+- 쓰지 않는 것: 닿는 거리의 수치(이 두 페이지에 없다), 전송률·변조·송신 전력 표, 프로파일·페어링·보안, LE Audio·채널 사운딩 같은 기능
+- **한국어 이름**: Bluetooth → **블루투스**(Bluetooth — 기출은 「블루투스」와 「Bluetooth」를 함께 쓴다), Low Energy → **BLE**(Bluetooth Low Energy — 사양은 LE로 줄여 쓰고, 기출 보기는 「Bluetooth Low Energy(BLE)」로 쓴다), Basic Rate/Enhanced Data Rate → BR/EDR(Bluetooth Classic — 이름만),
+  Bluetooth SIG → **Bluetooth SIG**(Bluetooth를 정하는 업계 단체 — 이름 그대로)
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(Bluetooth와 BLE 한 줄씩, 802.15.1과의 관계), `wireless-lan.zigbee`(BLE의 사실 — Zigbee와 견줄 때 각각의 사실로)
+
+## (phase 82 step 4) CSA — Zigbee: Zigbee FAQ, Zigbee 소개 페이지; IEEE 802 플레너리 튜토리얼 「ZigBee Smart Energy」(IEEE 802.15-09-0770-00, 2009-11)
+허용 목록의 「무선 업체 연합 기술」 — phase 82 설계에서 더함(사용자 결정 2026-11-19).
+https://csa-iot.org/all-solutions/zigbee/zigbee-faq/
+https://csa-iot.org/all-solutions/zigbee/
+https://csa-iot.org/developer-resource/specifications-download-request/ (사양 목록 — Zigbee Specification R23.1·R22의 PDF 링크가 있지만 내려받지 못했다)
+https://www.ieee802.org/802_tutorials/2009-11/15-09-0770-00-0000-smartgrid-tutorial-zigbee-smart-energy-overview.ppt
+
+판: CSA 두 페이지는 2026-11-19에 받은 판이다(FAQ는 지금 Zigbee PRO가 2023년 판이라고 적는다). 사양 목록에 올라 있는 최신 Zigbee 사양은 문서 05-3474-23(R23.1, 2024-07 올림)이지만 **본문은 읽지 못했다**(머리 문단 — Cloudflare가 막았다).
+2009년 튜토리얼은 2009-11 802 플레너리의 스마트 그리드 튜토리얼 가운데 하나로, 802.15 문서 번호가 붙은 그때의 소개 자료다(표준 본문이 아니다) — 계층 그림과 쓰는 곳의 예로만 쓴다.
+
+- FAQ 「What are the IEEE 802.15.4 technical attributes on which the Zigbee specification is based?」: Zigbee는 **IEEE 802.15.4 물리 무선 표준**을 바탕으로 하고, 면허 없이 쓰는 대역 2.4 GHz(전 세계)·915 MHz(미주)·868 MHz(유럽)에서 동작한다. 2.4 GHz에서 원시 처리율은 250 kb/s다.
+  **전송 거리는 출력과 환경에 따라 10~100 m**이고, 1 GHz 아래 대역의 무선으로는 1 km 이상도 닿는다
+- FAQ 「How does Zigbee compensate for possible interference in the 2.4GHz band?」·「How does Zigbee address wireless reliability?」: 802.15.4가 정한 **CSMA-CA**로 다른 사용자와 부딪칠 가능성을 줄이고 자동으로 다시 보낸다. 802.15.4 무선의 DSSS와 충돌 회피·채널 상태 확인·확인 응답 같은 기능을 쓴다.
+  2.4 GHz 대역에서 5 MHz 간격의 채널 16개를 쓴다 — 곧 Zigbee의 물리 계층과 MAC 쪽 기능은 802.15.4의 것이다(위 「IEEE 802.15」 항목의 TG4 줄과 같다)
+- FAQ 「What is the Zigbee specification?」·「What are the key features of Zigbee?」: Zigbee 사양은 메시 네트워크부터 기기들이 함께 쓰는 **응용 계층의 데이터 모델**까지 스택의 모든 계층을 표준화하고 시험한다 — 곧 802.15.4 위의 계층을 Zigbee가 정한다. 전력 소비를 낮추도록 맞췄다
+- FAQ 「What are Zigbee’s main benefits?」·「What are the key features of Zigbee?」: **메시 네트워크**는 스스로 짜이고(self-organizing), 장애에서 회복해 **스스로 고친다**(self-healing) — 네트워크에 여유를 더해 한 곳이 고장 나도 버티게 한다
+- 2009년 튜토리얼의 스택 그림: 물리 무선(PHY)과 매체 접근(MAC) 위에 NWK(네트워크)·APS(응용 지원)·ZDO·보안·응용이 쌓이고, PHY부터 ZDO까지를 「ZigBee Compliant Platform」으로 묶는다(.ppt의 그림 글자로 읽었다 — 어느 슬라이드의 그림인지는 화면으로 확인하지 않았다).
+  같은 파일의 시장 그림(슬라이드 제목 「Typical ZigBee Markets」)은 쓰는 곳으로 홈 제어(보안·냉난방·조명·출입 통제)·빌딩 자동화·산업 제어·개인 건강 관리·PC 주변기기·가전·에너지 관리를 든다(2009년 자료)
+- FAQ 「What markets are served by Zigbee?」: 주거(스마트 홈)·상업 건물·전력 사업(스마트 미터와 가정 영역 네트워크)에 쓰인다 — 회사·제품 이름은 옮기지 않는다
+- **장치 역할(코디네이터·라우터·엔드 디바이스)의 정의는 찾지 못했다** — 사양 본문에만 있을 것이고 읽지 못했다. FAQ는 「네트워크 코디네이터」 여럿을 이어 아주 큰 네트워크를 만들 수 있다고만 적는다(「How many nodes or devices can a Zigbee network support?」).
+  802.15.4 쪽에서는 코디네이터가 네트워크를 자동으로 세운다(위 「IEEE 802.15」 항목의 TG4 줄). 본문은 「코디네이터가 네트워크를 세운다」까지만 쓰고, 라우터·엔드 디바이스라는 이름과 그 일은 지어내지 않는다
+- **Zigbee와 BLE를 직접 견준 문장은 없다** — 각각의 사실만 쓴다: Zigbee는 802.15.4 위(DSSS·CSMA-CA, 2.4 GHz와 1 GHz 아래 대역, 메시), BLE는 Bluetooth SIG 사양의 LE(2.4 GHz 채널 40개·FHSS, 점대점·브로드캐스트·메시 — 위 「Bluetooth SIG」 항목)
+- 쓰지 않는 것: 홍보 문구(「유일한 완전한 IoT 해법」, 칩 출하량, 채택 회사), 응용 프로파일·보안 방식(AES-128 등)·Zigbee Direct·Matter와의 관계, 노드 수, 인증 프로그램
+- **한국어 이름**: Zigbee → **Zigbee**(CSA의 지금 표기 — 기출은 「Zigbee」와 「ZigBee」를 쓴다), Connectivity Standards Alliance → **CSA**(Zigbee를 정하는 업계 단체 — 이름 그대로), coordinator → 코디네이터, mesh → **메시**, self-healing → 「장애에서 회복해 스스로 고친다」로 풀어 쓴다
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(802.15.4 위에 선다, 물리·MAC은 802.15.4, 그 위 계층을 Zigbee가 정한다, 저전력, 메시, 쓰는 곳, 대역, Zigbee와 BLE·Z-Wave), (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(장애에서 회복하는 메시 — 한 줄),
+기출 대조(`exam-notes.md` 「phase 82 step 4」 문단·E42)
+
+## (phase 82 step 4) ITU-T G.9959 (01/15) — Short range narrow-band digital radiocommunication transceivers – PHY, MAC, SAR and LLC layer specifications
+https://www.itu.int/rec/T-REC-G.9959-201501-I/en
+
+판: 2015-01-13 승인, 현행(In force). 판 2.0 — G.9959(2012-02-13)와 그 Amd.1(2013-10-07)을 대체한다. 위 페이지에서 무료 PDF를 받아 읽었다.
+
+- 요약·§1 「Scope」: 짧은 거리 협대역 디지털 무선 송수신기의 물리 계층·MAC·분할과 재조립(SAR)·논리 링크 제어(LLC)를 정한다. **1 GHz 아래**에서 동작하는 송수신기를 정하고, 그것은 부록 A를 따르는 송수신기와 함께 동작해야 한다 — 요약, §1
+- §7.1.1 「General」: 물리 계층은 **저전력·좁은 대역폭의 제어 네트워크**에 쓰는 변조·데이터 전송률·동기·프레임 형식을 정한다. §8.1.1.4.3: 배터리로 동작하는 노드의 한 부류는 대부분의 시간을 잠들어 있다가 주기적으로 깨어난다 — §7.1.1, §8.1.1.4.3.
+  §8.1.1.4.2.4: MAC 헤더에 멀티홉 라우팅을 받칠 칸을 두지만 라우팅 자체는 이 권고의 범위 밖이다
+- **부록 A 「Non-radio related aspects of the Z-Wave PHY and MAC Specifications」**(이 권고의 필수 부분이다): **Z-Wave**는 저전력·저비용 무선 기술로, 원격 조광기·네트워크 온도 센서·전자 도어락·AV 시스템 같은 소비자 제품을 네트워크로 잇는다.
+  잡음과 반사로 프레임을 자주 잃으므로 낮은 계층에서 다시 보낸다. 네트워크 계층은 메시 라우팅으로 직접 닿는 거리 너머까지 네트워크를 넓힐 수 있고, Z-Wave 라우팅 프로토콜이 그 예다 — A.1.1.
+  Z-Wave는 자기 네트워크·전송·응용 계층을 따로 갖는다(참고로 적은 절) — A.1.2
+- 곧 Z-Wave와 Zigbee는 아래 계층이 다르다 — Z-Wave는 ITU-T G.9959(1 GHz 아래 협대역), Zigbee는 IEEE 802.15.4(위 「CSA — Zigbee」 항목). 두 문서를 나란히 놓은 것이고, 둘을 직접 견준 문장은 없다
+- 쓰지 않는 것: 데이터 전송률·채널·주파수 값, 노드 수와 HomeID·NodeID의 형식, 프레임 형식, 동작 모드(AL·FL)의 세부
+- **한국어 이름**: Z-Wave → **Z-Wave**(영문 그대로 — 기출 보기 이름), sub 1 GHz → 1 GHz 아래, narrow-band → 협대역
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(오답 보기 Z-Wave를 가르는 한 줄 — 1 GHz 아래 협대역의 저전력 가정용 무선, 아래 계층이 Zigbee와 다르다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) IEEE 802.11s — 메시: 802.11s-2011·802.11-2012 개요 페이지, TGs 보고, 802.11s 튜토리얼(2006-11), 802.15.5 WPAN 메시 튜토리얼(2006-11)
+https://standards.ieee.org/ieee/802.11s/4243/
+https://standards.ieee.org/ieee/802.11/4523/
+https://www.ieee802.org/11/Reports/tgs_update.htm
+https://www.ieee802.org/802_tutorials/06-November/802.11s_Tutorial_r5.pdf
+https://www.ieee802.org/802_tutorials/06-November/15-06-0464-00-0005-802-15-5-mesh-tutorial.pdf
+
+판: **IEEE 802.11s-2011**(개정 10 「메시 네트워킹」, PAR 승인 2007-08-22, 표준 위원회 승인·발행 2011-09-10, 대체됨), IEEE 802.11-2012(승인 2012-02-06, 2008~2011년에 나온 개정 1~10을 합쳐 넣었다 — 곧 802.11s가 기본 표준에 들어갔다, 대체됨 — 802.11-2016).
+TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802 플레너리 발표로 **승인 전 초안 때의 설명**이다 — 장치 이름(메시 포인트 등)과 세부는 최종 표준과 다를 수 있어, 표준 개요와 맞는 뼈대(멀티홉, 스스로 구성, 경로 선택, 끊긴 링크의 처리)만 쓴다.
+
+- 802.11s-2011 개요 초록: 802.11 스테이션들이 **스스로 구성되는 멀티홉 네트워크**를 이루고, 한 곳에 보내기(유니캐스트)와 여럿에게 보내기(브로드캐스트·멀티캐스트)를 모두 지원하게 하는 프로토콜을 정한다
+- 802.11s 튜토리얼(2006): 메시는 데이터가 무선 홉 여럿으로 이어진 경로로 전달되는 구조다 — 「Abstract」. 기존 802.11 WLAN은 AP가 대개 유선으로 이어져 있는데, 메시는 AP 사이도 무선 메시 링크로 이어 유선 백홀 없이 빠르게 펼치고 선을 깔기 어려운 곳까지 덮는다 —
+  「Classic 802.11 WLAN」·「Unwire the WLAN with Mesh」·「Why Mesh?」. 범위: 802.11 MAC에 토폴로지를 자동으로 알아내고 무선 경로를 설정하는 무선 분배 시스템을 더하고, 무선 상태를 반영해 동적으로 경로를 골라 한 홉·여러 홉 경로로 전달한다. 물리 계층(a·b·g·n)은 그대로 쓴다 — 「802.11s Scope」
+- 이웃 찾기: 메시 장치는 비컨과 프로브 응답에 새로 넣은 정보(메시 ID 등)로 이웃 후보를 찾고, 이웃과 보안이 걸린 피어 링크를 맺어 메시에 든다 — 「Topology Formation: Membership in a WLAN Mesh Network」. 메시 장치들 사이에는 본래 위계가 없다 — 「11s Security Situation」
+- 경로 선택: 필수(기본) 경로 선택 프로토콜은 **HWMP**(Hybrid Wireless Mesh Protocol)다 — 필요할 때 경로를 찾는 방식(AODV, RFC 3561을 바탕으로 함)과, 루트(메시 포털)가 있으면 그것을 향한 트리를 미리 만들어 두는 방식을 섞는다. 기본 지표는 전송 시간(airtime)이다 —
+  「Default Routing protocol for Interoperability」·「Hybrid Wireless Mesh Protocol (HWMP)」. 링크 상태가 바뀌면 경로도 바뀔 수 있다 — 「Routing = Path Calculation for Forwarding」
+- **링크가 끊길 때**: 다음 홉과의 링크를 살피다 끊긴 것을 알아채면 경로 오류(Route Error) 메시지로 다른 노드들에게 알린다 — 「On-demand routing in HWMP – Key Features」(Route Maintenance). 트리 쪽에서는 위쪽 링크를 살피다 **예비 링크로 바꿀 수 있다** — 「Tree-based routing in HWMP – Key Features」(Topology Maintenance)
+- TGs 보고(2008~2009)의 문서 제목에 「HWMP Overview」·「Mesh STA collocation」 같은 이름이 나온다 — 최종에 가까운 초안도 HWMP를 다뤘고 메시 스테이션(mesh STA)이라는 이름을 썼다는 데까지 확인한다. 최종 표준 본문의 장치 이름 정의는 읽지 못했다
+- 802.15.5 튜토리얼(2006): WPAN 메시는 완전 메시나 부분 메시 연결을 쓰는 무선 PAN이다. 목적으로 송신 전력을 높이지 않고 덮는 범위를 넓히기, **경로 여분(route redundancy)으로 신뢰성 높이기**, 네트워크 구성을 쉽게 하기를 든다 — 「What is WPAN Mesh?」·「Purpose of the project」.
+  경로 선택의 과제로 스스로 짜이기(self organizing)와 여분 링크를 든다 — 「Challenges in WPAN Mesh Scenarios」
+- 「중앙 제어 장치 없이」의 근거: 802.11s의 「스스로 구성」과 메시 장치 사이에 위계가 없다는 것, 아래 RFC 2501의 분산된 네트워크 제어다. 다만 802.11s의 트리 방식은 루트 포털이 **있으면** 그것을 향해 트리를 만든다 —
+  본문은 「중앙 장치가 없어도 장치들이 이웃을 찾고 경로를 만든다」로 쓰고, 메시에는 중앙 장치를 「두지 않는다」로 단정하지 않는다
+- 쓰지 않는 것: 802.11s 보안(인증·키 관리), 메시 프레임 형식과 6주소 체계, 전송 시간 지표의 계산식, RA-OLSR 같은 선택 프로토콜, MCCA·전력 절약, 「군사 기술에서 출발했다」(이 항목의 문서들이 말하지 않는다 — 튜토리얼은 쓰임의 하나로 공공 안전·군을 들 뿐이다)
+- **한국어 이름**: mesh network → **메시 네트워크**, wireless mesh network → **무선 메시 네트워크**, multi-hop → **멀티홉**(여러 홉을 거쳐 전달), path selection → 경로 선택, mesh portal → 메시 포털, mesh STA → 메시 스테이션(이름만), HWMP → HWMP(이름만), self-configuring → 스스로 구성되는
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) RFC 2501 — Mobile Ad hoc Networking (MANET): Routing Protocol Performance Issues and Evaluation Considerations
+https://www.rfc-editor.org/rfc/rfc2501
+
+판(rfc-editor.org 텍스트판과 `…/rfc2501.json`, 2026-11-19): 1999-01, Informational, 폐기·개정 없음.
+
+- §3 「Characteristics of MANETs」: MANET(모바일 애드혹 네트워크)은 마음대로 움직일 수 있는 노드(라우터와 그에 딸린 호스트)로 이루어진 자율 시스템이다. 혼자 동작할 수도, 게이트웨이를 거쳐 고정 네트워크에 이어질 수도 있다.
+  노드가 움직이므로 **대개 멀티홉인 네트워크 토폴로지가 예측할 수 없는 때에 빠르게 바뀐다** — 1) 「Dynamic topologies」. 네트워크 제어가 분산돼 있어 중앙 집중 방식의 단일 장애점에 더 강하다 — 4) 「Limited physical security」의 끝 문장
+- 이 RFC는 애드혹 네트워크를 말하고 802.11s 메시를 말하지 않는다 — 본문은 「노드가 들고 나며 구성이 바뀐다」·「중앙 제어 없이도 동작한다」를 애드혹 방식의 성질로 쓰고, 802.11s 메시가 스스로 구성된다는 것(위 「IEEE 802.11s」 항목)과 함께 놓는다
+- **한국어 이름**: MANET → 모바일 애드혹 네트워크(이름만), ad hoc → **애드혹**(step 0의 「애드혹 모드」와 같은 낱말 — 여기서는 미리 깔아 둔 설비 없이 장치끼리 이루는 네트워크라는 일반 뜻), autonomous system → 이 낱말은 본문에 쓰지 않는다(phase 74 `routing`의 AS와 뜻이 다르다)
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(노드가 움직이며 토폴로지가 바뀐다, 분산된 제어가 단일 장애점에 강하다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) ITU-T Q.1001 (11/88)·Q.1706/Y.2801 (11/06), IEEE 802.21 — 기지국·셀·핸드오버·페이징
+https://www.itu.int/rec/T-REC-Q.1001-198811-I/en
+https://www.itu.int/rec/T-REC-Q.1706-200611-I/en
+https://www.ieee802.org/21/
+https://standards.ieee.org/standard/802_21-2017.html
+https://www.ieee802.org/802_tutorials/06-July/802%2021-IEEE-Tutorial.ppt
+
+판: ITU-T Q.1001(1988-11, 「General aspects of public land mobile networks」, 현행 In force), ITU-T Q.1706/Y.2801(2006-11, 「Mobility management requirements for NGN」, 현행 In force) — 두 권고 모두 위 페이지에서 무료 PDF를 받아 읽었다.
+Q.1001은 음성 통화를 다루던 때의 권고라 핸드오버를 「진행 중인 통화」로 적고, Q.1706은 그것을 세션 일반으로 넓혀 적는다.
+IEEE 802.21-2017(「Media Independent Services Framework」, 승인 2017-02-14, 발행 2017-04-28, Active — 802.21-2008을 대체). 802.21 작업 그룹은 2019-07-19부터 휴면이다(작업 그룹 페이지). 802.21 튜토리얼(DCN 21-06-0706-00, 2006-07)은 그때의 소개 자료다.
+
+- Q.1001 §2.1.4 「base station」: **기지국**은 같은 곳에 있으면서 셀 하나 또는 여럿을 맡는 무선 설비 전부를 부르는 이름이다. §2.1.5: 이동국(mobile station)은 사용자 쪽에서 무선 경로를 끝내는 장비다(곧 휴대 단말).
+  §2.1.6 「cell」: **셀**은 기지국(또는 섹터 안테나처럼 그 기지국의 일부)이 덮는 지역이고, 셀 안의 이동국은 그 기지국의 무선 설비와 닿을 수 있다. §2.1.8: 위치 영역(location area)은 이동국이 위치 등록을 고치지 않고 다닐 수 있는 지역으로, 셀 여럿을 품을 수 있다.
+  §2.1.3: 넓은 지역을 무선으로 덮으려면 기지국이 여럿 필요하다 — §2.1
+- Q.1001 §2.3.1 「handover」: **핸드오버**는 진행 중인 통화를 한 셀에서 다른 셀로(또는 같은 셀 안의 다른 무선 채널로) 넘기는 일이다. 이동국이 셀을 옮겨도 이미 맺어진 통화가 이어지게 하려고 쓰고, 동일 채널 간섭을 줄이는 데에도 쓴다 — §2.3.1
+- Q.1706/Y.2801 §6.2.2 「Features by service continuity」: 움직이는 동안과 뒤에도 서비스가 이어지는 갈래로 **핸드오버**(서비스 품질에 영향이 있을 수 있음)와 끊김 없는 핸드오버(영향 없음)를 든다. §6.4.2 「Handover management」: 단말이 세션 중에 다른 네트워크 영역으로 옮겨 접속점을 바꿔도 세션이 이어지게 하는 일이다 — §6.2.2, §6.4.2
+- Q.1706/Y.2801 §6.4.1 「Location management」: 위치 관리는 위치 등록과 착신 전달·**페이징**으로 이루어지고, **페이징은 휴면 상태의 단말을 찾는 데 쓰인다**. §8.1.10 「Resource optimization」: 대기(idle) 상태 단말의 전력·신호 부담을 줄이는 일은 주로 페이징 절차로 이루어지고, 이 절차는 위치 관리와 묶여 있다 — §6.4.1, §8.1.10
+- **신호가 약해져서 핸드오버한다**는 문장은 이 권고들에서 찾지 못했다. 802.21 튜토리얼은 신호 세기만 보고 AP를 고르면 엉뚱한 AP에 붙는 문제를 든다 — 「Problems….」. 본문은 「셀 안의 단말만 그 기지국과 닿으므로(Q.1001 §2.1.6), 셀을 옮기면 연결을 새 기지국으로 넘겨야 이어진다(§2.3.1)」로 쓰고 신호 세기를 원인으로 단정하지 않는다
+- IEEE 802.21-2017 개요: 서로 다른 IEEE 802 네트워크 사이에서, 그리고 802 네트워크와 셀룰러 네트워크 사이에서 핸드오버 같은 서비스를 최적화하는 매체 독립 서비스 프레임워크를 정한다 — 개요 초록, 작업 그룹 페이지.
+  튜토리얼은 같은 종류의 네트워크 안에서의 핸드오버(수평)와 다른 종류의 네트워크 사이의 핸드오버(수직)를 나누고, 2002년 802 튜토리얼 「Handoff Mechanisms…」에서 작업이 시작됐다고 적는다(handoff와 handover를 같은 뜻으로 쓴다) — 「Types of Handovers」·「How it all started….」
+- 무선 LAN에서 다른 AP로 옮겨 붙는 일(재연결)은 위 「RFC 4118, RFC 5416, RFC 8325, RFC 9119」 항목의 「(phase 82 step 4)」 줄
+- [기출 2024-08-25 #23]의 나머지 오답: 「핸드셰이크」는 앱에 이미 있는 `tcp-connection.three-way-handshake`(TCP가 연결을 맺는 절차)와 같은 낱말이다. 「채널 체인징」이라는 이름은 이 step이 읽은 문서 어디에도 없다 — 본문·문항에 쓰지 않는다
+- 쓰지 않는 것: 셀룰러(LTE·5G)의 핸드오버 절차와 측정 보고, MSC와 위치 등록 절차, 802.21의 서비스(이벤트·명령·정보) 세부
+- **한국어 이름**: base station → **기지국**, cell → **셀**, mobile station → 이동국(본문은 「휴대 단말」로 풀어 쓴다), handover·handoff → **핸드오프**(guide의 개념 이름이자 기출의 이름 — ITU-T 권고는 handover로 적고, 802 튜토리얼은 두 낱말을 같은 뜻으로 쓴다),
+  paging → **페이징**, location area → 위치 영역, idle·dormant → 대기·휴면
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(기지국·셀의 정의, 핸드오프의 정의와 까닭, 핸드오프와 페이징 — 연결 중에 옮겨 가는가와 대기 중인 단말을 찾는가), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) IEEE 1900.1·802.22 — 인지 무선: 1900.1-2008·2019, 802.22-2011·2019 개요 페이지, 802.22 작업 그룹 페이지, 802.22 튜토리얼(2006-07)
+https://standards.ieee.org/standard/1900_1-2019.html
+https://standards.ieee.org/standard/1900_1-2008.html
+https://standards.ieee.org/standard/802_22-2019.html
+https://standards.ieee.org/standard/802_22-2011.html
+https://www.ieee802.org/22/ (본문 프레임 https://www.ieee802.org/22/HomePageText.htm)
+https://www.ieee802.org/802_tutorials/06-July/Rec-Practice_802.22_Tutorial.ppt
+
+판: **IEEE 1900.1-2019**(승인 2019-02-08, 발행 2019-04-23, Active — 1900.1-2008을 대체, 표준 위원회 DySPAN-SC), **IEEE 802.22-2019**(승인 2019-09-05, 발행 2020-05-05, Active — 802.22-2011을 대체), IEEE 802.22-2011(승인 2011-06-16, 발행 2011-07-01, 대체됨).
+802.22 작업 그룹은 2019-07-19부터 휴면이다(작업 그룹 페이지). 튜토리얼(2006-07, 802.22 권고 관행 소개)은 그때의 소개 자료이고, 인지 무선 기법 셋은 미국 FCC의 규칙 제정 공고(NPRM)를 옮겨 적었다고 밝힌다.
+
+- 1900.1-2019 개요: 스펙트럼 관리·**인지 무선**·**동적 스펙트럼 접근**·정책 기반 무선·소프트웨어 정의 무선 같은 용어의 정의와, 그 기술들이 어떻게 이어지는지의 설명을 담는다. 제목은 「동적 스펙트럼 접근의 정의와 개념」이다 — 개요 초록·제목.
+  **정의 문장 자체(본문)는 읽지 못했다** — 본문은 인지 무선을 1900.1의 정의로 쓰지 않고, 아래 802.22 쪽 문서가 말하는 동작으로 쓴다
+- 802.22-2019 개요(제목·초록): 인지 무선 지역 네트워크(WRAN)의 **인지 MAC과 물리 계층**을 정한다 — 통신 장치가 **1차 서비스(primary service)의 스펙트럼**에서 기회를 보아(opportunistically) 동작할 수 있는, 스펙트럼 공유를 허용하는 대역의 정책과 절차다.
+  고정 기지국과 고정·휴대 사용자 단말로 이루어진 점대다점 네트워크이고 **VHF/UHF TV 방송 대역(54~862 MHz)**에서 동작한다(규제가 허용하면 1300~1750 MHz·2700~3700 MHz도) — 개요. 802.22-2011의 제목은 「TV 대역에서의 동작을 위한 정책과 절차」였다 — 개요
+- 802.22 작업 그룹 페이지: 802.22 작업 그룹은 스펙트럼 공유를 가능하게 하는 표준들을 만들었다. 802.22.1-2010은 면허받은 장치(무선 마이크)를 간섭에서 더 보호하는 표준이다 — HomePageText
+- 튜토리얼(2006-07) 「Characteristics of 802.22 WRAN — Cognitive Radio」: 인지 무선은 협의나 기회에 따라 스펙트럼을 함께 쓰게 하고, 무선이 스펙트럼을 쓰는 방식을 **동작 환경의 실시간 상태에 맞추며**, 해로운 간섭의 위험을 줄인다.
+  인지 무선 기법 셋(FCC 공고) — 데이터베이스와 위치 확인(면허받은 방송국의 보호 구역 밖인지 판단), 제어 신호 받기(그 지역에서 어느 채널이 쓰이고 어느 채널이 비었는지 알려 주는 신호), **감지**(주변 무선 환경을 감지) — 「Cognitive Radio Techniques (as per the NPRM)」.
+  802.22는 그 대역을 **이미 쓰는 기존 시스템(incumbent)을 감지**하는 첫 802 작업 그룹이고, 단말과 기지국이 주변 스펙트럼을 감지해 기지국에 알리면 네트워크 차원에서 **그 채널을 계속 쓸지, 기존 시스템에 간섭하지 않도록 채널을 바꿀지** 정한다 — IEEE 802 표준 가족 그림 슬라이드의 설명 노트
+- 「허가받은 사용자가 나타나면 비켜 간다」의 근거는 위 튜토리얼의 채널 전환 줄이다 — 본문은 「기존 사용자를 감지하면 그 채널을 비우고 다른 빈 채널로 옮긴다」로 쓴다
+- 쓰지 않는 것: 802.22의 물리 계층(변조·채널 폭·셀 반경·전송률), 감지 방법의 세부(조용한 기간·협력 감지), 데이터베이스 운영, 1900.1의 다른 용어(소프트웨어 정의 무선·정책 기반 무선)
+- **한국어 이름**: cognitive radio → **인지 무선**(CR — 기출이 「CR(Cognitive Radio)」로 쓴다), dynamic spectrum access → **동적 스펙트럼 접근**, primary service·incumbent → **허가받은 사용자**(guide의 이름 — 표준 쪽 문서는 1차 서비스(primary)·기존 시스템(incumbent)으로 부르고, 본문은 「그 대역을 쓰도록 허가받은 기존 사용자」로 풀어 쓴다),
+  spectrum sensing → **스펙트럼 감지**, WRAN → 무선 지역 네트워크(이름만)
+
+쓰인 곳: (phase 82 step 7에서 쓰일 곳) `wireless-lan.cognitive-radio`(인지 무선·동적 스펙트럼 접근·허가받은 사용자·스펙트럼 감지·802.22가 TV 대역의 비어 있는 채널을 쓴다, 인지 무선과 고정된 주파수 할당), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) RFC 8376 — Low-Power Wide Area Network (LPWAN) Overview
+https://www.rfc-editor.org/rfc/rfc8376
+
+판(rfc-editor.org 텍스트판과 `…/rfc8376.json`, 2026-11-19): 2018-05, Informational, 폐기·개정 없음.
+
+- §1: LPWAN 기술들은 아주 싸고 처리율이 낮으며 전력을 아주 적게 쓰는 장치를 많이 받치려 하고, 이름의 「광역(wide area)」대로 **몇 km에 이르는 무선 링크로 넓은 지역을 덮는 것**이 공통 목표다 — §1
+- §2.2.1: **NB-IoT**(Narrowband IoT)는 3GPP가 개발·표준화했고(Release 13, 2016-06), 사업자의 기지국을 소프트웨어로 고쳐 기존 LTE 네트워크에 들일 수 있다 — §2.2.1. §2 머리: 기술마다의 절은 그 기술을 미는 쪽이 쓴 참고 글이다
+- **LTE-M은 이 RFC에도, 이 step이 읽은 다른 문서에도 없다** — 본문·문항에 쓰지 않는다(3GPP 문서는 허용한 출처가 아니다)
+- 쓰지 않는 것: NB-IoT의 수치(전송률·커버리지·장치 수·대역폭), 배치 방식, 프로토콜 구조
+- **한국어 이름**: NB-IoT → **NB-IoT**(협대역 IoT — 이름만), LPWAN → 저전력 광역 네트워크(이름만)
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(오답 보기 NB-IoT가 WPAN과 다른 것 — 이동통신 사업자의 기지국으로 넓은 지역을 덮는 기술, 한 줄로만), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
