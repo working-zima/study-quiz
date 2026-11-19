@@ -135,6 +135,11 @@ IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 �
 **Hyper-V 문서의 한국어판은 virtual machine을 대부분 「가상 머신」으로 옮기고, 몇 문서(내보내기·가져오기, 세대 선택)만 「가상 컴퓨터」로 옮긴다** — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다.**
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 장애 조치 클러스터와 클러스터 공유 볼륨, 동적 메모리·스마트 페이징, 중첩 가상화, 차폐된 가상 컴퓨터, 세대 1과 2의 차이 전체, 가상 네트워크 어댑터의 설정 전체, 실시간 마이그레이션의 인증(CredSSP·Kerberos 제한된 위임)과 성능 옵션,
 복제본의 인증서·확장 복제·추가 복구 지점·테스트 장애 조치의 차례, Dockerfile 문법, 컨테이너 런타임의 설치 차례, 오케스트레이터(Kubernetes)·컨테이너 네트워크 드라이버. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 82 step 0)」이 붙은 항목은 phase 82 step 0에서 `wireless-lan` 주제의 앞 개념 여섯(무선 LAN, 무선 LAN의 전송 방식, 무선 채널, CSMA/CA, MIMO, IEEE 802.11 규격)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+이 주제는 강의 밖 주제라 사실의 근거는 표준 문서뿐이다(ADR-059). **IEEE 802.11 본문은 무료로 열리지 않아**(`standards.ieee.org`는 구매·구독, IEEE GET 프로그램은 `ieeexplore.ieee.org`에서 IEEE 계정으로 로그인해야 한다) 읽지 않았고, 다음 넷을 근거로 썼다 —
+`standards.ieee.org`의 표준 개요 페이지(제목·초록·상태·승인일), `ieee802.org/11`의 작업 그룹 페이지(작업 그룹 소개·작업반 보고·개정 연표·PAR 사본·1990~2000년 문서 보관소·1996년 튜토리얼), 802.11을 풀이한 IETF RFC(RFC 4118·5416·8325·9119·9956), 802 플레너리 튜토리얼(`ieee802.org/802_tutorials`).
+**작업 그룹 문서는 표준 본문이 아니다** — 1996년 튜토리얼은 승인 전 초안을 옮긴 것이고(슬라이드마다 「unapproved draft, subject to change」), 작업반 보고·회원 발표는 그때의 진행 기록이다. 항목마다 어떤 문서인지와 그 한계를 적는다.
+802.11 작업 그룹의 문서 서버(`mentor.ieee.org`)는 허용한 곳(`ieee802.org`·`standards.ieee.org`)이 아니라 쓰지 않았다. **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 프레임 형식·관리 프레임 전체, 변조 방식과 전송률 표 전체, 무선 보안(WEP·WPA), 전력 관리, 로밍 절차.
 
 ---
 
@@ -7173,3 +7178,163 @@ https://learn.microsoft.com/en-us/previous-versions/windows-server/it-pro/window
 
 쓰인 곳: (phase 81 step 13·14에서 쓰일 곳) `windows-hyperv.windows-containers`(정의, 커널을 함께 씀과 떨어진 모습, 이미지에서 만든다, VM과의 차이, 두 격리 방식과 기본값, 판 호환 한 줄, 「컨테이너」 기능과 런타임), `windows-hyperv.container-base-images`(넷의 이름·쓰임·크기 차이, Nano Server와 Server Core의 차이, MCR과 이름 꼴, 프로세스 격리의 판 일치, Nano Server의 지금 자리와 판),
 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])
+
+## (phase 82 step 0) IEEE 802.11 — 작업 그룹 홈페이지·소개 페이지와 표준 개요 페이지: 802.11-1997, 802.11-1999, 802.11-2024
+https://www.ieee802.org/11/
+https://www.ieee802.org/11/abt80211.html
+https://standards.ieee.org/ieee/802.11/1163/
+https://standards.ieee.org/ieee/802.11/1164/
+https://standards.ieee.org/ieee/802.11/10548/
+
+판: IEEE 802.11-1997(표준 위원회 승인 1997-06-26, 발행 1997-11-18, Superseded — 802.11-1999가 대체), IEEE 802.11-1999(승인 1999-03-18, Superseded — 802.11-2007이 대체),
+**IEEE 802.11-2024(승인 2024-09-26, 발행 2025-04-28, Active — 지금 판)**. 작업 그룹 홈페이지와 소개 페이지는 2026-11-19에 받은 판이다(홈페이지의 개정 연표 머리는 2026-10-27).
+
+- 802.11 작업 그룹은 IEEE 802 LAN/MAN 표준 위원회(LMSC) 안에서 무선 LAN 표준을 맡는다. 맡은 일은 IEEE 802 표준 묶음의 11부이고, 그 정식 제목은 「무선 LAN의 매체 접근 제어(MAC)와 물리 계층(PHY) 규격」이다 — 소개 페이지 「Introduction」
+- 802.11은 **기본 표준 하나와 개정(amendment) 여럿**으로 이루어진다. 새 기능은 개정 프로젝트가 더하고, 기본 표준은 개정판(revision) 프로젝트가 고치면서 그때까지 나온 개정을 합쳐 넣는다. 개정은 802.11 뒤에 글자를 붙인 이름으로 부르고(예: 802.11ax-2021, 진행 중인 P802.11bn), 그 개정을 맡은 작업반은 TG를 붙여 부른다(TGbn) — 소개 페이지 「Introduction」·「The standards development process」
+- 802.11-1997(처음 판): 무선 LAN의 MAC과 물리 계층을 정한다. MAC 하나가 여러 물리 계층을 받치도록 짜서, 쓸 수 있는 주파수 사정에 따라 물리 계층을 고를 수 있게 했다. **물리 계층은 셋** — 2400~2500 MHz 대역의 전파 방식 둘(하나는 주파수 도약 대역 확산, 하나는 직접 시퀀스 대역 확산)과
+  기저대역 적외선 방식 하나다 — 802.11-1997 개요 페이지 초록. 레이저 방식이나 협대역 방식은 이 셋에 없다(기출 [기출 2024-02-25 #49]의 오답 둘)
+- 802.11-2024: 802.11-2020 뒤 2021~2024년에 나온 개정 1~7을 합쳐 넣은 개정판이다. 이 판에 대한 개정으로 802.11be-2024·802.11bh-2024·802.11bk-2025가 나왔고 P802.11bn 등이 진행 중이다 — 802.11-2024 개요 페이지 초록과 「Amendments」.
+  그래서 802.11ax-2021 같은 개정의 개요 페이지에 「Superseded」라고 적힌 것은 그 기능이 없어졌다는 뜻이 아니라 개정판에 합쳐졌다는 뜻이다(phase 72의 802.3 개정과 같은 꼴)
+- 「Wi-Fi」라는 이름: 작업 그룹 홈페이지는 802.11be-2024를 「업계에서 Wi-Fi 7로 알려진」 표준이라고 적는다(작업 그룹 회원들이 쓴 해설서를 소개하는 줄). 홈페이지·소개 페이지·개요 페이지 어디에서도 Wi-Fi 4·5·6 같은 다른 세대 이름은 찾지 못했다 — 홈페이지.
+  802.11을 「Wi-Fi」라고 함께 부르는 근거는 아래 「RFC 4118·5416·8325·9119」 항목에 있다
+- **한국어 이름**: wireless LAN(WLAN) → **무선 LAN**(앞 phase가 쓴 `LAN` 표기를 따른다), medium access control → 매체 접근 제어(phase 72의 이름), physical layer → 물리 계층(앞 phase의 이름), amendment → **개정**, revision → **개정판**(phase 72가 802.3에 쓴 이름)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(802.11이 무엇을 정하는가, 802.11과 802.3이 같은 IEEE 802 위원회의 표준이라는 것, 「Wi-Fi」라는 이름), `wireless-lan.wlan-transmission`(처음 판의 물리 계층 셋, 레이저·협대역은 802.11의 방식이 아니다),
+(phase 82 step 3에서 쓰일 곳) `wireless-lan.ieee-80211-standards`(기본 표준과 개정, 지금 판 802.11-2024, 「대체됨」의 뜻, 802.11be와 Wi-Fi 7), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단·E41)
+
+## (phase 82 step 0) IEEE 802.11 — 1996-03 IEEE 802 플레너리 튜토리얼: General Introduction(96/49A Rev. 1), Architecture(96/49B), MAC(96/49C), Frequency Hopping PHY(96/49D), Direct Sequence PHY(96/49E)
+https://www.ieee802.org/11/Tutorial/index.html
+https://www.ieee802.org/11/Tutorial/General.pdf
+https://www.ieee802.org/11/Tutorial/archit.pdf
+https://www.ieee802.org/11/Tutorial/MAC.pdf
+https://www.ieee802.org/11/Tutorial/FH.pdf
+https://www.ieee802.org/11/Tutorial/ds.pdf
+
+판: 802.11 작업 그룹이 1996년 3월 IEEE 802 플레너리에서 한 튜토리얼 다섯이다(문서 번호 IEEE P802.11-96/49A~E). **승인 전 초안(나중의 802.11-1997)을 옮긴 발표 자료**라 슬라이드마다 「바뀔 수 있다」고 적혀 있다.
+그래서 구조와 동작의 뼈대(구성 둘, CSMA/CA, ACK, RTS/CTS)는 아래 RFC 항목과 맞춰 본 것만 쓰고, 값(채널 표)은 「처음 판을 만들던 때의 초안 값」으로만 쓴다.
+
+- 무선이 유선과 다른 점: 간섭과 잡음이 많고 품질이 장소와 시간에 따라 바뀐다. 다른 802.11 장치나 전자레인지 같은 장치와 주파수를 함께 쓴다. 모든 스테이션이 서로 들린다고 가정할 수 없다(「숨은 노드」 문제) — Architecture 「What is unique about wireless?」
+- **구성 둘** — Architecture 「Architecture Overview」·「802.11 Configurations」
+  - **독립(애드혹)**: 스테이션들이 AP 없이 서로 직접 통신하는 BSS(기본 서비스 세트) 하나다. 닿는 범위가 좁다
+  - **인프라스트럭처**: AP들과 스테이션들로 이루어진다. 분배 시스템이 AP들을 거쳐 여러 셀(BSS)을 한 네트워크로 이어 무선이 닿는 범위를 넓힌다
+- 분배 시스템은 BSS 여럿을 이어 ESS(확장 서비스 세트)를 만들고, 움직이는 스테이션이 유선 쪽 자원에 닿게 한다. 분배 시스템이 무엇으로 되어 있는지는 802.11이 정하지 않는다(브리지로 이은 IEEE LAN일 수도, 무선일 수도 있다) — 「Distribution System」, 「802.11 Defines the Airwaves IF」
+- 스테이션은 AP 하나를 골라 그 AP와 연결(associate)한다. AP는 비컨으로 시간을 맞추고 절전을 돕는다. 트래픽은 대개 AP를 거치지만 스테이션끼리 직접 주고받을 수도 있다 — 「Access Points」
+- 802.11이 정하는 것은 스테이션 사이(스테이션과 AP 사이 포함)의 **무선 구간** — 물리 계층과 MAC — 이다 — 「802.11 Defines the Airwaves IF」
+- 물리 계층 셋(초안): 주파수 도약 대역 확산(2.4 GHz, 1·2 Mbit/s), 직접 시퀀스 대역 확산(2.4 GHz, 1·2 Mbit/s), 확산 적외선(1·2 Mbit/s) — Architecture 「Three PHYs」.
+  General은 2.4 GHz 대역을 세계 여러 나라에서 쓸 수 있는 대역으로, 802.11이 그 대역에서 1·2 Mbit/s를 위한 상호 운용 표준을 만든다고 적는다 — General 「Global View」
+- **적외선**(확산 적외선): 파장 850~950 nm의 빛을 쓴다. 송신기와 수신기가 서로를 겨누지 않아도 되고 가시선이 트여 있지 않아도 되지만, 거리는 10 m 안팎이고 건물 안에서만 쓴다 — General 「Infrared PHY」
+- **주파수 도약**: 대역 확산의 한 갈래로, 같은 곳에서 네트워크 여럿이 함께 동작하게 해 준다. 802.11의 주파수 도약 물리 계층은 1 MHz 간격으로 서로 겹치지 않는 채널 79개(북미·유럽, 일본은 23개)를 의사 난수 순서로 옮겨 다닌다 — FH 「Why Frequency Hopping?」·「802.11 FH PHY vs. Regulations」
+- **직접 시퀀스**: 보낼 기호 하나를 부호열(11칩 바커 부호)로 퍼뜨려 더 넓은 대역에 싣는다. 그만큼 주파수당 전력이 낮아지고, 간섭과 잡음에 강해진다 — DS 「What is DSSS?」·「DSSS benefits」·「IEEE 802.11 DSSS PHY characteristics」
+- 직접 시퀀스의 **채널 표(초안)**: 채널마다 번호와 중심 주파수가 있고, 번호가 하나 늘 때마다 중심 주파수가 5 MHz 올라간다(미국 FCC 칸: 1번 2412 MHz부터 11번 2462 MHz까지). 유럽·일본 칸은 쓸 수 있는 번호가 지역마다 다르게 적혀 있다 — DS 「DSSS Channels」(Table 1).
+  **초안 표라 지역별 칸은 최종 표준과 다를 수 있다** — 본문은 「채널을 번호로 부르고, 번호마다 중심 주파수가 있으며, 이웃 번호의 중심 주파수는 5 MHz 떨어져 있다」까지만 쓴다. 채널 하나가 차지하는 폭은 이 튜토리얼에 수치로 없다(아래 「개정 규격」 항목의 22 MHz 줄)
+- 물리 계층은 채널 상태 확인(CCA, clear channel assessment) 신호로 매체가 쓰이고 있는지 MAC에 알린다 — 이것이 캐리어 감지다. 물리 계층 관리가 채널을 맞춘다(channel tuning) — Architecture 「802.11 Protocol Architecture」·「PHY Layer Services」
+- 요구 사항: 같은 지역·같은 채널 공간에 네트워크 여럿이 겹쳐 있을 수 있어야 하고, 같은 채널을 쓰는 다른 장치에서 오는 간섭(동일 채널 간섭)에 견뎌야 한다 — Architecture·MAC 「Requirements」
+- **기본 접근 방식 — CSMA/CA**: 분산 조정 기능(DCF)으로 CSMA/CA를 쓴다. 보내기 전에 매체가 쓰이는지 살피고(캐리어 감지), 쓰이고 있으면 미룬다. 미뤘던 스테이션은 매체가 빈 뒤 무작위 백오프를 골라 기다려, 매체가 비기를 함께 기다리던 스테이션들이 한꺼번에 보내 부딪치지 않게 한다.
+  백오프 시간은 매체가 비어 있을 때만 줄어들고, 다시 보낼 때마다 백오프 범위가 지수적으로 넓어진다 — MAC 「Basic Access Protocol Features」·「CSMA/CA Explained」·「CSMA/CA + ACK protocol」.
+  이 초안은 매체가 정해진 간격(DIFS)보다 오래 비어 있으면 곧바로 보낸다고 적는데, 지금 판을 풀이한 RFC 8325 §6.1.2는 DIFS 동안 비어 있어도 무작위 백오프만큼 더 기다린 뒤 보낸다고 적는다(아래 RFC 항목) — **본문의 차례는 RFC 8325를 따른다**
+- **ACK**: 한 스테이션에게 보낸 프레임을 받은 쪽은 CRC가 맞으면 곧바로 ACK를 돌려준다. ACK가 오지 않으면 보낸 쪽은 무작위 백오프 뒤 그 프레임을 다시 보낸다(정해진 횟수까지). 브로드캐스트 프레임은 ACK 없이 CSMA/CA만 쓴다 — 「CSMA/CA + ACK protocol」·「Basic Access Protocol Features」
+- **숨은 노드와 RTS/CTS**: 같은 AP에 보내려는 스테이션들이 서로의 신호를 듣지 못할 수 있다(둘 다 AP는 듣는다). 보내는 쪽이 RTS를 보내고 받는 쪽이 CTS로 답해 그 뒤의 데이터 전송을 위해 매체를 미리 잡는다.
+  RTS·CTS에는 매체를 얼마 동안 쓸지가 들어 있고, 이것을 들은 다른 스테이션은 그 시간을 NAV에 적어 두고 그동안 보내지 않는다(가상 캐리어 감지). RTS/CTS는 선택해 쓰지만 구현은 해야 하며, 스테이션마다 RTS 임계값으로 쓸지를 정한다(짧은 프레임에 붙는 덧비용을 줄이려고) — 「"Hidden Node" Problem」·「"Hidden Node" Provisions」
+- 네트워크 찾기(scanning): 스테이션은 비컨을 들어(수동) 또는 채널마다 프로브를 보내고 응답을 기다려(능동) 네트워크를 찾는다. 비컨이나 프로브 응답에 네트워크에 들어가는 데 필요한 정보가 있고, 스테이션은 고른 AP에 연결 요청을 보내 연결한다 — MAC 「Scanning」·「Active Scanning Example」
+- **한국어 이름**: station → **스테이션**(영문 읽기, 줄여 STA), access point → **AP**(기출이 AP로 쓴다 — 처음 쓸 때 「액세스 포인트」를 함께 적는다), basic service set → 기본 서비스 세트(BSS), independent BSS·ad hoc → **애드혹 모드**(독립 BSS, IBSS — 기출·업계가 쓰는 이름),
+  infrastructure → **인프라스트럭처 모드**, distribution system → 분배 시스템, extended service set → 확장 서비스 세트(ESS), association → 연결, frequency hopping spread spectrum → **주파수 도약 대역 확산**(FHSS), direct sequence spread spectrum → **직접 시퀀스 대역 확산**(DSSS),
+  spread spectrum → **대역 확산**(기출은 「스프레드 스펙트럼」으로 적는다), infrared → 적외선, clear channel assessment → 채널 상태 확인(CCA), random backoff → **무작위 백오프**(phase 72가 CSMA/CD에 쓴 「백오프」), hidden node → **숨은 스테이션**(guide의 이름 — 튜토리얼은 「노드」, 둘 다 같은 것을 가리킨다)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·두 구성·분배 시스템·ESS, 연결), `wireless-lan.wlan-transmission`(처음 판 물리 계층 셋, FHSS·DSSS·적외선의 동작과 대역·전송률),
+(phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(채널 번호와 중심 주파수, 5 MHz 간격, 채널을 맞추는 일, 겹치는 네트워크와 동일 채널 간섭, 채널마다 찾기), `wireless-lan.csma-ca`(DCF·DIFS·무작위 백오프·ACK와 재전송·숨은 스테이션·RTS/CTS·NAV), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단·E41)
+
+## (phase 82 step 0) IEEE 802.11 개정 규격 — 802.11a·b·g·n·ac·ad·ah·ax·be: 표준 개요 페이지, 개정 연표, PAR 사본, 작업반 보고, 작업 그룹 문서(1999~2000)
+https://www.ieee802.org/11/Reports/802.11_Timelines.htm
+https://standards.ieee.org/ieee/802.11a/1165/
+https://standards.ieee.org/ieee/802.11b/1166/
+https://standards.ieee.org/ieee/802.11n/3952/
+https://standards.ieee.org/ieee/802.11ac/4473/
+https://standards.ieee.org/ieee/802.11ad/4527/
+https://standards.ieee.org/ieee/802.11ah/4960/
+https://standards.ieee.org/ieee/802.11ax/7180/
+https://standards.ieee.org/ieee/802.11be/7516/
+https://standards.ieee.org/ieee/802.11/10548/ (802.11g-2003은 따로 된 개요 페이지를 찾지 못했다 — 이 페이지의 작업 그룹 표준 목록에 제목과 초록이 있다)
+https://www.ieee802.org/11/PARs/index.html (사본: par80211aapp.html, par80211bapp.html, P802.11ac.pdf, P802.11ad.pdf, P802.11ah.pdf, P802.11ax.pdf, P802_11be_PAR_Detail.pdf, P802.11n_NesCom_PAR_Extension_Pre-Submittal_052707.pdf)
+https://www.ieee802.org/11/Reports/tgg_update.htm, tgn_update.htm, tgac_update.htm, tgax_update.htm, tgbe_update.htm, hew_update.htm
+https://www.ieee802.org/11/Documents/DocumentArchives/1999_docs/ (90727A-Intro of 80211a PHY to FCC.pdf — IEEE 802.11-99/072, 90257B-The-case-for-Removing-the-HR-DSSS-FH-Option.pdf — 문서 머리는 IEEE 802.11-98/025)
+https://www.ieee802.org/11/Documents/DocumentArchives/2000_docs/ (00114r38S- HRbSG Draft PAR.doc — IEEE 802.11-00/114r3)
+
+판: 개정 연표는 「OFFICIAL IEEE 802.11 WORKING GROUP PROJECT TIMELINES - 2026-10-27」판이다. 표준 개요 페이지·PAR 사본·작업반 보고는 2026-11-19에 받았다. 아래 표의 「승인」은 IEEE SA 표준 위원회의 승인일이다(개요 페이지 「Board Approval」, 802.11g만 TGg 보고).
+**PAR(프로젝트 승인 요청서)는 표준을 만들기 전에 정한 목표**이고 작업반 보고는 진행 기록이며, 1999~2000년 문서는 회원이 낸 발표·초안이다 — 어느 것도 표준 본문이 아니다. 그래서 전송률 칸은 문서가 적은 말(「목표」·「~까지」)을 그대로 옮기고 지금 판 본문의 최대 전송률로 바꿔 적지 않는다.
+
+| 개정 | 이름(개정 연표·개요 페이지) | 대역 | 전송률 — 문서가 적은 값 | 방식 — 문서가 적은 것 | 승인 | 상태 |
+|---|---|---|---|---|---|---|
+| 802.11-1997(처음 판) | — | 2400~2500 MHz(전파 둘), 적외선 | 1·2 Mbit/s(1996 튜토리얼) | 주파수 도약·직접 시퀀스 대역 확산, 적외선 | 1997-06-26 | 대체됨 |
+| 802.11a-1999 | 5 GHz 대역의 고속 물리 계층 | 5 GHz | **6~54 Mbit/s**(6·12·24 Mbit/s는 반드시 지원) — 99/072 | **OFDM**, 채널 간격 20 MHz — 99/072 | 1999-09-16 | 대체됨 |
+| 802.11b-1999 | 2.4 GHz 대역의 더 빠른 물리 계층 확장 | 2.4 GHz | **1·2·5.5·11 Mbit/s** — 00/114r3, RFC 8325 §6.1.1 | 고속 직접 시퀀스(HR/DSSS) — 99/025 | 1999-09-16 | 대체됨 |
+| 802.11g-2003 | 2.4 GHz 대역의 한층 더 높은 데이터 전송률 확장 | 2.4 GHz | **54 Mbps까지** — TGg 보고 2001-11 | CCK·**OFDM**·PBCC를 바탕으로 한 초안 — TGg 보고 | 2003-06-12 | 대체됨 |
+| 802.11n-2009 | 높은 처리율(High Throughput) | 찾지 못했다 | MAC에서 잰 최대 처리율 100 Mb/s 이상(목표) — 개요 초록·PAR, 처리율 600 Mbps까지(2006-01에 고른 합동 제안) — TGn 보고 | **MIMO** — 802.11ac PAR §5.3, 20 MHz·40 MHz 모드 — TGn 보고 | 2009-09-11 | 대체됨 |
+| 802.11ac-2013 | 6 GHz 아래의 매우 높은 처리율(VHT) | **6 GHz 아래, 2.4 GHz 제외 — 5 GHz 대역** — PAR §5.2 | 여러 스테이션 합 1 Gbps 이상·링크 하나 500 Mbps 이상(목표) — PAR §5.2 | **MU-MIMO**(하향), 40·80·160 MHz 전송 — TGac 보고 | 2013-12-11 | 대체됨 |
+| 802.11ad-2012 | 60 GHz 대역의 매우 높은 처리율 | **60 GHz**(대개 57~66 GHz) — PAR §5.2 | 최대 처리율 1 Gbps 이상(목표) — PAR §5.2 | — | 2012-10-19 | 대체됨 |
+| 802.11ah-2016 | 1 GHz 아래(면허 없이 쓰는 대역) | **1 GHz 아래**(TV 화이트 스페이스 대역 제외) — 개요 초록 | 100 kb/s 이상, 닿는 거리 1 km까지 — 개요 초록 | OFDM — PAR §5.2 | 2016-12-07 | 대체됨 |
+| 802.11ax-2021 | 고효율 WLAN(High Efficiency) | **1~7.125 GHz** — 개요 초록 | 붐비는 곳에서 스테이션당 평균 처리율 4배 이상(목표) — PAR §5.2.b | **OFDMA, 하향·상향 MU-MIMO** — TGax 보고의 문서 제목(아래 줄) | 2021-02-09 | 대체됨(802.11-2024에 합쳐짐) |
+| 802.11be-2024 | 극도로 높은 처리율(Extremely High Throughput) | **1~7.250 GHz**, 2.4·5·6 GHz의 옛 장치와 함께 동작 — 개요 초록 | 최대 처리율 30 Gbit/s 이상 — 개요 초록·TGbe 보고 | — | 2024-09-26(발행 2025-07-22) | **현행**(Active) |
+
+- 「처리율」과 「전송률」을 섞지 않는다: 802.11n·ac·ad·be의 값은 **MAC의 데이터 서비스 접근점에서 잰 처리율의 목표**다(개요 초록·PAR이 그렇게 적는다). 802.11a·b·g의 값은 물리 계층의 데이터 전송률이다.
+  지금 판 본문이 정한 개정마다의 최대 데이터 전송률(예: 802.11n·ac·ax의 최댓값)은 **찾지 못했다** — 본문은 「~ 이상을 목표로 만들었다」로만 쓰고 최댓값을 지어내지 않는다
+- **802.11a**(99/072, 1999-03 TGa 의장의 발표): 1997년 7월 2.4 GHz 대역의 무선 LAN 표준(MAC 하나, 물리 계층 셋 — FHSS·DSSS·적외선)을 마쳤고, 그 뒤 5 GHz 고속 물리 계층을 만든다. **OFDM**으로 보내고 데이터 전송률은 6~54 Mbit/s 가운데 여럿이다. 채널 간격은 20 MHz다.
+  OFDM 신호는 0이 아닌 부반송파 52개(데이터 48개, 파일럿 4개)로 이루어지고 부반송파 간격은 312.5 kHz다. 부반송파마다 BPSK·QPSK·16QAM·64QAM 가운데 하나로 데이터를 싣는다. 부반송파 가운데 일부가 약해질 수 있어 오류 정정 부호를 꼭 쓴다 — 「What is 802.11?」·「Main Parameters」·「Data and Pilot subcarriers」·「Error Correction Coding」·「Supported Rates and Modulations」
+- **802.11a의 PAR**(1997-09-16 승인): 처음 목표는 약 20 Mbit/s의 고속 물리 계층이었다 — 「Scope」. 최종 표준의 54 Mbit/s는 위 99/072의 값이다
+- **802.11b**: PAR(1997-12-09 승인)의 목적은 2.4 GHz 대역의 802.11 네트워크가 낼 수 있는 데이터 전송률을 높이는 것이다 — par80211bapp 「Purpose」. 그 뒤를 이을 연구 그룹의 초안 PAR(00/114r3, 2000)은 802.11b가 이미 기본 전송률 1·2·5.5·11 Mbit/s를 정해 두었다고 적는다 — 「16. Additional Explanation Notes」.
+  RFC 8325 §6.1.1도 802.11b를 1·2·5.5·11 Mbps를 지원하는 옛 구현으로 든다. 이 물리 계층의 이름은 고속 직접 시퀀스(HR/DSSS)다(99/025 — 이 문서는 고속 DSSS 전송이 폭 22 MHz의 채널을 차지한다고 적는다, 「What is it?」)
+- **802.11g**: 이 개정을 낳은 연구 그룹의 초안 PAR(00/114r3)은 802.11b의 물리 계층을 더 빠르게 넓히는 것을 범위로 잡고, 목표 최대 데이터 전송률을 적어도 20 Mbit/s로, 그리고 **802.11b 물리 계층 표준의 필수 부분을 모두 갖춰야 한다**고 적는다(「Scope of the Project」 — 승인된 PAR은 읽지 못했다). TGg 보고(2001-11)는 첫 초안이 2.4 GHz 대역에서 54 Mbps까지를 내고 CCK·OFDM·PBCC 기술을 바탕으로 한다고 적고,
+  2002년 보고는 OFDM 프레임을 보호하는 장치(protection mechanisms)를 남은 쟁점으로 든다. 표준 위원회 승인은 2003-06-12다 — TGg 보고 「June 2003」·「November 2001 Session」. 개요 목록의 초록은 802.11 1999년판(802.11a·b 등으로 고친 것)에 2.4 GHz 대역의 「한층 더 높은」 데이터 전송률 확장을 더한다고 적는다
+- **802.11n의 MIMO**: 802.11ac의 PAR은 802.11n보다 높은 처리율을 내려면 802.11n의 MIMO(다중 입력 다중 출력) 기능이 필요할 것이라고 적는다 — P802.11ac §5.3. TGn 보고는 20 MHz·40 MHz 두 모드의 공존 분석과, 「단일 스트림」으로 동작하는 방식을 기능 요구에 더한 일을 적는다 — TGn 보고
+- **MU-MIMO**: TGac 보고(2010년 사양 틀 결정 목록)는 MU-MIMO를 따로 묶어 다루고, 하향 MU-MIMO의 전송 기회 나눠 쓰기(DL MU-MIMO TXOP Sharing), MU-MIMO에서 사용자마다의 피드백, MU-MIMO의 백오프 절차를 정했다고 적는다 — TGac 보고 「May·September·November 2010」.
+  TGax 보고는 초안 절 「28.3.15 SU-MIMO와 DL MU-MIMO 빔포밍」, 「상향 MU-MIMO(UL MU-MIMO)를 위한 HE-LTF」 같은 문서 제목을 싣는다. **MU-MIMO를 정의한 문장은 허용한 출처에서 찾지 못했다** — 이름(multi-user)과 하향·상향이 어느 개정에 나오는지까지만 쓴다
+- **OFDMA**: TGax 보고는 초안 절 「28.3.3 OFDMA와 SU 톤 할당」, 「상향 OFDMA 기반 임의 접근(UORA)」 같은 문서 제목을 싣고, 고효율 WLAN 연구 그룹 보고는 「HEW에서의 OFDMA 논의」를 싣는다 — 802.11ax에 OFDMA가 들어 있다는 것까지는 이것으로 확인된다.
+  **OFDMA가 무엇인지 정의한 문장은 허용한 출처에서 찾지 못했다**(802.11ax 본문은 열지 못했다). 802.16 작업 그룹의 2011년 튜토리얼(IEEE 802.16-11/0005, `ieee802.org/802_tutorials/2011-03/`)도 OFDMA를 하향·상향 다중 접속 방식으로 든 표뿐이다
+- **802.11ax의 목표**: 많은 AP와 스테이션이 좁은 곳에 몰린 환경에서는 이웃 장치의 간섭이 성능을 떨어뜨리므로, 이전 개정처럼 합계 처리율이 아니라 스테이션당 평균 처리율 같은 사용자 경험 지표를 높이고 전력 효율도 지키거나 높인다 — P802.11ax §5.2.b·§5.5
+- **802.11be**: 최대 처리율 30 Gbit/s 이상을 내는 동작 방식과 최악의 지연·지터를 줄이는 동작 방식을 적어도 하나씩 정한다. 1~7.250 GHz에서 동작하고 2.4·5·6 GHz의 옛 802.11 장치와 함께 동작한다 — 개요 초록, TGbe 보고 「Background」(2019-03에 작업반을 만들었다). 업계 이름은 Wi-Fi 7(위 「작업 그룹 홈페이지」 항목)
+- **802.11ac와 802.11ad**: 둘 다 「매우 높은 처리율(VHT)」 연구 그룹에서 나왔지만(작업 그룹 홈페이지 「VHT SG ⇨ TGac & TGad」) 대역이 다르다 — ac는 6 GHz 아래(2.4 GHz를 뺀 5 GHz 대역), ad는 60 GHz 대역이다. 「802.11n을 바탕으로 60 GHz 밀리미터파에서 동작하는 새 물리 계층」은 ad 쪽 말이다 — [기출 2024-05-19 #27]
+- **802.11a와 802.11b**: 같은 날(1999-09-16) 승인됐다. a는 5 GHz·OFDM, b는 2.4 GHz·고속 DSSS다. 이름의 알파벳은 속도 순서를 말하지 않는다(발행은 a 1999-12-30, b 2000-01-20 — 개요 페이지)
+- 이 step이 쓰지 않는 개정: 802.11s(메시 — step 4의 몫), 802.11e·i·h 같은 기출이 묻지 않는 것
+- **한국어 이름**: OFDM → **직교 주파수 분할 다중화**(orthogonal frequency division multiplexing — RFC 5416 §6.10이 풀어 적는다), subcarrier → **부반송파**, OFDMA → 직교 주파수 분할 다중 접속(orthogonal frequency division multiple access — 이름만),
+  MIMO → **MIMO**(다중 입력 다중 출력 — 기출이 영문 약어로 쓴다), MU-MIMO → **MU-MIMO**(다중 사용자 MIMO), downlink·uplink → **하향·상향**(AP에서 스테이션 쪽·스테이션에서 AP 쪽), throughput → **처리율**(phase 70의 이름), data rate → 데이터 전송률,
+  High Throughput → 높은 처리율, Very High Throughput → 매우 높은 처리율, High Efficiency → 고효율, Extremely High Throughput → 극도로 높은 처리율(이름을 풀어 적을 때만), PAR → 프로젝트 승인 요청서
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wlan-transmission`(802.11b는 DSSS를 넓힌 고속 DSSS, 802.11a·g는 OFDM, OFDM의 부반송파), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(고속 DSSS 전송이 22 MHz 채널을 차지한다, 802.11a의 채널 간격 20 MHz),
+(phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(802.11n의 MIMO, MU-MIMO 하향 802.11ac·상향 802.11ax, OFDM과의 차이), `wireless-lan.ieee-80211-standards`(위 표, 802.11ah·be 한 줄씩, ac와 ad, a와 b), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
+
+## (phase 82 step 0) RFC 4118, RFC 5416, RFC 8325, RFC 9119 — 802.11의 용어와 동작을 풀이한 RFC
+https://www.rfc-editor.org/rfc/rfc4118
+https://www.rfc-editor.org/rfc/rfc5416
+https://www.rfc-editor.org/rfc/rfc8325
+https://www.rfc-editor.org/rfc/rfc9119
+https://www.rfc-editor.org/rfc/rfc9956
+
+판(rfc-editor.org 텍스트판과 `…/rfcNNNN.json`, 2026-11-19): RFC 4118(2005-06, Informational, 폐기·개정 없음), RFC 5416(2009-03, Proposed Standard, 폐기·개정 없음 — IEEE 802.11-2007을 참조한다),
+RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정은 DSCP와 802.11 우선순위의 대응만 고치고 아래 줄이 쓰는 §1.6 용어와 §6.1은 건드리지 않는다, IEEE 802.11-2016을 참조한다), RFC 9119(2021-10, Informational, 폐기·개정 없음), RFC 9956(2026-05, Proposed Standard, 폐기·개정 없음 — RFC 4594·8325를 개정한다, 아래 한 줄만 쓴다).
+
+- RFC 4118 §3.1(802.11의 정의를 옮겨 적은 절): **스테이션**(STA)은 무선 매체에 닿는 802.11 규격의 MAC과 물리 계층 인터페이스를 가진 장치다. **AP**는 스테이션 기능을 가지면서, 자기와 연결된 스테이션들이 무선 매체를 거쳐 분배 서비스에 닿게 해 주는 것이다.
+  **BSS**는 조정 기능 하나가 다스리는 스테이션 묶음이다. **분배 시스템**은 BSS들과 유선 LAN을 이어 ESS를 만드는 시스템이고, **ESS**는 같은 SSID를 쓰는 BSS 하나 이상과 거기 이어진 LAN의 묶음으로, 그 안의 스테이션 위쪽 계층에게는 BSS 하나처럼 보인다 — §3.1
+- RFC 4118 §1.1: 802.11은 무선 클라이언트 스테이션과 AP 사이, 그리고 무선 클라이언트끼리의 무선 구간 접속 규칙을 정하고, 장치가 BSS에 연결되는 방법을 적는다. BSS는 BSSID로 가린다. WLAN을 셀 구조로 볼 수 있다 — 셀 하나가 BSS이고 그 BSS를 AP가 다스린다.
+  AP 둘 이상이 레이어 2 브로드캐스트 네트워크로 이어지고 모두 같은 SSID를 쓰면 ESS가 된다. AP가 맡는 일로 비컨 만들기, 프로브 응답, RTS/CTS/ACK 같은 제어 프레임 처리, 재전송, 전송률 맞추기를 든다 — §1.1
+- RFC 4118 §1.2: 업체들이 흔히 더하는 관리 기능 가운데 RF 설정(재전송·**채널 선택**·송신 전력 조정)과 AP 설정(SSID 등)을 든다. 이런 기능은 대개 802.11이 직접 정하지 않지만, AP의 **채널 할당**과 송신 전력 제어는 802.11 MIB에 들어 있다.
+  802.11h 개정은 일부 규제 기관(주로 유럽)의 요구에 맞추려고 레이더 탐지·송신 전력 제어·**동적 채널 선택**을 정한다 — §1.2. 중앙 집중 구조의 한 예(원격 MAC 구조)에서는 컨트롤러가 채널 선택 기능을 준다 — §5.5
+- RFC 5416 §6.1: **SSID**는 AP가 그 무선 LAN을 알릴 때 쓰는 서비스 세트 식별자다. ASCII 문자로 쓰고 32옥텟을 넘지 않는다. 비컨과 프로브 응답에 SSID를 넣지 않게(숨기게) 설정할 수도 있다 — §6.1 「Suppress SSID」·「SSID」
+- RFC 5416 §6.5·§6.10: 컨트롤러는 AP의 「지금 쓰는 채널」 — 802.11b 무선은 DSSS 물리 계층의 동작 채널(MIB의 dot11CurrentChannel), 802.11a 무선은 OFDM 물리 계층의 동작 채널 — 을 정해 보낼 수 있고, AP는 받은 값을 따라야 한다. 그러니 AP의 채널은 관리하는 쪽이 정할 수 있다.
+  802.11a 무선이 동작할 수 있는 5 GHz 구간(5.15~5.25 GHz, 5.25~5.35 GHz, 5.47~5.725 GHz, 5.725~5.825 GHz 등)도 적는다 — §6.5·§6.10
+- RFC 5416 §6.9: 규제 영역(나라)마다 쓸 수 있는 채널의 첫 번호와 개수, 최대 송신 전력을 주고받는다 — 나라마다 쓸 수 있는 채널이 다르다 — §6.9
+- RFC 5416 §6.2: AP의 안테나 정보에 안테나 개수(255개까지)와 안테나를 묶어 쓰는 방식(섹터·무지향·**MIMO**)이 있다 — §6.2. §6.25: 무선 종류 칸에 802.11a·b·g·n이 있다
+- RFC 5416 §1: Wi-Fi Alliance가 아직 802.11에서 만들고 있던 표준에 대한 시장의 요구를 채우려고 임시 사양 둘(WPA, WMM)을 만들었다 — §1. 곧 Wi-Fi Alliance는 IEEE 802.11 작업 그룹이 아닌 업계 단체다(그 단체의 페이지는 허용한 출처가 아니라 읽지 않았다)
+- RFC 8325 §1.6(용어): **CSMA/CA**는 캐리어 감지를 쓰되 채널이 비어 있다고 감지될 때만 보내 충돌을 피하려는 MAC 방식이다. **CSMA/CD**는 (초기 이더넷이 쓴) 보내는 동안 다른 스테이션의 전송을 감지해 충돌을 알아채고, 멈추고 잼 신호를 보낸 뒤 무작위 시간을 기다려 다시 보내는 방식이다.
+  **DCF**는 BSS의 모든 스테이션에서 같은 조정 논리가 도는 조정 기능이다. **IFS**는 802.11에서 전송과 전송 사이의 조용한 시간이고, **DIFS**는 보내려는 스테이션이 매체가 비어 있다고 확인해야 하는 시간이다. **무작위 백오프**는 0부터 경쟁 윈도(CW)까지에서 고른 슬롯 시간의 정수배다.
+  **BSS**는 흔히 말하면 무선 셀 하나이고, BSS에 속했다고 그 BSS의 다른 모든 구성원과 무선으로 통신할 수 있는 것은 아니다 — §1.6
+- RFC 8325 §6.2: DCF는 스테이션이나 트래픽 종류에 따라 순서를 두지 않으므로, IEEE는 2005년에 DCF를 고쳐 우선순위를 두는 HCF를 더했고 2007년판에 합쳐 넣었다 — §6.2. RFC 9956 §7.3: 802.11e·n·ac·ax를 따르는 Wi-Fi 장비는 대개 전송 큐 넷이나 여덟과 EDCA 매개변수 네 벌(WMM 접근 범주 넷)을 두어 매체 접근에 우선순위를 둔다 — §7.3. 곧 802.11ax 장비도 DCF를 고친 경쟁 방식(EDCA)으로 매체에 접근한다
+- RFC 8325 §6.1: 무선(Wi-Fi) 매체는 AP를 포함한 모든 스테이션이 같은 조건으로 다투는 공유 매체다. 유선 이더넷과 달리 **무선에서는 충돌을 직접 감지할 수 없다** — 전파가 공중으로 퍼져 나가고 부딪친 신호가 보낸 쪽으로 되돌아오지 않을 수 있기 때문이다. 그래서 IEEE는 CSMA/CD를 무선에 맞게 고쳐 CSMA/CA를 만들었고, 802.11의 처음 CSMA/CA가 DCF다 — §6.1
+- RFC 8325 §6.1.2: 스테이션은 보내기 전에 매체를 살핀다. DIFS 동안 쭉 비어 있으면 보낼 수 있지만 그 뒤 **무작위 백오프만큼 더 기다린다** — 모두 고정된 시간만 기다리면 충돌이 잦을 것이기 때문이다. DIFS 동안 매체가 쓰이면 DIFS 동안 비어 있을 때까지 미룬다 — §6.1.2
+- RFC 8325 §6.1.3: 무작위 백오프의 처음 범위는 0부터 CWmin까지다. 두 스테이션이 같은 값을 골라 충돌하면 다시 DIFS를 기다리고 새 값을 고르는데, 이때 범위(CW)가 대략 두 배로 커진다(CWmax까지) — §6.1.3. §6.1.1: 802.11b 같은 옛 구현은 1·2·5.5·11 Mbps를 지원한다
+- RFC 9119 초록·§1: 802.11을 「802.11 (Wi-Fi)」로 함께 적고, 본문 내내 802.11 무선 LAN을 Wi-Fi라 부른다 — 초록, §1
+- RFC 9119 §2·§3.1.1: ACK는 802.11의 2계층 확인 응답이다. 멀티캐스트 프레임에는 ACK가 없어 AP가 다시 보내야 하는지 알 수 없다 — 한 스테이션에게 보낸 프레임은 ACK를 받고 필요하면 다시 보낸다는 것(위 1996 튜토리얼 항목)과 짝을 이루는 말이다 — §2, §3.1.1
+- RFC 9119 §3.1.2: 유선은 대개 정해진 속도로 보내지만 Wi-Fi의 전송률은 스테이션이 AP에 얼마나 가까운지에 따라 바뀐다. **MIMO 시스템의 공간 다중화**처럼 주파수를 더 알뜰히 쓰는 기법은 받는 쪽이 둘 이상인 전송(멀티캐스트)에는 쓸 수 없다 — §3.1.2. §3.1.3: 더 센 전력으로 보내면 다른 전파 사용자와 간섭하는 범위가 넓어진다 — §3.1.3
+- **한국어 이름**: SSID → **SSID**(service set identifier, 서비스 세트 식별자 — 기출·업계가 약어로 쓴다), BSSID → BSSID, beacon → 비컨, probe → 프로브, contention window → 경쟁 윈도(CW), interframe space → **프레임 사이 간격**(phase 72가 802.3의 interFrameSpacing에 쓴 이름), slot time → 슬롯 시간,
+  acknowledgement → **ACK**(확인 응답 — 처음 쓸 때 「잘 받았다는 확인 프레임」으로 푼다), spatial multiplexing → 공간 다중화, channel selection → 채널 선택, dynamic channel selection → 동적 채널 선택
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
+`wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
