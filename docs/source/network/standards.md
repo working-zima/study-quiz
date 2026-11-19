@@ -195,6 +195,7 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 
 쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E1·E3, (phase 72 step 5) `ethernet.fcs`(데이터 링크 계층의 프로토콜 가운데 오류를 고치는 것도 있다, §7.6.2.2)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 0(OSI 모델은 일곱 계층이고 아래에서부터 번호를 붙인다 — 물리(1)·데이터 링크(2)·네트워크(3)·전송(4) 계층, 그 위에 셋 더 있고 맨 위가 응용 계층. 계층마다 맡는 일은 `protocols-encapsulation.osi-model`과 뜻을 맞춰 한 줄씩 썼다), 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)의 계층 칸 셋
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -1464,6 +1465,8 @@ https://www.rfc-editor.org/rfc/rfc4949
   (phase 82 step 18) 쓰인 곳: `network-security.vpn` 문단 1(비교적 공용인 실제 네트워크의 자원 위에 지은, 쓰는 사람이 제한된 네트워크 — 「가상」·「사설」의 풀이, 전용 실제 네트워크보다 대개 비용이 적다 — 「virtual private network」), 문단 2(흔히 암호화와 터널링으로 만든다),
   `network-security.tunneling` 문단 1(터널은 한 프로토콜의 패킷을 다른 프로토콜에 담아 만든 통신 채널이고 흔히 논리적 지점 간 링크다 — 본문은 「두 곳이 한 구간으로 바로 이어진 것처럼」으로 쓴다), 문단 2(터널링은 두 곳을 잇는 네트워크가 그 패킷을 그대로 나르지 못할 때 쓴다 — 「tunnel」의 Tutorial),
   문단 7(PPTP·L2TP는 보안 서비스를 스스로 정하지 않는다 — 이름만)
+  (phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 1(PPP는 두 장치를 바로 이은 2계층 링크 위에서 위 계층의 패킷을 프레임에 담아 양쪽으로 나르고, 한 링크로 여러 프로토콜의 패킷을 섞어 나르며, 데이터를 주고받기 전에 상대를 인증하는 절차를 고를 수 있다 — 「Point-to-Point Protocol (PPP)」), 문단 3·4·9(PPTP·L2TP는 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다 — 「Point-to-Point Tunneling Protocol (PPTP)」·「Layer 2 Tunneling Protocol (L2TP)」. L2TP가 PPTP와 L2F를 합친 것이라는 줄 대신 본문은 NIST SP 800-77 Rev. 1 §8.5.2의 「PPTP의 뒤를 이은 것」으로 쓴다),
+  `network-security.ipsec` 문단 0·2·3·8(IPsec·AH·ESP·두 모드, AH는 바뀌는 칸을 빼고 IP 헤더의 일부까지 확인하고 ESP는 감싼 부분만 확인한다 — 「IP Security Protocol (IPsec)」·「Authentication Header (AH)」·「Encapsulating Security Payload (ESP)」·「tunnel mode」·「transport mode」), 문단 4(연결의 한쪽 끝이 보안 게이트웨이면 터널 모드를 쓴다 — 「tunnel mode」·「security gateway」. 본문은 「VPN 게이트웨이처럼 다른 컴퓨터들의 패킷을 대신 지켜 보내는 장비」로 쓴다), 문단 5(IKE), 문항 n350·n351·n352 해설
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -4531,6 +4534,7 @@ Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명�
 쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
 (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§1 — 믿을 수 있는 순서 있는 전송 위, 인증·기밀성·무결성, 서버는 늘 인증, 두 부분, 위 계층이 얹힌다, §2 — 메시지 차례, 부록 E.5 — SSL 금지),
 `app-protocols-mgmt-security.https`(§1 — 서버 쪽은 늘 인증한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭, 「SSL/TLS」 표기)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 6(TLS는 TCP 연결 위에서 두 프로그램 사이에 안전한 통로를 만들어 암호화하고 상대를 확인하며, HTTPS가 쓰는 것이다. SSL은 TLS보다 먼저 쓰이던, TLS의 바탕이 된 프로토콜이다 — `app-protocols-mgmt-security.tls`와 뜻을 맞췄다. 핸드셰이크와 판은 쓰지 않았다)
 
 ## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
 https://man7.org/linux/man-pages/man7/ip.7.html
@@ -7129,6 +7133,8 @@ AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge toke
 이 step은 이 문서를 다시 받지 않았다 — 위 줄들의 판(2026-11-18 받은 것)을 그대로 쓴다
 (phase 82 step 18) 쓰인 곳: `network-security.vpn`은 Windows의 원격 액세스를 다시 쓰지 않고, VPN의 뜻(여러 사람이 함께 쓰는 네트워크 위에 회사만 쓰는 통로, 원격 컴퓨터와 멀리 떨어진 사무실을 잇는다, 흔히 암호화한다)만 `windows-server-roles.remote-access` 문단 4와 맞췄다.
 사이트 간 VPN의 영문 이름 site-to-site는 이 항목의 Microsoft 문서가 쓰는 이름이다(NIST의 이름 gateway-to-gateway는 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 6(Microsoft의 SSTP — 풀네임은 위 줄들의 터널링 프로토콜 넷 줄, SSL/TLS 위로 PPP를 나른다는 것은 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1 …」 항목 §8.2.1), 문단 8(Windows Server의 VPN 서버가 PPTP·L2TP·SSTP·IKEv2 넷으로 원격 연결을 받는다, Microsoft 문서가 PPTP와 L2TP를 보안 기능이 모자라 권하지 않는다, Windows Server 2025부터 VPN 서버를 새로 구성하면 두 프로토콜의 연결을 기본으로 받지 않는다 — `windows-server-roles.remote-access` 문단 5와 뜻을 맞췄다).
+2028(Preview)에서 빠진다는 줄은 이 개념에 쓰지 않았다(그 개념이 이미 쓴다). 이 step도 이 문서를 다시 받지 않았다
 
 ## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
 https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
@@ -8263,6 +8269,10 @@ SP 800-113은 2008년 글이라 SSL VPN의 뜻과 두 꼴만 가져오고, 지�
 문단 4 — 사이트 간 VPN: 라우팅을 맞춰 두면 트래픽이 저절로 VPN 연결을 지나고, 사용자 컴퓨터에 VPN 클라이언트를 깔거나 설정을 바꿀 필요가 없으며, 지켜지는 구간은 두 게이트웨이 사이이고 지사를 본사에 잇는 데 가장 흔히 쓴다 §2.4.1 /
 문단 5 — 원격 접속 VPN: 연결 전에 게이트웨이가 인증을 요구하고 직접 하거나 따로 둔 인증 서버에 묻는다, 지켜지는 구간은 사용자 호스트와 게이트웨이 사이, 출장 중인 직원을 잇는 데 가장 흔히 쓴다 §2.4.2 / 문단 7·8 — 예와 「사이트 간 VPN과 원격 접속 VPN」 4절),
 `network-security.tunneling` 문단 7(IPsec ESP 터널 모드는 원래 패킷 전체를 암호화하고 새 IP 헤더를 붙인다 §4.1.1), 문항 n347 해설, 도식 `VpnSiteTypesDiagram`(`vpn-site-types`)의 캡션
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols`(문단 6 — SSL VPN은 호스트가 보내는 IP 패킷을 전송 계층 프로토콜로 감싸 VPN 반대쪽 끝으로 보내고, 지금은 SSL이 아니라 TLS 계열을 쓰며, 흔히 443번(HTTPS) 포트를 써 막히기 어렵다 §8.2, Microsoft의 SSTP는 SSL/TLS 위로 PPP를 나르는 SSL VPN의 한 꼴 §8.2.1, 웹 브라우저로 VPN 장비에 접속하는 꼴 — SP 800-113 요약 /
+문단 7 — SSL VPN은 전송 계층 VPN으로 묶이되 네트워크 계층에서 일한다고도 적고, 계층의 경계가 늘 분명하지는 않다 §2.1·§8 / 문단 8 — PPTP와 L2TP는 전화 접속 시절 PPP 위의 초기 VPN 프로토콜이고 쓰면 안 된다, PPTP는 인증 방식과 프로토콜 자체의 심각한 약점 때문에 쓰더라도 평문 프로토콜로 보라, IPsec 없는 L2TP는 VPN이 아니고 L2TP/IPsec은 IKEv2 IPsec VPN보다 나은 점이 없어 옮기라 §8.5·§8.5.1·§8.5.2 / 문단 9 — L2TP는 PPTP의 뒤를 이었다 §8.5.2),
+`network-security.ipsec`(문단 0 — 네트워크 계층 통제는 응용 프로그램을 고치지 않고 두 호스트·네트워크 사이의 통신 전체를 보호한다 §2.1, IPsec을 가장 흔히 쓰는 곳이 VPN이다 §2.3 / 문단 2 — NIST는 AH를 권하지 않고 암호화가 필요 없으면 ESP의 null 암호화를 쓰라고 한다 §4.4 — 본문은 「ESP를 암호화 없이」로 쓴다 /
+문단 4 — 전송 모드는 NAT가 없는 데이터 센터·로컬 네트워크의 호스트끼리 흔히 쓰고, ESP 터널 모드는 사이트 간·원격 접속 VPN에 쓴다 §4.1.1), 문항 n350·n352 해설, 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)·`IpsecModesDiagram`(`ipsec-modes`)의 캡션
 
 ## (phase 82 step 15) RFC 4301 — Security Architecture for the Internet Protocol, RFC 4302 — IP Authentication Header, RFC 4303 — IP Encapsulating Security Payload (ESP), RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)
 https://www.rfc-editor.org/rfc/rfc4301
@@ -8298,6 +8308,12 @@ RFC 7296(IKEv2)은 Internet Standard(2014-10)로 RFC 5996을 대체했고 RFC 74
 쓰인 곳: (phase 82 step 19에서 쓰일 곳) `network-security.ipsec`(정의와 구성 요소, AH와 ESP, 두 모드, 바깥·안쪽 헤더의 차례, 게이트웨이 사이는 터널 모드, IKE), `network-security.vpn-protocols`(IPsec 항목 — IP 계층),
 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2025-11-02 #22]·[기출 2026-08-02 #24])
 (phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(IPsec은 IP 계층에서 패킷을 지키는 프로토콜 묶음이고, 터널 모드는 원래 IP 패킷 전체를 보호하고 바깥 IP 헤더를 붙인다 — RFC 4301 §1.1·§4.1, RFC 4303 §3.1.2), 문항 n348 해설(IPsec(IP Security) 한 줄)
+(phase 82 step 19) 쓰인 곳: `network-security.ipsec`(문단 0 — IP 계층의 보안 구조와 그 프로토콜들 RFC 4301 §1.1 / 문단 1·2 — 출발지 인증·무결성·기밀성, AH는 무결성과 출발지 인증만 주고 ESP는 기밀성까지 준다, 구현은 ESP를 반드시·AH를 골라 지원하고 대부분의 요구를 ESP 하나로 채운다 RFC 4301 §3.2·RFC 4302 §1·RFC 4303 §1 /
+문단 3 — AH와 ESP 모두 두 모드, 전송 모드는 원래 IP 헤더 바로 뒤에 보안 헤더를 넣고 다음 계층을 보호해 ESP 전송 모드에서는 IP 헤더가 보호되지 않으며, 터널 모드는 바깥 IP 헤더를 붙이고 ESP는 안쪽 패킷 전체를 보호한다 RFC 4301 §4.1·RFC 4303 §3.1.1·§3.1.2 /
+문단 4 — SA의 어느 한쪽 끝이 보안 게이트웨이면 터널 모드여야 하고 예외 둘이 있다 RFC 4301 §4.1 — 본문은 예외를 「게이트웨이 자신에게 오가는 관리용 트래픽 같은 몇 가지」로만 쓴다. 사설 주소를 쓰는 안쪽 컴퓨터에 새 IP 헤더가 있어야 한다는 것은 `network-security.tunneling` 문단 2와 위 「RFC 1918」 항목에서 이어서 나오는 말이다 /
+문단 5 — IPsec의 서비스·알고리즘·키를 손으로 맞추면 규모가 커질 때 감당하지 못해 IKE가 서로 인증한 뒤 자동으로 정하고, 지금 판은 IKEv2 RFC 7296 §1·RFC 4301 §3.2 / 문단 7 — 예의 차례 새 IP 헤더 | ESP 헤더 | 원래 IP 헤더 | 데이터 | ESP 트레일러 | ESP ICV 가운데 트레일러·ICV는 「데이터 뒤에 덧붙이는 몇 가지, 그 가운데 하나가 무결성을 확인할 때 쓰는 값」으로만 쓴다 RFC 4303 §3.1.2 /
+문단 8 — AH는 IP 헤더의 일부도 덮고 ESP는 감싸지 않은 IP 헤더 칸을 보호하지 않는다 RFC 4302 §1), `network-security.vpn-protocols` 문단 5(IPsec 항목 — 네트워크 계층에서 IP 패킷을 지키는 프로토콜 묶음), 문항 n351·n352 해설, 도식 `IpsecModesDiagram`(`ipsec-modes`)의 칸 차례와 「암호화되는 부분」 박스.
+보안 연관(SA)이라는 이름, 재전송 방지, SPD, 알고리즘, IKE 메시지 교환은 쓰지 않았다
 
 ## (phase 82 step 15) RFC 2637 — Point-to-Point Tunneling Protocol (PPTP), RFC 2661 — Layer Two Tunneling Protocol "L2TP", RFC 3931 — Layer Two Tunneling Protocol - Version 3 (L2TPv3), RFC 3193 — Securing L2TP using IPsec
 https://www.rfc-editor.org/rfc/rfc2637
@@ -8326,6 +8342,9 @@ RFC 3193은 Proposed Standard(2001-11)이고 고친 RFC가 없다. 넷 다 폐�
 쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn-protocols`(PPTP — TCP 제어 연결과 GRE로 감싼 PPP, 보안은 PPP에 맡기고 GRE 패킷은 보호되지 않는다, L2TP — PPP 프레임을 UDP 1701로 나르는 터널, 스스로 보호하지 않아 IPsec ESP 전송 모드와 함께 쓴다, PPP, 「PPTP와 L2TP」 4절),
 `network-security.tunneling`(터널링 자체는 보호가 아니다 — PPTP의 GRE, L2TP), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E46)
 (phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(VPN에 쓰이는 터널링 프로토콜 가운데 PPTP와 L2TP도 스스로는 터널을 지키지 않는다 — RFC 2637 §5·RFC 2661 §9.2·RFC 3193 §1, 이름만)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols`(문단 1 — 사용자는 2계층 연결을 맺고 그 위에 PPP를 돌린다 RFC 2661 §1.0, 전화 접속 시절은 NIST SP 800-77 Rev. 1 §8.5 / 문단 3 — PPTP: TCP 위 제어 연결과 GRE로 감싼 PPP를 나르는 IP 터널, 사용자 데이터의 보안은 PPP가 맡고 GRE 패킷은 암호로 보호되지 않는다 RFC 2637 §1·§1.3·§5 /
+문단 4 — L2TP: PPP 프레임을 L2TP 헤더로 감싸 IP 위에서는 UDP 1701번 포트로 보내고, 터널을 세울 때만 양 끝을 인증하며 그 뒤의 패킷을 지키지 않아 아래의 전송이 보안을 주어야 한다 RFC 2661 §3.0·§8.1·§9.1·§9.2, IPsec과 짝지은 L2TP/IPsec RFC 3193 §1 / 문단 7 — PPP에는 IP가 아닌 프로토콜도 실린다 RFC 2637 §1.3 /
+문단 9 「PPTP와 L2TP」), 문항 n350 해설(터널을 세울 때의 인증은 그 뒤 패킷을 지키지 않는다 RFC 2661 §9.1), 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)의 데이터 링크 계층 줄과 곁말. GRE의 풀네임, L2TPv3, 제어 메시지의 형식과 차례는 쓰지 않았다
 
 ## (phase 82 step 15) RFC 2003 — IP Encapsulation within IP
 https://www.rfc-editor.org/rfc/rfc2003

@@ -238,6 +238,90 @@
         }
       ],
       "sources": ["network-security.tunneling"]
+    },
+    "vpn-protocol-layers": {
+      "label": "PPTP·L2TP·IPsec·SSL/TLS VPN 네 VPN 프로토콜을, 각 프로토콜이 터널을 만드는 데이터 링크·네트워크·전송 계층의 칸에 이어 보이는 도식",
+      "svgLabel": "왼쪽에 아래에서 위로 쌓은 계층 칸 셋(데이터 링크·네트워크·전송), 오른쪽에 VPN 프로토콜 넷을 둔 그림",
+      "question": "VPN 프로토콜은 어느 계층에서 터널을 만들까?",
+      "idleCaption": "VPN 프로토콜 넷을, 아래에서 위로 쌓은 계층 칸 셋 옆에 두었다. 버튼을 고르면 각 프로토콜이 어느 계층에서 터널을 만드는지 볼 수 있다.",
+      "legend": "칸 하나가 계층 하나이고, 아래에 있을수록 낮은 계층이다. 화살표는 그 프로토콜이 터널을 만드는 계층을 가리킨다. 이 개념과 관계있는 세 계층만 그렸고, 계층의 경계가 늘 분명하지는 않다.",
+      "nodes": {
+        "tl": "전송 계층",
+        "nl": "네트워크 계층",
+        "dl": "데이터 링크 계층",
+        "ssl": "SSL/TLS VPN",
+        "ipsec": "IPsec",
+        "pptp": "PPTP",
+        "l2tp": "L2TP"
+      },
+      "notes": {
+        "layer2-note": "PPP 프레임을 담아 IP 네트워크로 나른다",
+        "l2tp-note": "L2TP는 IPsec과 함께 써서 지킨다",
+        "layer3-note": "IP 패킷 하나하나를 지킨다",
+        "tls-note": "TLS로 감싸 보낸다"
+      },
+      "scenarios": [
+        {
+          "id": "layer2",
+          "label": "PPTP·L2TP",
+          "caption": "PPTP와 L2TP는 데이터 링크 계층의 데이터인 PPP 프레임을 통째로 담아 IP 네트워크 너머로 나르므로, 데이터 링크 계층의 터널을 만든다. 둘 다 스스로 데이터를 지키지 않아, L2TP는 IPsec과 함께 L2TP/IPsec으로 쓴다.",
+          "sources": ["network-security.vpn-protocols"]
+        },
+        {
+          "id": "layer3",
+          "label": "IPsec",
+          "caption": "IPsec은 네트워크 계층, 곧 IP 계층에서 IP 패킷 하나하나를 지킨다. 패킷을 보낸 쪽이 맞는지와 오는 길에 바뀌지 않았는지를 받는 쪽이 확인하게 하고, 내용을 암호화할 수 있다.",
+          "sources": ["network-security.vpn-protocols"]
+        },
+        {
+          "id": "tls",
+          "label": "SSL/TLS VPN",
+          "caption": "SSL/TLS VPN은 컴퓨터가 VPN으로 보내는 IP 패킷을 TCP 연결 위의 TLS로 감싸 보낸다. NIST의 VPN 지침은 이것을 전송 계층 VPN으로 묶으면서도, 감싸 보내는 것이 IP 패킷이라 네트워크 계층에서 일한다고도 적는다.",
+          "sources": ["network-security.vpn-protocols"]
+        }
+      ],
+      "sources": ["network-security.vpn-protocols"]
+    },
+    "ipsec-modes": {
+      "label": "IPsec의 ESP를 전송 모드와 터널 모드로 쓸 때 패킷의 칸이 놓이는 차례와, 그 가운데 암호화되는 칸을 견주는 도식",
+      "svgLabel": "전송 모드 박스와 터널 모드 박스에 패킷의 칸을 앞에서부터 차례로 두고, 암호화되는 칸을 따로 묶은 그림",
+      "question": "IPsec의 두 모드는 패킷의 어디까지 보호할까?",
+      "idleCaption": "IPsec의 ESP를 쓰는 두 모드에서 패킷의 칸이 놓이는 차례를 나란히 두었다. 버튼을 고르면 모드마다 무엇이 암호화되고 무엇이 드러나는지 볼 수 있다.",
+      "legend": "칸 하나가 패킷의 한 부분이고, 좁은 화면에서는 위에서 아래로, 넓은 화면에서는 왼쪽에서 오른쪽으로 패킷의 앞에서 뒤로 놓인다. 「데이터」 칸에는 IP 헤더 뒤에 실린 TCP·UDP 헤더와 그 뒤의 내용이 함께 들고, ESP가 데이터 뒤에 덧붙이는 부분은 그리지 않았다.",
+      "nodes": {
+        "t-ip": "원래 IP 헤더",
+        "t-esp": "ESP 헤더",
+        "t-data": "데이터",
+        "n-ip": "새 IP 헤더",
+        "n-esp": "ESP 헤더",
+        "u-ip": "원래 IP 헤더",
+        "u-data": "데이터"
+      },
+      "groups": {
+        "transport": "전송 모드",
+        "tunnel": "터널 모드",
+        "t-enc": "암호화되는 부분",
+        "u-enc": "암호화되는 부분"
+      },
+      "notes": {
+        "transport-note": "원래 IP 헤더는 그대로 드러난다",
+        "tunnel-note": "새 IP 헤더를 앞에 붙인다"
+      },
+      "scenarios": [
+        {
+          "id": "transport",
+          "label": "전송 모드",
+          "caption": "전송 모드는 원래 IP 헤더를 그대로 맨 앞에 두고, 그 바로 뒤에 ESP 헤더를 넣는다. ESP는 IP 헤더 뒤의 데이터만 암호화하므로, 가로챈 사람도 원래 IP 헤더에 적힌 출발지와 목적지는 볼 수 있다. 두 컴퓨터가 서로 주고받는 패킷을 스스로 지킬 때 쓴다.",
+          "sources": ["network-security.ipsec"]
+        },
+        {
+          "id": "tunnel",
+          "label": "터널 모드",
+          "caption": "터널 모드는 원래 IP 패킷을 헤더까지 통째로 암호화하고, 그 앞에 ESP 헤더와 새 IP 헤더를 붙인다. 앞 예에서 새 IP 헤더에는 VPNGW1의 192.0.2.1과 VPNGW2의 203.0.113.1이 적히고, 원래 헤더의 10.1.0.5와 10.2.0.7은 암호화되어 가려진다. 게이트웨이 사이의 VPN에 쓴다.",
+          "sources": ["network-security.ipsec"]
+        }
+      ],
+      "sources": ["network-security.ipsec"]
     }
   },
   "tables": {},

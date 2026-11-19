@@ -172,6 +172,7 @@ import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
 import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
 import { IpconfigViewDiagram } from './IpconfigViewDiagram'
+import { IpsecModesDiagram } from './IpsecModesDiagram'
 import { IptablesChainsDiagram } from './IptablesChainsDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
@@ -399,6 +400,7 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { VpnProtocolLayersDiagram } from './VpnProtocolLayersDiagram'
 import { VpnSiteTypesDiagram } from './VpnSiteTypesDiagram'
 import { WafInspectionDiagram } from './WafInspectionDiagram'
 import { WebAppProxyDiagram } from './WebAppProxyDiagram'
@@ -690,6 +692,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-security.nac': NacAdmissionDiagram,
   'network-security.vpn': VpnSiteTypesDiagram,
   'network-security.tunneling': TunnelEncapsulationDiagram,
+  'network-security.vpn-protocols': VpnProtocolLayersDiagram,
+  'network-security.ipsec': IpsecModesDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
