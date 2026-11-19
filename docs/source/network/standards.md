@@ -156,6 +156,12 @@ RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽�
 IEEE 802.3의 PoE 사실은 `standards.ieee.org`의 표준 개요 페이지(802.3af·802.3at·802.3bt·802.3-2022)와 `ieee802.org/3`의 태스크 포스 페이지(PAR·목표·요구 사항 문서·5대 기준·4쌍 PoE 관심 요청(CFI) 발표 자료)에서 가져왔다. **IEEE 802.3 본문은 열지 못했다**(개요 페이지가 IEEE GET 프로그램으로 받으라고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이다) — 태스크 포스 문서는 표준 본문이 아니므로 항목마다 어떤 문서인지 적는다.
 PXE·WDS·PnP·PE와 L7 쪽의 IIS ARR은 learn.microsoft.com의 문서(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`를 적었다)에서 가져왔다. 같은 사이트의 Configuration Manager 문제 해결 문서와 Azure 문서(Application Gateway·Front Door)는 검색에 걸려도 쓰지 않았고, Intel의 PXE 사양과 업체의 L4·L7 스위치 제품 문서는 허용 목록 밖이라 열지 않았다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 부하 분산 장치의 제품별 기능·SSL 오프로드·직접 서버 반환 같은 전달 기법, PoE의 전력 등급표 전체·전압과 쌍 배치의 세부·LLDP 전력 협상, PXE 펌웨어 구현·UEFI 네트워크 부팅의 세부·DHCPv6 네트워크 부팅, WDS 설치 절차.
+「(phase 82 step 15)」가 붙은 줄과 항목은 phase 82 step 15에서 `network-security` 주제의 개념 여덟(방화벽, IDS와 IPS, WAF, NAC, VPN, 터널링, VPN 프로토콜, IPsec)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+NIST 문서는 `csrc.nist.gov`의 문서 페이지에서 판(발행일·대체 관계·Planning Note·철회 여부)을 확인하고, 같은 문서의 PDF를 `nvlpubs.nist.gov`에서 IPv4로 내려받아 PyMuPDF로 글자를 뽑아 절을 읽었다. NIST 용어집(`csrc.nist.gov/glossary`)은 정의마다 출처 문서를 밝히므로 그 출처를 함께 적는다.
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IEEE 802.1X는 `standards.ieee.org`의 표준 개요 페이지와 `1.ieee802.org`의 802.1X 작업 페이지에서 가져왔다 — **IEEE 802.1X 본문은 열지 못했다**(IEEE GET 프로그램은 `ieeexplore.ieee.org` 로그인이다).
+그래서 신청자·인증자·인증 서버라는 세 역할은 802.1X를 RADIUS와 함께 쓰는 법을 적은 RFC 3580(Informational)의 용어 정의에서 가져왔다. **OWASP와 보안 업체의 학습 페이지·제품 문서는 허용 목록 밖이라 열지 않았다**(NIST SP 800-228-upd1이 OWASP를 이름으로 드는 것은 적지만, OWASP의 문서를 근거로 쓰지 않는다).
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — IDS의 탐지 기법 세부(상태 기반 프로토콜 분석의 동작·프로파일 학습·튜닝)·센서 배치의 세부, IPsec의 SA·SPD·SAD 구조와 처리 차례·암호 알고리즘 목록·IKE 메시지 교환·NAT 통과,
+PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 전체·MACsec·RADIUS 속성, 방화벽 제품의 기능·DMZ 설계·방화벽 정책의 프로토콜별 권고, SSL VPN의 포털 설계·끝점 보안 점검의 세부, WireGuard·OpenVPN 같은 제품·구현.
 
 ---
 
@@ -1415,6 +1421,36 @@ https://www.rfc-editor.org/rfc/rfc4949
   쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(게이트웨이가 계층에 따라 브리지·라우터·프록시 서버로 나타난다, 라우터는 IP 패킷을 넘기는 3계층 장치), `network-devices.gateway`(정의, 프로토콜을 바꾸거나 서로 동작하게 돕는다, 이론으로는 어느 계층에서도·실제로는 2·3·7계층),
   `network-devices.proxy-server`(프록시의 두 정의, 클라이언트에게는 서버·서버에게는 클라이언트처럼 보인다, 안쪽 클라이언트 → 프록시 → 바깥 서버의 흐름, 캐시·기록·접근 통제), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
 - (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 0 — 하는 일은 비슷하지만 만든 방식이 다른 네트워크 사이에서 통신이 오가게 하는 중간 장치, 두 네트워크는 프로토콜이나 보안 방식이 다를 수 있다, 문단 1 — 프로토콜을 바꿔 넘기거나 다른 방법으로 함께 동작하게 돕는다, 문단 3 — 이론으로는 어느 계층에서도·실제로는 브리지·라우터·프록시 서버의 세 계층), `network-devices.proxy-server`(문단 0 — 클라이언트를 대신해 일하는 중계자, 클라이언트는 프록시를 서버로·서버는 클라이언트로 여긴다, 문단 3 — 기록을 남기거나 정해 둔 요청을 막는다), 문항 n329·n330·n331 해설
+- (phase 82 step 15, 2026-11-20 같은 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 step 8 줄과 같다) **방화벽·침입 탐지·터널·VPN·IPsec·PPTP·L2TP·PPP·EAP·RADIUS**:
+  - **방화벽**: 연결된 네트워크 가운데 한쪽(「안쪽」)으로 드나드는 트래픽을 제한해, 그 네트워크의 자원을 다른 쪽(「바깥」)의 위협에서 지키는 네트워크 사이의 게이트웨이다(1). NIST SP 800-41을 따른 둘째 뜻은 보안 수준이 서로 다른 네트워크 사이에서 트래픽의 흐름을 통제하는 장치나 시스템이다(2).
+    Tutorial: 대개 작은 보안 네트워크(회사 LAN이나 호스트 한 대)를 큰 네트워크(인터넷)에서 지키고, 두 네트워크가 만나는 자리에 놓여 **정책 규칙으로 드나드는 트래픽을 다룬다**. 컴퓨터 한 대가 아니라 필터링 라우터 둘과 프록시 서버들로 이루어질 수도 있다.
+    어려운 것은 어떤 패킷을 막을지 기준을 정하는 일이다 — 허락받지 않은 트래픽은 막되 허락된 트래픽은 들이고 내보내야 하기 때문이다 — §4 「firewall」
+  - **필터링 라우터·패킷 필터**: 보안 정책에 따라 패킷을 골라 넘기지 않는 라우터다. 넘기기 전에 넘길지부터 정하고, 그 정책은 라우터에 넣은 규칙(패킷 필터)이 구현한다 — 규칙은 주로 패킷 제어 칸의 값(특히 출발지·목적지 IP 주소와 TCP 포트 번호)을 본다. 혼자서 단순한 방화벽으로 쓰이거나 더 복잡한 방화벽의 한 부분이 된다 — §4 「filtering router」(「packet filter」 항목은 여기를 가리킨다)
+  - **침입**: 허락 없이 시스템이나 그 자원에 접근하거나 접근하려 하는 보안 사건이다 — §4 「intrusion」(1). **침입 탐지**: 허락 없이 자원에 접근하려는 시도를 알아차리려고 시스템의 사건을 감지하고 분석하는 일이다 — §4 「intrusion detection」.
+    **IDS**: 네트워크에서 일어나는 사건을 지켜보고 보안 문제의 징후를 분석하는 일을 자동으로 하는, 소프트웨어나 하드웨어로 된 프로세스·하위 시스템이다. 호스트 기반(지키려는 호스트에서 직접 돈다)과 네트워크 기반(센서를 네트워크 구성 요소에 둔다)이 있다 — §4 「intrusion detection system (IDS)」.
+    탐지 방법의 두 이름 — **이상 탐지**(anomaly detection — 시스템 개체·자원의 평소 행동과 다른 활동을 찾는다)와 **오용 탐지**(misuse detection — 보안 사건의 징후로 여기는 사건·사건의 차례·성질을 적은 규칙에 기댄다) — §4 「anomaly detection」·「misuse detection」. 「intrusion prevention」 항목은 이 용어집에 없다
+  - **터널**: 한 프로토콜의 데이터 패킷을, 보통이면 그 위나 같은 계층에서 실려 다닐 둘째 프로토콜 안에 담아(캡슐화) 만든 통신 채널이다(1). Tutorial: 거의 어느 두 계층 사이에서도 가능하지만, 흔히 터널은 2계층 프로토콜을 전송 계층(TCP)·인터넷 계층(IP)·다른 2계층 프로토콜에 담아 만든 **논리적 지점 간 링크**이고, 그 사이에 L2TP 같은 터널링 프로토콜이 끼기도 한다.
+    터널링은 두 컴퓨터가 쓰는 프로토콜을 둘을 잇는 네트워크가 지원하지 않을 때 데이터를 옮기는 데 쓰이고, 한 네트워크가 둘째 네트워크를 자기 노드 사이의 지점 간 링크 묶음처럼 쓰게 한다 — §4 「tunnel」
+  - **VPN**: 비교적 공용인 실제 네트워크(예: 인터넷)의 자원으로 지은, 쓰는 사람이 제한된 논리적(가상) 컴퓨터 네트워크이고, **흔히 (호스트나 게이트웨이에서) 암호화를 쓰고, 흔히 가상 네트워크의 링크를 실제 네트워크 너머로 터널링해** 만든다 — §4 「virtual private network (VPN)」.
+    Tutorial: 밑의 실제 네트워크의 자원을 다른 사용자와 나눠 쓰므로 전용 실제 네트워크보다 짓고 운영하는 비용이 대개 적다. 예: 여러 곳에 LAN을 두고 각 LAN을 방화벽으로 인터넷에 이은 회사가, 방화벽과 방화벽 사이를 인터넷 너머로 암호화한 터널로 이어 VPN을 만든다 — 같은 항목
+  - **IPsec**: IP 보안 구조(RFC 4301)와 거기 딸린 프로토콜 묶음(주로 AH·ESP·IKE)을 함께 부르는 이름이다(1b). 표기는 「IPsec」 — 「IP」는 대문자, 「sec」은 소문자로 쓴다. Tutorial: 접근 통제, 연결 없는 무결성, 출발지 인증, 재전송 감지, 기밀성, 제한된 트래픽 흐름 기밀성을 준다.
+    보안 프로토콜(AH·ESP), 보안 연관(SA), 키 관리(IKE), 인증·암호화 알고리즘을 정한다 — §4 「IP Security Protocol (IPsec)」. 같은 Tutorial의 「IPv4에서는 선택, IPv6에서는 필수」라는 줄은 2007년 글이고 지금 판을 확인하지 않았으므로 쓰지 않는다
+  - **AH**: IP 데이터그램에 연결 없는 무결성과 출발지 인증을 주고, 선택으로 재전송을 막는 프로토콜(RFC 4302)이다. 지나가며 바뀌는 IP 헤더 칸은 끝에서 끝까지 지키지 못하므로 IP 헤더 보호는 일부다. ESP는 AH와 거의 같은 서비스를 주면서 **기밀성까지** 줄 수 있고,
+    두 인증 서비스가 다른 점은 덮는 범위다 — ESP는 AH로 감싸지 않는 한 IP 헤더 칸을 지키지 않는다 — §4 「Authentication Header (AH)」
+  - **ESP**: IP 데이터그램에 기밀성과 그 밖의 보안 서비스(출발지 인증·무결성·재전송 방지 등)를 주는 프로토콜(RFC 4303)이다. ESP 헤더는 IP 헤더 안에 담기고, 위 계층 프로토콜의 헤더를 감싸거나(전송 모드) IP 헤더를 감싼다(터널 모드) — §4 「Encapsulating Security Payload (ESP)」
+  - **터널 모드·전송 모드**: IPsec 프로토콜(AH·ESP)을 적용하는 두 방법이다. 터널 모드는 IP 패킷을 감싸 보호하고, 전송 모드는 IP 바로 위에 실리는 전송 계층 프로토콜(TCP·UDP)의 패킷을 감싸 보호한다. 전송 모드의 보안 연관은 늘 두 호스트 사이이고, **어느 한쪽이 보안 게이트웨이면 터널 모드여야 한다** — §4 「tunnel mode」·「transport mode」.
+    **보안 게이트웨이**: 신뢰하는 쪽의 호스트와 신뢰하지 않는 쪽을 가르는 게이트웨이이고(1), IPsec 문맥에서는 IPsec 프로토콜을 구현한 중간 시스템이다(2) — §4 「security gateway」
+  - **IKE**: AH·ESP의 보안 연관에 쓸, 인증을 거친 키 재료를 마련하는 IPsec의 키 수립 프로토콜이다 — §4 「Internet Key Exchange (IKE)」(RFC 4306을 가리키는 2007년 글 — 지금 판은 아래 「(phase 82 step 15) RFC 4301·4302·4303·7296」 항목의 RFC 7296)
+  - **PPTP**: 전화 접속 사용자가 PPP를 IP 위로 터널링해, 전화 접속 링크를 네트워크 너머로 가상으로 늘리게 하는 클라이언트-서버 프로토콜이다(RFC 2637, 처음에 Ascend와 Microsoft가 만들었다). **PPTP는 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Point-to-Point Tunneling Protocol (PPTP)」
+  - **L2TP**: PPTP와 L2F를 합친 클라이언트-서버 프로토콜로, PPP를 IP 네트워크나 프레임 릴레이 같은 교환망 위로 터널링한다. **L2TP도 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Layer 2 Tunneling Protocol (L2TP)」
+  - **PPP**: 두 상대 사이의 2계층 링크로 3계층 프로토콜 패킷을 캡슐화해 양방향으로 동시에 나르고, 같은 링크에 여러 3계층 프로토콜을 섞어 나르는 인터넷 표준 프로토콜(RFC 1661)이다. 3계층 데이터를 주고받기 전에 상대를 인증할 프로토콜을 골라 쓰는 협상을 선택으로 둔다 — §4 「Point-to-Point Protocol (PPP)」
+  - **EAP**: 여러 인증 방식을 골라 쓰게 하는 확장 틀이다(처음에는 PPP용으로 만들었다). 지금은 IEEE 802.1X와 함께 유선·무선 LAN의 네트워크 접근 제어에, IKEv2와 함께 IPsec에 쓰인다 — §4 「Extensible Authentication Protocol (EAP)」
+  - **RADIUS**: 여럿이 함께 쓰는 중앙의 인증 서버(RADIUS 서버)와, 자기 접근 포트를 쓰는 사용자를 인증해야 하는 네트워크 접근 서버(RADIUS 클라이언트) 사이에서 사용자의 인증 정보와 설정 정보를 나르는 프로토콜(RFC 2865)이다.
+    사용자가 낸 인증 정보(그리고 장치의 상태 정보 같은 것)를 클라이언트가 서버에 넘기면, 서버가 확인하고 클라이언트가 그 사용자에게 서비스하는 데 필요한 인가·설정 정보를 돌려준다 — §4 「Remote Authentication Dial-In User Service (RADIUS)」
+  - 「network access control」·「IEEE 802.1X」·「web application firewall」·「stateful inspection」·「tunneling」은 이 용어집의 항목 머리가 아니다(항목 머리 `$ ` 검색)
+  쓰인 곳: (phase 82 step 16~19에서 쓰일 곳) `network-security.firewall`(방화벽의 두 정의, 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 보는 값), `network-security.ids-ips`(침입·침입 탐지·IDS의 뜻, 호스트·네트워크 기반, 이상 탐지·오용 탐지),
+  `network-security.vpn`(VPN의 정의 — 흔히 암호화와 터널링, 전용망보다 싸다, 방화벽 사이를 암호화한 터널로 잇는 예), `network-security.tunneling`(터널의 정의, 논리적 지점 간 링크, 터널링 프로토콜이 끼는 자리), `network-security.vpn-protocols`(PPTP·L2TP가 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다, PPP),
+  `network-security.ipsec`(IPsec·AH·ESP·두 모드·보안 게이트웨이·IKE), `network-security.nac`(EAP·RADIUS 한 줄), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
