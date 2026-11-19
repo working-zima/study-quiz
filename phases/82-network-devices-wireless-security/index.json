@@ -1,0 +1,106 @@
+{
+  "project": "Study Quiz",
+  "phase": "82-network-devices-wireless-security",
+  "steps": [
+    {
+      "step": 0,
+      "name": "wireless-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "wlan-basics-transmission",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "wlan-channel-csma-ca",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "mimo-80211-standards",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "wireless-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "wpan-zigbee",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "mesh-handoff",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "cognitive-radio-review",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "devices-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "device-layers-repeater",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "gateway-proxy",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "load-balancing-methods",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "devices-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "l4-l7-switch",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "poe-pxe-review",
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "name": "security-sources",
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "name": "firewall-ids-ips",
+      "status": "pending"
+    },
+    {
+      "step": 17,
+      "name": "waf-nac",
+      "status": "pending"
+    },
+    {
+      "step": 18,
+      "name": "vpn-tunneling",
+      "status": "pending"
+    },
+    {
+      "step": 19,
+      "name": "vpn-protocols-ipsec-review",
+      "status": "pending"
+    }
+  ]
+}

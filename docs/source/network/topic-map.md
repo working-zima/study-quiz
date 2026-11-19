@@ -43,7 +43,7 @@
 | 4 | `network-topology` | 네트워크 토폴로지 | 공식 문서: IEEE 802, ITU-T 권고 | 11 | 10/11 | ★★★ | 83 |
 | 5 | `ethernet` | 이더넷과 프레임 | 강의 Ch2-1 · p48–70 | 6 | 6/11 | ★★☆ | 72 |
 | 6 | `hub-switch-vlan` | 허브·스위치·VLAN | 강의 Ch2-2, Ch2-3 · p71–105 | 17 | 10/11 | ★★★ | 72 |
-| 7 | `wireless-lan` | 무선 LAN과 이동통신 | 공식 문서: IEEE 802, ITU-T 권고 | 18 | 10/11 | ★★★ | 82 |
+| 7 | `wireless-lan` | 무선 LAN과 이동통신 | 공식 문서: IEEE 802, ITU-T 권고, Zigbee·Bluetooth 사양 | 18 | 10/11 | ★★★ | 82 |
 | 8 | `ip-protocol` | IP와 단편화 | 강의 Ch3-1 · p106–129 | 29 | 11/11 | ★★★ | 73 |
 | 9 | `arp` | ARP | 강의 Ch3-2 · p130–143 | 9 | 7/11 | ★★☆ | 73 |
 | 10 | `icmp` | ICMP | 강의 Ch3-3 · p144–158 (함께 넣는 IGMP는 공식 문서: IETF RFC) | 23 | 11/11 | ★★★ | 73 |
@@ -117,9 +117,12 @@
 - **RAID·스토리지**: SNIA(snia.org)
 - **스위치 업체 기술**: Cisco 제품 문서(cisco.com의 Catalyst 설정 가이드·명령 참조 같은 제품 문서. 학습·마케팅 페이지는 아니다) — 시스코가 만든 VTP에만 쓴다. 강의 밖 주제가 아니라 강의 주제 `hub-switch-vlan`(phase 72)이 쓰는 곳이다
 - **`gdisk`**: GPT fdisk 문서(rodsbooks.com의 `gdisk/` 아래 — GPT fdisk를 만든 Rod Smith의 공식 문서) — `gdisk`가 무엇을 하는 도구인지에만 쓴다. GPT·MBR의 일반 사실은 man7.org(fdisk(8))에서 가져온다. 강의 밖 주제 `linux-filesystem`(phase 75)이 쓰는 곳이다
+- **무선 업체 연합 기술**: Zigbee 사양(csa-iot.org — Connectivity Standards Alliance)과 Bluetooth 사양(bluetooth.com — Bluetooth SIG)의 공식 문서(보도 자료·블로그·마케팅 페이지는 아니다) — 그 단체가 만든 Zigbee·Bluetooth에만 쓴다. 802.15.4·802.15.1의 사실은 IEEE 802에서 가져온다. 강의 밖 주제 `wireless-lan`(phase 82)이 쓰는 곳이다
 
 `network-devices`(게이트웨이·리피터·L4/L7 스위치·로드 밸런서·PoE·PXE·프록시)는 위 영역 가운데 하나에 딱 들지 않아, 이미 목록에 있는
 IEEE 802(리피터·PoE)와 IETF RFC(게이트웨이·프록시)를 출처 열에 적었다. 이 둘로 댈 수 없는 사실은 그 phase를 설계할 때 같은 기준으로 판단한다.
+phase 82 설계(2026-11-19)에서 판단한 것: 부하 분산 방식의 이름·상태 확인과 PXE 배포는 이미 목록에 있는 learn.microsoft.com(IIS 응용 프로그램 요청 라우팅·Windows 배포 서비스 문서)에서 가져온다.
+「L4 스위치」·「L7 스위치」는 표준 문서에 없는 이름이라, 본문은 표준의 설명(포트로 나누는 장치·URL로 나누는 장치)을 쓰고 이름은 `exam-notes.md`의 항목으로 남긴다.
 강의 주제는 지금처럼 강의·표준 문서·면접을 쓴다.
 
 ## 분류 메모

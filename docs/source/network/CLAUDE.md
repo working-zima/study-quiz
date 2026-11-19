@@ -43,6 +43,9 @@
   VLAN·태그·트렁크 같은 일반 사실은 IEEE 802.1Q·RFC·NIST에서 가져온다. 제품·판마다 달라지므로 어느 제품·판의 문서인지 `standards.md` 항목에 적는다.
 - **`gdisk`**: `rodsbooks.com`의 GPT fdisk 문서(`www.rodsbooks.com/gdisk/` 아래 — GPT fdisk를 만든 Rod Smith의 공식 문서) — `gdisk`가 무엇을 하는 도구인지에만 쓴다.
   강의 밖 주제 `linux-filesystem`이 쓴다(phase 75, 사용자 결정 2026-10-30). GPT·MBR의 일반 사실은 man7.org의 fdisk(8)에서 가져온다. 어느 판의 문서인지 `standards.md` 항목에 적는다.
+- **무선 업체 연합 기술**: `csa-iot.org`(Connectivity Standards Alliance — Zigbee 사양과 그 기술을 설명하는 공식 문서)와 `bluetooth.com`(Bluetooth SIG — Bluetooth Core Specification과 그 기술을 설명하는 공식 문서) —
+  그 단체가 만든 기술(Zigbee, Bluetooth·BLE)의 사실에만 쓴다. 강의 밖 주제 `wireless-lan`이 쓴다(phase 82, 사용자 결정 2026-11-19). 보도 자료·회원 소식·블로그·마케팅 페이지는 쓰지 않고,
+  그 아래 계층(IEEE 802.15.4·802.15.1)의 사실은 IEEE 802에서 가져온다. 어느 판의 사양인지 `standards.md` 항목에 적는다.
 
 **위키백과·블로그·자격증 교재·업체 학습 페이지는 쓰지 않는다** — 강의가 그런 곳을 링크해도, 공식 문서보다 쉽게 풀어 써 있어도 마찬가지다.
 
