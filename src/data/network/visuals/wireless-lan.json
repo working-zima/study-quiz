@@ -453,6 +453,45 @@
       "sources": [
         "wireless-lan.handoff"
       ]
+    },
+    "cognitive-radio": {
+      "label": "인지 무선 장치가 비어 있는 채널 A를 쓰다가, 채널 A를 쓰도록 허가받은 사용자가 나타나면 채널 A를 비우고 빈 채널 B로 옮겨 가는 모습을 보이는 도식",
+      "svgLabel": "인지 무선 장치와 허가받은 사용자, 그리고 둘이 쓰는 채널 A와 채널 B를 둔 그림",
+      "question": "인지 무선 장치는 언제 다른 채널로 옮겨 갈까?",
+      "idleCaption": "같은 대역 안에 채널 A와 채널 B가 있고, 채널 A를 쓰도록 허가받은 사용자가 있다. 채널 A·B는 예로 붙인 이름표다. 버튼을 고르면 인지 무선 장치가 빈 채널을 찾아 쓰는 모습과, 허가받은 사용자가 나타났을 때 비켜 가는 모습을 볼 수 있다.",
+      "legend": "채널 A와 채널 B는 같은 대역 안의 서로 다른 채널이다. 화살표는 인지 무선 장치나 허가받은 사용자가 쓰는 채널을 가리킨다.",
+      "nodes": {
+        "device": "인지 무선 장치",
+        "ch-a": "채널 A",
+        "ch-b": "채널 B",
+        "licensed": "허가받은 사용자"
+      },
+      "notes": {
+        "sense-note": "비어 있는 채널 A를 쓴다",
+        "move-note": "빈 채널 B로 옮긴다",
+        "licensed-note": "채널 A를 쓰기 시작한다"
+      },
+      "scenarios": [
+        {
+          "id": "sense",
+          "label": "빈 채널 쓰기",
+          "caption": "인지 무선 장치가 주변의 전파를 감지해 보니 채널 A에 허가받은 사용자의 신호가 없다. 장치는 이렇게 비어 있는 채널 A를 찾아 통신하고, 통신하는 동안에도 감지를 이어 간다.",
+          "sources": [
+            "wireless-lan.cognitive-radio"
+          ]
+        },
+        {
+          "id": "vacate",
+          "label": "비켜 가기",
+          "caption": "허가받은 사용자가 채널 A를 쓰기 시작하자, 감지를 이어 가던 장치가 그 신호를 알아챈다. 장치는 채널 A에서 보내기를 멈춰 채널 A를 비우고, 비어 있음을 확인한 채널 B로 옮겨 통신을 이어 간다.",
+          "sources": [
+            "wireless-lan.cognitive-radio"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.cognitive-radio"
+      ]
     }
   },
   "tables": {},

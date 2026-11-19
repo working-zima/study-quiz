@@ -50,6 +50,7 @@ import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
 import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
+import { CognitiveRadioDiagram } from './CognitiveRadioDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
@@ -554,6 +555,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'wireless-lan.zigbee': ZigbeeStackDiagram,
   'wireless-lan.wireless-mesh': MeshRerouteDiagram,
   'wireless-lan.handoff': CellHandoffDiagram,
+  'wireless-lan.cognitive-radio': CognitiveRadioDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,
