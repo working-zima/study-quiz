@@ -127,6 +127,7 @@ import { FileSyncDiagram } from './FileSyncDiagram'
 import { FileTypeCharDiagram } from './FileTypeCharDiagram'
 import { FindSearchDiagram } from './FindSearchDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
+import { FirewallRulesDiagram } from './FirewallRulesDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
@@ -158,6 +159,7 @@ import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { IdsIpsPlacementDiagram } from './IdsIpsPlacementDiagram'
 import { Ieee80211BandsDiagram } from './Ieee80211BandsDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
@@ -678,6 +680,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-devices.l7-switch': L7SwitchUrlDiagram,
   'network-devices.poe': PoePowerDiagram,
   'network-devices.pxe': PxeBootDiagram,
+  'network-security.firewall': FirewallRulesDiagram,
+  'network-security.ids-ips': IdsIpsPlacementDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

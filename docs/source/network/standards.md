@@ -1158,6 +1158,7 @@ https://www.rfc-editor.org/rfc/rfc9110
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
+(phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 3(TCP `443`은 웹 서버가 HTTPS 요청을 받는 포트 — §4.2.2), `network-security.ids-ips` 문단 5(TCP `80`은 암호화하지 않은 웹 요청 HTTP를 받는 포트 — §4.2.1)
 (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.https`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — `https`는 TLS로 보호하고 TCP 443이 기본이며 「보호」는 서버 인증·기밀성·무결성, §4.3.3 — TCP 연결 → TLS → HTTP 요청의 차례, §4.3.4 — 인증서가 주소의 이름과 맞는지 확인),
 `app-protocols-mgmt-security.tls`(§4.3.4 — 인증서를 어떻게 확인할지는 TLS 위의 응용 프로토콜이 정한다는 RFC 9846 §1의 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭)
 
@@ -1454,6 +1455,7 @@ https://www.rfc-editor.org/rfc/rfc4949
   쓰인 곳: (phase 82 step 16~19에서 쓰일 곳) `network-security.firewall`(방화벽의 두 정의, 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 보는 값), `network-security.ids-ips`(침입·침입 탐지·IDS의 뜻, 호스트·네트워크 기반, 이상 탐지·오용 탐지),
   `network-security.vpn`(VPN의 정의 — 흔히 암호화와 터널링, 전용망보다 싸다, 방화벽 사이를 암호화한 터널로 잇는 예), `network-security.tunneling`(터널의 정의, 논리적 지점 간 링크, 터널링 프로토콜이 끼는 자리), `network-security.vpn-protocols`(PPTP·L2TP가 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다, PPP),
   `network-security.ipsec`(IPsec·AH·ESP·두 모드·보안 게이트웨이·IKE), `network-security.nac`(EAP·RADIUS 한 줄), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
+  (phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 1·5(방화벽이 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 주소·포트를 본다 — 「firewall」·「filtering router」), `network-security.ids-ips` 문단 0(침입의 뜻 — 「intrusion」)
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -8134,6 +8136,9 @@ https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf
   「웹 응용 프로그램 방화벽(WAF)」, 「네트워크 접근 제어(NAC)」, 「보안 상태 점검」(health check — 부하 분산 장치의 「상태 확인」(`network-devices.load-balancing`)과 다른 것이라 이름을 달리 한다), 「사이트 간 VPN」·「원격 접속 VPN」(아래 「NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
 쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.firewall`(정의, 계층마다 보는 값, 패킷 필터링·상태 검사·응용 계층 방화벽, 기본 거부와 규칙의 차례, 못 하는 것), `network-security.ids-ips`(방화벽과 IDPS의 차이 — §2.1.3, 일부 방화벽은 IPS를 담는다 — §2.1), `network-security.waf`(§2.1.9),
 `network-security.nac`(§2.1.7·§4.3·부록 A), `network-security.vpn`(§2.1.6), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단)
+(phase 82 step 16) 쓰인 곳: `network-security.firewall`(문단 1 — 정의, 경계에 두는 자리, 민감한 내부 네트워크 앞, 두 방향에 거는 정책 §2·§2.1 / 문단 2 — 규칙의 조건과 할 일, 처음 맞는 규칙, 기본 거부와 들어오는 트래픽에 쓰라는 권고 §2.1.1·§5.2.2·§4·§4.1.3 /
+문단 5~8 — 패킷 필터링(필터링 라우터), 상태 검사(상태 표, UDP의 DNS 응답 예), 응용 계층 방화벽(응용 방화벽과 응용 프록시 게이트웨이를 묶은 이름)과 앞의 두 방식의 차이 §2.1.1~§2.1.4 / 문단 9 — 내부 호스트끼리의 트래픽·모든 공격을 알아보지 못함·호스트마다 두는 방화벽·암호화된 트래픽 §2.2·§2.3),
+`network-security.ids-ips`(문단 7 — 상태 검사·프로토콜 분석을 갖춘 방화벽도 온전한 IDPS가 아니다 §2.1.3, IPS 기능을 담은 방화벽 §2.1), 문항 n341 해설, 도식 `FirewallRulesDiagram`(`firewall-rules`)의 캡션
 
 ## (phase 82 step 15) NIST SP 800-94 — Guide to Intrusion Detection and Prevention Systems (IDPS)
 https://csrc.nist.gov/pubs/sp/800/94/final
@@ -8159,6 +8164,10 @@ https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf
 - **한국어 이름**: 고른 이름 「침입」(RFC 4949 「intrusion」 — 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄), 「침입 탐지 시스템(IDS)」, 「침입 방지 시스템(IPS)」, 「시그니처 기반 탐지」, 「이상 기반 탐지」(RFC 4949의 「이상 탐지」와 같은 것),
   「상태 기반 프로토콜 분석」(이름만), 「인라인」, 「패시브」(트래픽의 사본을 보는 자리), 「오탐」·「미탐」(이름만)
 쓰인 곳: (phase 82 step 16에서 쓰일 곳) `network-security.ids-ips`(침입 탐지·IDS·IPS의 뜻, IPS의 대응, 탐지 방법 둘, 인라인과 패시브, 방화벽과의 차이), WAF·NAC 기출의 오답 IDS·IPS(`exam-notes.md` 「phase 82 step 15」 문단)
+(phase 82 step 16) 쓰인 곳: `network-security.ids-ips`(문단 0 — 침입 탐지와 사고의 원인 §2.1 / 문단 1 — IDS·IPS·IDPS, IPS의 대응, 차단 기능을 끄면 IDS처럼 동작 §2.1·§2.2 / 문단 2 — 네트워크 기반·호스트 기반과 두는 곳 §2.4 /
+문단 3 — 시그니처 기반·이상 기반·오탐·여러 방법을 함께 씀 §2.2·§2.3 / 문단 4 — 인라인·패시브와 권고 §4.2.2 / 문단 6·7 — IDS와 IPS, 방화벽과 IPS §2.2·§8.3.3), 문항 n342 해설, 도식 `IdsIpsPlacementDiagram`(`ids-ips-placement`)의 캡션.
+문단 5의 예는 HTTPS(TCP `443`) 대신 암호화하지 않은 HTTP(TCP `80`)로 들었다 — IPS가 요청의 내용을 시그니처와 견주는 예이고, 방화벽은 암호화된 트래픽의 내용을 읽지 못한다(SP 800-41 Rev. 1 §2.3)는 앞 개념의 줄과 어긋나지 않게 하려는 것이다.
+IDPS가 암호화된 트래픽을 어떻게 다루는지는 SP 800-94에서 따로 확인하지 않았으므로 본문에 쓰지 않았다
 
 ## (phase 82 step 15) NIST SP 800-228(2026-03-13 갱신판) — Guidelines for API Protection for Cloud-Native Systems §4.4.1; NIST 용어집 — SQL injection, cross-site scripting, intrusion prevention system, network access control, tunneling, virtual private network
 https://csrc.nist.gov/pubs/sp/800/228/upd1/final
@@ -8190,6 +8199,7 @@ https://csrc.nist.gov/glossary/term/virtual_private_network
 - **한국어 이름**: 「SQL 삽입」(SQL injection), 「크로스 사이트 스크립팅(XSS)」. 한국어판이 없다
 쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.waf`(WAF는 해석한 HTTP 요청의 헤더·본문을 본다, SQL 삽입의 뜻과 WAF가 그것을 찾는다, 알려진 시그니처에 기댄다, 흔히 부하 분산 장치에 두어 암호를 푼 요청을 본다), `network-security.ids-ips`(IPS의 정의),
 `network-security.nac`, `network-security.tunneling`(용어집의 정의), `network-security.vpn`(정의가 출처마다 갈린다), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45)
+(phase 82 step 16) 쓰인 곳: `network-security.ids-ips` 문단 6(IPS는 공격이 대상에 닿기 전에 멈출 수 있다 — 용어집의 IPS 정의)
 
 ## (phase 82 step 15) NIST SP 800-77 Rev. 1 — Guide to IPsec VPNs; NIST SP 800-113 — Guide to SSL VPNs
 https://csrc.nist.gov/pubs/sp/800/77/r1/final
