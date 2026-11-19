@@ -412,7 +412,8 @@
     },
     {
       "dir": "82-network-devices-wireless-security",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-11-20T06:14:48+0900"
     },
     {
       "dir": "100-azure-cloud-concepts",
