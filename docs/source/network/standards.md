@@ -7513,6 +7513,10 @@ TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802
   본문은 「중앙 장치가 없어도 장치들이 이웃을 찾고 경로를 만든다」로 쓰고, 메시에는 중앙 장치를 「두지 않는다」로 단정하지 않는다
 - 쓰지 않는 것: 802.11s 보안(인증·키 관리), 메시 프레임 형식과 6주소 체계, 전송 시간 지표의 계산식, RA-OLSR 같은 선택 프로토콜, MCCA·전력 절약, 「군사 기술에서 출발했다」(이 항목의 문서들이 말하지 않는다 — 튜토리얼은 쓰임의 하나로 공공 안전·군을 들 뿐이다)
 - **한국어 이름**: mesh network → **메시 네트워크**, wireless mesh network → **무선 메시 네트워크**, multi-hop → **멀티홉**(여러 홉을 거쳐 전달), path selection → 경로 선택, mesh portal → 메시 포털, mesh STA → 메시 스테이션(이름만), HWMP → HWMP(이름만), self-configuring → 스스로 구성되는
+- (phase 82 step 6, 2026-11-19 위 802.11s 튜토리얼 PDF를 IPv4로 다시 받아 확인) **메시 포털이 무엇인가**: 튜토리얼의 장치 갈래 설명은 메시 포털(Mesh Portal, MPP)을 스테이션이 보내고 받는 데이터가 WLAN 메시로 들어오고 나가는 지점으로 적고,
+  그림에서 메시 포털을 메시 바깥의 네트워크(External Network)와 메시 사이에 둔다. HWMP 슬라이드는 필요할 때 경로를 찾는 방식에 **메시 포털로 가는 경로를 미리 만들어 두는 방식**을 더한 것이라 적는다(「Default Routing protocol for Interoperability」, 「Hybrid Wireless Mesh Protocol (HWMP)」 — 루트 포털이 있으면 트리를 만든다).
+  메시 바깥의 목적지로 가는 데이터는 메시 포털을 거쳐 나간다(「For a destination outside the Mesh … deliver packets via unicast」). 승인 전 초안 때의 설명이라 본문은 「메시를 바깥 네트워크와 잇는 노드」로만 쓰고, 「메시 포털」이라는 이름과 브리지 동작은 쓰지 않는다
+  쓰인 곳: `wireless-lan.wireless-mesh`(HWMP 한 줄, 중앙 장치가 따로 필요하지 않다는 문단), 문항 `n323`의 해설
 
 쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
 

@@ -372,6 +372,87 @@
       "sources": [
         "wireless-lan.zigbee"
       ]
+    },
+    "mesh-reroute": {
+      "label": "메시 노드 MESH01~MESH04를 이웃끼리 링크로 이어 두고, MESH01이 MESH04에게 보낸 프레임이 평소에는 MESH02를, MESH02가 꺼진 뒤에는 MESH03을 거쳐 가는 길을 보이는 도식",
+      "svgLabel": "서로 떨어진 MESH01과 MESH04 사이의 두 갈래에 MESH02와 MESH03을 두고, 이웃한 노드끼리 링크로 이은 그림",
+      "question": "메시 노드 하나가 꺼지면 프레임은 어디로 갈까?",
+      "idleCaption": "MESH01~MESH04는 예로 붙인 메시 노드의 이름이다. MESH01과 MESH04는 서로 전파가 닿지 않아, 그 사이의 MESH02나 MESH03을 거쳐야 한다. 버튼을 고르면 MESH01이 MESH04에게 보낸 프레임이 평소와 MESH02가 꺼졌을 때 어느 노드를 거쳐 가는지 볼 수 있다.",
+      "legend": "가는 선은 이웃한 두 노드를 잇는 링크이고, 화살표는 MESH01이 보낸 프레임이 한 홉씩 건너가는 길이다.",
+      "nodes": {
+        "mesh01": "MESH01",
+        "mesh02": "MESH02",
+        "mesh03": "MESH03",
+        "mesh04": "MESH04"
+      },
+      "notes": {
+        "off": "꺼짐",
+        "via-02": "MESH02를 거쳐 간다",
+        "via-03": "MESH03을 거쳐 간다"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "경로 선택으로 MESH02를 거치는 경로를 골랐다. MESH01이 보낸 프레임은 MESH02로 한 홉, MESH02에서 MESH04로 또 한 홉을 건너 MESH04에 닿는다.",
+          "sources": [
+            "wireless-lan.wireless-mesh"
+          ]
+        },
+        {
+          "id": "reroute",
+          "label": "노드가 꺼졌을 때",
+          "caption": "MESH02의 전원이 꺼져 MESH01과 MESH02 사이의 링크가 끊겼다. MESH01은 이를 알아채고 MESH03을 거치는 경로를 골라, 프레임은 두 홉을 건너 여전히 MESH04에 닿는다.",
+          "sources": [
+            "wireless-lan.wireless-mesh"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-mesh"
+      ]
+    },
+    "cell-handoff": {
+      "label": "기지국 BS01과 BS02의 셀을 나란히 두고, 통화 중인 휴대폰이 BS01의 셀에서 BS02의 셀로 옮겨 갈 때 휴대폰과 전파를 주고받는 기지국이 어떻게 바뀌는지 보이는 도식",
+      "svgLabel": "BS01의 셀과 BS02의 셀을 나란히 두고, 셀마다 기지국과 그 셀 안에 있을 때의 휴대폰 자리를 둔 그림",
+      "question": "움직이는 휴대폰의 연결은 어느 기지국이 이어 받을까?",
+      "idleCaption": "버스에 탄 사람이 휴대폰으로 통화하며 BS01의 셀에서 BS02의 셀로 옮겨 간다. BS01·BS02는 예로 붙인 이름표다. 버튼을 고르면 옮기기 전과 옮긴 뒤에 휴대폰이 어느 기지국과 전파를 주고받는지 볼 수 있다.",
+      "legend": "두 박스는 기지국이 전파로 덮는 지역인 셀이다. 왼쪽 휴대폰은 옮기기 전의 자리, 오른쪽 휴대폰은 옮긴 뒤의 자리다. 세로 화살표는 휴대폰이 전파를 주고받는 기지국을 가리키고, 가로 화살표는 휴대폰이 옮겨 간 쪽이다.",
+      "nodes": {
+        "bs01": "BS01",
+        "bs02": "BS02",
+        "phone-before": "휴대폰",
+        "phone-after": "휴대폰"
+      },
+      "groups": {
+        "cell-bs01": "BS01의 셀",
+        "cell-bs02": "BS02의 셀"
+      },
+      "notes": {
+        "before-note": "BS01과 통신한다",
+        "after-note": "연결이 BS02로 넘어간다"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "옮기기 전",
+          "caption": "휴대폰은 BS01의 셀 안에 있어 BS01과 전파를 주고받으며 통화한다. 셀은 기지국의 전파가 닿는 지역이라, 셀 안의 단말이 그 셀의 기지국과 통신할 수 있다.",
+          "sources": [
+            "wireless-lan.handoff"
+          ]
+        },
+        {
+          "id": "after",
+          "label": "옮긴 뒤",
+          "caption": "휴대폰이 BS01의 셀을 벗어나 BS02의 셀로 들어가자 통화 연결이 BS02로 넘어간다. 휴대폰은 이제 BS02와 전파를 주고받고, 통화는 끊기지 않고 이어진다.",
+          "sources": [
+            "wireless-lan.handoff"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.handoff"
+      ]
     }
   },
   "tables": {},

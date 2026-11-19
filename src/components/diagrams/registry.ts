@@ -37,6 +37,7 @@ import { BuiltinLocalGroupsDiagram } from './BuiltinLocalGroupsDiagram'
 import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CellHandoffDiagram } from './CellHandoffDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
 import { ChannelOverlapDiagram } from './ChannelOverlapDiagram'
 import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
@@ -195,6 +196,7 @@ import { MailPathDiagram } from './MailPathDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
+import { MeshRerouteDiagram } from './MeshRerouteDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MibTreeDiagram } from './MibTreeDiagram'
@@ -550,6 +552,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'wireless-lan.ieee-80211-standards': Ieee80211BandsDiagram,
   'wireless-lan.wpan': WpanStandardsDiagram,
   'wireless-lan.zigbee': ZigbeeStackDiagram,
+  'wireless-lan.wireless-mesh': MeshRerouteDiagram,
+  'wireless-lan.handoff': CellHandoffDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,
