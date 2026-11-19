@@ -389,7 +389,9 @@ import { WirelessLanModesDiagram } from './WirelessLanModesDiagram'
 import { WlanTransmissionDiagram } from './WlanTransmissionDiagram'
 import { WorkFoldersSyncDiagram } from './WorkFoldersSyncDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
+import { WpanStandardsDiagram } from './WpanStandardsDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
+import { ZigbeeStackDiagram } from './ZigbeeStackDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
 import { ZoneTransferDiagram } from './ZoneTransferDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
@@ -546,6 +548,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'wireless-lan.csma-ca': CsmaCaSequenceDiagram,
   'wireless-lan.mimo': MimoStreamsDiagram,
   'wireless-lan.ieee-80211-standards': Ieee80211BandsDiagram,
+  'wireless-lan.wpan': WpanStandardsDiagram,
+  'wireless-lan.zigbee': ZigbeeStackDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,

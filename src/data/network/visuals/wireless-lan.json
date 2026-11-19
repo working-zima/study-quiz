@@ -274,6 +274,104 @@
       "sources": [
         "wireless-lan.ieee-80211-standards"
       ]
+    },
+    "wpan-standards": {
+      "label": "IEEE 802.15의 세 규격 802.15.1·802.15.3·802.15.4를 두고, 규격을 고르면 그 규격이 무엇을 노렸는지와 그 짝이 되는 기술이나 쓰임의 예가 보이는 도식",
+      "svgLabel": "IEEE 802.15 박스 안에 802.15.1·802.15.3·802.15.4를 두고, 박스 밖의 짝 자리에 블루투스·멀티미디어·SENSOR01을 둔 그림",
+      "question": "WPAN의 규격은 무엇에 맞춰 나뉘었을까?",
+      "idleCaption": "IEEE 802.15 작업 그룹은 WPAN을 쓰임에 따라 여러 규격으로 나눠 정했다. 버튼으로 규격을 고르면 그 규격이 무엇을 노렸는지와 짝이 되는 기술이나 쓰임의 예를 볼 수 있다. SENSOR01은 예로 붙인 이름표다.",
+      "legend": "화살표는 규격과 그 짝을 잇는다. 802.15.1에서 블루투스로 가는 화살표는 802.15.1이 블루투스의 아래 계층을 옮겨 만든 규격이라는 뜻이고, 나머지 둘은 그 규격이 노린 쓰임의 예를 가리킨다.",
+      "nodes": {
+        "dot1": "802.15.1",
+        "dot3": "802.15.3",
+        "dot4": "802.15.4",
+        "bluetooth": "블루투스",
+        "multimedia": "멀티미디어",
+        "sensor01": "SENSOR01"
+      },
+      "groups": {
+        "ieee80215": "IEEE 802.15"
+      },
+      "notes": {
+        "dot1-note": "블루투스의 아래 계층",
+        "dot3-note": "고속 WPAN",
+        "dot4-note": "저속 WPAN"
+      },
+      "scenarios": [
+        {
+          "id": "dot1",
+          "label": "802.15.1",
+          "caption": "802.15.1은 블루투스의 아래 계층인 물리 계층과 매체 접근 제어를 IEEE 표준으로 옮긴 규격이다. 2005년에 고친 판은 2018년에 철회됐고, 블루투스의 사양은 Bluetooth SIG가 정한다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        },
+        {
+          "id": "dot3",
+          "label": "802.15.3",
+          "caption": "802.15.3은 고속 WPAN을 정한 규격이다. 20Mbps 이상으로 보내면서도 전력과 비용을 낮게 유지해, 휴대용 장치끼리 디지털 영상 같은 멀티미디어를 주고받게 하는 것을 노렸다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        },
+        {
+          "id": "dot4",
+          "label": "802.15.4",
+          "caption": "802.15.4는 저속 WPAN을 정한 규격이다. 배터리 하나로 몇 달에서 몇 년까지 동작하는 장치를 노려, 가끔 온도 값만 알리는 센서 SENSOR01 같은 쓰임에 맞는다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wpan"
+      ]
+    },
+    "zigbee-stack": {
+      "label": "Zigbee 장치의 계층 넷을 IEEE 802.15.4가 정한 칸과 Zigbee 사양이 정한 칸으로 나눠 쌓고, 코디네이터·LIGHT01·SENSOR01이 메시로 이어진 길을 함께 보이는 도식",
+      "svgLabel": "Zigbee 사양 박스(응용 계층·네트워크 계층)를 IEEE 802.15.4 박스(매체 접근 제어·물리 계층) 위에 쌓고, 떨어진 자리에 SENSOR01·LIGHT01·코디네이터를 둔 그림",
+      "question": "Zigbee는 802.15.4 위에 무엇을 더했을까?",
+      "idleCaption": "조명 LIGHT01과 온도 센서 SENSOR01은 예로 붙인 이름표다. 버튼으로 계층을 고르면 Zigbee가 802.15.4 위에 무엇을 더했는지, 메시를 고르면 SENSOR01의 데이터가 코디네이터에 닿는 길을 볼 수 있다.",
+      "legend": "위 박스의 두 칸은 Zigbee 사양이, 아래 박스의 두 칸은 IEEE 802.15.4가 정한다. 화살표는 SENSOR01이 보낸 데이터가 가는 길이다.",
+      "nodes": {
+        "app": "응용 계층",
+        "nwk": "네트워크 계층",
+        "mac": "매체 접근 제어",
+        "phy": "물리 계층",
+        "sensor01": "SENSOR01",
+        "light01": "LIGHT01",
+        "coordinator": "코디네이터"
+      },
+      "groups": {
+        "zigbee": "Zigbee 사양",
+        "ieee802154": "IEEE 802.15.4"
+      },
+      "notes": {
+        "zigbee-note": "Zigbee가 더한다",
+        "ieee-note": "그대로 쓴다",
+        "mesh-note": "LIGHT01이 넘겨 준다"
+      },
+      "scenarios": [
+        {
+          "id": "layers",
+          "label": "계층",
+          "caption": "Zigbee 장치는 IEEE 802.15.4가 정한 물리 계층과 매체 접근 제어를 그대로 쓴다. 그 위의 네트워크 계층과 응용 계층은 CSA가 만든 Zigbee 사양이 정한다.",
+          "sources": [
+            "wireless-lan.zigbee"
+          ]
+        },
+        {
+          "id": "mesh",
+          "label": "메시",
+          "caption": "SENSOR01은 코디네이터와 전파가 바로 닿지 않지만 LIGHT01과는 닿는다. SENSOR01이 보낸 온도 값을 LIGHT01이 받아 코디네이터에게 넘겨, 두 장치 사이에도 데이터가 오간다.",
+          "sources": [
+            "wireless-lan.zigbee"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.zigbee"
+      ]
     }
   },
   "tables": {},
