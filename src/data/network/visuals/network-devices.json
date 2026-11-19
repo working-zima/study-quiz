@@ -90,6 +90,83 @@
         }
       ],
       "sources": ["network-devices.repeater"]
+    },
+    "gateway-translate": {
+      "label": "쓰는 방식이 다른 전자 우편 시스템 A와 B 사이에서 메일 게이트웨이가 메시지의 형식을 바꿔 넘기는 모습과, PC01이 다른 네트워크로 가는 패킷을 기본 게이트웨이인 라우터 R01에게 맡기는 모습을 견주는 도식",
+      "svgLabel": "위에 전자 우편 시스템 A와 B의 박스와 그 사이의 메일 게이트웨이를, 아래에 PC01·R01·다른 네트워크를 차례로 둔 그림",
+      "question": "게이트웨이라는 같은 이름은 어떤 두 가지를 가리킬까?",
+      "idleCaption": "위는 전자 우편 시스템 A와 B 사이에 놓인 메일 게이트웨이이고, 아래는 PC01과 그 기본 게이트웨이인 라우터 R01이다. 이름은 모두 예로 붙인 이름표다. 버튼을 고르면 게이트웨이라는 이름이 두 자리에서 각각 무엇을 하는지 볼 수 있다.",
+      "legend": "위의 두 박스는 쓰는 방식이 서로 다른 두 우편 시스템이다. 화살표는 메시지나 패킷이 가는 쪽이다.",
+      "nodes": {
+        "msg-a": "A 형식의 메시지",
+        "gateway": "메일 게이트웨이",
+        "msg-b": "B 형식의 메시지",
+        "pc01": "PC01",
+        "r01": "R01",
+        "other-net": "다른 네트워크"
+      },
+      "groups": {
+        "system-a": "전자 우편 시스템 A",
+        "system-b": "전자 우편 시스템 B"
+      },
+      "notes": {
+        "translate-note": "형식을 바꿔 넘긴다",
+        "default-note": "PC01의 기본 게이트웨이"
+      },
+      "scenarios": [
+        {
+          "id": "translate",
+          "label": "형식 바꾸기",
+          "caption": "A의 사용자가 B의 사용자에게 보낸 메시지를 메일 게이트웨이가 A 형식으로 끝까지 받은 뒤, B가 읽을 수 있는 B 형식으로 바꿔 B로 보낸다. 방식이 다른 두 네트워크 사이에서 통신이 되게 하는 넓은 뜻의 게이트웨이다.",
+          "sources": ["network-devices.gateway"]
+        },
+        {
+          "id": "default-gw",
+          "label": "기본 게이트웨이",
+          "caption": "PC01의 IP 설정에 기본 게이트웨이로 적힌 것은 라우터 R01이다. PC01은 다른 네트워크로 가는 패킷을 R01에게 맡기고, R01은 목적지 IP 주소를 라우팅 테이블에서 찾아 그 패킷을 다른 네트워크 쪽으로 넘긴다.",
+          "sources": ["network-devices.gateway"]
+        }
+      ],
+      "sources": ["network-devices.gateway"]
+    },
+    "proxy-direction": {
+      "label": "정방향 프록시 PROXY01이 사내 PC01의 요청을 대신 보내는 모습과, 서버 쪽 네트워크의 역방향 프록시가 인터넷 사용자의 요청을 대신 받아 안쪽 웹 서버로 넘기는 모습을 견주는 도식",
+      "svgLabel": "왼쪽 위에 사내 네트워크 박스(PC01·PROXY01)와 오른쪽 위에 www.example.com, 가운데에 인터넷, 왼쪽 아래에 인터넷 사용자와 오른쪽 아래에 서버 쪽 네트워크 박스(역방향 프록시·웹 서버)를 둔 그림",
+      "question": "프록시는 누구 쪽에 서서 요청을 대신 다룰까?",
+      "idleCaption": "위는 사내 네트워크의 PC01이 정방향 프록시 PROXY01을 거쳐 인터넷 너머의 www.example.com에 닿는 길이고, 아래는 인터넷 사용자가 서버 쪽 네트워크의 역방향 프록시를 거쳐 웹 서버에 닿는 길이다. 버튼을 고르면 두 프록시가 각각 누구 쪽에 서는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 쪽이고, 응답은 같은 길을 거꾸로 돌아온다. PC01과 PROXY01은 예로 붙인 이름표다.",
+      "nodes": {
+        "pc01": "PC01",
+        "proxy01": "PROXY01",
+        "example": "www.example.com",
+        "internet": "인터넷",
+        "user": "인터넷 사용자",
+        "rproxy": "역방향 프록시",
+        "web": "웹 서버"
+      },
+      "groups": {
+        "internal": "사내 네트워크",
+        "server": "서버 쪽 네트워크"
+      },
+      "notes": {
+        "forward-note": "PC01 대신 보낸다",
+        "reverse-note": "웹 서버 대신 받는다"
+      },
+      "scenarios": [
+        {
+          "id": "forward",
+          "label": "정방향 프록시",
+          "caption": "사내 네트워크 안의 PROXY01이 PC01의 요청을 받아, 자기가 인터넷 너머의 www.example.com에 다시 보낸다. www.example.com이 보기에 이 요청을 보낸 쪽은 PC01이 아니라 PROXY01이다.",
+          "sources": ["network-devices.proxy-server"]
+        },
+        {
+          "id": "reverse",
+          "label": "역방향 프록시",
+          "caption": "서버 쪽 네트워크의 가장자리에 선 역방향 프록시가 인터넷 사용자의 요청을 대신 받아 안쪽 웹 서버로 넘긴다. 인터넷 사용자에게는 역방향 프록시가 원래 서버처럼 보이고, 안쪽 웹 서버는 드러나지 않는다.",
+          "sources": ["network-devices.proxy-server"]
+        }
+      ],
+      "sources": ["network-devices.proxy-server"]
     }
   },
   "tables": {},

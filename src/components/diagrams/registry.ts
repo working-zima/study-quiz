@@ -134,6 +134,7 @@ import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { FtpConnectionsDiagram } from './FtpConnectionsDiagram'
 import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
+import { GatewayTranslateDiagram } from './GatewayTranslateDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { GroupPolicyLinkDiagram } from './GroupPolicyLinkDiagram'
@@ -266,6 +267,7 @@ import { ProcViewDiagram } from './ProcViewDiagram'
 import { ProcessControlDiagram } from './ProcessControlDiagram'
 import { ProcessTreeDiagram } from './ProcessTreeDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
+import { ProxyDirectionDiagram } from './ProxyDirectionDiagram'
 import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
@@ -662,6 +664,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.sip': SipCallDiagram,
   'network-devices.device-layers': DeviceLayersDiagram,
   'network-devices.repeater': RepeaterRegenerateDiagram,
+  'network-devices.gateway': GatewayTranslateDiagram,
+  'network-devices.proxy-server': ProxyDirectionDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

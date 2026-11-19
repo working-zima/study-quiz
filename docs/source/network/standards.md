@@ -769,6 +769,7 @@ https://www.rfc-editor.org/rfc/rfc1122
 - (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Internet Standard, 1989-10, RFC 1349·4379·5884·6093·6298·6633·6864·8029·9293이 고쳤다) 위 §3.3.1·§3.3.1.2 줄(목적지가 이어진 네트워크에 없으면 그 네트워크의 게이트웨이로 보내고, 경로 정보가 없으면 **기본 게이트웨이** 가운데 하나를 고른다)의 「게이트웨이」는
   이 문서가 쓰던 옛 말로 **라우터**를 가리킨다(아래 RFC 1812 §2.2.3 줄, 아래 RFC 1983 「gateway」) — 새로 가져온 사실은 없다
   쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(IP 설정의 기본 게이트웨이는 다른 네트워크로 나가는 첫 라우터 — `routing.default-route`와 뜻을 맞춘다, 넓은 뜻의 게이트웨이와 같은 낱말의 두 쓰임)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 4 — 컴퓨터는 목적지가 같은 네트워크에 있으면 바로 보내고, 다른 네트워크에 있는데 따로 정해 둔 길이 없으면 기본 게이트웨이에게 보낸다, 문단 5의 예, 문단 6 「게이트웨이와 기본 게이트웨이」), 도식 `gateway-translate`의 「기본 게이트웨이」 캡션, 문항 n329(정답과 해설)
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
 (phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3),
@@ -1129,6 +1130,7 @@ https://www.rfc-editor.org/rfc/rfc9110
   - 이 문서의 「게이트웨이」는 HTTP의 역방향 프록시를 뜻한다 — 아래 RFC 1983·4949의 넓은 뜻의 게이트웨이(구현이 다른 네트워크 사이)와 쓰임이 다르다. 본문은 두 뜻을 섞지 않고, 역방향 프록시를 HTTP 문서가 게이트웨이라고도 부른다는 것을 한 줄로만 밝힌다
   쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(프록시는 클라이언트가 고른 중계자, 역방향 프록시는 원 서버처럼 보이며 안쪽 서버로 넘기고 HTTP 문서는 게이트웨이라고도 부른다, 캐시의 뜻과 얻는 것), (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(역방향 프록시가 HTTP 서비스를 여러 기계로 나누는 데 쓰인다 — 한 줄),
   기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 요청과 응답이 연결 두 개를 거친다, 문단 2 — HTTP 표준 문서는 정방향 프록시를 그냥 프록시라 부르고 클라이언트 쪽이 골라 쓰며 보통 클라이언트 설정에 적는다, 문단 5 — 역방향 프록시는 원래 서버처럼 보이고 응답을 캐시해 서버의 일을 덜며 여러 서버에 요청을 나누는 데 쓰인다, 문단 6 — HTTP 문서는 역방향 프록시를 게이트웨이라고도 부르고 넓은 뜻의 게이트웨이와 쓰임이 다르다), 도식 `proxy-direction`의 「역방향 프록시」 캡션, 문항 n331 해설
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
@@ -1144,6 +1146,7 @@ https://www.rfc-editor.org/rfc/rfc9111
 - (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Internet Standard, 2022-06, RFC 7234를 폐기, 폐기·개정 없음) HTTP 캐시는 응답 메시지를 저장해 두는 곳과 그 저장·꺼냄·지움을 맡는 부분이고, 같은 요청이 다시 올 때 응답 시간과 네트워크 대역폭 사용을 줄이려고 저장한다.
   여러 사용자가 다시 쓰는 **공유 캐시**는 대개 중개자의 일부로 두고, 한 사용자만 쓰는 **개인 캐시**는 흔히 웹 브라우저 같은 사용자 에이전트 안에 둔다. 저장해 둔 응답을 지금 요청에 다시 쓰면 지연과 네트워크 부담을 함께 줄인다 — §1
   쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(캐시 한 줄 — 프록시 안에 두는 공유 캐시)
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 3 — 캐시의 뜻, 여러 사용자가 함께 쓰는 공유 캐시, 응답이 빨라지고 오가는 데이터가 준다), 문항 n331 해설
 쓰인 곳: 면접 수정 이력 I14
 
 ## RFC 6585 — Additional HTTP Status Codes
@@ -1280,6 +1283,7 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
   - 쓰지 않는 것: 이 용어집이 1996년 기준으로 적은 수치(LAN의 「100Mb/s까지」 등)
   쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(브리지는 데이터 링크 계층 정보로 같은 네트워크의 구간 사이를, 라우터는 네트워크 계층 정보로 네트워크 사이를), `network-devices.repeater`(케이블 사이로 신호를 이어 보낸다),
   `network-devices.gateway`(게이트웨이의 지금 뜻과 옛 쓰임, 라우터는 3계층 게이트웨이·메일 게이트웨이는 7계층 게이트웨이, 메일 게이트웨이의 예 — 서로 다른 우편 시스템 사이에서 형식을 바꿔 옮긴다), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 2 — 메일 게이트웨이가 서로 다른 전자 우편 시스템 사이에서 메시지를 다 받은 뒤 형식을 바꿔 보내고 이 방식이 축적 전달이며 바꾸는 일이 꽤 복잡할 수 있다, 문단 4 — 게이트웨이는 처음에 라우터를 가리키던 이름, 문단 7 「게이트웨이와 라우터」 — 라우터는 3계층 게이트웨이·메일 게이트웨이는 7계층 게이트웨이), 도식 `gateway-translate`(「A 형식의 메시지」·「메일 게이트웨이」·「B 형식의 메시지」와 「형식 바꾸기」 캡션), 문항 n329·n330 해설
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
 `network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
 `protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이),
@@ -1391,6 +1395,7 @@ https://www.rfc-editor.org/rfc/rfc4949
   - 「repeater」·「hub」·「switch」·「proxy server」·「load balancer」는 이 용어집의 항목이 아니다(전문 검색). 「proxy server」는 게이트웨이 항목의 7계층 예로만 나온다
   쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(게이트웨이가 계층에 따라 브리지·라우터·프록시 서버로 나타난다, 라우터는 IP 패킷을 넘기는 3계층 장치), `network-devices.gateway`(정의, 프로토콜을 바꾸거나 서로 동작하게 돕는다, 이론으로는 어느 계층에서도·실제로는 2·3·7계층),
   `network-devices.proxy-server`(프록시의 두 정의, 클라이언트에게는 서버·서버에게는 클라이언트처럼 보인다, 안쪽 클라이언트 → 프록시 → 바깥 서버의 흐름, 캐시·기록·접근 통제), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 0 — 하는 일은 비슷하지만 만든 방식이 다른 네트워크 사이에서 통신이 오가게 하는 중간 장치, 두 네트워크는 프로토콜이나 보안 방식이 다를 수 있다, 문단 1 — 프로토콜을 바꿔 넘기거나 다른 방법으로 함께 동작하게 돕는다, 문단 3 — 이론으로는 어느 계층에서도·실제로는 브리지·라우터·프록시 서버의 세 계층), `network-devices.proxy-server`(문단 0 — 클라이언트를 대신해 일하는 중계자, 클라이언트는 프록시를 서버로·서버는 클라이언트로 여긴다, 문단 3 — 기록을 남기거나 정해 둔 요청을 막는다), 문항 n329·n330·n331 해설
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -1979,6 +1984,7 @@ Proposed Standard(Standards Track)이다.
   라우터는 대개 메시지를 받을 때 붙어 온 링크 계층 헤더를 떼어 내고, IP 헤더를 고친 뒤, 다시 내보낼 때 링크 계층 헤더를 새로 붙인다. 같은 §1은 이런 장치를 OSI 쪽에서는 중간 시스템이라 부르고, 예전 인터넷 문서는 게이트웨이라 불렀다고 적는다.
   라우터도 다른 인터넷 시스템과 같은 링크 계층 요구 사항을 지킨다 — §3.1. 본문은 「IP 헤더를 고친다」(TTL 등)는 쓰지 않고, 프레임 헤더를 떼어 패킷을 꺼내고 내보낼 때 새 프레임에 담는다는 데까지만 쓴다
   쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(라우터 항목 — 받은 프레임의 헤더를 떼어 패킷을 꺼내고 새 프레임에 담아 보낸다, 위 계층을 읽는 장비는 아래 계층의 헤더를 먼저 푼다, 예와 4절 「스위치와 라우터」, 도식 `device-layers`의 「라우터」 캡션), 문항 n327 해설
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 4 — 예전 인터넷 문서가 라우터를 게이트웨이라 불렀고 그 옛 이름이 IP 설정의 기본 게이트웨이에 남았다, 문단 7 「게이트웨이와 라우터」), 문항 n329 해설
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
@@ -7031,6 +7037,7 @@ https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request
   - ARR의 정방향 프록시는 HTTP만 다루고 HTTP CONNECT를 지원하지 않아 HTTPS를 넘기지 못한다 — 같은 절(ARR 한 제품의 한계라 본문에 프록시 일반의 성질로 쓰지 않는다)
   - **한국어 이름**: 한국어판은 forward proxy를 「전달 프록시」(제목)와 「정방향 프록시」(본문)로 섞어 옮기고, reverse proxy는 「역방향 프록시」로 옮긴다. **고른 이름**: 「정방향 프록시」 — 「역방향 프록시」와 짝을 이루는 이름이라 둘을 견주기 쉽다
   쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(정방향 프록시의 자리와 차례, 캐시에 있으면 서버에 묻지 않는다, 인터넷 쪽에서는 프록시가 보낸 것처럼 보인다, 두 프록시의 공통점, 정방향 프록시와 역방향 프록시 — 누구 쪽에 서는가), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 2 — 정방향 프록시는 내부 네트워크 안에서 클라이언트들의 요청을 모아 대신 보내고 인터넷 쪽에서는 요청이 프록시에게서 온다, 문단 4의 예 — 요청 확인 → 캐시 확인 → 없으면 인터넷의 서버에 요청 → 응답을 캐시해 둘 수 있고 클라이언트에 넘김, 다른 컴퓨터의 같은 요청은 서버에 다시 묻지 않는다, 문단 7 — 두 프록시의 기본 동작은 같고 사설 네트워크를 인터넷과 떼어 놓는다, 문단 8 「정방향 프록시와 역방향 프록시」), 도식 `proxy-direction`(사내 네트워크 박스의 PROXY01과 「정방향 프록시」 캡션), 문항 n331 해설
 
 쓰인 곳: (phase 81 step 8) `windows-server-roles.remote-access` — 위 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목의 역할 서비스 셋과 설치 이름(`RemoteAccess`·`DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`, 기본 미설치), VPN의 뜻(터널링과 암호화, VPN 클라이언트가 VPN 서버와 지점 간 연결을 맺고 서버가 확인 뒤 데이터를 나른다, 원격 사무실),
 터널링 프로토콜 넷과 풀네임·Windows 내장 VPN 클라이언트·PPTP와 L2TP 비권장·Windows Server 2025의 새 구성 기본 동작·2028(Preview) 제거, 「라우팅 및 원격 액세스」 콘솔, DirectAccess의 뜻(늘 이어짐·관리자가 관리·도메인 가입 컴퓨터만)·Always On VPN 권고·Windows 10보다 앞선 클라이언트에만·2028(Preview) 제거, 라우팅 역할 서비스(서브넷 사이 라우팅·NAT 라우터), 웹 응용 프로그램 프록시가 원격 컴퓨터를 잇지 않는다는 것(위 「VPN·DirectAccess와 무엇이 다른가」 줄, 이어서 나오는 말).
@@ -7702,6 +7709,7 @@ https://www.rfc-editor.org/rfc/rfc3234
 - (phase 82 step 9, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음) **URL을 돌리는 로드 밸런서**(§2.18): DNS를 쓰는 방법처럼 URL 리디렉션으로 서버 묶음에 부하를 나눌 수 있고, HTTP 프록시가 HTTP 요청을 고쳐 써 서버 묶음의 한 서버로 가게 할 수도 있다. 이 장치는 응용 세션을 임의로 돌리므로 미들박스에 든다.
   이 절의 분류 칸은 **응용 계층**이고, 패킷을 돌리는 로드 밸런서(§2.8)의 분류 칸은 **여러 계층(multi-layer)**이다. 본문은 「목적지 포트 번호로 나누기도 하고, 응용 계층까지 풀어 HTTP 요청의 URL로 나누기도 한다」까지 쓰고, URL로 나누는 방법의 세부는 step 12·13이 본다
   쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(부하 분산 장치 항목, 도식 `device-layers`의 「부하 분산 장치」 — 전송 계층 칸과 응용 계층 칸 둘로 가는 화살표), 문항 n327 해설(포트 번호와 URL은 부하 분산 장치가 보는 정보)
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 프록시가 클라이언트와의 연결을 받고 서버와 새로 연결한다, 문단 2 — 보통 클라이언트 설정에 어느 프록시를 쓸지 적어 둔다), 문항 n330 해설(§2.11 — FTP와 다른 파일 전송 프로토콜 사이의 게이트웨이도 만들어졌다)
 
 쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
 (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
