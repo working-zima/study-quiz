@@ -153,6 +153,7 @@ import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { Ieee80211BandsDiagram } from './Ieee80211BandsDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
 import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
@@ -197,6 +198,7 @@ import { MbrGptDiagram } from './MbrGptDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MibTreeDiagram } from './MibTreeDiagram'
+import { MimoStreamsDiagram } from './MimoStreamsDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
@@ -542,6 +544,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'wireless-lan.wlan-transmission': WlanTransmissionDiagram,
   'wireless-lan.wireless-channel': ChannelOverlapDiagram,
   'wireless-lan.csma-ca': CsmaCaSequenceDiagram,
+  'wireless-lan.mimo': MimoStreamsDiagram,
+  'wireless-lan.ieee-80211-standards': Ieee80211BandsDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,

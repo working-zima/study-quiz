@@ -178,6 +178,102 @@
       "sources": [
         "wireless-lan.csma-ca"
       ]
+    },
+    "mimo-streams": {
+      "label": "안테나 넷을 갖춘 AP01과 노트북 LAPTOP01·LAPTOP02를 두고, MIMO와 MU-MIMO에서 AP01이 보내는 공간 스트림 둘이 어느 노트북으로 가는지 보이는 도식",
+      "svgLabel": "안테나 1부터 안테나 4까지를 담은 AP01 박스와, 그 박스에서 떨어진 자리에 LAPTOP01과 LAPTOP02를 둔 그림",
+      "question": "안테나가 여럿이면 무엇을 함께 보낼 수 있을까?",
+      "idleCaption": "AP01은 안테나 넷을 갖췄고, LAPTOP01과 LAPTOP02는 MIMO를 지원한다. AP01·LAPTOP01·LAPTOP02와 안테나 넷, 스트림 둘은 예로 고른 것이다. 버튼으로 MIMO와 MU-MIMO를 고르면 AP01이 보내는 공간 스트림 둘이 어디로 가는지 볼 수 있다.",
+      "legend": "화살표 하나가 AP01이 함께 내보내는 공간 스트림 하나다. 화살표는 AP01 박스에서 나가게 그렸고, 어느 스트림이 어느 안테나에서 나가는지는 그리지 않았다.",
+      "nodes": {
+        "ant1": "안테나 1",
+        "ant2": "안테나 2",
+        "ant3": "안테나 3",
+        "ant4": "안테나 4",
+        "laptop01": "LAPTOP01",
+        "laptop02": "LAPTOP02"
+      },
+      "groups": {
+        "ap01": "AP01"
+      },
+      "notes": {
+        "mimo-note": "LAPTOP01에 스트림 둘",
+        "mu-mimo-note": "노트북마다 스트림 하나"
+      },
+      "scenarios": [
+        {
+          "id": "mimo",
+          "label": "MIMO",
+          "caption": "MIMO에서는 AP01이 LAPTOP01에게 보낼 데이터를 공간 스트림 둘로 나눠, 같은 채널에서 함께 내보낸다. 두 스트림이 모두 LAPTOP01로 가므로 LAPTOP01이 받는 전송률이 높아진다.",
+          "sources": [
+            "wireless-lan.mimo"
+          ]
+        },
+        {
+          "id": "mu-mimo",
+          "label": "MU-MIMO",
+          "caption": "MU-MIMO에서는 AP01이 LAPTOP01에게 보낼 스트림 하나와 LAPTOP02에게 보낼 스트림 하나를 같은 때 함께 내보낸다. 두 노트북은 저마다 자기에게 온 스트림을 받는다.",
+          "sources": [
+            "wireless-lan.mimo"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.mimo"
+      ]
+    },
+    "ieee-80211-bands": {
+      "label": "802.11의 개정 일곱(802.11a·b·g·n·ad·ac·ax)과 주파수 대역 셋(2.4GHz·5GHz·60GHz)을 두고, 대역마다 그 대역을 쓰는 개정을 잇는 도식",
+      "svgLabel": "주파수 대역 셋과 802.11의 개정 일곱을 두고, 개정에서 그 개정이 쓰는 대역으로 화살표를 잇는 그림",
+      "question": "802.11 규격들은 어느 주파수 대역을 쓸까?",
+      "idleCaption": "802.11a·802.11b·802.11g·802.11n·802.11ad·802.11ac·802.11ax는 무선 LAN 표준 802.11의 개정이고, 2.4GHz·5GHz·60GHz는 주파수 대역이다. 버튼으로 대역을 고르면 그 대역을 쓰는 개정을 볼 수 있다.",
+      "legend": "화살표는 802.11의 개정에서 그 개정이 쓰는 주파수 대역으로 간다. 802.11ax는 1GHz부터 7.125GHz 사이의 다른 대역도 쓸 수 있지만, 이 그림은 2.4GHz·5GHz·60GHz 대역만 보인다.",
+      "nodes": {
+        "band24": "2.4GHz 대역",
+        "band5": "5GHz 대역",
+        "band60": "60GHz 대역",
+        "std11b": "802.11b",
+        "std11g": "802.11g",
+        "std11n": "802.11n",
+        "std11ax": "802.11ax",
+        "std11a": "802.11a",
+        "std11ac": "802.11ac",
+        "std11ad": "802.11ad"
+      },
+      "notes": {
+        "band-24-note": "802.11ac는 없다",
+        "band-5-note": "802.11ac는 여기",
+        "band-60-note": "802.11ad는 여기"
+      },
+      "scenarios": [
+        {
+          "id": "band-24",
+          "label": "2.4GHz",
+          "caption": "2.4GHz 대역은 802.11b와 802.11g가 쓰고, 802.11n과 802.11ax도 쓴다. 802.11ac는 2.4GHz 대역을 빼고 6GHz 아래에서 동작하도록 만든 개정이라 이 대역을 쓰지 않는다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        },
+        {
+          "id": "band-5",
+          "label": "5GHz",
+          "caption": "5GHz 대역은 802.11a와 802.11ac가 쓰고, 802.11n과 802.11ax도 쓴다. 802.11ac는 2.4GHz 대역을 뺀 6GHz 아래, 곧 5GHz 대역에서 동작한다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        },
+        {
+          "id": "band-60",
+          "label": "60GHz",
+          "caption": "60GHz 대역은 802.11ad가 쓴다. 802.11ad는 이름이 한 글자 다른 802.11ac와 같은 연구 그룹에서 나왔지만, 802.11ac와 달리 60GHz 대역에서 동작한다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.ieee-80211-standards"
+      ]
     }
   },
   "tables": {},

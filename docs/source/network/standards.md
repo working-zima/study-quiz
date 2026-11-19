@@ -7297,6 +7297,14 @@ https://www.ieee802.org/11/Documents/DocumentArchives/2000_docs/ (00114r38S- HRb
 - **한국어 이름**: OFDM → **직교 주파수 분할 다중화**(orthogonal frequency division multiplexing — RFC 5416 §6.10이 풀어 적는다), subcarrier → **부반송파**, OFDMA → 직교 주파수 분할 다중 접속(orthogonal frequency division multiple access — 이름만),
   MIMO → **MIMO**(다중 입력 다중 출력 — 기출이 영문 약어로 쓴다), MU-MIMO → **MU-MIMO**(다중 사용자 MIMO), downlink·uplink → **하향·상향**(AP에서 스테이션 쪽·스테이션에서 AP 쪽), throughput → **처리율**(phase 70의 이름), data rate → 데이터 전송률,
   High Throughput → 높은 처리율, Very High Throughput → 매우 높은 처리율, High Efficiency → 고효율, Extremely High Throughput → 극도로 높은 처리율(이름을 풀어 적을 때만), PAR → 프로젝트 승인 요청서
+- (phase 82 step 3, 2026-11-19 `ieee802.org/11/PARs/`의 PDF 사본 P802.11ac.pdf·P802.11ad.pdf·P802.11ax.pdf를 IPv4로 다시 받아 확인) **802.11n·ac·ax의 대역과 802.11ac의 동시 통신**:
+  - P802.11ad §5.3·§8.1: 이 개정은 60 GHz 대역과 2.4·5 GHz 대역 사이의 빠른 세션 전환(fast session transfer)을 정하고, 그 일 때문에 802.11n의 완성에 기댄다고 적는다 — 곧 그 2.4·5 GHz 쪽 물리 계층이 802.11n이다.
+    P802.11ax §8.1(5.2.b 설명)도 성능을 견줄 이전 개정으로 「2.4 GHz의 802.11n, 5 GHz의 802.11ac」를 든다. 그래서 본문은 802.11n이 2.4GHz와 5GHz 대역을 쓴다고 적는다(위 표의 「찾지 못했다」를 이 두 줄로 채운다 — 802.11n 개요 페이지에는 대역이 없다)
+  - P802.11ax §8.1(5.2.b 설명): 이 개정의 중심은 **2.4 GHz 대역과 5 GHz 대역**에서의 실내·실외 동작이고, 1~7.125 GHz 사이의 다른 대역은 쓸 수 있게 되는 대로 더할 수 있다. PAR 수정 기록은 새 대역 때문에 상한을 6 GHz에서 7.125 GHz로 바꿨다고 적는다(그 새 대역의 이름은 적지 않아 쓰지 않는다)
+  - P802.11ac §5.2·§8.1: 2.4 GHz를 뺀 6 GHz 아래에서 동작하면서 5 GHz 대역의 옛 802.11 장치와 함께 동작해야 한다. 이 개정은 **여러 통신을 동시에 다루는 능력**을 넣을 수 있고, 여러 스테이션 합 1 Gbps는 AP 하나와 스테이션 셋 이상이 함께 통신할 때를 두고 한 말이다.
+    §5.3: 802.11n보다 높은 처리율을 내려면 802.11n의 MIMO 기능이 필요할 것이다(위 줄과 같다)
+  - 쓰지 않는 것: 802.11n의 최대 전송률(합동 제안의 600 Mbps는 표준 본문의 값이 아니다), 채널 폭을 묶는 방법, 802.11ad의 빠른 세션 전환 절차
+  쓰인 곳: `wireless-lan.ieee-80211-standards`(802.11n은 2.4GHz·5GHz, 802.11ax는 2.4GHz·5GHz를 중심으로 1~7.125GHz, 802.11ac는 2.4GHz를 뺀 5GHz), `wireless-lan.mimo`(802.11ac의 MU-MIMO가 여러 스테이션과 동시에 통신하는 데 쓰인다)
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wlan-transmission`(802.11b는 DSSS를 넓힌 고속 DSSS, 802.11a·g는 OFDM, OFDM의 부반송파), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(고속 DSSS 전송이 22 MHz 채널을 차지한다, 802.11a의 채널 간격 20 MHz),
 (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(802.11n의 MIMO, MU-MIMO 하향 802.11ac·상향 802.11ax, OFDM과의 차이), `wireless-lan.ieee-80211-standards`(위 표, 802.11ah·be 한 줄씩, ac와 ad, a와 b), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
@@ -7340,6 +7348,16 @@ RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정
   802.11 프레임의 주소 칸 구성은 이 RFC들이 적지 않아 쓰지 않는다(본문은 「무선 LAN의 장치도 저마다 MAC 주소를 가지고, 데이터를 프레임에 담아 주고받는다」까지 쓴다 — 프레임을 주고받는다는 것은 위 1996년 튜토리얼의 ACK·RTS/CTS 항목과 RFC 4118 §1.1).
   RFC 9542 §2.1은 48비트 MAC 주소를 이더넷 인터페이스 식별자로만 들고 802.11을 따로 말하지 않는다.
   쓰인 곳: `wireless-lan.wireless-lan`(무선 LAN의 장치도 저마다 MAC 주소를 가진다)
+- (phase 82 step 3, 2026-11-19 rfc-editor.org 텍스트판 RFC 8325·9119를 IPv4로 다시 받아 확인) **공간 스트림과 MU-MIMO**:
+  - RFC 9119 §3.1.2: 옛 장치와 함께 동작하는 일과 **여러 스트림을 함께 보내는 구현(multi-stream implementations)** 덕에 한 스테이션에게 보내는(유니캐스트) 최대 전송률이 지금은 몇 Gbps에 이른다.
+    주파수를 더 알뜰히 쓰려고 쓰는 기법인 **MIMO 시스템의 공간 다중화**는 받는 쪽이 둘 이상인 전송에는 쓸 수 없다(위 줄과 같다) — §3.1.2
+  - RFC 8325 §6.1.1: 802.11n·802.11ac 같은 새 구현의 데이터 전송률을 **공간 스트림(spatial stream) 하나마다** 적는다(「per spatial stream」 — 수치는 쓰지 않는다) — §6.1.1
+  - 위 둘로 본문이 쓰는 것: MIMO 장비는 공간 다중화로 데이터를 흐름 여럿으로 나눠 같은 채널에서 함께 보내고, 그 흐름 하나하나를 공간 스트림이라 하며, 전송률은 스트림 하나마다 따지므로 스트림을 여럿 함께 보내면 한 스테이션이 받는 전송률이 높아진다.
+    **공간 스트림을 정의한 문장 자체는 찾지 못했다** — 「여러 스트림 구현」(RFC 9119)·「공간 스트림마다의 전송률」(RFC 8325)·「MIMO의 공간 다중화가 주파수를 더 알뜰히 쓴다」(RFC 9119)를 합쳐 쓴 풀이다. 스트림과 안테나가 하나씩 짝을 이룬다고는 쓰지 않는다(문서가 말하지 않는다)
+  - RFC 9119 §4.7(GCR): AP는 그룹의 일부 구성원에게 하나씩 보내는 블록 ACK 요청을 **하향 MU-MIMO**로 보내고, 그 답인 블록 ACK를 **상향 MU-MIMO**로 받는다. 상향 MU-MIMO는 IEEE 802.11ax-2021의 기능이다.
+    여러 스테이션의 답을 동시에 받아 지연을 줄일 수도 있다 — §4.7. 곧 하향 MU-MIMO는 AP가 여러 스테이션에게 저마다의 프레임을 함께 보내는 데, 상향 MU-MIMO는 여러 스테이션이 보내는 것을 AP가 함께 받는 데 쓰인다(위 「개정 규격」 항목의 P802.11ac 「여러 통신을 동시에」와 맞는다)
+  - 쓰지 않는 것: MU-MIMO가 신호를 어떻게 스테이션마다 나누는지(빔포밍·사용자마다의 피드백 — TGac·TGax 문서 제목에만 있다), 한 번에 함께 보낼 수 있는 스테이션·스트림의 수, 수신 쪽 안테나 수의 조건
+  쓰인 곳: `wireless-lan.mimo`(공간 다중화·공간 스트림·스트림마다의 전송률, 받는 쪽이 둘 이상인 같은 프레임에는 공간 다중화를 쓸 수 없다, 하향·상향 MU-MIMO가 여러 스테이션과 함께 주고받는 데 쓰인다)
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
 `wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
