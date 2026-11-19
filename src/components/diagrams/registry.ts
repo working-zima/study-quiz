@@ -178,6 +178,8 @@ import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
 import { KeepAliveTimelineDiagram } from './KeepAliveTimelineDiagram'
 import { KernelMessagesDiagram } from './KernelMessagesDiagram'
+import { L4SwitchNatDiagram } from './L4SwitchNatDiagram'
+import { L7SwitchUrlDiagram } from './L7SwitchUrlDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -670,6 +672,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-devices.proxy-server': ProxyDirectionDiagram,
   'network-devices.load-balancing': LoadBalancerPoolDiagram,
   'network-devices.balancing-methods': BalancingMethodsDiagram,
+  'network-devices.l4-switch': L4SwitchNatDiagram,
+  'network-devices.l7-switch': L7SwitchUrlDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

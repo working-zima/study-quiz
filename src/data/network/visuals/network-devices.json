@@ -245,6 +245,81 @@
         }
       ],
       "sources": ["network-devices.balancing-methods"]
+    },
+    "l4-switch-nat": {
+      "label": "L4 스위치가 가상 주소 192.0.2.100으로 온 요청의 목적지를 WEB01의 주소 192.0.2.11로 바꿔 넘기고, WEB01의 응답은 출발지를 192.0.2.100으로 되돌려 클라이언트에 보내는 모습을 보이는 도식",
+      "svgLabel": "클라이언트와 L4 스위치, 웹 서버 WEB01·WEB02를 차례로 두고, 스위치 앞뒤 구간마다 패킷에 적힌 주소와 포트 번호를 적은 그림",
+      "question": "L4 스위치는 요청의 무엇을 바꿔 서버로 보낼까?",
+      "idleCaption": "클라이언트는 L4 스위치의 가상 주소 192.0.2.100으로 요청을 보내고, 스위치 뒤에는 웹 서버 WEB01과 WEB02가 있다. 버튼을 고르면 요청과 응답이 스위치를 지날 때 패킷에 적힌 주소가 어떻게 바뀌는지 볼 수 있다.",
+      "legend": "화살표는 패킷이 가는 쪽이다. 칸에는 그 구간을 지나는 패킷에 적힌 주소와 포트 번호를 주소:포트 꼴로 적었다. 192.0.2.100은 서버 묶음을 대표하는 가상 주소이고, 주소는 문서의 예로 쓰라고 남겨 둔 주소다. WEB01·WEB02는 예로 붙인 이름표다.",
+      "nodes": {
+        "client": "클라이언트",
+        "switch": "L4 스위치",
+        "web01": "WEB01 192.0.2.11",
+        "web02": "WEB02 192.0.2.12",
+        "req-front": "목적지: 192.0.2.100:80",
+        "res-front": "출발지: 192.0.2.100:80",
+        "req-back": "목적지: 192.0.2.11:80",
+        "res-back": "출발지: 192.0.2.11:80"
+      },
+      "groups": {
+        "front": "클라이언트와 L4 스위치 사이",
+        "back": "L4 스위치와 WEB01 사이"
+      },
+      "notes": {
+        "address-note": "가상 주소 192.0.2.100",
+        "request-note": "목적지를 WEB01의 주소로 바꾼다",
+        "response-note": "출발지를 가상 주소로 되돌린다"
+      },
+      "scenarios": [
+        {
+          "id": "request",
+          "label": "요청",
+          "caption": "클라이언트가 192.0.2.100:80으로 보낸 요청을 L4 스위치가 받아 WEB01을 고르고, 패킷의 목적지를 192.0.2.11:80으로 바꿔 WEB01에 넘긴다. 포트 번호 80은 그대로다.",
+          "sources": ["network-devices.l4-switch"]
+        },
+        {
+          "id": "response",
+          "label": "응답",
+          "caption": "WEB01이 출발지가 192.0.2.11:80인 응답을 보내면, L4 스위치가 출발지를 192.0.2.100:80으로 되돌려 클라이언트에 보낸다. 클라이언트가 보기에는 처음부터 192.0.2.100과 주고받은 것이다.",
+          "sources": ["network-devices.l4-switch"]
+        }
+      ],
+      "sources": ["network-devices.l4-switch"]
+    },
+    "l7-switch-url": {
+      "label": "L7 스위치가 www.example.com으로 온 요청의 URL 경로를 읽어, 경로가 /images/로 시작하는 요청은 IMG01로, 그 밖의 요청은 WEB01로 보내는 모습을 보이는 도식",
+      "svgLabel": "클라이언트가 보낸 두 가지 요청이 L7 스위치를 지나 서버 IMG01이나 WEB01로 가는 그림",
+      "question": "L7 스위치는 무엇을 보고 서버를 고를까?",
+      "idleCaption": "클라이언트가 www.example.com으로 보내는 요청은 모두 L7 스위치에 닿고, 스위치 뒤에는 이미지 파일을 내주는 IMG01과 웹 페이지를 내주는 WEB01이 있다. 버튼을 고르면 요청이 어느 서버로 가는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 쪽이다. 두 요청은 같은 주소의 같은 포트 번호로 오고 URL의 경로만 다르다. example.com은 문서의 예로 쓰라고 남겨 둔 이름이고, IMG01·WEB01은 예로 붙인 이름표다.",
+      "nodes": {
+        "client": "클라이언트",
+        "req-images": "/images/로 시작하는 경로",
+        "req-others": "그 밖의 경로",
+        "switch": "L7 스위치",
+        "img01": "IMG01",
+        "web01": "WEB01"
+      },
+      "notes": {
+        "images-note": "URL을 읽어 IMG01로 보낸다",
+        "others-note": "같은 주소·포트여도 WEB01로 간다"
+      },
+      "scenarios": [
+        {
+          "id": "images",
+          "label": "이미지 요청",
+          "caption": "클라이언트가 경로가 /images/로 시작하는 URL을 요청하자, L7 스위치는 클라이언트와 맺은 연결로 받은 HTTP 요청의 URL을 읽고 그 요청을 IMG01로 보낸다.",
+          "sources": ["network-devices.l7-switch"]
+        },
+        {
+          "id": "others",
+          "label": "그 밖의 요청",
+          "caption": "경로가 /images/로 시작하지 않는 요청은 L7 스위치가 WEB01로 보낸다. 두 요청은 같은 주소의 같은 포트 번호로 왔으므로, 주소와 포트 번호만 보아서는 이렇게 나눌 수 없다.",
+          "sources": ["network-devices.l7-switch"]
+        }
+      ],
+      "sources": ["network-devices.l7-switch"]
     }
   },
   "tables": {},

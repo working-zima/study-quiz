@@ -1005,6 +1005,10 @@ https://www.rfc-editor.org/rfc/rfc3986
 - (phase 77) 스킴(scheme)은 기본 포트를 정할 수 있다. 예로 `http` 스킴은 기본 포트를 80(그 스킴에 남겨 둔 TCP 포트 번호)으로 정한다. 포트 번호가 TCP·UDP 가운데 어느 것의 포트인지는 스킴이 정한다.
   포트가 비었거나 기본 포트와 같으면 주소를 만드는 쪽은 포트와 그 앞의 `:`를 빼는 것이 좋다 — §3.2.3
 - (phase 81 step 6, 2026-11-18 rfc-editor.org 원문 텍스트판을 IPv4로 받아 읽음) URL(Uniform Resource Locator)은 URI 가운데 자원을 가리키는 데 더해, 그 자원에 닿는 주된 방법(네트워크의 「위치」 같은 것)을 적어 자원을 찾아가게 하는 것을 이른다 — §1.1.3
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판과 json을 IPv4로 받아 읽음 — Internet Standard, 2005-01, 폐기 없음, RFC 7320·8820이 고침) **경로(path)**: URI는 스킴·authority·경로·쿼리·프래그먼트로 이루어진다 — §3.
+  경로는 보통 층 모양으로 짜인 데이터이고, 쿼리와 함께 그 스킴과 authority(호스트와 포트) 안에서 자원 하나를 가리킨다. authority가 있으면 경로는 비어 있거나 `/`로 시작하고, 첫 `?`나 `#`나 URI 끝에서 끝난다 — §3.3.
+  본문은 「서버 이름 뒤에 `/`로 시작해 붙는 부분」으로 줄여 쓴다(포트를 적은 URL은 포트 뒤에 붙는다 — 위 「(phase 77)」 줄)
+  쓰인 곳: `network-devices.l7-switch`(문단 1 — 경로의 뜻, 그 서버 안의 자원을 가리킨다, `/`로 나뉜 층 모양), 도식 `l7-switch-url`의 경로 노드, 문항 n338
 
 쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
 (phase 77에서 쓰일 곳) `ports.port-number`(§3.2·§3.2.3 — 주소 뒤에 `:포트`를 붙여 적는 꼴), `ports.well-known-ports`(§3.2.3 — 기본 포트는 스킴이 정하고, 다른 포트는 주소에 적는다)
@@ -1031,6 +1035,9 @@ https://www.rfc-editor.org/rfc/rfc9112
 - (phase 79 step 12, 2026-11-13 rfc-editor.org 원문 텍스트판을 IPv4로 다시 받아 읽음) 지속 연결을 지원하지 않는 서버는 1xx가 아닌 모든 응답에 `close` 연결 옵션을 보내야 한다 — §9.3.
   `close` 연결 옵션을 담은 응답을 보낸 서버는 그 응답 뒤에 연결 닫기를 시작해야 하고, 그 연결로 오는 요청을 더 처리하지 않는다 — §9.6. 클라이언트는 `close`를 받기 전까지 지속 연결에 요청을 더 보낼 수 있다 — §9.3.
   위 「(phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명 …」 항목의 `KeepAlive`(지속 연결을 켤지 정한다)와 이으면, **`KeepAlive Off`로 지속 연결을 끈 서버는 응답마다 그 연결을 닫고, 웹 브라우저는 다음 요청을 보내려면 연결을 새로 맺는다**(두 문서를 이은 것)
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판과 json을 IPv4로 받아 읽음 — Internet Standard, 2022-06, RFC 9931이 고침) HTTP 구현은 연결을 관리한다 — 새 연결을 맺거나 있던 연결을 다시 쓰고, 연결로 받은 메시지를 처리하고, 연결을 닫는다 — §9.
+  HTTP 연결 하나는 아래 전송 계층의 연결 하나에 대응하고(§9.1), 요청과 응답은 한 연결 위에서 차례대로 오간다(§9.2). 곧 요청은 먼저 맺은 연결 위로 보낸다 — 아래 RFC 7098 §3의 「들어오는 TCP 연결과 그 위의 HTTP 요청」과 함께 본다
+  쓰인 곳: `network-devices.l7-switch`(문단 2 — 클라이언트는 TCP로 연결을 맺은 뒤 그 연결로 HTTP 요청을 보낸다, 그래서 URL을 읽으려면 연결을 받아야 한다), `network-devices.l4-switch`(문단 4 — 포트 번호 `80`은 HTTP에 정해 둔 번호 — §9의 기본 TCP 포트), 문항 n338 해설
 
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
@@ -1138,6 +1145,7 @@ https://www.rfc-editor.org/rfc/rfc9110
 - (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 요청과 응답이 연결 두 개를 거친다, 문단 2 — HTTP 표준 문서는 정방향 프록시를 그냥 프록시라 부르고 클라이언트 쪽이 골라 쓰며 보통 클라이언트 설정에 적는다, 문단 5 — 역방향 프록시는 원래 서버처럼 보이고 응답을 캐시해 서버의 일을 덜며 여러 서버에 요청을 나누는 데 쓰인다, 문단 6 — HTTP 문서는 역방향 프록시를 게이트웨이라고도 부르고 넓은 뜻의 게이트웨이와 쓰임이 다르다), 도식 `proxy-direction`의 「역방향 프록시」 캡션, 문항 n331 해설
 - (phase 82 step 12) 쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(§3.7 — 게이트웨이(역방향 프록시)는 바깥 연결에 대해 원 서버처럼 동작하므로 클라이언트가 맺은 연결은 그 장치에서 끝나고, 장치는 받은 요청을 안쪽 서버로 넘기며, HTTP 서비스의 부하 분산에 흔히 쓰인다 — 위 「(phase 82 step 8)」 줄),
   기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
+- (phase 82 step 13) 쓰인 곳: `network-devices.l7-switch`(문단 2 — 클라이언트를 대신해 요청과 응답을 넘기는 L7 스위치는 역방향 프록시로 동작한다 — §3.7의 게이트웨이), `network-devices.l4-switch`(문단 4 — 포트 번호 `80`은 HTTP에 정해 둔 번호 — §4.2.1)
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
@@ -1995,6 +2003,7 @@ Proposed Standard(Standards Track)이다.
   라우터도 다른 인터넷 시스템과 같은 링크 계층 요구 사항을 지킨다 — §3.1. 본문은 「IP 헤더를 고친다」(TTL 등)는 쓰지 않고, 프레임 헤더를 떼어 패킷을 꺼내고 내보낼 때 새 프레임에 담는다는 데까지만 쓴다
   쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(라우터 항목 — 받은 프레임의 헤더를 떼어 패킷을 꺼내고 새 프레임에 담아 보낸다, 위 계층을 읽는 장비는 아래 계층의 헤더를 먼저 푼다, 예와 4절 「스위치와 라우터」, 도식 `device-layers`의 「라우터」 캡션), 문항 n327 해설
 - (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 4 — 예전 인터넷 문서가 라우터를 게이트웨이라 불렀고 그 옛 이름이 IP 설정의 기본 게이트웨이에 남았다, 문단 7 「게이트웨이와 라우터」), 문항 n329 해설
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 6 — 4절 「L4 스위치와 라우터」: 라우터는 목적지 IP 주소를 라우팅 테이블에서 찾아 다음 장비를 고른다)
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
@@ -7737,6 +7746,8 @@ https://www.rfc-editor.org/rfc/rfc3234
   「L4 switch」는 RFC 3143 하나, 「L4-L7 switch」는 RFC 3466 하나, 「layer 1 switches」는 RFC 5253 §3.1 하나(전달망의 TDM 스위치·광 교차 연결 장치를 가리킨다 — LAN 장비가 아니다)에 나온다 — 아래 「(phase 82 step 12) RFC 3143·RFC 3466」 항목
   쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(포트 번호까지 보는 로드 밸런서는 세션 상태를 지닌다, 분류는 여러 계층), `network-devices.l7-switch`(HTTP 요청·URL로 나누는 장치는 응용 계층 — 4절),
   `exam-notes.md` E43·E44, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 「응용 계층의 보안 기능」)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 포트 번호까지 보고 서버를 고르는 부하 분산 장치, 문단 3 — 같은 연결의 패킷을 같은 서버로 보내려고 짝을 기억한다 — §2.8, 문단 5 — 응용 계층의 정보로 판단하는 보안 장치는 응용 방화벽이라는 다른 장치 — §2.10,
+  문단 6 — 포트 번호까지 보는 IP 라우팅이라 IP 주소만 보는 라우터와 다르다 — §2.8), `network-devices.l7-switch`(문단 0 — HTTP 요청·URL로 나누는 장치는 응용 계층 — §2.18), 문항 n337 해설(L4 스위치는 URL을 보지도 고치지도 않는다)
 
 쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
 (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
@@ -7787,6 +7798,12 @@ https://www.rfc-editor.org/rfc/rfc2391
   - 이 문서는 이 장치를 「LSNAT 라우터」라 부른다 — 「L4 스위치」라는 이름은 없다(전문 검색)
   쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(가상 주소로 들어온 세션을 고른 서버에 묶고, 들어가는 패킷은 목적지 주소를, 나오는 패킷은 출발지 주소를 바꾼다, 한 연결의 뒤 패킷은 모두 같은 서버로, 클라이언트·서버는 그대로),
   `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 NAT)
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **LS-NAPT**(§3.3): 가상 서버 주소가 부하 분산 라우터의 인터페이스 주소와 같은 구성(LS-NAPT)에서는, 들어오는 세션의 목적지 주소를 고른 서버로 바꾸는 데 더해
+  **클라이언트의 주소와 포트도 라우터(가상 서버)의 주소와 포트로 바꾼다** — 서버가 보내는 패킷도 반드시 그 라우터를 지나게 하려는 것이다. 기본 LSNAT는 들어오는 세션을 (클라이언트 주소, 클라이언트 포트, 가상 서버 주소, 서비스 포트)에서
+  (클라이언트 주소, 클라이언트 포트, 고른 서버 주소, 서비스 포트)로 바꾼다 — §3.3 첫머리. 두 구성 모두 들어오는 패킷의 목적지 IP 주소를 고른 서버의 주소로 바꾼다.
+  그래서 문항 n337은 「목적지는 그대로이고 출발지만 바뀐다」를 오답으로 쓰고(어느 구성에서도 틀리다), 들어가는 요청의 출발지가 그대로라고 단정하는 보기는 두지 않았다. 본문은 기본 LSNAT의 차례만 쓰고 「출발지는 바꾸지 않는다」고 단정하지 않는다
+  쓰인 곳: `network-devices.l4-switch`(문단 2 — 가상 주소·부하 분산 방식·상태 확인·NAT, 문단 3 — 주소를 바꾸는 차례(연결을 가려 짝짓기, 들어가는 패킷의 목적지 주소와 바꿀 수 있는 포트 번호, 나가는 응답의 출발지, 연결이 끝나면 짝을 지운다, 클라이언트·서버는 할 일이 없다),
+  문단 4 — 예(포트 80 그대로 — §3.1의 예)), 문항 n336·n337 해설, 도식 `l4-switch-nat`
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산이 필요한 까닭과 정의, 세션 부하와 시스템 부하, 가상 주소와 서버 풀, 클라이언트는 가상 주소로 접속하고 로드 밸런서가 고른 서버로 돌린다, 서버를 더하고 빼도 클라이언트는 모른다, DNS 방식은 실시간 부하를 보지 못한다, 죽은 서버에는 새 세션을 맡기지 않는다),
 `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간의 정의, 부하를 보지 않는 방식과 보는 방식), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-11-03 #46]과 분산 방식 다섯 문항)
 
@@ -7812,6 +7829,8 @@ https://www.rfc-editor.org/rfc/rfc7098
   새 세션을 실제 응용 서버들에, 또는 7계층 프록시 묶음에 나눠 맡긴다 — 3·4계층 장치를 7계층 장치들 앞에 둘 수도 있다. 들어오는 패킷마다 빨리 가려 대상 서버를 정해야 하므로 패킷마다 들여다본다 — §3 넷째 항목. 이 문서도 이 장치를 「스위치」라는 이름으로 부르지 않는다
   쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(바깥 요청이 모두 이 장치를 지난다, 스위치·라우터에 기능으로 들어 있기도 하다, 지속성), `network-devices.l7-switch`(TCP 연결을 받아들이고 HTTP 요청마다 서버를 골라 중계한다, 3·4계층 장치를 그 앞에 둘 수도 있다),
   `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-08-24 #50]·[기출 2026-08-02 #46]의 「외부 요청은 모두 거쳐 간다」)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 3·4계층 로드 밸런서라는 이름, 문단 1 — 전용 장치일 수도 일부 스위치·라우터의 기능일 수도 있다, 문단 2 — 클라이언트의 연결은 모두 이 장치를 지난다),
+  `network-devices.l7-switch`(문단 2 — 7계층 장치는 들어오는 TCP 연결을 스스로 받고 그 위의 HTTP 요청을 보고 서버를 골라 중계하며 연결의 상태를 지닌다, 문단 5 — 그 상태, 3·4계층 장치를 7계층 장치 여럿 앞에 둔다), 문항 n338 해설
 
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻 — 일을 여러 서버에 나눠 성능을 최적으로, DNS 방식과 역방향 프록시 방식 — 역방향 프록시가 IP 주소 하나를 내보이고 세션마다 서버를 고른다), `network-devices.balancing-methods`(해시 — 출발지 주소 같은 값을 서버 번호로 바꾼다),
 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — 분산 방식의 오답 「IP 해시」)
@@ -7873,6 +7892,8 @@ https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/health-diag
   - 곧 URL의 경로 하나로 요청을 서로 다른 서버(들)에 나눌 수 있다 — guide의 예(`www.example.com/images/`로 시작하는 요청은 `IMG01`로, 나머지는 `WEB01`로)는 이 두 문서의 동작을 이름표로 옮긴 것이다(예의 이름은 문서에 없다)
   - **한국어 이름**: 한국어판(기계 번역)은 URL Rewrite를 「URL 다시 쓰기」, 3-tier를 「3계층」, reverse proxy를 「역방향 프록시」로 옮긴다
   쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(응용 수준에서 HTTP 헤더·URL로 판단한다, IP 수준의 장치와 다르다, 알고리즘·상태 확인도 한다, URL 경로로 서버를 나누는 예, 역방향 프록시로 동작한다), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
+- (phase 82 step 13) 쓰인 곳: `network-devices.l7-switch`(문단 3 — 응용 수준에서 판단하는 로드 밸런서도 부하 분산 알고리즘과 상태 확인을 한다 — 「Features」 2·3, 문단 4 — URL 경로 `/images/`의 요청을 다른 서버로 나누는 예 — 3계층 배포 안내와 URL 다시 쓰기 문서,
+  서버 이름 `IMG01`·`WEB01`은 이름표), 도식 `l7-switch-url`. 본문에 ARR이라는 제품 이름은 쓰지 않았다(이 주제의 앞 개념이 IIS를 풀지 않았다)
 
 쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻과 목적 — 자원 사용·처리량·응답 시간·과부하, 로드 밸런서는 프록시 기반일 수 있다, 서버 팜, 가용성과 서버를 더하고 빼기, 상태 확인의 두 방법과 결과 — 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다),
 `network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다른 서버, 「가중 라운드 로빈」이라는 이름, 알고리즘은 여럿이고 정의는 RFC 2391·7098에서), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #47]·[기출 2025-05-25 #47]·[기출 2026-05-17 #49])
@@ -7888,6 +7909,8 @@ https://www.rfc-editor.org/rfc/rfc9569
 - 「Layer 4 load balancer」라는 말은 RFC 7609(2015-08, Informational — 클러스터의 가상 IP 주소를 지니고 들어오는 TCP 연결을 서버들에 나누는 장치)와 RFC 8684(2020-03, Proposed Standard — 지나가며)에도 나온다(rfc-editor.org 사이트 검색). 본문의 근거로는 이 문서의 §8.1이면 충분하다
 - 5-tuple이 무엇인지는 이 문서가 풀지 않는다 — 아래 RFC 6437 항목
 - **한국어 이름**: Layer 4 load balancing → 4계층 부하 분산, Layer 7 load balancer → 7계층 로드 밸런서(본문은 「전송 계층 정보로 나누는 부하 분산 장치」·「응용 계층 정보로 나누는 부하 분산 장치」로 풀어 쓰고 표준의 이름을 한 번 밝힌다)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 다섯 값으로 나누는 4계층 부하 분산), `network-devices.l7-switch`(문단 0 — 7계층 로드 밸런서라는 이름, 문단 1 — 경로로 나누고 같은 경로의 요청을 같은 서버로 보내게 정해 둘 수 있다,
+  문단 5 — L4와 L7은 무엇을 보고 나누는가로 갈린다), 문항 n338 해설
 
 쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(5-tuple로 나눈다), `network-devices.l7-switch`(URI의 경로로 나눈다, L4·L7이 무엇을 보고 나누는가로 갈린다 — 4절), `exam-notes.md` E43·E44
 
@@ -7898,6 +7921,7 @@ https://www.rfc-editor.org/rfc/rfc6437
 
 - 흐름을 가르는 장치들은 전통적으로 **출발지 주소·목적지 주소·출발지 포트·목적지 포트·전송 프로토콜의 종류** 다섯 값(5-tuple)을 써 왔다 — §1. 흐름을 흔히 이 5-tuple이 같은 패킷들의 묶음으로 정의한다 — §3
 - **한국어 이름**: 5-tuple → 「주소·포트·프로토콜의 다섯 값」으로 풀어 쓴다(이름 「5-tuple」은 한 번 밝힐 수 있다)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 출발지·목적지 IP 주소, 출발지·목적지 포트 번호, 프로토콜의 다섯 값과 5-tuple이라는 이름)
 
 쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(L4 스위치가 보는 값 — 출발지·목적지 IP 주소, 출발지·목적지 포트 번호, 프로토콜), 위 RFC 9569 항목
 
@@ -7913,6 +7937,7 @@ https://www.rfc-editor.org/rfc/rfc3466
   한 사용자 에이전트의 세션을 같은 서버로 보내기를 들고, 그림에서 그 장치를 「L4-L7 switch」라 이름 붙인다 — §2.3. 폐기된 문서라 본문의 근거로 쓰지 않는다 — 이런 이름이 IETF 문서에 나온 적이 있다는 기록으로만 둔다
 - 「layer 4 switch」·「layer-4 switch」·「layer 7 switch」·「L7 switch」는 RFC 어디에도 없다(위 RFC 3234 항목의 「(phase 82 step 12)」 줄)
 - **판단**: 시험의 「L4 스위치」·「L7 스위치」는 표준이 정의한 이름이 아니다 — `exam-notes.md` E43
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 1 — L4 스위치라는 이름은 표준 문서에 나오지 않는다), `network-devices.l7-switch`(문단 0 — L7 스위치라는 이름도 나오지 않는다)
 
 쓰인 곳: `exam-notes.md` E43(이름의 처리), (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`·`network-devices.l7-switch`(「자격시험은 … 라 부른다」 한 줄의 근거)
 
