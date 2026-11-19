@@ -146,6 +146,11 @@ IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 �
 **CSA의 Zigbee 사양 PDF(R23.1·R22)는 Cloudflare가 자동 내려받기를 막아(HTTP 403·검사 페이지) 읽지 못했다** — Zigbee 항목은 CSA의 FAQ·소개 페이지와 `ieee802.org`에 올라온 2009년 튜토리얼로만 썼고, 사양에만 있을 사실(장치 역할의 정의 등)은 「찾지 못했다」로 남긴다.
 CSA·Bluetooth SIG 페이지에서는 기술을 설명하는 문장만 가져왔다 — 「유일한 완전한 IoT 해법」 같은 홍보 문구, 판매량·채택 회사, 보도 자료는 사실로 옮기지 않았다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — Bluetooth 프로파일·페어링, Zigbee의 응용 프로파일·보안, 802.11s의 보안·프레임 형식, 셀룰러(LTE·5G)의 절차와 LTE-M·NB-IoT의 세부, 802.22의 물리 계층.
+「(phase 82 step 8)」이 붙은 줄과 항목은 phase 82 step 8에서 `network-devices` 주제의 앞 개념 여섯(계층별 네트워크 장비, 리피터, 게이트웨이, 프록시 서버, 부하 분산, 부하 분산 방식)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+이 주제도 강의 밖 주제라 사실의 근거는 표준·공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IEEE 802.3의 리피터 사실은 `ieee802.org`에 올라온 802.3 태스크 포스 발표 자료(표준 본문이 아니다)에서,
+부하 분산의 쓰임·상태 확인·분산 방식의 이름은 learn.microsoft.com의 IIS 응용 프로그램 요청 라우팅(ARR) 문서(영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`를 적었다)에서 가져왔다. learn.microsoft.com 가운데 Azure 서비스 문서(Application Gateway 등)는 검색에 걸려도 쓰지 않았다.
+**ARR 문서의 글은 부하 분산 알고리즘이 여섯 가지라는 데까지만 적고, 글로 나오는 이름은 「Weighted round robin」 하나다** — 그래서 분산 방식마다의 정의는 RFC 2391 §5.1과 RFC 7098 §3에서 가져왔고, 가중 라운드 로빈에서 가중치가 몫을 어떻게 나누는지(예: 3:1)는 허용한 출처에서 찾지 못했다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 세션 유지(클라이언트 선호도·쿠키)의 구현, SSL 오프로드, 전역 부하 분산, 장애 조치 클러스터, Windows Server 네트워크 부하 분산(NLB)의 설정, ARR의 캐시·URL 다시 쓰기, 프록시의 인증·로그 형식. L4·L7 스위치(RFC 3234 §2.18 포함)·PoE·PXE는 step 12가 본다.
 
 ---
 
@@ -761,6 +766,9 @@ https://www.rfc-editor.org/rfc/rfc1122
 - (phase 74 step 11) 호스트의 경로 캐시·기본 게이트웨이 목록·정적 경로 표는 개념으로는 따로지만, 실제로는 하나의 「라우팅 테이블」 자료 구조로 합쳐 둘 수 있다 — §3.3.1.3 IMPLEMENTATION.
   곧 **호스트에도 라우팅 테이블이 있다**(Linux·Windows에서 그 표를 보는 명령은 아래 「(phase 74 step 11) Linux man-pages … Microsoft Learn …」 항목)
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Internet Standard, 1989-10, RFC 1349·4379·5884·6093·6298·6633·6864·8029·9293이 고쳤다) 위 §3.3.1·§3.3.1.2 줄(목적지가 이어진 네트워크에 없으면 그 네트워크의 게이트웨이로 보내고, 경로 정보가 없으면 **기본 게이트웨이** 가운데 하나를 고른다)의 「게이트웨이」는
+  이 문서가 쓰던 옛 말로 **라우터**를 가리킨다(아래 RFC 1812 §2.2.3 줄, 아래 RFC 1983 「gateway」) — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(IP 설정의 기본 게이트웨이는 다른 네트워크로 나가는 첫 라우터 — `routing.default-route`와 뜻을 맞춘다, 넓은 뜻의 게이트웨이와 같은 낱말의 두 쓰임)
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
 (phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3),
@@ -1108,6 +1116,19 @@ https://www.rfc-editor.org/rfc/rfc9110
   사용자 에이전트(웹 브라우저 같은 것)는 이 정보를 `:authority` 가상 헤더 필드로 보내는 경우가 아니면 요청에 Host 헤더 필드를 만들어 넣어야 한다(MUST). HTTP/2·HTTP/3에서는 Host 대신 요청의 제어 데이터에 든 `:authority`가 그 일을 맡기도 한다. 예로 `http://www.example.org/pub/WWW/`을 GET으로 요청하면 요청은 `GET /pub/WWW/ HTTP/1.1` 다음 줄에 `Host: www.example.org`로 시작한다 — §7.2
   (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`(웹 브라우저가 주소의 이름을 Host 헤더에 담아 보내고, 서버가 그 이름으로 여러 이름의 사이트를 가른다, `Host: shop.example.com`의 꼴)
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Internet Standard, 2022-06, 폐기·개정 없음) **중개자와 캐시**(§3.7·§3.8):
+  - HTTP는 연결 여러 개를 사슬처럼 이어 요청을 처리하는 중개자(intermediary)를 쓸 수 있고, 흔한 꼴은 **프록시·게이트웨이·터널** 셋이다. 한 중개자가 요청마다 원 서버·프록시·게이트웨이·터널 가운데 어느 것으로 동작할지 바꾸기도 한다.
+    뒤의 요청은 부하 분산을 위한 동적 설정에 따라 다른 경로의 연결로 갈 수도 있다 — §3.7
+  - **프록시**: **클라이언트가 고른**(대개 클라이언트 쪽 설정 규칙으로) 메시지 전달자로, 어떤 종류의 주소에 대한 요청을 받아 HTTP 인터페이스를 거쳐 처리하려 한다. 조직의 HTTP 요청을 한 중개자로 모아 보안 서비스·주석 서비스·공유 캐시를 하려고 흔히 쓴다 — §3.7
+  - **게이트웨이(역방향 프록시라고도 한다)**: 바깥쪽 연결에 대해서는 **원 서버처럼 동작**하지만, 받은 요청을 바꿔 안쪽의 다른 서버(들)로 넘기는 중개자다. 낡았거나 믿을 수 없는 정보 서비스를 감싸고, 「가속기」 캐시로 서버 성능을 높이고, **HTTP 서비스를 여러 기계로 나누거나 부하를 분산하는 데** 흔히 쓴다.
+    안쪽 서버와는 원하는 어떤 프로토콜로도 통신할 수 있다 — §3.7
+  - 터널은 메시지를 바꾸지 않고 두 연결 사이를 그대로 중계한다 — §3.7(이 주제에서는 쓰지 않는다 — 터널은 `network-security` 주제의 몫)
+  - 클라이언트가 고르지 않은 **가로채기 프록시**(interception proxy — 흔히 「투명 프록시」라고도 부른다)는 HTTP 프록시와 다르다. 나가는 TCP 80 패킷 같은 것을 걸러 내거나 다른 곳으로 돌린다 — §3.7
+  - **캐시**: 앞서 받은 응답 메시지를 저장해 둔 곳과, 그 저장·꺼냄·지움을 맡는 부분이다. 같은 요청이 다시 올 때 **응답 시간과 네트워크 대역폭 사용을 줄이려고** 캐시할 수 있는 응답을 저장한다. 클라이언트도 서버도 캐시를 둘 수 있다(터널로 동작하는 동안은 쓰지 못한다).
+    사슬의 한 참여자가 그 요청에 맞는 저장된 응답을 갖고 있으면 요청은 원 서버까지 가지 않고 그 자리에서 사슬이 짧아진다 — §3.8
+  - 이 문서의 「게이트웨이」는 HTTP의 역방향 프록시를 뜻한다 — 아래 RFC 1983·4949의 넓은 뜻의 게이트웨이(구현이 다른 네트워크 사이)와 쓰임이 다르다. 본문은 두 뜻을 섞지 않고, 역방향 프록시를 HTTP 문서가 게이트웨이라고도 부른다는 것을 한 줄로만 밝힌다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(프록시는 클라이언트가 고른 중계자, 역방향 프록시는 원 서버처럼 보이며 안쪽 서버로 넘기고 HTTP 문서는 게이트웨이라고도 부른다, 캐시의 뜻과 얻는 것), (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(역방향 프록시가 HTTP 서비스를 여러 기계로 나누는 데 쓰인다 — 한 줄),
+  기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
@@ -1120,6 +1141,9 @@ https://www.rfc-editor.org/rfc/rfc9111
 - 캐시는 바로 쓸 수 없는(예: 신선하지 않은) 저장 응답을 조건부 요청으로 원 서버에 검증한다. 저장한 응답의 Last-Modified는 If-Modified-Since로, ETag의 엔터티 태그는 If-None-Match로 싣는다 — §4.3, §4.3.1
 - 304 응답은 저장해 둔 응답을 갱신해 다시 써도 된다는 뜻이다. 캐시는 저장한 응답의 헤더 필드를 304에 실려 온 필드로 갱신한다 — §4.3.3, §4.3.4
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Internet Standard, 2022-06, RFC 7234를 폐기, 폐기·개정 없음) HTTP 캐시는 응답 메시지를 저장해 두는 곳과 그 저장·꺼냄·지움을 맡는 부분이고, 같은 요청이 다시 올 때 응답 시간과 네트워크 대역폭 사용을 줄이려고 저장한다.
+  여러 사용자가 다시 쓰는 **공유 캐시**는 대개 중개자의 일부로 두고, 한 사용자만 쓰는 **개인 캐시**는 흔히 웹 브라우저 같은 사용자 에이전트 안에 둔다. 저장해 둔 응답을 지금 요청에 다시 쓰면 지연과 네트워크 부담을 함께 줄인다 — §1
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(캐시 한 줄 — 프록시 안에 두는 공유 캐시)
 쓰인 곳: 면접 수정 이력 I14
 
 ## RFC 6585 — Additional HTTP Status Codes
@@ -1243,6 +1267,19 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
   「Routing Information Protocol (RIP)」, 「Open Shortest-Path First (OSPF)」, 「Border Gateway Protocol (BGP)」(이 용어집이 가리키는 RFC 1058·1583·1771은 지금 폐기되거나 역사적이 된 판이다 — 현행은 아래 RFC 2453·2328·4271 항목)
 - (phase 74 step 11) AS는 하나의 관리 주체 아래에서 공통의 IGP로 패킷을 라우팅하는 라우터들의 모임이다 — 「Autonomous System (AS)」(옛 정의 — 지금의 정의는 아래 RFC 1930 항목)
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — FYI 18, Informational, 1996-08, RFC 1392를 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다) **장비 용어**:
+  - 리피터는 한 케이블의 전기 신호를 다른 케이블로 이어 퍼뜨리는 장치다 — 「repeater」. 이 항목은 계층·주소를 말하지 않는다(계층의 근거는 아래 「(phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록」 항목의 「(phase 82 step 8)」 줄)
+  - 브리지는 **데이터 링크 계층의 정보**를 보고 네트워크 구간(segment) 사이에 트래픽을 넘기는 장치이고, 그 구간들은 네트워크 계층 주소를 함께 쓴다 — 곧 같은 네트워크 안의 구간을 잇는다 — 「bridge」
+  - 라우터는 네트워크와 네트워크 사이에서 트래픽을 넘기고, 넘길 곳을 **네트워크 계층 정보와 라우팅 테이블**로 정한다 — 「router」(위 「(phase 74 step 11)」 줄과 같다)
+  - **게이트웨이**: 처음에는 라우터를 가리키던 말이고, 그 뜻으로는 지금 「라우터」를 쓴다. 지금의 뜻은 **하는 일은 비슷하지만 구현이 다른 네트워크 사이에서 데이터를 넘겨주는 통신 장치나 프로그램**이다. 이 정의로 보면 라우터는 3계층(네트워크 계층) 게이트웨이이고 메일 게이트웨이는 7계층(응용 계층) 게이트웨이다.
+    같은 항목은 게이트웨이를 프로토콜 변환기와 헷갈리지 말라고 적는다 — 「gateway」
+  - 프로토콜 변환기(protocol converter)는 하는 일이 비슷한 서로 다른 프로토콜 사이를 바꿔 주는 장치나 프로그램이다(예: TCP와 OSI의 TP4) — 「protocol converter」
+  - **메일 게이트웨이**는 서로 다른 전자 우편 시스템 둘 이상을 이어 그 사이로 메시지를 옮기는 기계다. 옮기면서 형식을 바꾸고(그 바꿈이 꽤 복잡할 수 있다), 대개 한쪽에서 메시지를 다 받은 뒤 바꿔서 다른 쪽으로 보내는 축적 전달 방식을 쓴다 — 「mail gateway」
+  - 「hub」 항목은 ARCnet과 메시지 처리 서비스의 쓰임만 적고 이더넷 허브를 정의하지 않는다(이더넷 허브의 근거는 phase 72 항목들)
+  - **두 용어집의 차이**: 아래 RFC 4949는 프로토콜이 다른 두 네트워크 사이에서 게이트웨이가 한 프로토콜을 다른 프로토콜로 바꿀 수 있다고 적고, 이 문서는 게이트웨이를 프로토콜 변환기와 따로 둔다. 본문은 「게이트웨이는 구현이 다른 두 네트워크 사이에서 통신이 되게 하고, 그 방법의 하나가 프로토콜을 바꾸는 것」으로 쓴다(RFC 4949 쪽 — 더 새 문서다)
+  - 쓰지 않는 것: 이 용어집이 1996년 기준으로 적은 수치(LAN의 「100Mb/s까지」 등)
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(브리지는 데이터 링크 계층 정보로 같은 네트워크의 구간 사이를, 라우터는 네트워크 계층 정보로 네트워크 사이를), `network-devices.repeater`(케이블 사이로 신호를 이어 보낸다),
+  `network-devices.gateway`(게이트웨이의 지금 뜻과 옛 쓰임, 라우터는 3계층 게이트웨이·메일 게이트웨이는 7계층 게이트웨이, 메일 게이트웨이의 예 — 서로 다른 우편 시스템 사이에서 형식을 바꿔 옮긴다), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
 `network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
 `protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이),
@@ -1343,6 +1380,17 @@ https://www.rfc-editor.org/rfc/rfc4949
 - 프로토콜은 시스템 사이의 연관(예: 통신)을 구현·제어하는 규칙(형식과 절차)의 묶음이다. 또는 둘 이상의 개체가 함께 목표를 이루려고 밟는 순서 있는 단계들이다 — §4 「protocol」
 - 암호화는 데이터(평문)를 원래 뜻을 감춘 다른 형태(암호문)로 바꿔, 원래 형태로 쓰이지 못하게 하는 변환이다. 되돌리는 변환이 복호화다 — §4 「encryption」
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Informational, 2007-08, RFC 2828을 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다) **게이트웨이·브리지·라우터·프록시**:
+  - **게이트웨이**: 하는 일은 비슷하지만 구현이 다른 컴퓨터 네트워크 둘(이상)에 붙어, 그 네트워크 사이에 한쪽 방향이나 양쪽 방향의 통신이 되게 하는 중간 시스템(인터페이스·중계)이다. 두 네트워크는 프로토콜이나 보안 방식 같은 여러 면에서 다를 수 있고,
+    호스트에 서비스를 주는 프로토콜이 다르면 게이트웨이가 **한 프로토콜을 다른 프로토콜로 바꾸거나** 다른 방법으로 서로 동작하게 돕는다. **이론으로는 OSI 참조 모델의 어느 계층에서도 게이트웨이를 생각할 수 있지만, 실제로는 대개 2계층(브리지)·3계층(라우터)·7계층(프록시 서버)에서 동작한다** — §4 「gateway」와 그 Tutorial
+  - **브리지**: 두 네트워크(대개 LAN 둘) 사이에서 OSI 2계층으로 흐르는 트래픽의 게이트웨이다 — §4 「bridge」
+  - **라우터**: 자기에게 온 것이 아닌 IP 패킷을 넘겨주는 네트워크 컴퓨터다(1a). 인터넷 프로토콜 묶음의 인터넷 계층에서 동작해 서브네트워크 둘 이상을 잇는 게이트웨이이고(1b), OSI로는 3계층에서 두 네트워크 사이의 게이트웨이로 데이터 패킷을 중계하고 길을 정하는 컴퓨터다(1c) — §4 「router」
+  - **프록시**: 사용자나 클라이언트를 대신해 일하는 컴퓨터 프로세스다(1). 또는 — 흔히 방화벽이나 그 일부로 쓰여 — 클라이언트와 서버 사이에서 응용의 주고받음이나 프로토콜을 중계하는데, **클라이언트에게는 서버처럼, 서버에게는 클라이언트처럼 보이는** 프로세스다(2) — §4 「proxy」
+  - 프록시의 흐름(같은 항목 Tutorial): 보호된 안쪽의 클라이언트가 바깥 서버에 바로 잇지 않고 프록시 서버에 잇고, 프록시 서버가 바깥 서버에 잇는다 — 안쪽에서 요청을 기다려 받아 바깥 서버로 넘기고, 응답을 받아 클라이언트에게 돌려준다.
+    클라이언트가 프록시를 의식하지 않을 수도 있고(투명), 먼저 프록시에 이어야 할 수도 있다. 프록시는 **캐시, 높은 수준의 기록(로그), 접근 통제**를 할 수 있고, 7계층의 프록시는 3계층의 필터링 라우터보다 세밀한 보안 서비스를 줄 수 있다(예: FTP 프록시가 보호된 네트워크에서 밖으로 보내는 전송만 허락한다) — §4 「proxy」 Tutorial
+  - 「repeater」·「hub」·「switch」·「proxy server」·「load balancer」는 이 용어집의 항목이 아니다(전문 검색). 「proxy server」는 게이트웨이 항목의 7계층 예로만 나온다
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(게이트웨이가 계층에 따라 브리지·라우터·프록시 서버로 나타난다, 라우터는 IP 패킷을 넘기는 3계층 장치), `network-devices.gateway`(정의, 프로토콜을 바꾸거나 서로 동작하게 돕는다, 이론으로는 어느 계층에서도·실제로는 2·3·7계층),
+  `network-devices.proxy-server`(프록시의 두 정의, 클라이언트에게는 서버·서버에게는 클라이언트처럼 보인다, 안쪽 클라이언트 → 프록시 → 바깥 서버의 흐름, 캐시·기록·접근 통제), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -1698,6 +1746,15 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   https://www.ieee802.org/3/da/public/040622/zimmerman_3da_01_03312022.pdf 22쪽(802.3cg-2019가 9장 리피터를 10BASE-T1L·10BASE-T1S에 적용하지 않기로 했다는 것)
 - (참고) 같은 P802.3bh D3.0 기록 #i-89(ACCEPT): IEEE Std 802.5는 토큰 링 표준이고 철회됐다. 마지막 개정은 802.5v-2001 「Gigabit Token Ring Operation」이다 — 의견 #i-89
 
+- (phase 82 step 8, 2026-11-19 위 「주의」 줄의 발표 자료를 IPv4로 다시 받아 읽음 — G. Zimmerman, 「Repeaters in 802.3da」, IEEE P802.3da Task Force, 2022-03-31, 36쪽. **표준 본문이 아니라 태스크 포스 발표 자료**이고,
+  아래 줄들의 슬라이드는 802.3 개정 초안 IEEE P802.3dc D3.2(IEEE Std 802.3-2018을 고친 개정 프로젝트로, 2022-05-13 IEEE Std 802.3-2022의 승인으로 끝났다 — https://www.ieee802.org/3/dc/)의 9.1·그림 13-1·그림 27-1을 출처로 든다) **리피터가 하는 일**:
+  - 리피터는 **물리 계층**이다. 100 Mb/s 리피터(그림 27-1)는 MAC보다 아래, PCS 바로 위에서 두 구간을 잇고, 그래서 두 구간이 서로 다른 PCS·PMA·PMD를 써도 된다. **리피터의 근본 목적은 매체 위의 신호를 다시 만드는 것이지 MAC의 일을 하는 것이 아니다** — 5쪽
+  - 리피터는 **신호의 파형과 타이밍을 되살리고**(restore), 충돌을 감지해 넘기며, 리피터의 지연이 네트워크의 크기를 제한한다 — 23쪽(출처 9.1·그림 13-1)
+  - 리피터는 구간(리피터 포트) 사이에서 신호를 처리해 넘기는데, 충돌 처리를 지키고(잼을 감지하고 만든다) **올바른 신호를 다른 구간에 다시 만들어 내보낸다**(regenerate) — 24쪽
+  - **「증폭」이라는 말은 이 자료에 없다** — 자료가 말하는 것은 파형과 타이밍을 되살려 다시 만든다는 것이다. 본문은 리피터를 「신호를 키우기만 한다」로 쓰지 않는다
+  - 쓰지 않는 것: 10 Mb/s(9장)와 100 Mb/s(27장) 리피터 구조의 차이(AUI·PCS에 붙는 자리), 리피터 지연의 수치, 10BASE-T1S용 리피터 논의
+  쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`(물리 계층, 파형과 타이밍을 되살려 다시 내보낸다, MAC의 일을 하지 않는다, 충돌을 다른 구간으로 넘긴다 — 충돌 도메인을 나누지 않는다는 것과 이어진다, 위 줄의 「새 설치에 권하지 않음」),
+  `network-devices.device-layers`(리피터·허브는 물리 계층), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2025-08-24 #47])
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72 step 7) `hub-switch-vlan.csma-cd`(IEEE 802.5가 토큰 링 표준이라는 이름만), 문항 n038 해설
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
@@ -1720,6 +1777,8 @@ Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 �
 - 리피터는 비트 단위로 받아 다시 내보내는 장치이고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다 — §2.4.1.2
 - 받은 신호를 다른 모든 포트로 내보낸다는 문장과 「충돌 도메인」의 정의는 이 RFC에 없다(전문 검색)
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1997-02, 폐기·개정 없음) 위 §2.4.1.2 줄(리피터는 비트 단위로 받아 다시 내보내고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`·`network-devices.device-layers`(리피터·허브는 주소를 읽지 않는다)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(표준의 이름은 리피터, 비트 단위로 받아 다시 내보내고 담긴 내용을 읽지 않는 물리 계층 장비), 문항 n035 해설
 
 ## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
@@ -1908,6 +1967,8 @@ Proposed Standard(Standards Track)이다.
 - (phase 74 step 11) 부록 F는 지금 인터넷의 특성에 맞지 않아 권하지 않는 「역사적」 라우팅 프로토콜을 모은다 — EGP(F.1, 거리 칸에 표준 해석이 없어 라우팅 프로토콜로 보지 않는다)와 RIP(F.2).
   RIP를 구현하는 라우터는 CIDR 경로를 지원하는 RIP 버전 2를 구현하는 것이 좋다(SHOULD) — 부록 F.2.1
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1995-06, RFC 1009·1716을 폐기했고 RFC 2644·6633이 고쳤다) 위 §2.2.3 줄들(링크 계층의 패킷 교환 장치는 브리지, 네트워크들을 잇는 IP 데이터그램 전달 장치는 라우터, 예전 인터넷 문서는 라우터를 게이트웨이라 불렀다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(브리지는 링크 계층, 라우터는 네트워크들을 잇는다), `network-devices.gateway`(예전 문서가 라우터를 게이트웨이라 불렀다 — 그래서 IP 설정의 「기본 게이트웨이」도 라우터를 가리킨다)
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
@@ -5305,6 +5366,9 @@ Informational(1995-04)이고 폐기·개정 관계가 없다(rfc-editor 상태, 
 - 주소를 여럿 함께 보내자는 요구의 까닭으로, 가장 나은 주소로 알린 기계가 그 레코드의 TTL 안에 멈출 수 있으니 다음 주소들도 함께 알려 복구할 길을 남기자고 적는다 — §2 (C). 곧 DNS가 알려 준 주소의 기계가 멈춰 있을 수 있다
 - DNS 프로토콜은 레코드의 차례를 보장하지 않고, 받는 쪽(클라이언트)이 차례를 다시 정할 수 있다(정렬 목록 등) — §4. 차례가 자주 바뀌는 정보를 내주려면 그 레코드의 TTL도 짧게 잡아야 쓸모가 있다 — §4
 
+- (phase 82 step 8) 위 §2 줄(A 레코드의 차례를 돌려 내주는 「Round Robin」, 대상 기계의 실제 부하는 따지지 않는다)이 기출의 라운드 로빈 지문([기출 2025-08-24 #45]·[기출 2026-05-17 #41] — DNS 서버가 질의 순서에 따라 웹 서버들의 IP 주소를 번갈아 답한다)과 맞는다.
+  아래 「(phase 82 step 8) RFC 2391 …」 항목의 라운드 로빈(로드 밸런서가 서버를 차례대로 고르는 것)과 같은 이름·같은 생각의 방식이다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(DNS 라운드 로빈과 로드 밸런서 — DNS 라운드 로빈은 부하를 보지 않는다, `dns.dns-round-robin`과 뜻을 맞춘다), `network-devices.balancing-methods`(기출의 라운드 로빈 지문이 DNS 쪽 예를 든다)
 쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-round-robin`(역사 한 줄, 한계 — 부하를 보지 않는다, 멈춘 기계의 주소도 알려질 수 있다, 받는 쪽이 차례를 다시 정할 수 있다)
 
 ## (phase 79 step 5) RFC 6891 — Extension Mechanisms for DNS (EDNS(0))
@@ -6949,6 +7013,14 @@ https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request
 - 두 프록시 모두 사설 네트워크를 인터넷과 떼어 놓아 보안을 높이는 조치를 할 수 있게 한다.
 - 한국어판은 「역방향 프록시」로 옮긴다.
 쓰지 않은 것: 정방향 프록시의 쓰임, ARR의 캐싱·압축과 URL 다시 쓰기(웹 응용 프로그램 프록시 문서에는 그런 동작이 적혀 있지 않다).
+- (phase 82 step 8, 2026-11-19 같은 문서를 IPv4로 다시 받아 확인 — `updated_at` 2023-03-10(`ms.date` 2014-06-11), 한국어판 `updated_at` 2026-10-27(기계 번역)) **정방향 프록시**(「Overview」·「ARR as a Forward Proxy」):
+  - 프록시 서버는 요청하는 쪽의 클라이언트들이나 응답하는 쪽의 웹 서버 작업자들을 대신하는 한 접점이다. 정방향 프록시는 **클라이언트 컴퓨터들의 내부 네트워크(인트라넷) 안**에 있고, 여러 클라이언트의 요청을 받아 인터넷으로 넘기므로 **인터넷 쪽에서는 요청이 클라이언트가 아니라 프록시에서 온 것처럼 보인다**
+  - 정방향 프록시와 역방향 프록시는 하는 일이 크게 다르지만, 요청하는 쪽이나 응답하는 쪽을 대신한다는 기본 동작은 같다. 둘 다 사설 네트워크를 인터넷과 떼어 놓아 보안 조치를 할 수 있게 하고, 요청과 응답을 처리하므로 캐시나 압축으로 성능을 높이고 공격을 막고 정보를 거를 수 있다
+  - 정방향 프록시가 요청을 다루는 차례: 클라이언트에게서 요청을 받아 올바른지 확인한다 → 올바르면 자기 캐시에 그 응답이 있는지 본다 — **있으면 인터넷에 요청을 보내지 않고 클라이언트에게 돌려준다** → 없으면 방화벽을 지나 인터넷의 콘텐츠 서버로 요청을 보낸다 → 응답이 인터넷을 지나 프록시로 돌아오고, 그 응답을 캐시해 둘 수 있다.
+    처음 요청한 클라이언트의 응답을 캐시해 두면 뒤에 같은 내용을 청한 클라이언트는 캐시에서 받아 콘텐츠 서버에 다시 묻지 않으므로, 성능이 오르고 네트워크 트래픽이 준다 — 「ARR as a Forward Proxy」
+  - ARR의 정방향 프록시는 HTTP만 다루고 HTTP CONNECT를 지원하지 않아 HTTPS를 넘기지 못한다 — 같은 절(ARR 한 제품의 한계라 본문에 프록시 일반의 성질로 쓰지 않는다)
+  - **한국어 이름**: 한국어판은 forward proxy를 「전달 프록시」(제목)와 「정방향 프록시」(본문)로 섞어 옮기고, reverse proxy는 「역방향 프록시」로 옮긴다. **고른 이름**: 「정방향 프록시」 — 「역방향 프록시」와 짝을 이루는 이름이라 둘을 견주기 쉽다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(정방향 프록시의 자리와 차례, 캐시에 있으면 서버에 묻지 않는다, 인터넷 쪽에서는 프록시가 보낸 것처럼 보인다, 두 프록시의 공통점, 정방향 프록시와 역방향 프록시 — 누구 쪽에 서는가), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
 
 쓰인 곳: (phase 81 step 8) `windows-server-roles.remote-access` — 위 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목의 역할 서비스 셋과 설치 이름(`RemoteAccess`·`DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`, 기본 미설치), VPN의 뜻(터널링과 암호화, VPN 클라이언트가 VPN 서버와 지점 간 연결을 맺고 서버가 확인 뒤 데이터를 나른다, 원격 사무실),
 터널링 프로토콜 넷과 풀네임·Windows 내장 VPN 클라이언트·PPTP와 L2TP 비권장·Windows Server 2025의 새 구성 기본 동작·2028(Preview) 제거, 「라우팅 및 원격 액세스」 콘솔, DirectAccess의 뜻(늘 이어짐·관리자가 관리·도메인 가입 컴퓨터만)·Always On VPN 권고·Windows 10보다 앞선 클라이언트에만·2028(Preview) 제거, 라우팅 역할 서비스(서브넷 사이 라우팅·NAT 라우터), 웹 응용 프로그램 프록시가 원격 컴퓨터를 잇지 않는다는 것(위 「VPN·DirectAccess와 무엇이 다른가」 줄, 이어서 나오는 말).
@@ -7598,3 +7670,121 @@ https://www.rfc-editor.org/rfc/rfc8376
 - **한국어 이름**: NB-IoT → **NB-IoT**(협대역 IoT — 이름만), LPWAN → 저전력 광역 네트워크(이름만)
 
 쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(오답 보기 NB-IoT가 WPAN과 다른 것 — 이동통신 사업자의 기지국으로 넓은 지역을 덮는 기술, 한 줄로만), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 8) RFC 3234 — Middleboxes: Taxonomy and Issues
+https://www.rfc-editor.org/rfc/rfc3234
+
+판(rfc-editor.org 텍스트판과 `…/rfc3234.json`, 2026-11-19): 2002-02, Informational, 폐기·개정 없음. 중간 장치(미들박스)의 종류를 늘어놓은 분류 문서다 — 동작을 표준으로 정하지 않는다.
+
+- 미들박스는 출발지 호스트와 목적지 호스트 사이의 데이터그램 경로 위에서, IP 라우터의 보통 기능이 아닌 일을 하는 중간 장치다. 따로 떨어진 상자가 아니라 다른 장치에 든 기능일 수도 있다. IP 패킷 흐름을 끝내고 새 흐름을 만드는 장치일 수도, 흐름을 바꾸거나 다른 곳으로 돌리는 장치일 수도 있지만,
+  **응용 세션의 마지막 끝(end-system)은 아니다**. 표준 IP 라우팅(경로를 찾고 고르는 일)은 미들박스 기능이 아니고, IP 계층 아래의 기능도 이 정의에서 뺀다 — §1.1
+- 「라우팅」이라는 말은 좁게는 IP 주소로 경로를 고르는 IP 라우터의 판단을, 넓게는 URL 같은 응용 계층 정보로 내리는 판단을 가리키기도 한다. 어느 쪽이든 나갈 방향을 고르는 것이지, 방향이 하나뿐인 곳으로 넘기기만 하는 것은 아니다 — §1.1
+- **패킷을 돌리거나 고치는 로드 밸런서**: 패킷을 본래의 IP 목적지에서 다른 곳으로 돌리거나 목적지를 하나로 정하지 않는 여러 기법이 있고, 그 까닭은 대개 **서버들 사이에 부하를 고르게 나누려는 것**이다(목적지 포트 번호에 따라 응용을 서버들로 나누기도 한다).
+  **같은 응용 세션의 패킷은 모두 같은 물리 서버로 가야 하므로** 이 기법들은 상태를 가질 수밖에 없다(한 번 오가고 끝나는 UDP 프로토콜만 드물게 예외). 잘 만든 것은 장애 조치도 다룬다. 이 문서를 쓸 때는 업체마다의 독자 기술이었다 — §2.8
+- **응용 계층 게이트웨이**: 모양이 여러 가지다. NAT가 FTP처럼 주소에 기대는 프로토콜을 위해 쓰는 ALG는 응용 프로토콜의 뜻은 그대로 두고 필드를 기계적으로 바꿔 넣는다. 반대쪽 끝의 예로, **FTP와 다른 파일 전송 프로토콜(OSI·DECnet의 것) 사이의 게이트웨이**도 만들어졌다.
+  어느 쪽이든 처리 중인 세션의 상태를 지녀야 하고, 그 상태를 잃으면 세션은 대개 되돌릴 수 없이 끊긴다 — §2.11
+- **프록시**: 폐기된 HTTP/1.1(RFC 2616)의 웹 프록시 정의를 옮겨 적는다 — 지금의 정의는 위 RFC 9110 §3.7 줄을 쓴다. 웹 프록시는 방화벽이 나가는 HTTP 패킷을 막을 때 방화벽과 함께 쓰이기도 한다. HTTP에서 프록시는 「자발적」이라 **클라이언트가 그 프록시를 쓰도록 설정돼 있어야 한다**.
+  HTTP 프록시는 IP 패킷 흐름을 끝내고 새로 만들지만 응용 세션이 그것을 지나므로 미들박스에 든다 — §2.14
+- **캐시**: 원칙적으로 프록시와 다른 것이고, 여기서는 주로 사용자의 응답 시간을 줄이려는 콘텐츠 캐시를 말한다. HTTP는 프록시가 캐시로 동작하도록 만료·재검증 방법을 두므로 HTTP에서는 캐시와 프록시가 떼어 낼 수 없이 섞여 있다 — §2.15
+- IP 방화벽(§2.9)·응용 방화벽(§2.10)은 `network-security` 주제(step 15)가 본다. URL을 보고 나누는 로드 밸런서(§2.18)는 step 12가 본다
+- 「L3 스위치」·「L4 스위치」·「L7 스위치」라는 이름은 이 문서에 없다(전문 검색)
+- **한국어 이름**: middlebox → 미들박스(이름만 — 본문은 「중간 장치」로 풀어 쓴다), load balancer → **로드 밸런서**(기출이 쓰는 이름 「로드 밸런서(Load Balancer)」 — 영문을 그대로 읽는다), application-level gateway → 응용 계층 게이트웨이(ALG — 이름만)
+
+쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
+(phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
+(phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(로드 밸런서는 서버들 사이에 부하를 나누려고 패킷을 돌린다, 같은 세션의 패킷은 같은 서버로)
+
+## (phase 82 step 8) RFC 2391 — Load Sharing using IP Network Address Translation (LSNAT)
+https://www.rfc-editor.org/rfc/rfc2391
+
+판(rfc-editor.org 텍스트판과 `…/rfc2391.json`, 2026-11-19): 1998-08, Informational, 폐기·개정 없음. 표준을 정하지 않는 정보성 문서이고, 이 기술에 지식 재산권 문제가 IETF에 알려졌다고 적는다(§7). NAT 라우터에 부하 분산을 더한 방식(LSNAT)을 설명하면서 부하 분산의 뜻과 분산 방식을 함께 적는다.
+
+- 부하 분산이 필요한 까닭: 서버 한 대가 동시에 늘어나는 세션 요구를 감당하지 못할 때다. 여러 서버에 부하를 나누면 **응답성이 좋아지고** 세션 부하가 늘어도 잘 늘려 갈 수 있다. 몰리기 쉬운 응용으로 웹 브라우저·원격 로그인·파일 전송·메일을 든다 — §1
+- DNS로 나누던 방법(이름 서버가 정해 둔 알고리즘으로 서버들의 레코드 차례를 주기적으로 섞는 것)의 한계: 차례를 바꾸는 주기가 몇 분 단위로 길어 **서버들의 실시간 부하 변화를 반영하지 못하고**, 서버 풀의 모든 서버가 모든 서비스를 같은 능력으로 해낸다고 가정한다 — §1
+- **부하 분산의 정의**(이 문서에서): 하는 일이 비슷하거나 같은 서버 묶음(cluster)에 **세션 부하를 퍼뜨리는 것**이다. 서버 하나가 세션을 맡으면 그 세션은 끝날 때까지 그 서버에 묶이고 도중에 다른 서버로 옮기지 않는다. 모든 서비스에 할 수도, 특정 서비스에만 할 수도 있다.
+  여기서 「세션 부하」는 CPU·메모리 같은 자원 사용으로 재는 「시스템 부하」와 다른 말이다 — §2.7
+- **가상 서버 주소와 서버 풀**: LSNAT는 들어오는 세션을 (클라이언트 주소, 클라이언트 포트, **가상 서버 주소**, 서버 포트)로 가리고, 실시간 분산 알고리즘으로 고른 **서버 풀**의 한 서버에 묶는다. 가상 서버 주소는 비슷하거나 같은 일을 하는 서버 하나나 서버 묶음을 가리키는, 전역에서 하나뿐인 IP 주소다 — §3.
+  클라이언트는 가상 서버 주소로 접속하고, LSNAT 라우터가 그 요청을 서버 풀의 한 서버로 투명하게 돌린다. 같은 클라이언트의 세션 여럿도 그때의 부하에 따라 서로 다른 서버로 갈 수 있다 — §3
+- 예(그림 1): 서버 S1·S2·S3가 서버 풀을 이루고 가상 서버 주소 하나가 그 풀에 대응한다. 한 클라이언트가 가상 서버 주소로 HTTP 세션을 열면 LSNAT 라우터가 부하를 보고 S1을 골라 보내고, 다른 클라이언트의 세션은 S1이 세션을 맡아 바쁘니 S3로 보낸다.
+  들어오는 패킷은 **목적지 주소(와 포트)**를 고른 서버의 것으로 바꾸고, 돌아가는 패킷은 출발지를 같은 방법으로 바꾼다 — §3.1, §4.2(예의 주소는 옮기지 않는다 — 본문은 RFC 5737의 문서용 주소를 쓴다. 주소 바꾸기의 세부는 step 12가 다시 본다)
+- 서버 풀의 서버를 바꾸거나 더하거나 빼도 클라이언트는 알 필요가 없다 — LSNAT 라우터가 바뀜을 한곳에서 감춘다. 클라이언트도 서버도 고치지 않고 LSNAT 라우터만 설정하면 된다 — §1, §3.1
+- 한계: 한 세션의 모든 요청과 응답이 같은 LSNAT 라우터를 지나야 하고, 세션 단위로 부하를 재므로 세션 도중에 다른 서버로 옮기지 못한다 — §1
+- **분산 알고리즘**: 고르는 기준은 서버에 닿는 네트워크 비용과 서버의 자원·부하다 — §5. 서버들이 LSNAT 라우터에서 비슷한 거리에 있을 때, 서버 쪽이 끼어들지 않는 방식으로 흔히 쓰는 것은 다섯이다 — §5.1
+  1. **라운드 로빈**(Round-Robin): 가장 단순한 방식으로, **서버의 부하와 상관없이** 서버를 차례대로 돌아가며 고른다
+  2. **가장 적은 부하 먼저**(Least Load first): 라운드 로빈을 나아지게 한 것으로, **묶인 세션 수가 가장 적은 서버**에 새 세션을 맡긴다. 다만 세션마다 쓰는 자원이 같고 서버들의 능력이 같다고 가정한다 — 기출의 「최소 연결」(Least Connection)에 가장 가까운 정의다(TCP 세션은 SYN으로 시작하는 연결 하나다 — §2.3)
+  3. 가장 적은 트래픽 먼저(Least traffic first): 서버마다 오간 패킷 수나 바이트 수를 일정 시간 세어 부하를 어림한다
+  4. **가중치를 준 가장 적은 부하 먼저**(Least Weighted Load first): 관리자가 세션 종류마다(쓸 자원을 어림해) 그리고 서버마다(자원의 여유에 따라) **가중치**를 준다. 서버에 맡긴 세션 부하를 가중치로 더한 값을 그 서버의 가중치로 나눠, 가장 작은 서버에 새 세션을 맡긴다.
+     예: 서버 S3를 S1보다 자원이 세 배라고 보아 S3에 가중치 3을 준다(문서의 예는 FTP 세션 5·텔넷 세션 1의 가중치로 두 서버의 값을 계산해 S3를 고른다) — 기출의 「가중 최소 연결」(Weighted Least Connection)에 가장 가까운 정의다
+  5. **가장 빨리 응답하는 서버 찾기**(Ping to find the most responsive host): 서버들에 주기적으로 ping을 보내 **응답 시간**을 재어 얼마나 바쁜지 판단하고, 위 어림 방법과 함께 써서 새 세션을 맡을 서버를 고른다 — 기출의 「최소 응답 시간」(Least Response Time)에 가장 가까운 정의다(그 이름은 문서에 없다)
+  서버마다 에이전트 프로그램을 두어 자원 여유를 알리게 하는 적극적인 방식이 가장 좋은 결과를 낼 것이라고 적는다 — §5.1
+- 서버가 지리적으로 흩어져 있으면 라우팅 테이블의 비용과 세션 수를 곱한 값으로 고르는 방식 등이 있다 — §5.2(쓰지 않는다)
+- **죽은 서버 감지**: 세션을 맡기는 서버가 살아 있는지 알아야 한다 — 모르면 세션이 멈춘 서버로 가서 사라진다. 서버에 주기적으로 ping을 보내거나, 새 세션을 맡긴 뒤 그 서버의 응답이 몇 초 안에 오지 않으면 죽었다고 보고 **새 세션을 맡기지 않는다**. 몇 분쯤 뒤 다시 세션을 맡겨 보며 살아났는지 확인할 수 있다 — §6
+- **한국어 이름**: load sharing·load balancing → **부하 분산**(기출의 「부하분산」, phase 79 `dns.dns-round-robin`과 phase 81의 「부하 분산」), virtual server address → **가상 주소**(guide의 이름 — 처음에 「가상 서버 주소」로 한 번 풀어 쓸 수 있다),
+  server pool → **서버 풀**(영문을 그대로 읽는 이름 — 아래 ARR 한국어판의 「서버 팜」은 같은 것을 가리키는 다른 이름), round-robin → **라운드 로빈**(기출·phase 79), Least Load first → **최소 연결**(기출의 이름 — 문서의 이름은 「가장 적은 부하 먼저」이고 세는 것은 묶인 세션 수다),
+  Least Weighted Load first → **가중 최소 연결**(기출의 이름 — 문서의 이름과 계산은 위 4), 응답 시간으로 고르는 방식 → **최소 응답 시간**(기출의 이름 — 문서는 이름을 붙이지 않는다), dead host detection → 죽은 서버 감지(본문은 아래 ARR의 「상태 확인」으로 쓴다)
+
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산이 필요한 까닭과 정의, 세션 부하와 시스템 부하, 가상 주소와 서버 풀, 클라이언트는 가상 주소로 접속하고 로드 밸런서가 고른 서버로 돌린다, 서버를 더하고 빼도 클라이언트는 모른다, DNS 방식은 실시간 부하를 보지 못한다, 죽은 서버에는 새 세션을 맡기지 않는다),
+`network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간의 정의, 부하를 보지 않는 방식과 보는 방식), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-11-03 #46]과 분산 방식 다섯 문항)
+
+## (phase 82 step 8) RFC 7098 — Using the IPv6 Flow Label for Load Balancing in Server Farms
+https://www.rfc-editor.org/rfc/rfc7098
+
+판(rfc-editor.org 텍스트판과 `…/rfc7098.json`, 2026-11-19): 2014-01, Informational, 폐기·개정 없음. 흐름 레이블 이야기는 가져오지 않는다 — §1·§3의 서버 팜 부하 분산 일반만 가져온다.
+
+- 부하 분포(load distribution)는 부하 분산(load balancing)보다 조금 넓은 말이지만 부하 분산이 더 널리 쓰인다. 서버 팜에서 두 말 모두 **서버 팜이 맡은 일을 여러 서버에 나눠 성능을 최적으로 만드는 방법**을 가리킨다. 서버 부하 분산은 흔히 HTTP 트래픽에 쓰지만 다른 응용에도 쓸 수 있다 — §1
+- 서버 팜의 부하 분산은 여러 방법을 흔히 함께 쓴다 — §3:
+  - 가장 단순한 방법은 DNS로 한 이름(예: `www.example.com`)에 대해 사용자마다 다른 서버 주소를 돌려주는 것이고, 보통 권한 있는 DNS 서버가 주소의 차례를 돌리고 클라이언트가 첫 주소를 고른다고 가정한다 — §3 첫 항목(phase 79 `dns.dns-round-robin`과 같은 방식)
+  - HTTP 서버들 앞에 **7계층 역방향 프록시**를 두는 방법: 역방향 프록시가 세상에 IP 주소 하나를 내보이고, 새 클라이언트 세션(들어오는 TCP 연결과 HTTP 요청)마다 서버 하나를 골라 그 세션을 그 서버로 중계한다. 프록시는 세션이 이어지는 동안 TCP 상태와 프록시 상태를 지녀야 한다 — §3 둘째 항목
+  - 많은 부하 분산 시스템의 「앞단」은 **3·4계층 로드 밸런서**이고, 전용 장치일 수도, 일부 스위치나 라우터의 표준 기능일 수도 있다 — §3 넷째 항목(세부는 step 12가 본다)
+  - **지속성**(persistence)은 한 클라이언트 세션이 끝날 때까지 한 서버에서 돈다는 보장이다 — §3 넷째 항목
+  - 3·4계층 로드 밸런서 가운데 **상태를 두지 않는 것**은 패킷마다 출발지 주소나 포트처럼 찾기 쉬운 정보를 **해시해 서버 번호로 바꾸어** 서버를 고르고, 상태를 두는 것은 세션의 처음 패킷에서 정한 방향을 그 세션의 모든 패킷에 지킨다 — §3 넷째 항목.
+    기출의 「IP 해시」(IP Hash)에 해당하는 근거다(그 이름은 문서에 없다). 같은 출발지 주소면 같은 서버 번호가 나와 같은 서버로 간다는 것은 지속성과 이 줄에서 이어서 나오는 말이다
+- 쓰지 않는 것: 흐름 레이블, 직접 서버 반환·ECMP 같은 전달 기법, SSL 역방향 프록시 팜, 전역 부하 분산
+- **한국어 이름**: server farm → **서버 팜**(아래 ARR 한국어판과 같다 — 본문은 「서버 풀」과 같은 것을 가리킨다고 한 번 밝힌다), persistence → 지속성(이름만), hash → **해시**(기출의 「IP 해시」 — 본문은 「주소 같은 값으로 계산해 서버를 정한다」로 풀어 쓴다)
+
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻 — 일을 여러 서버에 나눠 성능을 최적으로, DNS 방식과 역방향 프록시 방식 — 역방향 프록시가 IP 주소 하나를 내보이고 세션마다 서버를 고른다), `network-devices.balancing-methods`(해시 — 출발지 주소 같은 값을 서버 번호로 바꾼다),
+기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — 분산 방식의 오답 「IP 해시」)
+
+## (phase 82 step 8) RFC 2816 — A Framework for Integrated Services Over Shared and Switched IEEE 802 LAN Technologies
+https://www.rfc-editor.org/rfc/rfc2816
+
+판(rfc-editor.org 텍스트판과 `…/rfc2816.json`, 2026-11-19): 2000-05, Informational, 폐기·개정 없음. 주제는 IEEE 802 LAN의 서비스 품질이다 — 장비 이름의 쓰임만 가져온다.
+
+- 「Layer 3 switches (i.e. routers)」: 802.1D 스위치의 기능을 최소 기준으로 보고, 더 기능이 많은 2계층 스위치나 **3계층 스위치(곧 라우터)**를 쓸 수도 있다고 적은 뒤, 3계층 스위치의 동작은 이미 IETF가 표준으로 정해 두었다고 덧붙인다 — §8.7. 곧 이 문서는 **3계층 스위치를 라우터와 같은 것으로** 적는다
+- 「Layer 2 switches」, 「Layer 2 device (bridge/switch)」라는 말도 쓴다 — §7, §7.2.2, §8.7. `exam-notes.md` E7은 「L2 스위치」라는 이름 그대로는 찾지 못했다고 적었는데, 이 문서가 그 이름을 지나가며 쓴다(E7의 처리 — 표준의 이름은 브리지이고 시험은 L2 스위치라 부른다 — 는 그대로 둔다)
+- 3계층 스위치를 정의한 문장은 이 문서에도, 위 RFC 4949·1983·1812·3234·7098에도 없다 — 이 문서의 괄호 하나가 허용한 출처에서 찾은 쓰임의 전부다
+- **한국어 이름**: Layer 3 switch → **L3 스위치**(기출의 이름 — 「3계층 스위치」로 풀어 쓴다)
+
+쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(「L3 스위치」라는 이름 — IETF 문서 하나가 라우터와 같은 것으로 적는다, 정의 문장은 없다), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+
+## (phase 82 step 8) Microsoft Learn — IIS 응용 프로그램 요청 라우팅(ARR)의 부하 분산: Planning Step 3: Plan IIS Web Farm Load Balancing, Using the Application Request Routing Module, Define and Configure an Application Request Routing Server Farm, HTTP Load Balancing using Application Request Routing, Scalable Web Infrastructure, Using Failed Request Tracing rules to troubleshoot Application Request Routing
+https://learn.microsoft.com/en-us/iis/web-hosting/scenario-build-a-web-farm-with-iis-servers/planning-step-3-plan-iis-web-farm-load-balancing
+https://learn.microsoft.com/en-us/iis/extensions/planning-for-arr/using-the-application-request-routing-module
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/define-and-configure-an-application-request-routing-server-farm
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing
+https://learn.microsoft.com/en-us/iis/overview/scalable-web-infrastructure
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/health-diagnostic-performance/troubleshoot-arr-using-frt-rules
+
+2026-11-19에 IPv4로 내려받아 읽은 판: 「Planning Step 3」 `updated_at` 2020-05-14(`ms.date` 2013-04-14), 「Using the Application Request Routing Module」·「Define and Configure …」·「HTTP Load Balancing …」 셋 다 2024-04-11(2008-07-02), 「Scalable Web Infrastructure」 2020-05-09(2018-03-06),
+「Using Failed Request Tracing rules …」 2025-07-14(2025-01-03). 한국어판(기계 번역)은 앞 다섯을 받았다(`updated_at` 2026-10-27). 적용 대상: ARR은 IIS 7 이후에 따로 설치하는 IIS 확장이고, 이 걸음 안내들은 Windows Server 2008 이후의 IIS 7.0 이상과 ARR 버전 1을 전제로 쓴 글이다(「Define and Configure …」·「HTTP Load Balancing …」 Prerequisites).
+**같은 learn.microsoft.com에 있어도 Azure 서비스의 부하 분산 문서(Application Gateway·App Service)는 쓰지 않았다.**
+
+- **부하 분산의 뜻**: 일(workload)을 여러 웹 서버에 나누는 방법이고, 목적은 **자원을 가장 알맞게 쓰고, 요청 처리량을 가장 크게 하고, 응답 시간을 가장 짧게 하고, 서버 과부하를 피하는 것**이다 — 「Planning Step 3」 「3.1. Plan Load Balancing with ARR」
+- 로드 밸런서는 여러 알고리즘으로 이 일을 한다. 가장 단순한 것 가운데 하나인 **라운드 로빈은 모든 서버에 고르게 부하를 주려고 새 요청마다 다른 웹 서버로 보낸다**. 다른 알고리즘은 응답 시간을 줄이려고 특정 종류의 요청을 특정 서버로 보낸다 — 같은 절
+- ARR은 HTTP 헤더·서버 변수·부하 분산 알고리즘으로 요청을 어느 콘텐츠 서버에 넘길지 정하는 **프록시 기반의** 라우팅·부하 분산 모듈이다 — 같은 절, 「Using …」 Introduction. IP 수준에서 판단하는 하드웨어 로드 밸런서와 달리 ARR은 응용 수준에서 판단한다 — 「Using …」 「Features」 1(계층의 세부는 step 12가 본다)
+- ARR로 얻는 것으로 **응용의 가용성과 확장성을 높이고** 콘텐츠 서버의 자원을 더 잘 쓰는 것을 든다 — 「Using …」 Introduction. 관리자는 서버 팜에 서버를 더하거나 빼서 응용의 가용성에 영향을 주지 않고 수요에 맞춰 용량을 늘리고 줄일 수 있다 — 「Scalable Web Infrastructure」 「Application Request Routing and Load Balancing」
+- **서버 팜**: 요청을 보낼 응용 서버들의 논리적인 묶음이고, HTTP를 살피는 규칙과 부하 분산 알고리즘으로 그 안의 서버로 요청을 보낸다 — 「Define and Configure …」 Overview. ARR은 서버 그룹을 여럿 둘 수 있다 — 「Using …」 「Features」 6
+- **부하 분산 알고리즘**: 사용자가 고른 알고리즘으로 HTTP 요청을 맡기에 가장 알맞은 콘텐츠 서버를 정하고, **알고리즘은 여섯 가지**다 — 「Using …」 「Features」 2, 「Planning Step 3」 「3.2」 표. 그러나 **여섯의 이름과 정의를 적은 글은 이 문서들에 없다**(전문 검색 — 이름은 화면 그림 속에만 있다).
+  글로 나오는 이름은 IIS 관리자 「Load Balance」 화면의 「Load balance algorithm」 목록에서 고르는 **「Weighted round robin」**(한국어판 「가중 라운드 로빈」) 하나다. 그 화면에서 가중 라운드 로빈을 고르고 「Load distribution」을 「Even distribution」으로 둔 서버 팜은 들어오는 요청을 서버들에 **고르게** 나눈다 — 「Define and Configure …」 Step 2·Summary(화면 그림의 설명 글 포함).
+  **가중치를 서로 다르게 주었을 때 몫이 어떻게 나뉘는지는 찾지 못했다**
+- 실패한 요청 추적으로 남긴 ARR 기록에는 쓰인 알고리즘(Algorithm), 그 서버를 고른 까닭(RoutingReason), 그 서버로 가는 동시 HTTP 요청 수(CurrentRequests) 같은 칸이 있다 — 「Using Failed Request Tracing rules …」(동시 요청 수를 실행 중 통계로 센다는 데까지만 — 알고리즘의 정의로 쓰지 않는다)
+- **상태 확인**: ARR은 콘텐츠 서버의 상태(health)를 두 방법으로 살핀다 — 실제로 오가는 요청(라이브 트래픽)으로와, 정해 둔 URL에 GET 요청을 보내는 URL 시험으로다. 라이브 트래픽 시험은 기본으로 하고, URL 시험은 더해 쓸 수 있다. URL 시험에는 응답 본문에 기대한 글자가 있는지 보는 「Response match」를 더할 수 있다 — 「HTTP Load Balancing …」 Step 2, 「Using …」 「Features」 3
+- 상태 확인의 결과: 서버 하나에서 사이트를 멈추면 다음 상태 확인 뒤로 **모든 요청이 건강한 서버로만** 가고, 멈춘 사이트를 다시 켜면 다음 상태 확인 뒤로 다시 고르게 나뉜다 — 상태 확인은 **나빠졌던 서버가 다시 좋아진 것을 알아채는 데에도** 쓰인다.
+  예의 시험 간격 30초는 그 안내에서 둔 값이다(기본값으로 쓰지 않는다) — 「HTTP Load Balancing …」 Step 2의 9~10과 그 뒤 확인 차례
+- 클라이언트 선호도(client affinity — 쿠키로 한 클라이언트의 요청을 한 서버로 묶는다)는 있다는 것만 적는다 — 세션 유지의 구현은 가져오지 않는다(「Using …」 「Features」 4)
+- **한국어 이름**: 한국어판(기계 번역)은 Application Request Routing을 「애플리케이션 요청 라우팅」, server farm을 「서버 팜」, load balancing을 「부하 분산」, Load balance algorithm을 「부하 분산 알고리즘」, Weighted round robin을 「가중 라운드 로빈」, round robin을 「라운드 로빈」,
+  Health Test(화면)를 「상태 테스트」, health check(본문)를 「상태 검사」, hardware load balancer를 「하드웨어 부하 분산 장치」(목차의 문서 제목은 「하드웨어 부하 분산기」)로 옮긴다. **고른 이름**: 「응용 프로그램 요청 라우팅(ARR)」(phase 81이 application을 「응용 프로그램」으로 옮긴 것과 맞춘다 — 한국어판의 「애플리케이션 요청 라우팅」을 한 번 밝힌다), 「서버 팜」, 「부하 분산」, 「가중 라운드 로빈」,
+  「상태 확인」(guide의 이름 — health check를 옮긴 말. 기출은 「헬스 체크(Health Check)」로 쓰고 한국어판은 「상태 검사」로 옮긴다는 것을 본문에서 한 번 밝힐 수 있다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻과 목적 — 자원 사용·처리량·응답 시간·과부하, 로드 밸런서는 프록시 기반일 수 있다, 서버 팜, 가용성과 서버를 더하고 빼기, 상태 확인의 두 방법과 결과 — 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다),
+`network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다른 서버, 「가중 라운드 로빈」이라는 이름, 알고리즘은 여럿이고 정의는 RFC 2391·7098에서), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #47]·[기출 2025-05-25 #47]·[기출 2026-05-17 #49])
