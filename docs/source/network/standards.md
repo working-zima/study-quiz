@@ -191,6 +191,7 @@ RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로 받았다. ITU-
 「(phase 83 step 8)」이 붙은 줄은 phase 83 step 8에서 `network-topology`의 네트워크 토폴로지, 버스형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 9)」이 붙은 줄은 phase 83 step 9에서 `network-topology`의 성형, 링형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 10)」이 붙은 줄은 phase 83 step 10에서 `network-topology`의 메시형과 트리형, 토큰 링을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 11)」이 붙은 줄은 phase 83 step 11에서 `network-topology`의 FDDI, IEEE 802 표준을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -1861,6 +1862,9 @@ IEEE 802 위원회의 홈페이지다. 작업 그룹 목록이 이 페이지에 
 - (phase 83 step 7, 2026-11-20 홈페이지를 IPv4로 다시 받아 읽음 — 페이지의 마지막 고친 날 2026-07-28) **작업 그룹 목록**: 802.1(Higher Layer LAN Protocols), 802.3(이더넷), 802.11(무선 LAN), 802.15(Wireless Specialty Network), 802.19(무선 공존) 작업 그룹과 802.18·802.24 기술 자문 그룹(TAG)이 있다.
   해산한 작업 그룹의 목록은 따로 있다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목
   - 쓰일 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 지금 상태)
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.ieee-802-standards` 첫 문단에 위원회의 정식 이름 LAN/MAN Standards Committee를 쓰고, 활동 중인 작업 그룹을 위 목록 가운데 802.1·802.3·802.11·802.15 넷으로 썼다(802.19와 TAG 둘은 쓰지 않았다).
+  IEEE의 풀네임은 이번에도 쓰지 않았다 — 「표준을 만드는 단체인 IEEE」로만 적었다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(위원회 이름, 활동 중인 작업 그룹), 도식 `Ieee802GroupsDiagram`(활동 중)
 
 쓰인 곳: `ethernet.ethernet`(IEEE 802 표준 위원회 안의 이더넷 작업 그룹이 IEEE 802.3을 만든다)
 
@@ -1995,6 +1999,9 @@ https://standards.ieee.org/ieee/802.1Q/10323/
 - 802.1D-2004 「MAC Bridges」(2004-06-09 발행, 지금은 802.1Q-2014에 합쳐져 Superseded): IEEE 802 LAN을 MAC 서비스 경계 아래에서 잇는 구조를 정한다. 이 표준의 MAC 브리지는 **저마다 MAC을 가진 서로 다른 LAN**에 붙은
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
+- (phase 83 step 11, 2026-11-21) `network-topology.ieee-802-standards`의 802.1 항목에 위 두 줄을 썼다 — 802.1 작업 그룹의 표준에서 브리지(저마다 따로인 LAN들을 하나의 LAN처럼 잇는다)와 VLAN 브리지가 나왔다.
+  포트가 많은 브리지를 흔히 스위치라 부른다는 것은 DTR 8802-1 §9.1(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목)이다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(802.1 항목)
 
 쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 포트마다 따로따로의 LAN을 잇는다 — 충돌 도메인과의 차이), (phase 72 step 11) `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`(IEEE 802.1Q를 「브리지 표준」으로 부른다)
 
@@ -9063,6 +9070,10 @@ RFC 4456은 Draft Standard(2006-04, RFC 7606이 고침, RFC 1966·2796을 폐기
     「노드가 많아지면 이렇게 늘어나는 링크를 감당하기 어려워진다」는 RFC 4456 §1의 「감당하기 어렵다」를 링크에 옮긴 말이다. 케이블·포트의 비용은 쓰지 않았다. 값은 본문 계산 예가 노드 넷(6개), 「완전 메시와 성형」 4절이 노드 다섯(성형 5개·완전 메시 10개), 문항 n370이 장치 여섯(15개)으로 서로 갈랐다
   - 트리형: 트리형의 예를 스위치 `SW01` 아래 `SW02`·`SW03`, 그 아래 `PC01`~`PC04`로 들었다 — 다른 스위치들을 잇는 위쪽 스위치가 줄기(백본) 노릇을 한다는 것은 아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §9.1이 근거다. `SW01`~`SW03`은 guide의 예시 값 목록에 없던 이름표로, 트리형의 예를 스위치로 들려고 더했다
   - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`(완전 메시의 링크 수와 계산 예, 「완전 메시와 성형」, 트리형의 예), 문항 n370, 도식 `MeshTreeLinksDiagram`
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.fddi`의 이중 링은 위 「이중 링·래핑」 줄의 dual-ring 정의(두 스테이션 사이에 갈 수 있는 길이 늘 두 갈래)로,
+  「이웃한 두 노드 사이마다 한 방향 링크가 둘」은 「링크·이웃·삽입」 줄의 링크 정의(두 스테이션 사이의 한 방향 물리 연결)로, 두 링이 서로 반대로 돈다는 것은 wrapping 정의의 「반대쪽으로 도는 링크」로 썼다.
+  래핑의 뜻은 wrapping 정의를 직접 쓴 말로 「고장 난 자리를 비켜 가도록 반대 방향으로 도는 다른 링의 링크를 끌어 쓰는 일」이라 적었다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.fddi`(이중 링, 래핑), 문항 n372 해설, 도식 `FddiDualRingDiagram`
 
 쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(토폴로지의 뜻, 물리·논리, 점 대 점과 다중점), `network-topology.bus-topology`(공유 구간, 끝막음과 반사), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(위쪽 이웃·삽입·스테이션이 되풀이해 보낸다, 이중 링),
 (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(완전 메시의 연결 수와 감당하기 어렵다는 것), (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(이중 링·래핑의 뜻), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
@@ -9108,6 +9119,12 @@ ieee802.org: 해산 목록 NADots(마지막 고친 날 2026-08-20), 802.2 페이
   802.5-1998 개요의 4·16 Mbit/s와 트위스티드 페어·광섬유, §5.2.2와 802.4-1990 개요의 토큰 버스(토큰을 가진 노드가 버스에 보낸다 — 토큰을 넘기는 차례는 쓰지 않았다), 802.4-1990의 2002년 철회·802.5v-2001의 2008년 철회·802.5-1998의 철회 상태, 802.4·802.5 작업 그룹의 해산을 썼다.
   「토큰 링과 CSMA/CD」 4절의 CSMA/CD 동작은 §5.2.1과 `hub-switch-vlan.csma-cd`의 뜻대로 썼다. DQDB는 쓰지 않았다(기출의 오답일 뿐 이 개념이 가르칠 것이 아니다). §9.1의 백본(다른 브리지들을 잇는 브리지)은 `network-topology.mesh-tree-topology`의 트리형 예에 썼다
   - 쓰인 곳: (phase 83 step 10) `network-topology.token-ring`(토큰의 동작, 속도·매체, 토큰 버스, 표준·작업 그룹의 상태, 「토큰 링과 CSMA/CD」), `network-topology.mesh-tree-topology`(백본), 문항 n371, 도식 `TokenPassingDiagram`
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.ieee-802-standards`의 목록 항목 일곱(802.1·802.2·802.3·802.4·802.5·802.11·802.15)과 그 상태를 위 「IEEE 802 작업 그룹의 지금 상태」·「802.2」·「802.5」 줄대로 썼다 —
+  활동 중 넷(802.1·802.3·802.11·802.15), 해산 셋(802.2·802.4·802.5), 철회한 해는 802.2가 2010년·802.4가 2002년이고 802.5는 표준과 마지막 개정이 모두 철회됐다고 썼다. LLC의 자리(MAC 부계층 바로 위)는 DTR §6.1·§8.1이다.
+  802.6은 이름도 쓰지 않았다 — MAN은 위원회 이름(LAN/MAN)을 풀 때만 §5.2.4의 「도시권 네트워크」와 이름에서 나오는 말(도시 규모의 지역)로 썼다.
+  「802.3과 802.5」 4절의 매체 접근은 §5.2.1·§5.2.3으로, 802.3이 버스형에서 성형으로 옮겨 간 것은 같은 주제의 `bus-topology`·`star-topology` 본문(Law 2010 9쪽 그림)대로 썼다.
+  `network-topology.fddi`의 「FDDI와 토큰 링」에서 「토큰 링은 링 하나로 이루고, 이중 링은 802.5c가 따로 정한 모양」은 위 「이중 링 토큰 링」 줄이다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(목록 항목 일곱, 「802.3과 802.5」), `network-topology.fddi`(「FDDI와 토큰 링」, ISO/IEC 9314), 문항 n373, 도식 `Ieee802GroupsDiagram`
 
 쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(논리적인 링), (phase 83 step 10에서 쓰일 곳) `network-topology.token-ring`(토큰 링의 동작·속도, 토큰 버스, 802.5·802.4의 상태, DQDB), `network-topology.mesh-tree-topology`(스패닝 트리는 LAN 쌍마다 경로 하나),
 (phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 맡은 기술·지금 상태), `network-topology.fddi`(100 Mbit/s), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)
@@ -9141,5 +9158,14 @@ RFC 1329 — Informational(1992-05, RFC 5494가 고침 — 표준이 아니라 �
 - 쓰지 않는 것: FDDI 프레임 형식과 최대 크기, 토큰의 종류(제한·비제한)와 동기·비동기 프레임, 타이머(T_Req 등), PCM·ECM·RMT 상태 기계의 차례, 이중 MAC 부하 분산(RFC 1329의 제안)
 - **한국어 이름**: FDDI → **FDDI**(풀네임 Fiber Distributed Data Interface — 기출과 같다), primary ring·secondary ring → **1차 링**·**2차 링**(guide의 이름), dual ring → **이중 링**, wrap → **래핑**, PMD → PMD(물리 매체 의존 부분 — 기출의 풀네임 「Physical Medium Dependent」),
   PHY → PHY(물리 계층 프로토콜), SMT → SMT(스테이션 관리), station → 스테이션, link error rate → 링크 오류율, bypass → 바이패스(이름만)
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.fddi`에 RFC 1390의 네 부분을 목록 항목 넷(PMD·PHY·MAC·SMT)으로 썼다.
+  PMD는 DTR 8802-1 §5.2.8의 점 대 점 전송로와 RFC 1512 `fddimibPORTPMDClass`(광섬유의 종류마다, 그리고 트위스티드 페어용 — SONET은 쓰지 않았다)로,
+  PHY는 DTR §5.2.8의 부호화·복호화·클럭 맞추기·기호의 경계 가르기로 썼고(「매체와 상관없는 부분」이라고는 쓰지 않았다 — 문서에 그 말이 없다) 그 항목 끝에 E53 한 줄을 붙였다.
+  MAC은 RFC 1390의 토큰과 프레임, SMT는 RFC 1390의 그림(셋 옆에 걸친다)과 RFC 1512 §4.1·§4.2·§4.5의 연결·링·구성 관리와 `fddimibPORTLerCutoff`로 썼다. 속도 100 Mb/s와 국제 표준 번호 ISO/IEC 9314는 DTR 표 1이다.
+  1차·2차 링은 RFC 1329 §3·§4와 RFC 1512의 두 경로로 썼다. 「평소에 데이터가 도는 고리는 1차 링」은 §4의 「단일 MAC 스테이션은 대개 1차 링에 MAC을 둔다」에서 나오는 말이라 본문에 「대개」를 살려 그 까닭과 함께 적었다. 이중 MAC의 부하 분산 제안(§1)은 쓰지 않았다.
+  래핑은 위 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목의 802.5c 정의와 RFC 1329 §8.3(래핑하면 MAC이 모두 한 링 위에 놓인다)을 함께 읽은 말로 썼다 —
+  고장 난 자리를 사이에 둔 두 노드가 한쪽 링으로 받은 데이터를 다른 쪽 링으로 돌려 내보내고, 두 링이 이어져 남은 노드를 모두 지나는 고리 하나가 된다. 「곧바로」 같은 시간과 바이패스는 쓰지 않았다.
+  FDDI 위의 데이터 링크 서비스를 802.2 LLC가 맡는다는 RFC 1390 「Introduction」의 말은 `network-topology.ieee-802-standards`의 802.2 항목에 썼다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.fddi`(뜻·속도·표준 번호, 네 부분, E53, 이중 링, 래핑, 「1차 링과 2차 링」, 「FDDI와 토큰 링」, 예 `A`~`D`), `network-topology.ieee-802-standards`(802.2 항목의 LLC), 문항 n372, 도식 `FddiDualRingDiagram`
 
 쓰인 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(FDDI의 뜻·속도, 네 부분, 1차·2차 링, 래핑, SMT의 링크 오류 감시), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(두 번째 링으로 고장을 견딘다는 한 줄), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E53)

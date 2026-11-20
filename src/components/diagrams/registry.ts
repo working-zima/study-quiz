@@ -124,6 +124,7 @@ import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { ExternalIdentitiesDiagram } from './ExternalIdentitiesDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FddiDualRingDiagram } from './FddiDualRingDiagram'
 import { FiberCoreCladdingDiagram } from './FiberCoreCladdingDiagram'
 import { FileCommandsDiagram } from './FileCommandsDiagram'
 import { FileShareDiagram } from './FileShareDiagram'
@@ -165,6 +166,7 @@ import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
 import { IdsIpsPlacementDiagram } from './IdsIpsPlacementDiagram'
 import { Ieee80211BandsDiagram } from './Ieee80211BandsDiagram'
+import { Ieee802GroupsDiagram } from './Ieee802GroupsDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
 import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
@@ -575,6 +577,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-topology.ring-topology': RingPassDiagram,
   'network-topology.mesh-tree-topology': MeshTreeLinksDiagram,
   'network-topology.token-ring': TokenPassingDiagram,
+  'network-topology.fddi': FddiDualRingDiagram,
+  'network-topology.ieee-802-standards': Ieee802GroupsDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,
