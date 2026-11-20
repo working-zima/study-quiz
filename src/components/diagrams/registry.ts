@@ -372,6 +372,7 @@ import { TcpControlBitsDiagram } from './TcpControlBitsDiagram'
 import { TcpHeaderDiagram } from './TcpHeaderDiagram'
 import { TcpReliabilityDiagram } from './TcpReliabilityDiagram'
 import { TcpStatesDiagram } from './TcpStatesDiagram'
+import { TdmSlotsDiagram } from './TdmSlotsDiagram'
 import { TemplateDeploymentDiagram } from './TemplateDeploymentDiagram'
 import { TftpBlocksDiagram } from './TftpBlocksDiagram'
 import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
@@ -411,6 +412,7 @@ import { VpcScopeDiagram } from './VpcScopeDiagram'
 import { VpnProtocolLayersDiagram } from './VpnProtocolLayersDiagram'
 import { VpnSiteTypesDiagram } from './VpnSiteTypesDiagram'
 import { WafInspectionDiagram } from './WafInspectionDiagram'
+import { WdmWavelengthsDiagram } from './WdmWavelengthsDiagram'
 import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
@@ -559,6 +561,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'transmission-media.transmission-impairments': ImpairmentKindsDiagram,
   'transmission-media.channel-coding': ChannelCodingFlowDiagram,
   'transmission-media.multiplexing': MuxDemuxDiagram,
+  'transmission-media.tdm': TdmSlotsDiagram,
+  'transmission-media.wdm': WdmWavelengthsDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,
