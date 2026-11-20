@@ -8768,6 +8768,7 @@ https://www.itu.int/rec/T-REC-K.37-202401-I/en
 - **한국어 이름**: screen → 차폐(step 0·1이 쓴 이름), outer conductor → 바깥 도체(step 0의 이름), twisted pair → 트위스티드 페어(본문은 「꼰 쌍」을 「구리선 두 가닥을 서로 꼰 것」으로 쓴다)
 
 쓰인 곳: (phase 83 step 2) `transmission-media.coaxial-cable`(바깥 도체의 차폐 노릇, 동축 케이블과 트위스티드 페어의 짜임), 문항 n355, 도식 `CoaxLayersDiagram`의 「바깥 잡음 줄이기」.
+(phase 83 마무리, 2026-11-21) `transmission-media.twisted-pair` 문단 4의 끝 문장(구리선 두 가닥을 꼬아 쌍을 만드는 짜임이 잡음이 신호에 곧바로 섞여 드는 것을 줄인다) — step 1이 근거를 못 찾아 쓰지 않은 「꼬는 까닭」을 위 §10.2의 둘째 줄로 더했다.
 이 항목의 §10.2는 꼰 쌍의 짜임도 직접 결합을 줄인다고 적는다 — step 1이 쓴 `transmission-media.twisted-pair`는 「꼬는 까닭」을 쓰지 않았다(그 개념은 이 step에서 고치지 않았다)
 
 ## (phase 83 step 0) ITU-T 광 가입자망 권고 — G.983.1 (01/2005), G.984.1 (03/2008), G.987 (06/2012)
