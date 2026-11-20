@@ -204,6 +204,13 @@ OpenFlow의 메시지·흐름 표 형식, ETSI NFV의 참조점과 기능 블록
 「(phase 83 step 14)」가 붙은 줄은 phase 83 step 14에서 `cloud-sdn`의 서버리스 컴퓨팅, 인터넷 데이터 센터를 쓰며 더했다(2026-11-21) — step 12가 받아 둔 ITU-T L.1300 PDF에서 §13(데이터 센터의 네트워크)을 다시 읽어 한 줄을 더했고, 그 밖에는 step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 15)」가 붙은 줄은 phase 83 step 15에서 `cloud-sdn`의 포그 컴퓨팅, SDN을 쓰며 더했다(2026-11-21) — RFC 7426의 텍스트판(rfc-editor.org)을 IPv4로 다시 받아 §3.1~§3.3을 읽고 한 줄을 더했고, 그 밖에는 step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 16)」이 붙은 줄은 phase 83 step 16에서 `cloud-sdn`의 NFV를 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 17)」이 붙은 항목은 phase 83 step 17에서 `raid-storage` 주제의 개념 다섯(RAID, RAID 0, RAID 1, RAID 5, DAS·NAS·SAN)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-21).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). **snia.org는 이날 자동 내려받기를 Cloudflare 확인 화면으로 막았다** — curl은 HTTP 403을 받았고, headless Chrome도 「보안 확인 수행 중」 화면에서 넘어가지 못했다.
+그래서 창을 띄운 Chrome(창은 화면 밖에 둠)을 CDP로 몰아 사전 페이지를 열고, 같은 브라우저 안에서 사전 전체 PDF(「Download Full Dictionary」, 2026-11-20 생성판)와 DDF 사양 PDF를 받아 PyMuPDF로 글자를 뽑아 읽었다. 배치 그림인 쪽은 렌더해 봤다.
+RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로, man7.org의 md(4)와 learn.microsoft.com의 페이지는 내려받아 읽었다(learn.microsoft.com은 ko-kr 판에서 한국어 이름을 확인했다).
+**SNIA 사전과 DDF가 적지 않은 것 — 레벨마다의 디스크 최소 수, RAID 4의 패리티 디스크에 쓰기가 몰린다는 것, 미러에서 읽기를 나누는 것 — 은 허용한 출처 안의 구현 문서(Linux md 드라이버의 md(4), Windows의 DiskPart·VDS 문서)에서 가져왔다** — 표준이 아니라 한 구현의 문서라는 것을 항목에 적는다.
+**디스크·저장 장치 업체의 문서·상품 페이지는 쓰지 않았다**(허용 목록 밖이다). **기출이 묻지 않는 것은 사실로 가져오지 않았다** — RAID 2·3·4·6·10의 세부(RAID 2·3·4는 한 줄씩만), 하드웨어 RAID와 소프트웨어 RAID의 구현 차이, DDF의 자료 구조와 RAID 레벨 한정자 전체,
+쓰기 구멍(write hole)·비트맵·스크러빙, 파이버 채널의 계층·토폴로지, iSCSI의 PDU·세션·로그인·이름 형식, NAS의 파일 공유 프로토콜(SMB·NFS) 메시지, 저장소 공간(Storage Spaces)의 복원력 방식.
 
 ---
 
@@ -9432,3 +9439,142 @@ https://portal.etsi.org/NFV/NFV_White_Paper.pdf
   「네트워크 기능을 만들고 다루는 것은 하드웨어가 아니라 소프트웨어다」는 §3.1의 VNF 정의(소프트웨어 구현)에서 나온 말이다(`exam-notes.md` 「phase 83 step 12」 문단이 [기출 2024-05-19 #26]의 맞는 말 보기와 맞다고 본 대목). 「NFV와 SDN」은 백서 「Relationship with SDN」이다.
   본문 예의 지사·방화벽 장비·라우터 장비·`NFVI01`·가상 방화벽 2는 예로 든 장면과 이름표이고, 「`NFVI01`에 남은 자원으로 가상 방화벽을 하나 더 실행한다」는 VNF를 하드웨어에 배치하는 유연함(§4.2)과 늘리고 줄이기(§7.2.7)를 한 장면으로 보인 것이다. 새로 읽은 문서는 없다.
   쓰인 곳: `cloud-sdn.nfv`(문단 0~10), 도식 `nfv-architecture`, 문항 n382·n383
+
+## (phase 83 step 17) SNIA Dictionary — RAID와 레벨, 디스크 배열·가상 드라이브, 스트라이핑·미러링·패리티, 핫 스왑·재구축, 백업, DAS·NAS·SAN, 블록·파일 스토리지, 파이버 채널·iSCSI
+https://www.snia.org/education/dictionary (2026-11-21 열어 보니 https://www.snia.org/resources/online-dictionary 로 옮겨 간다)
+https://www.snia.org/snia-dictionary/download (사전 전체 PDF)
+
+판: SNIA Dictionary 전체 PDF 「Generated on November 20, 2026」(304쪽). SNIA 기술 위원회가 검토해 승인한 용어를 싣고 그때그때 고치는 살아 있는 문서다(머리말 「The SNIA Dictionary」).
+사전의 이용 조건은 정의를 고치지 않고 통째로만 옮겨 싣게 한다 — 그래서 여기에는 뜻을 직접 쓴 말로만 적는다. 줄 끝 괄호는 사전의 표제어다.
+
+- **RAID라는 이름**: 약어 RAID는 Redundant Array of Independent Disks를 줄인 말이다(RAID). 지금 사전은 그 풀이를 낡은 말(deprecated)로 두고 Redundant Array of Independent **Devices**를 세운다 —
+  물리 저장 공간의 일부에 나머지 공간의 사용자 데이터에 대한 여분 정보를 두어, 배열의 멤버 디스크 하나나 그 디스크로 가는 길이 고장 나도 사용자 데이터를 다시 만들어 내게 한 저장 배열이다.
+  이 정의에 맞지 않지만 스트라이핑만 하는 것도 흔히 RAID 0이라 부른다. 이름은 1988년 SIGMOD 논문 「A Case for Redundant Arrays of Inexpensive Disks」에서 왔고, 뒤에 Inexpensive가 Independent로 바뀌었다.
+  지금은 디스크 말고도 블록 저장 장치라면 RAID 기법을 쓴다(Redundant Array of Independent Devices, Redundant Array of Independent Disks). RAID array는 RAID를 줄여 부르는 말이다(RAID array)
+- **RAID 레벨**: 버클리 대학의 Gibson·Katz·Patterson이 연구 논문에서 디스크 배열의 데이터 보호·배치 기법을 나눈 분류가 RAID Level 0~6의 일곱이고, 그 뒤 RAID 10·RAID 50 같은 레벨이 더 나왔다(Berkeley RAID Levels)
+- **디스크·디스크 배열·가상 드라이브**: 디스크(disk drive)는 전원이 꺼져도 데이터가 남고, 아무 자리나 골라 읽을 수 있고, 다시 쓸 수 있는 저장 장치로, 회전하는 원판으로 이루어진다(disk, disk drive).
+  SSD는 반도체로 된 비휘발성 저장 매체로 저장하는 장치다(Solid State Drive, Solid State Storage). 디스크 배열은 디스크 여럿에 그것을 다루는 제어 소프트웨어를 묶은 것이고, 그 소프트웨어가 저장 용량을 호스트에 **가상 드라이브 하나나 여럿**으로 내보인다(disk array).
+  가상 드라이브(볼륨이라고도 부른다)는 운영 체제에 물리 드라이브처럼 보이게 내놓은 저장 공간이다(virtual drive, volume). 물리 디스크는 가상이 아닌 디스크이고(physical disk), 배열에 든 디스크를 멤버 디스크라 한다(member disk).
+  저장 요청을 처리하는 장치의 예로 RAID 컨트롤러를 든다(storage controller)
+- **스트라이핑·스트라이프**: 데이터 스트라이핑(data striping — disk striping은 낡은 말)은 가상 드라이브의 주소를 정해진 길이씩 잘라, 멤버 장치들의 주소에 일정하게 돌아가는 차례로 맞추는 배치 기법이고 RAID 구현에서 흔히 쓴다(data striping).
+  한 멤버 장치 안에서 이어지는 블록 묶음 하나가 스트립(strip — stripe element라고도 한다)이고, 멤버 장치마다 같은 자리에 있는 스트립들을 묶은 것이 스트라이프(stripe)다(strip, stripe).
+  여분 없이 스트라이핑만 하는 배열(striped array)은 값이 낮거나 다시 구하기 쉬운 데이터의 입출력 성능을 높이려고 쓰기도 한다(striped array)
+- **RAID 0**: 이어진 논리 블록을 여러 독립 저장 장치에 고르게 나눠 두되 어떤 여분도 두지 않는 배치 방식이다. 흔히 데이터 스트라이핑이라 부르고, 묶음의 **어느 장치 하나만 고장 나도 데이터를 잃는다**(RAID 0)
+- **미러링·RAID 1**: 미러링은 같은 데이터의 따로 된 사본을 둘 이상 유지하는 것이다(mirroring). RAID 1은 논리 블록마다 독립 저장 장치 둘 이상에 저장하는 배치 방식이고, 흔히 미러링이라 부르며, 저장 장치 **하나의 고장을 데이터를 잃지 않고 견딘다**(RAID 1).
+  RAID 1을 구현한 디스크 배열을 미러 배열이라 한다(mirrored array)
+- **패리티**: 패리티 데이터는 RAID 배열의 멤버 디스크에 두어, 읽을 수 없게 된 사용자 데이터를 다시 만들어 내는 데 쓰는 데이터다(parity data). 패리티 드라이브는 RAID 3·RAID 4(와 일부 RAID 6) 배열에서 패리티만 따로 두는 드라이브다(parity drive).
+  다시 만들어 내기(regeneration)는 고장 난 드라이브에 있던 사용자 데이터를 살아남은 멤버의 검사 데이터와 사용자 데이터로 되살리는 것이다(regeneration). **패리티를 어떤 셈으로 만드는지는 사전에 없다** — 아래 「(phase 83 step 17) SNIA DDF」·「(phase 83 step 17) 레벨마다의 동작과 디스크 최소 수」 항목
+- **RAID 2·3·4·5·6**: RAID 2 — 스트라이프로 나눈 데이터에서 계산한 오류 검출 부호를 따로 둔 독립 장치에 둔다, 널리 쓰이지 않는다(RAID 2).
+  RAID 3 — 패리티로 보호하고, 데이터를 바이트 단위로 고르게 나누며, 패리티는 전용 장치 하나에 둔다(RAID 3). RAID 4 — 패리티로 보호하고, 데이터를 **블록** 단위로 고르게 나누며, **패리티는 전용 장치 하나에** 둔다, 장치 하나의 고장을 견딘다(RAID 4).
+  RAID 5 — 논리 블록 n개의 데이터와 패리티 블록 하나로 이루어진 스트라이프를 장치 **n+1개**에 두되, 패리티와 데이터 블록을 장치들에 **엇갈려** 둔다, 장치 하나의 고장을 견딘다(RAID 5). RAID 6 — 아무 장치 둘의 고장을 견딘다(RAID 6).
+  RAID 5·6은 일반 미러링보다 공간을 덜 쓰면서 저장 장치 고장에서 데이터를 지킨다(capacity optimization methods). **「회전 패리티(rotating parity)」·「분산 패리티(distributed parity)」라는 이름은 사전에 없다** — 아래 DDF가 rotating parity, md(4)가 distributed parity를 쓴다
+- **핫 스왑·핫 스탠바이·재구축·성능 저하 모드**: 스왑은 고장 난 부품 자리에 갈아 끼울 부품을 다는 물리적인 일이고 보통 사람이 한다(swap). 핫 스왑은 **시스템 운영을 멈추지 않고** 하는 스왑이다 — 운영만 멈추고 전원은 그대로 두면 웜 스왑, 전원을 끄면 콜드 스왑이다(hot swap, warm swap, cold swap).
+  핫 스탠바이(hot spare와 같은 말)는 전원이 들어온 채 준비해 둔 여분 부품이고, 저장 장치에서는 재구축을 받을 준비가 된 장치를 뜻한다(hot standby, hot spare).
+  재구축(rebuild — reconstruction과 같은 말)은 RAID 배열에서 고장 난 장치에 있던 데이터를 모두 다시 만들어 갈아 끼운 장치에 써 넣는 것이고, 대부분의 배열은 **응용 프로그램이 데이터를 계속 쓰는 동안** 재구축할 수 있다(rebuild, reconstruction).
+  성능 저하 모드는 멤버 디스크가 다 동작하지 않는데도 배열이 읽기·쓰기 요청에 답하는 상태다(degraded mode)
+- **백업**: 백업은 원본을 잃거나 쓸 수 없게 될 때 되살리려고 (대개 떼어 낼 수 있는) 비휘발성 매체에 담아 둔 데이터 모음이고, 원본이 일관된 상태일 때 복사해야 되살리는 데 쓸모가 있다. 백업을 만드는 일도 백업이라 한다(backup).
+  **RAID를 백업이라 부르거나 RAID가 백업을 대신한다고 적은 표제어는 없다** — 사전은 RAID의 여분을 「저장 장치의 고장에서 데이터를 지키는 것」으로만 적는다(위 RAID 5·6 줄). `exam-notes.md` E55
+- **입출력 병목**: 시스템의 데이터 전송 능력을 묶어 두는, 입출력 경로 위의 자원을 병목이라 하고 그 예에 디스크가 든다(I/O bottleneck)
+- **DAS·NAS·SAN**: DAS는 서버 한 대에 바로 이어져 그 서버만 쓰는 저장 장치다(DAS, Direct Attached Storage).
+  NAS는 네트워크에 이어져 클라이언트에게 **파일 접근 서비스**를 주는 저장 장치이고, 대개 파일 서비스를 구현한 엔진과 저장 장치 하나 이상으로 이루어지며 NFS·SMB 같은 파일 접근 프로토콜로 파일을 준다(NAS, Network Attached Storage).
+  SAN은 컴퓨터와 저장 장치 사이, 저장 장치끼리 데이터를 나르는 것이 주된 목적인 네트워크이고, 데이터를 나르는 통신 기반·저장 장치·컴퓨터로 이루어진다. SAN이라는 말은 대개(늘 그렇지는 않다) **블록 서비스**와 이어지고, 그 네트워크와 거기 붙은 저장 장치를 함께 부르기도 한다(Storage Area Network).
+  약어 SAN은 Server Area Network·System Area Network이기도 하지만 SNIA 문서에서는 Storage Area Network다(SAN). NFS는 IETF가 정한, 파일 시스템에 접근하는 네트워크 프로토콜 묶음이고(NFS, Network File System), SMB는 SMB1·SMB2·SMB3을 아우르는 파일 접근 프로토콜 묶음의 이름이다(SMB)
+- **블록·파일**: 블록은 저장 매체에 데이터를 저장하고 꺼내는 단위다(block). 블록 스토리지는 데이터를 블록으로 저장하는 방식이다 — 디스크는 보통 512바이트나 4,096바이트 같은 정해진 크기의 블록으로 저장하고, 블록들을 파일로 짜는 일은 **호스트의 파일 시스템**이 하며,
+  SCSI·SATA·FC·iSCSI 같은 저장 프로토콜로 그 블록에 닿는다(block storage). 블록 서비스는 다른 시스템에 블록 단위 접근을 주는 하위 시스템이다(block services).
+  파일은 저장 요소에 담긴 바이트, 그것을 하나로 가리키는 이름, 관리에 쓰는 속성으로 이루어진 추상적인 데이터 대상이고(file), 파일 스토리지는 데이터를 파일로 저장하는 방식이며(file storage), 파일 시스템은 저장 공간에 짜임을 세워 응용 프로그램이 파일을 다루게 하는 소프트웨어다(file system).
+  파일 서버는 클라이언트에게 파일을 내주는 컴퓨터다(file server)
+- **파이버 채널·SCSI·iSCSI**: 파이버 채널은 여러 프로토콜을 실어 나를 수 있는 직렬 입출력 연결 기술이고, 그 가운데 FCP가 SCSI를 싣는다. 표준은 INCITS의 파이버 채널 기술 위원회가 만든다(Fibre Channel).
+  SCSI는 주로 저장 장치를 호스트에 잇는 입출력 연결을 정한 ANSI 표준들의 묶음이다(Small Computer System Interface). iSCSI는 internet Small Computer Systems Interface의 약어이고(iSCSI), iSCSI SAN은 TCP/IP 위에서 iSCSI 프로토콜로 만든 블록 단위 SAN이다(iSCSI SAN).
+  LAN-free 백업은 LAN 자원을 쓰지 않고 SAN이나 DAS로 데이터를 옮기는 백업 방식이다(LAN-free backup)
+- **한국어 이름**: 「RAID」(영문 약어를 그대로 쓴다), 「디스크」(disk drive), 「디스크 배열」(disk array), 「물리 디스크」(physical disk), 「논리 디스크」(virtual drive — 기출이 「논리적 드라이브」·「가상 하드디스크」로 쓰고 guide가 「논리 디스크」로 적는다. DDF의 「가상 디스크」를 함께 적을 수 있다),
+  「스트라이핑」(striping), 「스트라이프」(stripe — 디스크마다 같은 자리에 놓인 조각들을 묶은 한 줄. guide 표의 「줄(스트라이프)」), 「조각」(strip — 한 디스크 안의 이어진 블록 묶음. 「스트립」은 「스트라이프」와 헷갈려 이름으로 세우지 않는다 — **guide 표 RAID 0 행의 「조각(스트라이프)」는 이 사전과 맞지 않는다**),
+  「미러링」(mirroring), 「패리티」(parity), 「핫 스왑」(hot swap), 「핫 스페어」(hot spare), 「재구축」(rebuild), 「백업」(backup), 「병목」(bottleneck), 「DAS」·「NAS」·「SAN」(약어를 이름으로 세우고 영문 풀네임을 붙인다), 「블록」·「파일」, 「파이버 채널」(Fibre Channel — learn.microsoft.com 한국어판), 「iSCSI」
+쓰일 곳: (phase 83 step 18~20에서 쓰일 곳) `raid-storage.raid`(디스크, RAID의 뜻과 이름의 내력, 물리 디스크와 논리 디스크, 스트라이핑·미러링·패리티 한 줄씩, RAID 레벨, 핫 스왑·재구축, 백업과의 관계 — E55),
+`raid-storage.raid-0`(여분 없는 스트라이핑, 하나만 고장 나도 잃는다, 조각과 스트라이프), `raid-storage.raid-1`(미러링, 하나의 고장을 견딘다), `raid-storage.raid-5`(패리티 데이터·다시 만들어 내기, RAID 4의 전용 패리티 장치와 RAID 5의 엇갈린 배치, n+1, RAID 2·3 한 줄),
+`raid-storage.network-storage`(DAS·NAS·SAN, 파일과 블록, 파이버 채널, iSCSI SAN), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단, E54·E55)
+
+## (phase 83 step 17) SNIA Common RAID Disk Data Format (DDF) Specification v2.0 rev 19 — RAID 레벨의 배치 그림과 패리티 셈
+https://www.snia.org/tech_activities/standards/curr_standards/ddf
+https://www.snia.org/sites/default/files/SNIA_DDF_Technical_Position_v2.0.pdf
+
+판: Version 2.0 Revision 19, SNIA Technical Position, 2009-03-27 발행(126쪽 — rev 19는 2008-11-21 기술 위원회에 낸 승인 초안). 2026-11-21 SNIA 표준 페이지(「Completed Standards」)에 v2.0과 v1.2(2006-07-28)가 있고 v2.0이 가장 새 판임을 확인했다
+(페이지는 v2.0을 「1MB ZIP」이라 적지만 링크는 PDF다). DDF는 RAID 그룹의 디스크마다 배치 정보를 어떤 모양으로 적는지 정해, 업체가 달라도 디스크를 데이터째 옮겨 쓰게 하는 사양이다(표준 페이지 첫머리). 사전에 있는 말은 사전의 정의를 쓰고, 사전에 없는 말만 §3에서 정한다(§3).
+
+- **가상 디스크**: 호스트에 사용자 데이터 저장용으로 내보이는 대상이 가상 디스크(VD)이고, 물리 디스크가 적어도 하나 딸린다 — §3.1.1
+- **레벨 표**(§4.1 표 1): RAID-0 패리티 없는 스트라이프 배열, RAID-1 미러 배열, RAID-3·RAID-4 **회전하지 않는 패리티**의 스트라이프 배열(3은 길게 하나씩 이어지는 전송에, 4는 짧고 여럿이 함께 오는 전송에 맞춘다),
+  RAID-5 **회전하는 패리티(rotating parity)**의 스트라이프 배열(짧고 여럿이 함께 오는 전송에 맞춘다), RAID-6 RAID-5와 비슷하되 패리티를 두 벌 돌려 물리 디스크 둘의 고장을 견딘다.
+  같은 표는 JBOD와 **연결(Concatenation — 물리 디스크를 앞뒤로 이어 붙인 것)**을 RAID가 아닌 형식으로 함께 싣는다 — §4.1
+- **RAID-0의 배치**(§4.2.1 그림 2·식 1·표 3): 가상 디스크의 블록을 스트립 크기씩 잘라, 첫 스트립을 첫 익스텐트(물리 디스크의 이어진 한 구역)에, 다음 스트립을 다음 익스텐트에 두는 식으로 익스텐트를 차례로 돌며 놓는다 —
+  그림에서 익스텐트 0~4의 스트립 (0,0)~(4,0)이 스트라이프 0을 이루고, 그다음 스트립들이 스트라이프 1·2를 이룬다. 한 가상 디스크의 익스텐트는 크기가 같아야 하고 가상 디스크의 블록 수는 익스텐트 수로 나누어떨어져야 한다 — 패리티 칸이 없으므로 모든 익스텐트가 데이터를 담는다.
+  **디스크 최소 수는 적혀 있지 않다**
+- **RAID-1의 배치**(§4.2.2 그림 3): 단순 미러링은 익스텐트가 꼭 둘이고, 익스텐트마다 크기가 가상 디스크와 같으며, 가상 디스크의 블록마다 두 익스텐트의 같은 자리에 겹쳐 둔다 — 그래서 쓸 수 있는 용량은 디스크 하나만큼이다. 다중 미러링은 익스텐트 셋에 세 벌을 둔다(§4.2.3)
+- **패리티 셈**(§4.2.4 식 3, §4.2.6 식 7, §4.2.8 식 13): 패리티 블록은 같은 스트라이프에서 같은 자리에 있는 데이터 블록들을 비트마다 **배타적 논리합(XOR, ⊕)**한 값이다.
+  RAID-4에서 가상 디스크의 데이터 블록 수는 (익스텐트 수 − 1)로 나누어떨어져야 한다 — 익스텐트 하나만큼은 패리티의 몫이다(표 5)
+- **RAID-4의 배치**(§4.2.6 그림 7, §4.2 표 2): 「회전하지 않는 패리티 0」은 모든 패리티 블록을 익스텐트 0에, 「회전하지 않는 패리티 N」은 마지막 익스텐트에 둔다
+- **RAID-5의 배치**(§4.2.8~§4.2.10, 표 2, 그림 9·10): 스트라이프마다 패리티를 다른 익스텐트에 둔다. 「회전 패리티 0」은 스트라이프 0의 패리티를 익스텐트 0에 두고 왼쪽에서 오른쪽으로 대각선을 그리며(식 10 — 스트라이프 j의 패리티는 익스텐트 j mod N),
+  「회전 패리티 N」은 마지막 익스텐트에서 시작해 오른쪽에서 왼쪽으로 그린다(식 14 — 익스텐트 (N−1) − (j mod N)). 「데이터 다시 시작」은 스트라이프마다 패리티가 차지하지 않은 첫 익스텐트부터 데이터를 채우고, 「데이터 이어 가기」는 앞 스트라이프의 패리티 바로 아래 칸부터 채운다.
+  그림 10(익스텐트 다섯)은 스트라이프 0·1·2의 패리티를 익스텐트 4·3·2에 둔다. 익스텐트 넷이면 「회전 패리티 N」은 스트라이프 0·1·2·3의 패리티를 익스텐트 3·2·1·0에 둔다(식 14로 셈한 것 — guide 예의 P1~P4가 `DISK3`→`DISK2`→`DISK1`→`DISK0`에 놓이는 차례와 같다).
+  데이터 블록 수는 (N−1)×(스트립 크기)로 나누어떨어져야 한다(표 6) — 쓸 수 있는 용량은 익스텐트 N−1개만큼이다. **디스크 최소 수는 적혀 있지 않다**
+- **연결**(§4.3.3 그림 34·식 127): 연결 방식의 가상 디스크는 그 아래 가상 디스크들의 공간을 앞뒤로 이어 붙여 만든다 — 첫째를 다 채운 뒤 둘째로 넘어가고, 이어 붙이는 것들의 크기가 같지 않아도 된다
+- **한국어 이름**: 「가상 디스크」(virtual disk — DDF의 말. 본문은 「논리 디스크」를 세우고 이 말을 함께 적을 수 있다), 「회전 패리티」(rotating parity — 기출 [2025-08-24 #46]의 이름이기도 하다), 「연결」(concatenation).
+  「익스텐트」는 본문에 쓰지 않는다 — 단순한 구성에서는 디스크 하나로 말하면 된다
+쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid`(논리 디스크), `raid-storage.raid-0`(조각을 디스크마다 차례로 돌며 놓는다, 모든 디스크가 데이터를 담는다, 「RAID 0과 연결」),
+`raid-storage.raid-1`(두 디스크의 같은 자리에 겹쳐 둔다, 용량은 디스크 하나만큼), `raid-storage.raid-5`(패리티는 같은 줄의 데이터 조각을 XOR한 값, RAID 4의 패리티 디스크 하나, RAID 5의 줄마다 다른 디스크와 그 차례, 용량 n−1), 기출 대조([기출 2025-08-24 #46])
+
+## (phase 83 step 17) 레벨마다의 동작과 디스크 최소 수 — Linux md(4)(mdadm), Microsoft Learn: create volume stripe·create volume mirror·create volume raid(DiskPart), Volume Object(VDS), Basic and Dynamic Disks
+https://man7.org/linux/man-pages/man4/md.4.html
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-stripe
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-mirror
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-raid
+https://learn.microsoft.com/windows/win32/vds/volume-object
+https://learn.microsoft.com/windows/win32/fileio/basic-and-dynamic-disks
+
+판: md(4)는 mdadm 프로젝트의 페이지로, Linux의 소프트웨어 RAID 드라이버 md를 설명한다 — man7.org가 2026-08-04에 upstream Git에서 가져온 판이다(그때 마지막 커밋 2026-07-22, COLOPHON).
+DiskPart 세 쪽은 Windows Server 2016~2025·Windows 10·11에 적용된다(`ms.date` 2017-10-16, 영문판 고친 날 stripe·raid 2026-02-16, mirror 2025-10-22). VDS 「Volume Object」는 `ms.date` 2018-05-31(고친 날 2025-03-13), 「Basic and Dynamic Disks」는 `ms.date` 2025-07-08(고친 날 2025-07-10)이다. 2026-11-21 읽었다.
+**둘 다 한 구현(Linux md, Windows 동적 디스크)의 문서다** — 레벨의 정의는 위 SNIA 사전 항목을 따르고, 이 문서들은 SNIA·DDF가 적지 않은 것(디스크 최소 수, RAID 4와 RAID 5가 쓰기에서 갈리는 점, 미러에서 읽기를 나누는 것, 고장 뒤 되살리는 차례)에만 쓴다.
+Windows의 동적 디스크는 운영 체제를 담는 미러 부팅 볼륨을 빼면 쓰지 않을 기능(deprecated)이 되었고, 드라이브 고장에 견뎌야 하는 데이터에는 저장소 공간(Storage Spaces)을 쓰라고 한다(「Basic and Dynamic Disks」 「Types of disks」) —
+그래서 본문은 DiskPart를 Windows에서 RAID를 만드는 방법으로 가르치지 않고, 디스크 최소 수의 근거로만 쓴다.
+
+- **md(4)**:
+  - md 드라이버는 하나 이상의 장치로 가상 장치를 만든다. 여분을 두는 레벨 1(미러링)·4(패리티 장치를 둔 스트라이프 배열)·5(패리티 정보를 흩어 둔 스트라이프 배열)·6·10을 지원하고, 장치가 고장 나도 배열이 계속 동작하는 고장 수는 RAID 4·5에서 **하나**, RAID 1에서 **장치 수보다 하나 적은 수**다.
+    여분이 없는 유사(pseudo) RAID로 RAID0(스트라이프 배열)과 **LINEAR**(이어 붙인 배열)를 지원한다 — DESCRIPTION
+  - LINEAR: 각 드라이브의 공간을 그대로 이어 붙여 큰 가상 드라이브 하나를 만든다. RAID0보다 나은 점은 나중에 드라이브를 더해 배열의 데이터를 건드리지 않고 배열을 키울 수 있다는 것이다 — 「LINEAR」
+  - RAID0: 여분이 없는 스트라이프 배열이다. 배열의 첫 조각(chunk)을 첫 장치에, 둘째 조각을 둘째 장치에 두는 식으로 모든 장치가 조각을 하나씩 받으면 그 묶음이 스트라이프 하나가 되고, 그다음 조각들도 같은 차례로 묶는다 — 「RAID0」
+  - RAID1: 장치마다 똑같은 데이터를 담고, **바뀐 것은 모든 장치에 함께 쓴다**. 읽기는 어느 장치 하나에서 하고, 드라이버가 읽기 요청을 장치들에 나눠 성능을 높이려 한다.
+    그러나 이 나누기가 RAID1의 성능을 RAID0과 같게 만들지는 않는다 — 이어서 읽는 흐름 하나는 빨라지지 않고, 여러 흐름이나 무작위 읽기일 때 여러 디스크를 쓴다. 장치 크기가 다르면 가장 작은 장치만큼만 쓴다 — 「RAID1」
+  - RAID4: RAID0에 패리티를 담는 장치 하나(활성 장치의 마지막)를 더한 것이다. **블록 하나라도 바뀌면 그 스트라이프의 패리티 블록도 함께 바뀌어**, 패리티 블록은 늘 그 스트라이프의 데이터 블록 모두를 배타적 논리합(exclusive-or)한 값이다.
+    그래서 장치 하나가 고장 나도 그 장치에 있던 데이터를 패리티 블록과 나머지 데이터 블록으로 그때그때 계산해 낸다 — 「RAID4」
+  - RAID5: RAID4와 거의 같고, 다른 점은 스트라이프마다의 패리티 블록을 장치 하나에 두지 않고 **모든 장치에 흩어 둔다**는 것이다. 그래서 서로 다른 두 블록을 고칠 때 그 패리티 블록이 다른 장치에 있을 가능성이 커 다툼(contention)이 줄고 쓰기를 더 나란히 할 수 있으며,
+    읽기도 장치 하나를 빼지 않고 모든 장치에 나눈다 — 「RAID5」. **「병목(bottleneck)」이라는 낱말은 쓰지 않는다** — RAID4는 어느 블록을 고치든 패리티 장치 하나를 함께 고친다는 것과 RAID5에서 이 다툼이 준다는 것을 함께 읽어,
+    본문은 「RAID 4는 쓸 때마다 패리티 디스크 하나에 쓰기가 몰리고, RAID 5는 패리티를 흩어 그 몰림을 줄인다」로 쓸 수 있다(병목의 뜻은 위 SNIA 사전 항목의 「입출력 병목」)
+  - 되살리기: RAID1·4·5에서 장치에 쓰기 오류가 나면 그 장치를 고장으로 표시해 빼고 나머지 장치로 계속 동작한다. 예비 드라이브가 있으면 고장 난 드라이브에 있던 데이터를 그 위에 다시 만드는데, RAID1은 성한 드라이브를 복사하고 RAID4·5는 패리티로 셈한다.
+    되살리는 동안 다른 사용이 있으면 되살리기를 늦춰 평소 사용을 크게 방해하지 않는다 — 「RECOVERY」
+- **Microsoft Learn**:
+  - `create volume stripe`: 동적 디스크 **둘 이상**으로 스트라이프 볼륨을 만들고, 디스크마다 같은 크기를 잡는다 — 「Parameters」. VDS: 스트라이프 볼륨은 RAID-0으로 디스크 둘 이상의 공간을 논리 볼륨 하나로 묶고,
+    내결함성이 없어 **디스크 하나만 고장 나도 볼륨 전체가 고장 난다** — 「Volume Types」
+  - `create volume mirror`: 동적 디스크 **둘**로 미러 볼륨을 만든다 — 「Parameters」. VDS: 미러 볼륨은 볼륨의 두 사본(플렉스)을 서로 다른 물리 디스크에 두고 쓰는 데이터를 둘 다에 쓰며, 디스크 하나가 고장 나면 그 디스크의 데이터는 못 쓰지만 시스템은 성한 디스크로 계속 동작한다 — 「Volume Types」
+  - `create volume raid`: 동적 디스크 **셋 이상**으로 RAID-5 볼륨을 만들고, 디스크마다 같은 크기를 잡으며, 공간의 일부가 패리티에 들어 쓸 수 있는 공간은 디스크 공간을 다 더한 것보다 작다 — 「Parameters」.
+    VDS: 패리티가 있는 스트라이프 볼륨(RAID-5 볼륨)은 데이터와 패리티를 물리 디스크 셋 이상에 엇갈려 두고, 디스크 일부가 고장 나면 남은 데이터와 패리티로 그 데이터를 다시 만든다 — 「Volume Types」
+  - VDS의 스팬 볼륨은 여러 디스크의 빈 공간을 논리 볼륨 하나로 묶고, 내결함성이 없다 — 「Volume Types」(위 DDF의 연결, md(4)의 LINEAR와 같은 갈래다)
+- **한국어 이름**: learn.microsoft.com 한국어판은 「스트라이프 볼륨」·「미러 볼륨」(VDS 한국어판은 「미러된 볼륨」)·「RAID-5 볼륨」·「패리티가 있는 스트라이프」·「스팬 볼륨」·「내결함성」·「동적 디스크」로 옮긴다 — 본문은 RAID 레벨의 이름을 세우고 Windows의 볼륨 이름은 쓰지 않아도 된다.
+  「분산 패리티」(distributed parity — md(4)의 말). md(4)의 「LINEAR」는 Linux md 드라이버의 이름이고 기출 보기의 「Linear RAID」가 이것이다 — 본문은 「연결(concatenation)」을 세우고 「Linux의 md 드라이버는 이것을 LINEAR라 부른다」까지 쓸 수 있다
+쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid-0`(디스크 둘 이상, 하나만 고장 나도 볼륨 전체를 잃는다, 연결·LINEAR와 가르기), `raid-storage.raid-1`(디스크 둘, 바뀐 것을 모든 디스크에 쓴다, 읽기를 나눌 수 있지만 RAID 0과 같지 않다 — E54, 고장 뒤 성한 디스크로 계속 동작, 「RAID 1과 백업」 — E55),
+`raid-storage.raid-5`(디스크 셋 이상, 패리티 몫만큼 용량이 준다, XOR한 값과 고장 뒤 다시 셈하기, RAID 4의 패리티 디스크에 쓰기가 몰리고 RAID 5가 흩는다), `raid-storage.raid`(재구축의 차례), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단)
+
+## (phase 83 step 17) iSCSI — RFC 7143 「Internet Small Computer System Interface (iSCSI) Protocol (Consolidated)」, Microsoft Learn 「iSCSI Target Server overview」
+https://www.rfc-editor.org/rfc/rfc7143
+https://learn.microsoft.com/windows-server/storage/iscsi/iscsi-target-server
+
+판: RFC 7143은 Proposed Standard(2014-04)이고 RFC 3720·3980·4850·5048을 대체(Obsoletes)하고 RFC 3721을 고친다(Updates) — 2026-11-21 rfc-editor json에서 이 RFC를 대체하거나 고친 RFC가 없음을 확인했다.
+learn.microsoft.com 「iSCSI Target Server overview」는 Windows Server 2016~2025에 적용된다(`ms.date` 2018-09-11, 영문판 고친 날 2025-05-19, 한국어판 「iSCSI 대상 서버 개요」 고친 날 2026-01-21).
+
+- **SCSI와 그 전송**: SCSI는 입출력 장치, 특히 저장 장치와 통신하는 프로토콜 묶음이고 클라이언트–서버 구조다. 클라이언트를 initiator라 부르고, initiator는 target이라 부르는 서버의 논리 장치(LU)에게 SCSI 명령을 보내 일을 청한다. target 안의 LU마다 LUN이라는 주소가 있다.
+  SCSI를 특정 연결 기술 위에 싣는 것을 SCSI 전송이라 하고 파이버 채널도 그 하나인데, 이런 전송들은 입출력 전용이고 닿는 거리가 짧다 — §1, §4.1
+- **iSCSI**: SCSI의 명령·이벤트·작업 관리를 **TCP 위에** 싣는 프로토콜이다 — SCSI 명령은 iSCSI 요청에, SCSI 응답과 상태는 iSCSI 응답에 실린다. 이미 있는 인터넷 기반 시설과 관리 수단을 쓰고 거리 한계를 풀려는 것이다 — §1, §4.2.
+  RFC 7143의 키워드에 SAN과 블록 스토리지가 든다(rfc-editor json — 이름만)
+- **Windows Server의 iSCSI 대상 서버**: iSCSI 프로토콜로 저장 공간을 내주는 Windows Server의 역할 서비스이고, Windows의 파일 공유 프로토콜 SMB로 통신하지 못하는 클라이언트에 저장 공간을 내줄 때 쓸모 있다 — 첫머리.
+  이것을 켜면 Windows Server 컴퓨터가 **네트워크로 닿는 블록 스토리지 장치**가 되고, 블록 스토리지가 필요한 응용 프로그램에 저장 공간을 주며, SAN에 배치하기 전에 응용 프로그램을 시험하는 데도 쓴다 — 첫머리의 쓰임 넷.
+  이미 있는 이더넷 네트워크를 쓰므로 하드웨어를 더할 필요가 없다. 가용성이 높은 클러스터를 꾸리려면 파이버 채널 저장 장치나 SAS 저장 배열 같은 공유 저장소가 필요하다 — 「Block storage requirements」.
+  설치 자리(파일 및 스토리지 서비스 → 파일 및 iSCSI 서비스)는 위 「(phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders)」 항목과 「(phase 81 step 0) Microsoft Learn — 서버 역할과 기능」 항목(Server Core 표의 「파일 및 iSCSI 서비스(`File-Services`)」)에 이미 있다
+- **한국어 이름**: 「iSCSI」(그대로), 「iSCSI 대상 서버」(iSCSI Target Server — 한국어판), 「초기자」(initiator — 한국어판 「iSCSI 초기자」), 「대상」(target), 「블록 스토리지」(block storage — 한국어판), 「SAN(스토리지 영역 네트워크)」(한국어판의 풀이), 「파이버 채널」(Fibre Channel — 한국어판)
+쓰일 곳: (phase 83 step 20에서 쓰일 곳) `raid-storage.network-storage`(iSCSI는 SCSI 명령을 TCP/IP 네트워크로 나른다, 서버가 저장 장치를 자기 디스크처럼 블록 단위로 쓴다, Windows Server의 iSCSI 대상 서버 한 줄), 기출 대조([기출 2025-05-25 #37])
