@@ -51,6 +51,7 @@ import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
 import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
+import { CoaxLayersDiagram } from './CoaxLayersDiagram'
 import { CognitiveRadioDiagram } from './CognitiveRadioDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
@@ -121,6 +122,7 @@ import { ExpressRouteDiagram } from './ExpressRouteDiagram'
 import { ExtensionChainDiagram } from './ExtensionChainDiagram'
 import { ExternalIdentitiesDiagram } from './ExternalIdentitiesDiagram'
 import { FcsCheckDiagram } from './FcsCheckDiagram'
+import { FiberCoreCladdingDiagram } from './FiberCoreCladdingDiagram'
 import { FileCommandsDiagram } from './FileCommandsDiagram'
 import { FileShareDiagram } from './FileShareDiagram'
 import { FileSyncDiagram } from './FileSyncDiagram'
@@ -547,6 +549,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.pdu-names': PduNamesDiagram,
   'transmission-media.transmission-media': MediaSignalKindsDiagram,
   'transmission-media.twisted-pair': TwistedPairPinsDiagram,
+  'transmission-media.coaxial-cable': CoaxLayersDiagram,
+  'transmission-media.optical-fiber': FiberCoreCladdingDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,

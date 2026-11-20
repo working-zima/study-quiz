@@ -173,6 +173,7 @@ PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 
 회원 발표 자료는 표준 본문이 아니고 업체 소속 회원이 쓴 것도 있다 — 항목마다 어떤 문서인지 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 케이블 범주(카테고리)별 전기 특성표, 광섬유의 분산·파장별 손실 표 전체, 커넥터 종류, PON의 세대별 전송률·암호화·대역 할당. 전송 손상·부호화·다중화는 step 3, 토폴로지(버스형의 터미네이터 포함)는 step 7의 몫이라 이 step에서 정리하지 않았다.
 「(phase 83 step 1)」이 붙은 줄은 phase 83 step 1에서 `transmission-media`의 첫 두 개념(전송 매체, 트위스티드 페어 케이블)을 쓰며 같은 문서를 다시 열어 더했다(확인한 날 2026-11-20) — ITU-T L.109·L.19의 차폐 대목, Thompson 작업 문서의 핀 짝, RFC 4118의 「무선 매체」.
+「(phase 83 step 2)」이 붙은 줄과 항목은 phase 83 step 2에서 `transmission-media`의 동축 케이블·광케이블을 쓰며 더했다(확인한 날 2026-11-20) — step 0이 찾지 못한 「동축 케이블의 바깥 도체가 차폐 노릇을 한다」를 ITU-T K.37에서 확인해 새 항목으로 적고, 앞 항목들의 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 더했다.
 
 ---
 
@@ -8499,6 +8500,12 @@ OMEGA 발표는 IEEE 802.3 연구 그룹 회의에 광섬유 업체(Corning) 소
   single-mode → 싱글 모드, multimode → 멀티 모드(앞 phase의 이름), mode field diameter → 모드 필드 지름(쓴다면 「빛이 퍼진 폭」으로 풀어 쓴다), attenuation → 감쇠(step 3이 자세히 다룬다), splice → 접속, fusion splice → 융착 접속, mechanical splice → 기계적 접속,
   splicing machine → 접속 장비(「융착 접속기」라고도 부를 수 있지만 권고의 말을 살렸다), electromagnetic immunity → 전자기 간섭을 받지 않는다
 
+- (phase 83 step 2, 2026-11-20) **본문에 쓴 모양**: 굴절률은 위 권고들이 정의하지 않으므로 일반 낱말의 한 줄 풀이(빛이 그 물질 속에서 얼마나 느려지는지, 굴절률이 다른 두 물질이 맞닿은 곳에서 빛의 방향이 꺾인다)로만 썼다.
+  「클래딩의 굴절률이 낮아 빛을 코어에 가둔다」는 한 문장으로는 쓰지 않았다 — 본문은 위 줄대로 「코어의 굴절률이 클래딩보다 높고(G.651.1 §5.5), 빛을 붙잡아 이끄는 쪽은 코어이며, 붙잡히지 못한 빛은 클래딩으로 빠져나가 약해진다(L.400 §7.4)」까지 쓴다.
+  이 step에서도 G Suppl. 42·G.650.1·G.651.1의 전문에서 total internal reflection·confine·guided 같은 말을 찾았지만 그런 문장은 없었다. 모드는 「빛이 지나는 길」로 풀되 비유라고 밝혔다.
+  「멀티 모드는 2 km를 넘지 않는 짧은 거리」는 위 「(phase 71) ITU-T G Suppl. 42」 항목의 (phase 83 step 0) 줄(§8.2.1 — 속도에 따라 100~2 000 m), 1000BASE-LX의 싱글 모드 5 km와 10GBASE-ER의 40 km는 「(phase 72) David Law, 「Past PHY naming」」 항목에서 왔다
+  - 쓰인 곳: (phase 83 step 2) `transmission-media.optical-fiber`(코어·클래딩·굴절률, 싱글 모드와 멀티 모드의 목록과 쓰는 거리, 예 `BLDG-A`·`BLDG-B` 3 km에서 1000BASE-LX를 고르는 까닭, 리피터 없는 40 km, 전자기 간섭, E47·E48 줄, 융착·기계적 접속의 목록), 문항 n356(30 km를 잇는 광섬유와 그 까닭)·n357(끊긴 광케이블을 맞대어 묶기만 해서는 잇지 못한다), 도식 `FiberCoreCladdingDiagram`
+
 쓰인 곳: (phase 83 step 2에서 쓰일 곳) `transmission-media.optical-fiber`(코어·클래딩·굴절률, 싱글 모드와 멀티 모드의 차이와 값, 손실, 접속과 장비, 전자기 간섭), (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(견주는 축 — 감쇠, 전자기 간섭),
 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E47·E48)
 
@@ -8560,9 +8567,31 @@ IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)�
   - 쓰지 않는 것: 차폐의 결합 감쇠·전달 임피던스 값, 568-A·568-B의 쌍 번호, 핀의 색 배치
   - 쓰인 곳: (phase 83 step 1) `transmission-media.twisted-pair`(UTP와 STP, 차폐의 목적, 핀 1·2/3·6/4·5/7·8의 쌍과 10BASE-T가 쓰는 쌍, 1000BASE-T는 네 쌍), 문항 n354(차폐가 있는 케이블을 고른다), 도식 `TwistedPairPinsDiagram`
 
+- (phase 83 step 2, 2026-11-20) **동축 케이블의 바깥 도체는 차폐다**: step 0이 위에서 찾지 못했다고 적은 「바깥 도체가 바깥 잡음을 막는다」는 아래 「(phase 83 step 2) ITU-T K.37 (01/2024)」 항목이 댄다 — 동축 케이블에서는 바깥 도체가 차폐 노릇을 한다(K.37 §10.2).
+  두 도체가 한 쌍이라는 것은 위 줄의 L.109 §6.2.5(같은 중심축의 안쪽·바깥 도체 한 쌍)와 G 시리즈 목록의 「육상 동축 케이블 쌍」(G.620~G.629)에서 왔다. 끊긴 동축을 커넥터로 다시 잇는다는 것은 본문·문항에 쓰지 않았다
+  - 쓰인 곳: (phase 83 step 2) `transmission-media.coaxial-cable`(네 겹의 차례, 두 도체가 한 쌍, 10BASE5 500 m·10BASE2 185 m, 새로 까는 망에 권하지 않음, BASE·BROAD와 10BROAD36의 반송파 주파수·주파수로 두 방향 가르기), 문항 n355, 도식 `CoaxLayersDiagram`
+
 쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
 (phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),
 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단)
+
+## (phase 83 step 2) ITU-T K.37 (01/2024) — Low and high frequency electromagnetic compatibility (EMC) mitigation techniques for telecommunication installations and systems – Basic EMC Recommendation
+https://www.itu.int/rec/T-REC-K.37-202401-I/en
+
+판: 2024-01-13 승인, In force(권고 페이지에서 확인). 무료 PDF를 IPv4로 내려받아 PyMuPDF로 글자를 뽑아 읽었다(2026-11-20 — itu.int가 브라우저 머리 없는 요청을 「Request Rejected」로 거절해 User-Agent·Accept 머리를 붙여 받았다).
+통신 설비가 전력선·무선 송신기·정전기 방전 같은 것에서 받는 방해와 간섭을 줄이는 방법을 모은 K 시리즈(간섭으로부터의 보호) 권고다.
+
+- 통신 설비의 간섭은 피해를 입는 회로(신호가 흐르는 회로)에 차동 모드의 방해 전압이 생겨 일어나고, 줄이는 방법의 목표는 그 방해를 회로에 흐르는 신호보다 충분히 작게 만드는 것이다 — §10.2
+- 방해가 차동 모드로 곧바로 결합하는 것은 보통 꼰 쌍 케이블이나 동축 케이블을 써서 막는다. 두 짜임 모두 차동 모드 회로로의 결합을 줄인다 — §10.2
+- 공통 모드에서 차동 모드로 넘어오는 결합은 쌍 케이블의 대칭(평형)과 차폐로 줄일 수 있다. 쌍 케이블에는 차폐를 더할 수 있고, 동축 케이블에서는 바깥 도체가 차폐 노릇을 한다 — §10.2
+- 차폐가 얼마나 좋은지는 전달 임피던스·전달 어드미턴스로 재고, 그 정의와 케이블 종류별 요구는 IEC 60096-0-1에 있다 — §10.2(값은 가져오지 않는다)
+- 그래서 본문은 「동축 케이블에서는 신호를 나르는 바깥 도체가 그대로 중심 도체를 둘러싼 차폐가 되어, 바깥에서 오는 전자기 잡음이 안쪽 신호에 섞여 드는 것이 줄어든다」와
+  「꼬는 짜임과 한 도체가 다른 도체를 둘러싸는 짜임 모두 잡음이 신호에 곧바로 섞여 드는 것을 줄인다」까지 쓴다. 차동 모드·공통 모드라는 말은 쓰지 않는다
+- 쓰지 않는 것: 차동 모드와 공통 모드의 구분, 전달 임피던스의 값, 접지·본딩망, 케이블 트레이, 커넥터에서의 차폐 접촉
+- **한국어 이름**: screen → 차폐(step 0·1이 쓴 이름), outer conductor → 바깥 도체(step 0의 이름), twisted pair → 트위스티드 페어(본문은 「꼰 쌍」을 「구리선 두 가닥을 서로 꼰 것」으로 쓴다)
+
+쓰인 곳: (phase 83 step 2) `transmission-media.coaxial-cable`(바깥 도체의 차폐 노릇, 동축 케이블과 트위스티드 페어의 짜임), 문항 n355, 도식 `CoaxLayersDiagram`의 「바깥 잡음 줄이기」.
+이 항목의 §10.2는 꼰 쌍의 짜임도 직접 결합을 줄인다고 적는다 — step 1이 쓴 `transmission-media.twisted-pair`는 「꼬는 까닭」을 쓰지 않았다(그 개념은 이 step에서 고치지 않았다)
 
 ## (phase 83 step 0) ITU-T 광 가입자망 권고 — G.983.1 (01/2005), G.984.1 (03/2008), G.987 (06/2012)
 https://www.itu.int/rec/T-REC-G.983.1-200501-I/en
