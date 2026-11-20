@@ -417,7 +417,8 @@
     },
     {
       "dir": "83-network-media-topology-cloud-raid",
-      "status": "pending"
+      "status": "completed",
+      "completed_at": "2026-11-21T05:55:27+0900"
     },
     {
       "dir": "100-azure-cloud-concepts",
