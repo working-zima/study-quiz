@@ -135,6 +135,37 @@ IIS 문서의 한국어판도 있지만(`updated_at` 2026-10-27 무렵, 기계 �
 **Hyper-V 문서의 한국어판은 virtual machine을 대부분 「가상 머신」으로 옮기고, 몇 문서(내보내기·가져오기, 세대 선택)만 「가상 컴퓨터」로 옮긴다** — 고른 이름과 까닭은 항목의 「한국어 이름」 줄에 적는다. **실제 한국어 Hyper-V 관리자 화면의 이름은 확인하지 못했다.**
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 장애 조치 클러스터와 클러스터 공유 볼륨, 동적 메모리·스마트 페이징, 중첩 가상화, 차폐된 가상 컴퓨터, 세대 1과 2의 차이 전체, 가상 네트워크 어댑터의 설정 전체, 실시간 마이그레이션의 인증(CredSSP·Kerberos 제한된 위임)과 성능 옵션,
 복제본의 인증서·확장 복제·추가 복구 지점·테스트 장애 조치의 차례, Dockerfile 문법, 컨테이너 런타임의 설치 차례, 오케스트레이터(Kubernetes)·컨테이너 네트워크 드라이버. 있다는 것과 「다루지 않는다」를 말하는 데 필요한 만큼만 적는다.
+「(phase 82 step 0)」이 붙은 항목은 phase 82 step 0에서 `wireless-lan` 주제의 앞 개념 여섯(무선 LAN, 무선 LAN의 전송 방식, 무선 채널, CSMA/CA, MIMO, IEEE 802.11 규격)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+이 주제는 강의 밖 주제라 사실의 근거는 표준 문서뿐이다(ADR-059). **IEEE 802.11 본문은 무료로 열리지 않아**(`standards.ieee.org`는 구매·구독, IEEE GET 프로그램은 `ieeexplore.ieee.org`에서 IEEE 계정으로 로그인해야 한다) 읽지 않았고, 다음 넷을 근거로 썼다 —
+`standards.ieee.org`의 표준 개요 페이지(제목·초록·상태·승인일), `ieee802.org/11`의 작업 그룹 페이지(작업 그룹 소개·작업반 보고·개정 연표·PAR 사본·1990~2000년 문서 보관소·1996년 튜토리얼), 802.11을 풀이한 IETF RFC(RFC 4118·5416·8325·9119·9956), 802 플레너리 튜토리얼(`ieee802.org/802_tutorials`).
+**작업 그룹 문서는 표준 본문이 아니다** — 1996년 튜토리얼은 승인 전 초안을 옮긴 것이고(슬라이드마다 「unapproved draft, subject to change」), 작업반 보고·회원 발표는 그때의 진행 기록이다. 항목마다 어떤 문서인지와 그 한계를 적는다.
+802.11 작업 그룹의 문서 서버(`mentor.ieee.org`)는 허용한 곳(`ieee802.org`·`standards.ieee.org`)이 아니라 쓰지 않았다. **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 프레임 형식·관리 프레임 전체, 변조 방식과 전송률 표 전체, 무선 보안(WEP·WPA), 전력 관리, 로밍 절차.
+「(phase 82 step 4)」가 붙은 줄과 항목은 phase 82 step 4에서 `wireless-lan` 주제의 뒤 개념 다섯(WPAN, Zigbee, 무선 메시 네트워크, 핸드오프, 인지 무선)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+근거는 step 0과 같은 IEEE 802 자료(표준 개요 페이지와 802.15·802.21·802.22 작업 그룹 페이지, 802 플레너리 튜토리얼)에 더해, ITU-T 권고(G.9959, Q.1001, Q.1706/Y.2801 — `itu.int`에서 무료 PDF를 받아 읽었다), IETF RFC(2501·8376),
+그리고 허용 목록의 「무선 업체 연합 기술」인 CSA(`csa-iot.org`)·Bluetooth SIG(`bluetooth.com`)의 기술 설명 페이지와 사양이다. IEEE 802.15·802.21·802.22·1900.1 본문도 무료로 열리지 않아 읽지 않았다(개요 페이지가 IEEE GET 프로그램으로 받으라고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이다).
+**CSA의 Zigbee 사양 PDF(R23.1·R22)는 Cloudflare가 자동 내려받기를 막아(HTTP 403·검사 페이지) 읽지 못했다** — Zigbee 항목은 CSA의 FAQ·소개 페이지와 `ieee802.org`에 올라온 2009년 튜토리얼로만 썼고, 사양에만 있을 사실(장치 역할의 정의 등)은 「찾지 못했다」로 남긴다.
+CSA·Bluetooth SIG 페이지에서는 기술을 설명하는 문장만 가져왔다 — 「유일한 완전한 IoT 해법」 같은 홍보 문구, 판매량·채택 회사, 보도 자료는 사실로 옮기지 않았다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — Bluetooth 프로파일·페어링, Zigbee의 응용 프로파일·보안, 802.11s의 보안·프레임 형식, 셀룰러(LTE·5G)의 절차와 LTE-M·NB-IoT의 세부, 802.22의 물리 계층.
+「(phase 82 step 8)」이 붙은 줄과 항목은 phase 82 step 8에서 `network-devices` 주제의 앞 개념 여섯(계층별 네트워크 장비, 리피터, 게이트웨이, 프록시 서버, 부하 분산, 부하 분산 방식)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-19).
+이 주제도 강의 밖 주제라 사실의 근거는 표준·공식 문서뿐이다(ADR-059). RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IEEE 802.3의 리피터 사실은 `ieee802.org`에 올라온 802.3 태스크 포스 발표 자료(표준 본문이 아니다)에서,
+부하 분산의 쓰임·상태 확인·분산 방식의 이름은 learn.microsoft.com의 IIS 응용 프로그램 요청 라우팅(ARR) 문서(영문판과 한국어판을 IPv4로 내려받아 페이지 머리의 `updated_at`·`ms.date`를 적었다)에서 가져왔다. learn.microsoft.com 가운데 Azure 서비스 문서(Application Gateway 등)는 검색에 걸려도 쓰지 않았다.
+**ARR 문서의 글은 부하 분산 알고리즘이 여섯 가지라는 데까지만 적고, 글로 나오는 이름은 「Weighted round robin」 하나다** — 그래서 분산 방식마다의 정의는 RFC 2391 §5.1과 RFC 7098 §3에서 가져왔고, 가중 라운드 로빈에서 가중치가 몫을 어떻게 나누는지(예: 3:1)는 허용한 출처에서 찾지 못했다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 세션 유지(클라이언트 선호도·쿠키)의 구현, SSL 오프로드, 전역 부하 분산, 장애 조치 클러스터, Windows Server 네트워크 부하 분산(NLB)의 설정, ARR의 캐시·URL 다시 쓰기, 프록시의 인증·로그 형식. L4·L7 스위치(RFC 3234 §2.18 포함)·PoE·PXE는 step 12가 본다.
+「(phase 82 step 12)」가 붙은 줄과 항목은 phase 82 step 12에서 `network-devices` 주제의 뒤 개념 넷(L4 스위치, L7 스위치, PoE, PXE)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. 「L4 스위치」·「L7 스위치」·「PoE 스위치」 같은 이름은 rfc-editor.org의 사이트 검색으로 RFC 전체의 본문에서 찾았다 — 그 검색이 본문까지 보는지는 RFC 2816 §8.7의 「Layer 3 switches」가 걸리는 것으로 먼저 확인했다.
+IEEE 802.3의 PoE 사실은 `standards.ieee.org`의 표준 개요 페이지(802.3af·802.3at·802.3bt·802.3-2022)와 `ieee802.org/3`의 태스크 포스 페이지(PAR·목표·요구 사항 문서·5대 기준·4쌍 PoE 관심 요청(CFI) 발표 자료)에서 가져왔다. **IEEE 802.3 본문은 열지 못했다**(개요 페이지가 IEEE GET 프로그램으로 받으라고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이다) — 태스크 포스 문서는 표준 본문이 아니므로 항목마다 어떤 문서인지 적는다.
+PXE·WDS·PnP·PE와 L7 쪽의 IIS ARR은 learn.microsoft.com의 문서(영문판과 한국어판을 IPv4로 내려받아 `updated_at`·`ms.date`를 적었다)에서 가져왔다. 같은 사이트의 Configuration Manager 문제 해결 문서와 Azure 문서(Application Gateway·Front Door)는 검색에 걸려도 쓰지 않았고, Intel의 PXE 사양과 업체의 L4·L7 스위치 제품 문서는 허용 목록 밖이라 열지 않았다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 부하 분산 장치의 제품별 기능·SSL 오프로드·직접 서버 반환 같은 전달 기법, PoE의 전력 등급표 전체·전압과 쌍 배치의 세부·LLDP 전력 협상, PXE 펌웨어 구현·UEFI 네트워크 부팅의 세부·DHCPv6 네트워크 부팅, WDS 설치 절차.
+「(phase 82 step 15)」가 붙은 줄과 항목은 phase 82 step 15에서 `network-security` 주제의 개념 여덟(방화벽, IDS와 IPS, WAF, NAC, VPN, 터널링, VPN 프로토콜, IPsec)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+NIST 문서는 `csrc.nist.gov`의 문서 페이지에서 판(발행일·대체 관계·Planning Note·철회 여부)을 확인하고, 같은 문서의 PDF를 `nvlpubs.nist.gov`에서 IPv4로 내려받아 PyMuPDF로 글자를 뽑아 절을 읽었다. NIST 용어집(`csrc.nist.gov/glossary`)은 정의마다 출처 문서를 밝히므로 그 출처를 함께 적는다.
+RFC는 rfc-editor.org의 텍스트판을 IPv4로 내려받아 절을 직접 읽고 상태는 `…/rfcNNNN.json`으로 확인했다. IEEE 802.1X는 `standards.ieee.org`의 표준 개요 페이지와 `1.ieee802.org`의 802.1X 작업 페이지에서 가져왔다 — **IEEE 802.1X 본문은 열지 못했다**(IEEE GET 프로그램은 `ieeexplore.ieee.org` 로그인이다).
+그래서 신청자·인증자·인증 서버라는 세 역할은 802.1X를 RADIUS와 함께 쓰는 법을 적은 RFC 3580(Informational)의 용어 정의에서 가져왔다. **OWASP와 보안 업체의 학습 페이지·제품 문서는 허용 목록 밖이라 열지 않았다**(NIST SP 800-228-upd1이 OWASP를 이름으로 드는 것은 적지만, OWASP의 문서를 근거로 쓰지 않는다).
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — IDS의 탐지 기법 세부(상태 기반 프로토콜 분석의 동작·프로파일 학습·튜닝)·센서 배치의 세부, IPsec의 SA·SPD·SAD 구조와 처리 차례·암호 알고리즘 목록·IKE 메시지 교환·NAT 통과,
+PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 전체·MACsec·RADIUS 속성, 방화벽 제품의 기능·DMZ 설계·방화벽 정책의 프로토콜별 권고, SSL VPN의 포털 설계·끝점 보안 점검의 세부, WireGuard·OpenVPN 같은 제품·구현.
+「(phase 82 보충)」이 붙은 줄과 항목은 phase 82가 끝난 뒤(2026-11-20) 메인 세션이 더했다. 802.11 작업 그룹 문서 서버(`mentor.ieee.org`)는 사용자 결정(2026-11-19)으로 허용 목록에 들었지만 자동 내려받기를 막아(HTTP 418),
+사용자가 브라우저로 받아 둔 파일 셋 — 802.11 문서 11-15/0132r17·11-09/0992r21과 CSA의 Zigbee 사양 R23.2 — 을 저장소 밖에서 글자만 뽑아 읽었다(Zigbee 사양도 step 4 때는 Cloudflare가 막아 못 읽었던 것이다).
+**두 802.11 문서는 작업반이 초안을 쓰기 전에 합의한 내용을 모은 사양 틀(specification framework)이지 표준 본문이 아니다** — 그래서 본문은 「작업반의 사양 틀은 ~로 정했다」로 쓰고, 최종 표준에서 바뀌었을 수 있는 세부(묶음 크기의 짝 전체, 신호 칸의 비트 수)는 가져오지 않았다.
+개정마다의 최대 데이터 전송률은 두 문서 어디에도 합한 값으로 적혀 있지 않아 쓰지 않았다.
 
 ---
 
@@ -168,6 +199,7 @@ https://www.itu.int/rec/T-REC-X.200-199407-I/en
 
 쓰인 곳: 면접 수정 이력 I1, I9, I10, `protocols-encapsulation.reference-model`, `protocols-encapsulation.osi-model`, `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E1·E3, (phase 72 step 5) `ethernet.fcs`(데이터 링크 계층의 프로토콜 가운데 오류를 고치는 것도 있다, §7.6.2.2)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 0(OSI 모델은 일곱 계층이고 아래에서부터 번호를 붙인다 — 물리(1)·데이터 링크(2)·네트워크(3)·전송(4) 계층, 그 위에 셋 더 있고 맨 위가 응용 계층. 계층마다 맡는 일은 `protocols-encapsulation.osi-model`과 뜻을 맞춰 한 줄씩 썼다), 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)의 계층 칸 셋
 
 ## IEEE 802.3 — Ethernet, 3.2.6 Length/Type field
 https://www.ieee802.org/3/frame_study/0411/3d0_1.pdf
@@ -472,6 +504,10 @@ https://www.rfc-editor.org/rfc/rfc3022
 쓰인 곳: 강의 수정 이력 L7, (phase 73) 아래 「RFC 7857·RFC 8512」 항목이 NAT44를 이 문서 §2.1의 기본 NAT로 가리킨다
 (phase 74에서 쓰일 곳) `ip-address-types.nat`(§1·§2 — 경계 라우터가 안쪽 주소를 바꾼다, §2.1 — 동적·고정 대응, §3.1 — 대응 표, §4.1 — IP 헤더의 주소를 바꾼다, §6.1 — 실제 주소가 바깥에 보이지 않는다), `ip-address-types.napt`(§1·§2.2·§3.1·§4.1 — 포트까지 바꿔 주소 하나를 함께 쓴다),
 `ip-address-types.private-address`(§1·§2.1 — 사설 주소로 바깥에 닿게 하는 것이 주소 변환이다), `exam-notes.md` E15
+- (phase 82 step 15) **이름**: NAT의 풀이는 Network Address Translator(이 문서와 아래 「(phase 74 step 5) RFC 2663」의 제목)이고, NIST SP 800-41 Rev. 1 부록 A는 Network Address Translation이라 적으며 NAT를 방화벽 기술이 아니라 라우팅 기술로 본다(§2.1·§2.4 — 아래 「(phase 82 step 15) NIST SP 800-41 Rev. 1」 항목).
+  기출 보기가 적은 「Network Access Translation」([기출 2025-02-23 #49] — `exam-notes.md` 「phase 82 step 15」 문단)이라는 풀이는 두 문서 어디에도 없다 — 본문·문항에 쓰지 않는다.
+  쓰일 곳: (phase 82 step 17) `network-security.nac`(「NAC와 NAT」 4절 — 이름은 비슷하지만 NAC는 들어오는 장치의 접속을 허락하는 것이고 NAT는 IP 헤더의 주소를 바꾸는 것이다 — `ip-address-types.nat`과 뜻을 맞춘다)
+  (phase 82 step 17) 쓰인 곳: `network-security.nac` 문단 7(NAT는 경계의 라우터가 나가는 패킷의 출발지 사설 주소를 공인 주소로 바꾼다 — §1·§2, `ip-address-types.nat`과 같은 뜻), 문항 n346 해설(응답의 목적지 주소를 다시 사설 주소로 바꾼다 — §2.1)
 
 ## RFC 1631 — The IP Network Address Translator (NAT) [폐기, RFC 3022로 대체 — 역사 기록으로만 쓴다]
 https://www.rfc-editor.org/rfc/rfc1631
@@ -496,6 +532,9 @@ https://www.rfc-editor.org/rfc/rfc1918
 - (phase 74 step 5) 사설 출발지·목적지 주소를 담은 패킷은 조직 사이 링크로 넘기지 않는 것이 좋고, 사설 주소를 쓰지 않는 망의 라우터, 특히 ISP의 라우터는 사설망의 라우팅 정보를 걸러 내도록 설정한다 — §3
 - (phase 74 step 5) 이점: 전역에서 하나뿐일 필요가 없는 곳에 전역 주소를 쓰지 않아 그 주소를 아낀다 — §4
 - (phase 74 step 5) 이 문서는 주소 변환(NAT)을 말하지 않는다. 사설 주소로 인터넷에 나가려면 주소를 바꿔야 한다는 근거는 RFC 3022 §1·§2.1이다(그 예가 안쪽에 이 문서의 10.0.0.0/8을 쓴다 — 위 RFC 3022 항목)
+- (phase 82 step 18, 2026-11-20 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 phase 74 줄과 같다) 사설 주소 공간을 서로 맞춘(겹치지 않게 나눈) 두 곳도 공용 네트워크 너머로 서로 통신할 수 있다. 그러려면 공용 네트워크와 만나는 경계에서 캡슐화를 써서, 사설 주소를 사설로 남겨 두어야 한다 — §5
+  (phase 82 step 18) 쓰인 곳: `network-security.vpn` 문단 0(사설 주소의 뜻, 인터넷의 라우터는 사설 주소로 가는 경로 정보를 걸러 내고 사설 주소가 적힌 패킷을 조직 밖으로 넘기지 않는다 — §3), 문단 6(본사·지사 주소는 사설 주소이고 겹치지 않게 골랐다 — §5),
+  `network-security.tunneling` 문단 2(두 사무실이 사설 주소를 겹치지 않게 맞추고 경계에서 캡슐화하면 사설 주소를 바꾸지 않고 통신한다 — §5), 문항 n347·n348·n349 해설
 
 쓰인 곳: 강의 수정 이력 L8
 (phase 74에서 쓰일 곳) `ip-address-types.private-address`(§3 — 세 블록과 끝 주소, 조직 안에서만 하나뿐, 바깥과 IP로 이어지지 못한다, 라우팅 정보를 걸러 낸다, §4 — 전역 주소를 아낀다), `ip-address-types.public-address`(§2 — ISP가 등록 기관에서 받은 블록을 고객에게 나눠 준다, §3 — 전역 주소는 등록 기관에서 받는다),
@@ -750,6 +789,10 @@ https://www.rfc-editor.org/rfc/rfc1122
 - (phase 74 step 11) 호스트의 경로 캐시·기본 게이트웨이 목록·정적 경로 표는 개념으로는 따로지만, 실제로는 하나의 「라우팅 테이블」 자료 구조로 합쳐 둘 수 있다 — §3.3.1.3 IMPLEMENTATION.
   곧 **호스트에도 라우팅 테이블이 있다**(Linux·Windows에서 그 표를 보는 명령은 아래 「(phase 74 step 11) Linux man-pages … Microsoft Learn …」 항목)
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Internet Standard, 1989-10, RFC 1349·4379·5884·6093·6298·6633·6864·8029·9293이 고쳤다) 위 §3.3.1·§3.3.1.2 줄(목적지가 이어진 네트워크에 없으면 그 네트워크의 게이트웨이로 보내고, 경로 정보가 없으면 **기본 게이트웨이** 가운데 하나를 고른다)의 「게이트웨이」는
+  이 문서가 쓰던 옛 말로 **라우터**를 가리킨다(아래 RFC 1812 §2.2.3 줄, 아래 RFC 1983 「gateway」) — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(IP 설정의 기본 게이트웨이는 다른 네트워크로 나가는 첫 라우터 — `routing.default-route`와 뜻을 맞춘다, 넓은 뜻의 게이트웨이와 같은 낱말의 두 쓰임)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 4 — 컴퓨터는 목적지가 같은 네트워크에 있으면 바로 보내고, 다른 네트워크에 있는데 따로 정해 둔 길이 없으면 기본 게이트웨이에게 보낸다, 문단 5의 예, 문단 6 「게이트웨이와 기본 게이트웨이」), 도식 `gateway-translate`의 「기본 게이트웨이」 캡션, 문항 n329(정답과 해설)
 쓰인 곳: 강의 수정 이력 L10, L25, 면접 수정 이력 I3, I9, I10, `network-basics.host`, `network-basics.network-equipment`, `network-basics.internet`, `network-basics.cast-types`,
 `protocols-encapsulation.protocol`, `protocols-encapsulation.reference-model`, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`, `protocols-encapsulation.packet-switching`, `exam-notes.md` E2,
 (phase 72에서 쓰일 곳) `ethernet.ethernet`(링크 계층 = 강의의 네트워크 액세스 계층, §1.1.3), `ethernet.frame`(링크 계층의 전송 단위가 프레임, §1.3.3),
@@ -980,6 +1023,10 @@ https://www.rfc-editor.org/rfc/rfc3986
 - (phase 77) 스킴(scheme)은 기본 포트를 정할 수 있다. 예로 `http` 스킴은 기본 포트를 80(그 스킴에 남겨 둔 TCP 포트 번호)으로 정한다. 포트 번호가 TCP·UDP 가운데 어느 것의 포트인지는 스킴이 정한다.
   포트가 비었거나 기본 포트와 같으면 주소를 만드는 쪽은 포트와 그 앞의 `:`를 빼는 것이 좋다 — §3.2.3
 - (phase 81 step 6, 2026-11-18 rfc-editor.org 원문 텍스트판을 IPv4로 받아 읽음) URL(Uniform Resource Locator)은 URI 가운데 자원을 가리키는 데 더해, 그 자원에 닿는 주된 방법(네트워크의 「위치」 같은 것)을 적어 자원을 찾아가게 하는 것을 이른다 — §1.1.3
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판과 json을 IPv4로 받아 읽음 — Internet Standard, 2005-01, 폐기 없음, RFC 7320·8820이 고침) **경로(path)**: URI는 스킴·authority·경로·쿼리·프래그먼트로 이루어진다 — §3.
+  경로는 보통 층 모양으로 짜인 데이터이고, 쿼리와 함께 그 스킴과 authority(호스트와 포트) 안에서 자원 하나를 가리킨다. authority가 있으면 경로는 비어 있거나 `/`로 시작하고, 첫 `?`나 `#`나 URI 끝에서 끝난다 — §3.3.
+  본문은 「서버 이름 뒤에 `/`로 시작해 붙는 부분」으로 줄여 쓴다(포트를 적은 URL은 포트 뒤에 붙는다 — 위 「(phase 77)」 줄)
+  쓰인 곳: `network-devices.l7-switch`(문단 1 — 경로의 뜻, 그 서버 안의 자원을 가리킨다, `/`로 나뉜 층 모양), 도식 `l7-switch-url`의 경로 노드, 문항 n338
 
 쓰인 곳: 강의 수정 이력 L16, (phase 73에서 쓰일 곳) `ip-protocol.ipv4-address`(점으로 구분한 십진 표기, §3.2.2)
 (phase 77에서 쓰일 곳) `ports.port-number`(§3.2·§3.2.3 — 주소 뒤에 `:포트`를 붙여 적는 꼴), `ports.well-known-ports`(§3.2.3 — 기본 포트는 스킴이 정하고, 다른 포트는 주소에 적는다)
@@ -1006,6 +1053,9 @@ https://www.rfc-editor.org/rfc/rfc9112
 - (phase 79 step 12, 2026-11-13 rfc-editor.org 원문 텍스트판을 IPv4로 다시 받아 읽음) 지속 연결을 지원하지 않는 서버는 1xx가 아닌 모든 응답에 `close` 연결 옵션을 보내야 한다 — §9.3.
   `close` 연결 옵션을 담은 응답을 보낸 서버는 그 응답 뒤에 연결 닫기를 시작해야 하고, 그 연결로 오는 요청을 더 처리하지 않는다 — §9.6. 클라이언트는 `close`를 받기 전까지 지속 연결에 요청을 더 보낼 수 있다 — §9.3.
   위 「(phase 79 step 9) Apache HTTP Server 2.4 문서 — 지시자 설명 …」 항목의 `KeepAlive`(지속 연결을 켤지 정한다)와 이으면, **`KeepAlive Off`로 지속 연결을 끈 서버는 응답마다 그 연결을 닫고, 웹 브라우저는 다음 요청을 보내려면 연결을 새로 맺는다**(두 문서를 이은 것)
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판과 json을 IPv4로 받아 읽음 — Internet Standard, 2022-06, RFC 9931이 고침) HTTP 구현은 연결을 관리한다 — 새 연결을 맺거나 있던 연결을 다시 쓰고, 연결로 받은 메시지를 처리하고, 연결을 닫는다 — §9.
+  HTTP 연결 하나는 아래 전송 계층의 연결 하나에 대응하고(§9.1), 요청과 응답은 한 연결 위에서 차례대로 오간다(§9.2). 곧 요청은 먼저 맺은 연결 위로 보낸다 — 아래 RFC 7098 §3의 「들어오는 TCP 연결과 그 위의 HTTP 요청」과 함께 본다
+  쓰인 곳: `network-devices.l7-switch`(문단 2 — 클라이언트는 TCP로 연결을 맺은 뒤 그 연결로 HTTP 요청을 보낸다, 그래서 URL을 읽으려면 연결을 받아야 한다), `network-devices.l4-switch`(문단 4 — 포트 번호 `80`은 HTTP에 정해 둔 번호 — §9의 기본 TCP 포트), 문항 n338 해설
 
 쓰인 곳: 강의 수정 이력 L17, L19, 면접 수정 이력 I15
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§9 — HTTP/1.1은 기본으로 TCP 위에서)
@@ -1097,9 +1147,27 @@ https://www.rfc-editor.org/rfc/rfc9110
   사용자 에이전트(웹 브라우저 같은 것)는 이 정보를 `:authority` 가상 헤더 필드로 보내는 경우가 아니면 요청에 Host 헤더 필드를 만들어 넣어야 한다(MUST). HTTP/2·HTTP/3에서는 Host 대신 요청의 제어 데이터에 든 `:authority`가 그 일을 맡기도 한다. 예로 `http://www.example.org/pub/WWW/`을 GET으로 요청하면 요청은 `GET /pub/WWW/ HTTP/1.1` 다음 줄에 `Host: www.example.org`로 시작한다 — §7.2
   (phase 81 step 5에서 쓰일 곳) `windows-server-roles.iis-site-bindings`(웹 브라우저가 주소의 이름을 Host 헤더에 담아 보내고, 서버가 그 이름으로 여러 이름의 사이트를 가른다, `Host: shop.example.com`의 꼴)
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Internet Standard, 2022-06, 폐기·개정 없음) **중개자와 캐시**(§3.7·§3.8):
+  - HTTP는 연결 여러 개를 사슬처럼 이어 요청을 처리하는 중개자(intermediary)를 쓸 수 있고, 흔한 꼴은 **프록시·게이트웨이·터널** 셋이다. 한 중개자가 요청마다 원 서버·프록시·게이트웨이·터널 가운데 어느 것으로 동작할지 바꾸기도 한다.
+    뒤의 요청은 부하 분산을 위한 동적 설정에 따라 다른 경로의 연결로 갈 수도 있다 — §3.7
+  - **프록시**: **클라이언트가 고른**(대개 클라이언트 쪽 설정 규칙으로) 메시지 전달자로, 어떤 종류의 주소에 대한 요청을 받아 HTTP 인터페이스를 거쳐 처리하려 한다. 조직의 HTTP 요청을 한 중개자로 모아 보안 서비스·주석 서비스·공유 캐시를 하려고 흔히 쓴다 — §3.7
+  - **게이트웨이(역방향 프록시라고도 한다)**: 바깥쪽 연결에 대해서는 **원 서버처럼 동작**하지만, 받은 요청을 바꿔 안쪽의 다른 서버(들)로 넘기는 중개자다. 낡았거나 믿을 수 없는 정보 서비스를 감싸고, 「가속기」 캐시로 서버 성능을 높이고, **HTTP 서비스를 여러 기계로 나누거나 부하를 분산하는 데** 흔히 쓴다.
+    안쪽 서버와는 원하는 어떤 프로토콜로도 통신할 수 있다 — §3.7
+  - 터널은 메시지를 바꾸지 않고 두 연결 사이를 그대로 중계한다 — §3.7(이 주제에서는 쓰지 않는다 — 터널은 `network-security` 주제의 몫)
+  - 클라이언트가 고르지 않은 **가로채기 프록시**(interception proxy — 흔히 「투명 프록시」라고도 부른다)는 HTTP 프록시와 다르다. 나가는 TCP 80 패킷 같은 것을 걸러 내거나 다른 곳으로 돌린다 — §3.7
+  - **캐시**: 앞서 받은 응답 메시지를 저장해 둔 곳과, 그 저장·꺼냄·지움을 맡는 부분이다. 같은 요청이 다시 올 때 **응답 시간과 네트워크 대역폭 사용을 줄이려고** 캐시할 수 있는 응답을 저장한다. 클라이언트도 서버도 캐시를 둘 수 있다(터널로 동작하는 동안은 쓰지 못한다).
+    사슬의 한 참여자가 그 요청에 맞는 저장된 응답을 갖고 있으면 요청은 원 서버까지 가지 않고 그 자리에서 사슬이 짧아진다 — §3.8
+  - 이 문서의 「게이트웨이」는 HTTP의 역방향 프록시를 뜻한다 — 아래 RFC 1983·4949의 넓은 뜻의 게이트웨이(구현이 다른 네트워크 사이)와 쓰임이 다르다. 본문은 두 뜻을 섞지 않고, 역방향 프록시를 HTTP 문서가 게이트웨이라고도 부른다는 것을 한 줄로만 밝힌다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(프록시는 클라이언트가 고른 중계자, 역방향 프록시는 원 서버처럼 보이며 안쪽 서버로 넘기고 HTTP 문서는 게이트웨이라고도 부른다, 캐시의 뜻과 얻는 것), (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(역방향 프록시가 HTTP 서비스를 여러 기계로 나누는 데 쓰인다 — 한 줄),
+  기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 요청과 응답이 연결 두 개를 거친다, 문단 2 — HTTP 표준 문서는 정방향 프록시를 그냥 프록시라 부르고 클라이언트 쪽이 골라 쓰며 보통 클라이언트 설정에 적는다, 문단 5 — 역방향 프록시는 원래 서버처럼 보이고 응답을 캐시해 서버의 일을 덜며 여러 서버에 요청을 나누는 데 쓰인다, 문단 6 — HTTP 문서는 역방향 프록시를 게이트웨이라고도 부르고 넓은 뜻의 게이트웨이와 쓰임이 다르다), 도식 `proxy-direction`의 「역방향 프록시」 캡션, 문항 n331 해설
+- (phase 82 step 12) 쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(§3.7 — 게이트웨이(역방향 프록시)는 바깥 연결에 대해 원 서버처럼 동작하므로 클라이언트가 맺은 연결은 그 장치에서 끝나고, 장치는 받은 요청을 안쪽 서버로 넘기며, HTTP 서비스의 부하 분산에 흔히 쓰인다 — 위 「(phase 82 step 8)」 줄),
+  기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
+- (phase 82 step 13) 쓰인 곳: `network-devices.l7-switch`(문단 2 — 클라이언트를 대신해 요청과 응답을 넘기는 L7 스위치는 역방향 프록시로 동작한다 — §3.7의 게이트웨이), `network-devices.l4-switch`(문단 4 — 포트 번호 `80`은 HTTP에 정해 둔 번호 — §4.2.1)
 쓰인 곳: 강의 수정 이력 L20, L21, L22, 면접 수정 이력 I6, I7, I12, I14, I15, `protocols-encapsulation.tcp-ip-model`, `protocols-encapsulation.pdu-names`,
 `protocols-encapsulation.encapsulation`, `protocols-encapsulation.decapsulation`
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — HTTPS는 TLS로 보호하고 TCP 443, 둘 다 「기본」이고 주소에 다른 포트를 적을 수 있다), `exam-notes.md` E28
+(phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 3(TCP `443`은 웹 서버가 HTTPS 요청을 받는 포트 — §4.2.2), `network-security.ids-ips` 문단 5(TCP `80`은 암호화하지 않은 웹 요청 HTTP를 받는 포트 — §4.2.1)
 (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.https`(§4.2.1 — HTTP는 TCP 80, §4.2.2 — `https`는 TLS로 보호하고 TCP 443이 기본이며 「보호」는 서버 인증·기밀성·무결성, §4.3.3 — TCP 연결 → TLS → HTTP 요청의 차례, §4.3.4 — 인증서가 주소의 이름과 맞는지 확인),
 `app-protocols-mgmt-security.tls`(§4.3.4 — 인증서를 어떻게 확인할지는 TLS 위의 응용 프로토콜이 정한다는 RFC 9846 §1의 예), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭)
 
@@ -1109,6 +1177,10 @@ https://www.rfc-editor.org/rfc/rfc9111
 - 캐시는 바로 쓸 수 없는(예: 신선하지 않은) 저장 응답을 조건부 요청으로 원 서버에 검증한다. 저장한 응답의 Last-Modified는 If-Modified-Since로, ETag의 엔터티 태그는 If-None-Match로 싣는다 — §4.3, §4.3.1
 - 304 응답은 저장해 둔 응답을 갱신해 다시 써도 된다는 뜻이다. 캐시는 저장한 응답의 헤더 필드를 304에 실려 온 필드로 갱신한다 — §4.3.3, §4.3.4
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Internet Standard, 2022-06, RFC 7234를 폐기, 폐기·개정 없음) HTTP 캐시는 응답 메시지를 저장해 두는 곳과 그 저장·꺼냄·지움을 맡는 부분이고, 같은 요청이 다시 올 때 응답 시간과 네트워크 대역폭 사용을 줄이려고 저장한다.
+  여러 사용자가 다시 쓰는 **공유 캐시**는 대개 중개자의 일부로 두고, 한 사용자만 쓰는 **개인 캐시**는 흔히 웹 브라우저 같은 사용자 에이전트 안에 둔다. 저장해 둔 응답을 지금 요청에 다시 쓰면 지연과 네트워크 부담을 함께 줄인다 — §1
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(캐시 한 줄 — 프록시 안에 두는 공유 캐시)
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 3 — 캐시의 뜻, 여러 사용자가 함께 쓰는 공유 캐시, 응답이 빨라지고 오가는 데이터가 준다), 문항 n331 해설
 쓰인 곳: 면접 수정 이력 I14
 
 ## RFC 6585 — Additional HTTP Status Codes
@@ -1232,6 +1304,20 @@ FYI 18, 정보성(Informational) 문서다. 용어의 뜻을 확인하는 데만
   「Routing Information Protocol (RIP)」, 「Open Shortest-Path First (OSPF)」, 「Border Gateway Protocol (BGP)」(이 용어집이 가리키는 RFC 1058·1583·1771은 지금 폐기되거나 역사적이 된 판이다 — 현행은 아래 RFC 2453·2328·4271 항목)
 - (phase 74 step 11) AS는 하나의 관리 주체 아래에서 공통의 IGP로 패킷을 라우팅하는 라우터들의 모임이다 — 「Autonomous System (AS)」(옛 정의 — 지금의 정의는 아래 RFC 1930 항목)
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — FYI 18, Informational, 1996-08, RFC 1392를 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다) **장비 용어**:
+  - 리피터는 한 케이블의 전기 신호를 다른 케이블로 이어 퍼뜨리는 장치다 — 「repeater」. 이 항목은 계층·주소를 말하지 않는다(계층의 근거는 아래 「(phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록」 항목의 「(phase 82 step 8)」 줄)
+  - 브리지는 **데이터 링크 계층의 정보**를 보고 네트워크 구간(segment) 사이에 트래픽을 넘기는 장치이고, 그 구간들은 네트워크 계층 주소를 함께 쓴다 — 곧 같은 네트워크 안의 구간을 잇는다 — 「bridge」
+  - 라우터는 네트워크와 네트워크 사이에서 트래픽을 넘기고, 넘길 곳을 **네트워크 계층 정보와 라우팅 테이블**로 정한다 — 「router」(위 「(phase 74 step 11)」 줄과 같다)
+  - **게이트웨이**: 처음에는 라우터를 가리키던 말이고, 그 뜻으로는 지금 「라우터」를 쓴다. 지금의 뜻은 **하는 일은 비슷하지만 구현이 다른 네트워크 사이에서 데이터를 넘겨주는 통신 장치나 프로그램**이다. 이 정의로 보면 라우터는 3계층(네트워크 계층) 게이트웨이이고 메일 게이트웨이는 7계층(응용 계층) 게이트웨이다.
+    같은 항목은 게이트웨이를 프로토콜 변환기와 헷갈리지 말라고 적는다 — 「gateway」
+  - 프로토콜 변환기(protocol converter)는 하는 일이 비슷한 서로 다른 프로토콜 사이를 바꿔 주는 장치나 프로그램이다(예: TCP와 OSI의 TP4) — 「protocol converter」
+  - **메일 게이트웨이**는 서로 다른 전자 우편 시스템 둘 이상을 이어 그 사이로 메시지를 옮기는 기계다. 옮기면서 형식을 바꾸고(그 바꿈이 꽤 복잡할 수 있다), 대개 한쪽에서 메시지를 다 받은 뒤 바꿔서 다른 쪽으로 보내는 축적 전달 방식을 쓴다 — 「mail gateway」
+  - 「hub」 항목은 ARCnet과 메시지 처리 서비스의 쓰임만 적고 이더넷 허브를 정의하지 않는다(이더넷 허브의 근거는 phase 72 항목들)
+  - **두 용어집의 차이**: 아래 RFC 4949는 프로토콜이 다른 두 네트워크 사이에서 게이트웨이가 한 프로토콜을 다른 프로토콜로 바꿀 수 있다고 적고, 이 문서는 게이트웨이를 프로토콜 변환기와 따로 둔다. 본문은 「게이트웨이는 구현이 다른 두 네트워크 사이에서 통신이 되게 하고, 그 방법의 하나가 프로토콜을 바꾸는 것」으로 쓴다(RFC 4949 쪽 — 더 새 문서다)
+  - 쓰지 않는 것: 이 용어집이 1996년 기준으로 적은 수치(LAN의 「100Mb/s까지」 등)
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(브리지는 데이터 링크 계층 정보로 같은 네트워크의 구간 사이를, 라우터는 네트워크 계층 정보로 네트워크 사이를), `network-devices.repeater`(케이블 사이로 신호를 이어 보낸다),
+  `network-devices.gateway`(게이트웨이의 지금 뜻과 옛 쓰임, 라우터는 3계층 게이트웨이·메일 게이트웨이는 7계층 게이트웨이, 메일 게이트웨이의 예 — 서로 다른 우편 시스템 사이에서 형식을 바꿔 옮긴다), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 2 — 메일 게이트웨이가 서로 다른 전자 우편 시스템 사이에서 메시지를 다 받은 뒤 형식을 바꿔 보내고 이 방식이 축적 전달이며 바꾸는 일이 꽤 복잡할 수 있다, 문단 4 — 게이트웨이는 처음에 라우터를 가리키던 이름, 문단 7 「게이트웨이와 라우터」 — 라우터는 3계층 게이트웨이·메일 게이트웨이는 7계층 게이트웨이), 도식 `gateway-translate`(「A 형식의 메시지」·「메일 게이트웨이」·「B 형식의 메시지」와 「형식 바꾸기」 캡션), 문항 n329·n330 해설
 쓰인 곳: `network-basics.computer-network`, `network-basics.host`, `network-basics.internet`, `network-basics.cast-types`, `network-basics.lan-wan`, `network-basics.traffic`, `network-basics.packet-loss`,
 `network-basics.communication-link`(phase 71 — 트위스티드 페어 케이블의 구리선), `protocols-encapsulation.tcp-ip-model`(phase 71 — IP 주소),
 `protocols-encapsulation.pdu-names`(계층을 가리지 않고 쓰는 넓은 뜻의 패킷), `protocols-encapsulation.packet-switching`(가상 회선·데이터그램·메시지 교환, phase 71에 노드·서버 풀이),
@@ -1289,6 +1375,8 @@ https://www.rfc-editor.org/rfc/rfc1123
   **스텁 리졸버**는 같은 네트워크나 가까운 네트워크의 재귀 네임 서버에 맡기는 리졸버로, PC 같은 작은 호스트에 알맞고 여러 컴퓨터가 재귀 서버의 캐시를 함께 써서 바깥으로 나가는 질의를 줄인다. 스텁 리졸버는 여분의 재귀 네임 서버들에 요청을 보낼 수 있어야 하고, 재귀 네임 서버는 받아 줄 요청의 출처를 제한할 수 있다 — §6.1.3.1
 - (phase 79 step 0) DNS 자체는 이름 문법을 넓게 정한다 — 레이블마다 8비트 옥텟 63개까지, 점으로 나누고 전체 255옥텟까지. DNS를 쓰는 응용마다 이름 문법을 더 좁힐 수 있다 — §6.1.3.5 DISCUSSION
 - (phase 79 step 0) **로컬 호스트 테이블**: 호스트는 로컬 호스트 테이블을 DNS의 예비나 보충으로 쓸 수 있다. 그러면 DNS와 호스트 테이블 가운데 무엇을 앞세울지가 문제인데, **가장 유연한 방법은 그것을 설정으로 정하게 하는 것**이다 — §6.1.3.8 DISCUSSION
+- (phase 82 step 12) 쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(§4.2.1 — TFTP의 가장 중요한 쓰임은 LAN에서 호스트를 부팅하는 일이고, 작고 단순해 EPROM에 넣기 쉽다 — 위 「(phase 78 step 0)」 줄)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 2 — TFTP는 작고 단순해 읽기 전용 메모리에 넣기 쉽고, 좁은 지역의 네트워크에서 컴퓨터를 부팅할 때 가장 많이 쓰인다 — §4.2.1. 「가장 많이 쓰이는 곳」은 `app-protocols-mail-file.tftp`가 쓴 말을 따랐다)
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 78 step 0에서 쓰일 곳) `app-protocols-mail-file.tftp`(§4.2.1 — UDP 위에서 스스로 믿을 수 있게 블록 하나씩, 지연이 큰 경로에서는 성능이 좋지 않다, LAN에서 부팅하는 데 쓴다, §4.2.3.1 — 끝까지 가면 파일은 바르게 옮겨진다),
@@ -1317,6 +1405,8 @@ https://www.rfc-editor.org/rfc/rfc1350
   마지막 데이터 패킷의 확인 응답을 끝내 받지 못한 채 보내는 쪽이 재전송을 그만두면, 전송이 성공했는지 실패했는지 알 수 없는 채로 연결이 닫힌다 — §6.
   **이 문서는 잃은 블록을 빼놓은 채 전송을 마친다고 하지 않는다** — 다시 보내 채우거나, 전송 자체가 끝나 버린다
 - (phase 78 step 0) 이 문서는 TFTP가 어디에 쓰이는지 말하지 않는다 — 쓰임(LAN에서 호스트를 부팅하는 일)은 위 RFC 1123 §4.2.1
+- (phase 82 step 12) 네트워크 부팅의 차례에서 TFTP가 맡는 자리 — 주소와 부팅 파일 이름을 먼저 받고(BOOTP·DHCP) 그 파일을 TFTP로 받는다 — 는 이 문서가 아니라 RFC 951 §2와 RFC 2131 §1.2·§2가 적는다(아래 「(phase 73 step 1) RFC 951 — …, RFC 2131 — …」 항목의 「(phase 82 step 12)」 줄).
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(부팅 파일을 TFTP로 받는다 — `app-protocols-mail-file.tftp`와 뜻을 맞춘다)
 
 쓰인 곳: `protocols-encapsulation.tcp-ip-model`
 (phase 77 step 3에서 쓰일 곳) `tcp-udp.transport-choice`(§1 — UDP 위의 파일 전송, §2 — 블록마다 확인 응답, 시간 초과 뒤 재전송: UDP 위에서 응용이 신뢰성을 더하는 예), 기출 대조(`exam-notes.md` 「phase 77 step 3」 문단 — TFTP는 TCP를 쓰지 않는다)
@@ -1332,6 +1422,55 @@ https://www.rfc-editor.org/rfc/rfc4949
 - 프로토콜은 시스템 사이의 연관(예: 통신)을 구현·제어하는 규칙(형식과 절차)의 묶음이다. 또는 둘 이상의 개체가 함께 목표를 이루려고 밟는 순서 있는 단계들이다 — §4 「protocol」
 - 암호화는 데이터(평문)를 원래 뜻을 감춘 다른 형태(암호문)로 바꿔, 원래 형태로 쓰이지 못하게 하는 변환이다. 되돌리는 변환이 복호화다 — §4 「encryption」
 
+- (phase 82 step 8, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인 — Informational, 2007-08, RFC 2828을 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다) **게이트웨이·브리지·라우터·프록시**:
+  - **게이트웨이**: 하는 일은 비슷하지만 구현이 다른 컴퓨터 네트워크 둘(이상)에 붙어, 그 네트워크 사이에 한쪽 방향이나 양쪽 방향의 통신이 되게 하는 중간 시스템(인터페이스·중계)이다. 두 네트워크는 프로토콜이나 보안 방식 같은 여러 면에서 다를 수 있고,
+    호스트에 서비스를 주는 프로토콜이 다르면 게이트웨이가 **한 프로토콜을 다른 프로토콜로 바꾸거나** 다른 방법으로 서로 동작하게 돕는다. **이론으로는 OSI 참조 모델의 어느 계층에서도 게이트웨이를 생각할 수 있지만, 실제로는 대개 2계층(브리지)·3계층(라우터)·7계층(프록시 서버)에서 동작한다** — §4 「gateway」와 그 Tutorial
+  - **브리지**: 두 네트워크(대개 LAN 둘) 사이에서 OSI 2계층으로 흐르는 트래픽의 게이트웨이다 — §4 「bridge」
+  - **라우터**: 자기에게 온 것이 아닌 IP 패킷을 넘겨주는 네트워크 컴퓨터다(1a). 인터넷 프로토콜 묶음의 인터넷 계층에서 동작해 서브네트워크 둘 이상을 잇는 게이트웨이이고(1b), OSI로는 3계층에서 두 네트워크 사이의 게이트웨이로 데이터 패킷을 중계하고 길을 정하는 컴퓨터다(1c) — §4 「router」
+  - **프록시**: 사용자나 클라이언트를 대신해 일하는 컴퓨터 프로세스다(1). 또는 — 흔히 방화벽이나 그 일부로 쓰여 — 클라이언트와 서버 사이에서 응용의 주고받음이나 프로토콜을 중계하는데, **클라이언트에게는 서버처럼, 서버에게는 클라이언트처럼 보이는** 프로세스다(2) — §4 「proxy」
+  - 프록시의 흐름(같은 항목 Tutorial): 보호된 안쪽의 클라이언트가 바깥 서버에 바로 잇지 않고 프록시 서버에 잇고, 프록시 서버가 바깥 서버에 잇는다 — 안쪽에서 요청을 기다려 받아 바깥 서버로 넘기고, 응답을 받아 클라이언트에게 돌려준다.
+    클라이언트가 프록시를 의식하지 않을 수도 있고(투명), 먼저 프록시에 이어야 할 수도 있다. 프록시는 **캐시, 높은 수준의 기록(로그), 접근 통제**를 할 수 있고, 7계층의 프록시는 3계층의 필터링 라우터보다 세밀한 보안 서비스를 줄 수 있다(예: FTP 프록시가 보호된 네트워크에서 밖으로 보내는 전송만 허락한다) — §4 「proxy」 Tutorial
+  - 「repeater」·「hub」·「switch」·「proxy server」·「load balancer」는 이 용어집의 항목이 아니다(전문 검색). 「proxy server」는 게이트웨이 항목의 7계층 예로만 나온다
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(게이트웨이가 계층에 따라 브리지·라우터·프록시 서버로 나타난다, 라우터는 IP 패킷을 넘기는 3계층 장치), `network-devices.gateway`(정의, 프로토콜을 바꾸거나 서로 동작하게 돕는다, 이론으로는 어느 계층에서도·실제로는 2·3·7계층),
+  `network-devices.proxy-server`(프록시의 두 정의, 클라이언트에게는 서버·서버에게는 클라이언트처럼 보인다, 안쪽 클라이언트 → 프록시 → 바깥 서버의 흐름, 캐시·기록·접근 통제), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 0 — 하는 일은 비슷하지만 만든 방식이 다른 네트워크 사이에서 통신이 오가게 하는 중간 장치, 두 네트워크는 프로토콜이나 보안 방식이 다를 수 있다, 문단 1 — 프로토콜을 바꿔 넘기거나 다른 방법으로 함께 동작하게 돕는다, 문단 3 — 이론으로는 어느 계층에서도·실제로는 브리지·라우터·프록시 서버의 세 계층), `network-devices.proxy-server`(문단 0 — 클라이언트를 대신해 일하는 중계자, 클라이언트는 프록시를 서버로·서버는 클라이언트로 여긴다, 문단 3 — 기록을 남기거나 정해 둔 요청을 막는다), 문항 n329·n330·n331 해설
+- (phase 82 step 15, 2026-11-20 같은 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 step 8 줄과 같다) **방화벽·침입 탐지·터널·VPN·IPsec·PPTP·L2TP·PPP·EAP·RADIUS**:
+  - **방화벽**: 연결된 네트워크 가운데 한쪽(「안쪽」)으로 드나드는 트래픽을 제한해, 그 네트워크의 자원을 다른 쪽(「바깥」)의 위협에서 지키는 네트워크 사이의 게이트웨이다(1). NIST SP 800-41을 따른 둘째 뜻은 보안 수준이 서로 다른 네트워크 사이에서 트래픽의 흐름을 통제하는 장치나 시스템이다(2).
+    Tutorial: 대개 작은 보안 네트워크(회사 LAN이나 호스트 한 대)를 큰 네트워크(인터넷)에서 지키고, 두 네트워크가 만나는 자리에 놓여 **정책 규칙으로 드나드는 트래픽을 다룬다**. 컴퓨터 한 대가 아니라 필터링 라우터 둘과 프록시 서버들로 이루어질 수도 있다.
+    어려운 것은 어떤 패킷을 막을지 기준을 정하는 일이다 — 허락받지 않은 트래픽은 막되 허락된 트래픽은 들이고 내보내야 하기 때문이다 — §4 「firewall」
+  - **필터링 라우터·패킷 필터**: 보안 정책에 따라 패킷을 골라 넘기지 않는 라우터다. 넘기기 전에 넘길지부터 정하고, 그 정책은 라우터에 넣은 규칙(패킷 필터)이 구현한다 — 규칙은 주로 패킷 제어 칸의 값(특히 출발지·목적지 IP 주소와 TCP 포트 번호)을 본다. 혼자서 단순한 방화벽으로 쓰이거나 더 복잡한 방화벽의 한 부분이 된다 — §4 「filtering router」(「packet filter」 항목은 여기를 가리킨다)
+  - **침입**: 허락 없이 시스템이나 그 자원에 접근하거나 접근하려 하는 보안 사건이다 — §4 「intrusion」(1). **침입 탐지**: 허락 없이 자원에 접근하려는 시도를 알아차리려고 시스템의 사건을 감지하고 분석하는 일이다 — §4 「intrusion detection」.
+    **IDS**: 네트워크에서 일어나는 사건을 지켜보고 보안 문제의 징후를 분석하는 일을 자동으로 하는, 소프트웨어나 하드웨어로 된 프로세스·하위 시스템이다. 호스트 기반(지키려는 호스트에서 직접 돈다)과 네트워크 기반(센서를 네트워크 구성 요소에 둔다)이 있다 — §4 「intrusion detection system (IDS)」.
+    탐지 방법의 두 이름 — **이상 탐지**(anomaly detection — 시스템 개체·자원의 평소 행동과 다른 활동을 찾는다)와 **오용 탐지**(misuse detection — 보안 사건의 징후로 여기는 사건·사건의 차례·성질을 적은 규칙에 기댄다) — §4 「anomaly detection」·「misuse detection」. 「intrusion prevention」 항목은 이 용어집에 없다
+  - **터널**: 한 프로토콜의 데이터 패킷을, 보통이면 그 위나 같은 계층에서 실려 다닐 둘째 프로토콜 안에 담아(캡슐화) 만든 통신 채널이다(1). Tutorial: 거의 어느 두 계층 사이에서도 가능하지만, 흔히 터널은 2계층 프로토콜을 전송 계층(TCP)·인터넷 계층(IP)·다른 2계층 프로토콜에 담아 만든 **논리적 지점 간 링크**이고, 그 사이에 L2TP 같은 터널링 프로토콜이 끼기도 한다.
+    터널링은 두 컴퓨터가 쓰는 프로토콜을 둘을 잇는 네트워크가 지원하지 않을 때 데이터를 옮기는 데 쓰이고, 한 네트워크가 둘째 네트워크를 자기 노드 사이의 지점 간 링크 묶음처럼 쓰게 한다 — §4 「tunnel」
+  - **VPN**: 비교적 공용인 실제 네트워크(예: 인터넷)의 자원으로 지은, 쓰는 사람이 제한된 논리적(가상) 컴퓨터 네트워크이고, **흔히 (호스트나 게이트웨이에서) 암호화를 쓰고, 흔히 가상 네트워크의 링크를 실제 네트워크 너머로 터널링해** 만든다 — §4 「virtual private network (VPN)」.
+    Tutorial: 밑의 실제 네트워크의 자원을 다른 사용자와 나눠 쓰므로 전용 실제 네트워크보다 짓고 운영하는 비용이 대개 적다. 예: 여러 곳에 LAN을 두고 각 LAN을 방화벽으로 인터넷에 이은 회사가, 방화벽과 방화벽 사이를 인터넷 너머로 암호화한 터널로 이어 VPN을 만든다 — 같은 항목
+  - **IPsec**: IP 보안 구조(RFC 4301)와 거기 딸린 프로토콜 묶음(주로 AH·ESP·IKE)을 함께 부르는 이름이다(1b). 표기는 「IPsec」 — 「IP」는 대문자, 「sec」은 소문자로 쓴다. Tutorial: 접근 통제, 연결 없는 무결성, 출발지 인증, 재전송 감지, 기밀성, 제한된 트래픽 흐름 기밀성을 준다.
+    보안 프로토콜(AH·ESP), 보안 연관(SA), 키 관리(IKE), 인증·암호화 알고리즘을 정한다 — §4 「IP Security Protocol (IPsec)」. 같은 Tutorial의 「IPv4에서는 선택, IPv6에서는 필수」라는 줄은 2007년 글이고 지금 판을 확인하지 않았으므로 쓰지 않는다
+  - **AH**: IP 데이터그램에 연결 없는 무결성과 출발지 인증을 주고, 선택으로 재전송을 막는 프로토콜(RFC 4302)이다. 지나가며 바뀌는 IP 헤더 칸은 끝에서 끝까지 지키지 못하므로 IP 헤더 보호는 일부다. ESP는 AH와 거의 같은 서비스를 주면서 **기밀성까지** 줄 수 있고,
+    두 인증 서비스가 다른 점은 덮는 범위다 — ESP는 AH로 감싸지 않는 한 IP 헤더 칸을 지키지 않는다 — §4 「Authentication Header (AH)」
+  - **ESP**: IP 데이터그램에 기밀성과 그 밖의 보안 서비스(출발지 인증·무결성·재전송 방지 등)를 주는 프로토콜(RFC 4303)이다. ESP 헤더는 IP 헤더 안에 담기고, 위 계층 프로토콜의 헤더를 감싸거나(전송 모드) IP 헤더를 감싼다(터널 모드) — §4 「Encapsulating Security Payload (ESP)」
+  - **터널 모드·전송 모드**: IPsec 프로토콜(AH·ESP)을 적용하는 두 방법이다. 터널 모드는 IP 패킷을 감싸 보호하고, 전송 모드는 IP 바로 위에 실리는 전송 계층 프로토콜(TCP·UDP)의 패킷을 감싸 보호한다. 전송 모드의 보안 연관은 늘 두 호스트 사이이고, **어느 한쪽이 보안 게이트웨이면 터널 모드여야 한다** — §4 「tunnel mode」·「transport mode」.
+    **보안 게이트웨이**: 신뢰하는 쪽의 호스트와 신뢰하지 않는 쪽을 가르는 게이트웨이이고(1), IPsec 문맥에서는 IPsec 프로토콜을 구현한 중간 시스템이다(2) — §4 「security gateway」
+  - **IKE**: AH·ESP의 보안 연관에 쓸, 인증을 거친 키 재료를 마련하는 IPsec의 키 수립 프로토콜이다 — §4 「Internet Key Exchange (IKE)」(RFC 4306을 가리키는 2007년 글 — 지금 판은 아래 「(phase 82 step 15) RFC 4301 … RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)」 항목)
+  - **PPTP**: 전화 접속 사용자가 PPP를 IP 위로 터널링해, 전화 접속 링크를 네트워크 너머로 가상으로 늘리게 하는 클라이언트-서버 프로토콜이다(RFC 2637, 처음에 Ascend와 Microsoft가 만들었다). **PPTP는 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Point-to-Point Tunneling Protocol (PPTP)」
+  - **L2TP**: PPTP와 L2F를 합친 클라이언트-서버 프로토콜로, PPP를 IP 네트워크나 프레임 릴레이 같은 교환망 위로 터널링한다. **L2TP도 보안 서비스를 스스로 정하지 않고 위아래 프로토콜에 기댄다** — §4 「Layer 2 Tunneling Protocol (L2TP)」
+  - **PPP**: 두 상대 사이의 2계층 링크로 3계층 프로토콜 패킷을 캡슐화해 양방향으로 동시에 나르고, 같은 링크에 여러 3계층 프로토콜을 섞어 나르는 인터넷 표준 프로토콜(RFC 1661)이다. 3계층 데이터를 주고받기 전에 상대를 인증할 프로토콜을 골라 쓰는 협상을 선택으로 둔다 — §4 「Point-to-Point Protocol (PPP)」
+  - **EAP**: 여러 인증 방식을 골라 쓰게 하는 확장 틀이다(처음에는 PPP용으로 만들었다). 지금은 IEEE 802.1X와 함께 유선·무선 LAN의 네트워크 접근 제어에, IKEv2와 함께 IPsec에 쓰인다 — §4 「Extensible Authentication Protocol (EAP)」
+  - **RADIUS**: 여럿이 함께 쓰는 중앙의 인증 서버(RADIUS 서버)와, 자기 접근 포트를 쓰는 사용자를 인증해야 하는 네트워크 접근 서버(RADIUS 클라이언트) 사이에서 사용자의 인증 정보와 설정 정보를 나르는 프로토콜(RFC 2865)이다.
+    사용자가 낸 인증 정보(그리고 장치의 상태 정보 같은 것)를 클라이언트가 서버에 넘기면, 서버가 확인하고 클라이언트가 그 사용자에게 서비스하는 데 필요한 인가·설정 정보를 돌려준다 — §4 「Remote Authentication Dial-In User Service (RADIUS)」
+  - 「network access control」·「IEEE 802.1X」·「web application firewall」·「stateful inspection」·「tunneling」은 이 용어집의 항목 머리가 아니다(항목 머리 `$ ` 검색)
+  쓰인 곳: (phase 82 step 16~19에서 쓰일 곳) `network-security.firewall`(방화벽의 두 정의, 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 보는 값), `network-security.ids-ips`(침입·침입 탐지·IDS의 뜻, 호스트·네트워크 기반, 이상 탐지·오용 탐지),
+  `network-security.vpn`(VPN의 정의 — 흔히 암호화와 터널링, 전용망보다 싸다, 방화벽 사이를 암호화한 터널로 잇는 예), `network-security.tunneling`(터널의 정의, 논리적 지점 간 링크, 터널링 프로토콜이 끼는 자리), `network-security.vpn-protocols`(PPTP·L2TP가 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다, PPP),
+  `network-security.ipsec`(IPsec·AH·ESP·두 모드·보안 게이트웨이·IKE), `network-security.nac`(EAP·RADIUS 한 줄), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
+  (phase 82 step 16) 쓰인 곳: `network-security.firewall` 문단 1·5(방화벽이 정책 규칙으로 드나드는 트래픽을 다룬다, 필터링 라우터의 규칙이 주소·포트를 본다 — 「firewall」·「filtering router」), `network-security.ids-ips` 문단 0(침입의 뜻 — 「intrusion」)
+  (phase 82 step 17) 쓰인 곳: `network-security.nac` 문단 4(인증자와 인증 서버 사이에서 자격 증명과 확인 결과를 흔히 RADIUS로 나른다 — 「Remote Authentication Dial-In User Service (RADIUS)」), 문항 n345 해설
+  (phase 82 step 18) 쓰인 곳: `network-security.vpn` 문단 1(비교적 공용인 실제 네트워크의 자원 위에 지은, 쓰는 사람이 제한된 네트워크 — 「가상」·「사설」의 풀이, 전용 실제 네트워크보다 대개 비용이 적다 — 「virtual private network」), 문단 2(흔히 암호화와 터널링으로 만든다),
+  `network-security.tunneling` 문단 1(터널은 한 프로토콜의 패킷을 다른 프로토콜에 담아 만든 통신 채널이고 흔히 논리적 지점 간 링크다 — 본문은 「두 곳이 한 구간으로 바로 이어진 것처럼」으로 쓴다), 문단 2(터널링은 두 곳을 잇는 네트워크가 그 패킷을 그대로 나르지 못할 때 쓴다 — 「tunnel」의 Tutorial),
+  문단 7(PPTP·L2TP는 보안 서비스를 스스로 정하지 않는다 — 이름만)
+  (phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 1(PPP는 두 장치를 바로 이은 2계층 링크 위에서 위 계층의 패킷을 프레임에 담아 양쪽으로 나르고, 한 링크로 여러 프로토콜의 패킷을 섞어 나르며, 데이터를 주고받기 전에 상대를 인증하는 절차를 고를 수 있다 — 「Point-to-Point Protocol (PPP)」), 문단 3·4·9(PPTP·L2TP는 PPP를 터널링하고 보안 서비스를 스스로 정하지 않는다 — 「Point-to-Point Tunneling Protocol (PPTP)」·「Layer 2 Tunneling Protocol (L2TP)」. L2TP가 PPTP와 L2F를 합친 것이라는 줄 대신 본문은 NIST SP 800-77 Rev. 1 §8.5.2의 「PPTP의 뒤를 이은 것」으로 쓴다),
+  `network-security.ipsec` 문단 0·2·3·8(IPsec·AH·ESP·두 모드, AH는 바뀌는 칸을 빼고 IP 헤더의 일부까지 확인하고 ESP는 감싼 부분만 확인한다 — 「IP Security Protocol (IPsec)」·「Authentication Header (AH)」·「Encapsulating Security Payload (ESP)」·「tunnel mode」·「transport mode」), 문단 4(연결의 한쪽 끝이 보안 게이트웨이면 터널 모드를 쓴다 — 「tunnel mode」·「security gateway」. 본문은 「VPN 게이트웨이처럼 다른 컴퓨터들의 패킷을 대신 지켜 보내는 장비」로 쓴다), 문단 5(IKE), 문항 n350·n351·n352 해설
 쓰인 곳: `protocols-encapsulation.protocol`, `protocols-encapsulation.osi-model`
 
 ## (2026-10-28) ITU-T X.800 (03/91) — Security architecture for Open Systems Interconnection for CCITT applications
@@ -1687,6 +1826,21 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   https://www.ieee802.org/3/da/public/040622/zimmerman_3da_01_03312022.pdf 22쪽(802.3cg-2019가 9장 리피터를 10BASE-T1L·10BASE-T1S에 적용하지 않기로 했다는 것)
 - (참고) 같은 P802.3bh D3.0 기록 #i-89(ACCEPT): IEEE Std 802.5는 토큰 링 표준이고 철회됐다. 마지막 개정은 802.5v-2001 「Gigabit Token Ring Operation」이다 — 의견 #i-89
 
+- (phase 82 step 8, 2026-11-19 위 「주의」 줄의 발표 자료를 IPv4로 다시 받아 읽음 — G. Zimmerman, 「Repeaters in 802.3da」, IEEE P802.3da Task Force, 2022-03-31, 36쪽. **표준 본문이 아니라 태스크 포스 발표 자료**이고,
+  아래 줄들의 슬라이드는 802.3 개정 초안 IEEE P802.3dc D3.2(IEEE Std 802.3-2018을 고친 개정 프로젝트로, 2022-05-13 IEEE Std 802.3-2022의 승인으로 끝났다 — https://www.ieee802.org/3/dc/)의 9.1·그림 13-1·그림 27-1을 출처로 든다) **리피터가 하는 일**:
+  - 리피터는 **물리 계층**이다. 100 Mb/s 리피터(그림 27-1)는 MAC보다 아래, PCS 바로 위에서 두 구간을 잇고, 그래서 두 구간이 서로 다른 PCS·PMA·PMD를 써도 된다. **리피터의 근본 목적은 매체 위의 신호를 다시 만드는 것이지 MAC의 일을 하는 것이 아니다** — 5쪽
+  - 리피터는 **신호의 파형과 타이밍을 되살리고**(restore), 충돌을 감지해 넘기며, 리피터의 지연이 네트워크의 크기를 제한한다 — 23쪽(출처 9.1·그림 13-1)
+  - 리피터는 구간(리피터 포트) 사이에서 신호를 처리해 넘기는데, 충돌 처리를 지키고(잼을 감지하고 만든다) **올바른 신호를 다른 구간에 다시 만들어 내보낸다**(regenerate) — 24쪽
+  - **「증폭」이라는 말은 이 자료에 없다** — 자료가 말하는 것은 파형과 타이밍을 되살려 다시 만든다는 것이다. 본문은 리피터를 「신호를 키우기만 한다」로 쓰지 않는다
+  - 쓰지 않는 것: 10 Mb/s(9장)와 100 Mb/s(27장) 리피터 구조의 차이(AUI·PCS에 붙는 자리), 리피터 지연의 수치, 10BASE-T1S용 리피터 논의
+  쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`(물리 계층, 파형과 타이밍을 되살려 다시 내보낸다, MAC의 일을 하지 않는다, 충돌을 다른 구간으로 넘긴다 — 충돌 도메인을 나누지 않는다는 것과 이어진다, 위 줄의 「새 설치에 권하지 않음」),
+  `network-devices.device-layers`(리피터·허브는 물리 계층), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2025-08-24 #47])
+- (phase 82 step 9, 2026-11-19 같은 발표 자료를 IPv4로 다시 받아 읽음 — 표준 본문이 아니라 태스크 포스 발표 자료) **케이블을 지나는 신호와 리피터의 한계**:
+  - 12쪽은 반사된 신호가 사이의 케이블 구간을 지나는 동안 약해진다(attenuated by intervening spans)고 적고, 13쪽은 PHY가 견뎌야 할 반사의 크기를 「케이블 감쇠(cable attenuation)」를 더해 셈한다 — 신호가 케이블을 지나며 약해진다는 근거다(감쇠의 수치는 쓰지 않는다)
+  - 23쪽 「리피터는 신호의 파형과 타이밍을 되살린다」 — 되살린다는 말이 곧 지나온 신호의 파형과 타이밍이 흐트러질 수 있다는 뜻이라, 본문은 「흐트러질 수 있다」로만 쓴다. 같은 쪽 「리피터의 지연이 네트워크의 크기를 제한한다」(지연의 수치는 쓰지 않는다)
+  - 24쪽 「구간(리피터 포트) 사이에서 신호를 처리해 넘긴다」 — 위 RFC 1983 「repeater」(한 케이블의 전기 신호를 다른 케이블로 이어 퍼뜨린다)와 함께, 리피터를 두면 한 구간을 넘어 다음 구간의 장치까지 신호가 닿는다는 근거다. **「전송 거리를 늘린다」는 문장 자체는 두 문서에 없다** — 본문은 「케이블 한 구간으로는 닿지 않는 곳의 장치까지 신호가 닿는다」로 쓴다
+  - 「증폭」은 여전히 쓰지 않는다(위 step 8 줄) — 본문은 신호를 키우는 것과 다시 만드는 것을 견주는 문장을 쓰지 않았다(견줄 근거가 없다)
+  쓰인 곳: (phase 82 step 9) `network-devices.repeater`(요약, 문단 0의 약해지고 흐트러진 신호, 문단 2의 닿는 거리와 지연의 한계, 예), 도식 `repeater-regenerate`(「약해진 신호」·「다시 만든 신호」 노드와 캡션)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72 step 7) `hub-switch-vlan.csma-cd`(IEEE 802.5가 토큰 링 표준이라는 이름만), 문항 n038 해설
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
@@ -1709,6 +1863,8 @@ Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 �
 - 리피터는 비트 단위로 받아 다시 내보내는 장치이고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다 — §2.4.1.2
 - 받은 신호를 다른 모든 포트로 내보낸다는 문장과 「충돌 도메인」의 정의는 이 RFC에 없다(전문 검색)
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1997-02, 폐기·개정 없음) 위 §2.4.1.2 줄(리피터는 비트 단위로 받아 다시 내보내고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`·`network-devices.device-layers`(리피터·허브는 주소를 읽지 않는다)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(표준의 이름은 리피터, 비트 단위로 받아 다시 내보내고 담긴 내용을 읽지 않는 물리 계층 장비), 문항 n035 해설
 
 ## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
@@ -1897,6 +2053,14 @@ Proposed Standard(Standards Track)이다.
 - (phase 74 step 11) 부록 F는 지금 인터넷의 특성에 맞지 않아 권하지 않는 「역사적」 라우팅 프로토콜을 모은다 — EGP(F.1, 거리 칸에 표준 해석이 없어 라우팅 프로토콜로 보지 않는다)와 RIP(F.2).
   RIP를 구현하는 라우터는 CIDR 경로를 지원하는 RIP 버전 2를 구현하는 것이 좋다(SHOULD) — 부록 F.2.1
 
+- (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1995-06, RFC 1009·1716을 폐기했고 RFC 2644·6633이 고쳤다) 위 §2.2.3 줄들(링크 계층의 패킷 교환 장치는 브리지, 네트워크들을 잇는 IP 데이터그램 전달 장치는 라우터, 예전 인터넷 문서는 라우터를 게이트웨이라 불렀다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 9·10에서 쓰일 곳) `network-devices.device-layers`(브리지는 링크 계층, 라우터는 네트워크들을 잇는다), `network-devices.gateway`(예전 문서가 라우터를 게이트웨이라 불렀다 — 그래서 IP 설정의 「기본 게이트웨이」도 라우터를 가리킨다)
+- (phase 82 step 9, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음) **라우터가 프레임을 다루는 차례**(§1 머리말): IP 라우터는 다른 패킷 교환 장치와 달리 교환하는 과정에서 IP 헤더를 살핀다.
+  라우터는 대개 메시지를 받을 때 붙어 온 링크 계층 헤더를 떼어 내고, IP 헤더를 고친 뒤, 다시 내보낼 때 링크 계층 헤더를 새로 붙인다. 같은 §1은 이런 장치를 OSI 쪽에서는 중간 시스템이라 부르고, 예전 인터넷 문서는 게이트웨이라 불렀다고 적는다.
+  라우터도 다른 인터넷 시스템과 같은 링크 계층 요구 사항을 지킨다 — §3.1. 본문은 「IP 헤더를 고친다」(TTL 등)는 쓰지 않고, 프레임 헤더를 떼어 패킷을 꺼내고 내보낼 때 새 프레임에 담는다는 데까지만 쓴다
+  쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(라우터 항목 — 받은 프레임의 헤더를 떼어 패킷을 꺼내고 새 프레임에 담아 보낸다, 위 계층을 읽는 장비는 아래 계층의 헤더를 먼저 푼다, 예와 4절 「스위치와 라우터」, 도식 `device-layers`의 「라우터」 캡션), 문항 n327 해설
+- (phase 82 step 10) 쓰인 곳: `network-devices.gateway`(문단 4 — 예전 인터넷 문서가 라우터를 게이트웨이라 불렀고 그 옛 이름이 IP 설정의 기본 게이트웨이에 남았다, 문단 7 「게이트웨이와 라우터」), 문항 n329 해설
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 6 — 4절 「L4 스위치와 라우터」: 라우터는 목적지 IP 주소를 라우팅 테이블에서 찾아 다음 장비를 고른다)
 쓰인 곳: `exam-notes.md` E4·E7, (phase 72 step 8) `hub-switch-vlan.switch`(브리지는 링크 계층 — 데이터 링크 계층 — 장치), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(라우터는 서로 다른 네트워크를 잇는 장비이고 브로드캐스트로 받은 데이터를 다른 네트워크로 넘기지 않아 브로드캐스트 도메인의 경계가 된다 — §2.2.3·§5.3.4), 문항 n044·n046 해설,
 (phase 73에서 쓰일 곳) `ip-protocol.fragmentation`(§4.2.2.7·§5.2.6 — 라우터도 나누고, 합치지 않는다), `ip-protocol.ttl`(§5.3.1 — 사실상 홉 수의 상한, 0이면 버리고 시간 초과), `exam-notes.md` E9 앞 문단(TTL 단위),
 (phase 73 step 1에서 쓰일 곳) `arp.arp-across-routers`(§5.2.1.2 — 다음 홉의 링크 계층 주소, 주소를 바꾸는 단계 없음; §5.3.4 — 링크 계층 브로드캐스트로 받은 ARP 요청을 다른 네트워크로 넘기지 않는다; §3.3.2),
@@ -2441,6 +2605,12 @@ RFC 2131은 Draft Standard이고 RFC 1541을 대체했으며 RFC 3396·4361·549
 - (phase 74 step 5) **포트**: DHCP는 UDP를 쓰고, 클라이언트 → 서버 메시지는 서버 포트 67로, 서버 → 클라이언트 메시지는 클라이언트 포트 68로 보낸다 — RFC 2131 §4.1(포트 번호의 IANA 이름은 아래 「(phase 74 step 5) IANA — Service Name and Transport Protocol Port Number Registry」 항목)
 - (phase 74 step 5) **갱신**: 클라이언트는 두 시각 T1·T2를 둔다. T1(기본값 임대 기간의 0.5)이 되면 주소를 준 서버에게 **유니캐스트로** DHCPREQUEST를 보내 임대를 늘린다(RENEWING). T2(기본값 0.875)까지 ACK가 없으면 **브로드캐스트로** DHCPREQUEST를 보내 아무 서버에게나 늘려 달라고 한다(REBINDING).
   T1 전에 늘려 달라고 해도 된다(MAY). ACK 없이 임대가 끝나면 그 주소로 하던 네트워크 처리를 곧 멈추고 처음부터 주소를 다시 받는다 — RFC 2131 §4.4.5. 필요 없어진 주소는 DHCPRELEASE로 돌려준다 — §4.4.6
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 둘 다 Draft Standard 그대로) **네트워크 부팅의 두 단계**: BOOTP는 디스크 없는 클라이언트가 자기 IP 주소, 서버의 주소, **메모리에 올려 실행할 파일의 이름**을 알아내게 하는 프로토콜이다.
+  부팅은 두 단계로 볼 수 있다 — 첫 단계(주소 정하기와 부팅 파일 고르기)를 BOOTP가 맡고, 그 정보를 얻은 뒤 둘째 단계에서 파일을 옮겨 받는데 **보통 TFTP를 쓴다**. 두 단계 모두 클라이언트의 PROM(읽기 전용 메모리)에 들어가도록 만든 것이다 — RFC 951 §2
+- (phase 82 step 12) DHCP 문서도 TFTP를 **부팅 서버에서 부팅 이미지를 옮겨 받는** 프로토콜로 든다 — RFC 2131 §1.2. DHCP 메시지에는 부팅의 다음 단계에서 쓸 서버의 IP 주소 칸(`siaddr`)과 **부팅 파일 이름** 칸(`file`)이 있고,
+  서버는 OFFER·ACK에 `siaddr`를 담는다(운영 체제 실행 이미지 같은 다음 부팅 서비스를 자기가 줄 수 있으면 자기 주소를 넣는다) — RFC 2131 §2(Table 1과 그 앞 설명)
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(DHCP로 주소와 부팅 서버·부팅 파일 이름을 받고 → TFTP로 그 파일을 받고 → 실행한다 — `ip-address-types.dhcp`·`app-protocols-mail-file.tftp`와 뜻을 맞춘다)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 3·4 — DHCP로 주소와 부팅 서버·부팅 파일 이름을 받고, 그 서버에서 TFTP로 부팅 파일을 받아 실행하는 세 단계 — RFC 951 §2·RFC 2131 §1.2·§2), 도식 `pxe-boot`(1·2 시나리오), 문항 n340 해설
 
 (phase 74에서 쓰일 곳) `ip-address-types.static-dynamic-address`(RFC 2131 §1 — 동적 할당은 잠깐 이어지는 클라이언트·영구 주소가 필요 없는 클라이언트에 맞다, 자동·수동 할당은 영구 주소), `ip-address-types.dhcp`(§1·§2·§2.2 — 주소와 설정, 할당 방식 셋, 임대, §4.1 — UDP 67·68, §4.4.5 — 갱신 시각), `ip-address-types.dhcp-messages`(§3.1·Table 2 — 메시지 넷과 차례, REQUEST를 브로드캐스트하는 까닭, §4.1·§4.4.1 — 출발지 0.0.0.0·목적지 255.255.255.255, OFFER·ACK는 브로드캐스트 또는 유니캐스트), 강의 수정 이력 L41
 (phase 77에서 쓰일 곳) `ports.well-known-ports`(RFC 2131 §4.1 — DHCP는 UDP를 쓰고 서버 포트 67, 클라이언트 포트 68)
@@ -2650,6 +2820,10 @@ Draft Standard이고 RFC 1533을 대체했으며 RFC 3442·3942·4361·4833·549
 - IP 주소 임대 시간 옵션(코드 51) — 클라이언트가 원하는 임대 시간을 요청하거나 서버가 제안하는 임대 시간을 적는다. 단위는 초 — §9.2
 - DHCP 메시지 종류 옵션(코드 53) — 1 DHCPDISCOVER, 2 DHCPOFFER, 3 DHCPREQUEST, 4 DHCPDECLINE, 5 DHCPACK, 6 DHCPNAK, 7 DHCPRELEASE, 8 DHCPINFORM — §9.6
 - 서버 식별자 옵션(코드 54) — 고른 서버의 IP 주소. 서버는 OFFER에 넣어 클라이언트가 제안들을 가르게 하고, 클라이언트는 REQUEST에 넣어 어느 제안을 받아들이는지 알린다 — §9.7
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — Draft Standard 그대로) **부팅에 쓰는 옵션 둘**: TFTP 서버 이름 옵션(코드 66) — DHCP 헤더의 서버 이름 칸(`sname`)을 다른 옵션에 내준 경우 TFTP 서버를 알린다 — §9.4.
+  부팅 파일 이름 옵션(코드 67) — 헤더의 `file` 칸을 다른 옵션에 내준 경우 부팅 파일을 알린다 — §9.5. 아래 「(phase 82 step 12) Microsoft Learn — PXE와 WDS …」 항목의 Windows PE 안내는 PXE 클라이언트가 이 두 옵션으로 부팅 서버와 부팅 파일 이름을 받는다고 적는다
+  쓰일 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(부팅 서버와 부팅 파일 이름을 DHCP 옵션으로 받는다 — 옵션 번호는 본문에 쓰지 않아도 된다)
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 3·4 — 부팅 서버와 부팅 파일 이름을 DHCP로 받는다. 옵션 번호는 본문에 쓰지 않았다)
 
 쓰인 곳: (phase 74 step 5에서 쓰일 곳) `ip-address-types.dhcp`(주소와 함께 주는 설정 — 서브넷 마스크·기본 게이트웨이(라우터)·DNS 서버, 임대 시간), `ip-address-types.dhcp-messages`(메시지 종류, 서버 식별자로 고른 서버를 알린다)
 (phase 79 step 0에서 쓰일 곳) `dns.name-servers`(§3.8 — 로컬 DNS 서버의 주소를 DHCP로 자동으로 받는다. 누가 DHCP 서버인지(ISP 쪽 장비인지 공유기인지)는 이 문서가 말하지 않는다), 강의 수정 이력 「phase 79 step 0」 문단(p345)
@@ -4364,6 +4538,7 @@ Standards Track이고 2026년 7월에 나왔다. RFC 8446(TLS 1.3의 이전 명�
 쓰인 곳: (phase 77 step 2) `ports.well-known-ports`(HTTPS 항목 — TLS(Transport Layer Security)는 상대 서버가 진짜인지 확인하고 내용을 암호화해 엿보거나 바꾸지 못하게 한다), 문항 n173의 해설
 (phase 78 step 5에서 쓰일 곳) `app-protocols-mgmt-security.tls`(§1 — 믿을 수 있는 순서 있는 전송 위, 인증·기밀성·무결성, 서버는 늘 인증, 두 부분, 위 계층이 얹힌다, §2 — 메시지 차례, 부록 E.5 — SSL 금지),
 `app-protocols-mgmt-security.https`(§1 — 서버 쪽은 늘 인증한다), 기출 대조(`exam-notes.md` 「phase 78 step 5」 문단 — 「인증이 필요 없다」가 틀린 까닭, 「SSL/TLS」 표기)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 6(TLS는 TCP 연결 위에서 두 프로그램 사이에 안전한 통로를 만들어 암호화하고 상대를 확인하며, HTTPS가 쓰는 것이다. SSL은 TLS보다 먼저 쓰이던, TLS의 바탕이 된 프로토콜이다 — `app-protocols-mgmt-security.tls`와 뜻을 맞췄다. 핸드셰이크와 판은 쓰지 않았다)
 
 ## (phase 77) Linux man-pages — ip(7), proc_sys_net_ipv4(5), capabilities(7), tcp(7), udp(7), services(5)
 https://man7.org/linux/man-pages/man7/ip.7.html
@@ -5294,6 +5469,10 @@ Informational(1995-04)이고 폐기·개정 관계가 없다(rfc-editor 상태, 
 - 주소를 여럿 함께 보내자는 요구의 까닭으로, 가장 나은 주소로 알린 기계가 그 레코드의 TTL 안에 멈출 수 있으니 다음 주소들도 함께 알려 복구할 길을 남기자고 적는다 — §2 (C). 곧 DNS가 알려 준 주소의 기계가 멈춰 있을 수 있다
 - DNS 프로토콜은 레코드의 차례를 보장하지 않고, 받는 쪽(클라이언트)이 차례를 다시 정할 수 있다(정렬 목록 등) — §4. 차례가 자주 바뀌는 정보를 내주려면 그 레코드의 TTL도 짧게 잡아야 쓸모가 있다 — §4
 
+- (phase 82 step 8) 위 §2 줄(A 레코드의 차례를 돌려 내주는 「Round Robin」, 대상 기계의 실제 부하는 따지지 않는다)이 기출의 라운드 로빈 지문([기출 2025-08-24 #45]·[기출 2026-05-17 #41] — DNS 서버가 질의 순서에 따라 웹 서버들의 IP 주소를 번갈아 답한다)과 맞는다.
+  아래 「(phase 82 step 8) RFC 2391 …」 항목의 라운드 로빈(로드 밸런서가 서버를 차례대로 고르는 것)과 같은 이름·같은 생각의 방식이다 — 새로 가져온 사실은 없다
+  쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(DNS 라운드 로빈과 로드 밸런서 — DNS 라운드 로빈은 부하를 보지 않는다, `dns.dns-round-robin`과 뜻을 맞춘다), `network-devices.balancing-methods`(기출의 라운드 로빈 지문이 DNS 쪽 예를 든다)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 8 — DNS 서버는 서버마다의 부하와 멈춤을 보지 않아 멈춘 서버의 주소도 알려 줄 수 있다 — §2와 §2 (C)), `network-devices.balancing-methods`(마지막 문단 — DNS 라운드 로빈도 서버를 차례대로 돌아가며 내놓는다), 문항 n333 해설
 쓰인 곳: (phase 79 step 5에서 쓰일 곳) `dns.dns-round-robin`(역사 한 줄, 한계 — 부하를 보지 않는다, 멈춘 기계의 주소도 알려질 수 있다, 받는 쪽이 차례를 다시 정할 수 있다)
 
 ## (phase 79 step 5) RFC 6891 — Extension Mechanisms for DNS (EDNS(0))
@@ -6938,12 +7117,28 @@ https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request
 - 두 프록시 모두 사설 네트워크를 인터넷과 떼어 놓아 보안을 높이는 조치를 할 수 있게 한다.
 - 한국어판은 「역방향 프록시」로 옮긴다.
 쓰지 않은 것: 정방향 프록시의 쓰임, ARR의 캐싱·압축과 URL 다시 쓰기(웹 응용 프로그램 프록시 문서에는 그런 동작이 적혀 있지 않다).
+- (phase 82 step 8, 2026-11-19 같은 문서를 IPv4로 다시 받아 확인 — `updated_at` 2023-03-10(`ms.date` 2014-06-11), 한국어판 `updated_at` 2026-10-27(기계 번역)) **정방향 프록시**(「Overview」·「ARR as a Forward Proxy」):
+  - 프록시 서버는 요청하는 쪽의 클라이언트들이나 응답하는 쪽의 웹 서버 작업자들을 대신하는 한 접점이다. 정방향 프록시는 **클라이언트 컴퓨터들의 내부 네트워크(인트라넷) 안**에 있고, 여러 클라이언트의 요청을 받아 인터넷으로 넘기므로 **인터넷 쪽에서는 요청이 클라이언트가 아니라 프록시에서 온 것처럼 보인다**
+  - 정방향 프록시와 역방향 프록시는 하는 일이 크게 다르지만, 요청하는 쪽이나 응답하는 쪽을 대신한다는 기본 동작은 같다. 둘 다 사설 네트워크를 인터넷과 떼어 놓아 보안 조치를 할 수 있게 하고, 요청과 응답을 처리하므로 캐시나 압축으로 성능을 높이고 공격을 막고 정보를 거를 수 있다
+  - 정방향 프록시가 요청을 다루는 차례: 클라이언트에게서 요청을 받아 올바른지 확인한다 → 올바르면 자기 캐시에 그 응답이 있는지 본다 — **있으면 인터넷에 요청을 보내지 않고 클라이언트에게 돌려준다** → 없으면 방화벽을 지나 인터넷의 콘텐츠 서버로 요청을 보낸다 → 응답이 인터넷을 지나 프록시로 돌아오고, 그 응답을 캐시해 둘 수 있다.
+    처음 요청한 클라이언트의 응답을 캐시해 두면 뒤에 같은 내용을 청한 클라이언트는 캐시에서 받아 콘텐츠 서버에 다시 묻지 않으므로, 성능이 오르고 네트워크 트래픽이 준다 — 「ARR as a Forward Proxy」
+  - ARR의 정방향 프록시는 HTTP만 다루고 HTTP CONNECT를 지원하지 않아 HTTPS를 넘기지 못한다 — 같은 절(ARR 한 제품의 한계라 본문에 프록시 일반의 성질로 쓰지 않는다)
+  - **한국어 이름**: 한국어판은 forward proxy를 「전달 프록시」(제목)와 「정방향 프록시」(본문)로 섞어 옮기고, reverse proxy는 「역방향 프록시」로 옮긴다. **고른 이름**: 「정방향 프록시」 — 「역방향 프록시」와 짝을 이루는 이름이라 둘을 견주기 쉽다
+  쓰인 곳: (phase 82 step 10에서 쓰일 곳) `network-devices.proxy-server`(정방향 프록시의 자리와 차례, 캐시에 있으면 서버에 묻지 않는다, 인터넷 쪽에서는 프록시가 보낸 것처럼 보인다, 두 프록시의 공통점, 정방향 프록시와 역방향 프록시 — 누구 쪽에 서는가), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #16])
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 2 — 정방향 프록시는 내부 네트워크 안에서 클라이언트들의 요청을 모아 대신 보내고 인터넷 쪽에서는 요청이 프록시에게서 온다, 문단 4의 예 — 요청 확인 → 캐시 확인 → 없으면 인터넷의 서버에 요청 → 응답을 캐시해 둘 수 있고 클라이언트에 넘김, 다른 컴퓨터의 같은 요청은 서버에 다시 묻지 않는다, 문단 7 — 두 프록시의 기본 동작은 같고 사설 네트워크를 인터넷과 떼어 놓는다, 문단 8 「정방향 프록시와 역방향 프록시」), 도식 `proxy-direction`(사내 네트워크 박스의 PROXY01과 「정방향 프록시」 캡션), 문항 n331 해설
 
 쓰인 곳: (phase 81 step 8) `windows-server-roles.remote-access` — 위 「(phase 81 step 4) … 원격 액세스·VPN·DirectAccess·웹 응용 프로그램 프록시」 항목의 역할 서비스 셋과 설치 이름(`RemoteAccess`·`DirectAccess-VPN`·`Routing`·`Web-Application-Proxy`, 기본 미설치), VPN의 뜻(터널링과 암호화, VPN 클라이언트가 VPN 서버와 지점 간 연결을 맺고 서버가 확인 뒤 데이터를 나른다, 원격 사무실),
 터널링 프로토콜 넷과 풀네임·Windows 내장 VPN 클라이언트·PPTP와 L2TP 비권장·Windows Server 2025의 새 구성 기본 동작·2028(Preview) 제거, 「라우팅 및 원격 액세스」 콘솔, DirectAccess의 뜻(늘 이어짐·관리자가 관리·도메인 가입 컴퓨터만)·Always On VPN 권고·Windows 10보다 앞선 클라이언트에만·2028(Preview) 제거, 라우팅 역할 서비스(서브넷 사이 라우팅·NAT 라우터), 웹 응용 프로그램 프록시가 원격 컴퓨터를 잇지 않는다는 것(위 「VPN·DirectAccess와 무엇이 다른가」 줄, 이어서 나오는 말).
 VPN과 DirectAccess의 차이는 「DirectAccess」 첫머리의 견줌(VPN은 사용자가 연결을 열고 닫는다)대로 쓰고, Always On VPN이 그 견줌의 예외라는 것은 「Remote Access」 「VPN (RAS)」 줄(손으로 연결하지 않아도)에서 이어서 나오는 말로 썼다. 예의 「원격 액세스 서버」는 이 글에서 붙인 이름표다. 도식 `remote-access-services`, 문항 n298.
 `windows-server-roles.web-application-proxy` — 같은 항목의 웹 응용 프로그램 프록시 줄 전부(역방향 프록시로 내부 웹 응용 프로그램을 게시, 한국어판 이름, Windows Server 2012 R2에서 생김, 마법사에서 설치, 외부 URL과 백엔드 서버 URL·IP 주소가 아니라 FQDN, HTTPS 요청을 기다렸다가 백엔드로 HTTP나 HTTPS로 넘김, AD FS 사전 인증과 통과·원격 데스크톱 연결 앱, 지금 판의 상태)와 위 「역방향 프록시가 응답을 돌려주는 길」 줄(응답이 프록시를 거쳐 돌아간다, 인터넷 쪽에서는 프록시와 주고받는 것처럼 보인다, 사설 네트워크를 떼어 놓는다).
 AD FS의 「보안 토큰」은 위 사전 인증 줄의 보안 토큰(edge token)이고, 그 밖의 AD FS 동작은 쓰지 않았다. 「Microsoft Entra 응용 프로그램 프록시」는 쓰지 않았다. 도식 `web-app-proxy`, 문항 n299·n300
+(phase 82 step 15) 쓰일 곳: (phase 82 step 18·19) `network-security.vpn`(VPN(RAS)이 인터넷 연결에 터널링과 데이터 암호화를 함께 써서 원격 클라이언트와 원격 사무실을 잇는다는 「Remote Access」 줄 — VPN의 뜻을 `windows-server-roles.remote-access`와 맞춘다),
+`network-security.vpn-protocols`(PPTP·L2TP의 풀네임, 보안 기능이 모자라 권하지 않는다·Windows Server 2025의 새 RRAS 구성은 기본으로 받지 않는다·2028(Preview)에서 빠진다는 줄 — 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1」 항목 §8.5의 「쓰면 안 된다」와 같은 방향이다).
+이 step은 이 문서를 다시 받지 않았다 — 위 줄들의 판(2026-11-18 받은 것)을 그대로 쓴다
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`은 Windows의 원격 액세스를 다시 쓰지 않고, VPN의 뜻(여러 사람이 함께 쓰는 네트워크 위에 회사만 쓰는 통로, 원격 컴퓨터와 멀리 떨어진 사무실을 잇는다, 흔히 암호화한다)만 `windows-server-roles.remote-access` 문단 4와 맞췄다.
+사이트 간 VPN의 영문 이름 site-to-site는 이 항목의 Microsoft 문서가 쓰는 이름이다(NIST의 이름 gateway-to-gateway는 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols` 문단 6(Microsoft의 SSTP — 풀네임은 위 줄들의 터널링 프로토콜 넷 줄, SSL/TLS 위로 PPP를 나른다는 것은 아래 「(phase 82 step 15) NIST SP 800-77 Rev. 1 …」 항목 §8.2.1), 문단 8(Windows Server의 VPN 서버가 PPTP·L2TP·SSTP·IKEv2 넷으로 원격 연결을 받는다, Microsoft 문서가 PPTP와 L2TP를 보안 기능이 모자라 권하지 않는다, Windows Server 2025부터 VPN 서버를 새로 구성하면 두 프로토콜의 연결을 기본으로 받지 않는다 — `windows-server-roles.remote-access` 문단 5와 뜻을 맞췄다).
+2028(Preview)에서 빠진다는 줄은 이 개념에 쓰지 않았다(그 개념이 이미 쓴다). 이 step도 이 문서를 다시 받지 않았다
 
 ## (phase 81 step 9) Microsoft Learn — Hyper-V·가상 컴퓨터·가상 하드 디스크·가상 스위치: Hyper-V virtualization in Windows Server and Windows, Hyper-V features and terminology, Hyper-V architecture, Install Hyper-V, Hardware requirements for Hyper-V, Remotely manage Hyper-V hosts with Hyper-V Manager, Install Server Core Application Compatibility Feature on Demand, Create a virtual machine in Hyper-V, Should I create a generation 1 or 2 virtual machine in Hyper-V?, Hyper-V maximum scale limits in Windows Server, New-VHD, Create and configure a virtual switch with Hyper-V, Plan for Hyper-V networking in Windows Server, New-VMSwitch; 지난 판 Hyper-V Virtual Hard Disk Format Overview
 https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview
@@ -7173,3 +7368,1058 @@ https://learn.microsoft.com/en-us/previous-versions/windows-server/it-pro/window
 
 쓰인 곳: (phase 81 step 13·14에서 쓰일 곳) `windows-hyperv.windows-containers`(정의, 커널을 함께 씀과 떨어진 모습, 이미지에서 만든다, VM과의 차이, 두 격리 방식과 기본값, 판 호환 한 줄, 「컨테이너」 기능과 런타임), `windows-hyperv.container-base-images`(넷의 이름·쓰임·크기 차이, Nano Server와 Server Core의 차이, MCR과 이름 꼴, 프로세스 격리의 판 일치, Nano Server의 지금 자리와 판),
 기출 대조(`exam-notes.md` 「phase 81 step 9」 문단 — [기출 2024-02-25 #44]·[기출 2025-05-25 #38]·[기출 2026-05-17 #29])
+
+## (phase 82 step 0) IEEE 802.11 — 작업 그룹 홈페이지·소개 페이지와 표준 개요 페이지: 802.11-1997, 802.11-1999, 802.11-2024
+https://www.ieee802.org/11/
+https://www.ieee802.org/11/abt80211.html
+https://standards.ieee.org/ieee/802.11/1163/
+https://standards.ieee.org/ieee/802.11/1164/
+https://standards.ieee.org/ieee/802.11/10548/
+
+판: IEEE 802.11-1997(표준 위원회 승인 1997-06-26, 발행 1997-11-18, Superseded — 802.11-1999가 대체), IEEE 802.11-1999(승인 1999-03-18, Superseded — 802.11-2007이 대체),
+**IEEE 802.11-2024(승인 2024-09-26, 발행 2025-04-28, Active — 지금 판)**. 작업 그룹 홈페이지와 소개 페이지는 2026-11-19에 받은 판이다(홈페이지의 개정 연표 머리는 2026-10-27).
+
+- 802.11 작업 그룹은 IEEE 802 LAN/MAN 표준 위원회(LMSC) 안에서 무선 LAN 표준을 맡는다. 맡은 일은 IEEE 802 표준 묶음의 11부이고, 그 정식 제목은 「무선 LAN의 매체 접근 제어(MAC)와 물리 계층(PHY) 규격」이다 — 소개 페이지 「Introduction」
+- 802.11은 **기본 표준 하나와 개정(amendment) 여럿**으로 이루어진다. 새 기능은 개정 프로젝트가 더하고, 기본 표준은 개정판(revision) 프로젝트가 고치면서 그때까지 나온 개정을 합쳐 넣는다. 개정은 802.11 뒤에 글자를 붙인 이름으로 부르고(예: 802.11ax-2021, 진행 중인 P802.11bn), 그 개정을 맡은 작업반은 TG를 붙여 부른다(TGbn) — 소개 페이지 「Introduction」·「The standards development process」
+- 802.11-1997(처음 판): 무선 LAN의 MAC과 물리 계층을 정한다. MAC 하나가 여러 물리 계층을 받치도록 짜서, 쓸 수 있는 주파수 사정에 따라 물리 계층을 고를 수 있게 했다. **물리 계층은 셋** — 2400~2500 MHz 대역의 전파 방식 둘(하나는 주파수 도약 대역 확산, 하나는 직접 시퀀스 대역 확산)과
+  기저대역 적외선 방식 하나다 — 802.11-1997 개요 페이지 초록. 레이저 방식이나 협대역 방식은 이 셋에 없다(기출 [기출 2024-02-25 #49]의 오답 둘)
+- 802.11-2024: 802.11-2020 뒤 2021~2024년에 나온 개정 1~7을 합쳐 넣은 개정판이다. 이 판에 대한 개정으로 802.11be-2024·802.11bh-2024·802.11bk-2025가 나왔고 P802.11bn 등이 진행 중이다 — 802.11-2024 개요 페이지 초록과 「Amendments」.
+  그래서 802.11ax-2021 같은 개정의 개요 페이지에 「Superseded」라고 적힌 것은 그 기능이 없어졌다는 뜻이 아니라 개정판에 합쳐졌다는 뜻이다(phase 72의 802.3 개정과 같은 꼴)
+- 「Wi-Fi」라는 이름: 작업 그룹 홈페이지는 802.11be-2024를 「업계에서 Wi-Fi 7로 알려진」 표준이라고 적는다(작업 그룹 회원들이 쓴 해설서를 소개하는 줄). 홈페이지·소개 페이지·개요 페이지 어디에서도 Wi-Fi 4·5·6 같은 다른 세대 이름은 찾지 못했다 — 홈페이지.
+  802.11을 「Wi-Fi」라고 함께 부르는 근거는 아래 「RFC 4118·5416·8325·9119」 항목에 있다
+- **한국어 이름**: wireless LAN(WLAN) → **무선 LAN**(앞 phase가 쓴 `LAN` 표기를 따른다), medium access control → 매체 접근 제어(phase 72의 이름), physical layer → 물리 계층(앞 phase의 이름), amendment → **개정**, revision → **개정판**(phase 72가 802.3에 쓴 이름)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(802.11이 무엇을 정하는가, 802.11과 802.3이 같은 IEEE 802 위원회의 표준이라는 것, 「Wi-Fi」라는 이름), `wireless-lan.wlan-transmission`(처음 판의 물리 계층 셋, 레이저·협대역은 802.11의 방식이 아니다),
+(phase 82 step 3에서 쓰일 곳) `wireless-lan.ieee-80211-standards`(기본 표준과 개정, 지금 판 802.11-2024, 「대체됨」의 뜻, 802.11be와 Wi-Fi 7), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단·E41)
+
+## (phase 82 step 0) IEEE 802.11 — 1996-03 IEEE 802 플레너리 튜토리얼: General Introduction(96/49A Rev. 1), Architecture(96/49B), MAC(96/49C), Frequency Hopping PHY(96/49D), Direct Sequence PHY(96/49E)
+https://www.ieee802.org/11/Tutorial/index.html
+https://www.ieee802.org/11/Tutorial/General.pdf
+https://www.ieee802.org/11/Tutorial/archit.pdf
+https://www.ieee802.org/11/Tutorial/MAC.pdf
+https://www.ieee802.org/11/Tutorial/FH.pdf
+https://www.ieee802.org/11/Tutorial/ds.pdf
+
+판: 802.11 작업 그룹이 1996년 3월 IEEE 802 플레너리에서 한 튜토리얼 다섯이다(문서 번호 IEEE P802.11-96/49A~E). **승인 전 초안(나중의 802.11-1997)을 옮긴 발표 자료**라 슬라이드마다 「바뀔 수 있다」고 적혀 있다.
+그래서 구조와 동작의 뼈대(구성 둘, CSMA/CA, ACK, RTS/CTS)는 아래 RFC 항목과 맞춰 본 것만 쓰고, 값(채널 표)은 「처음 판을 만들던 때의 초안 값」으로만 쓴다.
+
+- 무선이 유선과 다른 점: 간섭과 잡음이 많고 품질이 장소와 시간에 따라 바뀐다. 다른 802.11 장치나 전자레인지 같은 장치와 주파수를 함께 쓴다. 모든 스테이션이 서로 들린다고 가정할 수 없다(「숨은 노드」 문제) — Architecture 「What is unique about wireless?」
+- **구성 둘** — Architecture 「Architecture Overview」·「802.11 Configurations」
+  - **독립(애드혹)**: 스테이션들이 AP 없이 서로 직접 통신하는 BSS(기본 서비스 세트) 하나다. 닿는 범위가 좁다
+  - **인프라스트럭처**: AP들과 스테이션들로 이루어진다. 분배 시스템이 AP들을 거쳐 여러 셀(BSS)을 한 네트워크로 이어 무선이 닿는 범위를 넓힌다
+- 분배 시스템은 BSS 여럿을 이어 ESS(확장 서비스 세트)를 만들고, 움직이는 스테이션이 유선 쪽 자원에 닿게 한다. 분배 시스템이 무엇으로 되어 있는지는 802.11이 정하지 않는다(브리지로 이은 IEEE LAN일 수도, 무선일 수도 있다) — 「Distribution System」, 「802.11 Defines the Airwaves IF」
+- 스테이션은 AP 하나를 골라 그 AP와 연결(associate)한다. AP는 비컨으로 시간을 맞추고 절전을 돕는다. 트래픽은 대개 AP를 거치지만 스테이션끼리 직접 주고받을 수도 있다 — 「Access Points」
+- 802.11이 정하는 것은 스테이션 사이(스테이션과 AP 사이 포함)의 **무선 구간** — 물리 계층과 MAC — 이다 — 「802.11 Defines the Airwaves IF」
+- 물리 계층 셋(초안): 주파수 도약 대역 확산(2.4 GHz, 1·2 Mbit/s), 직접 시퀀스 대역 확산(2.4 GHz, 1·2 Mbit/s), 확산 적외선(1·2 Mbit/s) — Architecture 「Three PHYs」.
+  General은 2.4 GHz 대역을 세계 여러 나라에서 쓸 수 있는 대역으로, 802.11이 그 대역에서 1·2 Mbit/s를 위한 상호 운용 표준을 만든다고 적는다 — General 「Global View」
+- **적외선**(확산 적외선): 파장 850~950 nm의 빛을 쓴다. 송신기와 수신기가 서로를 겨누지 않아도 되고 가시선이 트여 있지 않아도 되지만, 거리는 10 m 안팎이고 건물 안에서만 쓴다 — General 「Infrared PHY」
+- **주파수 도약**: 대역 확산의 한 갈래로, 같은 곳에서 네트워크 여럿이 함께 동작하게 해 준다. 802.11의 주파수 도약 물리 계층은 1 MHz 간격으로 서로 겹치지 않는 채널 79개(북미·유럽, 일본은 23개)를 의사 난수 순서로 옮겨 다닌다 — FH 「Why Frequency Hopping?」·「802.11 FH PHY vs. Regulations」
+- **직접 시퀀스**: 보낼 기호 하나를 부호열(11칩 바커 부호)로 퍼뜨려 더 넓은 대역에 싣는다. 그만큼 주파수당 전력이 낮아지고, 간섭과 잡음에 강해진다 — DS 「What is DSSS?」·「DSSS benefits」·「IEEE 802.11 DSSS PHY characteristics」
+- 직접 시퀀스의 **채널 표(초안)**: 채널마다 번호와 중심 주파수가 있고, 번호가 하나 늘 때마다 중심 주파수가 5 MHz 올라간다(미국 FCC 칸: 1번 2412 MHz부터 11번 2462 MHz까지). 유럽·일본 칸은 쓸 수 있는 번호가 지역마다 다르게 적혀 있다 — DS 「DSSS Channels」(Table 1).
+  **초안 표라 지역별 칸은 최종 표준과 다를 수 있다** — 본문은 「채널을 번호로 부르고, 번호마다 중심 주파수가 있으며, 이웃 번호의 중심 주파수는 5 MHz 떨어져 있다」까지만 쓴다. 채널 하나가 차지하는 폭은 이 튜토리얼에 수치로 없다(아래 「개정 규격」 항목의 22 MHz 줄)
+- 물리 계층은 채널 상태 확인(CCA, clear channel assessment) 신호로 매체가 쓰이고 있는지 MAC에 알린다 — 이것이 캐리어 감지다. 물리 계층 관리가 채널을 맞춘다(channel tuning) — Architecture 「802.11 Protocol Architecture」·「PHY Layer Services」
+- 요구 사항: 같은 지역·같은 채널 공간에 네트워크 여럿이 겹쳐 있을 수 있어야 하고, 같은 채널을 쓰는 다른 장치에서 오는 간섭(동일 채널 간섭)에 견뎌야 한다 — Architecture·MAC 「Requirements」
+- **기본 접근 방식 — CSMA/CA**: 분산 조정 기능(DCF)으로 CSMA/CA를 쓴다. 보내기 전에 매체가 쓰이는지 살피고(캐리어 감지), 쓰이고 있으면 미룬다. 미뤘던 스테이션은 매체가 빈 뒤 무작위 백오프를 골라 기다려, 매체가 비기를 함께 기다리던 스테이션들이 한꺼번에 보내 부딪치지 않게 한다.
+  백오프 시간은 매체가 비어 있을 때만 줄어들고, 다시 보낼 때마다 백오프 범위가 지수적으로 넓어진다 — MAC 「Basic Access Protocol Features」·「CSMA/CA Explained」·「CSMA/CA + ACK protocol」.
+  이 초안은 매체가 정해진 간격(DIFS)보다 오래 비어 있으면 곧바로 보낸다고 적는데, 지금 판을 풀이한 RFC 8325 §6.1.2는 DIFS 동안 비어 있어도 무작위 백오프만큼 더 기다린 뒤 보낸다고 적는다(아래 RFC 항목) — **본문의 차례는 RFC 8325를 따른다**
+- **ACK**: 한 스테이션에게 보낸 프레임을 받은 쪽은 CRC가 맞으면 곧바로 ACK를 돌려준다. ACK가 오지 않으면 보낸 쪽은 무작위 백오프 뒤 그 프레임을 다시 보낸다(정해진 횟수까지). 브로드캐스트 프레임은 ACK 없이 CSMA/CA만 쓴다 — 「CSMA/CA + ACK protocol」·「Basic Access Protocol Features」
+- **숨은 노드와 RTS/CTS**: 같은 AP에 보내려는 스테이션들이 서로의 신호를 듣지 못할 수 있다(둘 다 AP는 듣는다). 보내는 쪽이 RTS를 보내고 받는 쪽이 CTS로 답해 그 뒤의 데이터 전송을 위해 매체를 미리 잡는다.
+  RTS·CTS에는 매체를 얼마 동안 쓸지가 들어 있고, 이것을 들은 다른 스테이션은 그 시간을 NAV에 적어 두고 그동안 보내지 않는다(가상 캐리어 감지). RTS/CTS는 선택해 쓰지만 구현은 해야 하며, 스테이션마다 RTS 임계값으로 쓸지를 정한다(짧은 프레임에 붙는 덧비용을 줄이려고) — 「"Hidden Node" Problem」·「"Hidden Node" Provisions」
+- 네트워크 찾기(scanning): 스테이션은 비컨을 들어(수동) 또는 채널마다 프로브를 보내고 응답을 기다려(능동) 네트워크를 찾는다. 비컨이나 프로브 응답에 네트워크에 들어가는 데 필요한 정보가 있고, 스테이션은 고른 AP에 연결 요청을 보내 연결한다 — MAC 「Scanning」·「Active Scanning Example」
+- **한국어 이름**: station → **스테이션**(영문 읽기, 줄여 STA), access point → **AP**(기출이 AP로 쓴다 — 처음 쓸 때 「액세스 포인트」를 함께 적는다), basic service set → 기본 서비스 세트(BSS), independent BSS·ad hoc → **애드혹 모드**(독립 BSS, IBSS — 기출·업계가 쓰는 이름),
+  infrastructure → **인프라스트럭처 모드**, distribution system → 분배 시스템, extended service set → 확장 서비스 세트(ESS), association → 연결, frequency hopping spread spectrum → **주파수 도약 대역 확산**(FHSS), direct sequence spread spectrum → **직접 시퀀스 대역 확산**(DSSS),
+  spread spectrum → **대역 확산**(기출은 「스프레드 스펙트럼」으로 적는다), infrared → 적외선, clear channel assessment → 채널 상태 확인(CCA), random backoff → **무작위 백오프**(phase 72가 CSMA/CD에 쓴 「백오프」), hidden node → **숨은 스테이션**(guide의 이름 — 튜토리얼은 「노드」, 둘 다 같은 것을 가리킨다)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·두 구성·분배 시스템·ESS, 연결), `wireless-lan.wlan-transmission`(처음 판 물리 계층 셋, FHSS·DSSS·적외선의 동작과 대역·전송률),
+(phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(채널 번호와 중심 주파수, 5 MHz 간격, 채널을 맞추는 일, 겹치는 네트워크와 동일 채널 간섭, 채널마다 찾기), `wireless-lan.csma-ca`(DCF·DIFS·무작위 백오프·ACK와 재전송·숨은 스테이션·RTS/CTS·NAV), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단·E41)
+
+## (phase 82 step 0) IEEE 802.11 개정 규격 — 802.11a·b·g·n·ac·ad·ah·ax·be: 표준 개요 페이지, 개정 연표, PAR 사본, 작업반 보고, 작업 그룹 문서(1999~2000)
+https://www.ieee802.org/11/Reports/802.11_Timelines.htm
+https://standards.ieee.org/ieee/802.11a/1165/
+https://standards.ieee.org/ieee/802.11b/1166/
+https://standards.ieee.org/ieee/802.11n/3952/
+https://standards.ieee.org/ieee/802.11ac/4473/
+https://standards.ieee.org/ieee/802.11ad/4527/
+https://standards.ieee.org/ieee/802.11ah/4960/
+https://standards.ieee.org/ieee/802.11ax/7180/
+https://standards.ieee.org/ieee/802.11be/7516/
+https://standards.ieee.org/ieee/802.11/10548/ (802.11g-2003은 따로 된 개요 페이지를 찾지 못했다 — 이 페이지의 작업 그룹 표준 목록에 제목과 초록이 있다)
+https://www.ieee802.org/11/PARs/index.html (사본: par80211aapp.html, par80211bapp.html, P802.11ac.pdf, P802.11ad.pdf, P802.11ah.pdf, P802.11ax.pdf, P802_11be_PAR_Detail.pdf, P802.11n_NesCom_PAR_Extension_Pre-Submittal_052707.pdf)
+https://www.ieee802.org/11/Reports/tgg_update.htm, tgn_update.htm, tgac_update.htm, tgax_update.htm, tgbe_update.htm, hew_update.htm
+https://www.ieee802.org/11/Documents/DocumentArchives/1999_docs/ (90727A-Intro of 80211a PHY to FCC.pdf — IEEE 802.11-99/072, 90257B-The-case-for-Removing-the-HR-DSSS-FH-Option.pdf — 문서 머리는 IEEE 802.11-98/025)
+https://www.ieee802.org/11/Documents/DocumentArchives/2000_docs/ (00114r38S- HRbSG Draft PAR.doc — IEEE 802.11-00/114r3)
+
+판: 개정 연표는 「OFFICIAL IEEE 802.11 WORKING GROUP PROJECT TIMELINES - 2026-10-27」판이다. 표준 개요 페이지·PAR 사본·작업반 보고는 2026-11-19에 받았다. 아래 표의 「승인」은 IEEE SA 표준 위원회의 승인일이다(개요 페이지 「Board Approval」, 802.11g만 TGg 보고).
+**PAR(프로젝트 승인 요청서)는 표준을 만들기 전에 정한 목표**이고 작업반 보고는 진행 기록이며, 1999~2000년 문서는 회원이 낸 발표·초안이다 — 어느 것도 표준 본문이 아니다. 그래서 전송률 칸은 문서가 적은 말(「목표」·「~까지」)을 그대로 옮기고 지금 판 본문의 최대 전송률로 바꿔 적지 않는다.
+
+| 개정 | 이름(개정 연표·개요 페이지) | 대역 | 전송률 — 문서가 적은 값 | 방식 — 문서가 적은 것 | 승인 | 상태 |
+|---|---|---|---|---|---|---|
+| 802.11-1997(처음 판) | — | 2400~2500 MHz(전파 둘), 적외선 | 1·2 Mbit/s(1996 튜토리얼) | 주파수 도약·직접 시퀀스 대역 확산, 적외선 | 1997-06-26 | 대체됨 |
+| 802.11a-1999 | 5 GHz 대역의 고속 물리 계층 | 5 GHz | **6~54 Mbit/s**(6·12·24 Mbit/s는 반드시 지원) — 99/072 | **OFDM**, 채널 간격 20 MHz — 99/072 | 1999-09-16 | 대체됨 |
+| 802.11b-1999 | 2.4 GHz 대역의 더 빠른 물리 계층 확장 | 2.4 GHz | **1·2·5.5·11 Mbit/s** — 00/114r3, RFC 8325 §6.1.1 | 고속 직접 시퀀스(HR/DSSS) — 99/025 | 1999-09-16 | 대체됨 |
+| 802.11g-2003 | 2.4 GHz 대역의 한층 더 높은 데이터 전송률 확장 | 2.4 GHz | **54 Mbps까지** — TGg 보고 2001-11 | CCK·**OFDM**·PBCC를 바탕으로 한 초안 — TGg 보고 | 2003-06-12 | 대체됨 |
+| 802.11n-2009 | 높은 처리율(High Throughput) | 찾지 못했다 | MAC에서 잰 최대 처리율 100 Mb/s 이상(목표) — 개요 초록·PAR, 처리율 600 Mbps까지(2006-01에 고른 합동 제안) — TGn 보고 | **MIMO** — 802.11ac PAR §5.3, 20 MHz·40 MHz 모드 — TGn 보고 | 2009-09-11 | 대체됨 |
+| 802.11ac-2013 | 6 GHz 아래의 매우 높은 처리율(VHT) | **6 GHz 아래, 2.4 GHz 제외 — 5 GHz 대역** — PAR §5.2 | 여러 스테이션 합 1 Gbps 이상·링크 하나 500 Mbps 이상(목표) — PAR §5.2 | **MU-MIMO**(하향), 40·80·160 MHz 전송 — TGac 보고 | 2013-12-11 | 대체됨 |
+| 802.11ad-2012 | 60 GHz 대역의 매우 높은 처리율 | **60 GHz**(대개 57~66 GHz) — PAR §5.2 | 최대 처리율 1 Gbps 이상(목표) — PAR §5.2 | — | 2012-10-19 | 대체됨 |
+| 802.11ah-2016 | 1 GHz 아래(면허 없이 쓰는 대역) | **1 GHz 아래**(TV 화이트 스페이스 대역 제외) — 개요 초록 | 100 kb/s 이상, 닿는 거리 1 km까지 — 개요 초록 | OFDM — PAR §5.2 | 2016-12-07 | 대체됨 |
+| 802.11ax-2021 | 고효율 WLAN(High Efficiency) | **1~7.125 GHz** — 개요 초록 | 붐비는 곳에서 스테이션당 평균 처리율 4배 이상(목표) — PAR §5.2.b | **OFDMA, 하향·상향 MU-MIMO** — TGax 보고의 문서 제목(아래 줄) | 2021-02-09 | 대체됨(802.11-2024에 합쳐짐) |
+| 802.11be-2024 | 극도로 높은 처리율(Extremely High Throughput) | **1~7.250 GHz**, 2.4·5·6 GHz의 옛 장치와 함께 동작 — 개요 초록 | 최대 처리율 30 Gbit/s 이상 — 개요 초록·TGbe 보고 | — | 2024-09-26(발행 2025-07-22) | **현행**(Active) |
+
+- 「처리율」과 「전송률」을 섞지 않는다: 802.11n·ac·ad·be의 값은 **MAC의 데이터 서비스 접근점에서 잰 처리율의 목표**다(개요 초록·PAR이 그렇게 적는다). 802.11a·b·g의 값은 물리 계층의 데이터 전송률이다.
+  지금 판 본문이 정한 개정마다의 최대 데이터 전송률(예: 802.11n·ac·ax의 최댓값)은 **찾지 못했다** — 본문은 「~ 이상을 목표로 만들었다」로만 쓰고 최댓값을 지어내지 않는다
+- **802.11a**(99/072, 1999-03 TGa 의장의 발표): 1997년 7월 2.4 GHz 대역의 무선 LAN 표준(MAC 하나, 물리 계층 셋 — FHSS·DSSS·적외선)을 마쳤고, 그 뒤 5 GHz 고속 물리 계층을 만든다. **OFDM**으로 보내고 데이터 전송률은 6~54 Mbit/s 가운데 여럿이다. 채널 간격은 20 MHz다.
+  OFDM 신호는 0이 아닌 부반송파 52개(데이터 48개, 파일럿 4개)로 이루어지고 부반송파 간격은 312.5 kHz다. 부반송파마다 BPSK·QPSK·16QAM·64QAM 가운데 하나로 데이터를 싣는다. 부반송파 가운데 일부가 약해질 수 있어 오류 정정 부호를 꼭 쓴다 — 「What is 802.11?」·「Main Parameters」·「Data and Pilot subcarriers」·「Error Correction Coding」·「Supported Rates and Modulations」
+- **802.11a의 PAR**(1997-09-16 승인): 처음 목표는 약 20 Mbit/s의 고속 물리 계층이었다 — 「Scope」. 최종 표준의 54 Mbit/s는 위 99/072의 값이다
+- **802.11b**: PAR(1997-12-09 승인)의 목적은 2.4 GHz 대역의 802.11 네트워크가 낼 수 있는 데이터 전송률을 높이는 것이다 — par80211bapp 「Purpose」. 그 뒤를 이을 연구 그룹의 초안 PAR(00/114r3, 2000)은 802.11b가 이미 기본 전송률 1·2·5.5·11 Mbit/s를 정해 두었다고 적는다 — 「16. Additional Explanation Notes」.
+  RFC 8325 §6.1.1도 802.11b를 1·2·5.5·11 Mbps를 지원하는 옛 구현으로 든다. 이 물리 계층의 이름은 고속 직접 시퀀스(HR/DSSS)다(99/025 — 이 문서는 고속 DSSS 전송이 폭 22 MHz의 채널을 차지한다고 적는다, 「What is it?」)
+- **802.11g**: 이 개정을 낳은 연구 그룹의 초안 PAR(00/114r3)은 802.11b의 물리 계층을 더 빠르게 넓히는 것을 범위로 잡고, 목표 최대 데이터 전송률을 적어도 20 Mbit/s로, 그리고 **802.11b 물리 계층 표준의 필수 부분을 모두 갖춰야 한다**고 적는다(「Scope of the Project」 — 승인된 PAR은 읽지 못했다). TGg 보고(2001-11)는 첫 초안이 2.4 GHz 대역에서 54 Mbps까지를 내고 CCK·OFDM·PBCC 기술을 바탕으로 한다고 적고,
+  2002년 보고는 OFDM 프레임을 보호하는 장치(protection mechanisms)를 남은 쟁점으로 든다. 표준 위원회 승인은 2003-06-12다 — TGg 보고 「June 2003」·「November 2001 Session」. 개요 목록의 초록은 802.11 1999년판(802.11a·b 등으로 고친 것)에 2.4 GHz 대역의 「한층 더 높은」 데이터 전송률 확장을 더한다고 적는다
+- **802.11n의 MIMO**: 802.11ac의 PAR은 802.11n보다 높은 처리율을 내려면 802.11n의 MIMO(다중 입력 다중 출력) 기능이 필요할 것이라고 적는다 — P802.11ac §5.3. TGn 보고는 20 MHz·40 MHz 두 모드의 공존 분석과, 「단일 스트림」으로 동작하는 방식을 기능 요구에 더한 일을 적는다 — TGn 보고
+- **MU-MIMO**: TGac 보고(2010년 사양 틀 결정 목록)는 MU-MIMO를 따로 묶어 다루고, 하향 MU-MIMO의 전송 기회 나눠 쓰기(DL MU-MIMO TXOP Sharing), MU-MIMO에서 사용자마다의 피드백, MU-MIMO의 백오프 절차를 정했다고 적는다 — TGac 보고 「May·September·November 2010」.
+  TGax 보고는 초안 절 「28.3.15 SU-MIMO와 DL MU-MIMO 빔포밍」, 「상향 MU-MIMO(UL MU-MIMO)를 위한 HE-LTF」 같은 문서 제목을 싣는다. **MU-MIMO를 정의한 문장은 허용한 출처에서 찾지 못했다** — 이름(multi-user)과 하향·상향이 어느 개정에 나오는지까지만 쓴다
+- **OFDMA**: TGax 보고는 초안 절 「28.3.3 OFDMA와 SU 톤 할당」, 「상향 OFDMA 기반 임의 접근(UORA)」 같은 문서 제목을 싣고, 고효율 WLAN 연구 그룹 보고는 「HEW에서의 OFDMA 논의」를 싣는다 — 802.11ax에 OFDMA가 들어 있다는 것까지는 이것으로 확인된다.
+  **OFDMA가 무엇인지 정의한 문장은 허용한 출처에서 찾지 못했다**(802.11ax 본문은 열지 못했다). 802.16 작업 그룹의 2011년 튜토리얼(IEEE 802.16-11/0005, `ieee802.org/802_tutorials/2011-03/`)도 OFDMA를 하향·상향 다중 접속 방식으로 든 표뿐이다
+- **802.11ax의 목표**: 많은 AP와 스테이션이 좁은 곳에 몰린 환경에서는 이웃 장치의 간섭이 성능을 떨어뜨리므로, 이전 개정처럼 합계 처리율이 아니라 스테이션당 평균 처리율 같은 사용자 경험 지표를 높이고 전력 효율도 지키거나 높인다 — P802.11ax §5.2.b·§5.5
+- **802.11be**: 최대 처리율 30 Gbit/s 이상을 내는 동작 방식과 최악의 지연·지터를 줄이는 동작 방식을 적어도 하나씩 정한다. 1~7.250 GHz에서 동작하고 2.4·5·6 GHz의 옛 802.11 장치와 함께 동작한다 — 개요 초록, TGbe 보고 「Background」(2019-03에 작업반을 만들었다). 업계 이름은 Wi-Fi 7(위 「작업 그룹 홈페이지」 항목)
+- **802.11ac와 802.11ad**: 둘 다 「매우 높은 처리율(VHT)」 연구 그룹에서 나왔지만(작업 그룹 홈페이지 「VHT SG ⇨ TGac & TGad」) 대역이 다르다 — ac는 6 GHz 아래(2.4 GHz를 뺀 5 GHz 대역), ad는 60 GHz 대역이다. 「802.11n을 바탕으로 60 GHz 밀리미터파에서 동작하는 새 물리 계층」은 ad 쪽 말이다 — [기출 2024-05-19 #27]
+- **802.11a와 802.11b**: 같은 날(1999-09-16) 승인됐다. a는 5 GHz·OFDM, b는 2.4 GHz·고속 DSSS다. 이름의 알파벳은 속도 순서를 말하지 않는다(발행은 a 1999-12-30, b 2000-01-20 — 개요 페이지)
+- 이 step이 쓰지 않는 개정: 802.11s(메시 — step 4의 몫), 802.11e·i·h 같은 기출이 묻지 않는 것
+- **한국어 이름**: OFDM → **직교 주파수 분할 다중화**(orthogonal frequency division multiplexing — RFC 5416 §6.10이 풀어 적는다), subcarrier → **부반송파**, OFDMA → 직교 주파수 분할 다중 접속(orthogonal frequency division multiple access — 이름만),
+  MIMO → **MIMO**(다중 입력 다중 출력 — 기출이 영문 약어로 쓴다), MU-MIMO → **MU-MIMO**(다중 사용자 MIMO), downlink·uplink → **하향·상향**(AP에서 스테이션 쪽·스테이션에서 AP 쪽), throughput → **처리율**(phase 70의 이름), data rate → 데이터 전송률,
+  High Throughput → 높은 처리율, Very High Throughput → 매우 높은 처리율, High Efficiency → 고효율, Extremely High Throughput → 극도로 높은 처리율(이름을 풀어 적을 때만), PAR → 프로젝트 승인 요청서
+- (phase 82 step 3, 2026-11-19 `ieee802.org/11/PARs/`의 PDF 사본 P802.11ac.pdf·P802.11ad.pdf·P802.11ax.pdf를 IPv4로 다시 받아 확인) **802.11n·ac·ax의 대역과 802.11ac의 동시 통신**:
+  - P802.11ad §5.3·§8.1: 이 개정은 60 GHz 대역과 2.4·5 GHz 대역 사이의 빠른 세션 전환(fast session transfer)을 정하고, 그 일 때문에 802.11n의 완성에 기댄다고 적는다 — 곧 그 2.4·5 GHz 쪽 물리 계층이 802.11n이다.
+    P802.11ax §8.1(5.2.b 설명)도 성능을 견줄 이전 개정으로 「2.4 GHz의 802.11n, 5 GHz의 802.11ac」를 든다. 그래서 본문은 802.11n이 2.4GHz와 5GHz 대역을 쓴다고 적는다(위 표의 「찾지 못했다」를 이 두 줄로 채운다 — 802.11n 개요 페이지에는 대역이 없다)
+  - P802.11ax §8.1(5.2.b 설명): 이 개정의 중심은 **2.4 GHz 대역과 5 GHz 대역**에서의 실내·실외 동작이고, 1~7.125 GHz 사이의 다른 대역은 쓸 수 있게 되는 대로 더할 수 있다. PAR 수정 기록은 새 대역 때문에 상한을 6 GHz에서 7.125 GHz로 바꿨다고 적는다(그 새 대역의 이름은 적지 않아 쓰지 않는다)
+  - P802.11ac §5.2·§8.1: 2.4 GHz를 뺀 6 GHz 아래에서 동작하면서 5 GHz 대역의 옛 802.11 장치와 함께 동작해야 한다. 이 개정은 **여러 통신을 동시에 다루는 능력**을 넣을 수 있고, 여러 스테이션 합 1 Gbps는 AP 하나와 스테이션 셋 이상이 함께 통신할 때를 두고 한 말이다.
+    §5.3: 802.11n보다 높은 처리율을 내려면 802.11n의 MIMO 기능이 필요할 것이다(위 줄과 같다)
+  - 쓰지 않는 것: 802.11n의 최대 전송률(합동 제안의 600 Mbps는 표준 본문의 값이 아니다), 채널 폭을 묶는 방법, 802.11ad의 빠른 세션 전환 절차
+  쓰인 곳: `wireless-lan.ieee-80211-standards`(802.11n은 2.4GHz·5GHz, 802.11ax는 2.4GHz·5GHz를 중심으로 1~7.125GHz, 802.11ac는 2.4GHz를 뺀 5GHz), `wireless-lan.mimo`(802.11ac의 MU-MIMO가 여러 스테이션과 동시에 통신하는 데 쓰인다)
+- (phase 82 step 4, 2026-11-19 802.11ah 개요 페이지 https://standards.ieee.org/ieee/802.11ah/4960/ 와 작업 그룹 홈페이지 https://www.ieee802.org/11/ , TGah 보고 https://www.ieee802.org/11/Reports/tgah_update.htm 를 IPv4로 다시 받아 확인) **802.11ah와 「Wi-Fi HaLow」**:
+  - 802.11ah-2016(개정 2, 「1 GHz 아래 면허 없이 쓰는 동작」, 표준 위원회 승인은 위 표, 상태 대체됨): 802.11의 물리 계층과 MAC을 고쳐 TV 화이트 스페이스 대역을 뺀 1 GHz 아래 대역에서 면허 없이 802.11 무선 네트워크를 쓰게 하고, 닿는 거리 1 km까지·최소 데이터 전송률 100 kb/s 이상을 정한다 — 개요 초록(위 표의 줄과 같다)
+  - **「Wi-Fi HaLow」라는 이름은 세 페이지 어디에도 없다.** 누가 붙인 이름인지도 허용한 출처에서 확인하지 못했다(Wi-Fi Alliance의 페이지는 허용한 출처가 아니라 읽지 않았다) — 본문은 「802.11ah」로만 쓰고 「Wi-Fi HaLow」라는 이름을 쓰지 않는다([기출 2026-02-01 #9]의 오답 보기 이름)
+  쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(오답 보기 802.11ah를 앞 개념 `ieee-80211-standards`의 한 줄과 같은 뜻으로 가른다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wlan-transmission`(802.11b는 DSSS를 넓힌 고속 DSSS, 802.11a·g는 OFDM, OFDM의 부반송파), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(고속 DSSS 전송이 22 MHz 채널을 차지한다, 802.11a의 채널 간격 20 MHz),
+(phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(802.11n의 MIMO, MU-MIMO 하향 802.11ac·상향 802.11ax, OFDM과의 차이), `wireless-lan.ieee-80211-standards`(위 표, 802.11ah·be 한 줄씩, ac와 ad, a와 b), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
+
+## (phase 82 step 0) RFC 4118, RFC 5416, RFC 8325, RFC 9119 — 802.11의 용어와 동작을 풀이한 RFC
+https://www.rfc-editor.org/rfc/rfc4118
+https://www.rfc-editor.org/rfc/rfc5416
+https://www.rfc-editor.org/rfc/rfc8325
+https://www.rfc-editor.org/rfc/rfc9119
+https://www.rfc-editor.org/rfc/rfc9956
+
+판(rfc-editor.org 텍스트판과 `…/rfcNNNN.json`, 2026-11-19): RFC 4118(2005-06, Informational, 폐기·개정 없음), RFC 5416(2009-03, Proposed Standard, 폐기·개정 없음 — IEEE 802.11-2007을 참조한다),
+RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정은 DSCP와 802.11 우선순위의 대응만 고치고 아래 줄이 쓰는 §1.6 용어와 §6.1은 건드리지 않는다, IEEE 802.11-2016을 참조한다), RFC 9119(2021-10, Informational, 폐기·개정 없음), RFC 9956(2026-05, Proposed Standard, 폐기·개정 없음 — RFC 4594·8325를 개정한다, 아래 한 줄만 쓴다).
+
+- RFC 4118 §3.1(802.11의 정의를 옮겨 적은 절): **스테이션**(STA)은 무선 매체에 닿는 802.11 규격의 MAC과 물리 계층 인터페이스를 가진 장치다. **AP**는 스테이션 기능을 가지면서, 자기와 연결된 스테이션들이 무선 매체를 거쳐 분배 서비스에 닿게 해 주는 것이다.
+  **BSS**는 조정 기능 하나가 다스리는 스테이션 묶음이다. **분배 시스템**은 BSS들과 유선 LAN을 이어 ESS를 만드는 시스템이고, **ESS**는 같은 SSID를 쓰는 BSS 하나 이상과 거기 이어진 LAN의 묶음으로, 그 안의 스테이션 위쪽 계층에게는 BSS 하나처럼 보인다 — §3.1
+- RFC 4118 §1.1: 802.11은 무선 클라이언트 스테이션과 AP 사이, 그리고 무선 클라이언트끼리의 무선 구간 접속 규칙을 정하고, 장치가 BSS에 연결되는 방법을 적는다. BSS는 BSSID로 가린다. WLAN을 셀 구조로 볼 수 있다 — 셀 하나가 BSS이고 그 BSS를 AP가 다스린다.
+  AP 둘 이상이 레이어 2 브로드캐스트 네트워크로 이어지고 모두 같은 SSID를 쓰면 ESS가 된다. AP가 맡는 일로 비컨 만들기, 프로브 응답, RTS/CTS/ACK 같은 제어 프레임 처리, 재전송, 전송률 맞추기를 든다 — §1.1
+- RFC 4118 §1.2: 업체들이 흔히 더하는 관리 기능 가운데 RF 설정(재전송·**채널 선택**·송신 전력 조정)과 AP 설정(SSID 등)을 든다. 이런 기능은 대개 802.11이 직접 정하지 않지만, AP의 **채널 할당**과 송신 전력 제어는 802.11 MIB에 들어 있다.
+  802.11h 개정은 일부 규제 기관(주로 유럽)의 요구에 맞추려고 레이더 탐지·송신 전력 제어·**동적 채널 선택**을 정한다 — §1.2. 중앙 집중 구조의 한 예(원격 MAC 구조)에서는 컨트롤러가 채널 선택 기능을 준다 — §5.5
+- RFC 5416 §6.1: **SSID**는 AP가 그 무선 LAN을 알릴 때 쓰는 서비스 세트 식별자다. ASCII 문자로 쓰고 32옥텟을 넘지 않는다. 비컨과 프로브 응답에 SSID를 넣지 않게(숨기게) 설정할 수도 있다 — §6.1 「Suppress SSID」·「SSID」
+- RFC 5416 §6.5·§6.10: 컨트롤러는 AP의 「지금 쓰는 채널」 — 802.11b 무선은 DSSS 물리 계층의 동작 채널(MIB의 dot11CurrentChannel), 802.11a 무선은 OFDM 물리 계층의 동작 채널 — 을 정해 보낼 수 있고, AP는 받은 값을 따라야 한다. 그러니 AP의 채널은 관리하는 쪽이 정할 수 있다.
+  802.11a 무선이 동작할 수 있는 5 GHz 구간(5.15~5.25 GHz, 5.25~5.35 GHz, 5.47~5.725 GHz, 5.725~5.825 GHz 등)도 적는다 — §6.5·§6.10
+- RFC 5416 §6.9: 규제 영역(나라)마다 쓸 수 있는 채널의 첫 번호와 개수, 최대 송신 전력을 주고받는다 — 나라마다 쓸 수 있는 채널이 다르다 — §6.9
+- RFC 5416 §6.2: AP의 안테나 정보에 안테나 개수(255개까지)와 안테나를 묶어 쓰는 방식(섹터·무지향·**MIMO**)이 있다 — §6.2. §6.25: 무선 종류 칸에 802.11a·b·g·n이 있다
+- RFC 5416 §1: Wi-Fi Alliance가 아직 802.11에서 만들고 있던 표준에 대한 시장의 요구를 채우려고 임시 사양 둘(WPA, WMM)을 만들었다 — §1. 곧 Wi-Fi Alliance는 IEEE 802.11 작업 그룹이 아닌 업계 단체다(그 단체의 페이지는 허용한 출처가 아니라 읽지 않았다)
+- RFC 8325 §1.6(용어): **CSMA/CA**는 캐리어 감지를 쓰되 채널이 비어 있다고 감지될 때만 보내 충돌을 피하려는 MAC 방식이다. **CSMA/CD**는 (초기 이더넷이 쓴) 보내는 동안 다른 스테이션의 전송을 감지해 충돌을 알아채고, 멈추고 잼 신호를 보낸 뒤 무작위 시간을 기다려 다시 보내는 방식이다.
+  **DCF**는 BSS의 모든 스테이션에서 같은 조정 논리가 도는 조정 기능이다. **IFS**는 802.11에서 전송과 전송 사이의 조용한 시간이고, **DIFS**는 보내려는 스테이션이 매체가 비어 있다고 확인해야 하는 시간이다. **무작위 백오프**는 0부터 경쟁 윈도(CW)까지에서 고른 슬롯 시간의 정수배다.
+  **BSS**는 흔히 말하면 무선 셀 하나이고, BSS에 속했다고 그 BSS의 다른 모든 구성원과 무선으로 통신할 수 있는 것은 아니다 — §1.6
+- RFC 8325 §6.2: DCF는 스테이션이나 트래픽 종류에 따라 순서를 두지 않으므로, IEEE는 2005년에 DCF를 고쳐 우선순위를 두는 HCF를 더했고 2007년판에 합쳐 넣었다 — §6.2. RFC 9956 §7.3: 802.11e·n·ac·ax를 따르는 Wi-Fi 장비는 대개 전송 큐 넷이나 여덟과 EDCA 매개변수 네 벌(WMM 접근 범주 넷)을 두어 매체 접근에 우선순위를 둔다 — §7.3. 곧 802.11ax 장비도 DCF를 고친 경쟁 방식(EDCA)으로 매체에 접근한다
+- RFC 8325 §6.1: 무선(Wi-Fi) 매체는 AP를 포함한 모든 스테이션이 같은 조건으로 다투는 공유 매체다. 유선 이더넷과 달리 **무선에서는 충돌을 직접 감지할 수 없다** — 전파가 공중으로 퍼져 나가고 부딪친 신호가 보낸 쪽으로 되돌아오지 않을 수 있기 때문이다. 그래서 IEEE는 CSMA/CD를 무선에 맞게 고쳐 CSMA/CA를 만들었고, 802.11의 처음 CSMA/CA가 DCF다 — §6.1
+- RFC 8325 §6.1.2: 스테이션은 보내기 전에 매체를 살핀다. DIFS 동안 쭉 비어 있으면 보낼 수 있지만 그 뒤 **무작위 백오프만큼 더 기다린다** — 모두 고정된 시간만 기다리면 충돌이 잦을 것이기 때문이다. DIFS 동안 매체가 쓰이면 DIFS 동안 비어 있을 때까지 미룬다 — §6.1.2
+- RFC 8325 §6.1.3: 무작위 백오프의 처음 범위는 0부터 CWmin까지다. 두 스테이션이 같은 값을 골라 충돌하면 다시 DIFS를 기다리고 새 값을 고르는데, 이때 범위(CW)가 대략 두 배로 커진다(CWmax까지) — §6.1.3. §6.1.1: 802.11b 같은 옛 구현은 1·2·5.5·11 Mbps를 지원한다
+- RFC 9119 초록·§1: 802.11을 「802.11 (Wi-Fi)」로 함께 적고, 본문 내내 802.11 무선 LAN을 Wi-Fi라 부른다 — 초록, §1
+- RFC 9119 §2·§3.1.1: ACK는 802.11의 2계층 확인 응답이다. 멀티캐스트 프레임에는 ACK가 없어 AP가 다시 보내야 하는지 알 수 없다 — 한 스테이션에게 보낸 프레임은 ACK를 받고 필요하면 다시 보낸다는 것(위 1996 튜토리얼 항목)과 짝을 이루는 말이다 — §2, §3.1.1
+- RFC 9119 §3.1.2: 유선은 대개 정해진 속도로 보내지만 Wi-Fi의 전송률은 스테이션이 AP에 얼마나 가까운지에 따라 바뀐다. **MIMO 시스템의 공간 다중화**처럼 주파수를 더 알뜰히 쓰는 기법은 받는 쪽이 둘 이상인 전송(멀티캐스트)에는 쓸 수 없다 — §3.1.2. §3.1.3: 더 센 전력으로 보내면 다른 전파 사용자와 간섭하는 범위가 넓어진다 — §3.1.3
+- **한국어 이름**: SSID → **SSID**(service set identifier, 서비스 세트 식별자 — 기출·업계가 약어로 쓴다), BSSID → BSSID, beacon → 비컨, probe → 프로브, contention window → 경쟁 윈도(CW), interframe space → **프레임 사이 간격**(phase 72가 802.3의 interFrameSpacing에 쓴 이름), slot time → 슬롯 시간,
+  acknowledgement → **ACK**(확인 응답 — 처음 쓸 때 「잘 받았다는 확인 프레임」으로 푼다), spatial multiplexing → 공간 다중화, channel selection → 채널 선택, dynamic channel selection → 동적 채널 선택
+- (phase 82 step 1, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 확인) **스테이션의 MAC 주소**: RFC 5416 §6.13 「IEEE 802.11 Station」 메시지 요소는 연결된 스테이션 하나를 알리며 「스테이션의 MAC 주소」 칸(6옥텟)을 담고,
+  §6.23 「IEEE 802.11 WTP Radio Configuration」은 BSSID를 그 무선 장치의 기본 MAC 주소라고 적는다 — 곧 802.11 스테이션과 AP의 무선 장치도 이더넷 장치처럼 MAC 주소를 가진다.
+  802.11 프레임의 주소 칸 구성은 이 RFC들이 적지 않아 쓰지 않는다(본문은 「무선 LAN의 장치도 저마다 MAC 주소를 가지고, 데이터를 프레임에 담아 주고받는다」까지 쓴다 — 프레임을 주고받는다는 것은 위 1996년 튜토리얼의 ACK·RTS/CTS 항목과 RFC 4118 §1.1).
+  RFC 9542 §2.1은 48비트 MAC 주소를 이더넷 인터페이스 식별자로만 들고 802.11을 따로 말하지 않는다.
+  쓰인 곳: `wireless-lan.wireless-lan`(무선 LAN의 장치도 저마다 MAC 주소를 가진다)
+- (phase 82 step 3, 2026-11-19 rfc-editor.org 텍스트판 RFC 8325·9119를 IPv4로 다시 받아 확인) **공간 스트림과 MU-MIMO**:
+  - RFC 9119 §3.1.2: 옛 장치와 함께 동작하는 일과 **여러 스트림을 함께 보내는 구현(multi-stream implementations)** 덕에 한 스테이션에게 보내는(유니캐스트) 최대 전송률이 지금은 몇 Gbps에 이른다.
+    주파수를 더 알뜰히 쓰려고 쓰는 기법인 **MIMO 시스템의 공간 다중화**는 받는 쪽이 둘 이상인 전송에는 쓸 수 없다(위 줄과 같다) — §3.1.2
+  - RFC 8325 §6.1.1: 802.11n·802.11ac 같은 새 구현의 데이터 전송률을 **공간 스트림(spatial stream) 하나마다** 적는다(「per spatial stream」 — 수치는 쓰지 않는다) — §6.1.1
+  - 위 둘로 본문이 쓰는 것: MIMO 장비는 공간 다중화로 데이터를 흐름 여럿으로 나눠 같은 채널에서 함께 보내고, 그 흐름 하나하나를 공간 스트림이라 하며, 전송률은 스트림 하나마다 따지므로 스트림을 여럿 함께 보내면 한 스테이션이 받는 전송률이 높아진다.
+    **공간 스트림을 정의한 문장 자체는 찾지 못했다** — 「여러 스트림 구현」(RFC 9119)·「공간 스트림마다의 전송률」(RFC 8325)·「MIMO의 공간 다중화가 주파수를 더 알뜰히 쓴다」(RFC 9119)를 합쳐 쓴 풀이다. 스트림과 안테나가 하나씩 짝을 이룬다고는 쓰지 않는다(문서가 말하지 않는다)
+  - RFC 9119 §4.7(GCR): AP는 그룹의 일부 구성원에게 하나씩 보내는 블록 ACK 요청을 **하향 MU-MIMO**로 보내고, 그 답인 블록 ACK를 **상향 MU-MIMO**로 받는다. 상향 MU-MIMO는 IEEE 802.11ax-2021의 기능이다.
+    여러 스테이션의 답을 동시에 받아 지연을 줄일 수도 있다 — §4.7. 곧 하향 MU-MIMO는 AP가 여러 스테이션에게 저마다의 프레임을 함께 보내는 데, 상향 MU-MIMO는 여러 스테이션이 보내는 것을 AP가 함께 받는 데 쓰인다(위 「개정 규격」 항목의 P802.11ac 「여러 통신을 동시에」와 맞는다)
+  - 쓰지 않는 것: MU-MIMO가 신호를 어떻게 스테이션마다 나누는지(빔포밍·사용자마다의 피드백 — TGac·TGax 문서 제목에만 있다), 한 번에 함께 보낼 수 있는 스테이션·스트림의 수, 수신 쪽 안테나 수의 조건
+  쓰인 곳: `wireless-lan.mimo`(공간 다중화·공간 스트림·스트림마다의 전송률, 받는 쪽이 둘 이상인 같은 프레임에는 공간 다중화를 쓸 수 없다, 하향·상향 MU-MIMO가 여러 스테이션과 함께 주고받는 데 쓰인다)
+- (phase 82 step 4, 2026-11-19 rfc-editor.org 텍스트판 RFC 4118을 IPv4로 다시 받아 확인) **재연결(reassociation)**:
+  - RFC 4118 §1.1: 802.11이 정하는 서비스 가운데 **재연결**은 스테이션과 AP 사이에 맺어 둔 연결을 다른 AP(또는 같은 AP)로 옮기는 서비스다. 연결 해제(disassociation)는 맺어 둔 연결을 없앤다 — §1.1.
+    같은 절은 스테이션이 한 BSS에서 다른 BSS로 옮겨 갈(roam) 때 AP들에게 알리는 AP 사이 프로토콜(IAPP, 권고 관행 802.11F)을 802.11이 만들던 기술로 든다 — §1.1. 곧 무선 LAN에서 스테이션이 다른 AP의 셀로 옮겨 붙는 일은 재연결로 이루어진다
+  - 쓰지 않는 것: 재연결 프레임의 형식과 차례, IAPP의 동작, 빠른 로밍(802.11r)
+  쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(무선 LAN에서 스테이션이 다른 AP로 옮겨 붙는 것 — 재연결 한 줄)
+
+쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
+`wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
+
+## (phase 82 step 4) IEEE 802.15 — WPAN: 작업 그룹 페이지(홈·소개·TG1·TG3·TG4·802.15.1의 5대 기준)와 표준 개요 페이지(802.15.1-2002·2005, 802.15.3-2003·2016·2023, 802.15.4-2003·2006·2024, 802.15.5-2009)
+https://www.ieee802.org/15/
+https://www.ieee802.org/15/about.html
+https://www.ieee802.org/15/pub/TG1.html
+https://www.ieee802.org/15/pub/par/5C.html (페이지 바닥줄의 주소는 `ieee802.org/15/pub/TG1-5C.html` — 802.15 WPAN 연구 그룹이 1999-03-18에 낸 5대 기준 응답)
+https://www.ieee802.org/15/pub/TG3.html
+https://www.ieee802.org/15/pub/TG4.html
+https://standards.ieee.org/ieee/802.15.1/1180/
+https://standards.ieee.org/ieee/802.15.1/3513/
+https://standards.ieee.org/ieee/802.15.3/1182/
+https://standards.ieee.org/ieee/802.15.3/6211/
+https://standards.ieee.org/ieee/802.15.3/10801/
+https://standards.ieee.org/ieee/802.15.4/3388/
+https://standards.ieee.org/ieee/802.15.4/3582/
+https://standards.ieee.org/ieee/802.15.4/11041/
+https://standards.ieee.org/ieee/802.15.5/3572/
+
+판: IEEE 802.15.1-2002(승인 2002-04-15, 발행 2002-06-14, 대체됨 — 802.15.1-2005), IEEE 802.15.1-2005(승인 2005-02-14, 재확인 2010-09-30, **철회 2018-05-07 — Inactive-Withdrawn**),
+IEEE 802.15.3-2003(승인 2003-06-12, 대체됨), IEEE 802.15.3-2016(승인 2016-05-15, 대체됨), **IEEE 802.15.3-2023(승인 2023-09-21, 발행 2024-02-22, Active — 지금 판)**,
+IEEE 802.15.4-2003(승인 2003-05-12, 대체됨), IEEE 802.15.4-2006(승인 2006-06-08, 대체됨), **IEEE 802.15.4-2024(승인 2024-09-26, 발행 2024-12-12, Active — 지금 판)**, IEEE 802.15.5-2009(권고 관행, 승인 2009-03-19, 2020-03-05 비활성).
+작업 그룹 홈페이지는 2026-10-25에 고친 판, TG1 페이지는 2004-02-09, TG3 페이지는 2009-06-09에 고친 판이다(페이지 머리와 바닥줄). TG 페이지들은 그 표준을 만들던 때의 기록이라 지금 판과 다를 수 있다 — 줄마다 어느 때의 말인지 적는다.
+
+- 작업 그룹: 802.15는 처음에 **WPAN(무선 개인 영역 네트워크) 작업 그룹**이었고(TG1·TG3·TG4 페이지와 5대 기준의 머리), 지금은 이름을 Wireless Specialty Networks로 바꿔 사물 인터넷(IoT) 장치의 무선 네트워크·광 무선 통신 같은 표준을 맡는다.
+  홈페이지는 작업 그룹 사이트가 새 주소(`ieee802-15.org`)로 옮겼다고 알린다 — 그 주소는 허용한 곳(`ieee802.org`)이 아니라 읽지 않았다 — 홈페이지·소개 페이지 「ABOUT」.
+  이 이름의 줄임말 WSN은 [기출 2025-02-23 #26]·[기출 2026-05-17 #24]의 오답 보기 「Wireless sensor networks」와 다른 말이다(본문에 쓰지 않는다)
+- **WPAN이 무엇을 노리는가** — 5대 기준(1999): 몸에 지니거나 손에 드는 컴퓨팅·통신 장치와 그 주변기기(컴퓨터·PDA·프린터·마이크·스피커·바코드 판독기·센서·디스플레이·호출기·휴대 전화 등)를 무선으로 잇는 것이다.
+  802.11은 처리율·거리·로밍에 맞춰 만들지만 WPAN은 작은 크기에서 **낮은 비용과 낮은 전력 소비**에 맞춘다. WLAN과 달리 거리와 대역폭을 서로 맞바꿀 여지가 크고, 요구 성능이 낮아 WLAN보다 훨씬 싸게 만들 수 있다. 2.4 GHz 대역을 쓰므로 그 대역의 WLAN과 함께 동작하는 일(공존)을 핵심 조건으로 든다 —
+  5대 기준 「1. BROAD MARKET POTENTIAL」·「3. DISTINCT IDENTITY」·「4. TECHNICAL FEASIBILITY」·「5. ECONOMIC FEASIBILITY」·「6. STRATEGY FOR WPAN COEXISTENCE IN THE 2.4GHz BAND」
+- **WPAN이 몇 미터 안을 잇는지 수치는 이 항목의 어느 문서에도 없다** — 문서들은 「짧은 거리(short-range)」로만 적는다(802.15.1-2002 개요의 Bluetooth 설명, 802.15.4-2003 개요). 본문은 수치 없이 「짧은 거리」로 쓴다 — `exam-notes.md` **E42**
+- **802.15.1**: Bluetooth 무선 기술의 아래 전송 계층(L2CAP·LMP·베이스밴드·무선)을 정한다 — Bluetooth 사양 1.1판의 MAC(L2CAP·LMP·베이스밴드)과 물리 계층(무선)을 IEEE가 검토해 표준으로 옮긴 것이다. 개요는 Bluetooth를 휴대용 개인 장치를 위한 짧은 거리 무선(RF) 연결의 업계 사양이라 적는다 —
+  802.15.1-2002 개요 초록, TG1 페이지 「IEEE 802.15.1 OVERVIEW」. 그 개정판 802.15.1-2005는 **2018-05-07에 철회됐다** — 802.15.1-2005 개요 페이지. 지금 Bluetooth를 정하는 사양은 Bluetooth SIG의 Core Specification이다(아래 「Bluetooth SIG」 항목)
+- **802.15.3**: TG3는 **고속 WPAN**(20 Mbit/s 이상)을 맡아, 낮은 전력·낮은 비용으로 휴대용 디지털 영상·멀티미디어 응용을 받치는 표준을 만들었다(그때의 특징: 11·22·33·44·55 Mbps, 애드혹 피어 투 피어 네트워킹, QoS) — TG3 페이지 「Overview」·「TG3 MAC & PHY Features」.
+  802.15.3-2003 개요: 2.4 GHz 전파로 WPAN 안의 데이터·멀티미디어 장비를 잇는 프로토콜을 정한다. 지금 판 802.15.3-2023은 제목이 「무선 멀티미디어 네트워크(Wireless Multimedia Networks)」이고 2.4·60·300 GHz 전파를 쓴다 — 두 개요 초록
+- **802.15.4**: TG4는 배터리를 몇 달에서 몇 년 쓰고 아주 단순한 **저속** 해법을 맡았고, 면허 없이 쓰는 국제 대역에서 동작한다. 쓰임의 예로 센서·장난감·스마트 배지·리모컨·홈 오토메이션을 든다 — TG4 페이지 머리.
+  그때(802.15.4-2003)의 특징: 250·40·20 kbps, 16비트 짧은 주소와 64비트 IEEE 주소, CSMA-CA 채널 접근, **코디네이터가 네트워크를 자동으로 세움**, 주고받기를 확인하는 전송, 저전력을 위한 전력 관리, 2.4 GHz ISM 대역 채널 16개·915 MHz 대역 10개·868 MHz 대역 1개 — TG4 페이지 「IEEE 802.15 TG4 FEATURES」.
+  802.15.4-2003 개요: 낮은 데이터 전송률·낮은 전력·낮은 복잡도의 짧은 거리 무선 전송으로 WPAN 장치를 잇는 프로토콜을 정했다. 지금 판 802.15.4-2024는 제목이 「저속 무선 네트워크(Low-Rate Wireless Networks)」이고, 배터리가 없거나 아주 적게 써야 하는 고정·휴대·이동 장치의 저속 무선 연결을 위한 **물리 계층과 MAC 부계층**을 정한다 — 두 개요 초록.
+  802.15.4 위에 다른 기술(Zigbee)이 선다는 것은 이 IEEE 페이지들이 아니라 CSA 쪽 문서가 말한다(아래 「CSA — Zigbee」 항목)
+- **802.15.5-2009**: WPAN 장치가 서로 통하는 안정된 무선 메시 모양(메시 토폴로지)을 이루게 하는 구조를 정한 권고 관행이다 — 개요 초록. 같은 작업반의 2006년 튜토리얼은 아래 「IEEE 802.11s — 메시」 항목
+- 그 밖의 802.15 규격(802.15.2·.6·.7 등)은 기출이 묻지 않아 이름만 보았다
+- **한국어 이름**: WPAN → **WPAN**(wireless personal area network, 무선 개인 영역 네트워크 — 기출이 영문 약어로 쓰고 풀어 쓴 이름도 함께 쓴다), High Rate WPAN → **고속 WPAN**, Low Rate WPAN → **저속 WPAN**, coordinator → **코디네이터**(영문 읽기),
+  Wireless Multimedia Networks → 무선 멀티미디어 네트워크, withdrawn → **철회**(Inactive-Withdrawn), superseded → 대체됨(step 0과 같다), recommended practice → 권고 관행
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(WPAN이 노리는 것, 802.15.1·.3·.4가 정한 것과 판·상태, WPAN과 무선 LAN — 802.11은 처리율·거리·로밍, WPAN은 낮은 비용·낮은 전력), `wireless-lan.zigbee`(802.15.4의 특징, 코디네이터), (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(802.15.5 WPAN 메시),
+기출 대조(`exam-notes.md` 「phase 82 step 4」 문단·E42)
+
+## (phase 82 step 4) Bluetooth SIG — Bluetooth·BLE: Bluetooth Core Specification 6.3(Vol 1 Part A Architecture), Bluetooth Technology Overview
+허용 목록의 「무선 업체 연합 기술」 — phase 82 설계에서 더함(사용자 결정 2026-11-19).
+https://www.bluetooth.com/specifications/specs/core-specification-6-3/
+https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/architecture,-change-history,-and-conventions/architecture.html
+https://www.bluetooth.com/learn-about-bluetooth/tech-overview/
+
+판: **Bluetooth Core Specification 6.3**(상태 Adopted, 사양 페이지의 게시일 2026-05-05). 공개된 HTML판의 Vol 1 Part A 「Architecture」(머리 표기 vAtlanta r00)를 읽었다. 기술 개요 페이지는 2026-11-19에 받은 판이다.
+
+- Core Specification 6.3: 서로 통하는 Bluetooth 장치를 만드는 데 필요한 기술을 정한다 — 사양 페이지
+- Vol 1 Part A §1 「General description」: Bluetooth 무선 기술은 휴대용·고정 전자 장치를 잇는 케이블을 대신하려는 **짧은 거리 통신 시스템**이고, 튼튼함·낮은 전력 소비·낮은 비용을 핵심 특징으로 든다.
+  시스템은 두 형태다 — **Basic Rate(BR)**(선택 확장 Enhanced Data Rate, EDR을 포함)와 **Low Energy(LE)**. 둘 다 장치 찾기와 연결 맺기를 갖춘다. **LE는 BR/EDR보다 전류 소비·복잡도·비용이 낮아야 하는 제품을 위해 설계했고**, 데이터 전송률과 듀티 사이클(보내는 시간의 비율)이 낮은 쓰임에 맞춘다.
+  두 형태를 모두 구현한 장치는 둘 다 구현한 장치와도, 어느 하나만 구현한 장치와도 통신할 수 있다 — §1
+- Vol 1 Part A §1.1: BR/EDR 무선(물리 계층)은 2.4 GHz ISM 대역에서 **주파수 도약** 송수신기로 간섭과 페이딩에 맞선다 — §1.1(앞 개념 `wlan-transmission`의 FHSS와 같은 갈래)
+- 기술 개요 페이지 「Bluetooth® Classic」·「Bluetooth® LE」와 비교표: **Bluetooth Classic**(= BR/EDR)은 2.4 GHz ISM 대역의 채널 79개(1 MHz 간격)로 데이터를 보내고, 점대점 통신을 지원하며 주로 무선 오디오(스피커·헤드폰·차량)에 쓰인다.
+  **Bluetooth LE**는 아주 낮은 전력으로 동작하도록 설계했고 2.4 GHz 대역의 채널 40개(2 MHz 간격)를 쓴다. **점대점·브로드캐스트·메시** 토폴로지를 지원하고, 장치의 위치를 찾는 데에도 쓰인다. 두 형태 모두 채널을 FHSS로 쓴다
+- 802.15.1과의 관계: 802.15.1-2002는 Bluetooth 사양 1.1판의 아래 계층을 IEEE 표준으로 옮긴 것이고 2005년 개정판은 2018년에 철회됐다(위 「IEEE 802.15」 항목). 지금 판의 Bluetooth(6.3)는 Bluetooth SIG가 정한다. **LE가 802.15.1에 들어 있었는지는 확인하지 못했다** — 본문은 「802.15.1은 Bluetooth 1.1판의 아래 계층을 옮긴 IEEE 표준」까지 쓰고 BLE와 802.15.1을 잇지 않는다
+- 쓰지 않는 것: 닿는 거리의 수치(이 두 페이지에 없다), 전송률·변조·송신 전력 표, 프로파일·페어링·보안, LE Audio·채널 사운딩 같은 기능
+- **한국어 이름**: Bluetooth → **블루투스**(Bluetooth — 기출은 「블루투스」와 「Bluetooth」를 함께 쓴다), Low Energy → **BLE**(Bluetooth Low Energy — 사양은 LE로 줄여 쓰고, 기출 보기는 「Bluetooth Low Energy(BLE)」로 쓴다), Basic Rate/Enhanced Data Rate → BR/EDR(Bluetooth Classic — 이름만),
+  Bluetooth SIG → **Bluetooth SIG**(Bluetooth를 정하는 업계 단체 — 이름 그대로)
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(Bluetooth와 BLE 한 줄씩, 802.15.1과의 관계), `wireless-lan.zigbee`(BLE의 사실 — Zigbee와 견줄 때 각각의 사실로)
+
+## (phase 82 step 4) CSA — Zigbee: Zigbee FAQ, Zigbee 소개 페이지; IEEE 802 플레너리 튜토리얼 「ZigBee Smart Energy」(IEEE 802.15-09-0770-00, 2009-11)
+허용 목록의 「무선 업체 연합 기술」 — phase 82 설계에서 더함(사용자 결정 2026-11-19).
+https://csa-iot.org/all-solutions/zigbee/zigbee-faq/
+https://csa-iot.org/all-solutions/zigbee/
+https://csa-iot.org/developer-resource/specifications-download-request/ (사양 목록 — Zigbee Specification R23.1·R22의 PDF 링크가 있지만 내려받지 못했다)
+https://www.ieee802.org/802_tutorials/2009-11/15-09-0770-00-0000-smartgrid-tutorial-zigbee-smart-energy-overview.ppt
+
+판: CSA 두 페이지는 2026-11-19에 받은 판이다(FAQ는 지금 Zigbee PRO가 2023년 판이라고 적는다). 사양 목록에 올라 있는 최신 Zigbee 사양은 문서 05-3474-23(R23.1, 2024-07 올림)이지만 **본문은 읽지 못했다**(머리 문단 — Cloudflare가 막았다).
+2009년 튜토리얼은 2009-11 802 플레너리의 스마트 그리드 튜토리얼 가운데 하나로, 802.15 문서 번호가 붙은 그때의 소개 자료다(표준 본문이 아니다) — 계층 그림과 쓰는 곳의 예로만 쓴다.
+
+- FAQ 「What are the IEEE 802.15.4 technical attributes on which the Zigbee specification is based?」: Zigbee는 **IEEE 802.15.4 물리 무선 표준**을 바탕으로 하고, 면허 없이 쓰는 대역 2.4 GHz(전 세계)·915 MHz(미주)·868 MHz(유럽)에서 동작한다. 2.4 GHz에서 원시 처리율은 250 kb/s다.
+  **전송 거리는 출력과 환경에 따라 10~100 m**이고, 1 GHz 아래 대역의 무선으로는 1 km 이상도 닿는다
+- FAQ 「How does Zigbee compensate for possible interference in the 2.4GHz band?」·「How does Zigbee address wireless reliability?」: 802.15.4가 정한 **CSMA-CA**로 다른 사용자와 부딪칠 가능성을 줄이고 자동으로 다시 보낸다. 802.15.4 무선의 DSSS와 충돌 회피·채널 상태 확인·확인 응답 같은 기능을 쓴다.
+  2.4 GHz 대역에서 5 MHz 간격의 채널 16개를 쓴다 — 곧 Zigbee의 물리 계층과 MAC 쪽 기능은 802.15.4의 것이다(위 「IEEE 802.15」 항목의 TG4 줄과 같다)
+- FAQ 「What is the Zigbee specification?」·「What are the key features of Zigbee?」: Zigbee 사양은 메시 네트워크부터 기기들이 함께 쓰는 **응용 계층의 데이터 모델**까지 스택의 모든 계층을 표준화하고 시험한다 — 곧 802.15.4 위의 계층을 Zigbee가 정한다. 전력 소비를 낮추도록 맞췄다
+- FAQ 「What are Zigbee’s main benefits?」·「What are the key features of Zigbee?」: **메시 네트워크**는 스스로 짜이고(self-organizing), 장애에서 회복해 **스스로 고친다**(self-healing) — 네트워크에 여유를 더해 한 곳이 고장 나도 버티게 한다
+- 2009년 튜토리얼의 스택 그림: 물리 무선(PHY)과 매체 접근(MAC) 위에 NWK(네트워크)·APS(응용 지원)·ZDO·보안·응용이 쌓이고, PHY부터 ZDO까지를 「ZigBee Compliant Platform」으로 묶는다(.ppt의 그림 글자로 읽었다 — 어느 슬라이드의 그림인지는 화면으로 확인하지 않았다).
+  같은 파일의 시장 그림(슬라이드 제목 「Typical ZigBee Markets」)은 쓰는 곳으로 홈 제어(보안·냉난방·조명·출입 통제)·빌딩 자동화·산업 제어·개인 건강 관리·PC 주변기기·가전·에너지 관리를 든다(2009년 자료)
+- FAQ 「What markets are served by Zigbee?」: 주거(스마트 홈)·상업 건물·전력 사업(스마트 미터와 가정 영역 네트워크)에 쓰인다 — 회사·제품 이름은 옮기지 않는다
+- **장치 역할(코디네이터·라우터·엔드 디바이스)의 정의는 찾지 못했다** — 사양 본문에만 있을 것이고 읽지 못했다. FAQ는 「네트워크 코디네이터」 여럿을 이어 아주 큰 네트워크를 만들 수 있다고만 적는다(「How many nodes or devices can a Zigbee network support?」).
+  802.15.4 쪽에서는 코디네이터가 네트워크를 자동으로 세운다(위 「IEEE 802.15」 항목의 TG4 줄). 본문은 「코디네이터가 네트워크를 세운다」까지만 쓰고, 라우터·엔드 디바이스라는 이름과 그 일은 지어내지 않는다
+- (phase 82 보충) 사양 본문(R23.2)을 사용자가 받아 둔 PDF로 읽었다 — 장치 역할의 정의와 네트워크 모양은 아래 「(phase 82 보충) CSA — Zigbee 사양 R23.2」 항목에 있다
+- **Zigbee와 BLE를 직접 견준 문장은 없다** — 각각의 사실만 쓴다: Zigbee는 802.15.4 위(DSSS·CSMA-CA, 2.4 GHz와 1 GHz 아래 대역, 메시), BLE는 Bluetooth SIG 사양의 LE(2.4 GHz 채널 40개·FHSS, 점대점·브로드캐스트·메시 — 위 「Bluetooth SIG」 항목)
+- 쓰지 않는 것: 홍보 문구(「유일한 완전한 IoT 해법」, 칩 출하량, 채택 회사), 응용 프로파일·보안 방식(AES-128 등)·Zigbee Direct·Matter와의 관계, 노드 수, 인증 프로그램
+- **한국어 이름**: Zigbee → **Zigbee**(CSA의 지금 표기 — 기출은 「Zigbee」와 「ZigBee」를 쓴다), Connectivity Standards Alliance → **CSA**(Zigbee를 정하는 업계 단체 — 이름 그대로), coordinator → 코디네이터, mesh → **메시**, self-healing → 「장애에서 회복해 스스로 고친다」로 풀어 쓴다
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(802.15.4 위에 선다, 물리·MAC은 802.15.4, 그 위 계층을 Zigbee가 정한다, 저전력, 메시, 쓰는 곳, 대역, Zigbee와 BLE·Z-Wave), (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(장애에서 회복하는 메시 — 한 줄),
+기출 대조(`exam-notes.md` 「phase 82 step 4」 문단·E42)
+
+## (phase 82 step 4) ITU-T G.9959 (01/15) — Short range narrow-band digital radiocommunication transceivers – PHY, MAC, SAR and LLC layer specifications
+https://www.itu.int/rec/T-REC-G.9959-201501-I/en
+
+판: 2015-01-13 승인, 현행(In force). 판 2.0 — G.9959(2012-02-13)와 그 Amd.1(2013-10-07)을 대체한다. 위 페이지에서 무료 PDF를 받아 읽었다.
+
+- 요약·§1 「Scope」: 짧은 거리 협대역 디지털 무선 송수신기의 물리 계층·MAC·분할과 재조립(SAR)·논리 링크 제어(LLC)를 정한다. **1 GHz 아래**에서 동작하는 송수신기를 정하고, 그것은 부록 A를 따르는 송수신기와 함께 동작해야 한다 — 요약, §1
+- §7.1.1 「General」: 물리 계층은 **저전력·좁은 대역폭의 제어 네트워크**에 쓰는 변조·데이터 전송률·동기·프레임 형식을 정한다. §8.1.1.4.3: 배터리로 동작하는 노드의 한 부류는 대부분의 시간을 잠들어 있다가 주기적으로 깨어난다 — §7.1.1, §8.1.1.4.3.
+  §8.1.1.4.2.4: MAC 헤더에 멀티홉 라우팅을 받칠 칸을 두지만 라우팅 자체는 이 권고의 범위 밖이다
+- **부록 A 「Non-radio related aspects of the Z-Wave PHY and MAC Specifications」**(이 권고의 필수 부분이다): **Z-Wave**는 저전력·저비용 무선 기술로, 원격 조광기·네트워크 온도 센서·전자 도어락·AV 시스템 같은 소비자 제품을 네트워크로 잇는다.
+  잡음과 반사로 프레임을 자주 잃으므로 낮은 계층에서 다시 보낸다. 네트워크 계층은 메시 라우팅으로 직접 닿는 거리 너머까지 네트워크를 넓힐 수 있고, Z-Wave 라우팅 프로토콜이 그 예다 — A.1.1.
+  Z-Wave는 자기 네트워크·전송·응용 계층을 따로 갖는다(참고로 적은 절) — A.1.2
+- 곧 Z-Wave와 Zigbee는 아래 계층이 다르다 — Z-Wave는 ITU-T G.9959(1 GHz 아래 협대역), Zigbee는 IEEE 802.15.4(위 「CSA — Zigbee」 항목). 두 문서를 나란히 놓은 것이고, 둘을 직접 견준 문장은 없다
+- 쓰지 않는 것: 데이터 전송률·채널·주파수 값, 노드 수와 HomeID·NodeID의 형식, 프레임 형식, 동작 모드(AL·FL)의 세부
+- **한국어 이름**: Z-Wave → **Z-Wave**(영문 그대로 — 기출 보기 이름), sub 1 GHz → 1 GHz 아래, narrow-band → 협대역
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.zigbee`(오답 보기 Z-Wave를 가르는 한 줄 — 1 GHz 아래 협대역의 저전력 가정용 무선, 아래 계층이 Zigbee와 다르다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) IEEE 802.11s — 메시: 802.11s-2011·802.11-2012 개요 페이지, TGs 보고, 802.11s 튜토리얼(2006-11), 802.15.5 WPAN 메시 튜토리얼(2006-11)
+https://standards.ieee.org/ieee/802.11s/4243/
+https://standards.ieee.org/ieee/802.11/4523/
+https://www.ieee802.org/11/Reports/tgs_update.htm
+https://www.ieee802.org/802_tutorials/06-November/802.11s_Tutorial_r5.pdf
+https://www.ieee802.org/802_tutorials/06-November/15-06-0464-00-0005-802-15-5-mesh-tutorial.pdf
+
+판: **IEEE 802.11s-2011**(개정 10 「메시 네트워킹」, PAR 승인 2007-08-22, 표준 위원회 승인·발행 2011-09-10, 대체됨), IEEE 802.11-2012(승인 2012-02-06, 2008~2011년에 나온 개정 1~10을 합쳐 넣었다 — 곧 802.11s가 기본 표준에 들어갔다, 대체됨 — 802.11-2016).
+TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802 플레너리 발표로 **승인 전 초안 때의 설명**이다 — 장치 이름(메시 포인트 등)과 세부는 최종 표준과 다를 수 있어, 표준 개요와 맞는 뼈대(멀티홉, 스스로 구성, 경로 선택, 끊긴 링크의 처리)만 쓴다.
+
+- 802.11s-2011 개요 초록: 802.11 스테이션들이 **스스로 구성되는 멀티홉 네트워크**를 이루고, 한 곳에 보내기(유니캐스트)와 여럿에게 보내기(브로드캐스트·멀티캐스트)를 모두 지원하게 하는 프로토콜을 정한다
+- 802.11s 튜토리얼(2006): 메시는 데이터가 무선 홉 여럿으로 이어진 경로로 전달되는 구조다 — 「Abstract」. 기존 802.11 WLAN은 AP가 대개 유선으로 이어져 있는데, 메시는 AP 사이도 무선 메시 링크로 이어 유선 백홀 없이 빠르게 펼치고 선을 깔기 어려운 곳까지 덮는다 —
+  「Classic 802.11 WLAN」·「Unwire the WLAN with Mesh」·「Why Mesh?」. 범위: 802.11 MAC에 토폴로지를 자동으로 알아내고 무선 경로를 설정하는 무선 분배 시스템을 더하고, 무선 상태를 반영해 동적으로 경로를 골라 한 홉·여러 홉 경로로 전달한다. 물리 계층(a·b·g·n)은 그대로 쓴다 — 「802.11s Scope」
+- 이웃 찾기: 메시 장치는 비컨과 프로브 응답에 새로 넣은 정보(메시 ID 등)로 이웃 후보를 찾고, 이웃과 보안이 걸린 피어 링크를 맺어 메시에 든다 — 「Topology Formation: Membership in a WLAN Mesh Network」. 메시 장치들 사이에는 본래 위계가 없다 — 「11s Security Situation」
+- 경로 선택: 필수(기본) 경로 선택 프로토콜은 **HWMP**(Hybrid Wireless Mesh Protocol)다 — 필요할 때 경로를 찾는 방식(AODV, RFC 3561을 바탕으로 함)과, 루트(메시 포털)가 있으면 그것을 향한 트리를 미리 만들어 두는 방식을 섞는다. 기본 지표는 전송 시간(airtime)이다 —
+  「Default Routing protocol for Interoperability」·「Hybrid Wireless Mesh Protocol (HWMP)」. 링크 상태가 바뀌면 경로도 바뀔 수 있다 — 「Routing = Path Calculation for Forwarding」
+- **링크가 끊길 때**: 다음 홉과의 링크를 살피다 끊긴 것을 알아채면 경로 오류(Route Error) 메시지로 다른 노드들에게 알린다 — 「On-demand routing in HWMP – Key Features」(Route Maintenance). 트리 쪽에서는 위쪽 링크를 살피다 **예비 링크로 바꿀 수 있다** — 「Tree-based routing in HWMP – Key Features」(Topology Maintenance)
+- TGs 보고(2008~2009)의 문서 제목에 「HWMP Overview」·「Mesh STA collocation」 같은 이름이 나온다 — 최종에 가까운 초안도 HWMP를 다뤘고 메시 스테이션(mesh STA)이라는 이름을 썼다는 데까지 확인한다. 최종 표준 본문의 장치 이름 정의는 읽지 못했다
+- 802.15.5 튜토리얼(2006): WPAN 메시는 완전 메시나 부분 메시 연결을 쓰는 무선 PAN이다. 목적으로 송신 전력을 높이지 않고 덮는 범위를 넓히기, **경로 여분(route redundancy)으로 신뢰성 높이기**, 네트워크 구성을 쉽게 하기를 든다 — 「What is WPAN Mesh?」·「Purpose of the project」.
+  경로 선택의 과제로 스스로 짜이기(self organizing)와 여분 링크를 든다 — 「Challenges in WPAN Mesh Scenarios」
+- 「중앙 제어 장치 없이」의 근거: 802.11s의 「스스로 구성」과 메시 장치 사이에 위계가 없다는 것, 아래 RFC 2501의 분산된 네트워크 제어다. 다만 802.11s의 트리 방식은 루트 포털이 **있으면** 그것을 향해 트리를 만든다 —
+  본문은 「중앙 장치가 없어도 장치들이 이웃을 찾고 경로를 만든다」로 쓰고, 메시에는 중앙 장치를 「두지 않는다」로 단정하지 않는다
+- 쓰지 않는 것: 802.11s 보안(인증·키 관리), 메시 프레임 형식과 6주소 체계, 전송 시간 지표의 계산식, RA-OLSR 같은 선택 프로토콜, MCCA·전력 절약, 「군사 기술에서 출발했다」(이 항목의 문서들이 말하지 않는다 — 튜토리얼은 쓰임의 하나로 공공 안전·군을 들 뿐이다)
+- **한국어 이름**: mesh network → **메시 네트워크**, wireless mesh network → **무선 메시 네트워크**, multi-hop → **멀티홉**(여러 홉을 거쳐 전달), path selection → 경로 선택, mesh portal → 메시 포털, mesh STA → 메시 스테이션(이름만), HWMP → HWMP(이름만), self-configuring → 스스로 구성되는
+- (phase 82 step 6, 2026-11-19 위 802.11s 튜토리얼 PDF를 IPv4로 다시 받아 확인) **메시 포털이 무엇인가**: 튜토리얼의 장치 갈래 설명은 메시 포털(Mesh Portal, MPP)을 스테이션이 보내고 받는 데이터가 WLAN 메시로 들어오고 나가는 지점으로 적고,
+  그림에서 메시 포털을 메시 바깥의 네트워크(External Network)와 메시 사이에 둔다. HWMP 슬라이드는 필요할 때 경로를 찾는 방식에 **메시 포털로 가는 경로를 미리 만들어 두는 방식**을 더한 것이라 적는다(「Default Routing protocol for Interoperability」, 「Hybrid Wireless Mesh Protocol (HWMP)」 — 루트 포털이 있으면 트리를 만든다).
+  메시 바깥의 목적지로 가는 데이터는 메시 포털을 거쳐 나간다(「For a destination outside the Mesh … deliver packets via unicast」). 승인 전 초안 때의 설명이라 본문은 「메시를 바깥 네트워크와 잇는 노드」로만 쓰고, 「메시 포털」이라는 이름과 브리지 동작은 쓰지 않는다
+  쓰인 곳: `wireless-lan.wireless-mesh`(HWMP 한 줄, 중앙 장치가 따로 필요하지 않다는 문단), 문항 `n323`의 해설
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) RFC 2501 — Mobile Ad hoc Networking (MANET): Routing Protocol Performance Issues and Evaluation Considerations
+https://www.rfc-editor.org/rfc/rfc2501
+
+판(rfc-editor.org 텍스트판과 `…/rfc2501.json`, 2026-11-19): 1999-01, Informational, 폐기·개정 없음.
+
+- §3 「Characteristics of MANETs」: MANET(모바일 애드혹 네트워크)은 마음대로 움직일 수 있는 노드(라우터와 그에 딸린 호스트)로 이루어진 자율 시스템이다. 혼자 동작할 수도, 게이트웨이를 거쳐 고정 네트워크에 이어질 수도 있다.
+  노드가 움직이므로 **대개 멀티홉인 네트워크 토폴로지가 예측할 수 없는 때에 빠르게 바뀐다** — 1) 「Dynamic topologies」. 네트워크 제어가 분산돼 있어 중앙 집중 방식의 단일 장애점에 더 강하다 — 4) 「Limited physical security」의 끝 문장
+- 이 RFC는 애드혹 네트워크를 말하고 802.11s 메시를 말하지 않는다 — 본문은 「노드가 들고 나며 구성이 바뀐다」·「중앙 제어 없이도 동작한다」를 애드혹 방식의 성질로 쓰고, 802.11s 메시가 스스로 구성된다는 것(위 「IEEE 802.11s」 항목)과 함께 놓는다
+- **한국어 이름**: MANET → 모바일 애드혹 네트워크(이름만), ad hoc → **애드혹**(step 0의 「애드혹 모드」와 같은 낱말 — 여기서는 미리 깔아 둔 설비 없이 장치끼리 이루는 네트워크라는 일반 뜻), autonomous system → 이 낱말은 본문에 쓰지 않는다(phase 74 `routing`의 AS와 뜻이 다르다)
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(노드가 움직이며 토폴로지가 바뀐다, 분산된 제어가 단일 장애점에 강하다), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) ITU-T Q.1001 (11/88)·Q.1706/Y.2801 (11/06), IEEE 802.21 — 기지국·셀·핸드오버·페이징
+https://www.itu.int/rec/T-REC-Q.1001-198811-I/en
+https://www.itu.int/rec/T-REC-Q.1706-200611-I/en
+https://www.ieee802.org/21/
+https://standards.ieee.org/standard/802_21-2017.html
+https://www.ieee802.org/802_tutorials/06-July/802%2021-IEEE-Tutorial.ppt
+
+판: ITU-T Q.1001(1988-11, 「General aspects of public land mobile networks」, 현행 In force), ITU-T Q.1706/Y.2801(2006-11, 「Mobility management requirements for NGN」, 현행 In force) — 두 권고 모두 위 페이지에서 무료 PDF를 받아 읽었다.
+Q.1001은 음성 통화를 다루던 때의 권고라 핸드오버를 「진행 중인 통화」로 적고, Q.1706은 그것을 세션 일반으로 넓혀 적는다.
+IEEE 802.21-2017(「Media Independent Services Framework」, 승인 2017-02-14, 발행 2017-04-28, Active — 802.21-2008을 대체). 802.21 작업 그룹은 2019-07-19부터 휴면이다(작업 그룹 페이지). 802.21 튜토리얼(DCN 21-06-0706-00, 2006-07)은 그때의 소개 자료다.
+
+- Q.1001 §2.1.4 「base station」: **기지국**은 같은 곳에 있으면서 셀 하나 또는 여럿을 맡는 무선 설비 전부를 부르는 이름이다. §2.1.5: 이동국(mobile station)은 사용자 쪽에서 무선 경로를 끝내는 장비다(곧 휴대 단말).
+  §2.1.6 「cell」: **셀**은 기지국(또는 섹터 안테나처럼 그 기지국의 일부)이 덮는 지역이고, 셀 안의 이동국은 그 기지국의 무선 설비와 닿을 수 있다. §2.1.8: 위치 영역(location area)은 이동국이 위치 등록을 고치지 않고 다닐 수 있는 지역으로, 셀 여럿을 품을 수 있다.
+  §2.1.3: 넓은 지역을 무선으로 덮으려면 기지국이 여럿 필요하다 — §2.1
+- Q.1001 §2.3.1 「handover」: **핸드오버**는 진행 중인 통화를 한 셀에서 다른 셀로(또는 같은 셀 안의 다른 무선 채널로) 넘기는 일이다. 이동국이 셀을 옮겨도 이미 맺어진 통화가 이어지게 하려고 쓰고, 동일 채널 간섭을 줄이는 데에도 쓴다 — §2.3.1
+- Q.1706/Y.2801 §6.2.2 「Features by service continuity」: 움직이는 동안과 뒤에도 서비스가 이어지는 갈래로 **핸드오버**(서비스 품질에 영향이 있을 수 있음)와 끊김 없는 핸드오버(영향 없음)를 든다. §6.4.2 「Handover management」: 단말이 세션 중에 다른 네트워크 영역으로 옮겨 접속점을 바꿔도 세션이 이어지게 하는 일이다 — §6.2.2, §6.4.2
+- Q.1706/Y.2801 §6.4.1 「Location management」: 위치 관리는 위치 등록과 착신 전달·**페이징**으로 이루어지고, **페이징은 휴면 상태의 단말을 찾는 데 쓰인다**. §8.1.10 「Resource optimization」: 대기(idle) 상태 단말의 전력·신호 부담을 줄이는 일은 주로 페이징 절차로 이루어지고, 이 절차는 위치 관리와 묶여 있다 — §6.4.1, §8.1.10
+- **신호가 약해져서 핸드오버한다**는 문장은 이 권고들에서 찾지 못했다. 802.21 튜토리얼은 신호 세기만 보고 AP를 고르면 엉뚱한 AP에 붙는 문제를 든다 — 「Problems….」. 본문은 「셀 안의 단말만 그 기지국과 닿으므로(Q.1001 §2.1.6), 셀을 옮기면 연결을 새 기지국으로 넘겨야 이어진다(§2.3.1)」로 쓰고 신호 세기를 원인으로 단정하지 않는다
+- IEEE 802.21-2017 개요: 서로 다른 IEEE 802 네트워크 사이에서, 그리고 802 네트워크와 셀룰러 네트워크 사이에서 핸드오버 같은 서비스를 최적화하는 매체 독립 서비스 프레임워크를 정한다 — 개요 초록, 작업 그룹 페이지.
+  튜토리얼은 같은 종류의 네트워크 안에서의 핸드오버(수평)와 다른 종류의 네트워크 사이의 핸드오버(수직)를 나누고, 2002년 802 튜토리얼 「Handoff Mechanisms…」에서 작업이 시작됐다고 적는다(handoff와 handover를 같은 뜻으로 쓴다) — 「Types of Handovers」·「How it all started….」
+- 무선 LAN에서 다른 AP로 옮겨 붙는 일(재연결)은 위 「RFC 4118, RFC 5416, RFC 8325, RFC 9119」 항목의 「(phase 82 step 4)」 줄
+- [기출 2024-08-25 #23]의 나머지 오답: 「핸드셰이크」는 앱에 이미 있는 `tcp-connection.three-way-handshake`(TCP가 연결을 맺는 절차)와 같은 낱말이다. 「채널 체인징」이라는 이름은 이 step이 읽은 문서 어디에도 없다 — 본문·문항에 쓰지 않는다
+- 쓰지 않는 것: 셀룰러(LTE·5G)의 핸드오버 절차와 측정 보고, MSC와 위치 등록 절차, 802.21의 서비스(이벤트·명령·정보) 세부
+- **한국어 이름**: base station → **기지국**, cell → **셀**, mobile station → 이동국(본문은 「휴대 단말」로 풀어 쓴다), handover·handoff → **핸드오프**(guide의 개념 이름이자 기출의 이름 — ITU-T 권고는 handover로 적고, 802 튜토리얼은 두 낱말을 같은 뜻으로 쓴다),
+  paging → **페이징**, location area → 위치 영역, idle·dormant → 대기·휴면
+
+쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(기지국·셀의 정의, 핸드오프의 정의와 까닭, 핸드오프와 페이징 — 연결 중에 옮겨 가는가와 대기 중인 단말을 찾는가), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) IEEE 1900.1·802.22 — 인지 무선: 1900.1-2008·2019, 802.22-2011·2019 개요 페이지, 802.22 작업 그룹 페이지, 802.22 튜토리얼(2006-07)
+https://standards.ieee.org/standard/1900_1-2019.html
+https://standards.ieee.org/standard/1900_1-2008.html
+https://standards.ieee.org/standard/802_22-2019.html
+https://standards.ieee.org/standard/802_22-2011.html
+https://www.ieee802.org/22/ (본문 프레임 https://www.ieee802.org/22/HomePageText.htm)
+https://www.ieee802.org/802_tutorials/06-July/Rec-Practice_802.22_Tutorial.ppt
+
+판: **IEEE 1900.1-2019**(승인 2019-02-08, 발행 2019-04-23, Active — 1900.1-2008을 대체, 표준 위원회 DySPAN-SC), **IEEE 802.22-2019**(승인 2019-09-05, 발행 2020-05-05, Active — 802.22-2011을 대체), IEEE 802.22-2011(승인 2011-06-16, 발행 2011-07-01, 대체됨).
+802.22 작업 그룹은 2019-07-19부터 휴면이다(작업 그룹 페이지). 튜토리얼(2006-07, 802.22 권고 관행 소개)은 그때의 소개 자료이고, 인지 무선 기법 셋은 미국 FCC의 규칙 제정 공고(NPRM)를 옮겨 적었다고 밝힌다.
+
+- 1900.1-2019 개요: 스펙트럼 관리·**인지 무선**·**동적 스펙트럼 접근**·정책 기반 무선·소프트웨어 정의 무선 같은 용어의 정의와, 그 기술들이 어떻게 이어지는지의 설명을 담는다. 제목은 「동적 스펙트럼 접근의 정의와 개념」이다 — 개요 초록·제목.
+  **정의 문장 자체(본문)는 읽지 못했다** — 본문은 인지 무선을 1900.1의 정의로 쓰지 않고, 아래 802.22 쪽 문서가 말하는 동작으로 쓴다
+- 802.22-2019 개요(제목·초록): 인지 무선 지역 네트워크(WRAN)의 **인지 MAC과 물리 계층**을 정한다 — 통신 장치가 **1차 서비스(primary service)의 스펙트럼**에서 기회를 보아(opportunistically) 동작할 수 있는, 스펙트럼 공유를 허용하는 대역의 정책과 절차다.
+  고정 기지국과 고정·휴대 사용자 단말로 이루어진 점대다점 네트워크이고 **VHF/UHF TV 방송 대역(54~862 MHz)**에서 동작한다(규제가 허용하면 1300~1750 MHz·2700~3700 MHz도) — 개요. 802.22-2011의 제목은 「TV 대역에서의 동작을 위한 정책과 절차」였다 — 개요
+- 802.22 작업 그룹 페이지: 802.22 작업 그룹은 스펙트럼 공유를 가능하게 하는 표준들을 만들었다. 802.22.1-2010은 면허받은 장치(무선 마이크)를 간섭에서 더 보호하는 표준이다 — HomePageText
+- 튜토리얼(2006-07) 「Characteristics of 802.22 WRAN — Cognitive Radio」: 인지 무선은 협의나 기회에 따라 스펙트럼을 함께 쓰게 하고, 무선이 스펙트럼을 쓰는 방식을 **동작 환경의 실시간 상태에 맞추며**, 해로운 간섭의 위험을 줄인다.
+  인지 무선 기법 셋(FCC 공고) — 데이터베이스와 위치 확인(면허받은 방송국의 보호 구역 밖인지 판단), 제어 신호 받기(그 지역에서 어느 채널이 쓰이고 어느 채널이 비었는지 알려 주는 신호), **감지**(주변 무선 환경을 감지) — 「Cognitive Radio Techniques (as per the NPRM)」.
+  802.22는 그 대역을 **이미 쓰는 기존 시스템(incumbent)을 감지**하는 첫 802 작업 그룹이고, 단말과 기지국이 주변 스펙트럼을 감지해 기지국에 알리면 네트워크 차원에서 **그 채널을 계속 쓸지, 기존 시스템에 간섭하지 않도록 채널을 바꿀지** 정한다 — IEEE 802 표준 가족 그림 슬라이드의 설명 노트
+- 「허가받은 사용자가 나타나면 비켜 간다」의 근거는 위 튜토리얼의 채널 전환 줄이다 — 본문은 「기존 사용자를 감지하면 그 채널을 비우고 다른 빈 채널로 옮긴다」로 쓴다
+- 쓰지 않는 것: 802.22의 물리 계층(변조·채널 폭·셀 반경·전송률), 감지 방법의 세부(조용한 기간·협력 감지), 데이터베이스 운영, 1900.1의 다른 용어(소프트웨어 정의 무선·정책 기반 무선)
+- **한국어 이름**: cognitive radio → **인지 무선**(CR — 기출이 「CR(Cognitive Radio)」로 쓴다), dynamic spectrum access → **동적 스펙트럼 접근**, primary service·incumbent → **허가받은 사용자**(guide의 이름 — 표준 쪽 문서는 1차 서비스(primary)·기존 시스템(incumbent)으로 부르고, 본문은 「그 대역을 쓰도록 허가받은 기존 사용자」로 풀어 쓴다),
+  spectrum sensing → **스펙트럼 감지**, WRAN → 무선 지역 네트워크(이름만)
+
+쓰인 곳: (phase 82 step 7에서 쓰일 곳) `wireless-lan.cognitive-radio`(인지 무선·동적 스펙트럼 접근·허가받은 사용자·스펙트럼 감지·802.22가 TV 대역의 비어 있는 채널을 쓴다, 인지 무선과 고정된 주파수 할당), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 4) RFC 8376 — Low-Power Wide Area Network (LPWAN) Overview
+https://www.rfc-editor.org/rfc/rfc8376
+
+판(rfc-editor.org 텍스트판과 `…/rfc8376.json`, 2026-11-19): 2018-05, Informational, 폐기·개정 없음.
+
+- §1: LPWAN 기술들은 아주 싸고 처리율이 낮으며 전력을 아주 적게 쓰는 장치를 많이 받치려 하고, 이름의 「광역(wide area)」대로 **몇 km에 이르는 무선 링크로 넓은 지역을 덮는 것**이 공통 목표다 — §1
+- §2.2.1: **NB-IoT**(Narrowband IoT)는 3GPP가 개발·표준화했고(Release 13, 2016-06), 사업자의 기지국을 소프트웨어로 고쳐 기존 LTE 네트워크에 들일 수 있다 — §2.2.1. §2 머리: 기술마다의 절은 그 기술을 미는 쪽이 쓴 참고 글이다
+- **LTE-M은 이 RFC에도, 이 step이 읽은 다른 문서에도 없다** — 본문·문항에 쓰지 않는다(3GPP 문서는 허용한 출처가 아니다)
+- 쓰지 않는 것: NB-IoT의 수치(전송률·커버리지·장치 수·대역폭), 배치 방식, 프로토콜 구조
+- **한국어 이름**: NB-IoT → **NB-IoT**(협대역 IoT — 이름만), LPWAN → 저전력 광역 네트워크(이름만)
+
+쓰인 곳: (phase 82 step 5에서 쓰일 곳) `wireless-lan.wpan`(오답 보기 NB-IoT가 WPAN과 다른 것 — 이동통신 사업자의 기지국으로 넓은 지역을 덮는 기술, 한 줄로만), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
+
+## (phase 82 step 8) RFC 3234 — Middleboxes: Taxonomy and Issues
+https://www.rfc-editor.org/rfc/rfc3234
+
+판(rfc-editor.org 텍스트판과 `…/rfc3234.json`, 2026-11-19): 2002-02, Informational, 폐기·개정 없음. 중간 장치(미들박스)의 종류를 늘어놓은 분류 문서다 — 동작을 표준으로 정하지 않는다.
+
+- 미들박스는 출발지 호스트와 목적지 호스트 사이의 데이터그램 경로 위에서, IP 라우터의 보통 기능이 아닌 일을 하는 중간 장치다. 따로 떨어진 상자가 아니라 다른 장치에 든 기능일 수도 있다. IP 패킷 흐름을 끝내고 새 흐름을 만드는 장치일 수도, 흐름을 바꾸거나 다른 곳으로 돌리는 장치일 수도 있지만,
+  **응용 세션의 마지막 끝(end-system)은 아니다**. 표준 IP 라우팅(경로를 찾고 고르는 일)은 미들박스 기능이 아니고, IP 계층 아래의 기능도 이 정의에서 뺀다 — §1.1
+- 「라우팅」이라는 말은 좁게는 IP 주소로 경로를 고르는 IP 라우터의 판단을, 넓게는 URL 같은 응용 계층 정보로 내리는 판단을 가리키기도 한다. 어느 쪽이든 나갈 방향을 고르는 것이지, 방향이 하나뿐인 곳으로 넘기기만 하는 것은 아니다 — §1.1
+- **패킷을 돌리거나 고치는 로드 밸런서**: 패킷을 본래의 IP 목적지에서 다른 곳으로 돌리거나 목적지를 하나로 정하지 않는 여러 기법이 있고, 그 까닭은 대개 **서버들 사이에 부하를 고르게 나누려는 것**이다(목적지 포트 번호에 따라 응용을 서버들로 나누기도 한다).
+  **같은 응용 세션의 패킷은 모두 같은 물리 서버로 가야 하므로** 이 기법들은 상태를 가질 수밖에 없다(한 번 오가고 끝나는 UDP 프로토콜만 드물게 예외). 잘 만든 것은 장애 조치도 다룬다. 이 문서를 쓸 때는 업체마다의 독자 기술이었다 — §2.8
+- **응용 계층 게이트웨이**: 모양이 여러 가지다. NAT가 FTP처럼 주소에 기대는 프로토콜을 위해 쓰는 ALG는 응용 프로토콜의 뜻은 그대로 두고 필드를 기계적으로 바꿔 넣는다. 반대쪽 끝의 예로, **FTP와 다른 파일 전송 프로토콜(OSI·DECnet의 것) 사이의 게이트웨이**도 만들어졌다.
+  어느 쪽이든 처리 중인 세션의 상태를 지녀야 하고, 그 상태를 잃으면 세션은 대개 되돌릴 수 없이 끊긴다 — §2.11
+- **프록시**: 폐기된 HTTP/1.1(RFC 2616)의 웹 프록시 정의를 옮겨 적는다 — 지금의 정의는 위 RFC 9110 §3.7 줄을 쓴다. 웹 프록시는 방화벽이 나가는 HTTP 패킷을 막을 때 방화벽과 함께 쓰이기도 한다. HTTP에서 프록시는 「자발적」이라 **클라이언트가 그 프록시를 쓰도록 설정돼 있어야 한다**.
+  HTTP 프록시는 IP 패킷 흐름을 끝내고 새로 만들지만 응용 세션이 그것을 지나므로 미들박스에 든다 — §2.14
+- **캐시**: 원칙적으로 프록시와 다른 것이고, 여기서는 주로 사용자의 응답 시간을 줄이려는 콘텐츠 캐시를 말한다. HTTP는 프록시가 캐시로 동작하도록 만료·재검증 방법을 두므로 HTTP에서는 캐시와 프록시가 떼어 낼 수 없이 섞여 있다 — §2.15
+- IP 방화벽(§2.9)·응용 방화벽(§2.10)은 `network-security` 주제(step 15)가 본다. URL을 보고 나누는 로드 밸런서(§2.18)는 step 12가 본다
+- 「L3 스위치」·「L4 스위치」·「L7 스위치」라는 이름은 이 문서에 없다(전문 검색)
+- **한국어 이름**: middlebox → 미들박스(이름만 — 본문은 「중간 장치」로 풀어 쓴다), load balancer → **로드 밸런서**(기출이 쓰는 이름 「로드 밸런서(Load Balancer)」 — 영문을 그대로 읽는다), application-level gateway → 응용 계층 게이트웨이(ALG — 이름만)
+- (phase 82 step 9, 2026-11-19 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음) **URL을 돌리는 로드 밸런서**(§2.18): DNS를 쓰는 방법처럼 URL 리디렉션으로 서버 묶음에 부하를 나눌 수 있고, HTTP 프록시가 HTTP 요청을 고쳐 써 서버 묶음의 한 서버로 가게 할 수도 있다. 이 장치는 응용 세션을 임의로 돌리므로 미들박스에 든다.
+  이 절의 분류 칸은 **응용 계층**이고, 패킷을 돌리는 로드 밸런서(§2.8)의 분류 칸은 **여러 계층(multi-layer)**이다. 본문은 「목적지 포트 번호로 나누기도 하고, 응용 계층까지 풀어 HTTP 요청의 URL로 나누기도 한다」까지 쓰고, URL로 나누는 방법의 세부는 step 12·13이 본다
+  쓰인 곳: (phase 82 step 9) `network-devices.device-layers`(부하 분산 장치 항목, 도식 `device-layers`의 「부하 분산 장치」 — 전송 계층 칸과 응용 계층 칸 둘로 가는 화살표), 문항 n327 해설(포트 번호와 URL은 부하 분산 장치가 보는 정보)
+- (phase 82 step 10) 쓰인 곳: `network-devices.proxy-server`(문단 1 — 프록시가 클라이언트와의 연결을 받고 서버와 새로 연결한다, 문단 2 — 보통 클라이언트 설정에 어느 프록시를 쓸지 적어 둔다), 문항 n330 해설(§2.11 — FTP와 다른 파일 전송 프로토콜 사이의 게이트웨이도 만들어졌다)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 2 — 로드 밸런서는 서버들 사이에 부하를 나눈다, 문단 3 — 한 연결에 속한 데이터는 끝날 때까지 처음 고른 서버로만 간다 — §2.8)
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **패킷을 돌리는 로드 밸런서**(§2.8) 다시 보기: 목적지 포트 번호에 따라 응용을 서버들로 나누는 일을 「목적지 포트 번호를 보는 IP 라우팅」으로 적는다 — IP 주소만 보는 보통의 라우팅이 아니라 포트 번호까지 본다.
+  같은 응용 세션의 패킷이 모두 같은 물리 서버로 가야 하므로 상태를 지닌다. 분류 칸은 **여러 계층**(multi-layer)이다 — §2.8. **URL을 돌리는 로드 밸런서**(§2.18)는 따로 적힌 장치이고 분류 칸이 **응용 계층**이다.
+  응용 계층의 정보로 판단하는 **응용 방화벽**도 따로 적힌 장치다(§2.10 — 보안은 `network-security` 주제의 몫). 곧 이 문서는 포트로 나누는 장치, HTTP 요청·URL로 나누는 장치, 응용 계층의 보안 장치를 서로 다른 칸에 둔다
+- (phase 82 step 12) rfc-editor.org 사이트 검색(RFC 전체 본문)으로 「layer 4 switch(es)」·「layer-4 switch」·「layer 7 switch(es)」·「layer-7 switch」·「L7 switch(es)」·「L1 switch」·「layer 1 switch」를 찾아 하나도 없었다.
+  「L4 switch」는 RFC 3143 하나, 「L4-L7 switch」는 RFC 3466 하나, 「layer 1 switches」는 RFC 5253 §3.1 하나(전달망의 TDM 스위치·광 교차 연결 장치를 가리킨다 — LAN 장비가 아니다)에 나온다 — 아래 「(phase 82 step 12) RFC 3143·RFC 3466」 항목
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(포트 번호까지 보는 로드 밸런서는 세션 상태를 지닌다, 분류는 여러 계층), `network-devices.l7-switch`(HTTP 요청·URL로 나누는 장치는 응용 계층 — 4절),
+  `exam-notes.md` E43·E44, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 「응용 계층의 보안 기능」)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 포트 번호까지 보고 서버를 고르는 부하 분산 장치, 문단 3 — 같은 연결의 패킷을 같은 서버로 보내려고 짝을 기억한다 — §2.8, 문단 5 — 응용 계층의 정보로 판단하는 보안 장치는 응용 방화벽이라는 다른 장치 — §2.10,
+  문단 6 — 포트 번호까지 보는 IP 라우팅이라 IP 주소만 보는 라우터와 다르다 — §2.8), `network-devices.l7-switch`(문단 0 — HTTP 요청·URL로 나누는 장치는 응용 계층 — §2.18), 문항 n337 해설(L4 스위치는 URL을 보지도 고치지도 않는다)
+
+쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(부하 분산 장치는 IP 라우터가 보지 않는 정보로 서버를 고른다 — 포트 번호(§2.8)·URL(§2.18), 계층의 세부는 step 12가 본다),
+(phase 82 step 10에서 쓰일 곳) `network-devices.gateway`(FTP와 OSI·DECnet 파일 전송 프로토콜 사이의 게이트웨이 — 변환의 예, 게이트웨이는 세션 상태를 지닌다), `network-devices.proxy-server`(클라이언트가 그 프록시를 쓰도록 설정한다, 캐시와 프록시),
+(phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(로드 밸런서는 서버들 사이에 부하를 나누려고 패킷을 돌린다, 같은 세션의 패킷은 같은 서버로)
+
+## (phase 82 step 8) RFC 2391 — Load Sharing using IP Network Address Translation (LSNAT)
+https://www.rfc-editor.org/rfc/rfc2391
+
+판(rfc-editor.org 텍스트판과 `…/rfc2391.json`, 2026-11-19): 1998-08, Informational, 폐기·개정 없음. 표준을 정하지 않는 정보성 문서이고, 이 기술에 지식 재산권 문제가 IETF에 알려졌다고 적는다(§7). NAT 라우터에 부하 분산을 더한 방식(LSNAT)을 설명하면서 부하 분산의 뜻과 분산 방식을 함께 적는다.
+
+- 부하 분산이 필요한 까닭: 서버 한 대가 동시에 늘어나는 세션 요구를 감당하지 못할 때다. 여러 서버에 부하를 나누면 **응답성이 좋아지고** 세션 부하가 늘어도 잘 늘려 갈 수 있다. 몰리기 쉬운 응용으로 웹 브라우저·원격 로그인·파일 전송·메일을 든다 — §1
+- DNS로 나누던 방법(이름 서버가 정해 둔 알고리즘으로 서버들의 레코드 차례를 주기적으로 섞는 것)의 한계: 차례를 바꾸는 주기가 몇 분 단위로 길어 **서버들의 실시간 부하 변화를 반영하지 못하고**, 서버 풀의 모든 서버가 모든 서비스를 같은 능력으로 해낸다고 가정한다 — §1
+- **부하 분산의 정의**(이 문서에서): 하는 일이 비슷하거나 같은 서버 묶음(cluster)에 **세션 부하를 퍼뜨리는 것**이다. 서버 하나가 세션을 맡으면 그 세션은 끝날 때까지 그 서버에 묶이고 도중에 다른 서버로 옮기지 않는다. 모든 서비스에 할 수도, 특정 서비스에만 할 수도 있다.
+  여기서 「세션 부하」는 CPU·메모리 같은 자원 사용으로 재는 「시스템 부하」와 다른 말이다 — §2.7
+- **가상 서버 주소와 서버 풀**: LSNAT는 들어오는 세션을 (클라이언트 주소, 클라이언트 포트, **가상 서버 주소**, 서버 포트)로 가리고, 실시간 분산 알고리즘으로 고른 **서버 풀**의 한 서버에 묶는다. 가상 서버 주소는 비슷하거나 같은 일을 하는 서버 하나나 서버 묶음을 가리키는, 전역에서 하나뿐인 IP 주소다 — §3.
+  클라이언트는 가상 서버 주소로 접속하고, LSNAT 라우터가 그 요청을 서버 풀의 한 서버로 투명하게 돌린다. 같은 클라이언트의 세션 여럿도 그때의 부하에 따라 서로 다른 서버로 갈 수 있다 — §3
+- 예(그림 1): 서버 S1·S2·S3가 서버 풀을 이루고 가상 서버 주소 하나가 그 풀에 대응한다. 한 클라이언트가 가상 서버 주소로 HTTP 세션을 열면 LSNAT 라우터가 부하를 보고 S1을 골라 보내고, 다른 클라이언트의 세션은 S1이 세션을 맡아 바쁘니 S3로 보낸다.
+  들어오는 패킷은 **목적지 주소(와 포트)**를 고른 서버의 것으로 바꾸고, 돌아가는 패킷은 출발지를 같은 방법으로 바꾼다 — §3.1, §4.2(예의 주소는 옮기지 않는다 — 본문은 RFC 5737의 문서용 주소를 쓴다. 주소 바꾸기의 세부는 step 12가 다시 본다)
+- 서버 풀의 서버를 바꾸거나 더하거나 빼도 클라이언트는 알 필요가 없다 — LSNAT 라우터가 바뀜을 한곳에서 감춘다. 클라이언트도 서버도 고치지 않고 LSNAT 라우터만 설정하면 된다 — §1, §3.1
+- 한계: 한 세션의 모든 요청과 응답이 같은 LSNAT 라우터를 지나야 하고, 세션 단위로 부하를 재므로 세션 도중에 다른 서버로 옮기지 못한다 — §1
+- **분산 알고리즘**: 고르는 기준은 서버에 닿는 네트워크 비용과 서버의 자원·부하다 — §5. 서버들이 LSNAT 라우터에서 비슷한 거리에 있을 때, 서버 쪽이 끼어들지 않는 방식으로 흔히 쓰는 것은 다섯이다 — §5.1
+  1. **라운드 로빈**(Round-Robin): 가장 단순한 방식으로, **서버의 부하와 상관없이** 서버를 차례대로 돌아가며 고른다
+  2. **가장 적은 부하 먼저**(Least Load first): 라운드 로빈을 나아지게 한 것으로, **묶인 세션 수가 가장 적은 서버**에 새 세션을 맡긴다. 다만 세션마다 쓰는 자원이 같고 서버들의 능력이 같다고 가정한다 — 기출의 「최소 연결」(Least Connection)에 가장 가까운 정의다(TCP 세션은 SYN으로 시작하는 연결 하나다 — §2.3)
+  3. 가장 적은 트래픽 먼저(Least traffic first): 서버마다 오간 패킷 수나 바이트 수를 일정 시간 세어 부하를 어림한다
+  4. **가중치를 준 가장 적은 부하 먼저**(Least Weighted Load first): 관리자가 세션 종류마다(쓸 자원을 어림해) 그리고 서버마다(자원의 여유에 따라) **가중치**를 준다. 서버에 맡긴 세션 부하를 가중치로 더한 값을 그 서버의 가중치로 나눠, 가장 작은 서버에 새 세션을 맡긴다.
+     예: 서버 S3를 S1보다 자원이 세 배라고 보아 S3에 가중치 3을 준다(문서의 예는 FTP 세션 5·텔넷 세션 1의 가중치로 두 서버의 값을 계산해 S3를 고른다) — 기출의 「가중 최소 연결」(Weighted Least Connection)에 가장 가까운 정의다
+  5. **가장 빨리 응답하는 서버 찾기**(Ping to find the most responsive host): 서버들에 주기적으로 ping을 보내 **응답 시간**을 재어 얼마나 바쁜지 판단하고, 위 어림 방법과 함께 써서 새 세션을 맡을 서버를 고른다 — 기출의 「최소 응답 시간」(Least Response Time)에 가장 가까운 정의다(그 이름은 문서에 없다)
+  서버마다 에이전트 프로그램을 두어 자원 여유를 알리게 하는 적극적인 방식이 가장 좋은 결과를 낼 것이라고 적는다 — §5.1
+- 서버가 지리적으로 흩어져 있으면 라우팅 테이블의 비용과 세션 수를 곱한 값으로 고르는 방식 등이 있다 — §5.2(쓰지 않는다)
+- **죽은 서버 감지**: 세션을 맡기는 서버가 살아 있는지 알아야 한다 — 모르면 세션이 멈춘 서버로 가서 사라진다. 서버에 주기적으로 ping을 보내거나, 새 세션을 맡긴 뒤 그 서버의 응답이 몇 초 안에 오지 않으면 죽었다고 보고 **새 세션을 맡기지 않는다**. 몇 분쯤 뒤 다시 세션을 맡겨 보며 살아났는지 확인할 수 있다 — §6
+- **한국어 이름**: load sharing·load balancing → **부하 분산**(기출의 「부하분산」, phase 79 `dns.dns-round-robin`과 phase 81의 「부하 분산」), virtual server address → **가상 주소**(guide의 이름 — 처음에 「가상 서버 주소」로 한 번 풀어 쓸 수 있다),
+  server pool → **서버 풀**(영문을 그대로 읽는 이름 — 아래 ARR 한국어판의 「서버 팜」은 같은 것을 가리키는 다른 이름), round-robin → **라운드 로빈**(기출·phase 79), Least Load first → **최소 연결**(기출의 이름 — 문서의 이름은 「가장 적은 부하 먼저」이고 세는 것은 묶인 세션 수다),
+  Least Weighted Load first → **가중 최소 연결**(기출의 이름 — 문서의 이름과 계산은 위 4), 응답 시간으로 고르는 방식 → **최소 응답 시간**(기출의 이름 — 문서는 이름을 붙이지 않는다), dead host detection → 죽은 서버 감지(본문은 아래 ARR의 「상태 확인」으로 쓴다)
+
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 0 — 같거나 비슷한 일을 하는 서버 묶음에 나눈다, 문단 2 — 가상 주소는 서버 묶음을 대표하는 IP 주소 하나이고 클라이언트는 그 주소로 접속한다,
+  문단 3 — 같은 클라이언트의 요청도 그때의 부하에 따라 다른 서버로 갈 수 있고, 한 연결은 끝날 때까지 처음 고른 서버가 맡으며, 서버를 더하고 빼도 클라이언트는 알 필요가 없다, 문단 4 — 응답하지 않는 서버에는 새 요청을 맡기지 않는다,
+  문단 7 — 가상 주소로 온 패킷의 목적지 주소를 고른 서버의 주소로 바꾼다(NAT), 문단 8 — DNS로 나누는 방식은 서버들의 실시간 부하를 보지 못한다),
+  `network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간 항목, 가중 최소 연결의 계산 예 — 문서의 계산(서버에 맡긴 세션 부하를 가중치로 더한 값 ÷ 서버의 가중치)에 연결 하나의 부하를 1로 친 값을 넣었다,
+  상태를 보는 방식과 보지 않는 방식), 문항 n332·n333·n335 해설, 도식 `load-balancer-pool`·`balancing-methods`의 캡션
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **주소를 바꾸는 차례**(L4 스위치가 하는 NAT의 근거):
+  - 보통의 NAT는 안쪽에서 바깥으로 나가는 세션에서 주소를 바꾸기 시작하지만, LSNAT는 **바깥에서 들어오는 세션**에서 시작한다. 들어오는 세션 하나를 (클라이언트 주소, 클라이언트 포트, 가상 서버 주소, 서버 포트)의 묶음으로 가리고, 그 세션을 그때의 부하로 고른 서버 하나에 묶는다 — §3
+  - TCP·UDP 세션의 패킷은 (출발지 IP 주소, 출발지 포트, 목적지 IP 주소, 목적지 포트)의 묶음으로 가려진다 — §2.2. TCP 세션의 첫 패킷은 SYN이 켜지고 ACK가 꺼진 패킷이라 알아볼 수 있다 — §2.3
+  - **세션 묶기**(session binding): 들어오는 세션을 서버 풀의 한 서버 주소에 짝짓는 단계이고, 이때 정한 것이 그 세션의 뒤따르는 모든 패킷의 바꾸기 값이 된다. 고정된 짝이 아니면 세션마다 부하 분산 알고리즘으로 서버를 정한다 — §4.1
+  - **주소 찾기와 바꾸기**: 짝이 정해지면 같은 연결의 뒤 패킷은 모두 그 짝을 찾아 바꾼다. 서버 쪽으로 **들어가는 패킷은 목적지 IP 주소(TCP·UDP면 목적지 포트도)**를, 서버에서 **나오는 패킷은 출발지 IP 주소(와 출발지 포트)**를 바꾸고,
+    IP·TCP·UDP·ICMP 헤더의 체크섬 같은 관련 칸도 함께 고친다 — §4.2. 세션이 끝난 것을 알면 짝을 푼다 — §4.3
+  - 예(§3.1·그림 1): 클라이언트가 가상 서버 주소의 80번 포트로 HTTP 세션을 열면, LSNAT 라우터가 서버 S1을 골라 그 세션 패킷의 목적지 주소를 S1의 주소로 바꿔 넘기고(포트는 80 그대로), 돌아오는 패킷도 같은 방식으로 바꾼다.
+    클라이언트와 서버는 고칠 것이 없고 설정은 LSNAT 라우터에만 한다. 예의 주소는 옮기지 않는다 — 본문은 RFC 5737의 문서용 주소(guide의 `192.0.2.100`·`192.0.2.11`)로 쓴다
+  - 이 문서는 이 장치를 「LSNAT 라우터」라 부른다 — 「L4 스위치」라는 이름은 없다(전문 검색)
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(가상 주소로 들어온 세션을 고른 서버에 묶고, 들어가는 패킷은 목적지 주소를, 나오는 패킷은 출발지 주소를 바꾼다, 한 연결의 뒤 패킷은 모두 같은 서버로, 클라이언트·서버는 그대로),
+  `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-11-02 #48]의 NAT)
+- (phase 82 step 13, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **LS-NAPT**(§3.3): 가상 서버 주소가 부하 분산 라우터의 인터페이스 주소와 같은 구성(LS-NAPT)에서는, 들어오는 세션의 목적지 주소를 고른 서버로 바꾸는 데 더해
+  **클라이언트의 주소와 포트도 라우터(가상 서버)의 주소와 포트로 바꾼다** — 서버가 보내는 패킷도 반드시 그 라우터를 지나게 하려는 것이다. 기본 LSNAT는 들어오는 세션을 (클라이언트 주소, 클라이언트 포트, 가상 서버 주소, 서비스 포트)에서
+  (클라이언트 주소, 클라이언트 포트, 고른 서버 주소, 서비스 포트)로 바꾼다 — §3.3 첫머리. 두 구성 모두 들어오는 패킷의 목적지 IP 주소를 고른 서버의 주소로 바꾼다.
+  그래서 문항 n337은 「목적지는 그대로이고 출발지만 바뀐다」를 오답으로 쓰고(어느 구성에서도 틀리다), 들어가는 요청의 출발지가 그대로라고 단정하는 보기는 두지 않았다. 본문은 기본 LSNAT의 차례만 쓰고 「출발지는 바꾸지 않는다」고 단정하지 않는다
+  쓰인 곳: `network-devices.l4-switch`(문단 2 — 가상 주소·부하 분산 방식·상태 확인·NAT, 문단 3 — 주소를 바꾸는 차례(연결을 가려 짝짓기, 들어가는 패킷의 목적지 주소와 바꿀 수 있는 포트 번호, 나가는 응답의 출발지, 연결이 끝나면 짝을 지운다, 클라이언트·서버는 할 일이 없다),
+  문단 4 — 예(포트 80 그대로 — §3.1의 예)), 문항 n336·n337 해설, 도식 `l4-switch-nat`
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산이 필요한 까닭과 정의, 세션 부하와 시스템 부하, 가상 주소와 서버 풀, 클라이언트는 가상 주소로 접속하고 로드 밸런서가 고른 서버로 돌린다, 서버를 더하고 빼도 클라이언트는 모른다, DNS 방식은 실시간 부하를 보지 못한다, 죽은 서버에는 새 세션을 맡기지 않는다),
+`network-devices.balancing-methods`(라운드 로빈·최소 연결·가중 최소 연결·최소 응답 시간의 정의, 부하를 보지 않는 방식과 보는 방식), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-11-03 #46]과 분산 방식 다섯 문항)
+
+## (phase 82 step 8) RFC 7098 — Using the IPv6 Flow Label for Load Balancing in Server Farms
+https://www.rfc-editor.org/rfc/rfc7098
+
+판(rfc-editor.org 텍스트판과 `…/rfc7098.json`, 2026-11-19): 2014-01, Informational, 폐기·개정 없음. 흐름 레이블 이야기는 가져오지 않는다 — §1·§3의 서버 팜 부하 분산 일반만 가져온다.
+
+- 부하 분포(load distribution)는 부하 분산(load balancing)보다 조금 넓은 말이지만 부하 분산이 더 널리 쓰인다. 서버 팜에서 두 말 모두 **서버 팜이 맡은 일을 여러 서버에 나눠 성능을 최적으로 만드는 방법**을 가리킨다. 서버 부하 분산은 흔히 HTTP 트래픽에 쓰지만 다른 응용에도 쓸 수 있다 — §1
+- 서버 팜의 부하 분산은 여러 방법을 흔히 함께 쓴다 — §3:
+  - 가장 단순한 방법은 DNS로 한 이름(예: `www.example.com`)에 대해 사용자마다 다른 서버 주소를 돌려주는 것이고, 보통 권한 있는 DNS 서버가 주소의 차례를 돌리고 클라이언트가 첫 주소를 고른다고 가정한다 — §3 첫 항목(phase 79 `dns.dns-round-robin`과 같은 방식)
+  - HTTP 서버들 앞에 **7계층 역방향 프록시**를 두는 방법: 역방향 프록시가 세상에 IP 주소 하나를 내보이고, 새 클라이언트 세션(들어오는 TCP 연결과 HTTP 요청)마다 서버 하나를 골라 그 세션을 그 서버로 중계한다. 프록시는 세션이 이어지는 동안 TCP 상태와 프록시 상태를 지녀야 한다 — §3 둘째 항목
+  - 많은 부하 분산 시스템의 「앞단」은 **3·4계층 로드 밸런서**이고, 전용 장치일 수도, 일부 스위치나 라우터의 표준 기능일 수도 있다 — §3 넷째 항목(세부는 step 12가 본다)
+  - **지속성**(persistence)은 한 클라이언트 세션이 끝날 때까지 한 서버에서 돈다는 보장이다 — §3 넷째 항목
+  - 3·4계층 로드 밸런서 가운데 **상태를 두지 않는 것**은 패킷마다 출발지 주소나 포트처럼 찾기 쉬운 정보를 **해시해 서버 번호로 바꾸어** 서버를 고르고, 상태를 두는 것은 세션의 처음 패킷에서 정한 방향을 그 세션의 모든 패킷에 지킨다 — §3 넷째 항목.
+    기출의 「IP 해시」(IP Hash)에 해당하는 근거다(그 이름은 문서에 없다). 같은 출발지 주소면 같은 서버 번호가 나와 같은 서버로 간다는 것은 지속성과 이 줄에서 이어서 나오는 말이다
+- 쓰지 않는 것: 흐름 레이블, 직접 서버 반환·ECMP 같은 전달 기법, SSL 역방향 프록시 팜, 전역 부하 분산
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 7 — 역방향 프록시가 요청을 대신 받아 안쪽 서버 하나에 보낸다, DNS로 나누기), `network-devices.balancing-methods`(해시 항목 — 클라이언트의 IP 주소 같은 값을 계산해 서버를 정하고, 같은 값이면 같은 서버로 간다)
+- **한국어 이름**: server farm → **서버 팜**(아래 ARR 한국어판과 같다 — 본문은 「서버 풀」과 같은 것을 가리킨다고 한 번 밝힌다), persistence → 지속성(이름만), hash → **해시**(기출의 「IP 해시」 — 본문은 「주소 같은 값으로 계산해 서버를 정한다」로 풀어 쓴다)
+- (phase 82 step 12, 2026-11-20 rfc-editor.org 텍스트판을 IPv4로 다시 받아 읽음 — 판 그대로) **7계층 역방향 프록시**(§3 둘째 항목): HTTP 서버 묶음 앞에 두는 7계층 역방향 프록시는 바깥에 IP 주소 하나를 내보이고,
+  **새 클라이언트 세션 — 들어오는 TCP 연결과 그 위의 HTTP 요청 — 마다** 서버 하나를 골라 그 세션을 중계한다. 세션 동안 TCP 상태와 프록시 상태를 지녀야 한다. 곧 7계층 장치는 클라이언트의 TCP 연결을 스스로 받아들인 뒤에야 HTTP 요청을 보고 서버를 고를 수 있다
+- (phase 82 step 12) **3·4계층 로드 밸런서**(§3 넷째 항목) 다시 보기: 전용 장치일 수도 있고 **일부 네트워크 스위치나 라우터의 표준 기능**일 수도 있다. 그 장치의 IP 주소가 서비스의 대표 주소로 공개되고 **모든 클라이언트 세션이 이 장치를 지난다**.
+  새 세션을 실제 응용 서버들에, 또는 7계층 프록시 묶음에 나눠 맡긴다 — 3·4계층 장치를 7계층 장치들 앞에 둘 수도 있다. 들어오는 패킷마다 빨리 가려 대상 서버를 정해야 하므로 패킷마다 들여다본다 — §3 넷째 항목. 이 문서도 이 장치를 「스위치」라는 이름으로 부르지 않는다
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(바깥 요청이 모두 이 장치를 지난다, 스위치·라우터에 기능으로 들어 있기도 하다, 지속성), `network-devices.l7-switch`(TCP 연결을 받아들이고 HTTP 요청마다 서버를 골라 중계한다, 3·4계층 장치를 그 앞에 둘 수도 있다),
+  `exam-notes.md` E43, 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2025-08-24 #50]·[기출 2026-08-02 #46]의 「외부 요청은 모두 거쳐 간다」)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 3·4계층 로드 밸런서라는 이름, 문단 1 — 전용 장치일 수도 일부 스위치·라우터의 기능일 수도 있다, 문단 2 — 클라이언트의 연결은 모두 이 장치를 지난다),
+  `network-devices.l7-switch`(문단 2 — 7계층 장치는 들어오는 TCP 연결을 스스로 받고 그 위의 HTTP 요청을 보고 서버를 골라 중계하며 연결의 상태를 지닌다, 문단 5 — 그 상태, 3·4계층 장치를 7계층 장치 여럿 앞에 둔다), 문항 n338 해설
+
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻 — 일을 여러 서버에 나눠 성능을 최적으로, DNS 방식과 역방향 프록시 방식 — 역방향 프록시가 IP 주소 하나를 내보이고 세션마다 서버를 고른다), `network-devices.balancing-methods`(해시 — 출발지 주소 같은 값을 서버 번호로 바꾼다),
+기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — 분산 방식의 오답 「IP 해시」)
+
+## (phase 82 step 8) RFC 2816 — A Framework for Integrated Services Over Shared and Switched IEEE 802 LAN Technologies
+https://www.rfc-editor.org/rfc/rfc2816
+
+판(rfc-editor.org 텍스트판과 `…/rfc2816.json`, 2026-11-19): 2000-05, Informational, 폐기·개정 없음. 주제는 IEEE 802 LAN의 서비스 품질이다 — 장비 이름의 쓰임만 가져온다.
+
+- 「Layer 3 switches (i.e. routers)」: 802.1D 스위치의 기능을 최소 기준으로 보고, 더 기능이 많은 2계층 스위치나 **3계층 스위치(곧 라우터)**를 쓸 수도 있다고 적은 뒤, 3계층 스위치의 동작은 이미 IETF가 표준으로 정해 두었다고 덧붙인다 — §8.7. 곧 이 문서는 **3계층 스위치를 라우터와 같은 것으로** 적는다
+- 「Layer 2 switches」, 「Layer 2 device (bridge/switch)」라는 말도 쓴다 — §7, §7.2.2, §8.7. `exam-notes.md` E7은 「L2 스위치」라는 이름 그대로는 찾지 못했다고 적었는데, 이 문서가 그 이름을 지나가며 쓴다(E7의 처리 — 표준의 이름은 브리지이고 시험은 L2 스위치라 부른다 — 는 그대로 둔다)
+- 3계층 스위치를 정의한 문장은 이 문서에도, 위 RFC 4949·1983·1812·3234·7098에도 없다 — 이 문서의 괄호 하나가 허용한 출처에서 찾은 쓰임의 전부다
+- **한국어 이름**: Layer 3 switch → **L3 스위치**(기출의 이름 — 「3계층 스위치」로 풀어 쓴다)
+
+쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.device-layers`(「L3 스위치」라는 이름 — IETF 문서 하나가 라우터와 같은 것으로 적는다, 정의 문장은 없다), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단)
+
+## (phase 82 step 8) Microsoft Learn — IIS 응용 프로그램 요청 라우팅(ARR)의 부하 분산: Planning Step 3: Plan IIS Web Farm Load Balancing, Using the Application Request Routing Module, Define and Configure an Application Request Routing Server Farm, HTTP Load Balancing using Application Request Routing, Scalable Web Infrastructure, Using Failed Request Tracing rules to troubleshoot Application Request Routing
+https://learn.microsoft.com/en-us/iis/web-hosting/scenario-build-a-web-farm-with-iis-servers/planning-step-3-plan-iis-web-farm-load-balancing
+https://learn.microsoft.com/en-us/iis/extensions/planning-for-arr/using-the-application-request-routing-module
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/define-and-configure-an-application-request-routing-server-farm
+https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing
+https://learn.microsoft.com/en-us/iis/overview/scalable-web-infrastructure
+https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/iis/health-diagnostic-performance/troubleshoot-arr-using-frt-rules
+
+2026-11-19에 IPv4로 내려받아 읽은 판: 「Planning Step 3」 `updated_at` 2020-05-14(`ms.date` 2013-04-14), 「Using the Application Request Routing Module」·「Define and Configure …」·「HTTP Load Balancing …」 셋 다 2024-04-11(2008-07-02), 「Scalable Web Infrastructure」 2020-05-09(2018-03-06),
+「Using Failed Request Tracing rules …」 2025-07-14(2025-01-03). 한국어판(기계 번역)은 앞 다섯을 받았다(`updated_at` 2026-10-27). 적용 대상: ARR은 IIS 7 이후에 따로 설치하는 IIS 확장이고, 이 걸음 안내들은 Windows Server 2008 이후의 IIS 7.0 이상과 ARR 버전 1을 전제로 쓴 글이다(「Define and Configure …」·「HTTP Load Balancing …」 Prerequisites).
+**같은 learn.microsoft.com에 있어도 Azure 서비스의 부하 분산 문서(Application Gateway·App Service)는 쓰지 않았다.**
+
+- **부하 분산의 뜻**: 일(workload)을 여러 웹 서버에 나누는 방법이고, 목적은 **자원을 가장 알맞게 쓰고, 요청 처리량을 가장 크게 하고, 응답 시간을 가장 짧게 하고, 서버 과부하를 피하는 것**이다 — 「Planning Step 3」 「3.1. Plan Load Balancing with ARR」
+- 로드 밸런서는 여러 알고리즘으로 이 일을 한다. 가장 단순한 것 가운데 하나인 **라운드 로빈은 모든 서버에 고르게 부하를 주려고 새 요청마다 다른 웹 서버로 보낸다**. 다른 알고리즘은 응답 시간을 줄이려고 특정 종류의 요청을 특정 서버로 보낸다 — 같은 절
+- ARR은 HTTP 헤더·서버 변수·부하 분산 알고리즘으로 요청을 어느 콘텐츠 서버에 넘길지 정하는 **프록시 기반의** 라우팅·부하 분산 모듈이다 — 같은 절, 「Using …」 Introduction. IP 수준에서 판단하는 하드웨어 로드 밸런서와 달리 ARR은 응용 수준에서 판단한다 — 「Using …」 「Features」 1(계층의 세부는 step 12가 본다)
+- ARR로 얻는 것으로 **응용의 가용성과 확장성을 높이고** 콘텐츠 서버의 자원을 더 잘 쓰는 것을 든다 — 「Using …」 Introduction. 관리자는 서버 팜에 서버를 더하거나 빼서 응용의 가용성에 영향을 주지 않고 수요에 맞춰 용량을 늘리고 줄일 수 있다 — 「Scalable Web Infrastructure」 「Application Request Routing and Load Balancing」
+- **서버 팜**: 요청을 보낼 응용 서버들의 논리적인 묶음이고, HTTP를 살피는 규칙과 부하 분산 알고리즘으로 그 안의 서버로 요청을 보낸다 — 「Define and Configure …」 Overview. ARR은 서버 그룹을 여럿 둘 수 있다 — 「Using …」 「Features」 6
+- **부하 분산 알고리즘**: 사용자가 고른 알고리즘으로 HTTP 요청을 맡기에 가장 알맞은 콘텐츠 서버를 정하고, **알고리즘은 여섯 가지**다 — 「Using …」 「Features」 2, 「Planning Step 3」 「3.2」 표. 그러나 **여섯의 이름과 정의를 적은 글은 이 문서들에 없다**(전문 검색 — 이름은 화면 그림 속에만 있다).
+  글로 나오는 이름은 IIS 관리자 「Load Balance」 화면의 「Load balance algorithm」 목록에서 고르는 **「Weighted round robin」**(한국어판 「가중 라운드 로빈」) 하나다. 그 화면에서 가중 라운드 로빈을 고르고 「Load distribution」을 「Even distribution」으로 둔 서버 팜은 들어오는 요청을 서버들에 **고르게** 나눈다 — 「Define and Configure …」 Step 2·Summary(화면 그림의 설명 글 포함).
+  **가중치를 서로 다르게 주었을 때 몫이 어떻게 나뉘는지는 찾지 못했다**
+- 실패한 요청 추적으로 남긴 ARR 기록에는 쓰인 알고리즘(Algorithm), 그 서버를 고른 까닭(RoutingReason), 그 서버로 가는 동시 HTTP 요청 수(CurrentRequests) 같은 칸이 있다 — 「Using Failed Request Tracing rules …」(동시 요청 수를 실행 중 통계로 센다는 데까지만 — 알고리즘의 정의로 쓰지 않는다)
+- **상태 확인**: ARR은 콘텐츠 서버의 상태(health)를 두 방법으로 살핀다 — 실제로 오가는 요청(라이브 트래픽)으로와, 정해 둔 URL에 GET 요청을 보내는 URL 시험으로다. 라이브 트래픽 시험은 기본으로 하고, URL 시험은 더해 쓸 수 있다. URL 시험에는 응답 본문에 기대한 글자가 있는지 보는 「Response match」를 더할 수 있다 — 「HTTP Load Balancing …」 Step 2, 「Using …」 「Features」 3
+- 상태 확인의 결과: 서버 하나에서 사이트를 멈추면 다음 상태 확인 뒤로 **모든 요청이 건강한 서버로만** 가고, 멈춘 사이트를 다시 켜면 다음 상태 확인 뒤로 다시 고르게 나뉜다 — 상태 확인은 **나빠졌던 서버가 다시 좋아진 것을 알아채는 데에도** 쓰인다.
+  예의 시험 간격 30초는 그 안내에서 둔 값이다(기본값으로 쓰지 않는다) — 「HTTP Load Balancing …」 Step 2의 9~10과 그 뒤 확인 차례
+- 클라이언트 선호도(client affinity — 쿠키로 한 클라이언트의 요청을 한 서버로 묶는다)는 있다는 것만 적는다 — 세션 유지의 구현은 가져오지 않는다(「Using …」 「Features」 4)
+- (phase 82 step 11) 쓰인 곳: `network-devices.load-balancing`(문단 1 — 과부하를 피하고 처리량을 늘리고 응답 시간을 줄이며 자원을 알맞게 쓴다, 문단 2 — 서버 팜이라는 다른 이름, 문단 3 — 서버를 더하고 빼서 수요에 맞춘다,
+  문단 4 — 상태 확인의 두 방법(실제로 오가는 요청과 정해 둔 URL로 보내는 요청), 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다, health check를 그대로 읽은 「헬스 체크」라는 이름, 문단 5 — 가용성을 높인다),
+  `network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다음 서버로 넘어가 요청 수가 고르게 나뉜다), 문항 n332·n334 해설, 도식 `load-balancer-pool`
+- (phase 82 step 11, 2026-11-20 learn.microsoft.com 검색으로 다시 확인) 가중 라운드 로빈에서 가중치를 서로 다르게 주었을 때 몫이 어떻게 나뉘는지는 IIS 문서(위 여섯과 「Configuring Step 3: Configure IIS Web Farm Load Balancing」)에 여전히 없다.
+  같은 사이트의 Azure Application Gateway 문서에만 있어 쓰지 않았다. 그래서 `network-devices.balancing-methods`는 가중 라운드 로빈을 항목으로 두지 않고, guide의 계산 예(가중치 3·1로 요청 8개가 6개·2개)를 최소 연결의 예로 바꿨다
+- **한국어 이름**: 한국어판(기계 번역)은 Application Request Routing을 「애플리케이션 요청 라우팅」, server farm을 「서버 팜」, load balancing을 「부하 분산」, Load balance algorithm을 「부하 분산 알고리즘」, Weighted round robin을 「가중 라운드 로빈」, round robin을 「라운드 로빈」,
+  Health Test(화면)를 「상태 테스트」, health check(본문)를 「상태 검사」, hardware load balancer를 「하드웨어 부하 분산 장치」(목차의 문서 제목은 「하드웨어 부하 분산기」)로 옮긴다. **고른 이름**: 「응용 프로그램 요청 라우팅(ARR)」(phase 81이 application을 「응용 프로그램」으로 옮긴 것과 맞춘다 — 한국어판의 「애플리케이션 요청 라우팅」을 한 번 밝힌다), 「서버 팜」, 「부하 분산」, 「가중 라운드 로빈」,
+  「상태 확인」(guide의 이름 — health check를 옮긴 말. 기출은 「헬스 체크(Health Check)」로 쓰고 한국어판은 「상태 검사」로 옮긴다는 것을 본문에서 한 번 밝힐 수 있다). **실제 한국어 IIS 관리자 화면의 이름은 확인하지 못했다**
+- (phase 82 step 12, 2026-11-20 IPv4로 다시 받아 읽음 — 「Using the Application Request Routing Module」 `updated_at` 2024-04-11 그대로, 한국어판 2026-10-27) **응용 수준의 판단**: ARR은 IIS 7 이상에서 쓰는 **프록시 기반**의 라우팅 모듈로, HTTP 헤더·서버 변수·부하 분산 알고리즘에 따라 HTTP 요청을 콘텐츠 서버로 넘긴다.
+  들어오는 HTTP 요청을 살피는 일은 **URL 다시 쓰기(URL Rewrite) 모듈**에 맡기므로 그 모듈이 있어야 ARR이 동작한다 — Introduction. IP 수준에서 판단하는 하드웨어 부하 분산 장치와 달리 ARR은 응용 수준에서 판단하고, URL 다시 쓰기 모듈과 함께 HTTP 헤더·서버 변수에 바탕한 라우팅 규칙을 쓸 수 있다 — 「Features」 1.
+  같은 ARR이 부하 분산 알고리즘(여섯 가지)과 서버 상태 확인(실제로 오가는 요청과 URL 시험)도 한다 — 「Features」 2·3(위 「(phase 82 step 8)」 줄)
+- (phase 82 step 12) **URL로 나누는 예**:
+  https://learn.microsoft.com/en-us/iis/extensions/configuring-application-request-routing-arr/configure-3-tier-deployment-architecture-using-application-request-routing
+  https://learn.microsoft.com/en-us/iis/extensions/url-rewrite-module/iis-url-rewriting-and-aspnet-routing
+  판(2026-11-20 IPv4로 내려받음): 「Configure 3-tier deployment architecture using Application Request Routing」 `updated_at` 2024-04-11(`ms.date` 2008-07-02, IIS 7.0 이상과 ARR 버전 1 전제 — Prerequisites), 「IIS URL Rewriting and ASP.NET Routing」 2022-08-23(2008-09-04). 한국어판은 둘 다 2026-10-27
+  - 3계층 배포 안내: URL 다시 쓰기 규칙이 요청의 파일 확장자(.jpg·.css)나 URL 경로(/images/)를 살펴, 그런 정적 요청은 ARR 서버가 직접 내주고 **나머지 요청은 ARR 서버 뒤의 응용 서버로 넘긴다** — 「Step 1」. 이 안내는 ARR을 **역방향 프록시**로 쓰는 경우라고 끝에 적는다 — 「Summary」
+  - URL 다시 쓰기 문서: 동적 콘텐츠와 정적 콘텐츠를 서로 다른 서버에 두었을 때, URL 다시 쓰기 모듈과 ARR로 **정적 파일 요청을 모두 다른 서버로 넘기고** 동적 페이지 요청은 지금 서버가 맡게 할 수 있다(이미지 확장자로 끝나는 URL을 정적 파일 서버로 다시 쓰는 규칙이 예로 나온다) — 「Which Option Should You Use?」
+  - 곧 URL의 경로 하나로 요청을 서로 다른 서버(들)에 나눌 수 있다 — guide의 예(`www.example.com/images/`로 시작하는 요청은 `IMG01`로, 나머지는 `WEB01`로)는 이 두 문서의 동작을 이름표로 옮긴 것이다(예의 이름은 문서에 없다)
+  - **한국어 이름**: 한국어판(기계 번역)은 URL Rewrite를 「URL 다시 쓰기」, 3-tier를 「3계층」, reverse proxy를 「역방향 프록시」로 옮긴다
+  쓰일 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l7-switch`(응용 수준에서 HTTP 헤더·URL로 판단한다, IP 수준의 장치와 다르다, 알고리즘·상태 확인도 한다, URL 경로로 서버를 나누는 예, 역방향 프록시로 동작한다), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-02-01 #49])
+- (phase 82 step 13) 쓰인 곳: `network-devices.l7-switch`(문단 3 — 응용 수준에서 판단하는 로드 밸런서도 부하 분산 알고리즘과 상태 확인을 한다 — 「Features」 2·3, 문단 4 — URL 경로 `/images/`의 요청을 다른 서버로 나누는 예 — 3계층 배포 안내와 URL 다시 쓰기 문서,
+  서버 이름 `IMG01`·`WEB01`은 이름표), 도식 `l7-switch-url`. 본문에 ARR이라는 제품 이름은 쓰지 않았다(이 주제의 앞 개념이 IIS를 풀지 않았다)
+
+쓰인 곳: (phase 82 step 11에서 쓰일 곳) `network-devices.load-balancing`(부하 분산의 뜻과 목적 — 자원 사용·처리량·응답 시간·과부하, 로드 밸런서는 프록시 기반일 수 있다, 서버 팜, 가용성과 서버를 더하고 빼기, 상태 확인의 두 방법과 결과 — 응답하지 않는 서버로는 보내지 않고 다시 좋아지면 다시 보낸다),
+`network-devices.balancing-methods`(라운드 로빈 — 새 요청마다 다른 서버, 「가중 라운드 로빈」이라는 이름, 알고리즘은 여럿이고 정의는 RFC 2391·7098에서), 기출 대조(`exam-notes.md` 「phase 82 step 8」 문단 — [기출 2024-02-25 #47]·[기출 2025-05-25 #47]·[기출 2026-05-17 #49])
+
+## (phase 82 step 12) RFC 9569 — The Application-Layer Traffic Optimization (ALTO) Transport Information Publication Service (TIPS)
+https://www.rfc-editor.org/rfc/rfc9569
+
+판(rfc-editor.org 텍스트판과 `…/rfc9569.json`, 2026-11-20): 2024-09, Proposed Standard, 폐기·개정 없음. 주제는 ALTO라는 다른 프로토콜이다 — 부하 분산의 두 방식을 가르는 §8.1의 말만 가져온다.
+
+- **4계층 부하 분산**(Layer 4 load balancing)은 요청을 **TCP 5-tuple**로 나누는 방식이라고 괄호로 풀어 적는다. 그래서 같은 정보에 대한 요청이라도 다른 TCP 연결로 오면 다른 서버로 갈 수 있다(이 문서는 그것이 문제가 되는 경우를 든다) — §8.1
+- **7계층 로드 밸런서**(Layer 7 load balancers)는 요청을 **URI의 한 부분(경로)**으로 나눌 수 있어, 같은 정보에 대한 요청을 늘 같은 서버로 가게 설정할 수 있다 — §8.1. 서로 다른 경로의 요청을 서로 다른 물리 서버로 보내는 것도 7계층 부하 분산으로 한다 — 부록 A
+- 곧 이 문서는 **4계층과 7계층을 「무엇을 보고 나누는가」로 가른다** — 연결의 주소·포트(5-tuple)인가, 요청의 URI인가. 「스위치」라는 이름은 쓰지 않는다
+- 「Layer 4 load balancer」라는 말은 RFC 7609(2015-08, Informational — 클러스터의 가상 IP 주소를 지니고 들어오는 TCP 연결을 서버들에 나누는 장치)와 RFC 8684(2020-03, Proposed Standard — 지나가며)에도 나온다(rfc-editor.org 사이트 검색). 본문의 근거로는 이 문서의 §8.1이면 충분하다
+- 5-tuple이 무엇인지는 이 문서가 풀지 않는다 — 아래 RFC 6437 항목
+- **한국어 이름**: Layer 4 load balancing → 4계층 부하 분산, Layer 7 load balancer → 7계층 로드 밸런서(본문은 「전송 계층 정보로 나누는 부하 분산 장치」·「응용 계층 정보로 나누는 부하 분산 장치」로 풀어 쓰고 표준의 이름을 한 번 밝힌다)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 다섯 값으로 나누는 4계층 부하 분산), `network-devices.l7-switch`(문단 0 — 7계층 로드 밸런서라는 이름, 문단 1 — 경로로 나누고 같은 경로의 요청을 같은 서버로 보내게 정해 둘 수 있다,
+  문단 5 — L4와 L7은 무엇을 보고 나누는가로 갈린다), 문항 n338 해설
+
+쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(5-tuple로 나눈다), `network-devices.l7-switch`(URI의 경로로 나눈다, L4·L7이 무엇을 보고 나누는가로 갈린다 — 4절), `exam-notes.md` E43·E44
+
+## (phase 82 step 12) RFC 6437 — IPv6 Flow Label Specification
+https://www.rfc-editor.org/rfc/rfc6437
+
+판(rfc-editor.org 텍스트판과 `…/rfc6437.json`, 2026-11-20): 2011-11, Proposed Standard, 폐기·개정 없음. 흐름 레이블 이야기는 가져오지 않는다 — 「5-tuple」이 무엇인지만 가져온다.
+
+- 흐름을 가르는 장치들은 전통적으로 **출발지 주소·목적지 주소·출발지 포트·목적지 포트·전송 프로토콜의 종류** 다섯 값(5-tuple)을 써 왔다 — §1. 흐름을 흔히 이 5-tuple이 같은 패킷들의 묶음으로 정의한다 — §3
+- **한국어 이름**: 5-tuple → 「주소·포트·프로토콜의 다섯 값」으로 풀어 쓴다(이름 「5-tuple」은 한 번 밝힐 수 있다)
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 0 — 출발지·목적지 IP 주소, 출발지·목적지 포트 번호, 프로토콜의 다섯 값과 5-tuple이라는 이름)
+
+쓰인 곳: (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`(L4 스위치가 보는 값 — 출발지·목적지 IP 주소, 출발지·목적지 포트 번호, 프로토콜), 위 RFC 9569 항목
+
+## (phase 82 step 12) RFC 3143·RFC 3466 — 「L4 switch」·「L4-L7 switch」라는 이름이 나오는 곳
+https://www.rfc-editor.org/rfc/rfc3143
+https://www.rfc-editor.org/rfc/rfc3466
+
+판(rfc-editor.org 텍스트판과 json, 2026-11-20): RFC 3143은 2001-06, Informational, 폐기·개정 없음. **RFC 3466은 2003년(문서 머리 2003-02, json 2003-03), Informational이고 RFC 7336으로 폐기됐다** — 역사 기록으로만 쓴다. 대체한 RFC 7336(2014-08, Informational)에는 서버 팜·스위치의 설명이 없다(전문 검색).
+
+- RFC 3143은 웹 프록시·캐시의 알려진 문제를 늘어놓은 문서다. 가로채기 프록시가 IP 주소에 기댄 인증을 깨뜨린다는 문제의 우회책으로, 가로채는 장치에서 IP 필터를 걸어 그런 서버로 가는 요청은 비켜 가게 하라고 적으면서 그 장치를 괄호로 「L4 switch」라 부른다 — §2.2.3.
+  여기서 「L4 switch」는 웹 요청을 가로채 캐시로 돌리는 장치를 가리킬 뿐이고, 정의하지 않으며 서버 부하 분산 장치를 가리키지도 않는다
+- RFC 3466 §2.3(서버 팜)은 서버 팜이 흔히 OSI 4~7계층의 정보를 쓰는 「지능형」·「콘텐츠」 스위치를 쓰고 그 스위치가 요청을 살펴 서버 묶음에 나눈다고 적는다. 서버 팜의 목표로 서버 여럿을 원 사이트 하나처럼 보이게 하기, 요청을 서버 모두에 고르게 나누기, 고장 난 서버를 피해 보내기,
+  한 사용자 에이전트의 세션을 같은 서버로 보내기를 들고, 그림에서 그 장치를 「L4-L7 switch」라 이름 붙인다 — §2.3. 폐기된 문서라 본문의 근거로 쓰지 않는다 — 이런 이름이 IETF 문서에 나온 적이 있다는 기록으로만 둔다
+- 「layer 4 switch」·「layer-4 switch」·「layer 7 switch」·「L7 switch」는 RFC 어디에도 없다(위 RFC 3234 항목의 「(phase 82 step 12)」 줄)
+- **판단**: 시험의 「L4 스위치」·「L7 스위치」는 표준이 정의한 이름이 아니다 — `exam-notes.md` E43
+- (phase 82 step 13) 쓰인 곳: `network-devices.l4-switch`(문단 1 — L4 스위치라는 이름은 표준 문서에 나오지 않는다), `network-devices.l7-switch`(문단 0 — L7 스위치라는 이름도 나오지 않는다)
+
+쓰인 곳: `exam-notes.md` E43(이름의 처리), (phase 82 step 13에서 쓰일 곳) `network-devices.l4-switch`·`network-devices.l7-switch`(「자격시험은 … 라 부른다」 한 줄의 근거)
+
+## (phase 82 step 12) IEEE 802.3af·802.3at·802.3bt — PoE(Power over Ethernet): 표준 개요 페이지, 태스크 포스 문서(PAR·목표·요구 사항·5대 기준), 4쌍 PoE 관심 요청(CFI) 발표
+https://standards.ieee.org/ieee/802.3af/1090/
+https://standards.ieee.org/ieee/802.3at/4553/
+https://standards.ieee.org/ieee/802.3bt/6749/
+https://standards.ieee.org/ieee/802.3/10422/
+https://www.ieee802.org/3/af/index.html
+https://www.ieee802.org/3/af/PAR-802-3af.pdf
+https://www.ieee802.org/3/af/objectives.pdf
+https://www.ieee802.org/3/af/requirements.pdf
+https://www.ieee802.org/3/at/index.html
+https://www.ieee802.org/3/at/P802d3at_PAR.pdf
+https://www.ieee802.org/3/at/objectives.html
+https://www.ieee802.org/3/bt/index.html
+https://www.ieee802.org/3/bt/P802d3bt_PAR.pdf
+https://www.ieee802.org/3/bt/P802d3bt_objectives.pdf
+https://www.ieee802.org/3/4PPOE/5Criteria.pdf
+https://www.ieee802.org/3/cfi/0313_2/CFI_02_0313.pdf
+
+판(2026-11-20 IPv4로 내려받음):
+- 개요 페이지 — 802.3af-2003(이사회 승인 2003-06-12, 발행 2003-06-17), 802.3at-2009(승인 2009-09-11, 발행 2009-10-30), 802.3bt-2018(승인 2018-09-27, 발행 2019-01-31) 셋 다 **「Superseded」**(뒤 판의 IEEE Std 802.3에 합쳐졌다).
+  지금 판은 **IEEE 802.3-2022**(Active, 2022-05-13 승인, 802.3da-2026 같은 개정이 붙어 있다)이고, 개요가 「정해진 꼬임 쌍선 물리 계층 위에서 전원을 공급하는 일」을 다루는 기능으로 든다. 다음 판(P802.3)은 PAR 단계(2025-12-10 승인)다
+- 태스크 포스 문서는 **표준 본문이 아니다** — 802.3af PAR(2000-01-30 승인), 802.3af 목표(1999-11 연구 그룹), **802.3af 요구 사항 문서(2000-11 — 「승인되지 않은 작업 문서」라고 스스로 적는다)**, 802.3at PAR·목표(2008-11 갱신),
+  802.3bt PAR·목표(2013-05·07 채택, 2017-03 갱신), 4쌍 PoE 연구 그룹의 5대 기준(2013-07), 4쌍 PoE CFI(2013-03 — 회원들의 발표 자료)
+- 본문의 자리: 802.3af·802.3at의 PoE는 802.3의 **Clause 33**이다(4쌍 PoE 5대 기준 — 「Clause 33, 유일한 DTE Power via MDI(PoE) 절」, CFI — 「IEEE Std 802.3-2012 Clause 33」). 802.3bt의 4쌍 PoE는 2017-01 결정으로 **따로 된 새 절**로 옮겨졌다(802.3bt 목표 3쪽). 새 절의 번호는 이 문서들에서 확인하지 못했다
+
+- **PoE가 무엇인가**: 802.3 인터페이스를 가진 장치에 **평형 케이블(꼬임 쌍선)로 전원을 공급하는 방법**을 정한다 — 802.3af PAR 「Scope」. 목적은 전력을 적게 쓰고 LAN에 이어지는 새 종류의 장치에 전원을 주는 것이다 — 802.3af PAR 「Purpose」.
+  10BASE-T·100BASE-TX(1000BASE-T도 검토) 장치 하나에 꼬임 쌍선 링크 구간으로 경제적으로 전원을 주는 것이 처음 목표였다 — 802.3af 목표 (1). 처음 표준의 이름은 「MDI를 통한 DTE 전원(DTE Power via MDI)」이고, 「Power over Ethernet(PoE)」라는 이름은 802.3bt의 제목·개요와 4쌍 PoE 5대 기준이 쓴다
+- **PSE와 PD**: 전원을 주는 쪽은 **PSE**(Power Sourcing Equipment), 받는 쪽은 **PD**(Powered Device)다. PSE는 링크의 끝에 있을 수도, MDI들 사이의 중간(미드스팬)에 따로 있을 수도 있고, 링크 구간을 거쳐 PD에 전원을 준다 — 802.3af 개요
+- **검출**: PSE는 **검출 절차로 호환되는 PD를 호환되지 않는 장치와 가려**, 호환되지 않는 장치에는 전원을 넣지 않아 망가뜨리지 않는다. 전원을 넣은 뒤에도 PD가 전원을 계속 원한다는 신호를 살펴, 더는 필요 없으면 전원을 끊는다 — 802.3af 개요.
+  전원이 있는 장치와 없는 장치 모두에서 동작하는 검출 기능은 처음부터의 목표였다 — 802.3af 목표 (4). 작업 문서는 저항으로 상대를 알아보는 방식을 골랐다고 적는다 — 요구 사항 16(2000-11 작업 문서)
+- **분류**: PD가 쓸 전력의 등급을 PSE에 알리는 분류가 있다 — 802.3at 목표 9(PoE Plus 모드로 분류를 넓힌다), 802.3bt 개요(협상 때 주고받는 전력 분류 정보를 넓혀 전력 관리를 쓸모 있게 한다). 등급표는 가져오지 않는다
+- **전원과 전압**: 직류(DC) 전원을 보낸다 — 802.3af 요구 사항 8. PSE의 출력 전압을 **44~57V 직류 범위**로 하자는 결정이 적혀 있다 — 요구 사항 18(2000-11 작업 문서 — 승인된 표준 본문의 값이 아니다).
+  4쌍 PoE CFI의 손실 계산 예는 PD 쪽 전압 48V를 예로 쓴다(CFI 10쪽 — 계산을 위한 예). **「표준 전압은 48V」라는 문장은 찾지 못했다**
+- **쌍**: 802.3af·802.3at(Clause 33)는 네 쌍 가운데 **두 쌍**(1-2·3-6 또는 4-5·7-8)으로 전원을 보내고 둘 중 한 배치만 쓴다 — CFI 7쪽 「Definitions」, 요구 사항 1·12. 802.3bt는 **네 쌍을 모두 써서** PD가 받을 수 있는 최대 전력을 늘렸다 — 802.3bt 개요·PAR 「Scope」
+- **규격마다의 전력(문서가 보이는 값만 — 모두 PD 쪽 값이다)**:
+  - 802.3af: 802.3at의 목표 표가 802.3af PSE로 동작하는 PD의 경계를 **12.95W**로 둔다 — 그보다 적게 쓰는 PoE Plus PD는 802.3af PSE에서 동작하고, 더 쓰는 PD는 802.3af PSE에 이으면 사용자에게 알려야 한다(802.3at 목표 14, 2008-11).
+    곧 802.3af로 PD가 받는 전력은 12.95W까지다(표에서 나오는 말 — 「802.3af는 12.95W」라는 문장 자체는 없다)
+  - 802.3at: PoE Plus(802.3at)는 PD에서 **적어도 24W**를 목표로 했다(목표 6 — 2008-03에 30W를 지우고 24W로 바꿨다). 그 결과가 합쳐진 IEEE Std 802.3-2012 Clause 33의 **PD 최대 전력은 25.5W**다 — 4쌍 PoE CFI 11쪽(2013-03 회원 발표)
+  - 802.3bt: PD에서 **적어도 49W**를 목표로 했다 — 802.3bt 목표 2쪽(2013-07). **표준이 정한 최종 값은 이 step이 읽은 공개 문서에서 찾지 못했다**(태스크 포스 회의 자료 목록의 「Type 3·Type 4」 발표들은 진행 중의 제안이라 쓰지 않았다)
+  - PSE 쪽에서 포트가 내보내는 전력의 값은 찾지 못했다
+- **쓰는 장치와 까닭**: IP 전화기 규격을 만들던 TIA가 쓸 전원 규격을 802.3에 청한 것이 802.3af의 계기다 — 802.3af PAR 9. 802.3at은 여러 대역의 무선 AP와 제어할 수 있는(controllable) 보안 카메라처럼 802.3af보다 많은 전력이 필요한 장치 때문에(PAR 5.5),
+  802.3bt는 씬 클라이언트·여러 무선을 쓰는 AP·상하좌우로 움직이고 확대하는(PTZ) 카메라·디지털 사이니지·빌딩 자동화·산업용 센서처럼 더 많은 전력이 필요한 장치 때문에 만들었다(PAR 5.5). 4쌍 PoE 5대 기준은 **어떤 곳에서는 교류(AC) 전원을 따로 마련하는 비용이 LAN을 쓰는 데 걸림돌**이라고 적는다
+- 유형(Type) 1~4라는 이름은 802.3bt 태스크 포스 발표 제목(예: 「Type 3/4 PSE … Type 1/2 PD」)에만 보인다 — 어느 유형이 어느 규격의 것인지 정한 문장은 찾지 못해 쓰지 않는다
+- **한국어 이름**: Power over Ethernet → **PoE**(풀어 쓰면 「이더넷 케이블로 전원 보내기」), Power Sourcing Equipment → **PSE**(전원을 주는 장치), Powered Device → **PD**(전원을 받는 장치), mid-span → 미드스팬(이름만 — 「링크 중간에 끼우는 전원 장치」로 풀어 쓴다),
+  detection → **검출**, classification → 분류(이름만), Maintain Power Signature → 이름은 쓰지 않는다(「전원을 계속 원한다는 신호」로 풀어 쓴다)
+
+- (phase 82 step 14) 쓰인 곳: `network-devices.poe`(문단 0 — 꼬임 쌍선으로 장치에 전원을 보내 케이블 하나로 네트워크 연결과 전원을 함께 받는다, 직류 — PAR 「Scope」·요구 사항 8. 케이블 이름은 `ethernet` 주제가 쓴 「트위스티드 페어(twisted pair)」를 따랐다, 문단 1 — 802.3af·802.3at·802.3bt의 승인 해, IP 전화기에 쓸 전원 규격 요청이 802.3af의 계기, 802.3at은 더 많은 전력이 필요한 장치 때문, PoE Plus, 두 쌍과 네 쌍, 세 개정이 뒤 판의 802.3에 합쳐짐, 문단 2 — PSE·PD와 미드스팬, 문단 3 — 검출과 전원 끊기, 문단 4 — PD 쪽 전력 12.95W·25.5W와 802.3bt의 49W 이상 목표(PSE 쪽 값은 쓰지 않았다), 문단 5 — 장치마다 전원을 따로 마련하는 비용이 걸림돌 — 4쌍 PoE 5대 기준, 문단 6 — 예의 검출 차례), 도식 `poe-power`(전원 시나리오 — PD인 장치에만 같은 랜선으로 전원을 보낸다), 문항 n339 해설(PSE·PD·검출). 「표준 전압 48V」·분류 등급·유형(Type)은 쓰지 않았다
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PoE의 뜻과 목적, PSE·PD, 미드스팬, 검출과 전원 끊기, 직류, 두 쌍과 네 쌍, 규격 셋의 해와 PD 쪽 전력, 쓰는 장치, 교류 전원을 마련하기 어려운 곳), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2024-05-19 #50]·[기출 2025-11-02 #50])
+
+## (phase 82 step 12) RFC 3621 — Power Ethernet MIB, RFC 7603 — Energy Management (EMAN) Applicability Statement
+https://www.rfc-editor.org/rfc/rfc3621
+https://www.rfc-editor.org/rfc/rfc7603
+
+판(rfc-editor.org 텍스트판과 json, 2026-11-20): RFC 3621은 2003-12 Proposed Standard, RFC 7603은 2015-08 Proposed Standard, 둘 다 폐기·개정 없음.
+
+- RFC 3621은 802.3af의 PSE를 관리하는 MIB다. IP 전화가 데이터와 같은 기반 시설 위에서 돌게 되면서 **신호를 보내는 바로 그 케이블로 전화기에 전원도 주는 일**을 802.3 작업 그룹이 표준으로 만들기 시작했다고 적는다 — §3.
+  약어 PSE(Power Sourcing Equipment)·PD(Powered Device)는 802.3af가 정한 것을 그대로 쓴다 — §3. PSE 장치의 예로 **전원 이더넷을 지원하는 이더넷 스위치**와 미드스팬 상자를 든다 — §4
+- 포트마다의 검출 상태 값으로 꺼짐·찾는 중(searching)·전원 공급 중(deliveringPower)·고장 등을 두고(§5 `pethPsePortDetectionStatus` — 802.3af의 PSE 상태도를 따른다), 올바르지 않은 신호를 만난 횟수를 센다(§5 `pethPsePortInvalidSignatureCounter`).
+  분류는 단말을 전력 소비에 따라 꼬리표 붙이는 방법이고, IP 전화·무선 LAN AP 같은 장치를 전력 요구에 따라 나눈다 — §5 `pethPsePortPowerClassifications`(등급의 뜻은 IEEE 규격이 정한다고 적는다)
+- RFC 7603 §2.2: PSE 장치(**예: PoE 스위치**)는 USB나 이더넷 같은 매체로 PD(예: 탁상용 전화기)에 전원을 준다. 포트마다 전원을 켜고 끌 수 있고 대개 실제로 준 전력을 잰다. PD는 **연결 하나로 네트워크 연결과 전원을 함께 받는다**.
+  대상 장치로 IP 전화·무선 AP·IP 카메라를 들고, PoE 장치는 전원을 주는 스위치 포트에 이어진다고 적는다 — §2.2. 일부 PoE 스위치는 이어진 장치의 소비 전력을 잴 수 있다 — §1.3
+- 「PoE 스위치」라는 이름은 이 표준 문서(RFC 7603)에 PSE의 예로 나온다 — 시험의 이름과 맞으므로 E 항목을 만들지 않는다. RFC 6988(2013-10, Informational)도 포트마다 전원을 주는 장비의 흔한 예로 PoE 스위치를 든다
+- **한국어 이름**: PoE switch → **PoE 스위치**(PoE로 전원을 주는 스위치 — PSE 노릇을 한다), Power over LAN·power Ethernet → 이름은 쓰지 않는다(PoE로 통일한다)
+
+- (phase 82 step 14) 쓰인 곳: `network-devices.poe`(문단 2 — PSE의 예 PoE 스위치, PD의 예 IP 전화기·무선 AP·IP 카메라 — RFC 7603 §2.2·RFC 3621 §4, 문단 3·7 — PoE 스위치는 포트마다 전원을 켜고 끈다 — RFC 7603 §2.2, 문단 5 — PD는 연결 하나로 네트워크 연결과 전원을 함께 받는다 — §2.2), 도식 `poe-power`(노드 이름 「PoE 스위치 SW01」, 역할 곁말 PSE·PD), 문항 n339
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.poe`(PSE·PD의 예, PoE 스위치, 연결 하나로 데이터와 전원, IP 전화·무선 AP·IP 카메라, 포트마다 전원을 켜고 끈다 — 4절 「PoE 스위치와 일반 스위치」의 근거), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단)
+
+## (phase 82 step 12) RFC 4578 — Dynamic Host Configuration Protocol (DHCP) Options for the Intel Preboot eXecution Environment (PXE)
+https://www.rfc-editor.org/rfc/rfc4578
+
+판(rfc-editor.org 텍스트판과 `…/rfc4578.json`, 2026-11-20): 2006-11, Informational, 폐기·개정 없음. IANA가 옵션 93·94·97과 128~135를 이 문서에 이어 두었다 — §4.
+
+- PXE는 **Intel이 정한 사양**이다 — 이 문서는 Intel의 PXE 사양과 EFI 사양이 정한 DHCP 옵션을 IETF에 기록해 두려고 적은 것이다 — §1. 제목도 「Intel Preboot eXecution Environment(PXE)」다. Intel의 사양 자체는 허용 목록 밖이라 열지 않았다
+- PXE를 따르는 클라이언트는 DHCP 옵션으로 **부팅하는 기계와 운영 체제가 올라오기 전의 실행 환경**을 알려, DHCP 서버나 PXE 부팅 서버가 그 기계에 맞는 **운영 체제 부팅 이미지(또는 부팅 전 응용)의 이름과 서버**를 돌려주게 한다 — Abstract, §1
+- 옵션 셋 — 클라이언트 시스템 구조의 종류(93 — 예: x86 PC, EFI x86-64), 클라이언트 네트워크 인터페이스 식별자(94 — 지금 정한 종류는 UNDI 하나이고, 그 판으로 1·2세대 **PXE 부팅 ROM**을 가른다), 클라이언트 기계 식별자(97 — GUID).
+  셋 모두 PXE 클라이언트·서버가 보내는 DHCP·PXE 패킷에 반드시 들어간다 — §2.1~§2.3
+- 이 문서는 부팅 파일을 무엇으로 받는지 말하지 않는다 — TFTP는 위 「(phase 73 step 1) RFC 951 — …, RFC 2131 — …」 항목과 아래 Microsoft Learn 항목
+- **한국어 이름**: Preboot Execution Environment → **PXE**(Microsoft 한국어판은 「사전 부팅 실행 환경(PXE)」 — 아래 항목), boot ROM → 부팅 ROM(이름만), bootstrap image → 부팅 이미지
+
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 0 — 운영 체제가 올라오기 전의 실행 환경이라는 이름의 뜻, Intel이 정한 사양 — §1, 문단 1 — PXE를 지원하는 네트워크 카드에 PXE로 부팅을 시작하는 프로그램이 ROM에 들어 있다 — §2.2의 「PXE 부팅 ROM」과 RFC 951 §2의 PROM, 문단 3 — 어떤 종류의 컴퓨터인지 알려 그 컴퓨터에 맞는 부팅 파일을 받는다 — §2.1), 문항 n340 해설
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE는 Intel이 정한 사양, PXE 클라이언트가 DHCP로 자기 구조를 알리고 맞는 부팅 이미지의 이름과 서버를 받는다, 네트워크 인터페이스의 부팅 ROM), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
+
+## (phase 82 step 12) Microsoft Learn — PXE와 WDS: Configure a PXE server to load Windows PE, About the Windows Deployment Services API, Windows Deployment Services (WDS) boot.wim support, Features removed or no longer developed in Windows Server; PnP·PE: Introduction to Plug and Play, PE Format
+https://learn.microsoft.com/en-us/windows/deployment/configure-a-pxe-server-to-load-windows-pe
+https://learn.microsoft.com/en-us/windows/win32/wds/about-the-windows-deployment-services-api
+https://learn.microsoft.com/en-us/windows/deployment/wds-boot-support
+https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server
+https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-plug-and-play
+https://learn.microsoft.com/en-us/windows/win32/debug/pe-format
+
+2026-11-20에 IPv4로 내려받아 읽은 판: 「Configure a PXE server to load Windows PE」 `updated_at` 2025-06-04(`ms.date` 2022-11-23, 적용 대상 Windows 10), 「About the Windows Deployment Services API」 2025-03-11(2018-05-31), 「WDS boot.wim support」 2026-09-21(2026-09-18),
+「Features removed or no longer developed in Windows Server」 2026-11-17(2026-11-16), 「Introduction to Plug and Play」 2025-05-01(2025-04-23), 「PE Format」 2026-09-10(2026-09-10). 한국어판(기계 번역)도 받았다(`updated_at` 2026-07-06~2026-11-17).
+같은 사이트의 「Understand PXE boot in Configuration Manager」는 같은 차례를 더 자세히 적지만 Windows Server·Windows 문서가 아니라 쓰지 않았다.
+
+- **PXE 부팅의 차례**(「Configure a PXE server …」 「PXE boot process summary」): 클라이언트가 PXE 서버에 닿으면(다른 서브넷이면 라우터·스위치의 IP 헬퍼가 요청을 넘겨 준다) PXE 서버가 DHCP 옵션 60(클라이언트 식별자 PXEClient)·66(부팅 서버 호스트 이름)·67(부팅 파일 이름)을 보낸다.
+  클라이언트는 옵션 67의 부팅 파일(네트워크 부팅 프로그램)을 **TFTP 서버에서 내려받아** 실행하고, 그 프로그램이 부팅 관리자와 부팅 설정 파일을, 부팅 관리자가 다시 Windows PE 이미지를 TFTP 서버의 같은 폴더에서 내려받아 Windows PE를 시작한다. 그 뒤 Windows PE의 도구로 디스크를 준비하고 네트워크의 Windows 이미지로 운영 체제를 설치한다.
+  필요한 것은 PXE 클라이언트 요청에 답하도록 설정한 DHCP 서버(또는 DHCP 프록시), 부팅 파일을 두는 TFTP 서비스를 돌리는 PXE 서버, 파일 서버이고, 셋을 한 컴퓨터에 둘 수도 있다 — 「Prerequisites」. 이 안내의 목적은 **클라이언트 컴퓨터를 네트워크에서 부팅해 네트워크로 Windows를 설치하는 것**이다 — 도입부
+- **WDS**(Windows 배포 서비스): 네트워크로 Windows 운영 체제를 배포하는 구성 요소 묶음이다. 서버 쪽 구성 요소에 **PXE 서버와 TFTP 서버**가 있어 컴퓨터를 네트워크에서 부팅해 운영 체제를 올리고 설치하게 하고, 클라이언트 쪽은 Windows PE(Windows 사전 설치 환경) 안에서 돌며 설치할 이미지를 고르는 화면이다 — 「About the WDS API」
+- **WDS의 지금 상태**: 「Features removed …」는 WDS 서버 역할(역할 서비스·관리 도구·**WDS가 주는 PXE 기능** 포함)을 **Windows Server 2028부터 더 이상 개발하지 않는(deprecated) 기능**으로 올렸다 — 그 판은 아직 미리 보기이고 계획이 바뀔 수 있다고 함께 적는다.
+  이 문서에서 「더 이상 개발하지 않음」은 기능이 아직 Windows Server에 들어 있고 운영에 지원되며 보안·품질 업데이트를 받지만, 뒤 판에서 빠질 수 있다는 뜻이다. 대신 Configuration Manager로 옮기기를 권한다.
+  「WDS boot.wim support」도 Windows Server 2025 다음 판부터 WDS(역할·서비스·도구·PXE 부팅 기능)를 더 이상 개발하지 않는다고 적는다. 설치 미디어의 `boot.wim`으로 Windows 설치를 WDS 모드로 돌리는 방식은 Windows 11과 Windows Server 2025부터 막혔지만 **WDS의 PXE 부팅 자체는 영향을 받지 않는다**(직접 만든 부팅 이미지로는 여전히 PXE 부팅할 수 있다)고 적는다.
+  곧 Windows Server 2025까지는 WDS가 들어 있다 — 본문은 「Windows Server에는 PXE 부팅으로 운영 체제를 설치하게 하는 WDS 역할이 있고, 다음 판부터 더 이상 개발하지 않는다고 예고됐다」까지 한 줄로 쓸 수 있다
+- **PnP**(플러그 앤 플레이): 사용자가 거의 손대지 않아도 컴퓨터가 하드웨어의 바뀜에 맞추게 하는 Windows의 부분이다 — 장치를 붙이거나 떼도 손으로 설정할 필요가 없다(예: 노트북을 도킹 스테이션에 꽂으면 거기 이어진 키보드·마우스·모니터를 바로 쓴다). 장치 하드웨어·시스템 소프트웨어·드라이버가 함께 받쳐야 한다 — 「Introduction to Plug and Play」. 네트워크 부팅과 상관이 없다
+- **PE**(Portable Executable): Windows 계열 운영 체제의 **실행 파일(이미지 파일) 형식**의 이름이다(목적 파일 형식은 COFF). 「이식 가능」은 그 형식이 특정 프로세서 구조에 묶이지 않는다는 뜻이다 — 「PE Format」. 네트워크 부팅과 상관이 없다.
+  이름이 비슷한 **Windows PE**(Windows 사전 설치 환경 — 위 PXE 차례에서 내려받아 시작하는 작은 Windows)와는 다른 것이다. 시험의 오답 「PE(Portable Executable)」는 실행 파일 형식 쪽이다
+- **한국어 이름**: 한국어판은 Windows Deployment Services를 「Windows 배포 서비스(WDS)」, Preboot Execution Environment를 「사전 부팅 실행 환경(PXE)」, Windows PE를 「Windows PE(Windows 사전 설치 환경)」, Plug and Play를 「PnP(플러그 앤 플레이)」, Portable Executable을 「PE(이식 가능한 실행 파일)」, boot file name을 「부팅 파일 이름」으로 옮긴다.
+  **고른 이름**: 「PXE(사전 부팅 실행 환경)」 — 본문은 「네트워크 부팅」으로 풀어 쓴다, 「Windows 배포 서비스(WDS)」, 「PnP(플러그 앤 플레이)」, 「PE(Portable Executable — 실행 파일 형식)」
+
+- (phase 82 step 14) 쓰인 곳: `network-devices.pxe`(문단 0 — 한국어판 이름 「사전 부팅 실행 환경」, 문단 3 — DHCP 서버와 부팅 서버는 한 컴퓨터가 함께 맡을 수도 있다 — 「Prerequisites」, 문단 5 — 실행한 부팅 파일이 다음 파일들을 TFTP로 받아 Windows PE를 시작하고, Windows PE의 도구로 디스크를 준비해 네트워크의 Windows 이미지로 설치한다 — 「PXE boot process summary」, 문단 6 — WDS의 PXE 서버·TFTP 서버, Windows Server 2025 다음 판부터 더 이상 개발하지 않는다는 예고와 Configuration Manager로 옮기기 권고, 문단 7 — PnP·PE와 Windows PE), 도식 `pxe-boot`(실행 시나리오의 캡션), 문항 n340 해설(설치는 부팅 파일을 실행한 뒤의 일)
+쓰인 곳: (phase 82 step 14에서 쓰일 곳) `network-devices.pxe`(PXE 부팅의 차례 — DHCP로 부팅 서버·부팅 파일 이름 → TFTP로 내려받기 → 실행, 네트워크로 운영 체제를 설치하는 쓰임, WDS의 PXE·TFTP 서버와 지금 상태, PnP·PE를 한 줄로 가를 근거 — 4절은 「PXE와 PoE」), 기출 대조(`exam-notes.md` 「phase 82 step 12」 문단 — [기출 2026-05-17 #50])
+
+## (phase 82 step 15) NIST SP 800-41 Rev. 1 — Guidelines on Firewalls and Firewall Policy
+https://csrc.nist.gov/pubs/sp/800/41/r1/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-41r1.pdf
+
+판: 2009년 9월 발행, SP 800-41(2002-01)을 대체한다. 2026-11-20에 csrc 문서 페이지를 확인했다 — Planning Note·철회 표시가 없고 뒤를 잇는 판이 없다(지금 판이다).
+2009년 글이라 제품의 모습(개인 방화벽이 도는 운영 체제의 이름 같은 것)은 낡았다 — 방화벽의 종류와 정책의 원칙만 가져온다. 한국어판이 없다.
+
+- **방화벽**: 보안 수준(security posture)이 서로 다른 네트워크 사이나 호스트 사이에서 네트워크 트래픽의 흐름을 통제하는 장치나 프로그램이다. 인터넷 연결에서 흔히 말하지만, 회사 안에서 민감한 일(회계·인사)을 하는 내부 네트워크로 드나드는 연결을 제한해 무단 접근을 막는 데도 쓴다 — §2 첫머리, 부록 A 「Firewall」
+- 방화벽마다 TCP/IP의 어느 계층까지 살필 수 있는지가 다르다. 기본 방화벽은 아래 계층 한두 개만 보고, 고급 방화벽은 응용 계층까지 본다 — 볼 수 있는 계층이 많을수록 더 세밀하게 판단하고, 응용 계층을 아는 방화벽은 사용자를 인증하고 사용자별로 기록할 수 있다.
+  데이터 링크 계층(MAC 주소)은 방화벽 정책이 거의 다루지 않는다 — §2
+- 방화벽은 대개 네트워크 경계에 놓이고 바깥쪽·안쪽 인터페이스를 가진다. 정책은 두 방향 모두에 걸 수 있다(예: 안에서 밖으로 실행 코드가 나가는 것을 막는다). NAT는 방화벽 기술로 여겨지기도 하지만 라우팅 기술이다. 일부 방화벽은 IPS 기술을 함께 담는다 — §2.1, §2.4
+- **패킷 필터링**(packet filtering): 방화벽의 가장 기본 기능이다. 규칙 집합(ruleset)으로 통과를 정하고, 패킷의 내용(content)은 보지 않는다. 흐름마다의 상태를 기억하지 않아(stateless inspection) 한 세션 안의 여러 요청을 서로 잇지 못한다. 대표 예는 접근 제어 목록(ACL)을 쓰는 라우터다.
+  보는 값: 출발지 IP 주소, 목적지 IP 주소, 쓰는 프로토콜(TCP·UDP·ICMP 등), (경우에 따라) 출발지·목적지 포트, 패킷이 지나는 인터페이스와 방향. 들어오는 쪽을 거르는 것을 ingress filtering, 나가는 쪽을 egress filtering이라 한다 — §2.1.1
+- **상태 검사**(stateful inspection): 패킷 필터에 더해 연결의 상태를 상태 표(state table — 출발지·목적지 IP 주소, 포트, 연결 상태)에 기억하고, 기대한 상태에서 벗어난 패킷을 막는다. 이미 맺은 연결의 일부인 것처럼 꾸민 패킷이 오면 상태 표에 그 연결이 있는지부터 본다.
+  안에서 밖으로 연결을 시작하면 규칙에 맞는지 본 뒤 상태 표에 「시작됨」으로 적고, 세 방향 핸드셰이크를 마치면 「맺음」이 되어 그 연결의 뒤 패킷이 지난다. UDP는 연결 과정이 없어 주소·포트만 기억한다 — 안에서 보낸 DNS 질의가 있었을 때만 밖의 DNS 응답을 들이는 식이다 — §2.1.2, 부록 A 「Stateful Inspection」
+- **응용 계층 방화벽**: NIST는 둘로 나눈다. **응용 방화벽**(application firewall)은 상태 검사에 응용 계층 프로토콜을 분석하는 기능(상태 기반 프로토콜 분석 — 판매사에 따라 deep packet inspection이라 부른다)을 더해, 응용 프로그램이 네트워크에서 어떻게 쓰이는지로 허용·거부한다
+  (예: 허용하지 않는 종류의 메일 첨부 파일, 80번 포트로 오가는 메신저, FTP의 쓰기 명령). HTTP·데이터베이스(SQL)·메일 같은 프로토콜용이 있다 — §2.1.3.
+  **응용 프록시 게이트웨이**(application-proxy gateway)는 두 호스트를 직접 잇지 않고 클라이언트–프록시, 프록시–목적지의 연결 두 개를 만들며, 응용 계층에서 트래픽의 내용을 살펴 허용·거부한다 — §2.1.4
+- 상태 검사와 프로토콜 분석을 갖춘 방화벽도 온전한 IDPS는 아니다 — IDPS는 시그니처 기반·이상 기반 분석으로 훨씬 넓게 탐지하고 막는다 — §2.1.3
+- **VPN**(§2.1.6): 경계의 방화벽이 보호하는 네트워크와 바깥 사이의 특정 트래픽을 암호화·복호화하기도 하는데, 그것은 거의 늘 VPN이다. VPN은 트래픽을 암호화하고 사용자 인증과 무결성 검사를 하는 프로토콜을 더 쓴다. 믿을 수 없는 네트워크 너머로 안전하게 통신하려고 쓰고, 흔한 선택은 IPsec과 SSL/TLS다.
+  가장 흔한 두 구조는 **gateway-to-gateway**(VPN 게이트웨이끼리 이어 지사와 본사 같은 고정된 곳을 공용 회선 너머로 잇는다 — 사용자는 연결을 의식하지 않는다. VPN 게이트웨이는 흔히 방화벽·라우터 같은 장비의 일부다)와
+  **host-to-gateway**(조직 밖에 있는 사용자 한 사람의 컴퓨터가 조직의 VPN 게이트웨이와 안전한 연결을 맺는다)다. 원격 접속 VPN에서는 관리자가 사용자·그룹마다 닿을 수 있는 자원을 정하고(접근 제어), VPN은 RADIUS 같은 인증 프로토콜에 기댄다
+- **NAC**(network access control, §2.1.7): 경계의 방화벽이 원격 사용자에게서 들어오는 연결을 검사해 들일지 정하는 것이다. 사용자의 자격 증명과 그 컴퓨터의 **보안 상태 점검**(health check) 결과로 접근을 정한다 — 점검 항목은 악성 코드 방지·개인 방화벽 소프트웨어의 최신 업데이트와 설정,
+  마지막 악성 코드 검사 뒤 지난 시간, 운영 체제·응용 프로그램의 패치 수준, 보안 설정이다. 점검하려면 방화벽이 통제하는 소프트웨어가 사용자 컴퓨터에 있어야 한다. **자격 증명은 맞는데 점검을 통과하지 못하면, 고칠 수 있게 내부 네트워크에 제한된 접근만 받을 수 있다**.
+  부록 A는 NAC를 일부 방화벽이 주는 기능(원격 근무 단말에 한 점검)으로 정의하고, §4.3은 NAC를 방화벽이 사용자마다 자원 접근을 허용·거부하는 흔한 방법으로 든다
+- **웹 응용 프로그램 방화벽**(web application firewall, §2.1.9): 웹 서버가 쓰는 HTTP는 웹을 보는 사람의 컴퓨터에 악성 소프트웨어를 심거나 사람을 속여 개인 정보를 내놓게 하는 등 여러 방식으로 악용된다. 그런 공격의 상당수를 **웹 서버 앞에 놓인** 특수한 응용 방화벽인 WAF가 탐지할 수 있다.
+  서버를 노리는 공격을 막으려고 웹 서버 앞에 두므로 흔히 전통적인 방화벽과 매우 다른 것으로 본다. 다른 방화벽 기술보다 새로운 기술이라 막는 위협의 종류가 아직 자주 바뀐다
+- **방화벽이 못 하는 것**: 네트워크 경계의 방화벽은 모든 공격을 알아보지 못하고, **내부 호스트에서 다른 내부 호스트로 가는 공격은 아예 그 방화벽을 지나지 않을 수 있다** — 그래서 호스트 기반 방화벽을 더한다(§2.2). 한 호스트 안의 가상 머신끼리 오가는 트래픽은 바깥 방화벽이 보지 못한다(§2.1.10).
+  방화벽은 살필 수 있는 트래픽에만 제대로 일한다 — 암호화된 트래픽(IPsec·TLS·SSH 등)의 내용은 읽지 못하고, 암호화하지 않았어도 모르는 방식으로 터널링한 트래픽(예: IPv4 안에 담은 IPv6)은 해석하지 못한다. 이해하지 못하는 트래픽을 어떻게 할지는 규칙이 정한다(§2.3)
+- 개인 방화벽 가운데는 허락한 응용 프로그램의 목록으로 통신을 허용하는 것도 있다(포트가 아니라 실행한 응용 프로그램으로 판단한다) — §2.2.1
+- **방화벽 정책과 기본 거부**: 방화벽 정책은 IP 주소·주소 범위, 프로토콜, 응용 프로그램, 콘텐츠 종류마다 트래픽을 어떻게 다룰지 정한다. 정책이 명시해 허용하지 않은, 들어오고 나가는 트래픽을 모두 막는 것을 **기본 거부**(deny by default)라 하고, 명시해 금지하지 않은 것을 모두 허용하는 쪽보다 안전하다 — §4 첫머리, 부록 A 「Deny by Default」.
+  들어오는 TCP·UDP 트래픽에는 기본 거부를 쓰고, 나가는 쪽은 대개 덜 엄격하다 — §4.1.3. 규칙 집합을 다루는 법은 제품마다 다르다 — 많은 방화벽은 규칙을 위에서부터 차례로 맞춰 보다가 처음 맞는 규칙을 쓰고, 「거부」 규칙부터 보는 것도 있다 — §5.2.2.
+  규칙 집합(ruleset)은 방화벽의 접근 제어를 다스리는 지시의 묶음이다 — 부록 A 「Ruleset」
+- **한국어 이름**: 고른 이름 「방화벽」, 「규칙」(ruleset을 말할 때는 「규칙 집합」), 「기본 거부」, 「패킷 필터링」, 「상태 검사」, 「응용 계층 방화벽」(NIST의 응용 방화벽과 응용 프록시 게이트웨이를 묶어 부를 때 — 둘 다 응용 계층의 내용까지 본다), 「상태 기반 프로토콜 분석」(이름만),
+  「웹 응용 프로그램 방화벽(WAF)」, 「네트워크 접근 제어(NAC)」, 「보안 상태 점검」(health check — 부하 분산 장치의 「상태 확인」(`network-devices.load-balancing`)과 다른 것이라 이름을 달리 한다), 「사이트 간 VPN」·「원격 접속 VPN」(아래 「NIST SP 800-77 Rev. 1 … SP 800-113」 항목)
+쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.firewall`(정의, 계층마다 보는 값, 패킷 필터링·상태 검사·응용 계층 방화벽, 기본 거부와 규칙의 차례, 못 하는 것), `network-security.ids-ips`(방화벽과 IDPS의 차이 — §2.1.3, 일부 방화벽은 IPS를 담는다 — §2.1), `network-security.waf`(§2.1.9),
+`network-security.nac`(§2.1.7·§4.3·부록 A), `network-security.vpn`(§2.1.6), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단)
+(phase 82 step 16) 쓰인 곳: `network-security.firewall`(문단 1 — 정의, 경계에 두는 자리, 민감한 내부 네트워크 앞, 두 방향에 거는 정책 §2·§2.1 / 문단 2 — 규칙의 조건과 할 일, 처음 맞는 규칙, 기본 거부와 들어오는 트래픽에 쓰라는 권고 §2.1.1·§5.2.2·§4·§4.1.3 /
+문단 5~8 — 패킷 필터링(필터링 라우터), 상태 검사(상태 표, UDP의 DNS 응답 예), 응용 계층 방화벽(응용 방화벽과 응용 프록시 게이트웨이를 묶은 이름)과 앞의 두 방식의 차이 §2.1.1~§2.1.4 / 문단 9 — 내부 호스트끼리의 트래픽·모든 공격을 알아보지 못함·호스트마다 두는 방화벽·암호화된 트래픽 §2.2·§2.3),
+`network-security.ids-ips`(문단 7 — 상태 검사·프로토콜 분석을 갖춘 방화벽도 온전한 IDPS가 아니다 §2.1.3, IPS 기능을 담은 방화벽 §2.1), 문항 n341 해설, 도식 `FirewallRulesDiagram`(`firewall-rules`)의 캡션
+(phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 1 — WAF는 웹 서버 앞에 놓인 특수한 응용 방화벽이고, HTTP를 악용하는(보는 사람의 컴퓨터에 악성 코드를 심거나 사람을 속여 개인 정보를 내놓게 하는) 공격의 상당수를 찾아낼 수 있으며, 흔히 전통적인 방화벽과 매우 다른 것으로 본다 §2.1.9 /
+문단 8 — 주소·포트로 거르는 방화벽이 보는 것은 헤더의 주소·포트와 연결의 상태까지다 §2.1.1·§2.1.2), `network-security.nac`(문단 1·2 — 자격 증명과 보안 상태 점검으로 접근을 정한다, 원격 사용자의 연결을 방화벽이 들일지 정하는 기능, 점검 항목 넷, 점검용 프로그램이 있어야 한다,
+점검을 통과하지 못하면 고칠 수 있게 제한된 접근만 준다 §2.1.7 / 문단 8 — 일부 방화벽이 갖춘 기능 부록 A·§4.3), 문항 n343·n344 해설(상태 검사는 내용을 보지 않는다, 방화벽은 주소·포트로 거른다), n346 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`(문단 2 — VPN은 트래픽을 암호화하고 사용자 인증과 무결성 검사를 하며, 원격 사용자마다 닿을 자원을 정한다 §2.1.6 / 문단 3 — VPN 게이트웨이는 흔히 방화벽·라우터 같은 장비의 일부다 §2.1.6 /
+문단 5 — 원격 접속 VPN에서 관리자가 사용자·그룹마다 닿을 수 있는 자원을 정한다 §2.1.6), `network-security.tunneling` 문단 7(암호화하지 않은 터널 트래픽이 있다 §2.3 — 「터널링만으로는 내용을 지키지 않는다」의 근거 가운데 하나)
+
+## (phase 82 step 15) NIST SP 800-94 — Guide to Intrusion Detection and Prevention Systems (IDPS)
+https://csrc.nist.gov/pubs/sp/800/94/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-94.pdf
+
+판: 2007년 2월 발행, SP 800-31(2001-11)을 대체한다. csrc 문서 페이지의 Planning Note(2022-07-15)는 2012년에 낸 Rev. 1 초안이 최종판이 되지 못하고 거둬들여졌으며, IDS/IPS의 새 지침은 작업을 시작하면 알리겠다고 적는다 — 지금 판은 이 2007년 판이다(2026-11-20 확인).
+오래된 글이라 IDS·IPS의 뜻, 탐지 방법의 이름, 센서를 두는 자리만 가져온다. 한국어판이 없다.
+
+- **침입 탐지**: 컴퓨터 시스템이나 네트워크에서 일어나는 사건을 지켜보고, 보안 정책 위반이나 그 임박한 위협(사고)의 징후를 분석하는 일이다. 사고의 원인은 악성 코드, 인터넷 너머의 무단 접근, 권한을 남용하는 내부 사용자 등이고, 주소를 잘못 쳐서 다른 시스템에 닿는 것처럼 악의 없는 것도 있다 — §2.1
+- **IDS**(intrusion detection system)는 이 탐지를 자동으로 하는 소프트웨어이고, **IPS**(intrusion prevention system)는 IDS의 기능을 다 갖고 사고를 멈추려고도 하는 소프트웨어다. 둘을 함께 IDPS라 부른다 — IPS 제품의 차단 기능을 끄면 IDS처럼 동작한다 — §2.1
+- IDPS가 공통으로 하는 일: 관찰한 사건 기록, 중요한 사건을 관리자에게 알림(경보 — alert), 보고서. **IPS가 IDS와 다른 점은 하나** — 탐지한 위협이 성공하지 못하게 대응한다. 대응은 세 갈래다 — 공격 자체를 멈춘다(공격에 쓰인 연결·사용자 세션을 끊는다, 공격자의 계정·IP 주소에서 오는 접근을 막는다, 대상 호스트·서비스로의 접근을 막는다),
+  보안 환경을 바꾼다(방화벽·라우터·스위치의 설정을 바꿔 막는다), 공격의 내용을 바꾼다(감염된 첨부 파일을 떼어 내고 메일을 넘긴다) — §2.2
+- IDPS의 탐지는 완벽하지 않다 — 정상 활동을 악성으로 보는 오탐(false positive)과 악성 활동을 놓치는 미탐(false negative)이 있다 — §2.2(이름만 쓸 수 있다)
+- **탐지 방법**(§2.3): 대부분의 IDPS는 여러 방법을 함께 쓴다.
+  - **시그니처 기반 탐지**(signature-based detection): 알려진 위협에 대응하는 무늬(시그니처)를 관찰한 사건과 견준다. 알려진 위협에 매우 효과적이고, 처음 보는 위협·회피 기법으로 가린 위협·알려진 위협의 여러 변형에는 거의 효과가 없다. 각주는 이 방법을 오용 탐지(misuse detection)라고도 부르지만 이 문서는 그 말을 쓰지 않는다고 적는다 — §2.3.1
+  - **이상 기반 탐지**(anomaly-based detection): 사용자·호스트·네트워크 연결·응용 프로그램의 평소 행동을 프로필로 만들어 두고, 관찰한 사건이 그것에서 크게 벗어나는지 본다. 처음 보는 위협에 매우 효과적일 수 있지만, 평소와 다른 정상 활동 때문에 오탐이 많다 — §2.3.2
+  - **상태 기반 프로토콜 분석**(stateful protocol analysis): 프로토콜의 상태마다 정상 활동의 정의를 미리 정해 두고 관찰한 사건과 견준다 — §2.3.3(이름만)
+- **종류**(§2.4): 네트워크 기반(네트워크 구간의 트래픽을 지켜보며, 흔히 경계의 방화벽·라우터·VPN 서버 가까이에 둔다), 무선, 네트워크 행동 분석(NBA), 호스트 기반(한 호스트 안의 사건 — 그 호스트의 트래픽·시스템 로그·실행 중인 프로세스·파일 접근 등)
+- **센서를 두는 자리**(§4.2.2): **인라인**(inline) 센서는 지켜보는 트래픽이 그 센서를 지나가게 둔다 — 방화벽과 같은 흐름이다. 인라인으로 두는 주된 까닭은 트래픽을 막아 공격을 멈추기 위해서이고, 방화벽과 IDPS를 합친 장비도 있다.
+  **패시브**(passive) 센서는 실제 트래픽의 사본을 지켜보고, 트래픽이 센서를 지나지 않는다 — 스위치의 스패닝 포트·네트워크 탭 등으로 사본을 받는다. 사본을 보므로 트래픽이 목적지에 닿는 것을 믿을 만하게 막을 방법이 거의 없어, **막는 기능을 쓰면 인라인, 쓰지 않으면 패시브**로 두라고 권한다
+- **방화벽과 무엇이 다른가**(§8.3.3): 방화벽(네트워크·호스트 기반)과 라우터는 출발지·목적지 IP 주소, 전송 계층 프로토콜, 포트 번호·ICMP 유형 같은 TCP/IP의 특성으로 트래픽을 거르고 막은 연결을 기록한다. 방화벽은 IDPS를 보완하고, 많은 IDPS는 방화벽·라우터의 설정을 바꿔 공격을 막게 한다.
+  위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.3도 상태 검사·프로토콜 분석을 갖춘 방화벽이 온전한 IDPS는 아니라고 적는다
+- **한국어 이름**: 고른 이름 「침입」(RFC 4949 「intrusion」 — 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄), 「침입 탐지 시스템(IDS)」, 「침입 방지 시스템(IPS)」, 「시그니처 기반 탐지」, 「이상 기반 탐지」(RFC 4949의 「이상 탐지」와 같은 것),
+  「상태 기반 프로토콜 분석」(이름만), 「인라인」, 「패시브」(트래픽의 사본을 보는 자리), 「오탐」·「미탐」(이름만)
+쓰인 곳: (phase 82 step 16에서 쓰일 곳) `network-security.ids-ips`(침입 탐지·IDS·IPS의 뜻, IPS의 대응, 탐지 방법 둘, 인라인과 패시브, 방화벽과의 차이), WAF·NAC 기출의 오답 IDS·IPS(`exam-notes.md` 「phase 82 step 15」 문단)
+(phase 82 step 16) 쓰인 곳: `network-security.ids-ips`(문단 0 — 침입 탐지와 사고의 원인 §2.1 / 문단 1 — IDS·IPS·IDPS, IPS의 대응, 차단 기능을 끄면 IDS처럼 동작 §2.1·§2.2 / 문단 2 — 네트워크 기반·호스트 기반과 두는 곳 §2.4 /
+문단 3 — 시그니처 기반·이상 기반·오탐·여러 방법을 함께 씀 §2.2·§2.3 / 문단 4 — 인라인·패시브와 권고 §4.2.2 / 문단 6·7 — IDS와 IPS, 방화벽과 IPS §2.2·§8.3.3), 문항 n342 해설, 도식 `IdsIpsPlacementDiagram`(`ids-ips-placement`)의 캡션.
+문단 5의 예는 HTTPS(TCP `443`) 대신 암호화하지 않은 HTTP(TCP `80`)로 들었다 — IPS가 요청의 내용을 시그니처와 견주는 예이고, 방화벽은 암호화된 트래픽의 내용을 읽지 못한다(SP 800-41 Rev. 1 §2.3)는 앞 개념의 줄과 어긋나지 않게 하려는 것이다.
+IDPS가 암호화된 트래픽을 어떻게 다루는지는 SP 800-94에서 따로 확인하지 않았으므로 본문에 쓰지 않았다
+
+## (phase 82 step 15) NIST SP 800-228(2026-03-13 갱신판) — Guidelines for API Protection for Cloud-Native Systems §4.4.1; NIST 용어집 — SQL injection, cross-site scripting, intrusion prevention system, network access control, tunneling, virtual private network
+https://csrc.nist.gov/pubs/sp/800/228/upd1/final
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-228-upd1.pdf
+https://csrc.nist.gov/glossary/term/sql_injection
+https://csrc.nist.gov/glossary/term/cross_site_scripting
+https://csrc.nist.gov/glossary/term/intrusion_prevention_system
+https://csrc.nist.gov/glossary/term/network_access_control
+https://csrc.nist.gov/glossary/term/tunneling
+https://csrc.nist.gov/glossary/term/virtual_private_network
+
+판: SP 800-228은 2025년 6월 발행이고, 2026-03-13 갱신판(upd1 — 부록 D·E를 더했다)이 처음 판(2025-06-27)을 대체한다(2026-11-20 csrc 문서 페이지 확인). API 보호 지침이라 WAF는 한 절(§4.4.1)뿐이고, 그 절에서 WAF가 무엇을 보는지만 가져온다.
+용어집은 2026-11-20에 받았고 정의마다 용어집이 밝힌 출처 문서를 적는다. `csrc.nist.gov/glossary/term/web_application_firewall`에는 정의가 없다(용어집에 그 항목이 없다).
+
+- **WAF가 보는 것**: WAF는 응용 계층에서 일하며, 해석(파싱)한 HTTP 요청을 다룬다 — 헤더마다, 요청 본문에 정책을 걸 수 있다. 응용 프로그램이 끼지 않아도 요청의 메타데이터와 본문에서 오는 위험을 줄인다. **SQL 삽입 공격처럼 보이는 내용을 요청에서 찾아낼 수 있지만**,
+  API 수준의 검사(어떤 칸이 100자를 넘지 않는 문자열인지 같은 것)는 하지 못한다 — 그래서 좋은 첫걸음이지 완전한 해법은 아니다 — §4.4.1
+- WAF의 약점 둘: 요청마다 해석하고 여러 검사를 하므로 지연과 계산 비용이 크다 — 그래서 흔히 따로 운영하며 **요청의 암호를 처음 푸는 곳인 부하 분산 장치의 일부로** 두고, 그 결과 정책이 흔히 경계에서만 걸린다. 그리고 **알려진 공격 시그니처와 요청을 맞춰 보는** 방식이라 처음 보는 공격에는 거의 효과가 없고,
+  가린 공격을 놓칠 수 있다 — 최신 시그니처와 조직에 맞춘 규칙이 필요하다 — §4.4.1
+- 같은 절은 OWASP의 규칙 묶음(Core Rule Set)을 WAF 정책의 출발점으로 권하지만, OWASP 문서는 이 과목의 허용 출처가 아니라 그 규칙의 내용은 가져오지 않는다
+- **SQL 삽입**(SQL injection): 사용자 입력을 충분히 처리하지 않고 뒤의 데이터베이스로 넘기는 웹 사이트를 노리는 공격이다 — 용어집(출처 NISTIR 7682)
+- **크로스 사이트 스크립팅**(cross-site scripting, XSS): 공격자가 정상 웹 사이트에 악성 코드를 끼워 넣게 하는 취약점이다 — 그 스크립트가 사이트가 만든 스크립트와 같은 권한을 얻어, 사이트와 사용자 사이에 오가는 데이터의 기밀성·무결성을 해친다. 요청·양식으로 받은 사용자 데이터를 실행되지 않게 처리하지 않고 보여 주는 사이트가 취약하다 — 용어집(출처 SP 800-63-4).
+  NISTIR 7711은 허락받지 않은 쪽이 웹 응용 프로그램의 다른 사용자 쪽에서 스크립트를 실행시키는 결함이라 적는다 — 같은 용어집. **WAF가 XSS를 막는다고 적은 허용 출처는 찾지 못했다** — 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.9는 WAF가 막는 공격을 「웹을 보는 사람의 컴퓨터에 악성 소프트웨어를 심는 것」처럼 넓게만 적고, SP 800-228 §4.4.1의 예는 SQL 삽입 하나다
+- **IPS**(용어집): 침입 활동을 탐지하고, 그 활동이 대상에 닿기 전에 멈추려고 하는 시스템이다 — 출처 SP 800-82r3·NISTIR 7711
+- **NAC**(용어집): 일부 방화벽이 주는 기능으로, 사용자의 자격 증명과 원격 근무 단말에 한 보안 상태 점검 결과로 접근을 허용한다 — 출처 SP 800-41 Rev. 1(위 항목과 같다)
+- **터널링**(용어집): 한 프로토콜의 패킷을 다른 프로토콜 패킷의 데이터(payload) 안에 담는 것이고, 이것으로 한 네트워크가 다른 네트워크의 연결을 거쳐 자기 데이터를 보낼 수 있다 — 출처 CNSSI 4009-2022(ISO/IEC 14908-4:2012에서)
+- **VPN**(용어집): 출처마다 정의가 갈린다 — SP 800-77 Rev. 1(기존 물리 네트워크 위에 지은 가상 네트워크로, 네트워크 사이나 같은 네트워크의 노드 사이에 안전한 통신 수단을 준다), SP 800-113(네트워크 사이),
+  RFC 4949를 고친 정의(흔히 암호화나 터널링으로 실제 네트워크의 자원 위에 지은, 쓰는 사람이 제한된 논리 네트워크), CNSSI 4009-2022(터널링·보안 통제·끝점 주소 변환으로 전용선처럼 보이게 하는 보호된 연결).
+  **어느 정의도 VPN을 이루는 기술을 「터널링·인증·암호화·접근 제어」 넷으로 묶지 않는다** — `exam-notes.md` E45
+- **한국어 이름**: 「SQL 삽입」(SQL injection), 「크로스 사이트 스크립팅(XSS)」. 한국어판이 없다
+쓰인 곳: (phase 82 step 16~18에서 쓰일 곳) `network-security.waf`(WAF는 해석한 HTTP 요청의 헤더·본문을 본다, SQL 삽입의 뜻과 WAF가 그것을 찾는다, 알려진 시그니처에 기댄다, 흔히 부하 분산 장치에 두어 암호를 푼 요청을 본다), `network-security.ids-ips`(IPS의 정의),
+`network-security.nac`, `network-security.tunneling`(용어집의 정의), `network-security.vpn`(정의가 출처마다 갈린다), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45)
+(phase 82 step 16) 쓰인 곳: `network-security.ids-ips` 문단 6(IPS는 공격이 대상에 닿기 전에 멈출 수 있다 — 용어집의 IPS 정의)
+(phase 82 step 17) 쓰인 곳: `network-security.waf`(문단 2 — 해석한 HTTP 요청의 헤더마다·본문에 정책을 걸고 응용 프로그램이 처리하기 전에 위험을 줄인다 / 문단 3 — SQL 삽입의 뜻(용어집, NISTIR 7682)과 WAF가 SQL 삽입처럼 보이는 내용을 찾는다 / 문단 4 — 흔히 요청의 암호를 처음 푸는 부하 분산 장치에 함께 둔다 /
+문단 5 — 예 `WAF01`이 암호를 푼 요청을 본다는 전제 / 문단 6 — 알려진 시그니처에 기대 새 공격·가린 공격에 약하고, 최신 시그니처와 조직에 맞춘 규칙이 필요하며, 요청마다 해석해 지연과 계산 비용이 크다 / 문단 7 — 따로 운영한다 §4.4.1), 문항 n343·n344 해설, 도식 `WafInspectionDiagram`(`waf-inspection`)의 캡션과 범례.
+크로스 사이트 스크립팅은 WAF가 막는다는 근거가 없어 쓰지 않았다(step 15 판정 그대로) — guide·step 문서의 n343 방향(검색 칸에 스크립트를 넣는 공격)을 SQL 삽입 장면으로 바꿨다
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 1(한 프로토콜의 패킷을 다른 프로토콜 패킷의 데이터로 담는다 — 「tunneling」), `network-security.vpn` 문단 2(VPN의 정의가 출처마다 갈려, 공식 문서들은 VPN의 수단을 하나의 목록으로 묶지 않는다 — E45의 처리)
+
+## (phase 82 step 15) NIST SP 800-77 Rev. 1 — Guide to IPsec VPNs; NIST SP 800-113 — Guide to SSL VPNs
+https://csrc.nist.gov/pubs/sp/800/77/r1/final
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-77r1.pdf
+https://csrc.nist.gov/pubs/sp/800/113/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-113.pdf
+
+판: SP 800-77 Rev. 1은 2020년 6월 발행, SP 800-77(2005-12)을 대체한다. SP 800-113은 2008년 7월 발행이고 뒤를 잇는 판이 없다. 두 문서 페이지 모두 Planning Note·철회 표시가 없다(2026-11-20 확인).
+SP 800-113은 2008년 글이라 SSL VPN의 뜻과 두 꼴만 가져오고, 지금의 권고는 SP 800-77 Rev. 1을 따른다(SSL VPN은 이제 SSL이 아니라 TLS를 쓴다 — §8.2). 한국어판이 없다.
+
+- **VPN**: 기존의 물리 네트워크 위에 지은 가상 네트워크로, 네트워크 사이나 한 네트워크 안의 노드 사이에서 오가는 데이터와 IP 정보에 안전한 통신 수단을 준다. 인터넷 같은 기존 네트워크 위에서 쓸 수 있어 공용 네트워크 너머로 민감한 데이터를 안전하게 옮길 수 있고,
+  **조직이나 지사 사이를 전용 회선으로 잇는 것보다 대개 싸다** — SP 800-77r1 §2.3. SP 800-113의 요약도 같은 뜻(두 끝점 사이)으로 적는다
+- **VPN이 주는 보호**(SP 800-77r1 §2.3.1~2.3.4): **기밀성**(대칭 암호로 명령·데이터 채널을 암호화한다), **무결성**(메시지 인증 코드(MAC)로 바뀌었는지 확인하고, 바뀌었으면 버린다), **공유 키 수립**(디피-헬먼 키 교환으로 엿듣는 쪽이 알 수 없는 키를 두 끝이 함께 계산한다),
+  **상대 인증**(디지털 서명이나 미리 나눈 키(PSK)로 상대가 기대한 쪽인지 확인한다)
+- **VPN 구조**(SP 800-77r1 §2.4): IPsec VPN의 주된 구조는 넷이다 — gateway-to-gateway, remote access, host-to-host, mesh.
+  - **gateway-to-gateway**(§2.4.1): 두 네트워크에 VPN 게이트웨이를 하나씩 두고 둘 사이에 VPN 연결을 맺는다. 두 네트워크 사이에서 보호할 트래픽은 그 연결 안으로 지나가고, 게이트웨이는 VPN만 하는 전용 장비이거나 방화벽·라우터 같은 장비의 일부다. 라우팅을 맞춰 두면 한쪽 호스트가 다른 쪽 호스트와 통신할 때 트래픽이 저절로 IPsec 연결로 간다.
+    **보호되는 것은 두 게이트웨이 사이뿐**이고, 각 게이트웨이와 그 안쪽 호스트 사이는 이 구조가 보호하지 않는다. 지사를 인터넷 너머로 본사에 잇는 데 가장 흔히 쓰고, 사용자에게 드러나지 않아 사용자 컴퓨터에 VPN 클라이언트를 깔거나 설정을 바꿀 필요가 없다
+  - **remote access**(§2.4.2): 조직이 VPN 게이트웨이를 두고, 원격 사용자가 자기 기기(호스트)와 그 게이트웨이 사이에 VPN 연결을 맺는다. 연결 전에 게이트웨이가 사용자에게 신원 인증을 요구하는 것이 보통이고, 게이트웨이가 직접 하거나 따로 둔 인증 서버에 묻는다. 보호되는 것은 사용자 호스트와 게이트웨이 사이다.
+    출장 중인 직원을 인터넷 너머로 본사에 잇는 데 가장 흔히 쓰고, 쓰기 전에 인증해야 하므로 사용자에게 드러난다. 조직으로 갈 트래픽만 VPN으로 보내는 것을 분할 터널(split tunnel)이라 한다(이름만)
+  - 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.6은 같은 둘을 gateway-to-gateway와 host-to-gateway라 부르고 가장 흔한 두 구조로 든다
+- **IPsec**(§2.2): 통신을 보호하는 네트워크 계층 보안 통제 가운데 가장 흔히 쓰이고, IP 네트워크에서 사적인 통신을 보장하는 개방형 표준의 틀이다. IPsec의 매개변수와 암호 키는 IKE로 안전하게 협상한다. 설정에 따라 기밀성, 무결성, 상대 인증, 재전송 방지, 트래픽 분석 방지(터널 모드) 등을 준다.
+  IPsec을 가장 흔히 쓰는 곳이 VPN이다 — §2.3
+- **계층마다의 보호**(SP 800-77r1 §2.1): 네트워크 계층 통제(IPsec)는 응용 프로그램을 고치지 않고 두 호스트·네트워크 사이의 모든 통신을 보호하고, 그 계층에서 IP 정보가 붙으므로 데이터와 각 패킷의 IP 정보까지 보호한다. 전송 계층 통제(TLS·DTLS)는 두 호스트 사이의 한 세션을 보호하고 IP 정보는 보호하지 못한다.
+  TLS·DTLS를 모든 IP 트래픽을 보호하는 VPN으로 쓰는 것을 흔히 SSL VPN이라 부르고, 이것은 네트워크 계층에서 일하지만 전송 계층의 응용 프로그램을 쓴다. 데이터 링크 계층 통제는 특정 물리 링크 하나에만 걸려 인터넷 너머의 VPN에는 잘 맞지 않는다
+- **IPsec 밖의 VPN 프로토콜**(§8): 이 절은 VPN 프로토콜을 일하는 계층으로 묶되 **계층의 경계가 늘 분명하지는 않다**고 밝힌다.
+  - 데이터 링크 계층 VPN(L2VPN, §8.1): 네트워크 계층 아래에서 일해 IP가 아닌 프로토콜도 나를 수 있다(IPsec은 이름처럼 IP만 보호한다)
+  - **전송 계층 VPN(SSL VPN, §8.2)**: 호스트가 새 가상 인터페이스와 IP 주소를 받고, 그 인터페이스로 드나드는 패킷을 전송 계층 프로토콜로 안전하게 감싸 VPN 반대쪽 끝으로 보낸다. IPsec의 가장 흔한 대안이고, 이름은 SSL VPN이지만 지금은 SSL이 아니라 TLS(TCP 위)나 DTLS(UDP 위)를 쓴다.
+    흔히 443번(HTTPS) 포트로 보내 막히기 어렵다. Microsoft의 SSTP도 SSL VPN의 한 꼴로, SSL/TLS 위에서 PPP 세션을 돌린다(§8.2.1)
+  - **폐기·비권장 VPN 프로토콜**(§8.5): 전화 접속(모뎀) 시절의 PPP 위에 만든 초기 VPN 프로토콜은 구조와 암호 모두 지금 쓰기에 맞지 않아, **이 절의 프로토콜은 쓰면 안 된다**고 적는다.
+    **PPTP**(§8.5.1)는 GRE(IP 프로토콜 번호 47)로 PPP 패킷을 보내는 터널을 만들고 제어에 TCP 1723번 포트를 쓰며, 암호화는 PPP 층의 MPPE(쓰지 않게 된 RC4 알고리즘)에 기댄다. 인증 방식(MS-CHAP)과 PPTP 자체에서 심각한 약점이 드러났다 — **쓰지 말고, 쓰더라도 기밀성·무결성 보호가 없는 평문 프로토콜로 보라**고 한다.
+    **L2TP**(§8.5.2)는 PPTP의 뒤를 이은 것으로, GRE 대신 UDP 1701번 포트 안에 PPP 패킷을 담고 데이터의 기밀성·무결성은 IPsec에 기댄다. **IPsec 없는 L2TP는 VPN이 아니고**, L2TP VPN은 모두 IPsec을 전송 모드로 써서 흔히 L2TP/IPsec이라 부른다. L2TP/IPsec은 IKEv2 기반 IPsec VPN보다 나은 점이 없어 그쪽으로 옮기라고 권한다
+- **ESP와 AH**(SP 800-77r1 §4): ESP가 IPsec의 핵심 보안 프로토콜로 암호화와 무결성을 준다. **터널 모드**는 원래 IP 헤더와 그 내용을 ESP 헤더·트레일러로 감싸 암호화하고 무결성 값(ICV)을 붙인 뒤, 맨 앞에 터널 끝점(예: 두 IPsec 게이트웨이)을 출발지·목적지로 적은 **새 IP 헤더**를 붙인다 — 원래 헤더까지 암호화되므로 실제 출발지·목적지·프로토콜·포트가 가려진다.
+  ESP 터널 모드는 gateway-to-gateway·remote access VPN에 쓰이고 NAT를 지날 때도 필요하다. **전송 모드**는 원래 IP 헤더를 그대로 쓰고 그 뒤를 암호화하며 IP 헤더의 무결성은 보호하지 않는다 — NAT가 없는 데이터 센터·로컬 네트워크의 호스트끼리 흔히 쓴다 — §4.1.1.
+  AH는 무결성만 주고 기밀성은 주지 않는다. NIST는 AH를 권하지 않고, 암호화가 필요 없으면 ESP의 null 암호화를 쓰라고 한다 — §4.4
+- **SSL VPN의 뜻과 두 꼴**(SP 800-113 요약): SSL VPN은 사용자가 웹 브라우저로 접속하는 VPN 장비로 이루어지고, 브라우저와 그 장비 사이를 SSL이나 그 뒤를 이은 TLS로 암호화한다(TLS VPN이라고도 한다). 원격 사용자가 웹 응용 프로그램·클라이언트/서버 응용 프로그램과 내부 네트워크에 닿게 하고, 표준 웹 브라우저에 SSL이 들어 있어 보통 따로 설정할 것이 없다.
+  **SSL 포털 VPN**은 웹 사이트 하나에 SSL 연결 하나로 접속해 여러 서비스로 가는 문(포털) 페이지를 받는 꼴이고, **SSL 터널 VPN**은 웹 브라우저로 SSL 아래에서 도는 터널을 거쳐 웹이 아닌 응용 프로그램·프로토콜에도 닿는 꼴이다. SSL VPN이 IPsec VPN을 대신하려는 것은 아니고 둘은 서로 보완한다고 적는다
+- **한국어 이름**: 고른 이름 「가상 사설망(VPN)」, 「사이트 간 VPN」(NIST의 gateway-to-gateway — 위 「(phase 81 step 4) … 원격 액세스」 항목의 Microsoft 문서가 쓰는 site-to-site와 같은 꼴), 「원격 접속 VPN」(NIST의 remote access·host-to-gateway), 「호스트 간 VPN」(host-to-host — 이름만),
+  「VPN 게이트웨이」, 「SSL VPN」(TLS VPN이라고도 한다), 「SSL 포털 VPN」·「SSL 터널 VPN」(이름만), 「L2TP/IPsec」, 「분할 터널」(이름만)
+쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn`(정의, 전용 회선보다 싸다, 주는 보호 넷, 사이트 간·원격 접속 VPN의 뜻과 보호 범위), `network-security.vpn-protocols`(계층으로 묶되 경계가 늘 분명하지는 않다, SSL VPN — TLS·DTLS, PPTP·L2TP는 쓰면 안 되고 PPTP는 평문으로 보라, L2TP는 IPsec에 기댄다·L2TP/IPsec, SSL VPN의 두 꼴),
+`network-security.ipsec`(네트워크 계층 보안, IKE로 협상, ESP·AH, 두 모드와 쓰이는 곳), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E45·E46)
+(phase 82 step 18) 쓰인 곳: `network-security.vpn`(문단 1 — 전용 회선보다 대개 싸다 §2.3 / 문단 2 — 기밀성(암호화)·무결성·공유 키 수립(엿듣는 쪽이 알 수 없는 키를 두 끝이 함께 정한다)·상대 인증 §2.3.1~2.3.4 / 문단 3 — VPN 게이트웨이는 VPN만 하는 전용 장비이거나 방화벽·라우터 같은 장비의 일부 §2.4.1 /
+문단 4 — 사이트 간 VPN: 라우팅을 맞춰 두면 트래픽이 저절로 VPN 연결을 지나고, 사용자 컴퓨터에 VPN 클라이언트를 깔거나 설정을 바꿀 필요가 없으며, 지켜지는 구간은 두 게이트웨이 사이이고 지사를 본사에 잇는 데 가장 흔히 쓴다 §2.4.1 /
+문단 5 — 원격 접속 VPN: 연결 전에 게이트웨이가 인증을 요구하고 직접 하거나 따로 둔 인증 서버에 묻는다, 지켜지는 구간은 사용자 호스트와 게이트웨이 사이, 출장 중인 직원을 잇는 데 가장 흔히 쓴다 §2.4.2 / 문단 7·8 — 예와 「사이트 간 VPN과 원격 접속 VPN」 4절),
+`network-security.tunneling` 문단 7(IPsec ESP 터널 모드는 원래 패킷 전체를 암호화하고 새 IP 헤더를 붙인다 §4.1.1), 문항 n347 해설, 도식 `VpnSiteTypesDiagram`(`vpn-site-types`)의 캡션
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols`(문단 6 — SSL VPN은 호스트가 보내는 IP 패킷을 전송 계층 프로토콜로 감싸 VPN 반대쪽 끝으로 보내고, 지금은 SSL이 아니라 TLS 계열을 쓰며, 흔히 443번(HTTPS) 포트를 써 막히기 어렵다 §8.2, Microsoft의 SSTP는 SSL/TLS 위로 PPP를 나르는 SSL VPN의 한 꼴 §8.2.1, 웹 브라우저로 VPN 장비에 접속하는 꼴 — SP 800-113 요약 /
+문단 7 — SSL VPN은 전송 계층 VPN으로 묶이되 네트워크 계층에서 일한다고도 적고, 계층의 경계가 늘 분명하지는 않다 §2.1·§8 / 문단 8 — PPTP와 L2TP는 전화 접속 시절 PPP 위의 초기 VPN 프로토콜이고 쓰면 안 된다, PPTP는 인증 방식과 프로토콜 자체의 심각한 약점 때문에 쓰더라도 평문 프로토콜로 보라, IPsec 없는 L2TP는 VPN이 아니고 L2TP/IPsec은 IKEv2 IPsec VPN보다 나은 점이 없어 옮기라 §8.5·§8.5.1·§8.5.2 / 문단 9 — L2TP는 PPTP의 뒤를 이었다 §8.5.2),
+`network-security.ipsec`(문단 0 — 네트워크 계층 통제는 응용 프로그램을 고치지 않고 두 호스트·네트워크 사이의 통신 전체를 보호한다 §2.1, IPsec을 가장 흔히 쓰는 곳이 VPN이다 §2.3 / 문단 2 — NIST는 AH를 권하지 않고 암호화가 필요 없으면 ESP의 null 암호화를 쓰라고 한다 §4.4 — 본문은 「ESP를 암호화 없이」로 쓴다 /
+문단 4 — 전송 모드는 NAT가 없는 데이터 센터·로컬 네트워크의 호스트끼리 흔히 쓰고, ESP 터널 모드는 사이트 간·원격 접속 VPN에 쓴다 §4.1.1), 문항 n350·n352 해설, 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)·`IpsecModesDiagram`(`ipsec-modes`)의 캡션
+
+## (phase 82 step 15) RFC 4301 — Security Architecture for the Internet Protocol, RFC 4302 — IP Authentication Header, RFC 4303 — IP Encapsulating Security Payload (ESP), RFC 7296 — Internet Key Exchange Protocol Version 2 (IKEv2)
+https://www.rfc-editor.org/rfc/rfc4301
+https://www.rfc-editor.org/rfc/rfc4302
+https://www.rfc-editor.org/rfc/rfc4303
+https://www.rfc-editor.org/rfc/rfc7296
+
+판(rfc-editor 상태, 2026-11-20): RFC 4301은 Proposed Standard(2005-12)로 RFC 2401을 폐기·대체했고 RFC 6040·7619가 고쳤다. RFC 4302(AH)·RFC 4303(ESP)은 Proposed Standard(2005-12)로 각각 RFC 2402·2406을 대체했고 고친 RFC가 없다.
+RFC 7296(IKEv2)은 Internet Standard(2014-10)로 RFC 5996을 대체했고 RFC 7427·7670·8247·8983·9370·9827이 고쳤다. 넷 다 폐기되지 않았다. 한국어판이 없다.
+
+- **IPsec**: IPv4·IPv6 환경에서 **IP 계층**의 트래픽에 보안 서비스를 주는 구조다. 구성 요소는 넷 — 보안 프로토콜(AH·ESP), 보안 연관(SA), 키 관리(손으로 넣는 것과 자동 — IKE), 인증·암호화 알고리즘. 인터넷 전체의 보안 구조가 아니라 IP 계층의 보안만 다룬다.
+  표기는 「IPsec」을 권하고 IPSEC·IPSec 같은 다른 표기는 쓰지 않는다 — RFC 4301 §1.1
+- IPsec은 보호하는 쪽과 보호하지 않는 쪽 인터페이스 사이에 경계를 만들고, 그 경계를 지나는 트래픽에 관리자가 정한 접근 통제를 건다 — 패킷을 그대로 지나게 하거나, AH·ESP로 보호하거나, 버린다. 보호하는 길은 셋 — 호스트 한 쌍 사이, 보안 게이트웨이 한 쌍 사이, 보안 게이트웨이와 호스트 사이다 — RFC 4301 §3.1
+- **AH와 ESP**(RFC 4301 §3.2): IPsec 구현은 ESP를 반드시 지원하고 AH는 골라 지원한다(ESP로 안 되는 경우가 드물어서). **AH**는 무결성과 출발지 인증(과 받는 쪽이 고르는 재전송 방지)을 주고, **ESP**는 같은 서비스에 **기밀성**까지 준다. 무결성 없이 기밀성만 쓰는 ESP는 권하지 않는다.
+  둘 다 키 배분과 트래픽 흐름 관리로 접근 통제를 건다. 대부분의 보안 요구는 ESP 하나로 채운다
+- **AH**(RFC 4302 §1): IP 데이터그램에 연결 없는 무결성과 출발지 인증(둘을 묶어 「무결성」이라 부른다)을 주고, 재전송 방지를 고를 수 있다. IP 헤더도 가능한 만큼 인증하지만 지나는 길에 바뀌는 칸은 보호하지 못해 IP 헤더 보호는 부분적이다.
+  ESP는 AH와 같은 재전송 방지·무결성에 **기밀성(암호화)**을 더하고, 둘의 무결성은 덮는 범위가 다르다 — ESP는 (터널 모드처럼) ESP가 감싸지 않은 IP 헤더 칸을 보호하지 않는다
+- **ESP**(RFC 4303 §1): ESP 헤더는 IP 헤더 뒤, 다음 계층 프로토콜 헤더 앞(전송 모드)이나 감싼 IP 헤더 앞(터널 모드)에 들어간다. 기밀성, 출발지 인증, 연결 없는 무결성, 재전송 방지, (제한된) 트래픽 흐름 기밀성을 줄 수 있고, 어떤 서비스를 줄지는 SA를 맺을 때 정한다. 무결성만 주는 ESP도 반드시 고를 수 있어야 한다
+- **두 모드**(RFC 4301 §3.2·§4.1, RFC 4303 §3.1): AH와 ESP 모두 **전송 모드**와 **터널 모드**를 지원한다. 전송 모드는 주로 다음 계층 프로토콜(TCP·UDP 등)을 보호하고, 터널 모드는 터널로 보내는 IP 패킷에 적용한다.
+  - 전송 모드: 대개 호스트 한 쌍 사이에서 끝에서 끝까지의 보안에 쓴다. 보안 프로토콜 헤더가 IP 헤더(와 옵션) 바로 뒤, 다음 계층 프로토콜 앞에 들어간다. ESP 전송 모드는 다음 계층 프로토콜만 보호하고 그 앞의 IP 헤더는 보호하지 않는다(AH는 IP 헤더의 일부도 덮는다).
+    RFC 4303 §3.1.1의 그림: 원래 IP 헤더 | ESP 헤더 | TCP | 데이터 | ESP 트레일러 | ESP ICV — 암호화되는 것은 TCP부터 ESP 트레일러까지다. 「전송」이라는 이름이 TCP·UDP에만 쓴다는 뜻은 아니다
+  - 터널 모드: 바깥(outer) IP 헤더가 IPsec 처리의 출발지·목적지(예: 보안 게이트웨이들의 주소)를, 안쪽(inner) IP 헤더가 패킷의 실제 출발지·목적지를 적고, 보안 프로토콜 헤더는 둘 사이에 들어간다. ESP는 안쪽 IP 헤더를 포함한 **안쪽 패킷 전체**를 보호하고 바깥 헤더는 보호하지 않는다(AH는 바깥 헤더의 일부도 덮는다).
+    안쪽과 바깥의 IP 판이 달라도 된다(IPv6 안에 IPv4 등) — RFC 4301 §4.1, RFC 4303 §3.1.2. RFC 4303 §3.1.2의 그림: 새 IP 헤더 | ESP | 원래 IP 헤더 | TCP | 데이터 | ESP 트레일러 | ESP ICV
+  - **SA의 어느 한쪽 끝이 보안 게이트웨이면 터널 모드여야 한다**(예외 둘 — 게이트웨이 자신에게 오는 관리 트래픽, 경로 위 중간 시스템 사이의 보호). 그래서 두 보안 게이트웨이 사이, 호스트와 보안 게이트웨이 사이의 SA는 대개 터널 모드다. 호스트 구현은 두 모드를 모두, 보안 게이트웨이는 터널 모드를 반드시 지원한다 — RFC 4301 §4.1
+  - 두 보안 게이트웨이 사이에 터널 모드 ESP를 쓰면 안쪽 IP 헤더가 암호화되어 실제 출발지·목적지가 가려진다(부분적인 트래픽 흐름 기밀성) — RFC 4301 §4.1
+  - 두 보안 게이트웨이 사이의 모든 트래픽을 암호화한 터널 하나로 나를 수도, 그 사이를 오가는 호스트 쌍의 TCP 연결마다 따로 터널을 만들 수도 있다 — RFC 4301 §3.2
+- **SA**(security association — 이름만): 그것이 나르는 트래픽에 보안 서비스를 주는 한 방향의 「연결」이다. 한 SA에는 AH나 ESP 하나만 쓰고, 양방향 통신에는 방향마다 하나씩 SA 한 쌍이 필요하며 IKE가 그 쌍을 만든다. 전송 모드 SA와 터널 모드 SA가 있다 — RFC 4301 §4.1
+- **IKE**(RFC 7296 §1, RFC 4301 §3.2): IPsec의 서비스(어떤 서비스를 줄지, 어떤 암호 알고리즘과 키를 쓸지)는 보내는 쪽과 받는 쪽이 함께 가진 상태(SA)로 주어진다. 이것을 손으로 맞추면 규모가 커질 때 감당할 수 없어서, 그 상태를 자동으로 맺는 프로토콜이 **IKE**(Internet Key Exchange)다.
+  IKE는 두 쪽이 서로를 인증하고 IKE SA를 맺은 뒤, 거기서 나온 공유 비밀로 ESP·AH의 SA(Child SA)와 쓸 암호 알고리즘을 정한다. 지금 판은 IKEv2(RFC 7296)이고 IKEv1(RFC 2407~2409)을 대체했다.
+  RFC 4301은 키를 손으로 넣는 방법과 자동으로 배분하는 방법을 모두 지원하라고 하고, 자동 방법으로 IKEv2를 정한다. 메시지 교환의 차례는 가져오지 않는다
+- **한국어 이름**: 고른 이름 「IPsec」, 「AH(인증 헤더, Authentication Header)」, 「ESP(캡슐화 보안 페이로드, Encapsulating Security Payload)」, 「전송 모드」, 「터널 모드」, 「바깥 IP 헤더」·「안쪽 IP 헤더」, 「보안 게이트웨이」(RFC 4949 — 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄),
+  「보안 연관(SA)」(이름만), 「IKE(인터넷 키 교환)」, 「재전송 방지」, 「무결성」·「기밀성」·「출발지 인증」
+쓰인 곳: (phase 82 step 19에서 쓰일 곳) `network-security.ipsec`(정의와 구성 요소, AH와 ESP, 두 모드, 바깥·안쪽 헤더의 차례, 게이트웨이 사이는 터널 모드, IKE), `network-security.vpn-protocols`(IPsec 항목 — IP 계층),
+기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2025-11-02 #22]·[기출 2026-08-02 #24])
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(IPsec은 IP 계층에서 패킷을 지키는 프로토콜 묶음이고, 터널 모드는 원래 IP 패킷 전체를 보호하고 바깥 IP 헤더를 붙인다 — RFC 4301 §1.1·§4.1, RFC 4303 §3.1.2), 문항 n348 해설(IPsec(IP Security) 한 줄)
+(phase 82 step 19) 쓰인 곳: `network-security.ipsec`(문단 0 — IP 계층의 보안 구조와 그 프로토콜들 RFC 4301 §1.1 / 문단 1·2 — 출발지 인증·무결성·기밀성, AH는 무결성과 출발지 인증만 주고 ESP는 기밀성까지 준다, 구현은 ESP를 반드시·AH를 골라 지원하고 대부분의 요구를 ESP 하나로 채운다 RFC 4301 §3.2·RFC 4302 §1·RFC 4303 §1 /
+문단 3 — AH와 ESP 모두 두 모드, 전송 모드는 원래 IP 헤더 바로 뒤에 보안 헤더를 넣고 다음 계층을 보호해 ESP 전송 모드에서는 IP 헤더가 보호되지 않으며, 터널 모드는 바깥 IP 헤더를 붙이고 ESP는 안쪽 패킷 전체를 보호한다 RFC 4301 §4.1·RFC 4303 §3.1.1·§3.1.2 /
+문단 4 — SA의 어느 한쪽 끝이 보안 게이트웨이면 터널 모드여야 하고 예외 둘이 있다 RFC 4301 §4.1 — 본문은 예외를 「게이트웨이 자신에게 오가는 관리용 트래픽 같은 몇 가지」로만 쓴다. 사설 주소를 쓰는 안쪽 컴퓨터에 새 IP 헤더가 있어야 한다는 것은 `network-security.tunneling` 문단 2와 위 「RFC 1918」 항목에서 이어서 나오는 말이다 /
+문단 5 — IPsec의 서비스·알고리즘·키를 손으로 맞추면 규모가 커질 때 감당하지 못해 IKE가 서로 인증한 뒤 자동으로 정하고, 지금 판은 IKEv2 RFC 7296 §1·RFC 4301 §3.2 / 문단 7 — 예의 차례 새 IP 헤더 | ESP 헤더 | 원래 IP 헤더 | 데이터 | ESP 트레일러 | ESP ICV 가운데 트레일러·ICV는 「데이터 뒤에 덧붙이는 몇 가지, 그 가운데 하나가 무결성을 확인할 때 쓰는 값」으로만 쓴다 RFC 4303 §3.1.2 /
+문단 8 — AH는 IP 헤더의 일부도 덮고 ESP는 감싸지 않은 IP 헤더 칸을 보호하지 않는다 RFC 4302 §1), `network-security.vpn-protocols` 문단 5(IPsec 항목 — 네트워크 계층에서 IP 패킷을 지키는 프로토콜 묶음), 문항 n351·n352 해설, 도식 `IpsecModesDiagram`(`ipsec-modes`)의 칸 차례와 「암호화되는 부분」 박스.
+보안 연관(SA)이라는 이름, 재전송 방지, SPD, 알고리즘, IKE 메시지 교환은 쓰지 않았다
+
+## (phase 82 step 15) RFC 2637 — Point-to-Point Tunneling Protocol (PPTP), RFC 2661 — Layer Two Tunneling Protocol "L2TP", RFC 3931 — Layer Two Tunneling Protocol - Version 3 (L2TPv3), RFC 3193 — Securing L2TP using IPsec
+https://www.rfc-editor.org/rfc/rfc2637
+https://www.rfc-editor.org/rfc/rfc2661
+https://www.rfc-editor.org/rfc/rfc3931
+https://www.rfc-editor.org/rfc/rfc3193
+
+판(rfc-editor 상태, 2026-11-20): RFC 2637은 Informational(1999-07 — 머리에 인터넷 표준이 아니라고 밝힌다. Ascend·Microsoft 등이 썼다)이고 고친 RFC가 없다. RFC 2661은 Proposed Standard(1999-08)이고 RFC 9601이 고쳤다. RFC 3931은 Proposed Standard(2005-03)이고 RFC 5641·9601이 고쳤다.
+RFC 3193은 Proposed Standard(2001-11)이고 고친 RFC가 없다. 넷 다 폐기되지 않았다. 한국어판이 없다.
+
+- **PPTP**(RFC 2637 §1·§1.1·§1.3): 전화 접속 망의 네트워크 접근 서버(NAS)가 하던 일을 PAC(전화 접속 쪽)와 PNS(사설 네트워크 쪽)로 나누고, 둘 사이에서 PPP 데이터와 호 제어를 나르는 프로토콜이다. PPP 세션을 IP 네트워크 너머로 터널링하는 데도 쓸 수 있고, 인터넷 서비스 제공자가 사설 네트워크 고객들에게 VPN을 만들어 줄 수 있다.
+  구성은 둘 — PAC·PNS 사이의 **TCP 위 제어 연결**과, 사용자 세션의 **GRE로 감싼 PPP 패킷**을 나르는 IP 터널이다(GRE를 늘린 판을 쓴다). 그래서 IP만 나르는 망 너머로 AppleTalk·IPX 같은 IP가 아닌 프로토콜도 터널로 나를 수 있다
+- PPTP의 보안(RFC 2637 §5): 터널로 나르는 PPP 연결의 사용자 데이터 보안과 PPP 상대의 인증은 **PPP가 맡는다**. 제어 메시지는 인증도 무결성 보호도 없어 밑의 TCP 연결을 가로채이거나 메시지가 위조·변조될 수 있고, **터널을 이루는 GRE 패킷은 암호로 보호되지 않는다** — 터널 안의 PPP 협상을 엿듣고 바꿀 수 있다
+- **L2TP**(RFC 2661 §1.0): PPP는 2계층 지점 간 링크로 여러 프로토콜의 패킷을 나르는 캡슐화 방법을 정한다. 보통 사용자는 NAS에 2계층 연결을 맺고 그 위에 PPP를 돌려 2계층 끝점과 PPP 끝점이 한 장치(NAS)에 있다. L2TP는 이 둘을 패킷 교환망으로 이어진 서로 다른 장치에 둘 수 있게 해,
+  접속 집선 장치가 PPP 프레임 하나하나를 NAS로 **터널링**한다 — 프레임 릴레이나 인터넷 같은 공유 기반 위로 PPP 세션을 늘인다. 이 문서는 두 노드 사이에 필요할 때 터널을 만드는 제어 프로토콜과, 터널로 보낸 여러 PPP 세션을 다중화하는 캡슐화를 정한다.
+  PPP 프레임은 L2TP 헤더로 감싼 뒤 UDP·프레임 릴레이·ATM 같은 패킷 전송에 실리고(§3.0), IP 위에서는 **UDP 1701번 포트**를 쓴다(§8.1)
+- L2TP의 보안(RFC 2661 §9): 터널 양 끝은 터널을 세울 때만 CHAP과 같은 방식으로 서로를 인증할 수 있고, 그 뒤의 패킷을 지켜 주지는 않는다(§9.1). **L2TP를 지키려면 아래의 전송이 모든 L2TP 트래픽에 암호화·무결성·인증을 주어야 한다**(§9.2).
+  IP 위에서는 IPsec(ESP·AH)이 그 패킷 수준의 보안을 준다(§9.4). 터널 구간의 보호는 통신하는 두 호스트 사이의 끝에서 끝까지의 보안을 대신하지 않는다(§9.3)
+- **L2TPv3**(RFC 3931 §1): L2TP는 2계층 「회선」을 IP 같은 패킷 망 너머로 터널링하는 동적인 방법이다. RFC 2661의 L2TP(L2TPv2)는 PPP 세션을 터널링하는 표준 방법이었고, 그 뒤 다른 2계층 프로토콜(이더넷·프레임 릴레이 등)도 나르게 되어 L2TPv3는 나르는 2계층 내용과 상관없는 기본 프로토콜을 정한다. L2F를 버전 1로 친다
+- **L2TP/IPsec**(RFC 3193 §1·§2·§2.1): L2TP는 PPP를 감싸므로 PPP 인증과 PPP 암호화 제어(ECP)를 물려받고 터널 끝점 인증도 지원하지만, **터널을 보호하는 방법은 정하지 않는다**. L2TP의 제어·데이터 패킷은 엿듣기·변조·가로채기·서비스 거부에 노출된다.
+  L2TP 자체의 인증과 PPP의 인증·암호화로는 패킷마다의 인증·무결성·재전송 방지를 채우지 못하므로, L2TP 보안을 따르는 구현은 L2TP의 제어·데이터 패킷을 지키려고 **IPsec ESP를 반드시 구현**하고, **전송 모드는 반드시, 터널 모드는 골라** 지원한다. 키 관리는 IKE를 권한다
+- **PPP**(RFC 2661 §1.0): 2계층 지점 간 링크로 여러 프로토콜의 패킷을 나르는 캡슐화를 정한다. 정의는 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄에 있다(RFC 1661 — 2026-11-20 rfc-editor 상태로 Internet Standard, RFC 2153이 고쳤고 폐기되지 않았다)
+- **터널을 만드는 계층**: PPTP와 L2TP는 PPP 프레임(2계층)을 IP 위로(PPTP는 GRE, L2TP는 UDP) 나르는 터널이다 — RFC 4949 「tunnel」의 Tutorial(터널은 대개 2계층 프로토콜을 전송·인터넷 계층 프로토콜이나 다른 2계층 프로토콜에 담아 만든 논리적 지점 간 링크이고, L2TP 같은 터널링 프로토콜이 끼기도 한다)과 위 사실에서 이어서 나오는 말이다
+- **한국어 이름**: 고른 이름 「PPTP(지점 간 터널링 프로토콜)」, 「L2TP(2계층 터널링 프로토콜)」, 「L2TPv3」(이름만), 「L2TP/IPsec」, 「PPP(지점 간 프로토콜)」, 「GRE」(이름만), 「제어 연결」.
+  Windows 문서의 이름과 지금 Windows의 상태는 위 「(phase 81 step 4) … 원격 액세스」 항목에 있다(Windows Server 2025의 새 RRAS 구성은 PPTP·L2TP 연결을 기본으로 받지 않고, 2028(Preview)에서 빠진다)
+쓰인 곳: (phase 82 step 18·19에서 쓰일 곳) `network-security.vpn-protocols`(PPTP — TCP 제어 연결과 GRE로 감싼 PPP, 보안은 PPP에 맡기고 GRE 패킷은 보호되지 않는다, L2TP — PPP 프레임을 UDP 1701로 나르는 터널, 스스로 보호하지 않아 IPsec ESP 전송 모드와 함께 쓴다, PPP, 「PPTP와 L2TP」 4절),
+`network-security.tunneling`(터널링 자체는 보호가 아니다 — PPTP의 GRE, L2TP), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단, E46)
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling` 문단 7(VPN에 쓰이는 터널링 프로토콜 가운데 PPTP와 L2TP도 스스로는 터널을 지키지 않는다 — RFC 2637 §5·RFC 2661 §9.2·RFC 3193 §1, 이름만)
+(phase 82 step 19) 쓰인 곳: `network-security.vpn-protocols`(문단 1 — 사용자는 2계층 연결을 맺고 그 위에 PPP를 돌린다 RFC 2661 §1.0, 전화 접속 시절은 NIST SP 800-77 Rev. 1 §8.5 / 문단 3 — PPTP: TCP 위 제어 연결과 GRE로 감싼 PPP를 나르는 IP 터널, 사용자 데이터의 보안은 PPP가 맡고 GRE 패킷은 암호로 보호되지 않는다 RFC 2637 §1·§1.3·§5 /
+문단 4 — L2TP: PPP 프레임을 L2TP 헤더로 감싸 IP 위에서는 UDP 1701번 포트로 보내고, 터널을 세울 때만 양 끝을 인증하며 그 뒤의 패킷을 지키지 않아 아래의 전송이 보안을 주어야 한다 RFC 2661 §3.0·§8.1·§9.1·§9.2, IPsec과 짝지은 L2TP/IPsec RFC 3193 §1 / 문단 7 — PPP에는 IP가 아닌 프로토콜도 실린다 RFC 2637 §1.3 /
+문단 9 「PPTP와 L2TP」), 문항 n350 해설(터널을 세울 때의 인증은 그 뒤 패킷을 지키지 않는다 RFC 2661 §9.1), 도식 `VpnProtocolLayersDiagram`(`vpn-protocol-layers`)의 데이터 링크 계층 줄과 곁말. GRE의 풀네임, L2TPv3, 제어 메시지의 형식과 차례는 쓰지 않았다
+
+## (phase 82 step 15) RFC 2003 — IP Encapsulation within IP
+https://www.rfc-editor.org/rfc/rfc2003
+
+판(rfc-editor 상태, 2026-11-20): Proposed Standard(1996-10)이고 RFC 3168·6864가 고쳤으며 폐기되지 않았다. 모바일 IP를 위해 나온 IP-in-IP 캡슐화 문서라, 터널의 일반 모양(입구·출구, 바깥·안쪽 헤더)과 캡슐화의 보안 주의만 가져온다. 한국어판이 없다.
+
+- IP 데이터그램을 다른 IP 데이터그램의 데이터(payload)로 담아 나르는 방법이다. 담긴 데이터그램은 중간 목적지에 닿으면 꺼내져(decapsulate) 원래 헤더의 목적지로 전해진다. 이렇게 감싸고 꺼내는 것을 흔히 그 데이터그램을 **터널링**한다고 하고, 감싸는 노드와 꺼내는 노드를 터널의 **끝점**이라 한다 — 감싸는 쪽이 터널의 **입구**, 꺼내는 쪽이 **출구**다 — §1
+- 모양: 원래 IP 헤더 앞에 **바깥 IP 헤더**를 하나 넣는다. 바깥 헤더의 출발지·목적지 주소는 터널의 두 끝점을, 안쪽 IP 헤더의 출발지·목적지 주소는 그 데이터그램을 처음 보낸 쪽과 받을 쪽을 가리킨다. 안쪽 헤더는 TTL을 줄이는 것 말고는 바뀌지 않고, 필요하면 IP 인증 헤더 같은 다른 헤더를 바깥과 안쪽 헤더 사이에 넣을 수 있다 — §3
+- **캡슐화는 그 자체로 보호가 아니다**: IP 캡슐화는 오히려 인터넷의 보안을 떨어뜨릴 수 있다 — 감싼 뒤에는 원래의 출발지·목적지 주소, 프로토콜, 포트 번호가 제자리에 없어 경계 라우터가 헤더로 거르기 어렵다. 인증이 없는 캡슐화 패킷은 큰 보안 위험이 될 수 있고, 캡슐화에 암호화를 더한 경우는 따로 다룬다 — §6·§6.1
+쓰인 곳: (phase 82 step 18에서 쓰일 곳) `network-security.tunneling`(터널링의 뜻, 입구와 출구, 바깥 헤더와 안쪽 헤더가 가리키는 것, 캡슐화 자체는 보호가 아니다), 기출 대조(`exam-notes.md` E46)
+- (phase 82 step 18, 2026-11-20 같은 텍스트판을 IPv4로 다시 받아 확인 — 상태는 위 판 줄과 같다) **캡슐화는 라우팅을 바꾼다**: 캡슐화는 원래 IP 헤더의 목적지 주소로는 고르지 않았을 중간 목적지(터널의 출구)로 데이터그램을 보내, IP의 보통 라우팅을 바꾸는 방법으로 제안된 것이다. 출구에 닿으면 꺼내져 원래 목적지 주소로 전해진다 — §1.
+  그래서 터널을 지나는 동안 라우터는 바깥 헤더의 목적지(출구)를 보고 넘기고, 안쪽 헤더의 목적지는 출구에서 꺼낸 뒤에 쓰인다 — §1·§3에서 이어서 나오는 말이다. 안쪽 헤더는 TTL 말고는 바뀌지 않으므로(§3) 본문은 「안쪽 헤더의 주소는 바뀌지 않는다」로만 쓴다
+(phase 82 step 18) 쓰인 곳: `network-security.tunneling`(문단 1 — 터널링·터널·입구·출구 §1 / 문단 3 — 바깥 헤더는 터널의 두 끝점을, 안쪽 헤더는 처음 보낸 쪽과 받을 쪽을 가리키고 안쪽 주소는 바뀌지 않는다 §3 / 문단 4 — 라우터는 바깥 헤더의 목적지로 넘기고 출구에서 꺼내 안쪽 목적지로 전한다, 역캡슐화 §1 /
+문단 6 — 예의 둘째~넷째 단계 / 문단 7 — 감싼 패킷은 원래 주소가 제자리에 없어 경계에서 거르기 어렵다 §6), 문항 n348·n349 해설, 도식 `TunnelEncapsulationDiagram`(`tunnel-encapsulation`)의 캡션
+
+## (phase 82 step 15) IEEE 802.1X-2020 — Port-Based Network Access Control: 표준 개요 페이지, 802.1 작업 그룹의 802.1X 페이지; RFC 3580 — IEEE 802.1X Remote Authentication Dial In User Service (RADIUS) Usage Guidelines
+https://standards.ieee.org/ieee/802.1X/7345/
+https://1.ieee802.org/security/802-1x/
+https://www.rfc-editor.org/rfc/rfc3580
+
+판: IEEE 802.1X-2020 — 「Active Standard」, 이사회 승인 2020-01-30, 발행 2020-02-28, 802.1X-2010을 대체한다. 정오표 802.1X-2020/Cor 1-2026이 있고, 개정 작업 P802.1X-2020-Rev가 진행 중이다(2026-11-20 두 페이지 확인).
+802.1 작업 그룹 페이지는 표준을 IEEE GET 프로그램에서 무료로 받을 수 있다고 적지만 그곳은 `ieeexplore.ieee.org` 로그인이라 **본문은 열지 못했다** — 두 페이지가 적은 만큼만 쓴다.
+RFC 3580은 Informational(2003-09)이고 RFC 7268이 고쳤으며 폐기되지 않았다 — 802.1X 본문이 아니라 802.1X 인증자가 RADIUS를 어떻게 쓸지 적은 안내다(802.1X 표준이 이 내용을 규범이 아닌 부록으로 담았다고 적는다). 한국어판이 없다.
+
+- **포트 기반 네트워크 접근 제어**(port-based network access control): 네트워크 관리자가 IEEE 802 LAN의 서비스 접근점(포트)을 인증·인가된 장치 사이의 안전한 통신에만 쓰게 제한하는 것이다. 802.1X는 같은 LAN에 붙은 포트의 클라이언트끼리 서로 인증하는 구조·기능 요소·프로토콜과,
+  포트 사이의 통신을 지키는 데 필요한 것(802.1AE MAC 보안의 보안 연관을 찾고 맺는 프로토콜)을 정한다 — 표준 개요 페이지
+- 신원이 확인되지 않았거나 허락받지 않은 쪽이 보내고 받는 것을 막아, 네트워크 방해·서비스 도용·데이터 손실을 막는다. 끝단 장치나 브리지의 포트 위에 **제어 포트**(controlled port — 접근이 통제된 안전한 통신)와 **비제어 포트**(uncontrolled port — 인증·키 관리 프로토콜이 제어 포트의 통신을 시작하려고 쓰는 것)를 둔다.
+  제어 포트로 통신하려는 두 시스템은 서로를 인증해야 하고, 그 인증에 **EAP**(RFC 3748)와 그것을 LAN 위로 나르는 **EAPOL**을 쓴다 — 802.1 작업 그룹 페이지.
+  **「인증을 마치기 전에는 포트로 인증 메시지만 오간다」는 문장 자체는 두 페이지에 없다** — 제어 포트는 접근이 통제되고 인증 프로토콜은 비제어 포트로 오간다는 두 사실에서 이어서 나오는 말이다(RFC 3580 §2.1은 관리자가 포트를 「인증되지 않은 상태(unauthorized state)」로 돌리는 경우를 적는다)
+- **세 역할**(RFC 3580 §1.1): **신청자**(supplicant — 인증자에게서 인증을 받는 쪽), **인증자**(authenticator — 신청자에게 인증을 요구하는 쪽. 지점 간 LAN 구간이나 802.11 무선 링크의 반대쪽 끝에 이어진다),
+  **인증 서버**(authentication server — 인증자에게 인증 서비스를 주는 쪽. 신청자가 낸 자격 증명으로 신청자가 내세운 신원이 맞는지 확인한다)
+- 802.1X는 이더넷·토큰 링·802.11 무선 LAN 같은 IEEE 802 매체에 인증된 접근을 준다. 뒤에 인증 서버를 꼭 두지는 않아 혼자 서는 브리지·AP로도 쓸 수 있고, 인증을 한곳에서 관리하려면 인증 서버를 두고 802.1X 인증자가 그 서버의 클라이언트(흔히 RADIUS 클라이언트)가 된다 — RFC 3580 §1.
+  RADIUS의 뜻은 위 「(2026-10-28) RFC 4949」 항목의 「(phase 82 step 15)」 줄에 있다
+- 인증 결과에 따라 포트를 특정 VLAN에 넣을 수 있다 — RADIUS 서버가 접근 허락(Access-Accept) 메시지에 터널 속성으로 VLAN을 알려 준다 — RFC 3580 §3.31.
+  **정책을 지키지 않은 장치를 제한된 네트워크로 보낸다는 것의 근거는 802.1X 쪽 문서가 아니라 위 「NIST SP 800-41 Rev. 1」 항목의 §2.1.7(점검을 통과하지 못하면 고칠 수 있게 제한된 접근만)이다**
+- **한국어 이름**: 고른 이름 「포트 기반 네트워크 접근 제어」, 「신청자」(supplicant), 「인증자」(authenticator), 「인증 서버」(authentication server), 「제어 포트」·「비제어 포트」(이름만), 「EAP」·「EAPOL」(이름만), 「RADIUS」(이름만 — 인증 서버의 예)
+쓰인 곳: (phase 82 step 17에서 쓰일 곳) `network-security.nac`(802.1X의 뜻과 표준 상태, 세 역할, 인증 서버의 예 RADIUS, 인증 결과로 VLAN에 넣기, 인증 전의 포트 — 이어서 나오는 말), 기출 대조(`exam-notes.md` 「phase 82 step 15」 문단 — [기출 2024-02-25 #20]·[기출 2025-02-23 #49])
+(phase 82 step 17) 쓰인 곳: `network-security.nac`(문단 3 — 장치가 LAN에 닿는 자리(포트)를 인증·인가된 장치만 쓰게 묶는 포트 기반 네트워크 접근 제어, 신원을 확인하지 못했거나 허락받지 않은 쪽의 송수신을 막는다, 무선 AP의 연결도 그 자리다 — 개요 페이지·작업 그룹 페이지·RFC 3580 §1.1 /
+문단 4 — 세 역할, 인증 서버를 꼭 두지는 않는다, 한곳에서 관리하려면 인증자가 인증 서버의 클라이언트가 된다 — RFC 3580 §1.1·§1 / 문단 5 — 인증 전의 포트에서는 인증 메시지만 오간다(제어 포트·비제어 포트에서 이어서 나오는 말, 이름은 쓰지 않았다) / 문단 6 — 예의 네 단계 / 문단 8 — 인증을 받지 못한 장치는 처음 붙은 포트에서부터 막힌다),
+문항 n345(무선 AP가 인증자 — RFC 3580 §1.1)·n346 해설, 도식 `NacAdmissionDiagram`(`nac-admission`)의 캡션. 인증 결과로 VLAN에 넣는 것(§3.31)과 EAP·EAPOL의 이름은 새 낱말을 줄이려고 쓰지 않았다
+
+## (phase 82 보충) IEEE 802.11 작업 그룹 문서 — 802.11ax 사양 틀(11-15/0132r17), 802.11ac 사양 틀(11-09/0992r21)
+허용 목록의 「IEEE 802.11 작업 그룹 문서」 — 사용자 결정(2026-11-19)으로 더함. 서버가 자동 내려받기를 막아 사용자가 2026-11-20 브라우저로 받아 둔 파일을 읽었다.
+https://mentor.ieee.org/802.11/dcn/15/11-15-0132-17-00ax-spec-framework.docx
+https://mentor.ieee.org/802.11/dcn/09/11-09-0992-21-00ac-proposed-specification-framework-for-tgac.doc
+
+판: 11-15/0132r17 「Specification Framework for TGax」(2016-05-25, 작업반 TGax의 합의를 편집자가 모은 문서), 11-09/0992r21 「TGac Spec Framework」(2011-01, 작업반 TGac의 합의를 모은 문서). 둘 다 초안을 쓰기 전의 사양 틀이고 표준 본문이 아니다.
+
+- 802.11ax 장치는 하향·상향 OFDMA(MU-MIMO가 아닌 것)를 반드시 지원한다 — 0132r17 「High Efficiency (HE) Physical Layer — General」
+- OFDMA의 기본 묶음: 20 MHz에서 부반송파(tone) 26개·52개·106개짜리, 40 MHz에서 242개짜리, 80 MHz에서 484개짜리가 더해진다. 한 OFDMA 전송 안에 크기가 다른 묶음을 섞을 수 있다 — 0132r17 「Resource unit, edge and DC tones」.
+  이 묶음을 자원 단위(Resource Unit, RU)라 부르고, 하향 OFDMA에서는 신호 칸(HE-SIG-B)이 RU 배정과 스테이션마다의 변조·부호 방식을 알린다 — 0132r17 「HE-SIG-B」
+- 하향·상향 OFDMA는 서로 다른 스테이션의 프레임을 주파수 영역에서, 하향·상향 MU-MIMO는 공간 영역에서 나눠 싣는다. 상향 MU 전송은 AP가 보낸 트리거 프레임에 대한 응답으로 보낸다 — 0132r17 「Multi-user (MU) features — General」
+- 하향·상향 MU-MIMO로 공간에서 함께 다루는 사용자는 한 RU에서 8명까지다 — 0132r17 「HE PHY — General」의 MU-MIMO 줄
+- MU-MIMO의 정의: 안테나를 여럿 가질 수 있는 여러 스테이션이 서로 독립인 데이터 흐름을 같은 때 보내거나 받는 기법. 하향 MU-MIMO는 보내는 스테이션 하나와 받는 스테이션 여럿이다 — 0992r21 §1 「Definitions」
+- 공간 스트림은 1개부터 8개까지이고(0992r21 R3.2.1.D), 하향 MU-MIMO 한 번의 사용자는 4명까지다(0992r21 「VHT-SIG-A」의 MU 줄)
+- 찾지 못한 것: 개정마다의 최대 데이터 전송률(0992r21은 BCC 부호기 하나가 600 Mbps까지라고만 적는다), 공간 스트림을 정의한 문장
+- **한국어 이름**: specification framework → **사양 틀**(작업반이 초안 전에 합의를 모은 문서 — 이름 그대로 옮김), resource unit → **자원 단위(RU)**, tone → **부반송파**(같은 주제의 `wlan-transmission`과 같게)
+
+쓰인 곳: `wireless-lan.mimo`(문단 4 — MU-MIMO의 정의, 공간 스트림 8개, 하향 MU-MIMO 4대, 802.11ax의 8대), `wireless-lan.ieee-80211-standards`(문단 7 — OFDMA와 RU, 26·52·106개 묶음, 하향·상향 OFDMA, 주파수와 공간의 가름)
+
+## (phase 82 보충) CSA — Zigbee 사양 R23.2(Zigbee Document 05-3474-23)
+허용 목록의 「무선 업체 연합 기술」. 사양 내려받기 페이지의 「Zigbee Core」에서 사용자가 2026-11-20 받아 둔 PDF를 읽었다.
+https://csa-iot.org/developer-resource/specifications-download-request/
+
+판: Zigbee Specification Revision 23.2(1.0), Zigbee Document 05-3474-23, 2025-11-10, CSA 이사회가 공개를 승인한 판(표지). step 4가 적은 최신판(R23.1)보다 뒤의 판이다.
+
+- 네트워크 계층은 별 모양과 메시를 지원한다. 별 모양에서는 Zigbee 코디네이터 하나가 네트워크를 다스리며 장치들을 받아들이고 유지하고, 다른 장치(엔드 디바이스)는 코디네이터와 직접 통신한다.
+  메시에서는 코디네이터가 네트워크를 시작하고 주요 설정 값을 고르며, 네트워크는 Zigbee 라우터로 넓힌다. 메시는 장치끼리 대등하게 통신하게 한다 — §1.1.4 「Network Topology」(40쪽)
+- Zigbee 코디네이터는 802.15.4의 PAN 코디네이터다. Zigbee 라우터는 코디네이터가 아니면서 장치 사이의 메시지를 전달하고(라우팅) 다른 장치의 연결을 받아 주는 802.15.4 장치(FFD)다. Zigbee 엔드 디바이스는 코디네이터도 라우터도 아닌 장치(802.15.4의 RFD나 FFD)다 — 정의 절(55쪽)
+- 쓰지 않는 것: FFD·RFD의 뜻과 차이, 비컨, 응용 계층(APS·ZDO)의 구조, 보안
+- **한국어 이름**: coordinator → 코디네이터, router → 라우터(이 주제에서는 Zigbee의 역할 이름이다 — 네트워크 계층 장비인 라우터와 이름만 같다), end device → 엔드 디바이스, star topology → 별 모양
+
+쓰인 곳: `wireless-lan.zigbee`(문단 2 — 세 역할과 별 모양, 문단 3 — 예의 LIGHT01·SENSOR01의 역할)

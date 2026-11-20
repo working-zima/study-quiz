@@ -1,0 +1,329 @@
+{
+  "diagrams": {
+    "firewall-rules": {
+      "label": "방화벽 FW01이 규칙에 따라 웹 서버 192.0.2.20의 TCP 443 연결은 들여보내고 TCP 8080 연결은 막으며, 사내 PC끼리의 트래픽은 FW01을 지나지 않는 모습을 보이는 도식",
+      "svgLabel": "인터넷 박스(TCP 443 연결·TCP 8080 연결), 방화벽 FW01, FW01의 규칙 박스(허용 규칙·거부 규칙), 사내 네트워크 박스(웹 서버 192.0.2.20·PC01·PC02)를 둔 그림",
+      "question": "방화벽은 어떤 트래픽을 들여보낼까?",
+      "idleCaption": "인터넷에서 온 연결 둘은 사내 네트워크로 들어가려면 방화벽 FW01을 지나야 하고, FW01은 위에서부터 규칙 둘과 견주어 들여보낼지 정한다. 버튼을 고르면 연결마다 어떻게 되는지와, FW01을 지나지 않는 사내 트래픽을 볼 수 있다.",
+      "legend": "화살표는 연결을 청하거나 데이터를 보내는 쪽에서 받는 쪽으로 가는 길이다. FW01·PC01·PC02는 예로 붙인 이름표이고 192.0.2.20은 문서의 예로 쓰라고 남겨 둔 주소다. 8080은 예로 든 포트 번호이고, PC01과 PC02를 잇는 스위치는 그리지 않았다.",
+      "nodes": {
+        "req443": "TCP 443 연결",
+        "req8080": "TCP 8080 연결",
+        "fw01": "FW01",
+        "rule-allow": "TCP 443 → 192.0.2.20: 허용",
+        "rule-deny": "그 밖: 거부",
+        "web": "웹 서버 192.0.2.20",
+        "pc01": "PC01",
+        "pc02": "PC02"
+      },
+      "groups": {
+        "internet": "인터넷",
+        "rules": "FW01의 규칙",
+        "internal": "사내 네트워크"
+      },
+      "notes": {
+        "allow-note": "규칙에 맞아 지나간다",
+        "deny-note": "FW01에서 막힌다",
+        "bypass-note": "FW01을 지나지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "allow",
+          "label": "허용",
+          "caption": "인터넷의 컴퓨터가 웹 서버 192.0.2.20의 TCP 443번 포트로 청한 연결이다. FW01이 위에서부터 견주면 첫째 규칙 「TCP 443 → 192.0.2.20: 허용」에 맞으므로 들여보내고, 연결은 웹 서버에 닿는다.",
+          "sources": ["network-security.firewall"]
+        },
+        {
+          "id": "deny",
+          "label": "거부",
+          "caption": "같은 웹 서버라도 TCP 8080번 포트로 청한 연결은 포트가 달라 첫째 규칙에 맞지 않는다. 둘째 규칙 「그 밖: 거부」에 맞아 FW01에서 막히고, 웹 서버는 이 연결을 받지 못한다.",
+          "sources": ["network-security.firewall"]
+        },
+        {
+          "id": "bypass",
+          "label": "거치지 않는 트래픽",
+          "caption": "같은 스위치에 이어진 PC01과 PC02가 주고받는 트래픽은 사내 네트워크 안에서만 오가 FW01을 지나지 않는다. 그래서 FW01의 규칙은 이 트래픽에 닿지 않고, 사내 컴퓨터끼리의 공격도 FW01은 막지 못한다.",
+          "sources": ["network-security.firewall"]
+        }
+      ],
+      "sources": ["network-security.firewall"]
+    },
+    "ids-ips-placement": {
+      "label": "알려진 공격 모양이 든 요청이 방화벽 FW01을 지난 뒤, 길 위의 IPS01에서 막히는 모습과, 사본을 보는 IDS가 알리는 사이 요청이 웹 서버에 닿는 모습을 견주는 도식",
+      "svgLabel": "알려진 공격 모양이 든 요청, 방화벽 FW01, 사내 네트워크 박스(IPS01·IDS·웹 서버)를 둔 그림",
+      "question": "IDS와 IPS는 어디에 서서 무엇을 할까?",
+      "idleCaption": "알려진 공격 모양이 든 요청이 방화벽 FW01의 허용 규칙에 맞아 사내 네트워크로 들어온다. 버튼을 고르면 길 위에 선 IPS01과 사본을 보는 IDS가 이 요청을 각각 어떻게 다루는지 볼 수 있다.",
+      "legend": "IDS로 가는 화살표는 트래픽의 사본이 가는 길이다(사본을 만드는 장비는 그리지 않았다). FW01과 IPS01은 예로 붙인 이름표다.",
+      "nodes": {
+        "request": "알려진 공격 모양이 든 요청",
+        "fw01": "FW01",
+        "ips01": "IPS01",
+        "ids": "IDS",
+        "web": "웹 서버"
+      },
+      "groups": {
+        "internal": "사내 네트워크"
+      },
+      "notes": {
+        "ids-note": "사본을 보고 알린다",
+        "ips-note": "IPS01이 막는다"
+      },
+      "scenarios": [
+        {
+          "id": "ids",
+          "label": "IDS",
+          "caption": "IDS는 트래픽이 지나는 길 밖에서 그 사본을 받아 살피는 패시브 자리에 선다. 사본에서 알려진 공격의 모양을 찾아 관리자에게 알리지만, 원래 요청은 그대로 웹 서버에 닿는다.",
+          "sources": ["network-security.ids-ips"]
+        },
+        {
+          "id": "ips",
+          "label": "IPS",
+          "caption": "IPS01은 트래픽이 자기를 지나야 웹 서버로 가는 인라인 자리에 선다. 요청에서 알려진 공격의 모양을 찾으면 넘기지 않고 그 자리에서 막아, 웹 서버는 이 요청을 받지 못한다.",
+          "sources": ["network-security.ids-ips"]
+        }
+      ],
+      "sources": ["network-security.ids-ips"]
+    },
+    "waf-inspection": {
+      "label": "웹 사이트 www.example.com 앞의 WAF01이 TCP 443으로 온 두 요청 가운데, 여느 로그인 요청은 웹 서버로 넘기고 SQL 문장을 섞은 요청은 막는 모습을 보이는 도식",
+      "svgLabel": "TCP 443으로 온 요청 박스(여느 로그인 요청·SQL 문장을 섞은 요청), WAF01, 웹 서버 www.example.com을 둔 그림",
+      "question": "WAF는 웹 요청의 무엇을 보고 막을까?",
+      "idleCaption": "두 요청은 모두 웹 서버의 TCP 443번 포트로 온다. 주소와 포트로는 둘이 같아 보이지만, WAF01은 요청을 풀어 읽고 헤더와 본문을 정책과 견준다. 버튼을 고르면 요청마다 어떻게 되는지 볼 수 있다.",
+      "legend": "화살표는 요청이 가는 쪽이다. WAF01은 예로 붙인 이름표이고 www.example.com은 문서의 예로 쓰라고 남겨 둔 이름이다. WAF01은 암호를 푼 요청을 본다고 했고, 암호를 푸는 장비는 그리지 않았다.",
+      "nodes": {
+        "normal": "여느 로그인 요청",
+        "attack": "SQL 문장을 섞은 요청",
+        "waf01": "WAF01",
+        "web": "웹 서버 www.example.com"
+      },
+      "groups": {
+        "tcp443": "TCP 443으로 온 요청"
+      },
+      "notes": {
+        "normal-note": "걸리는 것이 없어 넘긴다",
+        "attack-note": "SQL 삽입으로 보여 막는다"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "여느 요청",
+          "caption": "한 사용자가 로그인 칸에 이름과 비밀번호를 넣어 보낸 요청이다. WAF01은 요청의 헤더와 본문을 정책과 견주어 걸리는 것이 없으므로 웹 서버로 넘기고, 웹 서버는 로그인을 처리한다.",
+          "sources": ["network-security.waf"]
+        },
+        {
+          "id": "attack",
+          "label": "공격 요청",
+          "caption": "공격자가 비밀번호 칸에 SQL 문장 조각을 섞어 보낸 요청이다. 같은 포트로 왔어도 WAF01은 요청에서 SQL 삽입처럼 보이는 내용을 찾아 넘기지 않고 막으므로, 웹 서버는 이 요청을 받지 못한다.",
+          "sources": ["network-security.waf"]
+        }
+      ],
+      "sources": ["network-security.waf"]
+    },
+    "nac-admission": {
+      "label": "노트북 LAPTOP03이 스위치 SW01의 포트에 꽂힌 뒤, 인증 전에는 인증 메시지만 SW01을 거쳐 인증 서버 AUTH01로 가고, 인증 뒤에야 사내 네트워크와 통신하는 모습을 보이는 도식",
+      "svgLabel": "LAPTOP03(신청자), SW01(인증자), AUTH01(인증 서버), 사내 네트워크를 둔 그림",
+      "question": "NAC는 장치를 언제 네트워크에 들여보낼까?",
+      "idleCaption": "노트북 LAPTOP03을 802.1X가 켜진 스위치 SW01의 포트에 꽂았다. LAPTOP03은 신청자, SW01은 인증자, AUTH01은 인증 서버다. 버튼을 고르면 인증 전과 뒤에 무엇이 오가는지 볼 수 있다.",
+      "legend": "화살표는 LAPTOP03이 보낸 것이 가는 쪽이고, 답은 같은 길을 거꾸로 온다. LAPTOP03과 SW01 사이의 두 선은 같은 포트로 오가는 인증 메시지와 데이터를 따로 그린 것이다. LAPTOP03·SW01·AUTH01은 예로 붙인 이름표다.",
+      "nodes": {
+        "laptop03": "LAPTOP03",
+        "sw01": "SW01",
+        "auth01": "AUTH01",
+        "internal": "사내 네트워크"
+      },
+      "notes": {
+        "supplicant": "신청자",
+        "authenticator": "인증자",
+        "auth-server": "인증 서버",
+        "before-note": "인증 메시지만 통과시킨다",
+        "after-note": "사내 네트워크와 통신한다"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "인증 전",
+          "caption": "포트에 꽂힌 LAPTOP03은 아직 인증 전이라 이 포트로는 인증 메시지만 오간다. SW01이 인증을 요구하면 LAPTOP03이 자격 증명을 보내고, SW01은 그것을 AUTH01에 넘겨 신원이 맞는지 확인받는다.",
+          "sources": ["network-security.nac"]
+        },
+        {
+          "id": "after",
+          "label": "인증 뒤",
+          "caption": "AUTH01이 신원을 확인해 결과를 돌려주면, SW01은 그 포트로 LAPTOP03이 사내 네트워크와 통신하게 한다. 확인에 실패했다면 포트는 계속 인증 메시지만 통과시킨다.",
+          "sources": ["network-security.nac"]
+        }
+      ],
+      "sources": ["network-security.nac"]
+    },
+    "vpn-site-types": {
+      "label": "본사 네트워크 10.1.0.0/24와 지사 네트워크 10.2.0.0/24의 VPN 게이트웨이 VPNGW1·VPNGW2가 인터넷 너머로 VPN 연결을 맺는 사이트 간 VPN과, 출장 중인 노트북이 인터넷 너머 VPNGW1과 VPN 연결을 맺는 원격 접속 VPN을 보이는 도식",
+      "svgLabel": "본사 박스(VPNGW1 192.0.2.1), 지사 박스(VPNGW2 203.0.113.1), 인터넷, 출장 중인 노트북을 둔 그림",
+      "question": "VPN은 어디와 어디를 이어 줄까?",
+      "idleCaption": "본사 네트워크와 지사 네트워크가 인터넷과 만나는 경계에 VPN 게이트웨이 VPNGW1과 VPNGW2가 있고, 출장 중인 노트북도 인터넷에 이어져 있다. 버튼을 고르면 VPN 연결이 무엇과 무엇을 잇는지 볼 수 있다.",
+      "legend": "화살표는 VPN 연결이 지나는 길을 한 방향으로 그린 것이고, 데이터는 같은 길로 양쪽으로 오간다. 10.1.0.0/24·10.2.0.0/24는 사설 주소이고, 192.0.2.1·203.0.113.1은 문서의 예로 쓰라고 남겨 둔 주소다. VPNGW1·VPNGW2는 예로 붙인 이름표다.",
+      "nodes": {
+        "vpngw1": "VPNGW1 192.0.2.1",
+        "laptop": "출장 중인 노트북",
+        "internet": "인터넷",
+        "vpngw2": "VPNGW2 203.0.113.1"
+      },
+      "groups": {
+        "hq": "본사 10.1.0.0/24",
+        "branch": "지사 10.2.0.0/24"
+      },
+      "notes": {
+        "site-note": "두 네트워크를 한 네트워크처럼 잇는다",
+        "remote-note": "노트북이 VPNGW1과 VPN 연결을 맺는다"
+      },
+      "scenarios": [
+        {
+          "id": "site",
+          "label": "사이트 간",
+          "caption": "본사의 VPNGW1과 지사의 VPNGW2가 인터넷 너머로 VPN 연결을 맺어, 본사 네트워크와 지사 네트워크를 한 회사 네트워크처럼 잇는다. 두 사무실의 컴퓨터에는 VPN 프로그램을 깔거나 설정을 바꾸지 않아도 된다.",
+          "sources": ["network-security.vpn"]
+        },
+        {
+          "id": "remote",
+          "label": "원격 접속",
+          "caption": "출장지에서 인터넷에 이어진 노트북이 VPN 클라이언트로 본사의 VPNGW1과 VPN 연결을 맺는다. VPNGW1이 사용자를 인증하고 나면 노트북은 본사 네트워크의 서버를 쓸 수 있다.",
+          "sources": ["network-security.vpn"]
+        }
+      ],
+      "sources": ["network-security.vpn"]
+    },
+    "tunnel-encapsulation": {
+      "label": "본사의 10.1.0.5가 지사의 10.2.0.7에 보낸 패킷을 VPNGW1이 바깥 IP 헤더 192.0.2.1 → 203.0.113.1로 감싸 인터넷 너머로 보내고, VPNGW2가 바깥 헤더를 떼어 원래 패킷을 꺼내는 차례를 보이는 도식",
+      "svgLabel": "본사 박스(원래 패킷), VPNGW1, 인터넷 박스(감싼 패킷), VPNGW2, 지사 박스(꺼낸 패킷)를 둔 그림",
+      "question": "터널을 지나는 패킷은 어떻게 감싸일까?",
+      "idleCaption": "본사 네트워크의 10.1.0.5가 지사 네트워크의 10.2.0.7에 패킷을 보낸다. 두 네트워크 사이에는 VPNGW1과 VPNGW2가 인터넷 너머로 맺은 터널이 있다. 버튼을 고르면 패킷이 터널에 담기고 꺼내지는 차례를 볼 수 있다.",
+      "legend": "칸 하나가 패킷의 한 부분이고, 「출발지 → 목적지」는 그 IP 헤더에 적힌 두 주소다. 바깥 IP 헤더는 원래 패킷 앞에 붙는데, 좁은 화면의 그림에서는 그 칸을 원래 패킷 위에 그렸다. 이 예의 터널은 패킷을 담기만 하고 암호화하지 않는다.",
+      "nodes": {
+        "orig-inner": "10.1.0.5 → 10.2.0.7",
+        "orig-data": "데이터",
+        "vpngw1": "VPNGW1 192.0.2.1",
+        "wrap-outer": "192.0.2.1 → 203.0.113.1",
+        "wrap-inner": "10.1.0.5 → 10.2.0.7",
+        "wrap-data": "데이터",
+        "vpngw2": "VPNGW2 203.0.113.1",
+        "out-inner": "10.1.0.5 → 10.2.0.7",
+        "out-data": "데이터"
+      },
+      "groups": {
+        "hq": "본사 10.1.0.0/24",
+        "internet": "인터넷",
+        "branch": "지사 10.2.0.0/24"
+      },
+      "notes": {
+        "wrap-note": "바깥 IP 헤더를 붙인다",
+        "cross-note": "바깥 헤더를 보고 넘긴다",
+        "unwrap-note": "바깥 IP 헤더를 뗀다"
+      },
+      "scenarios": [
+        {
+          "id": "wrap",
+          "label": "감싸기",
+          "caption": "본사의 10.1.0.5가 보낸 패킷이 VPNGW1에 닿으면, 터널의 입구인 VPNGW1이 그 패킷을 통째로 담고 앞에 바깥 IP 헤더를 붙인다. 바깥 헤더에는 터널 양 끝의 주소, 곧 출발지 192.0.2.1과 목적지 203.0.113.1이 적힌다.",
+          "sources": ["network-security.tunneling"]
+        },
+        {
+          "id": "cross",
+          "label": "인터넷 지나기",
+          "caption": "감싼 패킷이 인터넷을 지나는 동안 라우터들은 바깥 헤더의 목적지 203.0.113.1을 보고 패킷을 VPNGW2 쪽으로 넘긴다. 안쪽 헤더의 사설 주소 10.1.0.5와 10.2.0.7은 바뀌지 않고 그대로 실려 간다.",
+          "sources": ["network-security.tunneling"]
+        },
+        {
+          "id": "unwrap",
+          "label": "꺼내기",
+          "caption": "터널의 출구인 VPNGW2가 바깥 헤더를 떼어 원래 패킷을 꺼내고, 안쪽 헤더의 목적지 10.2.0.7에 전한다. 10.2.0.7이 받은 패킷의 출발지는 처음 보낸 10.1.0.5 그대로다.",
+          "sources": ["network-security.tunneling"]
+        }
+      ],
+      "sources": ["network-security.tunneling"]
+    },
+    "vpn-protocol-layers": {
+      "label": "PPTP·L2TP·IPsec·SSL/TLS VPN 네 VPN 프로토콜을, 각 프로토콜이 터널을 만드는 데이터 링크·네트워크·전송 계층의 칸에 이어 보이는 도식",
+      "svgLabel": "왼쪽에 아래에서 위로 쌓은 계층 칸 셋(데이터 링크·네트워크·전송), 오른쪽에 VPN 프로토콜 넷을 둔 그림",
+      "question": "VPN 프로토콜은 어느 계층에서 터널을 만들까?",
+      "idleCaption": "VPN 프로토콜 넷을, 아래에서 위로 쌓은 계층 칸 셋 옆에 두었다. 버튼을 고르면 각 프로토콜이 어느 계층에서 터널을 만드는지 볼 수 있다.",
+      "legend": "칸 하나가 계층 하나이고, 아래에 있을수록 낮은 계층이다. 화살표는 그 프로토콜이 터널을 만드는 계층을 가리킨다. 이 개념과 관계있는 세 계층만 그렸고, 계층의 경계가 늘 분명하지는 않다.",
+      "nodes": {
+        "tl": "전송 계층",
+        "nl": "네트워크 계층",
+        "dl": "데이터 링크 계층",
+        "ssl": "SSL/TLS VPN",
+        "ipsec": "IPsec",
+        "pptp": "PPTP",
+        "l2tp": "L2TP"
+      },
+      "notes": {
+        "layer2-note": "PPP 프레임을 담아 IP 네트워크로 나른다",
+        "l2tp-note": "L2TP는 IPsec과 함께 써서 지킨다",
+        "layer3-note": "IP 패킷 하나하나를 지킨다",
+        "tls-note": "TLS로 감싸 보낸다"
+      },
+      "scenarios": [
+        {
+          "id": "layer2",
+          "label": "PPTP·L2TP",
+          "caption": "PPTP와 L2TP는 데이터 링크 계층의 데이터인 PPP 프레임을 통째로 담아 IP 네트워크 너머로 나르므로, 데이터 링크 계층의 터널을 만든다. 둘 다 스스로 데이터를 지키지 않아, L2TP는 IPsec과 함께 L2TP/IPsec으로 쓴다.",
+          "sources": ["network-security.vpn-protocols"]
+        },
+        {
+          "id": "layer3",
+          "label": "IPsec",
+          "caption": "IPsec은 네트워크 계층, 곧 IP 계층에서 IP 패킷 하나하나를 지킨다. 패킷을 보낸 쪽이 맞는지와 오는 길에 바뀌지 않았는지를 받는 쪽이 확인하게 하고, 내용을 암호화할 수 있다.",
+          "sources": ["network-security.vpn-protocols"]
+        },
+        {
+          "id": "tls",
+          "label": "SSL/TLS VPN",
+          "caption": "SSL/TLS VPN은 컴퓨터가 VPN으로 보내는 IP 패킷을 TCP 연결 위의 TLS로 감싸 보낸다. NIST의 VPN 지침은 이것을 전송 계층 VPN으로 묶으면서도, 감싸 보내는 것이 IP 패킷이라 네트워크 계층에서 일한다고도 적는다.",
+          "sources": ["network-security.vpn-protocols"]
+        }
+      ],
+      "sources": ["network-security.vpn-protocols"]
+    },
+    "ipsec-modes": {
+      "label": "IPsec의 ESP를 전송 모드와 터널 모드로 쓸 때 패킷의 칸이 놓이는 차례와, 그 가운데 암호화되는 칸을 견주는 도식",
+      "svgLabel": "전송 모드 박스와 터널 모드 박스에 패킷의 칸을 앞에서부터 차례로 두고, 암호화되는 칸을 따로 묶은 그림",
+      "question": "IPsec의 두 모드는 패킷의 어디까지 보호할까?",
+      "idleCaption": "IPsec의 ESP를 쓰는 두 모드에서 패킷의 칸이 놓이는 차례를 나란히 두었다. 버튼을 고르면 모드마다 무엇이 암호화되고 무엇이 드러나는지 볼 수 있다.",
+      "legend": "칸 하나가 패킷의 한 부분이고, 좁은 화면에서는 위에서 아래로, 넓은 화면에서는 왼쪽에서 오른쪽으로 패킷의 앞에서 뒤로 놓인다. 「데이터」 칸에는 IP 헤더 뒤에 실린 TCP·UDP 헤더와 그 뒤의 내용이 함께 들고, ESP가 데이터 뒤에 덧붙이는 부분은 그리지 않았다.",
+      "nodes": {
+        "t-ip": "원래 IP 헤더",
+        "t-esp": "ESP 헤더",
+        "t-data": "데이터",
+        "n-ip": "새 IP 헤더",
+        "n-esp": "ESP 헤더",
+        "u-ip": "원래 IP 헤더",
+        "u-data": "데이터"
+      },
+      "groups": {
+        "transport": "전송 모드",
+        "tunnel": "터널 모드",
+        "t-enc": "암호화되는 부분",
+        "u-enc": "암호화되는 부분"
+      },
+      "notes": {
+        "transport-note": "원래 IP 헤더는 그대로 드러난다",
+        "tunnel-note": "새 IP 헤더를 앞에 붙인다"
+      },
+      "scenarios": [
+        {
+          "id": "transport",
+          "label": "전송 모드",
+          "caption": "전송 모드는 원래 IP 헤더를 그대로 맨 앞에 두고, 그 바로 뒤에 ESP 헤더를 넣는다. ESP는 IP 헤더 뒤의 데이터만 암호화하므로, 가로챈 사람도 원래 IP 헤더에 적힌 출발지와 목적지는 볼 수 있다. 두 컴퓨터가 서로 주고받는 패킷을 스스로 지킬 때 쓴다.",
+          "sources": ["network-security.ipsec"]
+        },
+        {
+          "id": "tunnel",
+          "label": "터널 모드",
+          "caption": "터널 모드는 원래 IP 패킷을 헤더까지 통째로 암호화하고, 그 앞에 ESP 헤더와 새 IP 헤더를 붙인다. 앞 예에서 새 IP 헤더에는 VPNGW1의 192.0.2.1과 VPNGW2의 203.0.113.1이 적히고, 원래 헤더의 10.1.0.5와 10.2.0.7은 암호화되어 가려진다. 게이트웨이 사이의 VPN에 쓴다.",
+          "sources": ["network-security.ipsec"]
+        }
+      ],
+      "sources": ["network-security.ipsec"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
