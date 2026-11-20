@@ -182,6 +182,12 @@ ITU-T 권고는 step 0과 같은 방법으로 받았다 — 권고 페이지에�
 「(phase 83 step 4)」이 붙은 줄은 phase 83 step 4에서 `transmission-media`의 FTTH와 PON, 전송 손상을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 5)」이 붙은 줄은 phase 83 step 5에서 `transmission-media`의 채널 부호화, 다중화를 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 6)」이 붙은 줄은 phase 83 step 6에서 `transmission-media`의 시분할 다중화, 파장 분할 다중화를 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 7)」이 붙은 줄과 항목은 phase 83 step 7에서 `network-topology` 주제의 개념 여덟(네트워크 토폴로지, 버스형, 성형, 링형, 메시형과 트리형, 토큰 링, FDDI, IEEE 802 표준)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로 받았다. ITU-T 권고는 step 0과 같은 방법(권고 페이지에서 판·상태를 확인하고, 브라우저 머리를 붙여 무료 PDF를 IPv4로 받음)으로 받았다. `standards.ieee.org`의 표준 개요 페이지와 `ieee802.org`의 페이지·PDF도 IPv4로 받아 읽었다(그림인 쪽은 렌더해 봤다).
+**ITU-T 용어 데이터베이스는 이번에도 쓰지 못했다** — 2026-11-20에 다시 열어 보니 스크립트로만 그려지는 앱이라 step 0·3과 같다. 「토폴로지」의 뜻은 IEEE 표준 용어 사전(IEEE 100)의 정의를 출처와 함께 옮겨 실은 802.17 용어 작업 문서와 RFC 8345에서 가져왔다(아래 항목).
+**IEEE 802.3·802.5·802.4의 본문과 FDDI의 ANSI X3T9.5·ISO 9314 본문은 열지 못했다** — 802.3은 작업 그룹 의장의 개요 발표, 연구 그룹·태스크 포스의 발표(그중 하나는 802.3 개정 초안 IEEE P802.3/D3.2의 8·10장 문구를 옮겨 실었다), 리피터 MIB(RFC 2108), 802.3ah-2004 사본으로,
+802.5·802.4는 IEEE SA 표준 개요 페이지, ISO/IEC JTC 1 SC 6의 기술 보고서 초안 DTR 8802-1:1999(IEEE 802.1 작업 그룹이 `ieee802.org`에 올린 사본), 토큰 링 MIB(RFC 1748)로, FDDI는 그 기술 보고서와 FDDI MIB(RFC 1512·1285), IP over FDDI(RFC 1390·1188), RFC 1329로 썼다. 항목마다 어떤 문서인지 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 토큰 링·FDDI의 프레임 형식·타이머 값·우선순위·액티브 모니터, 토큰의 종류(동기·비동기, 제한·비제한), 802.4·802.6의 동작, 802.3 리피터 망의 구성 규칙(구간 수·지연 값), 802.17(RPR)의 동작.
 
 ---
 
@@ -1683,6 +1689,12 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
   - 1000BASE-PX10·PX20은 PON으로 적어도 10 km·20 km를 잇고, 대표적인 분기 비율은 1:16이다. 싱글 모드 광섬유 한 가닥을 두 방향이 함께 쓰고, 보통 내려가는 쪽은 1 490 nm, 올라가는 쪽은 1 310 nm 대역이다 — §60.1
   - 「AON」(active optical network)·「PTP」라는 이름은 이 문서에 없다 — 이 문서는 점 대 점을 P2P로 적는다(전문 검색). 아래 `exam-notes.md` E49
   - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(PON의 뜻 — 길 위에 능동 소자가 없다, OLT·ONU의 자리, 수동 분배기와 1:N, 내려가고 올라가는 방향, 점 대 점 규격, 분기 1:16·10/20 km), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
+
+- (phase 83 step 7, 2026-11-20 step 0이 받은 같은 사본에서 다시 읽음) **토폴로지라는 낱말이 나오는 곳**:
+  - 점 대 점 에뮬레이션(P2PE)은 P2MP 안에서 두 끝 스테이션 사이의 따로 된 통신을 흉내 내는 것으로, OLT를 가운데(nexus)에 둔 성형 토폴로지(star topology)와 같은 것을 만든다 — §1.4. 802.3 문서가 「star topology」를 가운데 장치와 끝 장치 사이의 점 대 점 통신으로 쓴다는 근거다
+  - P2MP 망은 분배기 하나(1:16)로 지을 수도 있고, 분배기를 여러 단으로 두어 가지를 친 나무 꼴(tree-and-branch)로 지을 수도 있다 — 그림 67-2는 1:2 분배기 아래에 1:8 분배기 둘을 둔다 — §67.1·§67.2.2·§67.2.3
+  - 가입자 쪽 건물 안에서는 IEEE 802.3이 정한 어느 네트워크 토폴로지든 쓸 수 있다 — §67.1
+  - 쓰일 곳: (phase 83 step 9·10에서 쓰일 곳) `network-topology.star-topology`(가운데 장치와 끝 장치 사이의 점 대 점), `network-topology.mesh-tree-topology`(가지를 친 나무 꼴 — 위 단 분배기 아래로 아래 단 분배기가 갈라진다)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, (phase 72 step 7) `hub-switch-vlan.csma-cd`(풀네임, IEEE 802.3이 매체 접근 방식으로 정한 규칙), 문항 n038·n039 해설(풀네임)
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
@@ -1732,6 +1744,13 @@ https://www.ieee802.org/misc-docs/GlobeCom2009/IEEE_802d3_Law.pdf
 - 802.3ae-2002(10 Gb/s 동작): 10GBASE-SR/SW(멀티 모드), 10GBASE-LX4(싱글 모드나 멀티 모드), 10GBASE-LR/LW(싱글 모드 10 km), 10GBASE-ER/EW(싱글 모드 40 km) — 10쪽
 - 802.3an-2006: 10GBASE-T(트위스티드 페어, 100 m) — 12쪽
 
+- (phase 83 step 7, 2026-11-20 같은 PDF를 IPv4로 다시 받아 읽음 — 9쪽은 그림이라 렌더해 봤다) **토폴로지가 바뀌어 온 모습**:
+  - 8쪽 표: 10BASE5(802.3-1985, 동축 500 m), 10BASE2(802.3a-1988, 동축 185 m), 10BASE-T(1990년 개정, 트위스티드 페어 100 m — 표에는 「802.i-1990」으로 적혀 있다)
+  - 9쪽 「Topology evolution」 그림은 세 단계를 그린다 — ① 10BASE2/10BASE5: DTE들이 동축 케이블 한 줄에 나란히 붙고, 동축 줄 둘을 리피터가 잇고, 또 다른 줄은 브리지로 잇는다. ② 10BASE-T(802.3i-1990)·10BASE-F(802.3j-1993): DTE마다 케이블 하나로 리피터에 따로 이어져 리피터를 둘러싸고, 리피터와 리피터 사이는 브리지로 잇는다.
+    리피터 하나에 이은 DTE 전체가 충돌 도메인 하나다(그림의 회색 범위). ③ 100BASE-T·전이중(802.3u-1995·802.3x-1997, 구조화 배선 TIA/EIA 568:1991·ISO/IEC 11801:1995): DTE마다 브리지에 따로 이어지고, 브리지와 브리지 사이는 100BASE-F 링크로 잇는다
+  - 그림에 「star」·「bus」라는 낱말은 없다 — 모양만 그린다. ①이 버스형, ②·③이 성형의 모양이라는 것은 그림에서 읽은 것이다(성형이라는 이름의 근거는 위 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 7) 줄)
+  - 쓰일 곳: (phase 83 step 8·9에서 쓰일 곳) `network-topology.bus-topology`(동축 한 줄에 노드가 나란히 붙는다 — 10BASE5·10BASE2), `network-topology.star-topology`(10BASE-T는 노드마다 케이블 하나로 리피터에 잇는다, 뒤에는 가운데에 브리지(스위치)를 둔다),
+    `network-topology.network-topology`(노드마다 케이블을 따로 이었어도 리피터에 이은 모두가 충돌 도메인 하나 — 케이블이 이어진 모양과 신호가 닿는 범위가 다른 예)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.standard-names`(1000BASE-LX가 싱글 모드·멀티 모드 광섬유를 모두 쓴다, 10GBASE-SR은 멀티 모드), `ethernet.fast-gigabit`(100BASE-FX는 멀티 모드 광섬유, 802.3ae의 10GBASE-SR은 멀티 모드·10GBASE-LR은 싱글 모드, 802.3an의 10GBASE-T)
 
 ## (phase 72) IEEE SA — 802.3u-1995, 802.3z-1998, 802.3ab-1999, 802.3ae-2002, 802.3an-2006, 802.3cc-2017 표준 소개 페이지
@@ -1835,6 +1854,10 @@ IEEE 802 위원회의 홈페이지다. 작업 그룹 목록이 이 페이지에 
 - IEEE 802는 LAN/MAN Standards Committee(LMSC), 곧 LAN·MAN 표준을 만드는 위원회다 — 홈페이지 첫머리
 - 802.3은 그 위원회의 Ethernet Working Group(이더넷 작업 그룹)이다 — 홈페이지의 작업 그룹 목록
 
+- (phase 83 step 7, 2026-11-20 홈페이지를 IPv4로 다시 받아 읽음 — 페이지의 마지막 고친 날 2026-07-28) **작업 그룹 목록**: 802.1(Higher Layer LAN Protocols), 802.3(이더넷), 802.11(무선 LAN), 802.15(Wireless Specialty Network), 802.19(무선 공존) 작업 그룹과 802.18·802.24 기술 자문 그룹(TAG)이 있다.
+  해산한 작업 그룹의 목록은 따로 있다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목
+  - 쓰일 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 지금 상태)
+
 쓰인 곳: `ethernet.ethernet`(IEEE 802 표준 위원회 안의 이더넷 작업 그룹이 IEEE 802.3을 만든다)
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 4.1.1 Overview, 4.1.2.2 Access interference and recovery, 4.2.3.2 Transmit media access management, 4.4 Specific implementations
@@ -1919,6 +1942,10 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   - 24쪽 「구간(리피터 포트) 사이에서 신호를 처리해 넘긴다」 — 위 RFC 1983 「repeater」(한 케이블의 전기 신호를 다른 케이블로 이어 퍼뜨린다)와 함께, 리피터를 두면 한 구간을 넘어 다음 구간의 장치까지 신호가 닿는다는 근거다. **「전송 거리를 늘린다」는 문장 자체는 두 문서에 없다** — 본문은 「케이블 한 구간으로는 닿지 않는 곳의 장치까지 신호가 닿는다」로 쓴다
   - 「증폭」은 여전히 쓰지 않는다(위 step 8 줄) — 본문은 신호를 키우는 것과 다시 만드는 것을 견주는 문장을 쓰지 않았다(견줄 근거가 없다)
   쓰인 곳: (phase 82 step 9) `network-devices.repeater`(요약, 문단 0의 약해지고 흐트러진 신호, 문단 2의 닿는 거리와 지연의 한계, 예), 도식 `repeater-regenerate`(「약해진 신호」·「다시 만든 신호」 노드와 캡션)
+- (phase 83 step 7, 2026-11-20 위 「주의」 줄의 Zimmerman 발표를 IPv4로 다시 받아 읽음 — 8쪽은 그림이라 렌더해 봤다. 표준 본문이 아니라 태스크 포스 발표 자료) **다중점 버스의 반사**:
+  - 8쪽 「Reflection Problem in Multidrop」 그림은 노드 여럿이 매달린 선의 양 끝에 끝막음(term)을 두고, 보낸 신호가 선을 따라 가다 임피던스가 어긋난 곳에서 되돌아와(reflection) 받는 노드에 닿아 받는 신호에 섞이는(그림의 ISI) 모습을 그린다.
+    같은 쪽은 802.3 10BASE-T1S(147장)의 공유 구간을 반사가 되도록 적게 생기게 짓는다고 적는다. 12쪽(위 step 9 줄)은 케이블 구간이 이어진 자리의 불연속이 반사점이 된다고 적는다
+  - 쓰일 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.bus-topology`(버스의 양 끝에 끝막음을 둔다, 반사가 받는 쪽 신호에 섞인다)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72 step 7) `hub-switch-vlan.csma-cd`(IEEE 802.5가 토큰 링 표준이라는 이름만), 문항 n038 해설
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
@@ -1943,6 +1970,13 @@ Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 �
 
 - (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1997-02, 폐기·개정 없음) 위 §2.4.1.2 줄(리피터는 비트 단위로 받아 다시 내보내고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
   쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`·`network-devices.device-layers`(리피터·허브는 주소를 읽지 않는다)
+- (phase 83 step 7, 2026-11-20 텍스트판을 IPv4로 다시 받아 읽음 — 상태는 그대로) **리피터가 포트를 떼어 놓는 일과 포트마다의 관리**:
+  - 리피터에는 포트마다 자동 분리(auto-partition) 보호가 있어, 조건이 맞으면 그 포트를 떼어 놓는다(autoPartitioned). 떼어 놓는 조건은 802.3 9장·27장의 분리 상태 기계가 정하고 이 MIB는 조건을 가르지 않는다 — `rptrPortAutoPartitionState`.
+    27장 리피터는 그 상태 기계의 「충돌 수 늘리기」 상태에서 포트의 충돌을 센다 — `rptrMonitorPortCollisions`. 지금 떼어 놓인 포트의 수도 낸다 — `rptrInfoPartitionedPorts`
+  - 관리자는 포트마다 켜고 끌 수 있다 — 끈 포트는 보내지도 받지도 않고, 다시 켜야 동작한다 — `rptrPortAdminStatus`. 포트마다 충돌, 재버 잠금 보호 타이머(TW3)보다 오래 이어지는 아주 긴 신호 같은 사건을 센다 — `rptrMonitorPortCollisions`·`rptrMonitorPortVeryLongEvents`
+  - 그러니 성형의 가운데 장치(허브 — 802.3의 이름은 리피터)는 한 노드의 포트에 문제가 나면 그 포트를 떼어 놓을 수 있고, 관리자는 포트마다 상태를 보고 끄고 켤 수 있다.
+    **「한 노드의 고장이 다른 노드에 번지지 않는다」·「가운데 장치가 멈추면 모든 노드가 통신하지 못한다」를 한 문장으로 적은 곳은 찾지 못했다** — 앞의 것은 이 분리 기능과 노드마다 링크가 따로라는 것에서, 뒤의 것은 모든 링크가 가운데 장치에 모인다는 것(위 「(phase 72) David Law」 항목의 (phase 83 step 7) 줄)에서 나오는 말이다
+  - 쓰일 곳: (phase 83 step 9에서 쓰일 곳) `network-topology.star-topology`(문제가 난 포트를 떼어 놓는다, 포트마다 관리한다), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(표준의 이름은 리피터, 비트 단위로 받아 다시 내보내고 담긴 내용을 읽지 않는 물리 계층 장비), 문항 n035 해설
 
 ## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
@@ -1971,6 +2005,9 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
   어디로 보낼지 알면 필요 없는 포트를 걸러 낸다(filter unnecessary ports, 예: 목적지 쪽으로만 전달). 어디로 보낼지 모르면 받은 포트를 뺀 모든 포트로 전달한다 — 12쪽 「Basic Principles」
 - (phase 72 step 9) 스패닝 트리는 실제로 프레임이 다니는 활성 토폴로지(Active Topology)의 한 형태다(같은 자리에 최단 경로·TE 경로가 나란히 적혀 있다). RSTP는 모든 트래픽이 스패닝 트리 하나를 함께 쓴다 — 26쪽, 28쪽
 - (phase 72 step 11) 브리지가 프레임을 다루는 동작(Data Plane Actions)에는 들어오는 포트와 나가는 포트에서 태그를 붙이거나 떼는 일((un)tagging)이 있다 — 17쪽. 위 PDF를 2026-10-28에 다시 받아 읽었다
+
+- (phase 83 step 7) 위 26·28쪽 줄(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길이 스패닝 트리)을 트리형이 쓴다. 투명 브리징의 스패닝 트리는 LAN 쌍마다 활성 경로가 하나뿐이다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목의 DTR 8802-1 §9.2
+  - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(트리형에는 고리가 없다 — 두 노드 사이의 길이 하나)
 
 쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(태그로 VLAN을 안 스위치가 그 VLAN에 든 포트로만 내보낸다 — 12쪽, 스위치가 포트에서 태그를 붙이고 뗀다 — 17쪽), 문항 n048 해설
 
@@ -2221,6 +2258,19 @@ https://www.rfc-editor.org/rfc/rfc1042
 - IEEE 802.3은 「CSMA/CD 접근 방식(Access Method)」, IEEE 802.5는 「토큰 링 접근 방식(Token Ring Access Method)」을 정한 서로 다른 표준이다 — RFC 1042 References [3]·[5]
 - IEEE 802.5 망의 패킷 최대 크기는 한 노드가 토큰을 쥐고 있을 수 있는 최대 시간에 따라 정해진다 — RFC 1042 「For IEEE 802.5」(MTU를 다룬 대목)
 
+- (phase 83 step 7, 2026-11-20 RFC 1748·1231의 텍스트판과 상태를 IPv4로 다시 받아 읽음 — RFC 1748: Draft Standard, 1994-12, RFC 1231·1743을 폐기, RFC 1749가 고침. RFC 1231: Proposed Standard, 1991-05, RFC 1743·1748이 폐기 — 역사 기록으로만 본다) **토큰 링 스테이션의 링 상태·위쪽 이웃·비컨·차례**:
+  - 스테이션이 링에 들어가거나 나가는 상태를 따로 둔다 — 열림·닫힘·여는 중·닫는 중·열기 실패·링 고장(`dot5RingState`). 관리자가 「열기」를 시키면 스테이션이 링에 들어가고, 「닫기」를 시키면 링에서 스스로 빠진다(`dot5Commands`).
+    링에 들어가려다 실패하면 그 까닭(삽입 시간 초과·신호 잃음·비컨 중 등)을 남긴다(`dot5RingOpenStatus`). 802 표준들은 스테이션을 링에 들이는 일을 「삽입(insertion)」이라 부른다(아래 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목)
+  - 스테이션은 링에서 바로 위쪽 이웃 스테이션의 MAC 주소를 안다(`dot5UpStream`). 타이머 설명에 스테이션이 「반복(Repeat) 상태」로 돌아온다는 상태 이름이 나온다(`dot5TimerReturnRepeat`) — 이 RFC는 그 상태를 정의하지 않는다
+  - 곧바로 회복해야 하는 치명적 오류(hard error)는 그 스테이션이 비컨 MAC 프레임을 보내거나 받는 횟수로 센다(`dot5StatsHardErrors`). 비컨을 보내는 상태가 정해 둔 시간 넘게 이어지면 스테이션은 Bypass 상태로 들어간다(`dot5TimerBeaconTransmit`).
+    링을 정리(purge)하고 정상으로 되돌린 횟수도 센다(`dot5StatsRecoverys`). 상태 값에는 신호 잃음(Signal Loss), 비컨 보냄(Transmit Beacon), 단일 스테이션(링에 자기 혼자) 등이 있다(`dot5RingStatus`)
+  - 비컨이 고장 난 곳을 어떻게 가리키는지, Bypass 상태가 무엇인지는 이 RFC가 정의하지 않는다 — 본문은 「회복이 필요한 오류가 생기면 비컨 프레임을 보낸다」까지 쓴다
+  - **차례가 돌아오는 시간**: 토큰이 보이지 않을 때 회복을 시작하기까지의 타이머는 보통 「반복 상태로 돌아오는 시간 + 링의 최대 스테이션 수 × 한 스테이션이 토큰을 쥘 수 있는 최대 시간」으로 잡는다(`dot5TimerNoToken`).
+    스테이션마다 토큰을 쥐는 시간에 상한이 있으니(위 `dot5TimerHolding` 줄) 토큰은 정해진 시간 안에 한 바퀴를 돌아 모든 스테이션이 차례를 얻고, 스테이션이 많을수록 그 한 바퀴가 길어진다(정의에서 나오는 말). 이 타이머 객체들은 RFC 1748에서 obsolete로 표시됐다 — 뜻은 802.5의 것을 그대로 옮긴 것이다
+  - 속도 값: 1·4·16 Mbit/s를 둔다(`dot5RingSpeed`) — DTR 8802-1은 4·16 Mbit/s를 든다(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목)
+  - RFC 1042 참고 문헌 [3]·[4]·[5]: IEEE의 CSMA/CD 접근 방식, 토큰 패싱 버스 접근 방식, 토큰 링 접근 방식 표준(1985) — 802.3·802.4·802.5가 서로 다른 매체 접근 방식의 표준이라는 것
+  - 쓰지 않는 것: 액티브·대기 모니터, 링 정리(purge) 절차, 기능 주소, 타이머 값
+  - 쓰일 곳: (phase 83 step 9·10·11에서 쓰일 곳) `network-topology.ring-topology`(삽입, 위쪽 이웃, 링 고장과 비컨), `network-topology.token-ring`(토큰을 쥐는 시간에 상한이 있어 차례가 돈다, 스테이션이 많을수록 한 바퀴가 길다), `network-topology.ieee-802-standards`(802.3·802.4·802.5), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
 쓰인 곳: `hub-switch-vlan.csma-cd`(토큰을 잡은 장치가 정해 둔 시간 동안 보내도록 허락받는 방식은 CSMA/CD와 다른 매체 접근 방식), 문항 n038 해설
 
 ## (phase 72 step 8) RFC 4761 — Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling, 4.2.1 MAC Address Learning, 4.2.2 Aging
@@ -7784,6 +7834,10 @@ TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802
   메시 바깥의 목적지로 가는 데이터는 메시 포털을 거쳐 나간다(「For a destination outside the Mesh … deliver packets via unicast」). 승인 전 초안 때의 설명이라 본문은 「메시를 바깥 네트워크와 잇는 노드」로만 쓰고, 「메시 포털」이라는 이름과 브리지 동작은 쓰지 않는다
   쓰인 곳: `wireless-lan.wireless-mesh`(HWMP 한 줄, 중앙 장치가 따로 필요하지 않다는 문단), 문항 `n323`의 해설
 
+- (phase 83 step 7) 위 802.15.5 튜토리얼 줄(WPAN 메시는 완전 메시나 부분 메시 연결을 쓰고, 경로 여분으로 신뢰성을 높인다)과 끊긴 링크를 알리고 다른 경로로 보낸다는 줄을 `network-topology.mesh-tree-topology`가 쓴다 — 메시의 뜻은 `wireless-lan.wireless-mesh`와 같게 쓴다.
+  **부분 메시를 정의한 문장은 찾지 못했다** — 본문은 완전 메시와 견주어 「모든 노드 쌍을 잇지 않고 일부 쌍만 링크로 잇는 메시」로 쓰는 데까지만 쓴다(이름에서 나오는 말)
+  - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`
+
 쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
 
 ## (phase 82 step 4) RFC 2501 — Mobile Ad hoc Networking (MANET): Routing Protocol Performance Issues and Evaluation Considerations
@@ -8634,6 +8688,12 @@ IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)�
   「동축 케이블 규격 10BROAD36이 보내는 신호와 받는 신호를 서로 다른 주파수에 실어 케이블 한 줄로 두 방향을 나르는 것도 주파수로 나누는 예다」(앞 개념 `coaxial-cable`이 같은 사실을 먼저 썼다)
   - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(주파수로 나누는 예)
 
+- (phase 83 step 7, 2026-11-20 step 0이 받은 Carlson 발표를 다시 읽음 — 표준 본문이 아니라 연구 그룹 의장의 발표 자료) **다중점 버스와 여러 토폴로지**:
+  - 2쪽 — 많은 네트워크가 다중점(multi-drop) 「버스」 토폴로지를 쓰고, 스테이션은 함께 쓰는 매체(버스)에 바로 붙는다. 대부분은 선형(linear)이고, 성형·고리(loop)나 그 셋을 섞은 자유형도 있다
+  - 3쪽 — 10BASE5는 동축 버스에 「뱀파이어 탭」으로 노드를 붙였고, 케이블에 탭을 둘 수 있는 자리가 표시돼 있었으며, 양 끝에 50옴 끝막음이 있어야 했다(위 step 0 줄). 4·8쪽 — RS-485 버스와 고속 CAN 버스도 양 끝을 120옴으로 끝막음한다.
+    12쪽 — 선형 버스와 끝막음은 단순하고, 다른 토폴로지는 배선 제약이 더 붙고 끝막음도 더 까다로워진다
+  - 쓰일 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.bus-topology`(스테이션이 함께 쓰는 버스에 바로 붙는다, 양 끝 끝막음), `network-topology.network-topology`(선형·성형·고리 같은 모양의 이름)
+
 쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
 (phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),
 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단)
@@ -8909,3 +8969,119 @@ G.661 「Definitions and test methods for the relevant generic parameters of opt
 
 쓰인 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.wdm`(WDM 장치가 파장으로 합치고 나눈다, 파장과 주파수, DWDM·CWDM의 간격, 광 증폭기의 이득·잡음, 여러 파장을 한꺼번에 키운다, 증폭기의 세 자리, 무중계, 파장마다 다른 속도·형식 — 「WDM과 FDM」·「광 증폭기와 리피터」 4절),
 (phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(파장 분할 다중화 — 목록 항목), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2025-05-25 #22]·[기출 2026-05-17 #20])
+
+## (phase 83 step 7) 토폴로지·링크·끝막음 — IEEE 802.17 용어 작업 문서 「802.17 Terms and Definitions」(2001-07), RFC 8345, ITU-T V.11 (10/96), 802.3da 태스크 포스 발표 「802.3 Multidrop Mixing Segment Specifications」(2022-05), RFC 4456
+https://www.ieee802.org/17/documents/presentations/jul2001/bs_terms_04.pdf
+https://www.rfc-editor.org/rfc/rfc8345
+https://www.itu.int/rec/T-REC-V.11-199610-I/en
+https://www.ieee802.org/3/da/public/050422/diminico_SPMD_01_05042022.pdf
+https://www.rfc-editor.org/rfc/rfc4456
+
+판: 802.17 용어 문서는 IEEE 802.17(Resilient Packet Ring) 작업 그룹의 용어 임시 위원회가 2001-07에 돌린 작업 문서다(쪽 머리 「bs_terms_01」, 파일 이름 bs_terms_04). **표준 본문이 아니다.** 802.17이 쓸 낱말을 고르며 기존 정의를 출처와 함께 옮겨 실었는데,
+여기서는 출처를 밝힌 정의 — IEEE 100(IEEE 표준 용어 사전 — 610.7-1995를 든다), IEEE 802.5c-1991, IEEE 802.5-1998 — 만 쓰고, 802.17이 새로 지은 정의는 그렇다고 밝힌 곳에서만 쓴다.
+RFC 8345는 Proposed Standard(2018-03, 고치거나 폐기한 RFC 없음). ITU-T V.11 (10/96)은 In force(평형 인터페이스 회로의 전기 특성 권고 — X.27과 같은 권고)이고 무료 PDF를 받아 읽었다.
+DiMinico 발표는 IEEE P802.3da 태스크 포스(10 Mb/s 단일 쌍 다중점)의 2022-05-04 발표인데, 10·11쪽에 802.3 개정 초안 IEEE P802.3/D3.2(2022-03-15)의 8장(10BASE5)·10장(10BASE2) 문구를, 10쪽에 「mixing segment」의 정의를 옮겨 실었다 — 발표 자료이지만 이 줄들은 그 초안 문구를 옮긴 것이라 그것만 쓴다.
+RFC 4456은 Draft Standard(2006-04, RFC 7606이 고침, RFC 1966·2796을 폐기).
+
+- **토폴로지**: IEEE 100(610.7-1995)은 토폴로지를 네트워크에서 노드들이 어떻게 이어져 있는지의 짜임새(interconnection pattern)로 본다. 802.17 문서는 같은 낱말에 「스테이션들이 놓인 논리적·물리적 배치」라는 뜻을 함께 적는다(둘째 뜻은 IEEE 100의 「network」를 802.17이 「ring」으로 바꿔 적었다고 각주에 밝힌다) — 802.17 문서 「topology」(PDF 10쪽, 각주 57)
+- **토폴로지는 노드와 링크의 그래프다**: RFC 8345의 토폴로지 모델은 노드를 그래프의 꼭짓점으로, 링크를 그래프의 변으로 다룬다 — §1. 한 네트워크에 계층마다 다른 토폴로지가 겹쳐 있을 수 있다 — 서비스 토폴로지 아래에 3계층(IP) 토폴로지, 그 아래에 1계층(광) 토폴로지가 놓이는 식이다(§1 그림 1·2).
+  같은 장치가 여러 토폴로지에 노드로 나타날 때는 장치들로 이룬 「물리」 네트워크를 그 위 「논리」 네트워크들의 바탕(underlay)으로 둘 수 있다 — §4.1, §4.4.9
+- **물리 토폴로지와 논리 토폴로지를 한 문장으로 정의한 곳은 찾지 못했다** — 쓸 수 있는 것은 위 두 줄(토폴로지에는 물리적 배치와 논리적 배치가 있다, 계층마다 토폴로지가 따로 있고 물리 네트워크가 논리 네트워크의 바탕이 된다)과, 같은 장치들이라도 케이블이 이어진 모양과 신호가 오가는 모양이 다른 예 둘이다 —
+  리피터(허브)에 노드마다 케이블을 따로 이었는데(위 「(phase 72) David Law」 항목의 (phase 83 step 7) 줄) 리피터는 그 노드들이 매체 하나를 함께 쓰게 한다(위 「(phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신」 항목, `hub-switch-vlan.hub`),
+  토큰 링은 스테이션들을 차례로 이어 「논리적인 링」을 이룬다(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목의 DTR 8802-1 §5.2.3)
+- **점 대 점과 다중점**: RFC 8345의 모델은 링크를 한 노드에서 다른 한 노드로 가는 점 대 점(point-to-point) 링크로만 두고, 여러 노드가 한 연결을 함께 쓰는 다중점(multipoint) 네트워크는 가상의 노드(pseudonode)를 세워 나타낸다 — §4.4.5.
+  802.3에서 MDI를 둘보다 많이 붙일 수 있는 매체는 공유 구간(mixing segment)이다 — DiMinico 10쪽(정의를 옮긴 줄). 802.3의 동축 구간(10BASE5 최대 500 m, 10BASE2 최대 185 m)이 그 예다 — DiMinico 10쪽(P802.3/D3.2 §8.6.2.1·§10.7.2.1).
+  두 장치만 잇는 구간은 링크 구간(link segment)이다 — DiMinico 13쪽 「Point-to-point link segments」, 802.3ah §1.4의 점 대 점 링크 규격들(위 「(phase 72) IEEE Std 802.3ah-2004」 항목), phase 72의 802.3 §4.4.1 줄(두 DTE를 링크 구간으로 바로 잇는다). 링크 구간의 정의 문장 자체는 보지 못했다
+- **링크·이웃·삽입**: 802.5c-1991은 링크를 두 스테이션 사이의 한 방향 물리 연결로 정의한다 — 802.17 문서 「link」(PDF 5쪽). 바로 위쪽 스테이션의 주소를 위쪽 이웃 주소(UNA)라 부른다 — 「upstream neighbor's address」(PDF 6쪽 — 802.5-1998 1.3.77을 든다).
+  802.5-1998은 링 구간을 리피터나 변환기로 경계 지어진 전송로의 한 구간으로 정의한다 — 각주 37(PDF 6쪽 — 802.17은 이 뜻을 쓰지 않았다 — 링의 스테이션이 받은 신호를 되풀이해 보낸다는 것의 근거로만 본다).
+  802 표준들은 스테이션을 링에 들이는 일을 「삽입(insertion)」이라 부른다 — 각주 56(PDF 10쪽)
+- **이중 링·래핑**(IEEE 100이 802.5c-1991에서 옮긴 정의): 이중 링 — 스테이션들이 짝지은 링크 둘로 이어져 있어 두 스테이션 사이에 갈 수 있는 길이 늘 두 갈래인 모양 — 「dual-ring」 (1)(PDF 6쪽).
+  래핑 — 링크나 노드가 고장 나면 이중 링의 스테이션들이 반대쪽으로 도는 링크를 끌어 써서 그 자리를 비켜 가도록 링을 다시 짜는 일 — 「wrapping」 (1)(PDF 11쪽).
+  802.17이 지은 정의(ringlet)는 한 방향으로 도는 닫힌 길을, 스테이션마다 들어오는 링크 하나·나가는 링크 하나가 있는 것으로 적는다 — 「ringlet」(링의 모양을 풀이하는 데만 본다)
+- **끝막음과 반사**: 빠른 신호를 보낼 때는 케이블 끝에 끝막음(termination) 저항을 달아 신호가 오르는 모양을 지키고 반사를 줄이며, 그 값은 케이블의 특성 임피던스에 맞춘다 — V.11 부록 I.3(평형 인터페이스 회로를 두고 한 일반 원리 — 이더넷 버스를 두고 한 말은 아니다).
+  802.3 10BASE5 조항은 케이블 구간 둘을 이은 자리가 임피던스가 어긋나는 곳이라 신호가 반사되는 자리가 된다고 적는다(케이블 임피던스 50옴에서 최대 2옴 벗어나 최악 4%) — DiMinico 10쪽이 옮긴 P802.3/D3.2 §8.6.2.1(10BASE2는 §10.7.2.1).
+  10BASE5 동축 버스는 양 끝에 50옴 끝막음이 있어야 했다 — 위 「(phase 83 step 0) 구리 매체」 항목의 Carlson 줄. 그러니 버스 케이블 양 끝에 케이블과 같은 임피던스의 끝막음을 다는 것은 끝을 임피던스가 어긋나는 자리로 두지 않아 반사를 막으려는 것이다 —
+  **「터미네이터가 반사를 막는다」는 한 문장은 802.3 쪽에서 찾지 못했다** — 이 셋을 함께 읽은 것이다(V.11이 그것을 일반 원리로 말한다). 반사가 받는 쪽 신호에 섞인다는 그림은 위 「(phase 72 step 1) … 의견 처리 기록」 항목의 (phase 83 step 7) 줄(Zimmerman 8쪽)
+- **케이블이 끊길 때**: 버스의 케이블 한 곳이 끊기면 그 구간 전체가 통신하지 못한다는 문장은 찾지 못했다 — 끊긴 자리가 끝막음 없는 끝이 되어 임피던스가 어긋나는 자리가 된다는 데까지는 위 줄들에서 나오는 말이지만, 구간이 통째로 멈춘다고 단정하지 않는다
+- **완전 메시의 연결 수**: AS 안의 BGP 스피커 n개를 서로 모두 잇는 완전 메시(full mesh)에는 서로 다른 IBGP 세션이 n×(n−1)/2개 있어야 하고, 이 요구는 스피커가 많아지면 감당하기 어렵다(does not scale) — RFC 4456 §1.
+  **RFC 4456이 세는 것은 케이블이 아니라 라우터 사이의 세션(논리 연결)이다** — 노드 쌍마다 연결 하나를 둘 때 연결 수가 노드 쌍의 수 n×(n−1)/2가 된다는 셈은 같으므로, 본문은 「모든 노드 쌍을 링크로 바로 이으면 링크가 n×(n−1)/2개」로 쓸 수 있고 그 근거가 이 셈이라는 것을 여기 남긴다. 부분 메시는 위 「(phase 82 step 4) IEEE 802.11s — 메시」 항목의 (phase 83 step 7) 줄
+- 쓰지 않는 것: 802.17(RPR)의 동작과 802.17이 지은 정의(ringlet은 위처럼 풀이에만), 802.3 공유 구간의 반사·삽입 손실 한도, V.11의 끝막음 저항 값, BGP 경로 반사의 동작
+- **한국어 이름**: topology → **토폴로지**(기출의 이름), physical·logical → 물리·논리, point-to-point → **점 대 점**(step 0이 PON에서 쓴 이름, 기출 「point-to-point」), multipoint → **다중점**(guide의 이름),
+  link segment → **링크 구간**·mixing segment → **공유 구간**(phase 72가 802.3 §4.4.1 줄에서 쓴 이름), termination → **끝막음**(step 0이 쓴 이름), terminator → **터미네이터**(그 부품 — 기출의 이름), reflection → **반사**, impedance → 임피던스,
+  full mesh·partial mesh → **완전 메시**·**부분 메시**(`wireless-lan`의 「메시」를 따른다), dual ring → **이중 링**, wrapping → **래핑**(영문을 읽은 이름 — FDDI 상태 이름 `wrap_a`·`wrap_b`와 맞춘다), upstream neighbor → **위쪽 이웃**, insertion → **삽입**
+
+쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(토폴로지의 뜻, 물리·논리, 점 대 점과 다중점), `network-topology.bus-topology`(공유 구간, 끝막음과 반사), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(위쪽 이웃·삽입·스테이션이 되풀이해 보낸다, 이중 링),
+(phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(완전 메시의 연결 수와 감당하기 어렵다는 것), (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(이중 링·래핑의 뜻), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
+
+## (phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹 — ISO/IEC DTR 8802-1:1999 「Overview of Local Area Network Standards」(ieee802.org 사본), IEEE SA 표준 개요(802.5-1989, 802.5-1998, 802.5c-1991, 802.5v-2001, 802.4-1990), ieee802.org의 해산 목록·802.2·802.5 페이지
+https://www.ieee802.org/1/files/public/docs2000/J1n6125.pdf
+https://standards.ieee.org/ieee/802.5/1100/
+https://standards.ieee.org/ieee/802.5/6530/
+https://standards.ieee.org/standard/802_5c-1991.html
+https://standards.ieee.org/ieee/802.5v/1125/
+https://standards.ieee.org/ieee/802.4/1091/
+https://www.ieee802.org/NADots.shtml
+https://www.ieee802.org/2/
+https://www.ieee802.org/5/www8025org/
+
+판: DTR 8802-1:1999는 ISO/IEC JTC 1 SC 6의 기술 보고서 초안(3판, 「Part 1: Overview of Local Area Network Standards」)이고, IEEE 802.1 작업 그룹이 2000년 문서로 `ieee802.org`에 올린 사본(J1n6125)을 읽었다. **표준 본문이 아니라 LAN 표준들을 요약한 보고서다** — 기술마다 그때의 국제 표준(ISO/IEC 8802-3·-4·-5·-6, FDDI는 ISO/IEC 9314)을 든다.
+IEEE SA 표준 개요(2026-11-20에 받음): 802.5-1989(1989-06-02 승인, Superseded), ANSI/IEEE 802.5-1998(1998-05-26 발행, **Inactive-Withdrawn**), 802.5c-1991(이중 링 권고 관행, 1991-03-21 승인, 1997-03-20 재확인, Superseded),
+802.5v-2001(기가비트 토큰 링 개정, **2008-09-26 철회**), IEEE/ANSI 802.4-1990(1990-02-27 승인, **2002-01-10 철회 — Inactive-Withdrawn**, 개정 802.4b-1992·802.4h-1997).
+ieee802.org: 해산 목록 NADots(마지막 고친 날 2026-08-20), 802.2 페이지(2011-07-25), 802.5 사이트(2004-03-22에 마지막으로 고침 — 그 페이지의 「작업 그룹이 쉬고(hibernation) 있다」는 그때의 말이고, 지금 상태는 해산 목록이 말한다).
+
+- **LAN 기술과 표준 번호·속도**(DTR 표 1): CSMA/CD — ISO/IEC 8802-3, 10·100·1000 Mbit/s. 토큰 패싱 버스 — 8802-4, 5·10 Mbit/s. 토큰 패싱 링 — 8802-5, 4·16 Mbit/s. DQDB — 8802-6. 무선 LAN — 8802-11. FDDI — ISO/IEC 9314-1·-2·-3, 100 Mbit/s — §5.1 표 1.
+  8802-x 번호는 IEEE 802 표준 번호와 쉽게 맞춰 보도록 지었다 — 부록 A
+- **CSMA/CD**(§5.2.1): 반이중에서는 스테이션 둘 이상이 전송 매체 하나를 함께 쓰고, 보낼 스테이션은 매체가 조용해지기를 기다렸다 보내며, 충돌하면 몇 바이트를 더 보낸 뒤 무작위 시간 쉬었다 다시 보낸다. 전이중은 점 대 점 매체로 이은 두 스테이션만의 동시 통신이다.
+  흔한 전이중 구성은 가운데 브리지(스위치) 하나에 포트마다 장치 하나를 저만의 LAN으로 잇는 것이다(phase 72의 802.3 §4.1.1 줄과 같다). 50옴 동축(10BASE5·10BASE2), 비차폐 트위스티드 페어(10BASE-T), 광섬유에서 쓴다
+- **토큰 패싱 버스**(§5.2.2): 버스로 보내는 토큰이 매체 접근을 정하고, 토큰을 가진 스테이션이 버스에 정보를 보낸다. 브로드밴드 동축·베이스밴드 동축·광섬유에서 쓴다.
+  802.4-1990 개요도 토큰 패싱 버스 접근 방식과 그 물리 신호·매체를 정한 표준이라 적는다(매체·신호 방식 넷 — 위상 연속 FSK 1 Mb/s, 위상 일관 FSK 5·10 Mb/s, 브로드밴드 1·5·10 Mb/s, 광섬유 10·20 Mb/s)
+- **토큰 패싱 링**(§5.2.3): 스테이션들을 차례로(직렬로) 이어 **논리적인 링**을 이루고, 그 링으로 데이터와 제어 정보를 보내고 받는다. 링 접근은 링을 스테이션에서 스테이션으로 도는 신호 순서인 토큰이 정한다.
+  보낼 스테이션은 토큰을 받을 때까지 기다렸다가, 토큰을 메시지의 시작으로 바꿔 메시지를 보내고, 다 보내면 새 토큰을 내보내 링의 다른 스테이션이 쓰게 한다. 차폐·비차폐 트위스티드 페어에서 4·16 Mbit/s로 동작하고 광섬유도 쓸 수 있다.
+  802.5-1998 개요: 토큰 패싱 링 접근 방식으로 장치들을 LAN으로 잇게 하는 표준이고, MAC 프로토콜과 PHY의 기호 부호화·복호화를 정하며, 4·16 Mbit/s 차폐 트위스티드 페어 연결을 정한다
+- **DQDB**(§5.2.4): Distributed Queue Dual Bus. LAN 기술과 함께 쓸 수 있지만 도시권 네트워크(MAN)에서 더 흔히 쓰인다. ISO/IEC 8802-6이다. 802.6 작업 그룹(Metropolitan Area Network)은 해산했다 — 해산 목록
+- **이중 링 토큰 링**: 802.5c-1991은 802.5 스테이션과 함께 쓰는 이중 링 LAN 토폴로지를 정해, 매체 한 곳의 고장에서는 모두 되살아나게 한 권고 관행이다(아주 높은 가용성이 필요한 곳을 위한 것) — 802.5c 개요. 이중 링·래핑의 정의는 위 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목
+- **브리지와 스패닝 트리**(§9.1·§9.2): 투명 브리지는 저마다 MAC을 가진 LAN들을 하나의 LAN처럼 잇는다. 포트를 아주 많이 가진 브리지를 흔히 스위치라 부르고, 포트마다 끝 시스템 하나만 잇는 경우가 흔하며, 다른 브리지들을 잇는 브리지는 백본을 이룬다(§9.1).
+  투명 브리징의 스패닝 트리는 LAN 쌍마다 활성 경로가 하나뿐이다(§9.2) — 트리형에 고리가 없다는 것의 근거
+- **FDDI**(§5.2.8): PMD와 PHY의 일 — 아래 「(phase 83 step 7) FDDI」 항목
+- **IEEE 802 작업 그룹의 지금 상태**: 홈페이지가 드는 활동 중인 작업 그룹은 802.1·802.3·802.11·802.15·802.19와 TAG 802.18·802.24다(위 「(phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지」 항목의 (phase 83 step 7) 줄).
+  해산 목록: 802.2(LLC), 802.4(토큰 버스), 802.5(토큰 링), 802.6(MAN), 802.7, 802.8, 802.9, 802.10, 802.12, 802.14, 802.16, 802.17, 802.20, 802.21, 802.22, 802.23. 쉬고 있는(hibernating) 작업 그룹은 없다 — NADots
+- **802.2**: LLC(Logical Link Control) 표준을 만든 작업 그룹으로 해산했고, 표준 802.2(1998판)는 2010년에 IEEE가 철회했다. 이제 ISO/IEC 8802-2(고치지 않고 유지하는 상태)를 가리킨다 — 802.2 페이지. LLC는 데이터 링크 계층에서 MAC 부계층과 네트워크 계층 사이에 놓인 부계층이다 — DTR §6.1·§8.1
+- **802.5**: 표준(802.5-1998)과 마지막 개정(802.5v-2001)이 모두 철회됐고, 작업 그룹은 해산 목록에 있다 — phase 72 항목의 「IEEE Std 802.5는 토큰 링 표준이고 철회됐다」와 맞는다. **802.4**: 표준 802.4-1990이 2002-01-10에 철회됐고 작업 그룹도 해산 목록에 있다
+- 쓰지 않는 것: 토큰 링의 프레임 형식·우선순위·액티브 모니터, 802.4의 동작(토큰을 넘기는 차례 정하기)과 FSK 방식, DQDB의 동작(분산 큐), 802.7~802.23 각 작업 그룹이 맡았던 기술(이 주제는 802.1·802.2·802.3·802.4·802.5·802.11·802.15와 802.6의 이름까지), 소스 라우팅 브리지
+- **한국어 이름**: token → **토큰**, token ring → **토큰 링**(`hub-switch-vlan.csma-cd`가 쓴 이름), token-passing → **토큰 패싱**(기출의 이름), token bus → **토큰 버스**(기출의 이름), logical ring → 논리적인 링, DQDB → DQDB(이름만), working group → 작업 그룹(phase 72의 이름),
+  disbanded → **해산**, withdrawn → **철회**(phase 82의 이름), LLC → LLC(논리 링크 제어), TAG → 기술 자문 그룹
+
+쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(논리적인 링), (phase 83 step 10에서 쓰일 곳) `network-topology.token-ring`(토큰 링의 동작·속도, 토큰 버스, 802.5·802.4의 상태, DQDB), `network-topology.mesh-tree-topology`(스패닝 트리는 LAN 쌍마다 경로 하나),
+(phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 맡은 기술·지금 상태), `network-topology.fddi`(100 Mbit/s), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)
+
+## (phase 83 step 7) FDDI — RFC 1390 「Transmission of IP and ARP over FDDI Networks」, RFC 1188, RFC 1512 「FDDI Management Information Base」, RFC 1285, RFC 1329 「Thoughts on Address Resolution for Dual MAC FDDI Networks」
+https://www.rfc-editor.org/rfc/rfc1390
+https://www.rfc-editor.org/rfc/rfc1188
+https://www.rfc-editor.org/rfc/rfc1512
+https://www.rfc-editor.org/rfc/rfc1285
+https://www.rfc-editor.org/rfc/rfc1329
+
+판: RFC 1390 — Internet Standard(STD 36, 1993-01). RFC 1188 — Draft Standard(1990-10, RFC 1103을 폐기 — 같은 일을 하는 RFC 1390의 앞선 판). RFC 1512 — 지금 상태 HISTORIC(1993-09, RFC 1285를 고침 — ANSI FDDI SMT 7.3 초안 기준). RFC 1285 — HISTORIC(1992-01, SMT 6.2 기준).
+RFC 1329 — Informational(1992-05, RFC 5494가 고침 — 표준이 아니라 제안 문서). MIB RFC 둘은 지금은 역사 문서라 FDDI 관리 객체의 이름과 뜻을 보는 데만 쓴다. **FDDI 표준 본문(ANSI X3T9.5, ISO 9314)은 열지 못했다** — 이 RFC들과 DTR 8802-1 §5.2.8이 말하는 만큼만 쓴다.
+
+- **FDDI**: Fiber Distributed Data Interface. LAN을 위한 표준 묶음으로, OSI 물리 계층과 데이터 링크 계층의 MAC 부계층을 정하고, IEEE 802의 MAC 계층 표준들과 짝이 된다. 네 부분 — MAC, PHY(Physical Layer Protocol), PMD(Physical Layer Medium Dependent), SMT(Station Management) — 으로 나뉘고,
+  그 그림에서 MAC·PHY·PMD는 위에서 아래로 쌓이고 SMT는 셋 옆에 걸쳐 있다. 그 위의 데이터 링크 서비스는 802.2 LLC가 맡는다 — RFC 1390 「Introduction」(RFC 1188도 같다)
+- **속도**: 100 Mbit/s — DTR 8802-1 표 1(위 항목). RFC 1285의 시간 단위는 「80나노초짜리 옥텟 단위」다(옥텟 하나를 보내는 데 80 ns — 초당 100메가비트와 맞는 셈)
+- **토큰**: FDDI MAC은 토큰으로 보낼 차례를 정한다 — IP 프레임은 비동기 프레임으로, 제한 없는(unrestricted) 토큰을 써서 보낸다 — RFC 1390 「Other MAC Layer Issues」. 토큰의 종류와 동기 프레임은 쓰지 않는다
+- **PMD와 PHY**(DTR 8802-1 §5.2.8): PMD는 FDDI 노드 사이의 점 대 점 통신을 위한 디지털 베이스밴드 전송로를 주고, 부호화된 비트열을 나르는 데 필요한 일을 맡는다(ISO/IEC 9314-3). PHY는 PMD와 MAC 사이를 잇고, 위쪽(upstream)에서 오는 데이터 흐름에 클럭을 맞추며, 기호를 부호화·복호화하고 기호의 경계를 가른다(ISO 9314-1).
+  PMD의 종류는 멀티 모드 광섬유, 싱글 모드(두 갈래), SONET, 저가 광섬유, 트위스티드 페어다 — RFC 1512 `fddimibPORTPMDClass`. FDDI의 PMD는 광섬유가 중심이지만 그것만은 아니다.
+  **PHY가 고장 난 노드를 처리한다는 문장은 이 문서들 어디에도 없다** — `exam-notes.md` E53
+- **이중 링 — 1차·2차**: FDDI 스테이션에는 1차(Primary)·2차(Secondary) 경로가 있고, 고장이 없으면 A·B 포트에 두 경로가 모두 있다 — RFC 1512 `fddimibSMTAvailablePaths`·`fddimibPORTAvailablePaths`. 1차 링·2차 링과 「이중 FDDI 링」이라는 이름 — RFC 1329 §3·§4.
+  단일 MAC 스테이션은 대개 1차 링에 MAC을 둔다 — §4. MAC을 두 링에 하나씩 둔 스테이션끼리는 두 링으로 짐을 나눠 보내 대역폭을 두 배(200 Mbit/s)로 쓰자는 제안이 있다 — §1(제안 문서의 말 — 표준 동작이 아니다. 본문에 쓰지 않는다)
+- **래핑**: 스테이션의 구성 상태(CF State)에는 `wrap_a`·`wrap_b`·`wrap_ab`·`wrap_s` 같은 랩 상태와 두 경로를 그대로 지나보내는 `thru`가 있다(ANSI SMT 9.7.2.2를 든다) — RFC 1512 `fddimibSMTCFState`. 스테이션 안 1차·2차 경로의 상태는 이어짐(concatenated)·나뉨(separated)·통과(thru) 가운데 하나다 — `fddimibSMTStationStatus`.
+  이중 FDDI 링이 래핑하면 스테이션들의 MAC이 모두 한 링 위에 놓인다 — RFC 1329 §8.3. 링이 래핑할 때 스테이션의 연결을 어떻게 둘지는 SMT의 구성 관리(Configuration Management)가 다룬다 — §4.
+  **래핑을 끊긴 곳 양옆의 스테이션이 한다는 문장은 이 RFC들에 없다** — 래핑의 정의(이중 링 스테이션이 반대 방향 링크를 써서 고장 난 링크나 노드를 피한다 — 위 「토폴로지·링크·끝막음」 항목의 802.5c 정의)와 함께 읽으면, 고장 난 곳을 사이에 둔 스테이션들이 두 링을 이어 고리 하나를 다시 만든다는 데까지 나온다(정의에서 나오는 말)
+- **SMT**: SMT 표준의 관리 객체에는 연결 관리(ECM·PCM 상태, 포트의 연결 상태), 링 관리(RMT 상태 — `Ring_Op` 등), 구성 관리(CF 상태 — 위 래핑)가 있다 — RFC 1512 §4.1·§4.2·§4.5.
+  포트마다 링크 오류율을 오래 평균한 추정값을 두고, 그 값이 정해 둔 값(LerCutoff)에 닿으면 그 링크 연결을 끊으며 경보 값(LerAlarm)에 닿으면 경보를 낸다 — `fddimibPORTLerCutoff`·`fddimibPORTLerAlarm`. 스테이션은 이웃 정보 프레임(Neighbor Information Frame) 프로토콜로 위쪽 이웃의 MAC 주소를 안다 — `fddimibMACUpstreamNbr`.
+  그러니 SMT가 링크의 고장을 살펴 연결을 끊고 링 구성을 바꾸는 일을 맡는다는 것은 이 관리 객체들에서 나온다. 「곧바로」 다시 구성한다는 시간은 문서에 없다 — 쓰지 않는다
+- **바이패스**: FDDI 스테이션은 A·B 포트 쌍에 선택 장치인 (광) 바이패스를 둘 수 있다 — RFC 1512 `fddimibSMTBypassPresent`, RFC 1285의 ATTACHMENT(포트 하나나 둘에 선택 광 바이패스를 더해 한 단위로 관리). 바이패스가 무엇을 하는지는 이 RFC들이 정의하지 않는다 — 본문은 쓰지 않는다
+- 쓰지 않는 것: FDDI 프레임 형식과 최대 크기, 토큰의 종류(제한·비제한)와 동기·비동기 프레임, 타이머(T_Req 등), PCM·ECM·RMT 상태 기계의 차례, 이중 MAC 부하 분산(RFC 1329의 제안)
+- **한국어 이름**: FDDI → **FDDI**(풀네임 Fiber Distributed Data Interface — 기출과 같다), primary ring·secondary ring → **1차 링**·**2차 링**(guide의 이름), dual ring → **이중 링**, wrap → **래핑**, PMD → PMD(물리 매체 의존 부분 — 기출의 풀네임 「Physical Medium Dependent」),
+  PHY → PHY(물리 계층 프로토콜), SMT → SMT(스테이션 관리), station → 스테이션, link error rate → 링크 오류율, bypass → 바이패스(이름만)
+
+쓰인 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(FDDI의 뜻·속도, 네 부분, 1차·2차 링, 래핑, SMT의 링크 오류 감시), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(두 번째 링으로 고장을 견딘다는 한 줄), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E53)
