@@ -212,6 +212,7 @@ RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로, man7.org의 md
 **디스크·저장 장치 업체의 문서·상품 페이지는 쓰지 않았다**(허용 목록 밖이다). **기출이 묻지 않는 것은 사실로 가져오지 않았다** — RAID 2·3·4·6·10의 세부(RAID 2·3·4는 한 줄씩만), 하드웨어 RAID와 소프트웨어 RAID의 구현 차이, DDF의 자료 구조와 RAID 레벨 한정자 전체,
 쓰기 구멍(write hole)·비트맵·스크러빙, 파이버 채널의 계층·토폴로지, iSCSI의 PDU·세션·로그인·이름 형식, NAS의 파일 공유 프로토콜(SMB·NFS) 메시지, 저장소 공간(Storage Spaces)의 복원력 방식.
 「(phase 83 step 18)」이 붙은 줄은 phase 83 step 18에서 `raid-storage`의 RAID, RAID 0을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 19)」가 붙은 줄은 phase 83 step 19에서 `raid-storage`의 RAID 1, RAID 5를 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -9502,6 +9503,13 @@ https://www.snia.org/snia-dictionary/download (사전 전체 PDF)
   `raid-storage.raid-0`은 RAID 0의 표제어(어느 장치 하나만 고장 나도 데이터를 잃는다)와 strip·stripe를 「조각(strip)」·「줄(stripe), 곧 스트라이프」로 쓰고(「스트립」은 쓰지 않았다), striped array의 쓰임(입출력 성능, 값이 낮거나 다시 구하기 쉬운 데이터)을 풀어 썼다.
   「큰 파일의 이어진 조각을 서로 다른 디스크가 함께 처리해 빨라진다」는 data striping의 배치에서 나오는 말이고, 「가장 빠르다」는 쓰지 않았다(`exam-notes.md` 「phase 83 step 17」 문단).
   쓰인 곳: `raid-storage.raid`(문단 0~9), `raid-storage.raid-0`(문단 0~3·5), 도식 `raid-array`·`raid-striping`, 문항 n384·n385·n386
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`은 mirroring(같은 데이터의 따로 된 사본을 둘 이상 유지)과 RAID 1(논리 블록마다 장치 둘 이상에 둔다, 장치 하나의 고장을 견딘다)을 「같은 데이터를 디스크 둘 이상에 똑같이 써 두는 방식」·「디스크 하나의 고장을 데이터를 잃지 않고 견딘다」로 쓰고,
+  「디스크가 둘 이상 있어야 만든다」도 이 정의(둘 이상의 장치)에서 썼다. 「RAID 1과 백업」은 backup의 정의를 다시 풀지 않고 같은 주제의 `raid` 문단 7을 이어받았다 — E55의 「자격시험은」 줄은 `raid`에만 두고 되풀이하지 않았다.
+  `raid-storage.raid-5`는 RAID 5(장치 n+1개에 데이터 n개와 패리티 하나, 엇갈려 둔다, 장치 하나의 고장을 견딘다)·RAID 4(블록 단위, 전용 패리티 장치 하나)·parity data·regeneration을 썼다. RAID 2·3은 한 문장으로 줄였다 —
+  「오류를 찾거나 데이터를 되살리는 데 쓰는 정보를 전용 디스크에 따로 둔다」는 RAID 2의 오류 검출 부호와 RAID 3의 전용 패리티 장치를 함께 적은 것이고, 바이트 단위 분산과 부호의 종류는 쓰지 않았다.
+  병목은 I/O bottleneck의 정의(데이터 전송 능력을 묶어 두는 입출력 경로의 자원)를 「데이터가 오가는 길에서 처리가 밀려 전체의 빠르기를 묶어 두는 곳」으로 풀었다. 「같은 양의 데이터를 지키는 데 RAID 5가 공간을 덜 쓴다」는 capacity optimization methods다.
+  「디스크 둘이 함께 고장 나면 데이터를 잃는다」는 RAID 5가 견디는 고장이 하나라는 표제어와, 줄마다 패리티가 하나라 남은 칸으로 얻는 값이 잃은 두 자리의 배타적 논리합 하나뿐이라는 셈(아래 DDF 항목의 XOR)에서 나오는 말이다.
+  쓰인 곳: `raid-storage.raid-1`(문단 0·1·2·4·5), `raid-storage.raid-5`(문단 0·2·4·5·6), 도식 `raid-mirroring`·`raid-parity-rotation`, 문항 n387·n388
 
 ## (phase 83 step 17) SNIA Common RAID Disk Data Format (DDF) Specification v2.0 rev 19 — RAID 레벨의 배치 그림과 패리티 셈
 https://www.snia.org/tech_activities/standards/curr_standards/ddf
@@ -9535,6 +9543,13 @@ https://www.snia.org/sites/default/files/SNIA_DDF_Technical_Position_v2.0.pdf
   「RAID 0과 연결」은 §4.1 표 1(연결은 RAID가 아닌 형식)과 §4.3.3(첫째를 다 채운 뒤 둘째로, 크기가 달라도 된다)이다 — 본문은 이 사양을 「SNIA가 정한 RAID 디스크 형식 사양」으로 불렀다. 「RAID 0과 RAID 1」의 용량(디스크 둘이면 디스크 하나만큼)은 §4.2.2다.
   본문 예의 2TB·`DISK0`~`DISK3`·A1~A8은 예로 든 값이고, A1~A4가 첫째 줄·A5~A8이 둘째 줄로 놓이는 차례는 그림 2의 배치를 디스크 넷에 옮긴 것이다. n385 해설의 RAID 1·RAID 5 용량(디스크 셋으로 1TB·2TB)은 §4.2.3(다중 미러링 — 세 벌)과 표 6(N−1)이다.
   쓰인 곳: `raid-storage.raid`(문단 1), `raid-storage.raid-0`(문단 0·1·4·6·7·8), 도식 `raid-striping`, 문항 n385
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`의 「묶은 디스크마다 같은 자리에 똑같이 써 넣는다」·「데이터를 담을 수 있는 공간은 디스크 하나만큼」은 §4.2.2(두 익스텐트의 같은 자리, 익스텐트마다 크기가 가상 디스크와 같다)이고,
+  디스크 셋을 묶으면 3분의 1을 데이터에 쓴다는 것은 §4.2.3(다중 미러링 — 세 벌)이다. 본문 예의 A1·A2·A3은 「데이터 덩이」라 불렀다 — RAID 1에는 조각(strip)으로 잘라 디스크마다 나누는 단계가 없어 RAID 0의 「조각」이라는 말을 쓰지 않았다.
+  `raid-storage.raid-5`의 「패리티는 같은 줄의 데이터 조각들을 비트마다 배타적 논리합한 값」은 식 3·7·13이다. 배타적 논리합의 뜻(두 비트가 다르면 1, 같으면 0)과 「1이 늘 짝수 개가 되게 맞춰진다」·「잃은 비트는 남은 것들을 배타적 논리합한 값」은 그 정의에서 나오는 셈이고,
+  본문 예의 비트 값(A1 1, A2 1, A3 0 → P1 0, 되살린 A2 1)은 예로 든 값이다. 「회전 패리티(rotating parity)」는 표 1의 이름이다.
+  「첫째 줄의 패리티를 마지막 디스크에 두고 한 줄 내려갈 때마다 한 디스크씩 앞으로 옮긴다」·「데이터 조각은 줄마다 패리티가 없는 디스크를 앞에서부터 채운다」는 「회전 패리티 N」(식 14)과 「데이터 다시 시작」이고, 본문은 이것을 「그 사양에 실린 배치 가운데 하나」로 적었다 —
+  디스크 넷이면 첫째~넷째 줄의 패리티가 `DISK3`·`DISK2`·`DISK1`·`DISK0`에 놓이고, 데이터 A1~A12는 A1·A2·A3·P1 / A4·A5·P2·A6 / A7·P3·A8·A9 / P4·A10·A11·A12로 놓인다(디스크 이름·조각 이름과 수는 예로 든 값).
+  용량 n − 1(본문 예 2TB × 3 = 6TB)은 표 6이다. 쓰인 곳: `raid-storage.raid-1`(문단 0·2·6), `raid-storage.raid-5`(문단 1·2·3·5·7·8), 도식 `raid-mirroring`·`raid-parity-rotation`
 
 ## (phase 83 step 17) 레벨마다의 동작과 디스크 최소 수 — Linux md(4)(mdadm), Microsoft Learn: create volume stripe·create volume mirror·create volume raid(DiskPart), Volume Object(VDS), Basic and Dynamic Disks
 https://man7.org/linux/man-pages/man4/md.4.html
@@ -9579,6 +9594,15 @@ Windows의 동적 디스크는 운영 체제를 담는 미러 부팅 볼륨을 �
   `raid-storage.raid-0`의 「디스크가 둘 이상 있어야 만든다」는 `create volume stripe`(동적 디스크 둘 이상)이고, 「디스크 하나만 고장 나도 통째로 쓸 수 없게 된다」는 VDS 「Volume Types」(스트라이프 볼륨은 디스크 하나만 고장 나도 볼륨 전체가 고장 난다)다 — DiskPart와 Windows의 볼륨 이름은 본문에 쓰지 않았다.
   「RAID 0과 연결」의 「Linux의 md 드라이버는 연결을 LINEAR라 부르고, 나중에 디스크를 더 붙여 이미 담긴 데이터를 건드리지 않고 공간을 늘릴 수 있다는 점을 RAID 0과 다른 점으로 든다」는 「LINEAR」다. 드라이버의 한 줄 풀이는 앞 phase의 `linux-filesystem.disk-device-names`와 같은 뜻이다.
   쓰인 곳: `raid-storage.raid`(문단 5·7), `raid-storage.raid-0`(문단 4·5·7), 문항 n385·n386
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`의 「바뀐 내용을 모든 디스크에 함께 쓴다」와, 읽기를 디스크들에 나누지만 「RAID 0만큼 빨라지지는 않는다」·「큰 파일 하나를 처음부터 끝까지 차례로 읽는 일은 빨라지지 않고,
+  여러 읽기가 함께 들어오거나 흩어진 자리를 읽을 때 여러 디스크를 쓴다」는 「RAID1」이다 — 본문은 「Linux의 md 드라이버 … 그 문서는 … 적는다」로 한 구현의 문서라고 밝혀 쓰고, 그 자리에 E54의 「자격시험은」 줄을 붙였다.
+  「디스크를 셋 이상 묶었다면 하나만 남을 때까지 견딘다」는 DESCRIPTION(RAID1은 장치 수보다 하나 적은 고장까지), 「크기가 서로 다르면 가장 작은 디스크만큼」은 「RAID1」이다.
+  「고장 난 디스크를 빼고 남은 디스크로 계속 답한다」·「성한 디스크를 복사해 새 디스크를 채운다」와 RAID 5의 「줄마다 계산한 조각과 패리티를 새 디스크에 써 넣는다」는 「RECOVERY」다.
+  「RAID 1과 백업」의 「실수로 지우거나 잘못 고친 것도 모든 디스크에 똑같이 쓰인다」는 「RAID1」(바뀐 것은 모든 장치에 함께 쓴다)에서 나오는 말이다(E55 「표준」).
+  `raid-storage.raid-5`의 「데이터 조각을 하나라도 고치면 그 줄의 패리티도 함께 고친다」·「잃은 조각을 그때그때 계산해 낸다」는 「RAID4」이고, 「RAID 4는 어느 조각을 고치든 패리티 디스크에도 써야 한다」·
+  「RAID 5는 서로 다른 줄을 고치는 쓰기라면 패리티가 다른 디스크에 있을 때가 많아 쓰기를 나란히 처리한다」·「읽기도 모든 디스크에 나눈다」는 「RAID5」다 — 「병목」이라는 낱말은 위 SNIA 항목의 I/O bottleneck으로 이었다.
+  「분산 패리티(distributed parity)」는 「RAID5」의 이름이고, 본문은 md 드라이버 문서의 이름이라고 밝혔다. 「RAID 5는 디스크가 셋 이상 있어야 만든다」는 `create volume raid`·VDS 「Volume Types」이고, `raid-0`처럼 DiskPart와 Windows의 볼륨 이름은 본문에 쓰지 않았다.
+  쓰인 곳: `raid-storage.raid-1`(문단 1·2·3·4·6), `raid-storage.raid-5`(문단 2·3·4·5·6·8), 문항 n387·n388
 
 ## (phase 83 step 17) iSCSI — RFC 7143 「Internet Small Computer System Interface (iSCSI) Protocol (Consolidated)」, Microsoft Learn 「iSCSI Target Server overview」
 https://www.rfc-editor.org/rfc/rfc7143
