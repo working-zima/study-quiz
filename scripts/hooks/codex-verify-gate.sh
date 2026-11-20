@@ -19,6 +19,13 @@ fi
 
 cd "$ROOT" || { printf '%s\n' "$ALLOW"; exit 0; }
 
+# 워킹 트리에 바뀐 파일이 없으면(대화만 했거나 이미 커밋을 마친 턴) 게이트를 건너뛴다.
+# harness step은 끝날 때 아직 커밋 전이라 변경이 있으므로 지금처럼 게이트가 돈다.
+if [ -z "$(git status --porcelain 2>/dev/null)" ]; then
+  printf '%s\n' "$ALLOW"
+  exit 0
+fi
+
 if OUT=$(npm run lint 2>&1 && npm run build 2>&1 && npm run test 2>&1); then
   printf '%s\n' "$ALLOW"
 else
