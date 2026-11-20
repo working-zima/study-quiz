@@ -181,6 +181,123 @@
       "sources": [
         "network-topology.ring-topology"
       ]
+    },
+    "mesh-tree-links": {
+      "label": "노드 넷을 모든 쌍마다 링크로 바로 이은 완전 메시와, 스위치 셋 아래로 노드 넷이 가지를 친 트리형을 나란히 놓고, 링크 하나가 끊겼을 때 데이터가 다른 길로 가는지 견주는 도식",
+      "svgLabel": "「완전 메시」 박스에 PC01~PC04를 네 귀퉁이에 놓고 링크 여섯으로 서로 잇고, 「트리형」 박스에 SW01 아래로 SW02·SW03을, 그 아래로 PC01~PC04를 이은 그림",
+      "question": "메시형과 트리형은 노드를 어떻게 이을까?",
+      "idleCaption": "완전 메시 박스에는 PC01~PC04 네 노드가 쌍마다 링크 하나로 이어져 있고, 트리형 박스에는 SW01 아래로 SW02·SW03이, 그 아래로 PC01~PC04가 이어져 있다. 두 박스의 PC01~PC04는 서로 다른 예이고, 노드 이름은 예로 붙인 것이다. 버튼으로 장면을 고르면 링크가 놓인 모양과, 링크 하나가 끊겼을 때 데이터가 가는 길을 볼 수 있다.",
+      "legend": "가는 선은 두 노드를 잇는 링크이고, 굵은 화살표는 데이터가 가는 쪽이다. 장면에서 고른 박스 안의 흐린 선은 끊긴 링크다.",
+      "nodes": {
+        "m-pc01": "PC01",
+        "m-pc02": "PC02",
+        "m-pc03": "PC03",
+        "m-pc04": "PC04",
+        "t-sw01": "SW01",
+        "t-sw02": "SW02",
+        "t-sw03": "SW03",
+        "t-pc01": "PC01",
+        "t-pc02": "PC02",
+        "t-pc03": "PC03",
+        "t-pc04": "PC04"
+      },
+      "groups": {
+        "mesh": "완전 메시",
+        "tree": "트리형"
+      },
+      "notes": {
+        "full-mesh-note": "노드 쌍마다 링크가 하나씩, 모두 여섯이다",
+        "mesh-cut-note": "끊긴 링크 대신 PC04를 거쳐 PC03에 닿는다",
+        "tree-note": "PC01에서 PC04로 가는 길은 하나뿐이다",
+        "tree-cut-note": "SW01에서 더 갈 길이 없어 PC01에 닿지 못한다"
+      },
+      "scenarios": [
+        {
+          "id": "full-mesh",
+          "label": "완전 메시",
+          "caption": "완전 메시는 PC01~PC04의 모든 노드 쌍을 저마다 링크 하나로 바로 잇는다. 노드 넷이면 쌍이 여섯이라 링크도 4×3÷2=6개이고, 어느 두 노드든 다른 노드를 거치지 않고 주고받는다.",
+          "sources": [
+            "network-topology.mesh-tree-topology"
+          ]
+        },
+        {
+          "id": "mesh-cut",
+          "label": "메시에서 끊기면",
+          "caption": "PC01과 PC03 사이의 링크가 끊겨도, PC01이 PC03에게 보내는 데이터는 PC04에 먼저 닿고 PC04가 받아 PC03으로 넘겨 준다. 길이 여럿이라 링크 하나가 끊겨도 다른 노드를 거쳐 가는 길이 남는다.",
+          "sources": [
+            "network-topology.mesh-tree-topology"
+          ]
+        },
+        {
+          "id": "tree",
+          "label": "트리형",
+          "caption": "트리형은 SW01에서 아래로 가지를 친다. 노드가 일곱이니 링크는 여섯이고 고리가 없어, PC01이 PC04에게 보낸 데이터는 SW02, SW01, SW03을 차례로 거치는 길 하나로만 간다.",
+          "sources": [
+            "network-topology.mesh-tree-topology"
+          ]
+        },
+        {
+          "id": "tree-cut",
+          "label": "트리에서 끊기면",
+          "caption": "SW01과 SW02 사이의 링크가 끊기면, PC04가 PC01에게 보낸 데이터는 SW03을 거쳐 SW01까지 가지만 더 갈 길이 없어 PC01에 닿지 못한다. 돌아갈 다른 길이 없기 때문이다. PC01과 PC02는 SW02를 거쳐 서로는 주고받는다.",
+          "sources": [
+            "network-topology.mesh-tree-topology"
+          ]
+        }
+      ],
+      "sources": [
+        "network-topology.mesh-tree-topology"
+      ]
+    },
+    "token-passing": {
+      "label": "PC01→PC02→PC03→PC04→PC01 차례로 도는 토큰 링에서, 토큰이 노드를 차례로 거쳐 도는 모습과, 토큰을 잡은 PC03이 PC01에게 데이터를 보내는 모습과, 다 보낸 PC03이 새 토큰을 PC04로 내보내는 모습을 보이는 도식",
+      "svgLabel": "왼쪽 위 PC01, 오른쪽 위 PC02, 오른쪽 아래 PC03, 왼쪽 아래 PC04를 사각형 둘레에 놓고 한 방향 링크 넷으로 이어 고리를 만든 그림",
+      "question": "토큰 링에서는 누가 언제 보낼까?",
+      "idleCaption": "PC01~PC04가 한 방향 링크 넷으로 이어진 링에서, 보낼 차례를 나타내는 토큰이 PC01 → PC02 → PC03 → PC04 → PC01 차례로 돈다. PC01~PC04는 예로 붙인 이름이다. 버튼으로 장면을 고르면 토큰과 데이터가 가는 길을 차례로 볼 수 있다.",
+      "legend": "가는 화살표는 한 노드에서 다음 노드로 가는 한 방향 링크이고, 굵은 화살표는 장면마다 토큰이나 데이터가 가는 쪽이다. 무엇이 가는지는 그림 아래의 곁말이 밝힌다.",
+      "nodes": {
+        "pc01": "PC01",
+        "pc02": "PC02",
+        "pc03": "PC03",
+        "pc04": "PC04"
+      },
+      "notes": {
+        "circulate-center": "토큰이 차례로 돈다",
+        "holder-transmit": "토큰을 잡은 노드: PC03",
+        "holder-release": "토큰을 받은 노드: PC04",
+        "circulate-note": "보낼 데이터가 없으면 토큰을 다음 노드로 넘긴다",
+        "transmit-note": "토큰을 잡은 PC03만 데이터를 보낸다",
+        "release-note": "다 보낸 PC03이 새 토큰을 PC04로 내보낸다"
+      },
+      "scenarios": [
+        {
+          "id": "circulate",
+          "label": "토큰이 돈다",
+          "caption": "보낼 데이터가 없는 노드는 받은 토큰을 다음 노드로 넘긴다. 그래서 토큰은 PC01 → PC02 → PC03 → PC04 → PC01 차례로 링을 한 방향으로 돌고, 노드마다 보낼 차례가 돌아온다.",
+          "sources": [
+            "network-topology.token-ring"
+          ]
+        },
+        {
+          "id": "transmit",
+          "label": "토큰을 잡고 보낸다",
+          "caption": "PC01에게 보낼 데이터가 있는 PC03은 토큰이 오기를 기다렸다가 토큰을 잡고 데이터를 보낸다. 데이터는 다음 노드인 PC04에 닿고, PC04가 받은 신호를 다시 내보내 PC01에 닿는다. 토큰을 잡은 노드 하나만 보내므로 신호가 부딪칠 일이 없다.",
+          "sources": [
+            "network-topology.token-ring"
+          ]
+        },
+        {
+          "id": "release",
+          "label": "토큰을 넘긴다",
+          "caption": "데이터를 다 보낸 PC03은 새 토큰을 다음 노드인 PC04로 내보낸다. 토큰을 잡고 있을 수 있는 시간에는 한도가 있어, 토큰은 다시 링을 돌며 다른 노드에게도 보낼 차례를 넘긴다.",
+          "sources": [
+            "network-topology.token-ring"
+          ]
+        }
+      ],
+      "sources": [
+        "network-topology.token-ring"
+      ]
     }
   },
   "tables": {},

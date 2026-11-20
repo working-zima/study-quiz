@@ -190,6 +190,7 @@ RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로 받았다. ITU-
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 토큰 링·FDDI의 프레임 형식·타이머 값·우선순위·액티브 모니터, 토큰의 종류(동기·비동기, 제한·비제한), 802.4·802.6의 동작, 802.3 리피터 망의 구성 규칙(구간 수·지연 값), 802.17(RPR)의 동작.
 「(phase 83 step 8)」이 붙은 줄은 phase 83 step 8에서 `network-topology`의 네트워크 토폴로지, 버스형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 9)」이 붙은 줄은 phase 83 step 9에서 `network-topology`의 성형, 링형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 10)」이 붙은 줄은 phase 83 step 10에서 `network-topology`의 메시형과 트리형, 토큰 링을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -1697,6 +1698,7 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
   - P2MP 망은 분배기 하나(1:16)로 지을 수도 있고, 분배기를 여러 단으로 두어 가지를 친 나무 꼴(tree-and-branch)로 지을 수도 있다 — 그림 67-2는 1:2 분배기 아래에 1:8 분배기 둘을 둔다 — §67.1·§67.2.2·§67.2.3
   - 가입자 쪽 건물 안에서는 IEEE 802.3이 정한 어느 네트워크 토폴로지든 쓸 수 있다 — §67.1
   - 쓰일 곳: (phase 83 step 9·10에서 쓰일 곳) `network-topology.star-topology`(가운데 장치와 끝 장치 사이의 점 대 점), `network-topology.mesh-tree-topology`(가지를 친 나무 꼴 — 위 단 분배기 아래로 아래 단 분배기가 갈라진다)
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.mesh-tree-topology`가 위 §67.2.3 그림(1:2 분배기 아래 1:8 분배기 둘)을 「IEEE 802.3의 한 개정판(802.3ah)도 빛을 여러 가닥으로 나누는 부품을 위 단에 하나, 그 아래 단에 둘 두어 가지를 친 나무 꼴(tree-and-branch)로 망을 짓는 그림을 싣는다」로 썼다 — 트리형이라는 모양의 근거로만 쓰고 분기 비율은 쓰지 않았다
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, (phase 72 step 7) `hub-switch-vlan.csma-cd`(풀네임, IEEE 802.3이 매체 접근 방식으로 정한 규칙), 문항 n038·n039 해설(풀네임)
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
@@ -2015,6 +2017,10 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
 
 - (phase 83 step 7) 위 26·28쪽 줄(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길이 스패닝 트리)을 트리형이 쓴다. 투명 브리징의 스패닝 트리는 LAN 쌍마다 활성 경로가 하나뿐이다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목의 DTR 8802-1 §9.2
   - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(트리형에는 고리가 없다 — 두 노드 사이의 길이 하나)
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: 트리형에 고리가 없다는 것(맨 위 노드를 뺀 노드마다 위로 가는 링크 하나, 두 노드 사이의 길 하나, 노드가 n개면 링크 n−1개)은 트리의 짜임에서 나오는 말로 쓰고,
+  「스위치들이 일부 링크를 막아 남기는 고리 없는 길에도 트리라는 이름을 붙여 스패닝 트리라 부르고, 스패닝 트리는 이어진 두 네트워크 구간 사이에 데이터가 다니는 길을 하나만 남긴다」를 `hub-switch-vlan.stp`와 같은 뜻으로 덧붙였다(DTR §9.2).
+  「위쪽 가지의 링크가 끊기면 그 아래 노드들이 나머지 노드로 가는 길을 잃는다」도 길이 하나뿐이라는 것에서 나오는 말로 썼고, 끊긴 링크 아래의 노드끼리는 여전히 주고받는다고 함께 적었다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`, 문항 n370 해설(트리형의 링크 수), 도식 `MeshTreeLinksDiagram`(트리형·트리에서 끊기면)
 
 쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(태그로 VLAN을 안 스위치가 그 VLAN에 든 포트로만 내보낸다 — 12쪽, 스위치가 포트에서 태그를 붙이고 뗀다 — 17쪽), 문항 n048 해설
 
@@ -2283,6 +2289,10 @@ https://www.rfc-editor.org/rfc/rfc1042
   링이 고장 난 상태와 신호를 잃은 상태를 따로 두고 곧바로 회복해야 하는 오류가 생기면 비컨 프레임을 보낸다(`dot5RingState`·`dot5RingStatus`·`dot5StatsHardErrors`). 비컨이 고장 난 곳을 가리키는 방법·Bypass 상태는 쓰지 않았다(위 줄의 판정대로).
   「고장 하나로 고리 전체의 통신이 멈출 수 있다」는 토큰이 링을 따라 노드에서 노드로 돈다는 것(아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §5.2.3)과 링크가 한 방향이라는 것에서 이어지는 말로 썼다(E52 「처리」의 문장). 「확장성이 떨어진다」는 쓰지 않았다
   - 쓰인 곳: (phase 83 step 9) `network-topology.ring-topology`(위쪽 이웃, 삽입, 링 고장 상태와 비컨, 고리 전체가 멈출 수 있다), 문항 n369 해설, 도식 `RingPassDiagram`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.token-ring`에 위 `dot5TimerHolding` 줄(토큰을 잡은 노드가 보낼 수 있는 시간에 한도가 있다)과 `dot5TimerNoToken` 줄(그래서 토큰이 정해진 시간 안에 한 바퀴 돌아 모든 노드에 차례가 오고, 노드가 많을수록 한 바퀴가 길다)을 썼다.
+  「보낼 권리가 토큰을 잡은 노드 하나에만 있어 두 노드가 같은 때 보내 신호가 겹칠 일이 없다」와 「차례가 돌아오기까지의 시간에도 끝이 있다」는 이 두 줄과 DTR §5.2.3의 동작에서 나오는 말로 썼다. 속도는 DTR·802.5-1998 개요의 4·16 Mbit/s만 쓰고 RFC 1748의 1 Mbit/s 값은 쓰지 않았다.
+  RFC 1042 [3]·[5]로 「CSMA/CD는 IEEE 802.3이 정한 매체 접근 방식이고, 802.5의 토큰 링과는 다른 표준이다」를 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.token-ring`(토큰을 잡는 시간의 한도와 차례, 충돌이 없다, 「토큰 링과 CSMA/CD」), 문항 n371 해설, 도식 `TokenPassingDiagram`
 쓰인 곳: `hub-switch-vlan.csma-cd`(토큰을 잡은 장치가 정해 둔 시간 동안 보내도록 허락받는 방식은 CSMA/CD와 다른 매체 접근 방식), 문항 n038 해설
 
 ## (phase 72 step 8) RFC 4761 — Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling, 4.2.1 MAC Address Learning, 4.2.2 Aging
@@ -7849,6 +7859,9 @@ TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802
 - (phase 83 step 7) 위 802.15.5 튜토리얼 줄(WPAN 메시는 완전 메시나 부분 메시 연결을 쓰고, 경로 여분으로 신뢰성을 높인다)과 끊긴 링크를 알리고 다른 경로로 보낸다는 줄을 `network-topology.mesh-tree-topology`가 쓴다 — 메시의 뜻은 `wireless-lan.wireless-mesh`와 같게 쓴다.
   **부분 메시를 정의한 문장은 찾지 못했다** — 본문은 완전 메시와 견주어 「모든 노드 쌍을 잇지 않고 일부 쌍만 링크로 잇는 메시」로 쓰는 데까지만 쓴다(이름에서 나오는 말)
   - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.mesh-tree-topology`에 메시형을 `wireless-lan.wireless-mesh`와 같은 뜻(노드마다 이웃 여럿과 이어져 그물처럼 얽히고, 바로 이어지지 않은 두 노드 사이는 중간 노드가 받아 넘겨 준다)으로 쓰고,
+  「IEEE 802가 정한 무선 메시 기술에서도 링크가 끊긴 것을 알아챈 노드가 다른 노드들에게 알리고 끊긴 링크를 거치지 않는 다른 길로 데이터를 보낸다」를 위 튜토리얼 줄에서 썼다. 부분 메시는 위 줄의 판정대로 이름에서 나오는 말(일부 노드 쌍만 바로 잇는 메시)로만 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`, 도식 `MeshTreeLinksDiagram`(메시에서 끊기면)
 
 쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
 
@@ -9045,6 +9058,11 @@ RFC 4456은 Draft Standard(2006-04, RFC 7606이 고침, RFC 1966·2796을 폐기
     `exam-notes.md` E52대로 「자격시험(네트워크관리사 2급)은 링형을 장애를 쉽게 찾고, 노드 사이 연결을 줄이려고 설계한 토폴로지로 본다」를 한 줄 덧붙였고, 문항·도식은 두 말을 쓰지 않는다
   - 쓰인 곳: (phase 83 step 9) `network-topology.star-topology`(점 대 점, 10BASE-T와 스위치, 가운데를 거친다, 노드의 고장과 가운데 장치의 고장, 예 `HUB01`·`PC01`~`PC04`), `network-topology.ring-topology`(한 방향 링크, 위쪽 이웃, 다시 내보낸다, 삽입, 끊김, 이중 링, E52, 「링형과 버스형」, 예 `PC01`~`PC04`),
     문항 n367·n368·n369, 도식 `StarCenterFailureDiagram`·`RingPassDiagram`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**:
+  - 완전 메시: 위 「완전 메시의 연결 수」 줄대로 「모든 노드 쌍을 링크로 바로 이으면 링크가 n×(n−1)÷2개」로 쓰고, 셈의 까닭(노드마다 n−1개와 이어지고, 링크 하나를 양 끝의 두 노드가 한 번씩 세므로 2로 나눈다)을 풀었다.
+    「노드가 많아지면 이렇게 늘어나는 링크를 감당하기 어려워진다」는 RFC 4456 §1의 「감당하기 어렵다」를 링크에 옮긴 말이다. 케이블·포트의 비용은 쓰지 않았다. 값은 본문 계산 예가 노드 넷(6개), 「완전 메시와 성형」 4절이 노드 다섯(성형 5개·완전 메시 10개), 문항 n370이 장치 여섯(15개)으로 서로 갈랐다
+  - 트리형: 트리형의 예를 스위치 `SW01` 아래 `SW02`·`SW03`, 그 아래 `PC01`~`PC04`로 들었다 — 다른 스위치들을 잇는 위쪽 스위치가 줄기(백본) 노릇을 한다는 것은 아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §9.1이 근거다. `SW01`~`SW03`은 guide의 예시 값 목록에 없던 이름표로, 트리형의 예를 스위치로 들려고 더했다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`(완전 메시의 링크 수와 계산 예, 「완전 메시와 성형」, 트리형의 예), 문항 n370, 도식 `MeshTreeLinksDiagram`
 
 쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(토폴로지의 뜻, 물리·논리, 점 대 점과 다중점), `network-topology.bus-topology`(공유 구간, 끝막음과 반사), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(위쪽 이웃·삽입·스테이션이 되풀이해 보낸다, 이중 링),
 (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(완전 메시의 연결 수와 감당하기 어렵다는 것), (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(이중 링·래핑의 뜻), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
@@ -9086,6 +9104,10 @@ ieee802.org: 해산 목록 NADots(마지막 고친 날 2026-08-20), 802.2 페이
 - 쓰지 않는 것: 토큰 링의 프레임 형식·우선순위·액티브 모니터, 802.4의 동작(토큰을 넘기는 차례 정하기)과 FSK 방식, DQDB의 동작(분산 큐), 802.7~802.23 각 작업 그룹이 맡았던 기술(이 주제는 802.1·802.2·802.3·802.4·802.5·802.11·802.15와 802.6의 이름까지), 소스 라우팅 브리지
 - **한국어 이름**: token → **토큰**, token ring → **토큰 링**(`hub-switch-vlan.csma-cd`가 쓴 이름), token-passing → **토큰 패싱**(기출의 이름), token bus → **토큰 버스**(기출의 이름), logical ring → 논리적인 링, DQDB → DQDB(이름만), working group → 작업 그룹(phase 72의 이름),
   disbanded → **해산**, withdrawn → **철회**(phase 82의 이름), LLC → LLC(논리 링크 제어), TAG → 기술 자문 그룹
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.token-ring`에 §5.2.3을 「보낼 데이터가 있는 노드는 토큰이 올 때까지 기다리고, 토큰을 받으면 그 토큰을 잡아 데이터의 앞머리로 바꾸어 보내고, 다 보내면 새 토큰을 다음 노드로 내보낸다」로 썼다(「잡는다」는 RFC 1748 `dot5TimerHolding`의 capturing과 `hub-switch-vlan.csma-cd`가 쓴 말을 따랐다).
+  802.5-1998 개요의 4·16 Mbit/s와 트위스티드 페어·광섬유, §5.2.2와 802.4-1990 개요의 토큰 버스(토큰을 가진 노드가 버스에 보낸다 — 토큰을 넘기는 차례는 쓰지 않았다), 802.4-1990의 2002년 철회·802.5v-2001의 2008년 철회·802.5-1998의 철회 상태, 802.4·802.5 작업 그룹의 해산을 썼다.
+  「토큰 링과 CSMA/CD」 4절의 CSMA/CD 동작은 §5.2.1과 `hub-switch-vlan.csma-cd`의 뜻대로 썼다. DQDB는 쓰지 않았다(기출의 오답일 뿐 이 개념이 가르칠 것이 아니다). §9.1의 백본(다른 브리지들을 잇는 브리지)은 `network-topology.mesh-tree-topology`의 트리형 예에 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.token-ring`(토큰의 동작, 속도·매체, 토큰 버스, 표준·작업 그룹의 상태, 「토큰 링과 CSMA/CD」), `network-topology.mesh-tree-topology`(백본), 문항 n371, 도식 `TokenPassingDiagram`
 
 쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(논리적인 링), (phase 83 step 10에서 쓰일 곳) `network-topology.token-ring`(토큰 링의 동작·속도, 토큰 버스, 802.5·802.4의 상태, DQDB), `network-topology.mesh-tree-topology`(스패닝 트리는 LAN 쌍마다 경로 하나),
 (phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 맡은 기술·지금 상태), `network-topology.fddi`(100 Mbit/s), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)

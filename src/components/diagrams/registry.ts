@@ -213,6 +213,7 @@ import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
 import { MediaSignalKindsDiagram } from './MediaSignalKindsDiagram'
 import { MeshRerouteDiagram } from './MeshRerouteDiagram'
+import { MeshTreeLinksDiagram } from './MeshTreeLinksDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MibTreeDiagram } from './MibTreeDiagram'
@@ -382,6 +383,7 @@ import { ThreeWayHandshakeDiagram } from './ThreeWayHandshakeDiagram'
 import { ThroughputDiagram } from './ThroughputDiagram'
 import { TimeWaitDiagram } from './TimeWaitDiagram'
 import { TlsHandshakeDiagram } from './TlsHandshakeDiagram'
+import { TokenPassingDiagram } from './TokenPassingDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
 import { TopologyLinkKindsDiagram } from './TopologyLinkKindsDiagram'
@@ -571,6 +573,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-topology.bus-topology': BusTerminatorDiagram,
   'network-topology.star-topology': StarCenterFailureDiagram,
   'network-topology.ring-topology': RingPassDiagram,
+  'network-topology.mesh-tree-topology': MeshTreeLinksDiagram,
+  'network-topology.token-ring': TokenPassingDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,
