@@ -259,6 +259,58 @@
       "sources": [
         "cloud-sdn.sdn"
       ]
+    },
+    "nfv-architecture": {
+      "label": "NFV에서 가상 방화벽·가상 라우터 같은 VNF가 NFVI의 하드웨어와 가상화 계층 위에서 실행되는 모습과, 트래픽이 늘 때 NFV-MANO가 VNF를 하나 더 실행하는 모습을 보이는 도식",
+      "svgLabel": "「NFVI」 박스 안에 아래에서 위로 쌓은 하드웨어(NFVI01)·가상화 계층 두 칸과, 그 위의 가상 방화벽·가상 라우터·가상 방화벽 2, 그리고 NFV-MANO를 화살표로 이은 그림",
+      "question": "NFV에서 네트워크 기능은 어디에서 실행될까?",
+      "idleCaption": "가상 방화벽과 가상 라우터는 범용 서버 NFVI01의 하드웨어 위, 가상화 계층 위에서 실행되는 소프트웨어다. 버튼으로 VNF·NFVI·늘리기를 고르면 NFV의 세 부분이 저마다 무엇이고 무엇을 하는지 볼 수 있다.",
+      "legend": "아래에서 위로 쌓은 두 칸은 VNF가 실행되는 바탕이고, 화살표는 NFV-MANO가 VNF를 하나 더 실행하는 쪽이다. 가상 방화벽 2는 트래픽이 늘었을 때 더 실행한 가상 방화벽이고, NFVI01은 예로 붙인 범용 서버의 이름표다.",
+      "nodes": {
+        "vfw": "가상 방화벽",
+        "vrouter": "가상 라우터",
+        "vfw2": "가상 방화벽 2",
+        "mano": "NFV-MANO",
+        "virt": "가상화 계층",
+        "hw": "하드웨어(NFVI01)"
+      },
+      "groups": {
+        "nfvi": "NFVI"
+      },
+      "notes": {
+        "vnf-note": "네트워크 기능을 소프트웨어로 만든 것이다",
+        "nfvi-note": "VNF가 실행될 하드웨어와 가상화 계층이다",
+        "scale-note": "트래픽이 늘면 가상 방화벽을 하나 더 실행한다"
+      },
+      "scenarios": [
+        {
+          "id": "vnf",
+          "label": "VNF",
+          "caption": "가상 방화벽과 가상 라우터는 방화벽과 라우터의 일을 소프트웨어로 만든 VNF다. 기능마다 따로 만든 전용 장비가 아니라, 범용 서버 NFVI01 위에서 함께 실행된다.",
+          "sources": [
+            "cloud-sdn.nfv"
+          ]
+        },
+        {
+          "id": "nfvi",
+          "label": "NFVI",
+          "caption": "NFVI는 VNF가 실행되는 바탕으로, 범용 서버 NFVI01의 계산·저장·네트워크 하드웨어와 그 자원을 VNF들에게 나눠 주는 가상화 계층으로 이루어진다. NFV를 써도 이 물리 하드웨어는 여전히 있어야 한다.",
+          "sources": [
+            "cloud-sdn.nfv"
+          ]
+        },
+        {
+          "id": "scale",
+          "label": "늘리기",
+          "caption": "지나가는 트래픽이 늘어 가상 방화벽 하나로 감당하기 어려워지면, NFV-MANO가 NFVI01에 남은 자원으로 가상 방화벽 2를 실행해 둘로 늘린다. 방화벽 장비를 새로 사서 설치하지 않고 소프트웨어를 하나 더 실행한 것이다.",
+          "sources": [
+            "cloud-sdn.nfv"
+          ]
+        }
+      ],
+      "sources": [
+        "cloud-sdn.nfv"
+      ]
     }
   },
   "tables": {},

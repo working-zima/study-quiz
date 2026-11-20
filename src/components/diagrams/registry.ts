@@ -245,6 +245,7 @@ import { NetstatWindowsOptionsDiagram } from './NetstatWindowsOptionsDiagram'
 import { NetworkBroadcastDiagram } from './NetworkBroadcastDiagram'
 import { NetworkHostPartsDiagram } from './NetworkHostPartsDiagram'
 import { NetworkStructureDiagram } from './NetworkStructureDiagram'
+import { NfvArchitectureDiagram } from './NfvArchitectureDiagram'
 import { NicFilterDiagram } from './NicFilterDiagram'
 import { NodeRoleDiagram } from './NodeRoleDiagram'
 import { NotActionDenyDiagram } from './NotActionDenyDiagram'
@@ -742,6 +743,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'cloud-sdn.data-center': DataCenterServicesDiagram,
   'cloud-sdn.fog-computing': FogLayersDiagram,
   'cloud-sdn.sdn': SdnPlanesDiagram,
+  'cloud-sdn.nfv': NfvArchitectureDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
