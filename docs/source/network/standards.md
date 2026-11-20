@@ -166,6 +166,12 @@ PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 
 사용자가 브라우저로 받아 둔 파일 셋 — 802.11 문서 11-15/0132r17·11-09/0992r21과 CSA의 Zigbee 사양 R23.2 — 을 저장소 밖에서 글자만 뽑아 읽었다(Zigbee 사양도 step 4 때는 Cloudflare가 막아 못 읽었던 것이다).
 **두 802.11 문서는 작업반이 초안을 쓰기 전에 합의한 내용을 모은 사양 틀(specification framework)이지 표준 본문이 아니다** — 그래서 본문은 「작업반의 사양 틀은 ~로 정했다」로 쓰고, 최종 표준에서 바뀌었을 수 있는 세부(묶음 크기의 짝 전체, 신호 칸의 비트 수)는 가져오지 않았다.
 개정마다의 최대 데이터 전송률은 두 문서 어디에도 합한 값으로 적혀 있지 않아 쓰지 않았다.
+「(phase 83 step 0)」이 붙은 줄과 항목은 phase 83 step 0에서 `transmission-media` 주제의 앞 개념 다섯(전송 매체, 트위스티드 페어 케이블, 동축 케이블, 광케이블, FTTH와 PON)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+이 주제는 강의 밖 주제라 사실의 근거는 표준 문서뿐이다(ADR-059). ITU-T 권고는 권고 페이지(`itu.int/rec/T-REC-…/en`)에서 판·승인일·상태를 확인하고 무료 PDF를 IPv4로 내려받아 글자를 뽑아 읽었다(이날 itu.int는 브라우저가 보내는 Accept 머리가 없는 요청을 「Request Rejected」로 거절해, 그 머리를 붙여 받았다).
+**ITU-T 용어 데이터베이스(`itu.int/br_tsb_terms`)는 쓰지 못했다** — 그 화면이 부르는 조회 주소(`itu.int/itad/nmt/api/get_terms`)가 transmission medium·twisted·coaxial·optical fibre 어느 낱말에도 빈 결과만 돌려줬다. 그래서 낱말의 뜻은 권고 본문(정의 절과 표지 뒤의 시리즈 목록)에서 가져왔다.
+**IEEE 802.3 본문은 열지 못했다**(IEEE GET 프로그램은 `ieeexplore.ieee.org` 로그인이다) — 그래서 `ieee802.org`에 올라온 발행 표준의 사본(802.3ah-2004), 작업 그룹의 유지 보수 요청과 그 처리 이력, 연구 그룹의 작업 문서와 회원 발표 자료, 802.3의 매체 이름을 옮긴 IANA MAU 레지스트리와 RFC 4836으로 썼다.
+회원 발표 자료는 표준 본문이 아니고 업체 소속 회원이 쓴 것도 있다 — 항목마다 어떤 문서인지 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 케이블 범주(카테고리)별 전기 특성표, 광섬유의 분산·파장별 손실 표 전체, 커넥터 종류, PON의 세대별 전송률·암호화·대역 할당. 전송 손상·부호화·다중화는 step 3, 토폴로지(버스형의 터미네이터 포함)는 step 7의 몫이라 이 step에서 정리하지 않았다.
 
 ---
 
@@ -1516,6 +1522,17 @@ G 시리즈 권고의 보충 문서(Supplement)다. 권고가 아니라 광섬�
 - 광섬유는 구리선이 전자를 이끌듯 빛을 이끌 수 있어, 레이저 빛으로 통신하는 데 알맞다고 제안되었다 — §5
 - 광 송신기 안에서 전기 신호인 비트 흐름이 빛(광 반송파)의 세기를 바꾸고, 광섬유를 지난 광 신호는 광 수신기가 다시 전기 신호로 바꾼다 — §5.6
 
+- (phase 83 step 0, 2026-11-20 같은 판을 IPv4로 다시 받아 읽음 — 권고 페이지의 판 목록에서 10/2018이 In force이고 02/2008·02/2011·04/2014는 Superseded다. 권고가 아니라 보충 문서라는 위 머리말은 그대로다) **광섬유가 구리 매체와 견줘 무엇이 나은가 — 손실과 중계 간격**:
+  - 1960년대의 광섬유는 손실이 1 000 dB/km를 넘었고, 1970년 무렵 1 000 nm 근처에서 20 dB/km 아래로 줄면서 광통신 개발이 본격적으로 시작됐다 — §5
+  - 여기서 중계기(repeater)는 빛을 전기로 바꿨다가 다시 빛으로 만드는 장치다 — §5. 첫 세대 광 시스템(850 nm, 멀티 모드 광섬유, 1980년 상용)은 중계기를 10 km까지 띄워 둘 수 있었고, 같은 때의 동축 시스템은 중계기 간격이 1 km였다.
+    중계기가 줄면 설치·유지 비용이 줄어 그것이 광섬유를 쓰는 큰 동기였다 — §5.1
+  - 1 300 nm 근처에서 광섬유 손실은 1.0 dB/km 아래다. 멀티 모드 광섬유는 분산 때문에 100 Mbit/s 아래로 묶였고, 손실이 0.5 dB/km 아래인 싱글 모드 광섬유가 그 한계를 넘었다. 그 뒤 멀티 모드 시스템은 차츰 물러났다 — §5.2
+  - 실리카 광섬유의 손실은 1 550 nm 근처에서 가장 작고, 1979년에 이 대역에서 0.2 dB/km인 광섬유가 나왔다 — §5.3. 이 대역의 시스템도 70~80 km마다 전자식 중계기로 신호를 다시 만들어야 했다 — §5.4(그 뒤의 광 증폭기와 WDM은 step 3의 몫이라 여기서 정리하지 않는다)
+  - 광 기술은 기간망에서 전통적인 구리 도체를 완전히 대신했고, 가입자망(access network)에도 깔리기 시작했다 — §5.7
+  - 공중망에서는 싱글 모드 광섬유(G.652)가 멀티 모드를 거의 다 대신했다. 멀티 모드 광섬유는 지금도 건물 안과 데이터 센터의 배선에서 이더넷 등으로 속도에 따라 100~2 000 m에 쓰인다 — §8.2.1. G.651.1의 멀티 모드 광섬유는 1 Gbit/s 이더넷을 550 m까지 잇는다 — §8.2.2
+  - 이 문서에는 광섬유가 「대역폭이 가장 넓다」, 「전자기 간섭을 받지 않는다」, 「보안에 강하다」는 문장이 없다 — 전문 검색(bandwidth·electromagnetic·interference·immun·security)
+  - 쓰일 곳: (phase 83 step 1·2에서 쓰일 곳) `transmission-media.transmission-media`(매체를 견주는 축 — 거리에 따라 신호가 약해지는 정도, 기간망에서 광섬유가 구리를 대신함),
+    `transmission-media.optical-fiber`(손실이 적어 중계기 없이 먼 거리를 간다 — 동축 1 km와 첫 광 시스템 10 km, 싱글 모드 0.5·0.2 dB/km, 멀티 모드와 싱글 모드의 쓰임), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단 — [기출 2024-08-25 #46])
 쓰인 곳: `network-basics.communication-link`, `ethernet.standard-names`(광케이블은 빛을 이끄는 광섬유로 빛 신호를 실어 나른다)
 
 ## (phase 71) Microsoft Learn — Windows commands, ping, Task Manager
@@ -1612,6 +1629,16 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
 - 규격 이름 하나는 「IEEE 802.3의 물리 계층 규격(Physical Layer specification)」 하나로 정의된다. 예: 1000BASE-BX10은 싱글 모드 광섬유 **한 가닥**으로, 1000BASE-LX10은 싱글 모드나 멀티 모드 광섬유 두 가닥으로
   1000 Mb/s 점대점 링크를 만드는 물리 계층 규격이다. 100BASE-FX는 멀티 모드 광섬유 두 가닥을 쓰는 100 Mb/s 규격이다 — §1.4(PDF 20쪽)
 
+- (phase 83 step 0, 2026-11-20 같은 사본을 IPv4로 다시 받아 읽음 — 발행 표준 IEEE Std 802.3ah-2004의 전문이고, 지금은 뒤 판의 IEEE Std 802.3에 합쳐졌다) **가입자망의 점 대 점 연결과 EPON**:
+  - 이 개정은 가입자망(subscriber access network)에서 **점 대 점(P2P)** 연결에 쓰는 광섬유·전화용 구리선 물리 계층과, **수동 광 분배기(passive optical splitter)로 점 대 다중점(P2MP) 구조를 만드는 EPON**을 함께 들였다. 이 묶음을 「Ethernet in the First Mile(EFM)」이라 부른다 — 초록, §56.1
+  - 100BASE-LX10은 보통의 싱글 모드 광섬유 두 가닥으로 10 km를 잇는 점 대 점 규격이다 — §56.1(1000BASE-LX10·BX10은 위 §1.4 줄)
+  - PON은 신호가 출발지에서 목적지까지 가는 길에 **능동 소자가 하나도 없는** 광 네트워크이고, 그 안의 소자는 광섬유·접속(splice)·분배기 같은 수동 광 부품뿐이다. 이것을 이더넷과 합친 것이 EPON이다 — §64.1
+  - P2MP는 나무(tree-and-branch) 꼴이다. 줄기 쪽 장치가 **OLT**, 가지 쪽 장치가 **ONU**이고, OLT는 보통 통신사 설비에, ONU는 가입자 집에 둔다 — §64.1. OLT는 광 가입자망의 망 쪽 끝 장치, ONU는 가입자 쪽 끝 장치다 — §1.4
+  - 내려가는 방향(OLT → ONU)은 OLT가 보낸 신호가 1:N 수동 분배기(또는 여러 단의 분배기)를 지나 모든 ONU에 닿는다. 올라가는 방향은 한 ONU가 보낸 신호가 OLT에만 닿고 다른 ONU에는 닿지 않으며,
+    충돌을 막으려고 OLT가 ONU마다 보낼 시간 칸을 정해 준다 — §64.1(시간 칸을 주는 방식의 세부는 쓰지 않는다)
+  - 1000BASE-PX10·PX20은 PON으로 적어도 10 km·20 km를 잇고, 대표적인 분기 비율은 1:16이다. 싱글 모드 광섬유 한 가닥을 두 방향이 함께 쓰고, 보통 내려가는 쪽은 1 490 nm, 올라가는 쪽은 1 310 nm 대역이다 — §60.1
+  - 「AON」(active optical network)·「PTP」라는 이름은 이 문서에 없다 — 이 문서는 점 대 점을 P2P로 적는다(전문 검색). 아래 `exam-notes.md` E49
+  - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(PON의 뜻 — 길 위에 능동 소자가 없다, OLT·ONU의 자리, 수동 분배기와 1:N, 내려가고 올라가는 방향, 점 대 점 규격, 분기 1:16·10/20 km), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, (phase 72 step 7) `hub-switch-vlan.csma-cd`(풀네임, IEEE 802.3이 매체 접근 방식으로 정한 규칙), 문항 n038·n039 해설(풀네임)
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
@@ -1628,6 +1655,13 @@ https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
 - 규격별 매체(표): 100BASE-TX 평형 트위스티드 페어 2쌍 100 m, 1000BASE-T 평형 트위스티드 페어 4쌍 100 m, 1000BASE-SX 멀티 모드 광섬유 두 가닥(850 nm) 550 m,
   1000BASE-LX 싱글 모드 광섬유 두 가닥(1310 nm) 5 km, 1000BASE-CX 트윈 액시얼 구리 25 m, 1000BASE-BX10 싱글 모드 광섬유 한 가닥 10 km, 10GBASE-T 평형 트위스티드 페어 4쌍 100 m — PDF 3~5쪽 표
 
+- (phase 83 step 0, 2026-11-20 같은 PDF를 IPv4로 다시 받아 읽음 — 2쪽 표는 글자를 뽑으면 칸이 어긋나서 그 쪽을 그림으로 렌더해 읽었다) 2쪽 표 「Existing and under development IEEE 802.3 PHYs (Page 1 of 7)」의 줄 넷:
+  10BASE5 — 동축(Coax), 500 m, 8장, 비고 Deprecated / 10BASE2 — 동축 MAU, 185 m, 10장, Deprecated / 10BROAD36 — CATV 동축, 11장, Deprecated(거리 칸은 비었다) / 10BASE-T — 평형 트위스티드 페어 2쌍, 100 m, 14장(비고 없음).
+  「Deprecated」는 2015년의 이 정리가 비고 칸에 단 표시다 — 표준이 그 조항에 붙인 「새 설치에 권하지 않음」 주석은 아래 「(phase 83 step 0) 구리 매체 …」 항목(유지 보수 요청 1066)과 위 「(phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록」 항목이 댄다
+  같은 표의 4·5쪽(Page 3·4 of 7)도 렌더해 읽었다 — 10GBASE-SR은 멀티 모드 광섬유 두 가닥(850 nm)으로 400 m(52장), 10GBASE-LRM은 멀티 모드 광섬유 두 가닥(1 310 nm)으로 220 m(68장), 10GBASE-LR은 싱글 모드 광섬유 두 가닥으로 10 km, 10GBASE-ER은 싱글 모드 광섬유 두 가닥(1 550 nm)으로 40 km(둘 다 52장)다.
+  곧 10GBASE-SR·LRM은 광섬유(멀티 모드)를 쓰는 규격이고, 싱글 모드 규격은 리피터 없이 한 링크로 10 km·40 km를 잇는다
+  쓰일 곳: (phase 83 step 1·2에서 쓰일 곳) `transmission-media.twisted-pair`(10BASE-T는 트위스티드 페어 2쌍으로 100 m), `transmission-media.coaxial-cable`(10BASE5 500 m·10BASE2 185 m의 동축, 10BROAD36은 CATV 동축),
+  `transmission-media.optical-fiber`(싱글 모드 규격의 10 km·40 km — 「수 km마다 리피터가 꼭 필요」가 틀린 근거), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단 — [기출 2025-02-23 #23]·[기출 2026-05-17 #23]의 10GBASE-SR·LRM)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(100BASE-TX는 트위스티드 페어, 1000BASE-SX는 멀티 모드 광섬유), (phase 72에서 쓰일 곳) `ethernet.standard-names`
 
 ## (phase 72) Pete Anslow, 「PMD naming」 (IEEE P802.3bs Task Force, 2015-07)
@@ -8423,3 +8457,123 @@ https://csa-iot.org/developer-resource/specifications-download-request/
 - **한국어 이름**: coordinator → 코디네이터, router → 라우터(이 주제에서는 Zigbee의 역할 이름이다 — 네트워크 계층 장비인 라우터와 이름만 같다), end device → 엔드 디바이스, star topology → 별 모양
 
 쓰인 곳: `wireless-lan.zigbee`(문단 2 — 세 역할과 별 모양, 문단 3 — 예의 LIGHT01·SENSOR01의 역할)
+
+## (phase 83 step 0) ITU-T 광섬유 권고 — G.650.1 (01/2024), G.651.1 (11/2018), G.652 (08/2024), L.400/L.12 (02/2022); IEEE 802.3 OMEGA 연구 그룹 발표 「Fiber Components for Optical Automotive」(2019-11)
+https://www.itu.int/rec/T-REC-G.650.1-202401-I/en
+https://www.itu.int/rec/T-REC-G.651.1-201811-I/en
+https://www.itu.int/rec/T-REC-G.652-202408-I/en
+https://www.itu.int/rec/T-REC-L.400-202202-I/en
+https://www.ieee802.org/3/OMEGA/public/nov_2019/swanson_OMEGA_01_1119.pdf
+
+판: G.650.1 「Definitions and test methods for linear, deterministic attributes of single-mode fibre and cable」(2024-01-13 승인, In force — 앞 판 여덟은 Superseded), G.651.1 「Characteristics of a 50/125 µm multimode graded index optical fibre cable for the optical access network」(2018-11-29 승인, In force),
+G.652 「Characteristics of a single-mode optical fibre and cable」(2024-08-29 승인, In force), L.400/L.12 「Optical fibre splices」(2022-02-13 승인, In force — L.12가 옛 번호다). 넷 다 권고 페이지에서 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+OMEGA 발표는 IEEE 802.3 연구 그룹 회의에 광섬유 업체(Corning) 소속 회원이 낸 발표 자료다 — **표준 본문이 아니고 업체의 입장이 섞일 수 있어**, 위 권고들에서 찾지 못한 광섬유의 성질 하나(전자기 간섭)에만 쓴다.
+
+- **코어와 클래딩**: 클래딩은 광섬유 단면에서 가장 바깥의 유리 부분이다 — G.650.1 §3.3.1. 코어의 중심은 광섬유 가운데 부분에서 나오는 빛의 세기 분포로 잡는다 — §3.3.7.
+  빛을 붙잡아 이끄는 것은 코어다 — 접속할 끝을 비스듬히 자르면 반사된 빛이 코어에 붙잡혀 이끌리지 못하고 클래딩으로 가서 약해진다(L.400 §7.4 — 비스듬한 절단의 효과를 말하는 대목이다)
+- **굴절률**: 수치 구경(NA)은 광섬유의 코어로 들어가거나 나올 수 있는 빛의 원뿔이 얼마나 벌어지는지를 나타내는 값이고, 그 이론상 최대치는 코어의 최대 굴절률 n1과 클래딩의 굴절률 n2로 √(n1² − n2²)이다 — G.651.1 §5.5.
+  표 1의 NA 0.20이 0보다 크므로 코어의 굴절률이 클래딩보다 높다(식에서 나오는 말이다). **「클래딩의 굴절률이 코어보다 낮아 빛이 코어에 갇힌다」를 한 문장으로 적은 곳과, 굴절률이 무엇인지 정의한 문장은 이 step이 읽은 권고에 없다**
+- **싱글 모드와 멀티 모드**: 광섬유 안을 진행할 수 있는 빛의 모드가 하나뿐이면 싱글 모드다. 차단 파장은 모드 하나만 진행하는 가장 짧은 파장이고, 그보다 짧은 파장에서는 여러 모드가 함께 진행해 그 광섬유는 멀티 모드로 동작한다 — G.650.1 §3.4.3.
+  권고가 말하는 모드는 광섬유 안의 전자기장 분포(mode field)다 — §3.4.1.1. 모드를 「빛이 지나는 길」로 풀어 쓰는 것은 이해를 돕는 비유이고, 그렇게 쓰면 비유라고 밝힌다
+- **멀티 모드(G.651.1)**: 코어 지름 50 µm, 클래딩 지름 125 µm(공칭값)인 그레이디드 인덱스 멀티 모드 광섬유이고 — §5.1, §5.2, 표 1, 850 nm나 1 300 nm 대역(또는 둘 다)에서 쓴다 — §1.
+  1 Gbit/s 이더넷(1000BASE-SX·1000BASE-LX)을 550 m까지 잇는다 — §7. 케이블의 감쇠 계수는 최대 3.5 dB/km(850 nm)·1.0 dB/km(1 300 nm)다 — 표 1.
+  싱글 모드 광섬유가 나온 뒤 공중 통신망에는 거의 쓰지 않게 됐고, 건물 안 배선(이더넷)에는 지금도 널리 쓴다 — 머리말, 부록 I
+- **싱글 모드(G.652)**: 1 310 nm 근처에서 분산이 0이고 1 310 nm·1 550 nm 대역에서 쓰는 싱글 모드 광섬유다 — §1. 클래딩 지름은 125 µm다 — §6.2.
+  코어 지름 대신 빛이 퍼진 폭인 모드 필드 지름을 정하고, 1 310 nm에서 공칭 8.6~9.5 µm다 — §6.1, 표 1(G.652.B). 케이블의 감쇠 계수는 최대 0.4 dB/km(1 310 nm)·0.35 dB/km(1 550 nm)다 — 표 1(G.652.B). 이 값은 실내용 짧은 케이블에는 맞추지 않는다 — 표 1 NOTE 1
+- 두 권고의 값을 나란히 놓으면, 싱글 모드에서 빛이 지나는 폭(약 9 µm)은 멀티 모드의 코어(50 µm)보다 훨씬 가늘고, 1 300 nm 대역에서 1 km마다 줄어드는 빛의 세기는 멀티 모드 1.0 dB/km, 싱글 모드 0.4 dB/km다 — 두 표에서 나오는 말이다
+- **광섬유를 잇는 법 — 접속(splice)**: 접속은 두 광섬유 사이에 빛을 넘기려고 만드는 이음이고, 융착이나 기계적 방법으로 만든다 — L.400 §3.2.1. 지금 쓸 수 있는 기술은 융착 접속과 기계적 접속 둘이고, 둘 다 영구 연결로 만든다 — 머리말(Introduction)
+  - **융착 접속**(fusion splice): 현장에서 가장 널리 쓰는 것은 전기 아크 융착이고, 이를 위해 특별히 만든 **접속 장비**(splicing machine)를 쓴다. 광섬유의 보호 피복을 벗기고 끝을 자른 뒤 장비의 두 전극 사이에 두 끝을 맞춰 놓고,
+    아크로 유리를 녹여 붙여 끊김 없는 유리 가닥으로 만든 다음 이음 부위에 보호 부품을 씌운다. 두 끝은 V자 홈에 얹어 맞추거나 코어·클래딩을 살피며 맞춘다 — §6.1
+  - **기계적 접속**(mechanical splice): 두 끝을 맞대는 면, 맞춘 자리를 붙잡아 두는 부품, 두 끝 사이에 넣는 굴절률 정합 물질(젤·접착제 등)로 이루어진 부품을 쓴다 — §6.2
+  - 어느 쪽이든 자른 면의 질과 두 광섬유의 차이(굴절률 분포·모드 필드 지름·코어 중심이 맞는 정도)가 접속 손실을 정한다 — §6.1, §6.2.
+    그러니 「동축 케이블처럼 따로 장비 없이 선을 이어 쓴다」는 이 권고와 맞지 않는다 — 두 방법 모두 전용 장비나 부품이 든다
+- **전자기 간섭**: 광섬유는 구리를 보완하며 넓은 대역폭(exceptional bandwidth)·가벼움·적은 전력·**전자기 면역**(electromagnetic immunity)·험한 환경을 견디는 성질을 준다 — OMEGA 발표 2쪽(회원 발표 — 표준 본문이 아니다).
+  이 step이 읽은 ITU-T 권고(G.650.1·G.651.1·G.652·L.400, G Suppl. 42)에는 광섬유가 전자기 간섭을 받지 않는다는 문장이 없다 — 전문 검색(electromagnetic·interference·immun·EMI). 이 발표도 「간섭이 없다」가 아니라 「면역」(받지 않는다)으로 쓴다
+- 「대역폭이 가장 넓다」(구리 매체와 견줘 가장 넓다)와 「보안에 강하다」는 위 다섯 문서 어디에도 없다 — `exam-notes.md` E47·E48
+- 쓰지 않는 것: 분산 계수·편광 모드 분산·굽힘 손실의 값, 모드 필드 지름의 허용 오차, 차단 파장의 값, G.652의 범주(A~D) 차이, 접속 손실의 허용값, 커넥터
+- **한국어 이름**: optical fibre → 광섬유, optical fibre cable → 광케이블(앞 phase의 `network-basics.communication-link`·`ethernet.standard-names`가 쓴 이름), core → 코어, cladding → 클래딩(기출의 표기 — 「클래드」로도 쓴다), refractive index → 굴절률,
+  single-mode → 싱글 모드, multimode → 멀티 모드(앞 phase의 이름), mode field diameter → 모드 필드 지름(쓴다면 「빛이 퍼진 폭」으로 풀어 쓴다), attenuation → 감쇠(step 3이 자세히 다룬다), splice → 접속, fusion splice → 융착 접속, mechanical splice → 기계적 접속,
+  splicing machine → 접속 장비(「융착 접속기」라고도 부를 수 있지만 권고의 말을 살렸다), electromagnetic immunity → 전자기 간섭을 받지 않는다
+
+쓰인 곳: (phase 83 step 2에서 쓰일 곳) `transmission-media.optical-fiber`(코어·클래딩·굴절률, 싱글 모드와 멀티 모드의 차이와 값, 손실, 접속과 장비, 전자기 간섭), (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(견주는 축 — 감쇠, 전자기 간섭),
+기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E47·E48)
+
+## (phase 83 step 0) 구리 매체 — ITU-T G 시리즈 목록, L.19 (05/2010), L.109 (01/2024), K.99 (07/2017); IANA MAU MIB; RFC 4836; IEEE 802.3 유지 보수 요청 1066과 작업 문서 셋
+https://www.itu.int/rec/T-REC-L.19-201005-I/en
+https://www.itu.int/rec/T-REC-L.109-202401-I/en
+https://www.itu.int/rec/T-REC-K.99-201707-I/en
+https://www.iana.org/assignments/ianamau-mib/ianamau-mib
+https://www.rfc-editor.org/rfc/rfc4836
+https://www.ieee802.org/3/maint/requests/maint_1066.pdf
+https://www.ieee802.org/3/maint/requests/revision_history.html
+https://www.ieee802.org/3/power_study/public/nov99/thompson_1_1199.pdf
+https://www.ieee802.org/3/cg/public/Mar2017/carlson_3NGAUTO_02_0317.pdf
+https://www.ieee802.org/3/bu/public/jan14/mueller_3bu_01_0114.pdf
+
+판: L.19 「Multi-pair copper network cable supporting shared multiple services such as POTS, ISDN and xDSL」(2010-05-29 승인, In force), L.109 「Construction of optical/metallic hybrid cables」(2024-01 판, In force — 광·금속 복합 케이블의 권고라 동축·대칭 쌍 단위의 구조만 쓴다),
+K.99 「Surge protective component application guide – Gas discharge tubes」(2017-07-29 승인, In force — 서지 보호 부품의 권고라 부록 III.3의 동축 케이블 식만 쓴다). 셋 다 무료 PDF를 IPv4로 내려받아 읽었다.
+IANA MAU MIB는 레지스트리의 MIB 글(LAST-UPDATED 2026-07-15)을, RFC 4836은 rfc-editor.org의 텍스트판을 읽었다(Proposed Standard, 2007-04, RFC 3636을 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다 — `…/rfc4836.json`).
+IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)과 그 처리 이력 페이지, 802.3 전원 연구 그룹의 작업 문서(G. Thompson, 1999-11-09 — MDI의 핀 배치 표), 802.3 차세대 차량용 연구 그룹의 발표(S. Carlson, 2017-03-13),
+802.3bu 태스크 포스의 발표(T. Müller, 2014-01 — 업체 소속 회원). **넷 다 표준 본문이 아니다.**
+
+- **ITU-T가 전송 매체를 가르는 묶음**: ITU-T G 시리즈 권고 목록(권고마다 표지 뒤에 싣는 목록 — G.652 (08/2024)에서 읽었다)에서 「전송 매체와 광 시스템 특성」(G.600~G.699)은 대칭 케이블 쌍(G.610~G.619), 육상 동축 케이블 쌍(G.620~G.629), 해저 케이블(G.630~G.639),
+  자유 공간 광 시스템(G.640~G.649), 광섬유 케이블(G.650~G.659)로 나뉜다. 전파로 잇는 무선 중계·위성 링크는 다른 묶음(G.400~G.449)이다.
+  **「전송 매체」를 한 문장으로 정의한 곳과 「유도 매체·비유도 매체」라는 이름은 이 step이 읽은 문서에서 찾지 못했다**(ITU-T 용어 데이터베이스는 쓰지 못했다 — 머리말). 물리 계층이 매체로 비트를 나른다는 것은 위 「ITU-T X.200」 항목의 §7.7.2 줄이 댄다
+- **꼰 구리선 쌍**: 구리 가입자 케이블의 쌍은 꼰 쌍(twisted pairs)·스타 쿼드(star quads)·꼬지 않은 쌍(untwisted pairs)으로 짓는다 — L.19 표 2. 광·금속 복합 케이블의 대칭 쌍 단위는 꼰(stranded) 금속 쌍을 담고, 차폐가 필요하면 알루미늄 테이프·금속 편조 같은 것으로 감싼다 — L.109 §6.2.4
+- **누화와 평형**: 같은 케이블에 든 쌍들, 특히 가까이 놓인 쌍 사이는 결합이 완전히 끊기지 않아 한 쌍의 신호가 옆 쌍으로 넘어와 섞인다(누화) — L.19 §7.3.2. 한 케이블 안에서 서로 다른 서비스가 주고받는 간섭의 정도는 쌍 사이의 거리·절연 같은 케이블의 물리적 특성에 달렸다 — §6.3.
+  고주파·충격성 잡음을 줄이려면 구리 쌍이 평형을 잘 이뤄야 한다 — 부록 II.3. **「선을 꼬면 간섭이 준다」는 문장은 찾지 못했다** — 본문은 꼬는 까닭을 단정하지 않는다. 누화·잡음 자체는 step 3(`transmission-media.transmission-impairments`)의 몫이다.
+  「여러 선을 묶어 쓰면 간섭이 준다」([기출 2024-08-25 #46]의 오답)는 L.19 §7.3.2와 반대다 — 한 케이블에 함께 든 쌍끼리는 오히려 누화가 생긴다
+- **UTP와 STP**: 802.3bu 태스크 포스 발표는 차폐 없는 꼰 쌍을 「Unshielded Twisted Pair」로, 차폐한 꼰 쌍을 STP로 적고, 전자기 적합성(EMC) 때문에 차폐 케이블로 물러서는 경우를 든다 — 3~5쪽(업체 소속 회원 발표).
+  IANA MAU MIB는 10BASE-T의 매체를 「UTP」로 적는다(아래 줄). 802.3u의 100BASE-TX는 Category 5 평형 케이블 2쌍이나 150옴 차폐 평형 케이블을 쓴다 — 위 「(phase 72) IEEE SA — 802.3u-1995 …」 항목.
+  **`U/UTP`·`U/FTP` 같은 차폐 표기는 이 step이 읽은 허용 출처에 없다**
+- **카테고리**: IANA MAU MIB는 100BASE-T4를 「4쌍 category 3 UTP」, 100BASE-TX를 「2쌍 category 5 UTP」로 적는다(dot3MauType100BaseT4·dot3MauType100BaseTXHD/FD). 802.3u 초록도 100BASE-T4는 Category 3·4·5 평형 케이블 4쌍, 100BASE-TX는 Category 5 평형 케이블 2쌍을 쓴다고 적는다(위 항목).
+  카테고리별 전기 특성은 가져오지 않는다
+- **10BASE-T의 쌍과 핀**: 10BASE-T는 평형 트위스티드 페어 2쌍으로 100 m를 잇는다 — 위 「(phase 72) David Law, 「Past PHY naming」」 항목의 (phase 83 step 0) 줄. IANA MAU MIB는 10BASE-T의 MAU를 「UTP MAU」로 적고 참조로 802.3 14장을 든다.
+  802.3 전원 연구 그룹의 작업 문서(Thompson, 1999-11)의 MDI 핀 표는 RJ-45 커넥터의 8핀 가운데 10/100BASE-T(MDI)가 1·2번을 보내는 쌍(TD+·TD−), 3·6번을 받는 쌍(RD+·RD−)으로 쓰고, 4·5·7·8번은 신호 이름 없이 「Term」으로만 둔다. 근거로 ISO/IEC 8802-3:1996 §14.5.1을 든다.
+  같은 표의 MDI-X 줄은 1·2와 3·6의 보내기·받기를 맞바꾸고, 1000BASE-T 줄은 네 쌍(8핀)을 모두 양방향 신호(BI_DA~BI_DD)로 쓴다 — 작업 문서이지 표준 본문이 아니다. 핀 1·2, 3·6이 각각 한 쌍이라는 것은 이 표의 짝 묶음에서 나온다
+- **동축 케이블의 구조**: 동축 단위는 같은 중심축을 가진 안쪽 도체와 바깥 도체 한 쌍을 담는다 — L.109 §6.2.5. 동축 케이블의 특성 임피던스는 안쪽 도체 지름·바깥 도체 지름과 둘 사이를 채운 유전체(절연체)의 비유전율로 정해지고, 케이블 유전체의 비유전율은 대개 1.5~3이다 — K.99 부록 III.3.
+  그러니 안쪽 도체를 절연체가 감싸고 그 바깥을 바깥 도체가 같은 축으로 감싼다. 케이블 맨 바깥의 피복(sheath)은 케이블 일반의 말이다 — L.109 §6.2.12.
+  **바깥 도체가 바깥 잡음을 막는다는 문장과, 끊긴 동축을 커넥터로 다시 잇는다는 문장은 찾지 못했다**
+- **이더넷의 동축 규격**: IANA MAU MIB — 10BASE5는 「thick coax MAU」(두꺼운 동축), 10BASE2는 「thin coax MAU」(얇은 동축), 10BROAD36은 「broadband DTE MAU」다.
+  10BASE5는 동축 케이블 한 줄(버스)에 「뱀파이어 탭」으로 노드를 붙였고, 케이블은 500 m까지였으며 양 끝에 50옴 끝막음이 있어야 했다. 10BASE5는 802.3-2015에도 남아 있다 — Carlson 발표 3쪽(버스형과 끝막음은 step 7이 이 줄을 쓴다).
+  10BASE2 조항(10장)에는 「이 MAU는 새 설치에 권하지 않는다. 2011년 9월부터 이 조항의 유지 보수 변경은 더 검토하지 않는다」는 뜻의 주석이 있다 — 같은 3쪽이 옮긴 802.3의 주석(위 「(phase 72 step 1) … 의견 처리 기록」 항목의 P802.3bh D2.0 #168과 맞는다)
+- **10BASE5·10BROAD36의 「새 설치에 권하지 않음」**: 유지 보수 요청 1066은 8장(10BASE5)·11장(10BROAD36)·12장(1BASE5)·16장(10BASE-FP) 첫머리에 「이 MAU는 새 설치에 권하지 않는다」를, 23장(100BASE-T4)·32장(100BASE-T2)에는 같은 뜻의 PHY 주석을 붙이자고 했다.
+  계기는 10BASE5 망이 이제 역사적 관심거리일 뿐이라는 투표 의견이었다 — 요청 문서. 처리 이력은 이 변경이 IEEE Std 802.3-2002에 실렸다(Published)고 적는다 — 이력 페이지의 1066 줄
+- **베이스밴드와 브로드밴드**: 규격 이름의 BASE는 베이스밴드, BROAD는 브로드밴드를 뜻한다 — 위 「Past PHY naming」 항목. 10BROAD36 MAU는 정해진 송신 **반송파 주파수**에 신호를 싣고, 주파수 다중화로 보내는 길과 받는 길을 가르며(케이블 하나나 둘로),
+  IEEE는 브로드밴드 MAU를 새 설치에 쓰지 말라고 권한다 — RFC 4836의 MIB(broadMauXmtCarrierFreq·broadMauXmtRcvSplitType·broadMauBasicTable — 셋 다 deprecated 표시).
+  **베이스밴드·브로드밴드를 한 문장으로 정의한 곳은 찾지 못했다** — 본문은 「브로드밴드 규격(10BROAD36)은 신호를 반송파 주파수에 실어 주파수로 길을 나눈다」까지 쓰고, 베이스밴드는 「이름에 BASE가 붙는 규격의 방식」이라는 데까지만 쓴다
+- 쓰지 않는 것: 커넥터 종류(IANA의 잭 이름 목록 — RJ45·BNC 등), 카테고리별 전기 특성, 특성 임피던스의 값, 뱀파이어 탭의 구조, 10BROAD36의 주파수 값
+- **한국어 이름**: twisted pair → 트위스티드 페어(앞 phase의 이름 — 기출은 「이중 나선」이라고도 쓴다), unshielded twisted pair → 비차폐 트위스티드 페어(UTP), shielded twisted pair → 차폐 트위스티드 페어(STP), screen·shield → 차폐, category → 카테고리,
+  coaxial cable → 동축 케이블(기출의 이름), inner conductor → 중심 도체(guide의 이름 — 권고의 말은 「안쪽 도체」), outer conductor → 바깥 도체, dielectric → 절연체(K.99의 말은 「유전체」 — 학습자에게 익은 말을 골랐다), sheath → 피복,
+  thick·thin coax → 두꺼운 동축·얇은 동축(기출은 「Thin Coaxial Cable」), baseband·broadband → 베이스밴드·브로드밴드(앞 phase의 `ethernet.standard-names`가 「베이스밴드」를 썼다), carrier frequency → 반송파 주파수
+
+쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
+(phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),
+기출 대조(`exam-notes.md` 「phase 83 step 0」 문단)
+
+## (phase 83 step 0) ITU-T 광 가입자망 권고 — G.983.1 (01/2005), G.984.1 (03/2008), G.987 (06/2012)
+https://www.itu.int/rec/T-REC-G.983.1-200501-I/en
+https://www.itu.int/rec/T-REC-G.984.1-200803-I/en
+https://www.itu.int/rec/T-REC-G.987-201206-I/en
+
+판: G.983.1 「Broadband optical access systems based on Passive Optical Networks (PON)」(2005-01-13 승인, In force — 개정 1(05/05)과 정오표 1(03/06)이 붙어 있다), G.984.1 「Gigabit-capable passive optical networks (GPON): General characteristics」(2008-03-29 승인, In force — 개정 1(10/09)·개정 2(04/12)가 붙어 있다),
+G.987 「10-Gigabit-capable passive optical network (XG-PON) systems: Definitions, abbreviations and acronyms」(2012-06-13 승인, In force). 셋 다 본문 PDF를 IPv4로 내려받아 읽었고, 개정·정오표는 읽지 않았다.
+
+- **광 가입자망의 구조**: 가입자 쪽 접근망(local access network)의 광 구간은 능동일 수도 수동일 수도 있고, 구조는 점 대 점일 수도 점 대 다중점일 수도 있다 — G.984.1 §5.1. G.983.1 §5.1은 이것을 「점 대 점」, 「능동」, 「수동 점 대 다중점」 세 구조로 적는다.
+  구조는 광섬유가 어디까지 오는지로도 나뉜다 — 집까지(FTTH, Fibre to the Home), 건물이나 연석까지(FTTB·FTTC), 길가의 캐비닛까지(FTTCab). 이 차이는 주로 지원하는 서비스의 차이라 권고는 넷을 같은 틀로 다룬다 — G.984.1 §5.1·그림 1, 약어 절
+- **광 가입자망(OAN)**: 같은 망 쪽 인터페이스를 함께 쓰고 광 전송 시스템이 받치는 가입자 링크들의 묶음이고, 같은 OLT에 이어진 ODN 여럿을 담을 수 있다 — G.984.1 §3.2.5
+- **ODN**: PON에서 접근망의 광섬유 나무(tree)에 광 분배기·필터 같은 수동 광 소자를 더한 것이다 — G.984.1 §3.2.6. G.987 §3.2.4는 ODN을 점 대 다중점 광섬유 기반 시설로 정의하고, 가장 단순한 ODN은 전부 수동이며 뿌리 하나에서 가지를 친 광섬유 나무(분배기·결합기·필터 등)라고 적는다.
+  둘 이상의 수동 구간 사이에 능동 장치를 둔 「복합 ODN」도 정의한다 — 같은 절
+- **OLT·ONU·ONT**: OLT는 ODN의 공통 끝(뿌리)에 있는 장치로, PON 프로토콜을 처리하고 통신사 쪽 서비스 인터페이스로 이어 주며 그 아래의 ODN과 ONU를 관리한다 — G.984.1 §3.2.7.
+  ONU는 ODN의 갈래 끝(잎) 하나에 있는 장치로, PON 프로토콜을 처리하고 가입자 쪽 서비스 인터페이스로 이어 준다. 여러 가입자용 장치를 뜻하기도 한다 — §3.2.9. ONT는 가입자 한 명을 위한 ONU다 — §3.2.8, G.987 §3.2.7. G.983.1 §4.12는 ONT를 FTTH에 쓰는 ONU로 적는다
+- **PON의 구성**: OLT·ONU와, 수동 광 분배기가 든 PON 꼴의 광케이블로 이루어진다. 광섬유 한 가닥을 수동으로 나눠 여러 ONU가 그 가닥의 용량을 함께 쓴다. 나눠 쓰므로 사생활·보안을 지키는 조치가 따로 필요하고, 올라가는 방향에는 시분할 다중 접속(TDMA) 프로토콜이 필요하다 — G.983.1 §5.2.
+  PON 시스템은 OLT 하나와 ONU 여럿을 담고, 물리 계층·전송 수렴 계층·관리 프로토콜을 정해진 묶음으로 함께 쓰는 망 요소들의 조합이다 — G.987 §3.2.10
+- **분기 비율과 거리**: G.983.1(BPON)의 ODN은 수동 분배기로 16가지나 32가지로 나누고, 최대 광섬유 거리는 20 km다 — 표 4-a. G.984.1(GPON)에서는 지금 기술로 물리 계층은 1:64까지 현실적이고, 전송 수렴 계층은 1:128까지 생각해 둬야 한다. 분기 비율이 클수록 운용자에게 좋지만 더 많이 나누면 더 큰 광 전력 예산이 든다 — §12.
+  물리적 도달 거리는 10 km와 20 km 두 가지다 — §9. 802.3ah의 EPON은 대표적인 분기가 1:16이다 — 위 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 0) 줄
+- **「AON」·「PTP」라는 이름**: 세 권고와 802.3ah 어디에도 그 뜻으로는 없다 — 전문 검색(active optical·AON·PTP). G.987의 약어 절에 PTP가 있지만 Precision Timing Protocol(시각을 맞추는 프로토콜)의 약어라 다른 뜻이다. 능동 구조 자체는 G.983.1·G.984.1 §5.1의 「능동(active)」과 G.987 §3.2.4의 「복합 ODN」(수동 구간 사이의 능동 장치)으로 말할 수 있다. 점 대 점은 G.983.1·G.984.1 §5.1과 802.3ah의 P2P다 — `exam-notes.md` E49
+- 쓰지 않는 것: 세대별 전송률, 파장 배치, 손실 등급(A·B·C), 암호화(처닝·AES), 대역 할당과 거리 측정(ranging), 보호 절체
+- **한국어 이름**: optical access network → 광 가입자망(OAN), Fibre to the Home → FTTH(집 안까지 광섬유), FTTB·FTTC·FTTCab → 건물·연석·캐비닛까지 광섬유, passive optical network → PON(수동형 광 네트워크 — 「수동형」은 가운데에 전원을 쓰는 장치가 없다는 뜻),
+  optical line termination → OLT(약어로 쓰고 「통신사 설비 쪽 장치」로 풀어 쓴다), optical network unit·termination → ONU·ONT(「가입자 쪽 장치」로 풀어 쓴다), optical distribution network → 광 분배망(ODN), splitter → 광 분배기(guide의 이름), split ratio → 분기 비율,
+  point-to-point → 점 대 점(phase 72의 802.3ah 줄은 「점대점」으로 붙여 썼다 — 이 주제는 guide대로 띄어 쓴다), point-to-multipoint → 점 대 다중점, active → 능동, passive → 수동
+
+쓰인 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(광 가입자망과 FTTH, 점 대 점·능동·수동 점 대 다중점의 세 구조, ODN·OLT·ONU·ONT, 광 분배기와 나눠 쓰기, 분기 비율과 거리), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
