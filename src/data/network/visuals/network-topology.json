@@ -1,0 +1,101 @@
+{
+  "diagrams": {
+    "topology-link-kinds": {
+      "label": "노드 둘만 잇는 점 대 점 링크와 노드 넷이 함께 쓰는 다중점 링크를 나란히 놓고, PC01이 보낸 신호가 어느 노드까지 닿는지 견주는 도식",
+      "svgLabel": "위 「점 대 점」 박스에 PC01과 PC02를 링크 하나로 잇고, 아래 「다중점」 박스에 PC01~PC04를 가운데의 함께 쓰는 링크에 저마다 이어 둔 그림",
+      "question": "링크 하나에 노드가 몇이나 이어질까?",
+      "idleCaption": "점 대 점 박스에는 노드 둘이, 다중점 박스에는 노드 넷이 링크로 이어져 있다. PC01~PC04는 예로 붙인 이름이다. 버튼으로 링크의 꼴을 고르면 PC01이 보낸 신호가 어느 노드까지 닿는지 볼 수 있다.",
+      "legend": "가는 선은 링크(두 노드 사이의 연결)이고, 화살표는 PC01이 보낸 신호가 가는 쪽이다. 「함께 쓰는 링크」는 노드 넷이 함께 쓰는 링크 하나를 가운데의 점 하나로 나타낸 것이다.",
+      "nodes": {
+        "p2p-pc01": "PC01",
+        "p2p-pc02": "PC02",
+        "mp-pc01": "PC01",
+        "mp-pc02": "PC02",
+        "mp-shared": "함께 쓰는 링크",
+        "mp-pc03": "PC03",
+        "mp-pc04": "PC04"
+      },
+      "groups": {
+        "p2p": "점 대 점",
+        "multipoint": "다중점"
+      },
+      "notes": {
+        "p2p-note": "링크 하나에 노드 둘만 이어진다",
+        "mp-note": "노드 여럿이 링크 하나를 함께 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "p2p",
+          "label": "점 대 점",
+          "caption": "점 대 점 링크는 PC01과 PC02 두 노드만 잇는다. PC01이 보낸 신호는 링크의 다른 쪽 끝에 있는 PC02에만 닿는다.",
+          "sources": [
+            "network-topology.network-topology"
+          ]
+        },
+        {
+          "id": "multipoint",
+          "label": "다중점",
+          "caption": "다중점 링크는 PC01~PC04 네 노드가 함께 쓴다. PC01이 보낸 신호는 그 링크를 따라 PC02·PC03·PC04 모두에 닿으므로, 두 노드가 같은 때 보내면 두 신호가 링크 위에서 겹쳐 섞인다.",
+          "sources": [
+            "network-topology.network-topology"
+          ]
+        }
+      ],
+      "sources": [
+        "network-topology.network-topology"
+      ]
+    },
+    "bus-terminator": {
+      "label": "동축 케이블 한 줄에 PC01~PC04가 붙은 버스형에서, PC01이 보낸 신호가 모든 노드에 닿는 모습과, 케이블 끝에 터미네이터가 있을 때와 빠졌을 때 끝에 닿은 신호가 어떻게 되는지를 보이는 도식",
+      "svgLabel": "가운데 줄에 동축 케이블(버스)을 두고, 그 위에 PC01·PC02, 아래에 PC03·PC04를 잇고, 케이블 두 끝에 터미네이터를 하나씩 이어 둔 그림",
+      "question": "버스 케이블의 양 끝에는 왜 터미네이터를 달까?",
+      "idleCaption": "동축 케이블 한 줄(버스)에 PC01~PC04가 붙어 있고, 케이블 양 끝에 터미네이터가 달려 있다. PC01~PC04는 예로 붙인 이름이다. 버튼으로 장면을 고르면 케이블을 따라간 신호가 어떻게 되는지 볼 수 있다.",
+      "legend": "가는 선은 케이블이고, 화살표는 신호가 가는 쪽이다.",
+      "nodes": {
+        "pc01": "PC01",
+        "pc02": "PC02",
+        "bus": "동축 케이블(버스)",
+        "term-l": "터미네이터",
+        "term-r": "터미네이터",
+        "pc03": "PC03",
+        "pc04": "PC04"
+      },
+      "notes": {
+        "send-note": "보낸 신호가 케이블을 따라 모두에게 닿는다",
+        "absorb-note": "끝에 닿은 신호가 되돌아오지 않는다",
+        "reflect-note": "끝에서 되돌아온 신호가 받는 신호에 섞인다"
+      },
+      "scenarios": [
+        {
+          "id": "send",
+          "label": "모두에게 닿기",
+          "caption": "PC01이 내보낸 신호는 케이블로 들어가 케이블을 따라 퍼지고, 같은 케이블에 붙은 PC02·PC03·PC04에 모두 닿는다. 노드들이 케이블 한 줄을 함께 쓰므로 한 번에 한 노드만 보내야 한다.",
+          "sources": [
+            "network-topology.bus-topology"
+          ]
+        },
+        {
+          "id": "absorb",
+          "label": "터미네이터가 있으면",
+          "caption": "케이블을 따라간 신호는 양 끝의 터미네이터에 닿는다. 터미네이터는 케이블과 같은 임피던스를 가진 끝막음 부품이라, 끝에 닿은 신호가 되돌아오지 않고 거기서 끝난다.",
+          "sources": [
+            "network-topology.bus-topology"
+          ]
+        },
+        {
+          "id": "reflect",
+          "label": "터미네이터가 빠지면",
+          "caption": "오른쪽 끝의 터미네이터가 빠지면 케이블이 끝나는 자리가 임피던스가 어긋나는 자리가 된다. 끝에 닿은 신호가 거기서 반사되어 케이블을 거슬러 돌아오고, PC02 같은 노드가 받는 신호에 섞여 든다.",
+          "sources": [
+            "network-topology.bus-topology"
+          ]
+        }
+      ],
+      "sources": [
+        "network-topology.bus-topology"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

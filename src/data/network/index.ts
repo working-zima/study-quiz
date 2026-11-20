@@ -20,6 +20,7 @@ import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import networkDevicesVisuals from './visuals/network-devices.json'
 import networkSecurityVisuals from './visuals/network-security.json'
+import networkTopologyVisuals from './visuals/network-topology.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import routingVisuals from './visuals/routing.json'
@@ -43,6 +44,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'network-basics': networkBasicsVisuals,
   'protocols-encapsulation': protocolsEncapsulationVisuals,
   'transmission-media': transmissionMediaVisuals,
+  'network-topology': networkTopologyVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
   'wireless-lan': wirelessLanVisuals,

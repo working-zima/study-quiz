@@ -35,6 +35,7 @@ import { BootSequenceDiagram } from './BootSequenceDiagram'
 import { BroadcastDomainDiagram } from './BroadcastDomainDiagram'
 import { BudgetAlertDiagram } from './BudgetAlertDiagram'
 import { BuiltinLocalGroupsDiagram } from './BuiltinLocalGroupsDiagram'
+import { BusTerminatorDiagram } from './BusTerminatorDiagram'
 import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
@@ -381,6 +382,7 @@ import { TimeWaitDiagram } from './TimeWaitDiagram'
 import { TlsHandshakeDiagram } from './TlsHandshakeDiagram'
 import { ToolAccessDiagram } from './ToolAccessDiagram'
 import { TopScreenDiagram } from './TopScreenDiagram'
+import { TopologyLinkKindsDiagram } from './TopologyLinkKindsDiagram'
 import { TracerouteDiagram } from './TracerouteDiagram'
 import { TracertHopsDiagram } from './TracertHopsDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
@@ -563,6 +565,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'transmission-media.multiplexing': MuxDemuxDiagram,
   'transmission-media.tdm': TdmSlotsDiagram,
   'transmission-media.wdm': WdmWavelengthsDiagram,
+  'network-topology.network-topology': TopologyLinkKindsDiagram,
+  'network-topology.bus-topology': BusTerminatorDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,
