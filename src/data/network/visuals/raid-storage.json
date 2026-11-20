@@ -196,6 +196,63 @@
       "sources": [
         "raid-storage.raid-5"
       ]
+    },
+    "storage-attach": {
+      "label": "DAS·NAS·SAN이 저장 장치를 서버나 컴퓨터에 잇는 길과 데이터를 내주는 단위를 갈래마다 견주는 도식",
+      "svgLabel": "「DAS」 박스의 서버와 저장 장치, 「NAS」 박스의 사무실 컴퓨터들·LAN·NAS01, 「SAN」 박스의 SRV01·SRV02·저장 장치를 잇는 네트워크·STOR01을 화살표로 이은 그림",
+      "question": "DAS·NAS·SAN은 저장 장치를 어떻게 이어 쓸까?",
+      "idleCaption": "DAS·NAS·SAN을 한 그림에 갈래로 나눠 그렸다. 버튼으로 갈래를 고르면 저장 장치가 누구에게 어떤 길로 이어지고, 데이터를 무엇 단위로 내주는지 볼 수 있다.",
+      "legend": "화살표는 서버나 컴퓨터가 저장 장치에 데이터를 청하는 쪽을 가리킨다. SRV01·SRV02·STOR01·NAS01은 예로 붙인 이름표다.",
+      "nodes": {
+        "das-server": "서버",
+        "das-storage": "저장 장치",
+        "nas-pc": "사무실 컴퓨터들",
+        "nas-lan": "LAN",
+        "nas-nas01": "NAS01",
+        "san-srv01": "SRV01",
+        "san-srv02": "SRV02",
+        "san-network": "저장 장치를 잇는 네트워크",
+        "san-stor01": "STOR01"
+      },
+      "groups": {
+        "das": "DAS",
+        "nas": "NAS",
+        "san": "SAN"
+      },
+      "notes": {
+        "das-note": "서버 한 대에 바로 이어 그 서버만 쓴다",
+        "nas-note": "LAN으로 여러 컴퓨터에 파일 단위로 내준다",
+        "san-note": "서버들이 디스크 공간을 블록 단위로 읽고 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "das",
+          "label": "DAS",
+          "caption": "DAS는 저장 장치를 서버 한 대에 네트워크를 거치지 않고 바로 이어, 그 서버만 쓴다. 다른 서버는 이 저장 장치에 닿지 못한다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        },
+        {
+          "id": "nas",
+          "label": "NAS",
+          "caption": "NAS01은 LAN에 이어져, 사무실 컴퓨터들이 이름으로 청한 파일을 내준다. 그 파일을 디스크의 어느 블록에 둘지는 NAS01 쪽의 파일 시스템이 정한다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        },
+        {
+          "id": "san",
+          "label": "SAN",
+          "caption": "SRV01과 SRV02는 저장 장치를 잇는 네트워크를 거쳐, STOR01이 내준 디스크 공간을 저마다 자기 디스크처럼 블록 단위로 읽고 쓴다. 이 데이터는 사무실 컴퓨터들이 쓰는 LAN을 지나지 않는다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.network-storage"
+      ]
     }
   },
   "tables": {},

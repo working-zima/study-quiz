@@ -372,6 +372,7 @@ import { StandardNameDiagram } from './StandardNameDiagram'
 import { StarCenterFailureDiagram } from './StarCenterFailureDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { StorageAccountDiagram } from './StorageAccountDiagram'
+import { StorageAttachDiagram } from './StorageAttachDiagram'
 import { StorageMigrationDiagram } from './StorageMigrationDiagram'
 import { SubnetMaskDiagram } from './SubnetMaskDiagram'
 import { SubnetSizingDiagram } from './SubnetSizingDiagram'
@@ -864,6 +865,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'raid-storage.raid-0': RaidStripingDiagram,
   'raid-storage.raid-1': RaidMirroringDiagram,
   'raid-storage.raid-5': RaidParityRotationDiagram,
+  'raid-storage.network-storage': StorageAttachDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

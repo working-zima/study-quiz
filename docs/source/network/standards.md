@@ -213,6 +213,7 @@ RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로, man7.org의 md
 쓰기 구멍(write hole)·비트맵·스크러빙, 파이버 채널의 계층·토폴로지, iSCSI의 PDU·세션·로그인·이름 형식, NAS의 파일 공유 프로토콜(SMB·NFS) 메시지, 저장소 공간(Storage Spaces)의 복원력 방식.
 「(phase 83 step 18)」이 붙은 줄은 phase 83 step 18에서 `raid-storage`의 RAID, RAID 0을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 「(phase 83 step 19)」가 붙은 줄은 phase 83 step 19에서 `raid-storage`의 RAID 1, RAID 5를 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 20)」이 붙은 줄은 phase 83 step 20에서 `raid-storage`의 DAS·NAS·SAN을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -9510,6 +9511,13 @@ https://www.snia.org/snia-dictionary/download (사전 전체 PDF)
   병목은 I/O bottleneck의 정의(데이터 전송 능력을 묶어 두는 입출력 경로의 자원)를 「데이터가 오가는 길에서 처리가 밀려 전체의 빠르기를 묶어 두는 곳」으로 풀었다. 「같은 양의 데이터를 지키는 데 RAID 5가 공간을 덜 쓴다」는 capacity optimization methods다.
   「디스크 둘이 함께 고장 나면 데이터를 잃는다」는 RAID 5가 견디는 고장이 하나라는 표제어와, 줄마다 패리티가 하나라 남은 칸으로 얻는 값이 잃은 두 자리의 배타적 논리합 하나뿐이라는 셈(아래 DDF 항목의 XOR)에서 나오는 말이다.
   쓰인 곳: `raid-storage.raid-1`(문단 0·1·2·4·5), `raid-storage.raid-5`(문단 0·2·4·5·6), 도식 `raid-mirroring`·`raid-parity-rotation`, 문항 n387·n388
+(phase 83 step 20) 본문에 쓴 모양 — `raid-storage.network-storage`는 DAS(서버 한 대에 바로 이어져 그 서버만 쓴다)·NAS(네트워크에 이어져 파일 접근 서비스를 준다, 파일을 내주는 부분과 저장 장치로 이루어지고 파일 접근 프로토콜로 답한다)·SAN(컴퓨터와 저장 장치 사이, 저장 장치끼리 데이터를 나르는 것이 주된 일인 네트워크, 그 네트워크와 저장 장치를 함께 부르기도 한다, 대개 블록 서비스)을 목록 항목 셋으로 썼고, SAN의 「대개」는 그대로 두었다.
+  블록은 block의 정의를 「디스크가 데이터를 저장하고 꺼내는 정해진 크기의 칸」으로, 파일은 file을 「이름이 붙은 데이터 한 덩어리」로, 파일 시스템은 file system을 「블록들에 짜임을 세워 어느 파일이 어느 블록들에 들어 있는지 적어 두고 파일을 이름으로 찾아 쓰게 하는 소프트웨어」로 풀었다(512·4,096바이트라는 블록 크기는 쓰지 않았다).
+  「SAN을 쓰는 서버는 블록을 청하고 블록들을 파일로 짜는 일은 서버의 파일 시스템이 하며, NAS를 쓰는 컴퓨터는 파일 이름으로 청하고 블록에 두는 일은 NAS 쪽이 한다」는 block storage(블록을 파일로 짜는 일은 호스트의 파일 시스템)와 NAS(파일 서비스를 구현한 엔진)를 함께 읽은 말이다. 파일 서버는 file server의 정의(클라이언트에게 파일을 내주는 컴퓨터)대로 한 줄 썼다.
+  파이버 채널은 Fibre Channel(여러 프로토콜을 싣는 연결 기술, 그 위에서 SCSI를 싣는다 — FCP라는 이름과 「직렬」은 쓰지 않았다)로, SCSI는 「서버가 저장 장치에 읽기·쓰기 같은 명령을 보내는 프로토콜의 묶음」으로 줄여 썼다(ANSI·INCITS라는 이름은 쓰지 않았다). iSCSI SAN은 표제어대로 썼다.
+  「SAN을 쓰면 서버와 저장 장치 사이의 데이터가 LAN을 거치지 않고 오갈 수 있다」와 LAN-free 백업은 LAN-free backup(LAN 자원을 쓰지 않고 SAN이나 DAS로 옮기는 백업)이다 — iSCSI SAN은 이미 있는 이더넷 위에서도 꾸릴 수 있으므로(아래 iSCSI 항목) 「LAN과 따로 둔다」를 SAN의 정의처럼 쓰지 않고 「오갈 수 있다」로 썼다. 문항 n389는 LAN과 따로 둔 네트워크로 잇는 장면을 주고 묻는다.
+  「RAID와 DAS·NAS·SAN은 서로 다른 물음에 답한다」는 disk array(디스크와 제어 소프트웨어를 묶어 저장 용량을 가상 드라이브로 내보인다)와 위 셋의 정의를 견준 말이다. SSD, NFS·SMB의 이름, 파이버 채널의 계층은 쓰지 않았다.
+  쓰인 곳: `raid-storage.network-storage`(문단 0~5·7·8·9·10), 도식 `storage-attach`, 문항 n389
 
 ## (phase 83 step 17) SNIA Common RAID Disk Data Format (DDF) Specification v2.0 rev 19 — RAID 레벨의 배치 그림과 패리티 셈
 https://www.snia.org/tech_activities/standards/curr_standards/ddf
@@ -9621,3 +9629,6 @@ learn.microsoft.com 「iSCSI Target Server overview」는 Windows Server 2016~20
   설치 자리(파일 및 스토리지 서비스 → 파일 및 iSCSI 서비스)는 위 「(phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders)」 항목과 「(phase 81 step 0) Microsoft Learn — 서버 역할과 기능」 항목(Server Core 표의 「파일 및 iSCSI 서비스(`File-Services`)」)에 이미 있다
 - **한국어 이름**: 「iSCSI」(그대로), 「iSCSI 대상 서버」(iSCSI Target Server — 한국어판), 「초기자」(initiator — 한국어판 「iSCSI 초기자」), 「대상」(target), 「블록 스토리지」(block storage — 한국어판), 「SAN(스토리지 영역 네트워크)」(한국어판의 풀이), 「파이버 채널」(Fibre Channel — 한국어판)
 쓰일 곳: (phase 83 step 20에서 쓰일 곳) `raid-storage.network-storage`(iSCSI는 SCSI 명령을 TCP/IP 네트워크로 나른다, 서버가 저장 장치를 자기 디스크처럼 블록 단위로 쓴다, Windows Server의 iSCSI 대상 서버 한 줄), 기출 대조([기출 2025-05-25 #37])
+(phase 83 step 20) 본문에 쓴 모양 — `raid-storage.network-storage`는 §1·§4.1의 initiator·target을 「명령을 보내는 서버 쪽을 초기자, 명령을 받아 처리하는 저장 장치 쪽을 대상」으로 썼고(LU·LUN은 쓰지 않았다), §1·§4.2를 「SCSI 명령을 TCP/IP 네트워크로 나른다, 이미 있는 TCP/IP 네트워크와 그 관리 수단으로 SAN을 꾸리고 서버와 저장 장치 사이의 거리 한계를 덜 받는다」로 썼다.
+  iSCSI 대상 서버는 첫머리와 「Block storage requirements」를 「켜면 그 Windows Server 컴퓨터가 네트워크로 닿아 블록 단위로 쓰는 저장 장치가 되어 다른 서버들에게 디스크 공간을 내준다, 이미 있는 이더넷 네트워크를 쓰므로 장비를 따로 더 들이지 않아도 된다」로 썼다 — SMB로 통신하지 못하는 클라이언트, SAN에 배치하기 전의 시험, 클러스터의 공유 저장소, 설치 자리는 쓰지 않았다.
+  쓰인 곳: `raid-storage.network-storage`(문단 5·6·9)
