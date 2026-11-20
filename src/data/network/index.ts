@@ -25,6 +25,7 @@ import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.jso
 import routingVisuals from './visuals/routing.json'
 import tcpConnectionVisuals from './visuals/tcp-connection.json'
 import tcpUdpVisuals from './visuals/tcp-udp.json'
+import transmissionMediaVisuals from './visuals/transmission-media.json'
 import windowsAdVisuals from './visuals/windows-ad.json'
 import windowsAdminToolsVisuals from './visuals/windows-admin-tools.json'
 import windowsHypervVisuals from './visuals/windows-hyperv.json'
@@ -41,6 +42,7 @@ export const questions: Question[] = questionsData as Question[]
 export const visualsByTopicId: Record<string, TopicVisuals> = {
   'network-basics': networkBasicsVisuals,
   'protocols-encapsulation': protocolsEncapsulationVisuals,
+  'transmission-media': transmissionMediaVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
   'wireless-lan': wirelessLanVisuals,

@@ -206,6 +206,7 @@ import { MailPathDiagram } from './MailPathDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
+import { MediaSignalKindsDiagram } from './MediaSignalKindsDiagram'
 import { MeshRerouteDiagram } from './MeshRerouteDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
@@ -379,6 +380,7 @@ import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
 import { TunnelEncapsulationDiagram } from './TunnelEncapsulationDiagram'
+import { TwistedPairPinsDiagram } from './TwistedPairPinsDiagram'
 import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
 import { UdpHeaderDiagram } from './UdpHeaderDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
@@ -543,6 +545,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'protocols-encapsulation.encapsulation': EncapsulationDiagram,
   'protocols-encapsulation.decapsulation': DecapsulationDiagram,
   'protocols-encapsulation.pdu-names': PduNamesDiagram,
+  'transmission-media.transmission-media': MediaSignalKindsDiagram,
+  'transmission-media.twisted-pair': TwistedPairPinsDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,

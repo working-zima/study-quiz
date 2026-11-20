@@ -172,6 +172,7 @@ PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 
 **IEEE 802.3 본문은 열지 못했다**(IEEE GET 프로그램은 `ieeexplore.ieee.org` 로그인이다) — 그래서 `ieee802.org`에 올라온 발행 표준의 사본(802.3ah-2004), 작업 그룹의 유지 보수 요청과 그 처리 이력, 연구 그룹의 작업 문서와 회원 발표 자료, 802.3의 매체 이름을 옮긴 IANA MAU 레지스트리와 RFC 4836으로 썼다.
 회원 발표 자료는 표준 본문이 아니고 업체 소속 회원이 쓴 것도 있다 — 항목마다 어떤 문서인지 적는다.
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 케이블 범주(카테고리)별 전기 특성표, 광섬유의 분산·파장별 손실 표 전체, 커넥터 종류, PON의 세대별 전송률·암호화·대역 할당. 전송 손상·부호화·다중화는 step 3, 토폴로지(버스형의 터미네이터 포함)는 step 7의 몫이라 이 step에서 정리하지 않았다.
+「(phase 83 step 1)」이 붙은 줄은 phase 83 step 1에서 `transmission-media`의 첫 두 개념(전송 매체, 트위스티드 페어 케이블)을 쓰며 같은 문서를 다시 열어 더했다(확인한 날 2026-11-20) — ITU-T L.109·L.19의 차폐 대목, Thompson 작업 문서의 핀 짝, RFC 4118의 「무선 매체」.
 
 ---
 
@@ -7591,6 +7592,9 @@ RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정
     같은 절은 스테이션이 한 BSS에서 다른 BSS로 옮겨 갈(roam) 때 AP들에게 알리는 AP 사이 프로토콜(IAPP, 권고 관행 802.11F)을 802.11이 만들던 기술로 든다 — §1.1. 곧 무선 LAN에서 스테이션이 다른 AP의 셀로 옮겨 붙는 일은 재연결로 이루어진다
   - 쓰지 않는 것: 재연결 프레임의 형식과 차례, IAPP의 동작, 빠른 로밍(802.11r)
   쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(무선 LAN에서 스테이션이 다른 AP로 옮겨 붙는 것 — 재연결 한 줄)
+- (phase 83 step 1, 2026-11-20 rfc-editor.org 텍스트판 RFC 4118을 IPv4로 다시 받아 확인) **무선 매체**: §3.1이 옮겨 적은 802.11의 정의는 스테이션을 「무선 매체(wireless medium, WM)」에 닿는 MAC·물리 계층 인터페이스를 가진 장치로, AP를 연결된 스테이션들이 무선 매체를 거쳐 분배 서비스에 닿게 하는 것으로 적는다 — §3.1.
+  §1은 무선 매체가 함께 쓰이고 바뀌는 성질 때문에 AP들 사이의 무선 간섭을 줄이는 조정이 필요하다고 적는다 — §1. 곧 802.11은 장치들이 전파로 데이터를 주고받는 공간을 하나의 매체(무선 매체)로 본다
+  쓰인 곳: (phase 83 step 1) `transmission-media.transmission-media`(유선 매체와 무선 매체 — 무선 LAN의 표준도 이 매체를 무선 매체라 부른다), 문항 n353 해설
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
 `wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
@@ -8546,6 +8550,15 @@ IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)�
 - **한국어 이름**: twisted pair → 트위스티드 페어(앞 phase의 이름 — 기출은 「이중 나선」이라고도 쓴다), unshielded twisted pair → 비차폐 트위스티드 페어(UTP), shielded twisted pair → 차폐 트위스티드 페어(STP), screen·shield → 차폐, category → 카테고리,
   coaxial cable → 동축 케이블(기출의 이름), inner conductor → 중심 도체(guide의 이름 — 권고의 말은 「안쪽 도체」), outer conductor → 바깥 도체, dielectric → 절연체(K.99의 말은 「유전체」 — 학습자에게 익은 말을 골랐다), sheath → 피복,
   thick·thin coax → 두꺼운 동축·얇은 동축(기출은 「Thin Coaxial Cable」), baseband·broadband → 베이스밴드·브로드밴드(앞 phase의 `ethernet.standard-names`가 「베이스밴드」를 썼다), carrier frequency → 반송파 주파수
+
+- (phase 83 step 1, 2026-11-20 L.109·L.19 PDF와 Thompson 작업 문서를 IPv4로 다시 받아 읽음 — Thompson 표는 그림으로 렌더해 칸을 확인했다) **차폐를 두는 까닭과 네 쌍의 핀 짝**:
+  - 케이블 코어 위의 차폐(screen)는 전자기 적합성(EMC — 주변 장치와 전자기 잡음으로 서로 방해하지 않는 것)이나 낙뢰 보호가 필요할 때 더하는 선택 층이고, 금속 테이프(포일) 한두 겹이나 금속 편조 한두 겹, 또는 둘을 합친 구조로 만든다.
+    안테나까지 광섬유를 까는 쓰임(FTTA)에서 이 차폐는 낙뢰가 일으키는 전류를 줄이고 그 전류로 생기는 전자기 잡음을 줄인다 — L.109 §6.2.13. 금속 단위의 차폐는 결합 감쇠(coupling attenuation) 같은 전기 특성과 EMC 요구를 만드는 쪽과 쓰는 쪽이 맞춘다 — §6.6
+  - 구리 쌍을 HDSL·ADSL에 쓸 수 있는지는 쌍이 받는 전자기 결합, 바깥의 전자기 원천과 잡음, 절연, 차폐, 한 케이블에 든 쌍의 수 같은 조건이 정한다 — L.19 부록 IV.2.7(브라질의 경험 — 권고의 본문이 아니다)
+  - 그래서 본문은 「차폐는 전자기 잡음을 막으려고 두는 금속 층이라, 주변의 전기 장치와 잡음으로 서로 방해하지 않아야 하는 곳에서 STP를 쓴다」까지 쓴다. 「선을 꼬면 간섭이 준다」는 이번에도 찾지 못했다 — 본문은 꼬는 까닭을 쓰지 않는다
+  - Thompson 표의 568-A·568-B 두 줄은 RJ-45 커넥터의 핀을 1·2, 3·6, 4·5, 7·8의 네 쌍으로 묶는다(두 줄은 쌍에 붙인 번호만 다르다). 100BASE-T4 줄과 1000BASE-T 줄은 이 네 쌍을 모두 신호에 쓴다
+  - 쓰지 않는 것: 차폐의 결합 감쇠·전달 임피던스 값, 568-A·568-B의 쌍 번호, 핀의 색 배치
+  - 쓰인 곳: (phase 83 step 1) `transmission-media.twisted-pair`(UTP와 STP, 차폐의 목적, 핀 1·2/3·6/4·5/7·8의 쌍과 10BASE-T가 쓰는 쌍, 1000BASE-T는 네 쌍), 문항 n354(차폐가 있는 케이블을 고른다), 도식 `TwistedPairPinsDiagram`
 
 쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
 (phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),

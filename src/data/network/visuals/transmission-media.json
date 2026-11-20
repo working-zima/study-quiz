@@ -1,0 +1,89 @@
+{
+  "diagrams": {
+    "media-signal-kinds": {
+      "label": "보내는 쪽과 받는 쪽 사이의 전송 매체로 유선 매체인 구리선·광섬유와 무선 매체인 공간을 두고, 매체마다 신호가 무엇에 실려 가는지 보이는 도식",
+      "svgLabel": "왼쪽에 보내는 쪽, 오른쪽에 받는 쪽을 두고, 가운데 유선 매체 박스에 구리선과 광섬유를, 그 아래 무선 매체 박스에 공간을 둔 그림",
+      "question": "매체마다 무엇이 신호를 실어 나를까?",
+      "idleCaption": "보내는 쪽과 받는 쪽 사이에서 신호가 지나가는 길, 곧 전송 매체를 유선 매체 둘과 무선 매체 하나로 나눠 놓았다. 버튼으로 유선 매체나 무선 매체를 고르면 신호가 무엇을 지나 무엇에 실려 가는지 볼 수 있다.",
+      "legend": "화살표는 신호가 보내는 쪽에서 매체를 지나 받는 쪽으로 가는 길이다. 연결 하나에 세 매체를 함께 쓰는 것이 아니라, 연결마다 그중 하나를 쓴다.",
+      "nodes": {
+        "sender": "보내는 쪽",
+        "copper": "구리선",
+        "fiber": "광섬유",
+        "space": "공간",
+        "receiver": "받는 쪽"
+      },
+      "groups": {
+        "wired": "유선 매체",
+        "wireless": "무선 매체"
+      },
+      "notes": {
+        "copper-note": "전기 신호",
+        "fiber-note": "빛 신호",
+        "space-note": "전파"
+      },
+      "scenarios": [
+        {
+          "id": "wired",
+          "label": "유선 매체",
+          "caption": "유선 매체는 케이블이다. 보내는 쪽이 내보낸 신호는 케이블을 따라 받는 쪽까지 간다. 구리선으로 된 케이블은 전기 신호를, 광섬유로 된 케이블은 빛 신호를 나른다.",
+          "sources": ["transmission-media.transmission-media"]
+        },
+        {
+          "id": "wireless",
+          "label": "무선 매체",
+          "caption": "무선 매체는 케이블 없이 장치와 장치 사이에 놓인 공간이다. 보내는 쪽이 전파를 내보내면 전파가 공간으로 퍼져 나가고, 그 전파가 닿는 곳의 받는 쪽이 받는다.",
+          "sources": ["transmission-media.transmission-media"]
+        }
+      ],
+      "sources": ["transmission-media.transmission-media"]
+    },
+    "twisted-pair-pins": {
+      "label": "트위스티드 페어 케이블 끝 커넥터의 핀 1~8을 꼰 쌍 넷(핀 1·2, 3·6, 4·5, 7·8)으로 묶고, 10BASE-T가 핀 1·2의 쌍으로 보내고 핀 3·6의 쌍으로 받는 것을 보이는 도식",
+      "svgLabel": "커넥터의 핀 여덟 개를 꼰 쌍 넷의 묶음으로 나눠 두고, 옆에 보내는 쌍과 받는 쌍을 둔 그림",
+      "question": "트위스티드 페어 케이블의 여덟 가닥 가운데 무엇을 쓸까?",
+      "idleCaption": "트위스티드 페어 케이블 끝의 커넥터에는 핀이 8개 있고, 묶음 하나가 서로 꼬인 구리선 한 쌍이다. 버튼으로 네 쌍의 짝이나 10BASE-T가 쓰는 쌍을 고를 수 있다.",
+      "legend": "화살표는 그 핀의 구리선이 어느 쌍의 일을 맡는지 가리킨다. 보내는 쌍과 받는 쌍은 컴퓨터 쪽 커넥터에서 본 것이다.",
+      "nodes": {
+        "pin1": "핀 1",
+        "pin2": "핀 2",
+        "pin3": "핀 3",
+        "pin6": "핀 6",
+        "pin4": "핀 4",
+        "pin5": "핀 5",
+        "pin7": "핀 7",
+        "pin8": "핀 8",
+        "send": "보내는 쌍",
+        "receive": "받는 쌍"
+      },
+      "groups": {
+        "pair-12": "꼰 쌍",
+        "pair-36": "꼰 쌍",
+        "pair-45": "꼰 쌍",
+        "pair-78": "꼰 쌍"
+      },
+      "notes": {
+        "pairs-note": "여덟 가닥, 네 쌍",
+        "unused-45": "신호를 싣지 않음",
+        "unused-78": "신호를 싣지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "pairs",
+          "label": "네 쌍",
+          "caption": "케이블 안의 구리선 여덟 가닥은 두 가닥씩 꼬인 네 쌍이다. 커넥터의 핀 여덟 개에 한 가닥씩 이어지고, 핀 1·2, 3·6, 4·5, 7·8이 각각 한 쌍이 된다.",
+          "sources": ["transmission-media.twisted-pair"]
+        },
+        {
+          "id": "in-use",
+          "label": "10BASE-T가 쓰는 쌍",
+          "caption": "10BASE-T는 네 쌍 가운데 두 쌍만 쓴다. 컴퓨터 쪽 커넥터에서 보면 핀 1·2의 쌍으로 신호를 보내고 핀 3·6의 쌍으로 신호를 받으며, 핀 4·5와 7·8의 쌍에는 신호를 싣지 않는다.",
+          "sources": ["transmission-media.twisted-pair"]
+        }
+      ],
+      "sources": ["transmission-media.twisted-pair"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
