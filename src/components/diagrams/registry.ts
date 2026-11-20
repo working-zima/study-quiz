@@ -169,6 +169,7 @@ import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
 import { IisSitePoolDiagram } from './IisSitePoolDiagram'
 import { ImapSyncDiagram } from './ImapSyncDiagram'
 import { ImmutableAttributeDiagram } from './ImmutableAttributeDiagram'
+import { ImpairmentKindsDiagram } from './ImpairmentKindsDiagram'
 import { InternetworkDiagram } from './InternetworkDiagram'
 import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
@@ -268,6 +269,7 @@ import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
 import { PolicyInitiativeDiagram } from './PolicyInitiativeDiagram'
+import { PonSplitDiagram } from './PonSplitDiagram'
 import { Pop3DownloadDiagram } from './Pop3DownloadDiagram'
 import { PortDemuxDiagram } from './PortDemuxDiagram'
 import { PortRangesDiagram } from './PortRangesDiagram'
@@ -551,6 +553,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'transmission-media.twisted-pair': TwistedPairPinsDiagram,
   'transmission-media.coaxial-cable': CoaxLayersDiagram,
   'transmission-media.optical-fiber': FiberCoreCladdingDiagram,
+  'transmission-media.ftth-pon': PonSplitDiagram,
+  'transmission-media.transmission-impairments': ImpairmentKindsDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,

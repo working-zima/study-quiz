@@ -179,6 +179,7 @@ ITU-T 권고는 step 0과 같은 방법으로 받았다 — 권고 페이지에�
 **ITU-T 용어 데이터베이스(`itu.int/br_tsb_terms`)는 이번에도 쓰지 못했다** — 그 화면은 로그인(ADFS)에 묶인 앱이라 조회할 길을 찾지 못했다. 그래서 낱말의 뜻은 용어 권고(G.701 디지털 전송·다중화·PCM 용어, Q.9 교환·신호 용어, P.10/G.100 성능·품질 용어, G.601 케이블 용어, I.113 광대역 ISDN 용어)의 정의에서 가져왔다.
 **IEEE 802.3 본문은 열지 못했다**(step 0과 같다) — 구리선의 감쇠·누화·충격성 잡음은 ITU-T L.19·M.1020·O.71로 대신했다. 읽었지만 근거로 쓰지 않은 권고는 M.1025·G.712·O.81·G.663·H.261이다(같은 사실을 다른 권고가 더 바로 말하거나 이 주제의 범위 밖이다).
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 변조 방식, 선로 부호(AMI 등), 오류 정정 부호의 수학(생성 다항식·유한체·복호 방법), PCM의 표본화·양자화 세부와 부호화 법칙의 표, E1·T1 프레임의 비트 배치·다중 프레임, SONET·SDH, 광 증폭기의 이득·잡음 지수 값과 측정법, WDM 격자의 주파수·파장 표 전체.
+「(phase 83 step 4)」이 붙은 줄은 phase 83 step 4에서 `transmission-media`의 FTTH와 PON, 전송 손상을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -8668,6 +8669,11 @@ G.987 「10-Gigabit-capable passive optical network (XG-PON) systems: Definition
   서로 떨어진 여러 장치가 매체 하나를 시간으로 나눠 쓰는 TDMA(time division multiple access — G.701 약어표의 풀이)의 예다. **다중 접속을 한 문장으로 정의한 곳과 FDMA는 이 step이 읽은 권고(G.701·Q.9·I.112·I.113·G.983.1)에서 찾지 못했다** — 전문 검색(multiple access·FDMA)
   - 쓰일 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(「다중화와 다중 접속」 4절 — 다중화기 한 곳이 입력 여럿을 합치는 다중화와, 떨어진 장치들이 매체를 시간으로 나눠 쓰는 TDMA)
 
+- (phase 83 step 4, 2026-11-20) **본문에 쓴 모양**: 세 구조는 G.983.1 §5.1대로 점 대 점·능동·수동 점 대 다중점으로 쓰고, 「PTP·AON」은 E49대로 자격시험이 부르는 이름으로만 한 줄 적었다. 능동 구조의 가운데 장치가 무엇을 하는지는 쓰지 않았고, 능동 구조는 G.987 §3.2.4의 복합 ODN(수동 구간 사이의 능동 장치)으로만 짚었다.
+  「능동」·「수동」은 일반 낱말의 한 줄 풀이(전원을 받아 신호를 다루는 장치, 전원 없이 빛을 지나가게 하거나 나누는 부품)로 썼고, 수동 부품의 예(광섬유를 이은 곳·광 분배기)는 802.3ah §64.1이다. 분기 비율은 G.983.1의 16·32와 G.984.1의 물리 계층 1:64까지만 쓰고 전송 수렴 계층의 1:128은 쓰지 않았다.
+  점 대 점 구조에서도 망 쪽 끝 장치를 `OLT01`로 그린 것은 802.3ah §1.4(OLT는 광 가입자망의 망 쪽 끝 장치)를 따랐다. 「통신사 = 인터넷 서비스 제공자(ISP)」는 앞 주제 `network-basics.lan-wan`의 말과 맞췄다
+  - 쓰인 곳: (phase 83 step 4) `transmission-media.ftth-pon`(광 가입자망과 FTTH·FTTB·FTTC, 세 구조와 E49 줄, OLT·ONU·ONT·광 분배기·광 분배망, 내려가고 올라가는 방향과 보안 조치·TDMA, 분기 비율·광 전력 예산·10/20 km, 예 `OLT01`과 집 1~4, 「PON과 점 대 점」·「수동과 능동」), 문항 n358(갈라지는 자리에 두는 것), 도식 `PonSplitDiagram`
+
 쓰인 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(광 가입자망과 FTTH, 점 대 점·능동·수동 점 대 다중점의 세 구조, ODN·OLT·ONU·ONT, 광 분배기와 나눠 쓰기, 분기 비율과 거리), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
 
 ## (phase 83 step 3) ITU-T G.701 (03/93) — Vocabulary of digital transmission and multiplexing, and pulse code modulation (PCM) terms
@@ -8723,6 +8729,10 @@ O.71 「Impulsive noise measuring equipment for telephone-type circuits」(1988-
 - 쓰지 않는 것: 손상마다의 한도 값(dB·µs·dBm0), 위상 지터·진폭 히트·고조파 왜곡, 잡음의 가중(psophometric), 측정 장비의 사양
 - **한국어 이름**: attenuation·loss → 감쇠(기출의 이름 — 「손실」로도 쓴다), group delay → 군지연(group을 옮긴 한자어 — 「무리 지연」보다 흔히 쓴다), group-delay distortion → 군지연 왜곡, delay distortion → 지연 왜곡(guide의 이름 — 기출은 「위상 왜곡」, E50),
   impulsive noise → 충격성 잡음(기출의 이름), crosstalk → 누화(기출의 이름), near-end·far-end crosstalk → 근단 누화·원단 누화, amplifier → 증폭기, repeater → 중계기(G.601의 넓은 뜻 — 본문은 `network-devices.repeater`의 「리피터」와 갈라 쓴다), noise figure → 잡음 지수
+
+- (phase 83 step 4, 2026-11-20) **본문에 쓴 모양**: 손상 넷(감쇠·지연 왜곡·잡음·누화)을 목록 항목으로 세우고, 지연 왜곡은 Q.9 0230·0231과 P.10/G.100 6.104를, 광섬유의 같은 꼴은 G.650.1 §3.4.2.1(색분산)을 단계대로 풀었다. 「위상」은 일반 낱말의 한 줄 풀이로 쓰고 E50대로 「자격시험은 위상 왜곡이라 부른다」를 한 줄 덧붙였다.
+  열잡음과 「전기 증폭기가 잡음도 키운다」는 이 항목의 판정대로 쓰지 않았다. 근단·원단 누화는 본문에서 뜻을 풀 근거(어느 끝에서 재는지)를 적어 두지 않아 이름도 쓰지 않았다. 증폭기는 「키운다」, 리피터는 G.701 2021의 「재생 — 진폭·파형·타이밍을 다시 만든다」로 갈랐다(`network-devices.repeater`와 같은 뜻)
+  - 쓰인 곳: (phase 83 step 4) `transmission-media.transmission-impairments`(손상 넷의 목록, 지연 왜곡의 단계와 색분산, E50 줄, 증폭기·리피터·재생, 「감쇠와 지연 왜곡」·「잡음과 누화」, 예 `PC01`→`SW01`), 문항 n359(지연 왜곡일 때 신호에 생긴 일)·n360(감쇠는 잡음이 섞여 드는 것이 아니다), 도식 `ImpairmentKindsDiagram`
 
 쓰인 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(군지연 왜곡, 충격성 잡음, 누화의 두 갈래, 잡음의 풀이, 증폭기와 리피터), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-08-25 #20]·[기출 2025-08-24 #25]·[기출 2026-02-01 #23], E50)
 
