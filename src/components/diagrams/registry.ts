@@ -27,6 +27,7 @@ import { AzureArcDiagram } from './AzureArcDiagram'
 import { AzureMigrateDiagram } from './AzureMigrateDiagram'
 import { AzureRegionDiagram } from './AzureRegionDiagram'
 import { BackupFlowDiagram } from './BackupFlowDiagram'
+import { BalancingMethodsDiagram } from './BalancingMethodsDiagram'
 import { BandwidthDiagram } from './BandwidthDiagram'
 import { BaseImageChoiceDiagram } from './BaseImageChoiceDiagram'
 import { BitLockerVolumeDiagram } from './BitLockerVolumeDiagram'
@@ -37,7 +38,9 @@ import { BuiltinLocalGroupsDiagram } from './BuiltinLocalGroupsDiagram'
 import { CacheExpiryDiagram } from './CacheExpiryDiagram'
 import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
+import { CellHandoffDiagram } from './CellHandoffDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
+import { ChannelOverlapDiagram } from './ChannelOverlapDiagram'
 import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
 import { ChownChangeDiagram } from './ChownChangeDiagram'
@@ -48,6 +51,7 @@ import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
 import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
+import { CognitiveRadioDiagram } from './CognitiveRadioDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
 import { ColumnarFormatDiagram } from './ColumnarFormatDiagram'
 import { CompositeSlaDiagram } from './CompositeSlaDiagram'
@@ -61,6 +65,7 @@ import { CostFactorsDiagram } from './CostFactorsDiagram'
 import { CronScheduleDiagram } from './CronScheduleDiagram'
 import { CrontabFieldsDiagram } from './CrontabFieldsDiagram'
 import { CrontabOptionsDiagram } from './CrontabOptionsDiagram'
+import { CsmaCaSequenceDiagram } from './CsmaCaSequenceDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
@@ -71,6 +76,7 @@ import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
+import { DeviceLayersDiagram } from './DeviceLayersDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpFailoverDiagram } from './DhcpFailoverDiagram'
 import { DhcpLeaseDiagram } from './DhcpLeaseDiagram'
@@ -121,6 +127,7 @@ import { FileSyncDiagram } from './FileSyncDiagram'
 import { FileTypeCharDiagram } from './FileTypeCharDiagram'
 import { FindSearchDiagram } from './FindSearchDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
+import { FirewallRulesDiagram } from './FirewallRulesDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
@@ -129,6 +136,7 @@ import { FstabFieldsDiagram } from './FstabFieldsDiagram'
 import { FtpConnectionsDiagram } from './FtpConnectionsDiagram'
 import { FtpModesDiagram } from './FtpModesDiagram'
 import { FunctionTriggerDiagram } from './FunctionTriggerDiagram'
+import { GatewayTranslateDiagram } from './GatewayTranslateDiagram'
 import { GeoRedundancyDiagram } from './GeoRedundancyDiagram'
 import { GroupPolicyDiagram } from './GroupPolicyDiagram'
 import { GroupPolicyLinkDiagram } from './GroupPolicyLinkDiagram'
@@ -151,6 +159,8 @@ import { IacEnvironmentsDiagram } from './IacEnvironmentsDiagram'
 import { IcmpFeedbackDiagram } from './IcmpFeedbackDiagram'
 import { IcmpMessageDiagram } from './IcmpMessageDiagram'
 import { IdentityCenterAccessDiagram } from './IdentityCenterAccessDiagram'
+import { IdsIpsPlacementDiagram } from './IdsIpsPlacementDiagram'
+import { Ieee80211BandsDiagram } from './Ieee80211BandsDiagram'
 import { IgmpGroupDiagram } from './IgmpGroupDiagram'
 import { IisFtpSiteDiagram } from './IisFtpSiteDiagram'
 import { IisLogRolloverDiagram } from './IisLogRolloverDiagram'
@@ -162,6 +172,7 @@ import { IpAcrossNetworksDiagram } from './IpAcrossNetworksDiagram'
 import { IpLimitsDiagram } from './IpLimitsDiagram'
 import { IpconfigOptionsDiagram } from './IpconfigOptionsDiagram'
 import { IpconfigViewDiagram } from './IpconfigViewDiagram'
+import { IpsecModesDiagram } from './IpsecModesDiagram'
 import { IptablesChainsDiagram } from './IptablesChainsDiagram'
 import { Ipv4AddressDiagram } from './Ipv4AddressDiagram'
 import { Ipv4HeaderDiagram } from './Ipv4HeaderDiagram'
@@ -170,6 +181,8 @@ import { Ipv6HeaderDiagram } from './Ipv6HeaderDiagram'
 import { Ipv6NotationDiagram } from './Ipv6NotationDiagram'
 import { KeepAliveTimelineDiagram } from './KeepAliveTimelineDiagram'
 import { KernelMessagesDiagram } from './KernelMessagesDiagram'
+import { L4SwitchNatDiagram } from './L4SwitchNatDiagram'
+import { L7SwitchUrlDiagram } from './L7SwitchUrlDiagram'
 import { LakePermissionsDiagram } from './LakePermissionsDiagram'
 import { LanWanDiagram } from './LanWanDiagram'
 import { LayerJourneyDiagram } from './LayerJourneyDiagram'
@@ -179,6 +192,7 @@ import { LinkStateDiagram } from './LinkStateDiagram'
 import { LinkTypesDiagram } from './LinkTypesDiagram'
 import { ListenPortDiagram } from './ListenPortDiagram'
 import { LiveMigrationDiagram } from './LiveMigrationDiagram'
+import { LoadBalancerPoolDiagram } from './LoadBalancerPoolDiagram'
 import { LocalUserAccountsDiagram } from './LocalUserAccountsDiagram'
 import { LockInheritanceDiagram } from './LockInheritanceDiagram'
 import { LockTypesDiagram } from './LockTypesDiagram'
@@ -192,14 +206,17 @@ import { MailPathDiagram } from './MailPathDiagram'
 import { MapStateDiagram } from './MapStateDiagram'
 import { MaskAndDiagram } from './MaskAndDiagram'
 import { MbrGptDiagram } from './MbrGptDiagram'
+import { MeshRerouteDiagram } from './MeshRerouteDiagram'
 import { MessagingShapesDiagram } from './MessagingShapesDiagram'
 import { MfaFactorsDiagram } from './MfaFactorsDiagram'
 import { MibTreeDiagram } from './MibTreeDiagram'
+import { MimoStreamsDiagram } from './MimoStreamsDiagram'
 import { MonitorDataDiagram } from './MonitorDataDiagram'
 import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { NacAdmissionDiagram } from './NacAdmissionDiagram'
 import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
 import { NamedFilesDiagram } from './NamedFilesDiagram'
@@ -243,6 +260,7 @@ import { PingOptionsDiagram } from './PingOptionsDiagram'
 import { PingResultDiagram } from './PingResultDiagram'
 import { PipeFlowDiagram } from './PipeFlowDiagram'
 import { PodPermissionsDiagram } from './PodPermissionsDiagram'
+import { PoePowerDiagram } from './PoePowerDiagram'
 import { PolicyCheckDiagram } from './PolicyCheckDiagram'
 import { PolicyComplianceDiagram } from './PolicyComplianceDiagram'
 import { PolicyEvaluationDiagram } from './PolicyEvaluationDiagram'
@@ -258,10 +276,12 @@ import { ProcViewDiagram } from './ProcViewDiagram'
 import { ProcessControlDiagram } from './ProcessControlDiagram'
 import { ProcessTreeDiagram } from './ProcessTreeDiagram'
 import { ProtocolMatchDiagram } from './ProtocolMatchDiagram'
+import { ProxyDirectionDiagram } from './ProxyDirectionDiagram'
 import { PsColumnsDiagram } from './PsColumnsDiagram'
 import { PublicAllocationDiagram } from './PublicAllocationDiagram'
 import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
+import { PxeBootDiagram } from './PxeBootDiagram'
 import { QueryModesDiagram } from './QueryModesDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
@@ -271,6 +291,7 @@ import { RedirectionFlowDiagram } from './RedirectionFlowDiagram'
 import { RegionConditionDiagram } from './RegionConditionDiagram'
 import { RegionPairDiagram } from './RegionPairDiagram'
 import { RemoteAccessServicesDiagram } from './RemoteAccessServicesDiagram'
+import { RepeaterRegenerateDiagram } from './RepeaterRegenerateDiagram'
 import { RequestBodyLimitDiagram } from './RequestBodyLimitDiagram'
 import { RequestFilteringDiagram } from './RequestFilteringDiagram'
 import { ReservedAddressesDiagram } from './ReservedAddressesDiagram'
@@ -357,6 +378,7 @@ import { TracertHopsDiagram } from './TracertHopsDiagram'
 import { TrafficLoadDiagram } from './TrafficLoadDiagram'
 import { TransportChoiceDiagram } from './TransportChoiceDiagram'
 import { TtlCountdownDiagram } from './TtlCountdownDiagram'
+import { TunnelEncapsulationDiagram } from './TunnelEncapsulationDiagram'
 import { UdpDeliveryDiagram } from './UdpDeliveryDiagram'
 import { UdpHeaderDiagram } from './UdpHeaderDiagram'
 import { UnreachableDiagram } from './UnreachableDiagram'
@@ -378,12 +400,19 @@ import { VnetPeeringDiagram } from './VnetPeeringDiagram'
 import { VpcDestinationDiagram } from './VpcDestinationDiagram'
 import { VpcPathsDiagram } from './VpcPathsDiagram'
 import { VpcScopeDiagram } from './VpcScopeDiagram'
+import { VpnProtocolLayersDiagram } from './VpnProtocolLayersDiagram'
+import { VpnSiteTypesDiagram } from './VpnSiteTypesDiagram'
+import { WafInspectionDiagram } from './WafInspectionDiagram'
 import { WebAppProxyDiagram } from './WebAppProxyDiagram'
 import { WellKnownPortsDiagram } from './WellKnownPortsDiagram'
 import { WindowsLogsDiagram } from './WindowsLogsDiagram'
+import { WirelessLanModesDiagram } from './WirelessLanModesDiagram'
+import { WlanTransmissionDiagram } from './WlanTransmissionDiagram'
 import { WorkFoldersSyncDiagram } from './WorkFoldersSyncDiagram'
 import { WorkingDirectoryDiagram } from './WorkingDirectoryDiagram'
+import { WpanStandardsDiagram } from './WpanStandardsDiagram'
 import { ZeroTrustDiagram } from './ZeroTrustDiagram'
+import { ZigbeeStackDiagram } from './ZigbeeStackDiagram'
 import { ZoneIsolationDiagram } from './ZoneIsolationDiagram'
 import { ZoneTransferDiagram } from './ZoneTransferDiagram'
 import { AnalyticsServiceTable, LogStorageTable } from './analyticsTables'
@@ -534,6 +563,17 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'hub-switch-vlan.vlan': VlanSplitDiagram,
   'hub-switch-vlan.vlan-membership': VlanMembershipDiagram,
   'hub-switch-vlan.vlan-tagging': VlanTrunkDiagram,
+  'wireless-lan.wireless-lan': WirelessLanModesDiagram,
+  'wireless-lan.wlan-transmission': WlanTransmissionDiagram,
+  'wireless-lan.wireless-channel': ChannelOverlapDiagram,
+  'wireless-lan.csma-ca': CsmaCaSequenceDiagram,
+  'wireless-lan.mimo': MimoStreamsDiagram,
+  'wireless-lan.ieee-80211-standards': Ieee80211BandsDiagram,
+  'wireless-lan.wpan': WpanStandardsDiagram,
+  'wireless-lan.zigbee': ZigbeeStackDiagram,
+  'wireless-lan.wireless-mesh': MeshRerouteDiagram,
+  'wireless-lan.handoff': CellHandoffDiagram,
+  'wireless-lan.cognitive-radio': CognitiveRadioDiagram,
   'ip-protocol.ip': IpAcrossNetworksDiagram,
   'ip-protocol.fragmentation': FragmentationDiagram,
   'ip-protocol.mtu': MtuLimitDiagram,
@@ -636,6 +676,24 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'app-protocols-mgmt-security.tls': TlsHandshakeDiagram,
   'app-protocols-mgmt-security.https': HttpsStackDiagram,
   'app-protocols-mgmt-security.sip': SipCallDiagram,
+  'network-devices.device-layers': DeviceLayersDiagram,
+  'network-devices.repeater': RepeaterRegenerateDiagram,
+  'network-devices.gateway': GatewayTranslateDiagram,
+  'network-devices.proxy-server': ProxyDirectionDiagram,
+  'network-devices.load-balancing': LoadBalancerPoolDiagram,
+  'network-devices.balancing-methods': BalancingMethodsDiagram,
+  'network-devices.l4-switch': L4SwitchNatDiagram,
+  'network-devices.l7-switch': L7SwitchUrlDiagram,
+  'network-devices.poe': PoePowerDiagram,
+  'network-devices.pxe': PxeBootDiagram,
+  'network-security.firewall': FirewallRulesDiagram,
+  'network-security.ids-ips': IdsIpsPlacementDiagram,
+  'network-security.waf': WafInspectionDiagram,
+  'network-security.nac': NacAdmissionDiagram,
+  'network-security.vpn': VpnSiteTypesDiagram,
+  'network-security.tunneling': TunnelEncapsulationDiagram,
+  'network-security.vpn-protocols': VpnProtocolLayersDiagram,
+  'network-security.ipsec': IpsecModesDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

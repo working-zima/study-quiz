@@ -1,0 +1,499 @@
+{
+  "diagrams": {
+    "wlan-modes": {
+      "label": "노트북 LAPTOP01·LAPTOP02와 AP01(SSID OfficeNet), 유선 LAN을 두고, 인프라스트럭처 모드와 애드혹 모드에서 LAPTOP01이 보낸 프레임이 어디를 거쳐 가는지 보이는 도식",
+      "svgLabel": "맨 위에 유선 LAN을, 그 아래 줄 가운데에 AP01을, AP01의 양옆에 LAPTOP01과 LAPTOP02를 둔 그림",
+      "question": "무선 LAN의 장치들은 누구를 거쳐 통신할까?",
+      "idleCaption": "사무실에 AP01을 두고 SSID를 OfficeNet으로 정했다. LAPTOP01·LAPTOP02·AP01·OfficeNet은 예로 붙인 이름이다. 버튼으로 무선 LAN의 두 구성을 고르면 LAPTOP01이 보낸 프레임이 어디를 거쳐 가는지 볼 수 있다.",
+      "legend": "화살표는 LAPTOP01이 보낸 프레임이 지나가는 길이다. AP01 아래의 SSID OfficeNet은 AP01이 주변에 알리는 무선 LAN의 이름이다.",
+      "nodes": {
+        "wired": "유선 LAN",
+        "laptop01": "LAPTOP01",
+        "ap01": "AP01",
+        "laptop02": "LAPTOP02"
+      },
+      "notes": {
+        "ssid-note": "SSID OfficeNet",
+        "infra-note": "AP01을 거쳐 간다",
+        "adhoc-note": "AP 없이 직접"
+      },
+      "scenarios": [
+        {
+          "id": "infra",
+          "label": "인프라스트럭처 모드",
+          "caption": "인프라스트럭처 모드에서는 LAPTOP01이 LAPTOP02에게 보내는 프레임도 대개 AP01을 거쳐 간다. AP01은 자기에게 연결된 두 노트북을 서로 잇고, 케이블로 이어진 유선 LAN과도 잇는다.",
+          "sources": [
+            "wireless-lan.wireless-lan"
+          ]
+        },
+        {
+          "id": "adhoc",
+          "label": "애드혹 모드",
+          "caption": "애드혹 모드에서는 AP 없이 LAPTOP01과 LAPTOP02가 서로 직접 프레임을 주고받는다. AP가 없으니 유선 LAN으로 가는 길이 없고, 두 노트북의 전파가 서로 닿는 범위에서 통신한다.",
+          "sources": [
+            "wireless-lan.wireless-lan"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-lan"
+      ]
+    },
+    "wlan-transmission": {
+      "label": "802.11의 처음 판(802.11-1997)과 개정(802.11b·802.11a·g)을 그것이 쓰는 전송 방식(FHSS·DSSS·OFDM·적외선)과 잇고, FHSS와 DSSS를 대역 확산으로 묶어 보이는 도식",
+      "svgLabel": "맨 위 줄에 802.11b와 802.11a·g를, 가운데 줄에 대역 확산 박스로 묶은 FHSS·DSSS와 OFDM을, 맨 아래 줄에 802.11-1997과 적외선을 둔 그림",
+      "question": "무선 LAN은 신호를 어떤 방법으로 실어 보낼까?",
+      "idleCaption": "802.11-1997은 무선 LAN 표준 802.11의 처음 판이고 802.11b·802.11a·g는 그 뒤의 개정이며, FHSS·DSSS·OFDM·적외선은 그것들이 정한 전송 방식이다. 버튼으로 방식을 고르면 그 방식이 신호를 어떻게 싣는지와 어느 판·개정이 쓰는지 볼 수 있다.",
+      "legend": "「대역 확산」 박스는 FHSS와 DSSS를 묶는 이름이다. 화살표는 802.11의 처음 판·개정에서 그것이 쓰는 전송 방식으로 간다.",
+      "nodes": {
+        "std11b": "802.11b",
+        "std11ag": "802.11a·g",
+        "fhss": "FHSS",
+        "dsss": "DSSS",
+        "ofdm": "OFDM",
+        "std1997": "802.11-1997",
+        "ir": "적외선"
+      },
+      "groups": {
+        "spread": "대역 확산"
+      },
+      "notes": {
+        "spread-note": "넓은 범위에 펼친다",
+        "ofdm-note": "부반송파에 나눠 싣는다",
+        "infrared-note": "전파 대신 빛"
+      },
+      "scenarios": [
+        {
+          "id": "spread",
+          "label": "대역 확산",
+          "caption": "FHSS는 2.4GHz 대역의 좁은 채널들을 정해진 순서에 따라 옮겨 다니며 보내고, DSSS는 채널 하나에 머물며 신호를 넓은 폭에 퍼뜨려 보낸다. 둘 다 802.11-1997에 있었고, 802.11b는 DSSS를 넓힌 고속 DSSS를 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        },
+        {
+          "id": "ofdm",
+          "label": "OFDM",
+          "caption": "OFDM은 채널 하나를 좁은 주파수인 부반송파 여럿으로 나누고, 데이터를 그 부반송파에 나눠 싣는다. 5GHz 대역을 쓰는 802.11a가 들여왔고, 2.4GHz 대역을 쓰는 802.11g도 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        },
+        {
+          "id": "infrared",
+          "label": "적외선",
+          "caption": "적외선 방식은 전파 대신 눈에 보이지 않는 빛인 적외선으로 신호를 보낸다. 802.11-1997의 세 방식 가운데 하나이고, 닿는 거리가 10m 안팎이며 건물 안에서만 쓴다.",
+          "sources": [
+            "wireless-lan.wlan-transmission"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wlan-transmission"
+      ]
+    },
+    "channel-overlap": {
+      "label": "AP01과 옆 사무실 AP02가 쓰는 채널을 주파수 순서로 놓고, AP02가 채널 3을 쓸 때와 채널 6을 쓸 때 AP01의 채널 1과 겹치는지 보이는 도식",
+      "svgLabel": "맨 위에 AP01과 AP02를 두고, 그 아래 줄에 채널 3을, 맨 아래 줄에 채널 1과 채널 6을 주파수 순서대로 둔 그림",
+      "question": "이웃한 두 AP는 왜 채널을 떨어뜨려 고를까?",
+      "idleCaption": "AP01은 채널 1을 쓰고, 옆 사무실의 AP02는 채널 3이나 채널 6을 쓴다. AP01·AP02와 이 채널 번호들은 예로 고른 것이다. 버튼으로 AP02의 채널을 고르면 AP01의 채널 1과 겹치는지 볼 수 있다.",
+      "legend": "채널 상자의 가로 길이는 802.11b의 고속 DSSS 신호가 채널 하나에서 차지하는 폭 22MHz이고, 오른쪽으로 갈수록 주파수가 높다. 화살표는 AP가 쓰는 채널을 가리킨다.",
+      "nodes": {
+        "ap01": "AP01",
+        "ap02": "AP02",
+        "ch3": "채널 3",
+        "ch1": "채널 1",
+        "ch6": "채널 6"
+      },
+      "notes": {
+        "overlap-note": "겹쳐서 간섭한다",
+        "apart-note": "겹치지 않는다"
+      },
+      "scenarios": [
+        {
+          "id": "overlap",
+          "label": "겹치는 채널",
+          "caption": "AP02가 채널 3을 쓰면 두 채널의 중심 주파수가 10MHz만 떨어져, 신호의 폭 22MHz보다 가깝다. 두 신호가 12MHz를 함께 써서, 한쪽 AP가 보낸 전파가 다른 쪽이 받는 신호에 섞이는 간섭이 생긴다.",
+          "sources": [
+            "wireless-lan.wireless-channel"
+          ]
+        },
+        {
+          "id": "apart",
+          "label": "겹치지 않는 채널",
+          "caption": "AP02가 채널 6을 쓰면 두 채널의 중심 주파수가 25MHz 떨어져, 신호의 폭 22MHz보다 멀다. 채널 1의 위쪽 끝과 채널 6의 아래쪽 끝 사이가 3MHz 비어, 두 AP의 신호가 서로의 채널에 섞이지 않는다.",
+          "sources": [
+            "wireless-lan.wireless-channel"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-channel"
+      ]
+    },
+    "csma-ca-sequence": {
+      "label": "LAPTOP01이 AP01에 데이터 프레임 하나를 보내기 전에 거치는 차례와 오가는 프레임을, RTS/CTS를 쓰지 않을 때와 쓸 때로 나눠 보이는 도식",
+      "svgLabel": "맨 위 박스에 LAPTOP01이 보내기 전에 거치는 채널 듣기·정해 둔 시간·백오프를 차례로 두고, 그 아래 첫 줄에 LAPTOP01·AP01·LAPTOP02를, 둘째 줄에 LAPTOP01·AP01을 둔 그림",
+      "question": "무선 LAN의 스테이션은 보내기 전에 무엇을 기다릴까?",
+      "idleCaption": "노트북 LAPTOP01이 AP01에 데이터 프레임 하나를 보내려 한다. LAPTOP02는 AP01의 전파는 듣지만 LAPTOP01의 전파는 듣지 못하는 자리에 있다. 버튼으로 RTS/CTS를 쓰지 않을 때와 쓸 때를 고르면 어떤 차례로 무엇이 오가는지 볼 수 있다.",
+      "legend": "맨 위 박스 안의 화살표는 LAPTOP01이 보내기 전에 거치는 차례이고, 그 아래 화살표는 장치 사이를 오가는 프레임이다. 「정해 둔 시간」은 채널이 줄곧 비어 있어야 하는 시간이고, 「백오프」는 그 뒤 무작위로 고른 만큼 더 기다리는 시간이다.",
+      "nodes": {
+        "listen": "채널 듣기",
+        "fixed-wait": "정해 둔 시간",
+        "backoff": "백오프",
+        "laptop01-rts": "LAPTOP01",
+        "ap01-rts": "AP01",
+        "laptop02": "LAPTOP02",
+        "laptop01-data": "LAPTOP01",
+        "ap01-data": "AP01"
+      },
+      "groups": {
+        "before-send": "LAPTOP01이 보내기 전에"
+      },
+      "notes": {
+        "rts-note": "RTS",
+        "cts-note": "CTS",
+        "hold-note": "CTS를 듣고 보내지 않는다",
+        "data-note": "데이터 프레임",
+        "ack-note": "ACK"
+      },
+      "scenarios": [
+        {
+          "id": "basic",
+          "label": "기본 차례",
+          "caption": "LAPTOP01은 채널을 들어 보고, 정해 둔 시간 동안 채널이 줄곧 비어 있어도 무작위로 고른 시간만큼 더 기다린 뒤 데이터 프레임을 보낸다. 프레임을 오류 없이 받은 AP01은 곧바로 ACK를 보내고, LAPTOP01은 ACK를 보고 프레임이 전해졌음을 안다.",
+          "sources": [
+            "wireless-lan.csma-ca"
+          ]
+        },
+        {
+          "id": "rtscts",
+          "label": "RTS/CTS",
+          "caption": "백오프를 마친 LAPTOP01은 데이터 프레임 대신 RTS를 보내고, AP01이 CTS로 답한다. LAPTOP02는 LAPTOP01의 RTS는 듣지 못해도 AP01의 CTS는 들으므로 CTS에 적힌 시간 동안 보내지 않는다. 그동안 데이터 프레임과 ACK가 오간다.",
+          "sources": [
+            "wireless-lan.csma-ca"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.csma-ca"
+      ]
+    },
+    "mimo-streams": {
+      "label": "안테나 넷을 갖춘 AP01과 노트북 LAPTOP01·LAPTOP02를 두고, MIMO와 MU-MIMO에서 AP01이 보내는 공간 스트림 둘이 어느 노트북으로 가는지 보이는 도식",
+      "svgLabel": "안테나 1부터 안테나 4까지를 담은 AP01 박스와, 그 박스에서 떨어진 자리에 LAPTOP01과 LAPTOP02를 둔 그림",
+      "question": "안테나가 여럿이면 무엇을 함께 보낼 수 있을까?",
+      "idleCaption": "AP01은 안테나 넷을 갖췄고, LAPTOP01과 LAPTOP02는 MIMO를 지원한다. AP01·LAPTOP01·LAPTOP02와 안테나 넷, 스트림 둘은 예로 고른 것이다. 버튼으로 MIMO와 MU-MIMO를 고르면 AP01이 보내는 공간 스트림 둘이 어디로 가는지 볼 수 있다.",
+      "legend": "화살표 하나가 AP01이 함께 내보내는 공간 스트림 하나다. 화살표는 AP01 박스에서 나가게 그렸고, 어느 스트림이 어느 안테나에서 나가는지는 그리지 않았다.",
+      "nodes": {
+        "ant1": "안테나 1",
+        "ant2": "안테나 2",
+        "ant3": "안테나 3",
+        "ant4": "안테나 4",
+        "laptop01": "LAPTOP01",
+        "laptop02": "LAPTOP02"
+      },
+      "groups": {
+        "ap01": "AP01"
+      },
+      "notes": {
+        "mimo-note": "LAPTOP01에 스트림 둘",
+        "mu-mimo-note": "노트북마다 스트림 하나"
+      },
+      "scenarios": [
+        {
+          "id": "mimo",
+          "label": "MIMO",
+          "caption": "MIMO에서는 AP01이 LAPTOP01에게 보낼 데이터를 공간 스트림 둘로 나눠, 같은 채널에서 함께 내보낸다. 두 스트림이 모두 LAPTOP01로 가므로 LAPTOP01이 받는 전송률이 높아진다.",
+          "sources": [
+            "wireless-lan.mimo"
+          ]
+        },
+        {
+          "id": "mu-mimo",
+          "label": "MU-MIMO",
+          "caption": "MU-MIMO에서는 AP01이 LAPTOP01에게 보낼 스트림 하나와 LAPTOP02에게 보낼 스트림 하나를 같은 때 함께 내보낸다. 두 노트북은 저마다 자기에게 온 스트림을 받는다.",
+          "sources": [
+            "wireless-lan.mimo"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.mimo"
+      ]
+    },
+    "ieee-80211-bands": {
+      "label": "802.11의 개정 일곱(802.11a·b·g·n·ad·ac·ax)과 주파수 대역 셋(2.4GHz·5GHz·60GHz)을 두고, 대역마다 그 대역을 쓰는 개정을 잇는 도식",
+      "svgLabel": "주파수 대역 셋과 802.11의 개정 일곱을 두고, 개정에서 그 개정이 쓰는 대역으로 화살표를 잇는 그림",
+      "question": "802.11 규격들은 어느 주파수 대역을 쓸까?",
+      "idleCaption": "802.11a·802.11b·802.11g·802.11n·802.11ad·802.11ac·802.11ax는 무선 LAN 표준 802.11의 개정이고, 2.4GHz·5GHz·60GHz는 주파수 대역이다. 버튼으로 대역을 고르면 그 대역을 쓰는 개정을 볼 수 있다.",
+      "legend": "화살표는 802.11의 개정에서 그 개정이 쓰는 주파수 대역으로 간다. 802.11ax는 1GHz부터 7.125GHz 사이의 다른 대역도 쓸 수 있지만, 이 그림은 2.4GHz·5GHz·60GHz 대역만 보인다.",
+      "nodes": {
+        "band24": "2.4GHz 대역",
+        "band5": "5GHz 대역",
+        "band60": "60GHz 대역",
+        "std11b": "802.11b",
+        "std11g": "802.11g",
+        "std11n": "802.11n",
+        "std11ax": "802.11ax",
+        "std11a": "802.11a",
+        "std11ac": "802.11ac",
+        "std11ad": "802.11ad"
+      },
+      "notes": {
+        "band-24-note": "802.11ac는 없다",
+        "band-5-note": "802.11ac는 여기",
+        "band-60-note": "802.11ad는 여기"
+      },
+      "scenarios": [
+        {
+          "id": "band-24",
+          "label": "2.4GHz",
+          "caption": "2.4GHz 대역은 802.11b와 802.11g가 쓰고, 802.11n과 802.11ax도 쓴다. 802.11ac는 2.4GHz 대역을 빼고 6GHz 아래에서 동작하도록 만든 개정이라 이 대역을 쓰지 않는다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        },
+        {
+          "id": "band-5",
+          "label": "5GHz",
+          "caption": "5GHz 대역은 802.11a와 802.11ac가 쓰고, 802.11n과 802.11ax도 쓴다. 802.11ac는 2.4GHz 대역을 뺀 6GHz 아래, 곧 5GHz 대역에서 동작한다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        },
+        {
+          "id": "band-60",
+          "label": "60GHz",
+          "caption": "60GHz 대역은 802.11ad가 쓴다. 802.11ad는 이름이 한 글자 다른 802.11ac와 같은 연구 그룹에서 나왔지만, 802.11ac와 달리 60GHz 대역에서 동작한다.",
+          "sources": [
+            "wireless-lan.ieee-80211-standards"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.ieee-80211-standards"
+      ]
+    },
+    "wpan-standards": {
+      "label": "IEEE 802.15의 세 규격 802.15.1·802.15.3·802.15.4를 두고, 규격을 고르면 그 규격이 무엇을 노렸는지와 그 짝이 되는 기술이나 쓰임의 예가 보이는 도식",
+      "svgLabel": "IEEE 802.15 박스 안에 802.15.1·802.15.3·802.15.4를 두고, 박스 밖의 짝 자리에 블루투스·멀티미디어·SENSOR01을 둔 그림",
+      "question": "WPAN의 규격은 무엇에 맞춰 나뉘었을까?",
+      "idleCaption": "IEEE 802.15 작업 그룹은 WPAN을 쓰임에 따라 여러 규격으로 나눠 정했다. 버튼으로 규격을 고르면 그 규격이 무엇을 노렸는지와 짝이 되는 기술이나 쓰임의 예를 볼 수 있다. SENSOR01은 예로 붙인 이름표다.",
+      "legend": "화살표는 규격과 그 짝을 잇는다. 802.15.1에서 블루투스로 가는 화살표는 802.15.1이 블루투스의 아래 계층을 옮겨 만든 규격이라는 뜻이고, 나머지 둘은 그 규격이 노린 쓰임의 예를 가리킨다.",
+      "nodes": {
+        "dot1": "802.15.1",
+        "dot3": "802.15.3",
+        "dot4": "802.15.4",
+        "bluetooth": "블루투스",
+        "multimedia": "멀티미디어",
+        "sensor01": "SENSOR01"
+      },
+      "groups": {
+        "ieee80215": "IEEE 802.15"
+      },
+      "notes": {
+        "dot1-note": "블루투스의 아래 계층",
+        "dot3-note": "고속 WPAN",
+        "dot4-note": "저속 WPAN"
+      },
+      "scenarios": [
+        {
+          "id": "dot1",
+          "label": "802.15.1",
+          "caption": "802.15.1은 블루투스의 아래 계층인 물리 계층과 매체 접근 제어를 IEEE 표준으로 옮긴 규격이다. 2005년에 고친 판은 2018년에 철회됐고, 블루투스의 사양은 Bluetooth SIG가 정한다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        },
+        {
+          "id": "dot3",
+          "label": "802.15.3",
+          "caption": "802.15.3은 고속 WPAN을 정한 규격이다. 20Mbps 이상으로 보내면서도 전력과 비용을 낮게 유지해, 휴대용 장치끼리 디지털 영상 같은 멀티미디어를 주고받게 하는 것을 노렸다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        },
+        {
+          "id": "dot4",
+          "label": "802.15.4",
+          "caption": "802.15.4는 저속 WPAN을 정한 규격이다. 배터리 하나로 몇 달에서 몇 년까지 동작하는 장치를 노려, 가끔 온도 값만 알리는 센서 SENSOR01 같은 쓰임에 맞는다.",
+          "sources": [
+            "wireless-lan.wpan"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wpan"
+      ]
+    },
+    "zigbee-stack": {
+      "label": "Zigbee 장치의 계층 넷을 IEEE 802.15.4가 정한 칸과 Zigbee 사양이 정한 칸으로 나눠 쌓고, 코디네이터·LIGHT01·SENSOR01이 메시로 이어진 길을 함께 보이는 도식",
+      "svgLabel": "Zigbee 사양 박스(응용 계층·네트워크 계층)를 IEEE 802.15.4 박스(매체 접근 제어·물리 계층) 위에 쌓고, 떨어진 자리에 SENSOR01·LIGHT01·코디네이터를 둔 그림",
+      "question": "Zigbee는 802.15.4 위에 무엇을 더했을까?",
+      "idleCaption": "조명 LIGHT01과 온도 센서 SENSOR01은 예로 붙인 이름표다. 버튼으로 계층을 고르면 Zigbee가 802.15.4 위에 무엇을 더했는지, 메시를 고르면 SENSOR01의 데이터가 코디네이터에 닿는 길을 볼 수 있다.",
+      "legend": "위 박스의 두 칸은 Zigbee 사양이, 아래 박스의 두 칸은 IEEE 802.15.4가 정한다. 화살표는 SENSOR01이 보낸 데이터가 가는 길이다.",
+      "nodes": {
+        "app": "응용 계층",
+        "nwk": "네트워크 계층",
+        "mac": "매체 접근 제어",
+        "phy": "물리 계층",
+        "sensor01": "SENSOR01",
+        "light01": "LIGHT01",
+        "coordinator": "코디네이터"
+      },
+      "groups": {
+        "zigbee": "Zigbee 사양",
+        "ieee802154": "IEEE 802.15.4"
+      },
+      "notes": {
+        "zigbee-note": "Zigbee가 더한다",
+        "ieee-note": "그대로 쓴다",
+        "mesh-note": "LIGHT01이 넘겨 준다"
+      },
+      "scenarios": [
+        {
+          "id": "layers",
+          "label": "계층",
+          "caption": "Zigbee 장치는 IEEE 802.15.4가 정한 물리 계층과 매체 접근 제어를 그대로 쓴다. 그 위의 네트워크 계층과 응용 계층은 CSA가 만든 Zigbee 사양이 정한다.",
+          "sources": [
+            "wireless-lan.zigbee"
+          ]
+        },
+        {
+          "id": "mesh",
+          "label": "메시",
+          "caption": "SENSOR01은 코디네이터와 전파가 바로 닿지 않지만 LIGHT01과는 닿는다. SENSOR01이 보낸 온도 값을 LIGHT01이 받아 코디네이터에게 넘겨, 두 장치 사이에도 데이터가 오간다.",
+          "sources": [
+            "wireless-lan.zigbee"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.zigbee"
+      ]
+    },
+    "mesh-reroute": {
+      "label": "메시 노드 MESH01~MESH04를 이웃끼리 링크로 이어 두고, MESH01이 MESH04에게 보낸 프레임이 평소에는 MESH02를, MESH02가 꺼진 뒤에는 MESH03을 거쳐 가는 길을 보이는 도식",
+      "svgLabel": "서로 떨어진 MESH01과 MESH04 사이의 두 갈래에 MESH02와 MESH03을 두고, 이웃한 노드끼리 링크로 이은 그림",
+      "question": "메시 노드 하나가 꺼지면 프레임은 어디로 갈까?",
+      "idleCaption": "MESH01~MESH04는 예로 붙인 메시 노드의 이름이다. MESH01과 MESH04는 서로 전파가 닿지 않아, 그 사이의 MESH02나 MESH03을 거쳐야 한다. 버튼을 고르면 MESH01이 MESH04에게 보낸 프레임이 평소와 MESH02가 꺼졌을 때 어느 노드를 거쳐 가는지 볼 수 있다.",
+      "legend": "가는 선은 이웃한 두 노드를 잇는 링크이고, 화살표는 MESH01이 보낸 프레임이 한 홉씩 건너가는 길이다.",
+      "nodes": {
+        "mesh01": "MESH01",
+        "mesh02": "MESH02",
+        "mesh03": "MESH03",
+        "mesh04": "MESH04"
+      },
+      "notes": {
+        "off": "꺼짐",
+        "via-02": "MESH02를 거쳐 간다",
+        "via-03": "MESH03을 거쳐 간다"
+      },
+      "scenarios": [
+        {
+          "id": "normal",
+          "label": "평소",
+          "caption": "경로 선택으로 MESH02를 거치는 경로를 골랐다. MESH01이 보낸 프레임은 MESH02로 한 홉, MESH02에서 MESH04로 또 한 홉을 건너 MESH04에 닿는다.",
+          "sources": [
+            "wireless-lan.wireless-mesh"
+          ]
+        },
+        {
+          "id": "reroute",
+          "label": "노드가 꺼졌을 때",
+          "caption": "MESH02의 전원이 꺼져 MESH01과 MESH02 사이의 링크가 끊겼다. MESH01은 이를 알아채고 MESH03을 거치는 경로를 골라, 프레임은 두 홉을 건너 여전히 MESH04에 닿는다.",
+          "sources": [
+            "wireless-lan.wireless-mesh"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.wireless-mesh"
+      ]
+    },
+    "cell-handoff": {
+      "label": "기지국 BS01과 BS02의 셀을 나란히 두고, 통화 중인 휴대폰이 BS01의 셀에서 BS02의 셀로 옮겨 갈 때 휴대폰과 전파를 주고받는 기지국이 어떻게 바뀌는지 보이는 도식",
+      "svgLabel": "BS01의 셀과 BS02의 셀을 나란히 두고, 셀마다 기지국과 그 셀 안에 있을 때의 휴대폰 자리를 둔 그림",
+      "question": "움직이는 휴대폰의 연결은 어느 기지국이 이어 받을까?",
+      "idleCaption": "버스에 탄 사람이 휴대폰으로 통화하며 BS01의 셀에서 BS02의 셀로 옮겨 간다. BS01·BS02는 예로 붙인 이름표다. 버튼을 고르면 옮기기 전과 옮긴 뒤에 휴대폰이 어느 기지국과 전파를 주고받는지 볼 수 있다.",
+      "legend": "두 박스는 기지국이 전파로 덮는 지역인 셀이다. 왼쪽 휴대폰은 옮기기 전의 자리, 오른쪽 휴대폰은 옮긴 뒤의 자리다. 세로 화살표는 휴대폰이 전파를 주고받는 기지국을 가리키고, 가로 화살표는 휴대폰이 옮겨 간 쪽이다.",
+      "nodes": {
+        "bs01": "BS01",
+        "bs02": "BS02",
+        "phone-before": "휴대폰",
+        "phone-after": "휴대폰"
+      },
+      "groups": {
+        "cell-bs01": "BS01의 셀",
+        "cell-bs02": "BS02의 셀"
+      },
+      "notes": {
+        "before-note": "BS01과 통신한다",
+        "after-note": "연결이 BS02로 넘어간다"
+      },
+      "scenarios": [
+        {
+          "id": "before",
+          "label": "옮기기 전",
+          "caption": "휴대폰은 BS01의 셀 안에 있어 BS01과 전파를 주고받으며 통화한다. 셀은 기지국의 전파가 닿는 지역이라, 셀 안의 단말이 그 셀의 기지국과 통신할 수 있다.",
+          "sources": [
+            "wireless-lan.handoff"
+          ]
+        },
+        {
+          "id": "after",
+          "label": "옮긴 뒤",
+          "caption": "휴대폰이 BS01의 셀을 벗어나 BS02의 셀로 들어가자 통화 연결이 BS02로 넘어간다. 휴대폰은 이제 BS02와 전파를 주고받고, 통화는 끊기지 않고 이어진다.",
+          "sources": [
+            "wireless-lan.handoff"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.handoff"
+      ]
+    },
+    "cognitive-radio": {
+      "label": "인지 무선 장치가 비어 있는 채널 A를 쓰다가, 채널 A를 쓰도록 허가받은 사용자가 나타나면 채널 A를 비우고 빈 채널 B로 옮겨 가는 모습을 보이는 도식",
+      "svgLabel": "인지 무선 장치와 허가받은 사용자, 그리고 둘이 쓰는 채널 A와 채널 B를 둔 그림",
+      "question": "인지 무선 장치는 언제 다른 채널로 옮겨 갈까?",
+      "idleCaption": "같은 대역 안에 채널 A와 채널 B가 있고, 채널 A를 쓰도록 허가받은 사용자가 있다. 채널 A·B는 예로 붙인 이름표다. 버튼을 고르면 인지 무선 장치가 빈 채널을 찾아 쓰는 모습과, 허가받은 사용자가 나타났을 때 비켜 가는 모습을 볼 수 있다.",
+      "legend": "채널 A와 채널 B는 같은 대역 안의 서로 다른 채널이다. 화살표는 인지 무선 장치나 허가받은 사용자가 쓰는 채널을 가리킨다.",
+      "nodes": {
+        "device": "인지 무선 장치",
+        "ch-a": "채널 A",
+        "ch-b": "채널 B",
+        "licensed": "허가받은 사용자"
+      },
+      "notes": {
+        "sense-note": "비어 있는 채널 A를 쓴다",
+        "move-note": "빈 채널 B로 옮긴다",
+        "licensed-note": "채널 A를 쓰기 시작한다"
+      },
+      "scenarios": [
+        {
+          "id": "sense",
+          "label": "빈 채널 쓰기",
+          "caption": "인지 무선 장치가 주변의 전파를 감지해 보니 채널 A에 허가받은 사용자의 신호가 없다. 장치는 이렇게 비어 있는 채널 A를 찾아 통신하고, 통신하는 동안에도 감지를 이어 간다.",
+          "sources": [
+            "wireless-lan.cognitive-radio"
+          ]
+        },
+        {
+          "id": "vacate",
+          "label": "비켜 가기",
+          "caption": "허가받은 사용자가 채널 A를 쓰기 시작하자, 감지를 이어 가던 장치가 그 신호를 알아챈다. 장치는 채널 A에서 보내기를 멈춰 채널 A를 비우고, 비어 있음을 확인한 채널 B로 옮겨 통신을 이어 간다.",
+          "sources": [
+            "wireless-lan.cognitive-radio"
+          ]
+        }
+      ],
+      "sources": [
+        "wireless-lan.cognitive-radio"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

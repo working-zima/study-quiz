@@ -18,6 +18,8 @@ import linuxProcessBootVisuals from './visuals/linux-process-boot.json'
 import linuxServersVisuals from './visuals/linux-servers.json'
 import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
+import networkDevicesVisuals from './visuals/network-devices.json'
+import networkSecurityVisuals from './visuals/network-security.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
 import routingVisuals from './visuals/routing.json'
@@ -27,6 +29,7 @@ import windowsAdVisuals from './visuals/windows-ad.json'
 import windowsAdminToolsVisuals from './visuals/windows-admin-tools.json'
 import windowsHypervVisuals from './visuals/windows-hyperv.json'
 import windowsServerRolesVisuals from './visuals/windows-server-roles.json'
+import wirelessLanVisuals from './visuals/wireless-lan.json'
 import type { Question, Topic } from '../../types/content'
 import type { Subject } from '../../types/subject'
 import type { TopicVisuals } from '../../types/visuals'
@@ -40,6 +43,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'protocols-encapsulation': protocolsEncapsulationVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
+  'wireless-lan': wirelessLanVisuals,
   'ip-protocol': ipProtocolVisuals,
   'arp': arpVisuals,
   'icmp': icmpVisuals,
@@ -52,6 +56,8 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'dns': dnsVisuals,
   'app-protocols-mail-file': appProtocolsMailFileVisuals,
   'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
+  'network-devices': networkDevicesVisuals,
+  'network-security': networkSecurityVisuals,
   'diagnostic-commands': diagnosticCommandsVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,

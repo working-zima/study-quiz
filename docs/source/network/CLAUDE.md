@@ -43,6 +43,11 @@
   VLAN·태그·트렁크 같은 일반 사실은 IEEE 802.1Q·RFC·NIST에서 가져온다. 제품·판마다 달라지므로 어느 제품·판의 문서인지 `standards.md` 항목에 적는다.
 - **`gdisk`**: `rodsbooks.com`의 GPT fdisk 문서(`www.rodsbooks.com/gdisk/` 아래 — GPT fdisk를 만든 Rod Smith의 공식 문서) — `gdisk`가 무엇을 하는 도구인지에만 쓴다.
   강의 밖 주제 `linux-filesystem`이 쓴다(phase 75, 사용자 결정 2026-10-30). GPT·MBR의 일반 사실은 man7.org의 fdisk(8)에서 가져온다. 어느 판의 문서인지 `standards.md` 항목에 적는다.
+- **무선 업체 연합 기술**: `csa-iot.org`(Connectivity Standards Alliance — Zigbee 사양과 그 기술을 설명하는 공식 문서)와 `bluetooth.com`(Bluetooth SIG — Bluetooth Core Specification과 그 기술을 설명하는 공식 문서) —
+  그 단체가 만든 기술(Zigbee, Bluetooth·BLE)의 사실에만 쓴다. 강의 밖 주제 `wireless-lan`이 쓴다(phase 82, 사용자 결정 2026-11-19). 보도 자료·회원 소식·블로그·마케팅 페이지는 쓰지 않고,
+  그 아래 계층(IEEE 802.15.4·802.15.1)의 사실은 IEEE 802에서 가져온다. 어느 판의 사양인지 `standards.md` 항목에 적는다.
+- **IEEE 802.11 작업 그룹 문서**: `mentor.ieee.org`(802.11 작업 그룹의 문서 서버 — 작업반의 사양 틀·튜토리얼·보고 같은 공개 문서) — 802.11의 사실 가운데 `ieee802.org`·`standards.ieee.org`에 없는 것(OFDMA·MU-MIMO의 정의, 개정마다의 최대 전송률 같은 것)에만 쓴다.
+  강의 밖 주제 `wireless-lan`이 쓴다(phase 82, 사용자 결정 2026-11-19). 이 서버는 자동 내려받기를 막으므로(2026-11-20 확인, HTTP 418) 사람이 브라우저로 받아 둔 문서를 읽는다. 문서 번호와 개정 번호(예: 11-15/0132r17)를 `standards.md` 항목에 적는다.
 
 **위키백과·블로그·자격증 교재·업체 학습 페이지는 쓰지 않는다** — 강의가 그런 곳을 링크해도, 공식 문서보다 쉽게 풀어 써 있어도 마찬가지다.
 
