@@ -73,6 +73,7 @@ import { CsmaCaSequenceDiagram } from './CsmaCaSequenceDiagram'
 import { CsmaCdDiagram } from './CsmaCdDiagram'
 import { DaemonServiceDiagram } from './DaemonServiceDiagram'
 import { DataBoxDiagram } from './DataBoxDiagram'
+import { DataCenterServicesDiagram } from './DataCenterServicesDiagram'
 import { DataTransferCostsDiagram } from './DataTransferCostsDiagram'
 import { DdosProtectionDiagram } from './DdosProtectionDiagram'
 import { DecapsulationDiagram } from './DecapsulationDiagram'
@@ -334,6 +335,7 @@ import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
 import { ServerStaticIpDiagram } from './ServerStaticIpDiagram'
+import { ServerlessDutiesDiagram } from './ServerlessDutiesDiagram'
 import { ServiceLifecycleDiagram } from './ServiceLifecycleDiagram'
 import { SgNaclBoundaryDiagram } from './SgNaclBoundaryDiagram'
 import { SgNaclLayersDiagram } from './SgNaclLayersDiagram'
@@ -734,6 +736,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-security.ipsec': IpsecModesDiagram,
   'cloud-sdn.cloud-computing': CloudTraitsDiagram,
   'cloud-sdn.cloud-deployment-models': DeploymentModelUsersDiagram,
+  'cloud-sdn.serverless': ServerlessDutiesDiagram,
+  'cloud-sdn.data-center': DataCenterServicesDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
