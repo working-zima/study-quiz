@@ -310,6 +310,7 @@ import { ResourceHealthDiagram } from './ResourceHealthDiagram'
 import { ResourceManagerDiagram } from './ResourceManagerDiagram'
 import { ResourceMonitorDiagram } from './ResourceMonitorDiagram'
 import { ReverseNameDiagram } from './ReverseNameDiagram'
+import { RingPassDiagram } from './RingPassDiagram'
 import { RolePathsDiagram } from './RolePathsDiagram'
 import { RoleServiceFeatureDiagram } from './RoleServiceFeatureDiagram'
 import { RolesAnywhereStepFigure } from './RolesAnywhereStepFigure'
@@ -354,6 +355,7 @@ import { SqsMessageLifeDiagram } from './SqsMessageLifeDiagram'
 import { SshSessionDiagram } from './SshSessionDiagram'
 import { StandardDirectoriesDiagram } from './StandardDirectoriesDiagram'
 import { StandardNameDiagram } from './StandardNameDiagram'
+import { StarCenterFailureDiagram } from './StarCenterFailureDiagram'
 import { StateMachineDiagram } from './StateMachineDiagram'
 import { StorageAccountDiagram } from './StorageAccountDiagram'
 import { StorageMigrationDiagram } from './StorageMigrationDiagram'
@@ -567,6 +569,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'transmission-media.wdm': WdmWavelengthsDiagram,
   'network-topology.network-topology': TopologyLinkKindsDiagram,
   'network-topology.bus-topology': BusTerminatorDiagram,
+  'network-topology.star-topology': StarCenterFailureDiagram,
+  'network-topology.ring-topology': RingPassDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,
