@@ -1,0 +1,98 @@
+{
+  "diagrams": {
+    "raid-array": {
+      "label": "RAID로 묶은 물리 디스크 넷이 운영 체제에는 논리 디스크 하나로 보이고, 그 데이터는 실제로 물리 디스크 넷에 놓이는 것을 견주는 도식",
+      "svgLabel": "운영 체제와 논리 디스크, 「RAID 묶음」 박스 안의 DISK0·DISK1·DISK2·DISK3을 화살표로 이은 그림",
+      "question": "RAID로 묶은 디스크는 운영 체제에게 어떻게 보일까?",
+      "idleCaption": "서버 SRV01에 물리 디스크 DISK0~DISK3 넷을 붙이고 RAID로 묶었다. 버튼으로 장면을 고르면 운영 체제가 보는 것과 데이터가 실제로 놓이는 곳을 따로 볼 수 있다.",
+      "legend": "화살표는 운영 체제가 쓴 데이터가 가는 쪽이다. SRV01과 DISK0~DISK3은 예로 붙인 이름표다.",
+      "nodes": {
+        "os": "운영 체제",
+        "logical": "논리 디스크",
+        "disk0": "DISK0",
+        "disk1": "DISK1",
+        "disk2": "DISK2",
+        "disk3": "DISK3"
+      },
+      "groups": {
+        "raid": "RAID 묶음"
+      },
+      "notes": {
+        "os-view-note": "운영 체제에는 디스크 하나만 보인다",
+        "physical-note": "데이터는 실제로 물리 디스크 넷에 놓인다"
+      },
+      "scenarios": [
+        {
+          "id": "os-view",
+          "label": "운영 체제가 보는 것",
+          "caption": "운영 체제는 RAID의 제어 소프트웨어가 내놓은 논리 디스크를 디스크 하나로 여기고, 거기에 파일을 저장한다. 물리 디스크를 하나하나 골라 파일을 두지 않는다.",
+          "sources": [
+            "raid-storage.raid"
+          ]
+        },
+        {
+          "id": "physical",
+          "label": "실제로 놓인 것",
+          "caption": "논리 디스크에 쓴 데이터를 실제로 어느 물리 디스크의 어느 자리에 둘지는 제어 소프트웨어가 정한다. 레벨에 따라 데이터를 네 디스크에 나눠 두거나, 겹쳐 두거나, 패리티를 함께 둔다.",
+          "sources": [
+            "raid-storage.raid"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid"
+      ]
+    },
+    "raid-striping": {
+      "label": "RAID 0이 파일 조각 A1~A8을 DISK0~DISK3에 차례로 번갈아 놓는 모습과, DISK1 하나가 고장 났을 때 무엇을 잃는지 견주는 도식",
+      "svgLabel": "DISK0·DISK1·DISK2·DISK3 박스마다 조각 칸 둘(A1·A5, A2·A6, A3·A7, A4·A8)을 둔 그림",
+      "question": "RAID 0은 파일 조각을 디스크에 어떻게 놓을까?",
+      "idleCaption": "2TB 디스크 DISK0~DISK3 넷을 RAID 0으로 묶고 파일 하나를 쓰니 조각 A1~A8이 생겼다. 버튼으로 장면을 고르면 조각이 놓인 차례와, 디스크 하나가 고장 났을 때 무엇을 잃는지 볼 수 있다.",
+      "legend": "박스 하나가 디스크 하나이고, 칸 하나가 조각 하나다. 디스크 이름과 조각 이름은 예로 붙인 이름표다.",
+      "nodes": {
+        "a1": "A1",
+        "a2": "A2",
+        "a3": "A3",
+        "a4": "A4",
+        "a5": "A5",
+        "a6": "A6",
+        "a7": "A7",
+        "a8": "A8"
+      },
+      "groups": {
+        "disk0": "DISK0",
+        "disk1": "DISK1",
+        "disk2": "DISK2",
+        "disk3": "DISK3"
+      },
+      "notes": {
+        "stripe-note": "조각을 디스크마다 차례로 번갈아 놓는다",
+        "fail-mark": "고장",
+        "fail-note": "A2와 A6을 잃어 파일을 온전히 읽지 못한다"
+      },
+      "scenarios": [
+        {
+          "id": "stripe",
+          "label": "나눠 놓기",
+          "caption": "A1~A4를 DISK0부터 DISK3까지 하나씩 놓아 첫째 줄을 채우고, A5부터 다시 DISK0으로 돌아가 둘째 줄을 채운다. 이어진 조각이 서로 다른 디스크에 있으므로, 이 파일을 읽을 때 네 디스크가 저마다 자기 조각을 함께 읽는다.",
+          "sources": [
+            "raid-storage.raid-0"
+          ]
+        },
+        {
+          "id": "fail",
+          "label": "디스크 하나의 고장",
+          "caption": "DISK1이 고장 나면 그 디스크에 있던 A2와 A6을 잃는다. RAID 0에는 사본도 패리티도 없어 잃은 조각을 다시 만들 수 없으므로, 나머지 세 디스크가 멀쩡해도 이 파일을 온전히 읽지 못한다.",
+          "sources": [
+            "raid-storage.raid-0"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid-0"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

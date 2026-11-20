@@ -211,6 +211,7 @@ RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로, man7.org의 md
 **SNIA 사전과 DDF가 적지 않은 것 — 레벨마다의 디스크 최소 수, RAID 4의 패리티 디스크에 쓰기가 몰린다는 것, 미러에서 읽기를 나누는 것 — 은 허용한 출처 안의 구현 문서(Linux md 드라이버의 md(4), Windows의 DiskPart·VDS 문서)에서 가져왔다** — 표준이 아니라 한 구현의 문서라는 것을 항목에 적는다.
 **디스크·저장 장치 업체의 문서·상품 페이지는 쓰지 않았다**(허용 목록 밖이다). **기출이 묻지 않는 것은 사실로 가져오지 않았다** — RAID 2·3·4·6·10의 세부(RAID 2·3·4는 한 줄씩만), 하드웨어 RAID와 소프트웨어 RAID의 구현 차이, DDF의 자료 구조와 RAID 레벨 한정자 전체,
 쓰기 구멍(write hole)·비트맵·스크러빙, 파이버 채널의 계층·토폴로지, iSCSI의 PDU·세션·로그인·이름 형식, NAS의 파일 공유 프로토콜(SMB·NFS) 메시지, 저장소 공간(Storage Spaces)의 복원력 방식.
+「(phase 83 step 18)」이 붙은 줄은 phase 83 step 18에서 `raid-storage`의 RAID, RAID 0을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -9492,6 +9493,15 @@ https://www.snia.org/snia-dictionary/download (사전 전체 PDF)
 쓰일 곳: (phase 83 step 18~20에서 쓰일 곳) `raid-storage.raid`(디스크, RAID의 뜻과 이름의 내력, 물리 디스크와 논리 디스크, 스트라이핑·미러링·패리티 한 줄씩, RAID 레벨, 핫 스왑·재구축, 백업과의 관계 — E55),
 `raid-storage.raid-0`(여분 없는 스트라이핑, 하나만 고장 나도 잃는다, 조각과 스트라이프), `raid-storage.raid-1`(미러링, 하나의 고장을 견딘다), `raid-storage.raid-5`(패리티 데이터·다시 만들어 내기, RAID 4의 전용 패리티 장치와 RAID 5의 엇갈린 배치, n+1, RAID 2·3 한 줄),
 `raid-storage.network-storage`(DAS·NAS·SAN, 파일과 블록, 파이버 채널, iSCSI SAN), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단, E54·E55)
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`는 디스크를 disk drive의 정의(전원을 꺼도 남고, 아무 자리나 골라 읽고 다시 쓴다)로 한 줄 풀고(회전 원판은 쓰지 않았다), RAID를 「물리 디스크 여러 개를 한 묶음으로 다루는 기술」로 세운 뒤 disk array의 정의대로 제어 소프트웨어가 묶은 공간을 논리 디스크 하나나 여럿으로 내놓는다고 썼다.
+  이름은 Redundant Array of Independent Disks, 1988년 논문의 inexpensive, 지금 사전이 Devices로 풀어 쓴다는 것까지 쓰고 논문 제목은 쓰지 않았다. redundant의 뜻은 정의를 옮기지 않고 「데이터를 되살리는 데 쓸 정보를 묶음 안에 더 둔다」로 풀었다. SNIA는 「저장 장치의 용어를 정리해 사전으로 내는 단체」로만 소개했다.
+  스트라이핑·미러링·패리티는 data striping·mirroring·parity data·regeneration을 한 문장씩으로, RAID 레벨은 Berkeley RAID Levels를 「버클리 대학의 연구자들이 논문에서 짜임을 번호로 나눈 데서 왔다」로 썼다 — 0~6의 일곱과 RAID 10·50은 쓰지 않았다(guide가 RAID 6·10을 쓰지 않기로 했다). 「스트라이핑만 하는 것도 흔히 RAID 0이라 부르지만 이름의 뜻에는 맞지 않는다」는 RAID 표제어의 말이다.
+  핫 스왑(운영을 멈추지 않는 스왑)·재구축(대부분의 배열은 응용 프로그램이 쓰는 동안 재구축한다)은 표제어대로 쓰고, 웜·콜드 스왑·핫 스페어·성능 저하 모드는 쓰지 않았다. 고장 난 디스크를 빼고 남은 디스크로 계속 답한다는 것은 아래 md(4) 항목의 「RECOVERY」 줄이다.
+  백업은 backup의 정의(원본을 잃을 때 되살리려고 대개 떼어 낼 수 있는 매체에 따로 담아 둔 사본)로 쓰고 「자격시험은」 한 줄을 붙였다(E55). 「RAID는 데이터가 바뀌면 여분도 함께 바꾸므로 실수로 지운 파일은 RAID만으로 되살릴 수 없다」는 md(4)의 RAID1·RAID4 줄에서 나오는 말이다(E55 「표준」).
+  「메모리 용량은 늘지 않는다」는 RAID가 저장 장치를 묶은 배열이라는 정의에서 나오는 말이다([기출 2024-08-25 #47] 판정). 파티션과의 대비는 앞 phase의 `linux-filesystem.partition`과 같은 뜻으로 쓴 것이다.
+  `raid-storage.raid-0`은 RAID 0의 표제어(어느 장치 하나만 고장 나도 데이터를 잃는다)와 strip·stripe를 「조각(strip)」·「줄(stripe), 곧 스트라이프」로 쓰고(「스트립」은 쓰지 않았다), striped array의 쓰임(입출력 성능, 값이 낮거나 다시 구하기 쉬운 데이터)을 풀어 썼다.
+  「큰 파일의 이어진 조각을 서로 다른 디스크가 함께 처리해 빨라진다」는 data striping의 배치에서 나오는 말이고, 「가장 빠르다」는 쓰지 않았다(`exam-notes.md` 「phase 83 step 17」 문단).
+  쓰인 곳: `raid-storage.raid`(문단 0~9), `raid-storage.raid-0`(문단 0~3·5), 도식 `raid-array`·`raid-striping`, 문항 n384·n385·n386
 
 ## (phase 83 step 17) SNIA Common RAID Disk Data Format (DDF) Specification v2.0 rev 19 — RAID 레벨의 배치 그림과 패리티 셈
 https://www.snia.org/tech_activities/standards/curr_standards/ddf
@@ -9520,6 +9530,11 @@ https://www.snia.org/sites/default/files/SNIA_DDF_Technical_Position_v2.0.pdf
   「익스텐트」는 본문에 쓰지 않는다 — 단순한 구성에서는 디스크 하나로 말하면 된다
 쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid`(논리 디스크), `raid-storage.raid-0`(조각을 디스크마다 차례로 돌며 놓는다, 모든 디스크가 데이터를 담는다, 「RAID 0과 연결」),
 `raid-storage.raid-1`(두 디스크의 같은 자리에 겹쳐 둔다, 용량은 디스크 하나만큼), `raid-storage.raid-5`(패리티는 같은 줄의 데이터 조각을 XOR한 값, RAID 4의 패리티 디스크 하나, RAID 5의 줄마다 다른 디스크와 그 차례, 용량 n−1), 기출 대조([기출 2025-08-24 #46])
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`의 「가상 디스크라고도 부른다」는 §3.1.1의 말이다. `raid-storage.raid-0`의 조각을 디스크마다 차례로 돌며 놓고 한 바퀴가 줄 하나가 된다는 것은 §4.2.1 그림 2(md(4) 「RAID0」도 같다)이고,
+  「묶는 디스크마다 같은 크기의 공간을 쓰고 그 공간에 모두 데이터를 담으므로 용량은 합」은 §4.2.1의 「익스텐트의 크기가 같고 패리티 칸이 없다」를 「익스텐트」 없이 쓴 것이다.
+  「RAID 0과 연결」은 §4.1 표 1(연결은 RAID가 아닌 형식)과 §4.3.3(첫째를 다 채운 뒤 둘째로, 크기가 달라도 된다)이다 — 본문은 이 사양을 「SNIA가 정한 RAID 디스크 형식 사양」으로 불렀다. 「RAID 0과 RAID 1」의 용량(디스크 둘이면 디스크 하나만큼)은 §4.2.2다.
+  본문 예의 2TB·`DISK0`~`DISK3`·A1~A8은 예로 든 값이고, A1~A4가 첫째 줄·A5~A8이 둘째 줄로 놓이는 차례는 그림 2의 배치를 디스크 넷에 옮긴 것이다. n385 해설의 RAID 1·RAID 5 용량(디스크 셋으로 1TB·2TB)은 §4.2.3(다중 미러링 — 세 벌)과 표 6(N−1)이다.
+  쓰인 곳: `raid-storage.raid`(문단 1), `raid-storage.raid-0`(문단 0·1·4·6·7·8), 도식 `raid-striping`, 문항 n385
 
 ## (phase 83 step 17) 레벨마다의 동작과 디스크 최소 수 — Linux md(4)(mdadm), Microsoft Learn: create volume stripe·create volume mirror·create volume raid(DiskPart), Volume Object(VDS), Basic and Dynamic Disks
 https://man7.org/linux/man-pages/man4/md.4.html
@@ -9560,6 +9575,10 @@ Windows의 동적 디스크는 운영 체제를 담는 미러 부팅 볼륨을 �
   「분산 패리티」(distributed parity — md(4)의 말). md(4)의 「LINEAR」는 Linux md 드라이버의 이름이고 기출 보기의 「Linear RAID」가 이것이다 — 본문은 「연결(concatenation)」을 세우고 「Linux의 md 드라이버는 이것을 LINEAR라 부른다」까지 쓸 수 있다
 쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid-0`(디스크 둘 이상, 하나만 고장 나도 볼륨 전체를 잃는다, 연결·LINEAR와 가르기), `raid-storage.raid-1`(디스크 둘, 바뀐 것을 모든 디스크에 쓴다, 읽기를 나눌 수 있지만 RAID 0과 같지 않다 — E54, 고장 뒤 성한 디스크로 계속 동작, 「RAID 1과 백업」 — E55),
 `raid-storage.raid-5`(디스크 셋 이상, 패리티 몫만큼 용량이 준다, XOR한 값과 고장 뒤 다시 셈하기, RAID 4의 패리티 디스크에 쓰기가 몰리고 RAID 5가 흩는다), `raid-storage.raid`(재구축의 차례), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단)
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`의 「여분을 두는 레벨에서는 디스크 하나가 고장 나도 묶음이 멈추지 않고, 제어 소프트웨어가 고장 난 디스크를 빼고 남은 디스크로 계속 답한다」는 「RECOVERY」와 DESCRIPTION(RAID 1·4·5가 견디는 고장 수)이다.
+  `raid-storage.raid-0`의 「디스크가 둘 이상 있어야 만든다」는 `create volume stripe`(동적 디스크 둘 이상)이고, 「디스크 하나만 고장 나도 통째로 쓸 수 없게 된다」는 VDS 「Volume Types」(스트라이프 볼륨은 디스크 하나만 고장 나도 볼륨 전체가 고장 난다)다 — DiskPart와 Windows의 볼륨 이름은 본문에 쓰지 않았다.
+  「RAID 0과 연결」의 「Linux의 md 드라이버는 연결을 LINEAR라 부르고, 나중에 디스크를 더 붙여 이미 담긴 데이터를 건드리지 않고 공간을 늘릴 수 있다는 점을 RAID 0과 다른 점으로 든다」는 「LINEAR」다. 드라이버의 한 줄 풀이는 앞 phase의 `linux-filesystem.disk-device-names`와 같은 뜻이다.
+  쓰인 곳: `raid-storage.raid`(문단 5·7), `raid-storage.raid-0`(문단 4·5·7), 문항 n385·n386
 
 ## (phase 83 step 17) iSCSI — RFC 7143 「Internet Small Computer System Interface (iSCSI) Protocol (Consolidated)」, Microsoft Learn 「iSCSI Target Server overview」
 https://www.rfc-editor.org/rfc/rfc7143

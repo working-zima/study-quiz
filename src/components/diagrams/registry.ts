@@ -299,6 +299,8 @@ import { PublicPrivateCloudDiagram } from './PublicPrivateCloudDiagram'
 import { PurviewDataMapDiagram } from './PurviewDataMapDiagram'
 import { PxeBootDiagram } from './PxeBootDiagram'
 import { QueryModesDiagram } from './QueryModesDiagram'
+import { RaidArrayDiagram } from './RaidArrayDiagram'
+import { RaidStripingDiagram } from './RaidStripingDiagram'
 import { RarpDirectionDiagram } from './RarpDirectionDiagram'
 import { RbacAssignmentDiagram } from './RbacAssignmentDiagram'
 import { RbacScopeDiagram } from './RbacScopeDiagram'
@@ -856,6 +858,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'windows-admin-tools.efs': EfsKeyBackupDiagram,
   'windows-admin-tools.bitlocker': BitLockerVolumeDiagram,
   'windows-admin-tools.work-folders': WorkFoldersSyncDiagram,
+  'raid-storage.raid': RaidArrayDiagram,
+  'raid-storage.raid-0': RaidStripingDiagram,
   'azure-cloud-computing.consumption-based-model': CapacityPlanningDiagram,
   'azure-cloud-computing.spot-vm': PricingModelsTable,
   'azure-cloud-models.private-cloud': PublicPrivateCloudDiagram,

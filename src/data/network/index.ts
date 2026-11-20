@@ -24,6 +24,7 @@ import networkSecurityVisuals from './visuals/network-security.json'
 import networkTopologyVisuals from './visuals/network-topology.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
+import raidStorageVisuals from './visuals/raid-storage.json'
 import routingVisuals from './visuals/routing.json'
 import tcpConnectionVisuals from './visuals/tcp-connection.json'
 import tcpUdpVisuals from './visuals/tcp-udp.json'
@@ -75,6 +76,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'windows-server-roles': windowsServerRolesVisuals,
   'windows-hyperv': windowsHypervVisuals,
   'windows-admin-tools': windowsAdminToolsVisuals,
+  'raid-storage': raidStorageVisuals,
 }
 
 export const networkSubject: Subject = {
