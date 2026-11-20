@@ -24,7 +24,7 @@ harness 실행기, 에이전트 훅, 데이터 가드레일·감사 도구가 �
 | `codex-block-dangerous.sh` | Bash 실행 전, 둘 다 | `rm -rf`·`git push --force`·`git reset --hard`·`DROP TABLE` |
 | `tdd-guard.sh` | Edit·Write 전, Claude | 테스트 파일이 아직 없는 구현 코드(`.ts`·`.tsx`·`.js`·`.jsx`) 편집. 테스트·타입·설정 파일과 `.md`·`.json`은 통과 |
 | `codex-tdd-guard.sh` | Edit·Write·apply_patch 전, Codex | 패치에서 대상 파일을 뽑아 `tdd-guard.sh`에 넘긴다 |
-| `codex-verify-gate.sh` | 멈추기 전, 둘 다 | `lint`·`build`·`test` 중 하나라도 실패하면 멈추지 못하게 하고 한 번 더 고치게 한다 |
+| `codex-verify-gate.sh` | 멈추기 전, 둘 다 | `lint`·`build`·`test` 중 하나라도 실패하면 멈추지 못하게 하고 한 번 더 고치게 한다. 워킹 트리에 바뀐 파일이 없으면(대화만 한 턴) 건너뛴다 |
 
 ## 데이터 가드레일·감사 — 손으로 돌린다
 
