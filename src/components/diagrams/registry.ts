@@ -40,6 +40,7 @@ import { CapacityPlanningDiagram } from './CapacityPlanningDiagram'
 import { CastTypesDiagram } from './CastTypesDiagram'
 import { CellHandoffDiagram } from './CellHandoffDiagram'
 import { CertificateFilesDiagram } from './CertificateFilesDiagram'
+import { ChannelCodingFlowDiagram } from './ChannelCodingFlowDiagram'
 import { ChannelOverlapDiagram } from './ChannelOverlapDiagram'
 import { CheckpointApplyDiagram } from './CheckpointApplyDiagram'
 import { ChmodChangeDiagram } from './ChmodChangeDiagram'
@@ -220,6 +221,7 @@ import { MonitoringToolsDiagram } from './MonitoringToolsDiagram'
 import { MountPointDiagram } from './MountPointDiagram'
 import { MssSizeDiagram } from './MssSizeDiagram'
 import { MtuLimitDiagram } from './MtuLimitDiagram'
+import { MuxDemuxDiagram } from './MuxDemuxDiagram'
 import { NacAdmissionDiagram } from './NacAdmissionDiagram'
 import { NameServerRolesDiagram } from './NameServerRolesDiagram'
 import { NameToAddressDiagram } from './NameToAddressDiagram'
@@ -555,6 +557,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'transmission-media.optical-fiber': FiberCoreCladdingDiagram,
   'transmission-media.ftth-pon': PonSplitDiagram,
   'transmission-media.transmission-impairments': ImpairmentKindsDiagram,
+  'transmission-media.channel-coding': ChannelCodingFlowDiagram,
+  'transmission-media.multiplexing': MuxDemuxDiagram,
   'ethernet.ethernet': EthernetLayersDiagram,
   'ethernet.standard-names': StandardNameDiagram,
   'ethernet.fast-gigabit': EthernetSpeedsDiagram,

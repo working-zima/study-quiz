@@ -180,6 +180,7 @@ ITU-T 권고는 step 0과 같은 방법으로 받았다 — 권고 페이지에�
 **IEEE 802.3 본문은 열지 못했다**(step 0과 같다) — 구리선의 감쇠·누화·충격성 잡음은 ITU-T L.19·M.1020·O.71로 대신했다. 읽었지만 근거로 쓰지 않은 권고는 M.1025·G.712·O.81·G.663·H.261이다(같은 사실을 다른 권고가 더 바로 말하거나 이 주제의 범위 밖이다).
 **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 변조 방식, 선로 부호(AMI 등), 오류 정정 부호의 수학(생성 다항식·유한체·복호 방법), PCM의 표본화·양자화 세부와 부호화 법칙의 표, E1·T1 프레임의 비트 배치·다중 프레임, SONET·SDH, 광 증폭기의 이득·잡음 지수 값과 측정법, WDM 격자의 주파수·파장 표 전체.
 「(phase 83 step 4)」이 붙은 줄은 phase 83 step 4에서 `transmission-media`의 FTTH와 PON, 전송 손상을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 5)」이 붙은 줄은 phase 83 step 5에서 `transmission-media`의 채널 부호화, 다중화를 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -1522,6 +1523,9 @@ https://www.itu.int/rec/T-REC-Q.9-198811-I/en
   - 「statistical multiplexing」·「multiple access」·「modem」은 이 용어집에 없다 — 전문 검색
   - 쓰일 곳: (phase 83 step 4·5·6에서 쓰일 곳) `transmission-media.transmission-impairments`(지연 왜곡·군지연·누화), `transmission-media.multiplexing`(주파수 분할·시분할, 채널들이 공통 경로를 나눠 쓴다), `transmission-media.tdm`(정적 다중 — 칸을 정해 준다),
     `transmission-media.channel-coding`(오류를 찾아내는 CRC), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단, E50·E51)
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 주파수 분할(0068)·시분할(0067)을 다중화의 목록 항목으로, 채널마다 그 채널만 쓰는 주파수 대역이나 타임 슬롯을 준다(0007의 주)를 항목 뒤 문단에 썼다.
+    CRC(0226)는 채널 부호화의 오류 검출에 「받은 데이터 비트로 같은 계산을 다시 해 견준다」로 썼다(`ethernet.fcs`와 같은 뜻). 부호 분할(0069)·공간 분할(0066)은 guide가 정한 항목 셋 밖이라 쓰지 않았다
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(주파수 분할·시분할 항목, 채널마다 주파수 대역이나 타임 슬롯), `transmission-media.channel-coding`(CRC로 하는 오류 검출), 문항 n362(해설)
 
 ## (2026-10-28) ITU-T X.25 (10/96) — Interface between DTE and DCE for terminals operating in the packet mode
 https://www.itu.int/rec/T-REC-X.25-199610-I/en
@@ -1565,6 +1569,9 @@ G 시리즈 권고의 보충 문서(Supplement)다. 권고가 아니라 광섬�
   - 쓰지 않는 것: 세대마다의 연도와 실험의 수치, S·C·L 대역의 파장 범위, 라만 증폭, ROADM·PXC, 코히어런트 전송과 DSP
   - 쓰일 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.wdm`(광 증폭기는 빛째로 키운다, 비트율에 매이지 않는다, 여러 파장을 함께 다룬다, WDM 채널을 늘려 용량을 키운다, 전기적 재생 없이 먼 거리 — 「광 증폭기와 리피터」 4절),
     (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(FEC가 먼 거리 전송에 쓰인다), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2025-05-25 #22]·[기출 2026-05-17 #20])
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: §8.11.7을 「FEC를 쓰면 받는 쪽에 닿은 비트에 오류가 더 많이 섞여 있어도 고쳐 쓸 수 있으므로, 선로 중간에 신호를 키우거나 다시 만드는 장치를 두지 않는 바다 밑 광케이블 시스템은 그 여유로 한 구간을 더 길게 잇는다」로 썼다.
+    §5.4의 「WDM으로 광섬유 한 가닥이 나르는 전체 비트율을 늘렸다」와 §5.5 i)(채널을 늘려 용량을 키운다)를 다중화하는 까닭으로 썼다 — 「같은 광섬유에 싣는 파장을 늘릴수록 한 가닥이 1초에 나르는 비트 수의 합이 커진다」
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(FEC의 여유를 거리로 바꾼다), `transmission-media.multiplexing`(WDM이 광섬유 한 가닥이 나르는 데이터의 양을 늘린다)
 쓰인 곳: `network-basics.communication-link`, `ethernet.standard-names`(광케이블은 빛을 이끄는 광섬유로 빛 신호를 실어 나른다)
 
 ## (phase 71) Microsoft Learn — Windows commands, ping, Task Manager
@@ -8618,6 +8625,10 @@ IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)�
   - 쓰지 않는 것: 서비스별 손실·거리·저항 값의 표, 전력 합 누화의 값, 브리지 탭, 대지 불평형(LCL)
   - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(구리선의 감쇠는 거리와 주파수에 따라 커진다, 누화의 뜻과 근단·원단, 충격성 잡음이 어디서 오는지), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-08-25 #20])
 
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 위 「베이스밴드와 브로드밴드」 줄의 RFC 4836(10BROAD36 MAU는 주파수 다중화로 보내는 길과 받는 길을 가른다)을, 다중화의 항목 뒤 문단에서 주파수로 나누는 예로 다시 썼다 —
+  「동축 케이블 규격 10BROAD36이 보내는 신호와 받는 신호를 서로 다른 주파수에 실어 케이블 한 줄로 두 방향을 나르는 것도 주파수로 나누는 예다」(앞 개념 `coaxial-cable`이 같은 사실을 먼저 썼다)
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(주파수로 나누는 예)
+
 쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
 (phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),
 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단)
@@ -8668,6 +8679,9 @@ G.987 「10-Gigabit-capable passive optical network (XG-PON) systems: Definition
 - (phase 83 step 3, 2026-11-20 — 새로 읽은 문서는 없다) **다중 접속의 예**: 위 「PON의 구성」 줄(G.983.1 §5.2 — 광섬유 한 가닥을 여러 ONU가 나눠 쓰므로 올라가는 방향에 TDMA가 필요하다)과 802.3ah §64.1(OLT가 ONU마다 보낼 시간 칸을 정한다)은,
   서로 떨어진 여러 장치가 매체 하나를 시간으로 나눠 쓰는 TDMA(time division multiple access — G.701 약어표의 풀이)의 예다. **다중 접속을 한 문장으로 정의한 곳과 FDMA는 이 step이 읽은 권고(G.701·Q.9·I.112·I.113·G.983.1)에서 찾지 못했다** — 전문 검색(multiple access·FDMA)
   - 쓰일 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(「다중화와 다중 접속」 4절 — 다중화기 한 곳이 입력 여럿을 합치는 다중화와, 떨어진 장치들이 매체를 시간으로 나눠 쓰는 TDMA)
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 「다중화와 다중 접속」 4절을 앞 개념 `ftth-pon`의 TDMA로 견줘 썼다 — 회선 한쪽 끝의 다중화기 하나가 입력 여럿을 받아 합치는가, 떨어진 집의 ONU들이 OLT가 나눠 준 시간에 저마다 자기 신호를 직접 올려 보내는가.
+    다중 접속의 한 문장 정의를 찾지 못했으므로 「TDMA라는 이름에 든 다중 접속(multiple access)은 떨어진 장치 여럿이 매체 하나에 저마다 접속해 함께 쓰는 쪽을 가리킨다」로 이름에서 읽히는 데까지만 썼다. FDMA는 쓰지 않았다
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(「다중화와 다중 접속」)
 
 - (phase 83 step 4, 2026-11-20) **본문에 쓴 모양**: 세 구조는 G.983.1 §5.1대로 점 대 점·능동·수동 점 대 다중점으로 쓰고, 「PTP·AON」은 E49대로 자격시험이 부르는 이름으로만 한 줄 적었다. 능동 구조의 가운데 장치가 무엇을 하는지는 쓰지 않았고, 능동 구조는 G.987 §3.2.4의 복합 ODN(수동 구간 사이의 능동 장치)으로만 짚었다.
   「능동」·「수동」은 일반 낱말의 한 줄 풀이(전원을 받아 신호를 다루는 장치, 전원 없이 빛을 지나가게 하거나 나누는 부품)로 썼고, 수동 부품의 예(광섬유를 이은 곳·광 분배기)는 802.3ah §64.1이다. 분기 비율은 G.983.1의 16·32와 G.984.1의 물리 계층 1:64까지만 쓰고 전송 수렴 계층의 1:128은 쓰지 않았다.
@@ -8698,6 +8712,12 @@ https://www.itu.int/rec/T-REC-G.701-199303-I/en
 - **한국어 이름**: time-division multiplexing → 시분할 다중화(TDM — 기출의 이름), multiplexer → 다중화기(MUX), demultiplexing·demultiplexer → 역다중화·역다중화기(DEMUX — guide의 이름), time slot → 타임 슬롯(기출의 표기 — 「시간 칸」으로 풀어 쓴다),
   frame → 프레임(이더넷의 프레임과 같은 낱말이라, 이 주제에서는 「타임 슬롯들의 한 바퀴」로 따로 푼다), pulse code modulation → 펄스 부호 변조(PCM — 기출은 약어로 쓴다), adaptive differential pulse code modulation → 적응 차분 펄스 부호 변조(ADPCM), delta modulation → 델타 변조,
   codec → 코덱(기출의 표기 CODEC), regeneration → 재생, regenerative repeater → 재생 중계기(앞 phase의 `network-devices.repeater`가 「리피터」로 부르는 장비가 하는 일)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 디지털 오류(2030)를 「보낸 비트와 받은 비트가 어긋난 비트 오류」로 풀어 채널 부호화의 첫머리에 두었다(앞 개념 전송 손상의 잡음·누화로 잇는다).
+  PCM(8001)과 ADPCM(8004)은 「음성을 비트로 바꾼다·그 비트 수를 줄인다」까지 쓰고 표본화·양자화는 쓰지 않았다. 다중화기·역다중화기(4014~4016)와 그 둘을 한 장비에 묶은 다중화 장비(4017),
+  채널마다 주파수 대역이나 타임 슬롯을 하나씩 준다(1005의 주)를 다중화의 소개 문단과 항목 뒤 문단에 썼다. 시분할 다중화(4012)는 목록 항목에서 「시간으로 엇갈려 끼워 보낸다」까지만 쓰고, 동기식·비동기식의 구분은 쓰지 않았다(step 6의 몫).
+  코덱(8032)과 델타 변조(8003)는 쓰지 않았다 — 기출의 보기(CODEC·ADM)를 가르는 데 본문이 그 낱말을 쓸 까닭이 없어서다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(비트 오류, PCM·ADPCM), `transmission-media.multiplexing`(다중화기·역다중화기·한 장비에 묶기, 채널마다 주파수 대역이나 타임 슬롯, 시분할 다중화 항목), 문항 n361(해설의 PCM·ADPCM), 도식 `ChannelCodingFlowDiagram`·`MuxDemuxDiagram`
 
 쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(PCM·ADPCM이 하는 일, 코덱, 디지털 오류), `transmission-media.multiplexing`(다중화기·역다중화기, 채널들이 공통 경로를 나눠 쓴다, TDM의 넓은 뜻),
 (phase 83 step 6에서 쓰일 곳) `transmission-media.tdm`(타임 슬롯·프레임·8비트 칸과 64 kbit/s), (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(재생 — 리피터가 하는 일),
@@ -8768,6 +8788,14 @@ G.975 「Forward error correction for submarine systems」(2000-10 승인, In fo
 - **한국어 이름**: source coding → 원천 부호화(기출의 이름), channel coding → 채널 부호화(기출의 이름), source codec → 원천 부호기, forward error correction → 전진 오류 정정(FEC — guide의 이름. 「순방향 오류 정정」으로도 옮긴다), error correction → 오류 정정,
   redundant symbols·redundancy → 여분 기호·여분(guide의 「여분 비트」), Reed-Solomon code → 리드-솔로몬 부호, block code → 블록 부호, convolutional code·encoder → 컨볼루션 부호·컨볼루션 부호기(기출의 이름 — Convolutional Code), code rate → 부호율(레이트 1/2 — 들어온 비트 하나에 나가는 비트 둘)
 
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 원천 부호화와 채널 부호화는 한 문장 정의가 없으므로 쓰임으로 세웠다 — 채널 부호화는 「보낼 데이터 비트로 계산한 여분 비트를 덧붙여 받는 쪽이 비트 오류를 찾거나 고치게 하는 일」(G.975 §5.1),
+  원천 부호화는 「원래 정보를 비트로 바꾸거나 그 비트 수를 줄이는 일 쪽에 든다」로 쓰고, 그 근거로 G.722.2 §4.3(음성 부호기를 원천 부호기라 부른다)과 J.83 부록 A.1(영상을 줄이는 원천 부호화는 MPEG-2를 따르고 FEC를 따로 더한다 — 본문은 「다른 표준」으로만 적었다)을 들었다.
+  PCM(G.711 — 음성 한 채널을 64 kb/s로)과 ADPCM(G.726 §1 — 40·32·24·16 kb/s로 줄인다)은 여분을 더하지 않는다고 적었고, 「원천 부호화의 예」라고 단정하지 않았다. 단위는 이 주제의 꼴(`Mb/s`)을 따라 `kb/s`로 적었다.
+  FEC는 부호기·복호기의 일과 「고칠 수 있는 양에 한도가 있다」를 RS(255,239)의 255바이트 안 8바이트로(§6.2·§6.3), 비트가 늘어나는 것을 부호율 1/2(G.9904 §7.5)과 15/14배(G.975 §6.4.4)로 보였다.
+  컨볼루션 부호기는 「앞서 들어온 비트 몇 개를 붙잡아 두고 새 비트와 함께 내보낼 비트를 정한다」까지 쓰고(그림 7-8에서 나오는 말), 구속장·생성 다항식·끝을 비우는 0 비트는 쓰지 않았다.
+  그래서 예시(데이터 비트 4개)는 부호의 규칙 없이 「여분 비트」라는 말로만 보였다 — 부호율 1/2을 4비트에 그대로 곱하면 끝을 비우는 비트를 빼먹은 수가 되기 때문이다. FEC를 끌 수 있다는 것(§7.1)과 리피터 없는 해저 시스템의 구간을 늘린다는 것(G Suppl. 42 §8.11.7)으로 늘어난 비트의 대가와 쓸모를 견줬다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(채널 부호화의 뜻, 원천 부호화 쪽에 드는 일과 PCM·ADPCM, FEC·리드-솔로몬 부호·블록 부호, 컨볼루션 부호·부호율, 늘어나는 비트, 예 데이터 비트 4개, 「원천 부호화와 채널 부호화」), 문항 n361(채널 부호화를 하면 매체로 나가는 비트가 많아진다 — 예), 도식 `ChannelCodingFlowDiagram`
+
 쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(원천 부호화와 채널 부호화를 나눠 쓰는 쓰임, PCM·ADPCM이 하는 일, FEC가 여분을 더해 받는 쪽이 고친다·보내는 비트율이 는다, 블록 부호(리드-솔로몬)와 컨볼루션 부호, FEC를 끄면 처리량이 오른다),
 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-02-25 #26])
 
@@ -8782,6 +8810,10 @@ https://www.rfc-editor.org/rfc/rfc6363.txt
 - 그러니 두 RFC는 「다시 보내 달라고 하지 않고 받는 쪽이 되살린다」의 근거로만 쓴다. 비트 오류를 고치는 채널 부호화의 근거는 위 「(phase 83 step 3) 부호화」 항목의 G.975다
 - 쓰지 않는 것: FEC 방식(scheme)과 FEC 부호의 구분, 원천 블록·부호 기호의 구성, FEC 프레임워크의 구조
 - **한국어 이름**: retransmission → 재전송, erasure → 잃은 데이터(소실)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: RFC 5052 §4를 「받는 쪽이 보내는 쪽에 다시 보내 달라고 알리는 일을 줄이거나 아예 없앨 수 있다」로 썼다. 비트 오류를 고치는 사실은 이 두 RFC가 아니라 G.975에서 가져왔다(위 줄의 판정대로).
+  오류 검출만 하면 받는 쪽이 「그 데이터를 버리거나 다시 보내 달라고 알려야 한다」는 이 절의 재전송 요청과 `ethernet.fcs`(CRC로 찾고 버린다)를 함께 놓은 말이다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(오류 검출과 오류 정정, FEC가 재전송 요청을 줄인다)
 
 쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(FEC는 다시 보내 달라고 하지 않고 받는 쪽이 되살린다 — 재전송을 요청하는 방식과 견준다)
 
@@ -8809,6 +8841,10 @@ https://www.rfc-editor.org/rfc/rfc3439.txt
 - 쓰지 않는 것: 6 312·8 448·44 736 kbit/s 프레임, 프레임 맞춤 신호의 비트 배치, 다중 프레임과 CRC-4, 신호 방식의 세부, ATM 셀의 구조
 - **한국어 이름**: synchronous time-division multiplexing → 동기식 시분할 다중화(동기식 TDM — guide의 이름), asynchronous time-division multiplexing → 비동기식 시분할 다중화(I.113의 이름을 옮긴 말), label·labelled cell → 꼬리표·꼬리표 붙은 셀(권고의 말 — 본문은 「어느 입력의 것인지 알리는 표시」로 풀어 쓸 수 있다),
   statistical TDM → 통계적 시분할 다중화(STDM — 기출의 이름, E51), statistical multiplexing → 통계적 다중화, synchronous transfer mode → 동기식 전송 방식(STM), F-bit → F비트(쓴다면)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 다중화의 시분할 항목은 G.701 4012대로 「시간으로 엇갈려 끼워 보낸다」까지만 쓰고, 이 항목의 동기식·비동기식 구분은 쓰지 않았다(step 6의 몫).
+    문항 n362의 해설만 비동기식 시분할 다중화(202 — 그때 필요한 만큼 칸을 채운다)를 「보낼 데이터가 있는 신호에만 칸을 주는 방식도 시간 칸에 차례로 싣는 시분할 방식이다」로 짚었다 — 그 보기를 오답으로 가르는 근거다. 「STDM」이라는 이름은 쓰지 않았다(E51)
+  - 쓰인 곳: (phase 83 step 5) 문항 n362(해설)
 
 쓰인 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.tdm`(프레임과 타임 슬롯, 2 048 kbit/s의 32칸·1 544 kbit/s의 24칸과 1초에 8000번, 동기식은 칸을 늘 준다·비동기식은 필요한 만큼 채우고 칸에 꼬리표를 붙인다, 회선 전송 방식과 패킷 전송 방식),
 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-11-03 #19]·[기출 2025-05-25 #19], E51)
@@ -8844,6 +8880,10 @@ G.661 「Definitions and test methods for the relevant generic parameters of opt
 - **한국어 이름**: wavelength division multiplexing → 파장 분할 다중화(WDM — 기출의 이름), wavelength multiplexer·demultiplexer → 파장 다중화기·역다중화기, dense·coarse WDM → 고밀도·저밀도 파장 분할 다중화(DWDM·CWDM — 약어를 쓰고 dense·coarse를 옮긴 말을 곁들인다),
   channel spacing → 채널 간격, frequency grid → 주파수 격자, optical amplifier → 광 증폭기(기출은 「광증폭기」로 붙여 쓴다), gain → 이득, noise figure → 잡음 지수, power(booster)·pre-·line amplifier → 전력(부스터)·전치·선로 증폭기,
   repeaterless → 무중계(기출의 말), erbium-doped fibre amplifier → 어븀 첨가 광섬유 증폭기(EDFA)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: G.671 §3.2.1.15를 다중화의 파장 분할 항목으로 썼다 — 「광섬유 한 가닥에 파장이 서로 다른 빛 여러 개를 함께 싣고, 받는 쪽의 역다중화기는 섞여 온 빛을 파장마다 갈라 서로 다른 출력으로 내보낸다」.
+    예의 파장 λ1·λ2·λ3은 빛에 붙인 이름표라고 밝혔다(guide 「예시 값」의 λ1~λ4 가운데 셋). DWDM·CWDM·광 증폭기는 쓰지 않았다(step 6의 몫)
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(파장 분할 다중화 항목, 예 λ1·λ2·λ3), 문항 n362(해설 — WDM은 광섬유에서 쓰는 방식), 도식 `MuxDemuxDiagram`
 
 쓰인 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.wdm`(WDM 장치가 파장으로 합치고 나눈다, 파장과 주파수, DWDM·CWDM의 간격, 광 증폭기의 이득·잡음, 여러 파장을 한꺼번에 키운다, 증폭기의 세 자리, 무중계, 파장마다 다른 속도·형식 — 「WDM과 FDM」·「광 증폭기와 리피터」 4절),
 (phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(파장 분할 다중화 — 목록 항목), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2025-05-25 #22]·[기출 2026-05-17 #20])
