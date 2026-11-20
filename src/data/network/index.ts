@@ -3,6 +3,7 @@ import topicsData from './topics.json'
 import appProtocolsMailFileVisuals from './visuals/app-protocols-mail-file.json'
 import appProtocolsMgmtSecurityVisuals from './visuals/app-protocols-mgmt-security.json'
 import arpVisuals from './visuals/arp.json'
+import cloudSdnVisuals from './visuals/cloud-sdn.json'
 import diagnosticCommandsVisuals from './visuals/diagnostic-commands.json'
 import dnsVisuals from './visuals/dns.json'
 import ethernetVisuals from './visuals/ethernet.json'
@@ -62,6 +63,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
   'network-devices': networkDevicesVisuals,
   'network-security': networkSecurityVisuals,
+  'cloud-sdn': cloudSdnVisuals,
   'diagnostic-commands': diagnosticCommandsVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,

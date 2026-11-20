@@ -53,6 +53,7 @@ import { ClientServerPortsDiagram } from './ClientServerPortsDiagram'
 import { ClosingStatesDiagram } from './ClosingStatesDiagram'
 import { CloudScalingDiagram } from './CloudScalingDiagram'
 import { CloudShellDiagram } from './CloudShellDiagram'
+import { CloudTraitsDiagram } from './CloudTraitsDiagram'
 import { CoaxLayersDiagram } from './CoaxLayersDiagram'
 import { CognitiveRadioDiagram } from './CognitiveRadioDiagram'
 import { CollisionDomainDiagram } from './CollisionDomainDiagram'
@@ -79,6 +80,7 @@ import { DefaultRouteDiagram } from './DefaultRouteDiagram'
 import { DefenderForCloudDiagram } from './DefenderForCloudDiagram'
 import { DefenseInDepthDiagram } from './DefenseInDepthDiagram'
 import { DelegatedAdminDiagram } from './DelegatedAdminDiagram'
+import { DeploymentModelUsersDiagram } from './DeploymentModelUsersDiagram'
 import { DeviceLayersDiagram } from './DeviceLayersDiagram'
 import { DhcpExchangeDiagram } from './DhcpExchangeDiagram'
 import { DhcpFailoverDiagram } from './DhcpFailoverDiagram'
@@ -730,6 +732,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'network-security.tunneling': TunnelEncapsulationDiagram,
   'network-security.vpn-protocols': VpnProtocolLayersDiagram,
   'network-security.ipsec': IpsecModesDiagram,
+  'cloud-sdn.cloud-computing': CloudTraitsDiagram,
+  'cloud-sdn.cloud-deployment-models': DeploymentModelUsersDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,

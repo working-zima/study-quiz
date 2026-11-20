@@ -1,0 +1,118 @@
+{
+  "diagrams": {
+    "cloud-traits": {
+      "label": "고객 셋이 제공자가 한 풀에 모아 둔 자원을 네트워크로 가져다 쓰는 모습에서, 자원 풀링·빠른 탄력성·측정되는 서비스가 저마다 무엇인지 보이는 도식",
+      "svgLabel": "고객 A·고객 B·example.com 셋과, 「자원 풀」 박스 안의 서버·저장 장치·WEB01·WEB02·WEB03을 화살표로 이은 그림",
+      "question": "클라우드는 여러 고객에게 자원을 어떻게 내줄까?",
+      "idleCaption": "고객 A·고객 B·example.com은 저마다 제공자가 자원 풀에 모아 둔 자원을 네트워크로 가져다 쓴다. 버튼으로 특징을 고르면 고객과 자원 사이에 무슨 일이 일어나는지 볼 수 있다.",
+      "legend": "화살표는 고객이 네트워크를 거쳐 자원을 가져다 쓰는 쪽이다. 「자원 풀」은 제공자가 여러 고객에게 나눠 주려고 모아 둔 자원의 묶음이다. 고객 A·B는 고객을 가르려고 붙인 이름이고, example.com과 WEB01~WEB03은 예로 붙인 이름이다.",
+      "nodes": {
+        "cust-a": "고객 A",
+        "cust-b": "고객 B",
+        "example": "example.com",
+        "server": "서버",
+        "storage": "저장 장치",
+        "web01": "WEB01",
+        "web02": "WEB02",
+        "web03": "WEB03"
+      },
+      "groups": {
+        "pool": "자원 풀"
+      },
+      "notes": {
+        "pooling-note": "여러 고객이 같은 자원 묶음을 나눠 쓴다",
+        "elasticity-note": "손님이 몰리면 셋으로 늘리고, 줄면 다시 줄인다",
+        "measured-note": "쓴 만큼 재어 요금을 매긴다"
+      },
+      "scenarios": [
+        {
+          "id": "pooling",
+          "label": "자원 풀링",
+          "caption": "고객 A·고객 B와 example.com은 서로 다른 고객이지만, 모두 제공자가 한 풀에 모아 둔 자원에서 서버·저장 장치·WEB01을 나눠 받는다. 여러 고객이 같은 자원 묶음을 나눠 쓰는 이 꼴이 멀티테넌트 모델이고, 고객마다의 데이터는 서로 떼어 놓인다.",
+          "sources": [
+            "cloud-sdn.cloud-computing"
+          ]
+        },
+        {
+          "id": "elasticity",
+          "label": "빠른 탄력성",
+          "caption": "example.com은 평소 WEB01 한 대를 쓰다가, 손님이 몰리는 날에는 같은 일을 하는 WEB02·WEB03을 같은 풀에서 더 받아 셋으로 늘린다. 손님이 줄면 둘을 돌려주어 다시 WEB01 한 대로 줄인다.",
+          "sources": [
+            "cloud-sdn.cloud-computing"
+          ]
+        },
+        {
+          "id": "measured",
+          "label": "측정되는 서비스",
+          "caption": "제공자는 example.com이 서버를 몇 대, 얼마 동안 썼는지 재고 그만큼 요금을 매긴다. 잰 양은 제공자와 고객이 함께 볼 수 있다.",
+          "sources": [
+            "cloud-sdn.cloud-computing"
+          ]
+        }
+      ],
+      "sources": [
+        "cloud-sdn.cloud-computing"
+      ]
+    },
+    "deployment-model-users": {
+      "label": "사설·커뮤니티·공용 클라우드를 저마다 누가 쓰는지 잇고, 사설 클라우드와 공용 클라우드를 이어 하이브리드 클라우드를 이루는 모습을 견주는 도식",
+      "svgLabel": "한 조직·관심사가 같은 조직들·누구나를 사설 클라우드·커뮤니티 클라우드·공용 클라우드와 짝지어 둔 그림",
+      "question": "배포 모델마다 누가 그 클라우드를 쓸까?",
+      "idleCaption": "쓰는 쪽 셋과 클라우드 셋이 짝을 지어 놓여 있다. 버튼으로 배포 모델을 고르면 그 클라우드를 누가 쓰는지, 하이브리드 클라우드에서는 무엇과 무엇이 이어지는지 볼 수 있다.",
+      "legend": "한쪽 화살표는 쓰는 쪽이 그 클라우드를 쓰는 것이고, 양쪽 화살표는 두 클라우드 사이로 데이터와 응용 프로그램을 옮길 수 있게 이은 것이다.",
+      "nodes": {
+        "org": "한 조직",
+        "orgs": "관심사가 같은 조직들",
+        "anyone": "누구나",
+        "private": "사설 클라우드",
+        "community": "커뮤니티 클라우드",
+        "public": "공용 클라우드"
+      },
+      "notes": {
+        "private-note": "건물 안에 두든 밖에 두든 한 조직만 쓴다",
+        "community-note": "관심사가 같은 조직들이 함께 쓴다",
+        "public-note": "누구나 쓸 수 있게 연다",
+        "hybrid-note": "둘을 이어 데이터와 응용 프로그램을 옮긴다"
+      },
+      "scenarios": [
+        {
+          "id": "private",
+          "label": "사설",
+          "caption": "사설 클라우드는 한 조직만 쓰도록 마련하고, 자원도 그 조직이 통제한다. 조직이 직접 운영하든 다른 업체가 맡든, 건물 안에 두든 밖의 데이터 센터에 두든 쓰는 쪽이 한 조직이면 사설 클라우드다.",
+          "sources": [
+            "cloud-sdn.cloud-deployment-models"
+          ]
+        },
+        {
+          "id": "community",
+          "label": "커뮤니티",
+          "caption": "커뮤니티 클라우드는 하는 일이나 지켜야 할 규정 같은 관심사가 같은 조직들의 무리가 함께 쓴다. 쓰는 조직을 그 무리로 묶으므로 누구나 쓰는 공용 클라우드보다 닫혀 있고, 한 조직만 쓰는 사설 클라우드보다 넓다.",
+          "sources": [
+            "cloud-sdn.cloud-deployment-models"
+          ]
+        },
+        {
+          "id": "public",
+          "label": "공용",
+          "caption": "공용 클라우드는 누구나 쓸 수 있게 연 클라우드다. 클라우드 제공자가 자기 건물에 두고 운영하며 자원을 통제하고, 사용자는 대개 인터넷을 거쳐 닿는다.",
+          "sources": [
+            "cloud-sdn.cloud-deployment-models"
+          ]
+        },
+        {
+          "id": "hybrid",
+          "label": "하이브리드",
+          "caption": "하이브리드 클라우드는 사설 클라우드와 공용 클라우드처럼 서로 다른 클라우드 둘 이상을 묶은 것이다. 묶인 클라우드는 저마다 따로인 채 남고, 데이터와 응용 프로그램을 옮길 수 있게 이어진다.",
+          "sources": [
+            "cloud-sdn.cloud-deployment-models"
+          ]
+        }
+      ],
+      "sources": [
+        "cloud-sdn.cloud-deployment-models"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}
