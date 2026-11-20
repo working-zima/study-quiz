@@ -1,0 +1,111 @@
+{
+  "project": "Study Quiz",
+  "phase": "83-network-media-topology-cloud-raid",
+  "steps": [
+    {
+      "step": 0,
+      "name": "media-sources-a",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "media-basics-twisted-pair",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "coax-optical-fiber",
+      "status": "pending"
+    },
+    {
+      "step": 3,
+      "name": "media-sources-b",
+      "status": "pending"
+    },
+    {
+      "step": 4,
+      "name": "pon-impairments",
+      "status": "pending"
+    },
+    {
+      "step": 5,
+      "name": "coding-multiplexing",
+      "status": "pending"
+    },
+    {
+      "step": 6,
+      "name": "tdm-wdm-review",
+      "status": "pending"
+    },
+    {
+      "step": 7,
+      "name": "topology-sources",
+      "status": "pending"
+    },
+    {
+      "step": 8,
+      "name": "topology-basics-bus",
+      "status": "pending"
+    },
+    {
+      "step": 9,
+      "name": "star-ring",
+      "status": "pending"
+    },
+    {
+      "step": 10,
+      "name": "mesh-tree-token-ring",
+      "status": "pending"
+    },
+    {
+      "step": 11,
+      "name": "fddi-ieee802-review",
+      "status": "pending"
+    },
+    {
+      "step": 12,
+      "name": "cloud-sources",
+      "status": "pending"
+    },
+    {
+      "step": 13,
+      "name": "cloud-deployment",
+      "status": "pending"
+    },
+    {
+      "step": 14,
+      "name": "serverless-datacenter",
+      "status": "pending"
+    },
+    {
+      "step": 15,
+      "name": "fog-sdn",
+      "status": "pending"
+    },
+    {
+      "step": 16,
+      "name": "nfv-review",
+      "status": "pending"
+    },
+    {
+      "step": 17,
+      "name": "raid-sources",
+      "status": "pending"
+    },
+    {
+      "step": 18,
+      "name": "raid-basics-raid0",
+      "status": "pending"
+    },
+    {
+      "step": 19,
+      "name": "raid1-raid5",
+      "status": "pending"
+    },
+    {
+      "step": 20,
+      "name": "network-storage-review",
+      "status": "pending"
+    }
+  ]
+}
