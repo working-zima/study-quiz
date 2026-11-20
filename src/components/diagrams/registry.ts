@@ -136,6 +136,7 @@ import { FileTypeCharDiagram } from './FileTypeCharDiagram'
 import { FindSearchDiagram } from './FindSearchDiagram'
 import { FirewallHubDiagram } from './FirewallHubDiagram'
 import { FirewallRulesDiagram } from './FirewallRulesDiagram'
+import { FogLayersDiagram } from './FogLayersDiagram'
 import { FragmentFieldsDiagram } from './FragmentFieldsDiagram'
 import { FragmentationDiagram } from './FragmentationDiagram'
 import { FreeAccountOffersDiagram } from './FreeAccountOffersDiagram'
@@ -331,6 +332,7 @@ import { RunlevelTargetsDiagram } from './RunlevelTargetsDiagram'
 import { RwxMeaningDiagram } from './RwxMeaningDiagram'
 import { S3ClassMapDiagram } from './S3ClassMapDiagram'
 import { ScaleSetDiagram } from './ScaleSetDiagram'
+import { SdnPlanesDiagram } from './SdnPlanesDiagram'
 import { SensitivityLabelDiagram } from './SensitivityLabelDiagram'
 import { SentinelFlowDiagram } from './SentinelFlowDiagram'
 import { SequenceNumbersDiagram } from './SequenceNumbersDiagram'
@@ -738,6 +740,8 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
   'cloud-sdn.cloud-deployment-models': DeploymentModelUsersDiagram,
   'cloud-sdn.serverless': ServerlessDutiesDiagram,
   'cloud-sdn.data-center': DataCenterServicesDiagram,
+  'cloud-sdn.fog-computing': FogLayersDiagram,
+  'cloud-sdn.sdn': SdnPlanesDiagram,
   'diagnostic-commands.ipconfig': IpconfigViewDiagram,
   'diagnostic-commands.ipconfig-options': IpconfigOptionsDiagram,
   'diagnostic-commands.ping-options': PingOptionsDiagram,
