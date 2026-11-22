@@ -3,6 +3,7 @@ import topicsData from './topics.json'
 import appProtocolsMailFileVisuals from './visuals/app-protocols-mail-file.json'
 import appProtocolsMgmtSecurityVisuals from './visuals/app-protocols-mgmt-security.json'
 import arpVisuals from './visuals/arp.json'
+import cloudSdnVisuals from './visuals/cloud-sdn.json'
 import diagnosticCommandsVisuals from './visuals/diagnostic-commands.json'
 import dnsVisuals from './visuals/dns.json'
 import ethernetVisuals from './visuals/ethernet.json'
@@ -20,11 +21,14 @@ import linuxShellVisuals from './visuals/linux-shell.json'
 import networkBasicsVisuals from './visuals/network-basics.json'
 import networkDevicesVisuals from './visuals/network-devices.json'
 import networkSecurityVisuals from './visuals/network-security.json'
+import networkTopologyVisuals from './visuals/network-topology.json'
 import portsVisuals from './visuals/ports.json'
 import protocolsEncapsulationVisuals from './visuals/protocols-encapsulation.json'
+import raidStorageVisuals from './visuals/raid-storage.json'
 import routingVisuals from './visuals/routing.json'
 import tcpConnectionVisuals from './visuals/tcp-connection.json'
 import tcpUdpVisuals from './visuals/tcp-udp.json'
+import transmissionMediaVisuals from './visuals/transmission-media.json'
 import windowsAdVisuals from './visuals/windows-ad.json'
 import windowsAdminToolsVisuals from './visuals/windows-admin-tools.json'
 import windowsHypervVisuals from './visuals/windows-hyperv.json'
@@ -41,6 +45,8 @@ export const questions: Question[] = questionsData as Question[]
 export const visualsByTopicId: Record<string, TopicVisuals> = {
   'network-basics': networkBasicsVisuals,
   'protocols-encapsulation': protocolsEncapsulationVisuals,
+  'transmission-media': transmissionMediaVisuals,
+  'network-topology': networkTopologyVisuals,
   'ethernet': ethernetVisuals,
   'hub-switch-vlan': hubSwitchVlanVisuals,
   'wireless-lan': wirelessLanVisuals,
@@ -58,6 +64,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'app-protocols-mgmt-security': appProtocolsMgmtSecurityVisuals,
   'network-devices': networkDevicesVisuals,
   'network-security': networkSecurityVisuals,
+  'cloud-sdn': cloudSdnVisuals,
   'diagnostic-commands': diagnosticCommandsVisuals,
   'linux-filesystem': linuxFilesystemVisuals,
   'linux-permissions': linuxPermissionsVisuals,
@@ -69,6 +76,7 @@ export const visualsByTopicId: Record<string, TopicVisuals> = {
   'windows-server-roles': windowsServerRolesVisuals,
   'windows-hyperv': windowsHypervVisuals,
   'windows-admin-tools': windowsAdminToolsVisuals,
+  'raid-storage': raidStorageVisuals,
 }
 
 export const networkSubject: Subject = {

@@ -416,6 +416,11 @@
       "completed_at": "2026-11-20T06:14:48+0900"
     },
     {
+      "dir": "83-network-media-topology-cloud-raid",
+      "status": "completed",
+      "completed_at": "2026-11-21T05:55:27+0900"
+    },
+    {
       "dir": "100-azure-cloud-concepts",
       "status": "completed",
       "completed_at": "2026-10-30T15:07:33+0900"
