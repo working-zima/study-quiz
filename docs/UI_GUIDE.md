@@ -609,6 +609,8 @@ phase 38의 다섯 장은 위 기록에서, phase 39가 메시징 주제에 더�
 - **강조는 opacity로 한다.** 선택한 시나리오에 없는 노드는 `0.25`, 있는 노드는 `1`이다.
   그룹 박스는 흐려지지 않는다. 선택한 경로만 표시하며, `전체`에서는 모든 노드가 선명하고
   경로는 숨는다. 경로는 기존 `title` 색을 쓰고 opacity 전환 애니메이션은 넣지 않는다.
+  예외: Azure 모니터링 주제의 첫 도식(`MonitoringToolsDiagram`)은 `전체`에서 연결선 넷을 모두 보인다. 세 도구가 각각 무엇을 살피는지와
+  VM 1·웹 앱 1의 두 연결선이 같은 Azure Monitor로 모이는 것을 버튼 없이 보이려는 것이다(사용자 결정 2026-11-22). 장면을 고르면 그 장면의 경로만 남는다.
 - **접근성 이름은 `figure`의 `aria-label`로 준다. 헤딩을 쓰지 마라.** `ConceptList`가
   호출 화면에 따라 헤딩 레벨을 바꾸기 때문이다. 캡션은 `aria-live="polite"`, 시나리오 버튼은
   `aria-pressed`로 상태를 전달한다. 버튼은 `flex-wrap gap-2`로 배치하고 `px-2.5`와
@@ -745,6 +747,12 @@ EMR·Glue·Athena·Lake Formation 도식 다섯(phase 62), IAM 도식 여덟(pha
 - **판정을 색으로 칠하지 마라.** `가능`/`불가`를 글자로 쓰고 굵기만 준다. 초록·빨강은 정답/오답
   표시가 점유했다(ADR-036).
 - 글자 크기는 `text-sm`, 행 구분선은 `border-disabled`. 줄무늬 배경을 쓰지 마라.
+
+예외 둘은 Azure 모니터링 주제에만 있다(사용자 결정 2026-11-22).
+
+- **요약 바로 아래의 표.** `registry`의 `summaryFiguresByConceptId`에 둔 표는 개념의 한 줄 요약과 본문 사이에 붙는다. 첫 개념의 도구 선택표 하나다.
+- **표 바로 가기.** 표에 `shortcut`(`id`·`label`)이 있으면 개념 읽기 머리(주제 제목 아래)에 그 표로 가는 링크를 두고, 표 `figure`에 그 `id`와
+  `scroll-mt-24`를 단다. 링크는 `#/과목/topic/주제#id`이고, 스크롤은 ADR-020대로 `ConceptReadPage`의 해시 effect가 맡는다. Azure Monitor 기능 비교표 하나다.
 
 ### 약어 툴팁 (ADR-037)
 

@@ -74,7 +74,9 @@ export function MonitoringToolsDiagram() {
   const layoutPaths = wide ? widePaths : paths
   const layoutGroups = wide ? wideGroups : groups
   const layoutNotes = wide ? wideNotes : notes
-  const visiblePaths = active ? active.paths : []
+  // UI_GUIDE 「도식」의 예외: 이 도식은 `전체`에서도 연결선 넷을 모두 보인다. 세 도구가 각각 무엇을 살피는지와
+  // VM 1·웹 앱 1의 두 연결선이 같은 Azure Monitor로 모이는 것을 버튼 없이 보인다. 장면을 고르면 그 장면의 연결선만 남는다.
+  const visiblePaths = active ? active.paths : Object.keys(layoutPaths)
   const shownNotes = layoutNotes.filter((note) => active !== null && note.scenario === active.id)
 
   return (

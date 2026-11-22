@@ -8,9 +8,14 @@ interface ComparisonTableFigureProps {
 const verdicts = new Set(['가능', '불가'])
 
 // 틀은 DiagramFrame의 figure와 같다. 제목에 헤딩을 쓰지 않는 이유도 같다 — ConceptList가 화면마다 헤딩 레벨을 바꾼다.
+// shortcut이 있으면 개념 읽기 머리의 바로 가기가 이 figure를 id로 가리킨다. 개념처럼 scroll-mt-24를 두어 헤더에 깔리지 않게 한다(ADR-020).
 export function ComparisonTableFigure({ table }: ComparisonTableFigureProps) {
   return (
-    <figure aria-label={table.label} className="-mx-5 min-w-0 space-y-3 rounded-none border border-x-0 border-disabled bg-panel p-4 break-keep break-anywhere sm:mx-0 sm:rounded-lg sm:border-x">
+    <figure
+      aria-label={table.label}
+      className={`-mx-5 min-w-0 space-y-3 rounded-none border border-x-0 border-disabled bg-panel p-4 break-keep break-anywhere sm:mx-0 sm:rounded-lg sm:border-x${table.shortcut ? ' scroll-mt-24' : ''}`}
+      id={table.shortcut?.id}
+    >
       <p className="text-sm text-title">{table.label}</p>
       <table className="w-full table-fixed break-keep text-left text-sm">
         {table.columnWidths && (

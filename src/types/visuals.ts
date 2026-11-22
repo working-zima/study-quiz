@@ -26,12 +26,19 @@ export interface ComparisonTableRow {
   cells: string[] // columns.length - 1 개
 }
 
+// 개념 읽기 머리(주제 제목 아래)에서 표로 바로 가는 링크. ADR-020의 앵커 이동을 쓴다.
+export interface TableShortcut {
+  id: string // 표 figure의 DOM id이자 링크의 해시. 개념 id와 겹치지 않게 점을 넣지 않는다.
+  label: string // 링크 글
+}
+
 export interface ComparisonTable {
   label: string // figure aria-label이자 표 제목
   columns: string[] // 3개 이하. 첫 열은 행 머리 열의 제목.
   rows: ComparisonTableRow[]
   columnWidths?: string[] // 열마다 '36%' 같은 백분율. 합은 100%. 없으면 균등 분할.
   sources: string[]
+  shortcut?: TableShortcut
 }
 
 export interface GlossaryTerm {

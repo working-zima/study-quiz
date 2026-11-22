@@ -176,12 +176,16 @@ describe('MonitorDataDiagram', () => {
     for (const fact of ['웹 앱 1', 'VM 1', '회사 데이터 센터의 서버', 'CPU 사용률', '오류 기록', 'Azure Arc', '메트릭', '로그', '쿼리', '경고']) expect(body, fact).toContain(fact)
   })
 
-  it.each([2, 4] as const)('공유 본문 h%i에서 Azure Monitor 본문 바로 뒤에 붙는다', (headingLevel) => {
+  // 도식 뒤에는 Application Insights 끝에서 옮겨 온 Azure Monitor 기능 비교표가 개념의 맨 끝으로 붙는다(도식을 표보다 앞에).
+  it.each([2, 4] as const)('공유 본문 h%i에서 Azure Monitor 본문 바로 뒤에 붙고, 그 뒤에 기능 비교표가 온다', (headingLevel) => {
     const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === conceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
     const figure = screen.getByRole('figure', { name: figureName })
-    expect(figure.closest('article')).toHaveAttribute('id', conceptId)
-    expect(figure.closest('article')!.lastElementChild).toBe(figure)
+    const article = figure.closest('article')!
+    expect(article).toHaveAttribute('id', conceptId)
+    expect(figure.previousElementSibling).toContainElement(screen.getByText(concept.paragraphs[concept.paragraphs.length - 1]))
+    expect(figure.nextElementSibling).toBe(screen.getByRole('figure', { name: 'Azure Monitor의 네 기능 견주기' }))
+    expect(article.lastElementChild).toBe(figure.nextElementSibling)
     expect(within(figure).queryByRole('heading')).toBeNull()
   })
 

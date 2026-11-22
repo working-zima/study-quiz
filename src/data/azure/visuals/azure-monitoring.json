@@ -389,8 +389,46 @@
     }
   },
   "tables": {
+    "tool-choice": {
+      "label": "모니터링 도구 셋 고르기",
+      "columns": [
+        "궁금한 것",
+        "여는 도구"
+      ],
+      "columnWidths": [
+        "55%",
+        "45%"
+      ],
+      "rows": [
+        {
+          "header": "지역에 생긴 장애와 계획된 유지 관리",
+          "cells": [
+            "Azure Service Health"
+          ]
+        },
+        {
+          "header": "VM의 비용을 줄일 권장 사항",
+          "cells": [
+            "Azure Advisor"
+          ]
+        },
+        {
+          "header": "VM의 CPU 사용률 추이와 웹 앱의 오류",
+          "cells": [
+            "Azure Monitor"
+          ]
+        }
+      ],
+      "sources": [
+        "azure-monitoring.monitoring-tools"
+      ]
+    },
     "monitor-features": {
       "label": "Azure Monitor의 네 기능 견주기",
+      "shortcut": {
+        "id": "monitor-features-table",
+        "label": "Azure Monitor 기능 비교표로 바로 가기"
+      },
       "columns": [
         "기능",
         "보는 것",

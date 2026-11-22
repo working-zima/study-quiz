@@ -28,6 +28,9 @@ const primaryButtonClass = 'inline-flex min-h-[44px] items-center rounded-md bg-
 
 const ghostLinkClass = 'inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-neutral-400 transition-colors hover:text-neutral-100'
 
+// 감싼 줄의 -ml-4가 px-4를 상쇄해 첫 링크 글이 제목과 같은 세로선에 선다(UI_GUIDE 「돌아가기」와 같은 셈).
+const shortcutLinkClass = 'inline-flex min-h-[44px] items-center rounded-md px-4 py-2 text-sm text-neutral-400 transition-colors hover:text-neutral-100'
+
 const importanceLabel = {
   3: { label: '★★★', className: 'text-importance-high' },
   2: { label: '★★☆', className: 'text-importance-medium' },
@@ -38,7 +41,7 @@ export function ConceptReadPage({ topics: providedTopics, questions: providedQue
   const topics = providedTopics ?? subject.topics
   const questions = providedQuestions ?? subject.questions
   const { topicId } = useParams()
-  const { hash } = useLocation()
+  const { hash, key } = useLocation()
   const { markRead: storedMarkRead } = useProgress()
   const markRead = providedMarkRead ?? storedMarkRead
   const topic = topics.find((candidate) => candidate.id === topicId)
@@ -48,15 +51,16 @@ export function ConceptReadPage({ topics: providedTopics, questions: providedQue
     if (topicId && topic) markRead(topicId)
   }, [markRead, topic, topicId])
 
-  // 검색 결과가 개념 하나를 지목해 들어오는 경로다(ADR-020).
+  // 검색 결과가 개념 하나를 지목해 들어오는 경로와, 주제 머리의 표 바로 가기가 같은 화면의 표를 지목하는 경로다(ADR-020).
   // `Layout`은 해시가 있으면 맨 위로 되돌리지 않으므로 여기가 스크롤 주인이다.
+  // 같은 바로 가기를 다시 누르면 react-router가 같은 주소로 replace해 해시는 그대로이고 key만 바뀐다. 그때도 다시 옮긴다.
   useEffect(() => {
     if (!hash) return
 
     // 개념 id는 `aws-core-services.ec2`처럼 점을 품는다. CSS 선택자로 읽으면
     // 점이 클래스 구분자로 해석되므로 getElementById로 찾는다.
     document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView()
-  }, [hash])
+  }, [hash, key])
 
   // iOS 26 Safari는 툴바가 접혀도 하단 sticky 요소를 따라 내리지 않아 바 밑에 본문이 비친다(ADR-052).
   // 툴바처럼 내릴 때 숨기고 올릴 때 보인다. 맨 위에서 튕기는 스크롤(음수 → 0)은 내림으로 치지 않는다.
@@ -88,6 +92,8 @@ export function ConceptReadPage({ topics: providedTopics, questions: providedQue
   }
 
   const importance = topic.importance === 0 ? null : importanceLabel[topic.importance]
+  // 표에 shortcut이 있으면 주제 머리에서 그 표로 바로 가는 링크를 둔다. 주소는 이 주제 그대로에 해시만 붙는다.
+  const shortcuts = Object.values(subject.visualsByTopicId[topic.id]?.tables ?? {}).flatMap(({ shortcut }) => (shortcut ? [shortcut] : []))
   // 개념은 들어왔지만 확인 문제가 아직 없는 주제가 있다. 그 주제에서 주 액션을 확인 문제로 두면
   // 개념을 다 읽은 학습자가 "아직 확인 문제가 없습니다" 안내 화면에 갇힌다. 갈 곳을 주 액션으로 둔다.
   const hasQuestions = questions.some((question) => question.topicId === topic.id)
@@ -105,6 +111,15 @@ export function ConceptReadPage({ topics: providedTopics, questions: providedQue
           <h1 className="text-2xl font-semibold text-title">{topic.title}</h1>
           {importance && <span className={`shrink-0 text-sm ${importance.className}`}>{importance.label}</span>}
         </div>
+        {shortcuts.length > 0 && (
+          <div className="-ml-4 flex flex-wrap">
+            {shortcuts.map((shortcut) => (
+              <Link className={shortcutLinkClass} key={shortcut.id} to={{ pathname: `/${subject.id}/topic/${topic.id}`, hash: `#${shortcut.id}` }}>
+                {shortcut.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
 
       <ConceptList concepts={topic.concepts} glossary={subject.visualsByTopicId[topic.id]?.glossary} headingLevel={2} />

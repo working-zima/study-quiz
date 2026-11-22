@@ -61,6 +61,29 @@ describe('ConceptList', () => {
     expect(within(neighbor).queryByRole('figure')).not.toBeInTheDocument()
   })
 
+  it.each([2, 4] as const)('h%i 화면에서 요약 자리에 등록한 표를 한 줄 요약 바로 아래·본문 앞에 붙이고 본문 뒤 도식은 그대로 둔다', (headingLevel) => {
+    const SummaryTable = () => <figure aria-label="요약 아래 표" />
+
+    render(
+      <ConceptList
+        concepts={concepts}
+        diagrams={{ 'x.y': FakeDiagram }}
+        headingLevel={headingLevel}
+        summaryFigures={{ 'x.y': SummaryTable }}
+      />,
+    )
+
+    const [first, neighbor] = screen.getAllByRole('article')
+    const table = within(first).getByRole('figure', { name: '요약 아래 표' })
+    const diagram = within(first).getByRole('figure', { name: '가짜 도식' })
+    const [head, , body] = Array.from(first.children)
+    expect(Array.from(first.children)).toEqual([head, table, body, diagram])
+    expect(head).toContainElement(screen.getByRole('heading', { name: '첫 개념', level: headingLevel }))
+    expect(head.lastElementChild).toBe(screen.getByText('첫 요약'))
+    expect(body.firstElementChild).toBe(screen.getByText('첫 문단'))
+    expect(within(neighbor).queryByRole('figure')).not.toBeInTheDocument()
+  })
+
   it('glossary를 주면 한 개념 안에서 같은 약어의 버튼이 하나만 생긴다', () => {
     const withTerms: Concept[] = [
       { id: 'v.a', name: 'NAT 인스턴스', summary: 'EC2로 직접 운영한다', paragraphs: ['뒤의 EC2가 느려진다', 'NACL과 달리 **EC2**다'] },

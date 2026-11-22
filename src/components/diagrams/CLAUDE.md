@@ -5,6 +5,7 @@
 - **registry는 과목을 모른다.** `registry.ts`의 `diagramsByConceptId`는 개념 id 하나로 도식을 찾는다. 개념 id가 과목을 넘어 유일하므로
   (ADR-053 「불변식」) 그것으로 충분하고, 도식은 **자기 과목 폴더**를 직접 읽는다 — AWS 도식은 `src/data/aws`, 네트워크 도식은
   `src/data/network`(ADR-055), Azure 도식은 `src/data/azure`(ADR-060). 단계 그림은 `stepFiguresByConceptId`다(ADR-050).
+  요약 바로 아래에 붙는 표는 `summaryFiguresByConceptId`다(UI_GUIDE 「비교표」의 예외).
 - **도식은 콘텐츠다.** 본문에 없는 사실·대소 관계를 그리지 않는다. 예시 값도 본문에 나오는 것만 쓴다(ADR-036, ADR-038 「예시의 경계」).
 - 문구(캡션·표·약어)는 과목 폴더의 `visuals/<주제 id>.json`(`src/data/aws/visuals/`·`src/data/network/visuals/`·`src/data/azure/visuals/`)에, 좌표와 경로는
   컴포넌트에 둔다(ADR-037). 약어(`glossary`)는 AWS VPC 주제에만 있고 네트워크·Azure는 비운다(ADR-055·ADR-060).

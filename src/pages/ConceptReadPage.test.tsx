@@ -1,6 +1,9 @@
-import { fireEvent, screen } from '@testing-library/react'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { fireEvent, render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { azureSubject } from '../data/azure'
+import { SubjectContext } from '../hooks/useSubject'
 import { renderWithSubject } from '../test/subject'
 import type { Question, Topic } from '../types/content'
 import { ConceptReadPage } from './ConceptReadPage'
@@ -372,6 +375,105 @@ describe('ConceptReadPage', () => {
 
       expect(article).not.toBeNull()
       expect(article).toHaveClass('scroll-mt-24')
+    })
+  })
+
+  // 표의 shortcut이 주제 머리에 링크를 만든다. 스크롤은 위 「앵커로 지목된 개념」과 같은 해시 effect가 맡는다(ADR-020).
+  describe('주제 머리의 표 바로 가기 (실제 Azure 모니터링 주제)', () => {
+    const topicPath = '/azure/topic/azure-monitoring'
+    const shortcutName = 'Azure Monitor 기능 비교표로 바로 가기'
+    const featuresName = 'Azure Monitor의 네 기능 견주기'
+    const toolChoiceName = '모니터링 도구 셋 고르기'
+
+    function CurrentPath() {
+      const { pathname, hash } = useLocation()
+      return <output aria-label="현재 경로">{`${pathname}${hash}`}</output>
+    }
+
+    function renderAzurePage(path: string) {
+      return render(
+        <SubjectContext.Provider value={azureSubject}>
+          <MemoryRouter initialEntries={[path]}>
+            <Routes>
+              <Route element={<ConceptReadPage markRead={vi.fn()} />} path="/azure/topic/:topicId" />
+            </Routes>
+            <CurrentPath />
+          </MemoryRouter>
+        </SubjectContext.Provider>,
+      )
+    }
+
+    it('제목 아래, 첫 개념보다 앞에 바로 가기 링크가 하나 있고 같은 주제 주소의 비교표 id를 해시로 가리킨다', () => {
+      const { container } = renderAzurePage(topicPath)
+
+      const header = container.querySelector('header')!
+      const link = within(header).getByRole('link', { name: shortcutName })
+      expect(within(header).getAllByRole('link')).toEqual([link])
+      expect(link).toHaveAttribute('href', `${topicPath}#monitor-features-table`)
+      expect(header).toContainElement(screen.getByRole('heading', { level: 1, name: '모니터링' }))
+      expect(screen.getByRole('heading', { level: 1 }).compareDocumentPosition(link) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+      expect(link.compareDocumentPosition(screen.getByRole('heading', { level: 2, name: 'Azure 모니터링 도구' })) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+      expect(link).toHaveClass('min-h-[44px]')
+    })
+
+    it('링크를 누르면 같은 주제 화면에 머문 채 Azure Monitor 소개 직후의 비교표로 스크롤하고, 다시 눌러도 그 표로 간다', async () => {
+      const scrollIntoView = vi.fn()
+      vi.spyOn(Element.prototype, 'scrollIntoView').mockImplementation(scrollIntoView)
+      const user = userEvent.setup()
+      renderAzurePage(topicPath)
+      expect(scrollIntoView).not.toHaveBeenCalled()
+
+      await user.click(screen.getByRole('link', { name: shortcutName }))
+
+      const table = screen.getByRole('figure', { name: featuresName })
+      expect(screen.getByLabelText('현재 경로')).toHaveTextContent(`${topicPath}#monitor-features-table`)
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('모니터링')
+      expect(scrollIntoView).toHaveBeenCalledOnce()
+      expect(scrollIntoView.mock.instances[0]).toBe(table)
+      expect(scrollIntoView.mock.calls[0][0]?.behavior).not.toBe('smooth')
+      expect(table.closest('article')).toHaveAttribute('id', 'azure-monitoring.azure-monitor')
+      expect(table).toHaveClass('scroll-mt-24')
+
+      // 읽다가 위로 올라와 같은 링크를 다시 누르면 react-router가 같은 주소로 replace한다. 해시가 같아도 다시 옮겨야 한다.
+      await user.click(screen.getByRole('link', { name: shortcutName }))
+
+      expect(screen.getByLabelText('현재 경로')).toHaveTextContent(`${topicPath}#monitor-features-table`)
+      expect(scrollIntoView).toHaveBeenCalledTimes(2)
+      expect(scrollIntoView.mock.instances[1]).toBe(table)
+    })
+
+    it('비교표로 들어오는 주소를 직접 열어도 그 표로 스크롤한다', () => {
+      const scrollIntoView = vi.fn()
+      vi.spyOn(Element.prototype, 'scrollIntoView').mockImplementation(scrollIntoView)
+
+      renderAzurePage(`${topicPath}#monitor-features-table`)
+
+      expect(scrollIntoView).toHaveBeenCalledOnce()
+      expect(scrollIntoView.mock.instances[0]).toBe(screen.getByRole('figure', { name: featuresName }))
+    })
+
+    it('도구 선택표는 첫 개념의 요약 바로 아래에, 비교표는 Azure Monitor 소개의 맨 끝에 하나만 있고 Application Insights 끝에는 없다', () => {
+      renderAzurePage(topicPath)
+
+      const first = screen.getAllByRole('article')[0]
+      const [head, second] = Array.from(first.children)
+      expect(first).toHaveAttribute('id', 'azure-monitoring.monitoring-tools')
+      expect(head.lastElementChild).toHaveTextContent(azureSubject.topics.find(({ id }) => id === 'azure-monitoring')!.concepts[0].summary)
+      expect(second).toBe(screen.getByRole('figure', { name: toolChoiceName }))
+
+      const features = screen.getByRole('figure', { name: featuresName })
+      expect(screen.getAllByRole('figure', { name: featuresName })).toHaveLength(1)
+      expect(document.getElementById('azure-monitoring.azure-monitor')!.lastElementChild).toBe(features)
+      expect(within(document.getElementById('azure-monitoring.application-insights')!).queryByRole('figure', { name: featuresName })).toBeNull()
+    })
+
+    it('shortcut이 없는 주제의 머리에는 링크가 없다', () => {
+      const { container, unmount } = renderAzurePage('/azure/topic/azure-storage')
+      expect(within(container.querySelector('header')!).queryAllByRole('link')).toEqual([])
+      unmount()
+
+      const aws = renderPage('/topic/storage-topic')
+      expect(within(aws.container.querySelector('header')!).queryAllByRole('link')).toEqual([])
     })
   })
 

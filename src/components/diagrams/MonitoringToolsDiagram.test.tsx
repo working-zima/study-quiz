@@ -54,6 +54,7 @@ const question = "무엇이 궁금할 때 어느 도구를 열까?"
 const idleCaption = "세 도구는 살피는 것과 알려 주는 것이 서로 다르다. 버튼을 고르면 무엇이 궁금할 때 어느 도구를 여는지 볼 수 있다."
 const legend = "화살표는 도구가 살피는 대상에서 도구로 가는 방향이다. Azure Service Health는 내가 쓰는 리소스의 상태도 살피지만, 이 그림은 Azure 쪽의 일을 알리는 쪽만 그렸다."
 const figureName = "Azure 쪽의 서비스와 지역은 Azure Service Health가, 내 구독의 VM 1은 Azure Advisor가, VM 1과 웹 앱 1이 내놓는 데이터는 Azure Monitor가 살피는 모습"
+const toolChoiceName = "모니터링 도구 셋 고르기"
 const svgName = "Azure 쪽 안에 서비스와 지역, 내 구독 안에 VM 1과 웹 앱 1이 있고, 그 밖에 Azure Service Health, Azure Advisor, Azure Monitor가 있다"
 const expectedScenarios = [
   {
@@ -190,6 +191,62 @@ function expectPathGeometry() {
   }
 }
 
+// 연결선끼리 닿거나 겹치지 않는다. 전체에서는 넷이 한꺼번에 보이므로 서로 다른 선으로 읽혀야 한다.
+function expectPathsApart() {
+  const ids = shownIds('[data-path]', 'data-path')
+  const segmentsOf = (id: string) => {
+    const points = pathPoints(id)
+    return points.slice(1).map((point, index) => segmentBox(points[index], point))
+  }
+  for (const [index, first] of ids.entries()) {
+    for (const second of ids.slice(index + 1)) {
+      for (const a of segmentsOf(first)) {
+        for (const b of segmentsOf(second)) expect(segmentTouches(a, b), `${first} ↔ ${second}`).toBe(false)
+      }
+    }
+  }
+}
+
+// 전체: 노드가 모두 선명하고 연결선 넷이 모두 보이며, 곁말 없이 선택 안내가 나온다. 세로형과 가로형이 같은 기대값으로 통과해야 한다.
+function expectIdle(container: HTMLElement) {
+  for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
+  expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+  expectPathGeometry()
+  expectPathsApart()
+  expect(shownIds('[data-note]', 'data-note')).toEqual([])
+  expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
+  expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
+  for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
+}
+
+// 전체 → 사례 → 전체를 사례마다 되풀이한다. 사례에서는 그 경로·노드·곁말·캡션만 강조되고, 전체로 돌아올 때마다 연결선 넷이 다시 보인다.
+async function expectRoundTrips(places: NotePlaces, width: number, container: HTMLElement) {
+  expectIdle(container)
+  for (const scenario of expectedScenarios) {
+    await expectScenario(scenario, places, width, container)
+    expect(shownIds('[data-path]', 'data-path')).toHaveLength(scenario.paths.length)
+    await selectScenario('전체')
+    expectIdle(container)
+  }
+}
+
+// 웹 앱 1의 오류 기록과 VM 1의 CPU 사용률은 둘 다 Azure Monitor가 모으는 데이터다(개념 본문의 셋째 담당자).
+// 전체와 「내 리소스에서 무슨 일이」에서 두 연결선이 같은 Azure Monitor 노드 하나에 닿는다.
+async function expectMonitorConvergence() {
+  expect(diagram().querySelectorAll('[data-node="monitor"]')).toHaveLength(1)
+  for (const label of ['전체', expectedScenarios[2].label]) {
+    await selectScenario(label)
+    const starts = { 'vm-to-monitor': 'vm-1', 'app-to-monitor': 'web-app' }
+    const ends = Object.entries(starts).map(([id, from]) => {
+      const points = pathPoints(id)
+      expect(onEdge(points[0], nodeBox(from)), `${label}: ${id} 시작점`).toBe(true)
+      return points[points.length - 1]
+    })
+    expect(toolNodes.filter((tool) => ends.every((end) => onEdge(end, nodeBox(tool)))), label).toEqual(['monitor'])
+    expect(ends[0], label).not.toEqual(ends[1])
+  }
+}
+
 // 아래 단언들은 배치에 묶이지 않는다. 세로형과 가로형이 같은 기대값으로 통과해야 한다.
 async function expectScenario(
   scenario: typeof expectedScenarios[number],
@@ -315,16 +372,24 @@ describe('MonitoringToolsDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  // UI_GUIDE 「도식」의 예외다. 다른 도식은 전체에서 경로를 숨기지만, 이 도식은 처음부터 연결선 넷을 모두 보인다(사용자 결정 2026-11-22).
+  it('처음(전체)에는 노드가 모두 선명하고 연결선 넷이 모두 보이며, 곁말 없이 선택 안내가 나온다', () => {
     const { container } = render(<MonitoringToolsDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
-    for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
-    expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
-    expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
+    expect(diagram().querySelectorAll('[data-path]')).toHaveLength(4)
+    expectIdle(container)
+  })
+
+  it('전체 → 각 사례 → 전체를 오가면 사례마다 그 경로와 설명만 강조하고, 전체로 돌아올 때마다 연결선 넷을 다시 보인다', async () => {
+    const { container } = render(<MonitoringToolsDiagram />)
+    await expectRoundTrips(tallNotes, 280, container)
+  })
+
+  it('VM 1과 웹 앱 1의 연결선은 전체와 「내 리소스에서 무슨 일이」에서 같은 Azure Monitor 하나로 모인다', async () => {
+    render(<MonitoringToolsDiagram />)
+    await expectMonitorConvergence()
   })
 
   it.each(expectedScenarios)('$label: 지정한 노드·경로·곁말이 보이고 그 밖의 노드는 흐리다', async (scenario) => {
@@ -332,7 +397,7 @@ describe('MonitoringToolsDiagram', () => {
     await expectScenario(scenario, tallNotes, 280, container)
   })
 
-  it('시나리오를 바꾸면 이전 경로와 곁말이 사라지고 전체를 누르면 초기 상태로 돌아온다', async () => {
+  it('시나리오를 바꾸면 이전 경로와 곁말이 사라지고 전체를 누르면 초기 상태(연결선 넷)로 돌아온다', async () => {
     const { container } = render(<MonitoringToolsDiagram />)
     for (const scenario of [...expectedScenarios, expectedScenarios[0]]) {
       await selectScenario(scenario.label)
@@ -341,11 +406,7 @@ describe('MonitoringToolsDiagram', () => {
     }
     await selectScenario('전체')
 
-    for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
-    expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
-    for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
+    expectIdle(container)
   })
 
   it('모든 상자가 280×248 viewBox 안에 있고 모바일 너비 보정을 유지한다', () => {
@@ -435,6 +496,7 @@ describe('MonitoringToolsDiagram', () => {
     expect(tools.paragraphs.join(' ')).not.toMatch(/Copilot|Log Analytics|Application Insights|Resource Health/u)
   })
 
+  // 요약 바로 아래의 도구 선택표가 같은 개념에 붙지만, 도식은 그대로 본문 바로 뒤·개념의 맨 끝이다.
   it.each([2, 4] as const)('공유 본문 h%i에서 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
     const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
@@ -443,8 +505,15 @@ describe('MonitoringToolsDiagram', () => {
     expect(figure.closest('article')).toHaveAttribute('id', concept.id)
     expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.map((paragraph) => paragraph.replace(/^- /u, '')).join('').replace(/\*\*|`/gu, ''))
     expect(figure.closest('article')!.lastElementChild).toBe(figure)
-    expect(screen.getAllByRole('figure')).toEqual([figure])
+    expect(screen.getAllByRole('figure')).toEqual([screen.getByRole('figure', { name: toolChoiceName }), figure])
     expect(within(figure).queryByRole('heading')).toBeNull()
+  })
+
+  it('셋째 담당자의 예에서 VM 1의 CPU 사용률과 웹 앱 1의 오류 기록을 한 문장 안에서 Azure Monitor로 본다', () => {
+    const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
+    const sentence = concept.paragraphs.join(' ').split(/(?<=다\.)\s/u).find((part) => part.startsWith('셋째 담당자'))!
+
+    for (const fact of ['VM 1의 CPU 사용률', '웹 앱 1에 오류 기록', 'Azure Monitor']) expect(sentence, fact).toContain(fact)
   })
 
   describe('가로형 (768px 이상)', () => {
@@ -538,6 +607,17 @@ describe('MonitoringToolsDiagram', () => {
     it('요점을 보인다', async () => {
       render(<MonitoringToolsDiagram />)
       await expectPoint()
+    })
+
+    it('처음(전체)에 연결선 넷이 모두 보이고, 전체 → 각 사례 → 전체를 세로형과 같은 기대값으로 오간다', async () => {
+      const { container } = render(<MonitoringToolsDiagram />)
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 440 176')
+      await expectRoundTrips(wideNotes, 440, container)
+    })
+
+    it('VM 1과 웹 앱 1의 연결선이 같은 Azure Monitor 하나로 모인다', async () => {
+      render(<MonitoringToolsDiagram />)
+      await expectMonitorConvergence()
     })
 
     it('세로형에서 고른 시나리오가 폭을 바꾸어도 유지된다', async () => {

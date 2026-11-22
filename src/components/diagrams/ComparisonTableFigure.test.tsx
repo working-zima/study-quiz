@@ -92,4 +92,23 @@ describe('ComparisonTableFigure', () => {
     expect(container.querySelector('.overflow-x-auto')).toBeNull()
     expect(container.innerHTML).not.toContain('colspan')
   })
+
+  // 개념 읽기 머리의 바로 가기가 이 id를 해시로 가리킨다. 헤더에 깔리지 않게 개념처럼 여백을 둔다(ADR-020).
+  it('shortcut이 있으면 figure에 그 id와 헤더 높이만큼의 스크롤 여백을 두고, 링크 글은 표 안에 쓰지 않는다', () => {
+    const table = { ...tables['attach-targets'], shortcut: { id: 'attach-targets-table', label: '표로 바로 가기' } }
+    render(<ComparisonTableFigure table={table} />)
+
+    const figure = screen.getByRole('figure', { name: table.label })
+    expect(figure).toHaveAttribute('id', 'attach-targets-table')
+    expect(figure).toHaveClass('scroll-mt-24')
+    expect(figure).not.toHaveTextContent('표로 바로 가기')
+  })
+
+  it.each(Object.keys(anchors))('%s: shortcut이 없으면 id와 스크롤 여백을 붙이지 않는다', (id) => {
+    render(<ComparisonTableFigure table={tables[id]} />)
+
+    const figure = screen.getByRole('figure', { name: tables[id].label })
+    expect(figure).not.toHaveAttribute('id')
+    expect(figure).not.toHaveClass('scroll-mt-24')
+  })
 })

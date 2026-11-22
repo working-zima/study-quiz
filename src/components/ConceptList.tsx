@@ -4,7 +4,7 @@ import { markFirstOccurrences } from '../lib/glossary'
 import { groupParagraphs, stripListMarker, type SubBlock } from '../lib/paragraph-blocks'
 import type { Concept } from '../types/content'
 import type { GlossaryTerm } from '../types/visuals'
-import { diagramsByConceptId, stepFiguresByConceptId } from './diagrams/registry'
+import { diagramsByConceptId, stepFiguresByConceptId, summaryFiguresByConceptId } from './diagrams/registry'
 import { EmphasizedText } from './EmphasizedText'
 
 interface ConceptListProps {
@@ -15,6 +15,8 @@ interface ConceptListProps {
   diagrams?: Record<string, ComponentType | ComponentType[]>
   // 단계 목록의 번호 항목마다 끼우는 단계 그림(ADR-050).
   stepFigures?: Record<string, ComponentType<{ step: number }>>
+  // 한 줄 요약 바로 아래, 본문보다 앞에 끼우는 표.
+  summaryFigures?: Record<string, ComponentType>
   // 주제의 약어 사전(ADR-037). 개념마다 약어가 처음 나오는 한 곳에만 툴팁을 단다.
   glossary?: GlossaryTerm[]
 }
@@ -27,6 +29,7 @@ export function ConceptList({
   headingLevel,
   diagrams = diagramsByConceptId,
   stepFigures = stepFiguresByConceptId,
+  summaryFigures = summaryFiguresByConceptId,
   glossary,
 }: ConceptListProps) {
   const Heading = headingLevel === 2 ? 'h2' : 'h4'
@@ -35,6 +38,7 @@ export function ConceptList({
   function renderConcept(concept: Concept, Heading: 'h2' | 'h3' | 'h4' | 'h5') {
     const Diagram = diagrams[concept.id]
     const StepFigure = stepFigures[concept.id]
+    const SummaryFigure = summaryFigures[concept.id]
     // 요약과 문단을 한 번에 넘겨야 개념 안에서 처음 나오는 자리 하나만 표시된다.
     const segments = glossary
       ? markFirstOccurrences([concept.summary, ...concept.paragraphs.map(stripListMarker)], glossary.map(({ term }) => term))
@@ -70,6 +74,7 @@ export function ConceptList({
           <Heading className="text-base font-medium text-neutral-100">{concept.name}</Heading>
           <p className="text-sm text-neutral-400"><EmphasizedText glossary={glossaryAt(0)} text={concept.summary} /></p>
         </div>
+        {SummaryFigure && <SummaryFigure />}
         <div className="space-y-3">
           {groupParagraphs(concept.paragraphs).map((block) => (
             block.kind === 'paragraph' ? (
