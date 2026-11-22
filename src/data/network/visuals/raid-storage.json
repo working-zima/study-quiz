@@ -1,0 +1,260 @@
+{
+  "diagrams": {
+    "raid-array": {
+      "label": "RAID로 묶은 물리 디스크 넷이 운영 체제에는 논리 디스크 하나로 보이고, 그 데이터는 실제로 물리 디스크 넷에 놓이는 것을 견주는 도식",
+      "svgLabel": "운영 체제와 논리 디스크, 「RAID 묶음」 박스 안의 DISK0·DISK1·DISK2·DISK3을 화살표로 이은 그림",
+      "question": "RAID로 묶은 디스크는 운영 체제에게 어떻게 보일까?",
+      "idleCaption": "서버 SRV01에 물리 디스크 DISK0~DISK3 넷을 붙이고 RAID로 묶었다. 버튼으로 장면을 고르면 운영 체제가 보는 것과 데이터가 실제로 놓이는 곳을 따로 볼 수 있다.",
+      "legend": "화살표는 운영 체제가 쓴 데이터가 가는 쪽이다. SRV01과 DISK0~DISK3은 예로 붙인 이름표다.",
+      "nodes": {
+        "os": "운영 체제",
+        "logical": "논리 디스크",
+        "disk0": "DISK0",
+        "disk1": "DISK1",
+        "disk2": "DISK2",
+        "disk3": "DISK3"
+      },
+      "groups": {
+        "raid": "RAID 묶음"
+      },
+      "notes": {
+        "os-view-note": "운영 체제에는 디스크 하나만 보인다",
+        "physical-note": "데이터는 실제로 물리 디스크 넷에 놓인다"
+      },
+      "scenarios": [
+        {
+          "id": "os-view",
+          "label": "운영 체제가 보는 것",
+          "caption": "운영 체제는 RAID의 제어 소프트웨어가 내놓은 논리 디스크를 디스크 하나로 여기고, 거기에 파일을 저장한다. 물리 디스크를 하나하나 골라 파일을 두지 않는다.",
+          "sources": [
+            "raid-storage.raid"
+          ]
+        },
+        {
+          "id": "physical",
+          "label": "실제로 놓인 것",
+          "caption": "논리 디스크에 쓴 데이터를 실제로 어느 물리 디스크의 어느 자리에 둘지는 제어 소프트웨어가 정한다. 레벨에 따라 데이터를 네 디스크에 나눠 두거나, 겹쳐 두거나, 패리티를 함께 둔다.",
+          "sources": [
+            "raid-storage.raid"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid"
+      ]
+    },
+    "raid-striping": {
+      "label": "RAID 0이 파일 조각 A1~A8을 DISK0~DISK3에 차례로 번갈아 놓는 모습과, DISK1 하나가 고장 났을 때 무엇을 잃는지 견주는 도식",
+      "svgLabel": "DISK0·DISK1·DISK2·DISK3 박스마다 조각 칸 둘(A1·A5, A2·A6, A3·A7, A4·A8)을 둔 그림",
+      "question": "RAID 0은 파일 조각을 디스크에 어떻게 놓을까?",
+      "idleCaption": "2TB 디스크 DISK0~DISK3 넷을 RAID 0으로 묶고 파일 하나를 쓰니 조각 A1~A8이 생겼다. 버튼으로 장면을 고르면 조각이 놓인 차례와, 디스크 하나가 고장 났을 때 무엇을 잃는지 볼 수 있다.",
+      "legend": "박스 하나가 디스크 하나이고, 칸 하나가 조각 하나다. 디스크 이름과 조각 이름은 예로 붙인 이름표다.",
+      "nodes": {
+        "a1": "A1",
+        "a2": "A2",
+        "a3": "A3",
+        "a4": "A4",
+        "a5": "A5",
+        "a6": "A6",
+        "a7": "A7",
+        "a8": "A8"
+      },
+      "groups": {
+        "disk0": "DISK0",
+        "disk1": "DISK1",
+        "disk2": "DISK2",
+        "disk3": "DISK3"
+      },
+      "notes": {
+        "stripe-note": "조각을 디스크마다 차례로 번갈아 놓는다",
+        "fail-mark": "고장",
+        "fail-note": "A2와 A6을 잃어 파일을 온전히 읽지 못한다"
+      },
+      "scenarios": [
+        {
+          "id": "stripe",
+          "label": "나눠 놓기",
+          "caption": "A1~A4를 DISK0부터 DISK3까지 하나씩 놓아 첫째 줄을 채우고, A5부터 다시 DISK0으로 돌아가 둘째 줄을 채운다. 이어진 조각이 서로 다른 디스크에 있으므로, 이 파일을 읽을 때 네 디스크가 저마다 자기 조각을 함께 읽는다.",
+          "sources": [
+            "raid-storage.raid-0"
+          ]
+        },
+        {
+          "id": "fail",
+          "label": "디스크 하나의 고장",
+          "caption": "DISK1이 고장 나면 그 디스크에 있던 A2와 A6을 잃는다. RAID 0에는 사본도 패리티도 없어 잃은 조각을 다시 만들 수 없으므로, 나머지 세 디스크가 멀쩡해도 이 파일을 온전히 읽지 못한다.",
+          "sources": [
+            "raid-storage.raid-0"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid-0"
+      ]
+    },
+    "raid-mirroring": {
+      "label": "RAID 1이 같은 데이터 A1·A2·A3을 DISK0과 DISK1에 똑같이 쓰는 모습과, DISK0이 고장 났을 때 DISK1로 계속 읽는 모습을 견주는 도식",
+      "svgLabel": "「쓰는 데이터」와 「읽는 쪽」 사이에 DISK0·DISK1 박스를 두고, 박스마다 칸 A1·A2·A3을 둔 그림",
+      "question": "RAID 1은 디스크 하나가 고장 나도 어떻게 데이터를 지킬까?",
+      "idleCaption": "2TB 디스크 DISK0·DISK1 둘을 RAID 1로 묶고 파일 하나를 쓰니 그 데이터가 A1·A2·A3 세 덩이로 놓였다. 버튼으로 장면을 고르면 데이터를 쓰는 모습과, 디스크 하나가 고장 났을 때 읽는 모습을 볼 수 있다.",
+      "legend": "박스 하나가 디스크 하나이고, 칸 하나가 데이터 한 덩이다. 화살표는 데이터가 가는 쪽이다. 디스크 이름과 덩이 이름은 예로 붙인 이름표다.",
+      "nodes": {
+        "write": "쓰는 데이터",
+        "d0-a1": "A1",
+        "d0-a2": "A2",
+        "d0-a3": "A3",
+        "d1-a1": "A1",
+        "d1-a2": "A2",
+        "d1-a3": "A3",
+        "read": "읽는 쪽"
+      },
+      "groups": {
+        "disk0": "DISK0",
+        "disk1": "DISK1"
+      },
+      "notes": {
+        "write-note": "같은 데이터를 두 디스크에 똑같이 쓴다",
+        "fail-mark": "고장",
+        "fail-note": "DISK1의 같은 데이터로 계속 읽는다"
+      },
+      "scenarios": [
+        {
+          "id": "write",
+          "label": "똑같이 쓰기",
+          "caption": "제어 소프트웨어는 쓰는 데이터를 DISK0과 DISK1의 같은 자리에 똑같이 쓴다. 두 디스크가 같은 데이터를 한 벌씩 담으므로, 데이터를 담을 수 있는 공간은 디스크 하나만큼인 2TB다.",
+          "sources": [
+            "raid-storage.raid-1"
+          ]
+        },
+        {
+          "id": "fail",
+          "label": "디스크 하나의 고장",
+          "caption": "DISK0이 고장 나면 제어 소프트웨어가 DISK0을 빼고, DISK1에 남은 같은 데이터 A1·A2·A3으로 계속 읽는다. 파일을 그대로 읽을 수 있고, 새 디스크로 바꿔 끼우면 DISK1의 데이터를 복사해 채운다.",
+          "sources": [
+            "raid-storage.raid-1"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid-1"
+      ]
+    },
+    "raid-parity-rotation": {
+      "label": "RAID 5가 패리티 P1~P4를 DISK0~DISK3에 줄마다 돌아가며 두는 모습과, DISK1이 고장 났을 때 같은 줄의 A1·A3·P1로 A2를 다시 계산하는 차례를 견주는 도식",
+      "svgLabel": "DISK0·DISK1·DISK2·DISK3 박스마다 칸 넷을 두고, 박스 밖의 「다시 계산한 A2」 노드로 화살표를 이은 그림",
+      "question": "RAID 5는 패리티를 어디에 두고, 고장 난 조각을 어떻게 되살릴까?",
+      "idleCaption": "2TB 디스크 DISK0~DISK3 넷을 RAID 5로 묶고 데이터 조각 A1~A12를 썼다. 버튼으로 장면을 고르면 패리티 P1~P4가 놓인 자리와, DISK1이 고장 났을 때 잃은 조각을 다시 계산하는 차례를 볼 수 있다.",
+      "legend": "박스 하나가 디스크 하나이고, 칸 하나가 조각이나 패리티 하나다. 박스마다 위에서부터 첫째 줄~넷째 줄이다. 화살표는 다시 계산하는 데 쓰는 값이 가는 쪽이다. 디스크·조각·패리티 이름은 예로 붙인 이름표다.",
+      "nodes": {
+        "a1": "A1",
+        "a2": "A2",
+        "a3": "A3",
+        "p1": "P1",
+        "a4": "A4",
+        "a5": "A5",
+        "p2": "P2",
+        "a6": "A6",
+        "a7": "A7",
+        "p3": "P3",
+        "a8": "A8",
+        "a9": "A9",
+        "p4": "P4",
+        "a10": "A10",
+        "a11": "A11",
+        "a12": "A12",
+        "rebuilt": "다시 계산한 A2"
+      },
+      "groups": {
+        "disk0": "DISK0",
+        "disk1": "DISK1",
+        "disk2": "DISK2",
+        "disk3": "DISK3"
+      },
+      "notes": {
+        "layout-note": "줄마다 패리티를 다른 디스크에 둔다",
+        "fail-mark": "고장",
+        "rebuild-note": "A1·A3·P1로 잃은 A2를 다시 계산한다"
+      },
+      "scenarios": [
+        {
+          "id": "layout",
+          "label": "패리티 돌려 놓기",
+          "caption": "첫째 줄의 패리티 P1을 DISK3에 두고, 한 줄 내려갈 때마다 패리티를 한 디스크씩 앞으로 옮겨 P2·P3·P4를 DISK2·DISK1·DISK0에 둔다. 네 디스크가 패리티를 하나씩 맡으므로, 패리티를 고치는 쓰기가 디스크 하나에 몰리지 않는다.",
+          "sources": [
+            "raid-storage.raid-5"
+          ]
+        },
+        {
+          "id": "rebuild",
+          "label": "조각 다시 계산",
+          "caption": "DISK1이 고장 나 첫째 줄의 A2를 잃었다. 같은 줄에 남은 A1·A3·P1을 배타적 논리합하면 A2가 다시 나온다. 둘째·넷째 줄의 A5·A10도 같은 식으로 계산하고, DISK1에 P3이 있던 셋째 줄은 데이터 조각이 모두 남아 그대로 읽는다.",
+          "sources": [
+            "raid-storage.raid-5"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.raid-5"
+      ]
+    },
+    "storage-attach": {
+      "label": "DAS·NAS·SAN이 저장 장치를 서버나 컴퓨터에 잇는 길과 데이터를 내주는 단위를 갈래마다 견주는 도식",
+      "svgLabel": "「DAS」 박스의 서버와 저장 장치, 「NAS」 박스의 사무실 컴퓨터들·LAN·NAS01, 「SAN」 박스의 SRV01·SRV02·저장 장치를 잇는 네트워크·STOR01을 화살표로 이은 그림",
+      "question": "DAS·NAS·SAN은 저장 장치를 어떻게 이어 쓸까?",
+      "idleCaption": "DAS·NAS·SAN을 한 그림에 갈래로 나눠 그렸다. 버튼으로 갈래를 고르면 저장 장치가 누구에게 어떤 길로 이어지고, 데이터를 무엇 단위로 내주는지 볼 수 있다.",
+      "legend": "화살표는 서버나 컴퓨터가 저장 장치에 데이터를 청하는 쪽을 가리킨다. SRV01·SRV02·STOR01·NAS01은 예로 붙인 이름표다.",
+      "nodes": {
+        "das-server": "서버",
+        "das-storage": "저장 장치",
+        "nas-pc": "사무실 컴퓨터들",
+        "nas-lan": "LAN",
+        "nas-nas01": "NAS01",
+        "san-srv01": "SRV01",
+        "san-srv02": "SRV02",
+        "san-network": "저장 장치를 잇는 네트워크",
+        "san-stor01": "STOR01"
+      },
+      "groups": {
+        "das": "DAS",
+        "nas": "NAS",
+        "san": "SAN"
+      },
+      "notes": {
+        "das-note": "서버 한 대에 바로 이어 그 서버만 쓴다",
+        "nas-note": "LAN으로 여러 컴퓨터에 파일 단위로 내준다",
+        "san-note": "서버들이 디스크 공간을 블록 단위로 읽고 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "das",
+          "label": "DAS",
+          "caption": "DAS는 저장 장치를 서버 한 대에 네트워크를 거치지 않고 바로 이어, 그 서버만 쓴다. 다른 서버는 이 저장 장치에 닿지 못한다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        },
+        {
+          "id": "nas",
+          "label": "NAS",
+          "caption": "NAS01은 LAN에 이어져, 사무실 컴퓨터들이 이름으로 청한 파일을 내준다. 그 파일을 디스크의 어느 블록에 둘지는 NAS01 쪽의 파일 시스템이 정한다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        },
+        {
+          "id": "san",
+          "label": "SAN",
+          "caption": "SRV01과 SRV02는 저장 장치를 잇는 네트워크를 거쳐, STOR01이 내준 디스크 공간을 저마다 자기 디스크처럼 블록 단위로 읽고 쓴다. 이 데이터는 사무실 컴퓨터들이 쓰는 LAN을 지나지 않는다.",
+          "sources": [
+            "raid-storage.network-storage"
+          ]
+        }
+      ],
+      "sources": [
+        "raid-storage.network-storage"
+      ]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

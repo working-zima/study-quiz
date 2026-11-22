@@ -1,0 +1,449 @@
+{
+  "diagrams": {
+    "media-signal-kinds": {
+      "label": "보내는 쪽과 받는 쪽 사이의 전송 매체로 유선 매체인 구리선·광섬유와 무선 매체인 공간을 두고, 매체마다 신호가 무엇에 실려 가는지 보이는 도식",
+      "svgLabel": "왼쪽에 보내는 쪽, 오른쪽에 받는 쪽을 두고, 가운데 유선 매체 박스에 구리선과 광섬유를, 그 아래 무선 매체 박스에 공간을 둔 그림",
+      "question": "매체마다 무엇이 신호를 실어 나를까?",
+      "idleCaption": "보내는 쪽과 받는 쪽 사이에서 신호가 지나가는 길, 곧 전송 매체를 유선 매체 둘과 무선 매체 하나로 나눠 놓았다. 버튼으로 유선 매체나 무선 매체를 고르면 신호가 무엇을 지나 무엇에 실려 가는지 볼 수 있다.",
+      "legend": "화살표는 신호가 보내는 쪽에서 매체를 지나 받는 쪽으로 가는 길이다. 연결 하나에 세 매체를 함께 쓰는 것이 아니라, 연결마다 그중 하나를 쓴다.",
+      "nodes": {
+        "sender": "보내는 쪽",
+        "copper": "구리선",
+        "fiber": "광섬유",
+        "space": "공간",
+        "receiver": "받는 쪽"
+      },
+      "groups": {
+        "wired": "유선 매체",
+        "wireless": "무선 매체"
+      },
+      "notes": {
+        "copper-note": "전기 신호",
+        "fiber-note": "빛 신호",
+        "space-note": "전파"
+      },
+      "scenarios": [
+        {
+          "id": "wired",
+          "label": "유선 매체",
+          "caption": "유선 매체는 케이블이다. 보내는 쪽이 내보낸 신호는 케이블을 따라 받는 쪽까지 간다. 구리선으로 된 케이블은 전기 신호를, 광섬유로 된 케이블은 빛 신호를 나른다.",
+          "sources": ["transmission-media.transmission-media"]
+        },
+        {
+          "id": "wireless",
+          "label": "무선 매체",
+          "caption": "무선 매체는 케이블 없이 장치와 장치 사이에 놓인 공간이다. 보내는 쪽이 전파를 내보내면 전파가 공간으로 퍼져 나가고, 그 전파가 닿는 곳의 받는 쪽이 받는다.",
+          "sources": ["transmission-media.transmission-media"]
+        }
+      ],
+      "sources": ["transmission-media.transmission-media"]
+    },
+    "twisted-pair-pins": {
+      "label": "트위스티드 페어 케이블 끝 커넥터의 핀 1~8을 꼰 쌍 넷(핀 1·2, 3·6, 4·5, 7·8)으로 묶고, 10BASE-T가 핀 1·2의 쌍으로 보내고 핀 3·6의 쌍으로 받는 것을 보이는 도식",
+      "svgLabel": "커넥터의 핀 여덟 개를 꼰 쌍 넷의 묶음으로 나눠 두고, 옆에 보내는 쌍과 받는 쌍을 둔 그림",
+      "question": "트위스티드 페어 케이블의 여덟 가닥 가운데 무엇을 쓸까?",
+      "idleCaption": "트위스티드 페어 케이블 끝의 커넥터에는 핀이 8개 있고, 묶음 하나가 서로 꼬인 구리선 한 쌍이다. 버튼으로 네 쌍의 짝이나 10BASE-T가 쓰는 쌍을 고를 수 있다.",
+      "legend": "화살표는 그 핀의 구리선이 어느 쌍의 일을 맡는지 가리킨다. 보내는 쌍과 받는 쌍은 컴퓨터 쪽 커넥터에서 본 것이다.",
+      "nodes": {
+        "pin1": "핀 1",
+        "pin2": "핀 2",
+        "pin3": "핀 3",
+        "pin6": "핀 6",
+        "pin4": "핀 4",
+        "pin5": "핀 5",
+        "pin7": "핀 7",
+        "pin8": "핀 8",
+        "send": "보내는 쌍",
+        "receive": "받는 쌍"
+      },
+      "groups": {
+        "pair-12": "꼰 쌍",
+        "pair-36": "꼰 쌍",
+        "pair-45": "꼰 쌍",
+        "pair-78": "꼰 쌍"
+      },
+      "notes": {
+        "pairs-note": "여덟 가닥, 네 쌍",
+        "unused-45": "신호를 싣지 않음",
+        "unused-78": "신호를 싣지 않음"
+      },
+      "scenarios": [
+        {
+          "id": "pairs",
+          "label": "네 쌍",
+          "caption": "케이블 안의 구리선 여덟 가닥은 두 가닥씩 꼬인 네 쌍이다. 커넥터의 핀 여덟 개에 한 가닥씩 이어지고, 핀 1·2, 3·6, 4·5, 7·8이 각각 한 쌍이 된다.",
+          "sources": ["transmission-media.twisted-pair"]
+        },
+        {
+          "id": "in-use",
+          "label": "10BASE-T가 쓰는 쌍",
+          "caption": "10BASE-T는 네 쌍 가운데 두 쌍만 쓴다. 컴퓨터 쪽 커넥터에서 보면 핀 1·2의 쌍으로 신호를 보내고 핀 3·6의 쌍으로 신호를 받으며, 핀 4·5와 7·8의 쌍에는 신호를 싣지 않는다.",
+          "sources": ["transmission-media.twisted-pair"]
+        }
+      ],
+      "sources": ["transmission-media.twisted-pair"]
+    },
+    "coax-layers": {
+      "label": "동축 케이블의 네 겹을 가운데에서 바깥쪽 차례로 중심 도체·절연체·바깥 도체·피복으로 놓고, 신호를 나르는 도체 쌍과 바깥 잡음을 줄이는 바깥 도체를 보이는 도식",
+      "svgLabel": "동축 케이블 박스 안에 중심 도체·절연체·바깥 도체·피복을 가운데에서 바깥쪽 차례로 놓고, 박스 밖에 바깥 잡음을 둔 그림",
+      "question": "동축 케이블은 안에서 밖으로 무엇이 감싸고 있을까?",
+      "idleCaption": "동축 케이블은 가운데의 중심 도체를 절연체, 바깥 도체, 피복이 차례로 감싼다. 버튼으로 신호를 나르는 도체 쌍이나, 바깥 잡음을 줄이는 바깥 도체를 고를 수 있다.",
+      "legend": "칸은 케이블의 가운데에서 바깥쪽으로 겹이 놓인 차례이고, 실제 굵기를 재어 그린 것이 아니다. 화살표는 바깥에서 오는 잡음이 와 닿는 곳을 가리킨다.",
+      "nodes": {
+        "core": "중심 도체",
+        "insulator": "절연체",
+        "outer": "바깥 도체",
+        "jacket": "피복",
+        "noise": "바깥 잡음"
+      },
+      "groups": {
+        "cable": "동축 케이블"
+      },
+      "notes": {
+        "core-note": "쌍의 한쪽",
+        "insulator-note": "두 도체 사이",
+        "outer-note": "쌍의 다른 쪽",
+        "shield-note": "차폐 노릇"
+      },
+      "scenarios": [
+        {
+          "id": "pair",
+          "label": "신호를 나르는 쌍",
+          "caption": "동축 케이블은 중심 도체와, 그것을 같은 중심축으로 빙 둘러싼 바깥 도체를 한 쌍으로 써서 전기 신호를 나른다. 두 도체 사이는 전기가 통하지 않는 절연체가 채운다.",
+          "sources": ["transmission-media.coaxial-cable"]
+        },
+        {
+          "id": "shield",
+          "label": "바깥 잡음 줄이기",
+          "caption": "바깥 도체는 신호를 나르면서 차폐 노릇도 한다. 중심 도체를 빙 둘러싼 이 금속 층 덕분에, 바깥에서 오는 잡음이 안쪽 중심 도체의 신호에 섞여 드는 것이 줄어든다.",
+          "sources": ["transmission-media.coaxial-cable"]
+        }
+      ],
+      "sources": ["transmission-media.coaxial-cable"]
+    },
+    "fiber-core-cladding": {
+      "label": "싱글 모드 광섬유와 멀티 모드 광섬유를 위아래로 놓고, 둘 다 코어를 클래딩이 감싸며 빛이 코어를 따라 나아가는 것과, 빛이 나아가는 모드의 수를 견주는 도식",
+      "svgLabel": "위아래 두 광섬유마다 왼쪽에 보내는 쪽, 오른쪽에 받는 쪽을 두고, 그 사이에 클래딩·코어·클래딩의 띠를 쌓은 그림",
+      "question": "빛은 광섬유의 어디를 지나 나아갈까?",
+      "idleCaption": "위는 싱글 모드 광섬유, 아래는 멀티 모드 광섬유다. 둘 다 가운데의 코어를 클래딩이 감싸고, 빛은 코어를 따라 보내는 쪽에서 받는 쪽으로 나아간다. 버튼으로 하나를 고르면 빛이 몇 개의 모드로 나아가는지 볼 수 있다.",
+      "legend": "화살표 하나가 빛이 나아가는 모드 하나다. 실제 모드는 선이 아니라 코어 안에 빛이 퍼진 모양이고, 띠의 두께는 크기를 재어 그린 것이 아니다.",
+      "nodes": {
+        "single-sender": "보내는 쪽",
+        "single-receiver": "받는 쪽",
+        "multi-sender": "보내는 쪽",
+        "multi-receiver": "받는 쪽"
+      },
+      "groups": {
+        "single-cladding-top": "클래딩",
+        "single-core": "싱글 모드의 코어",
+        "single-cladding-bottom": "클래딩",
+        "multi-cladding-top": "클래딩",
+        "multi-core": "멀티 모드의 코어",
+        "multi-cladding-bottom": "클래딩"
+      },
+      "notes": {
+        "single-note": "빛이 하나의 모드로만 나아간다",
+        "multi-note": "빛이 여러 모드로 함께 나아간다"
+      },
+      "scenarios": [
+        {
+          "id": "single",
+          "label": "싱글 모드",
+          "caption": "싱글 모드 광섬유에서는 빛이 하나의 모드로만 나아간다. 빛이 퍼진 폭이 약 9 µm로 가늘고, 빛이 덜 약해져 통신사의 공중망처럼 먼 거리를 잇는 데 쓴다.",
+          "sources": ["transmission-media.optical-fiber"]
+        },
+        {
+          "id": "multi",
+          "label": "멀티 모드",
+          "caption": "멀티 모드 광섬유에서는 여러 모드의 빛이 함께 나아간다. 코어 지름이 50 µm로 싱글 모드에서 빛이 퍼진 폭보다 굵고, 건물 안 배선처럼 짧은 거리에 쓴다.",
+          "sources": ["transmission-media.optical-fiber"]
+        }
+      ],
+      "sources": ["transmission-media.optical-fiber"]
+    },
+    "pon-split": {
+      "label": "통신사 설비의 OLT01에서 나온 광섬유가 집 1~4의 ONU까지 가는 길을, 광 분배기로 한 가닥을 넷으로 나누는 PON과 집마다 광섬유를 따로 까는 점 대 점 구조로 견주는 도식",
+      "svgLabel": "왼쪽 통신사 설비 박스에 OLT01을, 가운데에 광 분배기를, 오른쪽에 집 1~4의 ONU를 위에서 아래로 쌓아 둔 그림",
+      "question": "광섬유 한 가닥을 여러 집이 어떻게 함께 쓸까?",
+      "idleCaption": "통신사 설비의 OLT01과 집 1~4의 ONU 사이에 광 분배기가 있다. OLT01은 예로 붙인 이름이고 집 넷도 예로 든 수다. 버튼으로 PON이나 점 대 점 구조를 고르면 광섬유가 어떻게 이어지는지 볼 수 있다.",
+      "legend": "화살표는 OLT01이 집 쪽으로 내려보내는 빛이 지나는 광섬유다. 화살표 하나가 광섬유 한 가닥이다.",
+      "nodes": {
+        "olt": "OLT01",
+        "splitter": "광 분배기",
+        "onu1": "집 1의 ONU",
+        "onu2": "집 2의 ONU",
+        "onu3": "집 3의 ONU",
+        "onu4": "집 4의 ONU"
+      },
+      "groups": {
+        "carrier": "통신사 설비"
+      },
+      "notes": {
+        "pon-note": "한 가닥을 넷으로 나눠 함께 쓴다",
+        "ptp-note": "집마다 광섬유를 따로 쓴다"
+      },
+      "scenarios": [
+        {
+          "id": "pon",
+          "label": "PON",
+          "caption": "OLT01이 내려보낸 빛은 광섬유 한 가닥을 따라 광 분배기에 닿고, 전원을 쓰지 않는 광 분배기가 그 빛을 네 가닥으로 나눠 집 1~4의 ONU에 모두 보낸다. 네 집이 광섬유 한 가닥을 함께 쓴다.",
+          "sources": ["transmission-media.ftth-pon"]
+        },
+        {
+          "id": "ptp",
+          "label": "점 대 점",
+          "caption": "점 대 점 구조에서는 OLT01에서 집마다 광섬유를 한 가닥씩, 모두 네 가닥을 깐다. 광 분배기를 거치지 않고, 집 1~4의 ONU가 저마다 자기 광섬유로 OLT01에 이어진다.",
+          "sources": ["transmission-media.ftth-pon"]
+        }
+      ],
+      "sources": ["transmission-media.ftth-pon"]
+    },
+    "impairment-kinds": {
+      "label": "보내는 쪽에서 매체를 지나 받는 쪽으로 가는 신호에 감쇠·지연 왜곡·잡음·누화가 각각 무엇을 바꾸는지 보이는 도식",
+      "svgLabel": "보내는 쪽·매체·받는 쪽을 차례로 잇고, 매체 곁에 바깥 잡음과 옆 선로를, 받는 쪽에 닿은 신호 박스에 약해진 신호·먼저 닿은 성분·늦게 닿은 성분을 둔 그림",
+      "question": "신호는 매체를 지나며 어떤 손상을 입을까?",
+      "idleCaption": "보내는 쪽이 보낸 신호가 매체를 지나 받는 쪽에 닿는다. 버튼으로 감쇠·지연 왜곡·잡음·누화를 하나씩 고르면, 그 손상이 신호의 무엇을 바꾸는지와 어디서 섞여 드는지 볼 수 있다.",
+      "legend": "가는 화살표는 신호가 보내는 쪽에서 받는 쪽으로 가는 길이고, 굵은 화살표는 매체 밖에서 섞여 드는 신호의 길이다. 받는 쪽에 닿은 신호 박스는 받는 쪽에 닿은 신호가 어떤 모습인지 적는다.",
+      "nodes": {
+        "sender": "보내는 쪽",
+        "medium": "매체",
+        "receiver": "받는 쪽",
+        "noise": "바깥 잡음",
+        "neighbor": "옆 선로",
+        "weak": "약해진 신호",
+        "early": "먼저 닿은 성분",
+        "late": "늦게 닿은 성분"
+      },
+      "groups": {
+        "arrived": "받는 쪽에 닿은 신호"
+      },
+      "notes": {
+        "attenuation-note": "멀리 갈수록 세기가 줄어든다",
+        "delay-note": "성분마다 걸린 시간이 다르다",
+        "noise-note": "원치 않는 방해가 섞여 든다",
+        "crosstalk-note": "옆 선로의 신호가 넘어온다"
+      },
+      "scenarios": [
+        {
+          "id": "attenuation",
+          "label": "감쇠",
+          "caption": "감쇠는 신호가 매체를 지나는 동안 세기가 약해지는 것이다. 같은 매체라도 길이가 길수록 더 약해져, 받는 쪽에는 약해진 신호가 닿는다.",
+          "sources": ["transmission-media.transmission-impairments"]
+        },
+        {
+          "id": "delay",
+          "label": "지연 왜곡",
+          "caption": "지연 왜곡은 신호를 이루는 여러 주파수 성분이 매체를 지나는 데 걸리는 시간이 서로 달라 생긴다. 받는 쪽에는 먼저 닿는 성분과 늦게 닿는 성분이 생기고, 어긋난 채 합쳐진 신호는 보낸 것과 모양이 다르다.",
+          "sources": ["transmission-media.transmission-impairments"]
+        },
+        {
+          "id": "noise",
+          "label": "잡음",
+          "caption": "잡음은 주변의 전기 장치처럼 신호 밖에서 생긴 원치 않는 전기적 방해가 매체를 지나는 신호에 섞여 드는 것이다. 받는 쪽은 섞여 든 방해 때문에 신호를 읽기 어려워진다.",
+          "sources": ["transmission-media.transmission-impairments"]
+        },
+        {
+          "id": "crosstalk",
+          "label": "누화",
+          "caption": "누화는 같은 케이블에 함께 든 다른 쌍처럼 가까이 놓인 옆 선로를 지나는 신호가 일부 넘어와 이 신호에 섞이는 것이다. 섞여 드는 것이 다른 통신의 신호라는 점에서 잡음과 갈린다.",
+          "sources": ["transmission-media.transmission-impairments"]
+        }
+      ],
+      "sources": ["transmission-media.transmission-impairments"]
+    },
+    "channel-coding-flow": {
+      "label": "원래 정보가 원천 부호화와 채널 부호화를 거쳐 매체로 나가고, 받는 쪽이 여분 비트로 오류를 찾거나 고쳐 데이터 비트를 되살리는 차례를 보이는 도식",
+      "svgLabel": "보내는 쪽 박스에 원래 정보·원천 부호화·데이터 비트·채널 부호화·데이터 비트 + 여분 비트를 차례로 잇고, 매체를 지나 받는 쪽 박스의 오류 검출·정정과 데이터 비트로 이은 그림",
+      "question": "오류를 찾으려고 보내는 쪽은 무엇을 더할까?",
+      "idleCaption": "보내는 쪽은 원래 정보를 데이터 비트로 바꾼 뒤 여분 비트를 덧붙여 매체로 내보내고, 받는 쪽은 그 여분으로 비트 오류를 살핀다. 버튼으로 원천 부호화와 채널 부호화를 고르면 각각 어디서 무엇을 하는지 볼 수 있다.",
+      "legend": "화살표는 정보가 보내는 쪽에서 매체를 지나 받는 쪽까지 거치는 차례다. 보내는 쪽 박스와 받는 쪽 박스는 그 일을 어느 쪽이 하는지 적는다.",
+      "nodes": {
+        "info": "원래 정보",
+        "source-coding": "원천 부호화",
+        "data": "데이터 비트",
+        "channel-coding": "채널 부호화",
+        "coded": "데이터 비트 + 여분 비트",
+        "medium": "매체",
+        "check": "오류 검출·정정",
+        "data-out": "데이터 비트"
+      },
+      "groups": {
+        "sender": "보내는 쪽",
+        "receiver": "받는 쪽"
+      },
+      "notes": {
+        "source-note": "원래 정보를 비트로 바꾼다",
+        "add-note": "여분 비트를 덧붙인다",
+        "medium-note": "손상으로 비트가 바뀔 수 있다",
+        "check-note": "여분으로 찾고 고친다"
+      },
+      "scenarios": [
+        {
+          "id": "source",
+          "label": "원천 부호화",
+          "caption": "원천 부호화는 음성 같은 원래 정보를 비트로 바꾸거나 그 비트 수를 줄여 데이터 비트를 만든다. 비트 오류를 찾거나 고칠 여분 비트는 더하지 않는다.",
+          "sources": ["transmission-media.channel-coding"]
+        },
+        {
+          "id": "channel",
+          "label": "채널 부호화",
+          "caption": "채널 부호화는 데이터 비트로 계산한 여분 비트를 덧붙여 매체로 내보낸다. 매체를 지나며 손상으로 비트가 바뀌어도, 받는 쪽은 그 여분으로 비트 오류를 찾아내거나 고쳐 데이터 비트를 되살린다.",
+          "sources": ["transmission-media.channel-coding"]
+        }
+      ],
+      "sources": ["transmission-media.channel-coding"]
+    },
+    "mux-demux": {
+      "label": "입력 A·B·C의 신호를 다중화기가 회선 하나로 함께 보내고 역다중화기가 출력 A·B·C로 다시 나누는 모습과, 주파수·시간·파장 가운데 무엇으로 회선을 나눠 쓰는지 보이는 도식",
+      "svgLabel": "입력 A·B·C를 다중화기에, 다중화기를 회선 하나 박스를 지나 역다중화기에, 역다중화기를 출력 A·B·C에 잇고, 회선 하나 박스 안에 주파수 구간·타임 슬롯·파장의 칸 줄 셋을 둔 그림",
+      "question": "여러 신호가 회선 하나를 어떻게 함께 쓸까?",
+      "idleCaption": "다중화기는 입력 A·B·C의 신호를 합쳐 회선 하나로 보내고, 역다중화기는 그것을 다시 나눠 출력 A·B·C로 보낸다. 버튼으로 주파수 분할·시분할·파장 분할을 고르면 회선을 무엇으로 나눠 쓰는지 볼 수 있다.",
+      "legend": "화살표는 신호가 입력에서 다중화기·회선·역다중화기를 지나 출력으로 가는 길이다. 회선 하나 박스 안의 칸 줄 셋은 방식마다 회선을 나눈 몫이다.",
+      "nodes": {
+        "in-a": "입력 A",
+        "in-b": "입력 B",
+        "in-c": "입력 C",
+        "mux": "다중화기",
+        "fdm-1": "구간 1",
+        "fdm-2": "구간 2",
+        "fdm-3": "구간 3",
+        "tdm-a": "슬롯 A",
+        "tdm-b": "슬롯 B",
+        "tdm-c": "슬롯 C",
+        "wdm-1": "λ1",
+        "wdm-2": "λ2",
+        "wdm-3": "λ3",
+        "demux": "역다중화기",
+        "out-a": "출력 A",
+        "out-b": "출력 B",
+        "out-c": "출력 C"
+      },
+      "groups": {
+        "line": "회선 하나"
+      },
+      "notes": {
+        "fdm-note": "신호마다 주파수 구간을 따로 준다",
+        "tdm-note": "신호마다 타임 슬롯을 차례로 준다",
+        "wdm-note": "신호마다 다른 파장의 빛을 준다"
+      },
+      "scenarios": [
+        {
+          "id": "fdm",
+          "label": "주파수 분할",
+          "caption": "주파수 분할 다중화는 회선으로 보낼 수 있는 주파수 범위를 구간으로 나눠 입력 A·B·C에 구간 1·2·3을 하나씩 준다. 세 신호는 같은 때에 회선을 지나고, 역다중화기는 주파수 구간으로 신호를 가른다.",
+          "sources": ["transmission-media.multiplexing"]
+        },
+        {
+          "id": "tdm",
+          "label": "시분할",
+          "caption": "시분할 다중화는 시간을 타임 슬롯으로 나눠 A·B·C 차례로 칸을 채우고 이 차례를 되풀이한다. 한 칸 동안에는 한 신호만 회선을 지나고, 역다중화기는 칸이 어느 신호의 것인지로 신호를 가른다.",
+          "sources": ["transmission-media.multiplexing"]
+        },
+        {
+          "id": "wdm",
+          "label": "파장 분할",
+          "caption": "파장 분할 다중화는 광섬유 한 가닥에 파장이 서로 다른 빛 λ1·λ2·λ3을 함께 싣고 입력 A·B·C를 하나씩 맡긴다. 역다중화기는 섞여 온 빛을 파장마다 갈라 출력 A·B·C로 보낸다.",
+          "sources": ["transmission-media.multiplexing"]
+        }
+      ],
+      "sources": ["transmission-media.multiplexing"]
+    },
+    "tdm-slots": {
+      "label": "입력 A·B·C·D 가운데 A와 C에 보낼 데이터가 있을 때, 동기식 시분할 다중화는 칸 넷을 채워 둘을 빈 칸으로 보내고 비동기식 시분할 다중화는 꼬리표를 붙인 칸 둘을 채우는 모습을 견주는 도식",
+      "svgLabel": "입력 A·B·C·D를 다중화기에 잇고, 다중화기가 채우는 동기식 칸 넷의 열과 비동기식 칸 둘의 열을 나란히 둔 그림",
+      "question": "보낼 데이터가 없는 입력의 칸은 어떻게 될까?",
+      "idleCaption": "입력 A·B·C·D 가운데 이번 바퀴에 보낼 데이터가 있는 것은 A와 C다. 버튼으로 동기식이나 비동기식을 고르면 다중화기가 회선의 칸을 어떻게 채우는지 볼 수 있다.",
+      "legend": "화살표는 입력의 데이터가 다중화기로 가고, 다중화기가 채운 칸들이 회선으로 나가는 길이다. 열마다 칸은 위에서 아래 차례로 회선을 지나간다.",
+      "nodes": {
+        "in-a": "A: 데이터 있음",
+        "in-b": "B: 데이터 없음",
+        "in-c": "C: 데이터 있음",
+        "in-d": "D: 데이터 없음",
+        "mux": "다중화기",
+        "sync-a": "A의 데이터",
+        "sync-b": "B의 빈 칸",
+        "sync-c": "C의 데이터",
+        "sync-d": "D의 빈 칸",
+        "async-a": "꼬리표 A + 데이터",
+        "async-c": "꼬리표 C + 데이터"
+      },
+      "groups": {
+        "sync": "동기식",
+        "async": "비동기식"
+      },
+      "notes": {
+        "sync-note": "B와 D의 칸은 빈 채로 간다",
+        "async-note": "보낼 데이터가 있는 A와 C에만 칸을 준다"
+      },
+      "scenarios": [
+        {
+          "id": "sync",
+          "label": "동기식",
+          "caption": "동기식 시분할 다중화는 입력 A·B·C·D에 칸을 하나씩 늘 정해 준다. 이번 바퀴에 보낼 데이터가 없는 B와 D의 칸도 다른 입력이 쓰지 못한 채 빈 칸으로 회선을 지나가, 칸 넷 가운데 둘만 데이터를 나른다.",
+          "sources": ["transmission-media.tdm"]
+        },
+        {
+          "id": "async",
+          "label": "비동기식",
+          "caption": "비동기식 시분할 다중화는 칸을 미리 정해 두지 않고, 이번 바퀴에 보낼 데이터가 있는 A와 C의 데이터로 칸 둘을 채운다. 칸의 자리로는 누구의 것인지 알 수 없으므로 칸마다 어느 입력의 것인지 알리는 꼬리표를 붙인다.",
+          "sources": ["transmission-media.tdm"]
+        }
+      ],
+      "sources": ["transmission-media.tdm"]
+    },
+    "wdm-wavelengths": {
+      "label": "보내는 쪽의 빛 λ1~λ4를 다중화기가 광섬유 한 가닥에 함께 싣고, 중간의 광 증폭기가 넷을 빛인 채로 한꺼번에 키우고, 받는 쪽의 역다중화기가 다시 파장마다 나누는 모습을 보이는 도식",
+      "svgLabel": "보내는 쪽 박스의 λ1~λ4를 다중화기에, 다중화기를 광섬유·광 증폭기·광섬유를 차례로 지나 역다중화기에, 역다중화기를 받는 쪽 박스의 λ1~λ4에 이은 그림",
+      "question": "광섬유 한 가닥에 여러 신호를 어떻게 싣고 멀리 보낼까?",
+      "idleCaption": "보내는 쪽의 빛 λ1~λ4는 다중화기에서 광섬유 한 가닥으로 모이고, 중간의 광 증폭기를 지나 받는 쪽의 역다중화기에서 다시 λ1~λ4로 나뉜다. 버튼으로 차례마다 무슨 일이 일어나는지 볼 수 있다.",
+      "legend": "화살표는 빛이 지나가는 길이다. λ1~λ4는 파장이 서로 다른 빛에 붙인 이름표다.",
+      "nodes": {
+        "tx1": "λ1",
+        "tx2": "λ2",
+        "tx3": "λ3",
+        "tx4": "λ4",
+        "mux": "다중화기",
+        "fiber1": "광섬유",
+        "amp": "광 증폭기",
+        "fiber2": "광섬유",
+        "demux": "역다중화기",
+        "rx1": "λ1",
+        "rx2": "λ2",
+        "rx3": "λ3",
+        "rx4": "λ4"
+      },
+      "groups": {
+        "tx": "보내는 쪽",
+        "rx": "받는 쪽"
+      },
+      "notes": {
+        "combine-note": "빛 넷을 한 가닥에 함께 싣는다",
+        "amplify-note": "넷을 빛인 채로 함께 키운다",
+        "split-note": "파장마다 다시 나눈다"
+      },
+      "scenarios": [
+        {
+          "id": "combine",
+          "label": "한 가닥에 싣기",
+          "caption": "보내는 쪽 장치 넷이 저마다 데이터를 λ1~λ4의 빛에 실어 보내면, 다중화기가 파장이 서로 다른 네 빛을 합쳐 광섬유 한 가닥에 함께 싣는다. 파장 하나가 채널 하나라서 네 빛은 한 가닥 안에서도 저마다 따로 데이터를 나른다.",
+          "sources": ["transmission-media.wdm"]
+        },
+        {
+          "id": "amplify",
+          "label": "빛인 채로 키우기",
+          "caption": "광섬유를 지나며 약해진 빛을 광 증폭기가 전기 신호로 바꾸지 않고 빛인 채로 키운다. 한 가닥에 실린 λ1~λ4를 한꺼번에 키우므로, 광 증폭기로 들어가는 길도 나오는 길도 하나다.",
+          "sources": ["transmission-media.wdm"]
+        },
+        {
+          "id": "split",
+          "label": "다시 나누기",
+          "caption": "받는 쪽의 역다중화기가 광섬유로 함께 온 빛을 파장마다 갈라, λ1~λ4를 받는 장치 넷에 저마다 하나씩 보낸다.",
+          "sources": ["transmission-media.wdm"]
+        }
+      ],
+      "sources": ["transmission-media.wdm"]
+    }
+  },
+  "tables": {},
+  "glossary": []
+}

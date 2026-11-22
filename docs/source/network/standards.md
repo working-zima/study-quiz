@@ -166,6 +166,54 @@ PPTP·L2TP의 메시지 형식과 제어 연결의 차례, 802.1X의 EAP 방식 
 사용자가 브라우저로 받아 둔 파일 셋 — 802.11 문서 11-15/0132r17·11-09/0992r21과 CSA의 Zigbee 사양 R23.2 — 을 저장소 밖에서 글자만 뽑아 읽었다(Zigbee 사양도 step 4 때는 Cloudflare가 막아 못 읽었던 것이다).
 **두 802.11 문서는 작업반이 초안을 쓰기 전에 합의한 내용을 모은 사양 틀(specification framework)이지 표준 본문이 아니다** — 그래서 본문은 「작업반의 사양 틀은 ~로 정했다」로 쓰고, 최종 표준에서 바뀌었을 수 있는 세부(묶음 크기의 짝 전체, 신호 칸의 비트 수)는 가져오지 않았다.
 개정마다의 최대 데이터 전송률은 두 문서 어디에도 합한 값으로 적혀 있지 않아 쓰지 않았다.
+「(phase 83 step 0)」이 붙은 줄과 항목은 phase 83 step 0에서 `transmission-media` 주제의 앞 개념 다섯(전송 매체, 트위스티드 페어 케이블, 동축 케이블, 광케이블, FTTH와 PON)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+이 주제는 강의 밖 주제라 사실의 근거는 표준 문서뿐이다(ADR-059). ITU-T 권고는 권고 페이지(`itu.int/rec/T-REC-…/en`)에서 판·승인일·상태를 확인하고 무료 PDF를 IPv4로 내려받아 글자를 뽑아 읽었다(이날 itu.int는 브라우저가 보내는 Accept 머리가 없는 요청을 「Request Rejected」로 거절해, 그 머리를 붙여 받았다).
+**ITU-T 용어 데이터베이스(`itu.int/br_tsb_terms`)는 쓰지 못했다** — 그 화면이 부르는 조회 주소(`itu.int/itad/nmt/api/get_terms`)가 transmission medium·twisted·coaxial·optical fibre 어느 낱말에도 빈 결과만 돌려줬다. 그래서 낱말의 뜻은 권고 본문(정의 절과 표지 뒤의 시리즈 목록)에서 가져왔다.
+**IEEE 802.3 본문은 열지 못했다**(IEEE GET 프로그램은 `ieeexplore.ieee.org` 로그인이다) — 그래서 `ieee802.org`에 올라온 발행 표준의 사본(802.3ah-2004), 작업 그룹의 유지 보수 요청과 그 처리 이력, 연구 그룹의 작업 문서와 회원 발표 자료, 802.3의 매체 이름을 옮긴 IANA MAU 레지스트리와 RFC 4836으로 썼다.
+회원 발표 자료는 표준 본문이 아니고 업체 소속 회원이 쓴 것도 있다 — 항목마다 어떤 문서인지 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 케이블 범주(카테고리)별 전기 특성표, 광섬유의 분산·파장별 손실 표 전체, 커넥터 종류, PON의 세대별 전송률·암호화·대역 할당. 전송 손상·부호화·다중화는 step 3, 토폴로지(버스형의 터미네이터 포함)는 step 7의 몫이라 이 step에서 정리하지 않았다.
+「(phase 83 step 1)」이 붙은 줄은 phase 83 step 1에서 `transmission-media`의 첫 두 개념(전송 매체, 트위스티드 페어 케이블)을 쓰며 같은 문서를 다시 열어 더했다(확인한 날 2026-11-20) — ITU-T L.109·L.19의 차폐 대목, Thompson 작업 문서의 핀 짝, RFC 4118의 「무선 매체」.
+「(phase 83 step 2)」이 붙은 줄과 항목은 phase 83 step 2에서 `transmission-media`의 동축 케이블·광케이블을 쓰며 더했다(확인한 날 2026-11-20) — step 0이 찾지 못한 「동축 케이블의 바깥 도체가 차폐 노릇을 한다」를 ITU-T K.37에서 확인해 새 항목으로 적고, 앞 항목들의 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 더했다.
+「(phase 83 step 3)」이 붙은 줄과 항목은 phase 83 step 3에서 `transmission-media` 주제의 뒤 개념 다섯(전송 손상, 채널 부호화, 다중화, 시분할 다중화, 파장 분할 다중화)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+ITU-T 권고는 step 0과 같은 방법으로 받았다 — 권고 페이지에서 판·승인일·상태를 확인하고, 무료 PDF를 IPv4로 내려받아(User-Agent·Accept 머리를 붙여) PyMuPDF로 글자를 뽑아 절을 읽었다. RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로 받았다.
+**ITU-T 용어 데이터베이스(`itu.int/br_tsb_terms`)는 이번에도 쓰지 못했다** — 그 화면은 로그인(ADFS)에 묶인 앱이라 조회할 길을 찾지 못했다. 그래서 낱말의 뜻은 용어 권고(G.701 디지털 전송·다중화·PCM 용어, Q.9 교환·신호 용어, P.10/G.100 성능·품질 용어, G.601 케이블 용어, I.113 광대역 ISDN 용어)의 정의에서 가져왔다.
+**IEEE 802.3 본문은 열지 못했다**(step 0과 같다) — 구리선의 감쇠·누화·충격성 잡음은 ITU-T L.19·M.1020·O.71로 대신했다. 읽었지만 근거로 쓰지 않은 권고는 M.1025·G.712·O.81·G.663·H.261이다(같은 사실을 다른 권고가 더 바로 말하거나 이 주제의 범위 밖이다).
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 변조 방식, 선로 부호(AMI 등), 오류 정정 부호의 수학(생성 다항식·유한체·복호 방법), PCM의 표본화·양자화 세부와 부호화 법칙의 표, E1·T1 프레임의 비트 배치·다중 프레임, SONET·SDH, 광 증폭기의 이득·잡음 지수 값과 측정법, WDM 격자의 주파수·파장 표 전체.
+「(phase 83 step 4)」이 붙은 줄은 phase 83 step 4에서 `transmission-media`의 FTTH와 PON, 전송 손상을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 5)」이 붙은 줄은 phase 83 step 5에서 `transmission-media`의 채널 부호화, 다중화를 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 0·3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 6)」이 붙은 줄은 phase 83 step 6에서 `transmission-media`의 시분할 다중화, 파장 분할 다중화를 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 3이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 7)」이 붙은 줄과 항목은 phase 83 step 7에서 `network-topology` 주제의 개념 여덟(네트워크 토폴로지, 버스형, 성형, 링형, 메시형과 트리형, 토큰 링, FDDI, IEEE 802 표준)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-20).
+RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로 받았다. ITU-T 권고는 step 0과 같은 방법(권고 페이지에서 판·상태를 확인하고, 브라우저 머리를 붙여 무료 PDF를 IPv4로 받음)으로 받았다. `standards.ieee.org`의 표준 개요 페이지와 `ieee802.org`의 페이지·PDF도 IPv4로 받아 읽었다(그림인 쪽은 렌더해 봤다).
+**ITU-T 용어 데이터베이스는 이번에도 쓰지 못했다** — 2026-11-20에 다시 열어 보니 스크립트로만 그려지는 앱이라 step 0·3과 같다. 「토폴로지」의 뜻은 IEEE 표준 용어 사전(IEEE 100)의 정의를 출처와 함께 옮겨 실은 802.17 용어 작업 문서와 RFC 8345에서 가져왔다(아래 항목).
+**IEEE 802.3·802.5·802.4의 본문과 FDDI의 ANSI X3T9.5·ISO 9314 본문은 열지 못했다** — 802.3은 작업 그룹 의장의 개요 발표, 연구 그룹·태스크 포스의 발표(그중 하나는 802.3 개정 초안 IEEE P802.3/D3.2의 8·10장 문구를 옮겨 실었다), 리피터 MIB(RFC 2108), 802.3ah-2004 사본으로,
+802.5·802.4는 IEEE SA 표준 개요 페이지, ISO/IEC JTC 1 SC 6의 기술 보고서 초안 DTR 8802-1:1999(IEEE 802.1 작업 그룹이 `ieee802.org`에 올린 사본), 토큰 링 MIB(RFC 1748)로, FDDI는 그 기술 보고서와 FDDI MIB(RFC 1512·1285), IP over FDDI(RFC 1390·1188), RFC 1329로 썼다. 항목마다 어떤 문서인지 적는다.
+**기출이 묻지 않는 것은 사실로 가져오지 않았다** — 토큰 링·FDDI의 프레임 형식·타이머 값·우선순위·액티브 모니터, 토큰의 종류(동기·비동기, 제한·비제한), 802.4·802.6의 동작, 802.3 리피터 망의 구성 규칙(구간 수·지연 값), 802.17(RPR)의 동작.
+「(phase 83 step 8)」이 붙은 줄은 phase 83 step 8에서 `network-topology`의 네트워크 토폴로지, 버스형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 9)」이 붙은 줄은 phase 83 step 9에서 `network-topology`의 성형, 링형을 쓰며 더했다(2026-11-20) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 10)」이 붙은 줄은 phase 83 step 10에서 `network-topology`의 메시형과 트리형, 토큰 링을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 11)」이 붙은 줄은 phase 83 step 11에서 `network-topology`의 FDDI, IEEE 802 표준을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 7이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 12)」가 붙은 항목은 phase 83 step 12에서 `cloud-sdn` 주제의 개념 일곱(클라우드 컴퓨팅, 클라우드 배포 모델, 서버리스 컴퓨팅, 인터넷 데이터 센터, 포그 컴퓨팅, SDN, NFV)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-21).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). NIST 문서는 `csrc.nist.gov`의 문서 페이지에서 판(발행일·문서 이력·Planning Note·철회 여부)을 확인하고 PDF를 `nvlpubs.nist.gov`에서 IPv4로 받아 PyMuPDF로 글자를 뽑아 읽었다(SP 500-325도 같은 저장소의 PDF다).
+ITU-T 권고는 step 0과 같은 방법(권고 페이지에서 판·승인일·상태를 확인하고, 브라우저 머리를 붙여 무료 PDF를 IPv4로 받음)으로, RFC는 rfc-editor.org의 텍스트판과 json(상태)으로, ETSI 문서는 `etsi.org/deliver/` 아래의 PDF와 `portal.etsi.org`의 NFV 백서 PDF를 IPv4로 받아 읽었다.
+**ITU-T 용어 데이터베이스는 이번에 다시 열지 않았다** — step 3·7이 로그인에 묶이고 스크립트로만 그려지는 앱이라 쓰지 못한다고 확인했다. 그래서 낱말의 뜻은 권고 본문의 정의 절에서 가져왔다.
+「인터넷 데이터 센터(IDC)」라는 이름을 쓰는 권고를 찾을 때만 `itu.int`로 한정한 웹 검색으로 권고 번호(K.125)를 찾고, 그 권고를 받아 확인했다 — 검색 결과는 근거로 쓰지 않는다.
+**클라우드 제공자(업체)의 문서·상품 페이지는 쓰지 않았다**(허용 목록 밖이다). **기출이 묻지 않는 것은 사실로 가져오지 않았다** — 클라우드 참조 구조 전체(역할·활동·구성 요소 — ITU-T Y.3502 (08/14)는 판만 확인했다), Y.3500의 서비스 범주 일곱 가운데 IaaS·PaaS·SaaS 밖의 넷,
+FaaS의 기능 요구 사항 목록·함수 수명 주기·콜드 스타트, 서버리스의 보안 위협과 지침, 데이터 센터의 에너지 효율 지표와 냉방·전원 설계, 포그의 서비스·배포 모델과 미스트 컴퓨팅, SDN의 관리 평면·운용 평면과 추상화 계층(DAL·CAL·MAL·NSAL)의 세부,
+OpenFlow의 메시지·흐름 표 형식, ETSI NFV의 참조점과 기능 블록(NFVO·VNFM·VIM)의 세부, VNF 서술자.
+「(phase 83 step 13)」이 붙은 줄은 phase 83 step 13에서 `cloud-sdn`의 클라우드 컴퓨팅, 클라우드 배포 모델을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 14)」가 붙은 줄은 phase 83 step 14에서 `cloud-sdn`의 서버리스 컴퓨팅, 인터넷 데이터 센터를 쓰며 더했다(2026-11-21) — step 12가 받아 둔 ITU-T L.1300 PDF에서 §13(데이터 센터의 네트워크)을 다시 읽어 한 줄을 더했고, 그 밖에는 step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 15)」가 붙은 줄은 phase 83 step 15에서 `cloud-sdn`의 포그 컴퓨팅, SDN을 쓰며 더했다(2026-11-21) — RFC 7426의 텍스트판(rfc-editor.org)을 IPv4로 다시 받아 §3.1~§3.3을 읽고 한 줄을 더했고, 그 밖에는 step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 16)」이 붙은 줄은 phase 83 step 16에서 `cloud-sdn`의 NFV를 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 12가 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 17)」이 붙은 항목은 phase 83 step 17에서 `raid-storage` 주제의 개념 다섯(RAID, RAID 0, RAID 1, RAID 5, DAS·NAS·SAN)이 쓸 사실을 확인하며 더했다(확인한 날 2026-11-21).
+이 주제도 강의 밖 주제라 사실의 근거는 공식 문서뿐이다(ADR-059). **snia.org는 이날 자동 내려받기를 Cloudflare 확인 화면으로 막았다** — curl은 HTTP 403을 받았고, headless Chrome도 「보안 확인 수행 중」 화면에서 넘어가지 못했다.
+그래서 창을 띄운 Chrome(창은 화면 밖에 둠)을 CDP로 몰아 사전 페이지를 열고, 같은 브라우저 안에서 사전 전체 PDF(「Download Full Dictionary」, 2026-11-20 생성판)와 DDF 사양 PDF를 받아 PyMuPDF로 글자를 뽑아 읽었다. 배치 그림인 쪽은 렌더해 봤다.
+RFC는 rfc-editor.org의 텍스트판과 json(상태)을 IPv4로, man7.org의 md(4)와 learn.microsoft.com의 페이지는 내려받아 읽었다(learn.microsoft.com은 ko-kr 판에서 한국어 이름을 확인했다).
+**SNIA 사전과 DDF가 적지 않은 것 — 레벨마다의 디스크 최소 수, RAID 4의 패리티 디스크에 쓰기가 몰린다는 것, 미러에서 읽기를 나누는 것 — 은 허용한 출처 안의 구현 문서(Linux md 드라이버의 md(4), Windows의 DiskPart·VDS 문서)에서 가져왔다** — 표준이 아니라 한 구현의 문서라는 것을 항목에 적는다.
+**디스크·저장 장치 업체의 문서·상품 페이지는 쓰지 않았다**(허용 목록 밖이다). **기출이 묻지 않는 것은 사실로 가져오지 않았다** — RAID 2·3·4·6·10의 세부(RAID 2·3·4는 한 줄씩만), 하드웨어 RAID와 소프트웨어 RAID의 구현 차이, DDF의 자료 구조와 RAID 레벨 한정자 전체,
+쓰기 구멍(write hole)·비트맵·스크러빙, 파이버 채널의 계층·토폴로지, iSCSI의 PDU·세션·로그인·이름 형식, NAS의 파일 공유 프로토콜(SMB·NFS) 메시지, 저장소 공간(Storage Spaces)의 복원력 방식.
+「(phase 83 step 18)」이 붙은 줄은 phase 83 step 18에서 `raid-storage`의 RAID, RAID 0을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 19)」가 붙은 줄은 phase 83 step 19에서 `raid-storage`의 RAID 1, RAID 5를 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
+「(phase 83 step 20)」이 붙은 줄은 phase 83 step 20에서 `raid-storage`의 DAS·NAS·SAN을 쓰며 더했다(2026-11-21) — 새로 읽은 문서는 없고, step 17이 확인한 사실이 본문에 어떤 모양으로 쓰였는지를 그 항목에 줄로 적었다.
 
 ---
 
@@ -1496,6 +1544,22 @@ https://www.itu.int/rec/T-REC-Q.9-198811-I/en
 
 쓰인 곳: `protocols-encapsulation.packet-switching`
 
+- (phase 83 step 3, 2026-11-20 같은 판을 IPv4로 다시 받아 읽음 — 1988-11-25 승인, In force) **전송 손상과 다중화의 용어**:
+  - 채널 여럿이 공통 경로 하나를 나눠 쓸 수 있고, 그때 채널마다 그 채널만 쓰는 주파수 대역이나 타임 슬롯을 하나씩 준다 — 용어 0007의 주
+  - 시분할(time division)은 두 지점 사이의 전송 채널 여럿을 시간 영역에서 가르는 것이고(0067), 주파수 분할(frequency division)은 주파수 영역에서 가르는 것이다(0068). 부호로 가르는 부호 분할(0069)과 공간으로 가르는 공간 분할(0066)도 있다
+  - 정적 다중(static multiplex)은 낮은 속도의 채널들이 저마다 미리 정해 받은 채널이나 칸에 들어가 합쳐진 디지털 비트 흐름이다 — 1169. 다중화기와 역다중화기를 한 장비에 묶은 것을 muldex라 부른다 — 1167·1168(1차·3차 muldex)
+  - **지연 왜곡**(delay distortion): 여러 주파수의 신호가 겪는 지연이 기준값이나 기대값에서 벗어나는 것 — 0230
+  - **군지연**(group delay): 파동의 포락선 위 한 점(예: 마루)이 두 지점 사이를 가는 데 걸리는 시간이고, 주파수마다 두 지점 사이의 위상 변화를 각주파수로 미분한 값과 같다 — 0231.
+    그러니 주파수마다 지연이 다르다는 것은 주파수에 따라 위상이 고르지 않게 바뀐다는 것과 같은 현상을 두 쪽에서 본 말이다(정의에서 나오는 말이다) — `exam-notes.md` E50
+  - **누화**(crosstalk): 서로 이어지지 않은 부분 사이의 전기적 간섭 — 0232
+  - CRC(0226)는 디지털 비트 흐름을 살펴 기대한 비트 모양에서 벗어난 것을 찾아내는 것이다 — 오류를 찾아내는 쪽이고, 고치는 쪽(FEC)은 아래 「(phase 83 step 3) 부호화」 항목
+  - 「statistical multiplexing」·「multiple access」·「modem」은 이 용어집에 없다 — 전문 검색
+  - 쓰일 곳: (phase 83 step 4·5·6에서 쓰일 곳) `transmission-media.transmission-impairments`(지연 왜곡·군지연·누화), `transmission-media.multiplexing`(주파수 분할·시분할, 채널들이 공통 경로를 나눠 쓴다), `transmission-media.tdm`(정적 다중 — 칸을 정해 준다),
+    `transmission-media.channel-coding`(오류를 찾아내는 CRC), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단, E50·E51)
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 주파수 분할(0068)·시분할(0067)을 다중화의 목록 항목으로, 채널마다 그 채널만 쓰는 주파수 대역이나 타임 슬롯을 준다(0007의 주)를 항목 뒤 문단에 썼다.
+    CRC(0226)는 채널 부호화의 오류 검출에 「받은 데이터 비트로 같은 계산을 다시 해 견준다」로 썼다(`ethernet.fcs`와 같은 뜻). 부호 분할(0069)·공간 분할(0066)은 guide가 정한 항목 셋 밖이라 쓰지 않았다
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(주파수 분할·시분할 항목, 채널마다 주파수 대역이나 타임 슬롯), `transmission-media.channel-coding`(CRC로 하는 오류 검출), 문항 n362(해설)
+
 ## (2026-10-28) ITU-T X.25 (10/96) — Interface between DTE and DCE for terminals operating in the packet mode
 https://www.itu.int/rec/T-REC-X.25-199610-I/en
 
@@ -1516,6 +1580,35 @@ G 시리즈 권고의 보충 문서(Supplement)다. 권고가 아니라 광섬�
 - 광섬유는 구리선이 전자를 이끌듯 빛을 이끌 수 있어, 레이저 빛으로 통신하는 데 알맞다고 제안되었다 — §5
 - 광 송신기 안에서 전기 신호인 비트 흐름이 빛(광 반송파)의 세기를 바꾸고, 광섬유를 지난 광 신호는 광 수신기가 다시 전기 신호로 바꾼다 — §5.6
 
+- (phase 83 step 0, 2026-11-20 같은 판을 IPv4로 다시 받아 읽음 — 권고 페이지의 판 목록에서 10/2018이 In force이고 02/2008·02/2011·04/2014는 Superseded다. 권고가 아니라 보충 문서라는 위 머리말은 그대로다) **광섬유가 구리 매체와 견줘 무엇이 나은가 — 손실과 중계 간격**:
+  - 1960년대의 광섬유는 손실이 1 000 dB/km를 넘었고, 1970년 무렵 1 000 nm 근처에서 20 dB/km 아래로 줄면서 광통신 개발이 본격적으로 시작됐다 — §5
+  - 여기서 중계기(repeater)는 빛을 전기로 바꿨다가 다시 빛으로 만드는 장치다 — §5. 첫 세대 광 시스템(850 nm, 멀티 모드 광섬유, 1980년 상용)은 중계기를 10 km까지 띄워 둘 수 있었고, 같은 때의 동축 시스템은 중계기 간격이 1 km였다.
+    중계기가 줄면 설치·유지 비용이 줄어 그것이 광섬유를 쓰는 큰 동기였다 — §5.1
+  - 1 300 nm 근처에서 광섬유 손실은 1.0 dB/km 아래다. 멀티 모드 광섬유는 분산 때문에 100 Mbit/s 아래로 묶였고, 손실이 0.5 dB/km 아래인 싱글 모드 광섬유가 그 한계를 넘었다. 그 뒤 멀티 모드 시스템은 차츰 물러났다 — §5.2
+  - 실리카 광섬유의 손실은 1 550 nm 근처에서 가장 작고, 1979년에 이 대역에서 0.2 dB/km인 광섬유가 나왔다 — §5.3. 이 대역의 시스템도 70~80 km마다 전자식 중계기로 신호를 다시 만들어야 했다 — §5.4(그 뒤의 광 증폭기와 WDM은 step 3의 몫이라 여기서 정리하지 않는다)
+  - 광 기술은 기간망에서 전통적인 구리 도체를 완전히 대신했고, 가입자망(access network)에도 깔리기 시작했다 — §5.7
+  - 공중망에서는 싱글 모드 광섬유(G.652)가 멀티 모드를 거의 다 대신했다. 멀티 모드 광섬유는 지금도 건물 안과 데이터 센터의 배선에서 이더넷 등으로 속도에 따라 100~2 000 m에 쓰인다 — §8.2.1. G.651.1의 멀티 모드 광섬유는 1 Gbit/s 이더넷을 550 m까지 잇는다 — §8.2.2
+  - 이 문서에는 광섬유가 「대역폭이 가장 넓다」, 「전자기 간섭을 받지 않는다」, 「보안에 강하다」는 문장이 없다 — 전문 검색(bandwidth·electromagnetic·interference·immun·security)
+  - 쓰일 곳: (phase 83 step 1·2에서 쓰일 곳) `transmission-media.transmission-media`(매체를 견주는 축 — 거리에 따라 신호가 약해지는 정도, 기간망에서 광섬유가 구리를 대신함),
+    `transmission-media.optical-fiber`(손실이 적어 중계기 없이 먼 거리를 간다 — 동축 1 km와 첫 광 시스템 10 km, 싱글 모드 0.5·0.2 dB/km, 멀티 모드와 싱글 모드의 쓰임), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단 — [기출 2024-08-25 #46])
+- (phase 83 step 3, 2026-11-20 같은 판을 IPv4로 다시 받아 읽음 — 위 (phase 83 step 0) 줄과 같은 판) **광 증폭기와 WDM** — step 0 줄이 「step 3의 몫」으로 남긴 §5.4~§5.5와 권고 안내 §8.11:
+  - 1 550 nm 시스템은 70~80 km마다 전자식 중계기로 신호를 다시 만들어야 했는데, 1989년 광섬유 증폭기가 나오며 바뀌었다. 넷째 세대 광 시스템은 광 증폭으로 중계 간격을 늘리고, WDM으로 광섬유 한 가닥이 나르는 전체 비트율을 늘렸다 — §5.4
+  - 대부분의 WDM 시스템은 광섬유의 손실을 70~80 km 간격의 어븀 첨가 광섬유 증폭기(EDFA)로 메운다. 증폭기만으로 이은 해저 시스템이 1996년까지 대서양·태평양을 건너는 상용 케이블로 쓰이게 됐다 — §5.4
+  - 광섬유 한 가닥의 용량은 C 대역 안에서 채널 간격을 좁혀 WDM 채널을 늘리거나(채널 간격 25 GHz로 10 Gbit/s 채널 160개, 모두 1.6 Tbit/s를 나르는 상용 육상 시스템), 채널을 S·L 대역으로 넓히거나, 채널마다의 비트율을 올려 키운다 — §5.5 i)~iii)
+  - DWDM 시스템은 빛 신호를 전기로 되돌려 다시 만드는 일 없이 수천 km를 나를 수 있게 됐고, 그래서 비싼 광-전기-광 변환을 줄이는 쪽으로 발전하고 있다 — §5.5
+  - 어븀 첨가 광섬유 증폭기 같은 광 증폭기는 빛 신호를 전기 신호로 바꾸지 않고 바로 키운다. 재생 중계기와 견주면, 광 증폭기는 WDM에 쓸 수 있고 신호의 비트율에 매이지 않고 동작한다. 재생 중계기는 WDM을 받치지 못하고 정해진 비트율에 맞춰 만들어지므로, 설치한 뒤 더 높은 비트율로 올릴 수 없다.
+    그래서 요즘의 해저 중계 시스템은 광섬유 증폭기를 선로 중계기로 쓴다 — §8.11.6
+  - FEC를 쓰면 선로에서 꽤 높은 비트 오류율(복호 전)을 받아들여도 되고, 얻은 여유는 무중계 해저 시스템에서 최대 구간 길이를 늘리는 데 쓸 수 있다 — §8.11.7
+  - 쓰지 않는 것: 세대마다의 연도와 실험의 수치, S·C·L 대역의 파장 범위, 라만 증폭, ROADM·PXC, 코히어런트 전송과 DSP
+  - 쓰일 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.wdm`(광 증폭기는 빛째로 키운다, 비트율에 매이지 않는다, 여러 파장을 함께 다룬다, WDM 채널을 늘려 용량을 키운다, 전기적 재생 없이 먼 거리 — 「광 증폭기와 리피터」 4절),
+    (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(FEC가 먼 거리 전송에 쓰인다), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2025-05-25 #22]·[기출 2026-05-17 #20])
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: §8.11.7을 「FEC를 쓰면 받는 쪽에 닿은 비트에 오류가 더 많이 섞여 있어도 고쳐 쓸 수 있으므로, 선로 중간에 신호를 키우거나 다시 만드는 장치를 두지 않는 바다 밑 광케이블 시스템은 그 여유로 한 구간을 더 길게 잇는다」로 썼다.
+    §5.4의 「WDM으로 광섬유 한 가닥이 나르는 전체 비트율을 늘렸다」와 §5.5 i)(채널을 늘려 용량을 키운다)를 다중화하는 까닭으로 썼다 — 「같은 광섬유에 싣는 파장을 늘릴수록 한 가닥이 1초에 나르는 비트 수의 합이 커진다」
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(FEC의 여유를 거리로 바꾼다), `transmission-media.multiplexing`(WDM이 광섬유 한 가닥이 나르는 데이터의 양을 늘린다)
+  - (phase 83 step 6, 2026-11-20) **본문에 쓴 모양**: §5.4(EDFA를 70~80 km마다 두어 광섬유의 손실을 메운다), §5.5(DWDM은 전기적 재생 없이 수천 km를 간다, 채널 간격 25 GHz로 10 Gbit/s 채널 160개·모두 1.6 Tbit/s를 나르는 땅 위의 상용 시스템 — 광섬유를 새로 깔지 않고 파장을 더 실어 늘린다),
+    §8.11.6(광 증폭기는 빛을 전기로 바꾸지 않고 키우고 WDM에 쓰며 비트율에 매이지 않는다, 재생 중계기는 WDM을 받치지 못하고 설치한 뒤 비트율을 올릴 수 없다, 요즘의 해저 중계 시스템은 광섬유 증폭기를 선로 중계기로 쓴다)와
+    §5(여기서 중계기는 빛을 전기로 바꿨다가 다시 빛으로 만드는 장치다)를 파장 분할 다중화의 광 증폭기 문단과 「광 증폭기와 리피터」에 썼다
+    - 쓰인 곳: (phase 83 step 6) `transmission-media.wdm`(광 증폭기, 파장마다 다른 비트율, 파장을 더 실어 늘린다, 「광 증폭기와 리피터」), 문항 n364(해설)
 쓰인 곳: `network-basics.communication-link`, `ethernet.standard-names`(광케이블은 빛을 이끄는 광섬유로 빛 신호를 실어 나른다)
 
 ## (phase 71) Microsoft Learn — Windows commands, ping, Task Manager
@@ -1612,6 +1705,23 @@ https://www.ieee802.org/21/doctree/2006_Meeting_Docs/2006-11_meeting_docs/802.3a
 - 규격 이름 하나는 「IEEE 802.3의 물리 계층 규격(Physical Layer specification)」 하나로 정의된다. 예: 1000BASE-BX10은 싱글 모드 광섬유 **한 가닥**으로, 1000BASE-LX10은 싱글 모드나 멀티 모드 광섬유 두 가닥으로
   1000 Mb/s 점대점 링크를 만드는 물리 계층 규격이다. 100BASE-FX는 멀티 모드 광섬유 두 가닥을 쓰는 100 Mb/s 규격이다 — §1.4(PDF 20쪽)
 
+- (phase 83 step 0, 2026-11-20 같은 사본을 IPv4로 다시 받아 읽음 — 발행 표준 IEEE Std 802.3ah-2004의 전문이고, 지금은 뒤 판의 IEEE Std 802.3에 합쳐졌다) **가입자망의 점 대 점 연결과 EPON**:
+  - 이 개정은 가입자망(subscriber access network)에서 **점 대 점(P2P)** 연결에 쓰는 광섬유·전화용 구리선 물리 계층과, **수동 광 분배기(passive optical splitter)로 점 대 다중점(P2MP) 구조를 만드는 EPON**을 함께 들였다. 이 묶음을 「Ethernet in the First Mile(EFM)」이라 부른다 — 초록, §56.1
+  - 100BASE-LX10은 보통의 싱글 모드 광섬유 두 가닥으로 10 km를 잇는 점 대 점 규격이다 — §56.1(1000BASE-LX10·BX10은 위 §1.4 줄)
+  - PON은 신호가 출발지에서 목적지까지 가는 길에 **능동 소자가 하나도 없는** 광 네트워크이고, 그 안의 소자는 광섬유·접속(splice)·분배기 같은 수동 광 부품뿐이다. 이것을 이더넷과 합친 것이 EPON이다 — §64.1
+  - P2MP는 나무(tree-and-branch) 꼴이다. 줄기 쪽 장치가 **OLT**, 가지 쪽 장치가 **ONU**이고, OLT는 보통 통신사 설비에, ONU는 가입자 집에 둔다 — §64.1. OLT는 광 가입자망의 망 쪽 끝 장치, ONU는 가입자 쪽 끝 장치다 — §1.4
+  - 내려가는 방향(OLT → ONU)은 OLT가 보낸 신호가 1:N 수동 분배기(또는 여러 단의 분배기)를 지나 모든 ONU에 닿는다. 올라가는 방향은 한 ONU가 보낸 신호가 OLT에만 닿고 다른 ONU에는 닿지 않으며,
+    충돌을 막으려고 OLT가 ONU마다 보낼 시간 칸을 정해 준다 — §64.1(시간 칸을 주는 방식의 세부는 쓰지 않는다)
+  - 1000BASE-PX10·PX20은 PON으로 적어도 10 km·20 km를 잇고, 대표적인 분기 비율은 1:16이다. 싱글 모드 광섬유 한 가닥을 두 방향이 함께 쓰고, 보통 내려가는 쪽은 1 490 nm, 올라가는 쪽은 1 310 nm 대역이다 — §60.1
+  - 「AON」(active optical network)·「PTP」라는 이름은 이 문서에 없다 — 이 문서는 점 대 점을 P2P로 적는다(전문 검색). 아래 `exam-notes.md` E49
+  - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(PON의 뜻 — 길 위에 능동 소자가 없다, OLT·ONU의 자리, 수동 분배기와 1:N, 내려가고 올라가는 방향, 점 대 점 규격, 분기 1:16·10/20 km), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
+
+- (phase 83 step 7, 2026-11-20 step 0이 받은 같은 사본에서 다시 읽음) **토폴로지라는 낱말이 나오는 곳**:
+  - 점 대 점 에뮬레이션(P2PE)은 P2MP 안에서 두 끝 스테이션 사이의 따로 된 통신을 흉내 내는 것으로, OLT를 가운데(nexus)에 둔 성형 토폴로지(star topology)와 같은 것을 만든다 — §1.4. 802.3 문서가 「star topology」를 가운데 장치와 끝 장치 사이의 점 대 점 통신으로 쓴다는 근거다
+  - P2MP 망은 분배기 하나(1:16)로 지을 수도 있고, 분배기를 여러 단으로 두어 가지를 친 나무 꼴(tree-and-branch)로 지을 수도 있다 — 그림 67-2는 1:2 분배기 아래에 1:8 분배기 둘을 둔다 — §67.1·§67.2.2·§67.2.3
+  - 가입자 쪽 건물 안에서는 IEEE 802.3이 정한 어느 네트워크 토폴로지든 쓸 수 있다 — §67.1
+  - 쓰일 곳: (phase 83 step 9·10에서 쓰일 곳) `network-topology.star-topology`(가운데 장치와 끝 장치 사이의 점 대 점), `network-topology.mesh-tree-topology`(가지를 친 나무 꼴 — 위 단 분배기 아래로 아래 단 분배기가 갈라진다)
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.mesh-tree-topology`가 위 §67.2.3 그림(1:2 분배기 아래 1:8 분배기 둘)을 「IEEE 802.3의 한 개정판(802.3ah)도 빛을 여러 가닥으로 나누는 부품을 위 단에 하나, 그 아래 단에 둘 두어 가지를 친 나무 꼴(tree-and-branch)로 망을 짓는 그림을 싣는다」로 썼다 — 트리형이라는 모양의 근거로만 쓰고 분기 비율은 쓰지 않았다
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(802.3u를 Fast Ethernet, 802.3z를 Gigabit Ethernet, 802.3ae를 10 Gigabit Ethernet이라고도 부른다), (phase 72에서 쓰일 곳) `ethernet.ethernet`(개정판 이름), `ethernet.standard-names`, (phase 72 step 7) `hub-switch-vlan.csma-cd`(풀네임, IEEE 802.3이 매체 접근 방식으로 정한 규칙), 문항 n038·n039 해설(풀네임)
 
 ## (phase 72) David Law, 「Past PHY naming」 (IEEE 802.3, 2015-12-05)
@@ -1628,6 +1738,13 @@ https://www.ieee802.org/3/cb/public/jan16/PHY_names_1115.pdf
 - 규격별 매체(표): 100BASE-TX 평형 트위스티드 페어 2쌍 100 m, 1000BASE-T 평형 트위스티드 페어 4쌍 100 m, 1000BASE-SX 멀티 모드 광섬유 두 가닥(850 nm) 550 m,
   1000BASE-LX 싱글 모드 광섬유 두 가닥(1310 nm) 5 km, 1000BASE-CX 트윈 액시얼 구리 25 m, 1000BASE-BX10 싱글 모드 광섬유 한 가닥 10 km, 10GBASE-T 평형 트위스티드 페어 4쌍 100 m — PDF 3~5쪽 표
 
+- (phase 83 step 0, 2026-11-20 같은 PDF를 IPv4로 다시 받아 읽음 — 2쪽 표는 글자를 뽑으면 칸이 어긋나서 그 쪽을 그림으로 렌더해 읽었다) 2쪽 표 「Existing and under development IEEE 802.3 PHYs (Page 1 of 7)」의 줄 넷:
+  10BASE5 — 동축(Coax), 500 m, 8장, 비고 Deprecated / 10BASE2 — 동축 MAU, 185 m, 10장, Deprecated / 10BROAD36 — CATV 동축, 11장, Deprecated(거리 칸은 비었다) / 10BASE-T — 평형 트위스티드 페어 2쌍, 100 m, 14장(비고 없음).
+  「Deprecated」는 2015년의 이 정리가 비고 칸에 단 표시다 — 표준이 그 조항에 붙인 「새 설치에 권하지 않음」 주석은 아래 「(phase 83 step 0) 구리 매체 …」 항목(유지 보수 요청 1066)과 위 「(phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록」 항목이 댄다
+  같은 표의 4·5쪽(Page 3·4 of 7)도 렌더해 읽었다 — 10GBASE-SR은 멀티 모드 광섬유 두 가닥(850 nm)으로 400 m(52장), 10GBASE-LRM은 멀티 모드 광섬유 두 가닥(1 310 nm)으로 220 m(68장), 10GBASE-LR은 싱글 모드 광섬유 두 가닥으로 10 km, 10GBASE-ER은 싱글 모드 광섬유 두 가닥(1 550 nm)으로 40 km(둘 다 52장)다.
+  곧 10GBASE-SR·LRM은 광섬유(멀티 모드)를 쓰는 규격이고, 싱글 모드 규격은 리피터 없이 한 링크로 10 km·40 km를 잇는다
+  쓰일 곳: (phase 83 step 1·2에서 쓰일 곳) `transmission-media.twisted-pair`(10BASE-T는 트위스티드 페어 2쌍으로 100 m), `transmission-media.coaxial-cable`(10BASE5 500 m·10BASE2 185 m의 동축, 10BROAD36은 CATV 동축),
+  `transmission-media.optical-fiber`(싱글 모드 규격의 10 km·40 km — 「수 km마다 리피터가 꼭 필요」가 틀린 근거), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단 — [기출 2025-02-23 #23]·[기출 2026-05-17 #23]의 10GBASE-SR·LRM)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.fast-gigabit`(100BASE-TX는 트위스티드 페어, 1000BASE-SX는 멀티 모드 광섬유), (phase 72에서 쓰일 곳) `ethernet.standard-names`
 
 ## (phase 72) Pete Anslow, 「PMD naming」 (IEEE P802.3bs Task Force, 2015-07)
@@ -1654,6 +1771,13 @@ https://www.ieee802.org/misc-docs/GlobeCom2009/IEEE_802d3_Law.pdf
 - 802.3ae-2002(10 Gb/s 동작): 10GBASE-SR/SW(멀티 모드), 10GBASE-LX4(싱글 모드나 멀티 모드), 10GBASE-LR/LW(싱글 모드 10 km), 10GBASE-ER/EW(싱글 모드 40 km) — 10쪽
 - 802.3an-2006: 10GBASE-T(트위스티드 페어, 100 m) — 12쪽
 
+- (phase 83 step 7, 2026-11-20 같은 PDF를 IPv4로 다시 받아 읽음 — 9쪽은 그림이라 렌더해 봤다) **토폴로지가 바뀌어 온 모습**:
+  - 8쪽 표: 10BASE5(802.3-1985, 동축 500 m), 10BASE2(802.3a-1988, 동축 185 m), 10BASE-T(1990년 개정, 트위스티드 페어 100 m — 표에는 「802.i-1990」으로 적혀 있다)
+  - 9쪽 「Topology evolution」 그림은 세 단계를 그린다 — ① 10BASE2/10BASE5: DTE들이 동축 케이블 한 줄에 나란히 붙고, 동축 줄 둘을 리피터가 잇고, 또 다른 줄은 브리지로 잇는다. ② 10BASE-T(802.3i-1990)·10BASE-F(802.3j-1993): DTE마다 케이블 하나로 리피터에 따로 이어져 리피터를 둘러싸고, 리피터와 리피터 사이는 브리지로 잇는다.
+    리피터 하나에 이은 DTE 전체가 충돌 도메인 하나다(그림의 회색 범위). ③ 100BASE-T·전이중(802.3u-1995·802.3x-1997, 구조화 배선 TIA/EIA 568:1991·ISO/IEC 11801:1995): DTE마다 브리지에 따로 이어지고, 브리지와 브리지 사이는 100BASE-F 링크로 잇는다
+  - 그림에 「star」·「bus」라는 낱말은 없다 — 모양만 그린다. ①이 버스형, ②·③이 성형의 모양이라는 것은 그림에서 읽은 것이다(성형이라는 이름의 근거는 위 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 7) 줄)
+  - 쓰일 곳: (phase 83 step 8·9에서 쓰일 곳) `network-topology.bus-topology`(동축 한 줄에 노드가 나란히 붙는다 — 10BASE5·10BASE2), `network-topology.star-topology`(10BASE-T는 노드마다 케이블 하나로 리피터에 잇는다, 뒤에는 가운데에 브리지(스위치)를 둔다),
+    `network-topology.network-topology`(노드마다 케이블을 따로 이었어도 리피터에 이은 모두가 충돌 도메인 하나 — 케이블이 이어진 모양과 신호가 닿는 범위가 다른 예)
 쓰인 곳: (phase 72) 강의 수정 이력 L26·L27, `ethernet.standard-names`(1000BASE-LX가 싱글 모드·멀티 모드 광섬유를 모두 쓴다, 10GBASE-SR은 멀티 모드), `ethernet.fast-gigabit`(100BASE-FX는 멀티 모드 광섬유, 802.3ae의 10GBASE-SR은 멀티 모드·10GBASE-LR은 싱글 모드, 802.3an의 10GBASE-T)
 
 ## (phase 72) IEEE SA — 802.3u-1995, 802.3z-1998, 802.3ab-1999, 802.3ae-2002, 802.3an-2006, 802.3cc-2017 표준 소개 페이지
@@ -1757,6 +1881,13 @@ IEEE 802 위원회의 홈페이지다. 작업 그룹 목록이 이 페이지에 
 - IEEE 802는 LAN/MAN Standards Committee(LMSC), 곧 LAN·MAN 표준을 만드는 위원회다 — 홈페이지 첫머리
 - 802.3은 그 위원회의 Ethernet Working Group(이더넷 작업 그룹)이다 — 홈페이지의 작업 그룹 목록
 
+- (phase 83 step 7, 2026-11-20 홈페이지를 IPv4로 다시 받아 읽음 — 페이지의 마지막 고친 날 2026-07-28) **작업 그룹 목록**: 802.1(Higher Layer LAN Protocols), 802.3(이더넷), 802.11(무선 LAN), 802.15(Wireless Specialty Network), 802.19(무선 공존) 작업 그룹과 802.18·802.24 기술 자문 그룹(TAG)이 있다.
+  해산한 작업 그룹의 목록은 따로 있다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목
+  - 쓰일 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 지금 상태)
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.ieee-802-standards` 첫 문단에 위원회의 정식 이름 LAN/MAN Standards Committee를 쓰고, 활동 중인 작업 그룹을 위 목록 가운데 802.1·802.3·802.11·802.15 넷으로 썼다(802.19와 TAG 둘은 쓰지 않았다).
+  IEEE의 풀네임은 이번에도 쓰지 않았다 — 「표준을 만드는 단체인 IEEE」로만 적었다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(위원회 이름, 활동 중인 작업 그룹), 도식 `Ieee802GroupsDiagram`(활동 중)
+
 쓰인 곳: `ethernet.ethernet`(IEEE 802 표준 위원회 안의 이더넷 작업 그룹이 IEEE 802.3을 만든다)
 
 ## (phase 72 step 1) IEEE 802.3 — Ethernet, 4.1.1 Overview, 4.1.2.2 Access interference and recovery, 4.2.3.2 Transmit media access management, 4.4 Specific implementations
@@ -1841,6 +1972,10 @@ https://www.ieee802.org/3/bh/comments/P802d3_802d3_bh_D3p0_All_Clause.pdf
   - 24쪽 「구간(리피터 포트) 사이에서 신호를 처리해 넘긴다」 — 위 RFC 1983 「repeater」(한 케이블의 전기 신호를 다른 케이블로 이어 퍼뜨린다)와 함께, 리피터를 두면 한 구간을 넘어 다음 구간의 장치까지 신호가 닿는다는 근거다. **「전송 거리를 늘린다」는 문장 자체는 두 문서에 없다** — 본문은 「케이블 한 구간으로는 닿지 않는 곳의 장치까지 신호가 닿는다」로 쓴다
   - 「증폭」은 여전히 쓰지 않는다(위 step 8 줄) — 본문은 신호를 키우는 것과 다시 만드는 것을 견주는 문장을 쓰지 않았다(견줄 근거가 없다)
   쓰인 곳: (phase 82 step 9) `network-devices.repeater`(요약, 문단 0의 약해지고 흐트러진 신호, 문단 2의 닿는 거리와 지연의 한계, 예), 도식 `repeater-regenerate`(「약해진 신호」·「다시 만든 신호」 노드와 캡션)
+- (phase 83 step 7, 2026-11-20 위 「주의」 줄의 Zimmerman 발표를 IPv4로 다시 받아 읽음 — 8쪽은 그림이라 렌더해 봤다. 표준 본문이 아니라 태스크 포스 발표 자료) **다중점 버스의 반사**:
+  - 8쪽 「Reflection Problem in Multidrop」 그림은 노드 여럿이 매달린 선의 양 끝에 끝막음(term)을 두고, 보낸 신호가 선을 따라 가다 임피던스가 어긋난 곳에서 되돌아와(reflection) 받는 노드에 닿아 받는 신호에 섞이는(그림의 ISI) 모습을 그린다.
+    같은 쪽은 802.3 10BASE-T1S(147장)의 공유 구간을 반사가 되도록 적게 생기게 짓는다고 적는다. 12쪽(위 step 9 줄)은 케이블 구간이 이어진 자리의 불연속이 반사점이 된다고 적는다
+  - 쓰일 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.bus-topology`(버스의 양 끝에 끝막음을 둔다, 반사가 받는 쪽 신호에 섞인다)
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(10·100 Mb/s와 1 Gb/s 리피터가 있다, 작업 그룹이 리피터 규격을 새 설치에 권하지 않고 더는 고치지 않기로 정함 — 1 Gb/s는 2007년, 10·100 Mb/s는 2011~2012년의 개정 작업, 규격을 지운 것은 아님), (phase 72 step 7) `hub-switch-vlan.csma-cd`(IEEE 802.5가 토큰 링 표준이라는 이름만), 문항 n038 해설
 
 ## (phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신 「Response to Progress on Ethernet related recommendations」(2003-07)
@@ -1865,6 +2000,18 @@ Proposed Standard(Standards Track)이다. IETF HUB MIB 작업 그룹이 만든 �
 
 - (phase 82 step 8, 2026-11-19 상태를 다시 확인 — Proposed Standard, 1997-02, 폐기·개정 없음) 위 §2.4.1.2 줄(리피터는 비트 단위로 받아 다시 내보내고, 들어오는 데이터를 패킷의 정보에 따라 처리하지 않는다)을 이 주제가 다시 쓴다 — 새로 가져온 사실은 없다
   쓰인 곳: (phase 82 step 9에서 쓰일 곳) `network-devices.repeater`·`network-devices.device-layers`(리피터·허브는 주소를 읽지 않는다)
+- (phase 83 step 7, 2026-11-20 텍스트판을 IPv4로 다시 받아 읽음 — 상태는 그대로) **리피터가 포트를 떼어 놓는 일과 포트마다의 관리**:
+  - 리피터에는 포트마다 자동 분리(auto-partition) 보호가 있어, 조건이 맞으면 그 포트를 떼어 놓는다(autoPartitioned). 떼어 놓는 조건은 802.3 9장·27장의 분리 상태 기계가 정하고 이 MIB는 조건을 가르지 않는다 — `rptrPortAutoPartitionState`.
+    27장 리피터는 그 상태 기계의 「충돌 수 늘리기」 상태에서 포트의 충돌을 센다 — `rptrMonitorPortCollisions`. 지금 떼어 놓인 포트의 수도 낸다 — `rptrInfoPartitionedPorts`
+  - 관리자는 포트마다 켜고 끌 수 있다 — 끈 포트는 보내지도 받지도 않고, 다시 켜야 동작한다 — `rptrPortAdminStatus`. 포트마다 충돌, 재버 잠금 보호 타이머(TW3)보다 오래 이어지는 아주 긴 신호 같은 사건을 센다 — `rptrMonitorPortCollisions`·`rptrMonitorPortVeryLongEvents`
+  - 그러니 성형의 가운데 장치(허브 — 802.3의 이름은 리피터)는 한 노드의 포트에 문제가 나면 그 포트를 떼어 놓을 수 있고, 관리자는 포트마다 상태를 보고 끄고 켤 수 있다.
+    **「한 노드의 고장이 다른 노드에 번지지 않는다」·「가운데 장치가 멈추면 모든 노드가 통신하지 못한다」를 한 문장으로 적은 곳은 찾지 못했다** — 앞의 것은 이 분리 기능과 노드마다 링크가 따로라는 것에서, 뒤의 것은 모든 링크가 가운데 장치에 모인다는 것(위 「(phase 72) David Law」 항목의 (phase 83 step 7) 줄)에서 나오는 말이다
+  - 쓰일 곳: (phase 83 step 9에서 쓰일 곳) `network-topology.star-topology`(문제가 난 포트를 떼어 놓는다, 포트마다 관리한다), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)
+- (phase 83 step 9, 2026-11-20) **본문에 쓴 모양**: 위 줄들을 「허브를 관리하는 데 쓰는 표준은 관리자가 포트마다 그 포트를 끄고 켤 수 있게 하고, 포트마다 신호 충돌 같은 사건이 몇 번 생겼는지 센다」와
+  「허브에는 포트마다 자동 분리(auto-partition)라는 보호 기능이 있어, IEEE 802.3이 정해 둔 조건에 걸린 포트를 허브가 스스로 나머지에서 떼어 놓는다」로 썼다. 떼어 놓는 조건(9장·27장의 상태 기계)과 MIB 객체 이름은 쓰지 않았다.
+  「노드의 고장이 번지지 않는다」·「가운데 장치가 멈추면 모두 멈춘다」는 표준의 문장처럼 쓰지 않고, 노드마다 링크가 따로이고 노드끼리의 데이터가 모두 가운데 장치를 거친다는 구조에서 이어지는 말로 썼다(위 줄의 판정대로).
+  학습자가 RFC를 모르므로 본문에는 RFC 번호를 적지 않았다
+  - 쓰인 곳: (phase 83 step 9) `network-topology.star-topology`(포트마다 끄고 켜기·사건 수, 자동 분리), 문항 n367·n368 해설, 도식 `StarCenterFailureDiagram`
 쓰인 곳: (phase 72 step 6) `hub-switch-vlan.hub`(표준의 이름은 리피터, 비트 단위로 받아 다시 내보내고 담긴 내용을 읽지 않는 물리 계층 장비), 문항 n035 해설
 
 ## (phase 72 step 1) IEEE SA — 802.1D-2004, 802.1Q-2022 표준 소개 페이지
@@ -1874,6 +2021,9 @@ https://standards.ieee.org/ieee/802.1Q/10323/
 - 802.1D-2004 「MAC Bridges」(2004-06-09 발행, 지금은 802.1Q-2014에 합쳐져 Superseded): IEEE 802 LAN을 MAC 서비스 경계 아래에서 잇는 구조를 정한다. 이 표준의 MAC 브리지는 **저마다 MAC을 가진 서로 다른 LAN**에 붙은
   스테이션들이, LLC와 네트워크 계층 프로토콜이 보기에 같은 LAN에 있는 것처럼 통신하게 한다 — 초록
 - 802.1Q-2022 「Bridges and Bridged Networks」(2022-12-22 발행, Active): 브리지 네트워크가 MAC 서비스를 어떻게 지원하는지와, MAC 브리지·VLAN 브리지의 동작(관리·프로토콜·알고리즘)을 정한다 — 초록
+- (phase 83 step 11, 2026-11-21) `network-topology.ieee-802-standards`의 802.1 항목에 위 두 줄을 썼다 — 802.1 작업 그룹의 표준에서 브리지(저마다 따로인 LAN들을 하나의 LAN처럼 잇는다)와 VLAN 브리지가 나왔다.
+  포트가 많은 브리지를 흔히 스위치라 부른다는 것은 DTR 8802-1 §9.1(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목)이다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(802.1 항목)
 
 쓰인 곳: (phase 72 step 1) 강의 수정 이력 L30, (phase 72 step 7) `hub-switch-vlan.collision-domain`(스위치는 포트마다 따로따로의 LAN을 잇고 한 포트의 프레임을 다른 포트의 LAN으로 옮겨 보낸다 — 그래서 충돌 도메인이 포트마다 나뉜다), 문항 n037 해설, (phase 72 step 8) `hub-switch-vlan.switch`(표준의 이름은 브리지, 브리지의 동작은 IEEE 802.1Q가 정한다), `hub-switch-vlan.mac-address-table`(IEEE 802.1D는 지금 IEEE 802.1Q에 합쳐졌다), (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 포트마다 따로따로의 LAN을 잇는다 — 충돌 도메인과의 차이), (phase 72 step 11) `hub-switch-vlan.vlan-membership`·`hub-switch-vlan.vlan-tagging`(IEEE 802.1Q를 「브리지 표준」으로 부른다)
 
@@ -1893,6 +2043,13 @@ IEEE 802.1 작업 그룹 사람들(P. Thaler, N. Finn 외)이 IETF 86에서 802.
   어디로 보낼지 알면 필요 없는 포트를 걸러 낸다(filter unnecessary ports, 예: 목적지 쪽으로만 전달). 어디로 보낼지 모르면 받은 포트를 뺀 모든 포트로 전달한다 — 12쪽 「Basic Principles」
 - (phase 72 step 9) 스패닝 트리는 실제로 프레임이 다니는 활성 토폴로지(Active Topology)의 한 형태다(같은 자리에 최단 경로·TE 경로가 나란히 적혀 있다). RSTP는 모든 트래픽이 스패닝 트리 하나를 함께 쓴다 — 26쪽, 28쪽
 - (phase 72 step 11) 브리지가 프레임을 다루는 동작(Data Plane Actions)에는 들어오는 포트와 나가는 포트에서 태그를 붙이거나 떼는 일((un)tagging)이 있다 — 17쪽. 위 PDF를 2026-10-28에 다시 받아 읽었다
+
+- (phase 83 step 7) 위 26·28쪽 줄(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길이 스패닝 트리)을 트리형이 쓴다. 투명 브리징의 스패닝 트리는 LAN 쌍마다 활성 경로가 하나뿐이다 — 아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목의 DTR 8802-1 §9.2
+  - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(트리형에는 고리가 없다 — 두 노드 사이의 길이 하나)
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: 트리형에 고리가 없다는 것(맨 위 노드를 뺀 노드마다 위로 가는 링크 하나, 두 노드 사이의 길 하나, 노드가 n개면 링크 n−1개)은 트리의 짜임에서 나오는 말로 쓰고,
+  「스위치들이 일부 링크를 막아 남기는 고리 없는 길에도 트리라는 이름을 붙여 스패닝 트리라 부르고, 스패닝 트리는 이어진 두 네트워크 구간 사이에 데이터가 다니는 길을 하나만 남긴다」를 `hub-switch-vlan.stp`와 같은 뜻으로 덧붙였다(DTR §9.2).
+  「위쪽 가지의 링크가 끊기면 그 아래 노드들이 나머지 노드로 가는 길을 잃는다」도 길이 하나뿐이라는 것에서 나오는 말로 썼고, 끊긴 링크 아래의 노드끼리는 여전히 주고받는다고 함께 적었다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`, 문항 n370 해설(트리형의 링크 수), 도식 `MeshTreeLinksDiagram`(트리형·트리에서 끊기면)
 
 쓰인 곳: (phase 72 step 1) 강의 수정 이력 L32, `exam-notes.md` E4, (phase 72 step 3) 문항 n030 해설(MAC의 풀네임), (phase 72 step 8) `hub-switch-vlan.switch`(목적지 MAC 주소를 보고 목적지 쪽 포트로만 내보낸다 — 목적지를 아는 경우), `hub-switch-vlan.mac-address-table`(MAC 주소는 장치가 어디에 있는지 가리키지 않으므로 스위치가 자리를 배운다), 문항 n040·n041 해설, (phase 72 step 9) `hub-switch-vlan.flooding-forwarding-filtering`(목적지를 모르면 받은 포트를 뺀 모든 포트로 — 플러딩, 알면 그 쪽으로만 — 포워딩, 필요 없는 포트는 걸러 냄 — 필터링, 브로드캐스트도 플러딩된다 — 27쪽), `hub-switch-vlan.stp`(STP가 남긴, 프레임이 실제로 다니는 고리 없는 길을 스패닝 트리라 부른다 — 26쪽·28쪽, 고리에서 플러딩된 프레임이 다시 플러딩된다), 문항 n042·n043 해설, (phase 72 step 10) `hub-switch-vlan.broadcast-domain`(스위치는 브로드캐스트를 플러딩하므로 브로드캐스트 도메인을 나누지 않는다 — 27쪽), `hub-switch-vlan.vlan`(스위치는 한 VLAN의 프레임을 같은 VLAN의 포트로만 내보내고, 목적지를 모르는 프레임도 그 VLAN 안에서만 플러딩한다 — 12쪽), 문항 n044·n045·n046 해설, (phase 72 step 11) `hub-switch-vlan.vlan-tagging`(태그로 VLAN을 안 스위치가 그 VLAN에 든 포트로만 내보낸다 — 12쪽, 스위치가 포트에서 태그를 붙이고 뗀다 — 17쪽), 문항 n048 해설
 
@@ -2143,6 +2300,28 @@ https://www.rfc-editor.org/rfc/rfc1042
 - IEEE 802.3은 「CSMA/CD 접근 방식(Access Method)」, IEEE 802.5는 「토큰 링 접근 방식(Token Ring Access Method)」을 정한 서로 다른 표준이다 — RFC 1042 References [3]·[5]
 - IEEE 802.5 망의 패킷 최대 크기는 한 노드가 토큰을 쥐고 있을 수 있는 최대 시간에 따라 정해진다 — RFC 1042 「For IEEE 802.5」(MTU를 다룬 대목)
 
+- (phase 83 step 7, 2026-11-20 RFC 1748·1231의 텍스트판과 상태를 IPv4로 다시 받아 읽음 — RFC 1748: Draft Standard, 1994-12, RFC 1231·1743을 폐기, RFC 1749가 고침. RFC 1231: Proposed Standard, 1991-05, RFC 1743·1748이 폐기 — 역사 기록으로만 본다) **토큰 링 스테이션의 링 상태·위쪽 이웃·비컨·차례**:
+  - 스테이션이 링에 들어가거나 나가는 상태를 따로 둔다 — 열림·닫힘·여는 중·닫는 중·열기 실패·링 고장(`dot5RingState`). 관리자가 「열기」를 시키면 스테이션이 링에 들어가고, 「닫기」를 시키면 링에서 스스로 빠진다(`dot5Commands`).
+    링에 들어가려다 실패하면 그 까닭(삽입 시간 초과·신호 잃음·비컨 중 등)을 남긴다(`dot5RingOpenStatus`). 802 표준들은 스테이션을 링에 들이는 일을 「삽입(insertion)」이라 부른다(아래 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목)
+  - 스테이션은 링에서 바로 위쪽 이웃 스테이션의 MAC 주소를 안다(`dot5UpStream`). 타이머 설명에 스테이션이 「반복(Repeat) 상태」로 돌아온다는 상태 이름이 나온다(`dot5TimerReturnRepeat`) — 이 RFC는 그 상태를 정의하지 않는다
+  - 곧바로 회복해야 하는 치명적 오류(hard error)는 그 스테이션이 비컨 MAC 프레임을 보내거나 받는 횟수로 센다(`dot5StatsHardErrors`). 비컨을 보내는 상태가 정해 둔 시간 넘게 이어지면 스테이션은 Bypass 상태로 들어간다(`dot5TimerBeaconTransmit`).
+    링을 정리(purge)하고 정상으로 되돌린 횟수도 센다(`dot5StatsRecoverys`). 상태 값에는 신호 잃음(Signal Loss), 비컨 보냄(Transmit Beacon), 단일 스테이션(링에 자기 혼자) 등이 있다(`dot5RingStatus`)
+  - 비컨이 고장 난 곳을 어떻게 가리키는지, Bypass 상태가 무엇인지는 이 RFC가 정의하지 않는다 — 본문은 「회복이 필요한 오류가 생기면 비컨 프레임을 보낸다」까지 쓴다
+  - **차례가 돌아오는 시간**: 토큰이 보이지 않을 때 회복을 시작하기까지의 타이머는 보통 「반복 상태로 돌아오는 시간 + 링의 최대 스테이션 수 × 한 스테이션이 토큰을 쥘 수 있는 최대 시간」으로 잡는다(`dot5TimerNoToken`).
+    스테이션마다 토큰을 쥐는 시간에 상한이 있으니(위 `dot5TimerHolding` 줄) 토큰은 정해진 시간 안에 한 바퀴를 돌아 모든 스테이션이 차례를 얻고, 스테이션이 많을수록 그 한 바퀴가 길어진다(정의에서 나오는 말). 이 타이머 객체들은 RFC 1748에서 obsolete로 표시됐다 — 뜻은 802.5의 것을 그대로 옮긴 것이다
+  - 속도 값: 1·4·16 Mbit/s를 둔다(`dot5RingSpeed`) — DTR 8802-1은 4·16 Mbit/s를 든다(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목)
+  - RFC 1042 참고 문헌 [3]·[4]·[5]: IEEE의 CSMA/CD 접근 방식, 토큰 패싱 버스 접근 방식, 토큰 링 접근 방식 표준(1985) — 802.3·802.4·802.5가 서로 다른 매체 접근 방식의 표준이라는 것
+  - 쓰지 않는 것: 액티브·대기 모니터, 링 정리(purge) 절차, 기능 주소, 타이머 값
+  - 쓰일 곳: (phase 83 step 9·10·11에서 쓰일 곳) `network-topology.ring-topology`(삽입, 위쪽 이웃, 링 고장과 비컨), `network-topology.token-ring`(토큰을 쥐는 시간에 상한이 있어 차례가 돈다, 스테이션이 많을수록 한 바퀴가 길다), `network-topology.ieee-802-standards`(802.3·802.4·802.5), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
+- (phase 83 step 9, 2026-11-20) **본문에 쓴 모양**: 위 줄들을 링형에 셋으로 썼다 — 데이터를 받아 오는 쪽 이웃을 위쪽 이웃(upstream neighbor)이라 하고 노드마다 자기 위쪽 이웃의 주소를 안다(`dot5UpStream`, FDDI는 RFC 1512의 이웃 정보),
+  토큰 링의 노드는 링에 들어가는 중인 상태를 따로 두고 정해진 시간 안에 삽입을 마치지 못하거나 신호를 잃어 들어가지 못하면 그 까닭을 남긴다(`dot5RingState`·`dot5RingOpenStatus`),
+  링이 고장 난 상태와 신호를 잃은 상태를 따로 두고 곧바로 회복해야 하는 오류가 생기면 비컨 프레임을 보낸다(`dot5RingState`·`dot5RingStatus`·`dot5StatsHardErrors`). 비컨이 고장 난 곳을 가리키는 방법·Bypass 상태는 쓰지 않았다(위 줄의 판정대로).
+  「고장 하나로 고리 전체의 통신이 멈출 수 있다」는 토큰이 링을 따라 노드에서 노드로 돈다는 것(아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §5.2.3)과 링크가 한 방향이라는 것에서 이어지는 말로 썼다(E52 「처리」의 문장). 「확장성이 떨어진다」는 쓰지 않았다
+  - 쓰인 곳: (phase 83 step 9) `network-topology.ring-topology`(위쪽 이웃, 삽입, 링 고장 상태와 비컨, 고리 전체가 멈출 수 있다), 문항 n369 해설, 도식 `RingPassDiagram`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.token-ring`에 위 `dot5TimerHolding` 줄(토큰을 잡은 노드가 보낼 수 있는 시간에 한도가 있다)과 `dot5TimerNoToken` 줄(그래서 토큰이 정해진 시간 안에 한 바퀴 돌아 모든 노드에 차례가 오고, 노드가 많을수록 한 바퀴가 길다)을 썼다.
+  「보낼 권리가 토큰을 잡은 노드 하나에만 있어 두 노드가 같은 때 보내 신호가 겹칠 일이 없다」와 「차례가 돌아오기까지의 시간에도 끝이 있다」는 이 두 줄과 DTR §5.2.3의 동작에서 나오는 말로 썼다. 속도는 DTR·802.5-1998 개요의 4·16 Mbit/s만 쓰고 RFC 1748의 1 Mbit/s 값은 쓰지 않았다.
+  RFC 1042 [3]·[5]로 「CSMA/CD는 IEEE 802.3이 정한 매체 접근 방식이고, 802.5의 토큰 링과는 다른 표준이다」를 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.token-ring`(토큰을 잡는 시간의 한도와 차례, 충돌이 없다, 「토큰 링과 CSMA/CD」), 문항 n371 해설, 도식 `TokenPassingDiagram`
 쓰인 곳: `hub-switch-vlan.csma-cd`(토큰을 잡은 장치가 정해 둔 시간 동안 보내도록 허락받는 방식은 CSMA/CD와 다른 매체 접근 방식), 문항 n038 해설
 
 ## (phase 72 step 8) RFC 4761 — Virtual Private LAN Service (VPLS) Using BGP for Auto-Discovery and Signaling, 4.2.1 MAC Address Learning, 4.2.2 Aging
@@ -7557,6 +7736,9 @@ RFC 8325(2018-02, Proposed Standard, RFC 8622·RFC 9956이 개정 — 두 개정
     같은 절은 스테이션이 한 BSS에서 다른 BSS로 옮겨 갈(roam) 때 AP들에게 알리는 AP 사이 프로토콜(IAPP, 권고 관행 802.11F)을 802.11이 만들던 기술로 든다 — §1.1. 곧 무선 LAN에서 스테이션이 다른 AP의 셀로 옮겨 붙는 일은 재연결로 이루어진다
   - 쓰지 않는 것: 재연결 프레임의 형식과 차례, IAPP의 동작, 빠른 로밍(802.11r)
   쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.handoff`(무선 LAN에서 스테이션이 다른 AP로 옮겨 붙는 것 — 재연결 한 줄)
+- (phase 83 step 1, 2026-11-20 rfc-editor.org 텍스트판 RFC 4118을 IPv4로 다시 받아 확인) **무선 매체**: §3.1이 옮겨 적은 802.11의 정의는 스테이션을 「무선 매체(wireless medium, WM)」에 닿는 MAC·물리 계층 인터페이스를 가진 장치로, AP를 연결된 스테이션들이 무선 매체를 거쳐 분배 서비스에 닿게 하는 것으로 적는다 — §3.1.
+  §1은 무선 매체가 함께 쓰이고 바뀌는 성질 때문에 AP들 사이의 무선 간섭을 줄이는 조정이 필요하다고 적는다 — §1. 곧 802.11은 장치들이 전파로 데이터를 주고받는 공간을 하나의 매체(무선 매체)로 본다
+  쓰인 곳: (phase 83 step 1) `transmission-media.transmission-media`(유선 매체와 무선 매체 — 무선 LAN의 표준도 이 매체를 무선 매체라 부른다), 문항 n353 해설
 
 쓰인 곳: (phase 82 step 1에서 쓰일 곳) `wireless-lan.wireless-lan`(스테이션·AP·BSS·ESS·분배 시스템의 뜻, SSID, 「Wi-Fi」라는 이름과 Wi-Fi Alliance), (phase 82 step 2에서 쓰일 곳) `wireless-lan.wireless-channel`(AP의 채널을 관리 쪽이 정한다, 채널 선택·동적 채널 선택, 나라마다 쓸 수 있는 채널, 간섭),
 `wireless-lan.csma-ca`(CSMA/CA·CSMA/CD의 정의와 차이, 무선에서 충돌을 감지할 수 없는 까닭, DCF·DIFS·무작위 백오프·CW, ACK와 재전송, BSS의 모든 구성원이 서로 들리지 않을 수 있다, 802.11ax에서도 DCF를 고친 경쟁 방식), (phase 82 step 3에서 쓰일 곳) `wireless-lan.mimo`(안테나 여럿과 MIMO, 공간 다중화), 기출 대조(`exam-notes.md` 「phase 82 step 0」 문단)
@@ -7702,6 +7884,13 @@ TGs 보고는 2011-07 기록이 마지막이다. 두 튜토리얼은 2006-11 802
   그림에서 메시 포털을 메시 바깥의 네트워크(External Network)와 메시 사이에 둔다. HWMP 슬라이드는 필요할 때 경로를 찾는 방식에 **메시 포털로 가는 경로를 미리 만들어 두는 방식**을 더한 것이라 적는다(「Default Routing protocol for Interoperability」, 「Hybrid Wireless Mesh Protocol (HWMP)」 — 루트 포털이 있으면 트리를 만든다).
   메시 바깥의 목적지로 가는 데이터는 메시 포털을 거쳐 나간다(「For a destination outside the Mesh … deliver packets via unicast」). 승인 전 초안 때의 설명이라 본문은 「메시를 바깥 네트워크와 잇는 노드」로만 쓰고, 「메시 포털」이라는 이름과 브리지 동작은 쓰지 않는다
   쓰인 곳: `wireless-lan.wireless-mesh`(HWMP 한 줄, 중앙 장치가 따로 필요하지 않다는 문단), 문항 `n323`의 해설
+
+- (phase 83 step 7) 위 802.15.5 튜토리얼 줄(WPAN 메시는 완전 메시나 부분 메시 연결을 쓰고, 경로 여분으로 신뢰성을 높인다)과 끊긴 링크를 알리고 다른 경로로 보낸다는 줄을 `network-topology.mesh-tree-topology`가 쓴다 — 메시의 뜻은 `wireless-lan.wireless-mesh`와 같게 쓴다.
+  **부분 메시를 정의한 문장은 찾지 못했다** — 본문은 완전 메시와 견주어 「모든 노드 쌍을 잇지 않고 일부 쌍만 링크로 잇는 메시」로 쓰는 데까지만 쓴다(이름에서 나오는 말)
+  - 쓰일 곳: (phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.mesh-tree-topology`에 메시형을 `wireless-lan.wireless-mesh`와 같은 뜻(노드마다 이웃 여럿과 이어져 그물처럼 얽히고, 바로 이어지지 않은 두 노드 사이는 중간 노드가 받아 넘겨 준다)으로 쓰고,
+  「IEEE 802가 정한 무선 메시 기술에서도 링크가 끊긴 것을 알아챈 노드가 다른 노드들에게 알리고 끊긴 링크를 거치지 않는 다른 길로 데이터를 보낸다」를 위 튜토리얼 줄에서 썼다. 부분 메시는 위 줄의 판정대로 이름에서 나오는 말(일부 노드 쌍만 바로 잇는 메시)로만 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`, 도식 `MeshTreeLinksDiagram`(메시에서 끊기면)
 
 쓰인 곳: (phase 82 step 6에서 쓰일 곳) `wireless-lan.wireless-mesh`(메시와 802.11s, 멀티홉, 이웃 찾기, 경로 선택 HWMP, 끊긴 링크를 알리고 다른 링크로 바꾸기, 경로 여분, 메시와 인프라스트럭처 모드 — AP가 유선으로 이어진 WLAN과 AP 사이도 무선으로 이은 메시), 기출 대조(`exam-notes.md` 「phase 82 step 4」 문단)
 
@@ -8423,3 +8612,1024 @@ https://csa-iot.org/developer-resource/specifications-download-request/
 - **한국어 이름**: coordinator → 코디네이터, router → 라우터(이 주제에서는 Zigbee의 역할 이름이다 — 네트워크 계층 장비인 라우터와 이름만 같다), end device → 엔드 디바이스, star topology → 별 모양
 
 쓰인 곳: `wireless-lan.zigbee`(문단 2 — 세 역할과 별 모양, 문단 3 — 예의 LIGHT01·SENSOR01의 역할)
+
+## (phase 83 step 0) ITU-T 광섬유 권고 — G.650.1 (01/2024), G.651.1 (11/2018), G.652 (08/2024), L.400/L.12 (02/2022); IEEE 802.3 OMEGA 연구 그룹 발표 「Fiber Components for Optical Automotive」(2019-11)
+https://www.itu.int/rec/T-REC-G.650.1-202401-I/en
+https://www.itu.int/rec/T-REC-G.651.1-201811-I/en
+https://www.itu.int/rec/T-REC-G.652-202408-I/en
+https://www.itu.int/rec/T-REC-L.400-202202-I/en
+https://www.ieee802.org/3/OMEGA/public/nov_2019/swanson_OMEGA_01_1119.pdf
+
+판: G.650.1 「Definitions and test methods for linear, deterministic attributes of single-mode fibre and cable」(2024-01-13 승인, In force — 앞 판 여덟은 Superseded), G.651.1 「Characteristics of a 50/125 µm multimode graded index optical fibre cable for the optical access network」(2018-11-29 승인, In force),
+G.652 「Characteristics of a single-mode optical fibre and cable」(2024-08-29 승인, In force), L.400/L.12 「Optical fibre splices」(2022-02-13 승인, In force — L.12가 옛 번호다). 넷 다 권고 페이지에서 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+OMEGA 발표는 IEEE 802.3 연구 그룹 회의에 광섬유 업체(Corning) 소속 회원이 낸 발표 자료다 — **표준 본문이 아니고 업체의 입장이 섞일 수 있어**, 위 권고들에서 찾지 못한 광섬유의 성질 하나(전자기 간섭)에만 쓴다.
+
+- **코어와 클래딩**: 클래딩은 광섬유 단면에서 가장 바깥의 유리 부분이다 — G.650.1 §3.3.1. 코어의 중심은 광섬유 가운데 부분에서 나오는 빛의 세기 분포로 잡는다 — §3.3.7.
+  빛을 붙잡아 이끄는 것은 코어다 — 접속할 끝을 비스듬히 자르면 반사된 빛이 코어에 붙잡혀 이끌리지 못하고 클래딩으로 가서 약해진다(L.400 §7.4 — 비스듬한 절단의 효과를 말하는 대목이다)
+- **굴절률**: 수치 구경(NA)은 광섬유의 코어로 들어가거나 나올 수 있는 빛의 원뿔이 얼마나 벌어지는지를 나타내는 값이고, 그 이론상 최대치는 코어의 최대 굴절률 n1과 클래딩의 굴절률 n2로 √(n1² − n2²)이다 — G.651.1 §5.5.
+  표 1의 NA 0.20이 0보다 크므로 코어의 굴절률이 클래딩보다 높다(식에서 나오는 말이다). **「클래딩의 굴절률이 코어보다 낮아 빛이 코어에 갇힌다」를 한 문장으로 적은 곳과, 굴절률이 무엇인지 정의한 문장은 이 step이 읽은 권고에 없다**
+- **싱글 모드와 멀티 모드**: 광섬유 안을 진행할 수 있는 빛의 모드가 하나뿐이면 싱글 모드다. 차단 파장은 모드 하나만 진행하는 가장 짧은 파장이고, 그보다 짧은 파장에서는 여러 모드가 함께 진행해 그 광섬유는 멀티 모드로 동작한다 — G.650.1 §3.4.3.
+  권고가 말하는 모드는 광섬유 안의 전자기장 분포(mode field)다 — §3.4.1.1. 모드를 「빛이 지나는 길」로 풀어 쓰는 것은 이해를 돕는 비유이고, 그렇게 쓰면 비유라고 밝힌다
+- **멀티 모드(G.651.1)**: 코어 지름 50 µm, 클래딩 지름 125 µm(공칭값)인 그레이디드 인덱스 멀티 모드 광섬유이고 — §5.1, §5.2, 표 1, 850 nm나 1 300 nm 대역(또는 둘 다)에서 쓴다 — §1.
+  1 Gbit/s 이더넷(1000BASE-SX·1000BASE-LX)을 550 m까지 잇는다 — §7. 케이블의 감쇠 계수는 최대 3.5 dB/km(850 nm)·1.0 dB/km(1 300 nm)다 — 표 1.
+  싱글 모드 광섬유가 나온 뒤 공중 통신망에는 거의 쓰지 않게 됐고, 건물 안 배선(이더넷)에는 지금도 널리 쓴다 — 머리말, 부록 I
+- **싱글 모드(G.652)**: 1 310 nm 근처에서 분산이 0이고 1 310 nm·1 550 nm 대역에서 쓰는 싱글 모드 광섬유다 — §1. 클래딩 지름은 125 µm다 — §6.2.
+  코어 지름 대신 빛이 퍼진 폭인 모드 필드 지름을 정하고, 1 310 nm에서 공칭 8.6~9.5 µm다 — §6.1, 표 1(G.652.B). 케이블의 감쇠 계수는 최대 0.4 dB/km(1 310 nm)·0.35 dB/km(1 550 nm)다 — 표 1(G.652.B). 이 값은 실내용 짧은 케이블에는 맞추지 않는다 — 표 1 NOTE 1
+- 두 권고의 값을 나란히 놓으면, 싱글 모드에서 빛이 지나는 폭(약 9 µm)은 멀티 모드의 코어(50 µm)보다 훨씬 가늘고, 1 300 nm 대역에서 1 km마다 줄어드는 빛의 세기는 멀티 모드 1.0 dB/km, 싱글 모드 0.4 dB/km다 — 두 표에서 나오는 말이다
+- **광섬유를 잇는 법 — 접속(splice)**: 접속은 두 광섬유 사이에 빛을 넘기려고 만드는 이음이고, 융착이나 기계적 방법으로 만든다 — L.400 §3.2.1. 지금 쓸 수 있는 기술은 융착 접속과 기계적 접속 둘이고, 둘 다 영구 연결로 만든다 — 머리말(Introduction)
+  - **융착 접속**(fusion splice): 현장에서 가장 널리 쓰는 것은 전기 아크 융착이고, 이를 위해 특별히 만든 **접속 장비**(splicing machine)를 쓴다. 광섬유의 보호 피복을 벗기고 끝을 자른 뒤 장비의 두 전극 사이에 두 끝을 맞춰 놓고,
+    아크로 유리를 녹여 붙여 끊김 없는 유리 가닥으로 만든 다음 이음 부위에 보호 부품을 씌운다. 두 끝은 V자 홈에 얹어 맞추거나 코어·클래딩을 살피며 맞춘다 — §6.1
+  - **기계적 접속**(mechanical splice): 두 끝을 맞대는 면, 맞춘 자리를 붙잡아 두는 부품, 두 끝 사이에 넣는 굴절률 정합 물질(젤·접착제 등)로 이루어진 부품을 쓴다 — §6.2
+  - 어느 쪽이든 자른 면의 질과 두 광섬유의 차이(굴절률 분포·모드 필드 지름·코어 중심이 맞는 정도)가 접속 손실을 정한다 — §6.1, §6.2.
+    그러니 「동축 케이블처럼 따로 장비 없이 선을 이어 쓴다」는 이 권고와 맞지 않는다 — 두 방법 모두 전용 장비나 부품이 든다
+- **전자기 간섭**: 광섬유는 구리를 보완하며 넓은 대역폭(exceptional bandwidth)·가벼움·적은 전력·**전자기 면역**(electromagnetic immunity)·험한 환경을 견디는 성질을 준다 — OMEGA 발표 2쪽(회원 발표 — 표준 본문이 아니다).
+  이 step이 읽은 ITU-T 권고(G.650.1·G.651.1·G.652·L.400, G Suppl. 42)에는 광섬유가 전자기 간섭을 받지 않는다는 문장이 없다 — 전문 검색(electromagnetic·interference·immun·EMI). 이 발표도 「간섭이 없다」가 아니라 「면역」(받지 않는다)으로 쓴다
+- 「대역폭이 가장 넓다」(구리 매체와 견줘 가장 넓다)와 「보안에 강하다」는 위 다섯 문서 어디에도 없다 — `exam-notes.md` E47·E48
+- 쓰지 않는 것: 분산 계수·편광 모드 분산·굽힘 손실의 값, 모드 필드 지름의 허용 오차, 차단 파장의 값, G.652의 범주(A~D) 차이, 접속 손실의 허용값, 커넥터
+- **한국어 이름**: optical fibre → 광섬유, optical fibre cable → 광케이블(앞 phase의 `network-basics.communication-link`·`ethernet.standard-names`가 쓴 이름), core → 코어, cladding → 클래딩(기출의 표기 — 「클래드」로도 쓴다), refractive index → 굴절률,
+  single-mode → 싱글 모드, multimode → 멀티 모드(앞 phase의 이름), mode field diameter → 모드 필드 지름(쓴다면 「빛이 퍼진 폭」으로 풀어 쓴다), attenuation → 감쇠(step 3이 자세히 다룬다), splice → 접속, fusion splice → 융착 접속, mechanical splice → 기계적 접속,
+  splicing machine → 접속 장비(「융착 접속기」라고도 부를 수 있지만 권고의 말을 살렸다), electromagnetic immunity → 전자기 간섭을 받지 않는다
+
+- (phase 83 step 2, 2026-11-20) **본문에 쓴 모양**: 굴절률은 위 권고들이 정의하지 않으므로 일반 낱말의 한 줄 풀이(빛이 그 물질 속에서 얼마나 느려지는지, 굴절률이 다른 두 물질이 맞닿은 곳에서 빛의 방향이 꺾인다)로만 썼다.
+  「클래딩의 굴절률이 낮아 빛을 코어에 가둔다」는 한 문장으로는 쓰지 않았다 — 본문은 위 줄대로 「코어의 굴절률이 클래딩보다 높고(G.651.1 §5.5), 빛을 붙잡아 이끄는 쪽은 코어이며, 붙잡히지 못한 빛은 클래딩으로 빠져나가 약해진다(L.400 §7.4)」까지 쓴다.
+  이 step에서도 G Suppl. 42·G.650.1·G.651.1의 전문에서 total internal reflection·confine·guided 같은 말을 찾았지만 그런 문장은 없었다. 모드는 「빛이 지나는 길」로 풀되 비유라고 밝혔다.
+  「멀티 모드는 2 km를 넘지 않는 짧은 거리」는 위 「(phase 71) ITU-T G Suppl. 42」 항목의 (phase 83 step 0) 줄(§8.2.1 — 속도에 따라 100~2 000 m), 1000BASE-LX의 싱글 모드 5 km와 10GBASE-ER의 40 km는 「(phase 72) David Law, 「Past PHY naming」」 항목에서 왔다
+  - 쓰인 곳: (phase 83 step 2) `transmission-media.optical-fiber`(코어·클래딩·굴절률, 싱글 모드와 멀티 모드의 목록과 쓰는 거리, 예 `BLDG-A`·`BLDG-B` 3 km에서 1000BASE-LX를 고르는 까닭, 리피터 없는 40 km, 전자기 간섭, E47·E48 줄, 융착·기계적 접속의 목록), 문항 n356(30 km를 잇는 광섬유와 그 까닭)·n357(끊긴 광케이블을 맞대어 묶기만 해서는 잇지 못한다), 도식 `FiberCoreCladdingDiagram`
+
+- (phase 83 step 3, 2026-11-20 G.650.1 (01/2024)을 IPv4로 다시 받아 읽음 — 위와 같은 판) **감쇠의 정의와 파장마다 다른 지연**:
+  - 감쇠는 광섬유의 두 단면 사이에서, 앞 단면을 지나는 빛의 세기 P1과 뒤 단면을 지나는 세기 P2의 비를 10 log(P1/P2) dB로 나타낸 값이다. 고른 광섬유는 길이에 상관없이 단위 길이당 감쇠(감쇠 계수, dB/km)로 적을 수 있다 — §3.4.4
+  - 군지연은 빛 펄스가 광섬유의 단위 길이를 지나는 데 걸리는 시간이고 파장마다 값이 다르다 — §3.4.2.4. 색분산은 광원의 빛에 섞인 여러 파장의 군속도가 서로 달라 빛 펄스가 퍼지는 것이다 — §3.4.2.1.
+    구리 회선의 지연 왜곡(여러 주파수의 신호가 겪는 지연이 서로 다르다 — Q.9 0230)과 같은 꼴의 현상이 광섬유에서는 색분산으로 나타난다 — 두 정의를 나란히 놓은 말이다
+  - 쓰지 않는 것: 색분산 계수·기울기의 값, 편광 모드 분산
+  - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(감쇠는 두 지점에서 잰 세기의 비를 dB로 나타낸 것, 길이당 감쇠 dB/km)
+
+쓰인 곳: (phase 83 step 2에서 쓰일 곳) `transmission-media.optical-fiber`(코어·클래딩·굴절률, 싱글 모드와 멀티 모드의 차이와 값, 손실, 접속과 장비, 전자기 간섭), (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(견주는 축 — 감쇠, 전자기 간섭),
+기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E47·E48)
+
+## (phase 83 step 0) 구리 매체 — ITU-T G 시리즈 목록, L.19 (05/2010), L.109 (01/2024), K.99 (07/2017); IANA MAU MIB; RFC 4836; IEEE 802.3 유지 보수 요청 1066과 작업 문서 셋
+https://www.itu.int/rec/T-REC-L.19-201005-I/en
+https://www.itu.int/rec/T-REC-L.109-202401-I/en
+https://www.itu.int/rec/T-REC-K.99-201707-I/en
+https://www.iana.org/assignments/ianamau-mib/ianamau-mib
+https://www.rfc-editor.org/rfc/rfc4836
+https://www.ieee802.org/3/maint/requests/maint_1066.pdf
+https://www.ieee802.org/3/maint/requests/revision_history.html
+https://www.ieee802.org/3/power_study/public/nov99/thompson_1_1199.pdf
+https://www.ieee802.org/3/cg/public/Mar2017/carlson_3NGAUTO_02_0317.pdf
+https://www.ieee802.org/3/bu/public/jan14/mueller_3bu_01_0114.pdf
+
+판: L.19 「Multi-pair copper network cable supporting shared multiple services such as POTS, ISDN and xDSL」(2010-05-29 승인, In force), L.109 「Construction of optical/metallic hybrid cables」(2024-01 판, In force — 광·금속 복합 케이블의 권고라 동축·대칭 쌍 단위의 구조만 쓴다),
+K.99 「Surge protective component application guide – Gas discharge tubes」(2017-07-29 승인, In force — 서지 보호 부품의 권고라 부록 III.3의 동축 케이블 식만 쓴다). 셋 다 무료 PDF를 IPv4로 내려받아 읽었다.
+IANA MAU MIB는 레지스트리의 MIB 글(LAST-UPDATED 2026-07-15)을, RFC 4836은 rfc-editor.org의 텍스트판을 읽었다(Proposed Standard, 2007-04, RFC 3636을 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다 — `…/rfc4836.json`).
+IEEE 802.3 문서는 넷이다 — 유지 보수 요청 1066(2000-12-20 접수)과 그 처리 이력 페이지, 802.3 전원 연구 그룹의 작업 문서(G. Thompson, 1999-11-09 — MDI의 핀 배치 표), 802.3 차세대 차량용 연구 그룹의 발표(S. Carlson, 2017-03-13),
+802.3bu 태스크 포스의 발표(T. Müller, 2014-01 — 업체 소속 회원). **넷 다 표준 본문이 아니다.**
+
+- **ITU-T가 전송 매체를 가르는 묶음**: ITU-T G 시리즈 권고 목록(권고마다 표지 뒤에 싣는 목록 — G.652 (08/2024)에서 읽었다)에서 「전송 매체와 광 시스템 특성」(G.600~G.699)은 대칭 케이블 쌍(G.610~G.619), 육상 동축 케이블 쌍(G.620~G.629), 해저 케이블(G.630~G.639),
+  자유 공간 광 시스템(G.640~G.649), 광섬유 케이블(G.650~G.659)로 나뉜다. 전파로 잇는 무선 중계·위성 링크는 다른 묶음(G.400~G.449)이다.
+  **「전송 매체」를 한 문장으로 정의한 곳과 「유도 매체·비유도 매체」라는 이름은 이 step이 읽은 문서에서 찾지 못했다**(ITU-T 용어 데이터베이스는 쓰지 못했다 — 머리말). 물리 계층이 매체로 비트를 나른다는 것은 위 「ITU-T X.200」 항목의 §7.7.2 줄이 댄다
+- **꼰 구리선 쌍**: 구리 가입자 케이블의 쌍은 꼰 쌍(twisted pairs)·스타 쿼드(star quads)·꼬지 않은 쌍(untwisted pairs)으로 짓는다 — L.19 표 2. 광·금속 복합 케이블의 대칭 쌍 단위는 꼰(stranded) 금속 쌍을 담고, 차폐가 필요하면 알루미늄 테이프·금속 편조 같은 것으로 감싼다 — L.109 §6.2.4
+- **누화와 평형**: 같은 케이블에 든 쌍들, 특히 가까이 놓인 쌍 사이는 결합이 완전히 끊기지 않아 한 쌍의 신호가 옆 쌍으로 넘어와 섞인다(누화) — L.19 §7.3.2. 한 케이블 안에서 서로 다른 서비스가 주고받는 간섭의 정도는 쌍 사이의 거리·절연 같은 케이블의 물리적 특성에 달렸다 — §6.3.
+  고주파·충격성 잡음을 줄이려면 구리 쌍이 평형을 잘 이뤄야 한다 — 부록 II.3. **「선을 꼬면 간섭이 준다」는 문장은 찾지 못했다** — 본문은 꼬는 까닭을 단정하지 않는다. 누화·잡음 자체는 step 3(`transmission-media.transmission-impairments`)의 몫이다.
+  「여러 선을 묶어 쓰면 간섭이 준다」([기출 2024-08-25 #46]의 오답)는 L.19 §7.3.2와 반대다 — 한 케이블에 함께 든 쌍끼리는 오히려 누화가 생긴다
+- **UTP와 STP**: 802.3bu 태스크 포스 발표는 차폐 없는 꼰 쌍을 「Unshielded Twisted Pair」로, 차폐한 꼰 쌍을 STP로 적고, 전자기 적합성(EMC) 때문에 차폐 케이블로 물러서는 경우를 든다 — 3~5쪽(업체 소속 회원 발표).
+  IANA MAU MIB는 10BASE-T의 매체를 「UTP」로 적는다(아래 줄). 802.3u의 100BASE-TX는 Category 5 평형 케이블 2쌍이나 150옴 차폐 평형 케이블을 쓴다 — 위 「(phase 72) IEEE SA — 802.3u-1995 …」 항목.
+  **`U/UTP`·`U/FTP` 같은 차폐 표기는 이 step이 읽은 허용 출처에 없다**
+- **카테고리**: IANA MAU MIB는 100BASE-T4를 「4쌍 category 3 UTP」, 100BASE-TX를 「2쌍 category 5 UTP」로 적는다(dot3MauType100BaseT4·dot3MauType100BaseTXHD/FD). 802.3u 초록도 100BASE-T4는 Category 3·4·5 평형 케이블 4쌍, 100BASE-TX는 Category 5 평형 케이블 2쌍을 쓴다고 적는다(위 항목).
+  카테고리별 전기 특성은 가져오지 않는다
+- **10BASE-T의 쌍과 핀**: 10BASE-T는 평형 트위스티드 페어 2쌍으로 100 m를 잇는다 — 위 「(phase 72) David Law, 「Past PHY naming」」 항목의 (phase 83 step 0) 줄. IANA MAU MIB는 10BASE-T의 MAU를 「UTP MAU」로 적고 참조로 802.3 14장을 든다.
+  802.3 전원 연구 그룹의 작업 문서(Thompson, 1999-11)의 MDI 핀 표는 RJ-45 커넥터의 8핀 가운데 10/100BASE-T(MDI)가 1·2번을 보내는 쌍(TD+·TD−), 3·6번을 받는 쌍(RD+·RD−)으로 쓰고, 4·5·7·8번은 신호 이름 없이 「Term」으로만 둔다. 근거로 ISO/IEC 8802-3:1996 §14.5.1을 든다.
+  같은 표의 MDI-X 줄은 1·2와 3·6의 보내기·받기를 맞바꾸고, 1000BASE-T 줄은 네 쌍(8핀)을 모두 양방향 신호(BI_DA~BI_DD)로 쓴다 — 작업 문서이지 표준 본문이 아니다. 핀 1·2, 3·6이 각각 한 쌍이라는 것은 이 표의 짝 묶음에서 나온다
+- **동축 케이블의 구조**: 동축 단위는 같은 중심축을 가진 안쪽 도체와 바깥 도체 한 쌍을 담는다 — L.109 §6.2.5. 동축 케이블의 특성 임피던스는 안쪽 도체 지름·바깥 도체 지름과 둘 사이를 채운 유전체(절연체)의 비유전율로 정해지고, 케이블 유전체의 비유전율은 대개 1.5~3이다 — K.99 부록 III.3.
+  그러니 안쪽 도체를 절연체가 감싸고 그 바깥을 바깥 도체가 같은 축으로 감싼다. 케이블 맨 바깥의 피복(sheath)은 케이블 일반의 말이다 — L.109 §6.2.12.
+  **바깥 도체가 바깥 잡음을 막는다는 문장과, 끊긴 동축을 커넥터로 다시 잇는다는 문장은 찾지 못했다**
+- **이더넷의 동축 규격**: IANA MAU MIB — 10BASE5는 「thick coax MAU」(두꺼운 동축), 10BASE2는 「thin coax MAU」(얇은 동축), 10BROAD36은 「broadband DTE MAU」다.
+  10BASE5는 동축 케이블 한 줄(버스)에 「뱀파이어 탭」으로 노드를 붙였고, 케이블은 500 m까지였으며 양 끝에 50옴 끝막음이 있어야 했다. 10BASE5는 802.3-2015에도 남아 있다 — Carlson 발표 3쪽(버스형과 끝막음은 step 7이 이 줄을 쓴다).
+  10BASE2 조항(10장)에는 「이 MAU는 새 설치에 권하지 않는다. 2011년 9월부터 이 조항의 유지 보수 변경은 더 검토하지 않는다」는 뜻의 주석이 있다 — 같은 3쪽이 옮긴 802.3의 주석(위 「(phase 72 step 1) … 의견 처리 기록」 항목의 P802.3bh D2.0 #168과 맞는다)
+- **10BASE5·10BROAD36의 「새 설치에 권하지 않음」**: 유지 보수 요청 1066은 8장(10BASE5)·11장(10BROAD36)·12장(1BASE5)·16장(10BASE-FP) 첫머리에 「이 MAU는 새 설치에 권하지 않는다」를, 23장(100BASE-T4)·32장(100BASE-T2)에는 같은 뜻의 PHY 주석을 붙이자고 했다.
+  계기는 10BASE5 망이 이제 역사적 관심거리일 뿐이라는 투표 의견이었다 — 요청 문서. 처리 이력은 이 변경이 IEEE Std 802.3-2002에 실렸다(Published)고 적는다 — 이력 페이지의 1066 줄
+- **베이스밴드와 브로드밴드**: 규격 이름의 BASE는 베이스밴드, BROAD는 브로드밴드를 뜻한다 — 위 「Past PHY naming」 항목. 10BROAD36 MAU는 정해진 송신 **반송파 주파수**에 신호를 싣고, 주파수 다중화로 보내는 길과 받는 길을 가르며(케이블 하나나 둘로),
+  IEEE는 브로드밴드 MAU를 새 설치에 쓰지 말라고 권한다 — RFC 4836의 MIB(broadMauXmtCarrierFreq·broadMauXmtRcvSplitType·broadMauBasicTable — 셋 다 deprecated 표시).
+  **베이스밴드·브로드밴드를 한 문장으로 정의한 곳은 찾지 못했다** — 본문은 「브로드밴드 규격(10BROAD36)은 신호를 반송파 주파수에 실어 주파수로 길을 나눈다」까지 쓰고, 베이스밴드는 「이름에 BASE가 붙는 규격의 방식」이라는 데까지만 쓴다
+- 쓰지 않는 것: 커넥터 종류(IANA의 잭 이름 목록 — RJ45·BNC 등), 카테고리별 전기 특성, 특성 임피던스의 값, 뱀파이어 탭의 구조, 10BROAD36의 주파수 값
+- **한국어 이름**: twisted pair → 트위스티드 페어(앞 phase의 이름 — 기출은 「이중 나선」이라고도 쓴다), unshielded twisted pair → 비차폐 트위스티드 페어(UTP), shielded twisted pair → 차폐 트위스티드 페어(STP), screen·shield → 차폐, category → 카테고리,
+  coaxial cable → 동축 케이블(기출의 이름), inner conductor → 중심 도체(guide의 이름 — 권고의 말은 「안쪽 도체」), outer conductor → 바깥 도체, dielectric → 절연체(K.99의 말은 「유전체」 — 학습자에게 익은 말을 골랐다), sheath → 피복,
+  thick·thin coax → 두꺼운 동축·얇은 동축(기출은 「Thin Coaxial Cable」), baseband·broadband → 베이스밴드·브로드밴드(앞 phase의 `ethernet.standard-names`가 「베이스밴드」를 썼다), carrier frequency → 반송파 주파수
+
+- (phase 83 step 1, 2026-11-20 L.109·L.19 PDF와 Thompson 작업 문서를 IPv4로 다시 받아 읽음 — Thompson 표는 그림으로 렌더해 칸을 확인했다) **차폐를 두는 까닭과 네 쌍의 핀 짝**:
+  - 케이블 코어 위의 차폐(screen)는 전자기 적합성(EMC — 주변 장치와 전자기 잡음으로 서로 방해하지 않는 것)이나 낙뢰 보호가 필요할 때 더하는 선택 층이고, 금속 테이프(포일) 한두 겹이나 금속 편조 한두 겹, 또는 둘을 합친 구조로 만든다.
+    안테나까지 광섬유를 까는 쓰임(FTTA)에서 이 차폐는 낙뢰가 일으키는 전류를 줄이고 그 전류로 생기는 전자기 잡음을 줄인다 — L.109 §6.2.13. 금속 단위의 차폐는 결합 감쇠(coupling attenuation) 같은 전기 특성과 EMC 요구를 만드는 쪽과 쓰는 쪽이 맞춘다 — §6.6
+  - 구리 쌍을 HDSL·ADSL에 쓸 수 있는지는 쌍이 받는 전자기 결합, 바깥의 전자기 원천과 잡음, 절연, 차폐, 한 케이블에 든 쌍의 수 같은 조건이 정한다 — L.19 부록 IV.2.7(브라질의 경험 — 권고의 본문이 아니다)
+  - 그래서 본문은 「차폐는 전자기 잡음을 막으려고 두는 금속 층이라, 주변의 전기 장치와 잡음으로 서로 방해하지 않아야 하는 곳에서 STP를 쓴다」까지 쓴다. 「선을 꼬면 간섭이 준다」는 이번에도 찾지 못했다 — 본문은 꼬는 까닭을 쓰지 않는다
+  - Thompson 표의 568-A·568-B 두 줄은 RJ-45 커넥터의 핀을 1·2, 3·6, 4·5, 7·8의 네 쌍으로 묶는다(두 줄은 쌍에 붙인 번호만 다르다). 100BASE-T4 줄과 1000BASE-T 줄은 이 네 쌍을 모두 신호에 쓴다
+  - 쓰지 않는 것: 차폐의 결합 감쇠·전달 임피던스 값, 568-A·568-B의 쌍 번호, 핀의 색 배치
+  - 쓰인 곳: (phase 83 step 1) `transmission-media.twisted-pair`(UTP와 STP, 차폐의 목적, 핀 1·2/3·6/4·5/7·8의 쌍과 10BASE-T가 쓰는 쌍, 1000BASE-T는 네 쌍), 문항 n354(차폐가 있는 케이블을 고른다), 도식 `TwistedPairPinsDiagram`
+
+- (phase 83 step 2, 2026-11-20) **동축 케이블의 바깥 도체는 차폐다**: step 0이 위에서 찾지 못했다고 적은 「바깥 도체가 바깥 잡음을 막는다」는 아래 「(phase 83 step 2) ITU-T K.37 (01/2024)」 항목이 댄다 — 동축 케이블에서는 바깥 도체가 차폐 노릇을 한다(K.37 §10.2).
+  두 도체가 한 쌍이라는 것은 위 줄의 L.109 §6.2.5(같은 중심축의 안쪽·바깥 도체 한 쌍)와 G 시리즈 목록의 「육상 동축 케이블 쌍」(G.620~G.629)에서 왔다. 끊긴 동축을 커넥터로 다시 잇는다는 것은 본문·문항에 쓰지 않았다
+  - 쓰인 곳: (phase 83 step 2) `transmission-media.coaxial-cable`(네 겹의 차례, 두 도체가 한 쌍, 10BASE5 500 m·10BASE2 185 m, 새로 까는 망에 권하지 않음, BASE·BROAD와 10BROAD36의 반송파 주파수·주파수로 두 방향 가르기), 문항 n355, 도식 `CoaxLayersDiagram`
+
+- (phase 83 step 3, 2026-11-20 L.19 (05/2010)을 IPv4로 다시 받아 읽음 — 위와 같은 판) **구리선의 감쇠·누화·충격성 잡음**:
+  - 구리 쌍의 삽입 손실은 1 km마다 dB로 적고, 같은 쌍이라도 주파수가 높을수록 크다 — 지름 0.4 mm 쌍이 40 kHz에서 9.0 dB/km, 300 kHz에서 14.6 dB/km다(표 4 — G.996.1에서 가져온 값). 서비스마다 허용하는 최대 삽입 손실(표 3)과 닿는 거리(표 5)가 정해져 있다 — §7.3.1.
+    가입자 선로의 감쇠는 선로 길이에 달려 있다 — 부록 III(인도의 경험 — 권고의 본문이 아니다)
+  - **누화**: 한 케이블에 든 쌍 사이의 결합이 완전히 끊기지 않아, 한 쌍(방해하는 쪽)에 흐르는 신호가 옆 쌍(방해받는 쪽)에 섞여 드는 잡음이다. 가까이 붙은 쌍끼리 특히 심하다. 근단 누화(NEXT)와 원단 누화(FEXT) 두 갈래가 있다 — §7.3.2.
+    보내기와 받기에 같은 주파수 대역을 쓰는 시스템에서는 근단 누화가, 두 방향에 서로 다른 대역을 쓰는 ADSL 같은 시스템에서는 원단 누화가 문제가 된다 — 같은 절
+  - **충격성 잡음**: 가입자 선로에는 같은 케이블을 함께 쓰는 다른 시스템과 그 밖의 원천에서 오는 충격성 잡음이 있다 — §7.3.4
+  - ADSL이 얼마나 멀리 가는지는 선로 양 끝의 신호 대 잡음비가 정하고, 그 비는 주파수에 따른 감쇠·무선 간섭·근단 누화·원단 누화와 밀접하다 — 부록 II
+  - 쓰지 않는 것: 서비스별 손실·거리·저항 값의 표, 전력 합 누화의 값, 브리지 탭, 대지 불평형(LCL)
+  - 쓰일 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(구리선의 감쇠는 거리와 주파수에 따라 커진다, 누화의 뜻과 근단·원단, 충격성 잡음이 어디서 오는지), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-08-25 #20])
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 위 「베이스밴드와 브로드밴드」 줄의 RFC 4836(10BROAD36 MAU는 주파수 다중화로 보내는 길과 받는 길을 가른다)을, 다중화의 항목 뒤 문단에서 주파수로 나누는 예로 다시 썼다 —
+  「동축 케이블 규격 10BROAD36이 보내는 신호와 받는 신호를 서로 다른 주파수에 실어 케이블 한 줄로 두 방향을 나르는 것도 주파수로 나누는 예다」(앞 개념 `coaxial-cable`이 같은 사실을 먼저 썼다)
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(주파수로 나누는 예)
+
+- (phase 83 step 7, 2026-11-20 step 0이 받은 Carlson 발표를 다시 읽음 — 표준 본문이 아니라 연구 그룹 의장의 발표 자료) **다중점 버스와 여러 토폴로지**:
+  - 2쪽 — 많은 네트워크가 다중점(multi-drop) 「버스」 토폴로지를 쓰고, 스테이션은 함께 쓰는 매체(버스)에 바로 붙는다. 대부분은 선형(linear)이고, 성형·고리(loop)나 그 셋을 섞은 자유형도 있다
+  - 3쪽 — 10BASE5는 동축 버스에 「뱀파이어 탭」으로 노드를 붙였고, 케이블에 탭을 둘 수 있는 자리가 표시돼 있었으며, 양 끝에 50옴 끝막음이 있어야 했다(위 step 0 줄). 4·8쪽 — RS-485 버스와 고속 CAN 버스도 양 끝을 120옴으로 끝막음한다.
+    12쪽 — 선형 버스와 끝막음은 단순하고, 다른 토폴로지는 배선 제약이 더 붙고 끝막음도 더 까다로워진다
+  - 쓰일 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.bus-topology`(스테이션이 함께 쓰는 버스에 바로 붙는다, 양 끝 끝막음), `network-topology.network-topology`(선형·성형·고리 같은 모양의 이름)
+
+쓰인 곳: (phase 83 step 1에서 쓰일 곳) `transmission-media.transmission-media`(ITU-T가 매체를 가르는 묶음 — 대칭 쌍·동축·광섬유와 무선 중계·위성), `transmission-media.twisted-pair`(꼰 쌍, UTP·STP, 카테고리, 10BASE-T의 2쌍·핀 1·2/3·6·100 m, 누화와 묶음의 오답),
+(phase 83 step 2에서 쓰일 곳) `transmission-media.coaxial-cable`(구조, 10BASE5·10BASE2·10BROAD36, 새 설치에 권하지 않음, 베이스밴드·브로드밴드), (phase 83 step 7에서 쓰일 곳) `network-topology.bus-topology`(Carlson 3쪽 — 동축 버스와 양 끝의 끝막음),
+기출 대조(`exam-notes.md` 「phase 83 step 0」 문단)
+
+## (phase 83 step 2) ITU-T K.37 (01/2024) — Low and high frequency electromagnetic compatibility (EMC) mitigation techniques for telecommunication installations and systems – Basic EMC Recommendation
+https://www.itu.int/rec/T-REC-K.37-202401-I/en
+
+판: 2024-01-13 승인, In force(권고 페이지에서 확인). 무료 PDF를 IPv4로 내려받아 PyMuPDF로 글자를 뽑아 읽었다(2026-11-20 — itu.int가 브라우저 머리 없는 요청을 「Request Rejected」로 거절해 User-Agent·Accept 머리를 붙여 받았다).
+통신 설비가 전력선·무선 송신기·정전기 방전 같은 것에서 받는 방해와 간섭을 줄이는 방법을 모은 K 시리즈(간섭으로부터의 보호) 권고다.
+
+- 통신 설비의 간섭은 피해를 입는 회로(신호가 흐르는 회로)에 차동 모드의 방해 전압이 생겨 일어나고, 줄이는 방법의 목표는 그 방해를 회로에 흐르는 신호보다 충분히 작게 만드는 것이다 — §10.2
+- 방해가 차동 모드로 곧바로 결합하는 것은 보통 꼰 쌍 케이블이나 동축 케이블을 써서 막는다. 두 짜임 모두 차동 모드 회로로의 결합을 줄인다 — §10.2
+- 공통 모드에서 차동 모드로 넘어오는 결합은 쌍 케이블의 대칭(평형)과 차폐로 줄일 수 있다. 쌍 케이블에는 차폐를 더할 수 있고, 동축 케이블에서는 바깥 도체가 차폐 노릇을 한다 — §10.2
+- 차폐가 얼마나 좋은지는 전달 임피던스·전달 어드미턴스로 재고, 그 정의와 케이블 종류별 요구는 IEC 60096-0-1에 있다 — §10.2(값은 가져오지 않는다)
+- 그래서 본문은 「동축 케이블에서는 신호를 나르는 바깥 도체가 그대로 중심 도체를 둘러싼 차폐가 되어, 바깥에서 오는 전자기 잡음이 안쪽 신호에 섞여 드는 것이 줄어든다」와
+  「꼬는 짜임과 한 도체가 다른 도체를 둘러싸는 짜임 모두 잡음이 신호에 곧바로 섞여 드는 것을 줄인다」까지 쓴다. 차동 모드·공통 모드라는 말은 쓰지 않는다
+- 쓰지 않는 것: 차동 모드와 공통 모드의 구분, 전달 임피던스의 값, 접지·본딩망, 케이블 트레이, 커넥터에서의 차폐 접촉
+- **한국어 이름**: screen → 차폐(step 0·1이 쓴 이름), outer conductor → 바깥 도체(step 0의 이름), twisted pair → 트위스티드 페어(본문은 「꼰 쌍」을 「구리선 두 가닥을 서로 꼰 것」으로 쓴다)
+
+쓰인 곳: (phase 83 step 2) `transmission-media.coaxial-cable`(바깥 도체의 차폐 노릇, 동축 케이블과 트위스티드 페어의 짜임), 문항 n355, 도식 `CoaxLayersDiagram`의 「바깥 잡음 줄이기」.
+(phase 83 마무리, 2026-11-21) `transmission-media.twisted-pair` 문단 4의 끝 문장(구리선 두 가닥을 꼬아 쌍을 만드는 짜임이 잡음이 신호에 곧바로 섞여 드는 것을 줄인다) — step 1이 근거를 못 찾아 쓰지 않은 「꼬는 까닭」을 위 §10.2의 둘째 줄로 더했다.
+이 항목의 §10.2는 꼰 쌍의 짜임도 직접 결합을 줄인다고 적는다 — step 1이 쓴 `transmission-media.twisted-pair`는 「꼬는 까닭」을 쓰지 않았다(그 개념은 이 step에서 고치지 않았다)
+
+## (phase 83 step 0) ITU-T 광 가입자망 권고 — G.983.1 (01/2005), G.984.1 (03/2008), G.987 (06/2012)
+https://www.itu.int/rec/T-REC-G.983.1-200501-I/en
+https://www.itu.int/rec/T-REC-G.984.1-200803-I/en
+https://www.itu.int/rec/T-REC-G.987-201206-I/en
+
+판: G.983.1 「Broadband optical access systems based on Passive Optical Networks (PON)」(2005-01-13 승인, In force — 개정 1(05/05)과 정오표 1(03/06)이 붙어 있다), G.984.1 「Gigabit-capable passive optical networks (GPON): General characteristics」(2008-03-29 승인, In force — 개정 1(10/09)·개정 2(04/12)가 붙어 있다),
+G.987 「10-Gigabit-capable passive optical network (XG-PON) systems: Definitions, abbreviations and acronyms」(2012-06-13 승인, In force). 셋 다 본문 PDF를 IPv4로 내려받아 읽었고, 개정·정오표는 읽지 않았다.
+
+- **광 가입자망의 구조**: 가입자 쪽 접근망(local access network)의 광 구간은 능동일 수도 수동일 수도 있고, 구조는 점 대 점일 수도 점 대 다중점일 수도 있다 — G.984.1 §5.1. G.983.1 §5.1은 이것을 「점 대 점」, 「능동」, 「수동 점 대 다중점」 세 구조로 적는다.
+  구조는 광섬유가 어디까지 오는지로도 나뉜다 — 집까지(FTTH, Fibre to the Home), 건물이나 연석까지(FTTB·FTTC), 길가의 캐비닛까지(FTTCab). 이 차이는 주로 지원하는 서비스의 차이라 권고는 넷을 같은 틀로 다룬다 — G.984.1 §5.1·그림 1, 약어 절
+- **광 가입자망(OAN)**: 같은 망 쪽 인터페이스를 함께 쓰고 광 전송 시스템이 받치는 가입자 링크들의 묶음이고, 같은 OLT에 이어진 ODN 여럿을 담을 수 있다 — G.984.1 §3.2.5
+- **ODN**: PON에서 접근망의 광섬유 나무(tree)에 광 분배기·필터 같은 수동 광 소자를 더한 것이다 — G.984.1 §3.2.6. G.987 §3.2.4는 ODN을 점 대 다중점 광섬유 기반 시설로 정의하고, 가장 단순한 ODN은 전부 수동이며 뿌리 하나에서 가지를 친 광섬유 나무(분배기·결합기·필터 등)라고 적는다.
+  둘 이상의 수동 구간 사이에 능동 장치를 둔 「복합 ODN」도 정의한다 — 같은 절
+- **OLT·ONU·ONT**: OLT는 ODN의 공통 끝(뿌리)에 있는 장치로, PON 프로토콜을 처리하고 통신사 쪽 서비스 인터페이스로 이어 주며 그 아래의 ODN과 ONU를 관리한다 — G.984.1 §3.2.7.
+  ONU는 ODN의 갈래 끝(잎) 하나에 있는 장치로, PON 프로토콜을 처리하고 가입자 쪽 서비스 인터페이스로 이어 준다. 여러 가입자용 장치를 뜻하기도 한다 — §3.2.9. ONT는 가입자 한 명을 위한 ONU다 — §3.2.8, G.987 §3.2.7. G.983.1 §4.12는 ONT를 FTTH에 쓰는 ONU로 적는다
+- **PON의 구성**: OLT·ONU와, 수동 광 분배기가 든 PON 꼴의 광케이블로 이루어진다. 광섬유 한 가닥을 수동으로 나눠 여러 ONU가 그 가닥의 용량을 함께 쓴다. 나눠 쓰므로 사생활·보안을 지키는 조치가 따로 필요하고, 올라가는 방향에는 시분할 다중 접속(TDMA) 프로토콜이 필요하다 — G.983.1 §5.2.
+  PON 시스템은 OLT 하나와 ONU 여럿을 담고, 물리 계층·전송 수렴 계층·관리 프로토콜을 정해진 묶음으로 함께 쓰는 망 요소들의 조합이다 — G.987 §3.2.10
+- **분기 비율과 거리**: G.983.1(BPON)의 ODN은 수동 분배기로 16가지나 32가지로 나누고, 최대 광섬유 거리는 20 km다 — 표 4-a. G.984.1(GPON)에서는 지금 기술로 물리 계층은 1:64까지 현실적이고, 전송 수렴 계층은 1:128까지 생각해 둬야 한다. 분기 비율이 클수록 운용자에게 좋지만 더 많이 나누면 더 큰 광 전력 예산이 든다 — §12.
+  물리적 도달 거리는 10 km와 20 km 두 가지다 — §9. 802.3ah의 EPON은 대표적인 분기가 1:16이다 — 위 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 0) 줄
+- **「AON」·「PTP」라는 이름**: 세 권고와 802.3ah 어디에도 그 뜻으로는 없다 — 전문 검색(active optical·AON·PTP). G.987의 약어 절에 PTP가 있지만 Precision Timing Protocol(시각을 맞추는 프로토콜)의 약어라 다른 뜻이다. 능동 구조 자체는 G.983.1·G.984.1 §5.1의 「능동(active)」과 G.987 §3.2.4의 「복합 ODN」(수동 구간 사이의 능동 장치)으로 말할 수 있다. 점 대 점은 G.983.1·G.984.1 §5.1과 802.3ah의 P2P다 — `exam-notes.md` E49
+- 쓰지 않는 것: 세대별 전송률, 파장 배치, 손실 등급(A·B·C), 암호화(처닝·AES), 대역 할당과 거리 측정(ranging), 보호 절체
+- **한국어 이름**: optical access network → 광 가입자망(OAN), Fibre to the Home → FTTH(집 안까지 광섬유), FTTB·FTTC·FTTCab → 건물·연석·캐비닛까지 광섬유, passive optical network → PON(수동형 광 네트워크 — 「수동형」은 가운데에 전원을 쓰는 장치가 없다는 뜻),
+  optical line termination → OLT(약어로 쓰고 「통신사 설비 쪽 장치」로 풀어 쓴다), optical network unit·termination → ONU·ONT(「가입자 쪽 장치」로 풀어 쓴다), optical distribution network → 광 분배망(ODN), splitter → 광 분배기(guide의 이름), split ratio → 분기 비율,
+  point-to-point → 점 대 점(phase 72의 802.3ah 줄은 「점대점」으로 붙여 썼다 — 이 주제는 guide대로 띄어 쓴다), point-to-multipoint → 점 대 다중점, active → 능동, passive → 수동
+
+- (phase 83 step 3, 2026-11-20 — 새로 읽은 문서는 없다) **다중 접속의 예**: 위 「PON의 구성」 줄(G.983.1 §5.2 — 광섬유 한 가닥을 여러 ONU가 나눠 쓰므로 올라가는 방향에 TDMA가 필요하다)과 802.3ah §64.1(OLT가 ONU마다 보낼 시간 칸을 정한다)은,
+  서로 떨어진 여러 장치가 매체 하나를 시간으로 나눠 쓰는 TDMA(time division multiple access — G.701 약어표의 풀이)의 예다. **다중 접속을 한 문장으로 정의한 곳과 FDMA는 이 step이 읽은 권고(G.701·Q.9·I.112·I.113·G.983.1)에서 찾지 못했다** — 전문 검색(multiple access·FDMA)
+  - 쓰일 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(「다중화와 다중 접속」 4절 — 다중화기 한 곳이 입력 여럿을 합치는 다중화와, 떨어진 장치들이 매체를 시간으로 나눠 쓰는 TDMA)
+  - (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 「다중화와 다중 접속」 4절을 앞 개념 `ftth-pon`의 TDMA로 견줘 썼다 — 회선 한쪽 끝의 다중화기 하나가 입력 여럿을 받아 합치는가, 떨어진 집의 ONU들이 OLT가 나눠 준 시간에 저마다 자기 신호를 직접 올려 보내는가.
+    다중 접속의 한 문장 정의를 찾지 못했으므로 「TDMA라는 이름에 든 다중 접속(multiple access)은 떨어진 장치 여럿이 매체 하나에 저마다 접속해 함께 쓰는 쪽을 가리킨다」로 이름에서 읽히는 데까지만 썼다. FDMA는 쓰지 않았다
+    - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(「다중화와 다중 접속」)
+
+- (phase 83 step 4, 2026-11-20) **본문에 쓴 모양**: 세 구조는 G.983.1 §5.1대로 점 대 점·능동·수동 점 대 다중점으로 쓰고, 「PTP·AON」은 E49대로 자격시험이 부르는 이름으로만 한 줄 적었다. 능동 구조의 가운데 장치가 무엇을 하는지는 쓰지 않았고, 능동 구조는 G.987 §3.2.4의 복합 ODN(수동 구간 사이의 능동 장치)으로만 짚었다.
+  「능동」·「수동」은 일반 낱말의 한 줄 풀이(전원을 받아 신호를 다루는 장치, 전원 없이 빛을 지나가게 하거나 나누는 부품)로 썼고, 수동 부품의 예(광섬유를 이은 곳·광 분배기)는 802.3ah §64.1이다. 분기 비율은 G.983.1의 16·32와 G.984.1의 물리 계층 1:64까지만 쓰고 전송 수렴 계층의 1:128은 쓰지 않았다.
+  점 대 점 구조에서도 망 쪽 끝 장치를 `OLT01`로 그린 것은 802.3ah §1.4(OLT는 광 가입자망의 망 쪽 끝 장치)를 따랐다. 「통신사 = 인터넷 서비스 제공자(ISP)」는 앞 주제 `network-basics.lan-wan`의 말과 맞췄다
+  - 쓰인 곳: (phase 83 step 4) `transmission-media.ftth-pon`(광 가입자망과 FTTH·FTTB·FTTC, 세 구조와 E49 줄, OLT·ONU·ONT·광 분배기·광 분배망, 내려가고 올라가는 방향과 보안 조치·TDMA, 분기 비율·광 전력 예산·10/20 km, 예 `OLT01`과 집 1~4, 「PON과 점 대 점」·「수동과 능동」), 문항 n358(갈라지는 자리에 두는 것), 도식 `PonSplitDiagram`
+
+쓰인 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.ftth-pon`(광 가입자망과 FTTH, 점 대 점·능동·수동 점 대 다중점의 세 구조, ODN·OLT·ONU·ONT, 광 분배기와 나눠 쓰기, 분기 비율과 거리), 기출 대조(`exam-notes.md` 「phase 83 step 0」 문단, E49)
+
+## (phase 83 step 3) ITU-T G.701 (03/93) — Vocabulary of digital transmission and multiplexing, and pulse code modulation (PCM) terms
+https://www.itu.int/rec/T-REC-G.701-199303-I/en
+
+판: 1993-03-01 승인, In force(앞 판 11/88은 Superseded). 디지털 전송·다중화·PCM의 용어를 번호를 붙여 모은 용어 권고다. 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+
+- **채널과 공통 경로**: 채널은 두 지점 사이에서 신호를 한 방향으로 보내는 수단이고, 채널 여럿이 공통 경로 하나를 함께 쓸 수 있다 — 그때 채널마다 주파수 대역 하나나 타임 슬롯 하나를 나눠 준다 — 용어 1005와 그 주 1
+- **시분할 다중화(TDM)**: 신호 여럿을 시간으로 엇갈려 끼워 공통 채널 하나로 보내는 다중화다 — 4012. 이 정의는 칸을 늘 주는지(동기식)와 필요할 때만 주는지(비동기식)를 가르지 않는다 — 그 구분은 아래 「(phase 83 step 3) 다중화의 틀」 항목의 I.113이 한다
+- **다중화기와 역다중화기**: 디지털 다중화기는 디지털 신호 여럿을 시분할 다중화로 묶어 합성 신호 하나로 만드는 장비다 — 4014. 디지털 역다중화는 합성 신호를 원래의 신호들로 나누는 것이고, 디지털 역다중화기는 그 일을 하는 장비다 — 4015·4016.
+  한 곳에서 두 방향을 맡도록 다중화기와 역다중화기를 묶은 것을 다중화 장비라 부른다 — 4017
+- **주파수 분할 다중화**: 이 권고는 FDM을 따로 정의하지 않고, 주파수 분할 다중화된 신호를 시분할 다중화된 신호로 바꾸는 장비(transmultiplexer, 4020)를 정의하며 이름만 쓴다. 주파수 영역에서 채널을 가르는 뜻은 위 「(2026-10-28) ITU-T Q.9」 항목의 (phase 83 step 3) 줄(0068)
+- **타임 슬롯과 프레임**: 타임 슬롯은 되풀이되는 시간 간격 가운데 하나하나를 알아보고 가리킬 수 있는 칸이다 — 6004. 채널 타임 슬롯은 프레임 안의 정해진 자리를 차지하고 특정 채널에 배정된 칸이다 — 6006.
+  프레임은 차례로 이어진 타임 슬롯들이 되풀이되는 한 묶음이고, 그 안에서 칸마다의 자리를 알아볼 수 있다 — 4007. 2 048·1 544 kbit/s의 1차 디지털 그룹에서 채널 타임 슬롯은 보통 8비트이고 실효 속도가 64 kbit/s다 — 4004의 주
+- **PCM과 그 갈래**: PCM은 신호를 표본으로 재고, 표본마다 따로 양자화한 뒤 부호화해 디지털 신호로 바꾸는 과정이다 — 8001. DPCM은 표본과 그 예측값의 차이를 양자화·부호화하고 — 8002, 델타 변조는 그 차이가 플러스인지 마이너스인지만 1비트로 적는 DPCM이다 — 8003.
+  ADPCM은 적응 예측과 적응 양자화로 비트율을 줄이는 압축 방식이다 — 8004. **「적응 델타 변조(ADM)」는 이 권고에 없다** — 전문 검색(adaptive delta). 델타 변조(8003)까지만 있다
+- **부호화와 코덱**: 부호화(encoding)는 양자화된 값을 나타내는 부호 단어를 만드는 것이다 — 8023. 코덱(codec)은 한 장비 안에서 서로 반대 방향으로 일하는 부호기와 복호기를 묶은 것이다 — 8032.
+  **「모뎀」과 「DSU」는 이 권고에 정의가 없다** — 전문 검색(modem·DSU). Q.9·I.112·P.10/G.100도 정의하지 않는다(M.1020·P.10/G.100은 모뎀이라는 말을 쓰기만 한다)
+- **재생**: 재생(regeneration)은 디지털 신호를 받아, 신호 요소의 진폭·파형·타이밍이 정해진 한도 안에 들도록 다시 만드는 과정이다 — 2021. 재생기는 그 일을 하는 장치이고 — 2022, 재생 중계기는 디지털 신호를 재생하는 중계기다 — 2023(중계기의 정의는 G.601에 있다고 적는다 — 아래 「(phase 83 step 3) 전송 손상」 항목)
+- **오류**: 디지털 오류는 보낸 디지털 신호의 한 자리와 받은 신호의 그 자리가 어긋난 것이다 — 2030. FCS는 프레임 전체(플래그 제외)에서 얻은 순환 중복 검사 값이다 — 8040(`ethernet.fcs`와 같은 뜻)
+- 쓰지 않는 것: 다중화 계위(2차·3차 그룹)의 속도, 정위치 맞춤(justification)·슬립, 동기 방식의 용어, 선로 부호(AMI 등), 양자화의 세부
+- **한국어 이름**: time-division multiplexing → 시분할 다중화(TDM — 기출의 이름), multiplexer → 다중화기(MUX), demultiplexing·demultiplexer → 역다중화·역다중화기(DEMUX — guide의 이름), time slot → 타임 슬롯(기출의 표기 — 「시간 칸」으로 풀어 쓴다),
+  frame → 프레임(이더넷의 프레임과 같은 낱말이라, 이 주제에서는 「타임 슬롯들의 한 바퀴」로 따로 푼다), pulse code modulation → 펄스 부호 변조(PCM — 기출은 약어로 쓴다), adaptive differential pulse code modulation → 적응 차분 펄스 부호 변조(ADPCM), delta modulation → 델타 변조,
+  codec → 코덱(기출의 표기 CODEC), regeneration → 재생, regenerative repeater → 재생 중계기(앞 phase의 `network-devices.repeater`가 「리피터」로 부르는 장비가 하는 일)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 디지털 오류(2030)를 「보낸 비트와 받은 비트가 어긋난 비트 오류」로 풀어 채널 부호화의 첫머리에 두었다(앞 개념 전송 손상의 잡음·누화로 잇는다).
+  PCM(8001)과 ADPCM(8004)은 「음성을 비트로 바꾼다·그 비트 수를 줄인다」까지 쓰고 표본화·양자화는 쓰지 않았다. 다중화기·역다중화기(4014~4016)와 그 둘을 한 장비에 묶은 다중화 장비(4017),
+  채널마다 주파수 대역이나 타임 슬롯을 하나씩 준다(1005의 주)를 다중화의 소개 문단과 항목 뒤 문단에 썼다. 시분할 다중화(4012)는 목록 항목에서 「시간으로 엇갈려 끼워 보낸다」까지만 쓰고, 동기식·비동기식의 구분은 쓰지 않았다(step 6의 몫).
+  코덱(8032)과 델타 변조(8003)는 쓰지 않았다 — 기출의 보기(CODEC·ADM)를 가르는 데 본문이 그 낱말을 쓸 까닭이 없어서다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(비트 오류, PCM·ADPCM), `transmission-media.multiplexing`(다중화기·역다중화기·한 장비에 묶기, 채널마다 주파수 대역이나 타임 슬롯, 시분할 다중화 항목), 문항 n361(해설의 PCM·ADPCM), 도식 `ChannelCodingFlowDiagram`·`MuxDemuxDiagram`
+- (phase 83 step 6, 2026-11-20) **본문에 쓴 모양**: 타임 슬롯(6004·6006)과 프레임(4007 — 타임 슬롯들이 되풀이되는 한 묶음이고 칸마다 자리를 알아볼 수 있다)을 시분할 다중화의 첫 문단에 「칸들을 차례로 한 바퀴 돈 묶음」으로 쓰고,
+  데이터 링크 계층의 프레임과 다른 뜻이라고 밝혔다. 채널 타임 슬롯은 프레임 안의 정해진 자리를 차지한다(6006)는 것을 동기식에서 「받는 쪽은 칸의 자리만 보고 그 칸이 어느 입력의 것인지 안다」로 썼다.
+  재생(2021)은 파장 분할 다중화의 「광 증폭기와 리피터」에서 리피터가 세기·파형·타이밍을 되살려 다시 만든다는 말로 썼다(`transmission-media.transmission-impairments`·`network-devices.repeater`와 같은 뜻)
+  - 쓰인 곳: (phase 83 step 6) `transmission-media.tdm`(타임 슬롯·프레임, 칸의 자리로 입력을 가른다), `transmission-media.wdm`(「광 증폭기와 리피터」), 문항 n363(해설)·n364(해설의 재생 중계기), 도식 `TdmSlotsDiagram`
+
+쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(PCM·ADPCM이 하는 일, 코덱, 디지털 오류), `transmission-media.multiplexing`(다중화기·역다중화기, 채널들이 공통 경로를 나눠 쓴다, TDM의 넓은 뜻),
+(phase 83 step 6에서 쓰일 곳) `transmission-media.tdm`(타임 슬롯·프레임·8비트 칸과 64 kbit/s), (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(재생 — 리피터가 하는 일),
+기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-02-25 #26]·[기출 2025-08-24 #21], E51)
+
+## (phase 83 step 3) 전송 손상 — ITU-T P.10/G.100 (11/2017), M.1020 (03/93), O.71 (11/88), G.601 (11/88)
+https://www.itu.int/rec/T-REC-P.10-201711-I/en
+https://www.itu.int/rec/T-REC-M.1020-199303-I/en
+https://www.itu.int/rec/T-REC-O.71-198811-I/en
+https://www.itu.int/rec/T-REC-G.601-198811-I/en
+
+판: P.10/G.100 「Vocabulary for performance, quality of service and quality of experience」(2017-11-13 승인, In force — 개정 1(06/19)·개정 2(05/24)가 붙어 있고, 개정은 읽지 않았다), M.1020 「Characteristics of special quality international leased circuits with special bandwidth conditioning」(1993-03-01 승인, In force),
+O.71 「Impulsive noise measuring equipment for telephone-type circuits」(1988-11-25 승인, In force), G.601 「Terminology for cables」(1988-11-25 승인, In force). 넷 다 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+손상의 정의는 다른 항목에도 나눠 적었다 — 지연 왜곡·군지연·누화는 위 「(2026-10-28) ITU-T Q.9」 항목, 감쇠의 정의는 「(phase 83 step 0) ITU-T 광섬유 권고」 항목, 구리선의 감쇠·누화·충격성 잡음은 「(phase 83 step 0) 구리 매체」 항목의 (phase 83 step 3) 줄.
+
+- **군지연 왜곡**: 관심 있는 주파수 대역 안에서, 어떤 주파수의 군지연이 가장 작은 군지연보다 얼마나 더 큰지를 이르는 말이다 — P.10/G.100 6.104(군지연 자체의 뜻은 Q.9 0231)
+- **회선이 지닌 손상의 목록**: 데이터를 보내는 특별 품질 전용 회선의 특성으로 손실/주파수 왜곡(1 020 Hz에서의 손실에 견준 주파수별 손실의 한도 — §2.2), 군지연 왜곡(대역 안에서 잰 가장 작은 군지연에 견준 한도 — §2.3), 무작위 회로 잡음(§2.5), 충격성 잡음(§2.6), 위상 지터(§2.7), 누화(§2.12)를 따로 항목으로 둔다 — M.1020 §2.
+  누화는 같은 회선의 가는 방향과 오는 방향 사이(근단)와 서로 다른 회선 사이로 나눠 한도를 적는다 — §2.12. 무작위 잡음은 회선에 든 주파수 분할 다중화 반송 시스템이 길수록 커진다 — §2.5, 부록 A 그림 A.1. 이 회선은 등화기 없는 모뎀으로 빠른 데이터를 보내는 데 쓴다 — §1
+- **충격성 잡음**: 순간 전압이 정해 둔 문턱을 넘는 횟수를 세어 잰다 — O.71 §1(측정 원리). M.1020 §2.6도 문턱을 넘는 충격성 잡음의 봉우리 수를 15분마다 센다. 그러니 충격성 잡음은 짧게 툭 튀어 오르는 잡음이다 — 측정 방법에서 나오는 말이고, 한 문장의 정의는 찾지 못했다
+- **잡음**을 한 문장으로 정의한 곳은 찾지 못했다. 본문은 잡음을 「신호에 섞여 들어 받는 쪽이 신호를 읽기 어렵게 만드는 원치 않는 전기적 방해」로 풀 수 있다 — 방해 전압을 신호보다 충분히 작게 만드는 것이 간섭을 줄이는 목표라는 K.37 §1(「(phase 83 step 2) ITU-T K.37」 항목)과,
+  다른 쌍·다른 시스템에서 섞여 드는 잡음을 적은 L.19 §7.3.2·§7.3.4에서 나오는 말이다
+- **열잡음**: 이 step이 읽은 권고(P.10/G.100·M.1020·Q.9·G.701·L.19·G.661·G.712) 어디에도 「열잡음(thermal noise)」이라는 말이 없다 — 전문 검색. 본문은 열잡음을 쓰지 않는다(L.19 표 3 주의 백색 가우스 잡음은 이름만 있고 무엇에서 생기는지 말하지 않는다)
+- **증폭기와 중계기**: 중계기(repeater)는 전송 매체의 한 지점에 넣는 장비로, 증폭기나 재생기를 하나 이상 담는다 — G.601 1001. 아날로그 중계기는 아날로그 신호나 디지털 신호를 증폭하고, 디지털 신호의 재생은 하지 않는다 — 1002. 재생 중계기는 디지털 신호의 재생을 맡는다 — 1003.
+  그러니 ITU-T의 넓은 뜻의 「중계기」에는 키우기만 하는 것(증폭)과 다시 만드는 것(재생)이 함께 든다. 앞 phase의 `network-devices.repeater`가 말하는 리피터는 신호의 파형과 타이밍을 되살려 다시 만드는 쪽이다(「(phase 72 step 1) IEEE 802.3 개정 프로젝트의 의견 처리 기록」 항목의 (phase 82 step 8) 줄, G.701 2021) —
+  본문은 이 뜻을 따라 「리피터 = 다시 만든다」, 「증폭기 = 키운다」로 가르고, 「아날로그 중계기」라는 넓은 쓰임은 쓰지 않는다
+- **증폭기와 잡음**: 광 증폭기를 지나면 신호 대 잡음비가 떨어지고 그 정도를 잡음 지수로 잰다 — G.661 3.2.1.20(아래 「(phase 83 step 3) WDM과 광 증폭기」 항목). 전기 증폭기에 대해 「신호와 함께 잡음도 키운다」고 적은 문장은 찾지 못했다 —
+  본문은 전기 증폭기에 대해 「신호를 키운다」까지만 쓰고, 잡음을 함께 키운다는 말은 쓰지 않는다
+- **「위상 왜곡」이라는 이름**: P.10/G.100·M.1020·M.1025·Q.9·G.701·G.712·O.81 어디에도 「phase distortion」이 없다 — 전문 검색. 같은 현상을 이 권고들은 지연 왜곡(Q.9 0230)·군지연 왜곡(P.10/G.100 6.104, M.1020 §2.3)이라 부른다 — `exam-notes.md` E50
+- 쓰지 않는 것: 손상마다의 한도 값(dB·µs·dBm0), 위상 지터·진폭 히트·고조파 왜곡, 잡음의 가중(psophometric), 측정 장비의 사양
+- **한국어 이름**: attenuation·loss → 감쇠(기출의 이름 — 「손실」로도 쓴다), group delay → 군지연(group을 옮긴 한자어 — 「무리 지연」보다 흔히 쓴다), group-delay distortion → 군지연 왜곡, delay distortion → 지연 왜곡(guide의 이름 — 기출은 「위상 왜곡」, E50),
+  impulsive noise → 충격성 잡음(기출의 이름), crosstalk → 누화(기출의 이름), near-end·far-end crosstalk → 근단 누화·원단 누화, amplifier → 증폭기, repeater → 중계기(G.601의 넓은 뜻 — 본문은 `network-devices.repeater`의 「리피터」와 갈라 쓴다), noise figure → 잡음 지수
+
+- (phase 83 step 4, 2026-11-20) **본문에 쓴 모양**: 손상 넷(감쇠·지연 왜곡·잡음·누화)을 목록 항목으로 세우고, 지연 왜곡은 Q.9 0230·0231과 P.10/G.100 6.104를, 광섬유의 같은 꼴은 G.650.1 §3.4.2.1(색분산)을 단계대로 풀었다. 「위상」은 일반 낱말의 한 줄 풀이로 쓰고 E50대로 「자격시험은 위상 왜곡이라 부른다」를 한 줄 덧붙였다.
+  열잡음과 「전기 증폭기가 잡음도 키운다」는 이 항목의 판정대로 쓰지 않았다. 근단·원단 누화는 본문에서 뜻을 풀 근거(어느 끝에서 재는지)를 적어 두지 않아 이름도 쓰지 않았다. 증폭기는 「키운다」, 리피터는 G.701 2021의 「재생 — 진폭·파형·타이밍을 다시 만든다」로 갈랐다(`network-devices.repeater`와 같은 뜻)
+  - 쓰인 곳: (phase 83 step 4) `transmission-media.transmission-impairments`(손상 넷의 목록, 지연 왜곡의 단계와 색분산, E50 줄, 증폭기·리피터·재생, 「감쇠와 지연 왜곡」·「잡음과 누화」, 예 `PC01`→`SW01`), 문항 n359(지연 왜곡일 때 신호에 생긴 일)·n360(감쇠는 잡음이 섞여 드는 것이 아니다), 도식 `ImpairmentKindsDiagram`
+
+쓰인 곳: (phase 83 step 4에서 쓰일 곳) `transmission-media.transmission-impairments`(군지연 왜곡, 충격성 잡음, 누화의 두 갈래, 잡음의 풀이, 증폭기와 리피터), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-08-25 #20]·[기출 2025-08-24 #25]·[기출 2026-02-01 #23], E50)
+
+## (phase 83 step 3) 부호화 — ITU-T G.711 (11/88), G.726 (12/90), G.722.2 (07/2003), J.83 (12/2007), G.975 (10/2000), G.9904 (10/2012)
+https://www.itu.int/rec/T-REC-G.711-198811-I/en
+https://www.itu.int/rec/T-REC-G.726-199012-I/en
+https://www.itu.int/rec/T-REC-G.722.2-200307-I/en
+https://www.itu.int/rec/T-REC-J.83-200712-I/en
+https://www.itu.int/rec/T-REC-G.975-200010-I/en
+https://www.itu.int/rec/T-REC-G.9904-201210-I/en
+
+판: G.711 「Pulse code modulation (PCM) of voice frequencies」(1988-11-25 승인, In force — 뒤에 붙은 부록·개정은 읽지 않았다), G.726 「40, 32, 24, 16 kbit/s Adaptive Differential Pulse Code Modulation (ADPCM)」(1990-12-14 승인, In force — 부록·개정은 읽지 않았다),
+G.722.2 「Wideband coding of speech at around 16 kbit/s using Adaptive Multi-Rate Wideband (AMR-WB)」(2003-07-29 승인, In force), J.83 「Digital multi-programme systems for television, sound and data services for cable distribution」(2007-12-14 승인, In force),
+G.975 「Forward error correction for submarine systems」(2000-10 승인, In force — 앞 판 11/96은 Superseded), G.9904 「Narrowband orthogonal frequency division multiplexing power line communication transceivers for PRIME networks」(2012-10-29 승인, In force). 여섯 다 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+**원천 부호화와 채널 부호화를 한 문장씩 정의한 곳은 찾지 못했다** — 아래 줄들은 두 말을 나눠 쓰는 권고에서 그 쓰임을 가져온 것이다.
+
+- **두 말을 나눠 쓰는 곳**: J.83의 케이블 디지털 TV 시스템 A는 원천 부호화(source coding)와 전송 다중화는 MPEG-2를 따르고, 거기에 알맞은 FEC를 더한다 — 부록 A.1. 이 권고 자체가 정하는 것은 프레임 구조·채널 부호화·변조다 — 요약.
+  본문의 네 시스템 비교 표는 「Channel coding」 칸에 FEC를 적는다(시스템 B는 리드-솔로몬 부호와 컨볼루션 부호를 잇댄 것). 그러니 영상을 MPEG-2로 줄여 비트로 만드는 것이 원천 부호화 쪽이고, 그 비트에 오류 정정을 더하는 FEC가 채널 부호화 쪽이다
+- **음성 부호기는 원천 부호기**: G.722.2(AMR-WB)의 음성 부호기는 비트율이 서로 다른 원천 부호기(source codec) 아홉으로 이루어진다 — §4.3. 단말과 망의 채널 부호화는 그와 따로 말한다(필수 모드를 다섯으로 줄여 채널 부호화가 덜 복잡해진다 — §10)
+- **PCM**: 음성 주파수 신호를 부호화하는 방식이고, 1초에 8000번 표본을 재어 표본마다 8비트로 적는다 — G.711 §1·§2·§3.1. 그래서 음성 한 채널이 64 kbit/s가 된다(아래 G.704 줄의 64 kbit/s 타임 슬롯 하나에 G.711 PCM 음성 하나를 싣는 것과 같은 말이다).
+  본문에는 「음성 한 채널을 64 kbit/s의 비트 흐름으로 바꾼다」까지 쓰고, 표본화·양자화의 세부와 A-law·µ-law는 쓰지 않는다(guide 「배경」)
+- **ADPCM**: 64 kbit/s A-law·µ-law PCM 채널을 40·32·24·16 kbit/s 채널로 바꾸고 다시 되돌리는 방식이다 — G.726 §1. ADPCM은 적응 예측과 적응 양자화로 비트율을 줄이는 압축 방식이다 — G.701 8004
+- 그러니 PCM은 음성을 비트로 바꾸고, ADPCM은 그 비트 수를 줄인다. 두 권고 어디에도 오류를 찾거나 고치는 여분을 더하는 기능이 없다 — 전문 검색(redundan·error correct).
+  **PCM·ADPCM을 「원천 부호화」라고 이름 붙인 문장은 없다** — 본문은 「음성을 비트로 바꾸고 줄이는 음성 부호화이고, G.722.2는 음성 부호기를 원천 부호기라 부른다」로 잇는다
+- **FEC**: FEC 부호기는 정보 비트를 받아 계산으로 얻은 여분(중복) 기호를 더하므로, 부호화된 데이터는 원래보다 높은 비트율로 나간다. 받는 쪽의 FEC 복호기는 그 여분으로 오류를 고치고 여분을 떼어 원래 데이터를 되살린다 — G.975 §5.1
+- G.975의 FEC는 리드-솔로몬 부호 RS(255,239)이고, 블록 부호(체계적 선형 순회 블록 부호)에 든다 — §6.2. 길이 255바이트인 부호 단어 하나 안에서 틀린 바이트를 8개까지 고치고, 몰려서 생긴 오류를 고치는 힘이 크다 — §6.3.
+  이 FEC의 여분 비율은 1/14이라, 선로의 비트율이 원래의 15/14배가 된다 — §6.4.4
+- **컨볼루션 부호**: G.9904의 물리 계층은 레이트 1/2 컨볼루션 부호기를 쓴다 — 구속장 K = 7과 생성 다항식 둘로 정한다. 부호기 그림에는 앞서 들어온 비트를 한 칸씩 미뤄 두는 지연 칸(Z⁻¹) 여섯이 이어져 있고, 들어온 비트 하나마다 출력 비트 둘(첫째·둘째 출력)이 나온다.
+  처음에 부호기 상태를 0으로 두고, 헤더·페이로드의 끝에 0을 넣어 부호기를 비운다 — §7.5, 그림 7-8. 그러니 출력 비트는 지금 들어온 비트와 앞서 들어온 비트들로 함께 정해진다 — 그림에서 나오는 말이다
+- FEC(컨볼루션 부호)를 켜면 부반송파 하나가 나르는 정보 비트가 절반이 된다(DBPSK에서 1 → 0.5) — G.9904 표 7-1. 채널이 충분히 좋아 처리량을 더 높여야 하면 위 계층이 컨볼루션 부호화를 끌 수 있다 — §7.1.
+  J.83 부록 B도 트렐리스 부호화 변조 안에서 레이트 1/2 이진 컨볼루션 부호기로 여분을 더한다 — B.5.5.4
+- 쓰지 않는 것: 생성 다항식·구속장의 값과 부호기의 배선, 리드-솔로몬 부호의 생성 다항식·유한체, 인터리빙, 트렐리스 부호화 변조, A-law·µ-law 표, PCM의 표본화·양자화 세부, MPEG-2
+- **한국어 이름**: source coding → 원천 부호화(기출의 이름), channel coding → 채널 부호화(기출의 이름), source codec → 원천 부호기, forward error correction → 전진 오류 정정(FEC — guide의 이름. 「순방향 오류 정정」으로도 옮긴다), error correction → 오류 정정,
+  redundant symbols·redundancy → 여분 기호·여분(guide의 「여분 비트」), Reed-Solomon code → 리드-솔로몬 부호, block code → 블록 부호, convolutional code·encoder → 컨볼루션 부호·컨볼루션 부호기(기출의 이름 — Convolutional Code), code rate → 부호율(레이트 1/2 — 들어온 비트 하나에 나가는 비트 둘)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 원천 부호화와 채널 부호화는 한 문장 정의가 없으므로 쓰임으로 세웠다 — 채널 부호화는 「보낼 데이터 비트로 계산한 여분 비트를 덧붙여 받는 쪽이 비트 오류를 찾거나 고치게 하는 일」(G.975 §5.1),
+  원천 부호화는 「원래 정보를 비트로 바꾸거나 그 비트 수를 줄이는 일 쪽에 든다」로 쓰고, 그 근거로 G.722.2 §4.3(음성 부호기를 원천 부호기라 부른다)과 J.83 부록 A.1(영상을 줄이는 원천 부호화는 MPEG-2를 따르고 FEC를 따로 더한다 — 본문은 「다른 표준」으로만 적었다)을 들었다.
+  PCM(G.711 — 음성 한 채널을 64 kb/s로)과 ADPCM(G.726 §1 — 40·32·24·16 kb/s로 줄인다)은 여분을 더하지 않는다고 적었고, 「원천 부호화의 예」라고 단정하지 않았다. 단위는 이 주제의 꼴(`Mb/s`)을 따라 `kb/s`로 적었다.
+  FEC는 부호기·복호기의 일과 「고칠 수 있는 양에 한도가 있다」를 RS(255,239)의 255바이트 안 8바이트로(§6.2·§6.3), 비트가 늘어나는 것을 부호율 1/2(G.9904 §7.5)과 15/14배(G.975 §6.4.4)로 보였다.
+  컨볼루션 부호기는 「앞서 들어온 비트 몇 개를 붙잡아 두고 새 비트와 함께 내보낼 비트를 정한다」까지 쓰고(그림 7-8에서 나오는 말), 구속장·생성 다항식·끝을 비우는 0 비트는 쓰지 않았다.
+  그래서 예시(데이터 비트 4개)는 부호의 규칙 없이 「여분 비트」라는 말로만 보였다 — 부호율 1/2을 4비트에 그대로 곱하면 끝을 비우는 비트를 빼먹은 수가 되기 때문이다. FEC를 끌 수 있다는 것(§7.1)과 리피터 없는 해저 시스템의 구간을 늘린다는 것(G Suppl. 42 §8.11.7)으로 늘어난 비트의 대가와 쓸모를 견줬다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(채널 부호화의 뜻, 원천 부호화 쪽에 드는 일과 PCM·ADPCM, FEC·리드-솔로몬 부호·블록 부호, 컨볼루션 부호·부호율, 늘어나는 비트, 예 데이터 비트 4개, 「원천 부호화와 채널 부호화」), 문항 n361(채널 부호화를 하면 매체로 나가는 비트가 많아진다 — 예), 도식 `ChannelCodingFlowDiagram`
+
+쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(원천 부호화와 채널 부호화를 나눠 쓰는 쓰임, PCM·ADPCM이 하는 일, FEC가 여분을 더해 받는 쪽이 고친다·보내는 비트율이 는다, 블록 부호(리드-솔로몬)와 컨볼루션 부호, FEC를 끄면 처리량이 오른다),
+기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-02-25 #26])
+
+## (phase 83 step 3) RFC 5052 — Forward Error Correction (FEC) Building Block, RFC 6363 — Forward Error Correction (FEC) Framework
+https://www.rfc-editor.org/rfc/rfc5052.txt
+https://www.rfc-editor.org/rfc/rfc6363.txt
+
+판: RFC 5052는 Proposed Standard(2007-08, RFC 3452를 폐기했고 이 문서를 고치거나 폐기한 RFC는 없다), RFC 6363은 Proposed Standard(2011-10, RFC 8680이 고쳤다). 텍스트판과 json(상태)을 IPv4로 받아 읽었다(2026-11-20).
+
+- FEC 부호는 받는 쪽이 보낸 쪽에게 잃은 패킷을 다시 보내 달라고 알리는 일을 줄이거나 아예 없앨 수 있다 — RFC 5052 §4
+- FEC는 전달을 보장하지 않는 망에서 패킷 전송의 믿음직함을 높이는 널리 알려진 기법이다. 다만 이 문서가 다루는 것은 잃은 데이터를 되찾는 것(erasure — 잃었다는 것을 알아챌 수 있는 오류)이고, 망가진 채 받은 데이터를 고치는 것은 다루지 않는다 — RFC 6363 §1
+- 그러니 두 RFC는 「다시 보내 달라고 하지 않고 받는 쪽이 되살린다」의 근거로만 쓴다. 비트 오류를 고치는 채널 부호화의 근거는 위 「(phase 83 step 3) 부호화」 항목의 G.975다
+- 쓰지 않는 것: FEC 방식(scheme)과 FEC 부호의 구분, 원천 블록·부호 기호의 구성, FEC 프레임워크의 구조
+- **한국어 이름**: retransmission → 재전송, erasure → 잃은 데이터(소실)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: RFC 5052 §4를 「받는 쪽이 보내는 쪽에 다시 보내 달라고 알리는 일을 줄이거나 아예 없앨 수 있다」로 썼다. 비트 오류를 고치는 사실은 이 두 RFC가 아니라 G.975에서 가져왔다(위 줄의 판정대로).
+  오류 검출만 하면 받는 쪽이 「그 데이터를 버리거나 다시 보내 달라고 알려야 한다」는 이 절의 재전송 요청과 `ethernet.fcs`(CRC로 찾고 버린다)를 함께 놓은 말이다
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.channel-coding`(오류 검출과 오류 정정, FEC가 재전송 요청을 줄인다)
+
+쓰인 곳: (phase 83 step 5에서 쓰일 곳) `transmission-media.channel-coding`(FEC는 다시 보내 달라고 하지 않고 받는 쪽이 되살린다 — 재전송을 요청하는 방식과 견준다)
+
+## (phase 83 step 3) 다중화의 틀 — ITU-T G.704 (10/98), I.113 (06/97); RFC 3439
+https://www.itu.int/rec/T-REC-G.704-199810-I/en
+https://www.itu.int/rec/T-REC-I.113-199706-I/en
+https://www.rfc-editor.org/rfc/rfc3439.txt
+
+판: G.704 「Synchronous frame structures used at 1544, 6312, 2048, 8448 and 44 736 kbit/s hierarchical levels」(1998-10-13 승인, In force — 앞 판 셋은 Superseded), I.113 「Vocabulary of terms for broadband aspects of ISDN」(1997-06-01 승인, In force — 앞 판 셋은 Superseded).
+둘 다 무료 PDF를 IPv4로 내려받아 읽었다. RFC 3439 「Some Internet Architectural Guidelines and Philosophy」는 Informational(2002-12, RFC 1958을 고쳤고 이 문서를 고치거나 폐기한 RFC는 없다) — 텍스트판과 json을 IPv4로 받아 읽었다(2026-11-20).
+
+- **2 048 kbit/s 프레임**: 프레임 하나가 256비트이고 1초에 8000번 되풀이된다 — G.704 §2.3.1. 256비트는 8비트 타임 슬롯 32개(0~31번)를 차례로 엇갈려 담는다 — §5.1.1.1·§5.1.1.2. 0번 칸의 비트는 프레임 맞춤 신호 등에 쓴다 — §2.3.2 표 5A.
+  16번 칸은 신호 방식(signalling)에 쓰기를 권하고, 1~15번·17~31번 칸 하나하나가 G.711의 PCM 음성 하나나 64 kbit/s 디지털 신호 하나를 싣는다 — §5.1.2·§5.1.3
+- **1 544 kbit/s 프레임**: 프레임 하나가 193비트이고 1초에 8000번 되풀이된다. 첫 비트는 프레임 맞춤 등에 쓰는 F비트이고 — §2.1.1·§2.1.2, 나머지 192비트가 8비트 타임 슬롯 24개(1~24번)다 — §3.1.1.2
+- 두 프레임 모두 칸 자리가 정해져 있어 칸 번호가 곧 채널이다(G.701 6006 — 채널 타임 슬롯은 프레임 안의 정해진 자리를 차지해 특정 채널에 배정된다). 「쓰지 않는 칸은 비어 간다」는 문장은 G.704에 없다 — 아래 I.113 줄과 E51
+- **동기식과 비동기식 시분할 다중화**(I.113 §2.2):
+  - 동기식 전송 방식(STM)은 연결마다 정해진 길이의 단어(칸)를 주기적으로 내준다 — 205. 동기식 시분할 다중화는 STM을 받치는 다중화 기법이다 — 203
+  - 회선 전송 방식은 연결들 사이에 채널·대역폭을 붙박이로 배정해 전송과 교환을 하고 — 206, 패킷 전송 방식은 망의 전송·교환 자원을 여러 연결이 그때그때 나눠 쓴다 — 208(`protocols-encapsulation.circuit-switching`·`packet-switching`과 뜻이 맞는다)
+  - 비동기식 시분할 다중화는 전송 능력을 어느 연결에도 붙박이로 주지 않은 칸들로 나누고, 응용마다 그 순간 실제로 필요한 만큼 꼬리표(label) 붙은 셀로 칸을 채우는 기법이다 — 202. 꼬리표 붙은 채널들의 블록을 이어 붙이는 다중화를 꼬리표 다중화라 부른다 — 325.
+    ATM에서는 한 사용자의 정보가 담긴 셀이 반드시 주기적으로 오지 않는다는 뜻에서 「비동기」다 — 204
+  - 「statistical」(210)은 서비스에 주는 전송 능력을 평균·최댓값·표준 편차 같은 통계 값으로 적는 ATM을 꾸미는 말이고, 다중화 기법의 이름이 아니다
+  - 동기식은 연결마다 칸을 주기적으로 내주므로(205), 어떤 연결이 그 차례에 보낼 것이 없으면 그 칸은 정보 없이 지나간다 — 정의에서 나오는 말이다(그렇게 적은 문장은 찾지 못했다). 비동기식은 필요한 만큼만 칸을 채운다(202)
+- **통계적 다중화라는 말**: RFC 3439는 패킷 교환이 회선 교환보다 효율적이라고 여겨지는 까닭 하나로 통계적 다중화(statistical multiplexing)를 들고 — §5, 통계적 다중화가 이론상 망 이용률을 높일 수 있다고 적는다 — §6. 둘 다 정의 없이 쓰는 말이다.
+  **「통계적 시분할 다중화(STDM, statistical time division multiplexing)」라는 이름은 I.113·I.112·G.701·Q.9 어디에도 없다** — 전문 검색 — `exam-notes.md` E51
+- 쓰지 않는 것: 6 312·8 448·44 736 kbit/s 프레임, 프레임 맞춤 신호의 비트 배치, 다중 프레임과 CRC-4, 신호 방식의 세부, ATM 셀의 구조
+- **한국어 이름**: synchronous time-division multiplexing → 동기식 시분할 다중화(동기식 TDM — guide의 이름), asynchronous time-division multiplexing → 비동기식 시분할 다중화(I.113의 이름을 옮긴 말), label·labelled cell → 꼬리표·꼬리표 붙은 셀(권고의 말 — 본문은 「어느 입력의 것인지 알리는 표시」로 풀어 쓸 수 있다),
+  statistical TDM → 통계적 시분할 다중화(STDM — 기출의 이름, E51), statistical multiplexing → 통계적 다중화, synchronous transfer mode → 동기식 전송 방식(STM), F-bit → F비트(쓴다면)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: 다중화의 시분할 항목은 G.701 4012대로 「시간으로 엇갈려 끼워 보낸다」까지만 쓰고, 이 항목의 동기식·비동기식 구분은 쓰지 않았다(step 6의 몫).
+    문항 n362의 해설만 비동기식 시분할 다중화(202 — 그때 필요한 만큼 칸을 채운다)를 「보낼 데이터가 있는 신호에만 칸을 주는 방식도 시간 칸에 차례로 싣는 시분할 방식이다」로 짚었다 — 그 보기를 오답으로 가르는 근거다. 「STDM」이라는 이름은 쓰지 않았다(E51)
+  - 쓰인 곳: (phase 83 step 5) 문항 n362(해설)
+- (phase 83 step 6, 2026-11-20) **본문에 쓴 모양**: G.704의 2 048 kbit/s 프레임을 동기식 시분할 다중화의 예로 썼다 — 8비트 칸 32개·모두 256비트·1초에 8000번, 그래서 칸 하나가 64 kb/s(앞 개념 `channel-coding`이 쓴 PCM 음성 한 채널의 비트율과 같다),
+  0번 칸은 받는 쪽이 프레임의 시작을 알아보는 데, 16번 칸은 「음성 대신 제어 정보」(§5.1.2의 signalling을 풀어 쓴 말)에 쓰기를 권하고, 나머지 30칸에는 칸마다 PCM 음성 하나나 64 kb/s 데이터 하나를 싣는다. 1 544 kbit/s 프레임은 쓰지 않았다.
+  동기식(I.113 203·205)과 비동기식(202 — 칸을 미리 정해 두지 않고 필요한 만큼 채우며, 보낼 데이터가 많은 입력에 칸을 더 주고, 칸마다 꼬리표를 붙인다)을 E51대로 문서의 이름으로 세우고,
+  「자격시험은 앞의 동기식 방식을 그냥 TDM이라 부르고, 비동기식 방식을 통계적 시분할 다중화(STDM)라 부른다」를 한 줄 덧붙였다. 빈 칸이 정보 없이 지나가 회선을 그만큼 쓰지 못한다는 것은 정의에서 나오는 말로 썼다.
+  회선 전송 방식(206)과 패킷 전송 방식(208)을 `protocols-encapsulation.circuit-switching`·`packet-switching`의 뜻으로 견줬다. guide가 적은 「통계적 TDM」이라는 개념 안의 이름과 도식의 시나리오 이름은 E51대로 「비동기식」으로 썼다
+  - 쓰인 곳: (phase 83 step 6) `transmission-media.tdm`(동기식·비동기식, 2 048 kbit/s 프레임, 회선 교환·패킷 교환과 견줌, E51 줄, 예 입력 A·B·C·D, 「동기식과 비동기식 시분할 다중화」), 문항 n363, 도식 `TdmSlotsDiagram`
+
+쓰인 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.tdm`(프레임과 타임 슬롯, 2 048 kbit/s의 32칸·1 544 kbit/s의 24칸과 1초에 8000번, 동기식은 칸을 늘 준다·비동기식은 필요한 만큼 채우고 칸에 꼬리표를 붙인다, 회선 전송 방식과 패킷 전송 방식),
+기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2024-11-03 #19]·[기출 2025-05-25 #19], E51)
+
+## (phase 83 step 3) WDM과 광 증폭기 — ITU-T G.671 (11/2025), G.694.1 (10/2020), G.694.2 (12/2003), G.661 (05/2025), G.662 (07/2005), G.973 (11/2016)
+https://www.itu.int/rec/T-REC-G.671-202511-I/en
+https://www.itu.int/rec/T-REC-G.694.1-202010-I/en
+https://www.itu.int/rec/T-REC-G.694.2-200312-I/en
+https://www.itu.int/rec/T-REC-G.661-202505-I/en
+https://www.itu.int/rec/T-REC-G.662-200507-I/en
+https://www.itu.int/rec/T-REC-G.973-201611-I/en
+
+판: G.671 「Transmission characteristics of optical components and subsystems」(2025-11-29 승인, In force — 앞 판은 모두 Superseded), G.694.1 「Spectral grids for WDM applications: DWDM frequency grid」(2020-10-29 승인, In force), G.694.2 「Spectral grids for WDM applications: CWDM wavelength grid」(2003-12-14 승인, In force),
+G.661 「Definitions and test methods for the relevant generic parameters of optical amplifier devices and subsystems」(2025-05-14 승인, In force), G.662 「Generic characteristics of optical amplifier devices and subsystems」(2005-07-14 승인, In force), G.973 「Characteristics of repeaterless optical fibre submarine cable systems」(2016-11-13 승인, In force).
+여섯 다 무료 PDF를 IPv4로 내려받아 읽었다(2026-11-20).
+
+- **파장 다중화기와 역다중화기**: 파장 다중화기는 입력 포트 둘 이상과 출력 포트 하나를 가지고, 입력마다 미리 정한 파장 범위의 빛만 받아 출력에서 하나로 합친다. 파장 역다중화기는 그 반대로, 파장 범위가 여럿 섞인 빛을 받아 포트마다 서로 다른 파장 범위를 내보낸다.
+  같은 장치가 합치기와 나누기를 함께 하는 일이 많아 둘을 묶어 WDM 장치라 부른다 — G.671 §3.2.1.15
+- **파장과 주파수**: 파장과 주파수는 빛의 속도 c(2.99792458×10⁸ m/s)로 서로 바꿔 적는다 — G.694.2 §6. 그래서 DWDM 격자는 주파수(THz·GHz)로, CWDM 격자는 파장(nm)으로 적는다 — 두 권고의 제목과 표
+- **DWDM과 CWDM**: 채널 간격이 1 000 GHz 이하인 WDM 장치가 DWDM 장치이고, 1 000 GHz(1 550 nm에서 약 8 nm)보다 넓고 50 nm보다 좁은 것이 CWDM 장치다 — G.671 §3.2.1.15.1·§3.2.1.15.2
+  - DWDM의 주파수 격자는 193.1 THz를 기준으로 12.5 GHz부터 100 GHz와 그 정수배까지의 고정 간격을 받치고, 유연 격자도 정한다 — G.694.1 요약·§6. DWDM 송신기는 주파수를 안정되게 지키는 제어 장치가 필요하고, CWDM 송신기는 보통 그런 제어가 없다 — §6
+  - CWDM의 파장 격자는 간격이 20 nm이고, 1 271 nm부터 1 611 nm까지의 중심 파장을 표로 든다(표 끝의 값은 예시다) — G.694.2 요약·§6 표 1. 파장 사이를 넓게 벌려 냉각하지 않는 레이저를 쓸 수 있게 한 격자다 — §1. CWDM 시스템은 도시권 전송망에서 여러 고객·서비스·프로토콜에 쓸 수 있다 — §5
+- **파장마다 다른 비트율·형식**: DWDM 유연 격자를 둔 까닭 하나는, 비트율이나 변조 형식이 섞인 시스템이 채널마다 그 비트율·변조에 맞는 폭의 주파수 칸을 받게 하려는 것이다(다만 아직 이 격자를 쓰는 DWDM 광 인터페이스 권고는 없다) — G.694.1 부록 I.
+  여기에 위 「(phase 71) ITU-T G Suppl. 42」 항목의 (phase 83 step 3) 줄(§8.11.6 — 광 증폭기는 비트율에 매이지 않는다)과 G.694.2 §5(CWDM은 여러 고객·서비스·프로토콜에 쓴다)를 함께 놓으면, 한 광섬유의 파장들이 저마다 다른 속도·형식의 신호를 나를 수 있다 — 세 문서에서 나오는 말이다.
+  「채널마다 형식·속도·프로토콜이 같아야 한다」는 문장은 없다
+- **광 증폭기의 이득과 잡음**: 광 증폭기의 이득은 입력 기준점에서 출력 기준점까지 신호의 빛 세기가 늘어난 정도(dB)다 — G.661 3.2.1.1. 잡음 지수는 광 증폭기를 지나면서 신호 대 잡음비가 얼마나 떨어지는지를 dB로 나타낸 것이다 — 3.2.1.20.
+  여러 채널을 함께 넣어 쓸 때 채널마다의 이득을 따로 정의한다 — 3.2.1.53(증폭기 하나가 여러 파장을 한꺼번에 키운다는 것)
+- **광 증폭기의 세 자리**: 전력 증폭기는 광 송신기 바로 뒤에서 신호 세기를 키우고, 전치 증폭기는 광 수신기 바로 앞에서 아주 적은 잡음으로 수신 감도를 높이며, 선로 증폭기는 수동 광섬유 구간 사이에 놓여 재생이 필요해지기 전까지 갈 수 있는 거리를 늘린다(광 가입자망의 점 대 다중점 연결에서 분기 손실을 메우는 데도 쓴다) — G.662 §4.
+  광 증폭기는 재생기나 단말 장치가 아니다 — 같은 절
+- **무중계 해저 시스템**: 무중계 광섬유 해저 케이블 시스템은 선로 중간에 광 증폭기를 두지 않으므로 중간 장비에 전원을 보내는 설비가 필요 없다 — G.973 §1. 이런 시스템의 길이는 송신 쪽 부스터(전력) 증폭기·수신 쪽 전치 증폭기와,
+  끝 국에서 펌프 빛을 보내 케이블 속 어븀 첨가 광섬유 구간을 증폭기로 쓰는 원격 펌핑 광 증폭기(ROPA)로 크게 늘릴 수 있다 — §1·§3.2.4, 부록 A 표 A.1·A.2의 주. 선로 중간에 광 증폭기를 둔 해저 시스템은 G.977이 다룬다(읽지 않았다)
+- 쓰지 않는 것: 격자의 주파수·파장 표 전체, 유연 격자의 칸 폭 계산, 광 증폭기의 이득·잡음 지수 값과 측정법, 반도체 광 증폭기·라만 증폭, 해저 시스템의 전력 예산
+- **한국어 이름**: wavelength division multiplexing → 파장 분할 다중화(WDM — 기출의 이름), wavelength multiplexer·demultiplexer → 파장 다중화기·역다중화기, dense·coarse WDM → 고밀도·저밀도 파장 분할 다중화(DWDM·CWDM — 약어를 쓰고 dense·coarse를 옮긴 말을 곁들인다),
+  channel spacing → 채널 간격, frequency grid → 주파수 격자, optical amplifier → 광 증폭기(기출은 「광증폭기」로 붙여 쓴다), gain → 이득, noise figure → 잡음 지수, power(booster)·pre-·line amplifier → 전력(부스터)·전치·선로 증폭기,
+  repeaterless → 무중계(기출의 말), erbium-doped fibre amplifier → 어븀 첨가 광섬유 증폭기(EDFA)
+
+- (phase 83 step 5, 2026-11-20) **본문에 쓴 모양**: G.671 §3.2.1.15를 다중화의 파장 분할 항목으로 썼다 — 「광섬유 한 가닥에 파장이 서로 다른 빛 여러 개를 함께 싣고, 받는 쪽의 역다중화기는 섞여 온 빛을 파장마다 갈라 서로 다른 출력으로 내보낸다」.
+    예의 파장 λ1·λ2·λ3은 빛에 붙인 이름표라고 밝혔다(guide 「예시 값」의 λ1~λ4 가운데 셋). DWDM·CWDM·광 증폭기는 쓰지 않았다(step 6의 몫)
+  - 쓰인 곳: (phase 83 step 5) `transmission-media.multiplexing`(파장 분할 다중화 항목, 예 λ1·λ2·λ3), 문항 n362(해설 — WDM은 광섬유에서 쓰는 방식), 도식 `MuxDemuxDiagram`
+- (phase 83 step 6, 2026-11-20) **본문에 쓴 모양**: WDM 장치(G.671 §3.2.1.15)를 첫 문단에, 파장과 주파수는 곱하면 빛의 속도라 하나가 정해지면 다른 하나도 정해진다(G.694.2 §6을 풀어 쓴 말)를 둘째 문단에 썼다.
+  DWDM·CWDM은 목록 항목으로 — DWDM은 채널 간격 1 000 GHz 이하(1 550 nm 근처에서 약 8 nm, G.671 §3.2.1.15.1), 격자 간격은 12.5 GHz처럼 좁은 것부터 100 GHz와 그 정수배까지, 보내는 쪽에 주파수 제어 장치가 필요하다(G.694.1 요약·§6),
+  CWDM은 1 271~1 611 nm 사이에 20 nm 간격, 냉각 장치 없는 레이저, 주파수 제어 장치도 보통 두지 않는다(G.694.2 §1·§6, G.694.1 §6).
+  광 증폭기의 이득·잡음 지수·채널별 이득(G.661 3.2.1.1·3.2.1.20·3.2.1.53)과 세 자리(G.662 §4), 「광 증폭기는 재생기가 아니다」와 선로 증폭기는 재생이 필요해지기 전까지의 거리를 늘린다(G.662 §4)를 썼다.
+  파장마다 다른 속도·형식은 G.694.1 부록 I·G.694.2 §5·G Suppl. 42 §8.11.6을 함께 놓은 말로 썼다. 「WDM과 FDM」은 파장과 주파수가 짝이고 DWDM 격자를 주파수로 적는다는 것으로 같은 생각임을, 앞 개념의 10BROAD36(전기 신호)과 광 부품(G.671)으로 다른 점을 썼다.
+  G.973의 무중계 해저 시스템은 본문에 쓰지 않았다 — 「무중계」는 step 3의 처리대로 「빛을 전기로 되돌려 다시 만드는 일 없이」로 풀었다. GHz·nm·Tb/s는 일반 단위의 한 줄 풀이로 썼다
+  - 쓰인 곳: (phase 83 step 6) `transmission-media.wdm`(WDM 장치, 파장과 주파수, DWDM·CWDM 목록, 광 증폭기의 이득·잡음 지수·세 자리, 파장마다 다른 속도·형식, 예 λ1~λ4, 「WDM과 FDM」·「광 증폭기와 리피터」), 문항 n364, 도식 `WdmWavelengthsDiagram`
+
+쓰인 곳: (phase 83 step 6에서 쓰일 곳) `transmission-media.wdm`(WDM 장치가 파장으로 합치고 나눈다, 파장과 주파수, DWDM·CWDM의 간격, 광 증폭기의 이득·잡음, 여러 파장을 한꺼번에 키운다, 증폭기의 세 자리, 무중계, 파장마다 다른 속도·형식 — 「WDM과 FDM」·「광 증폭기와 리피터」 4절),
+(phase 83 step 5에서 쓰일 곳) `transmission-media.multiplexing`(파장 분할 다중화 — 목록 항목), 기출 대조(`exam-notes.md` 「phase 83 step 3」 문단 — [기출 2025-05-25 #22]·[기출 2026-05-17 #20])
+
+## (phase 83 step 7) 토폴로지·링크·끝막음 — IEEE 802.17 용어 작업 문서 「802.17 Terms and Definitions」(2001-07), RFC 8345, ITU-T V.11 (10/96), 802.3da 태스크 포스 발표 「802.3 Multidrop Mixing Segment Specifications」(2022-05), RFC 4456
+https://www.ieee802.org/17/documents/presentations/jul2001/bs_terms_04.pdf
+https://www.rfc-editor.org/rfc/rfc8345
+https://www.itu.int/rec/T-REC-V.11-199610-I/en
+https://www.ieee802.org/3/da/public/050422/diminico_SPMD_01_05042022.pdf
+https://www.rfc-editor.org/rfc/rfc4456
+
+판: 802.17 용어 문서는 IEEE 802.17(Resilient Packet Ring) 작업 그룹의 용어 임시 위원회가 2001-07에 돌린 작업 문서다(쪽 머리 「bs_terms_01」, 파일 이름 bs_terms_04). **표준 본문이 아니다.** 802.17이 쓸 낱말을 고르며 기존 정의를 출처와 함께 옮겨 실었는데,
+여기서는 출처를 밝힌 정의 — IEEE 100(IEEE 표준 용어 사전 — 610.7-1995를 든다), IEEE 802.5c-1991, IEEE 802.5-1998 — 만 쓰고, 802.17이 새로 지은 정의는 그렇다고 밝힌 곳에서만 쓴다.
+RFC 8345는 Proposed Standard(2018-03, 고치거나 폐기한 RFC 없음). ITU-T V.11 (10/96)은 In force(평형 인터페이스 회로의 전기 특성 권고 — X.27과 같은 권고)이고 무료 PDF를 받아 읽었다.
+DiMinico 발표는 IEEE P802.3da 태스크 포스(10 Mb/s 단일 쌍 다중점)의 2022-05-04 발표인데, 10·11쪽에 802.3 개정 초안 IEEE P802.3/D3.2(2022-03-15)의 8장(10BASE5)·10장(10BASE2) 문구를, 10쪽에 「mixing segment」의 정의를 옮겨 실었다 — 발표 자료이지만 이 줄들은 그 초안 문구를 옮긴 것이라 그것만 쓴다.
+RFC 4456은 Draft Standard(2006-04, RFC 7606이 고침, RFC 1966·2796을 폐기).
+
+- **토폴로지**: IEEE 100(610.7-1995)은 토폴로지를 네트워크에서 노드들이 어떻게 이어져 있는지의 짜임새(interconnection pattern)로 본다. 802.17 문서는 같은 낱말에 「스테이션들이 놓인 논리적·물리적 배치」라는 뜻을 함께 적는다(둘째 뜻은 IEEE 100의 「network」를 802.17이 「ring」으로 바꿔 적었다고 각주에 밝힌다) — 802.17 문서 「topology」(PDF 10쪽, 각주 57)
+- **토폴로지는 노드와 링크의 그래프다**: RFC 8345의 토폴로지 모델은 노드를 그래프의 꼭짓점으로, 링크를 그래프의 변으로 다룬다 — §1. 한 네트워크에 계층마다 다른 토폴로지가 겹쳐 있을 수 있다 — 서비스 토폴로지 아래에 3계층(IP) 토폴로지, 그 아래에 1계층(광) 토폴로지가 놓이는 식이다(§1 그림 1·2).
+  같은 장치가 여러 토폴로지에 노드로 나타날 때는 장치들로 이룬 「물리」 네트워크를 그 위 「논리」 네트워크들의 바탕(underlay)으로 둘 수 있다 — §4.1, §4.4.9
+- **물리 토폴로지와 논리 토폴로지를 한 문장으로 정의한 곳은 찾지 못했다** — 쓸 수 있는 것은 위 두 줄(토폴로지에는 물리적 배치와 논리적 배치가 있다, 계층마다 토폴로지가 따로 있고 물리 네트워크가 논리 네트워크의 바탕이 된다)과, 같은 장치들이라도 케이블이 이어진 모양과 신호가 오가는 모양이 다른 예 둘이다 —
+  리피터(허브)에 노드마다 케이블을 따로 이었는데(위 「(phase 72) David Law」 항목의 (phase 83 step 7) 줄) 리피터는 그 노드들이 매체 하나를 함께 쓰게 한다(위 「(phase 72 step 1) IEEE 802.3 Working Group — ITU-T Q12/15에 보낸 회신」 항목, `hub-switch-vlan.hub`),
+  토큰 링은 스테이션들을 차례로 이어 「논리적인 링」을 이룬다(아래 「(phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹」 항목의 DTR 8802-1 §5.2.3)
+- **점 대 점과 다중점**: RFC 8345의 모델은 링크를 한 노드에서 다른 한 노드로 가는 점 대 점(point-to-point) 링크로만 두고, 여러 노드가 한 연결을 함께 쓰는 다중점(multipoint) 네트워크는 가상의 노드(pseudonode)를 세워 나타낸다 — §4.4.5.
+  802.3에서 MDI를 둘보다 많이 붙일 수 있는 매체는 공유 구간(mixing segment)이다 — DiMinico 10쪽(정의를 옮긴 줄). 802.3의 동축 구간(10BASE5 최대 500 m, 10BASE2 최대 185 m)이 그 예다 — DiMinico 10쪽(P802.3/D3.2 §8.6.2.1·§10.7.2.1).
+  두 장치만 잇는 구간은 링크 구간(link segment)이다 — DiMinico 13쪽 「Point-to-point link segments」, 802.3ah §1.4의 점 대 점 링크 규격들(위 「(phase 72) IEEE Std 802.3ah-2004」 항목), phase 72의 802.3 §4.4.1 줄(두 DTE를 링크 구간으로 바로 잇는다). 링크 구간의 정의 문장 자체는 보지 못했다
+- **링크·이웃·삽입**: 802.5c-1991은 링크를 두 스테이션 사이의 한 방향 물리 연결로 정의한다 — 802.17 문서 「link」(PDF 5쪽). 바로 위쪽 스테이션의 주소를 위쪽 이웃 주소(UNA)라 부른다 — 「upstream neighbor's address」(PDF 6쪽 — 802.5-1998 1.3.77을 든다).
+  802.5-1998은 링 구간을 리피터나 변환기로 경계 지어진 전송로의 한 구간으로 정의한다 — 각주 37(PDF 6쪽 — 802.17은 이 뜻을 쓰지 않았다 — 링의 스테이션이 받은 신호를 되풀이해 보낸다는 것의 근거로만 본다).
+  802 표준들은 스테이션을 링에 들이는 일을 「삽입(insertion)」이라 부른다 — 각주 56(PDF 10쪽)
+- **이중 링·래핑**(IEEE 100이 802.5c-1991에서 옮긴 정의): 이중 링 — 스테이션들이 짝지은 링크 둘로 이어져 있어 두 스테이션 사이에 갈 수 있는 길이 늘 두 갈래인 모양 — 「dual-ring」 (1)(PDF 6쪽).
+  래핑 — 링크나 노드가 고장 나면 이중 링의 스테이션들이 반대쪽으로 도는 링크를 끌어 써서 그 자리를 비켜 가도록 링을 다시 짜는 일 — 「wrapping」 (1)(PDF 11쪽).
+  802.17이 지은 정의(ringlet)는 한 방향으로 도는 닫힌 길을, 스테이션마다 들어오는 링크 하나·나가는 링크 하나가 있는 것으로 적는다 — 「ringlet」(링의 모양을 풀이하는 데만 본다)
+- **끝막음과 반사**: 빠른 신호를 보낼 때는 케이블 끝에 끝막음(termination) 저항을 달아 신호가 오르는 모양을 지키고 반사를 줄이며, 그 값은 케이블의 특성 임피던스에 맞춘다 — V.11 부록 I.3(평형 인터페이스 회로를 두고 한 일반 원리 — 이더넷 버스를 두고 한 말은 아니다).
+  802.3 10BASE5 조항은 케이블 구간 둘을 이은 자리가 임피던스가 어긋나는 곳이라 신호가 반사되는 자리가 된다고 적는다(케이블 임피던스 50옴에서 최대 2옴 벗어나 최악 4%) — DiMinico 10쪽이 옮긴 P802.3/D3.2 §8.6.2.1(10BASE2는 §10.7.2.1).
+  10BASE5 동축 버스는 양 끝에 50옴 끝막음이 있어야 했다 — 위 「(phase 83 step 0) 구리 매체」 항목의 Carlson 줄. 그러니 버스 케이블 양 끝에 케이블과 같은 임피던스의 끝막음을 다는 것은 끝을 임피던스가 어긋나는 자리로 두지 않아 반사를 막으려는 것이다 —
+  **「터미네이터가 반사를 막는다」는 한 문장은 802.3 쪽에서 찾지 못했다** — 이 셋을 함께 읽은 것이다(V.11이 그것을 일반 원리로 말한다). 반사가 받는 쪽 신호에 섞인다는 그림은 위 「(phase 72 step 1) … 의견 처리 기록」 항목의 (phase 83 step 7) 줄(Zimmerman 8쪽)
+- **케이블이 끊길 때**: 버스의 케이블 한 곳이 끊기면 그 구간 전체가 통신하지 못한다는 문장은 찾지 못했다 — 끊긴 자리가 끝막음 없는 끝이 되어 임피던스가 어긋나는 자리가 된다는 데까지는 위 줄들에서 나오는 말이지만, 구간이 통째로 멈춘다고 단정하지 않는다
+- **완전 메시의 연결 수**: AS 안의 BGP 스피커 n개를 서로 모두 잇는 완전 메시(full mesh)에는 서로 다른 IBGP 세션이 n×(n−1)/2개 있어야 하고, 이 요구는 스피커가 많아지면 감당하기 어렵다(does not scale) — RFC 4456 §1.
+  **RFC 4456이 세는 것은 케이블이 아니라 라우터 사이의 세션(논리 연결)이다** — 노드 쌍마다 연결 하나를 둘 때 연결 수가 노드 쌍의 수 n×(n−1)/2가 된다는 셈은 같으므로, 본문은 「모든 노드 쌍을 링크로 바로 이으면 링크가 n×(n−1)/2개」로 쓸 수 있고 그 근거가 이 셈이라는 것을 여기 남긴다. 부분 메시는 위 「(phase 82 step 4) IEEE 802.11s — 메시」 항목의 (phase 83 step 7) 줄
+- 쓰지 않는 것: 802.17(RPR)의 동작과 802.17이 지은 정의(ringlet은 위처럼 풀이에만), 802.3 공유 구간의 반사·삽입 손실 한도, V.11의 끝막음 저항 값, BGP 경로 반사의 동작
+- **한국어 이름**: topology → **토폴로지**(기출의 이름), physical·logical → 물리·논리, point-to-point → **점 대 점**(step 0이 PON에서 쓴 이름, 기출 「point-to-point」), multipoint → **다중점**(guide의 이름),
+  link segment → **링크 구간**·mixing segment → **공유 구간**(phase 72가 802.3 §4.4.1 줄에서 쓴 이름), termination → **끝막음**(step 0이 쓴 이름), terminator → **터미네이터**(그 부품 — 기출의 이름), reflection → **반사**, impedance → 임피던스,
+  full mesh·partial mesh → **완전 메시**·**부분 메시**(`wireless-lan`의 「메시」를 따른다), dual ring → **이중 링**, wrapping → **래핑**(영문을 읽은 이름 — FDDI 상태 이름 `wrap_a`·`wrap_b`와 맞춘다), upstream neighbor → **위쪽 이웃**, insertion → **삽입**
+- (phase 83 step 8, 2026-11-20) **본문에 쓴 모양**:
+  - 토폴로지: 「노드들이 링크로 어떻게 이어져 있는지를 나타낸 모양」으로 세우고, 노드를 점·링크를 선으로 그린 그림의 모양이라고 풀었다(위 IEEE 100 줄과 RFC 8345 §1의 그래프 줄을 함께 읽은 말 — 정의 문장을 옮기지 않았다).
+    모양의 이름 다섯은 이름과 한 구절로만 든다 — 버스형·성형·링형은 위 「(phase 83 step 0) 구리 매체」 항목의 (phase 83 step 7) 줄(Carlson 2쪽 — 선형·성형·고리)과 아래 DTR §5.2.3, 메시형은 「(phase 82 step 4) IEEE 802.11s」 항목의 (phase 83 step 7) 줄, 트리형은 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 7) 줄(§67.2.3)이 근거다. 성형은 「스타형이라고도 한다」로 함께 적었다(기출의 이름)
+  - 물리·논리 토폴로지: 정의 문장이 없으므로 「케이블이 실제로 이어진 모양을 물리 토폴로지, 신호가 노드 사이를 오가는 모양을 논리 토폴로지라 하면」으로 이름을 붙이는 꼴로 쓰고, IEEE 용어 사전이 물리적·논리적 배치를 모두 토폴로지로 본다는 것(위 첫 줄)과 허브의 예(위 셋째 줄)만 댔다. 토큰 링의 「논리적인 링」 예는 쓰지 않았다
+  - 점 대 점과 다중점: 다중점에서 한 노드가 보낸 신호가 그 링크의 다른 노드 모두에 닿는다는 것은 `hub-switch-vlan.csma-cd`의 다중 접근 문단(한 장치가 보낸 신호는 그 매체에 이은 모든 장치에 닿는다)과 같은 뜻으로 썼다.
+    도식 `TopologyLinkKindsDiagram`의 「함께 쓰는 링크」 노드는 RFC 8345 §4.4.5(다중점을 가상의 노드 하나로 나타낸다 — 위 넷째 줄)를 본문에 「다중점 링크를 가운데의 점 하나로 그리고 노드마다 그 점에 잇는 꼴」로 쓴 것이다
+  - 버스형: 임피던스는 일반 낱말이라 「전기 신호가 흐르는 것을 얼마나 막는지를 나타내는 값」으로 한 줄만 풀었다. 터미네이터는 「케이블과 같은 임피던스를 가진 끝막음 부품」이고, 끝을 임피던스가 어긋나는 자리로 두지 않으므로 「끝에 닿은 신호가 되돌아오지 않고 거기서 끝난다」로 썼다(위 「끝막음과 반사」 줄을 함께 읽은 말).
+    **「흡수한다」는 쓰지 않았다** — 그 낱말을 적은 출처를 보지 못했다. 10BASE5의 50옴(케이블 임피던스와 양 끝의 끝막음)을 썼다. 케이블이 끊기면 끊긴 자리가 끝막음 없는 끝이 된다는 데까지만 쓰고, 구간 전체가 멈춘다고 쓰지 않았다(위 「케이블이 끊길 때」 줄). 케이블 양·비용을 성형과 견주지 않았다
+  - 쓰인 곳: (phase 83 step 8) `network-topology.network-topology`(토폴로지의 뜻, 모양의 이름, 점 대 점과 다중점, 링크 구간·공유 구간, 물리·논리, 예 `PC01`~`PC04`), `network-topology.bus-topology`(버스와 공유 구간, 터미네이터·임피던스·반사, 50옴, 끊김, 「버스형과 성형」), 문항 n365·n366, 도식 `TopologyLinkKindsDiagram`·`BusTerminatorDiagram`
+- (phase 83 step 9, 2026-11-20) **본문에 쓴 모양**:
+  - 성형: 가운데 장치와 끝의 장치 사이를 점 대 점으로 잇는 모양을 802.3도 성형 토폴로지라 부른다(위 「(phase 72) IEEE Std 802.3ah-2004」 항목의 (phase 83 step 7) 줄 §1.4). 10BASE-T는 노드마다 허브에 따로 잇는 성형이고, 더 빠른 규격이 나오며 가운데에 스위치를 두는 꼴이 흔해졌다
+    (「(phase 72) David Law」 항목의 (phase 83 step 7) 줄 9쪽 그림 ②·③, 아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §5.2.1·§9.1). 스위치의 한 줄 풀이(받을 장치가 이어진 포트를 알면 그쪽으로만)는 `hub-switch-vlan.switch`의 요약과 같은 뜻으로 썼다.
+    성형의 성(星)이 별을 뜻하는 한자로 star를 옮긴 말이라는 것은 낱말의 뜻 풀이다(기술 사실이 아니다).
+    노드끼리의 데이터가 모두 가운데 장치를 거친다, 노드를 더하고 뺄 때 그 노드의 케이블만 다룬다, 노드의 고장은 그 노드로 가는 길 하나만 끊고 가운데 장치의 고장은 모든 노드 사이의 길을 끊는다 — 셋 다 노드마다 링크가 따로이고 모두 가운데 장치에 모인다는 구조에서 이어지는 말로 썼다(`exam-notes.md` 「phase 83 step 7」 문단의 판정대로).
+    예의 가운데 장치 `HUB01`은 허브로 두어, `PC01`이 `PC04`에게 보낸 신호가 `HUB01`을 거쳐 `PC02`·`PC03`·`PC04` 쪽 케이블로 모두 나가게 썼다(같은 주제 첫 개념의 허브 풀이와 맞춘다). 도식 `StarCenterFailureDiagram`도 그렇게 그렸다
+  - 링형: 링크가 한 방향 연결이라는 것은 위 「링크·이웃·삽입」 줄의 802.5c-1991 정의, 링의 노드가 받은 신호를 다시 내보낸다는 것은 같은 줄의 802.5-1998 링 구간 정의(리피터를 경계로 나뉜 구간)로 썼다 — 「노드가 그 리피터 노릇을 한다」로 적고, 재생(세기·파형·타이밍을 다시 만든다)이라고는 쓰지 않았다.
+    노드를 더하는 일은 두 이웃 사이에 끼워 넣는 일이라 링크 하나가 둘로 바뀐다는 것(정의에서 나오는 말)과 삽입이라는 이름(같은 줄)을 썼다. 「고리를 연다」는 쓰지 않았다(토큰 링 MIB의 열림·닫힘은 스테이션이 링에 들어가고 나오는 상태다).
+    두 번째 링은 802.5c-1991(아래 「(phase 83 step 7) 토큰 링·…」 항목)과 FDDI의 1차·2차 링(아래 「(phase 83 step 7) FDDI」 항목)을 이름과 한 줄로만 썼다. 고장 난 노드를 건너뛰는 장치(바이패스)는 뜻이 정의돼 있지 않아 쓰지 않았다.
+    802.5c-1991의 「매체 한 곳의 고장」은 본문과 n369 해설에 「링크 한 곳이 고장 나도」로 썼다(같은 802.5c가 링크를 두 스테이션 사이의 물리 연결로 정의한다 — 위 「링크·이웃·삽입」 줄). 이 주제에서 「매체」를 풀지 않았기 때문이다.
+    예에서 목적지 `PC03`이 데이터를 받은 뒤 그 데이터가 어떻게 되는지(토큰 링에서 데이터를 고리에서 누가 거두는지)는 확인한 문서에 없어 쓰지 않았다 — 「`PC04` 쪽으로는 가지 않는다」처럼 목적지 뒤를 말하는 문장 대신 「`PC01`에서 `PC04`를 거쳐 `PC03`으로 가는 반대쪽 길은 없다」로 썼다(링크가 한 방향이라는 정의에서 나오는 말).
+    도식 `RingPassDiagram`은 늘 보이는 링크 넷에 가는 회색 화살표를 달아 링크가 한 방향이라는 것(802.5c-1991 정의)을 그렸다.
+    `exam-notes.md` E52대로 「자격시험(네트워크관리사 2급)은 링형을 장애를 쉽게 찾고, 노드 사이 연결을 줄이려고 설계한 토폴로지로 본다」를 한 줄 덧붙였고, 문항·도식은 두 말을 쓰지 않는다
+  - 쓰인 곳: (phase 83 step 9) `network-topology.star-topology`(점 대 점, 10BASE-T와 스위치, 가운데를 거친다, 노드의 고장과 가운데 장치의 고장, 예 `HUB01`·`PC01`~`PC04`), `network-topology.ring-topology`(한 방향 링크, 위쪽 이웃, 다시 내보낸다, 삽입, 끊김, 이중 링, E52, 「링형과 버스형」, 예 `PC01`~`PC04`),
+    문항 n367·n368·n369, 도식 `StarCenterFailureDiagram`·`RingPassDiagram`
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**:
+  - 완전 메시: 위 「완전 메시의 연결 수」 줄대로 「모든 노드 쌍을 링크로 바로 이으면 링크가 n×(n−1)÷2개」로 쓰고, 셈의 까닭(노드마다 n−1개와 이어지고, 링크 하나를 양 끝의 두 노드가 한 번씩 세므로 2로 나눈다)을 풀었다.
+    「노드가 많아지면 이렇게 늘어나는 링크를 감당하기 어려워진다」는 RFC 4456 §1의 「감당하기 어렵다」를 링크에 옮긴 말이다. 케이블·포트의 비용은 쓰지 않았다. 값은 본문 계산 예가 노드 넷(6개), 「완전 메시와 성형」 4절이 노드 다섯(성형 5개·완전 메시 10개), 문항 n370이 장치 여섯(15개)으로 서로 갈랐다
+  - 트리형: 트리형의 예를 스위치 `SW01` 아래 `SW02`·`SW03`, 그 아래 `PC01`~`PC04`로 들었다 — 다른 스위치들을 잇는 위쪽 스위치가 줄기(백본) 노릇을 한다는 것은 아래 「(phase 83 step 7) 토큰 링·…」 항목의 DTR §9.1이 근거다. `SW01`~`SW03`은 guide의 예시 값 목록에 없던 이름표로, 트리형의 예를 스위치로 들려고 더했다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.mesh-tree-topology`(완전 메시의 링크 수와 계산 예, 「완전 메시와 성형」, 트리형의 예), 문항 n370, 도식 `MeshTreeLinksDiagram`
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.fddi`의 이중 링은 위 「이중 링·래핑」 줄의 dual-ring 정의(두 스테이션 사이에 갈 수 있는 길이 늘 두 갈래)로,
+  「이웃한 두 노드 사이마다 한 방향 링크가 둘」은 「링크·이웃·삽입」 줄의 링크 정의(두 스테이션 사이의 한 방향 물리 연결)로, 두 링이 서로 반대로 돈다는 것은 wrapping 정의의 「반대쪽으로 도는 링크」로 썼다.
+  래핑의 뜻은 wrapping 정의를 직접 쓴 말로 「고장 난 자리를 비켜 가도록 반대 방향으로 도는 다른 링의 링크를 끌어 쓰는 일」이라 적었다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.fddi`(이중 링, 래핑), 문항 n372 해설, 도식 `FddiDualRingDiagram`
+
+쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(토폴로지의 뜻, 물리·논리, 점 대 점과 다중점), `network-topology.bus-topology`(공유 구간, 끝막음과 반사), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(위쪽 이웃·삽입·스테이션이 되풀이해 보낸다, 이중 링),
+(phase 83 step 10에서 쓰일 곳) `network-topology.mesh-tree-topology`(완전 메시의 연결 수와 감당하기 어렵다는 것), (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(이중 링·래핑의 뜻), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E52)
+
+## (phase 83 step 7) 토큰 링·토큰 버스·DQDB와 IEEE 802 작업 그룹 — ISO/IEC DTR 8802-1:1999 「Overview of Local Area Network Standards」(ieee802.org 사본), IEEE SA 표준 개요(802.5-1989, 802.5-1998, 802.5c-1991, 802.5v-2001, 802.4-1990), ieee802.org의 해산 목록·802.2·802.5 페이지
+https://www.ieee802.org/1/files/public/docs2000/J1n6125.pdf
+https://standards.ieee.org/ieee/802.5/1100/
+https://standards.ieee.org/ieee/802.5/6530/
+https://standards.ieee.org/standard/802_5c-1991.html
+https://standards.ieee.org/ieee/802.5v/1125/
+https://standards.ieee.org/ieee/802.4/1091/
+https://www.ieee802.org/NADots.shtml
+https://www.ieee802.org/2/
+https://www.ieee802.org/5/www8025org/
+
+판: DTR 8802-1:1999는 ISO/IEC JTC 1 SC 6의 기술 보고서 초안(3판, 「Part 1: Overview of Local Area Network Standards」)이고, IEEE 802.1 작업 그룹이 2000년 문서로 `ieee802.org`에 올린 사본(J1n6125)을 읽었다. **표준 본문이 아니라 LAN 표준들을 요약한 보고서다** — 기술마다 그때의 국제 표준(ISO/IEC 8802-3·-4·-5·-6, FDDI는 ISO/IEC 9314)을 든다.
+IEEE SA 표준 개요(2026-11-20에 받음): 802.5-1989(1989-06-02 승인, Superseded), ANSI/IEEE 802.5-1998(1998-05-26 발행, **Inactive-Withdrawn**), 802.5c-1991(이중 링 권고 관행, 1991-03-21 승인, 1997-03-20 재확인, Superseded),
+802.5v-2001(기가비트 토큰 링 개정, **2008-09-26 철회**), IEEE/ANSI 802.4-1990(1990-02-27 승인, **2002-01-10 철회 — Inactive-Withdrawn**, 개정 802.4b-1992·802.4h-1997).
+ieee802.org: 해산 목록 NADots(마지막 고친 날 2026-08-20), 802.2 페이지(2011-07-25), 802.5 사이트(2004-03-22에 마지막으로 고침 — 그 페이지의 「작업 그룹이 쉬고(hibernation) 있다」는 그때의 말이고, 지금 상태는 해산 목록이 말한다).
+
+- **LAN 기술과 표준 번호·속도**(DTR 표 1): CSMA/CD — ISO/IEC 8802-3, 10·100·1000 Mbit/s. 토큰 패싱 버스 — 8802-4, 5·10 Mbit/s. 토큰 패싱 링 — 8802-5, 4·16 Mbit/s. DQDB — 8802-6. 무선 LAN — 8802-11. FDDI — ISO/IEC 9314-1·-2·-3, 100 Mbit/s — §5.1 표 1.
+  8802-x 번호는 IEEE 802 표준 번호와 쉽게 맞춰 보도록 지었다 — 부록 A
+- **CSMA/CD**(§5.2.1): 반이중에서는 스테이션 둘 이상이 전송 매체 하나를 함께 쓰고, 보낼 스테이션은 매체가 조용해지기를 기다렸다 보내며, 충돌하면 몇 바이트를 더 보낸 뒤 무작위 시간 쉬었다 다시 보낸다. 전이중은 점 대 점 매체로 이은 두 스테이션만의 동시 통신이다.
+  흔한 전이중 구성은 가운데 브리지(스위치) 하나에 포트마다 장치 하나를 저만의 LAN으로 잇는 것이다(phase 72의 802.3 §4.1.1 줄과 같다). 50옴 동축(10BASE5·10BASE2), 비차폐 트위스티드 페어(10BASE-T), 광섬유에서 쓴다
+- **토큰 패싱 버스**(§5.2.2): 버스로 보내는 토큰이 매체 접근을 정하고, 토큰을 가진 스테이션이 버스에 정보를 보낸다. 브로드밴드 동축·베이스밴드 동축·광섬유에서 쓴다.
+  802.4-1990 개요도 토큰 패싱 버스 접근 방식과 그 물리 신호·매체를 정한 표준이라 적는다(매체·신호 방식 넷 — 위상 연속 FSK 1 Mb/s, 위상 일관 FSK 5·10 Mb/s, 브로드밴드 1·5·10 Mb/s, 광섬유 10·20 Mb/s)
+- **토큰 패싱 링**(§5.2.3): 스테이션들을 차례로(직렬로) 이어 **논리적인 링**을 이루고, 그 링으로 데이터와 제어 정보를 보내고 받는다. 링 접근은 링을 스테이션에서 스테이션으로 도는 신호 순서인 토큰이 정한다.
+  보낼 스테이션은 토큰을 받을 때까지 기다렸다가, 토큰을 메시지의 시작으로 바꿔 메시지를 보내고, 다 보내면 새 토큰을 내보내 링의 다른 스테이션이 쓰게 한다. 차폐·비차폐 트위스티드 페어에서 4·16 Mbit/s로 동작하고 광섬유도 쓸 수 있다.
+  802.5-1998 개요: 토큰 패싱 링 접근 방식으로 장치들을 LAN으로 잇게 하는 표준이고, MAC 프로토콜과 PHY의 기호 부호화·복호화를 정하며, 4·16 Mbit/s 차폐 트위스티드 페어 연결을 정한다
+- **DQDB**(§5.2.4): Distributed Queue Dual Bus. LAN 기술과 함께 쓸 수 있지만 도시권 네트워크(MAN)에서 더 흔히 쓰인다. ISO/IEC 8802-6이다. 802.6 작업 그룹(Metropolitan Area Network)은 해산했다 — 해산 목록
+- **이중 링 토큰 링**: 802.5c-1991은 802.5 스테이션과 함께 쓰는 이중 링 LAN 토폴로지를 정해, 매체 한 곳의 고장에서는 모두 되살아나게 한 권고 관행이다(아주 높은 가용성이 필요한 곳을 위한 것) — 802.5c 개요. 이중 링·래핑의 정의는 위 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목
+- **브리지와 스패닝 트리**(§9.1·§9.2): 투명 브리지는 저마다 MAC을 가진 LAN들을 하나의 LAN처럼 잇는다. 포트를 아주 많이 가진 브리지를 흔히 스위치라 부르고, 포트마다 끝 시스템 하나만 잇는 경우가 흔하며, 다른 브리지들을 잇는 브리지는 백본을 이룬다(§9.1).
+  투명 브리징의 스패닝 트리는 LAN 쌍마다 활성 경로가 하나뿐이다(§9.2) — 트리형에 고리가 없다는 것의 근거
+- **FDDI**(§5.2.8): PMD와 PHY의 일 — 아래 「(phase 83 step 7) FDDI」 항목
+- **IEEE 802 작업 그룹의 지금 상태**: 홈페이지가 드는 활동 중인 작업 그룹은 802.1·802.3·802.11·802.15·802.19와 TAG 802.18·802.24다(위 「(phase 72 step 2) IEEE 802 LAN/MAN Standards Committee — 홈페이지」 항목의 (phase 83 step 7) 줄).
+  해산 목록: 802.2(LLC), 802.4(토큰 버스), 802.5(토큰 링), 802.6(MAN), 802.7, 802.8, 802.9, 802.10, 802.12, 802.14, 802.16, 802.17, 802.20, 802.21, 802.22, 802.23. 쉬고 있는(hibernating) 작업 그룹은 없다 — NADots
+- **802.2**: LLC(Logical Link Control) 표준을 만든 작업 그룹으로 해산했고, 표준 802.2(1998판)는 2010년에 IEEE가 철회했다. 이제 ISO/IEC 8802-2(고치지 않고 유지하는 상태)를 가리킨다 — 802.2 페이지. LLC는 데이터 링크 계층에서 MAC 부계층과 네트워크 계층 사이에 놓인 부계층이다 — DTR §6.1·§8.1
+- **802.5**: 표준(802.5-1998)과 마지막 개정(802.5v-2001)이 모두 철회됐고, 작업 그룹은 해산 목록에 있다 — phase 72 항목의 「IEEE Std 802.5는 토큰 링 표준이고 철회됐다」와 맞는다. **802.4**: 표준 802.4-1990이 2002-01-10에 철회됐고 작업 그룹도 해산 목록에 있다
+- 쓰지 않는 것: 토큰 링의 프레임 형식·우선순위·액티브 모니터, 802.4의 동작(토큰을 넘기는 차례 정하기)과 FSK 방식, DQDB의 동작(분산 큐), 802.7~802.23 각 작업 그룹이 맡았던 기술(이 주제는 802.1·802.2·802.3·802.4·802.5·802.11·802.15와 802.6의 이름까지), 소스 라우팅 브리지
+- **한국어 이름**: token → **토큰**, token ring → **토큰 링**(`hub-switch-vlan.csma-cd`가 쓴 이름), token-passing → **토큰 패싱**(기출의 이름), token bus → **토큰 버스**(기출의 이름), logical ring → 논리적인 링, DQDB → DQDB(이름만), working group → 작업 그룹(phase 72의 이름),
+  disbanded → **해산**, withdrawn → **철회**(phase 82의 이름), LLC → LLC(논리 링크 제어), TAG → 기술 자문 그룹
+- (phase 83 step 10, 2026-11-21) **본문에 쓴 모양**: `network-topology.token-ring`에 §5.2.3을 「보낼 데이터가 있는 노드는 토큰이 올 때까지 기다리고, 토큰을 받으면 그 토큰을 잡아 데이터의 앞머리로 바꾸어 보내고, 다 보내면 새 토큰을 다음 노드로 내보낸다」로 썼다(「잡는다」는 RFC 1748 `dot5TimerHolding`의 capturing과 `hub-switch-vlan.csma-cd`가 쓴 말을 따랐다).
+  802.5-1998 개요의 4·16 Mbit/s와 트위스티드 페어·광섬유, §5.2.2와 802.4-1990 개요의 토큰 버스(토큰을 가진 노드가 버스에 보낸다 — 토큰을 넘기는 차례는 쓰지 않았다), 802.4-1990의 2002년 철회·802.5v-2001의 2008년 철회·802.5-1998의 철회 상태, 802.4·802.5 작업 그룹의 해산을 썼다.
+  「토큰 링과 CSMA/CD」 4절의 CSMA/CD 동작은 §5.2.1과 `hub-switch-vlan.csma-cd`의 뜻대로 썼다. DQDB는 쓰지 않았다(기출의 오답일 뿐 이 개념이 가르칠 것이 아니다). §9.1의 백본(다른 브리지들을 잇는 브리지)은 `network-topology.mesh-tree-topology`의 트리형 예에 썼다
+  - 쓰인 곳: (phase 83 step 10) `network-topology.token-ring`(토큰의 동작, 속도·매체, 토큰 버스, 표준·작업 그룹의 상태, 「토큰 링과 CSMA/CD」), `network-topology.mesh-tree-topology`(백본), 문항 n371, 도식 `TokenPassingDiagram`
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.ieee-802-standards`의 목록 항목 일곱(802.1·802.2·802.3·802.4·802.5·802.11·802.15)과 그 상태를 위 「IEEE 802 작업 그룹의 지금 상태」·「802.2」·「802.5」 줄대로 썼다 —
+  활동 중 넷(802.1·802.3·802.11·802.15), 해산 셋(802.2·802.4·802.5), 철회한 해는 802.2가 2010년·802.4가 2002년이고 802.5는 표준과 마지막 개정이 모두 철회됐다고 썼다. LLC의 자리(MAC 부계층 바로 위)는 DTR §6.1·§8.1이다.
+  802.6은 이름도 쓰지 않았다 — MAN은 위원회 이름(LAN/MAN)을 풀 때만 §5.2.4의 「도시권 네트워크」와 이름에서 나오는 말(도시 규모의 지역)로 썼다.
+  「802.3과 802.5」 4절의 매체 접근은 §5.2.1·§5.2.3으로, 802.3이 버스형에서 성형으로 옮겨 간 것은 같은 주제의 `bus-topology`·`star-topology` 본문(Law 2010 9쪽 그림)대로 썼다.
+  `network-topology.fddi`의 「FDDI와 토큰 링」에서 「토큰 링은 링 하나로 이루고, 이중 링은 802.5c가 따로 정한 모양」은 위 「이중 링 토큰 링」 줄이다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.ieee-802-standards`(목록 항목 일곱, 「802.3과 802.5」), `network-topology.fddi`(「FDDI와 토큰 링」, ISO/IEC 9314), 문항 n373, 도식 `Ieee802GroupsDiagram`
+
+쓰인 곳: (phase 83 step 8에서 쓰일 곳) `network-topology.network-topology`(논리적인 링), (phase 83 step 10에서 쓰일 곳) `network-topology.token-ring`(토큰 링의 동작·속도, 토큰 버스, 802.5·802.4의 상태, DQDB), `network-topology.mesh-tree-topology`(스패닝 트리는 LAN 쌍마다 경로 하나),
+(phase 83 step 11에서 쓰일 곳) `network-topology.ieee-802-standards`(작업 그룹 번호와 맡은 기술·지금 상태), `network-topology.fddi`(100 Mbit/s), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단)
+
+## (phase 83 step 7) FDDI — RFC 1390 「Transmission of IP and ARP over FDDI Networks」, RFC 1188, RFC 1512 「FDDI Management Information Base」, RFC 1285, RFC 1329 「Thoughts on Address Resolution for Dual MAC FDDI Networks」
+https://www.rfc-editor.org/rfc/rfc1390
+https://www.rfc-editor.org/rfc/rfc1188
+https://www.rfc-editor.org/rfc/rfc1512
+https://www.rfc-editor.org/rfc/rfc1285
+https://www.rfc-editor.org/rfc/rfc1329
+
+판: RFC 1390 — Internet Standard(STD 36, 1993-01). RFC 1188 — Draft Standard(1990-10, RFC 1103을 폐기 — 같은 일을 하는 RFC 1390의 앞선 판). RFC 1512 — 지금 상태 HISTORIC(1993-09, RFC 1285를 고침 — ANSI FDDI SMT 7.3 초안 기준). RFC 1285 — HISTORIC(1992-01, SMT 6.2 기준).
+RFC 1329 — Informational(1992-05, RFC 5494가 고침 — 표준이 아니라 제안 문서). MIB RFC 둘은 지금은 역사 문서라 FDDI 관리 객체의 이름과 뜻을 보는 데만 쓴다. **FDDI 표준 본문(ANSI X3T9.5, ISO 9314)은 열지 못했다** — 이 RFC들과 DTR 8802-1 §5.2.8이 말하는 만큼만 쓴다.
+
+- **FDDI**: Fiber Distributed Data Interface. LAN을 위한 표준 묶음으로, OSI 물리 계층과 데이터 링크 계층의 MAC 부계층을 정하고, IEEE 802의 MAC 계층 표준들과 짝이 된다. 네 부분 — MAC, PHY(Physical Layer Protocol), PMD(Physical Layer Medium Dependent), SMT(Station Management) — 으로 나뉘고,
+  그 그림에서 MAC·PHY·PMD는 위에서 아래로 쌓이고 SMT는 셋 옆에 걸쳐 있다. 그 위의 데이터 링크 서비스는 802.2 LLC가 맡는다 — RFC 1390 「Introduction」(RFC 1188도 같다)
+- **속도**: 100 Mbit/s — DTR 8802-1 표 1(위 항목). RFC 1285의 시간 단위는 「80나노초짜리 옥텟 단위」다(옥텟 하나를 보내는 데 80 ns — 초당 100메가비트와 맞는 셈)
+- **토큰**: FDDI MAC은 토큰으로 보낼 차례를 정한다 — IP 프레임은 비동기 프레임으로, 제한 없는(unrestricted) 토큰을 써서 보낸다 — RFC 1390 「Other MAC Layer Issues」. 토큰의 종류와 동기 프레임은 쓰지 않는다
+- **PMD와 PHY**(DTR 8802-1 §5.2.8): PMD는 FDDI 노드 사이의 점 대 점 통신을 위한 디지털 베이스밴드 전송로를 주고, 부호화된 비트열을 나르는 데 필요한 일을 맡는다(ISO/IEC 9314-3). PHY는 PMD와 MAC 사이를 잇고, 위쪽(upstream)에서 오는 데이터 흐름에 클럭을 맞추며, 기호를 부호화·복호화하고 기호의 경계를 가른다(ISO 9314-1).
+  PMD의 종류는 멀티 모드 광섬유, 싱글 모드(두 갈래), SONET, 저가 광섬유, 트위스티드 페어다 — RFC 1512 `fddimibPORTPMDClass`. FDDI의 PMD는 광섬유가 중심이지만 그것만은 아니다.
+  **PHY가 고장 난 노드를 처리한다는 문장은 이 문서들 어디에도 없다** — `exam-notes.md` E53
+- **이중 링 — 1차·2차**: FDDI 스테이션에는 1차(Primary)·2차(Secondary) 경로가 있고, 고장이 없으면 A·B 포트에 두 경로가 모두 있다 — RFC 1512 `fddimibSMTAvailablePaths`·`fddimibPORTAvailablePaths`. 1차 링·2차 링과 「이중 FDDI 링」이라는 이름 — RFC 1329 §3·§4.
+  단일 MAC 스테이션은 대개 1차 링에 MAC을 둔다 — §4. MAC을 두 링에 하나씩 둔 스테이션끼리는 두 링으로 짐을 나눠 보내 대역폭을 두 배(200 Mbit/s)로 쓰자는 제안이 있다 — §1(제안 문서의 말 — 표준 동작이 아니다. 본문에 쓰지 않는다)
+- **래핑**: 스테이션의 구성 상태(CF State)에는 `wrap_a`·`wrap_b`·`wrap_ab`·`wrap_s` 같은 랩 상태와 두 경로를 그대로 지나보내는 `thru`가 있다(ANSI SMT 9.7.2.2를 든다) — RFC 1512 `fddimibSMTCFState`. 스테이션 안 1차·2차 경로의 상태는 이어짐(concatenated)·나뉨(separated)·통과(thru) 가운데 하나다 — `fddimibSMTStationStatus`.
+  이중 FDDI 링이 래핑하면 스테이션들의 MAC이 모두 한 링 위에 놓인다 — RFC 1329 §8.3. 링이 래핑할 때 스테이션의 연결을 어떻게 둘지는 SMT의 구성 관리(Configuration Management)가 다룬다 — §4.
+  **래핑을 끊긴 곳 양옆의 스테이션이 한다는 문장은 이 RFC들에 없다** — 래핑의 정의(이중 링 스테이션이 반대 방향 링크를 써서 고장 난 링크나 노드를 피한다 — 위 「토폴로지·링크·끝막음」 항목의 802.5c 정의)와 함께 읽으면, 고장 난 곳을 사이에 둔 스테이션들이 두 링을 이어 고리 하나를 다시 만든다는 데까지 나온다(정의에서 나오는 말)
+- **SMT**: SMT 표준의 관리 객체에는 연결 관리(ECM·PCM 상태, 포트의 연결 상태), 링 관리(RMT 상태 — `Ring_Op` 등), 구성 관리(CF 상태 — 위 래핑)가 있다 — RFC 1512 §4.1·§4.2·§4.5.
+  포트마다 링크 오류율을 오래 평균한 추정값을 두고, 그 값이 정해 둔 값(LerCutoff)에 닿으면 그 링크 연결을 끊으며 경보 값(LerAlarm)에 닿으면 경보를 낸다 — `fddimibPORTLerCutoff`·`fddimibPORTLerAlarm`. 스테이션은 이웃 정보 프레임(Neighbor Information Frame) 프로토콜로 위쪽 이웃의 MAC 주소를 안다 — `fddimibMACUpstreamNbr`.
+  그러니 SMT가 링크의 고장을 살펴 연결을 끊고 링 구성을 바꾸는 일을 맡는다는 것은 이 관리 객체들에서 나온다. 「곧바로」 다시 구성한다는 시간은 문서에 없다 — 쓰지 않는다
+- **바이패스**: FDDI 스테이션은 A·B 포트 쌍에 선택 장치인 (광) 바이패스를 둘 수 있다 — RFC 1512 `fddimibSMTBypassPresent`, RFC 1285의 ATTACHMENT(포트 하나나 둘에 선택 광 바이패스를 더해 한 단위로 관리). 바이패스가 무엇을 하는지는 이 RFC들이 정의하지 않는다 — 본문은 쓰지 않는다
+- 쓰지 않는 것: FDDI 프레임 형식과 최대 크기, 토큰의 종류(제한·비제한)와 동기·비동기 프레임, 타이머(T_Req 등), PCM·ECM·RMT 상태 기계의 차례, 이중 MAC 부하 분산(RFC 1329의 제안)
+- **한국어 이름**: FDDI → **FDDI**(풀네임 Fiber Distributed Data Interface — 기출과 같다), primary ring·secondary ring → **1차 링**·**2차 링**(guide의 이름), dual ring → **이중 링**, wrap → **래핑**, PMD → PMD(물리 매체 의존 부분 — 기출의 풀네임 「Physical Medium Dependent」),
+  PHY → PHY(물리 계층 프로토콜), SMT → SMT(스테이션 관리), station → 스테이션, link error rate → 링크 오류율, bypass → 바이패스(이름만)
+- (phase 83 step 11, 2026-11-21) **본문에 쓴 모양**: `network-topology.fddi`에 RFC 1390의 네 부분을 목록 항목 넷(PMD·PHY·MAC·SMT)으로 썼다.
+  PMD는 DTR 8802-1 §5.2.8의 점 대 점 전송로와 RFC 1512 `fddimibPORTPMDClass`(광섬유의 종류마다, 그리고 트위스티드 페어용 — SONET은 쓰지 않았다)로,
+  PHY는 DTR §5.2.8의 부호화·복호화·클럭 맞추기·기호의 경계 가르기로 썼고(「매체와 상관없는 부분」이라고는 쓰지 않았다 — 문서에 그 말이 없다) 그 항목 끝에 E53 한 줄을 붙였다.
+  MAC은 RFC 1390의 토큰과 프레임, SMT는 RFC 1390의 그림(셋 옆에 걸친다)과 RFC 1512 §4.1·§4.2·§4.5의 연결·링·구성 관리와 `fddimibPORTLerCutoff`로 썼다. 속도 100 Mb/s와 국제 표준 번호 ISO/IEC 9314는 DTR 표 1이다.
+  1차·2차 링은 RFC 1329 §3·§4와 RFC 1512의 두 경로로 썼다. 「평소에 데이터가 도는 고리는 1차 링」은 §4의 「단일 MAC 스테이션은 대개 1차 링에 MAC을 둔다」에서 나오는 말이라 본문에 「대개」를 살려 그 까닭과 함께 적었다. 이중 MAC의 부하 분산 제안(§1)은 쓰지 않았다.
+  래핑은 위 「(phase 83 step 7) 토폴로지·링크·끝막음」 항목의 802.5c 정의와 RFC 1329 §8.3(래핑하면 MAC이 모두 한 링 위에 놓인다)을 함께 읽은 말로 썼다 —
+  고장 난 자리를 사이에 둔 두 노드가 한쪽 링으로 받은 데이터를 다른 쪽 링으로 돌려 내보내고, 두 링이 이어져 남은 노드를 모두 지나는 고리 하나가 된다. 「곧바로」 같은 시간과 바이패스는 쓰지 않았다.
+  FDDI 위의 데이터 링크 서비스를 802.2 LLC가 맡는다는 RFC 1390 「Introduction」의 말은 `network-topology.ieee-802-standards`의 802.2 항목에 썼다
+  - 쓰인 곳: (phase 83 step 11) `network-topology.fddi`(뜻·속도·표준 번호, 네 부분, E53, 이중 링, 래핑, 「1차 링과 2차 링」, 「FDDI와 토큰 링」, 예 `A`~`D`), `network-topology.ieee-802-standards`(802.2 항목의 LLC), 문항 n372, 도식 `FddiDualRingDiagram`
+
+쓰인 곳: (phase 83 step 11에서 쓰일 곳) `network-topology.fddi`(FDDI의 뜻·속도, 네 부분, 1차·2차 링, 래핑, SMT의 링크 오류 감시), (phase 83 step 9에서 쓰일 곳) `network-topology.ring-topology`(두 번째 링으로 고장을 견딘다는 한 줄), 기출 대조(`exam-notes.md` 「phase 83 step 7」 문단, E53)
+
+## (phase 83 step 12) 클라우드 컴퓨팅의 정의와 배포 모델 — NIST SP 800-145 「The NIST Definition of Cloud Computing」, NIST SP 800-146 「Cloud Computing Synopsis and Recommendations」, ITU-T Y.3500 (08/14) 「Information technology – Cloud computing – Overview and vocabulary」
+https://csrc.nist.gov/pubs/sp/800/145/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
+https://csrc.nist.gov/pubs/sp/800/146/final
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-146.pdf
+https://www.itu.int/rec/T-REC-Y.3500-201408-I/en
+
+판: SP 800-145는 2011년 9월 발행이고 문서 이력에 2011-09-28 최종판 하나뿐이다. 2026-11-21에 csrc 문서 페이지를 확인했다 — Planning Note·철회 표시가 없고 뒤를 잇는 판이 없다(지금 판이다). 7쪽짜리이고 정의는 §2 한 절에 있다 —
+그 절을 「Essential Characteristics」·「Service Models」·「Deployment Models」 세 소제목으로 나누므로 아래에서는 소제목을 함께 적는다.
+SP 800-146은 2012년 5월 발행이고 문서 이력에 2012-05-29 최종판 하나뿐이다(같은 날 확인 — Planning Note·철회 표시 없음). SP 800-145의 정의를 받아, 배포 모델마다 사용자가 무엇을 통제하고 무엇에 기대는지를 풀어 쓴 문서다.
+Y.3500 (08/14)는 In force(2014-08-13 승인)이고 ISO/IEC 17788:2014와 같은 글이다. 세 문서 모두 한국어판이 없다.
+
+- **클라우드 컴퓨팅**: 네트워크·서버·저장 장치·응용 프로그램·서비스 같은 컴퓨팅 자원을 여럿이 함께 쓰는 묶음(공유 풀)에 모아 두고, 사용자가 어디서든 필요할 때 네트워크로 그 자원을 가져다 쓰게 하는 방식이다. 자원은 빨리 내주고 빨리 거둘 수 있으며,
+  그 사이에 드는 관리의 품이나 제공자와 주고받을 일이 아주 적다. 다섯 핵심 특징·세 서비스 모델·네 배포 모델로 이루어진다 — SP 800-145 §2 첫머리.
+  Y.3500도 같은 뜻으로, 늘리고 줄일 수 있는 물리·가상 자원의 묶음에 네트워크로 닿아 사용자가 그때그때 스스로 자원을 마련하고 관리하게 하는 방식이라 정의한다 — §3.2.5, §6.1(자원의 예로 서버·운영 체제·네트워크·소프트웨어·응용 프로그램·저장 장비를 든다)
+- **다섯 핵심 특징**(SP 800-145 §2 「Essential Characteristics」):
+  - 주문형 셀프서비스(on-demand self-service): 사용자가 서버 시간·네트워크 저장 공간 같은 능력을 필요할 때 제공자 쪽 사람과 주고받는 일 없이 스스로, 자동으로 마련한다
+  - 광범위한 네트워크 접근(broad network access): 능력이 네트워크에 열려 있고, 휴대폰·태블릿·노트북·워크스테이션처럼 서로 다른 기기가 표준 방식으로 닿는다
+  - 자원 풀링(resource pooling): 제공자가 자원을 한데 모아 **멀티테넌트 모델**로 여러 사용자에게 내주고, 물리·가상 자원을 수요에 따라 그때그때 나눠 주고 다시 나눠 준다.
+    사용자는 대개 자원이 정확히 어디 있는지 알지 못하고 정할 수도 없으며, 나라·주·데이터 센터 같은 넓은 단위로만 정할 수 있다(위치 독립). 자원의 예는 저장 공간·처리·메모리·네트워크 대역폭이다
+  - 빠른 탄력성(rapid elasticity): 수요에 맞춰 능력을 빨리 늘리고 줄이며, 자동으로 하기도 한다. 사용자에게는 쓸 수 있는 능력이 끝이 없어 보이고 언제든 원하는 만큼 가져다 쓸 수 있어 보인다
+  - 측정되는 서비스(measured service): 클라우드 시스템이 서비스 종류에 맞는 단위(저장 공간·처리·대역폭·활성 사용자 계정 등)로 쓴 양을 재는 능력(미터링)으로 자원 쓰임을 자동으로 조절하고 알맞게 맞춘다.
+    쓴 양을 살피고 조절하고 보고할 수 있어 제공자와 사용자가 함께 본다. 재는 것은 대개 쓴 만큼 요금을 매기려는 것이다 — 각주 1
+- **Y.3500의 핵심 특징은 여섯**이다 — 광범위한 네트워크 접근, 측정되는 서비스, **멀티테넌시**, 주문형 셀프서비스, 빠른 탄력성과 확장성, 자원 풀링(§6.2). SP 800-145가 자원 풀링 안에 넣은 「멀티테넌트 모델」을 Y.3500은 따로 세운다.
+  - 멀티테넌시(multi-tenancy): 물리·가상 자원을 나눠 주되 여러 **테넌트**와 그들의 계산·데이터를 서로 떼어 놓아 서로 닿지 못하게 하는 것이다. 테넌트는 같은 물리·가상 자원 묶음을 함께 쓰는 클라우드 사용자 한 무리다 — §3.2.27, §3.2.37.
+    한 테넌트의 사용자는 대개 한 고객 조직에 속하고, 공용·커뮤니티 클라우드에서는 여러 고객의 사용자가 한 테넌트에 섞이기도 한다. 한 고객 조직이 한 제공자에게 부서마다 테넌트를 여럿 둘 수도 있다 — §6.2
+  - 자원 풀링: 제공자가 물리·가상 자원을 모아 한 고객이나 여러 고객에게 내주는 것이다. 그래서 제공자는 멀티테넌시를 받치면서 그 복잡함을 추상화로 고객에게서 가리고, 고객은 자원이 어떻게 마련되는지·어디 있는지를 대개 모른다.
+    그래도 나라·주·데이터 센터 같은 넓은 단위로 위치를 정할 수는 있다 — §3.2.34, §6.2
+  - 빠른 탄력성과 확장성: 자원을 빨리 늘리고 줄이므로 고객은 자원이 모자랄 걱정이나 용량 계획을 덜 한다 — §6.2. 측정되는 서비스: 고객은 쓴 자원에 대해서만 낼 수 있다 — §6.2
+- 「단일 임차인(single-tenant)」이라는 낱말과 그 정의는 SP 800-145·SP 800-146·Y.3500 어디에도 없다(전문 검색) — 세 문서는 자원 묶음을 여러 사용자에게 내주는 쪽(멀티테넌트)만 말한다
+- **세 서비스 모델**(SP 800-145 §2 「Service Models」):
+  - SaaS: 제공자가 클라우드 위에서 돌리는 응용 프로그램을 웹 브라우저 같은 클라이언트로 쓴다. 네트워크·서버·운영 체제·저장 장치는 물론 응용 프로그램의 기능도 사용자가 관리하지 않는다(사용자별 몇 가지 설정은 예외일 수 있다)
+  - PaaS: 사용자가 만들거나 얻은 응용 프로그램을, 제공자가 지원하는 언어·라이브러리·도구로 클라우드에 올린다. 밑의 네트워크·서버·운영 체제·저장 장치는 관리하지 않고, 올린 응용 프로그램과 그 실행 환경의 설정만 다룬다
+  - IaaS: 처리·저장·네트워크 같은 기본 자원을 마련받아 운영 체제와 응용 프로그램을 포함한 아무 소프트웨어나 올려 돌린다. 밑의 클라우드 인프라는 관리하지 않지만 **운영 체제**·저장 공간·올린 응용 프로그램은 사용자가 맡는다(호스트 방화벽 같은 네트워크 부품 일부도)
+  - Y.3500은 같은 셋을 고객에게 주는 능력의 갈래(응용·플랫폼·인프라)로 가른 서비스 범주로 적는다 — SaaS는 응용, PaaS는 플랫폼, IaaS는 인프라 능력을 준다(§6.4 — 범주는 CaaS·CompaaS·DSaaS·NaaS까지 일곱을 든다)
+  - 클라우드 인프라는 다섯 특징을 가능하게 하는 하드웨어와 소프트웨어의 모음이고, 서버·저장 장치·네트워크 부품으로 된 물리 층과 그 위에서 특징을 드러내는 소프트웨어의 추상화 층으로 볼 수 있다 — SP 800-145 각주 2
+- **네 배포 모델**(SP 800-145 §2 「Deployment Models」, Y.3500 §6.5 — 배포 모델은 물리·가상 자원을 누가 통제하고 누구와 나눠 쓰는가로 클라우드 컴퓨팅을 짜는 방식이다 §3.2.7):
+  - 사설 클라우드(private cloud): 한 조직(부서 같은 사용자를 여럿 둔)만 쓰도록 마련한다. 그 조직이나 다른 업체(제3자)나 둘이 함께 소유·관리·운영하고, **조직의 건물 안에도 밖에도**(on or off premises) 있을 수 있다.
+    Y.3500: 한 고객만 쓰고 자원을 그 고객이 통제하며, 그 고객이 자기를 위해 다른 이에게 접근을 허락할 수도 있다 — §3.2.32, §6.5
+  - 커뮤니티 클라우드(community cloud): 사명·보안 요구·정책·규정 준수 같은 관심사를 함께하는 조직들의 무리만 쓰도록 마련한다. 무리 안의 조직 하나 이상이나 제3자가 소유·관리·운영하고, 건물 안에도 밖에도 있을 수 있다.
+    Y.3500: 참여를 그 무리로 묶는 점에서 공용보다 닫혀 있고, 사설보다는 넓다 — §6.5
+  - 공용 클라우드(public cloud): 일반 대중이 쓰도록 연다. 기업·학교·정부 기관이나 그 조합이 소유·관리·운영하고, **클라우드 제공자의 건물에** 있다. Y.3500: 어느 고객이든 쓸 수 있고 자원은 제공자가 통제한다 — §3.2.33, §6.5.
+    SP 800-146: 공용에서는 사용자와 제공자 사이의 통신이 공중 인터넷으로 이어진다고 볼 수 있고, 사용자는 인터넷 서비스 제공자(ISP)를 거쳐 닿는다 — §4.6
+  - 하이브리드 클라우드(hybrid cloud): 서로 다른 클라우드 인프라 둘 이상(사설·커뮤니티·공용)을 묶은 것이다. 각자는 따로인 채 남되, 데이터와 응용 프로그램을 옮길 수 있게 하는 기술(표준이든 업체 고유 기술이든)로 이어진다 —
+    예로 클라우드 사이에서 부하를 나누는 cloud bursting을 든다. Y.3500: 하이브리드도 조직이나 제3자가 소유·관리·운영하고, 건물 안에도 밖에도 있을 수 있다 — §6.5
+- **온프레미스는 배포 모델의 이름이 아니다**: 두 문서의 배포 모델은 넷이고, 「on premises / off premises」는 사설·커뮤니티(Y.3500은 하이브리드도) 클라우드가 **어디에 놓이는지**를 말하는 자리의 말로만 나온다(위 줄).
+  SP 800-146은 사설·커뮤니티 클라우드를 다시 조직 건물 안에 둔 것(on-site)과 서버 쪽을 호스팅 업체에 맡긴 것(outsourced)으로 나눠 살피고 — Table 1, §4.2~§4.5 — 클라우드와 견주는 말로 「전통적인 온프레미스 컴퓨팅」을 쓴다 — §4.1
+- **네트워크에 기대고, 일이 어디서 도는지 가려진다**(SP 800-146 §4 첫머리의 일반 진술 — 모든 배포 모델에 걸린다): 사용자는 클라우드에 닿으려면 제대로 동작하는 안전한 네트워크가 있어야 하고, 네트워크가 믿을 만하지 않으면 사용자가 보기에 클라우드도 믿을 만하지 않다(Network dependency).
+  제공자는 하드웨어를 알차게 쓰려고 사용자의 일을 기계 사이로 옮기므로, 일이 어디서 도는지는 사용자에게 가려진다(Workload locations are dynamically assigned and are thus hidden from clients).
+  여러 사용자의 일이 같은 시스템·같은 로컬 네트워크에서 함께 돌고 제공자의 소프트웨어가 정한 접근 정책으로만 갈린다(Risks from multi-tenancy). 공용 클라우드는 비용이 싼 곳에 데이터 센터(따라서 사용자의 일)를 둘 수 있다는 것이 비용 효율의 근거 가운데 하나다 — §4.6
+- **한국어 이름**: 「클라우드 컴퓨팅」, 다섯 특징 「주문형 셀프서비스」(on-demand self-service), 「광범위한 네트워크 접근」(broad network access — 「광대역」으로 옮기면 대역폭 이야기로 읽히는데 이 특징은 어디서 어떤 기기로 닿는가의 이야기라 「광범위한」을 골랐다), 「자원 풀링」(resource pooling — 풀은 여럿이 함께 쓰려고 모아 둔 자원의 묶음이라고 한 줄로 푼다),
+  「빠른 탄력성」(rapid elasticity), 「측정되는 서비스」(measured service — 쓴 양을 잰다는 것이 이름에 드러나게 했다) — 이 phase의 guide가 정한 이름이다. 「멀티테넌트」·「멀티테넌시」(multi-tenant·multi-tenancy — 영문을 그대로 읽은 이름이고, tenant는 기출이 「임차인」으로 옮긴다), 「테넌트」,
+  「서비스 모델」(IaaS·PaaS·SaaS는 약어 그대로), 「배포 모델」(deployment model — 기출은 「클라우드 환경 모델」·「클라우드 컴퓨팅 모델」이라 부른다), 「사설 클라우드」·「공용 클라우드」(기출의 이름), 「커뮤니티 클라우드」, 「하이브리드 클라우드」, 「온프레미스」(on-premises — 영문을 그대로 읽은 이름, 기출은 영문으로 쓴다)
+쓰일 곳: (phase 83 step 13·14에서 쓰일 곳) `cloud-sdn.cloud-computing`(정의, 다섯 특징 목록과 멀티테넌트, 서비스 모델 셋, 위치를 대개 모른다, 「멀티테넌트와 단일 테넌트」·「자원 풀링과 빠른 탄력성」), `cloud-sdn.cloud-deployment-models`(네 모델, 온프레미스는 자리의 말, 네트워크에 기댄다, 공용은 인터넷으로 닿는다),
+`cloud-sdn.serverless`(IaaS에서는 사용자가 운영 체제를 맡는다), `cloud-sdn.data-center`(클라우드 자원은 데이터 센터에 놓인다 — Y.3500 §6.2, SP 800-146 §4.6), 기출 대조(`exam-notes.md` 「phase 83 step 12」 문단)
+(phase 83 step 13) 본문에 쓴 모양 — `cloud-sdn.cloud-computing`은 SP 800-145 §2 첫머리의 정의를 「컴퓨팅 자원을 한데 모아 두고 사용자가 네트워크로 필요할 때 가져다 쓰게 하는 방식」으로 풀고, 풀에 물리 자원과 가상 자원이 함께 든다는 것은 Y.3500 §3.2.5의 「물리·가상 자원의 묶음」에서 가져왔다
+  (가상 자원의 예로 든 가상 컴퓨터와 가상화의 한 줄 풀이는 `windows-hyperv.hyper-v`와 뜻을 맞췄다). 다섯 특징은 목록 항목으로, 멀티테넌트 모델은 자원 풀링 항목 안에서, 멀티테넌시·테넌트는 Y.3500 §6.2·§3.2.27·§3.2.37로 항목 뒤 문단에 썼다.
+  서비스 모델 셋은 SP 800-145 「Service Models」대로 사용자가 맡는 범위로 썼다(SaaS의 사용자별 설정 예외는 쓰지 않았다). 「멀티테넌트와 단일 테넌트」는 단일 테넌트를 표준 용어로 세우지 않고, 세 문서가 그 말을 쓰지 않는다는 것과 자원 풀을 사용자 하나가 혼자 쓰는 것은 클라우드의 특징이 아니라는 것으로만 썼다.
+  예의 `WEB02`·`WEB03`은 guide의 예시 값 목록에 없던 이름표로, 빠른 탄력성의 「서버를 셋으로 늘린다」를 도식에 그리려고 더했다.
+  `cloud-sdn.cloud-deployment-models`는 네 모델을 목록 항목으로 썼다. 온프레미스는 자리의 말로(SP 800-145·Y.3500 §6.5의 on/off premises, SP 800-146 Table 1의 outsourced), 네트워크에 기대고 일이 어디서 도는지 가려진다는 것은 SP 800-146 §4 첫머리로, 공용 클라우드의 인터넷은 §4.6으로 썼다.
+  사설 클라우드에서 그 고객이 다른 이에게 접근을 허락할 수 있다는 것(Y.3500 §6.5)은 「누가 쓸지는 그 조직이 정한다」로 줄여 썼다. 하이브리드의 cloud bursting은 이름을 쓰지 않고 「한쪽에 일이 몰릴 때 일부를 다른 쪽으로 넘겨 나눠 처리한다」로 풀었다.
+  쓰인 곳: `cloud-sdn.cloud-computing`·`cloud-sdn.cloud-deployment-models`, 문항 n374·n375·n376, 도식 `cloud-traits`·`deployment-model-users`
+
+## (phase 83 step 12) 서버리스 컴퓨팅과 FaaS — ITU-T Y.3534 (04/26) 「Cloud computing – Functional requirements of function as a service」, ITU-T X.1650 (05/25) 「Security guidelines for serverless computing」
+https://www.itu.int/rec/T-REC-Y.3534-202604-I/en
+https://www.itu.int/rec/T-REC-X.1650-202505-I/en
+
+판: Y.3534 (04/26)는 In force(2026-04-13 승인, 영문 PDF 2026-06-16 게시 — 사전 공개판이 아니라 발행판을 받았다). X.1650 (05/25)는 In force(2025-05-29 승인, 영문 PDF 2025-09-10 게시). 두 권고 모두 이 판 하나뿐이다.
+Y.3534의 부록 II·III은 스스로 「이 권고의 일부가 아니다」라고 밝힌 참고 부록이다 — 아래에서 부록을 쓴 줄은 그렇다고 적는다. 서버리스의 정의는 X.1650이 ISO/IEC 23167에서 가져다 실은 것을 쓴다(ISO/IEC 본문은 열지 않았다).
+
+- **서버리스 컴퓨팅**: 사용자(클라우드 서비스 고객)가 응용 프로그램 코드나 데이터를 내놓는 것 말고는 하드웨어 자원도 소프트웨어 자원도 마련하거나 배치하거나 관리하지 않고 클라우드의 여러 능력을 쓰는 클라우드 서비스 범주다 — X.1650 §3.1.4.
+  개발자는 인프라 관리와 운영 일을 모두 클라우드 제공자에게 넘기고 업무 논리에만 마음을 쓰며, 쓴 자원만큼만 요금을 낸다(순수한 사용량 과금). FaaS가 서버리스를 구현하는 주된 방법이다 — X.1650 「Summary」
+- Y.3534 부록 III(참고)은 서버리스를 클라우드의 **실행 모델**로 적는다 — 사용자는 응용 프로그램 코드와 데이터를 내고, 응용 프로그램에 필요한 그 밖의 자원과 능력은 모두 제공자가 마련하고 관리한다.
+  **서버리스에도 서버는 있다** — 인스턴스 고르기·늘리고 줄이기·배포·감시·기록·추적·장애 대비·보안을 서버가 맡는다. 제공자는 사용자가 정해 둔 이벤트가 일어나면 자원을 내주고, 필요 없으면 거둔다.
+  서버리스의 출발점은 FaaS지만 둘은 같지 않다 — FaaS는 서버리스의 대표 서비스이고, 서버리스 데이터베이스·저장소·메시지 큐 같은 서버리스 BaaS도 있다
+  (X.1650은 서버리스를 「서비스 범주」로, Y.3534 부록 III은 「실행 모델」로 부른다 — 본문은 어느 한쪽 용어를 세우지 않고 「방식」으로 쓴다)
+- **FaaS**(function as a service): 사용자가 응용 프로그램의 기능을, 그것을 만들고 내놓는 데 드는 인프라를 짓고 돌보는 번거로움 없이 개발·배포·관리하게 하는 클라우드 서비스 범주다 — Y.3534 §3.1.7(X.1650 §3.2.2의 정의를 가져다 쓴다).
+  여기서 **함수**는 특정한 일을 하는 응용 프로그램 코드 한 조각으로, 클라우드에서 실행·배포의 기본 단위다 — Y.3534 §6.1
+- **동작**(Y.3534 §6.1): FaaS는 응용 프로그램을 함수로 쪼개고, 함수 코드는 이벤트가 일어날 때만, 짧게 살다 사라지는 서로 떨어진 실행 환경에서 돈다. 사용자(나 협력사)가 함수 코드를 함수 저장소에 넣어 두면 HTTP 요청·데이터베이스 갱신·파일 올리기·메시지 알림 같은 이벤트가 그 함수를 실행시킨다.
+  들어오는 요청 수에 따라 자동으로 늘고 줄어야 하고, 실행은 제공자가 클라우드 인프라 위에서 계속 운영한다
+- **장점**(Y.3534 §6.1): ① 자원 마련을 다루지 않고 코드를 실행한다 — 실행할 때 부하에 따라 컴퓨팅 자원·메모리를 자동으로 내주므로 서버 배치·용량 계획 같은 밑일을 사용자가 신경 쓰지 않는다 ② 사용자가 정한 이벤트에 따라 자동으로, 빨리 늘고 준다(함수 인스턴스 하나에서 수천까지)
+  ③ 미리 잡아 둔 자원이 아니라 실제로 쓴 자원에만 요금을 매긴다 — 놀고 있는 자원에는 내지 않아, 요청 양의 기복이 크고 실행이 드문 일에 맞는다 ④ 밑의 FaaS 구조의 장애 대비는 제공자가 책임진다 ⑤ 함수 단위로 개발해 배포와 고침이 빨라진다
+- **누가 무엇을 맡는가**(Y.3534 부록 II 표 II.1, 참고):
+  - FaaS — 함수 말고는 거의 모두 제공자가 관리하고, 사용자는 함수 코드와 그 설정만 관리한다. 이벤트 기반으로 실행되고 함수는 짧게 살며 상태를 두지 않는다. 실제 쓴 만큼만 낸다. 자원을 걱정하지 않고 코드를 바로 배포한다
+  - IaaS — 사용자가 **운영 체제**·미들웨어·응용 프로그램을 관리하고, 제공자는 서버를 관리한다. 배포 전에 서버를 마련하고 설정해야 하고, 늘 켜져 돈다. 마련한 가상 머신·저장 공간·켜 둔 시간만큼 낸다
+  - PaaS — 사용자가 응용 프로그램과 그 실행 환경을, 제공자가 인프라를 관리한다. SaaS — 제공자가 모두 관리하고 사용자는 설정하거나 쓰기만 한다
+- 운영 체제의 **패치**를 누가 하는지를 서버리스·FaaS에 대해 따로 적은 문장은 두 권고에 없다(전문 검색 — X.1650 §8.3의 패치 권고는 개발자가 함수가 쓰는 패키지를 최신 판으로 올리고 패치하라는 것이다).
+  문서에서 나오는 것은 서버리스에서는 사용자가 소프트웨어 자원을 관리하지 않는다는 정의(X.1650 §3.1.4)와, IaaS에서는 사용자가 운영 체제를 맡는다는 것(Y.3534 표 II.1, 위 「(phase 83 step 12) 클라우드 컴퓨팅의 정의와 배포 모델」 항목의 SP 800-145 IaaS)이다.
+  SaaS에 대해서는 SP 800-146 §5.3.4가 제공자가 백업·시스템 유지 보수·보안 패치 같은 운영 일을 맡는다고 적는다(같은 항목의 문서)
+- **한국어 이름**: 「서버리스 컴퓨팅」(serverless computing — 영문을 그대로 읽은 이름, 기출의 이름), 「FaaS」(function as a service — 약어 그대로 쓰고 「함수 단위로 코드를 올려 두고 실행하게 하는 서비스」로 한 줄 푼다), 「함수」(function — 특정한 일을 하는 코드 한 조각),
+  「이벤트」(event — 함수를 실행시키는 일. 앞 주제 `windows-admin-tools`가 「이벤트」로 쓴다), 「자동 확장」(auto scaling — 기출은 「오토스케일링」으로 쓴다)
+쓰일 곳: (phase 83 step 14에서 쓰일 곳) `cloud-sdn.serverless`(정의, FaaS와의 관계, 맡는 일의 나눔, 쓴 만큼 요금, 자동으로 늘고 줄기, 서버리스에도 서버가 있다, 「서버리스와 IaaS」, 사진 올리기 예 — 파일 올리기가 함수를 실행시키는 이벤트의 예다), 기출 대조(`exam-notes.md` 「phase 83 step 12」 문단 — [기출 2025-11-02 #27])
+(phase 83 step 14) 본문에 쓴 모양 — `cloud-sdn.serverless`는 X.1650 §3.1.4의 정의를 「사용자가 코드와 데이터만 내놓고 서버 같은 하드웨어도, 운영 체제 같은 소프트웨어도 마련하거나 관리하지 않는 방식」으로 풀고, 「서버리스에도 서버는 있다」·「이벤트가 일어나면 자원을 내주고 필요 없으면 거둔다」는 Y.3534 부록 III(참고)에서, 함수·이벤트·자동 확장·쓴 자원만큼 요금은 Y.3534 §6.1에서 가져왔다.
+  맡는 일의 나눔과 「서버리스와 IaaS」는 Y.3534 표 II.1(참고)의 FaaS·IaaS 두 열을 썼다 — IaaS는 사용자가 운영 체제·미들웨어·응용 프로그램을, 제공자가 서버를 맡고, 배포 전에 서버를 마련·설정하며 늘 켜져 있고, 마련한 가상 머신·저장 공간·켜 둔 시간만큼 낸다.
+  본문·도식 `serverless-duties`는 미들웨어 칸을 두지 않고 서버(하드웨어)·운영 체제·응용 프로그램 코드 세 칸으로 줄였다(미들웨어라는 낱말을 이 주제에 새로 들이지 않으려고 — 「운영 체제부터 그 위」라는 말로 미들웨어까지 덮는다).
+  운영 체제의 업데이트는 「운영 체제 관리」의 한 예로만 쓰고, 서버리스에서 패치를 누가 하는지를 한 문장 사실처럼 쓰지 않았다(위 「운영 체제의 패치」 줄) — n377의 오답 「운영 체제를 업데이트한다」도 X.1650 §3.1.4(소프트웨어 자원을 관리하지 않는다)로 가른다.
+  쓰인 곳: `cloud-sdn.serverless`(문단 0~7), 도식 `serverless-duties`, 문항 n377
+
+## (phase 83 step 12) 데이터 센터와 「인터넷 데이터 센터(IDC)」라는 이름 — ITU-T L.1301 (05/15), L.1300 (06/14), L.1305 (11/19), L.1306 (02/23), K.125 (07/17)
+https://www.itu.int/rec/T-REC-L.1301-201505-I/en
+https://www.itu.int/rec/T-REC-L.1300-201406-I/en
+https://www.itu.int/rec/T-REC-L.1305-201911-I/en
+https://www.itu.int/rec/T-REC-L.1306-202302-I/en
+https://www.itu.int/rec/T-REC-K.125-201707-I/en
+
+판: 다섯 권고 모두 In force다(2026-11-21 권고 페이지 확인). L.1301 「Minimum data set and communication interface requirements for data centre energy management」(2015-05-07 승인), L.1300 「Best practices for green data centres」(2014-06-29 승인, 11/11 판을 대체),
+L.1305 「Data centre infrastructure management system based on big data and artificial intelligence technology」(2019-11-13 승인), L.1306 「Specification of an edge data centre infrastructure」(2023-02-22 승인),
+K.125 「Dangerous effects and protective measures against electromagnetic disturbances when an Internet data centre is co-sited with a high-voltage substation」(2017-07-29 승인). ITU-T는 영국식 철자 data centre를 쓴다.
+L 시리즈의 데이터 센터 권고는 에너지 효율이 주제다 — 데이터 센터가 무엇인지와 무엇으로 이루어지는지만 가져오고, 에너지 지표와 설계 권고는 가져오지 않는다.
+
+- **데이터 센터**: 컴퓨팅만을 위해 마련한 물리적인 장소이고, 교환·과금 같은 통신 기능의 장비를 둔 통신 사업자의 장소도 같은 이름으로 부른다 — L.1301 §3.2.2(L.1306 §3.1.3이 같은 정의를 가져다 쓴다)
+- **무엇으로 이루어지는가**: L.1300은 데이터 센터의 모범 사례를 구성 요소별로 나눈다 — ICT 장비와 서비스, 냉방, 전원 장비, 그 밖의 장비, 건물, 감시, 네트워크 설계 — §5 첫머리.
+  ICT 장비는 스위치·송신기·라우터·서버 같은 정보 통신 장비이고(L.1306 §3.1.5 — L.1200의 정의를 가져다 쓴다), 기반 시설(infrastructure)은 전원 공급·냉방 부품처럼 ICT 장비를 받치는 장비다(L.1306 §3.1.4 — L.1325의 정의를 가져다 쓴다).
+  데이터 센터 기반 시설 관리(DCIM)는 ICT 장비가 제대로 돌게 받치는 기반 시설 — UPS(무정전 전원 장치)·공조·전원 분배 장치 — 을 한 플랫폼에서 실시간으로 감시하고 관리한다 — L.1305 §3.2.1(이름만 — 본문은 「전원·냉방 같은 설비」까지 쓰면 된다)
+- **코로케이션**: L.1300 §6.3.1은 데이터 센터를 직접 짓는 경우와 **코로케이션 고객이 사서 쓰는** 경우를 나란히 두고, 어느 쪽이든 업무에 정말 필요한 만큼의 이중화(예비 설비)만 갖추라고 한다.
+  §6.3.2는 한 데이터 센터가 구역마다 다른 수준의 전원·냉방 이중화를 낼 수 있고, 많은 코로케이션 제공자가 이미 그렇게 한다고 적는다(예: UPS·발전기 예비가 없는 전원을 고를 수 있게 한다).
+  **코로케이션을 정의한 문장은 없다** — 쓸 수 있는 것은 「데이터 센터를 직접 짓지 않고, 코로케이션 제공자의 데이터 센터에서 전원·냉방 같은 설비를 사서 쓰는 고객이 있다」까지다
+- **호스팅**을 정의한 문장은 이 step이 읽은 문서에 없다 — SP 800-146 Table 1이 사설·커뮤니티 클라우드의 서버 쪽을 「호스팅 업체」에 맡기는 경우(outsourced)를 따로 살피는 데서 낱말만 나온다(위 「(phase 83 step 12) 클라우드 컴퓨팅의 정의와 배포 모델」 항목).
+  본문은 「IDC가 서버를 빌려준다(호스팅)」를 사실로 쓰지 않는다. 데이터 센터가 「전용 회선」을 준다는 문장도 이 step이 읽은 문서에 없다
+- **「인터넷 데이터 센터(IDC)」라는 이름**: ITU-T K.125가 제목과 적용 범위에서 이 이름을 쓰고(§1 — IDC와 큰 통신 센터에 적용한다), 약어 IDC를 Internet Data Centre로 푼다(§4). IDC 장비, 특히 데이터 서버가 놓인 자리와 데이터 서버실을 다룬다 — §10.3.
+  **IDC를 정의하지는 않는다** — 데이터 센터와 무엇이 다른지 가르는 문장이 없다. 그러니 본문은 IDC를 데이터 센터와 다른 갈래로 세우지 않고, 「ITU-T 권고에도 인터넷 데이터 센터(IDC)라는 이름이 쓰인다」까지 쓴다.
+  ITU-T L.1305의 「IDC」는 Integrated Data Centre(통합 데이터 센터)를 줄인 다른 말이다(§4) — 혼동하지 않는다
+- **클라우드와 데이터 센터**: 클라우드 사용자는 자원이 있는 곳을 나라·주·**데이터 센터** 정도의 넓은 단위로만 정할 수 있다(Y.3500 §6.2, SP 800-145 「Resource pooling」), 공용 클라우드 제공자는 비용이 싼 곳에 데이터 센터를 둘 수 있다(SP 800-146 §4.6) — 둘 다 위 「(phase 83 step 12) 클라우드 컴퓨팅의 정의와 배포 모델」 항목.
+  L.1300 §14는 높은 밀도로 ICT 자원을 모으는 클라우드 데이터 센터를 따로 다루고, K.125 §10.2도 클라우드 데이터 센터의 서버를 다룬다(이름만 — 에너지·전자기 요구는 가져오지 않는다)
+- **엣지 데이터 센터**: 짧은 시간·낮은 지연으로 데이터를 처리해야 해서 최종 사용자 가까이에 둔 데이터 센터이고, 클라우드 컴퓨팅의 능력을 보탠다 — L.1306 §3.2.1. **NIST SP 500-325의 「엣지 컴퓨팅」(끝 장치가 있는 네트워크 층)과 같은 말이 아니다** —
+  포그와 엣지는 아래 「(phase 83 step 12) NIST SP 500-325」 항목만 쓴다
+- **한국어 이름**: 「데이터 센터」(data centre — 앞 phase의 줄들이 「데이터 센터」로 쓴다), 「인터넷 데이터 센터(IDC)」(Internet data centre — 기출의 이름이고 K.125의 이름), 「코로케이션」(co-location — 영문을 그대로 읽은 이름), 「코로케이션 고객」·「코로케이션 제공자」, 「이중화」(resilience — 예비 설비를 두어 하나가 멈춰도 이어 가게 하는 것)
+쓰일 곳: (phase 83 step 14에서 쓰일 곳) `cloud-sdn.data-center`(정의, 전원·냉방 같은 기반 시설, 코로케이션 고객, IDC라는 이름, 「데이터 센터와 클라우드」), 기출 대조(`exam-notes.md` 「phase 83 step 12」 문단 — [기출 2024-02-25 #18])
+(phase 83 step 14) 본문에 쓴 모양 — `cloud-sdn.data-center`는 L.1301 §3.2.2의 정의를 「컴퓨팅을 하려고 마련한 물리적인 장소」로 풀고, L.1300 §5의 구성 요소를 「정보 통신 장비·전원 장비·냉방 장비·건물·감시·네트워크」로, L.1306 §3.1.4를 「기반 시설」로 썼다.
+  새로 쓴 사실 하나 — 데이터 센터의 네트워크는 안에 둔 장비들을 서로 잇고, 데이터 센터를 다른 데이터 센터나 바깥의 네트워크와 잇는다(L.1300 §13 첫머리 「데이터 센터 안의 장비와, 데이터 센터와 다른 데이터 센터를 잇는 네트워크 설계」와 §13.2의 「바깥 네트워크 쪽으로 나가는 대역폭」 — 2026-11-21 step 12가 받아 둔 PDF에서 다시 읽음).
+  이것이 도식 `data-center-services`의 「네트워크 장비 — 바깥의 네트워크」 선의 근거다. 데이터 센터가 「인터넷 회선」·「전용 회선」을 내준다고는 쓰지 않았다(그 문장은 읽은 문서에 없다).
+  코로케이션은 L.1300 §6.3.1·§6.3.2대로 「데이터 센터를 짓는 대신 코로케이션 제공자에게서 전원과 냉방 같은 설비를 사서 쓰는 고객」으로 썼고, 정의 문장이 없다는 것은 그대로다.
+  「다른 업체의 데이터 센터에 자기 장비를 둔다」는 그 고객이 사는 전원·냉방이 정보 통신 장비를 받치는 기반 시설이라는 것(L.1306 §3.1.4)과 함께 읽은 말이고, 본문 예와 문항 n378이 이 뜻으로 쓴다.
+  호스팅(서버를 빌려준다)은 쓰지 않았다 — 그래서 도식은 맡기기·빌리기를 가르는 시나리오 없이 정지 그림이다. IDC는 K.125가 쓰는 이름이라고만 쓰고 데이터 센터와 다른 갈래로 세우지 않았다.
+  쓰인 곳: `cloud-sdn.data-center`(문단 0~6), 도식 `data-center-services`, 문항 n378
+
+## (phase 83 step 12) NIST SP 500-325 — Fog Computing Conceptual Model
+https://csrc.nist.gov/pubs/sp/500/325/final
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.500-325.pdf
+
+판: 2018년 3월 발행 — 문서 이력은 2017-08-21 SP 800-191 초안, 2018-03-14 SP 500-325 최종판이다. 2026-11-21 csrc 문서 페이지를 확인했다 — Planning Note·철회 표시가 없고 뒤를 잇는 판이 없다. 14쪽, 한국어판 없음.
+본문 각주 몇이 위키백과·업체 백서를 가리키지만 그 각주는 근거로 쓰지 않는다 — NIST가 본문에 직접 적은 것만 쓴다.
+
+- **배경**: IoT(사물 인터넷) 센서·작동기가 만드는 데이터를 다루는 것이 IoT 시스템의 가장 큰 숙제다. 클라우드에만 기대는 IoT는 규모가 크고, 기기가 제각각이고, 지연이 길어지는 문제를 겪는다.
+  응용 프로그램·관리·데이터 분석을 네트워크 안쪽으로 흩어 놓는 방식이 포그 컴퓨팅이다 — 「Abstract」. 끝 장치와 그 가까운 장치가 적은 지연으로 많은 데이터를 처리해야 해서, 중앙에 모은 클라우드를 **보완하는** 흩어진 계산 방식이 나왔다 — §1.1
+- **포그 컴퓨팅**: 스마트 끝 장치와 중앙(클라우드) 서비스 **사이**에 놓인 포그 노드(물리든 가상이든)로 이루어진 계층 모델이다. 지연을 의식하는 응용 프로그램을 흩어 배치하게 하고, 응용 프로그램의 요청–응답 시간을 줄이며,
+  끝 장치에게 가까운 계산 자원을 주고 필요할 때는 중앙 서비스로 가는 연결을 준다 — §2.1
+- 포그는 끝 장치를 받치는 데 꼭 있어야 하는 층이 아니고, 포그가 끝 장치를 받치는 데 클라우드가 꼭 있어야 하는 것도 아니다 — 쓰임에 따라 구조가 다르다 — §2.1(그림 1 뒤의 글)
+- **포그 노드**: 포그 구조의 중심 부품이다. 게이트웨이·스위치·라우터·서버 같은 물리 부품이거나 가상 스위치·가상 머신 같은 가상 부품이고, 끝 장치나 접속 네트워크에 가까이 붙어 그 장치들에 계산 자원을 준다.
+  끝 장치가 있는 네트워크 끝 층과, 포그 서비스나 필요할 때의 중앙 클라우드 사이에서 데이터 관리와 통신을 맡는다 — §2.2
+- **가까이에서 처리하는 까닭**: 포그 노드는 흔히 스마트 끝 장치와 같은 곳에 놓이므로, 그 장치가 만든 데이터를 분석하고 응답하는 것이 중앙 클라우드 서비스나 데이터 센터에서 하는 것보다 훨씬 빠르다 — §2.3 「Contextual location awareness, and low latency」.
+  나머지 핵심 특징은 지리적으로 흩어진 배치, 제각각인 기기·통신 받치기, 여러 제공자 사이의 연동, 일괄 처리가 아닌 실시간 상호 작용, 노드 클러스터 단위의 탄력적 확장이다 — §2.3
+- **보낼 데이터 양을 줄인다**는 까닭을 그대로 적은 문장은 찾지 못했다 — 「데이터의 규모가 크다」와 「분석을 네트워크 안쪽으로 흩는다」(Abstract)까지다. 「골라서(선별적으로) 분석한다」·「요약만 클라우드로 보낸다」는 말도 없다 — 「필요할 때 중앙 서비스로 잇는다」(§2.1·§2.2)까지 쓴다
+- **엣지 컴퓨팅**(부록 A): 이 문서에서 엣지 컴퓨팅은 끝 장치와 그 사용자를 담는 네트워크 층으로, 센서·계량기 같은 장치 위에서 바로 계산하는 것이다(IoT 네트워크라고도 부른다).
+  포그는 여러 층으로 된 위계 구조에서 응용 프로그램을 돌리고 계산·네트워킹에 더해 저장·제어·처리 가속도 다루지만, 엣지는 정해진 자리에서 정해진 응용 프로그램을 돌리고 몇 안 되는 주변 장치에 머문다. 포그와 엣지를 흔히 헷갈리지만 다르다고 적는다
+- 미스트 컴퓨팅은 끝 장치에 더 가까이 놓인, 포그의 가벼운 층이다 — §2.8·§2.9(이름만 — 기출이 묻지 않는다)
+- **한국어 이름**: 「포그 컴퓨팅」(fog computing — 기출의 이름), 「포그 노드」(fog node), 「엣지 컴퓨팅」(edge computing — 이 phase guide의 표기), 「끝 장치」(end-device — 센서처럼 네트워크 맨 끝에서 데이터를 만드는 장치), 「지연」(latency — 요청을 보내고 응답이 오기까지 걸리는 시간으로 한 줄 푼다), 「IoT(사물 인터넷)」
+쓰일 곳: (phase 83 step 15에서 쓰일 곳) `cloud-sdn.fog-computing`(정의, 포그 노드, 가까이에서 처리해 응답이 빠르다, 클라우드를 보완하고 함께 쓴다, 「포그 컴퓨팅과 클라우드 컴퓨팅」·「포그와 엣지」), 기출 대조(`exam-notes.md` 「phase 83 step 12」 문단 — [기출 2024-05-19 #25])
+(phase 83 step 15) 본문에 쓴 모양 — `cloud-sdn.fog-computing`은 §2.1의 정의를 「끝 장치와 멀리 있는 클라우드 사이에 포그 노드를 두고, 끝 장치가 만든 데이터를 포그 노드가 가까운 곳에서 먼저 받아 처리하게 하는 방식」으로 풀고, 「계층 모델」을 「포그 노드를 층으로 쌓아 둘 수 있는」으로 썼다.
+  포그 노드의 종류는 §2.2에서 라우터·스위치·서버·가상 컴퓨터만 가져왔다(게이트웨이는 이 주제에서 풀이가 따로 필요해 뺐다). 「끝 장치와 같은 장소에 놓여 응답이 훨씬 빠르다」는 §2.3, 「클라우드를 보완한다」는 §1.1, 「포그 층도 클라우드도 꼭 있어야 하는 것은 아니다」는 §2.1, 「여러 곳에 흩어져 놓인다」는 §2.3의 지리적으로 흩어진 배치다.
+  「데이터가 먼 데이터 센터까지 갔다가 돌아오는 시간이 들지 않기 때문」은 §2.3의 「같은 곳에 놓이므로 훨씬 빠르다」를 풀어 쓴 말이다. 「포그와 엣지」는 부록 A대로 썼다(엣지는 끝 장치 위의 계산, 포그는 끝 장치와 클라우드 사이 층).
+  **「요약만 클라우드로 보낸다」·「보낼 데이터 양을 줄인다」는 쓰지 않았다** — 위 줄대로 근거가 없다. 그래서 phase guide의 본문 예 「이상한 값은 바로 알리고 요약만 클라우드로 보낸다」를 「값이 범위를 벗어나면 곧바로 알리고, 클라우드에서 처리할 일이 있을 때 필요한 데이터를 넘긴다」로 바꿨다(§2.1·§2.2의 「필요할 때 중앙 서비스로 잇는다」).
+  「값이 범위를 벗어나면 담당자에게 알린다」는 표준의 사실이 아니라 본문 예의 공장에서 포그 노드에 맡긴 일로 든 것이다 — 표준에서 오는 것은 「분석하고 응답하는 것이 빠르다」(§2.3)이다. 센서·사물 인터넷(IoT)·지연은 일반 IT 용어의 한 줄 풀이로 썼다.
+  쓰인 곳: `cloud-sdn.fog-computing`(문단 0~6), 도식 `fog-layers`, 문항 n379
+
+## (phase 83 step 12) SDN — RFC 7426 「Software-Defined Networking (SDN): Layers and Architecture Terminology」, ITU-T Y.3300 (06/14) 「Framework of software-defined networking」
+https://www.rfc-editor.org/rfc/rfc7426
+https://www.itu.int/rec/T-REC-Y.3300-201406-I/en
+
+판: RFC 7426은 IRTF(Internet Research Task Force)의 SDN 연구 그룹(SDNRG)이 낸 Informational RFC다(2015-01, 고치거나 폐기한 RFC 없음) — 스스로 새 IETF 표준이 아니라 SDN의 층과 용어를 모은 공통 참고라고 밝힌다(§1).
+Y.3300 (06/14)는 In force(2014-06-06 승인, 이 판 하나). RFC 7149(2014-03, Informational)는 받아 읽었지만 RFC 7426이 그 정의를 가져다 쓰므로 근거로 쓰지 않았다.
+
+- **평면**(RFC 7426 §2, §3.1~§3.3):
+  - 전달 평면(forwarding plane): 제어 평면에게서 받은 지시대로 데이터 경로의 패킷을 다루는 쪽이다 — 내보내기·버리기·바꾸기. **흔히 「데이터 평면(data plane)」·「데이터 경로」라 부른다** — §3.1. 스위칭·라우팅·패킷 바꾸기·필터링을 맡는다 — §3.2
+  - 제어 평면(control plane): 패킷을 어떻게 내보낼지 정하고 그 결정을 장비에게 내려보내 실행하게 하는 쪽이다. 주된 일은 전달 평면 안의 전달 표를 네트워크 토폴로지나 바깥 요청에 맞춰 손보는 것이다 — §3.1.
+    토폴로지 알아내기, 패킷 경로 고르기, 경로 장애 대비가 그 일이고, OSPF·BGP 같은 라우팅 프로토콜도 제어 쪽 응용의 예다 — §3.3
+  - 관리 평면은 장비를 감시·설정·유지 보수하고, 운용 평면은 장비의 상태(켜짐·포트 상태)를 다룬다 — §2, §3.1(이름만 — 기출이 묻지 않는다)
+  - 전통적으로 제어 평면은 네트워크 장비마다 그 안에서 실행되고 흩어져 있었다 — §3.5.3
+- **SDN**(software-defined networking): 제어 평면과 전달 평면을 표준 인터페이스로 갈라 놓는 프로그래밍 가능한 네트워크 방식이다 — RFC 7426 §2. 소프트웨어 응용 프로그램이 네트워크 장비 하나하나를 동적으로 프로그래밍해 네트워크 전체의 동작을 제어하는 능력이고,
+  핵심은 전달과 제어 사이에 추상화를 두어 둘을 떼어 놓는 것이다 — §1. 열린 인터페이스로 네트워크의 동작을 동적으로 시작·제어·변경·관리하는 능력이다 — 「Abstract」
+  - Y.3300: SDN은 네트워크 자원을 직접 프로그래밍·조정·제어·관리하게 하는 기법들의 묶음이다 — §3.2.1. 네트워크 자원의 제어를 **SDN 컨트롤러**라는 전용 요소로 옮기고, 컨트롤러는 소프트웨어(SDN 응용)로 자원을 프로그래밍·제어·관리할 수단을 준다 — §7.
+    **논리적으로 중앙에 모은 제어**로 제어·관리할 지점의 수를 줄이고, 소프트웨어로 네트워크 자원을 정의·제어·관리한다 — §6
+- **컨트롤러**: SDN은 제어하는 쪽(컨트롤러)과 제어받는 쪽을 나누고, 컨트롤러가 인터페이스로 제어받는 쪽을 다룬다 — RFC 7426 §3. Y.3300: 컨트롤러는 흩어진 네트워크 자원을 관리·설정하고, 자원을 추상화한 모습을 응용 프로그램에 보인다 — §7.
+  컨트롤러를 논리적으로 한곳에 모으면 단일 장애 지점이 되기 쉬워 복제해 두기도 한다 — Y.3300 §13, 부록 I.3
+- **OpenFlow**(이름만): 논리적으로 중앙에 둔 컨트롤러가 OpenFlow 스위치를 제어하는 프로토콜이다. 스위치는 흐름 표(flow table)를 두고 그것으로 패킷을 찾아 맞춘 뒤 정해진 동작(내보내기 등)을 한다 — RFC 7426 §4.3(OpenFlow 1.4를 기준으로 적었다고 밝힌다 — ONF가 표준화한다).
+  흐름 표의 칸·메시지 형식은 가져오지 않는다. **목적지 주소로 맞춘다는 규칙의 예는 문서에 없다** — 본문 예의 「목적지가 ~인 패킷은 ~번 포트로」는 「패킷을 찾아 맞추고 정해진 동작을 한다」는 이 줄의 꼴을 이름표로 보인 것이라고 밝힌다
+- **두 인터페이스**:
+  - 사우스바운드(southbound): 컨트롤러와 장비 사이 — RFC 7426은 SDN 사우스바운드 인터페이스가 제어 평면 쪽(CPSI)과 관리 평면 쪽(MPSI)을 아우른다고 보고, CPSI의 예로 ForCES와 OpenFlow를 든다 — §3.3, §4.
+    Y.3300은 같은 자리를 「자원 제어 인터페이스」(resource-control interface)라 부른다 — 컨트롤러가 자원을 설정하거나 정책을 내려보내고, 자원은 토폴로지가 바뀌거나 혼잡이 생기면 알린다 — §11.5
+  - 노스바운드(northbound): 응용 프로그램과 컨트롤러 사이 — NOX·Beacon 같은 컨트롤러는 OpenFlow로 장비를 제어하고 응용 프로그램에게 노스바운드 인터페이스를 준다 — RFC 7426 §4. Y.3300은 같은 자리를 「응용 제어 인터페이스」(application-control interface)라 부른다 —
+    응용 프로그램이 컨트롤러의 결정에 쓸 정보를 주고, 컨트롤러는 추상화한 자원의 모습을 내보인다 — §11.5
+  - Y.3300의 상위 구조는 응용 계층·SDN 제어 계층·자원 계층(데이터를 나르고 처리한다)의 셋과 그 사이의 두 인터페이스다 — §11, 그림 11-1
+- **SNMP와 SDN**: RFC 7426은 SNMP를 IETF가 표준화한 관리 프로토콜로 두고, 관리 평면 쪽 인터페이스(MPSI)에 맞는다고 적는다 — §4.5. SDS·CLI는 이 step이 읽은 문서에서 정의를 찾지 않았다 — 본문·문항에 쓰지 않는다
+- **한국어 이름**: 「SDN(소프트웨어 정의 네트워킹)」(software-defined networking — 기출은 영문으로만 쓴다), 「제어 평면」(control plane), 「데이터 평면」(data plane — RFC 7426의 이름은 전달 평면(forwarding plane)이고 데이터 평면은 그 흔한 다른 이름이다.
+  기출 [2026-08-02 #20]이 「데이터 평면」으로 쓴다 — 본문은 데이터 평면을 세우고 전달 평면을 함께 적는다), 「컨트롤러」(SDN controller), 「사우스바운드 인터페이스」·「노스바운드 인터페이스」(영문을 그대로 읽은 이름 — Y.3300의 이름은 자원 제어 인터페이스·응용 제어 인터페이스),
+  「흐름 표」(flow table), 「논리적으로 중앙에 모은 제어」(logically centralized control)
+쓰일 곳: (phase 83 step 15에서 쓰일 곳) `cloud-sdn.sdn`(두 평면, SDN의 뜻, 컨트롤러, 두 인터페이스, OpenFlow의 이름, 「제어 평면과 데이터 평면」·「SDN과 장비마다 따로 설정하는 방식」), (phase 83 step 16에서 쓰일 곳) `cloud-sdn.nfv`(「NFV와 SDN」),
+기출 대조(`exam-notes.md` 「phase 83 step 12」 문단 — [기출 2024-11-03 #25]·[기출 2025-05-25 #24]·[기출 2026-08-02 #20])
+(phase 83 step 15) RFC 7426을 다시 읽어 더한 사실 하나 — 전달 평면의 패킷이 모두 장비 안에서 끝나는 것은 아니다. 제어 평면끼리 주고받는 프로토콜 메시지(BGP 같은 것)는 전달 평면이 받아 제어 평면으로 넘기고(§3.3), 장비 안의 응용 프로그램이 ARP나 토폴로지 알아내기를 장비 안에서 처리해 그 트래픽을 제어 평면으로 넘기지 않게 하기도 한다(§3.2).
+  그래서 본문과 문항은 「패킷은 어떤 것도 컨트롤러로 가지 않는다」고 쓰지 않고, 「받아 둔 규칙에 맞는 패킷은 스위치가 컨트롤러에 묻지 않고 그 규칙대로 내보낸다」(§3.1 — 전달 평면은 제어 평면에게서 받은 지시대로 패킷을 다룬다, §4.3 — 스위치가 표에서 패킷을 찾아 맞춰 정해진 동작을 한다)로 썼다.
+  문항 n381(「패킷을 받을 때마다 컨트롤러로 보내고 컨트롤러가 직접 목적지까지 전달하나요?」 — 아니요)은 이 줄과 어긋나지 않는다. 확인한 날 2026-11-21.
+(phase 83 step 15) 본문에 쓴 모양 — `cloud-sdn.sdn`은 §3.1의 두 평면을 「패킷을 어디로 보낼지 정하는 일」과 「정해진 대로 패킷을 실제로 내보내는 일」로 먼저 나눈 뒤 이름을 붙였고, 데이터 평면을 세우고 전달 평면을 함께 적었다. 제어 평면의 일(토폴로지 알아내기·경로 고르기·경로 장애 대비·전달 표 고치기)은 §3.1·§3.3, 「장비마다 들어 있어 흩어져 있다」는 §3.3·§3.5.3이다.
+  SDN의 뜻은 §2(표준 인터페이스로 두 평면을 가른다)와 Y.3300 §7(제어를 SDN 컨트롤러로 옮긴다)을 함께 읽어 「제어 평면을 장비에서 떼어 내 컨트롤러로 옮기는 방식」으로 썼다. 「네트워크 전체를 소프트웨어로 정한다」는 RFC 7426 §1과 Y.3300 §3.2.1·§7, 「제어하고 관리할 지점의 수가 준다」는 Y.3300 §6, 컨트롤러 복제는 Y.3300 §13이다.
+  「논리적으로 한곳」을 「물리적으로는 여러 대여도 제어는 한곳에 모인 것으로 다룬다는 뜻」으로 푼 것은 logically centralized라는 말과 §13의 복제를 함께 읽은 풀이다. 두 인터페이스는 Y.3300 §11·§11.5(세 계층, 자원 제어·응용 제어 인터페이스가 하는 일)와 RFC 7426 §4의 이름으로 썼고, OpenFlow는 사우스바운드 쪽 프로토콜의 예로 이름만 썼다.
+  「규칙은 어떤 패킷에 맞는지와 그 패킷에 무엇을 할지를 정해 둔 것」은 §4.3의 「찾아 맞추고 정해진 동작을 한다」를 일반 낱말로 풀었다 — 흐름 표의 칸·메시지 형식은 쓰지 않았다. 본문 예의 「목적지가 `192.0.2.10`인 패킷은 2번 포트로」는 규칙의 꼴을 보이려고 든 예라고 본문에 밝혔다(`192.0.2.10`은 RFC 5737의 문서용 주소). SNMP·SDS·CLI는 쓰지 않았다.
+  쓰인 곳: `cloud-sdn.sdn`(문단 0~8), 도식 `sdn-planes`, 문항 n380·n381
+
+## (phase 83 step 12) NFV — ETSI GS NFV 002 V1.2.1 (2014-12) 「Network Functions Virtualisation (NFV); Architectural Framework」, ETSI GR NFV 003 V1.9.1 (2024-12) 「Network Functions Virtualisation (NFV); Terminology for Main Concepts in NFV」, NFV 백서 「Network Functions Virtualisation – Introductory White Paper」 Issue 1 (2012-10)
+https://www.etsi.org/deliver/etsi_gs/NFV/001_099/002/01.02.01_60/gs_nfv002v010201p.pdf
+https://www.etsi.org/deliver/etsi_gr/NFV/001_099/003/01.09.01_60/gr_nfv003v010901p.pdf
+https://portal.etsi.org/NFV/NFV_White_Paper.pdf
+
+판: GS NFV 002는 ETSI 배포 디렉터리(`etsi.org/deliver/etsi_gs/NFV/001_099/002/`)에 V1.1.1(2013-10)과 V1.2.1(2014-12) 둘이 있고 V1.2.1이 마지막 판이다.
+용어 문서 NFV 003은 V1.4.1(2018)까지 GS(그룹 규격)로 나왔고 V1.5.1(2020-01)부터 GR(그룹 보고서)로 나오며, `etsi.org/deliver/etsi_gr/NFV/001_099/003/`의 마지막 판이 V1.9.1(2024-12)이다(2026-11-21 확인).
+두 문서 모두 ETSI의 NFV 산업 규격 그룹(ISG NFV)이 냈고, 참여한 회원들의 견해이며 ETSI 회원 전체의 견해는 아니라고 밝힌다(GR NFV 003 표지). ETSI는 영국식 철자 virtualisation을 쓴다.
+백서는 통신 사업자 여럿이 쓴 비독점 백서로, 2012-10-22~24 「SDN and OpenFlow World Congress」에서 내놓았다 — 규격이 아니므로 목표·장점·SDN과의 관계·적용 예만 가져온다.
+
+- **네트워크 기능**(network function, NF): 네트워크 안에서 바깥과 맞닿는 인터페이스와 동작이 잘 정해진 기능 블록이다 — GR NFV 003 §3.1. 하드웨어와 소프트웨어를 단단히 묶어 만든 것은 물리 네트워크 기능(PNF)이라 부른다 — §3.1
+- **배경**: 통신 사업자의 망에는 업체 고유의 하드웨어 장비가 점점 많아지고 갈래도 늘어, 새 서비스를 내려면 또 다른 장비가 필요하고 그것을 둘 공간·전력을 찾기 어려워지며, 하드웨어 장비는 빨리 수명이 다한다 — 백서 「Introduction」
+- **NFV**: 가상화 기술로 네트워크 기능을 그것이 돌아가는 하드웨어에서 떼어 내는 원칙이다 — GR NFV 003 §3.1. 표준 IT 가상화를 써서 여러 갈래의 네트워크 장비를 업계 표준의 범용 서버·스위치·저장 장치 위로 모으고,
+  네트워크 기능을 그런 서버 위에서 돌아가는 소프트웨어로 만들어, 새 장비를 설치하지 않고도 망 안 여러 곳으로 옮기거나 새로 실행할 수 있게 한다 — 백서 「Definition」. 네트워크 기능을 NFVI 위에서 돌아가는 소프트웨어만으로 된 것으로 구현한다 — GS NFV 002 §5.2
+- **세 영역**(GS NFV 002 §5.2): VNF(NFVI 위에서 돌 수 있는 네트워크 기능의 소프트웨어 구현), NFVI(여러 물리 자원과 그것을 가상화하는 방식 — VNF의 실행을 받친다),
+  NFV 관리·오케스트레이션(인프라 가상화를 받치는 물리·소프트웨어 자원의 조정과 수명 주기 관리, VNF의 수명 주기 관리 — 가상화에 따르는 관리 일을 맡는다)
+- **VNF**(virtualised network function): 네트워크 기능의 전부나 일부를 실현하는 소프트웨어 구현으로, NFVI 위에 배치할 수 있다 — GR NFV 003 §3.1
+- **NFVI**(NFV infrastructure): VNF가 배치·관리·실행되는 환경을 이루는 하드웨어·소프트웨어 부품 전체다. 여러 장소(예: 데이터 센터)에 걸칠 수 있고, 그 장소들을 잇는 네트워크도 NFVI에 든다 — GS NFV 002 §7.2.4.1, GR NFV 003 §3.1
+  - 하드웨어 자원: 계산·저장·네트워크 하드웨어가 가상화 계층(예: 하이퍼바이저)을 거쳐 VNF에 처리·저장·연결을 준다. 계산 하드웨어는 특수 목적 하드웨어가 아니라 시중의 범용 하드웨어(COTS)라고 본다 — §7.2.4.2
+  - 가상화 계층: 하드웨어 자원을 추상화하고 VNF 소프트웨어를 밑의 하드웨어에서 떼어 놓는다 — 그래서 같은 소프트웨어를 다른 물리 하드웨어에 배치할 수 있다 — §7.2.4.3. VNF가 보기에는 가상화 계층과 하드웨어 자원이 하나로 보인다 — §7.2.4.1
+- **NFV-MANO**(NFV management and orchestration): NFV 오케스트레이터(NFVO)·VNF 관리자(VNFM)·가상화 인프라 관리자(VIM) 등이 함께 맡는 기능들이다 — GR NFV 003 §3.1. VNF 관리자는 VNF의 수명 주기(실행 시작·갱신·조회·늘리고 줄이기·끝내기)를 맡는다 — GS NFV 002 §7.2.7.
+  기능 블록과 참조점의 세부는 가져오지 않는다
+- **목표와 장점**: GS NFV 002 §4.2 — 범용(COTS) 서버·저장 장치로 네트워크 기능을 제공하고 하드웨어를 함께 써 전용 하드웨어보다 투자를 아낀다, VNF를 하드웨어에 배치하는 유연함이 확장을 돕고 기능을 장소에서 떼어 가장 알맞은 곳(고객 건물·데이터 센터 등)에 둔다,
+  소프트웨어로 서비스를 배치해 혁신이 빨라진다, 공통 자동화로 운영이 효율적이다, 일을 옮기고 쓰지 않는 하드웨어를 꺼 전력을 아낀다.
+  백서 「Benefits of Network Functions Virtualisation」 — 장비를 모으고 IT 업계의 규모를 써 장비 비용과 전력을 줄인다, 서비스를 시장에 내놓는 속도가 빨라진다, 지역·고객층에 맞춰 서비스를 내고 필요에 따라 **빨리 늘리고 줄인다**, 새 하드웨어를 설치하러 가지 않고 소프트웨어로 원격 배치한다
+- **적용 예**(백서 「Fields of Application and Use Cases」): 데이터 평면의 패킷 처리와 제어 평면의 기능 모두에 쓸 수 있다 — 라우터 같은 스위칭 요소, IPsec·SSL VPN 게이트웨이, CDN·캐시 서버·**로드 밸런서**, **방화벽**·바이러스 검사·침입 탐지 같은 보안 기능 등
+- **NFV와 SDN**(백서 「Relationship with Software Defined Networks (SDN)」): NFV는 SDN을 크게 보완하지만 서로 기대지 않는다 — NFV는 SDN 없이도 구현할 수 있고, 둘을 합치면 더 큰 가치를 얻을 수 있다.
+  SDN이 내놓은 제어 평면과 데이터 전달 평면의 분리는 NFV의 성능을 높이고 운영을 돕는다. NFV는 SDN 소프트웨어가 돌아갈 인프라를 줄 수 있고, 둘 다 범용 서버·스위치를 쓰려 한다.
+  (GS NFV 002 §7.2.4.3도 전송망을 가상화하는 방식의 하나로 전송망의 제어 평면을 중앙에 모아 전달 평면에서 떼는 것을 든다)
+- **한국어 이름**: 「NFV(네트워크 기능 가상화)」(network functions virtualisation — 기출 [2026-08-02 #26]이 「네트워크 기능 가상화」로 쓴다), 「네트워크 기능」(network function), 「VNF(가상화된 네트워크 기능)」(virtualised network function — 기출은 「가상 네트워크 기능(VNF)」·「Virtualized Network Functions」로 쓴다),
+  「NFVI(NFV 인프라)」(NFV infrastructure), 「NFV-MANO(NFV 관리·오케스트레이션)」(오케스트레이션은 여러 자원과 기능의 배치·수명을 맞물려 관리하는 일이라고 한 줄 푼다), 「범용 서버」(COTS·industry standard high volume server — 특수 목적이 아닌 시중의 서버),
+  「가상화 계층」(virtualisation layer), 「하이퍼바이저」(hypervisor — `windows-hyperv.hyper-v`와 같은 이름), 「물리 네트워크 기능(PNF)」
+쓰일 곳: (phase 83 step 16에서 쓰일 곳) `cloud-sdn.nfv`(네트워크 기능, 전용 장비의 문제, NFV의 뜻, VNF·NFVI·NFV-MANO, 장점, 물리 하드웨어는 여전히 필요하다, 「NFV와 SDN」·「VNF와 NFVI」),
+기출 대조(`exam-notes.md` 「phase 83 step 12」 문단 — [기출 2024-05-19 #26]·[기출 2025-08-24 #18]·[기출 2026-08-02 #26]·[기출 2024-11-03 #21])
+(phase 83 step 16) 본문에 쓴 모양 — `cloud-sdn.nfv`는 네트워크 기능을 GR NFV 003 §3.1의 정의(바깥과 맞닿는 인터페이스와 동작이 정해진 기능 블록)를 「맡은 일이 분명히 정해져 있고, 다른 장치와 어떻게 주고받는지도 정해져 있는 기능」으로 풀고,
+  그 예인 방화벽·라우터·로드 밸런서(백서 「Fields of Application」)는 앞 phase의 개념(`network-security.firewall`·`routing.routing`·`network-devices.load-balancing`)과 같은 뜻으로 한 구절씩 다시 풀었다. 전용 장비 방식의 어려움은 백서 「Introduction」, 물리 네트워크 기능(PNF)은 §3.1이다.
+  NFV의 뜻은 §3.1(가상화로 네트워크 기능을 하드웨어에서 떼어 낸다)과 백서 「Definition」(범용 서버 위의 소프트웨어로 만들어, 새 장비를 설치하지 않고 옮기거나 새로 실행한다)을 함께 읽어 썼다. 세 부분은 GS NFV 002 §5.2,
+  NFVI의 하드웨어가 범용 하드웨어라는 것·가상화 계층과 하이퍼바이저·같은 VNF를 다른 하드웨어로 옮긴다는 것·여러 장소에 걸친다는 것은 §7.2.4.1~§7.2.4.3, NFV-MANO가 맡는 일(실행·새 판으로 바꾸기·늘리고 줄이기·끝내기와 NFVI 자원 관리)은 §5.2·§7.2.7이다 —
+  VNF 관리자·오케스트레이터·가상화 인프라 관리자의 이름과 나눈 일은 쓰지 않았다. 하이퍼바이저의 한 줄 풀이(「가상 컴퓨터들을 만들고 물리 하드웨어를 나눠 주는 소프트웨어 층」)는 `windows-hyperv.hyper-v`와 같은 뜻이다.
+  장점은 §4.2와 백서 「Benefits」에서 셋(장비 비용과 전력, 배치의 유연함과 늘리고 줄이기, 원격 배치와 시장에 내놓는 속도)을 골랐다. 「물리 장비가 없어지는 것은 아니다」는 §7.2.4.1·§7.2.4.2(NFVI가 하드웨어 자원을 담는다)에서,
+  「네트워크 기능을 만들고 다루는 것은 하드웨어가 아니라 소프트웨어다」는 §3.1의 VNF 정의(소프트웨어 구현)에서 나온 말이다(`exam-notes.md` 「phase 83 step 12」 문단이 [기출 2024-05-19 #26]의 맞는 말 보기와 맞다고 본 대목). 「NFV와 SDN」은 백서 「Relationship with SDN」이다.
+  본문 예의 지사·방화벽 장비·라우터 장비·`NFVI01`·가상 방화벽 2는 예로 든 장면과 이름표이고, 「`NFVI01`에 남은 자원으로 가상 방화벽을 하나 더 실행한다」는 VNF를 하드웨어에 배치하는 유연함(§4.2)과 늘리고 줄이기(§7.2.7)를 한 장면으로 보인 것이다. 새로 읽은 문서는 없다.
+  쓰인 곳: `cloud-sdn.nfv`(문단 0~10), 도식 `nfv-architecture`, 문항 n382·n383
+
+## (phase 83 step 17) SNIA Dictionary — RAID와 레벨, 디스크 배열·가상 드라이브, 스트라이핑·미러링·패리티, 핫 스왑·재구축, 백업, DAS·NAS·SAN, 블록·파일 스토리지, 파이버 채널·iSCSI
+https://www.snia.org/education/dictionary (2026-11-21 열어 보니 https://www.snia.org/resources/online-dictionary 로 옮겨 간다)
+https://www.snia.org/snia-dictionary/download (사전 전체 PDF)
+
+판: SNIA Dictionary 전체 PDF 「Generated on November 20, 2026」(304쪽). SNIA 기술 위원회가 검토해 승인한 용어를 싣고 그때그때 고치는 살아 있는 문서다(머리말 「The SNIA Dictionary」).
+사전의 이용 조건은 정의를 고치지 않고 통째로만 옮겨 싣게 한다 — 그래서 여기에는 뜻을 직접 쓴 말로만 적는다. 줄 끝 괄호는 사전의 표제어다.
+
+- **RAID라는 이름**: 약어 RAID는 Redundant Array of Independent Disks를 줄인 말이다(RAID). 지금 사전은 그 풀이를 낡은 말(deprecated)로 두고 Redundant Array of Independent **Devices**를 세운다 —
+  물리 저장 공간의 일부에 나머지 공간의 사용자 데이터에 대한 여분 정보를 두어, 배열의 멤버 디스크 하나나 그 디스크로 가는 길이 고장 나도 사용자 데이터를 다시 만들어 내게 한 저장 배열이다.
+  이 정의에 맞지 않지만 스트라이핑만 하는 것도 흔히 RAID 0이라 부른다. 이름은 1988년 SIGMOD 논문 「A Case for Redundant Arrays of Inexpensive Disks」에서 왔고, 뒤에 Inexpensive가 Independent로 바뀌었다.
+  지금은 디스크 말고도 블록 저장 장치라면 RAID 기법을 쓴다(Redundant Array of Independent Devices, Redundant Array of Independent Disks). RAID array는 RAID를 줄여 부르는 말이다(RAID array)
+- **RAID 레벨**: 버클리 대학의 Gibson·Katz·Patterson이 연구 논문에서 디스크 배열의 데이터 보호·배치 기법을 나눈 분류가 RAID Level 0~6의 일곱이고, 그 뒤 RAID 10·RAID 50 같은 레벨이 더 나왔다(Berkeley RAID Levels)
+- **디스크·디스크 배열·가상 드라이브**: 디스크(disk drive)는 전원이 꺼져도 데이터가 남고, 아무 자리나 골라 읽을 수 있고, 다시 쓸 수 있는 저장 장치로, 회전하는 원판으로 이루어진다(disk, disk drive).
+  SSD는 반도체로 된 비휘발성 저장 매체로 저장하는 장치다(Solid State Drive, Solid State Storage). 디스크 배열은 디스크 여럿에 그것을 다루는 제어 소프트웨어를 묶은 것이고, 그 소프트웨어가 저장 용량을 호스트에 **가상 드라이브 하나나 여럿**으로 내보인다(disk array).
+  가상 드라이브(볼륨이라고도 부른다)는 운영 체제에 물리 드라이브처럼 보이게 내놓은 저장 공간이다(virtual drive, volume). 물리 디스크는 가상이 아닌 디스크이고(physical disk), 배열에 든 디스크를 멤버 디스크라 한다(member disk).
+  저장 요청을 처리하는 장치의 예로 RAID 컨트롤러를 든다(storage controller)
+- **스트라이핑·스트라이프**: 데이터 스트라이핑(data striping — disk striping은 낡은 말)은 가상 드라이브의 주소를 정해진 길이씩 잘라, 멤버 장치들의 주소에 일정하게 돌아가는 차례로 맞추는 배치 기법이고 RAID 구현에서 흔히 쓴다(data striping).
+  한 멤버 장치 안에서 이어지는 블록 묶음 하나가 스트립(strip — stripe element라고도 한다)이고, 멤버 장치마다 같은 자리에 있는 스트립들을 묶은 것이 스트라이프(stripe)다(strip, stripe).
+  여분 없이 스트라이핑만 하는 배열(striped array)은 값이 낮거나 다시 구하기 쉬운 데이터의 입출력 성능을 높이려고 쓰기도 한다(striped array)
+- **RAID 0**: 이어진 논리 블록을 여러 독립 저장 장치에 고르게 나눠 두되 어떤 여분도 두지 않는 배치 방식이다. 흔히 데이터 스트라이핑이라 부르고, 묶음의 **어느 장치 하나만 고장 나도 데이터를 잃는다**(RAID 0)
+- **미러링·RAID 1**: 미러링은 같은 데이터의 따로 된 사본을 둘 이상 유지하는 것이다(mirroring). RAID 1은 논리 블록마다 독립 저장 장치 둘 이상에 저장하는 배치 방식이고, 흔히 미러링이라 부르며, 저장 장치 **하나의 고장을 데이터를 잃지 않고 견딘다**(RAID 1).
+  RAID 1을 구현한 디스크 배열을 미러 배열이라 한다(mirrored array)
+- **패리티**: 패리티 데이터는 RAID 배열의 멤버 디스크에 두어, 읽을 수 없게 된 사용자 데이터를 다시 만들어 내는 데 쓰는 데이터다(parity data). 패리티 드라이브는 RAID 3·RAID 4(와 일부 RAID 6) 배열에서 패리티만 따로 두는 드라이브다(parity drive).
+  다시 만들어 내기(regeneration)는 고장 난 드라이브에 있던 사용자 데이터를 살아남은 멤버의 검사 데이터와 사용자 데이터로 되살리는 것이다(regeneration). **패리티를 어떤 셈으로 만드는지는 사전에 없다** — 아래 「(phase 83 step 17) SNIA DDF」·「(phase 83 step 17) 레벨마다의 동작과 디스크 최소 수」 항목
+- **RAID 2·3·4·5·6**: RAID 2 — 스트라이프로 나눈 데이터에서 계산한 오류 검출 부호를 따로 둔 독립 장치에 둔다, 널리 쓰이지 않는다(RAID 2).
+  RAID 3 — 패리티로 보호하고, 데이터를 바이트 단위로 고르게 나누며, 패리티는 전용 장치 하나에 둔다(RAID 3). RAID 4 — 패리티로 보호하고, 데이터를 **블록** 단위로 고르게 나누며, **패리티는 전용 장치 하나에** 둔다, 장치 하나의 고장을 견딘다(RAID 4).
+  RAID 5 — 논리 블록 n개의 데이터와 패리티 블록 하나로 이루어진 스트라이프를 장치 **n+1개**에 두되, 패리티와 데이터 블록을 장치들에 **엇갈려** 둔다, 장치 하나의 고장을 견딘다(RAID 5). RAID 6 — 아무 장치 둘의 고장을 견딘다(RAID 6).
+  RAID 5·6은 일반 미러링보다 공간을 덜 쓰면서 저장 장치 고장에서 데이터를 지킨다(capacity optimization methods). **「회전 패리티(rotating parity)」·「분산 패리티(distributed parity)」라는 이름은 사전에 없다** — 아래 DDF가 rotating parity, md(4)가 distributed parity를 쓴다
+- **핫 스왑·핫 스탠바이·재구축·성능 저하 모드**: 스왑은 고장 난 부품 자리에 갈아 끼울 부품을 다는 물리적인 일이고 보통 사람이 한다(swap). 핫 스왑은 **시스템 운영을 멈추지 않고** 하는 스왑이다 — 운영만 멈추고 전원은 그대로 두면 웜 스왑, 전원을 끄면 콜드 스왑이다(hot swap, warm swap, cold swap).
+  핫 스탠바이(hot spare와 같은 말)는 전원이 들어온 채 준비해 둔 여분 부품이고, 저장 장치에서는 재구축을 받을 준비가 된 장치를 뜻한다(hot standby, hot spare).
+  재구축(rebuild — reconstruction과 같은 말)은 RAID 배열에서 고장 난 장치에 있던 데이터를 모두 다시 만들어 갈아 끼운 장치에 써 넣는 것이고, 대부분의 배열은 **응용 프로그램이 데이터를 계속 쓰는 동안** 재구축할 수 있다(rebuild, reconstruction).
+  성능 저하 모드는 멤버 디스크가 다 동작하지 않는데도 배열이 읽기·쓰기 요청에 답하는 상태다(degraded mode)
+- **백업**: 백업은 원본을 잃거나 쓸 수 없게 될 때 되살리려고 (대개 떼어 낼 수 있는) 비휘발성 매체에 담아 둔 데이터 모음이고, 원본이 일관된 상태일 때 복사해야 되살리는 데 쓸모가 있다. 백업을 만드는 일도 백업이라 한다(backup).
+  **RAID를 백업이라 부르거나 RAID가 백업을 대신한다고 적은 표제어는 없다** — 사전은 RAID의 여분을 「저장 장치의 고장에서 데이터를 지키는 것」으로만 적는다(위 RAID 5·6 줄). `exam-notes.md` E55
+- **입출력 병목**: 시스템의 데이터 전송 능력을 묶어 두는, 입출력 경로 위의 자원을 병목이라 하고 그 예에 디스크가 든다(I/O bottleneck)
+- **DAS·NAS·SAN**: DAS는 서버 한 대에 바로 이어져 그 서버만 쓰는 저장 장치다(DAS, Direct Attached Storage).
+  NAS는 네트워크에 이어져 클라이언트에게 **파일 접근 서비스**를 주는 저장 장치이고, 대개 파일 서비스를 구현한 엔진과 저장 장치 하나 이상으로 이루어지며 NFS·SMB 같은 파일 접근 프로토콜로 파일을 준다(NAS, Network Attached Storage).
+  SAN은 컴퓨터와 저장 장치 사이, 저장 장치끼리 데이터를 나르는 것이 주된 목적인 네트워크이고, 데이터를 나르는 통신 기반·저장 장치·컴퓨터로 이루어진다. SAN이라는 말은 대개(늘 그렇지는 않다) **블록 서비스**와 이어지고, 그 네트워크와 거기 붙은 저장 장치를 함께 부르기도 한다(Storage Area Network).
+  약어 SAN은 Server Area Network·System Area Network이기도 하지만 SNIA 문서에서는 Storage Area Network다(SAN). NFS는 IETF가 정한, 파일 시스템에 접근하는 네트워크 프로토콜 묶음이고(NFS, Network File System), SMB는 SMB1·SMB2·SMB3을 아우르는 파일 접근 프로토콜 묶음의 이름이다(SMB)
+- **블록·파일**: 블록은 저장 매체에 데이터를 저장하고 꺼내는 단위다(block). 블록 스토리지는 데이터를 블록으로 저장하는 방식이다 — 디스크는 보통 512바이트나 4,096바이트 같은 정해진 크기의 블록으로 저장하고, 블록들을 파일로 짜는 일은 **호스트의 파일 시스템**이 하며,
+  SCSI·SATA·FC·iSCSI 같은 저장 프로토콜로 그 블록에 닿는다(block storage). 블록 서비스는 다른 시스템에 블록 단위 접근을 주는 하위 시스템이다(block services).
+  파일은 저장 요소에 담긴 바이트, 그것을 하나로 가리키는 이름, 관리에 쓰는 속성으로 이루어진 추상적인 데이터 대상이고(file), 파일 스토리지는 데이터를 파일로 저장하는 방식이며(file storage), 파일 시스템은 저장 공간에 짜임을 세워 응용 프로그램이 파일을 다루게 하는 소프트웨어다(file system).
+  파일 서버는 클라이언트에게 파일을 내주는 컴퓨터다(file server)
+- **파이버 채널·SCSI·iSCSI**: 파이버 채널은 여러 프로토콜을 실어 나를 수 있는 직렬 입출력 연결 기술이고, 그 가운데 FCP가 SCSI를 싣는다. 표준은 INCITS의 파이버 채널 기술 위원회가 만든다(Fibre Channel).
+  SCSI는 주로 저장 장치를 호스트에 잇는 입출력 연결을 정한 ANSI 표준들의 묶음이다(Small Computer System Interface). iSCSI는 internet Small Computer Systems Interface의 약어이고(iSCSI), iSCSI SAN은 TCP/IP 위에서 iSCSI 프로토콜로 만든 블록 단위 SAN이다(iSCSI SAN).
+  LAN-free 백업은 LAN 자원을 쓰지 않고 SAN이나 DAS로 데이터를 옮기는 백업 방식이다(LAN-free backup)
+- **한국어 이름**: 「RAID」(영문 약어를 그대로 쓴다), 「디스크」(disk drive), 「디스크 배열」(disk array), 「물리 디스크」(physical disk), 「논리 디스크」(virtual drive — 기출이 「논리적 드라이브」·「가상 하드디스크」로 쓰고 guide가 「논리 디스크」로 적는다. DDF의 「가상 디스크」를 함께 적을 수 있다),
+  「스트라이핑」(striping), 「스트라이프」(stripe — 디스크마다 같은 자리에 놓인 조각들을 묶은 한 줄. guide 표의 「줄(스트라이프)」), 「조각」(strip — 한 디스크 안의 이어진 블록 묶음. 「스트립」은 「스트라이프」와 헷갈려 이름으로 세우지 않는다 — **guide 표 RAID 0 행의 「조각(스트라이프)」는 이 사전과 맞지 않는다**),
+  「미러링」(mirroring), 「패리티」(parity), 「핫 스왑」(hot swap), 「핫 스페어」(hot spare), 「재구축」(rebuild), 「백업」(backup), 「병목」(bottleneck), 「DAS」·「NAS」·「SAN」(약어를 이름으로 세우고 영문 풀네임을 붙인다), 「블록」·「파일」, 「파이버 채널」(Fibre Channel — learn.microsoft.com 한국어판), 「iSCSI」
+쓰일 곳: (phase 83 step 18~20에서 쓰일 곳) `raid-storage.raid`(디스크, RAID의 뜻과 이름의 내력, 물리 디스크와 논리 디스크, 스트라이핑·미러링·패리티 한 줄씩, RAID 레벨, 핫 스왑·재구축, 백업과의 관계 — E55),
+`raid-storage.raid-0`(여분 없는 스트라이핑, 하나만 고장 나도 잃는다, 조각과 스트라이프), `raid-storage.raid-1`(미러링, 하나의 고장을 견딘다), `raid-storage.raid-5`(패리티 데이터·다시 만들어 내기, RAID 4의 전용 패리티 장치와 RAID 5의 엇갈린 배치, n+1, RAID 2·3 한 줄),
+`raid-storage.network-storage`(DAS·NAS·SAN, 파일과 블록, 파이버 채널, iSCSI SAN), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단, E54·E55)
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`는 디스크를 disk drive의 정의(전원을 꺼도 남고, 아무 자리나 골라 읽고 다시 쓴다)로 한 줄 풀고(회전 원판은 쓰지 않았다), RAID를 「물리 디스크 여러 개를 한 묶음으로 다루는 기술」로 세운 뒤 disk array의 정의대로 제어 소프트웨어가 묶은 공간을 논리 디스크 하나나 여럿으로 내놓는다고 썼다.
+  이름은 Redundant Array of Independent Disks, 1988년 논문의 inexpensive, 지금 사전이 Devices로 풀어 쓴다는 것까지 쓰고 논문 제목은 쓰지 않았다. redundant의 뜻은 정의를 옮기지 않고 「데이터를 되살리는 데 쓸 정보를 묶음 안에 더 둔다」로 풀었다. SNIA는 「저장 장치의 용어를 정리해 사전으로 내는 단체」로만 소개했다.
+  스트라이핑·미러링·패리티는 data striping·mirroring·parity data·regeneration을 한 문장씩으로, RAID 레벨은 Berkeley RAID Levels를 「버클리 대학의 연구자들이 논문에서 짜임을 번호로 나눈 데서 왔다」로 썼다 — 0~6의 일곱과 RAID 10·50은 쓰지 않았다(guide가 RAID 6·10을 쓰지 않기로 했다). 「스트라이핑만 하는 것도 흔히 RAID 0이라 부르지만 이름의 뜻에는 맞지 않는다」는 RAID 표제어의 말이다.
+  핫 스왑(운영을 멈추지 않는 스왑)·재구축(대부분의 배열은 응용 프로그램이 쓰는 동안 재구축한다)은 표제어대로 쓰고, 웜·콜드 스왑·핫 스페어·성능 저하 모드는 쓰지 않았다. 고장 난 디스크를 빼고 남은 디스크로 계속 답한다는 것은 아래 md(4) 항목의 「RECOVERY」 줄이다.
+  백업은 backup의 정의(원본을 잃을 때 되살리려고 대개 떼어 낼 수 있는 매체에 따로 담아 둔 사본)로 쓰고 「자격시험은」 한 줄을 붙였다(E55). 「RAID는 데이터가 바뀌면 여분도 함께 바꾸므로 실수로 지운 파일은 RAID만으로 되살릴 수 없다」는 md(4)의 RAID1·RAID4 줄에서 나오는 말이다(E55 「표준」).
+  「메모리 용량은 늘지 않는다」는 RAID가 저장 장치를 묶은 배열이라는 정의에서 나오는 말이다([기출 2024-08-25 #47] 판정). 파티션과의 대비는 앞 phase의 `linux-filesystem.partition`과 같은 뜻으로 쓴 것이다.
+  `raid-storage.raid-0`은 RAID 0의 표제어(어느 장치 하나만 고장 나도 데이터를 잃는다)와 strip·stripe를 「조각(strip)」·「줄(stripe), 곧 스트라이프」로 쓰고(「스트립」은 쓰지 않았다), striped array의 쓰임(입출력 성능, 값이 낮거나 다시 구하기 쉬운 데이터)을 풀어 썼다.
+  「큰 파일의 이어진 조각을 서로 다른 디스크가 함께 처리해 빨라진다」는 data striping의 배치에서 나오는 말이고, 「가장 빠르다」는 쓰지 않았다(`exam-notes.md` 「phase 83 step 17」 문단).
+  쓰인 곳: `raid-storage.raid`(문단 0~9), `raid-storage.raid-0`(문단 0~3·5), 도식 `raid-array`·`raid-striping`, 문항 n384·n385·n386
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`은 mirroring(같은 데이터의 따로 된 사본을 둘 이상 유지)과 RAID 1(논리 블록마다 장치 둘 이상에 둔다, 장치 하나의 고장을 견딘다)을 「같은 데이터를 디스크 둘 이상에 똑같이 써 두는 방식」·「디스크 하나의 고장을 데이터를 잃지 않고 견딘다」로 쓰고,
+  「디스크가 둘 이상 있어야 만든다」도 이 정의(둘 이상의 장치)에서 썼다. 「RAID 1과 백업」은 backup의 정의를 다시 풀지 않고 같은 주제의 `raid` 문단 7을 이어받았다 — E55의 「자격시험은」 줄은 `raid`에만 두고 되풀이하지 않았다.
+  `raid-storage.raid-5`는 RAID 5(장치 n+1개에 데이터 n개와 패리티 하나, 엇갈려 둔다, 장치 하나의 고장을 견딘다)·RAID 4(블록 단위, 전용 패리티 장치 하나)·parity data·regeneration을 썼다. RAID 2·3은 한 문장으로 줄였다 —
+  「오류를 찾거나 데이터를 되살리는 데 쓰는 정보를 전용 디스크에 따로 둔다」는 RAID 2의 오류 검출 부호와 RAID 3의 전용 패리티 장치를 함께 적은 것이고, 바이트 단위 분산과 부호의 종류는 쓰지 않았다.
+  병목은 I/O bottleneck의 정의(데이터 전송 능력을 묶어 두는 입출력 경로의 자원)를 「데이터가 오가는 길에서 처리가 밀려 전체의 빠르기를 묶어 두는 곳」으로 풀었다. 「같은 양의 데이터를 지키는 데 RAID 5가 공간을 덜 쓴다」는 capacity optimization methods다.
+  「디스크 둘이 함께 고장 나면 데이터를 잃는다」는 RAID 5가 견디는 고장이 하나라는 표제어와, 줄마다 패리티가 하나라 남은 칸으로 얻는 값이 잃은 두 자리의 배타적 논리합 하나뿐이라는 셈(아래 DDF 항목의 XOR)에서 나오는 말이다.
+  쓰인 곳: `raid-storage.raid-1`(문단 0·1·2·4·5), `raid-storage.raid-5`(문단 0·2·4·5·6), 도식 `raid-mirroring`·`raid-parity-rotation`, 문항 n387·n388
+(phase 83 step 20) 본문에 쓴 모양 — `raid-storage.network-storage`는 DAS(서버 한 대에 바로 이어져 그 서버만 쓴다)·NAS(네트워크에 이어져 파일 접근 서비스를 준다, 파일을 내주는 부분과 저장 장치로 이루어지고 파일 접근 프로토콜로 답한다)·SAN(컴퓨터와 저장 장치 사이, 저장 장치끼리 데이터를 나르는 것이 주된 일인 네트워크, 그 네트워크와 저장 장치를 함께 부르기도 한다, 대개 블록 서비스)을 목록 항목 셋으로 썼고, SAN의 「대개」는 그대로 두었다.
+  블록은 block의 정의를 「디스크가 데이터를 저장하고 꺼내는 정해진 크기의 칸」으로, 파일은 file을 「이름이 붙은 데이터 한 덩어리」로, 파일 시스템은 file system을 「블록들에 짜임을 세워 어느 파일이 어느 블록들에 들어 있는지 적어 두고 파일을 이름으로 찾아 쓰게 하는 소프트웨어」로 풀었다(512·4,096바이트라는 블록 크기는 쓰지 않았다).
+  「SAN을 쓰는 서버는 블록을 청하고 블록들을 파일로 짜는 일은 서버의 파일 시스템이 하며, NAS를 쓰는 컴퓨터는 파일 이름으로 청하고 블록에 두는 일은 NAS 쪽이 한다」는 block storage(블록을 파일로 짜는 일은 호스트의 파일 시스템)와 NAS(파일 서비스를 구현한 엔진)를 함께 읽은 말이다. 파일 서버는 file server의 정의(클라이언트에게 파일을 내주는 컴퓨터)대로 한 줄 썼다.
+  파이버 채널은 Fibre Channel(여러 프로토콜을 싣는 연결 기술, 그 위에서 SCSI를 싣는다 — FCP라는 이름과 「직렬」은 쓰지 않았다)로, SCSI는 「서버가 저장 장치에 읽기·쓰기 같은 명령을 보내는 프로토콜의 묶음」으로 줄여 썼다(ANSI·INCITS라는 이름은 쓰지 않았다). iSCSI SAN은 표제어대로 썼다.
+  「SAN을 쓰면 서버와 저장 장치 사이의 데이터가 LAN을 거치지 않고 오갈 수 있다」와 LAN-free 백업은 LAN-free backup(LAN 자원을 쓰지 않고 SAN이나 DAS로 옮기는 백업)이다 — iSCSI SAN은 이미 있는 이더넷 위에서도 꾸릴 수 있으므로(아래 iSCSI 항목) 「LAN과 따로 둔다」를 SAN의 정의처럼 쓰지 않고 「오갈 수 있다」로 썼다. 문항 n389는 LAN과 따로 둔 네트워크로 잇는 장면을 주고 묻는다.
+  「RAID와 DAS·NAS·SAN은 서로 다른 물음에 답한다」는 disk array(디스크와 제어 소프트웨어를 묶어 저장 용량을 가상 드라이브로 내보인다)와 위 셋의 정의를 견준 말이다. SSD, NFS·SMB의 이름, 파이버 채널의 계층은 쓰지 않았다.
+  쓰인 곳: `raid-storage.network-storage`(문단 0~5·7·8·9·10), 도식 `storage-attach`, 문항 n389
+
+## (phase 83 step 17) SNIA Common RAID Disk Data Format (DDF) Specification v2.0 rev 19 — RAID 레벨의 배치 그림과 패리티 셈
+https://www.snia.org/tech_activities/standards/curr_standards/ddf
+https://www.snia.org/sites/default/files/SNIA_DDF_Technical_Position_v2.0.pdf
+
+판: Version 2.0 Revision 19, SNIA Technical Position, 2009-03-27 발행(126쪽 — rev 19는 2008-11-21 기술 위원회에 낸 승인 초안). 2026-11-21 SNIA 표준 페이지(「Completed Standards」)에 v2.0과 v1.2(2006-07-28)가 있고 v2.0이 가장 새 판임을 확인했다
+(페이지는 v2.0을 「1MB ZIP」이라 적지만 링크는 PDF다). DDF는 RAID 그룹의 디스크마다 배치 정보를 어떤 모양으로 적는지 정해, 업체가 달라도 디스크를 데이터째 옮겨 쓰게 하는 사양이다(표준 페이지 첫머리). 사전에 있는 말은 사전의 정의를 쓰고, 사전에 없는 말만 §3에서 정한다(§3).
+
+- **가상 디스크**: 호스트에 사용자 데이터 저장용으로 내보이는 대상이 가상 디스크(VD)이고, 물리 디스크가 적어도 하나 딸린다 — §3.1.1
+- **레벨 표**(§4.1 표 1): RAID-0 패리티 없는 스트라이프 배열, RAID-1 미러 배열, RAID-3·RAID-4 **회전하지 않는 패리티**의 스트라이프 배열(3은 길게 하나씩 이어지는 전송에, 4는 짧고 여럿이 함께 오는 전송에 맞춘다),
+  RAID-5 **회전하는 패리티(rotating parity)**의 스트라이프 배열(짧고 여럿이 함께 오는 전송에 맞춘다), RAID-6 RAID-5와 비슷하되 패리티를 두 벌 돌려 물리 디스크 둘의 고장을 견딘다.
+  같은 표는 JBOD와 **연결(Concatenation — 물리 디스크를 앞뒤로 이어 붙인 것)**을 RAID가 아닌 형식으로 함께 싣는다 — §4.1
+- **RAID-0의 배치**(§4.2.1 그림 2·식 1·표 3): 가상 디스크의 블록을 스트립 크기씩 잘라, 첫 스트립을 첫 익스텐트(물리 디스크의 이어진 한 구역)에, 다음 스트립을 다음 익스텐트에 두는 식으로 익스텐트를 차례로 돌며 놓는다 —
+  그림에서 익스텐트 0~4의 스트립 (0,0)~(4,0)이 스트라이프 0을 이루고, 그다음 스트립들이 스트라이프 1·2를 이룬다. 한 가상 디스크의 익스텐트는 크기가 같아야 하고 가상 디스크의 블록 수는 익스텐트 수로 나누어떨어져야 한다 — 패리티 칸이 없으므로 모든 익스텐트가 데이터를 담는다.
+  **디스크 최소 수는 적혀 있지 않다**
+- **RAID-1의 배치**(§4.2.2 그림 3): 단순 미러링은 익스텐트가 꼭 둘이고, 익스텐트마다 크기가 가상 디스크와 같으며, 가상 디스크의 블록마다 두 익스텐트의 같은 자리에 겹쳐 둔다 — 그래서 쓸 수 있는 용량은 디스크 하나만큼이다. 다중 미러링은 익스텐트 셋에 세 벌을 둔다(§4.2.3)
+- **패리티 셈**(§4.2.4 식 3, §4.2.6 식 7, §4.2.8 식 13): 패리티 블록은 같은 스트라이프에서 같은 자리에 있는 데이터 블록들을 비트마다 **배타적 논리합(XOR, ⊕)**한 값이다.
+  RAID-4에서 가상 디스크의 데이터 블록 수는 (익스텐트 수 − 1)로 나누어떨어져야 한다 — 익스텐트 하나만큼은 패리티의 몫이다(표 5)
+- **RAID-4의 배치**(§4.2.6 그림 7, §4.2 표 2): 「회전하지 않는 패리티 0」은 모든 패리티 블록을 익스텐트 0에, 「회전하지 않는 패리티 N」은 마지막 익스텐트에 둔다
+- **RAID-5의 배치**(§4.2.8~§4.2.10, 표 2, 그림 9·10): 스트라이프마다 패리티를 다른 익스텐트에 둔다. 「회전 패리티 0」은 스트라이프 0의 패리티를 익스텐트 0에 두고 왼쪽에서 오른쪽으로 대각선을 그리며(식 10 — 스트라이프 j의 패리티는 익스텐트 j mod N),
+  「회전 패리티 N」은 마지막 익스텐트에서 시작해 오른쪽에서 왼쪽으로 그린다(식 14 — 익스텐트 (N−1) − (j mod N)). 「데이터 다시 시작」은 스트라이프마다 패리티가 차지하지 않은 첫 익스텐트부터 데이터를 채우고, 「데이터 이어 가기」는 앞 스트라이프의 패리티 바로 아래 칸부터 채운다.
+  그림 10(익스텐트 다섯)은 스트라이프 0·1·2의 패리티를 익스텐트 4·3·2에 둔다. 익스텐트 넷이면 「회전 패리티 N」은 스트라이프 0·1·2·3의 패리티를 익스텐트 3·2·1·0에 둔다(식 14로 셈한 것 — guide 예의 P1~P4가 `DISK3`→`DISK2`→`DISK1`→`DISK0`에 놓이는 차례와 같다).
+  데이터 블록 수는 (N−1)×(스트립 크기)로 나누어떨어져야 한다(표 6) — 쓸 수 있는 용량은 익스텐트 N−1개만큼이다. **디스크 최소 수는 적혀 있지 않다**
+- **연결**(§4.3.3 그림 34·식 127): 연결 방식의 가상 디스크는 그 아래 가상 디스크들의 공간을 앞뒤로 이어 붙여 만든다 — 첫째를 다 채운 뒤 둘째로 넘어가고, 이어 붙이는 것들의 크기가 같지 않아도 된다
+- **한국어 이름**: 「가상 디스크」(virtual disk — DDF의 말. 본문은 「논리 디스크」를 세우고 이 말을 함께 적을 수 있다), 「회전 패리티」(rotating parity — 기출 [2025-08-24 #46]의 이름이기도 하다), 「연결」(concatenation).
+  「익스텐트」는 본문에 쓰지 않는다 — 단순한 구성에서는 디스크 하나로 말하면 된다
+쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid`(논리 디스크), `raid-storage.raid-0`(조각을 디스크마다 차례로 돌며 놓는다, 모든 디스크가 데이터를 담는다, 「RAID 0과 연결」),
+`raid-storage.raid-1`(두 디스크의 같은 자리에 겹쳐 둔다, 용량은 디스크 하나만큼), `raid-storage.raid-5`(패리티는 같은 줄의 데이터 조각을 XOR한 값, RAID 4의 패리티 디스크 하나, RAID 5의 줄마다 다른 디스크와 그 차례, 용량 n−1), 기출 대조([기출 2025-08-24 #46])
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`의 「가상 디스크라고도 부른다」는 §3.1.1의 말이다. `raid-storage.raid-0`의 조각을 디스크마다 차례로 돌며 놓고 한 바퀴가 줄 하나가 된다는 것은 §4.2.1 그림 2(md(4) 「RAID0」도 같다)이고,
+  「묶는 디스크마다 같은 크기의 공간을 쓰고 그 공간에 모두 데이터를 담으므로 용량은 합」은 §4.2.1의 「익스텐트의 크기가 같고 패리티 칸이 없다」를 「익스텐트」 없이 쓴 것이다.
+  「RAID 0과 연결」은 §4.1 표 1(연결은 RAID가 아닌 형식)과 §4.3.3(첫째를 다 채운 뒤 둘째로, 크기가 달라도 된다)이다 — 본문은 이 사양을 「SNIA가 정한 RAID 디스크 형식 사양」으로 불렀다. 「RAID 0과 RAID 1」의 용량(디스크 둘이면 디스크 하나만큼)은 §4.2.2다.
+  본문 예의 2TB·`DISK0`~`DISK3`·A1~A8은 예로 든 값이고, A1~A4가 첫째 줄·A5~A8이 둘째 줄로 놓이는 차례는 그림 2의 배치를 디스크 넷에 옮긴 것이다. n385 해설의 RAID 1·RAID 5 용량(디스크 셋으로 1TB·2TB)은 §4.2.3(다중 미러링 — 세 벌)과 표 6(N−1)이다.
+  쓰인 곳: `raid-storage.raid`(문단 1), `raid-storage.raid-0`(문단 0·1·4·6·7·8), 도식 `raid-striping`, 문항 n385
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`의 「묶은 디스크마다 같은 자리에 똑같이 써 넣는다」·「데이터를 담을 수 있는 공간은 디스크 하나만큼」은 §4.2.2(두 익스텐트의 같은 자리, 익스텐트마다 크기가 가상 디스크와 같다)이고,
+  디스크 셋을 묶으면 3분의 1을 데이터에 쓴다는 것은 §4.2.3(다중 미러링 — 세 벌)이다. 본문 예의 A1·A2·A3은 「데이터 덩이」라 불렀다 — RAID 1에는 조각(strip)으로 잘라 디스크마다 나누는 단계가 없어 RAID 0의 「조각」이라는 말을 쓰지 않았다.
+  `raid-storage.raid-5`의 「패리티는 같은 줄의 데이터 조각들을 비트마다 배타적 논리합한 값」은 식 3·7·13이다. 배타적 논리합의 뜻(두 비트가 다르면 1, 같으면 0)과 「1이 늘 짝수 개가 되게 맞춰진다」·「잃은 비트는 남은 것들을 배타적 논리합한 값」은 그 정의에서 나오는 셈이고,
+  본문 예의 비트 값(A1 1, A2 1, A3 0 → P1 0, 되살린 A2 1)은 예로 든 값이다. 「회전 패리티(rotating parity)」는 표 1의 이름이다.
+  「첫째 줄의 패리티를 마지막 디스크에 두고 한 줄 내려갈 때마다 한 디스크씩 앞으로 옮긴다」·「데이터 조각은 줄마다 패리티가 없는 디스크를 앞에서부터 채운다」는 「회전 패리티 N」(식 14)과 「데이터 다시 시작」이고, 본문은 이것을 「그 사양에 실린 배치 가운데 하나」로 적었다 —
+  디스크 넷이면 첫째~넷째 줄의 패리티가 `DISK3`·`DISK2`·`DISK1`·`DISK0`에 놓이고, 데이터 A1~A12는 A1·A2·A3·P1 / A4·A5·P2·A6 / A7·P3·A8·A9 / P4·A10·A11·A12로 놓인다(디스크 이름·조각 이름과 수는 예로 든 값).
+  용량 n − 1(본문 예 2TB × 3 = 6TB)은 표 6이다. 쓰인 곳: `raid-storage.raid-1`(문단 0·2·6), `raid-storage.raid-5`(문단 1·2·3·5·7·8), 도식 `raid-mirroring`·`raid-parity-rotation`
+
+## (phase 83 step 17) 레벨마다의 동작과 디스크 최소 수 — Linux md(4)(mdadm), Microsoft Learn: create volume stripe·create volume mirror·create volume raid(DiskPart), Volume Object(VDS), Basic and Dynamic Disks
+https://man7.org/linux/man-pages/man4/md.4.html
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-stripe
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-mirror
+https://learn.microsoft.com/windows-server/administration/windows-commands/create-volume-raid
+https://learn.microsoft.com/windows/win32/vds/volume-object
+https://learn.microsoft.com/windows/win32/fileio/basic-and-dynamic-disks
+
+판: md(4)는 mdadm 프로젝트의 페이지로, Linux의 소프트웨어 RAID 드라이버 md를 설명한다 — man7.org가 2026-08-04에 upstream Git에서 가져온 판이다(그때 마지막 커밋 2026-07-22, COLOPHON).
+DiskPart 세 쪽은 Windows Server 2016~2025·Windows 10·11에 적용된다(`ms.date` 2017-10-16, 영문판 고친 날 stripe·raid 2026-02-16, mirror 2025-10-22). VDS 「Volume Object」는 `ms.date` 2018-05-31(고친 날 2025-03-13), 「Basic and Dynamic Disks」는 `ms.date` 2025-07-08(고친 날 2025-07-10)이다. 2026-11-21 읽었다.
+**둘 다 한 구현(Linux md, Windows 동적 디스크)의 문서다** — 레벨의 정의는 위 SNIA 사전 항목을 따르고, 이 문서들은 SNIA·DDF가 적지 않은 것(디스크 최소 수, RAID 4와 RAID 5가 쓰기에서 갈리는 점, 미러에서 읽기를 나누는 것, 고장 뒤 되살리는 차례)에만 쓴다.
+Windows의 동적 디스크는 운영 체제를 담는 미러 부팅 볼륨을 빼면 쓰지 않을 기능(deprecated)이 되었고, 드라이브 고장에 견뎌야 하는 데이터에는 저장소 공간(Storage Spaces)을 쓰라고 한다(「Basic and Dynamic Disks」 「Types of disks」) —
+그래서 본문은 DiskPart를 Windows에서 RAID를 만드는 방법으로 가르치지 않고, 디스크 최소 수의 근거로만 쓴다.
+
+- **md(4)**:
+  - md 드라이버는 하나 이상의 장치로 가상 장치를 만든다. 여분을 두는 레벨 1(미러링)·4(패리티 장치를 둔 스트라이프 배열)·5(패리티 정보를 흩어 둔 스트라이프 배열)·6·10을 지원하고, 장치가 고장 나도 배열이 계속 동작하는 고장 수는 RAID 4·5에서 **하나**, RAID 1에서 **장치 수보다 하나 적은 수**다.
+    여분이 없는 유사(pseudo) RAID로 RAID0(스트라이프 배열)과 **LINEAR**(이어 붙인 배열)를 지원한다 — DESCRIPTION
+  - LINEAR: 각 드라이브의 공간을 그대로 이어 붙여 큰 가상 드라이브 하나를 만든다. RAID0보다 나은 점은 나중에 드라이브를 더해 배열의 데이터를 건드리지 않고 배열을 키울 수 있다는 것이다 — 「LINEAR」
+  - RAID0: 여분이 없는 스트라이프 배열이다. 배열의 첫 조각(chunk)을 첫 장치에, 둘째 조각을 둘째 장치에 두는 식으로 모든 장치가 조각을 하나씩 받으면 그 묶음이 스트라이프 하나가 되고, 그다음 조각들도 같은 차례로 묶는다 — 「RAID0」
+  - RAID1: 장치마다 똑같은 데이터를 담고, **바뀐 것은 모든 장치에 함께 쓴다**. 읽기는 어느 장치 하나에서 하고, 드라이버가 읽기 요청을 장치들에 나눠 성능을 높이려 한다.
+    그러나 이 나누기가 RAID1의 성능을 RAID0과 같게 만들지는 않는다 — 이어서 읽는 흐름 하나는 빨라지지 않고, 여러 흐름이나 무작위 읽기일 때 여러 디스크를 쓴다. 장치 크기가 다르면 가장 작은 장치만큼만 쓴다 — 「RAID1」
+  - RAID4: RAID0에 패리티를 담는 장치 하나(활성 장치의 마지막)를 더한 것이다. **블록 하나라도 바뀌면 그 스트라이프의 패리티 블록도 함께 바뀌어**, 패리티 블록은 늘 그 스트라이프의 데이터 블록 모두를 배타적 논리합(exclusive-or)한 값이다.
+    그래서 장치 하나가 고장 나도 그 장치에 있던 데이터를 패리티 블록과 나머지 데이터 블록으로 그때그때 계산해 낸다 — 「RAID4」
+  - RAID5: RAID4와 거의 같고, 다른 점은 스트라이프마다의 패리티 블록을 장치 하나에 두지 않고 **모든 장치에 흩어 둔다**는 것이다. 그래서 서로 다른 두 블록을 고칠 때 그 패리티 블록이 다른 장치에 있을 가능성이 커 다툼(contention)이 줄고 쓰기를 더 나란히 할 수 있으며,
+    읽기도 장치 하나를 빼지 않고 모든 장치에 나눈다 — 「RAID5」. **「병목(bottleneck)」이라는 낱말은 쓰지 않는다** — RAID4는 어느 블록을 고치든 패리티 장치 하나를 함께 고친다는 것과 RAID5에서 이 다툼이 준다는 것을 함께 읽어,
+    본문은 「RAID 4는 쓸 때마다 패리티 디스크 하나에 쓰기가 몰리고, RAID 5는 패리티를 흩어 그 몰림을 줄인다」로 쓸 수 있다(병목의 뜻은 위 SNIA 사전 항목의 「입출력 병목」)
+  - 되살리기: RAID1·4·5에서 장치에 쓰기 오류가 나면 그 장치를 고장으로 표시해 빼고 나머지 장치로 계속 동작한다. 예비 드라이브가 있으면 고장 난 드라이브에 있던 데이터를 그 위에 다시 만드는데, RAID1은 성한 드라이브를 복사하고 RAID4·5는 패리티로 셈한다.
+    되살리는 동안 다른 사용이 있으면 되살리기를 늦춰 평소 사용을 크게 방해하지 않는다 — 「RECOVERY」
+- **Microsoft Learn**:
+  - `create volume stripe`: 동적 디스크 **둘 이상**으로 스트라이프 볼륨을 만들고, 디스크마다 같은 크기를 잡는다 — 「Parameters」. VDS: 스트라이프 볼륨은 RAID-0으로 디스크 둘 이상의 공간을 논리 볼륨 하나로 묶고,
+    내결함성이 없어 **디스크 하나만 고장 나도 볼륨 전체가 고장 난다** — 「Volume Types」
+  - `create volume mirror`: 동적 디스크 **둘**로 미러 볼륨을 만든다 — 「Parameters」. VDS: 미러 볼륨은 볼륨의 두 사본(플렉스)을 서로 다른 물리 디스크에 두고 쓰는 데이터를 둘 다에 쓰며, 디스크 하나가 고장 나면 그 디스크의 데이터는 못 쓰지만 시스템은 성한 디스크로 계속 동작한다 — 「Volume Types」
+  - `create volume raid`: 동적 디스크 **셋 이상**으로 RAID-5 볼륨을 만들고, 디스크마다 같은 크기를 잡으며, 공간의 일부가 패리티에 들어 쓸 수 있는 공간은 디스크 공간을 다 더한 것보다 작다 — 「Parameters」.
+    VDS: 패리티가 있는 스트라이프 볼륨(RAID-5 볼륨)은 데이터와 패리티를 물리 디스크 셋 이상에 엇갈려 두고, 디스크 일부가 고장 나면 남은 데이터와 패리티로 그 데이터를 다시 만든다 — 「Volume Types」
+  - VDS의 스팬 볼륨은 여러 디스크의 빈 공간을 논리 볼륨 하나로 묶고, 내결함성이 없다 — 「Volume Types」(위 DDF의 연결, md(4)의 LINEAR와 같은 갈래다)
+- **한국어 이름**: learn.microsoft.com 한국어판은 「스트라이프 볼륨」·「미러 볼륨」(VDS 한국어판은 「미러된 볼륨」)·「RAID-5 볼륨」·「패리티가 있는 스트라이프」·「스팬 볼륨」·「내결함성」·「동적 디스크」로 옮긴다 — 본문은 RAID 레벨의 이름을 세우고 Windows의 볼륨 이름은 쓰지 않아도 된다.
+  「분산 패리티」(distributed parity — md(4)의 말). md(4)의 「LINEAR」는 Linux md 드라이버의 이름이고 기출 보기의 「Linear RAID」가 이것이다 — 본문은 「연결(concatenation)」을 세우고 「Linux의 md 드라이버는 이것을 LINEAR라 부른다」까지 쓸 수 있다
+쓰일 곳: (phase 83 step 18·19에서 쓰일 곳) `raid-storage.raid-0`(디스크 둘 이상, 하나만 고장 나도 볼륨 전체를 잃는다, 연결·LINEAR와 가르기), `raid-storage.raid-1`(디스크 둘, 바뀐 것을 모든 디스크에 쓴다, 읽기를 나눌 수 있지만 RAID 0과 같지 않다 — E54, 고장 뒤 성한 디스크로 계속 동작, 「RAID 1과 백업」 — E55),
+`raid-storage.raid-5`(디스크 셋 이상, 패리티 몫만큼 용량이 준다, XOR한 값과 고장 뒤 다시 셈하기, RAID 4의 패리티 디스크에 쓰기가 몰리고 RAID 5가 흩는다), `raid-storage.raid`(재구축의 차례), 기출 대조(`exam-notes.md` 「phase 83 step 17」 문단)
+(phase 83 step 18) 본문에 쓴 모양 — `raid-storage.raid`의 「여분을 두는 레벨에서는 디스크 하나가 고장 나도 묶음이 멈추지 않고, 제어 소프트웨어가 고장 난 디스크를 빼고 남은 디스크로 계속 답한다」는 「RECOVERY」와 DESCRIPTION(RAID 1·4·5가 견디는 고장 수)이다.
+  `raid-storage.raid-0`의 「디스크가 둘 이상 있어야 만든다」는 `create volume stripe`(동적 디스크 둘 이상)이고, 「디스크 하나만 고장 나도 통째로 쓸 수 없게 된다」는 VDS 「Volume Types」(스트라이프 볼륨은 디스크 하나만 고장 나도 볼륨 전체가 고장 난다)다 — DiskPart와 Windows의 볼륨 이름은 본문에 쓰지 않았다.
+  「RAID 0과 연결」의 「Linux의 md 드라이버는 연결을 LINEAR라 부르고, 나중에 디스크를 더 붙여 이미 담긴 데이터를 건드리지 않고 공간을 늘릴 수 있다는 점을 RAID 0과 다른 점으로 든다」는 「LINEAR」다. 드라이버의 한 줄 풀이는 앞 phase의 `linux-filesystem.disk-device-names`와 같은 뜻이다.
+  쓰인 곳: `raid-storage.raid`(문단 5·7), `raid-storage.raid-0`(문단 4·5·7), 문항 n385·n386
+(phase 83 step 19) 본문에 쓴 모양 — `raid-storage.raid-1`의 「바뀐 내용을 모든 디스크에 함께 쓴다」와, 읽기를 디스크들에 나누지만 「RAID 0만큼 빨라지지는 않는다」·「큰 파일 하나를 처음부터 끝까지 차례로 읽는 일은 빨라지지 않고,
+  여러 읽기가 함께 들어오거나 흩어진 자리를 읽을 때 여러 디스크를 쓴다」는 「RAID1」이다 — 본문은 「Linux의 md 드라이버 … 그 문서는 … 적는다」로 한 구현의 문서라고 밝혀 쓰고, 그 자리에 E54의 「자격시험은」 줄을 붙였다.
+  「디스크를 셋 이상 묶었다면 하나만 남을 때까지 견딘다」는 DESCRIPTION(RAID1은 장치 수보다 하나 적은 고장까지), 「크기가 서로 다르면 가장 작은 디스크만큼」은 「RAID1」이다.
+  「고장 난 디스크를 빼고 남은 디스크로 계속 답한다」·「성한 디스크를 복사해 새 디스크를 채운다」와 RAID 5의 「줄마다 계산한 조각과 패리티를 새 디스크에 써 넣는다」는 「RECOVERY」다.
+  「RAID 1과 백업」의 「실수로 지우거나 잘못 고친 것도 모든 디스크에 똑같이 쓰인다」는 「RAID1」(바뀐 것은 모든 장치에 함께 쓴다)에서 나오는 말이다(E55 「표준」).
+  `raid-storage.raid-5`의 「데이터 조각을 하나라도 고치면 그 줄의 패리티도 함께 고친다」·「잃은 조각을 그때그때 계산해 낸다」는 「RAID4」이고, 「RAID 4는 어느 조각을 고치든 패리티 디스크에도 써야 한다」·
+  「RAID 5는 서로 다른 줄을 고치는 쓰기라면 패리티가 다른 디스크에 있을 때가 많아 쓰기를 나란히 처리한다」·「읽기도 모든 디스크에 나눈다」는 「RAID5」다 — 「병목」이라는 낱말은 위 SNIA 항목의 I/O bottleneck으로 이었다.
+  「분산 패리티(distributed parity)」는 「RAID5」의 이름이고, 본문은 md 드라이버 문서의 이름이라고 밝혔다. 「RAID 5는 디스크가 셋 이상 있어야 만든다」는 `create volume raid`·VDS 「Volume Types」이고, `raid-0`처럼 DiskPart와 Windows의 볼륨 이름은 본문에 쓰지 않았다.
+  쓰인 곳: `raid-storage.raid-1`(문단 1·2·3·4·6), `raid-storage.raid-5`(문단 2·3·4·5·6·8), 문항 n387·n388
+
+## (phase 83 step 17) iSCSI — RFC 7143 「Internet Small Computer System Interface (iSCSI) Protocol (Consolidated)」, Microsoft Learn 「iSCSI Target Server overview」
+https://www.rfc-editor.org/rfc/rfc7143
+https://learn.microsoft.com/windows-server/storage/iscsi/iscsi-target-server
+
+판: RFC 7143은 Proposed Standard(2014-04)이고 RFC 3720·3980·4850·5048을 대체(Obsoletes)하고 RFC 3721을 고친다(Updates) — 2026-11-21 rfc-editor json에서 이 RFC를 대체하거나 고친 RFC가 없음을 확인했다.
+learn.microsoft.com 「iSCSI Target Server overview」는 Windows Server 2016~2025에 적용된다(`ms.date` 2018-09-11, 영문판 고친 날 2025-05-19, 한국어판 「iSCSI 대상 서버 개요」 고친 날 2026-01-21).
+
+- **SCSI와 그 전송**: SCSI는 입출력 장치, 특히 저장 장치와 통신하는 프로토콜 묶음이고 클라이언트–서버 구조다. 클라이언트를 initiator라 부르고, initiator는 target이라 부르는 서버의 논리 장치(LU)에게 SCSI 명령을 보내 일을 청한다. target 안의 LU마다 LUN이라는 주소가 있다.
+  SCSI를 특정 연결 기술 위에 싣는 것을 SCSI 전송이라 하고 파이버 채널도 그 하나인데, 이런 전송들은 입출력 전용이고 닿는 거리가 짧다 — §1, §4.1
+- **iSCSI**: SCSI의 명령·이벤트·작업 관리를 **TCP 위에** 싣는 프로토콜이다 — SCSI 명령은 iSCSI 요청에, SCSI 응답과 상태는 iSCSI 응답에 실린다. 이미 있는 인터넷 기반 시설과 관리 수단을 쓰고 거리 한계를 풀려는 것이다 — §1, §4.2.
+  RFC 7143의 키워드에 SAN과 블록 스토리지가 든다(rfc-editor json — 이름만)
+- **Windows Server의 iSCSI 대상 서버**: iSCSI 프로토콜로 저장 공간을 내주는 Windows Server의 역할 서비스이고, Windows의 파일 공유 프로토콜 SMB로 통신하지 못하는 클라이언트에 저장 공간을 내줄 때 쓸모 있다 — 첫머리.
+  이것을 켜면 Windows Server 컴퓨터가 **네트워크로 닿는 블록 스토리지 장치**가 되고, 블록 스토리지가 필요한 응용 프로그램에 저장 공간을 주며, SAN에 배치하기 전에 응용 프로그램을 시험하는 데도 쓴다 — 첫머리의 쓰임 넷.
+  이미 있는 이더넷 네트워크를 쓰므로 하드웨어를 더할 필요가 없다. 가용성이 높은 클러스터를 꾸리려면 파이버 채널 저장 장치나 SAS 저장 배열 같은 공유 저장소가 필요하다 — 「Block storage requirements」.
+  설치 자리(파일 및 스토리지 서비스 → 파일 및 iSCSI 서비스)는 위 「(phase 80 step 8) Microsoft Learn — 클라우드 폴더(Work Folders)」 항목과 「(phase 81 step 0) Microsoft Learn — 서버 역할과 기능」 항목(Server Core 표의 「파일 및 iSCSI 서비스(`File-Services`)」)에 이미 있다
+- **한국어 이름**: 「iSCSI」(그대로), 「iSCSI 대상 서버」(iSCSI Target Server — 한국어판), 「초기자」(initiator — 한국어판 「iSCSI 초기자」), 「대상」(target), 「블록 스토리지」(block storage — 한국어판), 「SAN(스토리지 영역 네트워크)」(한국어판의 풀이), 「파이버 채널」(Fibre Channel — 한국어판)
+쓰일 곳: (phase 83 step 20에서 쓰일 곳) `raid-storage.network-storage`(iSCSI는 SCSI 명령을 TCP/IP 네트워크로 나른다, 서버가 저장 장치를 자기 디스크처럼 블록 단위로 쓴다, Windows Server의 iSCSI 대상 서버 한 줄), 기출 대조([기출 2025-05-25 #37])
+(phase 83 step 20) 본문에 쓴 모양 — `raid-storage.network-storage`는 §1·§4.1의 initiator·target을 「명령을 보내는 서버 쪽을 초기자, 명령을 받아 처리하는 저장 장치 쪽을 대상」으로 썼고(LU·LUN은 쓰지 않았다), §1·§4.2를 「SCSI 명령을 TCP/IP 네트워크로 나른다, 이미 있는 TCP/IP 네트워크와 그 관리 수단으로 SAN을 꾸리고 서버와 저장 장치 사이의 거리 한계를 덜 받는다」로 썼다.
+  iSCSI 대상 서버는 첫머리와 「Block storage requirements」를 「켜면 그 Windows Server 컴퓨터가 네트워크로 닿아 블록 단위로 쓰는 저장 장치가 되어 다른 서버들에게 디스크 공간을 내준다, 이미 있는 이더넷 네트워크를 쓰므로 장비를 따로 더 들이지 않아도 된다」로 썼다 — SMB로 통신하지 못하는 클라이언트, SAN에 배치하기 전의 시험, 클러스터의 공유 저장소, 설치 자리는 쓰지 않았다.
+  쓰인 곳: `raid-storage.network-storage`(문단 5·6·9)
