@@ -47,8 +47,8 @@ const pathEnds: Record<string, [string, string]> = {
 }
 const allPaths = Object.keys(pathEnds)
 const question = "어느 도구로 보내든 요청은 어디를 지날까?"
-const idleCaption = "VM 1을 만드는 것 같은 관리 요청은 어느 도구에서 보내든 Azure Resource Manager가 받는다. 버튼을 고르면 요청이 지나는 길을 볼 수 있다."
-const legend = "화살표는 리소스를 만드는 관리 요청이 가는 방향이다. Azure Resource Manager에서 VM 1로 가는 화살표는 요청을 VM을 맡은 서비스로 넘겨 VM 1을 만드는 흐름을 줄여 그린 것이다."
+const idleCaption = "어느 도구에서 보낸 VM 생성 요청이든 Azure Resource Manager에 모인다. 인증과 권한 확인을 통과한 요청은 VM을 만드는 서비스로 넘어간다."
+const legend = "화살표는 관리 요청이 가는 방향이다. VM 1로 향하는 화살표는 Azure Resource Manager가 권한을 확인한 뒤 VM을 맡은 서비스로 요청을 넘기는 흐름을 줄여 그린 것이다."
 const figureName = "Azure 포털, Azure CLI, Azure PowerShell, REST API에서 보낸 관리 요청이 모두 Azure Resource Manager에 모여 인증과 권한 확인을 거친 뒤 VM 1을 만드는 모습"
 const svgName = "위에 Azure 포털, Azure CLI, Azure PowerShell, REST API가 있고, 그 아래 Azure Resource Manager, 맨 아래 VM 1이 있다"
 const expectedScenarios = [
@@ -285,13 +285,14 @@ describe('ResourceManagerDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  it('처음에는 네 도구의 요청이 ARM을 거쳐 VM으로 가는 전체 흐름을 보여 준다', () => {
     const { container } = render(<ResourceManagerDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
     for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
     expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
@@ -313,7 +314,7 @@ describe('ResourceManagerDiagram', () => {
 
     for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
   })
@@ -409,15 +410,22 @@ describe('ResourceManagerDiagram', () => {
     expect([concept.summary, ...concept.paragraphs].join(' ')).not.toMatch(/Terraform|Blueprints|제어 평면|API 버전|리소스 공급자|\*\*/u)
   })
 
-  it.each([2, 4] as const)('공유 본문 h%i에서 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
+  it.each([2, 4] as const)('공유 본문 h%i에서 요약 아래에 역할 표를, 본문 뒤에 도식을 붙인다', (headingLevel) => {
     const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
     const figure = screen.getByRole('figure', { name: figureName })
+    const roles = screen.getByRole('figure', { name: 'ARM과 코드형 인프라의 용어별 역할' })
 
     expect(figure.closest('article')).toHaveAttribute('id', concept.id)
+    expect(roles.closest('article')).toBe(figure.closest('article'))
+    expect(roles.previousElementSibling).toHaveTextContent(concept.summary)
+    expect(roles.nextElementSibling).toHaveTextContent(concept.paragraphs[0])
+    expect(within(roles).getAllByRole('rowheader').map((row) => row.textContent)).toEqual([
+      'Azure Resource Manager (ARM)', '코드형 인프라 (IaC)', 'ARM 템플릿', 'Bicep',
+    ])
     expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.join('').replace(/\*\*|`/gu, ''))
     expect(figure.closest('article')!.lastElementChild).toBe(figure)
-    expect(screen.getAllByRole('figure')).toEqual([figure])
+    expect(screen.getAllByRole('figure')).toEqual([roles, figure])
     expect(within(figure).queryByRole('heading')).toBeNull()
   })
 
@@ -499,6 +507,8 @@ describe('ResourceManagerDiagram', () => {
       render(<ResourceManagerDiagram />)
       expectFits([0, 0, 440, 216])
       expectColors()
+      expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+      expectPathGeometry()
     })
 
     it.each(expectedScenarios)('$label: 세로형과 같은 노드·경로·곁말·캡션을 보이고 곁말은 노드와 겹치지 않는다', async (scenario) => {

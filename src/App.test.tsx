@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -184,32 +184,51 @@ describe('App routes', () => {
     })
   })
 
-  // 배포 라우터는 HashRouter다. 표 바로 가기를 누르면 주소가 `#/azure/topic/azure-monitoring#표 id`로 해시가 둘이 되는데,
-  // 첫 `#` 뒤가 그대로 경로로 남아 같은 화면에 머물고, 뒤쪽 해시가 가리키는 표로 스크롤해야 한다(ADR-020).
+  // HashRouter의 첫 해시는 주제 경로를, 뒤의 해시는 같은 화면의 비교표를 가리킨다(ADR-020).
   describe('HashRouter 위의 표 바로 가기', () => {
     afterEach(() => {
       window.history.replaceState(null, '', '/')
       localStorage.clear()
     })
 
-    it('모니터링 주제의 비교표 바로 가기는 HashRouter 경로를 지킨 채 같은 화면의 그 표로 옮긴다', async () => {
+    it.each([
+      {
+        topicId: 'azure-monitoring',
+        title: '모니터링',
+        anchor: 'monitor-features-table',
+        linkName: 'Azure Monitor 기능 비교표로 바로 가기',
+        tableName: 'Azure Monitor의 네 기능 견주기',
+        conceptId: 'azure-monitoring.azure-monitor',
+      },
+      {
+        topicId: 'azure-infrastructure-as-code',
+        title: 'ARM과 코드형 인프라',
+        anchor: 'deployment-methods-table',
+        linkName: '배포 방식 비교표로 바로 가기',
+        tableName: '스크립트, ARM 템플릿, Bicep 견주기',
+        conceptId: 'azure-infrastructure-as-code.bicep',
+      },
+    ])('$title 주제의 바로 가기는 같은 화면에서 비교표로 옮긴다', async ({ topicId, title, anchor, linkName, tableName, conceptId }) => {
       const scrollIntoView = vi.fn()
       vi.spyOn(Element.prototype, 'scrollIntoView').mockImplementation(scrollIntoView)
-      window.history.replaceState(null, '', '#/azure/topic/azure-monitoring')
+      const topicPath = `#/azure/topic/${topicId}`
+      window.history.replaceState(null, '', topicPath)
       const user = userEvent.setup()
       render(<App />)
 
-      const link = screen.getByRole('link', { name: 'Azure Monitor 기능 비교표로 바로 가기' })
-      expect(link).toHaveAttribute('href', '#/azure/topic/azure-monitoring#monitor-features-table')
+      const link = screen.getByRole('link', { name: linkName })
+      expect(link).toHaveAttribute('href', `${topicPath}#${anchor}`)
 
-      await user.click(link)
+      await act(async () => {
+        await user.click(link)
+      })
 
-      const table = screen.getByRole('figure', { name: 'Azure Monitor의 네 기능 견주기' })
-      expect(window.location.hash).toBe('#/azure/topic/azure-monitoring#monitor-features-table')
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('모니터링')
+      const table = screen.getByRole('figure', { name: tableName })
+      expect(window.location.hash).toBe(`${topicPath}#${anchor}`)
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title)
       expect(scrollIntoView).toHaveBeenCalledOnce()
       expect(scrollIntoView.mock.instances[0]).toBe(table)
-      expect(table.closest('article')).toHaveAttribute('id', 'azure-monitoring.azure-monitor')
+      expect(table.closest('article')).toHaveAttribute('id', conceptId)
     })
   })
 

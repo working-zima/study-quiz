@@ -3,6 +3,10 @@ import { ComparisonTableFigure } from './ComparisonTableFigure'
 
 const tables = visualsByTopicId['azure-infrastructure-as-code'].tables
 
+export function InfrastructureRolesTable() {
+  return <ComparisonTableFigure table={tables['infrastructure-roles']} />
+}
+
 export function DeploymentMethodsTable() {
   return <ComparisonTableFigure table={tables['deployment-methods']} />
 }

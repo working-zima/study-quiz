@@ -4,8 +4,8 @@
       "label": "Azure 포털, Azure CLI, Azure PowerShell, REST API에서 보낸 관리 요청이 모두 Azure Resource Manager에 모여 인증과 권한 확인을 거친 뒤 VM 1을 만드는 모습",
       "svgLabel": "위에 Azure 포털, Azure CLI, Azure PowerShell, REST API가 있고, 그 아래 Azure Resource Manager, 맨 아래 VM 1이 있다",
       "question": "어느 도구로 보내든 요청은 어디를 지날까?",
-      "idleCaption": "VM 1을 만드는 것 같은 관리 요청은 어느 도구에서 보내든 Azure Resource Manager가 받는다. 버튼을 고르면 요청이 지나는 길을 볼 수 있다.",
-      "legend": "화살표는 리소스를 만드는 관리 요청이 가는 방향이다. Azure Resource Manager에서 VM 1로 가는 화살표는 요청을 VM을 맡은 서비스로 넘겨 VM 1을 만드는 흐름을 줄여 그린 것이다.",
+      "idleCaption": "어느 도구에서 보낸 VM 생성 요청이든 Azure Resource Manager에 모인다. 인증과 권한 확인을 통과한 요청은 VM을 만드는 서비스로 넘어간다.",
+      "legend": "화살표는 관리 요청이 가는 방향이다. VM 1로 향하는 화살표는 Azure Resource Manager가 권한을 확인한 뒤 VM을 맡은 서비스로 요청을 넘기는 흐름을 줄여 그린 것이다.",
       "nodes": {
         "portal": "Azure 포털",
         "cli": "Azure CLI",
@@ -162,8 +162,55 @@
     }
   },
   "tables": {
+    "infrastructure-roles": {
+      "label": "ARM과 코드형 인프라의 용어별 역할",
+      "columns": [
+        "용어",
+        "역할"
+      ],
+      "columnWidths": [
+        "45%",
+        "55%"
+      ],
+      "sources": [
+        "azure-infrastructure-as-code.resource-manager",
+        "azure-infrastructure-as-code.infrastructure-as-code",
+        "azure-infrastructure-as-code.arm-templates",
+        "azure-infrastructure-as-code.bicep"
+      ],
+      "rows": [
+        {
+          "header": "Azure Resource Manager (ARM)",
+          "cells": [
+            "Azure 리소스를 만들거나 바꾸는 요청을 처리하는 서비스"
+          ]
+        },
+        {
+          "header": "코드형 인프라 (IaC)",
+          "cells": [
+            "서버나 네트워크의 구성을 코드로 적어 배포하는 방식"
+          ]
+        },
+        {
+          "header": "ARM 템플릿",
+          "cells": [
+            "만들 리소스와 설정을 적어 ARM에 넘기는 JSON 파일"
+          ]
+        },
+        {
+          "header": "Bicep",
+          "cells": [
+            "리소스와 설정을 적는 언어. 배포할 때 ARM 템플릿으로 바뀌어 ARM에 넘어간다"
+          ]
+        }
+      ]
+    },
     "deployment-methods": {
       "label": "스크립트, ARM 템플릿, Bicep 견주기",
+      "shortcut": {
+        "id": "deployment-methods-table",
+        "label": "배포 방식 비교표로 바로 가기"
+      },
       "columns": [
         "방식",
         "적는 것",
