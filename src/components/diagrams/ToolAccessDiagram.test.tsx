@@ -16,12 +16,14 @@ const labels = {
   "arm": "Azure Resource Manager",
   "powershell": "Azure PowerShell",
   "cli": "Azure CLI",
-  "mobile": "Azure 모바일 앱"
+  "mobile": "Azure 모바일 앱",
+  "rest": "REST API"
 }
 const groupLabels: Record<string, string> = {
   "g-browser": "웹 브라우저로 연다",
   "g-install": "컴퓨터에 설치한다",
-  "g-phone": "휴대폰 앱"
+  "g-phone": "휴대폰 앱",
+  "g-program": "프로그램"
 }
 const noteLabels = {
   "browser-note": "설치 없이 연다",
@@ -49,15 +51,16 @@ const pathEnds: Record<string, [string, string]> = {
   "shell-to-arm": ["cloud-shell", "arm"],
   "ps-to-arm": ["powershell", "arm"],
   "cli-to-arm": ["cli", "arm"],
-  "mobile-to-arm": ["mobile", "arm"]
+  "mobile-to-arm": ["mobile", "arm"],
+  "rest-to-arm": ["rest", "arm"]
 }
 const allPaths = Object.keys(pathEnds)
-const scenarioGroups: Record<string, string> = { "browser": "g-browser", "install": "g-install", "phone": "g-phone" }
-const question = "어떤 기기에서 무엇으로 Azure를 다룰까?"
-const idleCaption = "어느 도구로 보내든 리소스를 만들고 바꾸는 관리 요청은 Azure Resource Manager를 거친다. 버튼을 고르면 기기마다 무엇으로 Azure를 다루는지 볼 수 있다."
-const legend = "화살표는 리소스를 만들고 바꾸는 관리 요청이 가는 방향이다. 세 칸은 도구를 주로 여는 곳으로 나눈 것이라, Azure PowerShell과 Azure CLI는 Azure Cloud Shell 안에서도 쓴다."
-const figureName = "웹 브라우저로 여는 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치하는 Azure PowerShell과 Azure CLI, 휴대폰 앱인 Azure 모바일 앱이 모두 Azure Resource Manager로 관리 요청을 보내는 모습"
-const svgName = "웹 브라우저로 연다 안에 Azure 포털과 Azure Cloud Shell, 컴퓨터에 설치한다 안에 Azure PowerShell과 Azure CLI, 휴대폰 앱 안에 Azure 모바일 앱이 있고, 그 사이에 Azure Resource Manager가 있다"
+const scenarioGroups: Record<string, string> = { "browser": "g-browser", "install": "g-install", "phone": "g-phone", "program": "g-program" }
+const question = "Azure 관리 요청은 어디로 갈까?"
+const idleCaption = "포털에서 메뉴를 누르거나 프로그램이 REST API를 호출해도, 리소스를 만들고 바꾸는 요청은 모두 Azure Resource Manager에 닿는다."
+const legend = "화살표는 관리 요청이 가는 방향이다. Azure PowerShell과 Azure CLI는 컴퓨터에 설치하거나 Azure Cloud Shell에서 쓴다."
+const figureName = "Azure 관리 도구에서 Azure Resource Manager로 가는 요청"
+const svgName = "Azure 포털, Cloud Shell, Azure PowerShell, Azure CLI, Azure 모바일 앱, REST API가 Azure Resource Manager로 연결된다"
 const expectedScenarios = [
   {
     "id": "browser",
@@ -84,6 +87,15 @@ const expectedScenarios = [
     "paths": ["mobile-to-arm"],
     "notes": ["phone-note"],
     "caption": "Azure 모바일 앱은 휴대폰 같은 iOS·Android 기기에 설치해, 리소스의 상태와 경고를 보고 VM을 시작하거나 중지하며 앱 안에서 Azure Cloud Shell을 연다.",
+    "sources": [anchorConceptId]
+  },
+  {
+    "id": "program",
+    "label": "프로그램에서",
+    "nodes": ["rest", "arm"],
+    "paths": ["rest-to-arm"],
+    "notes": [],
+    "caption": "직접 만든 프로그램은 Azure REST API에 HTTP 요청을 보내 리소스를 만들고, 읽고, 고치고, 지운다.",
     "sources": [anchorConceptId]
   }
 ]
@@ -233,7 +245,7 @@ async function expectScenario(
 // 모든 rect가 viewBox 안에 있고, 라벨은 상자 안에, 그룹 라벨은 1.15배로 잡아도 자기 박스 오른쪽 끝 안에 들어간다.
 function expectFits(viewBox: [number, number, number, number]) {
   const boxes = Array.from(diagram().querySelectorAll('rect'), readBox)
-  expect(boxes).toHaveLength(9)
+  expect(boxes).toHaveLength(allNodes.length + Object.keys(groupLabels).length)
   expect(boxesOutsideViewBox(boxes, viewBox)).toEqual([])
 
   for (const [id, label] of Object.entries(labels)) {
@@ -264,7 +276,7 @@ function expectColors() {
 }
 
 // 요점: 어느 장면에서도 Azure Resource Manager가 선명하고, 보이는 경로는 모두 그곳에서 끝난다.
-// 장면마다 선명한 도구는 그 장면의 칸에 든 도구뿐이고, 다섯 경로는 도구 다섯에서 하나씩 나온다. 휴대폰 칸은 브라우저 칸과 따로 있다.
+// 장면마다 선명한 도구는 그 장면의 칸에 든 도구뿐이다. 각 도구에서 경로가 하나씩 나온다.
 function isInside(inner: SvgBox, outer: SvgBox) {
   return inner.x >= outer.x && inner.y >= outer.y && inner.x + inner.width <= outer.x + outer.width && inner.y + inner.height <= outer.y + outer.height
 }
@@ -277,6 +289,7 @@ async function expectPoint() {
   expect(toolsIn('g-browser')).toEqual(['cloud-shell', 'portal'])
   expect(toolsIn('g-install')).toEqual(['cli', 'powershell'])
   expect(toolsIn('g-phone')).toEqual(['mobile'])
+  expect(toolsIn('g-program')).toEqual(['rest'])
   for (const groupId of Object.keys(groupLabels)) expect(isInside(nodeBox('arm'), groupBox(groupId)), groupId).toBe(false)
 
   const starts = new Set<string>()
@@ -310,13 +323,14 @@ describe('ToolAccessDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  it('처음에는 모든 노드와 관리 요청 경로가 보인다', () => {
     const { container } = render(<ToolAccessDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
     for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
     expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
@@ -338,18 +352,18 @@ describe('ToolAccessDiagram', () => {
 
     for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
   })
 
-  it('모든 상자가 280×296 viewBox 안에 있고 모바일 너비 보정을 유지한다', () => {
+  it('모든 상자가 280×324 viewBox 안에 있고 모바일 너비 보정을 유지한다', () => {
     render(<ToolAccessDiagram />)
 
-    expect(diagram()).toHaveAttribute('viewBox', '0 0 280 296')
+    expect(diagram()).toHaveAttribute('viewBox', '0 0 280 324')
     expect(diagram().parentElement).toHaveClass('-mx-4', 'w-full', 'max-w-[380px]', 'max-sm:w-[calc(100%+2rem)]', 'sm:mx-0')
     expect(diagram().parentElement).not.toHaveClass('mx-auto')
-    expectFits([0, 0, 280, 296])
+    expectFits([0, 0, 280, 324])
     expectColors()
   })
 
@@ -442,7 +456,6 @@ describe('ToolAccessDiagram', () => {
     expect(figure.closest('article')).toHaveAttribute('id', concept.id)
     expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.map((paragraph) => paragraph.replace(/^- /u, '')).join('').replace(/\*\*|`/gu, ''))
     expect(figure.closest('article')!.lastElementChild).toBe(figure)
-    expect(screen.getAllByRole('figure')).toEqual([figure])
     expect(within(figure).queryByRole('heading')).toBeNull()
   })
 
@@ -527,6 +540,8 @@ describe('ToolAccessDiagram', () => {
       render(<ToolAccessDiagram />)
       expectFits([0, 0, 440, 256])
       expectColors()
+      expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+      expectPathGeometry()
     })
 
     it.each(expectedScenarios)('$label: 세로형과 같은 노드·경로·곁말·캡션을 보이고 곁말은 노드·그룹 라벨과 겹치지 않는다', async (scenario) => {
@@ -542,7 +557,7 @@ describe('ToolAccessDiagram', () => {
     it('세로형에서 고른 시나리오가 폭을 바꾸어도 유지된다', async () => {
       const { change } = mockMatchMedia(false)
       const { container } = render(<ToolAccessDiagram />)
-      expect(diagram()).toHaveAttribute('viewBox', '0 0 280 296')
+      expect(diagram()).toHaveAttribute('viewBox', '0 0 280 324')
       await selectScenario(expectedScenarios[0].label)
       const caption = container.querySelector('figcaption')!.textContent
 

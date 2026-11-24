@@ -456,7 +456,7 @@ import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { GovernanceToolsTable } from './azureGovernanceTables'
 import { SignInMethodsTable } from './azureIdentityTables'
 import { DeploymentMethodsTable, InfrastructureRolesTable } from './azureInfrastructureAsCodeTables'
-import { CommandToolsTable } from './azureManagementToolsTables'
+import { CommandToolsTable, ManagementToolChoiceTable } from './azureManagementToolsTables'
 import { MonitorFeaturesTable, ToolChoiceTable } from './azureMonitoringTables'
 import { RbacRolesTable, SecurityToolsTable } from './azureSecurityModelTables'
 import { ServiceTypesTable } from './azureServiceTypesTables'
@@ -961,6 +961,7 @@ export const diagramsByConceptId: Record<string, ComponentType | ComponentType[]
 // 개념 id → 그 개념의 한 줄 요약 바로 아래, 본문보다 앞에 붙는 표(UI_GUIDE 「비교표」의 예외).
 // 본문 뒤의 도식·표와 달리, 주제 첫머리에서 무엇을 고를지 먼저 보인다.
 export const summaryFiguresByConceptId: Record<string, ComponentType> = {
+  'azure-management-tools.management-tools': ManagementToolChoiceTable,
   'azure-infrastructure-as-code.resource-manager': InfrastructureRolesTable,
   'azure-monitoring.monitoring-tools': ToolChoiceTable,
 }

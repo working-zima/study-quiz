@@ -193,6 +193,14 @@ describe('App routes', () => {
 
     it.each([
       {
+        topicId: 'azure-management-tools',
+        title: '관리 도구',
+        anchor: 'command-tools-table',
+        linkName: '명령 도구 비교표로 바로 가기',
+        tableName: 'Azure 명령 도구와 Cloud Shell 견주기',
+        conceptId: 'azure-management-tools.azure-cli',
+      },
+      {
         topicId: 'azure-monitoring',
         title: '모니터링',
         anchor: 'monitor-features-table',

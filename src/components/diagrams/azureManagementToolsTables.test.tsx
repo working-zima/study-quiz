@@ -13,22 +13,33 @@ const commandTools = {
   id: 'command-tools',
   conceptId: 'azure-management-tools.azure-cli',
   label: 'Azure 명령 도구와 Cloud Shell 견주기',
-  columns: ['도구', '명령의 꼴', '실행하는 곳'],
-  // 스크롤 막대(15px)가 낀 320px에서 표 폭은 273px이고 칸마다 9px가 빠진다. 32% 열 안쪽 78px에 행 머리의 가장 긴 덩어리
-  // 「PowerShell」(굵기 500, 약 73px)이 들어간다. 30% 열 안쪽 73px에 「동사-명사」(약 61px)·「cmdlet」(약 42px)이 들어간다.
-  // 38% 열 안쪽 95px에 「PowerShell,」(약 73px)·「프롬프트,」(약 60px)가 들어간다. 영문 이름 바로 뒤에 조사를 붙이지 않는다.
+  columns: ['도구', '명령 예', '실행하는 곳'],
   columnWidths: ['32%', '30%', '38%'],
   sources: ['azure-management-tools.cloud-shell', 'azure-management-tools.azure-powershell', 'azure-management-tools.azure-cli'],
   rows: [
-    { header: 'Azure PowerShell', cells: ['동사-명사 꼴의 cmdlet', 'PowerShell 셸에서 실행한다. 컴퓨터에 설치하거나 Cloud Shell에서 쓴다'] },
-    { header: 'Azure CLI', cells: ['az로 시작하는 명령', '명령 프롬프트, PowerShell, Bash 같은 여러 셸에서 실행한다. 컴퓨터에 설치하거나 Cloud Shell에서 쓴다'] },
-    { header: 'Azure Cloud Shell', cells: ['따로 없고 두 도구의 명령을 쓴다', '웹 브라우저로 열고 셸로 Bash나 PowerShell을 고른다'] },
+    { header: 'Azure PowerShell', cells: ['New-AzVM 같은 cmdlet', 'PowerShell 셸에서 실행한다. PC에 설치하거나 Cloud Shell 안에서 쓴다'] },
+    { header: 'Azure CLI', cells: ['az vm create 같은 az 명령', 'PC의 명령 프롬프트, Bash, PowerShell 등에서 실행한다. Cloud Shell의 두 셸에서도 쓴다'] },
+    { header: 'Azure Cloud Shell', cells: ['위의 명령 도구를 사용', '브라우저에서 Bash 또는 PowerShell 셸을 열고 미리 설치된 도구를 쓴다'] },
   ],
 }
 
 function table() {
   return visualsByTopicId[topicId].tables[commandTools.id]
 }
+
+it.each([2, 4] as const)('공유 본문 h%i에서 상황별 관리 도구 선택표를 요약 바로 아래에 보인다', (headingLevel) => {
+  const concept = concepts.find(({ id }) => id === `${topicId}.management-tools`)!
+  render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
+
+  const figure = screen.getByRole('figure', { name: '상황별 Azure 관리 도구 선택' })
+  expect(figure.previousElementSibling).toHaveTextContent(concept.summary)
+  expect(figure.nextElementSibling).toHaveTextContent(concept.paragraphs[0])
+  expect(within(figure).getAllByRole('rowheader').map(({ textContent }) => textContent)).toEqual([
+    'Azure 포털', 'Azure Cloud Shell', 'Azure CLI', 'Azure PowerShell', 'Azure 모바일 앱', 'REST API', 'Azure Arc',
+  ])
+  expect(within(within(figure).getByRole('row', { name: /Azure Cloud Shell/u })).getByRole('cell')).toHaveTextContent('설치 없이')
+  expect(within(within(figure).getByRole('row', { name: /Azure Arc/u })).getByRole('cell')).toHaveTextContent('원래 자리')
+})
 
 describe('명령 도구 비교표', () => {
   it('주제의 시각 요소가 로더에 있고 약어 툴팁은 없다', () => {
@@ -62,12 +73,12 @@ describe('명령 도구 비교표', () => {
 
     for (const fact of [
       'Azure PowerShell의 명령 하나를 cmdlet이라고 부른다', '할 일을 나타내는 동사와 다룰 대상을 나타내는 명사를 하이픈(-)으로 이은 꼴',
-      'Windows·Linux·macOS 컴퓨터에 설치해 쓴다', 'Cloud Shell에는 Azure PowerShell이 미리 설치되어 있고',
+      'Windows·Linux·macOS 컴퓨터에 설치해 쓴다', 'Cloud Shell에는 Azure PowerShell이 미리 설치되어 있고', 'New-AzVM',
     ]) expect(bodyOf('azure-powershell'), fact).toContain(fact)
     for (const fact of [
       'Azure CLI의 명령은 `az`로 시작하고', '명령 프롬프트', 'Linux·macOS에서는 Bash 같은 셸에 `az` 명령을 입력한다',
       'Windows·Linux·macOS 컴퓨터에 설치해 쓰거나, Azure CLI가 미리 설치되어 있는 Azure Cloud Shell에서 쓴다',
-      'Azure PowerShell의 cmdlet은 PowerShell에서 실행한다',
+      'Azure PowerShell의 cmdlet은 PowerShell에서 실행한다', 'az vm create',
     ]) expect(bodyOf('azure-cli'), fact).toContain(fact)
     for (const fact of [
       '웹 브라우저 안에서 여는 셸', 'Bash와 PowerShell 가운데 하나로 고른다', 'Cloud Shell이 두 도구와 다른 제3의 명령 꼴을 갖는 것은 아니다',
