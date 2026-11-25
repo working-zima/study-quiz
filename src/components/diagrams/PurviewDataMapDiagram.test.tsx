@@ -63,10 +63,10 @@ const allNodes = Object.keys(labels)
 const pathEnds: Record<string, [string, string]> = {"on-prem-to-purview": ["on-prem", "purview"], "cloud-to-purview": ["other-cloud", "purview"], "saas-to-purview": ["saas", "purview"], "lineage": ["on-prem", "other-cloud"]}
 const allPaths = Object.keys(pathEnds)
 const question = "여러 곳에 흩어진 데이터를 어떻게 한곳에서 볼까?"
-const idleCaption = "회사 A의 데이터가 온-프레미스, 다른 클라우드, SaaS 세 곳에 흩어져 있다. 버튼을 고르면 Microsoft Purview가 이 데이터로 하는 일을 하나씩 볼 수 있다."
-const legend = "Microsoft Purview로 가는 화살표는 데이터를 옮기는 것이 아니라, 어떤 데이터가 어디 있는지 알려 주는 정보가 모이는 방향이다. 온-프레미스에서 다른 클라우드로 가는 화살표는 회사 A가 데이터를 옮긴 길이다."
+const idleCaption = "Microsoft Purview는 온-프레미스, 다른 클라우드, SaaS에 흩어진 데이터를 찾고 어떤 데이터가 어디 있는지 알려 주는 정보를 모은다. 회사 A가 데이터를 옮긴 길은 데이터 계보로 볼 수 있다."
+const legend = "실선 화살표는 데이터에 관한 정보가 Purview로 모이는 방향이다. 점선 화살표는 회사 A가 데이터를 옮긴 길이다."
 const figureName = "회사 A의 데이터가 있는 세 곳에서 Microsoft Purview로 정보가 모이고, 온-프레미스에서 다른 클라우드로 데이터가 옮겨 간 길을 계보로 보는 모습"
-const svgName = "회사 A의 데이터 안에 온-프레미스, 다른 클라우드, SaaS가 있고, 그 아래에 Microsoft Purview가 있다"
+const svgName = "온-프레미스, 다른 클라우드, SaaS에서 Microsoft Purview로 데이터에 관한 정보가 모이고, 온-프레미스에서 다른 클라우드로 데이터가 이동한 길을 점선으로 표시한다"
 const expectedScenarios = [
   {
     "id": "discover",
@@ -350,14 +350,17 @@ describe('PurviewDataMapDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  it('전체에서 세 곳의 정보 수집 경로와 데이터 계보를 실선과 점선으로 구분한다', () => {
     const { container } = render(<PurviewDataMapDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
     for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    const dashedPaths = diagram().querySelectorAll('path[stroke-dasharray]')
+    expect(Array.from(dashedPaths, (path) => path.getAttribute('data-path'))).toEqual(['lineage'])
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
+    expectPathGeometry()
     expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
   })
@@ -378,7 +381,7 @@ describe('PurviewDataMapDiagram', () => {
 
     for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
   })
@@ -474,7 +477,10 @@ describe('PurviewDataMapDiagram', () => {
     expect(figure.closest('article')).toHaveAttribute('id', concept.id)
     expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.map((paragraph) => paragraph.replace(/^- /u, '')).join('').replace(/\*\*|`/gu, ''))
     expect(figure.closest('article')!.lastElementChild).toBe(figure)
-    expect(screen.getAllByRole('figure')).toEqual([figure])
+    expect(screen.getAllByRole('figure')).toEqual([
+      screen.getByRole('figure', { name: '상황별 Azure 거버넌스 도구 선택' }),
+      figure,
+    ])
     expect(within(figure).queryByRole('heading')).toBeNull()
   })
 
@@ -524,6 +530,9 @@ describe('PurviewDataMapDiagram', () => {
       expect(diagram()).toHaveAttribute('viewBox', '0 0 440 172')
       expect(diagram()).toHaveAttribute('class', 'block h-auto w-full')
       expect(diagram().parentElement).toHaveAttribute('class', 'w-full')
+      expect(ids('[data-path]', 'data-path')).toEqual([...allPaths].sort())
+      expect(ids('path[stroke-dasharray]', 'data-path')).toEqual(['lineage'])
+      expectPathGeometry()
       expect(diagram().parentElement).not.toHaveClass('max-w-[380px]', '-mx-4')
     })
 

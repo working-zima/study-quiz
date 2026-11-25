@@ -30,6 +30,21 @@ function table() {
   return visualsByTopicId[topicId].tables[governanceTools.id]
 }
 
+it.each([2, 4] as const)('공유 본문 h%i에서 거버넌스 도구 선택표를 요약 바로 아래에 보인다', (headingLevel) => {
+  const concept = concepts.find(({ id }) => id === `${topicId}.purview`)!
+  render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
+
+  const figure = screen.getByRole('figure', { name: '상황별 Azure 거버넌스 도구 선택' })
+  expect(figure.previousElementSibling).toHaveTextContent(concept.summary)
+  expect(figure.nextElementSibling).toHaveTextContent(concept.paragraphs[0])
+  expect(within(figure).getAllByRole('rowheader').map(({ textContent }) => textContent)).toEqual([
+    'Microsoft Purview', 'Azure Policy', '리소스 잠금',
+  ])
+  expect(within(figure).getByRole('row', { name: /Microsoft Purview/u })).toHaveTextContent('민감한 데이터')
+  expect(within(figure).getByRole('row', { name: /Azure Policy/u })).toHaveTextContent('규칙을 지키는지')
+  expect(within(figure).getByRole('row', { name: /리소스 잠금/u })).toHaveTextContent('실수로 지우거나')
+})
+
 describe('거버넌스 도구 비교표', () => {
   it('주제의 시각 요소가 로더에 있고 약어 툴팁은 없다', () => {
     expect(visualsByTopicId[topicId].glossary).toEqual([])

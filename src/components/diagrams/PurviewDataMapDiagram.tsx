@@ -67,7 +67,7 @@ export function PurviewDataMapDiagram() {
   const layoutPaths = wide ? widePaths : paths
   const layoutGroups = wide ? wideGroups : groups
   const layoutNotes = wide ? wideNotes : notes
-  const visiblePaths = active ? active.paths : []
+  const visiblePaths = active ? active.paths : Object.keys(layoutPaths)
   const shownNotes = layoutNotes.filter((note) => active !== null && note.scenario === active.id)
 
   return (
@@ -98,7 +98,7 @@ export function PurviewDataMapDiagram() {
           ))}
 
           {visiblePaths.map((id) => (
-            <path key={id} data-path={id} d={layoutPaths[id]} className="fill-none stroke-title" strokeWidth="1.5" strokeLinejoin="round" markerEnd={`url(#${arrowId})`} />
+            <path key={id} data-path={id} d={layoutPaths[id]} className="fill-none stroke-title" strokeWidth="1.5" strokeLinejoin="round" strokeDasharray={id === 'lineage' ? '4 3' : undefined} markerEnd={`url(#${arrowId})`} />
           ))}
 
           {layoutNodes.map((node) => (

@@ -193,6 +193,14 @@ describe('App routes', () => {
 
     it.each([
       {
+        topicId: 'azure-governance',
+        title: '거버넌스와 규정 준수',
+        anchor: 'governance-tools-table',
+        linkName: 'RBAC·정책·잠금 비교표로 바로 가기',
+        tableName: '리소스를 지키는 세 도구 견주기',
+        conceptId: 'azure-governance.lock-inheritance',
+      },
+      {
         topicId: 'azure-management-tools',
         title: '관리 도구',
         anchor: 'command-tools-table',

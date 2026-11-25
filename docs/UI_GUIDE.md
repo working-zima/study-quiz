@@ -613,6 +613,7 @@ phase 38의 다섯 장은 위 기록에서, phase 39가 메시징 주제에 더�
   VM 1·웹 앱 1의 두 연결선이 어디에서 모이는지 보여 준다(사용자 결정 2026-11-22).
   ARM과 코드형 인프라의 첫 도식(`ResourceManagerDiagram`)도 `전체`에서 모든 연결선을 보여 네 도구의 요청이 Azure Resource Manager에 모이는 흐름이 보인다.
   Azure 관리 도구의 첫 도식(`ToolAccessDiagram`)은 `전체`에서 REST API를 포함한 여섯 경로를 보인다.
+  거버넌스와 규정 준수의 첫 도식(`PurviewDataMapDiagram`)은 `전체`에서 정보가 모이는 실선 셋과 데이터 계보를 나타내는 점선 하나를 보인다.
   이 도식들에서 장면을 고르면 그 장면의 경로만 보인다.
 - **접근성 이름은 `figure`의 `aria-label`로 준다. 헤딩을 쓰지 마라.** `ConceptList`가
   호출 화면에 따라 헤딩 레벨을 바꾸기 때문이다. 캡션은 `aria-live="polite"`, 시나리오 버튼은
@@ -752,10 +753,10 @@ EMR·Glue·Athena·Lake Formation 도식 다섯(phase 62), IAM 도식 여덟(pha
 - 글자 크기는 `text-sm`, 행 구분선은 `border-disabled`. 줄무늬 배경을 쓰지 마라.
 
 - **요약 바로 아래의 표.** `registry`의 `summaryFiguresByConceptId`에 둔 표는 개념의 한 줄 요약과 본문 사이에 붙는다.
-  Azure 관리 도구와 모니터링의 도구 선택표, ARM과 코드형 인프라의 용어별 역할 표가 이 자리에 있다.
+  Azure 거버넌스, 관리 도구, 모니터링의 도구 선택표와 ARM과 코드형 인프라의 용어별 역할 표가 이 자리에 있다.
 - **표 바로 가기.** 표에 `shortcut`(`id`·`label`)이 있으면 개념 읽기 머리(주제 제목 아래)에 그 표로 가는 링크를 두고, 표 `figure`에 그 `id`와
   `scroll-mt-24`를 단다. 링크는 `#/과목/topic/주제#id`이고, 스크롤은 ADR-020대로 `ConceptReadPage`의 해시 effect가 맡는다.
-  Azure 명령 도구 비교표, Azure Monitor 기능 비교표, ARM과 코드형 인프라의 배포 방식 비교표에 바로 가기를 둔다.
+  RBAC·정책·잠금 비교표, Azure 명령 도구 비교표, Azure Monitor 기능 비교표, ARM과 코드형 인프라의 배포 방식 비교표에 바로 가기를 둔다.
 
 ### 약어 툴팁 (ADR-037)
 
