@@ -4,7 +4,7 @@
       "label": "크기가 같은 VM 둘의 요금을 가르는 지역, 실행 시간, 소프트웨어 라이선스를 보인 모습",
       "svgLabel": "VM 1과 VM 2가 나란히 있고, 지역과 실행 시간, 소프트웨어 라이선스에서 VM 2로 화살표가 이어진다",
       "question": "크기가 같은 VM인데 왜 요금이 다를까?",
-      "idleCaption": "크기가 같은 VM 둘과 요금을 가를 수 있는 요인 셋을 그렸다. 버튼을 고르면 어느 요인이 VM 2의 요금을 어떻게 바꾸는지 볼 수 있다.",
+      "idleCaption": "크기가 같은 VM도 배포 지역, 실행 시간, 소프트웨어 라이선스가 다르면 요금이 달라질 수 있다.",
       "legend": "화살표는 그 요인이 VM 2의 요금을 바꾼다는 뜻이다. VM 1은 견줄 기준이다.",
       "nodes": {
         "vm-1": "VM 1",
@@ -277,8 +277,53 @@
     }
   },
   "tables": {
+    "cost-factors-overview": {
+      "label": "Azure 비용 요인과 가격 계산기",
+      "columns": [
+        "확인할 항목",
+        "무엇을 살펴보나"
+      ],
+      "columnWidths": [
+        "38%",
+        "62%"
+      ],
+      "sources": [
+        "azure-cost-factors.cost-factors",
+        "azure-cost-factors.pricing-calculator"
+      ],
+      "rows": [
+        {
+          "header": "리소스 종류와 지역",
+          "cells": [
+            "리소스의 종류와 설정, 배포할 지역에 따라 단가가 달라질 수 있다"
+          ]
+        },
+        {
+          "header": "사용량과 유지 관리",
+          "cells": [
+            "얼마나 쓰는지, 쓰지 않는 디스크 같은 리소스가 남아 있는지 확인한다"
+          ]
+        },
+        {
+          "header": "구독 유형과 Marketplace",
+          "cells": [
+            "구독의 무료 사용량과 Marketplace 판매 업체의 추가 요금을 확인한다"
+          ]
+        },
+        {
+          "header": "가격 계산기",
+          "cells": [
+            "배포 전에 리소스 구성과 예상 사용량을 넣어 월 예상 비용을 비교한다"
+          ]
+        }
+      ]
+    },
     "cost-saving-options": {
       "label": "할인 방식 넷 견주기",
+      "shortcut": {
+        "id": "cost-saving-options-table",
+        "label": "비용 절감 옵션 비교표로 바로 가기"
+      },
       "columns": [
         "방식",
         "내놓는 것",

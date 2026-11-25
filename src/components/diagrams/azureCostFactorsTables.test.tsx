@@ -30,6 +30,48 @@ function table() {
   return visualsByTopicId[topicId].tables[savingOptions.id]
 }
 
+// 비용 요인 개념의 요약 바로 아래에서 요금을 가르는 요인과 가격 계산기로 무엇을 살펴볼지 먼저 보인다.
+const costFactorsOverview = {
+  id: 'cost-factors-overview',
+  conceptId: `${topicId}.cost-factors`,
+  label: 'Azure 비용 요인과 가격 계산기',
+  columns: ['확인할 항목', '무엇을 살펴보나'],
+  columnWidths: ['38%', '62%'],
+  sources: ['azure-cost-factors.cost-factors', 'azure-cost-factors.pricing-calculator'],
+  rows: [
+    { header: '리소스 종류와 지역', cells: ['리소스의 종류와 설정, 배포할 지역에 따라 단가가 달라질 수 있다'] },
+    { header: '사용량과 유지 관리', cells: ['얼마나 쓰는지, 쓰지 않는 디스크 같은 리소스가 남아 있는지 확인한다'] },
+    { header: '구독 유형과 Marketplace', cells: ['구독의 무료 사용량과 Marketplace 판매 업체의 추가 요금을 확인한다'] },
+    { header: '가격 계산기', cells: ['배포 전에 리소스 구성과 예상 사용량을 넣어 월 예상 비용을 비교한다'] },
+  ],
+}
+
+it('비용 요인 개요표의 이름·열·열 폭·근거·행이 지정한 값이다', () => {
+  const overview = visualsByTopicId[topicId].tables[costFactorsOverview.id]
+  expect(overview.label).toBe(costFactorsOverview.label)
+  expect(overview.columns).toEqual(costFactorsOverview.columns)
+  expect(overview.columnWidths).toEqual(costFactorsOverview.columnWidths)
+  expect(overview.sources).toEqual(costFactorsOverview.sources)
+  expect(overview.rows).toEqual(costFactorsOverview.rows)
+  expect(overview.shortcut).toBeUndefined()
+})
+
+it.each([2, 4] as const)('공유 본문 h%i에서 비용 요인 개요표를 요약 바로 아래에 보인다', (headingLevel) => {
+  const concept = concepts.find(({ id }) => id === costFactorsOverview.conceptId)!
+  render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
+
+  const figure = screen.getByRole('figure', { name: costFactorsOverview.label })
+  expect(figure.closest('article')).toHaveAttribute('id', concept.id)
+  expect(within(figure.closest('article')!).getByRole('heading', { level: headingLevel, name: concept.name })).toBeInTheDocument()
+  expect(figure.previousElementSibling).toHaveTextContent(concept.summary)
+  expect(figure.nextElementSibling).toHaveTextContent(concept.paragraphs[0])
+  expect(within(figure).getAllByRole('rowheader').map(({ textContent }) => textContent)).toEqual(costFactorsOverview.rows.map(({ header }) => header))
+  for (const { header, cells } of costFactorsOverview.rows) {
+    const row = within(figure).getByRole('rowheader', { name: header }).closest('tr')!
+    expect(within(row).getAllByRole('cell').map((cell) => cell.textContent)).toEqual(cells)
+  }
+})
+
 describe('할인 방식 비교표', () => {
   it('주제의 시각 요소가 로더에 있고 약어 툴팁은 없다', () => {
     expect(visualsByTopicId[topicId].glossary).toEqual([])
@@ -40,6 +82,7 @@ describe('할인 방식 비교표', () => {
     expect(table().columns).toEqual(savingOptions.columns)
     expect(table().columnWidths).toEqual(savingOptions.columnWidths)
     expect(table().sources).toEqual(savingOptions.sources)
+    expect(table().shortcut).toEqual({ id: 'cost-saving-options-table', label: '비용 절감 옵션 비교표로 바로 가기' })
 
     render(<CostSavingOptionsTable />)
 
@@ -88,7 +131,10 @@ describe('할인 방식 비교표', () => {
     expect(article).toHaveAttribute('id', concept.id)
     expect(within(article).getByRole('heading', { level: headingLevel, name: concept.name })).toBeInTheDocument()
     expect(screen.getAllByRole('figure')).toHaveLength(2)
+    expect(screen.getAllByRole('figure')[0]).toBe(screen.getByRole('figure', { name: visualsByTopicId[topicId].diagrams['hybrid-benefit'].label }))
     expect(screen.getAllByRole('figure')[1]).toBe(figure)
     expect(article.lastElementChild).toBe(figure)
+    expect(figure).toHaveAttribute('id', 'cost-saving-options-table')
+    expect(figure).toHaveClass('scroll-mt-24')
   })
 })

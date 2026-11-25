@@ -64,7 +64,7 @@ const allNodes = Object.keys(labels)
 const pathEnds: Record<string, [string, string]> = {"region-to-vm":["region","vm-2"],"hours-to-vm":["hours","vm-2"],"license-to-vm":["license","vm-2"]}
 const allPaths = Object.keys(pathEnds)
 const question = "크기가 같은 VM인데 왜 요금이 다를까?"
-const idleCaption = "크기가 같은 VM 둘과 요금을 가를 수 있는 요인 셋을 그렸다. 버튼을 고르면 어느 요인이 VM 2의 요금을 어떻게 바꾸는지 볼 수 있다."
+const idleCaption = "크기가 같은 VM도 배포 지역, 실행 시간, 소프트웨어 라이선스가 다르면 요금이 달라질 수 있다."
 const legend = "화살표는 그 요인이 VM 2의 요금을 바꾼다는 뜻이다. VM 1은 견줄 기준이다."
 const figureName = "크기가 같은 VM 둘의 요금을 가르는 지역, 실행 시간, 소프트웨어 라이선스를 보인 모습"
 const svgName = "VM 1과 VM 2가 나란히 있고, 지역과 실행 시간, 소프트웨어 라이선스에서 VM 2로 화살표가 이어진다"
@@ -226,6 +226,19 @@ function expectPathGeometry() {
   }
 }
 
+// 전체에서 함께 보이는 경로끼리 어떤 선분도 겹치거나 엇갈리지 않는다. 가로 구간의 높이를 경로마다 달리 둔 이유다.
+function expectPathsApart() {
+  const segmentsOf = (id: string) => pathPoints(id).slice(1).map((point, index) => segmentBox(pathPoints(id)[index], point))
+  const shown = shownIds('[data-path]', 'data-path')
+  for (const [index, id] of shown.entries()) {
+    for (const other of shown.slice(index + 1)) {
+      for (const segment of segmentsOf(id)) {
+        for (const otherSegment of segmentsOf(other)) expect(segmentTouches(segment, otherSegment), `${id} ↔ ${other}`).toBe(false)
+      }
+    }
+  }
+}
+
 // 아래 단언들은 배치에 묶이지 않는다. 세로형과 가로형이 같은 기대값으로 통과해야 한다.
 async function expectScenario(
   scenario: typeof expectedScenarios[number],
@@ -329,13 +342,15 @@ describe('CostFactorsDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  it('전체에서 노드가 모두 선명하고 요인 셋에서 VM 2로 가는 경로 셋을 곁말 없이 보인다', () => {
     const { container } = render(<CostFactorsDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
     for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
+    expectPathsApart()
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
     expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
@@ -357,7 +372,8 @@ describe('CostFactorsDiagram', () => {
 
     for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
   })
@@ -434,6 +450,7 @@ describe('CostFactorsDiagram', () => {
     }
   })
 
+  // 요약 바로 아래의 비용 요인 개요표가 같은 개념에 붙지만, 도식은 그대로 본문 바로 뒤·개념의 맨 끝이다.
   it.each([2, 4] as const)('공유 본문 h%i에서 개념 본문 바로 뒤에 도식을 붙인다', (headingLevel) => {
     const concept = topics.find(({ id }) => id === topicId)!.concepts.find(({ id }) => id === anchorConceptId)!
     render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
@@ -442,7 +459,7 @@ describe('CostFactorsDiagram', () => {
     expect(figure.closest('article')).toHaveAttribute('id', concept.id)
     expect(figure.previousElementSibling?.textContent).toBe(concept.paragraphs.map((paragraph) => paragraph.replace(/^- /u, '')).join('').replace(/\*\*|`/gu, ''))
     expect(figure.closest('article')!.lastElementChild).toBe(figure)
-    expect(screen.getAllByRole('figure')).toEqual([figure])
+    expect(screen.getAllByRole('figure')).toEqual([screen.getByRole('figure', { name: 'Azure 비용 요인과 가격 계산기' }), figure])
     expect(within(figure).queryByRole('heading')).toBeNull()
   })
 
@@ -492,7 +509,25 @@ describe('CostFactorsDiagram', () => {
       expect(diagram()).toHaveAttribute('viewBox', '0 0 440 144')
       expect(diagram()).toHaveAttribute('class', 'block h-auto w-full')
       expect(diagram().parentElement).toHaveAttribute('class', 'w-full')
+      expect(ids('[data-path]', 'data-path')).toEqual([...allPaths].sort())
+      expect(ids('[data-note]', 'data-note')).toEqual([])
+      expectPathGeometry()
+      expectPathsApart()
       expect(diagram().parentElement).not.toHaveClass('max-w-[380px]', '-mx-4')
+    })
+
+    it('전체를 다시 누르면 가로형에서도 경로 셋이 모두 돌아온다', async () => {
+      const { container } = render(<CostFactorsDiagram />)
+      await selectScenario(expectedScenarios[1].label)
+      expect(ids('[data-path]', 'data-path')).toEqual([...expectedScenarios[1].paths].sort())
+      expect(ids('[data-note]', 'data-note')).toEqual([...expectedScenarios[1].notes].sort())
+      await selectScenario('전체')
+
+      for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
+      expect(ids('[data-path]', 'data-path')).toEqual([...allPaths].sort())
+      expect(ids('[data-note]', 'data-note')).toEqual([])
+      expectPathGeometry()
+      expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     })
 
     it('노드·그룹·경로 id 집합이 세로형과 같다', async () => {

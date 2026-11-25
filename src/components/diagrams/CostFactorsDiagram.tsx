@@ -6,6 +6,7 @@ import { DiagramFrame, type DiagramScenario } from './DiagramFrame'
 const text = visualsByTopicId['azure-cost-factors'].diagrams['cost-factors']
 
 // 세로형은 견줄 VM 둘을 위에, 요금을 가르는 요인 셋을 아래에 둔다. 경로는 VM 1 아래를 돌아 VM 2에 닿는다.
+// 전체에서 경로 셋이 함께 보이므로 가로 구간의 높이를 경로마다 달리해 겹치거나 엇갈리지 않게 한다.
 const nodes = [
   { id: 'vm-1', x: 16, y: 8, width: 104 },
   { id: 'vm-2', x: 160, y: 8, width: 104 },
@@ -14,8 +15,8 @@ const nodes = [
   { id: 'license', x: 148, y: 104, width: 124 },
 ]
 const paths: Record<string, string> = {
-  'region-to-vm': 'M36 104 V72 H184 V40',
-  'hours-to-vm': 'M106 104 V72 H212 V40',
+  'region-to-vm': 'M36 104 V64 H184 V40',
+  'hours-to-vm': 'M106 104 V80 H212 V40',
   'license-to-vm': 'M240 104 V40',
 }
 const notes = [
@@ -24,7 +25,7 @@ const notes = [
   { id: 'license-note', x: 272, y: 150, textAnchor: 'end' as const, scenario: 'license' },
 ]
 
-// 가로형도 VM 둘을 위에, 요인 셋을 아래에 두고 폭만 넓힌다.
+// 가로형도 VM 둘을 위에, 요인 셋을 아래에 두고 폭만 넓힌다. 가로 구간의 높이도 경로마다 다르다.
 const wideNodes = [
   { id: 'vm-1', x: 48, y: 8, width: 120 },
   { id: 'vm-2', x: 272, y: 8, width: 120 },
@@ -33,8 +34,8 @@ const wideNodes = [
   { id: 'license', x: 308, y: 88, width: 124 },
 ]
 const widePaths: Record<string, string> = {
-  'region-to-vm': 'M64 88 V64 H296 V40',
-  'hours-to-vm': 'M220 88 V64 H340 V40',
+  'region-to-vm': 'M64 88 V56 H296 V40',
+  'hours-to-vm': 'M220 88 V72 H340 V40',
   'license-to-vm': 'M372 88 V40',
 }
 const wideNotes = [
@@ -59,7 +60,7 @@ export function CostFactorsDiagram() {
   const layoutNodes = wide ? wideNodes : nodes
   const layoutPaths = wide ? widePaths : paths
   const layoutNotes = wide ? wideNotes : notes
-  const visiblePaths = active ? active.paths : []
+  const visiblePaths = active ? active.paths : Object.keys(layoutPaths)
   const shownNotes = layoutNotes.filter((note) => active !== null && note.scenario === active.id)
 
   return (

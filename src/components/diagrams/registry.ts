@@ -450,7 +450,7 @@ import { ApiAccessControlTable, ApiTypeTable } from './apiGatewayTables'
 import { PricingModelsTable } from './azureCloudComputingTables'
 import { CloudModelsTable } from './azureCloudModelsTables'
 import { HostingOptionsTable } from './azureComputeTables'
-import { CostSavingOptionsTable } from './azureCostFactorsTables'
+import { CostFactorsOverviewTable, CostSavingOptionsTable } from './azureCostFactorsTables'
 import { CostToolChoiceTable, CostToolsTable } from './azureCostManagementTables'
 import { DataMoveOptionsTable } from './azureDataMovementTables'
 import { GovernanceToolChoiceTable, GovernanceToolsTable } from './azureGovernanceTables'
@@ -966,6 +966,7 @@ export const summaryFiguresByConceptId: Record<string, ComponentType> = {
   'azure-infrastructure-as-code.resource-manager': InfrastructureRolesTable,
   'azure-monitoring.monitoring-tools': ToolChoiceTable,
   'azure-cost-management.cost-management': CostToolChoiceTable,
+  'azure-cost-factors.cost-factors': CostFactorsOverviewTable,
 }
 
 // 개념 id → 단계 목록의 번호 항목마다 그 항목 글 바로 아래에 붙는 단계 그림(ADR-050).
