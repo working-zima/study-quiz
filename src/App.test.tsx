@@ -224,6 +224,14 @@ describe('App routes', () => {
         tableName: '스크립트, ARM 템플릿, Bicep 견주기',
         conceptId: 'azure-infrastructure-as-code.bicep',
       },
+      {
+        topicId: 'azure-cost-management',
+        title: '비용 관리와 태그',
+        anchor: 'cost-tools-table',
+        linkName: '비용 도구 비교표로 바로 가기',
+        tableName: '비용 도구 넷 견주기',
+        conceptId: 'azure-cost-management.spending-limit',
+      },
     ])('$title 주제의 바로 가기는 같은 화면에서 비교표로 옮긴다', async ({ topicId, title, anchor, linkName, tableName, conceptId }) => {
       const scrollIntoView = vi.fn()
       vi.spyOn(Element.prototype, 'scrollIntoView').mockImplementation(scrollIntoView)

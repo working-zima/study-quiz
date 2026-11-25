@@ -30,6 +30,58 @@ function table() {
   return visualsByTopicId[topicId].tables[costTools.id]
 }
 
+// 주제 첫 개념의 요약 바로 아래에서 상황마다 어떤 비용 도구를 쓸지 먼저 보인다.
+const costToolChoice = {
+  id: 'cost-tool-choice',
+  conceptId: `${topicId}.cost-management`,
+  label: '상황별 Azure 비용 관리 도구 선택',
+  columns: ['도구', '이럴 때 쓴다'],
+  columnWidths: ['35%', '65%'],
+  sources: [
+    'azure-cost-management.cost-analysis',
+    'azure-cost-management.budgets',
+    'azure-cost-management.cost-alerts',
+    'azure-cost-management.tags',
+    'azure-cost-management.spending-limit',
+  ],
+  rows: [
+    { header: '비용 분석', cells: ['이미 쓴 비용을 서비스나 지역별로 나눠 어디에 돈이 들었는지 살펴본다'] },
+    { header: '예산', cells: ['실제 비용이나 예측 비용에 알림 기준을 정한다'] },
+    { header: '비용 경고', cells: ['발생한 경고를 포털에서 한곳에 모아 본다'] },
+    { header: '태그', cells: ['부서 정보를 붙여 한 구독 안에서도 부서별 비용을 나눠 본다'] },
+    { header: '지출 한도', cells: ['크레딧을 다 쓰면 해당 구독에서 배포한 서비스가 멈춘다'] },
+  ],
+}
+
+it('비용 관리 도구 선택표의 이름·열·열 폭·근거·행이 지정한 값이다', () => {
+  const choice = visualsByTopicId[topicId].tables[costToolChoice.id]
+  expect(choice.label).toBe(costToolChoice.label)
+  expect(choice.columns).toEqual(costToolChoice.columns)
+  expect(choice.columnWidths).toEqual(costToolChoice.columnWidths)
+  expect(choice.sources).toEqual(costToolChoice.sources)
+  expect(choice.rows).toEqual(costToolChoice.rows)
+  expect(choice.shortcut).toBeUndefined()
+})
+
+it.each([2, 4] as const)('공유 본문 h%i에서 비용 관리 도구 선택표를 요약 바로 아래에 보인다', (headingLevel) => {
+  const concept = concepts.find(({ id }) => id === costToolChoice.conceptId)!
+  render(<ConceptList concepts={[concept]} headingLevel={headingLevel} />)
+
+  const figure = screen.getByRole('figure', { name: costToolChoice.label })
+  expect(figure.closest('article')).toHaveAttribute('id', concept.id)
+  expect(within(figure.closest('article')!).getByRole('heading', { level: headingLevel, name: concept.name })).toBeInTheDocument()
+  expect(figure.previousElementSibling).toHaveTextContent(concept.summary)
+  expect(figure.nextElementSibling).toHaveTextContent(concept.paragraphs[0])
+  expect(within(figure).getAllByRole('rowheader').map(({ textContent }) => textContent)).toEqual([
+    '비용 분석', '예산', '비용 경고', '태그', '지출 한도',
+  ])
+  expect(within(figure).getByRole('row', { name: /비용 분석/u })).toHaveTextContent('어디에 돈이 들었는지')
+  expect(within(figure).getByRole('row', { name: /^예산/u })).toHaveTextContent('알림 기준')
+  expect(within(figure).getByRole('row', { name: /비용 경고/u })).toHaveTextContent('한곳에 모아')
+  expect(within(figure).getByRole('row', { name: /태그/u })).toHaveTextContent('한 구독 안에서도 부서별 비용')
+  expect(within(figure).getByRole('row', { name: /지출 한도/u })).toHaveTextContent('배포한 서비스가 멈춘다')
+})
+
 describe('비용 도구 비교표', () => {
   it('주제의 시각 요소가 로더에 있고 약어 툴팁은 없다', () => {
     expect(visualsByTopicId[topicId].glossary).toEqual([])
@@ -40,6 +92,7 @@ describe('비용 도구 비교표', () => {
     expect(table().columns).toEqual(costTools.columns)
     expect(table().columnWidths).toEqual(costTools.columnWidths)
     expect(table().sources).toEqual(costTools.sources)
+    expect(table().shortcut).toEqual({ id: 'cost-tools-table', label: '비용 도구 비교표로 바로 가기' })
 
     render(<CostToolsTable />)
 

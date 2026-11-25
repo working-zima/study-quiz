@@ -4,7 +4,7 @@
       "label": "지난달 비용 하나를 리소스 그룹별, 서비스별, 지역별로 나눠 보는 모습",
       "svgLabel": "지난달 비용에서 리소스 그룹별, 서비스별, 지역별 세 기준으로 화살표가 갈라진다",
       "question": "같은 비용을 어떤 기준으로 나눠 볼까?",
-      "idleCaption": "회사 A의 지난달 비용을 나눠 보는 세 기준을 그렸다. 버튼을 고르면 기준마다 무엇을 알 수 있는지 볼 수 있다.",
+      "idleCaption": "회사 A의 지난달 비용을 리소스 그룹별로 나누면 어느 묶음에서 지출이 늘었는지 알 수 있다. 서비스별이나 지역별로 나누면 어떤 서비스나 지역에 돈이 들었는지 보인다.",
       "legend": "화살표는 같은 지난달 비용을 어떤 기준으로 나누는지를 잇는다. 금액은 그리지 않았다.",
       "nodes": {
         "total": "지난달 비용",
@@ -270,8 +270,52 @@
     }
   },
   "tables": {
+    "cost-tool-choice": {
+      "label": "상황별 Azure 비용 관리 도구 선택",
+      "columns": [
+        "도구",
+        "이럴 때 쓴다"
+      ],
+      "columnWidths": [
+        "35%",
+        "65%"
+      ],
+      "sources": [
+        "azure-cost-management.cost-analysis",
+        "azure-cost-management.budgets",
+        "azure-cost-management.cost-alerts",
+        "azure-cost-management.tags",
+        "azure-cost-management.spending-limit"
+      ],
+      "rows": [
+        {
+          "header": "비용 분석",
+          "cells": ["이미 쓴 비용을 서비스나 지역별로 나눠 어디에 돈이 들었는지 살펴본다"]
+        },
+        {
+          "header": "예산",
+          "cells": ["실제 비용이나 예측 비용에 알림 기준을 정한다"]
+        },
+        {
+          "header": "비용 경고",
+          "cells": ["발생한 경고를 포털에서 한곳에 모아 본다"]
+        },
+        {
+          "header": "태그",
+          "cells": ["부서 정보를 붙여 한 구독 안에서도 부서별 비용을 나눠 본다"]
+        },
+        {
+          "header": "지출 한도",
+          "cells": ["크레딧을 다 쓰면 해당 구독에서 배포한 서비스가 멈춘다"]
+        }
+      ]
+    },
     "cost-tools": {
       "label": "비용 도구 넷 견주기",
+      "shortcut": {
+        "id": "cost-tools-table",
+        "label": "비용 도구 비교표로 바로 가기"
+      },
       "columns": [
         "도구",
         "하는 일",

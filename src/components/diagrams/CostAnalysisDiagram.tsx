@@ -57,7 +57,7 @@ export function CostAnalysisDiagram() {
   const layoutNodes = wide ? wideNodes : nodes
   const layoutPaths = wide ? widePaths : paths
   const layoutNotes = wide ? wideNotes : notes
-  const visiblePaths = active ? active.paths : []
+  const visiblePaths = active ? active.paths : Object.keys(layoutPaths)
   const shownNotes = layoutNotes.filter((note) => active !== null && note.scenario === active.id)
 
   return (

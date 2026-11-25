@@ -39,7 +39,7 @@ const allNodes = Object.keys(labels)
 const pathEnds: Record<string, [string, string]> = {"to-group":["total","by-group"],"to-service":["total","by-service"],"to-region":["total","by-region"]}
 const allPaths = Object.keys(pathEnds)
 const question = "같은 비용을 어떤 기준으로 나눠 볼까?"
-const idleCaption = "회사 A의 지난달 비용을 나눠 보는 세 기준을 그렸다. 버튼을 고르면 기준마다 무엇을 알 수 있는지 볼 수 있다."
+const idleCaption = "회사 A의 지난달 비용을 리소스 그룹별로 나누면 어느 묶음에서 지출이 늘었는지 알 수 있다. 서비스별이나 지역별로 나누면 어떤 서비스나 지역에 돈이 들었는지 보인다."
 const legend = "화살표는 같은 지난달 비용을 어떤 기준으로 나누는지를 잇는다. 금액은 그리지 않았다."
 const figureName = "지난달 비용 하나를 리소스 그룹별, 서비스별, 지역별로 나눠 보는 모습"
 const svgName = "지난달 비용에서 리소스 그룹별, 서비스별, 지역별 세 기준으로 화살표가 갈라진다"
@@ -277,13 +277,14 @@ describe('CostAnalysisDiagram', () => {
     expect(screen.queryByRole('heading')).toBeNull()
   })
 
-  it('처음에는 노드가 모두 선명하고 경로와 곁말 없이 선택 안내가 나온다', () => {
+  it('전체에서 노드가 모두 선명하고 지난달 비용에서 갈라지는 경로 셋을 곁말 없이 보인다', () => {
     const { container } = render(<CostAnalysisDiagram />)
     const nodes = diagram().querySelectorAll('[data-node]')
 
     expect(Array.from(nodes, (node) => node.getAttribute('data-node')).sort()).toEqual([...allNodes].sort())
     for (const node of nodes) expect(node).toHaveAttribute('opacity', '1')
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
     expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute('aria-pressed', 'true')
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
@@ -305,7 +306,8 @@ describe('CostAnalysisDiagram', () => {
 
     for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
     expect(shownIds('[data-note]', 'data-note')).toEqual([])
-    expect(shownIds('[data-path]', 'data-path')).toEqual([])
+    expect(shownIds('[data-path]', 'data-path').sort()).toEqual([...allPaths].sort())
+    expectPathGeometry()
     expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     for (const { label } of expectedScenarios) expect(screen.getByRole('button', { name: label })).toHaveAttribute('aria-pressed', 'false')
   })
@@ -440,7 +442,23 @@ describe('CostAnalysisDiagram', () => {
       expect(diagram()).toHaveAttribute('viewBox', '0 0 440 124')
       expect(diagram()).toHaveAttribute('class', 'block h-auto w-full')
       expect(diagram().parentElement).toHaveAttribute('class', 'w-full')
+      expect(ids('[data-path]', 'data-path')).toEqual([...allPaths].sort())
+      expect(ids('[data-note]', 'data-note')).toEqual([])
+      expectPathGeometry()
       expect(diagram().parentElement).not.toHaveClass('max-w-[380px]', '-mx-4')
+    })
+
+    it('전체를 다시 누르면 가로형에서도 경로 셋이 모두 돌아온다', async () => {
+      const { container } = render(<CostAnalysisDiagram />)
+      await selectScenario(expectedScenarios[1].label)
+      expect(ids('[data-path]', 'data-path')).toEqual([...expectedScenarios[1].paths].sort())
+      await selectScenario('전체')
+
+      for (const node of diagram().querySelectorAll('[data-node]')) expect(node).toHaveAttribute('opacity', '1')
+      expect(ids('[data-path]', 'data-path')).toEqual([...allPaths].sort())
+      expect(ids('[data-note]', 'data-note')).toEqual([])
+      expectPathGeometry()
+      expect(container.querySelector('figcaption')!.textContent).toBe(idleCaption)
     })
 
     it('노드·그룹·경로 id 집합이 세로형과 같다', async () => {
